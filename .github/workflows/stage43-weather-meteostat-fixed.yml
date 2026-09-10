@@ -1,0 +1,29 @@
+name: stage43-weather-meteostat-fixed
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/stage43_weather_meteostat_year_fixed.py'
+      - '.github/workflows/stage43-weather-meteostat-fixed.yml'
+  workflow_dispatch:
+
+jobs:
+  year:
+    strategy:
+      fail-fast: false
+      matrix:
+        year: [2019,2020,2021,2022,2023,2024,2025,2026]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build yearly weather with fixed timestamp parser
+        run: python scripts/stage43_weather_meteostat_year_fixed.py ${{ matrix.year }}
+      - name: Upload yearly artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage43-weather-fixed-${{ matrix.year }}
+          path: out_year_${{ matrix.year }}/
+          compression-level: 6
+          retention-days: 7
