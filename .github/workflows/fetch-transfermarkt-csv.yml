@@ -1,0 +1,51 @@
+name: fetch-transfermarkt-csv
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fetch-transfermarkt-csv.yml'
+  workflow_dispatch:
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Download Transfermarkt CSV.GZ tables
+        shell: bash
+        run: |
+          set -euxo pipefail
+          BASE='https://pub-e682421888d945d684bcae8890b0ec20.r2.dev/data'
+          mkdir -p core heavy
+          for f in competitions.csv.gz clubs.csv.gz games.csv.gz players.csv.gz player_valuations.csv.gz; do
+            curl -fL --retry 5 --retry-delay 3 "$BASE/$f" -o "core/$f"
+          done
+          for f in appearances.csv.gz game_lineups.csv.gz game_events.csv.gz club_games.csv.gz; do
+            curl -fL --retry 5 --retry-delay 3 "$BASE/$f" -o "heavy/$f"
+          done
+          ls -lh core heavy
+          sha256sum core/* heavy/* | tee SHA256SUMS.txt
+
+      - name: Upload core tables
+        uses: actions/upload-artifact@v4
+        with:
+          name: transfermarkt-core-csv
+          path: core/
+          compression-level: 0
+          retention-days: 7
+
+      - name: Upload heavy tables
+        uses: actions/upload-artifact@v4
+        with:
+          name: transfermarkt-heavy-csv
+          path: heavy/
+          compression-level: 0
+          retention-days: 7
+
+      - name: Upload checksums
+        uses: actions/upload-artifact@v4
+        with:
+          name: transfermarkt-checksums
+          path: SHA256SUMS.txt
+          retention-days: 7
