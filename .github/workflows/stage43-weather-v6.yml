@@ -1,0 +1,24 @@
+name: stage43-weather-v6
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/stage43_weather_v6.py'
+      - '.github/workflows/stage43-weather-v6.yml'
+  workflow_dispatch:
+
+jobs:
+  build-weather-v6:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build historical weather layer v6
+        run: python scripts/stage43_weather_v6.py
+      - name: Upload Stage 43 weather v6 artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage43-weather-v6
+          path: out_v6/
+          compression-level: 6
+          retention-days: 7
