@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-11T11:25:20Z",
+  "generated_at_utc": "2026-09-11T11:39:12Z",
   "status": "OK",
   "active_signals": 3,
   "policy": {
@@ -399,7 +399,7 @@
     "observed_closes": 0,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-11T11:02:23Z",
+    "latest_run_utc": "2026-09-11T11:28:02Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [],
@@ -440,6 +440,46 @@
     "latest_run_utc": "2026-09-11T11:24:50Z",
     "warnings": [],
     "crossings": []
+  },
+  "watch_performance": {
+    "generated_at_utc": "2026-09-11T11:38:20Z",
+    "status": "OK",
+    "scope": "prospective research WATCH crossings only",
+    "overall": {
+      "crossings": 0,
+      "pending": 0,
+      "settled": 0,
+      "void": 0,
+      "review": 0,
+      "user_price_rows": 0,
+      "user_execution_coverage_pct": null,
+      "user_settled_rows": 0,
+      "wins": 0,
+      "losses": 0,
+      "user_profit_u": 0,
+      "user_roi_pct": null,
+      "close_observed": 0,
+      "close_qualified": 0,
+      "reverted_at_close": 0,
+      "close_persistence_pct": null,
+      "close_qualified_settled": 0,
+      "close_qualified_profit_u": 0,
+      "close_qualified_roi_pct": null,
+      "reverted_settled": 0,
+      "reverted_profit_u": 0,
+      "reverted_roi_pct": null,
+      "observed_max_drawdown_u": null
+    },
+    "by_family": {},
+    "policy": {
+      "stake": "flat 1u measurement only",
+      "user_execution": "Marathonbet price captured at first crossing",
+      "alternative_market_selection": "forbidden after crossing/result",
+      "close_comparison": "first-crossing sample retained; later qualification/reversion measured separately",
+      "historical_backfill": "forbidden",
+      "canonical_forward": "unchanged"
+    },
+    "warnings": []
   },
   "display_policy": {
     "bet_notation": "User-facing: П1/Х/П2, 1Х/Х2/12, Ф1/Ф2, ТБ/ТМ, ОЗ — Да/Нет; machine codes unchanged"

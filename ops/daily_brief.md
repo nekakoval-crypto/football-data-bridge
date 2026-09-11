@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-11T11:25:20Z
+Generated UTC: 2026-09-11T11:39:12Z
 Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -91,3 +91,17 @@ Active canonical signals: 3
 - Исполнимый букмекер для наблюдения: Marathonbet
 
 - Сейчас активных движений ≥3 п.п. по ОЗ нет.
+
+---
+
+# WATCH PERFORMANCE — prospective only
+
+> Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
+
+- Crossings: 0 | settled 0 | pending 0
+- Marathonbet coverage at crossing: N/A
+- First-crossing P&L: 0.000u | ROI N/A | W-L 0-0
+- Close: observed 0 | stayed qualified 0 | reverted 0 | persistence N/A
+- Close-qualified ROI: N/A | Reverted ROI: N/A
+
+- WATCH crossings пока нет — статистика начнётся с первого prospectively recorded события.
