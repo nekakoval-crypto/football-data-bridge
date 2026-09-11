@@ -9,6 +9,7 @@ on:
       - 'scripts/stage58_daily_brief.py'
       - 'scripts/stage61_append_daily_brief.py'
       - 'scripts/stage62_append_daily_brief.py'
+      - 'scripts/stage63_append_daily_brief.py'
       - 'scripts/stage58_bet_display_notation.py'
       - '.github/workflows/stage58-daily-brief.yml'
 
@@ -39,6 +40,9 @@ jobs:
 
       - name: Append Stage 62 O/U steam watch
         run: python scripts/stage62_append_daily_brief.py
+
+      - name: Append Stage 63 BTTS watch
+        run: python scripts/stage63_append_daily_brief.py
 
       - name: Apply user-facing betting notation
         run: python scripts/stage58_bet_display_notation.py
