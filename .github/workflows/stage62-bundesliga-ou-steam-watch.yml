@@ -1,0 +1,98 @@
+name: Stage 62 Bundesliga O-U Steam Watch
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '10,40 * * * *'
+  push:
+    paths:
+      - 'scripts/stage62_bundesliga_ou_steam_watch.py'
+      - '.github/workflows/stage62-bundesliga-ou-steam-watch.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      API_FOOTBALL_SEASON: '2026'
+      STAGE62_BUNDESLIGA_LEAGUE_ID: '78'
+      STAGE62_USER_BOOKMAKER: 'Marathonbet'
+      STAGE62_OVER_STEAM_THRESHOLD: '0.03'
+      STAGE62_OPEN_CAPTURE_HORIZON_H: '336'
+      STAGE62_TRACK_HORIZON_H: '72'
+      OPS_DIR: 'ops'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run Stage 62 watch
+        run: |
+          for attempt in 1 2 3; do
+            echo "Stage 62 attempt ${attempt}/3"
+            if python scripts/stage62_bundesliga_ou_steam_watch.py; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              echo 'Stage 62 failed after 3 attempts.'
+              exit 1
+            fi
+            sleep $((attempt * 8))
+          done
+
+      - name: Show Stage 62 summary
+        run: |
+          echo '--- stage62_last_run.json ---'
+          cat ops/stage62_last_run.json
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          for name in ('stage62_ou_crossings.csv','stage62_ou_closes.csv'):
+              p=Path('ops')/name
+              print('---',name,'---')
+              if not p.exists():
+                  print('missing')
+                  continue
+              with p.open(encoding='utf-8-sig',newline='') as f:
+                  rows=list(csv.DictReader(f))
+              print('rows=',len(rows))
+              for r in rows[-10:]:
+                  if 'crossed_at_utc' in r:
+                      print(r.get('home_team'),'-',r.get('away_team'),'move=',r.get('movement_pp'),'MbetO=',r.get('user_cross_over25'),'gap=',r.get('minutes_to_kickoff'))
+                  else:
+                      print(r.get('home_team'),'-',r.get('away_team'),'qualified=',r.get('o1_close_qualified'),'move=',r.get('movement_pp'),'gap=',r.get('close_gap_minutes'))
+          PY
+
+      - name: Commit Stage 62 watch files
+        run: |
+          git config user.name 'stage62-bot'
+          git config user.email 'stage62-bot@users.noreply.github.com'
+          git add -A ops
+          if git diff --cached --quiet; then
+            echo 'No Stage 62 operational changes to commit.'
+          else
+            git commit -m 'Stage 62 Bundesliga O-U steam watch update'
+            git push
+          fi
+
+      - name: Upload Stage 62 snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage62-bundesliga-ou-steam-watch
+          path: |
+            ops/stage62_last_run.json
+            ops/stage62_ou_openers.csv
+            ops/stage62_ou_snapshots.csv
+            ops/stage62_ou_crossings.csv
+            ops/stage62_ou_closes.csv
+          if-no-files-found: ignore
+          retention-days: 30
