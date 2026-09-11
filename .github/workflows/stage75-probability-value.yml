@@ -1,0 +1,59 @@
+name: Stage 75 Probability and Value
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '48 * * * *'
+  push:
+    paths:
+      - 'scripts/stage75_probability_value.py'
+      - 'config/pbk_probability_models.json'
+      - 'research/stage75_probability_value_policy_2026-09-11.md'
+      - 'research/stage75_probability_value_test_report_2026-09-11.md'
+      - '.github/workflows/stage75-probability-value.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  probability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPS_DIR: 'ops'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build prospective probability ledger and rankings
+        run: python scripts/stage75_probability_value.py
+      - name: Show probability summary
+        run: |
+          cat ops/stage75_last_run.json
+          cat ops/probability_rankings.json
+      - name: Commit Stage75 outputs safely
+        run: |
+          git config user.name 'stage75-bot'
+          git config user.email 'stage75-bot@users.noreply.github.com'
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            python scripts/stage75_probability_value.py
+            git add ops/stage75_probability_predictions.csv ops/stage75_probability_settlements.csv ops/probability_rankings.json ops/probability_performance.json ops/stage75_last_run.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Stage75 probability and value update'
+            if git push origin HEAD:main; then exit 0; fi
+            sleep 2
+          done
+          exit 1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage75-probability-value
+          path: |
+            ops/stage75_probability_predictions.csv
+            ops/stage75_probability_settlements.csv
+            ops/probability_rankings.json
+            ops/probability_performance.json
+            ops/stage75_last_run.json
+          retention-days: 30
