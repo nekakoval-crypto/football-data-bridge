@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-11T13:54:57Z",
+  "run_at_utc": "2026-09-11T14:07:29Z",
   "status": "OK",
   "api_version": "v1",
   "db_path": "build/pbk_unified.sqlite",
@@ -53,6 +53,12 @@
       "count": 709
     },
     {
+      "path": "/v1/markets/dnb/openers?limit=1",
+      "http_status": 200,
+      "passed": true,
+      "count": 121
+    },
+    {
       "path": "/v1/lifecycle",
       "http_status": 200,
       "passed": true,
@@ -81,9 +87,15 @@
       "http_status": 200,
       "passed": true,
       "count": null
+    },
+    {
+      "path": "/v1/config/core-market-registry",
+      "http_status": 200,
+      "passed": true,
+      "count": null
     }
   ],
-  "passed": 13,
-  "total": 13,
+  "passed": 15,
+  "total": 15,
   "api_calls": 0
 }
