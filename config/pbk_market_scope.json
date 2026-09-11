@@ -1,118 +1,29 @@
 {
-  "version": 2,
+  "version": 3,
   "locked_at_utc": "2026-09-11",
   "status": "LOCKED_CORE_PLUS_DEFERRED_MARKET_UNIVERSE",
   "principle": "No global odds cap. Eligibility limits belong to individual validated strategies. Core market families are enabled now. Deferred market families are explicitly retained in the PBK roadmap and must not be treated as permanently excluded; each requires its own data-quality and multiple-testing protocol before activation.",
   "time_scope": "FULL_TIME_REGULATION unless a strategy explicitly preregisters another settlement convention",
   "allowed_market_families": [
-    {
-      "id": "MATCH_RESULT_1X2",
-      "label_ru": "Исход матча",
-      "selections_ru": ["П1", "Х", "П2"],
-      "status": "ENABLED"
-    },
-    {
-      "id": "DOUBLE_CHANCE",
-      "label_ru": "Двойной шанс",
-      "selections_ru": ["1Х", "Х2", "12"],
-      "status": "ENABLED"
-    },
-    {
-      "id": "DRAW_NO_BET",
-      "label_ru": "Фора 0 / ставка без ничьи",
-      "selections_ru": ["Ф1(0)", "Ф2(0)"],
-      "status": "ENABLED"
-    },
-    {
-      "id": "ASIAN_HANDICAP",
-      "label_ru": "Азиатская фора",
-      "selections_ru": ["Ф1(line)", "Ф2(line)"],
-      "line_policy": "No global line restriction; each hypothesis fixes its line/line-family before TEST",
-      "status": "ENABLED"
-    },
-    {
-      "id": "EUROPEAN_HANDICAP",
-      "label_ru": "Европейская фора 3-way",
-      "selections_ru": ["Ф1(line)", "Х с форой", "Ф2(line)"],
-      "line_policy": "Strategy-specific",
-      "status": "ENABLED"
-    },
-    {
-      "id": "MATCH_TOTAL",
-      "label_ru": "Тотал матча",
-      "selections_ru": ["ТБ(line)", "ТМ(line)"],
-      "line_policy": "No global line restriction; common examples ТБ/ТМ(1.5, 2.0, 2.25, 2.5, 2.75, 3.0, 3.5)",
-      "status": "ENABLED"
-    },
-    {
-      "id": "TEAM_TOTAL",
-      "label_ru": "Индивидуальный тотал",
-      "selections_ru": ["ИТБ1(line)", "ИТМ1(line)", "ИТБ2(line)", "ИТМ2(line)"],
-      "line_policy": "No global line restriction; strategy-specific",
-      "status": "ACTIVE_DATA_COLLECTION"
-    },
-    {
-      "id": "BTTS",
-      "label_ru": "Обе забьют",
-      "selections_ru": ["ОЗ — Да", "ОЗ — Нет"],
-      "status": "ENABLED"
-    }
+    {"id":"MATCH_RESULT_1X2","label_ru":"Исход матча","selections_ru":["П1","Х","П2"],"status":"ENABLED"},
+    {"id":"DOUBLE_CHANCE","label_ru":"Двойной шанс","selections_ru":["1Х","Х2","12"],"status":"ACTIVE_DATA_COLLECTION"},
+    {"id":"DRAW_NO_BET","label_ru":"Фора 0 / ставка без ничьи","selections_ru":["Ф1(0)","Ф2(0)"],"status":"HISTORICAL_RESEARCH_NO_CANDIDATE","note":"Stage71D +3pp steam screen failed preregistered sample gate; no WATCH created"},
+    {"id":"ASIAN_HANDICAP","label_ru":"Азиатская фора","selections_ru":["Ф1(line)","Ф2(line)"],"line_policy":"No global line restriction; each hypothesis fixes its line/line-family before TEST","status":"ENABLED"},
+    {"id":"EUROPEAN_HANDICAP","label_ru":"Европейская фора 3-way","selections_ru":["Ф1(line)","Х с форой","Ф2(line)"],"line_policy":"Strategy-specific","status":"NEXT_DATA_COLLECTION"},
+    {"id":"MATCH_TOTAL","label_ru":"Тотал матча","selections_ru":["ТБ(line)","ТМ(line)"],"line_policy":"No global line restriction; common examples ТБ/ТМ(1.5, 2.0, 2.25, 2.5, 2.75, 3.0, 3.5)","status":"ENABLED"},
+    {"id":"TEAM_TOTAL","label_ru":"Индивидуальный тотал","selections_ru":["ИТБ1(line)","ИТМ1(line)","ИТБ2(line)","ИТМ2(line)"],"line_policy":"No global line restriction; strategy-specific","status":"ACTIVE_DATA_COLLECTION"},
+    {"id":"BTTS","label_ru":"Обе забьют","selections_ru":["ОЗ — Да","ОЗ — Нет"],"status":"ENABLED"}
   ],
   "deferred_market_universe": [
-    {
-      "id": "CORRECT_SCORE",
-      "label_ru": "Точный счёт",
-      "status": "DEFERRED_REQUIRED_LATER",
-      "reason": "High-dimensional outcome space; requires dedicated multiple-testing and liquidity controls"
-    },
-    {
-      "id": "COMBO_MARKETS",
-      "label_ru": "Комбо-рынки: ОЗ+ТБ/ТМ, исход+тотал и аналогичные",
-      "status": "DEFERRED_REQUIRED_LATER",
-      "reason": "Correlated legs and large hypothesis space require separate validation"
-    },
-    {
-      "id": "BET_BUILDER",
-      "label_ru": "Bet Builder / конструктор ставок",
-      "status": "DEFERRED_REQUIRED_LATER",
-      "reason": "Provider-specific pricing and correlation model required"
-    },
-    {
-      "id": "PLAYER_PROPS",
-      "label_ru": "Игроки: голы, удары, передачи, карточки и прочие props",
-      "status": "DEFERRED_REQUIRED_LATER",
-      "reason": "Needs player identity, lineup, minutes and settlement-quality layer"
-    },
-    {
-      "id": "CORNERS",
-      "label_ru": "Угловые",
-      "status": "DEFERRED_REQUIRED_LATER",
-      "reason": "Separate event-statistics and market-history layer required"
-    },
-    {
-      "id": "CARDS",
-      "label_ru": "Карточки",
-      "status": "DEFERRED_REQUIRED_LATER",
-      "reason": "Referee/player/context dependence and bookmaker settlement differences"
-    },
-    {
-      "id": "SHOTS_AND_SHOTS_ON_TARGET",
-      "label_ru": "Удары / удары в створ",
-      "status": "DEFERRED_REQUIRED_LATER",
-      "reason": "Provider-stat definition consistency must be validated first"
-    },
-    {
-      "id": "OFFSIDES",
-      "label_ru": "Офсайды",
-      "status": "DEFERRED_REQUIRED_LATER",
-      "reason": "Requires stable event-stat source and market coverage"
-    },
-    {
-      "id": "HALF_AND_TIME_BAND_MARKETS",
-      "label_ru": "Таймы, интервалы времени, гол до/после минуты",
-      "status": "DEFERRED_REQUIRED_LATER",
-      "reason": "Settlement/time-event precision and much larger search space"
-    }
+    {"id":"CORRECT_SCORE","label_ru":"Точный счёт","status":"DEFERRED_REQUIRED_LATER","reason":"High-dimensional outcome space; requires dedicated multiple-testing and liquidity controls"},
+    {"id":"COMBO_MARKETS","label_ru":"Комбо-рынки: ОЗ+ТБ/ТМ, исход+тотал и аналогичные","status":"DEFERRED_REQUIRED_LATER","reason":"Correlated legs and large hypothesis space require separate validation"},
+    {"id":"BET_BUILDER","label_ru":"Bet Builder / конструктор ставок","status":"DEFERRED_REQUIRED_LATER","reason":"Provider-specific pricing and correlation model required"},
+    {"id":"PLAYER_PROPS","label_ru":"Игроки: голы, удары, передачи, карточки и прочие props","status":"DEFERRED_REQUIRED_LATER","reason":"Needs player identity, lineup, minutes and settlement-quality layer"},
+    {"id":"CORNERS","label_ru":"Угловые","status":"DEFERRED_REQUIRED_LATER","reason":"Separate event-statistics and market-history layer required"},
+    {"id":"CARDS","label_ru":"Карточки","status":"DEFERRED_REQUIRED_LATER","reason":"Referee/player/context dependence and bookmaker settlement differences"},
+    {"id":"SHOTS_AND_SHOTS_ON_TARGET","label_ru":"Удары / удары в створ","status":"DEFERRED_REQUIRED_LATER","reason":"Provider-stat definition consistency must be validated first"},
+    {"id":"OFFSIDES","label_ru":"Офсайды","status":"DEFERRED_REQUIRED_LATER","reason":"Requires stable event-stat source and market coverage"},
+    {"id":"HALF_AND_TIME_BAND_MARKETS","label_ru":"Таймы, интервалы времени, гол до/после минуты","status":"DEFERRED_REQUIRED_LATER","reason":"Settlement/time-event precision and much larger search space"}
   ],
   "deferred_activation_rule": "Deferred does not mean rejected. A deferred family may enter core only after a dedicated data-source audit, preregistration, frozen discovery sample where needed, and an independent future holdout. No family is activated because of a single attractive example.",
   "guardrails": [
