@@ -1,0 +1,95 @@
+name: Stage 56 Weather and XI Rotation Context
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
+  push:
+    paths:
+      - 'scripts/stage56_weather_rotation.py'
+      - '.github/workflows/stage56-weather-rotation.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      OPS_DIR: 'ops'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run Stage 56 weather and rotation
+        run: |
+          for attempt in 1 2 3; do
+            echo "Stage 56 attempt ${attempt}/3"
+            if python scripts/stage56_weather_rotation.py; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              echo 'Stage 56 failed after 3 attempts.'
+              exit 1
+            fi
+            sleep $((attempt * 10))
+          done
+
+      - name: Show Stage 56 summary
+        run: |
+          echo '--- stage56_last_run.json ---'
+          cat ops/stage56_last_run.json
+          echo '--- stage56_latest.csv ---'
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          p=Path('ops/stage56_latest.csv')
+          if p.exists():
+              with p.open(encoding='utf-8-sig',newline='') as f:
+                  rows=list(csv.DictReader(f))
+              print('rows=',len(rows))
+              for r in rows:
+                  print(
+                      r['home_team'], '-', r['away_team'],
+                      'weather=', r['weather_snapshot_type'],
+                      'temp=', r['temperature_c'],
+                      'rainP=', r['precipitation_probability_pct'],
+                      'wind=', r['wind_speed_10m_kmh'],
+                      'gust=', r['wind_gusts_10m_kmh'],
+                      'rotation_verified=', r['rotation_verified'],
+                      'home_changed=', r['home_changed_starters'],
+                      'away_changed=', r['away_changed_starters']
+                  )
+          PY
+
+      - name: Commit Stage 56 operational files
+        run: |
+          git config user.name 'stage56-bot'
+          git config user.email 'stage56-bot@users.noreply.github.com'
+          git add -A ops
+          if git diff --cached --quiet; then
+            echo 'No Stage 56 operational changes to commit.'
+          else
+            git commit -m 'Stage 56 weather rotation update'
+            git push
+          fi
+
+      - name: Upload Stage 56 snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage56-weather-rotation
+          path: |
+            ops/weather_snapshots.csv
+            ops/rotation_snapshots.csv
+            ops/stage56_latest.csv
+            ops/stage56_last_run.json
+          if-no-files-found: ignore
+          retention-days: 30
