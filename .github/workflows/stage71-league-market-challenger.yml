@@ -1,0 +1,68 @@
+name: Stage 71 League Market Challenger
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '7 7 * * *'
+  push:
+    paths:
+      - 'scripts/stage71_league_market_challenger.py'
+      - 'research/stage71_challenger_policy_2026-09-11.md'
+      - 'research/stage71_seed_evidence.csv'
+      - 'config/pbk_competition_scope.json'
+      - '.github/workflows/stage71-league-market-challenger.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  challenger:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      API_FOOTBALL_SEASON: '2026'
+      OPS_DIR: 'ops'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build Stage 71 challenger board
+        run: python scripts/stage71_league_market_challenger.py
+
+      - name: Show Stage 71 summary
+        run: |
+          cat ops/stage71_last_run.json
+          echo '--- challenger board ---'
+          cat ops/stage71_challenger_board.md
+
+      - name: Commit Stage 71 operational files
+        run: |
+          git config user.name 'stage71-bot'
+          git config user.email 'stage71-bot@users.noreply.github.com'
+          git add -A ops
+          if git diff --cached --quiet; then
+            echo 'No Stage 71 changes to commit.'
+          else
+            git commit -m 'Stage 71 challenger board update'
+            git push
+          fi
+
+      - name: Upload Stage 71 snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage71-challenger-board
+          path: |
+            ops/stage71_league_catalog.csv
+            ops/stage71_challenger_board.csv
+            ops/stage71_challenger_board.json
+            ops/stage71_challenger_board.md
+            ops/stage71_last_run.json
+          if-no-files-found: error
+          retention-days: 30
