@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-11T13:43:26Z",
+  "run_at_utc": "2026-09-11T14:25:18Z",
   "status": "OK",
   "mode": "PROSPECTIVE_CAPTURE_ONLY",
   "leagues": 16,
@@ -8,13 +8,18 @@
   "home_team_total_bet_name": "Total - Home",
   "away_team_total_bet_id": 17,
   "away_team_total_bet_name": "Total - Away",
-  "odds_calls": 130,
+  "odds_calls": 126,
   "new_openers": 0,
-  "new_snapshots": 990,
-  "new_closes": 0,
+  "new_snapshots": 959,
+  "new_closes": 10,
   "total_openers": 1252,
-  "total_snapshots": 1980,
-  "total_closes": 0,
+  "total_snapshots": 2939,
+  "total_closes": 10,
   "signals_created": 0,
-  "warnings": []
+  "warnings": [
+    "odds 1547636: API-Football /odds: {'rateLimit': 'Too many requests. You have exceeded the limit of requests per minute of your subscription.'}",
+    "odds 1552168: API-Football /odds: {'rateLimit': 'Too many requests. You have exceeded the limit of requests per minute of your subscription.'}",
+    "odds 1552167: API-Football /odds: {'rateLimit': 'Too many requests. You have exceeded the limit of requests per minute of your subscription.'}",
+    "odds 1575505: API-Football /odds: {'rateLimit': 'Too many requests. You have exceeded the limit of requests per minute of your subscription.'}"
+  ]
 }
