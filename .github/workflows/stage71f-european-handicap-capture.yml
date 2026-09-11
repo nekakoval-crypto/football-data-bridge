@@ -1,0 +1,67 @@
+name: Stage 71F European Handicap Capture
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '47 * * * *'
+  push:
+    paths:
+      - 'scripts/stage71f_european_handicap_capture.py'
+      - 'research/stage71f_european_handicap_prereg_2026-09-11.md'
+      - '.github/workflows/stage71f-european-handicap-capture.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      OPS_DIR: 'ops'
+      API_FOOTBALL_SEASON: '2026'
+      STAGE71F_USER_BOOKMAKER: 'Marathonbet'
+      STAGE71F_OPEN_HORIZON_H: '336'
+      STAGE71F_TRACK_HORIZON_H: '72'
+      STAGE71F_NEXT_PER_LEAGUE: '10'
+      STAGE71F_EH_BET_ID: '9'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Capture European Handicap market data
+        run: |
+          for attempt in 1 2 3; do
+            if python scripts/stage71f_european_handicap_capture.py; then exit 0; fi
+            if [ "$attempt" -eq 3 ]; then exit 1; fi
+            sleep $((attempt * 8))
+          done
+      - name: Show summary
+        run: cat ops/stage71f_last_run.json
+      - name: Commit operational files
+        run: |
+          git config user.name 'stage71f-bot'
+          git config user.email 'stage71f-bot@users.noreply.github.com'
+          git add ops/stage71f_eh_openers.csv ops/stage71f_eh_snapshots.csv ops/stage71f_eh_closes.csv ops/stage71f_last_run.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Stage71F European handicap capture update'
+            for attempt in 1 2 3; do
+              if git pull --rebase origin main && git push origin main; then exit 0; fi
+              git rebase --abort 2>/dev/null || true
+              git fetch origin main
+              sleep 2
+            done
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage71f-european-handicap-capture
+          path: |
+            ops/stage71f_eh_openers.csv
+            ops/stage71f_eh_snapshots.csv
+            ops/stage71f_eh_closes.csv
+            ops/stage71f_last_run.json
+          if-no-files-found: ignore
+          retention-days: 30
