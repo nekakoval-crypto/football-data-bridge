@@ -1,0 +1,84 @@
+name: Stage 55 Live Context Enrichment
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '5 * * * *'
+  push:
+    paths:
+      - 'scripts/stage55_context_enrichment.py'
+      - '.github/workflows/stage55-context-enrichment.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  context:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      OPS_DIR: 'ops'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run Stage 55 context enrichment
+        run: |
+          for attempt in 1 2 3; do
+            echo "Stage 55 attempt ${attempt}/3"
+            if python scripts/stage55_context_enrichment.py; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              echo 'Stage 55 failed after 3 attempts.'
+              exit 1
+            fi
+            sleep $((attempt * 10))
+          done
+
+      - name: Show Stage 55 summary
+        run: |
+          echo '--- stage55_last_run.json ---'
+          cat ops/stage55_last_run.json
+          echo '--- latest context ---'
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          p=Path('ops/context_latest.csv')
+          if p.exists():
+              with p.open(encoding='utf-8-sig',newline='') as f:
+                  rows=list(csv.DictReader(f))
+              print('latest_context_rows=',len(rows))
+              for r in rows:
+                  print(r['snapshot_type'], r['home_team'], '-', r['away_team'], 'prev:', r['home_prev_competition'], '/', r['away_prev_competition'], 'next:', r['home_next_competition'], '/', r['away_next_competition'], 'inj=',r['injuries_count'],'XI=',r['lineups_available'])
+          PY
+
+      - name: Commit Stage 55 operational files
+        run: |
+          git config user.name 'stage55-bot'
+          git config user.email 'stage55-bot@users.noreply.github.com'
+          git add -A ops
+          if git diff --cached --quiet; then
+            echo 'No Stage 55 operational changes to commit.'
+          else
+            git commit -m 'Stage 55 context enrichment update'
+            git push
+          fi
+
+      - name: Upload Stage 55 snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage55-context
+          path: |
+            ops/match_context_snapshots.csv
+            ops/context_latest.csv
+            ops/stage55_last_run.json
+          if-no-files-found: ignore
+          retention-days: 30
