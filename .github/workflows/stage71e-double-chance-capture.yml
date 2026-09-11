@@ -3,7 +3,7 @@ name: Stage 71E Double Chance Capture
 on:
   workflow_dispatch:
   schedule:
-    - cron: '37 * * * *'
+    - cron: '37 */6 * * *'
   push:
     paths:
       - 'scripts/stage71e_double_chance_capture.py'
