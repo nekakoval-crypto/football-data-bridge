@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-11T10:01:11Z",
+  "run_at_utc": "2026-09-11T10:32:01Z",
   "status": "OK",
   "active_forward_rows": 3,
   "new_snapshots": 3,
@@ -8,8 +8,10 @@
   "settled_rows": 0,
   "voided_rows": 0,
   "review_rows": 0,
-  "user_bookmaker_allowlist_configured": false,
-  "user_bookmaker_allowlist": [],
+  "user_bookmaker_allowlist_configured": true,
+  "user_bookmaker_allowlist": [
+    "marathonbet"
+  ],
   "policy": {
     "trigger": "Stage53 immutable Bet365 first capture; never rewritten",
     "execution": "Stage53 observed best-market snapshot at signal creation; not assumed to be a user-placed bet",
