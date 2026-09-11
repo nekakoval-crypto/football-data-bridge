@@ -1,5 +1,6 @@
 name: Stage 53 Daily R1-R2-R3 Screener
 
+# Live verification trigger: 2026-09-11
 on:
   workflow_dispatch:
   schedule:
