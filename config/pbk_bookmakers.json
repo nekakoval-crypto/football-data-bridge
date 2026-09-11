@@ -1,0 +1,18 @@
+{
+  "updated_at_utc": "2026-09-11",
+  "policy": "Only bookmakers explicitly listed as executable may populate user-executable odds. All other prices are market-reference only.",
+  "auto_executable": [
+    {
+      "name": "Marathonbet",
+      "source": "API-Football",
+      "status": "ENABLED"
+    }
+  ],
+  "manual_or_separate_source": [
+    {
+      "name": "Maxline.by",
+      "source": "SEPARATE_SOURCE_PENDING",
+      "status": "AVAILABLE_TO_USER_NOT_AUTO_VERIFIED"
+    }
+  ]
+}
