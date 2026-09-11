@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/runtime.css">
   <link rel="stylesheet" href="/push.css">
   <link rel="stylesheet" href="/probability.css">
+  <link rel="stylesheet" href="/challengers.css">
 </head>
 <body>
   <div class="shell">
@@ -34,6 +35,7 @@
       <button class="tab active" data-view="today">Сегодня</button>
       <button class="tab" data-view="signals">R1/R2/R3</button>
       <button class="tab" data-view="watch">WATCH</button>
+      <button class="tab" data-view="challengers">Лиги</button>
       <button class="tab" data-view="matches">Матчи</button>
       <button class="tab" data-view="notifications">Уведомления <span class="badge" id="notification-badge" hidden>0</span></button>
       <button class="tab" data-view="stats">Результаты</button>
@@ -63,6 +65,27 @@
         <div class="section-head"><h2>WATCH</h2><span>research only</span></div>
         <div class="filters"><label>WATCH<select id="filter-watch"><option value="">Все WATCH</option><option>Stage61</option><option>Stage62</option><option>Stage63</option></select></label></div>
         <div id="watch-list" class="stack"></div>
+      </section>
+
+      <section class="view" id="view-challengers">
+        <div class="section-head"><h2>Лиги · Stage71 Challengers</h2><span>R1 / R2 · research-only</span></div>
+        <div class="panel challenger-policy">
+          <b>Исследовательский прогресс — не canonical promotion.</b>
+          <p>Наблюдаем R1/R2 по 16 лигам. Фильтры меняют только отображение. «—» — нет данных.</p>
+          <details><summary>Как читать прогресс и пороги</summary>
+            <p>Captured → executable → settled: зафиксированные наблюдения → доступная цена → рассчитанный результат. Действующие canonical стратегии отмечены отдельно.</p>
+            <p>60 settled — порог выборки для review; 120 — для regime discovery. Применимость определяется путём и статусом. Счётчики не подтверждают прохождение gates: нужны coverage ≥90%, положительный ROI целиком и в обеих половинах и остальные условия Stage71. Discovery требует новой preregistration и нового будущего holdout.</p>
+            <p>Автоматического promotion нет. Этот экран не меняет правила, допуск стратегий или ставку 1u.</p>
+          </details>
+        </div>
+        <div class="filters">
+          <label>Family<select id="challenger-family"><option value="">Все</option></select></label>
+          <label>Статус<select id="challenger-status"><option value="">Все</option></select></label>
+          <label>Группа<select id="challenger-group"><option value="">Все</option></select></label>
+          <button id="challenger-reset" class="filter-reset" type="button">Сбросить</button>
+        </div>
+        <div id="challenger-summary" class="challenger-summary" role="status">Загрузка Stage71…</div>
+        <div id="challenger-list" class="match-grid"></div>
       </section>
 
       <section class="view" id="view-matches">
