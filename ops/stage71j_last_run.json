@@ -1,9 +1,10 @@
 {
   "status": "OK",
-  "mode": "SHARED_CACHED_PROSPECTIVE_CAPTURE",
+  "mode": "SHARED_PREFETCHED_PROSPECTIVE_CAPTURE",
+  "prefetched_fixture_ids": 160,
   "real_api_calls": 220,
   "api_hard_cap": 220,
-  "cache_hits": 50,
+  "cache_hits": 197,
   "unique_cached_requests": 220,
   "real_calls_by_path": {
     "/odds/bets": 1,
@@ -25,9 +26,9 @@
       "market_family": "DOUBLE_CHANCE",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 73,
+      "logical_odds_calls": 43,
       "new_openers": 0,
-      "new_snapshots": 66,
+      "new_snapshots": 43,
       "new_closes": 0,
       "warnings": 50
     },
@@ -53,5 +54,5 @@
     }
   ],
   "signals_created": 0,
-  "policy": "One API response may feed multiple market parsers; market ledgers remain separate and auditable."
+  "policy": "One fixture odds response feeds multiple market parsers; market ledgers remain separate and auditable."
 }
