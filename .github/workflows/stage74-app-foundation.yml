@@ -1,0 +1,52 @@
+name: Stage 74 App Foundation
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'app/**'
+      - 'deploy/**'
+      - 'docs/stage74_*.md'
+      - 'scripts/stage73_internal_api.py'
+      - 'scripts/stage72_build_data_layer.py'
+      - '.github/workflows/stage74-app-foundation.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPS_DIR: 'ops'
+      STAGE72_DB_PATH: 'build/pbk_unified.sqlite'
+      PBK_DB_PATH: 'build/pbk_unified.sqlite'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate frontend syntax and manifest
+        run: |
+          node --check app/app.js
+          python -m json.tool app/manifest.webmanifest >/dev/null
+          test -s app/index.html
+          test -s app/app.css
+          test -s app/sw.js
+      - name: Validate deployment scripts
+        run: |
+          bash -n deploy/sync_data.sh
+          grep -q 'reverse_proxy 127.0.0.1:8787' deploy/Caddyfile
+          grep -q 'stage73_internal_api.py' deploy/pbk-api.service
+      - name: Rebuild unified data layer
+        run: python scripts/stage72_build_data_layer.py
+      - name: Validate Stage73 API contract
+        run: python scripts/stage73_internal_api.py --self-test
+      - name: Report
+        run: |
+          echo 'Stage74 PWA shell: OK'
+          cat ops/stage73_last_run.json
