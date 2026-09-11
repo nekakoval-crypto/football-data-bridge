@@ -1,0 +1,21 @@
+{
+  "run_at_utc": "2026-09-11T10:01:11Z",
+  "status": "OK",
+  "active_forward_rows": 3,
+  "new_snapshots": 3,
+  "new_closing_rows": 0,
+  "new_fixture_events": 0,
+  "settled_rows": 0,
+  "voided_rows": 0,
+  "review_rows": 0,
+  "user_bookmaker_allowlist_configured": false,
+  "user_bookmaker_allowlist": [],
+  "policy": {
+    "trigger": "Stage53 immutable Bet365 first capture; never rewritten",
+    "execution": "Stage53 observed best-market snapshot at signal creation; not assumed to be a user-placed bet",
+    "closing": "latest Stage54 observed pre-kickoff best-market Match Winner price",
+    "postponement": "follow API fixture_id and log date changes; do not recreate signal",
+    "cancelled": "VOID 0u for paper forward",
+    "abandoned_awarded_walkover": "REVIEW; no automatic profit"
+  }
+}
