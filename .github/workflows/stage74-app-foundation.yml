@@ -57,11 +57,18 @@ jobs:
         run: |
           bash -n deploy/sync_data.sh
           bash -n deploy/bootstrap_server.sh
+          bash -n deploy/apply_release.sh
+          bash -n deploy/upgrade_server.sh
+          test -s deploy/pbk-release.service
+          test -s deploy/pbk-release.timer
           grep -q 'reverse_proxy 127.0.0.1:8787' deploy/Caddyfile
           grep -q 'stage74_app_api.py' deploy/pbk-api.service
           grep -q 'caddy validate' deploy/bootstrap_server.sh
           grep -q 'PBK_PASSWORD_HASH' deploy/bootstrap_server.sh
           grep -q '127.0.0.1:8787/v1/health' deploy/bootstrap_server.sh
+          grep -q 'pbk-release.timer' deploy/bootstrap_server.sh
+          grep -q 'PBK release health: OK' deploy/apply_release.sh
+          grep -q 'PBK_SKIP_FETCH=1' deploy/apply_release.sh
       - name: Rebuild unified data layer
         run: python scripts/stage72_build_data_layer.py
       - name: Validate Stage73 API contract
@@ -70,5 +77,5 @@ jobs:
         run: python scripts/stage74_app_api.py --self-test
       - name: Report
         run: |
-          echo 'Stage74 installable PWA + performance + notifications + freshness + production bootstrap: OK'
+          echo 'Stage74 installable PWA + production auto-release + performance + notifications + freshness: OK'
           cat ops/stage73_last_run.json
