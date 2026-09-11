@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "locked_at_utc": "2026-09-11",
   "scope": "PBK_CORE_8",
   "principle": "Market-family status is descriptive governance metadata. It never creates a bet, changes canonical eligibility, promotes a WATCH, or permits post-hoc substitution between markets.",
@@ -23,10 +23,10 @@
     {
       "id": "DRAW_NO_BET",
       "label_ru": "Фора 0 — Ф1(0) / Ф2(0)",
-      "status": "HISTORICAL_TESTED_NO_CANDIDATE",
-      "evidence": ["Stage71D preregistered Bet365 AH=0 movement audit", "No hypothesis met minimum TEST sample/gate"],
-      "live_data": "PLANNED_PROSPECTIVE_CAPTURE",
-      "next_gate": "Collect current line-0 Bet365 + Marathonbet data; no WATCH until a new preregistered holdout exists"
+      "status": "HISTORICAL_TESTED_NO_CANDIDATE_PLUS_PROSPECTIVE_COLLECTION",
+      "evidence": ["Stage71D preregistered Bet365 AH=0 movement audit", "No Stage71D hypothesis met minimum TEST sample/gate", "Stage71G real Bet365 + Marathonbet line-0 capture"],
+      "live_data": "ACTIVE",
+      "next_gate": "Collect a new prospective discovery sample; any future hypothesis requires new preregistration and independent future holdout"
     },
     {
       "id": "ASIAN_HANDICAP",
