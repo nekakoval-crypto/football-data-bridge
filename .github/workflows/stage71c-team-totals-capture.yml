@@ -3,7 +3,7 @@ name: Stage 71C Team Totals Capture
 on:
   workflow_dispatch:
   schedule:
-    - cron: '27 * * * *'
+    - cron: '27 */6 * * *'
   push:
     paths:
       - 'scripts/stage71c_team_totals_capture.py'
