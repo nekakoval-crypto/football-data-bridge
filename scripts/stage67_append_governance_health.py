@@ -1,117 +1,75 @@
 #!/usr/bin/env python3
 """Append Stage68-73 governance/data-layer/API checks to Stage67 health output."""
 from __future__ import annotations
-import json
+import json, os
 from datetime import datetime, timezone
 from pathlib import Path
-import os
 
-OPS=Path(os.getenv('OPS_DIR','ops'))
-H=OPS/'system_health.json'; M=OPS/'system_health.md'; META=OPS/'stage67_last_run.json'
+OPS=Path(os.getenv('OPS_DIR','ops'));H=OPS/'system_health.json';M=OPS/'system_health.md';META=OPS/'stage67_last_run.json'
 CHECKS=[
-    ('Stage68 exposure map','stage68_last_run.json',3.0),
-    ('Stage69 promotion gate','stage69_last_run.json',3.0),
-    ('Stage70 signal lifecycle','stage70_last_run.json',3.0),
-    ('Stage71 league/market challenger','stage71_last_run.json',15.0),
-    ('Stage71C team totals capture','stage71c_last_run.json',3.0),
-    ('Stage71E double chance capture','stage71e_last_run.json',3.0),
-    ('Stage71F European handicap capture','stage71f_last_run.json',3.0),
-    ('Stage72 unified data layer','stage72_last_run.json',3.0),
-    ('Stage73 internal API','stage73_last_run.json',3.0),
+    ('Stage68 exposure map','stage68_last_run.json',3.0),('Stage69 promotion gate','stage69_last_run.json',3.0),('Stage70 signal lifecycle','stage70_last_run.json',3.0),('Stage71 league/market challenger','stage71_last_run.json',15.0),
+    ('Stage71C team totals capture','stage71c_last_run.json',3.0),('Stage71E double chance capture','stage71e_last_run.json',3.0),('Stage71F European handicap capture','stage71f_last_run.json',3.0),('Stage71G DNB capture','stage71g_last_run.json',3.0),
+    ('Stage72 unified data layer','stage72_last_run.json',3.0),('Stage73 internal API','stage73_last_run.json',3.0),
 ]
-
 def parse(v):
     try:return datetime.fromisoformat(str(v).replace('Z','+00:00')).astimezone(timezone.utc)
     except:return None
-
 def load_json(name):
     p=OPS/name
     if not p.exists():return None
     try:return json.loads(p.read_text(encoding='utf-8-sig'))
     except:return None
-
-def validate_capture(d,stage_key,label,expected_bet_id=None,bet_field=None,openers_field='total_openers'):
-    x=d.get(stage_key)
+def validate_capture(x,stage_key,label,expected_bet_id,bet_field,issues,summary):
     if not x:return
-    issues=d['issues'];summary=d['summary']
-    if expected_bet_id is not None and int(x.get(bet_field) or 0)!=expected_bet_id:
-        issues.append({'severity':'CRITICAL','code':f'{stage_key.upper()}_WRONG_MARKET','message':f"{label}: {bet_field}={x.get(bet_field)}, expected {expected_bet_id}"})
-    if int(x.get('signals_created') or 0)!=0:
-        issues.append({'severity':'CRITICAL','code':f'{stage_key.upper()}_SIGNAL_LEAK','message':f'{label}: raw capture must create zero betting signals'})
-    if int(x.get(openers_field) or 0)<=0:
-        issues.append({'severity':'WARN','code':f'{stage_key.upper()}_NO_OPENERS','message':f'{label}: no captured openers yet'})
-    summary[f'{stage_key}_openers']=x.get(openers_field);summary[f'{stage_key}_snapshots']=x.get('total_snapshots')
-
+    if int(x.get(bet_field) or 0)!=expected_bet_id:issues.append({'severity':'CRITICAL','code':f'{stage_key.upper()}_WRONG_MARKET','message':f"{label}: {bet_field}={x.get(bet_field)}, expected {expected_bet_id}"})
+    if int(x.get('signals_created') or 0)!=0:issues.append({'severity':'CRITICAL','code':f'{stage_key.upper()}_SIGNAL_LEAK','message':f'{label}: raw capture must create zero betting signals'})
+    if int(x.get('total_openers') or 0)<=0:issues.append({'severity':'WARN','code':f'{stage_key.upper()}_NO_OPENERS','message':f'{label}: no captured openers yet'})
+    summary[f'{stage_key}_openers']=x.get('total_openers');summary[f'{stage_key}_snapshots']=x.get('total_snapshots')
 def main():
-    if not H.exists(): return
-    now=datetime.now(timezone.utc).replace(microsecond=0)
-    d=json.loads(H.read_text(encoding='utf-8-sig'))
-    existing={x.get('file') for x in d.get('stage_health',[])}
-    issues=d.setdefault('issues',[]); sh=d.setdefault('stage_health',[]); stage_payloads={};summary=d.setdefault('summary',{})
+    if not H.exists():return
+    now=datetime.now(timezone.utc).replace(microsecond=0);d=json.loads(H.read_text(encoding='utf-8-sig'));existing={x.get('file') for x in d.get('stage_health',[])};issues=d.setdefault('issues',[]);sh=d.setdefault('stage_health',[]);stage_payloads={};summary=d.setdefault('summary',{})
     for label,name,limit in CHECKS:
-        if name in existing: continue
+        if name in existing:continue
         p=OPS/name
-        if not p.exists():
-            sh.append({'stage':label,'file':name,'status':'MISSING','run_at_utc':None,'age_h':None,'max_age_h':limit})
-            issues.append({'severity':'CRITICAL','code':'MISSING_STAGE_META','message':f'{label}: missing {name}'})
-            continue
+        if not p.exists():sh.append({'stage':label,'file':name,'status':'MISSING','run_at_utc':None,'age_h':None,'max_age_h':limit});issues.append({'severity':'CRITICAL','code':'MISSING_STAGE_META','message':f'{label}: missing {name}'});continue
         x=load_json(name)
-        if x is None:
-            sh.append({'stage':label,'file':name,'status':'INVALID','run_at_utc':None,'age_h':None,'max_age_h':limit})
-            issues.append({'severity':'CRITICAL','code':'INVALID_STAGE_META','message':f'{label}: unreadable JSON {name}'})
-            continue
-        stage_payloads[name]=x; rt=parse(x.get('run_at_utc') or x.get('generated_at_utc')); age=(now-rt).total_seconds()/3600 if rt else None; status='OK'
-        if rt is None:
-            status='NO_TIMESTAMP'; issues.append({'severity':'WARN','code':'NO_RUN_TIMESTAMP','message':f'{label}: cannot determine run timestamp'})
-        elif age>limit:
-            status='STALE'; sev='CRITICAL' if age>2*limit else 'WARN'; issues.append({'severity':sev,'code':'STALE_STAGE','message':f'{label}: age {age:.2f}h > {limit:.2f}h'})
+        if x is None:sh.append({'stage':label,'file':name,'status':'INVALID','run_at_utc':None,'age_h':None,'max_age_h':limit});issues.append({'severity':'CRITICAL','code':'INVALID_STAGE_META','message':f'{label}: unreadable JSON {name}'});continue
+        stage_payloads[name]=x;rt=parse(x.get('run_at_utc') or x.get('generated_at_utc'));age=(now-rt).total_seconds()/3600 if rt else None;status='OK'
+        if rt is None:status='NO_TIMESTAMP';issues.append({'severity':'WARN','code':'NO_RUN_TIMESTAMP','message':f'{label}: cannot determine run timestamp'})
+        elif age>limit:status='STALE';sev='CRITICAL' if age>2*limit else 'WARN';issues.append({'severity':sev,'code':'STALE_STAGE','message':f'{label}: age {age:.2f}h > {limit:.2f}h'})
         sh.append({'stage':label,'file':name,'status':status,'run_at_utc':rt.isoformat().replace('+00:00','Z') if rt else None,'age_h':round(age,3) if age is not None else None,'max_age_h':limit})
-
     s71c=stage_payloads.get('stage71c_last_run.json') or load_json('stage71c_last_run.json')
     if s71c:
-        if int(s71c.get('home_team_total_bet_id') or 0)!=16 or int(s71c.get('away_team_total_bet_id') or 0)!=17:
-            issues.append({'severity':'CRITICAL','code':'STAGE71C_WRONG_MARKET','message':f"Stage71C bet ids H={s71c.get('home_team_total_bet_id')} A={s71c.get('away_team_total_bet_id')}, expected 16/17"})
+        if int(s71c.get('home_team_total_bet_id') or 0)!=16 or int(s71c.get('away_team_total_bet_id') or 0)!=17:issues.append({'severity':'CRITICAL','code':'STAGE71C_WRONG_MARKET','message':f"Stage71C bet ids H={s71c.get('home_team_total_bet_id')} A={s71c.get('away_team_total_bet_id')}, expected 16/17"})
         if int(s71c.get('signals_created') or 0)!=0:issues.append({'severity':'CRITICAL','code':'STAGE71C_SIGNAL_LEAK','message':'Stage71C raw capture must create zero betting signals'})
         if int(s71c.get('total_openers') or 0)<=0:issues.append({'severity':'WARN','code':'STAGE71C_NO_OPENERS','message':'Stage71C has no captured team-total openers yet'})
         summary['stage71c_team_total_openers']=s71c.get('total_openers');summary['stage71c_team_total_snapshots']=s71c.get('total_snapshots')
-
-    s71e=stage_payloads.get('stage71e_last_run.json') or load_json('stage71e_last_run.json')
-    s71f=stage_payloads.get('stage71f_last_run.json') or load_json('stage71f_last_run.json')
-    d['_captures']={'stage71e':s71e,'stage71f':s71f}
-    validate_capture({'stage71e':s71e,'issues':issues,'summary':summary},'stage71e','Stage71E Double Chance',12,'double_chance_bet_id')
-    validate_capture({'stage71f':s71f,'issues':issues,'summary':summary},'stage71f','Stage71F European Handicap',9,'european_handicap_bet_id')
-    d.pop('_captures',None)
-
+    s71e=stage_payloads.get('stage71e_last_run.json') or load_json('stage71e_last_run.json');s71f=stage_payloads.get('stage71f_last_run.json') or load_json('stage71f_last_run.json');s71g=stage_payloads.get('stage71g_last_run.json') or load_json('stage71g_last_run.json')
+    validate_capture(s71e,'stage71e','Stage71E Double Chance',12,'double_chance_bet_id',issues,summary);validate_capture(s71f,'stage71f','Stage71F European Handicap',9,'european_handicap_bet_id',issues,summary);validate_capture(s71g,'stage71g','Stage71G DNB',4,'dnb_bet_id',issues,summary)
+    if s71g and str(s71g.get('dnb_line'))!='0':issues.append({'severity':'CRITICAL','code':'STAGE71G_WRONG_LINE','message':f"Stage71G DNB line={s71g.get('dnb_line')}, expected 0"})
     s72=stage_payloads.get('stage72_last_run.json') or load_json('stage72_last_run.json')
     if s72:
         if str(s72.get('integrity_check') or '').lower()!='ok':issues.append({'severity':'CRITICAL','code':'STAGE72_SQLITE_INTEGRITY','message':f"Stage72 SQLite integrity_check={s72.get('integrity_check')}"})
-        counts=s72.get('stable_counts') or {}; competitions=int(counts.get('competitions') or 0)
+        counts=s72.get('stable_counts') or {};competitions=int(counts.get('competitions') or 0)
         if competitions!=16:issues.append({'severity':'CRITICAL','code':'STAGE72_SCOPE_MISMATCH','message':f'Stage72 competitions={competitions}, expected locked scope=16'})
-        required_nonempty=('team_total_openers','double_chance_openers','european_handicap_openers')
-        for table in required_nonempty:
+        for table in ('team_total_openers','double_chance_openers','european_handicap_openers','dnb_openers'):
             if int(counts.get(table) or 0)<=0:issues.append({'severity':'CRITICAL','code':'STAGE72_MARKET_LAYER_MISSING','message':f'Stage72 stable {table} is empty'})
         missing=s72.get('missing_stable_sources') or []
         if missing:issues.append({'severity':'CRITICAL','code':'STAGE72_MISSING_STABLE_SOURCE','message':'Stage72 missing stable sources: '+', '.join(map(str,missing))})
         summary['stage72_integrity']=s72.get('integrity_check');summary['stage72_tables']=s72.get('tables');summary['stage72_schema_version']=s72.get('schema_version')
-
     s73=stage_payloads.get('stage73_last_run.json') or load_json('stage73_last_run.json')
     if s73:
         passed=int(s73.get('passed') or 0);total=int(s73.get('total') or 0)
         if str(s73.get('status') or '').upper()!='OK' or not total or passed!=total:issues.append({'severity':'CRITICAL','code':'STAGE73_API_CONTRACT','message':f'Stage73 API self-test {passed}/{total}, status={s73.get("status")}'})
         summary['stage73_api_tests']=f'{passed}/{total}';summary['stage73_api_version']=s73.get('api_version')
-
-    critical=sum(1 for z in issues if z.get('severity')=='CRITICAL');warns=sum(1 for z in issues if z.get('severity')=='WARN');overall='CRITICAL' if critical else ('WARN' if warns else 'HEALTHY')
-    d['status']=overall;summary['critical_issues']=critical;summary['warnings']=warns
-    H.write_text(json.dumps(d,ensure_ascii=False,indent=2),encoding='utf-8')
-    icon={'HEALTHY':'🟢','WARN':'🟠','CRITICAL':'🔴'}[overall];s=summary;total_active=s.get('active_canonical_rows',0)
-    out=['# PBK System Health','',f"Обновлено UTC: {d.get('generated_at_utc','')}",f"Статус: {icon} **{overall}** | critical {critical} | warnings {warns}",'','## Ключевые проверки',f"- Активные canonical: {total_active}",f"- Frozen Marathonbet execution: {s.get('frozen_user_execution_rows',0)}/{total_active}",f"- Context coverage: {s.get('active_rows_with_context',0)}/{total_active}",f"- WATCH crossings накоплено: {s.get('watch_crossing_rows',0)}",f"- Team Totals: openers {s.get('stage71c_team_total_openers','N/A')} | snapshots {s.get('stage71c_team_total_snapshots','N/A')}",f"- Double Chance: openers {s.get('stage71e_openers','N/A')} | snapshots {s.get('stage71e_snapshots','N/A')}",f"- European Handicap: openers {s.get('stage71f_openers','N/A')} | snapshots {s.get('stage71f_snapshots','N/A')}",f"- Stage72 Data Layer: integrity **{s.get('stage72_integrity','N/A')}** | tables {s.get('stage72_tables','N/A')} | schema v{s.get('stage72_schema_version','N/A')}",f"- Stage73 Internal API: tests **{s.get('stage73_api_tests','N/A')}** | API {s.get('stage73_api_version','N/A')}",'','## Свежесть этапов']
+    critical=sum(1 for z in issues if z.get('severity')=='CRITICAL');warns=sum(1 for z in issues if z.get('severity')=='WARN');overall='CRITICAL' if critical else ('WARN' if warns else 'HEALTHY');d['status']=overall;summary['critical_issues']=critical;summary['warnings']=warns;H.write_text(json.dumps(d,ensure_ascii=False,indent=2),encoding='utf-8')
+    icon={'HEALTHY':'🟢','WARN':'🟠','CRITICAL':'🔴'}[overall];s=summary;total_active=s.get('active_canonical_rows',0);out=['# PBK System Health','',f"Обновлено UTC: {d.get('generated_at_utc','')}",f"Статус: {icon} **{overall}** | critical {critical} | warnings {warns}",'','## Ключевые проверки',f"- Активные canonical: {total_active}",f"- Frozen Marathonbet execution: {s.get('frozen_user_execution_rows',0)}/{total_active}",f"- Context coverage: {s.get('active_rows_with_context',0)}/{total_active}",f"- WATCH crossings накоплено: {s.get('watch_crossing_rows',0)}",f"- Team Totals: openers {s.get('stage71c_team_total_openers','N/A')} | snapshots {s.get('stage71c_team_total_snapshots','N/A')}",f"- Double Chance: openers {s.get('stage71e_openers','N/A')} | snapshots {s.get('stage71e_snapshots','N/A')}",f"- European Handicap: openers {s.get('stage71f_openers','N/A')} | snapshots {s.get('stage71f_snapshots','N/A')}",f"- Ф(0): openers {s.get('stage71g_openers','N/A')} | snapshots {s.get('stage71g_snapshots','N/A')}",f"- Stage72 Data Layer: integrity **{s.get('stage72_integrity','N/A')}** | tables {s.get('stage72_tables','N/A')} | schema v{s.get('stage72_schema_version','N/A')}",f"- Stage73 Internal API: tests **{s.get('stage73_api_tests','N/A')}** | API {s.get('stage73_api_version','N/A')}",'','## Свежесть этапов']
     for z in sh:
         age='N/A' if z.get('age_h') is None else f"{z['age_h']:.2f}h";out.append(f"- {z.get('stage')}: **{z.get('status')}** | age {age} | limit {z.get('max_age_h')}h")
-    out += ['','## Проблемы']
+    out+=['','## Проблемы']
     if not issues:out.append('- Нет. Все проверяемые контуры выглядят согласованно.')
     else:
         for z in issues:out.append(f"- **{z.get('severity')}** `{z.get('code')}` — {z.get('message')}")
-    out += ['','> Stage67 ничего не чинит автоматически и не создаёт ставки. Он только обнаруживает проблемы данных/свежести.']
-    M.write_text('\n'.join(out),encoding='utf-8')
-    meta=json.loads(META.read_text(encoding='utf-8-sig')) if META.exists() else {};meta.update({'system_health':overall,'critical_issues':critical,'warnings':warns,'stage71c_team_total_openers':s.get('stage71c_team_total_openers'),'stage71e_double_chance_openers':s.get('stage71e_openers'),'stage71f_european_handicap_openers':s.get('stage71f_openers'),'stage72_integrity':s.get('stage72_integrity'),'stage73_api_tests':s.get('stage73_api_tests')});META.write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding='utf-8')
+    out+=['','> Stage67 ничего не чинит автоматически и не создаёт ставки. Он только обнаруживает проблемы данных/свежести.'];M.write_text('\n'.join(out),encoding='utf-8')
+    meta=json.loads(META.read_text(encoding='utf-8-sig')) if META.exists() else {};meta.update({'system_health':overall,'critical_issues':critical,'warnings':warns,'stage71c_team_total_openers':s.get('stage71c_team_total_openers'),'stage71e_double_chance_openers':s.get('stage71e_openers'),'stage71f_european_handicap_openers':s.get('stage71f_openers'),'stage71g_dnb_openers':s.get('stage71g_openers'),'stage72_integrity':s.get('stage72_integrity'),'stage73_api_tests':s.get('stage73_api_tests')});META.write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding='utf-8')
 if __name__=='__main__':main()
