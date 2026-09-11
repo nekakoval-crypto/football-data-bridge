@@ -1,0 +1,61 @@
+name: Stage 67 System Health
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '59 * * * *'
+  push:
+    paths:
+      - 'scripts/stage67_system_health.py'
+      - '.github/workflows/stage67-system-health.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPS_DIR: 'ops'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build Stage 67 system health
+        run: python scripts/stage67_system_health.py
+
+      - name: Show Stage 67 summary
+        run: |
+          cat ops/stage67_last_run.json
+          echo '--- system_health.md ---'
+          cat ops/system_health.md
+
+      - name: Commit Stage 67 operational files
+        run: |
+          git config user.name 'stage67-bot'
+          git config user.email 'stage67-bot@users.noreply.github.com'
+          git add -A ops
+          if git diff --cached --quiet; then
+            echo 'No Stage 67 changes to commit.'
+          else
+            git commit -m 'Stage 67 system health update'
+            git push
+          fi
+
+      - name: Upload Stage 67 snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage67-system-health
+          path: |
+            ops/system_health.json
+            ops/system_health.md
+            ops/stage67_last_run.json
+          if-no-files-found: error
+          retention-days: 30
