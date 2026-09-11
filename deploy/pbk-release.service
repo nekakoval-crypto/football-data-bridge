@@ -1,0 +1,12 @@
+[Unit]
+Description=Apply verified PBK production release
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+WorkingDirectory=/opt/pbk/repo
+ExecStart=/bin/bash /opt/pbk/repo/deploy/apply_release.sh
+Nice=10
