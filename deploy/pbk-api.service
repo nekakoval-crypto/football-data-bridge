@@ -1,0 +1,25 @@
+[Unit]
+Description=PBK Stage73 Read-only API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pbk
+Group=pbk
+WorkingDirectory=/opt/pbk/repo
+Environment=OPS_DIR=/opt/pbk/repo/ops
+Environment=PBK_DB_PATH=/opt/pbk/data/pbk_unified.sqlite
+Environment=PBK_API_HOST=127.0.0.1
+Environment=PBK_API_PORT=8787
+ExecStart=/usr/bin/python3 /opt/pbk/repo/scripts/stage73_internal_api.py --host 127.0.0.1 --port 8787
+Restart=always
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/opt/pbk/data
+
+[Install]
+WantedBy=multi-user.target
