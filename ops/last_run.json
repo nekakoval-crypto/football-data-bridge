@@ -1,11 +1,17 @@
 {
-  "screened_at_utc": "2026-09-11T09:57:16Z",
+  "screened_at_utc": "2026-09-11T10:06:45Z",
   "status": "OK",
   "season": 2026,
   "fixtures_seen": 100,
   "signal_matches": 3,
-  "new_forward_rows": 3,
+  "new_forward_rows": 0,
   "trigger_ledger_rows": 20,
   "bookmaker_bet365_id": 8,
-  "match_winner_bet_id": 1
+  "match_winner_bet_id": 1,
+  "r3_exact_reproduction_verified": false,
+  "r3_candidates_blocked_this_run": 0,
+  "r3_forward_rows_removed_before_commit": 0,
+  "r3_unverified_candidates_total": 0,
+  "signal_matches_after_r3_guard": 3,
+  "forward_rows_after_r3_guard": 3
 }
