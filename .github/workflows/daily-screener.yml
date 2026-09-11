@@ -1,0 +1,71 @@
+name: Stage 53 Daily R1-R2-R3 Screener
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 6 * * *'
+  push:
+    paths:
+      - 'scripts/stage53_daily_screener.py'
+      - '.github/workflows/daily-screener.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+      FD_SEASON_CODE: '2627'
+      OPS_DIR: 'ops'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run daily screener and settle forward log
+        run: python scripts/stage53_daily_screener.py
+
+      - name: Show daily summary
+        run: |
+          echo '--- last_run.json ---'
+          cat ops/last_run.json
+          echo '--- signal rows ---'
+          python - <<'PY'
+          import csv
+          p='ops/context_passports.csv'
+          with open(p,encoding='utf-8-sig',newline='') as f:
+              rows=list(csv.DictReader(f))
+          print('signal_matches=',len(rows))
+          for r in rows:
+              print(r['match_date'], r['league'], r['home_team'], '-', r['away_team'], r['signal_rules'], 'exec_verified=',r['execution_odds_verified'])
+          PY
+
+      - name: Commit operational files
+        run: |
+          git config user.name 'stage53-bot'
+          git config user.email 'stage53-bot@users.noreply.github.com'
+          git add ops/latest_screen.csv ops/context_passports.csv ops/forward_log.csv ops/last_run.json
+          if git diff --cached --quiet; then
+            echo 'No operational changes to commit.'
+          else
+            git commit -m 'Stage 53 daily screener update'
+            git push
+          fi
+
+      - name: Upload daily operational snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage53-daily-ops
+          path: |
+            ops/latest_screen.csv
+            ops/context_passports.csv
+            ops/forward_log.csv
+            ops/last_run.json
+          retention-days: 30
