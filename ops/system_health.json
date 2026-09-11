@@ -1,9 +1,9 @@
 {
-  "generated_at_utc": "2026-09-11T12:02:28Z",
-  "status": "WARN",
+  "generated_at_utc": "2026-09-11T12:03:36Z",
+  "status": "HEALTHY",
   "summary": {
     "critical_issues": 0,
-    "warnings": 1,
+    "warnings": 0,
     "active_canonical_rows": 3,
     "frozen_user_execution_rows": 3,
     "active_rows_with_context": 3,
@@ -13,9 +13,9 @@
     {
       "stage": "Stage53 screener",
       "file": "last_run.json",
-      "status": "NO_TIMESTAMP",
-      "run_at_utc": null,
-      "age_h": null,
+      "status": "OK",
+      "run_at_utc": "2026-09-11T10:47:47Z",
+      "age_h": 1.264,
       "max_age_h": 30.0
     },
     {
@@ -23,7 +23,7 @@
       "file": "stage54_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T11:43:32Z",
-      "age_h": 0.316,
+      "age_h": 0.334,
       "max_age_h": 3.0
     },
     {
@@ -31,7 +31,7 @@
       "file": "stage55_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T11:16:16Z",
-      "age_h": 0.77,
+      "age_h": 0.789,
       "max_age_h": 3.0
     },
     {
@@ -39,7 +39,7 @@
       "file": "stage56_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T11:54:25Z",
-      "age_h": 0.134,
+      "age_h": 0.153,
       "max_age_h": 1.5
     },
     {
@@ -47,15 +47,15 @@
       "file": "stage57_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T10:21:25Z",
-      "age_h": 1.684,
+      "age_h": 1.703,
       "max_age_h": 30.0
     },
     {
       "stage": "Stage58 daily brief",
       "file": "stage58_last_run.json",
       "status": "OK",
-      "run_at_utc": "2026-09-11T11:39:12Z",
-      "age_h": 0.388,
+      "run_at_utc": "2026-09-11T12:03:26Z",
+      "age_h": 0.003,
       "max_age_h": 3.0
     },
     {
@@ -63,7 +63,7 @@
       "file": "stage59_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T11:51:48Z",
-      "age_h": 0.178,
+      "age_h": 0.197,
       "max_age_h": 3.0
     },
     {
@@ -71,7 +71,7 @@
       "file": "stage60_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T11:52:36Z",
-      "age_h": 0.164,
+      "age_h": 0.183,
       "max_age_h": 3.0
     },
     {
@@ -79,7 +79,7 @@
       "file": "stage61_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T11:53:31Z",
-      "age_h": 0.149,
+      "age_h": 0.168,
       "max_age_h": 2.0
     },
     {
@@ -87,7 +87,7 @@
       "file": "stage62_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T11:48:15Z",
-      "age_h": 0.237,
+      "age_h": 0.256,
       "max_age_h": 2.0
     },
     {
@@ -95,7 +95,7 @@
       "file": "stage63_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T11:24:50Z",
-      "age_h": 0.627,
+      "age_h": 0.646,
       "max_age_h": 2.0
     },
     {
@@ -103,7 +103,7 @@
       "file": "stage65_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T12:00:12Z",
-      "age_h": 0.038,
+      "age_h": 0.057,
       "max_age_h": 3.0
     },
     {
@@ -111,17 +111,11 @@
       "file": "stage66_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T11:56:25Z",
-      "age_h": 0.101,
+      "age_h": 0.12,
       "max_age_h": 3.0
     }
   ],
-  "issues": [
-    {
-      "severity": "WARN",
-      "code": "NO_RUN_TIMESTAMP",
-      "message": "Stage53 screener: cannot determine run timestamp"
-    }
-  ],
+  "issues": [],
   "policy": {
     "external_api_calls": 0,
     "canonical_forward_mutation": "FORBIDDEN",
