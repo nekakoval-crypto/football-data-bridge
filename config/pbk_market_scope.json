@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "locked_at_utc": "2026-09-11",
+  "status": "LOCKED_CORE_MARKET_UNIVERSE",
+  "principle": "No global odds cap. Eligibility limits belong to individual validated strategies. Market families below are the only families enabled for systematic PBK research in the current core scope unless the project owner explicitly unlocks expansion.",
+  "time_scope": "FULL_TIME_REGULATION unless a strategy explicitly preregisters another settlement convention",
+  "allowed_market_families": [
+    {
+      "id": "MATCH_RESULT_1X2",
+      "label_ru": "Исход матча",
+      "selections_ru": ["П1", "Х", "П2"],
+      "status": "ENABLED"
+    },
+    {
+      "id": "DOUBLE_CHANCE",
+      "label_ru": "Двойной шанс",
+      "selections_ru": ["1Х", "Х2", "12"],
+      "status": "ENABLED"
+    },
+    {
+      "id": "DRAW_NO_BET",
+      "label_ru": "Фора 0 / ставка без ничьи",
+      "selections_ru": ["Ф1(0)", "Ф2(0)"],
+      "status": "ENABLED"
+    },
+    {
+      "id": "ASIAN_HANDICAP",
+      "label_ru": "Азиатская фора",
+      "selections_ru": ["Ф1(line)", "Ф2(line)"],
+      "line_policy": "No global line restriction; each hypothesis fixes its line/line-family before TEST",
+      "status": "ENABLED"
+    },
+    {
+      "id": "EUROPEAN_HANDICAP",
+      "label_ru": "Европейская фора 3-way",
+      "selections_ru": ["Ф1(line)", "Х с форой", "Ф2(line)"],
+      "line_policy": "Strategy-specific",
+      "status": "ENABLED"
+    },
+    {
+      "id": "MATCH_TOTAL",
+      "label_ru": "Тотал матча",
+      "selections_ru": ["ТБ(line)", "ТМ(line)"],
+      "line_policy": "No global line restriction; common examples ТБ/ТМ(1.5, 2.0, 2.25, 2.5, 2.75, 3.0, 3.5)",
+      "status": "ENABLED"
+    },
+    {
+      "id": "TEAM_TOTAL",
+      "label_ru": "Индивидуальный тотал",
+      "selections_ru": ["ИТБ1(line)", "ИТМ1(line)", "ИТБ2(line)", "ИТМ2(line)"],
+      "line_policy": "No global line restriction; strategy-specific",
+      "status": "ENABLED"
+    },
+    {
+      "id": "BTTS",
+      "label_ru": "Обе забьют",
+      "selections_ru": ["ОЗ — Да", "ОЗ — Нет"],
+      "status": "ENABLED"
+    }
+  ],
+  "not_in_core_scope": [
+    "correct_score",
+    "scorecast_or_result_plus_total_combos",
+    "BTTS_plus_total_combos",
+    "player_props",
+    "corners",
+    "cards",
+    "shots",
+    "offsides",
+    "first_or_second_half_only_markets",
+    "minute/time-band props",
+    "novelty_or_builder_markets"
+  ],
+  "guardrails": [
+    "A market being enabled for research does not make it a strategy or bet.",
+    "Every new strategy freezes market, selection, line logic, odds logic, stake and settlement before TEST.",
+    "No post-result substitution between related markets, e.g. ТБ(2.5) -> ИТБ2(1.5) or ОЗ — Да.",
+    "No global maximum odds. A 4.40 or higher selection is permitted if a separately validated strategy selects it.",
+    "Existing R1/R2 retain 1.20 <= selected away odds < 2.10 and are not widened by this market scope."
+  ]
+}
