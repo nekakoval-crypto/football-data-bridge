@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-11T14:03:50Z",
+  "run_at_utc": "2026-09-11T14:26:42Z",
   "status": "OK",
   "mode": "PROSPECTIVE_CAPTURE_ONLY",
   "leagues": 16,
@@ -7,13 +7,29 @@
   "dnb_bet_id": 4,
   "dnb_bet_name": "Asian Handicap",
   "dnb_line": "0",
-  "odds_calls": 159,
-  "new_openers": 121,
-  "new_snapshots": 95,
+  "odds_calls": 118,
+  "new_openers": 0,
+  "new_snapshots": 83,
   "new_closes": 0,
   "total_openers": 121,
-  "total_snapshots": 95,
+  "total_snapshots": 178,
   "total_closes": 0,
   "signals_created": 0,
-  "warnings": []
+  "warnings": [
+    "odds 1575163: API-Football /odds: {'rateLimit': 'Too many requests. You have exceeded the limit of requests per minute of your subscription.'}",
+    "odds 1552170: API-Football /odds: {'rateLimit': 'Too many requests. You have exceeded the limit of requests per minute of your subscription.'}",
+    "odds 1575493: HTTP Error 429: Too Many Requests",
+    "odds 1575492: HTTP Error 429: Too Many Requests",
+    "odds 1575496: HTTP Error 429: Too Many Requests",
+    "odds 1575505: HTTP Error 429: Too Many Requests",
+    "odds 1584405: HTTP Error 429: Too Many Requests",
+    "odds 1584406: HTTP Error 429: Too Many Requests",
+    "odds 1584411: HTTP Error 429: Too Many Requests",
+    "odds 1584410: HTTP Error 429: Too Many Requests",
+    "odds 1584403: HTTP Error 429: Too Many Requests",
+    "odds 1584409: HTTP Error 429: Too Many Requests",
+    "odds 1584407: HTTP Error 429: Too Many Requests",
+    "odds 1584404: HTTP Error 429: Too Many Requests",
+    "odds 1584418: HTTP Error 429: Too Many Requests"
+  ]
 }
