@@ -9,12 +9,20 @@
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="stylesheet" href="/app.css">
   <link rel="stylesheet" href="/filters.css">
+  <link rel="stylesheet" href="/install.css">
 </head>
 <body>
   <div class="shell">
     <header class="topbar">
       <div><div class="brand">ПБК</div><div class="subtitle">Футбольная аналитика</div></div>
-      <div class="health-pill" id="health-pill"><span class="dot"></span><span>проверка…</span></div>
+      <div class="topbar-actions">
+        <div>
+          <button id="install-app" class="install-btn" type="button">Как установить</button>
+          <button id="app-update" class="update-btn" type="button" hidden>Обновить ПБК</button>
+          <div id="install-hint" class="install-hint"></div>
+        </div>
+        <div class="health-pill" id="health-pill"><span class="dot"></span><span>проверка…</span></div>
+      </div>
     </header>
 
     <div class="safety-banner" id="data-safety-banner" role="status" hidden><b id="data-safety-title">Проверка свежести данных</b><span id="data-safety-text"></span></div>
@@ -70,7 +78,7 @@
         </div>
         <div id="notification-summary" class="summary-grid compact"></div>
         <div id="notifications-list" class="stack"></div>
-        <div class="panel notification-delivery"><b>Внешние push-уведомления пока не включены.</b><div>Их подключим на серверном этапе; текущий центр работает внутри приложения и ничего дополнительно не запрашивает у API-Football.</div></div>
+        <div class="panel notification-delivery"><b>Внешние push-уведомления пока не включены.</b><div>Текущий центр работает внутри приложения и ничего дополнительно не запрашивает у API-Football.</div></div>
       </section>
 
       <section class="view" id="view-stats">
@@ -87,6 +95,8 @@
       <section class="view" id="view-health">
         <div class="section-head"><h2>Состояние системы</h2></div>
         <div id="health-panel" class="panel"></div>
+        <div class="section-head"><h2>Production runtime</h2><span id="runtime-badge" class="runtime-badge">проверка…</span></div>
+        <div id="runtime-panel" class="panel"><div class="empty">Проверяю VPS…</div></div>
       </section>
     </main>
     <footer>ПБК · read-only interface · решения стратегий не меняются интерфейсом</footer>
@@ -98,5 +108,7 @@
   </dialog>
   <script type="module" src="/app.js"></script>
   <script type="module" src="/filters.js"></script>
+  <script type="module" src="/runtime.js"></script>
+  <script type="module" src="/install.js"></script>
 </body>
 </html>
