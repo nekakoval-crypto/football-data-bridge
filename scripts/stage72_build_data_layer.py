@@ -12,7 +12,7 @@ from pathlib import Path
 
 OPS=Path(os.getenv('OPS_DIR','ops'))
 OUT=Path(os.getenv('STAGE72_DB_PATH','build/pbk_unified.sqlite'))
-META=OPS/'stage72_last_run.json';SCHEMA=OPS/'stage72_schema.json';SCHEMA_VERSION='6'
+META=OPS/'stage72_last_run.json';SCHEMA=OPS/'stage72_schema.json';SCHEMA_VERSION='7'
 CORE_ALIASES={
     'competitions':'stage71_league_catalog.csv','canonical_signals':'user_forward_view.csv','challenger_signals':'stage71_challenger_forward.csv','watch_signals':'stage65_watch_ledger.csv','lifecycle_events':'signal_lifecycle_events.csv','exposure_positions':'exposure_map.csv','context_latest':'context_latest.csv','odds_snapshots':'odds_snapshots.csv',
     'team_total_openers':'stage71c_team_total_openers.csv','team_total_snapshots':'stage71c_team_total_snapshots.csv','team_total_closes':'stage71c_team_total_closes.csv',
@@ -20,8 +20,9 @@ CORE_ALIASES={
     'european_handicap_openers':'stage71f_eh_openers.csv','european_handicap_snapshots':'stage71f_eh_snapshots.csv','european_handicap_closes':'stage71f_eh_closes.csv',
     'dnb_openers':'stage71g_dnb_openers.csv','dnb_snapshots':'stage71g_dnb_snapshots.csv','dnb_closes':'stage71g_dnb_closes.csv',
     'core_market_settlements':'stage71i_market_settlements.csv',
+    'probability_predictions':'stage75_probability_predictions.csv','probability_settlements':'stage75_probability_settlements.csv',
 }
-JSON_DOCS=['attention_board.json','daily_brief.json','forward_performance.json','watch_performance.json','watch_promotion_gate.json','system_health.json','exposure_summary.json','stage71_challenger_board.json','signal_lifecycle_cards.json','stage71b_fonbet_coverage.json','stage71c_last_run.json','stage71e_last_run.json','stage71f_last_run.json','stage71g_last_run.json','stage71i_last_run.json']
+JSON_DOCS=['attention_board.json','daily_brief.json','forward_performance.json','watch_performance.json','watch_promotion_gate.json','system_health.json','exposure_summary.json','stage71_challenger_board.json','signal_lifecycle_cards.json','stage71b_fonbet_coverage.json','stage71c_last_run.json','stage71e_last_run.json','stage71f_last_run.json','stage71g_last_run.json','stage71i_last_run.json','probability_rankings.json','probability_performance.json','stage75_last_run.json']
 def now_iso():return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00','Z')
 def safe(s):
     s=re.sub(r'[^0-9A-Za-z_]+','_',str(s)).strip('_').lower()
@@ -37,7 +38,7 @@ def create_text_table(conn,table,fields,rows):
         base=safe(field);n=used.get(base,0);used[base]=n+1;col=base if n==0 else f'{base}_{n+1}';cols.append(col);mapping.append((field,col))
     if not cols:conn.execute(f'CREATE TABLE "{table}" (_empty TEXT)');return 0,[]
     conn.execute(f'CREATE TABLE "{table}" ({", ".join([f"\"{c}\" TEXT" for c in cols])})');q=f'INSERT INTO "{table}" ({", ".join([f"\"{c}\"" for c in cols])}) VALUES ({", ".join(["?"]*len(cols))})';conn.executemany(q,[[r.get(orig,'') for orig,col in mapping] for r in rows])
-    for candidate in ('api_fixture_id','fixture_id','forward_id','research_id','watch_id','signal_id','market_key','settlement_key','kickoff_utc','league','family','market_family','rule','status','settlement_status','team_side','line','home_handicap_line'):
+    for candidate in ('api_fixture_id','fixture_id','forward_id','research_id','watch_id','signal_id','prediction_id','market_key','settlement_key','kickoff_utc','league','family','market_family','rule','status','settlement_status','team_side','line','home_handicap_line'):
         if candidate in cols:
             try:conn.execute(f'CREATE INDEX "idx_{table}_{candidate}" ON "{table}" ("{candidate}")')
             except sqlite3.OperationalError:pass
