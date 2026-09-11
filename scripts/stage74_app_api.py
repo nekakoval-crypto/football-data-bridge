@@ -30,12 +30,21 @@ TABLES={
     'settlements':'core_market_settlements',
 }
 
+NOTIFICATION_EVENTS={
+    'SIGNAL_CREATED':('SIGNAL','high'),
+    'WATCH_CROSSING':('WATCH','medium'),
+    'XI_ROTATION':('LINEUP','high'),
+    'SETTLEMENT':('SETTLEMENT','medium'),
+    'WATCH_SETTLEMENT':('SETTLEMENT','low'),
+    'FIXTURE_EVENT':('FIXTURE','high'),
+}
+
 def fixture_rows(conn,table,fixture_id,limit=500):
     if not base.table_exists(conn,table): return []
     cols=set(base.columns(conn,table))
     if 'api_fixture_id' not in cols: return []
     order=''
-    for candidate in ('captured_at_utc','event_at_utc','kickoff_utc','line','home_handicap_line'):
+    for candidate in ('captured_at_utc','event_at_utc','event_time_utc','kickoff_utc','line','home_handicap_line'):
         if candidate in cols:
             order=f' ORDER BY "{candidate}" ASC';break
     rows=conn.execute(f'SELECT * FROM "{table}" WHERE CAST("api_fixture_id" AS TEXT)=?{order} LIMIT ?', (str(fixture_id),limit)).fetchall()
@@ -111,14 +120,121 @@ def performance_payload():
             'read_only':True,
         }
 
+def notification_title(row,category):
+    teams=f"{row.get('home_team') or '—'} — {row.get('away_team') or '—'}"
+    tag=row.get('rule_or_stage') or ''
+    if category=='SIGNAL': return f"Новый {tag or 'R'}: {teams}"
+    if category=='WATCH': return f"{tag or 'WATCH'} crossing: {teams}"
+    if category=='LINEUP': return f"Составы / ротация: {teams}"
+    if category=='SETTLEMENT': return f"Результат: {teams}"
+    if category=='FIXTURE': return f"Изменение матча: {teams}"
+    return teams
+
+def notification_body(row,category):
+    parts=[]
+    selection=row.get('selection') or ''
+    if selection: parts.append(selection)
+    odds=row.get('odds')
+    bookmaker=row.get('bookmaker') or ''
+    if odds not in (None,''):
+        parts.append(f"{odds}"+(f" @ {bookmaker}" if bookmaker else ''))
+    status=row.get('status') or ''
+    if category in {'SETTLEMENT','FIXTURE'} and status: parts.append(status)
+    details=row.get('details') or ''
+    if details: parts.append(details)
+    return ' · '.join(str(x) for x in parts if x)
+
+def notifications_payload(limit=100):
+    limit=max(1,min(int(limit or 100),200))
+    items=[]
+    with base.connect() as conn:
+        if base.table_exists(conn,'lifecycle_events'):
+            cols=set(base.columns(conn,'lifecycle_events'))
+            required={'entity_id','event_type','event_time_utc'}
+            if required.issubset(cols):
+                rows=conn.execute('SELECT * FROM lifecycle_events ORDER BY event_time_utc DESC LIMIT 500').fetchall()
+                for raw in rows:
+                    row=base.enrich(raw)
+                    event_type=str(row.get('event_type') or '')
+                    spec=NOTIFICATION_EVENTS.get(event_type)
+                    category=None;severity=None
+                    if spec:
+                        category,severity=spec
+                    elif event_type=='CONTEXT_SNAPSHOT' and 'lineups=YES' in str(row.get('details') or '').upper():
+                        category,severity='LINEUP','high'
+                    if not category: continue
+                    event_time=str(row.get('event_time_utc') or '')
+                    entity_id=str(row.get('entity_id') or '')
+                    nid='|'.join([entity_id,event_time,event_type])
+                    items.append({
+                        'id':nid,
+                        'category':category,
+                        'severity':severity,
+                        'event_type':event_type,
+                        'event_time_utc':event_time,
+                        'fixture_id':str(row.get('api_fixture_id') or ''),
+                        'league':row.get('league') or '',
+                        'home_team':row.get('home_team') or '',
+                        'away_team':row.get('away_team') or '',
+                        'rule_or_stage':row.get('rule_or_stage') or '',
+                        'title':notification_title(row,category),
+                        'body':notification_body(row,category),
+                    })
+                    if len(items)>=limit: break
+        health=base.state_doc(conn,'system_health.json') or {}
+        hstatus=str(health.get('status') or '').upper()
+        issues=health.get('issues') or []
+        if hstatus and hstatus not in {'HEALTHY','OK'}:
+            if issues:
+                for idx,issue in enumerate(issues[:20]):
+                    if isinstance(issue,dict):
+                        sev=str(issue.get('severity') or issue.get('status') or 'WARN').upper()
+                        body=str(issue.get('message') or issue.get('issue') or issue.get('details') or issue)
+                        stage=str(issue.get('stage') or '')
+                    else:
+                        sev='WARN';body=str(issue);stage=''
+                    items.append({
+                        'id':f"SYSTEM|{health.get('generated_at_utc') or ''}|{idx}|{body}",
+                        'category':'SYSTEM','severity':'high' if sev in {'CRITICAL','ERROR','FAIL'} else 'medium',
+                        'event_type':'SYSTEM_HEALTH','event_time_utc':health.get('generated_at_utc') or '',
+                        'fixture_id':'','league':'','home_team':'','away_team':'','rule_or_stage':stage,
+                        'title':f"Системное предупреждение{': '+stage if stage else ''}",'body':body,
+                    })
+            else:
+                items.append({
+                    'id':f"SYSTEM|{health.get('generated_at_utc') or ''}|{hstatus}",
+                    'category':'SYSTEM','severity':'high','event_type':'SYSTEM_HEALTH','event_time_utc':health.get('generated_at_utc') or '',
+                    'fixture_id':'','league':'','home_team':'','away_team':'','rule_or_stage':'',
+                    'title':f"Состояние системы: {hstatus}",'body':'Проверь раздел Health перед использованием сигналов.',
+                })
+    items.sort(key=lambda x:x.get('event_time_utc') or '',reverse=True)
+    items=items[:limit]
+    summary={k:sum(1 for x in items if x['category']==k) for k in ('SIGNAL','WATCH','LINEUP','SETTLEMENT','FIXTURE','SYSTEM')}
+    return 200,{
+        'items':items,
+        'summary':summary,
+        'count':len(items),
+        'delivery':{
+            'in_app':True,
+            'external_push':False,
+            'external_push_status':'PENDING_SERVER',
+            'policy':'No extra football API calls. Notifications are derived from lifecycle and system-health data already collected.'
+        },
+        'read_only':True,
+    }
+
 def dispatch(path_with_query):
     u=urlparse(path_with_query);path=u.path.rstrip('/') or '/';q=parse_qs(u.query,keep_blank_values=True)
     if path=='/v1/match':return aggregate_match((q.get('fixture_id') or [''])[0])
     if path=='/v1/performance':return performance_payload()
+    if path=='/v1/notifications':
+        try:limit=int((q.get('limit') or ['100'])[0])
+        except ValueError:limit=100
+        return notifications_payload(limit)
     return base.dispatch(path_with_query)
 
 class Handler(BaseHTTPRequestHandler):
-    server_version='PBKAppAPI/1.1'
+    server_version='PBKAppAPI/1.2'
     def do_GET(self):
         try:status,payload=dispatch(self.path)
         except FileNotFoundError as e:status,payload=503,{'error':'DATA_LAYER_UNAVAILABLE','detail':str(e)}
@@ -139,8 +255,9 @@ def self_test():
         print(json.dumps({'status':'FAIL','reason':'no fixture available for match-detail self-test'}));return 1
     status,p=aggregate_match(fid);match_ok=status==200 and p.get('fixture_id')==fid and p.get('read_only') is True and isinstance(p.get('markets'),dict)
     perf_status,perf=performance_payload();perf_ok=perf_status==200 and 'canonical' in perf and 'watch' in perf and perf.get('read_only') is True
-    ok=match_ok and perf_ok
-    print(json.dumps({'status':'OK' if ok else 'FAIL','match_detail_fixture_id':fid,'http_status':status,'canonical_rows':len(p.get('canonical') or []),'watch_rows':len(p.get('watch') or []),'lifecycle_rows':len(p.get('lifecycle') or []),'performance_http_status':perf_status,'probability_module':(perf.get('probability_module') or {}).get('status'),'read_only':p.get('read_only')},ensure_ascii=False))
+    note_status,notes=notifications_payload(100);note_ok=note_status==200 and isinstance(notes.get('items'),list) and notes.get('read_only') is True and notes.get('delivery',{}).get('in_app') is True
+    ok=match_ok and perf_ok and note_ok
+    print(json.dumps({'status':'OK' if ok else 'FAIL','match_detail_fixture_id':fid,'http_status':status,'canonical_rows':len(p.get('canonical') or []),'watch_rows':len(p.get('watch') or []),'lifecycle_rows':len(p.get('lifecycle') or []),'performance_http_status':perf_status,'notifications_http_status':note_status,'notification_rows':len(notes.get('items') or []),'probability_module':(perf.get('probability_module') or {}).get('status'),'read_only':p.get('read_only')},ensure_ascii=False))
     return 0 if ok else 1
 
 def main():
