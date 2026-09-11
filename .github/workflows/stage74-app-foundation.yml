@@ -40,6 +40,8 @@ jobs:
           node --check app/runtime.js
           node --check app/push.js
           node --check app/probability.js
+          node --check app/challengers.js
+          node --test app/tests/challengers.test.mjs
           node --check app/sw.js
           python -m json.tool app/manifest.webmanifest >/dev/null
           test -s app/index.html
@@ -71,7 +73,7 @@ jobs:
           grep -q '/v1/push/subscribe' app/push.js
           grep -q '/api/v1/performance' app/probability.js
           grep -q 'applyFreshnessGuard' app/app.js
-          grep -q "pbk-shell-v6" app/sw.js
+          grep -q "pbk-shell-v7" app/sw.js
           grep -q "beforeinstallprompt" app/install.js
           grep -q "addEventListener('push'" app/sw.js
           grep -q 'probability.js' app/sw.js
