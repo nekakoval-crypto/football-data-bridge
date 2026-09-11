@@ -1,0 +1,35 @@
+{
+  "scope_version": "2026-09-11-final-16-leagues",
+  "scope_locked": true,
+  "expansion_policy": "NO_FURTHER_LEAGUE_EXPANSION unless explicitly unlocked by project owner",
+  "core_big5": [
+    {"country":"England","league":"Premier League","group":"CORE_BIG5"},
+    {"country":"Spain","league":"La Liga","group":"CORE_BIG5"},
+    {"country":"Italy","league":"Serie A","group":"CORE_BIG5"},
+    {"country":"Germany","league":"Bundesliga","group":"CORE_BIG5"},
+    {"country":"France","league":"Ligue 1","group":"CORE_BIG5"}
+  ],
+  "extended_final_scope": [
+    {"country":"Austria","league":"Austrian Bundesliga","group":"EXTENDED"},
+    {"country":"Belgium","league":"Belgian Pro League","group":"EXTENDED"},
+    {"country":"Denmark","league":"Danish Superliga","group":"EXTENDED"},
+    {"country":"Lithuania","league":"A Lyga","group":"EXTENDED"},
+    {"country":"Latvia","league":"Virsliga","group":"EXTENDED"},
+    {"country":"Netherlands","league":"Eredivisie","group":"EXTENDED"},
+    {"country":"Norway","league":"Eliteserien","group":"EXTENDED"},
+    {"country":"Poland","league":"Ekstraklasa","group":"EXTENDED"},
+    {"country":"Portugal","league":"Primeira Liga","group":"EXTENDED"},
+    {"country":"Turkey","league":"Super Lig","group":"EXTENDED"},
+    {"country":"Scotland","league":"Scottish Premiership","group":"EXTENDED"}
+  ],
+  "total_leagues": 16,
+  "rule_scope": {
+    "R1": "Serie A only — unchanged",
+    "R2": "Serie A only — unchanged",
+    "R3": "Big-5 only — unchanged",
+    "Stage61": "Premier League only — unchanged",
+    "Stage62": "Bundesliga only — unchanged",
+    "Stage63": "Big-5 only for current prospective capture — unchanged until explicit research extension",
+    "extended_leagues": "research/monitoring universe only until separately validated; no automatic transfer of existing rules"
+  }
+}
