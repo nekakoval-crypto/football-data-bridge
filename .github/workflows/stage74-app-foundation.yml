@@ -36,21 +36,30 @@ jobs:
           node --check app/app.js
           node --check app/filters.js
           node --check app/install.js
+          node --check app/runtime.js
           node --check app/sw.js
           python -m json.tool app/manifest.webmanifest >/dev/null
           test -s app/index.html
           test -s app/app.css
           test -s app/filters.css
           test -s app/install.css
+          test -s app/runtime.css
           test -s app/install.js
+          test -s app/runtime.js
           test -s app/icon.svg
           test -s app/sw.js
           grep -q 'notification-badge' app/index.html
           grep -q 'data-safety-banner' app/index.html
+          grep -q 'install-app' app/index.html
+          grep -q 'runtime-panel' app/index.html
+          grep -q '/runtime.js' app/index.html
+          grep -q '/install.js' app/index.html
           grep -q '/v1/notifications' app/app.js
+          grep -q '/api/v1/runtime' app/runtime.js
           grep -q 'applyFreshnessGuard' app/app.js
-          grep -q "pbk-shell-v3" app/sw.js
+          grep -q "pbk-shell-v4" app/sw.js
           grep -q "beforeinstallprompt" app/install.js
+          grep -q 'runtime.js' app/sw.js
           grep -q 'icon.svg' app/manifest.webmanifest
           ! grep -q "caches.put.*api" app/sw.js
       - name: Validate deployment scripts
@@ -81,5 +90,5 @@ jobs:
         run: python scripts/stage74_app_api.py --self-test
       - name: Report
         run: |
-          echo 'Stage74 installable PWA + auto-release + VPS hardening + performance + notifications + freshness: OK'
+          echo 'Stage74 installable PWA + production runtime + auto-release + VPS hardening + performance + notifications + freshness: OK'
           cat ops/stage73_last_run.json
