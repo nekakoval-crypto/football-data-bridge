@@ -1,0 +1,74 @@
+name: Stage 65 WATCH Performance
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '52 * * * *'
+  push:
+    paths:
+      - 'scripts/stage65_watch_performance.py'
+      - '.github/workflows/stage65-watch-performance.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  performance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      OPS_DIR: 'ops'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build Stage 65 watch performance
+        run: |
+          for attempt in 1 2 3; do
+            echo "Stage 65 attempt ${attempt}/3"
+            if python scripts/stage65_watch_performance.py; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              echo 'Stage 65 failed after 3 attempts.'
+              exit 1
+            fi
+            sleep $((attempt * 8))
+          done
+
+      - name: Show Stage 65 summary
+        run: |
+          cat ops/stage65_last_run.json
+          echo '--- watch_performance.md ---'
+          cat ops/watch_performance.md
+
+      - name: Commit Stage 65 operational files
+        run: |
+          git config user.name 'stage65-bot'
+          git config user.email 'stage65-bot@users.noreply.github.com'
+          git add -A ops
+          if git diff --cached --quiet; then
+            echo 'No Stage 65 changes to commit.'
+          else
+            git commit -m 'Stage 65 watch performance update'
+            git push
+          fi
+
+      - name: Upload Stage 65 snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage65-watch-performance
+          path: |
+            ops/stage65_watch_ledger.csv
+            ops/watch_performance.json
+            ops/watch_performance.md
+            ops/stage65_last_run.json
+          if-no-files-found: ignore
+          retention-days: 30
