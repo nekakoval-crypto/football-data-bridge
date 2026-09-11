@@ -3,8 +3,9 @@
 
 Runs Stage71C/E/F/G in one Python process and memoizes API-Football GETs.
 Before child parsers run, Stage71J prefetches the common 16-league fixture set
-and one /odds payload per fixture. The same payload then feeds team totals,
-double chance, European handicap and DNB parsers.
+and one unfiltered /odds payload per fixture. Filtered child requests such as
+/odds?fixture=...&bet=12 are intentionally served from that same fixture cache,
+because each child parser performs its own market-id filtering locally.
 
 Research data only. Creates no betting signal or WATCH.
 """
@@ -12,7 +13,6 @@ from __future__ import annotations
 import json, os
 from pathlib import Path
 
-# Pin already verified API-Football market ids before importing child modules.
 os.environ.setdefault('STAGE71C_HOME_TEAM_TOTAL_BET_ID','16')
 os.environ.setdefault('STAGE71C_AWAY_TEAM_TOTAL_BET_ID','17')
 os.environ.setdefault('STAGE71E_DOUBLE_CHANCE_BET_ID','12')
@@ -35,7 +35,13 @@ cache_hits=0
 by_path={}
 
 def _key(path,params):
-    return path, tuple(sorted((str(k),str(v)) for k,v in (params or {}).items()))
+    p=params or {}
+    # API-Football /odds without `bet` contains the market families needed by
+    # all four child parsers. Normalize all fixture-specific odds calls to one
+    # cache key so `bet=12/9/4/...` cannot trigger duplicate network requests.
+    if path=='/odds' and p.get('fixture') not in (None,''):
+        return path, (('fixture',str(p.get('fixture'))),)
+    return path, tuple(sorted((str(k),str(v)) for k,v in p.items()))
 
 def cached_api_get(path,params=None):
     global real_calls, cache_hits
@@ -45,13 +51,16 @@ def cached_api_get(path,params=None):
         return _cache[k]
     if real_calls>=MAX_REAL_CALLS:
         raise RuntimeError(f'Stage71J API hard cap reached: {real_calls}/{MAX_REAL_CALLS}')
-    val=_real(path,params)
+    # For normalized fixture odds, always request the unfiltered payload once.
+    actual_params=params
+    if path=='/odds' and (params or {}).get('fixture') not in (None,''):
+        actual_params={'fixture':(params or {}).get('fixture')}
+    val=_real(path,actual_params)
     _cache[k]=val
     real_calls+=1
     by_path[path]=by_path.get(path,0)+1
     return val
 
-# All child modules imported the same stage53 module object.
 s53.api_get=cached_api_get
 
 def read_meta(path):
@@ -59,11 +68,9 @@ def read_meta(path):
     except Exception:return {}
 
 def prefetch_common_universe():
-    """Fetch the shared 16-league fixture universe and one odds payload per fixture."""
     fixture_ids=[]
     season=c.SEASON
     next_n=max(c.NEXT_N,e.NEXT_N,f.NEXT_N,g.NEXT_N)
-    # One catalog response is shared across children that still inspect /odds/bets.
     cached_api_get('/odds/bets')
     for _lname,lid in c.LEAGUES.items():
         data=cached_api_get('/fixtures',{'league':lid,'season':season,'next':next_n,'timezone':'UTC'})
