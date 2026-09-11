@@ -96,10 +96,18 @@ cat > /etc/systemd/system/caddy.service.d/pbk.conf <<EOF
 EnvironmentFile=$ENV_FILE
 EOF
 
+PUSH_READY=0
+if [ -f "$REPO/deploy/setup_push.sh" ]; then
+  info "Provisioning optional Web Push"
+  if /bin/bash "$REPO/deploy/setup_push.sh"; then PUSH_READY=1; else echo "WARNING: Web Push provisioning failed; core PBK will still start." >&2; fi
+fi
+
 info "Installing PBK systemd units"
 for f in pbk-api.service pbk-sync.service pbk-sync.timer pbk-release.service pbk-release.timer; do
   install -m 0644 "$REPO/deploy/$f" "/etc/systemd/system/$f"
 done
+if [ -f "$REPO/deploy/pbk-push.service" ]; then install -m 0644 "$REPO/deploy/pbk-push.service" /etc/systemd/system/pbk-push.service; fi
+if [ -f "$REPO/deploy/pbk-push.timer" ]; then install -m 0644 "$REPO/deploy/pbk-push.timer" /etc/systemd/system/pbk-push.timer; fi
 systemctl daemon-reload
 
 info "Building the initial verified Stage72 database"
@@ -111,6 +119,7 @@ caddy validate --config /etc/caddy/Caddyfile --envfile "$ENV_FILE"
 systemctl enable --now pbk-api.service
 systemctl enable --now pbk-sync.timer
 systemctl enable --now pbk-release.timer
+if [ "$PUSH_READY" -eq 1 ]; then systemctl enable --now pbk-push.timer; fi
 systemctl restart caddy
 
 info "Running local health checks"
@@ -126,6 +135,7 @@ python3 -m json.tool /tmp/pbk-health.json || cat /tmp/pbk-health.json
 systemctl is-active --quiet pbk-api.service || fail "pbk-api.service is not active."
 systemctl is-active --quiet pbk-sync.timer || fail "pbk-sync.timer is not active."
 systemctl is-active --quiet pbk-release.timer || fail "pbk-release.timer is not active."
+if [ "$PUSH_READY" -eq 1 ]; then systemctl is-active --quiet pbk-push.timer || fail "pbk-push.timer is not active."; fi
 systemctl is-active --quiet caddy || fail "caddy.service is not active."
 
 REV="$(runuser -u pbk -- git -C "$REPO" rev-parse HEAD)"
@@ -139,6 +149,7 @@ printf 'Login: %s\n' "$PBK_USER"
 printf 'API: local-only 127.0.0.1:8787\n'
 printf 'Data refresh: every 5 minutes with SQLite integrity check + atomic replace\n'
 printf 'Production release check: every 15 minutes with API restart + health check\n'
+printf 'Web Push: %s\n' "$( [ "$PUSH_READY" -eq 1 ] && echo READY || echo DISABLED )"
 if [ "$TEMP_HTTP" -eq 1 ]; then
   cat <<'EOF'
 
