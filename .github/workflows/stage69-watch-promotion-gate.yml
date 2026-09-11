@@ -42,13 +42,24 @@ jobs:
         run: |
           git config user.name 'stage69-bot'
           git config user.email 'stage69-bot@users.noreply.github.com'
-          git add -A ops
-          if git diff --cached --quiet; then
-            echo 'No Stage 69 changes to commit.'
-          else
+          for attempt in 1 2 3; do
+            echo "Stage69 publish attempt ${attempt}/3"
+            git fetch origin main
+            git reset --hard origin/main
+            python scripts/stage69_watch_promotion_gate.py
+            git add ops/watch_promotion_gate.json ops/watch_promotion_gate.md ops/stage69_last_run.json
+            if git diff --cached --quiet; then
+              echo 'No Stage 69 changes to commit.'
+              exit 0
+            fi
             git commit -m 'Stage 69 watch promotion gate update'
-            git push
-          fi
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo 'Concurrent push detected; rebuilding from latest main.'
+            sleep 2
+          done
+          exit 1
 
       - name: Upload Stage 69 snapshot
         uses: actions/upload-artifact@v4
