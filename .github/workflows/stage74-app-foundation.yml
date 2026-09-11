@@ -35,17 +35,23 @@ jobs:
         run: |
           node --check app/app.js
           node --check app/filters.js
+          node --check app/install.js
           node --check app/sw.js
           python -m json.tool app/manifest.webmanifest >/dev/null
           test -s app/index.html
           test -s app/app.css
           test -s app/filters.css
+          test -s app/install.css
+          test -s app/install.js
+          test -s app/icon.svg
           test -s app/sw.js
           grep -q 'notification-badge' app/index.html
           grep -q 'data-safety-banner' app/index.html
           grep -q '/v1/notifications' app/app.js
           grep -q 'applyFreshnessGuard' app/app.js
-          grep -q "pbk-shell-v2" app/sw.js
+          grep -q "pbk-shell-v3" app/sw.js
+          grep -q "beforeinstallprompt" app/install.js
+          grep -q 'icon.svg' app/manifest.webmanifest
           ! grep -q "caches.put.*api" app/sw.js
       - name: Validate deployment scripts
         run: |
@@ -64,5 +70,5 @@ jobs:
         run: python scripts/stage74_app_api.py --self-test
       - name: Report
         run: |
-          echo 'Stage74 PWA + performance + notifications + freshness + production bootstrap: OK'
+          echo 'Stage74 installable PWA + performance + notifications + freshness + production bootstrap: OK'
           cat ops/stage73_last_run.json
