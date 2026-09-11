@@ -1,0 +1,20 @@
+{
+  "run_at_utc": "2026-09-11T10:09:18Z",
+  "status": "OK",
+  "active_forward_rows": 3,
+  "new_context_snapshots": 3,
+  "total_context_snapshots": 3,
+  "fixture_checks": 3,
+  "schedule_calls": 12,
+  "injury_calls": 0,
+  "lineup_calls": 0,
+  "warnings": [],
+  "policy": {
+    "role": "context-only; never changes R1/R2/R3 eligibility",
+    "baseline": "first capture after canonical forward entry",
+    "T24": "first capture between 30h and 6h pre-kickoff",
+    "T3": "first capture between 6h and 90m pre-kickoff",
+    "T60": "captured <=90m only after official lineups are returned",
+    "calendar": "previous/next club fixtures across all competitions; raw competition retained"
+  }
+}
