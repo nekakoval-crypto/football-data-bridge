@@ -1,0 +1,104 @@
+name: Stage 61 Premier League Market Steam Watch
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '20,50 * * * *'
+  push:
+    paths:
+      - 'scripts/stage61_market_steam_watch.py'
+      - '.github/workflows/stage61-market-steam-watch.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stage61-market-steam-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      API_FOOTBALL_SEASON: '2026'
+      API_FOOTBALL_MATCH_WINNER_BET_ID: '1'
+      STAGE61_PL_LEAGUE_ID: '39'
+      STAGE61_USER_BOOKMAKER: 'Marathonbet'
+      STAGE61_STEAM_THRESHOLD: '0.03'
+      STAGE61_OPEN_CAPTURE_HORIZON_H: '336'
+      STAGE61_TRACK_HORIZON_H: '72'
+      OPS_DIR: 'ops'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run Stage 61 watch
+        run: |
+          for attempt in 1 2 3; do
+            echo "Stage 61 attempt ${attempt}/3"
+            if python scripts/stage61_market_steam_watch.py; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              echo 'Stage 61 failed after 3 attempts.'
+              exit 1
+            fi
+            sleep $((attempt * 8))
+          done
+
+      - name: Show Stage 61 summary
+        run: |
+          echo '--- stage61_last_run.json ---'
+          cat ops/stage61_last_run.json
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+
+          for name in ('stage61_market_crossings.csv','stage61_market_closes.csv'):
+              p=Path('ops')/name
+              print('---',name,'---')
+              if not p.exists():
+                  print('missing')
+                  continue
+              with p.open(encoding='utf-8-sig',newline='') as f:
+                  rows=list(csv.DictReader(f))
+              print('rows=',len(rows))
+              for r in rows[-10:]:
+                  if 'crossed_at_utc' in r:
+                      print(r.get('home_team'),'-',r.get('away_team'),'move=',r.get('movement_pp'),'user=',r.get('user_cross_odds'),'gap=',r.get('minutes_to_kickoff'))
+                  else:
+                      print(r.get('home_team'),'-',r.get('away_team'),'qualified=',r.get('m1_close_qualified'),'move=',r.get('movement_pp'),'gap=',r.get('close_gap_minutes'))
+          PY
+
+      - name: Commit Stage 61 watch files
+        run: |
+          git config user.name 'stage61-bot'
+          git config user.email 'stage61-bot@users.noreply.github.com'
+          git add -A ops
+          if git diff --cached --quiet; then
+            echo 'No Stage 61 operational changes to commit.'
+          else
+            git commit -m 'Stage 61 market steam watch update'
+            git push
+          fi
+
+      - name: Upload Stage 61 snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage61-market-steam-watch
+          path: |
+            ops/stage61_last_run.json
+            ops/stage61_market_openers.csv
+            ops/stage61_market_snapshots.csv
+            ops/stage61_market_crossings.csv
+            ops/stage61_market_closes.csv
+          if-no-files-found: ignore
+          retention-days: 30
