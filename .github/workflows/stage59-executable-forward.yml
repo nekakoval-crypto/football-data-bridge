@@ -1,0 +1,77 @@
+name: Stage 59 Executable Forward Ledger
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '45 * * * *'
+  push:
+    paths:
+      - 'scripts/stage59_executable_forward.py'
+      - '.github/workflows/stage59-executable-forward.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  executable-forward:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPS_DIR: 'ops'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build Stage 59 executable forward ledger
+        run: python scripts/stage59_executable_forward.py
+
+      - name: Show Stage 59 summary
+        run: |
+          cat ops/stage59_last_run.json
+          echo '--- user_forward_view.csv ---'
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          p=Path('ops/user_forward_view.csv')
+          if p.exists():
+              with p.open(encoding='utf-8-sig',newline='') as f:
+                  rows=list(csv.DictReader(f))
+              for r in rows:
+                  print(
+                      r['home_team'], '-', r['away_team'],
+                      'trigger=', r['trigger_selected_odds'],
+                      'market_exec=', r['market_execution_odds'], '@', r['market_execution_bookmaker'],
+                      'user_exec=', r['paper_user_execution_odds'], '@', r['paper_user_execution_bookmaker'],
+                      'status=', r['user_execution_status'],
+                      'user_profit=', r['user_profit_u']
+                  )
+          PY
+
+      - name: Commit Stage 59 operational files
+        run: |
+          git config user.name 'stage59-bot'
+          git config user.email 'stage59-bot@users.noreply.github.com'
+          git add -A ops
+          if git diff --cached --quiet; then
+            echo 'No Stage 59 changes to commit.'
+          else
+            git commit -m 'Stage 59 executable forward update'
+            git push
+          fi
+
+      - name: Upload Stage 59 snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage59-executable-forward
+          path: |
+            ops/user_execution_log.csv
+            ops/user_forward_view.csv
+            ops/stage59_last_run.json
+          if-no-files-found: ignore
+          retention-days: 30
