@@ -1,0 +1,51 @@
+name: Stage 71K Deferred Market Source Audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '35 */6 * * *'
+  push:
+    paths:
+      - 'scripts/stage71k_deferred_market_source_audit.py'
+      - '.github/workflows/stage71k-deferred-market-source-audit.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPS_DIR: 'ops'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Audit deferred market sources offline
+        run: python scripts/stage71k_deferred_market_source_audit.py
+      - name: Show audit summary
+        run: |
+          cat ops/stage71k_last_run.json
+          echo '--- report ---'
+          cat ops/stage71k_deferred_market_source_audit.md
+      - name: Commit source-audit outputs
+        run: |
+          git config user.name 'stage71k-bot'
+          git config user.email 'stage71k-bot@users.noreply.github.com'
+          git add ops/stage71k_last_run.json ops/stage71k_deferred_market_source_audit.json ops/stage71k_deferred_market_source_audit.md
+          if git diff --cached --quiet; then
+            echo 'No Stage71K changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Stage71K deferred market source audit update'
+          git pull --rebase origin main && git push origin main || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage71k-deferred-market-source-audit
+          path: |
+            ops/stage71k_last_run.json
+            ops/stage71k_deferred_market_source_audit.json
+            ops/stage71k_deferred_market_source_audit.md
+          retention-days: 30
