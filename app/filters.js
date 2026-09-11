@@ -1,3 +1,4 @@
+import './install.js';
 const $=s=>document.querySelector(s);const $$=s=>[...document.querySelectorAll(s)];
 let refreshing=false;
 function fillLeagues(){const sel=$('#filter-league');if(!sel)return;const current=sel.value;const leagues=new Set();$$('#all-market-cards .match-card .eyebrow').forEach(e=>{const league=(e.textContent||'').split('·')[0].trim();if(league)leagues.add(league)});const existing=[...sel.options].slice(1).map(o=>o.value);const next=[...leagues].sort((a,b)=>a.localeCompare(b,'ru'));if(JSON.stringify(existing)===JSON.stringify(next))return;sel.innerHTML='<option value="">Все лиги</option>'+next.map(x=>`<option value="${x.replace(/"/g,'&quot;')}">${x}</option>`).join('');sel.value=next.includes(current)?current:''}
