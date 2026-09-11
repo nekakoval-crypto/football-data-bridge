@@ -1,0 +1,91 @@
+name: Stage 71J Shared Core Market Capture
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '27 */6 * * *'
+  push:
+    paths:
+      - 'scripts/stage71j_shared_core_market_capture.py'
+      - '.github/workflows/stage71j-shared-core-market-capture.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      API_FOOTBALL_SEASON: '2026'
+      OPS_DIR: 'ops'
+      STAGE71C_USER_BOOKMAKER: 'Marathonbet'
+      STAGE71E_USER_BOOKMAKER: 'Marathonbet'
+      STAGE71F_USER_BOOKMAKER: 'Marathonbet'
+      STAGE71G_USER_BOOKMAKER: 'Marathonbet'
+      STAGE71C_OPEN_HORIZON_H: '336'
+      STAGE71E_OPEN_HORIZON_H: '336'
+      STAGE71F_OPEN_HORIZON_H: '336'
+      STAGE71G_OPEN_HORIZON_H: '336'
+      STAGE71C_TRACK_HORIZON_H: '72'
+      STAGE71E_TRACK_HORIZON_H: '72'
+      STAGE71F_TRACK_HORIZON_H: '72'
+      STAGE71G_TRACK_HORIZON_H: '72'
+      STAGE71C_NEXT_PER_LEAGUE: '10'
+      STAGE71E_NEXT_PER_LEAGUE: '10'
+      STAGE71F_NEXT_PER_LEAGUE: '10'
+      STAGE71G_NEXT_PER_LEAGUE: '10'
+      STAGE71J_MAX_REAL_API_CALLS: '220'
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Capture four core markets through one shared API cache
+        run: python scripts/stage71j_shared_core_market_capture.py
+      - name: Show shared capture summary
+        run: cat ops/stage71j_last_run.json
+      - name: Commit shared market ledgers
+        run: |
+          git config user.name 'stage71j-bot'
+          git config user.email 'stage71j-bot@users.noreply.github.com'
+          git add ops/stage71c_team_total_openers.csv \
+                  ops/stage71c_team_total_snapshots.csv \
+                  ops/stage71c_team_total_closes.csv \
+                  ops/stage71c_last_run.json \
+                  ops/stage71e_double_chance_openers.csv \
+                  ops/stage71e_double_chance_snapshots.csv \
+                  ops/stage71e_double_chance_closes.csv \
+                  ops/stage71e_last_run.json \
+                  ops/stage71f_eh_openers.csv \
+                  ops/stage71f_eh_snapshots.csv \
+                  ops/stage71f_eh_closes.csv \
+                  ops/stage71f_last_run.json \
+                  ops/stage71g_dnb_openers.csv \
+                  ops/stage71g_dnb_snapshots.csv \
+                  ops/stage71g_dnb_closes.csv \
+                  ops/stage71g_last_run.json \
+                  ops/stage71j_last_run.json
+          if git diff --cached --quiet; then
+            echo 'No Stage71J changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Stage71J shared core market capture update'
+          if ! git pull --rebase origin main; then
+            git rebase --abort || true
+            echo 'Concurrent update; leave outputs in artifact and retry next scheduled run.'
+            exit 0
+          fi
+          git push origin main || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage71j-shared-core-market-capture
+          path: |
+            ops/stage71j_last_run.json
+            ops/stage71c_*.csv
+            ops/stage71e_*.csv
+            ops/stage71f_*.csv
+            ops/stage71g_*.csv
+          retention-days: 30
