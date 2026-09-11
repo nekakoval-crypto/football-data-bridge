@@ -3,7 +3,7 @@ name: Stage 65 WATCH Performance
 on:
   workflow_dispatch:
   schedule:
-    - cron: '52 * * * *'
+    - cron: '2,12,22,32,42,52 * * * *'
   push:
     paths:
       - 'scripts/stage65_watch_performance.py'
@@ -58,7 +58,16 @@ jobs:
             echo 'No Stage 65 changes to commit.'
           else
             git commit -m 'Stage 65 watch performance update'
-            git push
+            for attempt in 1 2 3; do
+              if git pull --rebase origin main && git push origin main; then
+                exit 0
+              fi
+              echo "Concurrent push detected; retry ${attempt}/3"
+              git rebase --abort 2>/dev/null || true
+              git fetch origin main
+              sleep 2
+            done
+            exit 1
           fi
 
       - name: Upload Stage 65 snapshot
