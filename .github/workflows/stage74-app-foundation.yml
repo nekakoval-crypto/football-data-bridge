@@ -9,6 +9,7 @@ on:
       - 'docs/stage74_*.md'
       - 'scripts/stage73_internal_api.py'
       - 'scripts/stage74_app_api.py'
+      - 'scripts/stage75_probability_value.py'
       - 'scripts/stage72_build_data_layer.py'
       - '.github/workflows/stage74-app-foundation.yml'
 
@@ -38,6 +39,7 @@ jobs:
           node --check app/install.js
           node --check app/runtime.js
           node --check app/push.js
+          node --check app/probability.js
           node --check app/sw.js
           python -m json.tool app/manifest.webmanifest >/dev/null
           test -s app/index.html
@@ -46,9 +48,11 @@ jobs:
           test -s app/install.css
           test -s app/runtime.css
           test -s app/push.css
+          test -s app/probability.css
           test -s app/install.js
           test -s app/runtime.js
           test -s app/push.js
+          test -s app/probability.js
           test -s app/icon.svg
           test -s app/sw.js
           grep -q 'notification-badge' app/index.html
@@ -56,16 +60,21 @@ jobs:
           grep -q 'install-app' app/index.html
           grep -q 'runtime-panel' app/index.html
           grep -q 'push-toggle' app/index.html
+          grep -q 'probability-today' app/index.html
+          grep -q 'probability-stats-detail' app/index.html
           grep -q '/runtime.js' app/index.html
           grep -q '/install.js' app/index.html
           grep -q '/push.js' app/index.html
+          grep -q '/probability.js' app/index.html
           grep -q '/v1/notifications' app/app.js
           grep -q '/api/v1/runtime' app/runtime.js
           grep -q '/v1/push/subscribe' app/push.js
+          grep -q '/api/v1/performance' app/probability.js
           grep -q 'applyFreshnessGuard' app/app.js
-          grep -q "pbk-shell-v5" app/sw.js
+          grep -q "pbk-shell-v6" app/sw.js
           grep -q "beforeinstallprompt" app/install.js
           grep -q "addEventListener('push'" app/sw.js
+          grep -q 'probability.js' app/sw.js
           grep -q 'push.js' app/sw.js
           grep -q 'runtime.js' app/sw.js
           grep -q 'icon.svg' app/manifest.webmanifest
@@ -103,9 +112,25 @@ jobs:
         run: python scripts/stage72_build_data_layer.py
       - name: Validate Stage73 API contract
         run: python scripts/stage73_internal_api.py --self-test
-      - name: Validate Stage74 app API
+      - name: Validate Stage74/75 app API
         run: python scripts/stage74_app_api.py --self-test
+      - name: Validate probability projection
+        run: |
+          python - <<'PY'
+          import os,sys
+          sys.path.insert(0,'scripts')
+          os.environ['PBK_DB_PATH']='build/pbk_unified.sqlite'
+          import stage74_app_api as api
+          code,p=api.performance_payload()
+          m=p.get('probability_module') or {}
+          assert code==200
+          assert m.get('status')=='ACTIVE_FORWARD_MONITORING',m
+          assert m.get('max_probability_ranking_available') is True,m
+          assert m.get('value_ranking_available') is True,m
+          assert (m.get('policy') or {}).get('stake_changes') is False,m
+          print('Stage75 probability projection: OK')
+          PY
       - name: Report
         run: |
-          echo 'Stage74 PWA + runtime + Web Push + auto-release + hardening + performance + freshness: OK'
+          echo 'Stage74 PWA + Stage75 probability/value + runtime + Web Push + auto-release + hardening + freshness: OK'
           cat ops/stage73_last_run.json
