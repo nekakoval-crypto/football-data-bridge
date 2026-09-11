@@ -1,0 +1,59 @@
+{
+  "version": "stage75_v1_2026-09-11",
+  "status": "HISTORICALLY_VALIDATED_FORWARD_MONITORING_REQUIRED",
+  "method": "rule_specific_logit_intercept_shift",
+  "formula": "p_pbk = logistic(logit(p_market_no_vig) + alpha)",
+  "ranking_scope": "canonical_unique_exposures_only",
+  "stake_changes_authorized": false,
+  "models": {
+    "R1": {
+      "alpha": 0.3056471520806241,
+      "train_n": 527,
+      "test_n": 321,
+      "test_observed_hit_rate": 0.6292834890965732,
+      "test_market_mean_probability": 0.5590866588216209,
+      "test_pbk_mean_probability": 0.6312538497145735,
+      "test_brier_market": 0.22851646624259483,
+      "test_brier_pbk": 0.2239930605467671,
+      "test_logloss_market": 0.6487567840615439,
+      "test_logloss_pbk": 0.6384326596222842,
+      "gate": "PASS"
+    },
+    "R2": {
+      "alpha": 0.31043505519797177,
+      "train_n": 397,
+      "test_n": 236,
+      "test_observed_hit_rate": 0.652542372881356,
+      "test_market_mean_probability": 0.5633712479064891,
+      "test_pbk_mean_probability": 0.6363177462519043,
+      "test_brier_market": 0.22370004100333818,
+      "test_brier_pbk": 0.21649118958914632,
+      "test_logloss_market": 0.6388373071411048,
+      "test_logloss_pbk": 0.6225900614493678,
+      "gate": "PASS"
+    },
+    "R3": {
+      "alpha": 0.5275911747650279,
+      "train_n": 64,
+      "test_n": 91,
+      "test_observed_hit_rate": 0.3626373626373626,
+      "test_market_mean_probability": 0.2561166475771814,
+      "test_pbk_mean_probability": 0.36692733602114697,
+      "test_brier_market": 0.2377898772066724,
+      "test_brier_pbk": 0.2257934588466892,
+      "test_logloss_market": 0.6699768546214336,
+      "test_logloss_pbk": 0.6420624804468065,
+      "gate": "PASS"
+    }
+  },
+  "forward_review_min_settled_per_rule": 50,
+  "governance": {
+    "watch_in_rankings": false,
+    "challengers_in_rankings": false,
+    "research_markets_in_rankings": false,
+    "r1_r2_same_selection_dedupe": true,
+    "r2_probability_priority_when_both_apply": true,
+    "r3_conflict_policy": "MANUAL_REVIEW",
+    "probability_is_not_certainty": true
+  }
+}
