@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-11T11:15:53Z",
+  "generated_at_utc": "2026-09-11T11:22:07Z",
   "status": "OK",
   "active_signals": 3,
   "policy": {
@@ -132,7 +132,8 @@
       "flags": [
         "AWAY_NEXT_UEFA_OR_CUP",
         "OFFICIAL_ROTATION_PENDING"
-      ]
+      ],
+      "display_selection": "П2"
     },
     {
       "forward_id": "R1|I1|1550125",
@@ -257,7 +258,8 @@
         "AWAY_PREV_UEFA_OR_CUP",
         "WITHIN_7D_BEFORE_FIFA_WINDOW",
         "OFFICIAL_ROTATION_PENDING"
-      ]
+      ],
+      "display_selection": "П2"
     },
     {
       "forward_id": "R1|I1|1550131",
@@ -382,7 +384,8 @@
         "AWAY_PREV_UEFA_OR_CUP",
         "WITHIN_7D_BEFORE_FIFA_WINDOW",
         "OFFICIAL_ROTATION_PENDING"
-      ]
+      ],
+      "display_selection": "П2"
     }
   ],
   "market_steam_watch": {
@@ -399,7 +402,8 @@
     "latest_run_utc": "2026-09-11T11:02:23Z",
     "warnings": [],
     "crossings": [],
-    "recent_close_qualified": []
+    "recent_close_qualified": [],
+    "display_market": "П1/П2 — движение коэффициента фаворита"
   },
   "ou_steam_watch": {
     "status": "WATCH_ONLY_NOT_CANONICAL_RULE",
@@ -415,6 +419,10 @@
     "latest_run_utc": "2026-09-11T11:15:21Z",
     "warnings": [],
     "crossings": [],
-    "recent_close_qualified": []
+    "recent_close_qualified": [],
+    "display_selection": "ТБ(2.5)"
+  },
+  "display_policy": {
+    "bet_notation": "User-facing: П1/Х/П2, 1Х/Х2/12, Ф1/Ф2, ТБ/ТМ, ОЗ — Да/Нет; machine codes unchanged"
   }
 }

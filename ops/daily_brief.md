@@ -1,13 +1,13 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-11T11:15:53Z
+Generated UTC: 2026-09-11T11:22:07Z
 Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
 
 ## R1 | Sassuolo — Juventus
-- Kickoff UTC: 2026-09-13T18:45:00Z | Selection: Away | Stake: 1.000u
-- Trigger Bet365: H 5.25 / D 4.0 / A 1.62 (immutable)
+- Kickoff UTC: 2026-09-13T18:45:00Z | Ставка: П2 | Stake: 1.000u
+- Trigger Bet365: П1 5.25 / Х 4.0 / П2 1.62 (immutable)
 - Market-best observed: 1.69 @ 1xBet | Bet365 now: 1.62
 - Current user-executable: 1.65 @ Marathonbet
 - Paper user-execution (frozen): 1.65 @ Marathonbet [2026-09-11T10:32:01Z]
@@ -21,8 +21,8 @@ Active canonical signals: 3
 - Flags: AWAY_NEXT_UEFA_OR_CUP, OFFICIAL_ROTATION_PENDING
 
 ## R1 | Torino — AS Roma
-- Kickoff UTC: 2026-09-14T16:30:00Z | Selection: Away | Stake: 1.000u
-- Trigger Bet365: H 6.0 / D 4.0 / A 1.57 (immutable)
+- Kickoff UTC: 2026-09-14T16:30:00Z | Ставка: П2 | Stake: 1.000u
+- Trigger Bet365: П1 6.0 / Х 4.0 / П2 1.57 (immutable)
 - Market-best observed: 1.62 @ 1xBet | Bet365 now: 1.57
 - Current user-executable: 1.58 @ Marathonbet
 - Paper user-execution (frozen): 1.58 @ Marathonbet [2026-09-11T10:32:01Z]
@@ -36,8 +36,8 @@ Active canonical signals: 3
 - Flags: AWAY_PREV_UEFA_OR_CUP, WITHIN_7D_BEFORE_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
 
 ## R1 | Frosinone — Como
-- Kickoff UTC: 2026-09-20T13:00:00Z | Selection: Away | Stake: 1.000u
-- Trigger Bet365: H 5.25 / D 3.9 / A 1.62 (immutable)
+- Kickoff UTC: 2026-09-20T13:00:00Z | Ставка: П2 | Stake: 1.000u
+- Trigger Bet365: П1 5.25 / Х 3.9 / П2 1.62 (immutable)
 - Market-best observed: 1.69 @ 1xBet | Bet365 now: 1.62
 - Current user-executable: 1.65 @ Marathonbet
 - Paper user-execution (frozen): 1.65 @ Marathonbet [2026-09-11T10:32:01Z]
@@ -56,7 +56,7 @@ Active canonical signals: 3
 
 > This is **not R4 and not a bet signal**. It does not change the canonical R1/R2/R3 forward ledger.
 
-- Scope: Premier League Favorite Steam M1 (+3 pp no-vig from frozen Bet365 opener).
+- Scope: АПЛ: движение фаворита П1/П2 (+3 pp no-vig from frozen Bet365 opener).
 - Frozen openers tracked: 18
 - Active +3 pp crossings: 0
 - Observed closes: 0 | Close-qualified M1 watches: 0
@@ -70,9 +70,9 @@ Active canonical signals: 3
 
 > This is **not a canonical rule and not a bet signal**. R1/R2/R3 are unchanged.
 
-- Scope: Bundesliga Over 2.5 Steam O1 (+3 pp no-vig from frozen Bet365 O/U 2.5 opener).
+- Scope: Бундеслига: ТБ(2.5) — движение рынка (+3 pp no-vig from frozen Bet365 O/U 2.5 opener).
 - Frozen O/U openers tracked: 18
-- Active +3 pp Over crossings: 0
+- Active +3 pp crossings ТБ(2.5): 0
 - Observed closes: 0 | Close-qualified O1 watches: 0
 - Executable bookmaker being observed: Marathonbet
 
