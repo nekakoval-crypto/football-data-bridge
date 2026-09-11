@@ -51,8 +51,8 @@ jobs:
           if bets.get('errors'):
               raise RuntimeError(f"bets: {bets['errors']}")
 
-          b365 = [x for x in books.get('response', []) if 'bet365' in x.get('name','').lower()]
-          winner = [x for x in bets.get('response', []) if 'match winner' in x.get('name','').lower()]
+          b365 = [x for x in books.get('response', []) if 'bet365' in (x.get('name') or '').lower()]
+          winner = [x for x in bets.get('response', []) if 'match winner' in (x.get('name') or '').lower()]
           print('BET365_MATCHES=', b365)
           print('MATCH_WINNER_MATCHES=', winner)
           print('BOOKMAKERS_COUNT=', len(books.get('response', [])))
