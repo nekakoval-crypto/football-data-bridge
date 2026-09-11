@@ -50,8 +50,12 @@ jobs:
       - name: Validate deployment scripts
         run: |
           bash -n deploy/sync_data.sh
+          bash -n deploy/bootstrap_server.sh
           grep -q 'reverse_proxy 127.0.0.1:8787' deploy/Caddyfile
           grep -q 'stage74_app_api.py' deploy/pbk-api.service
+          grep -q 'caddy validate' deploy/bootstrap_server.sh
+          grep -q 'PBK_PASSWORD_HASH' deploy/bootstrap_server.sh
+          grep -q '127.0.0.1:8787/v1/health' deploy/bootstrap_server.sh
       - name: Rebuild unified data layer
         run: python scripts/stage72_build_data_layer.py
       - name: Validate Stage73 API contract
@@ -60,5 +64,5 @@ jobs:
         run: python scripts/stage74_app_api.py --self-test
       - name: Report
         run: |
-          echo 'Stage74 PWA + match detail + performance + notifications + freshness guard: OK'
+          echo 'Stage74 PWA + performance + notifications + freshness + production bootstrap: OK'
           cat ops/stage73_last_run.json
