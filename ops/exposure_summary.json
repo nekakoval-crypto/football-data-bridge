@@ -1,0 +1,34 @@
+{
+  "generated_at_utc": "2026-09-11T12:05:00Z",
+  "status": "OK",
+  "active_rule_rows": 3,
+  "logical_exposures": 3,
+  "raw_rule_stake_u": 3.0,
+  "logical_exposure_u": 3.0,
+  "deduplicated_overlap_u": 0.0,
+  "canonical_conflict_fixtures": 0,
+  "watch_overlap_fixtures": 0,
+  "by_day_u": {
+    "2026-09-13": 1.0,
+    "2026-09-14": 1.0,
+    "2026-09-20": 1.0
+  },
+  "by_league_u": {
+    "Serie A": 3.0
+  },
+  "by_team_u": {
+    "AS Roma": 1.0,
+    "Como": 1.0,
+    "Frosinone": 1.0,
+    "Juventus": 1.0,
+    "Sassuolo": 1.0,
+    "Torino": 1.0
+  },
+  "conflicts": [],
+  "policy": {
+    "identical_fixture_market_selection": "count as one conceptual exposure; do not multiply stake because multiple rules fired",
+    "distinct_canonical_exposures_same_fixture": "manual review; never auto-net and never auto-double",
+    "research_watch_overlap": "informational only; WATCH never adds canonical exposure",
+    "real_money": "none; this is paper governance"
+  }
+}
