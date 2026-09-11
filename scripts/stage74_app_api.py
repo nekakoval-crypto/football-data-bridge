@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stage74 app API: Stage73-compatible read-only API plus aggregated match detail."""
+"""Stage74 app API: Stage73-compatible read-only API plus app aggregations."""
 from __future__ import annotations
 import argparse, json, os
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -88,13 +88,37 @@ def aggregate_match(fixture_id):
             'creates_signal':False,
         }
 
+def performance_payload():
+    with base.connect() as conn:
+        canonical=base.state_doc(conn,'forward_performance.json') or {}
+        watch=base.state_doc(conn,'watch_performance.json') or {}
+        readiness=base.state_doc(conn,'core_market_readiness.json') or {}
+        research_settlement_rows=0
+        if base.table_exists(conn,'core_market_settlements'):
+            research_settlement_rows=conn.execute('SELECT COUNT(*) AS n FROM core_market_settlements').fetchone()['n']
+        return 200,{
+            'scope':'prospective operational performance; historical research kept separate',
+            'canonical':canonical,
+            'watch':watch,
+            'core_market_readiness':readiness,
+            'research_market_settlement_rows':research_settlement_rows,
+            'probability_module':{
+                'status':'NOT_VALIDATED_YET',
+                'max_probability_ranking_available':False,
+                'value_ranking_available':False,
+                'policy':'Do not invent model probabilities. Rankings activate only after a separately validated probability model exists.'
+            },
+            'read_only':True,
+        }
+
 def dispatch(path_with_query):
     u=urlparse(path_with_query);path=u.path.rstrip('/') or '/';q=parse_qs(u.query,keep_blank_values=True)
     if path=='/v1/match':return aggregate_match((q.get('fixture_id') or [''])[0])
+    if path=='/v1/performance':return performance_payload()
     return base.dispatch(path_with_query)
 
 class Handler(BaseHTTPRequestHandler):
-    server_version='PBKAppAPI/1.0'
+    server_version='PBKAppAPI/1.1'
     def do_GET(self):
         try:status,payload=dispatch(self.path)
         except FileNotFoundError as e:status,payload=503,{'error':'DATA_LAYER_UNAVAILABLE','detail':str(e)}
@@ -113,8 +137,10 @@ def self_test():
         fid=str((candidates[0] if candidates else {}).get('fixture_id') or '')
     if not fid:
         print(json.dumps({'status':'FAIL','reason':'no fixture available for match-detail self-test'}));return 1
-    status,p=aggregate_match(fid);ok=status==200 and p.get('fixture_id')==fid and p.get('read_only') is True and isinstance(p.get('markets'),dict)
-    print(json.dumps({'status':'OK' if ok else 'FAIL','match_detail_fixture_id':fid,'http_status':status,'canonical_rows':len(p.get('canonical') or []),'watch_rows':len(p.get('watch') or []),'lifecycle_rows':len(p.get('lifecycle') or []),'read_only':p.get('read_only')},ensure_ascii=False))
+    status,p=aggregate_match(fid);match_ok=status==200 and p.get('fixture_id')==fid and p.get('read_only') is True and isinstance(p.get('markets'),dict)
+    perf_status,perf=performance_payload();perf_ok=perf_status==200 and 'canonical' in perf and 'watch' in perf and perf.get('read_only') is True
+    ok=match_ok and perf_ok
+    print(json.dumps({'status':'OK' if ok else 'FAIL','match_detail_fixture_id':fid,'http_status':status,'canonical_rows':len(p.get('canonical') or []),'watch_rows':len(p.get('watch') or []),'lifecycle_rows':len(p.get('lifecycle') or []),'performance_http_status':perf_status,'probability_module':(perf.get('probability_module') or {}).get('status'),'read_only':p.get('read_only')},ensure_ascii=False))
     return 0 if ok else 1
 
 def main():
