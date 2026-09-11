@@ -1,0 +1,64 @@
+name: Stage 71B Fonbet Coverage
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 8 * * *'
+  push:
+    paths:
+      - 'scripts/stage71b_fonbet_coverage_monitor.py'
+      - 'config/pbk_bookmakers.json'
+      - '.github/workflows/stage71b-fonbet-coverage.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fonbet-coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      API_FOOTBALL_SEASON: '2026'
+      OPS_DIR: 'ops'
+      STAGE71B_FONBET_BOOKMAKER_ID: '33'
+      STAGE71B_MATCH_WINNER_BET_ID: '1'
+      STAGE71B_FONBET_NEXT_PER_LEAGUE: '3'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Probe Fonbet coverage across locked leagues
+        run: python scripts/stage71b_fonbet_coverage_monitor.py
+
+      - name: Show summary
+        run: cat ops/stage71b_fonbet_coverage.json
+
+      - name: Commit Stage 71B coverage files
+        run: |
+          git config user.name 'stage71b-bot'
+          git config user.email 'stage71b-bot@users.noreply.github.com'
+          git add -A ops
+          if git diff --cached --quiet; then
+            echo 'No Stage71B coverage changes to commit.'
+          else
+            git commit -m 'Stage 71B Fonbet coverage update'
+            git push
+          fi
+
+      - name: Upload Stage 71B coverage snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage71b-fonbet-coverage
+          path: |
+            ops/stage71b_fonbet_probe_ledger.csv
+            ops/stage71b_fonbet_coverage.json
+            ops/stage71b_fonbet_last_run.json
+          if-no-files-found: error
+          retention-days: 30
