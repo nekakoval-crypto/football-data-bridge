@@ -1,0 +1,54 @@
+{
+  "generated_at_utc": "2026-09-11T10:38:36Z",
+  "status": "OK",
+  "scope": "clean prospective canonical forward only",
+  "overall": {
+    "rows": 3,
+    "pending_rows": 3,
+    "settled_rows": 0,
+    "void_rows": 0,
+    "frozen_user_execution_rows": 3,
+    "user_execution_coverage_pct": 100.0,
+    "settled_with_user_execution": 0,
+    "wins": 0,
+    "losses": 0,
+    "user_settled_stake_u": 0,
+    "user_profit_u": 0,
+    "user_roi_pct": null,
+    "market_settled_stake_u": 0,
+    "market_profit_u": 0,
+    "market_roi_pct": null,
+    "user_close_rows": 0,
+    "avg_user_price_ratio_clv_pct": null,
+    "observed_user_max_drawdown_u": null
+  },
+  "by_rule": {
+    "R1": {
+      "rows": 3,
+      "pending_rows": 3,
+      "settled_rows": 0,
+      "void_rows": 0,
+      "frozen_user_execution_rows": 3,
+      "user_execution_coverage_pct": 100.0,
+      "settled_with_user_execution": 0,
+      "wins": 0,
+      "losses": 0,
+      "user_settled_stake_u": 0,
+      "user_profit_u": 0,
+      "user_roi_pct": null,
+      "market_settled_stake_u": 0,
+      "market_profit_u": 0,
+      "market_roi_pct": null,
+      "user_close_rows": 0,
+      "avg_user_price_ratio_clv_pct": null,
+      "observed_user_max_drawdown_u": null
+    }
+  },
+  "policy": {
+    "user_roi": "frozen Stage59 paper-user execution from allowlisted bookmaker",
+    "market_roi": "canonical Stage53 market-best execution retained separately",
+    "clv": "paper-user execution / observed user close - 1, same selection",
+    "drawdown": "observed settled forward only; never theoretical",
+    "historical_backfill": "forbidden"
+  }
+}
