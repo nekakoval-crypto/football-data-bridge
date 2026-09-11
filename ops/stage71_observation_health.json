@@ -1,16 +1,20 @@
 {
-  "run_at_utc": "2026-09-11T20:52:32Z",
-  "status": "OK",
-  "research_leagues": 15,
-  "new_triggers": 3,
-  "new_r1_rows": 1,
-  "new_r2_rows": 0,
-  "settled_rows": 2,
-  "trigger_rows": 86,
-  "forward_rows": 20,
-  "api_calls": 23,
-  "odds_calls": 7,
-  "marathon_calls": 1,
+  "run_at_utc": "2026-09-11T20:52:32.728406Z",
+  "status": "ATTENTION",
+  "counts": {
+    "expected": 45,
+    "scanned": 45,
+    "captured": 20,
+    "missed_or_at_risk": 0,
+    "pending": 14,
+    "stale": 0,
+    "rescheduled": 0,
+    "cancelled": 19,
+    "settled": 6,
+    "duplicates": 0
+  },
+  "risks": [],
+  "stale_ids": [],
   "scan": [
     {
       "league": "Premier League",
@@ -119,5 +123,18 @@
     }
   ],
   "warnings": [],
-  "canonical_captured": 3
+  "scope": "16 locked leagues; 15 research writers; Serie A canonical read-only, completeness not certified",
+  "canonical_captured": 3,
+  "definitions": {
+    "expected": "scheduled NS fixtures in next 24h, not inferred qualifying bets",
+    "scanned": "those fixtures evaluated for capture using a fresh complete league inventory",
+    "captured": "all persisted R1/R2 research rows; counts use different units",
+    "missed_or_at_risk": "unique observed fixtures with gaps; not a claim of known qualification"
+  },
+  "completeness": "Only provider-visible fixtures/odds can be audited. Missing inventory, outages, quota and late odds prevent an unconditional guarantee.",
+  "legacy_max_schedule_gap_hours": 18,
+  "schedule_gap_hours": 8,
+  "r2_freeze_hours": 12,
+  "api_calls": 23,
+  "api_day_calls": 23
 }
