@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Append Stage68-72 governance/data-layer checks to Stage67 health output."""
+"""Append Stage68-73 governance/data-layer/API checks to Stage67 health output."""
 from __future__ import annotations
 import json
 from datetime import datetime, timezone
@@ -14,6 +14,7 @@ CHECKS=[
     ('Stage70 signal lifecycle','stage70_last_run.json',3.0),
     ('Stage71 league/market challenger','stage71_last_run.json',15.0),
     ('Stage72 unified data layer','stage72_last_run.json',3.0),
+    ('Stage73 internal API','stage73_last_run.json',3.0),
 ]
 
 def parse(v):
@@ -48,7 +49,6 @@ def main():
             status='STALE'; sev='CRITICAL' if age>2*limit else 'WARN'; issues.append({'severity':sev,'code':'STALE_STAGE','message':f'{label}: age {age:.2f}h > {limit:.2f}h'})
         sh.append({'stage':label,'file':name,'status':status,'run_at_utc':rt.isoformat().replace('+00:00','Z') if rt else None,'age_h':round(age,3) if age is not None else None,'max_age_h':limit})
 
-    # Stage72 semantic integrity: freshness alone is not enough for the future UI/API layer.
     s72=stage_payloads.get('stage72_last_run.json')
     if s72 is None and (OPS/'stage72_last_run.json').exists():
         try:s72=json.loads((OPS/'stage72_last_run.json').read_text(encoding='utf-8-sig'))
@@ -66,14 +66,25 @@ def main():
         d['summary']['stage72_tables']=s72.get('tables')
         d['summary']['stage72_schema_version']=s72.get('schema_version')
 
+    s73=stage_payloads.get('stage73_last_run.json')
+    if s73 is None and (OPS/'stage73_last_run.json').exists():
+        try:s73=json.loads((OPS/'stage73_last_run.json').read_text(encoding='utf-8-sig'))
+        except:s73=None
+    if s73:
+        passed=int(s73.get('passed') or 0); total=int(s73.get('total') or 0)
+        if str(s73.get('status') or '').upper()!='OK' or not total or passed!=total:
+            issues.append({'severity':'CRITICAL','code':'STAGE73_API_CONTRACT','message':f'Stage73 API self-test {passed}/{total}, status={s73.get("status")}'})
+        d.setdefault('summary',{})['stage73_api_tests']=f'{passed}/{total}'
+        d['summary']['stage73_api_version']=s73.get('api_version')
+
     critical=sum(1 for z in issues if z.get('severity')=='CRITICAL'); warns=sum(1 for z in issues if z.get('severity')=='WARN')
     overall='CRITICAL' if critical else ('WARN' if warns else 'HEALTHY')
     d['status']=overall; d.setdefault('summary',{})['critical_issues']=critical; d['summary']['warnings']=warns
     H.write_text(json.dumps(d,ensure_ascii=False,indent=2),encoding='utf-8')
     icon={'HEALTHY':'🟢','WARN':'🟠','CRITICAL':'🔴'}[overall]
     out=['# PBK System Health','',f"Обновлено UTC: {d.get('generated_at_utc','')}",f"Статус: {icon} **{overall}** | critical {critical} | warnings {warns}",'','## Ключевые проверки']
-    s=d.get('summary',{}); total=s.get('active_canonical_rows',0)
-    out += [f"- Активные canonical: {total}",f"- Frozen Marathonbet execution: {s.get('frozen_user_execution_rows',0)}/{total}",f"- Context coverage: {s.get('active_rows_with_context',0)}/{total}",f"- WATCH crossings накоплено: {s.get('watch_crossing_rows',0)}",f"- Stage72 Data Layer: integrity **{s.get('stage72_integrity','N/A')}** | tables {s.get('stage72_tables','N/A')} | schema v{s.get('stage72_schema_version','N/A')}",'','## Свежесть этапов']
+    s=d.get('summary',{}); total_active=s.get('active_canonical_rows',0)
+    out += [f"- Активные canonical: {total_active}",f"- Frozen Marathonbet execution: {s.get('frozen_user_execution_rows',0)}/{total_active}",f"- Context coverage: {s.get('active_rows_with_context',0)}/{total_active}",f"- WATCH crossings накоплено: {s.get('watch_crossing_rows',0)}",f"- Stage72 Data Layer: integrity **{s.get('stage72_integrity','N/A')}** | tables {s.get('stage72_tables','N/A')} | schema v{s.get('stage72_schema_version','N/A')}",f"- Stage73 Internal API: tests **{s.get('stage73_api_tests','N/A')}** | API {s.get('stage73_api_version','N/A')}",'','## Свежесть этапов']
     for z in sh:
         age='N/A' if z.get('age_h') is None else f"{z['age_h']:.2f}h"
         out.append(f"- {z.get('stage')}: **{z.get('status')}** | age {age} | limit {z.get('max_age_h')}h")
@@ -84,7 +95,7 @@ def main():
     out += ['','> Stage67 ничего не чинит автоматически и не создаёт ставки. Он только обнаруживает проблемы данных/свежести.']
     M.write_text('\n'.join(out),encoding='utf-8')
     meta=json.loads(META.read_text(encoding='utf-8-sig')) if META.exists() else {}
-    meta.update({'system_health':overall,'critical_issues':critical,'warnings':warns,'stage72_integrity':s.get('stage72_integrity')})
+    meta.update({'system_health':overall,'critical_issues':critical,'warnings':warns,'stage72_integrity':s.get('stage72_integrity'),'stage73_api_tests':s.get('stage73_api_tests')})
     META.write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding='utf-8')
 
 if __name__=='__main__': main()
