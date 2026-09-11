@@ -2,14 +2,6 @@ name: Stage 71C Team Totals Capture
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '27 */6 * * *'
-  push:
-    paths:
-      - 'scripts/stage71c_team_totals_capture.py'
-      - 'research/stage71c_team_totals_prereg_2026-09-11.md'
-      - 'config/pbk_market_scope.json'
-      - '.github/workflows/stage71c-team-totals-capture.yml'
 
 permissions:
   contents: write
@@ -30,60 +22,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
       - name: Capture team-total market data
-        run: |
-          for attempt in 1 2 3; do
-            echo "Stage71C attempt ${attempt}/3"
-            if python scripts/stage71c_team_totals_capture.py; then
-              exit 0
-            fi
-            if [ "$attempt" -eq 3 ]; then
-              exit 1
-            fi
-            sleep $((attempt * 8))
-          done
-
+        run: python scripts/stage71c_team_totals_capture.py
       - name: Show Stage71C summary
         run: cat ops/stage71c_last_run.json
-
-      - name: Commit Stage71C operational files
-        run: |
-          git config user.name 'stage71c-bot'
-          git config user.email 'stage71c-bot@users.noreply.github.com'
-          git add ops/stage71c_team_total_openers.csv \
-                  ops/stage71c_team_total_snapshots.csv \
-                  ops/stage71c_team_total_closes.csv \
-                  ops/stage71c_last_run.json
-          if git diff --cached --quiet; then
-            echo 'No Stage71C changes to commit.'
-          else
-            git commit -m 'Stage71C team totals capture update'
-            for attempt in 1 2 3; do
-              if git pull --rebase origin main && git push origin main; then
-                exit 0
-              fi
-              echo "Concurrent push detected; retry ${attempt}/3"
-              git rebase --abort 2>/dev/null || true
-              git fetch origin main
-              sleep 2
-            done
-            exit 1
-          fi
-
-      - name: Upload Stage71C snapshot
+      - name: Upload Stage71C diagnostic snapshot
         uses: actions/upload-artifact@v4
         with:
-          name: stage71c-team-totals-capture
+          name: stage71c-team-totals-diagnostic
           path: |
             ops/stage71c_team_total_openers.csv
             ops/stage71c_team_total_snapshots.csv
             ops/stage71c_team_total_closes.csv
             ops/stage71c_last_run.json
           if-no-files-found: ignore
-          retention-days: 30
+          retention-days: 7
