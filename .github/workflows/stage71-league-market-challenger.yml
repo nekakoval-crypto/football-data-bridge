@@ -9,6 +9,7 @@ on:
       - 'scripts/stage71_league_market_challenger.py'
       - 'scripts/stage71_challenger_capture.py'
       - 'scripts/stage71_regime_overlay.py'
+      - 'scripts/stage71_progress_overlay.py'
       - 'research/stage71_challenger_policy_2026-09-11.md'
       - 'research/stage71_seed_evidence.csv'
       - 'config/pbk_competition_scope.json'
@@ -48,6 +49,9 @@ jobs:
 
       - name: Apply regime-change discovery gate
         run: python scripts/stage71_regime_overlay.py
+
+      - name: Build live challenger progress
+        run: python scripts/stage71_progress_overlay.py
 
       - name: Show Stage 71 summary
         run: |
