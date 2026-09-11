@@ -3,7 +3,7 @@ name: Stage 71F European Handicap Capture
 on:
   workflow_dispatch:
   schedule:
-    - cron: '47 * * * *'
+    - cron: '47 */6 * * *'
   push:
     paths:
       - 'scripts/stage71f_european_handicap_capture.py'
