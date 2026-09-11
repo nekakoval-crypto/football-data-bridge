@@ -1,0 +1,31 @@
+{
+  "run_at_utc": "2026-09-11T10:21:25Z",
+  "status": "OK",
+  "active_forward_rows": 3,
+  "international_context_rows": 3,
+  "policy": {
+    "role": "calendar context only; never changes strategy eligibility",
+    "player_level": "UNVERIFIED unless direct call-up/appearance evidence is added later",
+    "nationality": "never treated as evidence of national-team participation",
+    "fifa_windows": [
+      {
+        "name": "FIFA 2026 combined Sep-Oct window",
+        "start": "2026-09-21T00:00:00Z",
+        "end": "2026-10-06T23:59:59Z",
+        "max_matches": 4
+      },
+      {
+        "name": "FIFA 2026 November window",
+        "start": "2026-11-09T00:00:00Z",
+        "end": "2026-11-17T23:59:59Z",
+        "max_matches": 2
+      },
+      {
+        "name": "FIFA 2027 March window",
+        "start": "2027-03-22T00:00:00Z",
+        "end": "2027-03-30T23:59:59Z",
+        "max_matches": 2
+      }
+    ]
+  }
+}
