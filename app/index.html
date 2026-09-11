@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="/filters.css">
   <link rel="stylesheet" href="/install.css">
   <link rel="stylesheet" href="/runtime.css">
+  <link rel="stylesheet" href="/push.css">
 </head>
 <body>
   <div class="shell">
@@ -79,7 +80,11 @@
         </div>
         <div id="notification-summary" class="summary-grid compact"></div>
         <div id="notifications-list" class="stack"></div>
-        <div class="panel notification-delivery"><b>Внешние push-уведомления пока не включены.</b><div>Текущий центр работает внутри приложения и ничего дополнительно не запрашивает у API-Football.</div></div>
+        <div class="panel notification-delivery">
+          <b>Web Push</b>
+          <div>R/WATCH/составы/settlement приходят из уже собранного lifecycle и не расходуют API-Football.</div>
+          <div class="push-control"><span id="push-state" class="push-state">Проверяю push…</span><button id="push-toggle" type="button" disabled>Включить push</button></div>
+        </div>
       </section>
 
       <section class="view" id="view-stats">
@@ -100,7 +105,7 @@
         <div id="runtime-panel" class="panel"><div class="empty">Проверяю VPS…</div></div>
       </section>
     </main>
-    <footer>ПБК · read-only interface · решения стратегий не меняются интерфейсом</footer>
+    <footer>ПБК · read-only strategy interface · delivery settings не меняют правила стратегий</footer>
   </div>
 
   <dialog id="match-dialog" class="match-dialog">
@@ -111,5 +116,6 @@
   <script type="module" src="/filters.js"></script>
   <script type="module" src="/runtime.js"></script>
   <script type="module" src="/install.js"></script>
+  <script type="module" src="/push.js"></script>
 </body>
 </html>
