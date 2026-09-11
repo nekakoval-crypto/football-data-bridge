@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-11T12:03:26Z
+Generated UTC: 2026-09-11T13:02:30Z
 Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -86,11 +86,12 @@ Active canonical signals: 3
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 93
-- Активные движения ≥3 п.п.: всего 0 | ОЗ — Да 0 | ОЗ — Нет 0
+- Активные движения ≥3 п.п.: всего 1 | ОЗ — Да 1 | ОЗ — Нет 0
 - Зафиксировано observed close: 0
 - Исполнимый букмекер для наблюдения: Marathonbet
 
-- Сейчас активных движений ≥3 п.п. по ОЗ нет.
+## Текущие ОЗ-watch
+- WATCH | Ligue 1 | Stade Brestois 29 — Paris Saint Germain | ОЗ — Да | движение P(ОЗ — Да) +3.33 п.п. | Marathonbet 1.75 | 3241.3 мин до матча
 
 ---
 
