@@ -2,14 +2,14 @@
   "status": "OK",
   "mode": "SHARED_PREFETCHED_PROSPECTIVE_CAPTURE",
   "prefetched_fixture_ids": 160,
-  "real_api_calls": 220,
+  "real_api_calls": 177,
   "api_hard_cap": 220,
-  "cache_hits": 197,
-  "unique_cached_requests": 220,
+  "cache_hits": 590,
+  "unique_cached_requests": 177,
   "real_calls_by_path": {
     "/odds/bets": 1,
     "/fixtures": 16,
-    "/odds": 203
+    "/odds": 160
   },
   "children": [
     {
@@ -26,31 +26,31 @@
       "market_family": "DOUBLE_CHANCE",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 43,
+      "logical_odds_calls": 130,
       "new_openers": 0,
-      "new_snapshots": 43,
+      "new_snapshots": 107,
       "new_closes": 0,
-      "warnings": 50
+      "warnings": 0
     },
     {
       "market_family": "EUROPEAN_HANDICAP",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 0,
+      "logical_odds_calls": 130,
       "new_openers": 0,
-      "new_snapshots": 0,
+      "new_snapshots": 552,
       "new_closes": 0,
-      "warnings": 50
+      "warnings": 0
     },
     {
       "market_family": "DRAW_NO_BET",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 0,
+      "logical_odds_calls": 133,
       "new_openers": 0,
-      "new_snapshots": 0,
+      "new_snapshots": 95,
       "new_closes": 0,
-      "warnings": 50
+      "warnings": 0
     }
   ],
   "signals_created": 0,
