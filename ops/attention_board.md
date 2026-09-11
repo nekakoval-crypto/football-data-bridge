@@ -1,7 +1,7 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 12.09.2026 00:00 (Europe/Berlin)
-Canonical: 3 | active WATCH crossings: 1 | RED: 0 | ORANGE: 1
+Обновлено: 12.09.2026 01:00 (Europe/Berlin)
+Canonical: 3 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
 
@@ -10,6 +10,7 @@ Canonical: 3 | active WATCH crossings: 1 | RED: 0 | ORANGE: 1
 
 ## 🟠 Ближайшие 24 часа / активные WATCH
 - **Stade Brestois 29 — Paris Saint Germain** | Stage63 | ОЗ — Да | 13.09 20:45 | prospective движение ОЗ ≥3 п.п. | 1.75 @ Marathonbet
+- **Torino — AS Roma** | Stage63 | ОЗ — Да | 14.09 18:30 | prospective движение ОЗ ≥3 п.п. | 1.81 @ Marathonbet
 
 ## 🔵 Активные R1/R2/R3
 - **R1 | Sassuolo — Juventus** | П2 | 13.09 20:45 | 1.65 @ Marathonbet | у гостей следующий матч еврокубок/кубок
@@ -18,6 +19,7 @@ Canonical: 3 | active WATCH crossings: 1 | RED: 0 | ORANGE: 1
 
 ## 🟡 Research WATCH crossings
 - **Stage63 | Stade Brestois 29 — Paris Saint Germain** | ОЗ — Да | 13.09 20:45 | 1.75 @ Marathonbet
+- **Stage63 | Torino — AS Roma** | ОЗ — Да | 14.09 18:30 | 1.81 @ Marathonbet
 
 ## ⚪ Ближайшие матчи под наблюдением (без сигнала)
 - **Stage63 | Racing Santander — Alaves** | La Liga | 12.09 14:00 | ОЗ — Да / ОЗ — Нет | Bet365 Да 1.57 / Нет 2.25
@@ -92,7 +94,7 @@ Canonical: 3 | active WATCH crossings: 1 | RED: 0 | ORANGE: 1
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 1
+- System Health: **WARN** | critical 0 | warnings 2
 - Логическая canonical экспозиция: **3.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 15 | data required 9
