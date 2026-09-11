@@ -77,7 +77,16 @@ def context_flags(ctx, intl, rotation, odds):
         flags.append("OFFICIAL_ROTATION_PENDING")
     if odds.get("user_allowlist_configured") != "YES":
         flags.append("USER_BOOKMAKERS_NOT_CONFIGURED")
+    elif not odds.get("user_best_odds"):
+        flags.append("USER_EXECUTABLE_PRICE_NOT_OBSERVED")
     return flags
+
+
+def user_execution_text(user_execution):
+    status = user_execution.get("status") or ""
+    if status == "AVAILABLE":
+        return f"{user_execution.get('odds') or 'N/A'} @ {user_execution.get('bookmaker') or 'N/A'}"
+    return status or "UNKNOWN"
 
 
 def main():
@@ -222,7 +231,7 @@ def main():
         "policy": {
             "trigger": "immutable Bet365 first capture",
             "market_best": "observed API market price; not necessarily user executable",
-            "user_execution": "only populated after bookmaker allowlist is configured",
+            "user_execution": "only prices from configured executable bookmakers are treated as user-executable",
             "context": "explanatory only; does not change locked rules",
         },
         "matches": matches,
@@ -235,7 +244,7 @@ def main():
         f"Generated UTC: {now}",
         f"Active canonical signals: {len(matches)}",
         "",
-        "> Context layers are explanatory only. Market-best is not treated as a user-executable bet until the bookmaker allowlist is configured.",
+        "> Context layers are explanatory only. Market-best and user-executable prices are shown separately.",
         "",
     ]
     for m in matches:
@@ -249,7 +258,7 @@ def main():
             f"- Kickoff UTC: {m['kickoff_utc']} | Selection: {m['selection']} | Stake: {m['stake_u']}u",
             f"- Trigger Bet365: H {trig['b365_home']} / D {trig['b365_draw']} / A {trig['b365_away']} (immutable)",
             f"- Market-best observed: {market['best_odds']} @ {market['best_bookmaker']} | Bet365 now: {market['bet365_odds']}",
-            f"- User-executable: {m['user_execution']['status']}",
+            f"- User-executable: {user_execution_text(m['user_execution'])}",
             f"- Referee / venue: {cal['referee'] or 'TBD'} | {cal['venue'] or 'TBD'}, {cal['city'] or 'TBD'}",
             f"- Previous: home {cal['home_prev']['competition']} vs {cal['home_prev']['opponent']} ({cal['home_prev']['rest_hours']}h rest); away {cal['away_prev']['competition']} vs {cal['away_prev']['opponent']} ({cal['away_prev']['rest_hours']}h rest)",
             f"- Next: home {cal['home_next']['competition']} vs {cal['home_next']['opponent']} ({cal['home_next']['hours_after']}h after); away {cal['away_next']['competition']} vs {cal['away_next']['opponent']} ({cal['away_next']['hours_after']}h after)",
