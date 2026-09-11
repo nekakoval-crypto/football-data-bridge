@@ -8,6 +8,7 @@ on:
     paths:
       - 'scripts/stage58_daily_brief.py'
       - 'scripts/stage61_append_daily_brief.py'
+      - 'scripts/stage62_append_daily_brief.py'
       - '.github/workflows/stage58-daily-brief.yml'
 
 permissions:
@@ -34,6 +35,9 @@ jobs:
 
       - name: Append Stage 61 market-steam watch
         run: python scripts/stage61_append_daily_brief.py
+
+      - name: Append Stage 62 O/U steam watch
+        run: python scripts/stage62_append_daily_brief.py
 
       - name: Show brief
         run: |
