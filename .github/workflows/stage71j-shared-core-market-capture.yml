@@ -43,7 +43,7 @@ jobs:
         run: python scripts/stage71j_shared_core_market_capture.py
       - name: Show shared capture summary
         run: cat ops/stage71j_last_run.json
-      - name: Commit shared market ledgers and already-fetched catalog
+      - name: Commit shared market ledgers and already-fetched catalog/presence
         run: |
           git config user.name 'stage71j-bot'
           git config user.email 'stage71j-bot@users.noreply.github.com'
@@ -64,6 +64,7 @@ jobs:
                   ops/stage71g_dnb_closes.csv \
                   ops/stage71g_last_run.json \
                   ops/api_football_odds_bet_catalog.json \
+                  ops/api_football_market_presence.json \
                   ops/stage71j_last_run.json
           if git diff --cached --quiet; then
             echo 'No Stage71J changes to commit.'
@@ -82,6 +83,7 @@ jobs:
           path: |
             ops/stage71j_last_run.json
             ops/api_football_odds_bet_catalog.json
+            ops/api_football_market_presence.json
             ops/stage71c_*.csv
             ops/stage71e_*.csv
             ops/stage71f_*.csv
