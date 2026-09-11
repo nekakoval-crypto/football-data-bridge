@@ -1,11 +1,22 @@
 {
+  "id": "/",
   "name": "ПБК — футбольная аналитика",
   "short_name": "ПБК",
   "lang": "ru",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
+  "orientation": "any",
   "background_color": "#0b0f14",
   "theme_color": "#0b0f14",
-  "description": "Приватный интерфейс системы ПБК: canonical, WATCH, матчи, рынки и состояние системы."
+  "categories": ["sports", "productivity"],
+  "description": "Приватный интерфейс системы ПБК: canonical, WATCH, матчи, рынки, результаты и состояние системы.",
+  "icons": [
+    {"src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
+  ],
+  "shortcuts": [
+    {"name": "Сегодня", "short_name": "Сегодня", "url": "/#today"},
+    {"name": "WATCH", "short_name": "WATCH", "url": "/#watch"},
+    {"name": "Результаты", "short_name": "Результаты", "url": "/#stats"}
+  ]
 }
