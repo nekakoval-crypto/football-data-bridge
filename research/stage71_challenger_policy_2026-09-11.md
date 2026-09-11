@@ -17,6 +17,7 @@ The geographic universe is the 16 leagues in `config/pbk_competition_scope.json`
 
 - `DATA_REQUIRED` — comparable history/forward evidence is missing.
 - `MONITORING` — data are being collected; no promotion claim.
+- `REGIME_DISCOVERY_ELIGIBLE` — a large fresh forward sample suggests the old/missing historical regime may no longer describe the league; this can only start a new preregistered holdout.
 - `CHALLENGER` — historical gate passed and prospective monitoring is active.
 - `REVIEW_ELIGIBLE` — all locked historical + prospective gates passed; human review is allowed.
 - `ACTIVE` — explicitly approved canonical scope.
@@ -52,6 +53,22 @@ A `CHALLENGER` becomes only `REVIEW_ELIGIBLE` when all are true:
 
 `REVIEW_ELIGIBLE` is not automatic promotion.
 
+## Regime-change discovery path
+
+The system must remain capable of discovering a league that was historically negative or for which old comparable odds history is unavailable.
+
+A non-active league/family may become `REGIME_DISCOVERY_ELIGIBLE` only after a **fresh prospective discovery sample** satisfies all of:
+
+1. >= 120 settled executable bets.
+2. Marathonbet coverage >= 90%.
+3. Total discovery-sample ROI > 0.
+4. First chronological half ROI > 0.
+5. Second chronological half ROI > 0.
+
+This status **cannot promote the strategy**. It only authorizes a new preregistration with a future holdout starting after the discovery sample is frozen. The discovery rows may not be reused as that holdout. A later promotion review therefore requires genuinely new evidence.
+
+This path is how a league such as Poland can emerge as a serious candidate even if it had no old PBK historical dataset, while preventing a good retrospective run from becoming a strategy immediately.
+
 ## Active-rule deterioration gate
 
 No active strategy is judged for deterioration before 60 settled executable forward bets.
@@ -79,7 +96,7 @@ A challenger is never allowed to remove a healthy incumbent automatically.
 
 ## Current seed evidence
 
-For R1/R2, the existing fixed Big-5 audit is the initial comparable evidence. Serie A remains the only `ACTIVE` league for R1/R2. The other Big-5 leagues failed the unchanged historical transfer. The 11 newly locked leagues begin as `DATA_REQUIRED` until comparable historical evidence is built.
+For R1/R2, the existing fixed Big-5 audit is the initial comparable evidence. Serie A remains the only `ACTIVE` league for R1/R2. The other Big-5 leagues failed the unchanged historical transfer. The 11 newly locked leagues begin as `DATA_REQUIRED` until comparable historical evidence is built or fresh prospective discovery evidence activates the regime-change path.
 
 ## Governance
 
@@ -87,4 +104,5 @@ For R1/R2, the existing fixed Big-5 audit is the initial comparable evidence. Se
 - No league-specific threshold optimization to manufacture a challenger.
 - No changing the market after a result is known.
 - Research WATCH never increases canonical exposure.
+- Discovery samples and future validation holdouts must remain separated.
 - Every promotion, degradation or suspension decision must preserve the evidence snapshot and reason.
