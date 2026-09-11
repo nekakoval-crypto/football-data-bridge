@@ -1,13 +1,13 @@
 {
-  "run_at_utc": "2026-09-11T13:50:49Z",
+  "run_at_utc": "2026-09-11T13:54:05Z",
   "status": "OK",
-  "schema_version": "3",
+  "schema_version": "4",
   "db_path": "build/pbk_unified.sqlite",
-  "db_bytes": 4771840,
-  "db_sha256": "4d44e6b17566fa09beeb211f02205bed92291b15505fc75acbf1d7eebbf481e9",
+  "db_bytes": 5402624,
+  "db_sha256": "52a2ca128735f09f26ed524a1504c4bb780ae41efab2907abe2253ae1c736a1d",
   "integrity_check": "ok",
-  "tables": 63,
-  "manifest_sources": 58,
+  "tables": 66,
+  "manifest_sources": 59,
   "stable_counts": {
     "competitions": 16,
     "canonical_signals": 3,
@@ -22,7 +22,10 @@
     "team_total_closes": 0,
     "double_chance_openers": 137,
     "double_chance_snapshots": 108,
-    "double_chance_closes": 0
+    "double_chance_closes": 0,
+    "european_handicap_openers": 709,
+    "european_handicap_snapshots": 558,
+    "european_handicap_closes": 0
   },
   "missing_stable_sources": [],
   "api_calls": 0
