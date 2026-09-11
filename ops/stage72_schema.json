@@ -1,5 +1,5 @@
 {
-  "schema_version": "2",
+  "schema_version": "3",
   "stable_tables": {
     "competitions": "stage71_league_catalog.csv",
     "canonical_signals": "user_forward_view.csv",
@@ -11,7 +11,10 @@
     "odds_snapshots": "odds_snapshots.csv",
     "team_total_openers": "stage71c_team_total_openers.csv",
     "team_total_snapshots": "stage71c_team_total_snapshots.csv",
-    "team_total_closes": "stage71c_team_total_closes.csv"
+    "team_total_closes": "stage71c_team_total_closes.csv",
+    "double_chance_openers": "stage71e_double_chance_openers.csv",
+    "double_chance_snapshots": "stage71e_double_chance_snapshots.csv",
+    "double_chance_closes": "stage71e_double_chance_closes.csv"
   },
   "json_state_documents": [
     "attention_board.json",
@@ -24,7 +27,8 @@
     "stage71_challenger_board.json",
     "signal_lifecycle_cards.json",
     "stage71b_fonbet_coverage.json",
-    "stage71c_last_run.json"
+    "stage71c_last_run.json",
+    "stage71e_last_run.json"
   ],
   "raw_csv_policy": "every ops/*.csv is imported as raw_<filename_stem> with TEXT columns"
 }
