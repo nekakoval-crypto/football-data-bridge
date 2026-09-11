@@ -3,7 +3,7 @@ name: Stage 63 Big-5 BTTS Market Watch
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0,30 * * * *'
+    - cron: '0 */2 * * *'
   push:
     paths:
       - 'scripts/stage63_btts_market_watch.py'
