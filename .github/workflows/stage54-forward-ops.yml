@@ -8,6 +8,7 @@ on:
     paths:
       - 'scripts/stage54_forward_ops.py'
       - '.github/workflows/stage54-forward-ops.yml'
+      - 'config/pbk_bookmakers.json'
 
 permissions:
   contents: write
@@ -20,7 +21,7 @@ jobs:
       API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
       API_FOOTBALL_BET365_ID: '8'
       API_FOOTBALL_MATCH_WINNER_BET_ID: '1'
-      PBK_BOOKMAKER_ALLOWLIST: ${{ vars.PBK_BOOKMAKER_ALLOWLIST }}
+      PBK_BOOKMAKER_ALLOWLIST: 'Marathonbet'
       OPS_DIR: 'ops'
 
     steps:
@@ -39,10 +40,31 @@ jobs:
         run: |
           echo '--- stage54_last_run.json ---'
           cat ops/stage54_last_run.json
-          echo '--- closing rows ---'
+          echo '--- latest odds rows ---'
           python - <<'PY'
           import csv
           from pathlib import Path
+          p=Path('ops/odds_snapshots.csv')
+          if p.exists():
+              with p.open(encoding='utf-8-sig',newline='') as f:
+                  rows=list(csv.DictReader(f))
+              latest={}
+              for r in rows:
+                  fid=r.get('forward_id') or ''
+                  if not fid:
+                      continue
+                  cur=latest.get(fid)
+                  if cur is None or (r.get('captured_at_utc') or '') > (cur.get('captured_at_utc') or ''):
+                      latest[fid]=r
+              for r in latest.values():
+                  print(
+                      r['forward_id'],
+                      'market=',r['best_odds'],'@',r['best_book'],
+                      'bet365=',r['bet365_odds'],
+                      'user=',r['user_best_odds'],'@',r['user_best_book'],
+                      'allowlist=',r['user_allowlist_configured']
+                  )
+          echo '--- closing rows ---'
           p=Path('ops/closing_log.csv')
           if p.exists():
               with p.open(encoding='utf-8-sig',newline='') as f:
