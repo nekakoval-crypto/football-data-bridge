@@ -1,0 +1,11 @@
+family,league,train_bets,train_roi_pct,test_bets,test_roi_pct,all_bets,all_roi_pct,positive_seasons,total_seasons,evidence_source,current_decision
+R1,Premier League,498,0.33,328,-5.58,826,-2.02,4,10,fixed_r1_r2_cross_league_audit_2026-09-11,HISTORICAL_TRANSFER_REJECTED
+R1,La Liga,342,-5.56,210,0.11,552,-3.41,4,10,fixed_r1_r2_cross_league_audit_2026-09-11,HISTORICAL_TRANSFER_REJECTED
+R1,Bundesliga,341,-10.87,203,-5.90,544,-9.01,3,10,fixed_r1_r2_cross_league_audit_2026-09-11,HISTORICAL_TRANSFER_REJECTED
+R1,Serie A,527,6.85,321,6.13,848,6.58,8,10,fixed_r1_r2_cross_league_audit_2026-09-11,ACTIVE_CANONICAL
+R1,Ligue 1,288,-3.53,259,-3.81,547,-3.67,3,10,fixed_r1_r2_cross_league_audit_2026-09-11,HISTORICAL_TRANSFER_REJECTED
+R2,Premier League,368,-0.43,237,-8.73,605,-3.69,2,10,fixed_r1_r2_cross_league_audit_2026-09-11,HISTORICAL_TRANSFER_REJECTED
+R2,La Liga,260,-5.46,158,-7.44,418,-6.21,3,10,fixed_r1_r2_cross_league_audit_2026-09-11,HISTORICAL_TRANSFER_REJECTED
+R2,Bundesliga,238,-10.93,151,-4.23,389,-8.33,4,10,fixed_r1_r2_cross_league_audit_2026-09-11,HISTORICAL_TRANSFER_REJECTED
+R2,Serie A,397,7.23,236,9.10,633,7.93,8,10,fixed_r1_r2_cross_league_audit_2026-09-11,ACTIVE_CANONICAL
+R2,Ligue 1,228,-2.83,191,-6.07,419,-4.31,4,10,fixed_r1_r2_cross_league_audit_2026-09-11,HISTORICAL_TRANSFER_REJECTED
