@@ -7,6 +7,7 @@ on:
   push:
     paths:
       - 'scripts/stage67_system_health.py'
+      - 'scripts/stage67_append_governance_health.py'
       - '.github/workflows/stage67-system-health.yml'
 
 permissions:
@@ -30,6 +31,9 @@ jobs:
 
       - name: Build Stage 67 system health
         run: python scripts/stage67_system_health.py
+
+      - name: Include Stage 68/69 governance health
+        run: python scripts/stage67_append_governance_health.py
 
       - name: Show Stage 67 summary
         run: |
