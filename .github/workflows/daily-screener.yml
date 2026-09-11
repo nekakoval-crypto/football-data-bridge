@@ -1,6 +1,7 @@
 name: Stage 53 Daily R1-R2-R3 Screener
 
-# Live operational workflow. R3 is guarded until the exact Stage 48 implementation is recovered.
+# Live operational workflow. R3 canonical eligibility is reconciled against the
+# exact recovered Stage 48 implementation before operational files are committed.
 on:
   workflow_dispatch:
   schedule:
@@ -83,7 +84,7 @@ jobs:
             sleep $((attempt * 10))
           done
 
-      - name: Guard unverified R3 reproduction
+      - name: Reconcile exact recovered Stage 48 R3
         run: python scripts/stage53_r3_guard.py
 
       - name: Show daily summary
@@ -98,7 +99,13 @@ jobs:
               rows=list(csv.DictReader(f))
           print('canonical_signal_matches=',len(rows))
           for r in rows:
-              print(r['match_date'], r['league'], r['home_team'], '-', r['away_team'], r['signal_rules'], 'exec_verified=',r['execution_odds_verified'])
+              print(
+                  r['match_date'], r['league'], r['home_team'], '-', r['away_team'],
+                  r['signal_rules'], 'weekday=', r['weekday'],
+                  'remaining=', r['home_remaining'], '/', r['away_remaining'],
+                  'status=', r['passport_status'],
+                  'exec_verified=', r['execution_odds_verified']
+              )
           PY
 
       - name: Commit operational files
