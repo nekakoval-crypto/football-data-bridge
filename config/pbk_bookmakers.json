@@ -9,27 +9,28 @@
       "status": "ENABLED"
     }
   ],
-  "auto_candidates": [
+  "adapter_candidates": [
     {
-      "name": "Fonbet",
+      "name": "Fonbet.by",
+      "catalog_name": "Fonbet",
       "user_site": "fonbet.by",
-      "source": "API-Football",
-      "api_bookmaker_id": 33,
-      "status": "CATALOG_FOUND_NO_CURRENT_CANONICAL_COVERAGE",
-      "promotion_requirement": "Verify stable odds coverage on PBK fixtures before executable use"
-    }
-  ],
-  "manual_or_separate_source": [
+      "api_football_bookmaker_id": 33,
+      "api_football_status": "CATALOG_PRESENT_BUT_1X2_COVERAGE_0_OF_48_SAMPLE",
+      "source_plan": "DIRECT_OR_SEPARATE_ADAPTER_PENDING",
+      "status": "NOT_EXECUTABLE_YET",
+      "promotion_requirement": "Verify a stable direct/separate-source adapter and PBK-market coverage before executable use"
+    },
     {
       "name": "Maxline.by",
-      "source": "SEPARATE_SOURCE_PENDING",
+      "source_plan": "SEPARATE_SOURCE_PENDING",
       "status": "AVAILABLE_TO_USER_NOT_AUTO_VERIFIED"
     },
     {
       "name": "BETERA",
       "user_site": "pm.by",
-      "source": "WEB_OR_SEPARATE_ADAPTER_PENDING",
-      "status": "AVAILABLE_TO_USER_NOT_IN_API_FOOTBALL_CATALOG"
+      "api_football_status": "NOT_FOUND_IN_BOOKMAKER_CATALOG",
+      "source_plan": "DIRECT_OR_SEPARATE_ADAPTER_PENDING",
+      "status": "AVAILABLE_TO_USER_NOT_AUTO_VERIFIED"
     }
   ]
 }
