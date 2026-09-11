@@ -1,11 +1,22 @@
 {
   "updated_at_utc": "2026-09-11",
-  "policy": "Only bookmakers explicitly listed as executable may populate user-executable odds. All other prices are market-reference only.",
+  "policy": "Only bookmakers explicitly listed as executable may populate user-executable odds. All other prices are market-reference or adapter-candidate only until verified.",
   "auto_executable": [
     {
       "name": "Marathonbet",
       "source": "API-Football",
+      "api_bookmaker_id": 2,
       "status": "ENABLED"
+    }
+  ],
+  "auto_candidates": [
+    {
+      "name": "Fonbet",
+      "user_site": "fonbet.by",
+      "source": "API-Football",
+      "api_bookmaker_id": 33,
+      "status": "CATALOG_FOUND_NO_CURRENT_CANONICAL_COVERAGE",
+      "promotion_requirement": "Verify stable odds coverage on PBK fixtures before executable use"
     }
   ],
   "manual_or_separate_source": [
@@ -13,6 +24,12 @@
       "name": "Maxline.by",
       "source": "SEPARATE_SOURCE_PENDING",
       "status": "AVAILABLE_TO_USER_NOT_AUTO_VERIFIED"
+    },
+    {
+      "name": "BETERA",
+      "user_site": "pm.by",
+      "source": "WEB_OR_SEPARATE_ADAPTER_PENDING",
+      "status": "AVAILABLE_TO_USER_NOT_IN_API_FOOTBALL_CATALOG"
     }
   ]
 }
