@@ -1,0 +1,41 @@
+name: Stage 71F European Handicap Probe
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/stage71f_european_handicap_probe.py'
+      - '.github/workflows/stage71f-european-handicap-probe.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      OPS_DIR: 'ops'
+      API_FOOTBALL_SEASON: '2026'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Probe safe European handicap market
+        run: python scripts/stage71f_european_handicap_probe.py
+      - name: Show probe
+        if: always()
+        run: cat ops/stage71f_european_handicap_probe.json || true
+      - name: Commit probe
+        if: always()
+        run: |
+          git config user.name 'stage71f-bot'
+          git config user.email 'stage71f-bot@users.noreply.github.com'
+          git add ops/stage71f_european_handicap_probe.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'Stage71F European handicap probe update'
+            git pull --rebase origin main
+            git push origin main
+          fi
