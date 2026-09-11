@@ -2,8 +2,9 @@
 """Stage 58: unified human-readable PBK daily brief.
 
 Merges canonical forward signals with the latest operational context from
-Stages 54-57. This is a presentation layer only; it never changes strategy
-eligibility, trigger prices, stakes, settlement, or context snapshots.
+Stages 54-57 plus the Stage59 executable paper ledger. This is a presentation
+layer only; it never changes strategy eligibility, trigger prices, stakes,
+settlement, or context snapshots.
 """
 from __future__ import annotations
 
@@ -19,6 +20,7 @@ ODDS = OPS / "odds_snapshots.csv"
 CONTEXT = OPS / "context_latest.csv"
 STAGE56 = OPS / "stage56_latest.csv"
 INTERNATIONAL = OPS / "international_context.csv"
+USER_EXEC = OPS / "user_execution_log.csv"
 OUT_JSON = OPS / "daily_brief.json"
 OUT_MD = OPS / "daily_brief.md"
 META = OPS / "stage58_last_run.json"
@@ -46,13 +48,6 @@ def latest_by(rows, time_field="captured_at_utc"):
 def safe(row, key):
     v = row.get(key)
     return "" if v is None else v
-
-
-def float_or_none(v):
-    try:
-        return float(str(v))
-    except Exception:
-        return None
 
 
 def kickoff_of(bet, ctx):
@@ -89,6 +84,15 @@ def user_execution_text(user_execution):
     return status or "UNKNOWN"
 
 
+def frozen_execution_text(paper_execution):
+    if paper_execution.get("status") == "FROZEN":
+        return (
+            f"{paper_execution.get('odds') or 'N/A'} @ {paper_execution.get('bookmaker') or 'N/A'} "
+            f"[{paper_execution.get('captured_at_utc') or 'time unknown'}]"
+        )
+    return paper_execution.get("status") or "WAITING_EXECUTABLE_PRICE"
+
+
 def main():
     now = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     active = [r for r in read_csv(FORWARD) if r.get("status") in {"PAPER", "OPEN", "REVIEW"}]
@@ -96,11 +100,13 @@ def main():
     ctx = latest_by(read_csv(CONTEXT))
     s56 = latest_by(read_csv(STAGE56), "weather_captured_at_utc")
     intl = {r.get("forward_id"): r for r in read_csv(INTERNATIONAL) if r.get("forward_id")}
+    frozen_exec = {r.get("forward_id"): r for r in read_csv(USER_EXEC) if r.get("forward_id")}
 
     matches = []
     for bet in active:
         fid = bet.get("forward_id") or ""
         o, c, w, i = odds.get(fid, {}), ctx.get(fid, {}), s56.get(fid, {}), intl.get(fid, {})
+        ue = frozen_exec.get(fid, {})
         kickoff = kickoff_of(bet, c)
         snapshot_type = c.get("snapshot_type") or ""
 
@@ -124,6 +130,15 @@ def main():
             }
         else:
             user_execution = {"status": "NOT_CONFIGURED", "odds": "", "bookmaker": ""}
+
+        paper_user_execution = {
+            "status": "FROZEN" if ue.get("odds") and ue.get("bookmaker") else "WAITING_EXECUTABLE_PRICE",
+            "odds": safe(ue, "odds"),
+            "bookmaker": safe(ue, "bookmaker"),
+            "captured_at_utc": safe(ue, "captured_at_utc"),
+            "execution_type": safe(ue, "execution_type"),
+            "note": "standardized paper execution; not proof of a real placed bet",
+        }
 
         match = {
             "forward_id": fid,
@@ -153,6 +168,7 @@ def main():
                 "note": "Observed market-best is not automatically a user-executable price",
             },
             "user_execution": user_execution,
+            "paper_user_execution": paper_user_execution,
             "league_state": {
                 "home_rank": safe(bet, "home_rank"),
                 "away_rank": safe(bet, "away_rank"),
@@ -231,7 +247,8 @@ def main():
         "policy": {
             "trigger": "immutable Bet365 first capture",
             "market_best": "observed API market price; not necessarily user executable",
-            "user_execution": "only prices from configured executable bookmakers are treated as user-executable",
+            "current_user_execution": "latest observed price from configured executable bookmakers",
+            "paper_user_execution": "first observed allowlisted price after signal; frozen for realistic paper P&L",
             "context": "explanatory only; does not change locked rules",
         },
         "matches": matches,
@@ -244,7 +261,7 @@ def main():
         f"Generated UTC: {now}",
         f"Active canonical signals: {len(matches)}",
         "",
-        "> Context layers are explanatory only. Market-best and user-executable prices are shown separately.",
+        "> Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.",
         "",
     ]
     for m in matches:
@@ -258,7 +275,8 @@ def main():
             f"- Kickoff UTC: {m['kickoff_utc']} | Selection: {m['selection']} | Stake: {m['stake_u']}u",
             f"- Trigger Bet365: H {trig['b365_home']} / D {trig['b365_draw']} / A {trig['b365_away']} (immutable)",
             f"- Market-best observed: {market['best_odds']} @ {market['best_bookmaker']} | Bet365 now: {market['bet365_odds']}",
-            f"- User-executable: {user_execution_text(m['user_execution'])}",
+            f"- Current user-executable: {user_execution_text(m['user_execution'])}",
+            f"- Paper user-execution (frozen): {frozen_execution_text(m['paper_user_execution'])}",
             f"- Referee / venue: {cal['referee'] or 'TBD'} | {cal['venue'] or 'TBD'}, {cal['city'] or 'TBD'}",
             f"- Previous: home {cal['home_prev']['competition']} vs {cal['home_prev']['opponent']} ({cal['home_prev']['rest_hours']}h rest); away {cal['away_prev']['competition']} vs {cal['away_prev']['opponent']} ({cal['away_prev']['rest_hours']}h rest)",
             f"- Next: home {cal['home_next']['competition']} vs {cal['home_next']['opponent']} ({cal['home_next']['hours_after']}h after); away {cal['away_next']['competition']} vs {cal['away_next']['opponent']} ({cal['away_next']['hours_after']}h after)",
