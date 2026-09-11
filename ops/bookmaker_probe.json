@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-11T12:48:58Z",
+  "run_at_utc": "2026-09-11T12:49:50Z",
   "status": "OK",
   "results": [
     {
@@ -30,6 +30,27 @@
           "name": "Marathonbet"
         }
       ],
+      "errors": []
+    }
+  ],
+  "match_winner_bet_id": 1,
+  "fonbet_current_fixture_coverage": [
+    {
+      "fixture": 1550124,
+      "values": [],
+      "has_match_winner": false,
+      "errors": []
+    },
+    {
+      "fixture": 1550125,
+      "values": [],
+      "has_match_winner": false,
+      "errors": []
+    },
+    {
+      "fixture": 1550131,
+      "values": [],
+      "has_match_winner": false,
       "errors": []
     }
   ]
