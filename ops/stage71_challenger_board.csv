@@ -4,27 +4,27 @@ R1,Spain,La Liga,CORE_BIG5,140,La Liga,HISTORICAL_TRANSFER_REJECTED,342,-5.56,21
 R1,Italy,Serie A,CORE_BIG5,135,Serie A,ACTIVE_CANONICAL,527,6.85,321,6.13,8,10,0,,,,100.0,ACTIVE,YES,forward deterioration not evaluable before 60 settled
 R1,Germany,Bundesliga,CORE_BIG5,78,Bundesliga,HISTORICAL_TRANSFER_REJECTED,341,-10.87,203,-5.90,3,10,0,,,,,MONITORING_REJECTED_CURRENT_RULE,NO,TRAIN ROI -10.87 not >0; TEST ROI -5.9 not >0; positive seasons 3/10<60%
 R1,France,Ligue 1,CORE_BIG5,61,Ligue 1,HISTORICAL_TRANSFER_REJECTED,288,-3.53,259,-3.81,3,10,0,,,,,MONITORING_REJECTED_CURRENT_RULE,NO,TRAIN ROI -3.53 not >0; TEST ROI -3.81 not >0; positive seasons 3/10<60%
-R1,Austria,Austrian Bundesliga,EXTENDED,218,Bundesliga,NO_COMPARABLE_HISTORY,,,,,,,0,,,,,DATA_REQUIRED,NO,comparable historical evidence missing
-R1,Belgium,Belgian Pro League,EXTENDED,144,Jupiler Pro League,NO_COMPARABLE_HISTORY,,,,,,,0,,,,,DATA_REQUIRED,NO,comparable historical evidence missing
-R1,Denmark,Danish Superliga,EXTENDED,119,Superliga,NO_COMPARABLE_HISTORY,,,,,,,0,,,,,DATA_REQUIRED,NO,comparable historical evidence missing
-R1,Lithuania,A Lyga,EXTENDED,362,A Lyga,NO_COMPARABLE_HISTORY,,,,,,,0,,,,,DATA_REQUIRED,NO,comparable historical evidence missing
-R1,Latvia,Virsliga,EXTENDED,365,Virsliga,NO_COMPARABLE_HISTORY,,,,,,,0,,,,,DATA_REQUIRED,NO,comparable historical evidence missing
-R1,Netherlands,Eredivisie,EXTENDED,88,Eredivisie,NO_COMPARABLE_HISTORY,,,,,,,0,,,,,DATA_REQUIRED,NO,comparable historical evidence missing
-R1,Norway,Eliteserien,EXTENDED,103,Eliteserien,NO_COMPARABLE_HISTORY,,,,,,,0,,,,,DATA_REQUIRED,NO,comparable historical evidence missing
+R1,Austria,Austrian Bundesliga,EXTENDED,218,Bundesliga,NO_COMPARABLE_HISTORY,,,,,,,0,,,,100.000,MONITORING,NO,fresh discovery sample 0/120 settled; no direct promotion
+R1,Belgium,Belgian Pro League,EXTENDED,144,Jupiler Pro League,NO_COMPARABLE_HISTORY,,,,,,,0,,,,100.000,MONITORING,NO,fresh discovery sample 0/120 settled; no direct promotion
+R1,Denmark,Danish Superliga,EXTENDED,119,Superliga,NO_COMPARABLE_HISTORY,,,,,,,0,,,,100.000,MONITORING,NO,fresh discovery sample 0/120 settled; no direct promotion
+R1,Lithuania,A Lyga,EXTENDED,362,A Lyga,NO_COMPARABLE_HISTORY,,,,,,,0,,,,100.000,MONITORING,NO,fresh discovery sample 0/120 settled; no direct promotion
+R1,Latvia,Virsliga,EXTENDED,365,Virsliga,NO_COMPARABLE_HISTORY,,,,,,,0,,,,100.000,MONITORING,NO,fresh discovery sample 0/120 settled; no direct promotion
+R1,Netherlands,Eredivisie,EXTENDED,88,Eredivisie,NO_COMPARABLE_HISTORY,,,,,,,0,,,,100.000,MONITORING,NO,fresh discovery sample 0/120 settled; no direct promotion
+R1,Norway,Eliteserien,EXTENDED,103,Eliteserien,NO_COMPARABLE_HISTORY,,,,,,,0,,,,100.000,MONITORING,NO,fresh discovery sample 0/120 settled; no direct promotion
 R1,Poland,Ekstraklasa,EXTENDED,106,Ekstraklasa,NO_COMPARABLE_HISTORY,,,,,,,0,,,,,DATA_REQUIRED,NO,comparable historical evidence missing
-R1,Portugal,Primeira Liga,EXTENDED,94,Primeira Liga,NO_COMPARABLE_HISTORY,,,,,,,0,,,,,DATA_REQUIRED,NO,comparable historical evidence missing
-R1,Turkey,Super Lig,EXTENDED,203,Süper Lig,NO_COMPARABLE_HISTORY,,,,,,,0,,,,,DATA_REQUIRED,NO,comparable historical evidence missing
-R1,Scotland,Scottish Premiership,EXTENDED,179,Premiership,NO_COMPARABLE_HISTORY,,,,,,,0,,,,,DATA_REQUIRED,NO,comparable historical evidence missing
+R1,Portugal,Primeira Liga,EXTENDED,94,Primeira Liga,NO_COMPARABLE_HISTORY,,,,,,,0,,,,100.000,MONITORING,NO,fresh discovery sample 0/120 settled; no direct promotion
+R1,Turkey,Super Lig,EXTENDED,203,Süper Lig,NO_COMPARABLE_HISTORY,,,,,,,0,,,,100.000,MONITORING,NO,fresh discovery sample 0/120 settled; no direct promotion
+R1,Scotland,Scottish Premiership,EXTENDED,179,Premiership,NO_COMPARABLE_HISTORY,,,,,,,0,,,,100.000,MONITORING,NO,fresh discovery sample 0/120 settled; no direct promotion
 R2,England,Premier League,CORE_BIG5,39,Premier League,HISTORICAL_TRANSFER_REJECTED,368,-0.43,237,-8.73,2,10,0,,,,,MONITORING_REJECTED_CURRENT_RULE,NO,TRAIN ROI -0.43 not >0; TEST ROI -8.73 not >0; positive seasons 2/10<60%
 R2,Spain,La Liga,CORE_BIG5,140,La Liga,HISTORICAL_TRANSFER_REJECTED,260,-5.46,158,-7.44,3,10,0,,,,,MONITORING_REJECTED_CURRENT_RULE,NO,TRAIN ROI -5.46 not >0; TEST ROI -7.44 not >0; positive seasons 3/10<60%
 R2,Italy,Serie A,CORE_BIG5,135,Serie A,ACTIVE_CANONICAL,397,7.23,236,9.10,8,10,0,,,,,ACTIVE,YES,forward deterioration not evaluable before 60 settled
 R2,Germany,Bundesliga,CORE_BIG5,78,Bundesliga,HISTORICAL_TRANSFER_REJECTED,238,-10.93,151,-4.23,4,10,0,,,,,MONITORING_REJECTED_CURRENT_RULE,NO,TRAIN ROI -10.93 not >0; TEST ROI -4.23 not >0; positive seasons 4/10<60%
 R2,France,Ligue 1,CORE_BIG5,61,Ligue 1,HISTORICAL_TRANSFER_REJECTED,228,-2.83,191,-6.07,4,10,0,,,,,MONITORING_REJECTED_CURRENT_RULE,NO,TRAIN ROI -2.83 not >0; TEST ROI -6.07 not >0; positive seasons 4/10<60%
-R2,Austria,Austrian Bundesliga,EXTENDED,218,Bundesliga,NO_COMPARABLE_HISTORY,,,,,,,0,,,,,DATA_REQUIRED,NO,comparable historical evidence missing
-R2,Belgium,Belgian Pro League,EXTENDED,144,Jupiler Pro League,NO_COMPARABLE_HISTORY,,,,,,,0,,,,,DATA_REQUIRED,NO,comparable historical evidence missing
+R2,Austria,Austrian Bundesliga,EXTENDED,218,Bundesliga,NO_COMPARABLE_HISTORY,,,,,,,0,,,,100.000,MONITORING,NO,fresh discovery sample 0/120 settled; no direct promotion
+R2,Belgium,Belgian Pro League,EXTENDED,144,Jupiler Pro League,NO_COMPARABLE_HISTORY,,,,,,,0,,,,100.000,MONITORING,NO,fresh discovery sample 0/120 settled; no direct promotion
 R2,Denmark,Danish Superliga,EXTENDED,119,Superliga,NO_COMPARABLE_HISTORY,,,,,,,0,,,,,DATA_REQUIRED,NO,comparable historical evidence missing
 R2,Lithuania,A Lyga,EXTENDED,362,A Lyga,NO_COMPARABLE_HISTORY,,,,,,,0,,,,,DATA_REQUIRED,NO,comparable historical evidence missing
-R2,Latvia,Virsliga,EXTENDED,365,Virsliga,NO_COMPARABLE_HISTORY,,,,,,,0,,,,,DATA_REQUIRED,NO,comparable historical evidence missing
+R2,Latvia,Virsliga,EXTENDED,365,Virsliga,NO_COMPARABLE_HISTORY,,,,,,,0,,,,100.000,MONITORING,NO,fresh discovery sample 0/120 settled; no direct promotion
 R2,Netherlands,Eredivisie,EXTENDED,88,Eredivisie,NO_COMPARABLE_HISTORY,,,,,,,0,,,,,DATA_REQUIRED,NO,comparable historical evidence missing
 R2,Norway,Eliteserien,EXTENDED,103,Eliteserien,NO_COMPARABLE_HISTORY,,,,,,,0,,,,,DATA_REQUIRED,NO,comparable historical evidence missing
 R2,Poland,Ekstraklasa,EXTENDED,106,Ekstraklasa,NO_COMPARABLE_HISTORY,,,,,,,0,,,,,DATA_REQUIRED,NO,comparable historical evidence missing
