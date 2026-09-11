@@ -37,6 +37,7 @@ jobs:
           node --check app/filters.js
           node --check app/install.js
           node --check app/runtime.js
+          node --check app/push.js
           node --check app/sw.js
           python -m json.tool app/manifest.webmanifest >/dev/null
           test -s app/index.html
@@ -44,21 +45,28 @@ jobs:
           test -s app/filters.css
           test -s app/install.css
           test -s app/runtime.css
+          test -s app/push.css
           test -s app/install.js
           test -s app/runtime.js
+          test -s app/push.js
           test -s app/icon.svg
           test -s app/sw.js
           grep -q 'notification-badge' app/index.html
           grep -q 'data-safety-banner' app/index.html
           grep -q 'install-app' app/index.html
           grep -q 'runtime-panel' app/index.html
+          grep -q 'push-toggle' app/index.html
           grep -q '/runtime.js' app/index.html
           grep -q '/install.js' app/index.html
+          grep -q '/push.js' app/index.html
           grep -q '/v1/notifications' app/app.js
           grep -q '/api/v1/runtime' app/runtime.js
+          grep -q '/v1/push/subscribe' app/push.js
           grep -q 'applyFreshnessGuard' app/app.js
-          grep -q "pbk-shell-v4" app/sw.js
+          grep -q "pbk-shell-v5" app/sw.js
           grep -q "beforeinstallprompt" app/install.js
+          grep -q "addEventListener('push'" app/sw.js
+          grep -q 'push.js' app/sw.js
           grep -q 'runtime.js' app/sw.js
           grep -q 'icon.svg' app/manifest.webmanifest
           ! grep -q "caches.put.*api" app/sw.js
@@ -69,14 +77,23 @@ jobs:
           bash -n deploy/apply_release.sh
           bash -n deploy/upgrade_server.sh
           bash -n deploy/harden_server.sh
+          bash -n deploy/setup_push.sh
+          python -m py_compile deploy/push_dispatch.py
+          test -s deploy/requirements-push.txt
           test -s deploy/pbk-release.service
           test -s deploy/pbk-release.timer
+          test -s deploy/pbk-push.service
+          test -s deploy/pbk-push.timer
+          grep -q 'pywebpush==2.5.0' deploy/requirements-push.txt
           grep -q 'reverse_proxy 127.0.0.1:8787' deploy/Caddyfile
           grep -q 'stage74_app_api.py' deploy/pbk-api.service
           grep -q 'caddy validate' deploy/bootstrap_server.sh
           grep -q 'PBK_PASSWORD_HASH' deploy/bootstrap_server.sh
           grep -q '127.0.0.1:8787/v1/health' deploy/bootstrap_server.sh
           grep -q 'pbk-release.timer' deploy/bootstrap_server.sh
+          grep -q 'pbk-push.timer' deploy/bootstrap_server.sh
+          grep -q 'setup_push.sh' deploy/apply_release.sh
+          grep -q 'PBK push status: READY' deploy/apply_release.sh
           grep -q 'PBK release health: OK' deploy/apply_release.sh
           grep -q 'PBK_SKIP_FETCH=1' deploy/apply_release.sh
           grep -q 'ufw allow OpenSSH' deploy/harden_server.sh
@@ -90,5 +107,5 @@ jobs:
         run: python scripts/stage74_app_api.py --self-test
       - name: Report
         run: |
-          echo 'Stage74 installable PWA + production runtime + auto-release + VPS hardening + performance + notifications + freshness: OK'
+          echo 'Stage74 PWA + runtime + Web Push + auto-release + hardening + performance + freshness: OK'
           cat ops/stage73_last_run.json
