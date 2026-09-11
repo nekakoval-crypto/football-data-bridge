@@ -1,18 +1,20 @@
 {
-  "run_at_utc": "2026-09-11T13:46:46Z",
+  "run_at_utc": "2026-09-11T14:26:18Z",
   "status": "OK",
   "mode": "PROSPECTIVE_CAPTURE_ONLY",
   "leagues": 16,
   "fixtures_scanned": 160,
   "european_handicap_bet_id": 9,
   "european_handicap_bet_name": "Handicap Result",
-  "odds_calls": 159,
-  "new_openers": 709,
-  "new_snapshots": 558,
-  "new_closes": 0,
+  "odds_calls": 129,
+  "new_openers": 0,
+  "new_snapshots": 548,
+  "new_closes": 5,
   "total_openers": 709,
-  "total_snapshots": 558,
-  "total_closes": 0,
+  "total_snapshots": 1106,
+  "total_closes": 5,
   "signals_created": 0,
-  "warnings": []
+  "warnings": [
+    "odds 1553166: API-Football /odds: {'rateLimit': 'Too many requests. You have exceeded the limit of requests per minute of your subscription.'}"
+  ]
 }
