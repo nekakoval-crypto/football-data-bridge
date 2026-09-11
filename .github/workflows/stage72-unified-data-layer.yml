@@ -3,7 +3,7 @@ name: Stage 72 Unified Data Layer
 on:
   workflow_dispatch:
   schedule:
-    - cron: '2 * * * *'
+    - cron: '4,14,24,34,44,54 * * * *'
   push:
     paths:
       - 'scripts/stage72_build_data_layer.py'
@@ -47,7 +47,16 @@ jobs:
             echo 'No Stage72 metadata changes to commit.'
           else
             git commit -m 'Stage 72 unified data layer metadata update'
-            git push
+            for attempt in 1 2 3; do
+              if git pull --rebase origin main && git push origin main; then
+                exit 0
+              fi
+              echo "Concurrent push detected; retry ${attempt}/3"
+              git rebase --abort 2>/dev/null || true
+              git fetch origin main
+              sleep 2
+            done
+            exit 1
           fi
 
       - name: Upload unified database artifact
