@@ -1,0 +1,12 @@
+[Unit]
+Description=PBK refresh Stage72 SQLite from GitHub operational data
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=pbk
+Group=pbk
+WorkingDirectory=/opt/pbk/repo
+ExecStart=/bin/bash /opt/pbk/repo/deploy/sync_data.sh
+Nice=10
