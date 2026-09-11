@@ -92,7 +92,7 @@ def read_csv(path):
 def extract_run_time(d):
     if not isinstance(d, dict):
         return None
-    for k in ("run_at_utc", "generated_at_utc", "run_at", "generated_at", "updated_at_utc"):
+    for k in ("run_at_utc", "generated_at_utc", "screened_at_utc", "run_at", "generated_at", "updated_at_utc"):
         x = parse_dt(d.get(k))
         if x:
             return x
