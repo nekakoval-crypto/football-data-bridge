@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-11T18:03:43Z",
+  "generated_at_utc": "2026-09-11T19:02:18Z",
   "status": "OK",
   "active_signals": 3,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-11T17:42:41Z",
+        "captured_at_utc": "2026-09-11T18:45:25Z",
         "best_odds": "1.69",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.62",
@@ -155,7 +155,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-11T17:42:41Z",
+        "captured_at_utc": "2026-09-11T18:45:25Z",
         "best_odds": "1.62",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.57",
@@ -281,7 +281,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-11T17:42:41Z",
+        "captured_at_utc": "2026-09-11T18:45:25Z",
         "best_odds": "1.69",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.62",
@@ -399,7 +399,7 @@
     "observed_closes": 0,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-11T17:53:25Z",
+    "latest_run_utc": "2026-09-11T18:54:33Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [],
@@ -416,7 +416,7 @@
     "observed_closes": 0,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-11T17:47:02Z",
+    "latest_run_utc": "2026-09-11T18:25:54Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [],
@@ -429,15 +429,15 @@
     "historical_edge_claimed": false,
     "historical_edge_reason": "Canonical 10-year dataset has no historical BTTS first/close odds",
     "canonical_forward_changed": false,
-    "tracked_openers": 93,
-    "active_crossings_total": 1,
-    "active_yes_crossings": 1,
+    "tracked_openers": 95,
+    "active_crossings_total": 2,
+    "active_yes_crossings": 2,
     "active_no_crossings": 0,
-    "total_crossings": 1,
+    "total_crossings": 2,
     "observed_closes": 0,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-11T16:16:59Z",
+    "latest_run_utc": "2026-09-11T18:18:44Z",
     "warnings": [],
     "crossings": [
       {
@@ -451,20 +451,32 @@
         "minutes_to_kickoff": "3241.3",
         "user_selected_odds": "1.75",
         "note": "research watch only; not a bet signal"
+      },
+      {
+        "fixture_id": "1550126",
+        "league": "Serie A",
+        "home_team": "Venezia",
+        "away_team": "Fiorentina",
+        "selection": "ОЗ — Да",
+        "movement_yes_pp": "0.03599476",
+        "crossed_at_utc": "2026-09-11T18:18:44Z",
+        "minutes_to_kickoff": "26.3",
+        "user_selected_odds": "1.49",
+        "note": "research watch only; not a bet signal"
       }
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-11T17:53:30Z",
+    "generated_at_utc": "2026-09-11T18:55:16Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
-      "crossings": 1,
-      "pending": 1,
+      "crossings": 2,
+      "pending": 2,
       "settled": 0,
       "void": 0,
       "review": 0,
-      "user_price_rows": 1,
+      "user_price_rows": 2,
       "user_execution_coverage_pct": 100.0,
       "user_settled_rows": 0,
       "wins": 0,
@@ -485,12 +497,12 @@
     },
     "by_family": {
       "Big-5 ОЗ market movement — ОЗ — Да": {
-        "crossings": 1,
-        "pending": 1,
+        "crossings": 2,
+        "pending": 2,
         "settled": 0,
         "void": 0,
         "review": 0,
-        "user_price_rows": 1,
+        "user_price_rows": 2,
         "user_execution_coverage_pct": 100.0,
         "user_settled_rows": 0,
         "wins": 0,
