@@ -1,0 +1,78 @@
+name: Stage 54 Forward Governance and Closing
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '35 * * * *'
+  push:
+    paths:
+      - 'scripts/stage54_forward_ops.py'
+      - '.github/workflows/stage54-forward-ops.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  forward-ops:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      API_FOOTBALL_BET365_ID: '8'
+      API_FOOTBALL_MATCH_WINNER_BET_ID: '1'
+      PBK_BOOKMAKER_ALLOWLIST: ${{ vars.PBK_BOOKMAKER_ALLOWLIST }}
+      OPS_DIR: 'ops'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run Stage 54 forward ops
+        run: python scripts/stage54_forward_ops.py
+
+      - name: Show Stage 54 summary
+        run: |
+          echo '--- stage54_last_run.json ---'
+          cat ops/stage54_last_run.json
+          echo '--- closing rows ---'
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          p=Path('ops/closing_log.csv')
+          if p.exists():
+              with p.open(encoding='utf-8-sig',newline='') as f:
+                  rows=list(csv.DictReader(f))
+              print('closing_rows=',len(rows))
+              for r in rows[-10:]:
+                  print(r['forward_id'], r['closing_odds'], r['closing_bookmaker'], 'gap_min=',r['closing_gap_minutes'])
+          PY
+
+      - name: Commit Stage 54 operational files
+        run: |
+          git config user.name 'stage54-bot'
+          git config user.email 'stage54-bot@users.noreply.github.com'
+          git add -A ops
+          if git diff --cached --quiet; then
+            echo 'No Stage 54 operational changes to commit.'
+          else
+            git commit -m 'Stage 54 forward governance update'
+            git push
+          fi
+
+      - name: Upload Stage 54 snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage54-forward-ops
+          path: |
+            ops/stage54_last_run.json
+            ops/odds_snapshots.csv
+            ops/closing_log.csv
+            ops/fixture_events.csv
+            ops/forward_log.csv
+          if-no-files-found: ignore
+          retention-days: 30
