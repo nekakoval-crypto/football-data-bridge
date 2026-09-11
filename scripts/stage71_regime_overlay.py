@@ -59,6 +59,8 @@ def main():
     payload=json.loads(OUT_JSON.read_text(encoding="utf-8")) if OUT_JSON.exists() else {}
     payload["rows"]=rows;payload["regime_discovery_policy"]={"min_settled":120,"min_marathonbet_coverage_pct":90,"roi_positive":True,"both_chronological_halves_positive":True,"direct_promotion":"FORBIDDEN","fresh_holdout_required":True}
     payload["regime_discovery_eligible"]=sum(1 for r in rows if r.get("status")=="REGIME_DISCOVERY_ELIGIBLE")
+    payload["data_required"]=sum(1 for r in rows if r.get("status")=="DATA_REQUIRED")
+    payload["monitoring"]=sum(1 for r in rows if r.get("status")=="MONITORING")
     OUT_JSON.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding="utf-8")
     leaders={fam:next((r.get("league") for r in rows if r.get("family")==fam and r.get("leader")=="YES"),"нет") for fam in ("R1","R2")}
     md=["# PBK Stage71 — League & Market Challenger Board","",f"Scope: 16 лиг | текущие лидеры R1/R2: {leaders['R1']} / {leaders['R2']}","","> Лидер — описательный статус. Никакого автоматического promotion/suspension.",""]
@@ -71,6 +73,11 @@ def main():
     md += ["## Regime-change path","- 120 fresh settled executable bets + >=90% Marathonbet coverage + positive total ROI + positive both chronological halves => REGIME_DISCOVERY_ELIGIBLE.","- Затем обязательна новая preregistration и **новый будущий holdout**. Эти 120 ставок повторно использовать нельзя."]
     OUT_MD.write_text("\n".join(md),encoding="utf-8")
     if META.exists():
-        meta=json.loads(META.read_text(encoding="utf-8"));meta["regime_discovery_eligible"]=payload["regime_discovery_eligible"];meta["regime_overlay_status_changes"]=changed;META.write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding="utf-8")
-    print(json.dumps({"regime_discovery_eligible":payload["regime_discovery_eligible"],"status_changes":changed}))
+        meta=json.loads(META.read_text(encoding="utf-8"))
+        meta["regime_discovery_eligible"]=payload["regime_discovery_eligible"]
+        meta["regime_overlay_status_changes"]=changed
+        meta["data_required"]=payload["data_required"]
+        meta["monitoring"]=payload["monitoring"]
+        META.write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding="utf-8")
+    print(json.dumps({"regime_discovery_eligible":payload["regime_discovery_eligible"],"data_required":payload["data_required"],"monitoring":payload["monitoring"],"status_changes":changed}))
 if __name__=="__main__":main()
