@@ -1,0 +1,12 @@
+[Unit]
+Description=Dispatch PBK Web Push notifications every minute
+
+[Timer]
+OnBootSec=90s
+OnUnitActiveSec=60s
+AccuracySec=10s
+Persistent=true
+Unit=pbk-push.service
+
+[Install]
+WantedBy=timers.target
