@@ -2,13 +2,6 @@ name: Stage 71F European Handicap Capture
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '47 */6 * * *'
-  push:
-    paths:
-      - 'scripts/stage71f_european_handicap_capture.py'
-      - 'research/stage71f_european_handicap_prereg_2026-09-11.md'
-      - '.github/workflows/stage71f-european-handicap-capture.yml'
 
 permissions:
   contents: write
@@ -32,36 +25,16 @@ jobs:
         with:
           python-version: '3.12'
       - name: Capture European Handicap market data
-        run: |
-          for attempt in 1 2 3; do
-            if python scripts/stage71f_european_handicap_capture.py; then exit 0; fi
-            if [ "$attempt" -eq 3 ]; then exit 1; fi
-            sleep $((attempt * 8))
-          done
+        run: python scripts/stage71f_european_handicap_capture.py
       - name: Show summary
         run: cat ops/stage71f_last_run.json
-      - name: Commit operational files
-        run: |
-          git config user.name 'stage71f-bot'
-          git config user.email 'stage71f-bot@users.noreply.github.com'
-          git add ops/stage71f_eh_openers.csv ops/stage71f_eh_snapshots.csv ops/stage71f_eh_closes.csv ops/stage71f_last_run.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'Stage71F European handicap capture update'
-            for attempt in 1 2 3; do
-              if git pull --rebase origin main && git push origin main; then exit 0; fi
-              git rebase --abort 2>/dev/null || true
-              git fetch origin main
-              sleep 2
-            done
-            exit 1
-          fi
       - uses: actions/upload-artifact@v4
         with:
-          name: stage71f-european-handicap-capture
+          name: stage71f-european-handicap-diagnostic
           path: |
             ops/stage71f_eh_openers.csv
             ops/stage71f_eh_snapshots.csv
             ops/stage71f_eh_closes.csv
             ops/stage71f_last_run.json
           if-no-files-found: ignore
-          retention-days: 30
+          retention-days: 7
