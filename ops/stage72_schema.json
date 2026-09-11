@@ -1,5 +1,5 @@
 {
-  "schema_version": "4",
+  "schema_version": "5",
   "stable_tables": {
     "competitions": "stage71_league_catalog.csv",
     "canonical_signals": "user_forward_view.csv",
@@ -17,7 +17,10 @@
     "double_chance_closes": "stage71e_double_chance_closes.csv",
     "european_handicap_openers": "stage71f_eh_openers.csv",
     "european_handicap_snapshots": "stage71f_eh_snapshots.csv",
-    "european_handicap_closes": "stage71f_eh_closes.csv"
+    "european_handicap_closes": "stage71f_eh_closes.csv",
+    "dnb_openers": "stage71g_dnb_openers.csv",
+    "dnb_snapshots": "stage71g_dnb_snapshots.csv",
+    "dnb_closes": "stage71g_dnb_closes.csv"
   },
   "json_state_documents": [
     "attention_board.json",
@@ -32,7 +35,8 @@
     "stage71b_fonbet_coverage.json",
     "stage71c_last_run.json",
     "stage71e_last_run.json",
-    "stage71f_last_run.json"
+    "stage71f_last_run.json",
+    "stage71g_last_run.json"
   ],
   "raw_csv_policy": "every ops/*.csv is imported as raw_<filename_stem> with TEXT columns"
 }
