@@ -32,6 +32,11 @@ def enrich(row):
     side=d.get('team_side');line=d.get('line')
     if side in {'H','A'} and line not in (None,''):
         n='1' if side=='H' else '2';d['over_selection_ru']=f'ИТБ{n}({line})';d['under_selection_ru']=f'ИТМ{n}({line})'
+    eh=d.get('home_handicap_line')
+    if eh not in (None,''):
+        d['home_selection_ru']=f'Ф1({eh})';d['draw_selection_ru']=f'Х с форой хозяев {eh}'
+        try:d['away_selection_ru']=f'Ф2({-float(eh):+g})'
+        except:d['away_selection_ru']='Ф2 (эквивалентная противоположная европейская фора)'
     return d
 def query_table(conn,table,q,filter_map=None,odds_candidates=None,default_order=None):
     if not table_exists(conn,table):return {'items':[],'count':0,'limit':0,'offset':0}
@@ -82,17 +87,20 @@ def dispatch(path_with_query):
         if path=='/v1/markets/double-chance/openers':return 200,query_table(conn,'double_chance_openers',q,{'fixture_id':'api_fixture_id','league':'league'},['open_b365_1x','open_b365_x2','open_b365_12'],['kickoff_utc','api_fixture_id'])
         if path=='/v1/markets/double-chance/snapshots':return 200,query_table(conn,'double_chance_snapshots',q,{'fixture_id':'api_fixture_id','league':'league'},['user_1x','user_x2','user_12','b365_1x'],['kickoff_utc','api_fixture_id','captured_at_utc'])
         if path=='/v1/markets/double-chance/closes':return 200,query_table(conn,'double_chance_closes',q,{'fixture_id':'api_fixture_id','league':'league'},['user_close_1x','user_close_x2','user_close_12','bet365_close_1x'],['kickoff_utc','api_fixture_id'])
+        if path=='/v1/markets/european-handicap/openers':return 200,query_table(conn,'european_handicap_openers',q,{'fixture_id':'api_fixture_id','league':'league','line':'home_handicap_line'},['open_b365_home','open_b365_draw','open_b365_away'],['kickoff_utc','api_fixture_id','home_handicap_line'])
+        if path=='/v1/markets/european-handicap/snapshots':return 200,query_table(conn,'european_handicap_snapshots',q,{'fixture_id':'api_fixture_id','league':'league','line':'home_handicap_line'},['user_home','user_draw','user_away','b365_home'],['kickoff_utc','api_fixture_id','home_handicap_line','captured_at_utc'])
+        if path=='/v1/markets/european-handicap/closes':return 200,query_table(conn,'european_handicap_closes',q,{'fixture_id':'api_fixture_id','league':'league','line':'home_handicap_line'},['user_close_home','user_close_draw','user_close_away','bet365_close_home'],['kickoff_utc','api_fixture_id','home_handicap_line'])
         if path=='/v1/lifecycle':return 200,query_table(conn,'lifecycle_events',q,{'signal_id':'signal_id','fixture_id':'api_fixture_id','strategy':'rule'},[],['event_at_utc','signal_id'])
         if path=='/v1/exposure':return 200,query_table(conn,'exposure_positions',q,{'fixture_id':'api_fixture_id','status':'status','strategy':'rules'},[],['kickoff_utc','api_fixture_id'])
         if path=='/v1/context':return 200,query_table(conn,'context_latest',q,{'fixture_id':'api_fixture_id'},[],['kickoff_utc','api_fixture_id'])
         if path=='/v1/odds':return 200,query_table(conn,'odds_snapshots',q,{'fixture_id':'api_fixture_id','bookmaker':'bookmaker'},['odds'],['captured_at_utc','api_fixture_id'])
         if path=='/v1/attention':return 200,(state_doc(conn,'attention_board.json') or {})
-        if path=='/v1/governance':return 200,{'system_health':state_doc(conn,'system_health.json'),'exposure':state_doc(conn,'exposure_summary.json'),'watch_promotion':state_doc(conn,'watch_promotion_gate.json'),'league_challenger':state_doc(conn,'stage71_challenger_board.json'),'fonbet_coverage':state_doc(conn,'stage71b_fonbet_coverage.json'),'team_total_capture':state_doc(conn,'stage71c_last_run.json'),'double_chance_capture':state_doc(conn,'stage71e_last_run.json')}
+        if path=='/v1/governance':return 200,{'system_health':state_doc(conn,'system_health.json'),'exposure':state_doc(conn,'exposure_summary.json'),'watch_promotion':state_doc(conn,'watch_promotion_gate.json'),'league_challenger':state_doc(conn,'stage71_challenger_board.json'),'fonbet_coverage':state_doc(conn,'stage71b_fonbet_coverage.json'),'team_total_capture':state_doc(conn,'stage71c_last_run.json'),'double_chance_capture':state_doc(conn,'stage71e_last_run.json'),'european_handicap_capture':state_doc(conn,'stage71f_last_run.json')}
         if path=='/v1/config/strategy-filter':return 200,config_doc(STRATEGY_FILTER,{'global_odds_cap':None,'groups':[],'future_ui_filters':[]})
         if path=='/v1/config/market-scope':return 200,config_doc(MARKET_SCOPE,{'status':'UNAVAILABLE','allowed_market_families':[],'deferred_market_universe':[]})
     return 404,{'error':'NOT_FOUND','path':path,'api_version':API_VERSION}
 class Handler(BaseHTTPRequestHandler):
-    server_version='PBKInternalAPI/1.2'
+    server_version='PBKInternalAPI/1.3'
     def do_GET(self):
         try:status,payload=dispatch(self.path)
         except FileNotFoundError as e:status,payload=503,{'error':'DATA_LAYER_UNAVAILABLE','detail':str(e)}
@@ -101,7 +109,7 @@ class Handler(BaseHTTPRequestHandler):
     def log_message(self,fmt,*args):
         if os.getenv('PBK_API_ACCESS_LOG','0')=='1':super().log_message(fmt,*args)
 def self_test():
-    tests={'/v1/health':lambda p:p.get('status') in {'OK','CRITICAL'},'/v1/competitions?limit=100':lambda p:p.get('count')==16,'/v1/signals/canonical':lambda p:p.get('count') is not None,'/v1/signals/challengers':lambda p:p.get('count') is not None,'/v1/signals/watch':lambda p:p.get('count') is not None,'/v1/markets/team-totals/openers?limit=1':lambda p:(p.get('count') or 0)>0,'/v1/markets/double-chance/openers?limit=1':lambda p:(p.get('count') or 0)>0,'/v1/lifecycle':lambda p:p.get('count') is not None,'/v1/attention':lambda p:isinstance(p,dict),'/v1/governance':lambda p:isinstance(p,dict),'/v1/config/strategy-filter':lambda p:p.get('global_odds_cap') is None,'/v1/config/market-scope':lambda p:len(p.get('allowed_market_families') or [])==8 and len(p.get('deferred_market_universe') or [])>=1 and str(p.get('status','')).startswith('LOCKED_CORE')}
+    tests={'/v1/health':lambda p:p.get('status') in {'OK','CRITICAL'},'/v1/competitions?limit=100':lambda p:p.get('count')==16,'/v1/signals/canonical':lambda p:p.get('count') is not None,'/v1/signals/challengers':lambda p:p.get('count') is not None,'/v1/signals/watch':lambda p:p.get('count') is not None,'/v1/markets/team-totals/openers?limit=1':lambda p:(p.get('count') or 0)>0,'/v1/markets/double-chance/openers?limit=1':lambda p:(p.get('count') or 0)>0,'/v1/markets/european-handicap/openers?limit=1':lambda p:(p.get('count') or 0)>0,'/v1/lifecycle':lambda p:p.get('count') is not None,'/v1/attention':lambda p:isinstance(p,dict),'/v1/governance':lambda p:isinstance(p,dict),'/v1/config/strategy-filter':lambda p:p.get('global_odds_cap') is None,'/v1/config/market-scope':lambda p:len(p.get('allowed_market_families') or [])==8 and len(p.get('deferred_market_universe') or [])>=1 and str(p.get('status','')).startswith('LOCKED_CORE')}
     results=[];ok=True
     for path,check in tests.items():
         try:status,payload=dispatch(path);passed=status==200 and bool(check(payload))
