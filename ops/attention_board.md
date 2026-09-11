@@ -1,7 +1,7 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 11.09.2026 14:36 (Europe/Berlin)
-Canonical: 3 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
+Обновлено: 11.09.2026 15:00 (Europe/Berlin)
+Canonical: 3 | active WATCH crossings: 1 | RED: 0 | ORANGE: 1
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
 
@@ -9,7 +9,7 @@ Canonical: 3 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
 - Сейчас срочных матчей нет.
 
 ## 🟠 Ближайшие 24 часа / активные WATCH
-- Сейчас нет событий уровня ORANGE.
+- **Stade Brestois 29 — Paris Saint Germain** | Stage63 | ОЗ — Да | 13.09 20:45 | prospective движение ОЗ ≥3 п.п. | 1.75 @ Marathonbet
 
 ## 🔵 Активные R1/R2/R3
 - **R1 | Sassuolo — Juventus** | П2 | 13.09 20:45 | 1.65 @ Marathonbet | у гостей следующий матч еврокубок/кубок
@@ -17,7 +17,7 @@ Canonical: 3 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
 - **R1 | Frosinone — Como** | П2 | 20.09 15:00 | 1.65 @ Marathonbet | гости после еврокубка/кубка
 
 ## 🟡 Research WATCH crossings
-- Активных crossing-событий пока нет.
+- **Stage63 | Stade Brestois 29 — Paris Saint Germain** | ОЗ — Да | 13.09 20:45 | 1.75 @ Marathonbet
 
 ## ⚪ Ближайшие матчи под наблюдением (без сигнала)
 - **Stage62 | Union Berlin — FC Schalke 04** | Бундеслига | 11.09 20:30 | ТБ(2.5) steam | Bet365 ТБ 1.67 / ТМ 2.2
