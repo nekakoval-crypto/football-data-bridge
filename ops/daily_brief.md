@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-11T11:05:35Z
+Generated UTC: 2026-09-11T11:15:53Z
 Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -63,3 +63,17 @@ Active canonical signals: 3
 - Executable bookmaker being observed: Marathonbet
 
 - No active +3 pp crossing is currently recorded.
+
+---
+
+# O/U STEAM WATCH — research only
+
+> This is **not a canonical rule and not a bet signal**. R1/R2/R3 are unchanged.
+
+- Scope: Bundesliga Over 2.5 Steam O1 (+3 pp no-vig from frozen Bet365 O/U 2.5 opener).
+- Frozen O/U openers tracked: 18
+- Active +3 pp Over crossings: 0
+- Observed closes: 0 | Close-qualified O1 watches: 0
+- Executable bookmaker being observed: Marathonbet
+
+- No active +3 pp Over crossing is currently recorded.
