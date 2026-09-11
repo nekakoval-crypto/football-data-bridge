@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-09-11T18:00:28Z",
-  "generated_at_local": "2026-09-11T20:00:28+02:00",
+  "generated_at_utc": "2026-09-11T19:00:40Z",
+  "generated_at_local": "2026-09-11T21:00:40+02:00",
   "timezone": "Europe/Berlin",
   "status": "OK",
   "summary": {
@@ -23,7 +23,7 @@
       "fixture_id": "1552757",
       "kickoff_utc": "2026-09-13T18:45:00Z",
       "kickoff_local": "13.09 20:45",
-      "hours_to_kickoff": 48.74,
+      "hours_to_kickoff": 47.74,
       "home_team": "Stade Brestois 29",
       "away_team": "Paris Saint Germain",
       "selection": "ОЗ — Да",
@@ -44,7 +44,7 @@
       "fixture_id": "1550124",
       "kickoff_utc": "2026-09-13T18:45:00Z",
       "kickoff_local": "13.09 20:45",
-      "hours_to_kickoff": 48.74,
+      "hours_to_kickoff": 47.74,
       "home_team": "Sassuolo",
       "away_team": "Juventus",
       "selection": "П2",
@@ -64,7 +64,7 @@
       "fixture_id": "1550125",
       "kickoff_utc": "2026-09-14T16:30:00Z",
       "kickoff_local": "14.09 18:30",
-      "hours_to_kickoff": 70.49,
+      "hours_to_kickoff": 69.49,
       "home_team": "Torino",
       "away_team": "AS Roma",
       "selection": "П2",
@@ -84,7 +84,7 @@
       "fixture_id": "1550131",
       "kickoff_utc": "2026-09-20T13:00:00Z",
       "kickoff_local": "20.09 15:00",
-      "hours_to_kickoff": 210.99,
+      "hours_to_kickoff": 209.99,
       "home_team": "Frosinone",
       "away_team": "Como",
       "selection": "П2",
@@ -104,7 +104,7 @@
       "fixture_id": "1552757",
       "kickoff_utc": "2026-09-13T18:45:00Z",
       "kickoff_local": "13.09 20:45",
-      "hours_to_kickoff": 48.74,
+      "hours_to_kickoff": 47.74,
       "home_team": "Stade Brestois 29",
       "away_team": "Paris Saint Germain",
       "selection": "ОЗ — Да",
@@ -117,45 +117,15 @@
   "nearest_monitored": [
     {
       "type": "MONITOR",
-      "stage": "Stage62",
-      "priority": "GRAY",
-      "league": "Бундеслига",
-      "fixture_id": "1575164",
-      "kickoff_utc": "2026-09-11T18:30:00Z",
-      "kickoff_local": "11.09 20:30",
-      "hours_to_kickoff": 0.49,
-      "home_team": "Union Berlin",
-      "away_team": "FC Schalke 04",
-      "market": "ТБ(2.5) steam",
-      "opener": "Bet365 ТБ 1.67 / ТМ 2.2",
-      "status": "наблюдение; crossing пока не зафиксирован"
-    },
-    {
-      "type": "MONITOR",
       "stage": "Stage63",
       "priority": "GRAY",
-      "league": "Bundesliga",
-      "fixture_id": "1575164",
-      "kickoff_utc": "2026-09-11T18:30:00Z",
-      "kickoff_local": "11.09 20:30",
-      "hours_to_kickoff": 0.49,
-      "home_team": "Union Berlin",
-      "away_team": "FC Schalke 04",
-      "market": "ОЗ — Да / ОЗ — Нет",
-      "opener": "Bet365 Да 1.53 / Нет 2.38",
-      "status": "наблюдение; crossing пока не зафиксирован"
-    },
-    {
-      "type": "MONITOR",
-      "stage": "Stage63",
-      "priority": "GRAY",
-      "league": "Serie A",
-      "fixture_id": "1550126",
-      "kickoff_utc": "2026-09-11T18:45:00Z",
-      "kickoff_local": "11.09 20:45",
-      "hours_to_kickoff": 0.74,
-      "home_team": "Venezia",
-      "away_team": "Fiorentina",
+      "league": "La Liga",
+      "fixture_id": "1570378",
+      "kickoff_utc": "2026-09-12T12:00:00Z",
+      "kickoff_local": "12.09 14:00",
+      "hours_to_kickoff": 16.99,
+      "home_team": "Racing Santander",
+      "away_team": "Alaves",
       "market": "ОЗ — Да / ОЗ — Нет",
       "opener": "Bet365 Да 1.57 / Нет 2.25",
       "status": "наблюдение; crossing пока не зафиксирован"
@@ -164,15 +134,15 @@
       "type": "MONITOR",
       "stage": "Stage63",
       "priority": "GRAY",
-      "league": "Ligue 1",
-      "fixture_id": "1552763",
-      "kickoff_utc": "2026-09-11T18:45:00Z",
-      "kickoff_local": "11.09 20:45",
-      "hours_to_kickoff": 0.74,
-      "home_team": "Rennes",
-      "away_team": "Marseille",
+      "league": "Serie A",
+      "fixture_id": "1550119",
+      "kickoff_utc": "2026-09-12T13:00:00Z",
+      "kickoff_local": "12.09 15:00",
+      "hours_to_kickoff": 17.99,
+      "home_team": "Genoa",
+      "away_team": "Frosinone",
       "market": "ОЗ — Да / ОЗ — Нет",
-      "opener": "Bet365 Да 1.5 / Нет 2.5",
+      "opener": "Bet365 Да 1.7 / Нет 2.05",
       "status": "наблюдение; crossing пока не зафиксирован"
     },
     {
@@ -183,7 +153,7 @@
       "fixture_id": "1575158",
       "kickoff_utc": "2026-09-12T13:30:00Z",
       "kickoff_local": "12.09 15:30",
-      "hours_to_kickoff": 19.49,
+      "hours_to_kickoff": 18.49,
       "home_team": "Borussia Dortmund",
       "away_team": "SC Paderborn 07",
       "market": "ТБ(2.5) steam",
@@ -198,11 +168,41 @@
       "fixture_id": "1575160",
       "kickoff_utc": "2026-09-12T13:30:00Z",
       "kickoff_local": "12.09 15:30",
-      "hours_to_kickoff": 19.49,
+      "hours_to_kickoff": 18.49,
       "home_team": "1899 Hoffenheim",
       "away_team": "VfB Stuttgart",
       "market": "ТБ(2.5) steam",
       "opener": "Bet365 ТБ 1.36 / ТМ 3.2",
+      "status": "наблюдение; crossing пока не зафиксирован"
+    },
+    {
+      "type": "MONITOR",
+      "stage": "Stage62",
+      "priority": "GRAY",
+      "league": "Бундеслига",
+      "fixture_id": "1575161",
+      "kickoff_utc": "2026-09-12T13:30:00Z",
+      "kickoff_local": "12.09 15:30",
+      "hours_to_kickoff": 18.49,
+      "home_team": "SC Freiburg",
+      "away_team": "Borussia Mönchengladbach",
+      "market": "ТБ(2.5) steam",
+      "opener": "Bet365 ТБ 1.53 / ТМ 2.5",
+      "status": "наблюдение; crossing пока не зафиксирован"
+    },
+    {
+      "type": "MONITOR",
+      "stage": "Stage63",
+      "priority": "GRAY",
+      "league": "Bundesliga",
+      "fixture_id": "1575158",
+      "kickoff_utc": "2026-09-12T13:30:00Z",
+      "kickoff_local": "12.09 15:30",
+      "hours_to_kickoff": 18.49,
+      "home_team": "Borussia Dortmund",
+      "away_team": "SC Paderborn 07",
+      "market": "ОЗ — Да / ОЗ — Нет",
+      "opener": "Bet365 Да 1.7 / Нет 2.05",
       "status": "наблюдение; crossing пока не зафиксирован"
     },
     {
@@ -213,7 +213,7 @@
       "fixture_id": "1557397",
       "kickoff_utc": "2026-09-12T14:00:00Z",
       "kickoff_local": "12.09 16:00",
-      "hours_to_kickoff": 19.99,
+      "hours_to_kickoff": 18.99,
       "home_team": "Aston Villa",
       "away_team": "Nottingham Forest",
       "market": "П1/П2 steam",
@@ -228,7 +228,7 @@
       "fixture_id": "1557398",
       "kickoff_utc": "2026-09-12T14:00:00Z",
       "kickoff_local": "12.09 16:00",
-      "hours_to_kickoff": 19.99,
+      "hours_to_kickoff": 18.99,
       "home_team": "Bournemouth",
       "away_team": "Brentford",
       "market": "П1/П2 steam",
@@ -243,7 +243,7 @@
       "fixture_id": "1557399",
       "kickoff_utc": "2026-09-12T14:00:00Z",
       "kickoff_local": "12.09 16:00",
-      "hours_to_kickoff": 19.99,
+      "hours_to_kickoff": 18.99,
       "home_team": "Chelsea",
       "away_team": "Hull City",
       "market": "П1/П2 steam",
@@ -265,102 +265,68 @@
   },
   "market_cards": [
     {
-      "fixture_id": "1575164",
-      "home_team": "Union Berlin",
-      "away_team": "FC Schalke 04",
-      "kickoff_utc": "2026-09-11T18:30:00Z",
-      "kickoff_local": "11.09 20:30",
-      "league": "Bundesliga",
+      "fixture_id": "1570378",
+      "home_team": "Racing Santander",
+      "away_team": "Alaves",
+      "kickoff_utc": "2026-09-12T12:00:00Z",
+      "kickoff_local": "12.09 14:00",
+      "league": "La Liga",
       "markets": [
         {
           "market": "TEAM_TOTAL_1_5",
           "side": "H",
-          "text": "ИТБ1/ИТМ1(1.5): ИТБ 2 / ИТМ 1.82 @ Marathonbet"
+          "text": "ИТБ1/ИТМ1(1.5): ИТБ 2.14 / ИТМ 1.72 @ Marathonbet"
         },
         {
           "market": "TEAM_TOTAL_1_5",
           "side": "A",
-          "text": "ИТБ2/ИТМ2(1.5): ИТБ 2.2 / ИТМ 1.68 @ Marathonbet"
+          "text": "ИТБ2/ИТМ2(1.5): ИТБ 2.33 / ИТМ 1.61 @ Marathonbet"
         },
         {
           "market": "DOUBLE_CHANCE",
-          "text": "1Х 1.46 | Х2 1.6 | 12 1.32 @ Marathonbet"
+          "text": "1Х 1.47 | Х2 1.58 | 12 1.32 @ Marathonbet"
         },
         {
           "market": "DNB",
-          "text": "Ф1(0) 1.76 | Ф2(0) 2.07 @ Marathonbet"
+          "text": "Ф1(0) 1.79 | Ф2(0) 2.03 @ Marathonbet"
         },
         {
           "market": "EUROPEAN_HANDICAP_HOME_PLUS_1",
-          "text": "Европ. фора: хозяева +1 → 1:1.46 / Х:4.8 / 2:5.55 @ Marathonbet"
+          "text": "Европ. фора: хозяева +1 → 1:1.47 / Х:4.65 / 2:5.5 @ Marathonbet"
         }
       ],
       "status": "MARKET_VIEW_ONLY",
       "creates_signal": false
     },
     {
-      "fixture_id": "1550126",
-      "home_team": "Venezia",
-      "away_team": "Fiorentina",
-      "kickoff_utc": "2026-09-11T18:45:00Z",
-      "kickoff_local": "11.09 20:45",
+      "fixture_id": "1550119",
+      "home_team": "Genoa",
+      "away_team": "Frosinone",
+      "kickoff_utc": "2026-09-12T13:00:00Z",
+      "kickoff_local": "12.09 15:00",
       "league": "Serie A",
       "markets": [
         {
           "market": "TEAM_TOTAL_1_5",
           "side": "H",
-          "text": "ИТБ1/ИТМ1(1.5): ИТБ 2.27 / ИТМ 1.64 @ Marathonbet"
+          "text": "ИТБ1/ИТМ1(1.5): ИТБ 2.07 / ИТМ 1.76 @ Marathonbet"
         },
         {
           "market": "TEAM_TOTAL_1_5",
           "side": "A",
-          "text": "ИТБ2/ИТМ2(1.5): ИТБ 2.14 / ИТМ 1.72 @ Marathonbet"
+          "text": "ИТБ2/ИТМ2(1.5): ИТБ 2.92 / ИТМ 1.4 @ Marathonbet"
         },
         {
           "market": "DOUBLE_CHANCE",
-          "text": "1Х 1.55 | Х2 1.46 | 12 1.35 @ Marathonbet"
+          "text": "1Х 1.32 | Х2 1.75 | 12 1.35 @ Marathonbet"
         },
         {
           "market": "DNB",
-          "text": "Ф1(0) 2 | Ф2(0) 1.81 @ Marathonbet"
+          "text": "Ф1(0) 1.49 | Ф2(0) 2.41 @ Marathonbet"
         },
         {
           "market": "EUROPEAN_HANDICAP_HOME_PLUS_1",
-          "text": "Европ. фора: хозяева +1 → 1:1.55 / Х:4.5 / 2:4.75 @ Marathonbet"
-        }
-      ],
-      "status": "MARKET_VIEW_ONLY",
-      "creates_signal": false
-    },
-    {
-      "fixture_id": "1552763",
-      "home_team": "Rennes",
-      "away_team": "Marseille",
-      "kickoff_utc": "2026-09-11T18:45:00Z",
-      "kickoff_local": "11.09 20:45",
-      "league": "Ligue 1",
-      "markets": [
-        {
-          "market": "TEAM_TOTAL_1_5",
-          "side": "H",
-          "text": "ИТБ1/ИТМ1(1.5): ИТБ 1.68 / ИТМ 2.2 @ Marathonbet"
-        },
-        {
-          "market": "TEAM_TOTAL_1_5",
-          "side": "A",
-          "text": "ИТБ2/ИТМ2(1.5): ИТБ 2.29 / ИТМ 1.63 @ Marathonbet"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х 1.33 | Х2 1.86 | 12 1.28 @ Marathonbet"
-        },
-        {
-          "market": "DNB",
-          "text": "Ф1(0) 1.5 | Ф2(0) 2.59 @ Marathonbet"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP_HOME_PLUS_1",
-          "text": "Европ. фора: хозяева +1 → 1:1.33 / Х:5.4 / 2:6.75 @ Marathonbet"
+          "text": "Европ. фора: хозяева +1 → 1:1.32 / Х:5.05 / 2:6.8 @ Marathonbet"
         }
       ],
       "status": "MARKET_VIEW_ONLY",
@@ -372,7 +338,7 @@
       "away_team": "SC Paderborn 07",
       "kickoff_utc": "2026-09-12T13:30:00Z",
       "kickoff_local": "12.09 15:30",
-      "league": "Бундеслига",
+      "league": "Bundesliga",
       "markets": [
         {
           "market": "TEAM_TOTAL_1_5",
@@ -403,24 +369,58 @@
         {
           "market": "TEAM_TOTAL_1_5",
           "side": "H",
-          "text": "ИТБ1/ИТМ1(1.5): ИТБ 1.66 / ИТМ 2.24 @ Marathonbet"
+          "text": "ИТБ1/ИТМ1(1.5): ИТБ 1.68 / ИТМ 2.2 @ Marathonbet"
         },
         {
           "market": "TEAM_TOTAL_1_5",
           "side": "A",
-          "text": "ИТБ2/ИТМ2(1.5): ИТБ 1.78 / ИТМ 2.05 @ Marathonbet"
+          "text": "ИТБ2/ИТМ2(1.5): ИТБ 1.79 / ИТМ 2.04 @ Marathonbet"
         },
         {
           "market": "DOUBLE_CHANCE",
-          "text": "1Х 1.5 | Х2 1.63 | 12 1.27 @ Marathonbet"
+          "text": "1Х 1.5 | Х2 1.62 | 12 1.27 @ Marathonbet"
         },
         {
           "market": "DNB",
-          "text": "Ф1(0) 1.78 | Ф2(0) 2.04 @ Marathonbet"
+          "text": "Ф1(0) 1.79 | Ф2(0) 2.03 @ Marathonbet"
         },
         {
           "market": "EUROPEAN_HANDICAP_HOME_PLUS_1",
-          "text": "Европ. фора: хозяева +1 → 1:1.5 / Х:4.85 / 2:4.7 @ Marathonbet"
+          "text": "Европ. фора: хозяева +1 → 1:1.5 / Х:4.8 / 2:4.7 @ Marathonbet"
+        }
+      ],
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
+    },
+    {
+      "fixture_id": "1575161",
+      "home_team": "SC Freiburg",
+      "away_team": "Borussia Mönchengladbach",
+      "kickoff_utc": "2026-09-12T13:30:00Z",
+      "kickoff_local": "12.09 15:30",
+      "league": "Бундеслига",
+      "markets": [
+        {
+          "market": "TEAM_TOTAL_1_5",
+          "side": "H",
+          "text": "ИТБ1/ИТМ1(1.5): ИТБ 1.59 / ИТМ 2.35 @ Marathonbet"
+        },
+        {
+          "market": "TEAM_TOTAL_1_5",
+          "side": "A",
+          "text": "ИТБ2/ИТМ2(1.5): ИТБ 2.85 / ИТМ 1.42 @ Marathonbet"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х 1.22 | Х2 2.2 | 12 1.25 @ Marathonbet"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф1(0) 1.28 | Ф2(0) 3.28 @ Marathonbet"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP_HOME_PLUS_1",
+          "text": "Европ. фора: хозяева +1 → 1:1.22 / Х:6.1 / 2:8.5 @ Marathonbet"
         }
       ],
       "status": "MARKET_VIEW_ONLY",
@@ -437,12 +437,12 @@
         {
           "market": "TEAM_TOTAL_1_5",
           "side": "H",
-          "text": "ИТБ1/ИТМ1(1.5): ИТБ 2.26 / ИТМ 1.65 @ Marathonbet"
+          "text": "ИТБ1/ИТМ1(1.5): ИТБ 2.27 / ИТМ 1.64 @ Marathonbet"
         },
         {
           "market": "TEAM_TOTAL_1_5",
           "side": "A",
-          "text": "ИТБ2/ИТМ2(1.5): ИТБ 2.81 / ИТМ 1.43 @ Marathonbet"
+          "text": "ИТБ2/ИТМ2(1.5): ИТБ 2.85 / ИТМ 1.42 @ Marathonbet"
         },
         {
           "market": "DOUBLE_CHANCE",
@@ -450,7 +450,7 @@
         },
         {
           "market": "DNB",
-          "text": "Ф1(0) 1.64 | Ф2(0) 2.26 @ Marathonbet"
+          "text": "Ф1(0) 1.65 | Ф2(0) 2.24 @ Marathonbet"
         },
         {
           "market": "EUROPEAN_HANDICAP_HOME_PLUS_1",
