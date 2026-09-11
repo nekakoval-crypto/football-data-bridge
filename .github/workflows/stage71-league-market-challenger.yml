@@ -3,10 +3,12 @@ name: Stage 71 League Market Challenger
 on:
   workflow_dispatch:
   schedule:
-    - cron: '7 7 * * *'
+    - cron: '17 7,13 * * *'
   push:
     paths:
       - 'scripts/stage71_league_market_challenger.py'
+      - 'scripts/stage71_challenger_capture.py'
+      - 'scripts/stage71_regime_overlay.py'
       - 'research/stage71_challenger_policy_2026-09-11.md'
       - 'research/stage71_seed_evidence.csv'
       - 'config/pbk_competition_scope.json'
@@ -18,11 +20,13 @@ permissions:
 jobs:
   challenger:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     env:
       API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
       API_FOOTBALL_SEASON: '2026'
       OPS_DIR: 'ops'
+      STAGE71_NEXT_PER_LEAGUE: '5'
+      STAGE71_R2_FREEZE_HOURS: '12'
 
     steps:
       - name: Checkout
@@ -33,11 +37,21 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Build Stage 71 challenger board
+      - name: Resolve Stage 71 catalog and baseline board
         run: python scripts/stage71_league_market_challenger.py
+
+      - name: Capture prospective league challengers
+        run: python scripts/stage71_challenger_capture.py
+
+      - name: Rebuild board with fresh prospective rows
+        run: python scripts/stage71_league_market_challenger.py
+
+      - name: Apply regime-change discovery gate
+        run: python scripts/stage71_regime_overlay.py
 
       - name: Show Stage 71 summary
         run: |
+          cat ops/stage71_capture_last_run.json
           cat ops/stage71_last_run.json
           echo '--- challenger board ---'
           cat ops/stage71_challenger_board.md
@@ -50,7 +64,7 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No Stage 71 changes to commit.'
           else
-            git commit -m 'Stage 71 challenger board update'
+            git commit -m 'Stage 71 challenger capture update'
             git push
           fi
 
@@ -60,6 +74,9 @@ jobs:
           name: stage71-challenger-board
           path: |
             ops/stage71_league_catalog.csv
+            ops/stage71_research_trigger_ledger.csv
+            ops/stage71_challenger_forward.csv
+            ops/stage71_capture_last_run.json
             ops/stage71_challenger_board.csv
             ops/stage71_challenger_board.json
             ops/stage71_challenger_board.md
