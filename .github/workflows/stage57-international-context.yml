@@ -1,0 +1,76 @@
+name: Stage 57 International Window Context
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '35 6 * * *'
+  push:
+    paths:
+      - 'scripts/stage57_international_context.py'
+      - '.github/workflows/stage57-international-context.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  context:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPS_DIR: 'ops'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run Stage 57 international context
+        run: python scripts/stage57_international_context.py
+
+      - name: Show Stage 57 summary
+        run: |
+          echo '--- stage57_last_run.json ---'
+          cat ops/stage57_last_run.json
+          echo '--- international_context.csv ---'
+          python - <<'PY'
+          import csv
+          with open('ops/international_context.csv',encoding='utf-8-sig',newline='') as f:
+              rows=list(csv.DictReader(f))
+          print('rows=',len(rows))
+          for r in rows:
+              print(
+                  r['home_team'], '-', r['away_team'],
+                  'FIFA=', r['fifa_relation'],
+                  'to_start_h=', r['hours_to_fifa_window_start'],
+                  'since_end_h=', r['hours_since_fifa_window_end'],
+                  'pre7=', r['within_7d_before_fifa_window'],
+                  'post7=', r['within_7d_after_fifa_window'],
+                  'player_level=', r['player_level_international_status']
+              )
+          PY
+
+      - name: Commit Stage 57 operational files
+        run: |
+          git config user.name 'stage57-bot'
+          git config user.email 'stage57-bot@users.noreply.github.com'
+          git add -A ops
+          if git diff --cached --quiet; then
+            echo 'No Stage 57 operational changes to commit.'
+          else
+            git commit -m 'Stage 57 international context update'
+            git push
+          fi
+
+      - name: Upload Stage 57 snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage57-international-context
+          path: |
+            ops/international_context.csv
+            ops/stage57_last_run.json
+          if-no-files-found: ignore
+          retention-days: 30
