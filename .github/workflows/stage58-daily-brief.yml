@@ -1,0 +1,61 @@
+name: Stage 58 PBK Daily Brief
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '55 * * * *'
+  push:
+    paths:
+      - 'scripts/stage58_daily_brief.py'
+      - '.github/workflows/stage58-daily-brief.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  brief:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPS_DIR: 'ops'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build Stage 58 daily brief
+        run: python scripts/stage58_daily_brief.py
+
+      - name: Show brief
+        run: |
+          cat ops/stage58_last_run.json
+          echo '--- daily_brief.md ---'
+          cat ops/daily_brief.md
+
+      - name: Commit Stage 58 brief
+        run: |
+          git config user.name 'stage58-bot'
+          git config user.email 'stage58-bot@users.noreply.github.com'
+          git add -A ops
+          if git diff --cached --quiet; then
+            echo 'No Stage 58 changes to commit.'
+          else
+            git commit -m 'Stage 58 daily brief update'
+            git push
+          fi
+
+      - name: Upload Stage 58 brief
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage58-daily-brief
+          path: |
+            ops/daily_brief.json
+            ops/daily_brief.md
+            ops/stage58_last_run.json
+          if-no-files-found: ignore
+          retention-days: 30
