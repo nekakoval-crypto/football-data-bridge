@@ -1,0 +1,59 @@
+name: Stage 72 Unified Data Layer
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '2 * * * *'
+  push:
+    paths:
+      - 'scripts/stage72_build_data_layer.py'
+      - 'config/pbk_strategy_filter.json'
+      - '.github/workflows/stage72-unified-data-layer.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build-data-layer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPS_DIR: 'ops'
+      STAGE72_DB_PATH: 'build/pbk_unified.sqlite'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build unified SQLite projection
+        run: python scripts/stage72_build_data_layer.py
+
+      - name: Show Stage 72 summary
+        run: |
+          cat ops/stage72_last_run.json
+          cat ops/stage72_schema.json
+
+      - name: Commit Stage 72 metadata only
+        run: |
+          git config user.name 'stage72-bot'
+          git config user.email 'stage72-bot@users.noreply.github.com'
+          git add ops/stage72_last_run.json ops/stage72_schema.json
+          if git diff --cached --quiet; then
+            echo 'No Stage72 metadata changes to commit.'
+          else
+            git commit -m 'Stage 72 unified data layer metadata update'
+            git push
+          fi
+
+      - name: Upload unified database artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pbk-unified-sqlite
+          path: build/pbk_unified.sqlite
+          if-no-files-found: error
+          retention-days: 30
