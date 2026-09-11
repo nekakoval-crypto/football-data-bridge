@@ -1,0 +1,20 @@
+{
+  "run_at_utc": "2026-09-11T13:04:49Z",
+  "status": "OK",
+  "bookmaker": "Fonbet",
+  "bookmaker_id": 33,
+  "current_checked": 48,
+  "current_covered": 0,
+  "current_coverage_pct": 0.0,
+  "distinct_fixtures_checked": 48,
+  "distinct_fixtures_covered": 0,
+  "distinct_coverage_pct": 0.0,
+  "governance_status": "AUTO_CANDIDATE_MONITORING",
+  "auto_review_gate": {
+    "min_distinct_fixtures": 30,
+    "min_coverage_pct": 90,
+    "meaning": "review only; never automatic executable promotion"
+  },
+  "api_calls": 64,
+  "warnings": []
+}
