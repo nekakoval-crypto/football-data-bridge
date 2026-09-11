@@ -1,0 +1,57 @@
+{
+  "status": "OK",
+  "mode": "SHARED_CACHED_PROSPECTIVE_CAPTURE",
+  "real_api_calls": 220,
+  "api_hard_cap": 220,
+  "cache_hits": 50,
+  "unique_cached_requests": 220,
+  "real_calls_by_path": {
+    "/odds/bets": 1,
+    "/fixtures": 16,
+    "/odds": 203
+  },
+  "children": [
+    {
+      "market_family": "TEAM_TOTAL",
+      "status": "OK",
+      "fixtures_scanned": 160,
+      "logical_odds_calls": 130,
+      "new_openers": 0,
+      "new_snapshots": 978,
+      "new_closes": 0,
+      "warnings": 0
+    },
+    {
+      "market_family": "DOUBLE_CHANCE",
+      "status": "OK",
+      "fixtures_scanned": 160,
+      "logical_odds_calls": 73,
+      "new_openers": 0,
+      "new_snapshots": 66,
+      "new_closes": 0,
+      "warnings": 50
+    },
+    {
+      "market_family": "EUROPEAN_HANDICAP",
+      "status": "OK",
+      "fixtures_scanned": 160,
+      "logical_odds_calls": 0,
+      "new_openers": 0,
+      "new_snapshots": 0,
+      "new_closes": 0,
+      "warnings": 50
+    },
+    {
+      "market_family": "DRAW_NO_BET",
+      "status": "OK",
+      "fixtures_scanned": 160,
+      "logical_odds_calls": 0,
+      "new_openers": 0,
+      "new_snapshots": 0,
+      "new_closes": 0,
+      "warnings": 50
+    }
+  ],
+  "signals_created": 0,
+  "policy": "One API response may feed multiple market parsers; market ledgers remain separate and auditable."
+}
