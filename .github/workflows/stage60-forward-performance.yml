@@ -1,0 +1,61 @@
+name: Stage 60 Forward Performance
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '50 * * * *'
+  push:
+    paths:
+      - 'scripts/stage60_forward_performance.py'
+      - '.github/workflows/stage60-forward-performance.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  performance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPS_DIR: 'ops'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build Stage 60 performance summary
+        run: python scripts/stage60_forward_performance.py
+
+      - name: Show Stage 60 summary
+        run: |
+          cat ops/stage60_last_run.json
+          echo '--- forward_performance.md ---'
+          cat ops/forward_performance.md
+
+      - name: Commit Stage 60 operational files
+        run: |
+          git config user.name 'stage60-bot'
+          git config user.email 'stage60-bot@users.noreply.github.com'
+          git add -A ops
+          if git diff --cached --quiet; then
+            echo 'No Stage 60 changes to commit.'
+          else
+            git commit -m 'Stage 60 forward performance update'
+            git push
+          fi
+
+      - name: Upload Stage 60 snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage60-forward-performance
+          path: |
+            ops/forward_performance.json
+            ops/forward_performance.md
+            ops/stage60_last_run.json
+          if-no-files-found: ignore
+          retention-days: 30
