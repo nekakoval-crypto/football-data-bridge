@@ -3,7 +3,7 @@ name: Stage 71G DNB Capture
 on:
   workflow_dispatch:
   schedule:
-    - cron: '17 * * * *'
+    - cron: '17 */6 * * *'
   push:
     paths:
       - 'scripts/stage71g_dnb_capture.py'
