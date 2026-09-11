@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stage 53 v2: daily R1/R2/R3 screener and immutable paper-forward log.
+"""Stage 53 v3: daily R1/R2/R3 screener and immutable paper-forward log.
 
 Operational source roles
 ------------------------
@@ -10,9 +10,10 @@ API-Football (API_FOOTBALL_KEY):
 Football-Data current-season result CSVs:
   * table, last-5 PPG, games remaining, rest days
   * settlement after matches finish
-The Odds API (ODDS_API_KEY, optional): reserved as a second execution-price source later.
 
-Locked strategy definitions are NOT changed.
+Locked strategy definitions are NOT changed. R1/R2 are evaluated from the first
+Bet365 snapshot captured by Stage 53 for each Serie A fixture and that trigger
+snapshot is frozen in ops/trigger_ledger.csv.
 """
 from __future__ import annotations
 import csv, io, json, math, os, re, sys, urllib.parse, urllib.request
@@ -34,13 +35,13 @@ LEAGUES = {
     "D1": {"name":"Bundesliga","api_league":78,"games_per_team":34},
     "F1": {"name":"Ligue 1","api_league":61,"games_per_team":34},
 }
-API_TO_DIV={v["api_league"]:k for k,v in LEAGUES.items()}
 
 OUT_DIR=Path(os.getenv("OPS_DIR","ops"))
 LATEST_SCREEN=OUT_DIR/"latest_screen.csv"
 PASSPORTS=OUT_DIR/"context_passports.csv"
 FORWARD_LOG=OUT_DIR/"forward_log.csv"
 RUN_META=OUT_DIR/"last_run.json"
+TRIGGER_LEDGER=OUT_DIR/"trigger_ledger.csv"
 
 FORWARD_FIELDS=[
  "forward_id","rule","screened_at_utc","league","div","api_fixture_id","match_date","kickoff_time",
@@ -50,6 +51,7 @@ FORWARD_FIELDS=[
  "home_played","away_played","home_remaining","away_remaining","home_last5_ppg","away_last5_ppg",
  "home_rest_days","away_rest_days","status","result","settled_at_utc","profit_u","notes"
 ]
+TRIGGER_FIELDS=["api_fixture_id","captured_at_utc","div","league","match_date","home_team","away_team","b365_home","b365_draw","b365_away","api_update_utc","source"]
 SCREEN_FIELDS=[
  "screened_at_utc","div","league","api_fixture_id","match_date","kickoff_time","weekday","home_team","away_team",
  "r1","r2","r3","signal_rules","b365_home","b365_draw","b365_away","unique_away_favorite",
@@ -60,7 +62,7 @@ SCREEN_FIELDS=[
 ]
 
 def http_text(url,headers=None,timeout=30):
-    h={"User-Agent":"football-data-bridge/2.0"}; h.update(headers or {})
+    h={"User-Agent":"football-data-bridge/3.0"}; h.update(headers or {})
     req=urllib.request.Request(url,headers=h)
     with urllib.request.urlopen(req,timeout=timeout) as resp: raw=resp.read()
     for enc in ("utf-8-sig","utf-8","latin-1"):
@@ -185,6 +187,9 @@ def write_dicts(path,fields,rows):
     path.parent.mkdir(parents=True,exist_ok=True)
     with path.open("w",encoding="utf-8-sig",newline="") as f:
         w=csv.DictWriter(f,fieldnames=fields,extrasaction="ignore"); w.writeheader(); w.writerows(rows)
+def read_trigger_ledger():
+    if not TRIGGER_LEDGER.exists():return []
+    with TRIGGER_LEDGER.open(encoding="utf-8-sig",newline="") as f:return list(csv.DictReader(f))
 def read_forward():
     if not FORWARD_LOG.exists():return []
     with FORWARD_LOG.open(encoding="utf-8-sig",newline="") as f:return list(csv.DictReader(f))
@@ -220,6 +225,7 @@ def main():
     bookmaker_id=find_ref_id("/odds/bookmakers","Bet365")
     bet_id=find_ref_id("/odds/bets","Match Winner")
     fixtures=api_fixtures_next(); screen=[]; passports=[]; signals=[]; best_cache={}
+    trigger_rows=read_trigger_ledger(); trigger_by_fixture={str(r.get("api_fixture_id")):r for r in trigger_rows}
 
     for x in fixtures:
         div=x["_div"]; info=LEAGUES[div]; fx=x.get("fixture",{}); teamsx=x.get("teams",{})
@@ -228,11 +234,19 @@ def main():
         except Exception:continue
         states,ranks=build_state(results_by_div[div],d); hm=match_name(home,states.keys()) or home; am=match_name(away,states.keys()) or away
         hs=states.get(hm,TeamState()); as_=states.get(am,TeamState()); remh=max(info["games_per_team"]-hs.played,0); rema=max(info["games_per_team"]-as_.played,0)
-        b365={}
-        if div=="I1":
-            try:b365=get_bet365_prices(fixture_id,bookmaker_id,bet_id,home,away)
+        if div=="I1" and str(fixture_id) not in trigger_by_fixture:
+            try:
+                fresh=get_bet365_prices(fixture_id,bookmaker_id,bet_id,home,away)
+                fh=fresh.get("home",(None,"","") )[0]; fd=fresh.get("draw",(None,"","") )[0]; fa=fresh.get("away",(None,"","") )[0]
+                if fh and fd and fa:
+                    upd=max([fresh.get(k,(None,"","") )[2] for k in ("home","draw","away")])
+                    tr={"api_fixture_id":fixture_id,"captured_at_utc":now,"div":div,"league":info["name"],"match_date":d.isoformat(),
+                        "home_team":home,"away_team":away,"b365_home":fh,"b365_draw":fd,"b365_away":fa,"api_update_utc":upd,
+                        "source":"API-Football Bet365 first captured by Stage53"}
+                    trigger_rows.append(tr); trigger_by_fixture[str(fixture_id)]=tr
             except Exception as e:print("WARN Bet365 odds",fixture_id,e,file=sys.stderr)
-        bh=b365.get("home",(None,"","") )[0]; bd=b365.get("draw",(None,"","") )[0]; ba=b365.get("away",(None,"","") )[0]
+        locked=trigger_by_fixture.get(str(fixture_id),{}) if div=="I1" else {}
+        bh=fnum(locked.get("b365_home")); bd=fnum(locked.get("b365_draw")); ba=fnum(locked.get("b365_away"))
         away_unique=bool(bh and bd and ba and ba<bh and ba<bd)
         r1=bool(div=="I1" and away_unique and 1.20<=ba<2.10)
         ready5=hs.played>=5 and as_.played>=5 and hs.ppg5 is not None and as_.ppg5 is not None
@@ -269,7 +283,7 @@ def main():
             eo,eb,eu=bp(keysel); fid=f"{rule}|{div}|{fixture_id}"
             signals.append({
               "forward_id":fid,"rule":rule,"screened_at_utc":now,"league":info["name"],"div":div,"api_fixture_id":fixture_id,"match_date":d.isoformat(),"kickoff_time":kickoff,
-              "home_team":home,"away_team":away,"bet_market":"1X2","bet_selection":sel,"stake_u":"1.000","trigger_source":"API-Football Bet365 Match Winner",
+              "home_team":home,"away_team":away,"bet_market":"1X2","bet_selection":sel,"stake_u":"1.000","trigger_source":"Stage53 immutable first-captured Bet365 via API-Football",
               "trigger_b365_home":bh or "","trigger_b365_draw":bd or "","trigger_b365_away":ba or "","execution_source":exec_source,"execution_bookmaker":eb,
               "execution_odds":eo or "","execution_last_update_utc":eu,"execution_verified":"YES" if eo else "NO","home_rank":ranks.get(hm,""),"away_rank":ranks.get(am,""),
               "home_points":hs.points,"away_points":as_.points,"home_played":hs.played,"away_played":as_.played,"home_remaining":remh,"away_remaining":rema,
@@ -278,13 +292,14 @@ def main():
               "notes":"auto-screened; trigger snapshot immutable"
             })
 
+    write_dicts(TRIGGER_LEDGER,TRIGGER_FIELDS,trigger_rows)
     write_dicts(LATEST_SCREEN,SCREEN_FIELDS,screen); write_dicts(PASSPORTS,SCREEN_FIELDS,passports)
     log=read_forward(); existing={r.get("forward_id") for r in log}; added=0
     for s in signals:
         if s["forward_id"] not in existing:log.append(s);existing.add(s["forward_id"]);added+=1
     settle(log,results_by_div,now); write_dicts(FORWARD_LOG,FORWARD_FIELDS,log)
     RUN_META.write_text(json.dumps({"screened_at_utc":now,"status":"OK","season":SEASON_YEAR,"fixtures_seen":len(screen),"signal_matches":len(passports),
-                                    "new_forward_rows":added,"bookmaker_bet365_id":bookmaker_id,"match_winner_bet_id":bet_id},ensure_ascii=False,indent=2),encoding="utf-8")
+                                    "new_forward_rows":added,"trigger_ledger_rows":len(trigger_rows),"bookmaker_bet365_id":bookmaker_id,"match_winner_bet_id":bet_id},ensure_ascii=False,indent=2),encoding="utf-8")
     print(json.dumps({"fixtures":len(screen),"signals":len(passports),"new_forward":added,"forward_rows":len(log)},ensure_ascii=False))
 
 if __name__=="__main__":main()
