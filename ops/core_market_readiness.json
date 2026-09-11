@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-11T14:15:31Z",
+  "generated_at_utc": "2026-09-11T18:35:22Z",
   "status": "OK",
   "scope": "PBK_CORE_8",
   "policy": {
@@ -10,7 +10,8 @@
   },
   "state_counts": {
     "ACTIVE_GOVERNED": 1,
-    "COLLECTING_OPENERS": 4,
+    "COLLECTING_CLOSES": 3,
+    "COLLECTING_OPENERS": 1,
     "HISTORICAL_NO_CANDIDATE": 1,
     "WATCH_GOVERNED": 2
   },
@@ -25,19 +26,19 @@
     },
     {
       "market_id": "DOUBLE_CHANCE",
-      "readiness_state": "COLLECTING_OPENERS",
+      "readiness_state": "COLLECTING_CLOSES",
       "opener_rows": 137,
       "opener_fixtures": 137,
-      "snapshot_rows": 108,
+      "snapshot_rows": 420,
       "snapshot_fixtures": 108,
-      "close_rows": 0,
-      "close_fixtures": 0,
-      "marathonbet_close_fixture_coverage_pct": null,
-      "settled_fixture_coverage_pct": null,
-      "settled_fixtures": 0,
+      "close_rows": 1,
+      "close_fixtures": 1,
+      "marathonbet_close_fixture_coverage_pct": 100.0,
+      "settled_fixture_coverage_pct": 100.0,
+      "settled_fixtures": 1,
       "signals_created": 0,
       "blocking_reasons": [
-        "CLOSED_FIXTURES_0/120"
+        "CLOSED_FIXTURES_1/120"
       ],
       "label_ru": "Двойной шанс — 1Х / Х2 / 12",
       "registry_status": "PROSPECTIVE_DATA_COLLECTION",
@@ -48,7 +49,7 @@
       "readiness_state": "COLLECTING_OPENERS",
       "opener_rows": 121,
       "opener_fixtures": 121,
-      "snapshot_rows": 95,
+      "snapshot_rows": 273,
       "snapshot_fixtures": 95,
       "close_rows": 0,
       "close_fixtures": 0,
@@ -75,19 +76,19 @@
     },
     {
       "market_id": "EUROPEAN_HANDICAP",
-      "readiness_state": "COLLECTING_OPENERS",
+      "readiness_state": "COLLECTING_CLOSES",
       "opener_rows": 709,
       "opener_fixtures": 137,
-      "snapshot_rows": 558,
+      "snapshot_rows": 1658,
       "snapshot_fixtures": 108,
-      "close_rows": 0,
-      "close_fixtures": 0,
-      "marathonbet_close_fixture_coverage_pct": null,
-      "settled_fixture_coverage_pct": null,
-      "settled_fixtures": 0,
+      "close_rows": 5,
+      "close_fixtures": 1,
+      "marathonbet_close_fixture_coverage_pct": 100.0,
+      "settled_fixture_coverage_pct": 100.0,
+      "settled_fixtures": 1,
       "signals_created": 0,
       "blocking_reasons": [
-        "CLOSED_FIXTURES_0/120"
+        "CLOSED_FIXTURES_1/120"
       ],
       "label_ru": "Европейская фора 3-way",
       "registry_status": "PROSPECTIVE_DATA_COLLECTION",
@@ -103,19 +104,19 @@
     },
     {
       "market_id": "TEAM_TOTAL",
-      "readiness_state": "COLLECTING_OPENERS",
+      "readiness_state": "COLLECTING_CLOSES",
       "opener_rows": 1252,
       "opener_fixtures": 137,
-      "snapshot_rows": 1980,
+      "snapshot_rows": 5873,
       "snapshot_fixtures": 108,
-      "close_rows": 0,
-      "close_fixtures": 0,
-      "marathonbet_close_fixture_coverage_pct": null,
-      "settled_fixture_coverage_pct": null,
-      "settled_fixtures": 0,
+      "close_rows": 10,
+      "close_fixtures": 1,
+      "marathonbet_close_fixture_coverage_pct": 100.0,
+      "settled_fixture_coverage_pct": 100.0,
+      "settled_fixtures": 1,
       "signals_created": 0,
       "blocking_reasons": [
-        "CLOSED_FIXTURES_0/120"
+        "CLOSED_FIXTURES_1/120"
       ],
       "label_ru": "Индивидуальные тоталы — ИТБ/ИТМ",
       "registry_status": "PROSPECTIVE_DATA_COLLECTION",
