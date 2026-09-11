@@ -8,6 +8,7 @@ on:
     paths:
       - 'scripts/stage67_system_health.py'
       - 'scripts/stage67_append_governance_health.py'
+      - 'scripts/stage67_append_api_budget.py'
       - '.github/workflows/stage67-system-health.yml'
 
 permissions:
@@ -34,6 +35,9 @@ jobs:
 
       - name: Include Stage 68/69 governance health
         run: python scripts/stage67_append_governance_health.py
+
+      - name: Include API-Football budget guard
+        run: python scripts/stage67_append_api_budget.py
 
       - name: Show Stage 67 summary
         run: |
