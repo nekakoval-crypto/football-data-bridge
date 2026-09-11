@@ -74,17 +74,29 @@ jobs:
                   )
           PY
 
-      - name: Commit Stage 56 operational files
+      - name: Commit Stage 56 operational files safely
         run: |
           git config user.name 'stage56-bot'
           git config user.email 'stage56-bot@users.noreply.github.com'
-          git add -A ops
+          git add ops/weather_snapshots.csv \
+                  ops/rotation_snapshots.csv \
+                  ops/stage56_latest.csv \
+                  ops/stage56_last_run.json
           if git diff --cached --quiet; then
             echo 'No Stage 56 operational changes to commit.'
-          else
-            git commit -m 'Stage 56 weather rotation update'
-            git push
+            exit 0
           fi
+          git commit -m 'Stage 56 weather rotation update'
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin main; then
+              exit 0
+            fi
+            echo "Concurrent push detected; retry ${attempt}/3"
+            git rebase --abort 2>/dev/null || true
+            git fetch origin main
+            sleep 2
+          done
+          exit 1
 
       - name: Upload Stage 56 snapshot
         uses: actions/upload-artifact@v4
