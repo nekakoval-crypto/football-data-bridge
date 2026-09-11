@@ -37,6 +37,10 @@ def enrich(row):
         except:d['away_selection_ru']='Ф2 (противоположная европейская фора)'
     if any(k in d for k in ('b365_f1_0','open_b365_f1_0','bet365_close_f1_0')):
         d['f1_selection_ru']='Ф1(0)';d['f2_selection_ru']='Ф2(0)'
+    if d.get('market_family')=='DRAW_NO_BET':
+        d.setdefault('selection_a_ru','Ф1(0)');d.setdefault('selection_b_ru','Ф2(0)')
+    if d.get('market_family')=='DOUBLE_CHANCE':
+        d.setdefault('selection_a_ru','1Х');d.setdefault('selection_b_ru','Х2');d.setdefault('selection_c_ru','12')
     return d
 
 def query_table(conn,table,q,filter_map=None,odds_candidates=None,default_order=None):
@@ -95,19 +99,20 @@ def dispatch(path_with_query):
         if path=='/v1/markets/dnb/openers':return 200,query_table(conn,'dnb_openers',q,{'fixture_id':'api_fixture_id','league':'league'},['open_b365_f1_0','open_b365_f2_0'],['kickoff_utc','api_fixture_id'])
         if path=='/v1/markets/dnb/snapshots':return 200,query_table(conn,'dnb_snapshots',q,{'fixture_id':'api_fixture_id','league':'league'},['user_f1_0','user_f2_0','b365_f1_0'],['kickoff_utc','api_fixture_id','captured_at_utc'])
         if path=='/v1/markets/dnb/closes':return 200,query_table(conn,'dnb_closes',q,{'fixture_id':'api_fixture_id','league':'league'},['user_close_f1_0','user_close_f2_0','bet365_close_f1_0'],['kickoff_utc','api_fixture_id'])
+        if path=='/v1/markets/settlements':return 200,query_table(conn,'core_market_settlements',q,{'fixture_id':'api_fixture_id','league':'league','market_family':'market_family','status':'settlement_status'},['marathon_close_a','bet365_close_a'],['kickoff_utc','api_fixture_id','market_family','settlement_key'])
         if path=='/v1/lifecycle':return 200,query_table(conn,'lifecycle_events',q,{'signal_id':'signal_id','fixture_id':'api_fixture_id','strategy':'rule'},[],['event_at_utc','signal_id'])
         if path=='/v1/exposure':return 200,query_table(conn,'exposure_positions',q,{'fixture_id':'api_fixture_id','status':'status','strategy':'rules'},[],['kickoff_utc','api_fixture_id'])
         if path=='/v1/context':return 200,query_table(conn,'context_latest',q,{'fixture_id':'api_fixture_id'},[],['kickoff_utc','api_fixture_id'])
         if path=='/v1/odds':return 200,query_table(conn,'odds_snapshots',q,{'fixture_id':'api_fixture_id','bookmaker':'bookmaker'},['odds'],['captured_at_utc','api_fixture_id'])
         if path=='/v1/attention':return 200,(state_doc(conn,'attention_board.json') or {})
-        if path=='/v1/governance':return 200,{'system_health':state_doc(conn,'system_health.json'),'exposure':state_doc(conn,'exposure_summary.json'),'watch_promotion':state_doc(conn,'watch_promotion_gate.json'),'league_challenger':state_doc(conn,'stage71_challenger_board.json'),'fonbet_coverage':state_doc(conn,'stage71b_fonbet_coverage.json'),'team_total_capture':state_doc(conn,'stage71c_last_run.json'),'double_chance_capture':state_doc(conn,'stage71e_last_run.json'),'european_handicap_capture':state_doc(conn,'stage71f_last_run.json'),'dnb_capture':state_doc(conn,'stage71g_last_run.json')}
+        if path=='/v1/governance':return 200,{'system_health':state_doc(conn,'system_health.json'),'exposure':state_doc(conn,'exposure_summary.json'),'watch_promotion':state_doc(conn,'watch_promotion_gate.json'),'league_challenger':state_doc(conn,'stage71_challenger_board.json'),'fonbet_coverage':state_doc(conn,'stage71b_fonbet_coverage.json'),'team_total_capture':state_doc(conn,'stage71c_last_run.json'),'double_chance_capture':state_doc(conn,'stage71e_last_run.json'),'european_handicap_capture':state_doc(conn,'stage71f_last_run.json'),'dnb_capture':state_doc(conn,'stage71g_last_run.json'),'core_market_settlement':state_doc(conn,'stage71i_last_run.json')}
         if path=='/v1/config/strategy-filter':return 200,config_doc(STRATEGY_FILTER,{'global_odds_cap':None,'groups':[],'future_ui_filters':[]})
         if path=='/v1/config/market-scope':return 200,config_doc(MARKET_SCOPE,{'status':'UNAVAILABLE','allowed_market_families':[],'deferred_market_universe':[]})
         if path=='/v1/config/core-market-registry':return 200,config_doc(CORE_MARKETS,{'scope':'UNAVAILABLE','markets':[]})
     return 404,{'error':'NOT_FOUND','path':path,'api_version':API_VERSION}
 
 class Handler(BaseHTTPRequestHandler):
-    server_version='PBKInternalAPI/1.4'
+    server_version='PBKInternalAPI/1.5'
     def do_GET(self):
         try:status,payload=dispatch(self.path)
         except FileNotFoundError as e:status,payload=503,{'error':'DATA_LAYER_UNAVAILABLE','detail':str(e)}
@@ -127,6 +132,7 @@ def self_test():
         '/v1/markets/double-chance/openers?limit=1':lambda p:(p.get('count') or 0)>0,
         '/v1/markets/european-handicap/openers?limit=1':lambda p:(p.get('count') or 0)>0,
         '/v1/markets/dnb/openers?limit=1':lambda p:(p.get('count') or 0)>0,
+        '/v1/markets/settlements?limit=1':lambda p:p.get('count') is not None,
         '/v1/lifecycle':lambda p:p.get('count') is not None,
         '/v1/attention':lambda p:isinstance(p,dict),
         '/v1/governance':lambda p:isinstance(p,dict),
