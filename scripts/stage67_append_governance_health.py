@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Append Stage68/69 freshness checks to Stage67 health output."""
+"""Append Stage68-71 freshness checks to Stage67 health output."""
 from __future__ import annotations
 import json
 from datetime import datetime, timezone
@@ -8,7 +8,12 @@ import os
 
 OPS=Path(os.getenv('OPS_DIR','ops'))
 H=OPS/'system_health.json'; M=OPS/'system_health.md'; META=OPS/'stage67_last_run.json'
-CHECKS=[('Stage68 exposure map','stage68_last_run.json',3.0),('Stage69 promotion gate','stage69_last_run.json',3.0)]
+CHECKS=[
+    ('Stage68 exposure map','stage68_last_run.json',3.0),
+    ('Stage69 promotion gate','stage69_last_run.json',3.0),
+    ('Stage70 signal lifecycle','stage70_last_run.json',3.0),
+    ('Stage71 league/market challenger','stage71_last_run.json',15.0),
+]
 
 def parse(v):
     try:return datetime.fromisoformat(str(v).replace('Z','+00:00')).astimezone(timezone.utc)
@@ -44,8 +49,6 @@ def main():
     overall='CRITICAL' if critical else ('WARN' if warns else 'HEALTHY')
     d['status']=overall; d.setdefault('summary',{})['critical_issues']=critical; d['summary']['warnings']=warns
     H.write_text(json.dumps(d,ensure_ascii=False,indent=2),encoding='utf-8')
-    lines=M.read_text(encoding='utf-8-sig').splitlines() if M.exists() else ['# PBK System Health']
-    # Rebuild compact markdown from JSON to avoid duplicate append blocks.
     icon={'HEALTHY':'🟢','WARN':'🟠','CRITICAL':'🔴'}[overall]
     out=['# PBK System Health','',f"Обновлено UTC: {d.get('generated_at_utc','')}",f"Статус: {icon} **{overall}** | critical {critical} | warnings {warns}",'','## Ключевые проверки']
     s=d.get('summary',{}); total=s.get('active_canonical_rows',0)
