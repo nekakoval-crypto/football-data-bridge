@@ -1,5 +1,5 @@
 {
-  "screened_at_utc": "2026-09-11T10:06:45Z",
+  "screened_at_utc": "2026-09-11T10:47:47Z",
   "status": "OK",
   "season": 2026,
   "fixtures_seen": 100,
@@ -8,10 +8,42 @@
   "trigger_ledger_rows": 20,
   "bookmaker_bet365_id": 8,
   "match_winner_bet_id": 1,
-  "r3_exact_reproduction_verified": false,
-  "r3_candidates_blocked_this_run": 0,
-  "r3_forward_rows_removed_before_commit": 0,
-  "r3_unverified_candidates_total": 0,
-  "signal_matches_after_r3_guard": 3,
-  "forward_rows_after_r3_guard": 3
+  "r3_exact_reproduction_verified": true,
+  "r3_reproduction_method": "Historical source calendar Monday + games_per_team minus completed league matches strictly before kickoff date; live Monday evaluated in league-local timezone",
+  "r3_reproduction_signature": {
+    "source": "Football_Top5_STAGE48_Weekday_Effects_Report.xlsx + Football_Top5_2016-2026.csv",
+    "modern_sample": 12459,
+    "historical_bets": 155,
+    "historical_draws": 56,
+    "historical_profit_u_b365_first": 51.86,
+    "historical_roi_b365_first_pct": 33.4580645161,
+    "historical_observed_mdd_u": 10.4,
+    "league_counts": {
+      "Serie A": 64,
+      "Premier League": 46,
+      "La Liga": 38,
+      "Bundesliga": 6,
+      "Ligue 1": 1
+    },
+    "season_counts": {
+      "2019/20": 21,
+      "2020/21": 22,
+      "2021/22": 21,
+      "2022/23": 20,
+      "2023/24": 26,
+      "2024/25": 20,
+      "2025/26": 25
+    }
+  },
+  "r3_provisional_candidates_this_run": 0,
+  "r3_exact_candidates_this_run": 0,
+  "r3_exact_auto_forward_candidates_this_run": 0,
+  "r3_manual_review_conflicts_this_run": 0,
+  "r3_classification_changes_this_run": 0,
+  "r3_provisional_forward_rows_replaced_this_run": 0,
+  "r3_new_forward_rows_this_run": 0,
+  "r3_new_manual_review_rows_this_run": 0,
+  "signal_matches_after_r3_reconcile": 3,
+  "forward_rows_after_r3_reconcile": 3,
+  "r3_unverified_archive_preserved": true
 }
