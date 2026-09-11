@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-11T20:02:50Z
+Generated UTC: 2026-09-11T21:02:37Z
 Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -57,7 +57,7 @@ Active canonical signals: 3
 > This is **not R4 and not a bet signal**. It does not change the canonical R1/R2/R3 forward ledger.
 
 - Scope: АПЛ: движение фаворита П1/П2 (+3 pp no-vig from frozen Bet365 opener).
-- Frozen openers tracked: 18
+- Frozen openers tracked: 20
 - Active +3 pp crossings: 0
 - Observed closes: 0 | Close-qualified M1 watches: 0
 - Executable bookmaker being observed: Marathonbet
@@ -86,13 +86,12 @@ Active canonical signals: 3
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 95
-- Активные движения ≥3 п.п.: всего 2 | ОЗ — Да 2 | ОЗ — Нет 0
-- Зафиксировано observed close: 0
+- Активные движения ≥3 п.п.: всего 1 | ОЗ — Да 1 | ОЗ — Нет 0
+- Зафиксировано observed close: 4
 - Исполнимый букмекер для наблюдения: Marathonbet
 
 ## Текущие ОЗ-watch
 - WATCH | Ligue 1 | Stade Brestois 29 — Paris Saint Germain | ОЗ — Да | движение P(ОЗ — Да) +3.33 п.п. | Marathonbet 1.75 | 3241.3 мин до матча
-- WATCH | Serie A | Venezia — Fiorentina | ОЗ — Да | движение P(ОЗ — Да) +3.60 п.п. | Marathonbet 1.49 | 26.3 мин до матча
 
 ---
 
@@ -100,11 +99,11 @@ Active canonical signals: 3
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 2 | settled 0 | pending 2
+- Crossings: 2 | settled 1 | pending 1
 - Marathonbet coverage at crossing: 100.0%
-- First-crossing P&L: 0.000u | ROI N/A | W-L 0-0
-- Close: observed 0 | stayed qualified 0 | reverted 0 | persistence N/A
-- Close-qualified ROI: N/A | Reverted ROI: N/A
+- First-crossing P&L: 0.490u | ROI 49.0% | W-L 1-0
+- Close: observed 1 | stayed qualified 1 | reverted 0 | persistence 100.0%
+- Close-qualified ROI: 49.0% | Reverted ROI: N/A
 
 ## By WATCH family
-- Big-5 ОЗ market movement — ОЗ — Да: crossings 2, settled 0, ROI N/A, close persistence N/A
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 2, settled 1, ROI 49.0%, close persistence 100.0%
