@@ -1,0 +1,32 @@
+{
+  "run_at_utc": "2026-09-11T11:23:38Z",
+  "status": "OK",
+  "scope": "Big-5 BTTS prospective market watch",
+  "season": 2026,
+  "btts_bet_id": 8,
+  "btts_bet_name": "Both Teams Score",
+  "movement_threshold_no_vig_pp": 0.03,
+  "open_capture_horizon_hours": 336.0,
+  "track_horizon_hours": 72.0,
+  "user_bookmaker": "Marathonbet",
+  "upcoming_fixtures_seen": 100,
+  "active_fixture_ids": 100,
+  "odds_api_calls": 96,
+  "fixture_state_api_calls": 0,
+  "new_openers": 93,
+  "new_snapshots": 93,
+  "new_crossings": 0,
+  "new_closes": 0,
+  "total_openers": 93,
+  "total_snapshots": 93,
+  "total_crossings": 0,
+  "total_closes": 0,
+  "policy": {
+    "canonical_forward": "UNCHANGED",
+    "historical_edge": "NONE CLAIMED — historical BTTS first/close odds unavailable in canonical dataset",
+    "crossing": "WATCH only; not a bet",
+    "display_market": "ОЗ — Да / ОЗ — Нет",
+    "execution_evidence": "Marathonbet Yes/No captured at crossing and observed close when available"
+  },
+  "warnings": []
+}
