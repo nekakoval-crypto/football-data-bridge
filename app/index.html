@@ -34,7 +34,7 @@
         <div id="attention-list" class="stack"></div>
         <div class="section-head"><h2>Активные R</h2></div>
         <div id="canonical-list" class="stack"></div>
-        <div class="section-head"><h2>Ближайшие матчи</h2><span>рынки ≠ сигналы</span></div>
+        <div class="section-head"><h2>Ближайшие матчи</h2><span>нажми на матч · рынки ≠ сигналы</span></div>
         <div id="today-market-cards" class="match-grid"></div>
       </section>
 
@@ -49,7 +49,7 @@
       </section>
 
       <section class="view" id="view-matches">
-        <div class="section-head"><h2>Карточки матчей</h2><span>Marathonbet</span></div>
+        <div class="section-head"><h2>Карточки матчей</h2><span>Marathonbet · нажми для деталей</span></div>
         <div id="all-market-cards" class="match-grid"></div>
       </section>
 
@@ -61,6 +61,15 @@
 
     <footer>ПБК · read-only interface · решения стратегий не меняются интерфейсом</footer>
   </div>
+
+  <dialog id="match-dialog" class="match-dialog">
+    <div class="dialog-head">
+      <div><div class="eyebrow" id="detail-eyebrow">Матч</div><h2 id="detail-title">Карточка матча</h2></div>
+      <button id="detail-close" class="close-btn" aria-label="Закрыть">×</button>
+    </div>
+    <div id="detail-body" class="detail-body"></div>
+  </dialog>
+
   <script type="module" src="/app.js"></script>
 </body>
 </html>
