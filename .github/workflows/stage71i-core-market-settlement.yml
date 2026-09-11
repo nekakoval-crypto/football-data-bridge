@@ -3,12 +3,7 @@ name: Stage 71I Core Market Settlement
 on:
   workflow_dispatch:
   schedule:
-    - cron: '43 * * * *'
-  push:
-    paths:
-      - 'scripts/stage71i_core_market_settlement.py'
-      - 'research/stage71i_core_market_settlement_policy_2026-09-11.md'
-      - '.github/workflows/stage71i-core-market-settlement.yml'
+    - cron: '43 */2 * * *'
 
 permissions:
   contents: write
@@ -25,25 +20,26 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Settle closed prospective market observations
+      - name: Settle closed prospective market observations once
         run: python scripts/stage71i_core_market_settlement.py
       - name: Show settlement summary
         run: cat ops/stage71i_last_run.json
-      - name: Commit settlement outputs safely
+      - name: Commit settlement outputs without repeating API calls
         run: |
           git config user.name 'stage71i-bot'
           git config user.email 'stage71i-bot@users.noreply.github.com'
-          for attempt in 1 2 3; do
-            git fetch origin main
-            git reset --hard origin/main
-            python scripts/stage71i_core_market_settlement.py
-            git add ops/stage71i_market_settlements.csv ops/stage71i_last_run.json
-            if git diff --cached --quiet; then exit 0; fi
-            git commit -m 'Stage71I core market settlement update'
-            if git push origin HEAD:main; then exit 0; fi
-            sleep 2
-          done
-          exit 1
+          git add ops/stage71i_market_settlements.csv ops/stage71i_last_run.json
+          if git diff --cached --quiet; then
+            echo 'No Stage71I changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Stage71I core market settlement update'
+          if git pull --rebase origin main && git push origin main; then
+            exit 0
+          fi
+          git rebase --abort 2>/dev/null || true
+          echo 'Concurrent update: do not repeat API calls. Outputs remain in artifact; next scheduled run will reconcile.'
+          exit 0
       - uses: actions/upload-artifact@v4
         with:
           name: stage71i-core-market-settlement
