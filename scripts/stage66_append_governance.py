@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Append Stage67-69 governance summary to the Stage66 attention board."""
+"""Append Stage67-71 governance summary to the Stage66 attention board."""
 from __future__ import annotations
 import json, os
 from pathlib import Path
@@ -19,6 +19,7 @@ def main():
     health=load('system_health.json')
     exp=load('exposure_summary.json')
     gate=load('watch_promotion_gate.json')
+    s71=load('stage71_last_run.json')
     gov={
         'system_health': health.get('status','UNKNOWN'),
         'health_critical': (health.get('summary') or {}).get('critical_issues'),
@@ -29,6 +30,11 @@ def main():
         'stage61_gate': ((gate.get('families') or {}).get('Stage61') or {}).get('status','UNKNOWN'),
         'stage62_gate': ((gate.get('families') or {}).get('Stage62') or {}).get('status','UNKNOWN'),
         'stage63_gate': ((gate.get('families') or {}).get('Stage63') or {}).get('status','UNKNOWN'),
+        'r1_league_leader': s71.get('r1_leader','UNKNOWN'),
+        'r2_league_leader': s71.get('r2_leader','UNKNOWN'),
+        'challenger_monitoring_rows': s71.get('monitoring',0),
+        'challenger_data_required_rows': s71.get('data_required',0),
+        'regime_discovery_eligible': s71.get('regime_discovery_eligible',0),
     }
     b['governance']=gov
     BOARD_JSON.write_text(json.dumps(b,ensure_ascii=False,indent=2),encoding='utf-8')
@@ -38,6 +44,9 @@ def main():
     md += f"- System Health: **{gov['system_health']}** | critical {gov['health_critical']} | warnings {gov['health_warnings']}\n"
     md += f"- Логическая canonical экспозиция: **{gov['logical_exposure_u']}u** | конфликтов матчей {gov['canonical_conflict_fixtures']} | убрано дублей {gov['deduplicated_overlap_u']}u\n"
     md += f"- Promotion Gate: Stage61 **{gov['stage61_gate']}** | Stage62 **{gov['stage62_gate']}** | Stage63 **{gov['stage63_gate']}**\n"
+    md += f"- League Challenger: R1 лидер **{gov['r1_league_leader']}** | R2 лидер **{gov['r2_league_leader']}** | monitoring {gov['challenger_monitoring_rows']} | data required {gov['challenger_data_required_rows']}\n"
+    if (gov['regime_discovery_eligible'] or 0)>0:
+        md += f"- 🟡 Regime discovery: {gov['regime_discovery_eligible']} кандидат(ов) дошли до порога нового preregistered holdout.\n"
     if (gov['canonical_conflict_fixtures'] or 0)>0:
         md += '- ⚠️ Есть canonical-конфликт: требуется manual review до любого увеличения экспозиции.\n'
     if gov['system_health']=='CRITICAL':
