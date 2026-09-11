@@ -1,0 +1,62 @@
+name: Stage 66 Attention Board
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '58 * * * *'
+  push:
+    paths:
+      - 'scripts/stage66_attention_board.py'
+      - '.github/workflows/stage66-attention-board.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  board:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPS_DIR: 'ops'
+      STAGE66_LOCAL_TZ: 'Europe/Berlin'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build Stage 66 attention board
+        run: python scripts/stage66_attention_board.py
+
+      - name: Show Stage 66 board
+        run: |
+          cat ops/stage66_last_run.json
+          echo '--- attention_board.md ---'
+          cat ops/attention_board.md
+
+      - name: Commit Stage 66 operational files
+        run: |
+          git config user.name 'stage66-bot'
+          git config user.email 'stage66-bot@users.noreply.github.com'
+          git add -A ops
+          if git diff --cached --quiet; then
+            echo 'No Stage 66 changes to commit.'
+          else
+            git commit -m 'Stage 66 attention board update'
+            git push
+          fi
+
+      - name: Upload Stage 66 snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage66-attention-board
+          path: |
+            ops/attention_board.json
+            ops/attention_board.md
+            ops/stage66_last_run.json
+          if-no-files-found: error
+          retention-days: 30
