@@ -1,7 +1,7 @@
 # PBK Stage71 — League & Market Challenger Board
 
-Обновлено UTC: 2026-09-11T12:25:37Z
-Scope: 16 лиг | API catalog: 16/16 | API calls this run: 16
+Обновлено UTC: 2026-09-11T12:27:06Z
+Scope: 16 лиг | API catalog: 16/16 | API calls this run: 0
 
 > Лидер — описательный статус. Stage71 не меняет canonical R1/R2 автоматически.
 
