@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-11T12:33:30Z",
+  "generated_at_utc": "2026-09-11T20:08:16Z",
   "status": "OK",
   "scope_leagues": 16,
   "families": [
@@ -38,7 +38,17 @@
       "marathonbet_coverage_pct": "",
       "status": "MONITORING_REJECTED_CURRENT_RULE",
       "leader": "NO",
-      "blocking_reason": "TEST ROI -5.58 not >0; positive seasons 4/10<60%"
+      "blocking_reason": "TEST ROI -5.58 not >0; positive seasons 4/10<60%",
+      "prospective_captured": "0",
+      "prospective_executable": "0",
+      "prospective_pending_executable": "0",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REJECTED_CURRENT_RULE_RESEARCH_ONLY"
     },
     {
       "family": "R1",
@@ -61,7 +71,17 @@
       "marathonbet_coverage_pct": "",
       "status": "MONITORING_REJECTED_CURRENT_RULE",
       "leader": "NO",
-      "blocking_reason": "TRAIN ROI -5.56 not >0; positive seasons 4/10<60%"
+      "blocking_reason": "TRAIN ROI -5.56 not >0; positive seasons 4/10<60%",
+      "prospective_captured": "0",
+      "prospective_executable": "0",
+      "prospective_pending_executable": "0",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REJECTED_CURRENT_RULE_RESEARCH_ONLY"
     },
     {
       "family": "R1",
@@ -81,10 +101,20 @@
       "prospective_roi_pct": "",
       "prospective_first_half_roi_pct": "",
       "prospective_second_half_roi_pct": "",
-      "marathonbet_coverage_pct": "100.0",
+      "marathonbet_coverage_pct": "100.000",
       "status": "ACTIVE",
       "leader": "YES",
-      "blocking_reason": "forward deterioration not evaluable before 60 settled"
+      "blocking_reason": "active forward sample 0/60 settled (60 remaining before deterioration review can be evaluated)",
+      "prospective_captured": "3",
+      "prospective_executable": "3",
+      "prospective_pending_executable": "3",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "ACTIVE_FORWARD_MONITORING"
     },
     {
       "family": "R1",
@@ -104,10 +134,20 @@
       "prospective_roi_pct": "",
       "prospective_first_half_roi_pct": "",
       "prospective_second_half_roi_pct": "",
-      "marathonbet_coverage_pct": "",
-      "status": "MONITORING_REJECTED_CURRENT_RULE",
+      "marathonbet_coverage_pct": "100.000",
+      "status": "MONITORING",
       "leader": "NO",
-      "blocking_reason": "TRAIN ROI -10.87 not >0; TEST ROI -5.9 not >0; positive seasons 3/10<60%"
+      "blocking_reason": "fresh discovery sample 0/120 settled (120 remaining); executable 1/1; Marathonbet coverage 100.0%; ROI —%; first-half —%; second-half —%; no direct promotion",
+      "prospective_captured": "1",
+      "prospective_executable": "1",
+      "prospective_pending_executable": "1",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R1",
@@ -130,7 +170,17 @@
       "marathonbet_coverage_pct": "",
       "status": "MONITORING_REJECTED_CURRENT_RULE",
       "leader": "NO",
-      "blocking_reason": "TRAIN ROI -3.53 not >0; TEST ROI -3.81 not >0; positive seasons 3/10<60%"
+      "blocking_reason": "TRAIN ROI -3.53 not >0; TEST ROI -3.81 not >0; positive seasons 3/10<60%",
+      "prospective_captured": "0",
+      "prospective_executable": "0",
+      "prospective_pending_executable": "0",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REJECTED_CURRENT_RULE_RESEARCH_ONLY"
     },
     {
       "family": "R1",
@@ -146,14 +196,24 @@
       "test_roi_pct": "",
       "positive_seasons": "",
       "total_seasons": "",
-      "prospective_settled": "0",
-      "prospective_roi_pct": "",
+      "prospective_settled": "1",
+      "prospective_roi_pct": "-100.000",
       "prospective_first_half_roi_pct": "",
-      "prospective_second_half_roi_pct": "",
+      "prospective_second_half_roi_pct": "-100.000",
       "marathonbet_coverage_pct": "100.000",
       "status": "MONITORING",
       "leader": "NO",
-      "blocking_reason": "fresh discovery sample 0/120 settled; no direct promotion"
+      "blocking_reason": "fresh discovery sample 1/120 settled (119 remaining); executable 2/2; Marathonbet coverage 100.0%; ROI -100.00%; first-half —%; second-half -100.00%; no direct promotion",
+      "prospective_captured": "2",
+      "prospective_executable": "2",
+      "prospective_pending_executable": "1",
+      "review_target_settled": "60",
+      "review_remaining_settled": "59",
+      "review_progress_pct": "1.7",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "119",
+      "discovery_progress_pct": "0.8",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R1",
@@ -176,7 +236,17 @@
       "marathonbet_coverage_pct": "100.000",
       "status": "MONITORING",
       "leader": "NO",
-      "blocking_reason": "fresh discovery sample 0/120 settled; no direct promotion"
+      "blocking_reason": "fresh discovery sample 0/120 settled (120 remaining); executable 1/1; Marathonbet coverage 100.0%; ROI —%; first-half —%; second-half —%; no direct promotion",
+      "prospective_captured": "1",
+      "prospective_executable": "1",
+      "prospective_pending_executable": "1",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R1",
@@ -199,7 +269,17 @@
       "marathonbet_coverage_pct": "100.000",
       "status": "MONITORING",
       "leader": "NO",
-      "blocking_reason": "fresh discovery sample 0/120 settled; no direct promotion"
+      "blocking_reason": "fresh discovery sample 0/120 settled (120 remaining); executable 1/1; Marathonbet coverage 100.0%; ROI —%; first-half —%; second-half —%; no direct promotion",
+      "prospective_captured": "1",
+      "prospective_executable": "1",
+      "prospective_pending_executable": "1",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R1",
@@ -222,7 +302,17 @@
       "marathonbet_coverage_pct": "100.000",
       "status": "MONITORING",
       "leader": "NO",
-      "blocking_reason": "fresh discovery sample 0/120 settled; no direct promotion"
+      "blocking_reason": "fresh discovery sample 0/120 settled (120 remaining); executable 1/1; Marathonbet coverage 100.0%; ROI —%; first-half —%; second-half —%; no direct promotion",
+      "prospective_captured": "1",
+      "prospective_executable": "1",
+      "prospective_pending_executable": "1",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R1",
@@ -238,14 +328,24 @@
       "test_roi_pct": "",
       "positive_seasons": "",
       "total_seasons": "",
-      "prospective_settled": "0",
-      "prospective_roi_pct": "",
+      "prospective_settled": "1",
+      "prospective_roi_pct": "-100.000",
       "prospective_first_half_roi_pct": "",
-      "prospective_second_half_roi_pct": "",
+      "prospective_second_half_roi_pct": "-100.000",
       "marathonbet_coverage_pct": "100.000",
       "status": "MONITORING",
       "leader": "NO",
-      "blocking_reason": "fresh discovery sample 0/120 settled; no direct promotion"
+      "blocking_reason": "fresh discovery sample 1/120 settled (119 remaining); executable 2/2; Marathonbet coverage 100.0%; ROI -100.00%; first-half —%; second-half -100.00%; no direct promotion",
+      "prospective_captured": "2",
+      "prospective_executable": "2",
+      "prospective_pending_executable": "1",
+      "review_target_settled": "60",
+      "review_remaining_settled": "59",
+      "review_progress_pct": "1.7",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "119",
+      "discovery_progress_pct": "0.8",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R1",
@@ -268,7 +368,17 @@
       "marathonbet_coverage_pct": "100.000",
       "status": "MONITORING",
       "leader": "NO",
-      "blocking_reason": "fresh discovery sample 0/120 settled; no direct promotion"
+      "blocking_reason": "fresh discovery sample 0/120 settled (120 remaining); executable 2/2; Marathonbet coverage 100.0%; ROI —%; first-half —%; second-half —%; no direct promotion",
+      "prospective_captured": "2",
+      "prospective_executable": "2",
+      "prospective_pending_executable": "2",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R1",
@@ -291,7 +401,17 @@
       "marathonbet_coverage_pct": "100.000",
       "status": "MONITORING",
       "leader": "NO",
-      "blocking_reason": "fresh discovery sample 0/120 settled; no direct promotion"
+      "blocking_reason": "fresh discovery sample 0/120 settled (120 remaining); executable 1/1; Marathonbet coverage 100.0%; ROI —%; first-half —%; second-half —%; no direct promotion",
+      "prospective_captured": "1",
+      "prospective_executable": "1",
+      "prospective_pending_executable": "1",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R1",
@@ -314,7 +434,17 @@
       "marathonbet_coverage_pct": "",
       "status": "DATA_REQUIRED",
       "leader": "NO",
-      "blocking_reason": "comparable historical evidence missing"
+      "blocking_reason": "comparable historical evidence missing; prospective discovery 0/120 settled; captured 0, executable 0; no direct promotion",
+      "prospective_captured": "0",
+      "prospective_executable": "0",
+      "prospective_pending_executable": "0",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R1",
@@ -337,7 +467,17 @@
       "marathonbet_coverage_pct": "100.000",
       "status": "MONITORING",
       "leader": "NO",
-      "blocking_reason": "fresh discovery sample 0/120 settled; no direct promotion"
+      "blocking_reason": "fresh discovery sample 0/120 settled (120 remaining); executable 2/2; Marathonbet coverage 100.0%; ROI —%; first-half —%; second-half —%; no direct promotion",
+      "prospective_captured": "2",
+      "prospective_executable": "2",
+      "prospective_pending_executable": "2",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R1",
@@ -360,7 +500,17 @@
       "marathonbet_coverage_pct": "100.000",
       "status": "MONITORING",
       "leader": "NO",
-      "blocking_reason": "fresh discovery sample 0/120 settled; no direct promotion"
+      "blocking_reason": "fresh discovery sample 0/120 settled (120 remaining); executable 2/2; Marathonbet coverage 100.0%; ROI —%; first-half —%; second-half —%; no direct promotion",
+      "prospective_captured": "2",
+      "prospective_executable": "2",
+      "prospective_pending_executable": "2",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R1",
@@ -383,7 +533,17 @@
       "marathonbet_coverage_pct": "100.000",
       "status": "MONITORING",
       "leader": "NO",
-      "blocking_reason": "fresh discovery sample 0/120 settled; no direct promotion"
+      "blocking_reason": "fresh discovery sample 0/120 settled (120 remaining); executable 1/1; Marathonbet coverage 100.0%; ROI —%; first-half —%; second-half —%; no direct promotion",
+      "prospective_captured": "1",
+      "prospective_executable": "1",
+      "prospective_pending_executable": "1",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R2",
@@ -406,7 +566,17 @@
       "marathonbet_coverage_pct": "",
       "status": "MONITORING_REJECTED_CURRENT_RULE",
       "leader": "NO",
-      "blocking_reason": "TRAIN ROI -0.43 not >0; TEST ROI -8.73 not >0; positive seasons 2/10<60%"
+      "blocking_reason": "TRAIN ROI -0.43 not >0; TEST ROI -8.73 not >0; positive seasons 2/10<60%",
+      "prospective_captured": "0",
+      "prospective_executable": "0",
+      "prospective_pending_executable": "0",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REJECTED_CURRENT_RULE_RESEARCH_ONLY"
     },
     {
       "family": "R2",
@@ -429,7 +599,17 @@
       "marathonbet_coverage_pct": "",
       "status": "MONITORING_REJECTED_CURRENT_RULE",
       "leader": "NO",
-      "blocking_reason": "TRAIN ROI -5.46 not >0; TEST ROI -7.44 not >0; positive seasons 3/10<60%"
+      "blocking_reason": "TRAIN ROI -5.46 not >0; TEST ROI -7.44 not >0; positive seasons 3/10<60%",
+      "prospective_captured": "0",
+      "prospective_executable": "0",
+      "prospective_pending_executable": "0",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REJECTED_CURRENT_RULE_RESEARCH_ONLY"
     },
     {
       "family": "R2",
@@ -452,7 +632,17 @@
       "marathonbet_coverage_pct": "",
       "status": "ACTIVE",
       "leader": "YES",
-      "blocking_reason": "forward deterioration not evaluable before 60 settled"
+      "blocking_reason": "active forward sample 0/60 settled (60 remaining before deterioration review can be evaluated)",
+      "prospective_captured": "0",
+      "prospective_executable": "0",
+      "prospective_pending_executable": "0",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "ACTIVE_FORWARD_MONITORING"
     },
     {
       "family": "R2",
@@ -475,7 +665,17 @@
       "marathonbet_coverage_pct": "",
       "status": "MONITORING_REJECTED_CURRENT_RULE",
       "leader": "NO",
-      "blocking_reason": "TRAIN ROI -10.93 not >0; TEST ROI -4.23 not >0; positive seasons 4/10<60%"
+      "blocking_reason": "TRAIN ROI -10.93 not >0; TEST ROI -4.23 not >0; positive seasons 4/10<60%",
+      "prospective_captured": "0",
+      "prospective_executable": "0",
+      "prospective_pending_executable": "0",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REJECTED_CURRENT_RULE_RESEARCH_ONLY"
     },
     {
       "family": "R2",
@@ -498,7 +698,17 @@
       "marathonbet_coverage_pct": "",
       "status": "MONITORING_REJECTED_CURRENT_RULE",
       "leader": "NO",
-      "blocking_reason": "TRAIN ROI -2.83 not >0; TEST ROI -6.07 not >0; positive seasons 4/10<60%"
+      "blocking_reason": "TRAIN ROI -2.83 not >0; TEST ROI -6.07 not >0; positive seasons 4/10<60%",
+      "prospective_captured": "0",
+      "prospective_executable": "0",
+      "prospective_pending_executable": "0",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REJECTED_CURRENT_RULE_RESEARCH_ONLY"
     },
     {
       "family": "R2",
@@ -514,14 +724,24 @@
       "test_roi_pct": "",
       "positive_seasons": "",
       "total_seasons": "",
-      "prospective_settled": "0",
-      "prospective_roi_pct": "",
+      "prospective_settled": "1",
+      "prospective_roi_pct": "-100.000",
       "prospective_first_half_roi_pct": "",
-      "prospective_second_half_roi_pct": "",
+      "prospective_second_half_roi_pct": "-100.000",
       "marathonbet_coverage_pct": "100.000",
       "status": "MONITORING",
       "leader": "NO",
-      "blocking_reason": "fresh discovery sample 0/120 settled; no direct promotion"
+      "blocking_reason": "fresh discovery sample 1/120 settled (119 remaining); executable 1/1; Marathonbet coverage 100.0%; ROI -100.00%; first-half —%; second-half -100.00%; no direct promotion",
+      "prospective_captured": "1",
+      "prospective_executable": "1",
+      "prospective_pending_executable": "0",
+      "review_target_settled": "60",
+      "review_remaining_settled": "59",
+      "review_progress_pct": "1.7",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "119",
+      "discovery_progress_pct": "0.8",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R2",
@@ -544,7 +764,17 @@
       "marathonbet_coverage_pct": "100.000",
       "status": "MONITORING",
       "leader": "NO",
-      "blocking_reason": "fresh discovery sample 0/120 settled; no direct promotion"
+      "blocking_reason": "fresh discovery sample 0/120 settled (120 remaining); executable 1/1; Marathonbet coverage 100.0%; ROI —%; first-half —%; second-half —%; no direct promotion",
+      "prospective_captured": "1",
+      "prospective_executable": "1",
+      "prospective_pending_executable": "1",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R2",
@@ -567,7 +797,17 @@
       "marathonbet_coverage_pct": "",
       "status": "DATA_REQUIRED",
       "leader": "NO",
-      "blocking_reason": "comparable historical evidence missing"
+      "blocking_reason": "comparable historical evidence missing; prospective discovery 0/120 settled; captured 0, executable 0; no direct promotion",
+      "prospective_captured": "0",
+      "prospective_executable": "0",
+      "prospective_pending_executable": "0",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R2",
@@ -590,7 +830,17 @@
       "marathonbet_coverage_pct": "",
       "status": "DATA_REQUIRED",
       "leader": "NO",
-      "blocking_reason": "comparable historical evidence missing"
+      "blocking_reason": "comparable historical evidence missing; prospective discovery 0/120 settled; captured 0, executable 0; no direct promotion",
+      "prospective_captured": "0",
+      "prospective_executable": "0",
+      "prospective_pending_executable": "0",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R2",
@@ -606,14 +856,24 @@
       "test_roi_pct": "",
       "positive_seasons": "",
       "total_seasons": "",
-      "prospective_settled": "0",
-      "prospective_roi_pct": "",
+      "prospective_settled": "1",
+      "prospective_roi_pct": "-100.000",
       "prospective_first_half_roi_pct": "",
-      "prospective_second_half_roi_pct": "",
+      "prospective_second_half_roi_pct": "-100.000",
       "marathonbet_coverage_pct": "100.000",
       "status": "MONITORING",
       "leader": "NO",
-      "blocking_reason": "fresh discovery sample 0/120 settled; no direct promotion"
+      "blocking_reason": "fresh discovery sample 1/120 settled (119 remaining); executable 1/1; Marathonbet coverage 100.0%; ROI -100.00%; first-half —%; second-half -100.00%; no direct promotion",
+      "prospective_captured": "1",
+      "prospective_executable": "1",
+      "prospective_pending_executable": "0",
+      "review_target_settled": "60",
+      "review_remaining_settled": "59",
+      "review_progress_pct": "1.7",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "119",
+      "discovery_progress_pct": "0.8",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R2",
@@ -636,7 +896,17 @@
       "marathonbet_coverage_pct": "",
       "status": "DATA_REQUIRED",
       "leader": "NO",
-      "blocking_reason": "comparable historical evidence missing"
+      "blocking_reason": "comparable historical evidence missing; prospective discovery 0/120 settled; captured 0, executable 0; no direct promotion",
+      "prospective_captured": "0",
+      "prospective_executable": "0",
+      "prospective_pending_executable": "0",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R2",
@@ -659,7 +929,17 @@
       "marathonbet_coverage_pct": "",
       "status": "DATA_REQUIRED",
       "leader": "NO",
-      "blocking_reason": "comparable historical evidence missing"
+      "blocking_reason": "comparable historical evidence missing; prospective discovery 0/120 settled; captured 0, executable 0; no direct promotion",
+      "prospective_captured": "0",
+      "prospective_executable": "0",
+      "prospective_pending_executable": "0",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R2",
@@ -682,7 +962,17 @@
       "marathonbet_coverage_pct": "",
       "status": "DATA_REQUIRED",
       "leader": "NO",
-      "blocking_reason": "comparable historical evidence missing"
+      "blocking_reason": "comparable historical evidence missing; prospective discovery 0/120 settled; captured 0, executable 0; no direct promotion",
+      "prospective_captured": "0",
+      "prospective_executable": "0",
+      "prospective_pending_executable": "0",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R2",
@@ -705,7 +995,17 @@
       "marathonbet_coverage_pct": "",
       "status": "DATA_REQUIRED",
       "leader": "NO",
-      "blocking_reason": "comparable historical evidence missing"
+      "blocking_reason": "comparable historical evidence missing; prospective discovery 0/120 settled; captured 0, executable 0; no direct promotion",
+      "prospective_captured": "0",
+      "prospective_executable": "0",
+      "prospective_pending_executable": "0",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R2",
@@ -728,7 +1028,17 @@
       "marathonbet_coverage_pct": "",
       "status": "DATA_REQUIRED",
       "leader": "NO",
-      "blocking_reason": "comparable historical evidence missing"
+      "blocking_reason": "comparable historical evidence missing; prospective discovery 0/120 settled; captured 0, executable 0; no direct promotion",
+      "prospective_captured": "0",
+      "prospective_executable": "0",
+      "prospective_pending_executable": "0",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REGIME_DISCOVERY"
     },
     {
       "family": "R2",
@@ -751,7 +1061,17 @@
       "marathonbet_coverage_pct": "",
       "status": "DATA_REQUIRED",
       "leader": "NO",
-      "blocking_reason": "comparable historical evidence missing"
+      "blocking_reason": "comparable historical evidence missing; prospective discovery 0/120 settled; captured 0, executable 0; no direct promotion",
+      "prospective_captured": "0",
+      "prospective_executable": "0",
+      "prospective_pending_executable": "0",
+      "review_target_settled": "60",
+      "review_remaining_settled": "60",
+      "review_progress_pct": "0.0",
+      "discovery_target_settled": "120",
+      "discovery_remaining_settled": "120",
+      "discovery_progress_pct": "0.0",
+      "progress_path": "REGIME_DISCOVERY"
     }
   ],
   "regime_discovery_policy": {
@@ -764,5 +1084,16 @@
   },
   "regime_discovery_eligible": 0,
   "data_required": 9,
-  "monitoring": 13
+  "monitoring": 14,
+  "progress_policy": {
+    "captured_definition": "qualifying frozen family×league research/canonical rows",
+    "executable_definition": "rows with a captured user-accessible execution price",
+    "settled_definition": "executable rows with final settlement and user_profit_u",
+    "historical_challenger_review_target": 60,
+    "regime_discovery_target": 120,
+    "marathonbet_min_coverage_pct": 90,
+    "automatic_promotion": "FORBIDDEN",
+    "automatic_suspension": "FORBIDDEN"
+  },
+  "progress_generated_at_utc": "2026-09-11T20:08:16Z"
 }
