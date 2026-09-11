@@ -1,6 +1,6 @@
 # PBK System Health
 
-Обновлено UTC: 2026-09-11T12:08:21Z
+Обновлено UTC: 2026-09-11T12:36:07Z
 Статус: 🟢 **HEALTHY** | critical 0 | warnings 0
 
 ## Ключевые проверки
@@ -10,21 +10,23 @@
 - WATCH crossings накоплено: 0
 
 ## Свежесть этапов
-- Stage53 screener: **OK** | age 1.34h | limit 30.0h
-- Stage54 odds/closing: **OK** | age 0.41h | limit 3.0h
-- Stage55 context: **OK** | age 0.87h | limit 3.0h
-- Stage56 weather/XI: **OK** | age 0.23h | limit 1.5h
-- Stage57 international: **OK** | age 1.78h | limit 30.0h
-- Stage58 daily brief: **OK** | age 0.08h | limit 3.0h
-- Stage59 user execution: **OK** | age 0.28h | limit 3.0h
-- Stage60 forward performance: **OK** | age 0.26h | limit 3.0h
-- Stage61 EPL steam watch: **OK** | age 0.25h | limit 2.0h
-- Stage62 Bundesliga totals watch: **OK** | age 0.34h | limit 2.0h
-- Stage63 BTTS watch: **OK** | age 0.72h | limit 2.0h
-- Stage65 WATCH performance: **OK** | age 0.14h | limit 3.0h
-- Stage66 attention board: **OK** | age 0.20h | limit 3.0h
-- Stage68 exposure map: **OK** | age 0.06h | limit 3.0h
-- Stage69 promotion gate: **OK** | age 0.02h | limit 3.0h
+- Stage53 screener: **OK** | age 1.81h | limit 30.0h
+- Stage54 odds/closing: **OK** | age 0.88h | limit 3.0h
+- Stage55 context: **OK** | age 0.24h | limit 3.0h
+- Stage56 weather/XI: **OK** | age 0.27h | limit 1.5h
+- Stage57 international: **OK** | age 2.25h | limit 30.0h
+- Stage58 daily brief: **OK** | age 0.55h | limit 3.0h
+- Stage59 user execution: **OK** | age 0.74h | limit 3.0h
+- Stage60 forward performance: **OK** | age 0.72h | limit 3.0h
+- Stage61 EPL steam watch: **OK** | age 0.02h | limit 2.0h
+- Stage62 Bundesliga totals watch: **OK** | age 0.80h | limit 2.0h
+- Stage63 BTTS watch: **OK** | age 0.37h | limit 2.0h
+- Stage65 WATCH performance: **OK** | age 0.60h | limit 3.0h
+- Stage66 attention board: **OK** | age 0.41h | limit 3.0h
+- Stage68 exposure map: **OK** | age 0.52h | limit 3.0h
+- Stage69 promotion gate: **OK** | age 0.48h | limit 3.0h
+- Stage70 signal lifecycle: **OK** | age 0.31h | limit 3.0h
+- Stage71 league/market challenger: **OK** | age 0.04h | limit 15.0h
 
 ## Проблемы
 - Нет. Все проверяемые контуры выглядят согласованно.
