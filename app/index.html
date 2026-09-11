@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="/install.css">
   <link rel="stylesheet" href="/runtime.css">
   <link rel="stylesheet" href="/push.css">
+  <link rel="stylesheet" href="/probability.css">
 </head>
 <body>
   <div class="shell">
@@ -42,6 +43,8 @@
     <main>
       <section class="view active" id="view-today">
         <div class="summary-grid" id="summary-grid"></div>
+        <div class="section-head"><h2>Оценки ПБК</h2><span>validated canonical · вероятность ≠ value</span></div>
+        <div id="probability-today" class="probability-grid"><div class="empty">Загрузка probability…</div></div>
         <div class="section-head"><h2>Требует внимания</h2><span id="updated-at"></span></div>
         <div id="attention-list" class="stack"></div>
         <div class="section-head"><h2>Активные R</h2></div>
@@ -96,6 +99,7 @@
         <div id="stats-watch" class="panel"></div>
         <div class="section-head"><h2>Вероятность и value</h2></div>
         <div id="stats-probability" class="panel"></div>
+        <div id="probability-stats-detail" class="panel"><div class="empty">Загрузка Stage75…</div></div>
       </section>
 
       <section class="view" id="view-health">
@@ -117,5 +121,6 @@
   <script type="module" src="/runtime.js"></script>
   <script type="module" src="/install.js"></script>
   <script type="module" src="/push.js"></script>
+  <script type="module" src="/probability.js"></script>
 </body>
 </html>
