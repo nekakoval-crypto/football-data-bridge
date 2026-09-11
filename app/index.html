@@ -22,6 +22,7 @@
       <button class="tab" data-view="signals">R1/R2/R3</button>
       <button class="tab" data-view="watch">WATCH</button>
       <button class="tab" data-view="matches">Матчи</button>
+      <button class="tab" data-view="stats">Результаты</button>
       <button class="tab" data-view="health">Health</button>
     </nav>
 
@@ -56,6 +57,17 @@
           <button id="filters-reset" class="filter-reset">Сбросить</button>
         </div>
         <div id="all-market-cards" class="match-grid"></div>
+      </section>
+
+      <section class="view" id="view-stats">
+        <div class="section-head"><h2>Результаты / Статистика</h2><span>только prospective без historical backfill</span></div>
+        <div class="summary-grid" id="stats-summary"></div>
+        <div class="section-head"><h2>Canonical R</h2></div>
+        <div id="stats-canonical" class="panel"></div>
+        <div class="section-head"><h2>WATCH</h2><span>research only</span></div>
+        <div id="stats-watch" class="panel"></div>
+        <div class="section-head"><h2>Вероятность и value</h2></div>
+        <div id="stats-probability" class="panel"></div>
       </section>
 
       <section class="view" id="view-health">
