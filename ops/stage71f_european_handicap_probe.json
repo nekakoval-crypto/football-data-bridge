@@ -1,0 +1,327 @@
+{
+  "run_at_utc": "2026-09-11T13:45:07Z",
+  "status": "OK",
+  "selected_bet_id": 9,
+  "selected_bet_name": "Handicap Result",
+  "candidate_bets": [
+    {
+      "score": 1000,
+      "id": 9,
+      "name": "Handicap Result"
+    }
+  ],
+  "all_handicap_bets": [
+    {
+      "id": 4,
+      "name": "Asian Handicap"
+    },
+    {
+      "id": 9,
+      "name": "Handicap Result"
+    },
+    {
+      "id": 18,
+      "name": "Handicap Result - First Half"
+    },
+    {
+      "id": 19,
+      "name": "Asian Handicap First Half"
+    },
+    {
+      "id": 56,
+      "name": "Corners Asian Handicap"
+    },
+    {
+      "id": 79,
+      "name": "Cards European Handicap"
+    },
+    {
+      "id": 81,
+      "name": "Cards Asian Handicap"
+    },
+    {
+      "id": 104,
+      "name": "Asian Handicap (2nd Half)"
+    },
+    {
+      "id": 125,
+      "name": "Corners Asian Handicap (1st Half)"
+    },
+    {
+      "id": 126,
+      "name": "Corners Asian Handicap (2nd Half)"
+    },
+    {
+      "id": 152,
+      "name": "Yellow Asian Handicap"
+    },
+    {
+      "id": 159,
+      "name": "Yellow Asian Handicap (1st Half)"
+    },
+    {
+      "id": 160,
+      "name": "Yellow Asian Handicap (2nd Half)"
+    },
+    {
+      "id": 166,
+      "name": "Offsides Handicap"
+    },
+    {
+      "id": 174,
+      "name": "Fouls. Handicap"
+    },
+    {
+      "id": 177,
+      "name": "ShotOnTarget Handicap"
+    },
+    {
+      "id": 181,
+      "name": "European Handicap (2nd Half)"
+    },
+    {
+      "id": 189,
+      "name": "To Advance Handicap"
+    },
+    {
+      "id": 239,
+      "name": "Corners. European Handicap"
+    },
+    {
+      "id": 337,
+      "name": "Asian Handicap (Sets)"
+    }
+  ],
+  "sample": {
+    "api_fixture_id": 1557398,
+    "home_team": "Bournemouth",
+    "away_team": "Brentford",
+    "books": [
+      {
+        "bookmaker": "Bet365",
+        "bet_id": 9,
+        "bet_name": "Handicap Result",
+        "values": [
+          {
+            "value": "Home -1",
+            "odd": "4.50",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Away -1",
+            "odd": "1.50",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Draw -1",
+            "odd": "4.50",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Home -3",
+            "odd": "26.00",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Draw -3",
+            "odd": "15.00",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Away -3",
+            "odd": "1.05",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Home -2",
+            "odd": "11.00",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Draw -2",
+            "odd": "7.00",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Away -2",
+            "odd": "1.18",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Home +1",
+            "odd": "1.44",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Draw +1",
+            "odd": "4.75",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Away +1",
+            "odd": "5.00",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Home +2",
+            "odd": "1.17",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Draw +2",
+            "odd": "7.50",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Away +2",
+            "odd": "13.00",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Home +3",
+            "odd": "1.05",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Draw +3",
+            "odd": "15.00",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Away +3",
+            "odd": "26.00",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          }
+        ]
+      },
+      {
+        "bookmaker": "Marathonbet",
+        "bet_id": 9,
+        "bet_name": "Handicap Result",
+        "values": [
+          {
+            "value": "Home -1",
+            "odd": "4.30",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Away -1",
+            "odd": "1.57",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Draw -1",
+            "odd": "4.25",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Home -2",
+            "odd": "8.30",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Draw -2",
+            "odd": "6.80",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Away -2",
+            "odd": "1.15",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Home +1",
+            "odd": "1.49",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Draw +1",
+            "odd": "4.50",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Away +1",
+            "odd": "4.85",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Home +2",
+            "odd": "1.12",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Draw +2",
+            "odd": "4.80",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          },
+          {
+            "value": "Away +2",
+            "odd": "6.10",
+            "handicap": null,
+            "main": null,
+            "suspended": null
+          }
+        ]
+      }
+    ]
+  },
+  "api_calls": 3
+}
