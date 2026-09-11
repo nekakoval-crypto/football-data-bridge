@@ -52,7 +52,7 @@ jobs:
         run: |
           git config user.name 'stage53-bot'
           git config user.email 'stage53-bot@users.noreply.github.com'
-          git add ops/latest_screen.csv ops/context_passports.csv ops/forward_log.csv ops/last_run.json
+          git add ops/latest_screen.csv ops/context_passports.csv ops/trigger_ledger.csv ops/forward_log.csv ops/last_run.json
           if git diff --cached --quiet; then
             echo 'No operational changes to commit.'
           else
@@ -67,6 +67,7 @@ jobs:
           path: |
             ops/latest_screen.csv
             ops/context_passports.csv
+            ops/trigger_ledger.csv
             ops/forward_log.csv
             ops/last_run.json
           retention-days: 30
