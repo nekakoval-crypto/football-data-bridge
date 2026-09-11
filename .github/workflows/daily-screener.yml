@@ -33,17 +33,26 @@ jobs:
           python-version: '3.12'
 
       - name: Preflight API-Football catalogues
+        continue-on-error: true
         run: |
           python - <<'PY'
-          import json, os, urllib.request
+          import json, os, time, urllib.request
 
           key = os.environ['API_FOOTBALL_KEY']
           base = 'https://v3.football.api-sports.io'
 
           def get(path):
-              req = urllib.request.Request(base + path, headers={'x-apisports-key': key})
-              with urllib.request.urlopen(req, timeout=30) as r:
-                  return json.load(r)
+              last = None
+              for attempt in range(1, 4):
+                  try:
+                      req = urllib.request.Request(base + path, headers={'x-apisports-key': key})
+                      with urllib.request.urlopen(req, timeout=30) as r:
+                          return json.load(r)
+                  except Exception as exc:
+                      last = exc
+                      if attempt < 3:
+                          time.sleep(attempt * 3)
+              raise last
 
           books = get('/odds/bookmakers')
           bets = get('/odds/bets')
@@ -61,7 +70,18 @@ jobs:
           PY
 
       - name: Run daily screener and settle forward log
-        run: python scripts/stage53_daily_screener.py
+        run: |
+          for attempt in 1 2 3; do
+            echo "Stage 53 attempt ${attempt}/3"
+            if python scripts/stage53_daily_screener.py; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              echo 'Stage 53 failed after 3 attempts.'
+              exit 1
+            fi
+            sleep $((attempt * 10))
+          done
 
       - name: Guard unverified R3 reproduction
         run: python scripts/stage53_r3_guard.py
