@@ -31,6 +31,34 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Preflight API-Football catalogues
+        run: |
+          python - <<'PY'
+          import json, os, urllib.request
+
+          key = os.environ['API_FOOTBALL_KEY']
+          base = 'https://v3.football.api-sports.io'
+
+          def get(path):
+              req = urllib.request.Request(base + path, headers={'x-apisports-key': key})
+              with urllib.request.urlopen(req, timeout=30) as r:
+                  return json.load(r)
+
+          books = get('/odds/bookmakers')
+          bets = get('/odds/bets')
+          if books.get('errors'):
+              raise RuntimeError(f"bookmakers: {books['errors']}")
+          if bets.get('errors'):
+              raise RuntimeError(f"bets: {bets['errors']}")
+
+          b365 = [x for x in books.get('response', []) if 'bet365' in x.get('name','').lower()]
+          winner = [x for x in bets.get('response', []) if 'match winner' in x.get('name','').lower()]
+          print('BET365_MATCHES=', b365)
+          print('MATCH_WINNER_MATCHES=', winner)
+          print('BOOKMAKERS_COUNT=', len(books.get('response', [])))
+          print('PREMATCH_BETS_COUNT=', len(bets.get('response', [])))
+          PY
+
       - name: Run daily screener and settle forward log
         run: python scripts/stage53_daily_screener.py
 
