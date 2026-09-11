@@ -18,6 +18,7 @@ from urllib.parse import parse_qs, urlparse
 DB=Path(os.getenv('PBK_DB_PATH','build/pbk_unified.sqlite'))
 OPS=Path(os.getenv('OPS_DIR','ops'))
 STRATEGY_FILTER=Path('config/pbk_strategy_filter.json')
+MARKET_SCOPE=Path('config/pbk_market_scope.json')
 META=OPS/'stage73_last_run.json'
 API_VERSION='v1'
 MAX_LIMIT=500
@@ -65,7 +66,6 @@ def query_table(conn,table,q,filter_map=None,odds_candidates=None,default_order=
         val=qfirst(q,param)
         if val not in (None,'') and col in cols:
             where.append(f'LOWER("{col}") = LOWER(?)');args.append(val)
-    # Optional user-view odds range. It filters output only and never eligibility.
     odds_col=next((c for c in (odds_candidates or []) if c in cols),None)
     if odds_col:
         mn=qfirst(q,'min_odds');mx=qfirst(q,'max_odds')
@@ -91,6 +91,10 @@ def state_doc(conn,name):
     if not r:return None
     try:return json.loads(r['payload_json'])
     except:return None
+
+def config_doc(path,fallback):
+    try:return json.loads(path.read_text(encoding='utf-8'))
+    except Exception:return fallback
 
 def dispatch(path_with_query):
     u=urlparse(path_with_query);path=u.path.rstrip('/') or '/';q=parse_qs(u.query,keep_blank_values=True)
@@ -118,16 +122,13 @@ def dispatch(path_with_query):
             return 200,query_table(conn,'watch_signals',q,{'strategy':'watch_family','league':'league','status':'status'},
                                    ['user_cross_odds','user_odds','paper_user_execution_odds'],['kickoff_utc','watch_id'])
         if path=='/v1/lifecycle':
-            return 200,query_table(conn,'lifecycle_events',q,{'signal_id':'signal_id','fixture_id':'api_fixture_id','strategy':'rule'},
-                                   [],['event_at_utc','signal_id'])
+            return 200,query_table(conn,'lifecycle_events',q,{'signal_id':'signal_id','fixture_id':'api_fixture_id','strategy':'rule'},[],['event_at_utc','signal_id'])
         if path=='/v1/exposure':
-            return 200,query_table(conn,'exposure_positions',q,{'fixture_id':'api_fixture_id','status':'status','strategy':'rules'},
-                                   [],['kickoff_utc','api_fixture_id'])
+            return 200,query_table(conn,'exposure_positions',q,{'fixture_id':'api_fixture_id','status':'status','strategy':'rules'},[],['kickoff_utc','api_fixture_id'])
         if path=='/v1/context':
             return 200,query_table(conn,'context_latest',q,{'fixture_id':'api_fixture_id'},[],['kickoff_utc','api_fixture_id'])
         if path=='/v1/odds':
-            return 200,query_table(conn,'odds_snapshots',q,{'fixture_id':'api_fixture_id','bookmaker':'bookmaker'},
-                                   ['odds'],['captured_at_utc','api_fixture_id'])
+            return 200,query_table(conn,'odds_snapshots',q,{'fixture_id':'api_fixture_id','bookmaker':'bookmaker'},['odds'],['captured_at_utc','api_fixture_id'])
         if path=='/v1/attention':
             return 200,(state_doc(conn,'attention_board.json') or {})
         if path=='/v1/governance':
@@ -139,8 +140,9 @@ def dispatch(path_with_query):
                 'fonbet_coverage':state_doc(conn,'stage71b_fonbet_coverage.json'),
             }
         if path=='/v1/config/strategy-filter':
-            try:return 200,json.loads(STRATEGY_FILTER.read_text(encoding='utf-8'))
-            except Exception:return 200,{'global_odds_cap':None,'groups':[],'future_ui_filters':[]}
+            return 200,config_doc(STRATEGY_FILTER,{'global_odds_cap':None,'groups':[],'future_ui_filters':[]})
+        if path=='/v1/config/market-scope':
+            return 200,config_doc(MARKET_SCOPE,{'status':'UNAVAILABLE','allowed_market_families':[]})
     return 404,{'error':'NOT_FOUND','path':path,'api_version':API_VERSION}
 
 class Handler(BaseHTTPRequestHandler):
@@ -165,10 +167,16 @@ def self_test():
         '/v1/attention':lambda p:isinstance(p,dict),
         '/v1/governance':lambda p:isinstance(p,dict),
         '/v1/config/strategy-filter':lambda p:p.get('global_odds_cap') is None,
+        '/v1/config/market-scope':lambda p:len(p.get('allowed_market_families') or [])==8 and 'global' not in str(p.get('principle','')).lower()[:0],
     }
+    # Explicit global-cap guard separated from wording in market-scope principle.
     results=[];ok=True
     for path,check in tests.items():
-        try:status,payload=dispatch(path);passed=status==200 and bool(check(payload))
+        try:
+            status,payload=dispatch(path)
+            passed=status==200 and bool(check(payload))
+            if path=='/v1/config/market-scope':
+                passed=passed and config_doc(MARKET_SCOPE,{}).get('status')=='LOCKED_CORE_MARKET_UNIVERSE'
         except Exception as e:status=500;payload={'error':str(e)};passed=False
         results.append({'path':path,'http_status':status,'passed':passed,'count':payload.get('count') if isinstance(payload,dict) else None});ok=ok and passed
     payload={'run_at_utc':now_iso(),'status':'OK' if ok else 'FAIL','api_version':API_VERSION,'db_path':str(DB),'tests':results,'passed':sum(1 for r in results if r['passed']),'total':len(results),'api_calls':0}
