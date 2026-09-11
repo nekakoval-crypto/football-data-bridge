@@ -1,10 +1,3346 @@
 {
-  "run_at_utc": "2026-09-11T15:00:14Z",
-  "status": "WAITING_STAGE71J_CATALOG",
+  "generated_at_utc": "2026-09-11T18:47:01Z",
+  "status": "OK",
+  "mode": "OFFLINE_SOURCE_AUDIT_ONLY",
+  "fixture_sample": 160,
+  "catalog_market_count": 338,
+  "deferred_tagged_market_count": 198,
+  "groups": [
+    {
+      "group_id": "EXACT_SCORE",
+      "label_ru": "Точный счёт",
+      "catalog_market_count": 3,
+      "observed_market_count": 3,
+      "source_status": "API_FOOTBALL_PROSPECTIVE_SOURCE_POSSIBLE",
+      "max_bet365_coverage_pct": 81.88,
+      "max_marathonbet_coverage_pct": 82.5,
+      "top_observed_markets": [
+        {
+          "bet_id": 10,
+          "bet_name": "Exact Score",
+          "deferred_groups": [
+            "EXACT_SCORE"
+          ],
+          "fixtures_any": 132,
+          "fixtures_bet365": 131,
+          "fixtures_marathonbet": 132,
+          "bet365_coverage_pct": 81.88,
+          "marathonbet_coverage_pct": 82.5
+        },
+        {
+          "bet_id": 31,
+          "bet_name": "Correct Score - First Half",
+          "deferred_groups": [
+            "EXACT_SCORE",
+            "HALVES_PERIODS"
+          ],
+          "fixtures_any": 132,
+          "fixtures_bet365": 131,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 81.88,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 62,
+          "bet_name": "Correct Score - Second Half",
+          "deferred_groups": [
+            "EXACT_SCORE",
+            "HALVES_PERIODS"
+          ],
+          "fixtures_any": 129,
+          "fixtures_bet365": 0,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 0.0,
+          "marathonbet_coverage_pct": 0.0
+        }
+      ]
+    },
+    {
+      "group_id": "BTTS_TOTAL_COMBOS",
+      "label_ru": "Комбо ОЗ + ТБ/ТМ / исход + тотал",
+      "catalog_market_count": 5,
+      "observed_market_count": 2,
+      "source_status": "API_FOOTBALL_PROSPECTIVE_SOURCE_POSSIBLE",
+      "max_bet365_coverage_pct": 81.88,
+      "max_marathonbet_coverage_pct": 82.5,
+      "top_observed_markets": [
+        {
+          "bet_id": 25,
+          "bet_name": "Result/Total Goals",
+          "deferred_groups": [
+            "BTTS_TOTAL_COMBOS"
+          ],
+          "fixtures_any": 132,
+          "fixtures_bet365": 131,
+          "fixtures_marathonbet": 132,
+          "bet365_coverage_pct": 81.88,
+          "marathonbet_coverage_pct": 82.5
+        },
+        {
+          "bet_id": 49,
+          "bet_name": "Total Goals/Both Teams To Score",
+          "deferred_groups": [
+            "BTTS_TOTAL_COMBOS",
+            "PLAYER_PROPS"
+          ],
+          "fixtures_any": 131,
+          "fixtures_bet365": 131,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 81.88,
+          "marathonbet_coverage_pct": 0.0
+        }
+      ]
+    },
+    {
+      "group_id": "PLAYER_PROPS",
+      "label_ru": "Игроки / бомбардиры",
+      "catalog_market_count": 68,
+      "observed_market_count": 28,
+      "source_status": "API_FOOTBALL_PROSPECTIVE_SOURCE_POSSIBLE",
+      "max_bet365_coverage_pct": 81.88,
+      "max_marathonbet_coverage_pct": 82.5,
+      "top_observed_markets": [
+        {
+          "bet_id": 14,
+          "bet_name": "Team To Score First",
+          "deferred_groups": [
+            "PLAYER_PROPS"
+          ],
+          "fixtures_any": 132,
+          "fixtures_bet365": 131,
+          "fixtures_marathonbet": 132,
+          "bet365_coverage_pct": 81.88,
+          "marathonbet_coverage_pct": 82.5
+        },
+        {
+          "bet_id": 15,
+          "bet_name": "Team To Score Last",
+          "deferred_groups": [
+            "PLAYER_PROPS"
+          ],
+          "fixtures_any": 132,
+          "fixtures_bet365": 131,
+          "fixtures_marathonbet": 132,
+          "bet365_coverage_pct": 81.88,
+          "marathonbet_coverage_pct": 82.5
+        },
+        {
+          "bet_id": 35,
+          "bet_name": "Both Teams To Score - Second Half",
+          "deferred_groups": [
+            "PLAYER_PROPS",
+            "HALVES_PERIODS"
+          ],
+          "fixtures_any": 132,
+          "fixtures_bet365": 131,
+          "fixtures_marathonbet": 132,
+          "bet365_coverage_pct": 81.88,
+          "marathonbet_coverage_pct": 82.5
+        },
+        {
+          "bet_id": 184,
+          "bet_name": "To Score in Both Halves",
+          "deferred_groups": [
+            "PLAYER_PROPS"
+          ],
+          "fixtures_any": 132,
+          "fixtures_bet365": 0,
+          "fixtures_marathonbet": 132,
+          "bet365_coverage_pct": 0.0,
+          "marathonbet_coverage_pct": 82.5
+        },
+        {
+          "bet_id": 185,
+          "bet_name": "First Team to Score (3 way) 1st Half",
+          "deferred_groups": [
+            "PLAYER_PROPS",
+            "HALVES_PERIODS"
+          ],
+          "fixtures_any": 132,
+          "fixtures_bet365": 0,
+          "fixtures_marathonbet": 132,
+          "bet365_coverage_pct": 0.0,
+          "marathonbet_coverage_pct": 82.5
+        },
+        {
+          "bet_id": 113,
+          "bet_name": "Both Teams To Score in Both Halves",
+          "deferred_groups": [
+            "PLAYER_PROPS"
+          ],
+          "fixtures_any": 90,
+          "fixtures_bet365": 0,
+          "fixtures_marathonbet": 90,
+          "bet365_coverage_pct": 0.0,
+          "marathonbet_coverage_pct": 56.25
+        },
+        {
+          "bet_id": 48,
+          "bet_name": "To Score In Both Halves By Teams",
+          "deferred_groups": [
+            "PLAYER_PROPS"
+          ],
+          "fixtures_any": 131,
+          "fixtures_bet365": 131,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 81.88,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 49,
+          "bet_name": "Total Goals/Both Teams To Score",
+          "deferred_groups": [
+            "BTTS_TOTAL_COMBOS",
+            "PLAYER_PROPS"
+          ],
+          "fixtures_any": 131,
+          "fixtures_bet365": 131,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 81.88,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 92,
+          "bet_name": "Anytime Goal Scorer",
+          "deferred_groups": [
+            "PLAYER_PROPS"
+          ],
+          "fixtures_any": 118,
+          "fixtures_bet365": 118,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 73.75,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 93,
+          "bet_name": "First Goal Scorer",
+          "deferred_groups": [
+            "PLAYER_PROPS"
+          ],
+          "fixtures_any": 118,
+          "fixtures_bet365": 118,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 73.75,
+          "marathonbet_coverage_pct": 0.0
+        }
+      ]
+    },
+    {
+      "group_id": "CORNERS",
+      "label_ru": "Угловые",
+      "catalog_market_count": 35,
+      "observed_market_count": 23,
+      "source_status": "API_FOOTBALL_PROSPECTIVE_SOURCE_POSSIBLE",
+      "max_bet365_coverage_pct": 68.75,
+      "max_marathonbet_coverage_pct": 63.12,
+      "top_observed_markets": [
+        {
+          "bet_id": 45,
+          "bet_name": "Corners Over Under",
+          "deferred_groups": [
+            "CORNERS"
+          ],
+          "fixtures_any": 110,
+          "fixtures_bet365": 110,
+          "fixtures_marathonbet": 101,
+          "bet365_coverage_pct": 68.75,
+          "marathonbet_coverage_pct": 63.12
+        },
+        {
+          "bet_id": 56,
+          "bet_name": "Corners Asian Handicap",
+          "deferred_groups": [
+            "CORNERS"
+          ],
+          "fixtures_any": 110,
+          "fixtures_bet365": 110,
+          "fixtures_marathonbet": 101,
+          "bet365_coverage_pct": 68.75,
+          "marathonbet_coverage_pct": 63.12
+        },
+        {
+          "bet_id": 57,
+          "bet_name": "Home Corners Over/Under",
+          "deferred_groups": [
+            "CORNERS"
+          ],
+          "fixtures_any": 110,
+          "fixtures_bet365": 109,
+          "fixtures_marathonbet": 101,
+          "bet365_coverage_pct": 68.12,
+          "marathonbet_coverage_pct": 63.12
+        },
+        {
+          "bet_id": 58,
+          "bet_name": "Away Corners Over/Under",
+          "deferred_groups": [
+            "CORNERS"
+          ],
+          "fixtures_any": 110,
+          "fixtures_bet365": 109,
+          "fixtures_marathonbet": 101,
+          "bet365_coverage_pct": 68.12,
+          "marathonbet_coverage_pct": 63.12
+        },
+        {
+          "bet_id": 77,
+          "bet_name": "Total Corners (1st Half)",
+          "deferred_groups": [
+            "CORNERS",
+            "HALVES_PERIODS"
+          ],
+          "fixtures_any": 110,
+          "fixtures_bet365": 109,
+          "fixtures_marathonbet": 101,
+          "bet365_coverage_pct": 68.12,
+          "marathonbet_coverage_pct": 63.12
+        },
+        {
+          "bet_id": 85,
+          "bet_name": "Total Corners (3 way)",
+          "deferred_groups": [
+            "CORNERS"
+          ],
+          "fixtures_any": 110,
+          "fixtures_bet365": 109,
+          "fixtures_marathonbet": 101,
+          "bet365_coverage_pct": 68.12,
+          "marathonbet_coverage_pct": 63.12
+        },
+        {
+          "bet_id": 55,
+          "bet_name": "Corners 1x2",
+          "deferred_groups": [
+            "CORNERS"
+          ],
+          "fixtures_any": 109,
+          "fixtures_bet365": 0,
+          "fixtures_marathonbet": 101,
+          "bet365_coverage_pct": 0.0,
+          "marathonbet_coverage_pct": 63.12
+        },
+        {
+          "bet_id": 247,
+          "bet_name": "Corners Race To",
+          "deferred_groups": [
+            "CORNERS"
+          ],
+          "fixtures_any": 110,
+          "fixtures_bet365": 109,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 68.12,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 239,
+          "bet_name": "Corners. European Handicap",
+          "deferred_groups": [
+            "CORNERS"
+          ],
+          "fixtures_any": 109,
+          "fixtures_bet365": 109,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 68.12,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 295,
+          "bet_name": "Corners. Total (Range)",
+          "deferred_groups": [
+            "CORNERS"
+          ],
+          "fixtures_any": 109,
+          "fixtures_bet365": 109,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 68.12,
+          "marathonbet_coverage_pct": 0.0
+        }
+      ]
+    },
+    {
+      "group_id": "CARDS_BOOKINGS",
+      "label_ru": "Карточки / предупреждения",
+      "catalog_market_count": 21,
+      "observed_market_count": 13,
+      "source_status": "BET365_REFERENCE_PRESENT_USER_BOOK_SOURCE_WEAK",
+      "max_bet365_coverage_pct": 25.62,
+      "max_marathonbet_coverage_pct": 0.0,
+      "top_observed_markets": [
+        {
+          "bet_id": 80,
+          "bet_name": "Cards Over/Under",
+          "deferred_groups": [
+            "CARDS_BOOKINGS"
+          ],
+          "fixtures_any": 41,
+          "fixtures_bet365": 41,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 25.62,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 81,
+          "bet_name": "Cards Asian Handicap",
+          "deferred_groups": [
+            "CARDS_BOOKINGS"
+          ],
+          "fixtures_any": 41,
+          "fixtures_bet365": 41,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 25.62,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 82,
+          "bet_name": "Home Team Total Cards",
+          "deferred_groups": [
+            "CARDS_BOOKINGS"
+          ],
+          "fixtures_any": 41,
+          "fixtures_bet365": 41,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 25.62,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 83,
+          "bet_name": "Away Team Total Cards",
+          "deferred_groups": [
+            "CARDS_BOOKINGS"
+          ],
+          "fixtures_any": 41,
+          "fixtures_bet365": 41,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 25.62,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 299,
+          "bet_name": "Cards over/under between 0 and 10 m",
+          "deferred_groups": [
+            "CARDS_BOOKINGS"
+          ],
+          "fixtures_any": 41,
+          "fixtures_bet365": 41,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 25.62,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 250,
+          "bet_name": "First Card Received (3 way)",
+          "deferred_groups": [
+            "CARDS_BOOKINGS"
+          ],
+          "fixtures_any": 40,
+          "fixtures_bet365": 40,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 25.0,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 79,
+          "bet_name": "Cards European Handicap",
+          "deferred_groups": [
+            "CARDS_BOOKINGS"
+          ],
+          "fixtures_any": 39,
+          "fixtures_bet365": 39,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 24.38,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 150,
+          "bet_name": "Home Team Yellow Cards",
+          "deferred_groups": [
+            "CARDS_BOOKINGS"
+          ],
+          "fixtures_any": 40,
+          "fixtures_bet365": 0,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 0.0,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 151,
+          "bet_name": "Away Team Yellow Cards",
+          "deferred_groups": [
+            "CARDS_BOOKINGS"
+          ],
+          "fixtures_any": 40,
+          "fixtures_bet365": 0,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 0.0,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 158,
+          "bet_name": "Yellow Cards 1x2",
+          "deferred_groups": [
+            "CARDS_BOOKINGS"
+          ],
+          "fixtures_any": 40,
+          "fixtures_bet365": 0,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 0.0,
+          "marathonbet_coverage_pct": 0.0
+        }
+      ]
+    },
+    {
+      "group_id": "SHOTS",
+      "label_ru": "Удары / удары в створ",
+      "catalog_market_count": 21,
+      "observed_market_count": 10,
+      "source_status": "BET365_REFERENCE_PRESENT_USER_BOOK_SOURCE_WEAK",
+      "max_bet365_coverage_pct": 61.25,
+      "max_marathonbet_coverage_pct": 0.0,
+      "top_observed_markets": [
+        {
+          "bet_id": 240,
+          "bet_name": "Home Player Shots",
+          "deferred_groups": [
+            "PLAYER_PROPS",
+            "SHOTS"
+          ],
+          "fixtures_any": 98,
+          "fixtures_bet365": 98,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 61.25,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 241,
+          "bet_name": "Away Player Shots",
+          "deferred_groups": [
+            "PLAYER_PROPS",
+            "SHOTS"
+          ],
+          "fixtures_any": 98,
+          "fixtures_bet365": 98,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 61.25,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 269,
+          "bet_name": "Home Player Shots On Target Total",
+          "deferred_groups": [
+            "PLAYER_PROPS",
+            "SHOTS"
+          ],
+          "fixtures_any": 98,
+          "fixtures_bet365": 98,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 61.25,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 275,
+          "bet_name": "Away Player Shots On Target Total",
+          "deferred_groups": [
+            "PLAYER_PROPS",
+            "SHOTS"
+          ],
+          "fixtures_any": 78,
+          "fixtures_bet365": 78,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 48.75,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 211,
+          "bet_name": "Total Shots",
+          "deferred_groups": [
+            "SHOTS"
+          ],
+          "fixtures_any": 49,
+          "fixtures_bet365": 48,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 30.0,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 87,
+          "bet_name": "Total ShotOnGoal",
+          "deferred_groups": [
+            "SHOTS"
+          ],
+          "fixtures_any": 48,
+          "fixtures_bet365": 48,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 30.0,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 176,
+          "bet_name": "ShotOnTarget 1x2",
+          "deferred_groups": [
+            "SHOTS"
+          ],
+          "fixtures_any": 48,
+          "fixtures_bet365": 48,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 30.0,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 276,
+          "bet_name": "Away Player Shots Total",
+          "deferred_groups": [
+            "PLAYER_PROPS",
+            "SHOTS"
+          ],
+          "fixtures_any": 48,
+          "fixtures_bet365": 48,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 30.0,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 340,
+          "bet_name": "Shots.1x2",
+          "deferred_groups": [
+            "SHOTS"
+          ],
+          "fixtures_any": 48,
+          "fixtures_bet365": 48,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 30.0,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 177,
+          "bet_name": "ShotOnTarget Handicap",
+          "deferred_groups": [
+            "SHOTS"
+          ],
+          "fixtures_any": 7,
+          "fixtures_bet365": 0,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 0.0,
+          "marathonbet_coverage_pct": 0.0
+        }
+      ]
+    },
+    {
+      "group_id": "OFFSIDES",
+      "label_ru": "Офсайды",
+      "catalog_market_count": 7,
+      "observed_market_count": 6,
+      "source_status": "LOW_OBSERVED_COVERAGE_REVIEW",
+      "max_bet365_coverage_pct": 3.12,
+      "max_marathonbet_coverage_pct": 0.0,
+      "top_observed_markets": [
+        {
+          "bet_id": 164,
+          "bet_name": "Offsides Total",
+          "deferred_groups": [
+            "OFFSIDES"
+          ],
+          "fixtures_any": 11,
+          "fixtures_bet365": 5,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 3.12,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 167,
+          "bet_name": "Offsides Home Total",
+          "deferred_groups": [
+            "OFFSIDES"
+          ],
+          "fixtures_any": 11,
+          "fixtures_bet365": 5,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 3.12,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 168,
+          "bet_name": "Offsides Away Total",
+          "deferred_groups": [
+            "OFFSIDES"
+          ],
+          "fixtures_any": 11,
+          "fixtures_bet365": 5,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 3.12,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 165,
+          "bet_name": "Offsides 1x2",
+          "deferred_groups": [
+            "OFFSIDES"
+          ],
+          "fixtures_any": 6,
+          "fixtures_bet365": 0,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 0.0,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 166,
+          "bet_name": "Offsides Handicap",
+          "deferred_groups": [
+            "OFFSIDES"
+          ],
+          "fixtures_any": 6,
+          "fixtures_bet365": 0,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 0.0,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 169,
+          "bet_name": "Offsides Double Chance",
+          "deferred_groups": [
+            "OFFSIDES"
+          ],
+          "fixtures_any": 6,
+          "fixtures_bet365": 0,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 0.0,
+          "marathonbet_coverage_pct": 0.0
+        }
+      ]
+    },
+    {
+      "group_id": "HALVES_PERIODS",
+      "label_ru": "Таймы / периодные рынки",
+      "catalog_market_count": 69,
+      "observed_market_count": 46,
+      "source_status": "API_FOOTBALL_PROSPECTIVE_SOURCE_POSSIBLE",
+      "max_bet365_coverage_pct": 81.88,
+      "max_marathonbet_coverage_pct": 82.5,
+      "top_observed_markets": [
+        {
+          "bet_id": 3,
+          "bet_name": "Second Half Winner",
+          "deferred_groups": [
+            "HALVES_PERIODS"
+          ],
+          "fixtures_any": 132,
+          "fixtures_bet365": 131,
+          "fixtures_marathonbet": 132,
+          "bet365_coverage_pct": 81.88,
+          "marathonbet_coverage_pct": 82.5
+        },
+        {
+          "bet_id": 6,
+          "bet_name": "Goals Over/Under First Half",
+          "deferred_groups": [
+            "HALVES_PERIODS"
+          ],
+          "fixtures_any": 132,
+          "fixtures_bet365": 131,
+          "fixtures_marathonbet": 132,
+          "bet365_coverage_pct": 81.88,
+          "marathonbet_coverage_pct": 82.5
+        },
+        {
+          "bet_id": 13,
+          "bet_name": "First Half Winner",
+          "deferred_groups": [
+            "HALVES_PERIODS"
+          ],
+          "fixtures_any": 132,
+          "fixtures_bet365": 131,
+          "fixtures_marathonbet": 132,
+          "bet365_coverage_pct": 81.88,
+          "marathonbet_coverage_pct": 82.5
+        },
+        {
+          "bet_id": 18,
+          "bet_name": "Handicap Result - First Half",
+          "deferred_groups": [
+            "HALVES_PERIODS"
+          ],
+          "fixtures_any": 132,
+          "fixtures_bet365": 131,
+          "fixtures_marathonbet": 132,
+          "bet365_coverage_pct": 81.88,
+          "marathonbet_coverage_pct": 82.5
+        },
+        {
+          "bet_id": 19,
+          "bet_name": "Asian Handicap First Half",
+          "deferred_groups": [
+            "HALVES_PERIODS"
+          ],
+          "fixtures_any": 132,
+          "fixtures_bet365": 131,
+          "fixtures_marathonbet": 132,
+          "bet365_coverage_pct": 81.88,
+          "marathonbet_coverage_pct": 82.5
+        },
+        {
+          "bet_id": 20,
+          "bet_name": "Double Chance - First Half",
+          "deferred_groups": [
+            "HALVES_PERIODS"
+          ],
+          "fixtures_any": 132,
+          "fixtures_bet365": 131,
+          "fixtures_marathonbet": 132,
+          "bet365_coverage_pct": 81.88,
+          "marathonbet_coverage_pct": 82.5
+        },
+        {
+          "bet_id": 26,
+          "bet_name": "Goals Over/Under - Second Half",
+          "deferred_groups": [
+            "HALVES_PERIODS"
+          ],
+          "fixtures_any": 132,
+          "fixtures_bet365": 131,
+          "fixtures_marathonbet": 132,
+          "bet365_coverage_pct": 81.88,
+          "marathonbet_coverage_pct": 82.5
+        },
+        {
+          "bet_id": 34,
+          "bet_name": "Both Teams Score - First Half",
+          "deferred_groups": [
+            "HALVES_PERIODS"
+          ],
+          "fixtures_any": 132,
+          "fixtures_bet365": 131,
+          "fixtures_marathonbet": 132,
+          "bet365_coverage_pct": 81.88,
+          "marathonbet_coverage_pct": 82.5
+        },
+        {
+          "bet_id": 35,
+          "bet_name": "Both Teams To Score - Second Half",
+          "deferred_groups": [
+            "PLAYER_PROPS",
+            "HALVES_PERIODS"
+          ],
+          "fixtures_any": 132,
+          "fixtures_bet365": 131,
+          "fixtures_marathonbet": 132,
+          "bet365_coverage_pct": 81.88,
+          "marathonbet_coverage_pct": 82.5
+        },
+        {
+          "bet_id": 63,
+          "bet_name": "Odd/Even - Second Half",
+          "deferred_groups": [
+            "HALVES_PERIODS"
+          ],
+          "fixtures_any": 132,
+          "fixtures_bet365": 131,
+          "fixtures_marathonbet": 132,
+          "bet365_coverage_pct": 81.88,
+          "marathonbet_coverage_pct": 82.5
+        }
+      ]
+    },
+    {
+      "group_id": "GOAL_TIMING_INTERVALS",
+      "label_ru": "Время гола / интервалы",
+      "catalog_market_count": 8,
+      "observed_market_count": 6,
+      "source_status": "LOW_OBSERVED_COVERAGE_REVIEW",
+      "max_bet365_coverage_pct": 0.0,
+      "max_marathonbet_coverage_pct": 0.0,
+      "top_observed_markets": [
+        {
+          "bet_id": 144,
+          "bet_name": "Goal in 1-15 minutes",
+          "deferred_groups": [
+            "GOAL_TIMING_INTERVALS"
+          ],
+          "fixtures_any": 119,
+          "fixtures_bet365": 0,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 0.0,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 145,
+          "bet_name": "Goal in 16-30 minutes",
+          "deferred_groups": [
+            "GOAL_TIMING_INTERVALS"
+          ],
+          "fixtures_any": 119,
+          "fixtures_bet365": 0,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 0.0,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 146,
+          "bet_name": "Goal in 31-45 minutes",
+          "deferred_groups": [
+            "GOAL_TIMING_INTERVALS"
+          ],
+          "fixtures_any": 119,
+          "fixtures_bet365": 0,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 0.0,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 147,
+          "bet_name": "Goal in 46-60 minutes",
+          "deferred_groups": [
+            "GOAL_TIMING_INTERVALS"
+          ],
+          "fixtures_any": 119,
+          "fixtures_bet365": 0,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 0.0,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 148,
+          "bet_name": "Goal in 61-75 minutes",
+          "deferred_groups": [
+            "GOAL_TIMING_INTERVALS"
+          ],
+          "fixtures_any": 119,
+          "fixtures_bet365": 0,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 0.0,
+          "marathonbet_coverage_pct": 0.0
+        },
+        {
+          "bet_id": 149,
+          "bet_name": "Goal in 76-90 minutes",
+          "deferred_groups": [
+            "GOAL_TIMING_INTERVALS"
+          ],
+          "fixtures_any": 119,
+          "fixtures_bet365": 0,
+          "fixtures_marathonbet": 0,
+          "bet365_coverage_pct": 0.0,
+          "marathonbet_coverage_pct": 0.0
+        }
+      ]
+    }
+  ],
+  "details": [
+    {
+      "bet_id": 3,
+      "bet_name": "Second Half Winner",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 131,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 81.88,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 6,
+      "bet_name": "Goals Over/Under First Half",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 131,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 81.88,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 10,
+      "bet_name": "Exact Score",
+      "deferred_groups": [
+        "EXACT_SCORE"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 131,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 81.88,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 13,
+      "bet_name": "First Half Winner",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 131,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 81.88,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 14,
+      "bet_name": "Team To Score First",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 131,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 81.88,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 15,
+      "bet_name": "Team To Score Last",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 131,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 81.88,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 18,
+      "bet_name": "Handicap Result - First Half",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 131,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 81.88,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 19,
+      "bet_name": "Asian Handicap First Half",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 131,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 81.88,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 20,
+      "bet_name": "Double Chance - First Half",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 131,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 81.88,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 22,
+      "bet_name": "Odd/Even - First Half",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 130,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 81.25,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 25,
+      "bet_name": "Result/Total Goals",
+      "deferred_groups": [
+        "BTTS_TOTAL_COMBOS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 131,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 81.88,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 26,
+      "bet_name": "Goals Over/Under - Second Half",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 131,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 81.88,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 31,
+      "bet_name": "Correct Score - First Half",
+      "deferred_groups": [
+        "EXACT_SCORE",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 131,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 81.88,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 33,
+      "bet_name": "Double Chance - Second Half",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 34,
+      "bet_name": "Both Teams Score - First Half",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 131,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 81.88,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 35,
+      "bet_name": "Both Teams To Score - Second Half",
+      "deferred_groups": [
+        "PLAYER_PROPS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 131,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 81.88,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 42,
+      "bet_name": "Second Half Exact Goals Number",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 131,
+      "fixtures_bet365": 131,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 81.88,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 45,
+      "bet_name": "Corners Over Under",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 110,
+      "fixtures_bet365": 110,
+      "fixtures_marathonbet": 101,
+      "bet365_coverage_pct": 68.75,
+      "marathonbet_coverage_pct": 63.12
+    },
+    {
+      "bet_id": 46,
+      "bet_name": "Exact Goals Number - First Half",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 131,
+      "fixtures_bet365": 131,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 81.88,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 48,
+      "bet_name": "To Score In Both Halves By Teams",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 131,
+      "fixtures_bet365": 131,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 81.88,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 49,
+      "bet_name": "Total Goals/Both Teams To Score",
+      "deferred_groups": [
+        "BTTS_TOTAL_COMBOS",
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 131,
+      "fixtures_bet365": 131,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 81.88,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 51,
+      "bet_name": "Halftime Result/Total Goals",
+      "deferred_groups": [
+        "BTTS_TOTAL_COMBOS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 52,
+      "bet_name": "Halftime Result/Both Teams Score",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 55,
+      "bet_name": "Corners 1x2",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 109,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 101,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 63.12
+    },
+    {
+      "bet_id": 56,
+      "bet_name": "Corners Asian Handicap",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 110,
+      "fixtures_bet365": 110,
+      "fixtures_marathonbet": 101,
+      "bet365_coverage_pct": 68.75,
+      "marathonbet_coverage_pct": 63.12
+    },
+    {
+      "bet_id": 57,
+      "bet_name": "Home Corners Over/Under",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 110,
+      "fixtures_bet365": 109,
+      "fixtures_marathonbet": 101,
+      "bet365_coverage_pct": 68.12,
+      "marathonbet_coverage_pct": 63.12
+    },
+    {
+      "bet_id": 58,
+      "bet_name": "Away Corners Over/Under",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 110,
+      "fixtures_bet365": 109,
+      "fixtures_marathonbet": 101,
+      "bet365_coverage_pct": 68.12,
+      "marathonbet_coverage_pct": 63.12
+    },
+    {
+      "bet_id": 62,
+      "bet_name": "Correct Score - Second Half",
+      "deferred_groups": [
+        "EXACT_SCORE",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 129,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 63,
+      "bet_name": "Odd/Even - Second Half",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 131,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 81.88,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 72,
+      "bet_name": "Goal Line (1st Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 131,
+      "fixtures_bet365": 131,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 81.88,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 73,
+      "bet_name": "Both Teams to Score 1st Half - 2nd Half",
+      "deferred_groups": [
+        "PLAYER_PROPS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 75,
+      "bet_name": "Last Corner",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 76,
+      "bet_name": "First Corner",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 77,
+      "bet_name": "Total Corners (1st Half)",
+      "deferred_groups": [
+        "CORNERS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 110,
+      "fixtures_bet365": 109,
+      "fixtures_marathonbet": 101,
+      "bet365_coverage_pct": 68.12,
+      "marathonbet_coverage_pct": 63.12
+    },
+    {
+      "bet_id": 79,
+      "bet_name": "Cards European Handicap",
+      "deferred_groups": [
+        "CARDS_BOOKINGS"
+      ],
+      "fixtures_any": 39,
+      "fixtures_bet365": 39,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 24.38,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 80,
+      "bet_name": "Cards Over/Under",
+      "deferred_groups": [
+        "CARDS_BOOKINGS"
+      ],
+      "fixtures_any": 41,
+      "fixtures_bet365": 41,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 25.62,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 81,
+      "bet_name": "Cards Asian Handicap",
+      "deferred_groups": [
+        "CARDS_BOOKINGS"
+      ],
+      "fixtures_any": 41,
+      "fixtures_bet365": 41,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 25.62,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 82,
+      "bet_name": "Home Team Total Cards",
+      "deferred_groups": [
+        "CARDS_BOOKINGS"
+      ],
+      "fixtures_any": 41,
+      "fixtures_bet365": 41,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 25.62,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 83,
+      "bet_name": "Away Team Total Cards",
+      "deferred_groups": [
+        "CARDS_BOOKINGS"
+      ],
+      "fixtures_any": 41,
+      "fixtures_bet365": 41,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 25.62,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 84,
+      "bet_name": "Total Corners (3 way) (1st Half)",
+      "deferred_groups": [
+        "CORNERS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 85,
+      "bet_name": "Total Corners (3 way)",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 110,
+      "fixtures_bet365": 109,
+      "fixtures_marathonbet": 101,
+      "bet365_coverage_pct": 68.12,
+      "marathonbet_coverage_pct": 63.12
+    },
+    {
+      "bet_id": 86,
+      "bet_name": "RCARD",
+      "deferred_groups": [
+        "CARDS_BOOKINGS"
+      ],
+      "fixtures_any": 30,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 87,
+      "bet_name": "Total ShotOnGoal",
+      "deferred_groups": [
+        "SHOTS"
+      ],
+      "fixtures_any": 48,
+      "fixtures_bet365": 48,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 30.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 88,
+      "bet_name": "Home Total ShotOnGoal",
+      "deferred_groups": [
+        "SHOTS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 89,
+      "bet_name": "Away Total ShotOnGoal",
+      "deferred_groups": [
+        "SHOTS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 92,
+      "bet_name": "Anytime Goal Scorer",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 118,
+      "fixtures_bet365": 118,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 73.75,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 93,
+      "bet_name": "First Goal Scorer",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 118,
+      "fixtures_bet365": 118,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 73.75,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 94,
+      "bet_name": "Last Goal Scorer",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 118,
+      "fixtures_bet365": 118,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 73.75,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 95,
+      "bet_name": "To Score Two or More Goals",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 96,
+      "bet_name": "Last Goal Scorer",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 99,
+      "bet_name": "To Score A Penalty",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 74,
+      "fixtures_bet365": 74,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 46.25,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 102,
+      "bet_name": "Player to be booked",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 103,
+      "bet_name": "Player to be Sent Off",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 104,
+      "bet_name": "Asian Handicap (2nd Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 105,
+      "bet_name": "Home Team Total Goals(1st Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 106,
+      "bet_name": "Away Team Total Goals(1st Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 107,
+      "bet_name": "Home Team Total Goals(2nd Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 108,
+      "bet_name": "Away Team Total Goals(2nd Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 109,
+      "bet_name": "Draw No Bet (1st Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 6,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 113,
+      "bet_name": "Both Teams To Score in Both Halves",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 90,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 90,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 56.25
+    },
+    {
+      "bet_id": 114,
+      "bet_name": "Home Team Score a Goal (1st Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 119,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 115,
+      "bet_name": "Home Team Score a Goal (2nd Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 119,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 116,
+      "bet_name": "Away Team Score a Goal (1st Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 119,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 117,
+      "bet_name": "Away Team Score a Goal (2nd Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 119,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 125,
+      "bet_name": "Corners Asian Handicap (1st Half)",
+      "deferred_groups": [
+        "CORNERS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 100,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 126,
+      "bet_name": "Corners Asian Handicap (2nd Half)",
+      "deferred_groups": [
+        "CORNERS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 100,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 127,
+      "bet_name": "Total Corners (2nd Half)",
+      "deferred_groups": [
+        "CORNERS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 100,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 128,
+      "bet_name": "Total Corners (3 way) (2nd Half)",
+      "deferred_groups": [
+        "CORNERS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 130,
+      "bet_name": "Corners 1x2 (1st Half)",
+      "deferred_groups": [
+        "CORNERS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 103,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 131,
+      "bet_name": "Corners 1x2 (2nd Half)",
+      "deferred_groups": [
+        "CORNERS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 103,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 132,
+      "bet_name": "Home Total Corners (1st Half)",
+      "deferred_groups": [
+        "CORNERS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 103,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 133,
+      "bet_name": "Home Total Corners (2nd Half)",
+      "deferred_groups": [
+        "CORNERS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 103,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 134,
+      "bet_name": "Away Total Corners (1st Half)",
+      "deferred_groups": [
+        "CORNERS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 103,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 135,
+      "bet_name": "Away Total Corners (2nd Half)",
+      "deferred_groups": [
+        "CORNERS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 103,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 144,
+      "bet_name": "Goal in 1-15 minutes",
+      "deferred_groups": [
+        "GOAL_TIMING_INTERVALS"
+      ],
+      "fixtures_any": 119,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 145,
+      "bet_name": "Goal in 16-30 minutes",
+      "deferred_groups": [
+        "GOAL_TIMING_INTERVALS"
+      ],
+      "fixtures_any": 119,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 146,
+      "bet_name": "Goal in 31-45 minutes",
+      "deferred_groups": [
+        "GOAL_TIMING_INTERVALS"
+      ],
+      "fixtures_any": 119,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 147,
+      "bet_name": "Goal in 46-60 minutes",
+      "deferred_groups": [
+        "GOAL_TIMING_INTERVALS"
+      ],
+      "fixtures_any": 119,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 148,
+      "bet_name": "Goal in 61-75 minutes",
+      "deferred_groups": [
+        "GOAL_TIMING_INTERVALS"
+      ],
+      "fixtures_any": 119,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 149,
+      "bet_name": "Goal in 76-90 minutes",
+      "deferred_groups": [
+        "GOAL_TIMING_INTERVALS"
+      ],
+      "fixtures_any": 119,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 150,
+      "bet_name": "Home Team Yellow Cards",
+      "deferred_groups": [
+        "CARDS_BOOKINGS"
+      ],
+      "fixtures_any": 40,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 151,
+      "bet_name": "Away Team Yellow Cards",
+      "deferred_groups": [
+        "CARDS_BOOKINGS"
+      ],
+      "fixtures_any": 40,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 155,
+      "bet_name": "Yellow Over/Under (1st Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 40,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 156,
+      "bet_name": "Yellow Over/Under (2nd Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 29,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 158,
+      "bet_name": "Yellow Cards 1x2",
+      "deferred_groups": [
+        "CARDS_BOOKINGS"
+      ],
+      "fixtures_any": 40,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 159,
+      "bet_name": "Yellow Asian Handicap (1st Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 40,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 160,
+      "bet_name": "Yellow Asian Handicap (2nd Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 29,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 161,
+      "bet_name": "Yellow Cards 1x2 (1st Half)",
+      "deferred_groups": [
+        "CARDS_BOOKINGS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 40,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 162,
+      "bet_name": "Yellow Cards 1x2 (2nd Half)",
+      "deferred_groups": [
+        "CARDS_BOOKINGS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 29,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 164,
+      "bet_name": "Offsides Total",
+      "deferred_groups": [
+        "OFFSIDES"
+      ],
+      "fixtures_any": 11,
+      "fixtures_bet365": 5,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 3.12,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 165,
+      "bet_name": "Offsides 1x2",
+      "deferred_groups": [
+        "OFFSIDES"
+      ],
+      "fixtures_any": 6,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 166,
+      "bet_name": "Offsides Handicap",
+      "deferred_groups": [
+        "OFFSIDES"
+      ],
+      "fixtures_any": 6,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 167,
+      "bet_name": "Offsides Home Total",
+      "deferred_groups": [
+        "OFFSIDES"
+      ],
+      "fixtures_any": 11,
+      "fixtures_bet365": 5,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 3.12,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 168,
+      "bet_name": "Offsides Away Total",
+      "deferred_groups": [
+        "OFFSIDES"
+      ],
+      "fixtures_any": 11,
+      "fixtures_bet365": 5,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 3.12,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 169,
+      "bet_name": "Offsides Double Chance",
+      "deferred_groups": [
+        "OFFSIDES"
+      ],
+      "fixtures_any": 6,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 176,
+      "bet_name": "ShotOnTarget 1x2",
+      "deferred_groups": [
+        "SHOTS"
+      ],
+      "fixtures_any": 48,
+      "fixtures_bet365": 48,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 30.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 177,
+      "bet_name": "ShotOnTarget Handicap",
+      "deferred_groups": [
+        "SHOTS"
+      ],
+      "fixtures_any": 7,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 178,
+      "bet_name": "ShotOnTarget Double Chance",
+      "deferred_groups": [
+        "SHOTS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 179,
+      "bet_name": "First Team to Score",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 180,
+      "bet_name": "Last Team to Score",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 181,
+      "bet_name": "European Handicap (2nd Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 182,
+      "bet_name": "Draw No Bet (2nd Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 6,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 183,
+      "bet_name": "Double Chance/Total",
+      "deferred_groups": [
+        "BTTS_TOTAL_COMBOS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 184,
+      "bet_name": "To Score in Both Halves",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 185,
+      "bet_name": "First Team to Score (3 way) 1st Half",
+      "deferred_groups": [
+        "PLAYER_PROPS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 132,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 132,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 82.5
+    },
+    {
+      "bet_id": 187,
+      "bet_name": "Total Goals By Ranges (1st Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 190,
+      "bet_name": "Home Exact Goals Number (1st Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 191,
+      "bet_name": "Away Exact Goals Number (1st Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 194,
+      "bet_name": "Result/Total Goals (2nd Half)",
+      "deferred_groups": [
+        "BTTS_TOTAL_COMBOS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 199,
+      "bet_name": "Home Win To Nill (1st Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 200,
+      "bet_name": "Home Win To Nill (2nd Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 201,
+      "bet_name": "To Score In 1st Half",
+      "deferred_groups": [
+        "PLAYER_PROPS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 202,
+      "bet_name": "To Score In 2nd Half",
+      "deferred_groups": [
+        "PLAYER_PROPS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 203,
+      "bet_name": "Yellow Cards. Odd/Even (1st Half)",
+      "deferred_groups": [
+        "CARDS_BOOKINGS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 204,
+      "bet_name": "Yellow Cards. Odd/Even (2nd Half)",
+      "deferred_groups": [
+        "CARDS_BOOKINGS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 205,
+      "bet_name": "First Team to Score (3 way) 2nd Half",
+      "deferred_groups": [
+        "PLAYER_PROPS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 208,
+      "bet_name": "Corners. First Corner (3 way)",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 211,
+      "bet_name": "Total Shots",
+      "deferred_groups": [
+        "SHOTS"
+      ],
+      "fixtures_any": 49,
+      "fixtures_bet365": 48,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 30.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 212,
+      "bet_name": "Player Assists",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 49,
+      "fixtures_bet365": 19,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 11.88,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 213,
+      "bet_name": "Player Triples",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 5,
+      "fixtures_bet365": 5,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 3.12,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 214,
+      "bet_name": "Player Points",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 215,
+      "bet_name": "Player Singles",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 98,
+      "fixtures_bet365": 98,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 61.25,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 216,
+      "bet_name": "Multi Touchdown Scorer (2 or More)",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 217,
+      "bet_name": "Multi Touchdown Scorer (3 or More)",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 218,
+      "bet_name": "Away Anytime Goal Scorer",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 118,
+      "fixtures_bet365": 118,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 73.75,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 219,
+      "bet_name": "Away First Goal Scorer",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 118,
+      "fixtures_bet365": 118,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 73.75,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 220,
+      "bet_name": "Shots. Away Total",
+      "deferred_groups": [
+        "SHOTS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 221,
+      "bet_name": "Shots. Home Total",
+      "deferred_groups": [
+        "SHOTS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 226,
+      "bet_name": "Away Last Goal Scorer",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 118,
+      "fixtures_bet365": 118,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 73.75,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 231,
+      "bet_name": "Home Anytime Goal Scorer",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 118,
+      "fixtures_bet365": 118,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 73.75,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 232,
+      "bet_name": "Home First Goal Scorer",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 118,
+      "fixtures_bet365": 118,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 73.75,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 233,
+      "bet_name": "Home Last Goal Scorer",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 118,
+      "fixtures_bet365": 118,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 73.75,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 234,
+      "bet_name": "Home To Score Three or More Goals",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 235,
+      "bet_name": "Away To Score Three or More Goals",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 236,
+      "bet_name": "Away To Score Two or More Goals",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 237,
+      "bet_name": "Home To Score Two or More Goals",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 238,
+      "bet_name": "Home Team Goalscorers First",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 239,
+      "bet_name": "Corners. European Handicap",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 109,
+      "fixtures_bet365": 109,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 68.12,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 240,
+      "bet_name": "Home Player Shots",
+      "deferred_groups": [
+        "PLAYER_PROPS",
+        "SHOTS"
+      ],
+      "fixtures_any": 98,
+      "fixtures_bet365": 98,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 61.25,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 241,
+      "bet_name": "Away Player Shots",
+      "deferred_groups": [
+        "PLAYER_PROPS",
+        "SHOTS"
+      ],
+      "fixtures_any": 98,
+      "fixtures_bet365": 98,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 61.25,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 242,
+      "bet_name": "Player Shots On Target",
+      "deferred_groups": [
+        "PLAYER_PROPS",
+        "SHOTS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 243,
+      "bet_name": "Home Shots On Target",
+      "deferred_groups": [
+        "SHOTS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 244,
+      "bet_name": "Away Shots On Target",
+      "deferred_groups": [
+        "SHOTS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 247,
+      "bet_name": "Corners Race To",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 110,
+      "fixtures_bet365": 109,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 68.12,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 249,
+      "bet_name": "Multicorners",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 108,
+      "fixtures_bet365": 108,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 67.5,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 250,
+      "bet_name": "First Card Received (3 way)",
+      "deferred_groups": [
+        "CARDS_BOOKINGS"
+      ],
+      "fixtures_any": 40,
+      "fixtures_bet365": 40,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 25.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 251,
+      "bet_name": "Player to be booked",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 252,
+      "bet_name": "Both Teams to Receive a Card",
+      "deferred_groups": [
+        "CARDS_BOOKINGS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 255,
+      "bet_name": "Home Player Assists",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 256,
+      "bet_name": "Away Player Assists",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 257,
+      "bet_name": "Player to Score or Assist",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 91,
+      "fixtures_bet365": 91,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 56.88,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 258,
+      "bet_name": "Home Player to Score or Assist",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 259,
+      "bet_name": "Away Player to Score or Assist",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 261,
+      "bet_name": "Total Goal Minutes (Range)",
+      "deferred_groups": [
+        "GOAL_TIMING_INTERVALS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 264,
+      "bet_name": "Player Shots On Target Total",
+      "deferred_groups": [
+        "PLAYER_PROPS",
+        "SHOTS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 265,
+      "bet_name": "Player Shots Total",
+      "deferred_groups": [
+        "PLAYER_PROPS",
+        "SHOTS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 266,
+      "bet_name": "Player Fouls Committed",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 16,
+      "fixtures_bet365": 16,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 10.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 269,
+      "bet_name": "Home Player Shots On Target Total",
+      "deferred_groups": [
+        "PLAYER_PROPS",
+        "SHOTS"
+      ],
+      "fixtures_any": 98,
+      "fixtures_bet365": 98,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 61.25,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 270,
+      "bet_name": "Home Player Shots Total",
+      "deferred_groups": [
+        "PLAYER_PROPS",
+        "SHOTS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 271,
+      "bet_name": "Home Player Fouls Committed",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 272,
+      "bet_name": "Home Player Tackles",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 273,
+      "bet_name": "Home Player Passes",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 275,
+      "bet_name": "Away Player Shots On Target Total",
+      "deferred_groups": [
+        "PLAYER_PROPS",
+        "SHOTS"
+      ],
+      "fixtures_any": 78,
+      "fixtures_bet365": 78,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 48.75,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 276,
+      "bet_name": "Away Player Shots Total",
+      "deferred_groups": [
+        "PLAYER_PROPS",
+        "SHOTS"
+      ],
+      "fixtures_any": 48,
+      "fixtures_bet365": 48,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 30.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 277,
+      "bet_name": "Away Player Fouls Committed",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 278,
+      "bet_name": "Away Player Tackles",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 279,
+      "bet_name": "Away Player Passes",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 282,
+      "bet_name": "Double Chance/Both Teams To Score",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 283,
+      "bet_name": "Away Win To Nill (1st Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 284,
+      "bet_name": "Away Win To Nill (2nd Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 285,
+      "bet_name": "Team To Score (Goals)",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 286,
+      "bet_name": "Team Goalscorers First",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 287,
+      "bet_name": "Team Goalscorers Last",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 288,
+      "bet_name": "Home Team Goalscorers Last",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 289,
+      "bet_name": "Away Team Goalscorers First",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 290,
+      "bet_name": "Away Team Goalscorers Last",
+      "deferred_groups": [
+        "PLAYER_PROPS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 291,
+      "bet_name": "Time of First Goal Brackets (Range)",
+      "deferred_groups": [
+        "GOAL_TIMING_INTERVALS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 295,
+      "bet_name": "Corners. Total (Range)",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 109,
+      "fixtures_bet365": 109,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 68.12,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 297,
+      "bet_name": "Corners. total between 0 and 10m",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 109,
+      "fixtures_bet365": 109,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 68.12,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 299,
+      "bet_name": "Cards over/under between 0 and 10 m",
+      "deferred_groups": [
+        "CARDS_BOOKINGS"
+      ],
+      "fixtures_any": 41,
+      "fixtures_bet365": 41,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 25.62,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 300,
+      "bet_name": "Both Teams to Receive 2+ Cards",
+      "deferred_groups": [
+        "CARDS_BOOKINGS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 307,
+      "bet_name": "Corners. Double Chance",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 309,
+      "bet_name": "Yellow Cards. Home Total (1st Half)",
+      "deferred_groups": [
+        "CARDS_BOOKINGS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 310,
+      "bet_name": "Yellow Cards Away Total (1st Half)",
+      "deferred_groups": [
+        "CARDS_BOOKINGS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 313,
+      "bet_name": "Offsides Odd/Even",
+      "deferred_groups": [
+        "OFFSIDES"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 321,
+      "bet_name": "Penalty Awarded (1st Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 322,
+      "bet_name": "Penalty Awarded (2nd Half)",
+      "deferred_groups": [
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 324,
+      "bet_name": "Corner in 1-15 minutes",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 325,
+      "bet_name": "Corner in 16-30 minutes",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 326,
+      "bet_name": "Corner in 31-45 minutes",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 327,
+      "bet_name": "Corner in 45-60 minutes",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 328,
+      "bet_name": "Corner in 60-75 minutes",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 329,
+      "bet_name": "Corner in 75-90 minutes",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 335,
+      "bet_name": "Red Cards Over/Under",
+      "deferred_groups": [
+        "CARDS_BOOKINGS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 338,
+      "bet_name": "Corners. Odd/Even",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 103,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 339,
+      "bet_name": "Corners. Double Chance",
+      "deferred_groups": [
+        "CORNERS"
+      ],
+      "fixtures_any": 100,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 340,
+      "bet_name": "Shots.1x2",
+      "deferred_groups": [
+        "SHOTS"
+      ],
+      "fixtures_any": 48,
+      "fixtures_bet365": 48,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 30.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 342,
+      "bet_name": "Red Card In The Match (1st Half)",
+      "deferred_groups": [
+        "CARDS_BOOKINGS",
+        "HALVES_PERIODS"
+      ],
+      "fixtures_any": 0,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    }
+  ],
   "api_calls": 0,
   "signals_created": 0,
-  "missing": [
-    "api_football_odds_bet_catalog.json",
-    "api_football_market_presence.json"
-  ]
+  "policy": "Source availability only. No strategy hypothesis, no WATCH, no promotion. Coverage in one current fixture sample is descriptive, not evidence of edge."
 }
