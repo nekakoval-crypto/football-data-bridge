@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """Stage74 app API: Stage73-compatible read-only API plus app aggregations."""
 from __future__ import annotations
-import argparse, json, os
+import argparse, json, os, shutil, time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, urlparse
 
 import stage73_internal_api as base
+
+STARTED_AT=time.time()
 
 TABLES={
     'canonical':'canonical_signals',
@@ -120,6 +122,51 @@ def performance_payload():
             'read_only':True,
         }
 
+def _read_text(path):
+    try:
+        with open(path,'r',encoding='utf-8') as f:return f.read().strip()
+    except OSError:return ''
+
+def _meminfo():
+    out={}
+    try:
+        with open('/proc/meminfo','r',encoding='utf-8') as f:
+            for line in f:
+                k,v=line.split(':',1);parts=v.strip().split();out[k]=int(parts[0])*1024 if parts else 0
+    except OSError:
+        return {}
+    return out
+
+def runtime_payload():
+    db_path=os.path.abspath(str(base.DB))
+    disk_root=os.path.dirname(db_path) or '.'
+    try:du=shutil.disk_usage(disk_root)
+    except OSError:du=shutil.disk_usage('.')
+    mem=_meminfo();total=mem.get('MemTotal',0);avail=mem.get('MemAvailable',0)
+    try:load1,load5,load15=os.getloadavg()
+    except OSError:load1=load5=load15=0.0
+    try:
+        with open('/proc/uptime','r',encoding='utf-8') as f:host_uptime=float(f.read().split()[0])
+    except (OSError,ValueError,IndexError):host_uptime=None
+    try:db_stat=os.stat(db_path);db_size=db_stat.st_size;db_mtime=db_stat.st_mtime
+    except OSError:db_size=0;db_mtime=None
+    release=_read_text('/opt/pbk/data/release_commit') or os.getenv('PBK_RELEASE_COMMIT','') or 'UNTRACKED'
+    return 200,{
+        'status':'OK',
+        'api_version':'1.3',
+        'release_commit':release,
+        'api_process_uptime_seconds':round(max(0,time.time()-STARTED_AT),1),
+        'host_uptime_seconds':round(host_uptime,1) if host_uptime is not None else None,
+        'load_average_1m':round(load1,3),'load_average_5m':round(load5,3),'load_average_15m':round(load15,3),
+        'memory_total_mb':round(total/1048576,1) if total else None,
+        'memory_available_mb':round(avail/1048576,1) if avail else None,
+        'disk_total_gb':round(du.total/1073741824,2),
+        'disk_free_gb':round(du.free/1073741824,2),
+        'db_size_mb':round(db_size/1048576,2),
+        'db_mtime_epoch':db_mtime,
+        'read_only':True,
+    }
+
 def notification_title(row,category):
     teams=f"{row.get('home_team') or '—'} — {row.get('away_team') or '—'}"
     tag=row.get('rule_or_stage') or ''
@@ -227,6 +274,7 @@ def dispatch(path_with_query):
     u=urlparse(path_with_query);path=u.path.rstrip('/') or '/';q=parse_qs(u.query,keep_blank_values=True)
     if path=='/v1/match':return aggregate_match((q.get('fixture_id') or [''])[0])
     if path=='/v1/performance':return performance_payload()
+    if path=='/v1/runtime':return runtime_payload()
     if path=='/v1/notifications':
         try:limit=int((q.get('limit') or ['100'])[0])
         except ValueError:limit=100
@@ -234,7 +282,7 @@ def dispatch(path_with_query):
     return base.dispatch(path_with_query)
 
 class Handler(BaseHTTPRequestHandler):
-    server_version='PBKAppAPI/1.2'
+    server_version='PBKAppAPI/1.3'
     def do_GET(self):
         try:status,payload=dispatch(self.path)
         except FileNotFoundError as e:status,payload=503,{'error':'DATA_LAYER_UNAVAILABLE','detail':str(e)}
@@ -256,8 +304,9 @@ def self_test():
     status,p=aggregate_match(fid);match_ok=status==200 and p.get('fixture_id')==fid and p.get('read_only') is True and isinstance(p.get('markets'),dict)
     perf_status,perf=performance_payload();perf_ok=perf_status==200 and 'canonical' in perf and 'watch' in perf and perf.get('read_only') is True
     note_status,notes=notifications_payload(100);note_ok=note_status==200 and isinstance(notes.get('items'),list) and notes.get('read_only') is True and notes.get('delivery',{}).get('in_app') is True
-    ok=match_ok and perf_ok and note_ok
-    print(json.dumps({'status':'OK' if ok else 'FAIL','match_detail_fixture_id':fid,'http_status':status,'canonical_rows':len(p.get('canonical') or []),'watch_rows':len(p.get('watch') or []),'lifecycle_rows':len(p.get('lifecycle') or []),'performance_http_status':perf_status,'notifications_http_status':note_status,'notification_rows':len(notes.get('items') or []),'probability_module':(perf.get('probability_module') or {}).get('status'),'read_only':p.get('read_only')},ensure_ascii=False))
+    run_status,runtime=runtime_payload();runtime_ok=run_status==200 and runtime.get('status')=='OK' and runtime.get('api_version')=='1.3'
+    ok=match_ok and perf_ok and note_ok and runtime_ok
+    print(json.dumps({'status':'OK' if ok else 'FAIL','match_detail_fixture_id':fid,'http_status':status,'canonical_rows':len(p.get('canonical') or []),'watch_rows':len(p.get('watch') or []),'lifecycle_rows':len(p.get('lifecycle') or []),'performance_http_status':perf_status,'notifications_http_status':note_status,'notification_rows':len(notes.get('items') or []),'runtime_http_status':run_status,'runtime_api_version':runtime.get('api_version'),'probability_module':(perf.get('probability_module') or {}).get('status'),'read_only':p.get('read_only')},ensure_ascii=False))
     return 0 if ok else 1
 
 def main():
