@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-11T13:02:30Z",
+  "generated_at_utc": "2026-09-11T14:02:47Z",
   "status": "OK",
   "active_signals": 3,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-11T12:50:21Z",
+        "captured_at_utc": "2026-09-11T13:45:24Z",
         "best_odds": "1.69",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.62",
@@ -155,7 +155,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-11T12:50:21Z",
+        "captured_at_utc": "2026-09-11T13:45:24Z",
         "best_odds": "1.61",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.57",
@@ -281,11 +281,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-11T12:50:21Z",
+        "captured_at_utc": "2026-09-11T13:45:24Z",
         "best_odds": "1.69",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.62",
-        "api_odds_update_utc": "2026-09-11T09:01:15+00:00",
+        "api_odds_update_utc": "2026-09-11T13:09:15+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -399,7 +399,7 @@
     "observed_closes": 0,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-11T12:57:43Z",
+    "latest_run_utc": "2026-09-11T13:55:09Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [],
@@ -416,7 +416,7 @@
     "observed_closes": 0,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-11T12:52:31Z",
+    "latest_run_utc": "2026-09-11T13:49:56Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [],
@@ -437,7 +437,7 @@
     "observed_closes": 0,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-11T12:43:40Z",
+    "latest_run_utc": "2026-09-11T13:10:21Z",
     "warnings": [],
     "crossings": [
       {
@@ -455,17 +455,17 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-11T12:00:12Z",
+    "generated_at_utc": "2026-09-11T13:57:24Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
-      "crossings": 0,
-      "pending": 0,
+      "crossings": 1,
+      "pending": 1,
       "settled": 0,
       "void": 0,
       "review": 0,
-      "user_price_rows": 0,
-      "user_execution_coverage_pct": null,
+      "user_price_rows": 1,
+      "user_execution_coverage_pct": 100.0,
       "user_settled_rows": 0,
       "wins": 0,
       "losses": 0,
@@ -483,7 +483,33 @@
       "reverted_roi_pct": null,
       "observed_max_drawdown_u": null
     },
-    "by_family": {},
+    "by_family": {
+      "Big-5 ОЗ market movement — ОЗ — Да": {
+        "crossings": 1,
+        "pending": 1,
+        "settled": 0,
+        "void": 0,
+        "review": 0,
+        "user_price_rows": 1,
+        "user_execution_coverage_pct": 100.0,
+        "user_settled_rows": 0,
+        "wins": 0,
+        "losses": 0,
+        "user_profit_u": 0,
+        "user_roi_pct": null,
+        "close_observed": 0,
+        "close_qualified": 0,
+        "reverted_at_close": 0,
+        "close_persistence_pct": null,
+        "close_qualified_settled": 0,
+        "close_qualified_profit_u": 0,
+        "close_qualified_roi_pct": null,
+        "reverted_settled": 0,
+        "reverted_profit_u": 0,
+        "reverted_roi_pct": null,
+        "observed_max_drawdown_u": null
+      }
+    },
     "policy": {
       "stake": "flat 1u measurement only",
       "user_execution": "Marathonbet price captured at first crossing",

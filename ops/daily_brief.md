@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-11T13:02:30Z
+Generated UTC: 2026-09-11T14:02:47Z
 Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -99,10 +99,11 @@ Active canonical signals: 3
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 0 | settled 0 | pending 0
-- Marathonbet coverage at crossing: N/A
+- Crossings: 1 | settled 0 | pending 1
+- Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: 0.000u | ROI N/A | W-L 0-0
 - Close: observed 0 | stayed qualified 0 | reverted 0 | persistence N/A
 - Close-qualified ROI: N/A | Reverted ROI: N/A
 
-- WATCH crossings пока нет — статистика начнётся с первого prospectively recorded события.
+## By WATCH family
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 1, settled 0, ROI N/A, close persistence N/A
