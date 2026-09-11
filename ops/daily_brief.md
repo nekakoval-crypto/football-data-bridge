@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-11T11:02:39Z
+Generated UTC: 2026-09-11T11:05:35Z
 Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -49,3 +49,17 @@ Active canonical signals: 3
 - Rotation: WAITING_OFFICIAL_XI
 - International: BEFORE FIFA window; to start 11.0h; player-level UNVERIFIED
 - Flags: AWAY_PREV_UEFA_OR_CUP, WITHIN_7D_BEFORE_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
+
+---
+
+# MARKET STEAM WATCH — research only
+
+> This is **not R4 and not a bet signal**. It does not change the canonical R1/R2/R3 forward ledger.
+
+- Scope: Premier League Favorite Steam M1 (+3 pp no-vig from frozen Bet365 opener).
+- Frozen openers tracked: 18
+- Active +3 pp crossings: 0
+- Observed closes: 0 | Close-qualified M1 watches: 0
+- Executable bookmaker being observed: Marathonbet
+
+- No active +3 pp crossing is currently recorded.

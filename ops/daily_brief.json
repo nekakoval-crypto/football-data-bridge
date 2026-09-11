@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-11T11:02:39Z",
+  "generated_at_utc": "2026-09-11T11:05:35Z",
   "status": "OK",
   "active_signals": 3,
   "policy": {
@@ -384,5 +384,21 @@
         "OFFICIAL_ROTATION_PENDING"
       ]
     }
-  ]
+  ],
+  "market_steam_watch": {
+    "status": "WATCH_ONLY_NOT_CANONICAL_R4",
+    "scope": "Premier League Favorite Steam M1",
+    "definition": "same opening favorite remains favorite; no-vig probability +3pp by observed close",
+    "canonical_forward_changed": false,
+    "tracked_openers": 18,
+    "active_crossings": 0,
+    "total_crossings": 0,
+    "observed_closes": 0,
+    "close_qualified_total": 0,
+    "user_bookmaker": "Marathonbet",
+    "latest_run_utc": "2026-09-11T11:02:23Z",
+    "warnings": [],
+    "crossings": [],
+    "recent_close_qualified": []
+  }
 }
