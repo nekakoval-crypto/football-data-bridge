@@ -1,0 +1,21 @@
+{
+  "run_at_utc": "2026-09-11T10:18:25Z",
+  "status": "OK",
+  "active_forward_rows": 3,
+  "new_weather_snapshots": 3,
+  "total_weather_snapshots": 3,
+  "new_rotation_snapshots": 0,
+  "total_rotation_snapshots": 0,
+  "geocoding_calls": 3,
+  "weather_calls": 3,
+  "current_lineup_calls": 0,
+  "previous_lineup_calls": 0,
+  "warnings": [],
+  "policy": {
+    "role": "context-only; never changes R1/R2/R3 eligibility",
+    "weather": "Open-Meteo city-level proxy nearest hourly forecast to kickoff; timestamped snapshots",
+    "rotation": "official current XI compared only with official previous-match XI",
+    "missing_previous_xi": "rotation metrics left blank; never inferred",
+    "xi_polling": "only inside final 90 minutes; workflow cadence handles re-checks until official XI appears"
+  }
+}
