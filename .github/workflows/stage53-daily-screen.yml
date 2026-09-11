@@ -1,0 +1,43 @@
+name: Stage 53 Daily Forward Screen
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Default morning run. Can be changed later without touching rule logic.
+    - cron: '0 6 * * *'
+
+permissions:
+  contents: read
+
+env:
+  STAGE53_OUT: stage53_output
+
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run R1/R2/R3 daily screen
+        env:
+          THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
+        run: python ops/stage53_daily_screen.py
+
+      - name: Show run summary
+        run: |
+          cat stage53_output/stage53_run_meta.json
+          echo '--- candidates ---'
+          cat stage53_output/stage53_candidates.csv
+
+      - name: Upload Stage 53 artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage53-daily-screen
+          path: stage53_output/
+          retention-days: 30
