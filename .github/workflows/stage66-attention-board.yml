@@ -7,6 +7,7 @@ on:
   push:
     paths:
       - 'scripts/stage66_attention_board.py'
+      - 'scripts/stage66_append_governance.py'
       - '.github/workflows/stage66-attention-board.yml'
 
 permissions:
@@ -31,6 +32,9 @@ jobs:
 
       - name: Build Stage 66 attention board
         run: python scripts/stage66_attention_board.py
+
+      - name: Append health and governance summary
+        run: python scripts/stage66_append_governance.py
 
       - name: Show Stage 66 board
         run: |
