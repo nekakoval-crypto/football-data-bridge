@@ -1,15 +1,16 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-11T10:34:48Z
+Generated UTC: 2026-09-11T10:37:42Z
 Active canonical signals: 3
 
-> Context layers are explanatory only. Market-best and user-executable prices are shown separately.
+> Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
 
 ## R1 | Sassuolo — Juventus
 - Kickoff UTC: 2026-09-13T18:45:00Z | Selection: Away | Stake: 1.000u
 - Trigger Bet365: H 5.25 / D 4.0 / A 1.62 (immutable)
 - Market-best observed: 1.69 @ 1xBet | Bet365 now: 1.62
-- User-executable: 1.65 @ Marathonbet
+- Current user-executable: 1.65 @ Marathonbet
+- Paper user-execution (frozen): 1.65 @ Marathonbet [2026-09-11T10:32:01Z]
 - Referee / venue: J. L. Sacchi | TBD, Reggio Emilia
 - Previous: home Serie A vs Bologna (170.8h rest); away Serie A vs AC Milan (168.0h rest)
 - Next: home Serie A vs Monza (120.0h after); away UEFA Europa League vs NEC Nijmegen (96.2h after)
@@ -23,7 +24,8 @@ Active canonical signals: 3
 - Kickoff UTC: 2026-09-14T16:30:00Z | Selection: Away | Stake: 1.000u
 - Trigger Bet365: H 6.0 / D 4.0 / A 1.57 (immutable)
 - Market-best observed: 1.62 @ 1xBet | Bet365 now: 1.57
-- User-executable: 1.58 @ Marathonbet
+- Current user-executable: 1.58 @ Marathonbet
+- Paper user-execution (frozen): 1.58 @ Marathonbet [2026-09-11T10:32:01Z]
 - Referee / venue: F. Maresca | Stadio Olimpico di Torino, Turin
 - Previous: home Serie A vs Fiorentina (219.5h rest); away UEFA Champions League vs Fenerbahçe (95.8h rest)
 - Next: home Serie A vs Bologna (116.5h after); away Serie A vs Inter (119.5h after)
@@ -37,7 +39,8 @@ Active canonical signals: 3
 - Kickoff UTC: 2026-09-20T13:00:00Z | Selection: Away | Stake: 1.000u
 - Trigger Bet365: H 5.25 / D 3.9 / A 1.62 (immutable)
 - Market-best observed: 1.69 @ 1xBet | Bet365 now: 1.62
-- User-executable: 1.65 @ Marathonbet
+- Current user-executable: 1.65 @ Marathonbet
+- Paper user-execution (frozen): 1.65 @ Marathonbet [2026-09-11T10:32:01Z]
 - Referee / venue: TBD | Stadio Benito Stirpe, Frosinone
 - Previous: home Serie A vs Venezia (336.0h rest); away UEFA Champions League vs RB Leipzig (234.0h rest)
 - Next: home Serie A vs Napoli (485.8h after); away Serie A vs AS Roma (501.5h after)

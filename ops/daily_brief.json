@@ -1,11 +1,12 @@
 {
-  "generated_at_utc": "2026-09-11T10:34:48Z",
+  "generated_at_utc": "2026-09-11T10:37:42Z",
   "status": "OK",
   "active_signals": 3,
   "policy": {
     "trigger": "immutable Bet365 first capture",
     "market_best": "observed API market price; not necessarily user executable",
-    "user_execution": "only prices from configured executable bookmakers are treated as user-executable",
+    "current_user_execution": "latest observed price from configured executable bookmakers",
+    "paper_user_execution": "first observed allowlisted price after signal; frozen for realistic paper P&L",
     "context": "explanatory only; does not change locked rules"
   },
   "matches": [
@@ -40,6 +41,14 @@
         "status": "AVAILABLE",
         "odds": "1.65",
         "bookmaker": "Marathonbet"
+      },
+      "paper_user_execution": {
+        "status": "FROZEN",
+        "odds": "1.65",
+        "bookmaker": "Marathonbet",
+        "captured_at_utc": "2026-09-11T10:32:01Z",
+        "execution_type": "PAPER_FIRST_OBSERVED_ALLOWLISTED_PRICE",
+        "note": "standardized paper execution; not proof of a real placed bet"
       },
       "league_state": {
         "home_rank": "11",
@@ -157,6 +166,14 @@
         "odds": "1.58",
         "bookmaker": "Marathonbet"
       },
+      "paper_user_execution": {
+        "status": "FROZEN",
+        "odds": "1.58",
+        "bookmaker": "Marathonbet",
+        "captured_at_utc": "2026-09-11T10:32:01Z",
+        "execution_type": "PAPER_FIRST_OBSERVED_ALLOWLISTED_PRICE",
+        "note": "standardized paper execution; not proof of a real placed bet"
+      },
       "league_state": {
         "home_rank": "13",
         "away_rank": "1",
@@ -273,6 +290,14 @@
         "status": "AVAILABLE",
         "odds": "1.65",
         "bookmaker": "Marathonbet"
+      },
+      "paper_user_execution": {
+        "status": "FROZEN",
+        "odds": "1.65",
+        "bookmaker": "Marathonbet",
+        "captured_at_utc": "2026-09-11T10:32:01Z",
+        "execution_type": "PAPER_FIRST_OBSERVED_ALLOWLISTED_PRICE",
+        "note": "standardized paper execution; not proof of a real placed bet"
       },
       "league_state": {
         "home_rank": "7",
