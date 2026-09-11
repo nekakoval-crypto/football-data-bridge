@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-11T13:08:45Z",
+  "run_at_utc": "2026-09-11T13:17:18Z",
   "status": "OK",
   "api_version": "v1",
   "db_path": "build/pbk_unified.sqlite",
@@ -32,7 +32,7 @@
       "path": "/v1/signals/watch",
       "http_status": 200,
       "passed": true,
-      "count": 0
+      "count": 1
     },
     {
       "path": "/v1/lifecycle",
@@ -57,9 +57,15 @@
       "http_status": 200,
       "passed": true,
       "count": null
+    },
+    {
+      "path": "/v1/config/market-scope",
+      "http_status": 200,
+      "passed": true,
+      "count": null
     }
   ],
-  "passed": 9,
-  "total": 9,
+  "passed": 10,
+  "total": 10,
   "api_calls": 0
 }
