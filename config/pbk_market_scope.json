@@ -1,8 +1,8 @@
 {
-  "version": 1,
+  "version": 2,
   "locked_at_utc": "2026-09-11",
-  "status": "LOCKED_CORE_MARKET_UNIVERSE",
-  "principle": "No global odds cap. Eligibility limits belong to individual validated strategies. Market families below are the only families enabled for systematic PBK research in the current core scope unless the project owner explicitly unlocks expansion.",
+  "status": "LOCKED_CORE_PLUS_DEFERRED_MARKET_UNIVERSE",
+  "principle": "No global odds cap. Eligibility limits belong to individual validated strategies. Core market families are enabled now. Deferred market families are explicitly retained in the PBK roadmap and must not be treated as permanently excluded; each requires its own data-quality and multiple-testing protocol before activation.",
   "time_scope": "FULL_TIME_REGULATION unless a strategy explicitly preregisters another settlement convention",
   "allowed_market_families": [
     {
@@ -49,7 +49,7 @@
       "label_ru": "Индивидуальный тотал",
       "selections_ru": ["ИТБ1(line)", "ИТМ1(line)", "ИТБ2(line)", "ИТМ2(line)"],
       "line_policy": "No global line restriction; strategy-specific",
-      "status": "ENABLED"
+      "status": "ACTIVE_DATA_COLLECTION"
     },
     {
       "id": "BTTS",
@@ -58,24 +58,69 @@
       "status": "ENABLED"
     }
   ],
-  "not_in_core_scope": [
-    "correct_score",
-    "scorecast_or_result_plus_total_combos",
-    "BTTS_plus_total_combos",
-    "player_props",
-    "corners",
-    "cards",
-    "shots",
-    "offsides",
-    "first_or_second_half_only_markets",
-    "minute/time-band props",
-    "novelty_or_builder_markets"
+  "deferred_market_universe": [
+    {
+      "id": "CORRECT_SCORE",
+      "label_ru": "Точный счёт",
+      "status": "DEFERRED_REQUIRED_LATER",
+      "reason": "High-dimensional outcome space; requires dedicated multiple-testing and liquidity controls"
+    },
+    {
+      "id": "COMBO_MARKETS",
+      "label_ru": "Комбо-рынки: ОЗ+ТБ/ТМ, исход+тотал и аналогичные",
+      "status": "DEFERRED_REQUIRED_LATER",
+      "reason": "Correlated legs and large hypothesis space require separate validation"
+    },
+    {
+      "id": "BET_BUILDER",
+      "label_ru": "Bet Builder / конструктор ставок",
+      "status": "DEFERRED_REQUIRED_LATER",
+      "reason": "Provider-specific pricing and correlation model required"
+    },
+    {
+      "id": "PLAYER_PROPS",
+      "label_ru": "Игроки: голы, удары, передачи, карточки и прочие props",
+      "status": "DEFERRED_REQUIRED_LATER",
+      "reason": "Needs player identity, lineup, minutes and settlement-quality layer"
+    },
+    {
+      "id": "CORNERS",
+      "label_ru": "Угловые",
+      "status": "DEFERRED_REQUIRED_LATER",
+      "reason": "Separate event-statistics and market-history layer required"
+    },
+    {
+      "id": "CARDS",
+      "label_ru": "Карточки",
+      "status": "DEFERRED_REQUIRED_LATER",
+      "reason": "Referee/player/context dependence and bookmaker settlement differences"
+    },
+    {
+      "id": "SHOTS_AND_SHOTS_ON_TARGET",
+      "label_ru": "Удары / удары в створ",
+      "status": "DEFERRED_REQUIRED_LATER",
+      "reason": "Provider-stat definition consistency must be validated first"
+    },
+    {
+      "id": "OFFSIDES",
+      "label_ru": "Офсайды",
+      "status": "DEFERRED_REQUIRED_LATER",
+      "reason": "Requires stable event-stat source and market coverage"
+    },
+    {
+      "id": "HALF_AND_TIME_BAND_MARKETS",
+      "label_ru": "Таймы, интервалы времени, гол до/после минуты",
+      "status": "DEFERRED_REQUIRED_LATER",
+      "reason": "Settlement/time-event precision and much larger search space"
+    }
   ],
+  "deferred_activation_rule": "Deferred does not mean rejected. A deferred family may enter core only after a dedicated data-source audit, preregistration, frozen discovery sample where needed, and an independent future holdout. No family is activated because of a single attractive example.",
   "guardrails": [
     "A market being enabled for research does not make it a strategy or bet.",
     "Every new strategy freezes market, selection, line logic, odds logic, stake and settlement before TEST.",
     "No post-result substitution between related markets, e.g. ТБ(2.5) -> ИТБ2(1.5) or ОЗ — Да.",
     "No global maximum odds. A 4.40 or higher selection is permitted if a separately validated strategy selects it.",
-    "Existing R1/R2 retain 1.20 <= selected away odds < 2.10 and are not widened by this market scope."
+    "Existing R1/R2 retain 1.20 <= selected away odds < 2.10 and are not widened by this market scope.",
+    "Deferred exotic markets remain mandatory roadmap items but may not contaminate current core hypothesis testing."
   ]
 }
