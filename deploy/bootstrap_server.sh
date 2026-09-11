@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-# PBK production bootstrap for a fresh Ubuntu/Debian Hetzner VPS.
+# PBK production bootstrap for a fresh Ubuntu/Debian VPS.
 # Run as root from an interactive terminal. Secrets are entered locally and are
 # never committed to GitHub.
 
@@ -29,9 +29,6 @@ if [ -z "${PBK_USER:-}" ]; then
 fi
 [[ "$PBK_USER" =~ ^[A-Za-z0-9._-]+$ ]] || fail "PBK login contains unsupported characters."
 
-# Publicly trusted HTTPS requires a DNS hostname. For a raw IP we deliberately
-# use HTTP only as a short-lived connectivity test. Do not treat that mode as
-# production or use Basic Auth over an untrusted network.
 if python3 - "$PBK_HOST" >/dev/null 2>&1 <<'PY'
 import ipaddress,sys
 ipaddress.ip_address(sys.argv[1])
@@ -51,19 +48,15 @@ apt-get install -y ca-certificates curl git gpg python3 sqlite3 debian-keyring d
 
 if ! command -v caddy >/dev/null 2>&1; then
   info "Installing Caddy from its official stable repository"
-  curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' \
-    | gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
-  curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' \
-    > /etc/apt/sources.list.d/caddy-stable.list
+  curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+  curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' > /etc/apt/sources.list.d/caddy-stable.list
   chmod o+r /usr/share/keyrings/caddy-stable-archive-keyring.gpg /etc/apt/sources.list.d/caddy-stable.list
   apt-get update
   apt-get install -y caddy
 fi
 
 info "Creating restricted PBK service account"
-if ! id pbk >/dev/null 2>&1; then
-  useradd --system --home-dir "$PBK_ROOT" --create-home --shell /usr/sbin/nologin pbk
-fi
+if ! id pbk >/dev/null 2>&1; then useradd --system --home-dir "$PBK_ROOT" --create-home --shell /usr/sbin/nologin pbk; fi
 install -d -o pbk -g pbk -m 0755 "$PBK_ROOT" "$REPO"
 install -d -o pbk -g pbk -m 0750 "$DATA"
 
@@ -104,9 +97,9 @@ EnvironmentFile=$ENV_FILE
 EOF
 
 info "Installing PBK systemd units"
-install -m 0644 "$REPO/deploy/pbk-api.service" /etc/systemd/system/pbk-api.service
-install -m 0644 "$REPO/deploy/pbk-sync.service" /etc/systemd/system/pbk-sync.service
-install -m 0644 "$REPO/deploy/pbk-sync.timer" /etc/systemd/system/pbk-sync.timer
+for f in pbk-api.service pbk-sync.service pbk-sync.timer pbk-release.service pbk-release.timer; do
+  install -m 0644 "$REPO/deploy/$f" "/etc/systemd/system/$f"
+done
 systemctl daemon-reload
 
 info "Building the initial verified Stage72 database"
@@ -117,6 +110,7 @@ info "Validating Caddy and starting PBK services"
 caddy validate --config /etc/caddy/Caddyfile --envfile "$ENV_FILE"
 systemctl enable --now pbk-api.service
 systemctl enable --now pbk-sync.timer
+systemctl enable --now pbk-release.timer
 systemctl restart caddy
 
 info "Running local health checks"
@@ -131,13 +125,20 @@ curl -fsS http://127.0.0.1:8787/v1/health >/tmp/pbk-health.json || {
 python3 -m json.tool /tmp/pbk-health.json || cat /tmp/pbk-health.json
 systemctl is-active --quiet pbk-api.service || fail "pbk-api.service is not active."
 systemctl is-active --quiet pbk-sync.timer || fail "pbk-sync.timer is not active."
+systemctl is-active --quiet pbk-release.timer || fail "pbk-release.timer is not active."
 systemctl is-active --quiet caddy || fail "caddy.service is not active."
+
+REV="$(runuser -u pbk -- git -C "$REPO" rev-parse HEAD)"
+printf '%s\n' "$REV" > "$DATA/release_commit"
+chown pbk:pbk "$DATA/release_commit"
+chmod 0640 "$DATA/release_commit"
 
 printf '\nPBK SERVER BOOTSTRAP: SUCCESS\n'
 printf 'Site: %s\n' "$PBK_SITE"
 printf 'Login: %s\n' "$PBK_USER"
 printf 'API: local-only 127.0.0.1:8787\n'
 printf 'Data refresh: every 5 minutes with SQLite integrity check + atomic replace\n'
+printf 'Production release check: every 15 minutes with API restart + health check\n'
 if [ "$TEMP_HTTP" -eq 1 ]; then
   cat <<'EOF'
 
