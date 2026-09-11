@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-11T19:46:44Z",
+  "run_at_utc": "2026-09-11T20:23:22Z",
   "status": "OK",
   "scope": "Bundesliga O/U 2.5 Over Steam only",
   "season": 2026,
@@ -11,14 +11,14 @@
   "user_bookmaker": "Marathonbet",
   "upcoming_fixtures_seen": 20,
   "active_fixture_ids": 20,
-  "odds_api_calls": 7,
+  "odds_api_calls": 8,
   "fixture_state_api_calls": 0,
   "new_openers": 0,
-  "new_snapshots": 7,
+  "new_snapshots": 8,
   "new_crossings": 0,
   "new_closes": 0,
   "total_openers": 18,
-  "total_snapshots": 150,
+  "total_snapshots": 158,
   "total_crossings": 0,
   "total_closes": 1,
   "close_qualified_total": 0,
@@ -28,7 +28,5 @@
     "historical_match": "requires observed closing Over no-vig probability >= opener + 0.03",
     "execution_evidence": "Marathonbet Over 2.5 price captured at first crossing and observed close when available"
   },
-  "warnings": [
-    "odds 1575160: <urlopen error [Errno 104] Connection reset by peer>"
-  ]
+  "warnings": []
 }
