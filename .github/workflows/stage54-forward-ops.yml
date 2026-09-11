@@ -40,10 +40,11 @@ jobs:
         run: |
           echo '--- stage54_last_run.json ---'
           cat ops/stage54_last_run.json
-          echo '--- latest odds rows ---'
+          echo '--- latest odds and closing rows ---'
           python - <<'PY'
           import csv
           from pathlib import Path
+
           p=Path('ops/odds_snapshots.csv')
           if p.exists():
               with p.open(encoding='utf-8-sig',newline='') as f:
@@ -64,7 +65,7 @@ jobs:
                       'user=',r['user_best_odds'],'@',r['user_best_book'],
                       'allowlist=',r['user_allowlist_configured']
                   )
-          echo '--- closing rows ---'
+
           p=Path('ops/closing_log.csv')
           if p.exists():
               with p.open(encoding='utf-8-sig',newline='') as f:
