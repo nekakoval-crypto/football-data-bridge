@@ -1,11 +1,11 @@
 {
-  "generated_at_utc": "2026-09-11T10:23:03Z",
+  "generated_at_utc": "2026-09-11T10:34:48Z",
   "status": "OK",
   "active_signals": 3,
   "policy": {
     "trigger": "immutable Bet365 first capture",
     "market_best": "observed API market price; not necessarily user executable",
-    "user_execution": "only populated after bookmaker allowlist is configured",
+    "user_execution": "only prices from configured executable bookmakers are treated as user-executable",
     "context": "explanatory only; does not change locked rules"
   },
   "matches": [
@@ -29,7 +29,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-11T10:01:11Z",
+        "captured_at_utc": "2026-09-11T10:32:01Z",
         "best_odds": "1.69",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.62",
@@ -37,9 +37,9 @@
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
-        "status": "NOT_CONFIGURED",
-        "odds": "",
-        "bookmaker": ""
+        "status": "AVAILABLE",
+        "odds": "1.65",
+        "bookmaker": "Marathonbet"
       },
       "league_state": {
         "home_rank": "11",
@@ -122,8 +122,7 @@
       },
       "flags": [
         "AWAY_NEXT_UEFA_OR_CUP",
-        "OFFICIAL_ROTATION_PENDING",
-        "USER_BOOKMAKERS_NOT_CONFIGURED"
+        "OFFICIAL_ROTATION_PENDING"
       ]
     },
     {
@@ -146,7 +145,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-11T10:01:11Z",
+        "captured_at_utc": "2026-09-11T10:32:01Z",
         "best_odds": "1.62",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.57",
@@ -154,9 +153,9 @@
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
-        "status": "NOT_CONFIGURED",
-        "odds": "",
-        "bookmaker": ""
+        "status": "AVAILABLE",
+        "odds": "1.58",
+        "bookmaker": "Marathonbet"
       },
       "league_state": {
         "home_rank": "13",
@@ -240,8 +239,7 @@
       "flags": [
         "AWAY_PREV_UEFA_OR_CUP",
         "WITHIN_7D_BEFORE_FIFA_WINDOW",
-        "OFFICIAL_ROTATION_PENDING",
-        "USER_BOOKMAKERS_NOT_CONFIGURED"
+        "OFFICIAL_ROTATION_PENDING"
       ]
     },
     {
@@ -264,7 +262,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-11T10:01:11Z",
+        "captured_at_utc": "2026-09-11T10:32:01Z",
         "best_odds": "1.69",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.62",
@@ -272,9 +270,9 @@
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
-        "status": "NOT_CONFIGURED",
-        "odds": "",
-        "bookmaker": ""
+        "status": "AVAILABLE",
+        "odds": "1.65",
+        "bookmaker": "Marathonbet"
       },
       "league_state": {
         "home_rank": "7",
@@ -358,8 +356,7 @@
       "flags": [
         "AWAY_PREV_UEFA_OR_CUP",
         "WITHIN_7D_BEFORE_FIFA_WINDOW",
-        "OFFICIAL_ROTATION_PENDING",
-        "USER_BOOKMAKERS_NOT_CONFIGURED"
+        "OFFICIAL_ROTATION_PENDING"
       ]
     }
   ]
