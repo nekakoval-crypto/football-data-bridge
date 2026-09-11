@@ -1,0 +1,93 @@
+{
+  "generated_at_utc": "2026-09-11T12:07:04Z",
+  "status": "OK",
+  "policy_locked_at": "2026-09-11",
+  "families": {
+    "Stage61": {
+      "status": "COLLECTING",
+      "metrics": {
+        "crossings": 0,
+        "user_price_rows": 0,
+        "execution_coverage_pct": null,
+        "settled_executable": 0,
+        "roi_pct": null,
+        "first_half_n": 0,
+        "first_half_roi_pct": null,
+        "second_half_n": 0,
+        "second_half_roi_pct": null,
+        "close_observed_settled": 0,
+        "close_observed_coverage_pct": null,
+        "close_qualified_settled": 0,
+        "close_qualified_roi_pct": null
+      },
+      "blocking_reasons": [
+        "settled 0/60",
+        "Marathonbet coverage None% <90%",
+        "ROI None not >0",
+        "first-half ROI None not >0",
+        "second-half ROI None not >0",
+        "close coverage None% <90%",
+        "close-qualified subset 0/20"
+      ]
+    },
+    "Stage62": {
+      "status": "COLLECTING",
+      "metrics": {
+        "crossings": 0,
+        "user_price_rows": 0,
+        "execution_coverage_pct": null,
+        "settled_executable": 0,
+        "roi_pct": null,
+        "first_half_n": 0,
+        "first_half_roi_pct": null,
+        "second_half_n": 0,
+        "second_half_roi_pct": null,
+        "close_observed_settled": 0,
+        "close_observed_coverage_pct": null,
+        "close_qualified_settled": 0,
+        "close_qualified_roi_pct": null
+      },
+      "blocking_reasons": [
+        "settled 0/60",
+        "Marathonbet coverage None% <90%",
+        "ROI None not >0",
+        "first-half ROI None not >0",
+        "second-half ROI None not >0",
+        "close coverage None% <90%",
+        "close-qualified subset 0/20"
+      ]
+    },
+    "Stage63": {
+      "status": "DISCOVERY_ONLY_NO_DIRECT_PROMOTION",
+      "metrics": {
+        "crossings": 0,
+        "user_price_rows": 0,
+        "execution_coverage_pct": null,
+        "settled_executable": 0,
+        "roi_pct": null,
+        "first_half_n": 0,
+        "first_half_roi_pct": null,
+        "second_half_n": 0,
+        "second_half_roi_pct": null,
+        "close_observed_settled": 0,
+        "close_observed_coverage_pct": null,
+        "close_qualified_settled": 0,
+        "close_qualified_roi_pct": null
+      },
+      "blocking_reasons": [
+        "No historical BTTS first/close dataset; any finding needs a new preregistration and fresh holdout."
+      ]
+    }
+  },
+  "automatic_promotion": "FORBIDDEN",
+  "policy": {
+    "stage61_stage62_review_min_settled": 60,
+    "min_marathonbet_coverage_pct": 90,
+    "overall_roi_must_be_positive": true,
+    "chronological_both_halves_roi_must_be_positive": true,
+    "close_observed_coverage_min_pct": 90,
+    "close_qualified_min_settled": 20,
+    "close_qualified_roi_must_be_nonnegative": true,
+    "stage63": "discovery only; requires new preregistration + fresh holdout before any R-rule proposal"
+  }
+}
