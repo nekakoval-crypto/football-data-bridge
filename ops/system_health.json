@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-11T12:03:36Z",
+  "generated_at_utc": "2026-09-11T12:08:21Z",
   "status": "HEALTHY",
   "summary": {
     "critical_issues": 0,
@@ -15,7 +15,7 @@
       "file": "last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T10:47:47Z",
-      "age_h": 1.264,
+      "age_h": 1.343,
       "max_age_h": 30.0
     },
     {
@@ -23,7 +23,7 @@
       "file": "stage54_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T11:43:32Z",
-      "age_h": 0.334,
+      "age_h": 0.414,
       "max_age_h": 3.0
     },
     {
@@ -31,7 +31,7 @@
       "file": "stage55_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T11:16:16Z",
-      "age_h": 0.789,
+      "age_h": 0.868,
       "max_age_h": 3.0
     },
     {
@@ -39,7 +39,7 @@
       "file": "stage56_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T11:54:25Z",
-      "age_h": 0.153,
+      "age_h": 0.232,
       "max_age_h": 1.5
     },
     {
@@ -47,7 +47,7 @@
       "file": "stage57_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T10:21:25Z",
-      "age_h": 1.703,
+      "age_h": 1.782,
       "max_age_h": 30.0
     },
     {
@@ -55,7 +55,7 @@
       "file": "stage58_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T12:03:26Z",
-      "age_h": 0.003,
+      "age_h": 0.082,
       "max_age_h": 3.0
     },
     {
@@ -63,7 +63,7 @@
       "file": "stage59_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T11:51:48Z",
-      "age_h": 0.197,
+      "age_h": 0.276,
       "max_age_h": 3.0
     },
     {
@@ -71,7 +71,7 @@
       "file": "stage60_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T11:52:36Z",
-      "age_h": 0.183,
+      "age_h": 0.263,
       "max_age_h": 3.0
     },
     {
@@ -79,7 +79,7 @@
       "file": "stage61_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T11:53:31Z",
-      "age_h": 0.168,
+      "age_h": 0.247,
       "max_age_h": 2.0
     },
     {
@@ -87,7 +87,7 @@
       "file": "stage62_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T11:48:15Z",
-      "age_h": 0.256,
+      "age_h": 0.335,
       "max_age_h": 2.0
     },
     {
@@ -95,7 +95,7 @@
       "file": "stage63_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T11:24:50Z",
-      "age_h": 0.646,
+      "age_h": 0.725,
       "max_age_h": 2.0
     },
     {
@@ -103,7 +103,7 @@
       "file": "stage65_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T12:00:12Z",
-      "age_h": 0.057,
+      "age_h": 0.136,
       "max_age_h": 3.0
     },
     {
@@ -111,7 +111,23 @@
       "file": "stage66_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T11:56:25Z",
-      "age_h": 0.12,
+      "age_h": 0.199,
+      "max_age_h": 3.0
+    },
+    {
+      "stage": "Stage68 exposure map",
+      "file": "stage68_last_run.json",
+      "status": "OK",
+      "run_at_utc": "2026-09-11T12:05:00Z",
+      "age_h": 0.056,
+      "max_age_h": 3.0
+    },
+    {
+      "stage": "Stage69 promotion gate",
+      "file": "stage69_last_run.json",
+      "status": "OK",
+      "run_at_utc": "2026-09-11T12:07:04Z",
+      "age_h": 0.021,
       "max_age_h": 3.0
     }
   ],
