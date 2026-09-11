@@ -22,6 +22,7 @@
       <button class="tab" data-view="signals">R1/R2/R3</button>
       <button class="tab" data-view="watch">WATCH</button>
       <button class="tab" data-view="matches">Матчи</button>
+      <button class="tab" data-view="notifications">Уведомления <span class="badge" id="notification-badge" hidden>0</span></button>
       <button class="tab" data-view="stats">Результаты</button>
       <button class="tab" data-view="health">Health</button>
     </nav>
@@ -57,6 +58,17 @@
           <button id="filters-reset" class="filter-reset">Сбросить</button>
         </div>
         <div id="all-market-cards" class="match-grid"></div>
+      </section>
+
+      <section class="view" id="view-notifications">
+        <div class="section-head"><h2>Центр уведомлений</h2><span>из уже собранных данных · без новых API-запросов</span></div>
+        <div class="notification-toolbar">
+          <label>Тип<select id="notification-filter"><option value="">Все</option><option value="SIGNAL">R-сигналы</option><option value="WATCH">WATCH</option><option value="LINEUP">Составы / ротация</option><option value="SETTLEMENT">Результаты</option><option value="FIXTURE">Изменения матчей</option><option value="SYSTEM">Система</option></select></label>
+          <button id="notifications-read-all" class="filter-reset">Отметить всё прочитанным</button>
+        </div>
+        <div id="notification-summary" class="summary-grid compact"></div>
+        <div id="notifications-list" class="stack"></div>
+        <div class="panel notification-delivery"><b>Внешние push-уведомления пока не включены.</b><div>Их подключим на серверном этапе; текущий центр работает внутри приложения и ничего дополнительно не запрашивает у API-Football.</div></div>
       </section>
 
       <section class="view" id="view-stats">
