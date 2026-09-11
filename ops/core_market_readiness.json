@@ -1,0 +1,134 @@
+{
+  "generated_at_utc": "2026-09-11T14:15:31Z",
+  "status": "OK",
+  "scope": "PBK_CORE_8",
+  "policy": {
+    "min_unique_close_fixtures_for_discovery_freeze": 120,
+    "min_marathonbet_close_coverage_pct": 90.0,
+    "min_settlement_coverage_pct": 90.0,
+    "promotion_effect": "NONE"
+  },
+  "state_counts": {
+    "ACTIVE_GOVERNED": 1,
+    "COLLECTING_OPENERS": 4,
+    "HISTORICAL_NO_CANDIDATE": 1,
+    "WATCH_GOVERNED": 2
+  },
+  "markets": [
+    {
+      "market_id": "MATCH_RESULT_1X2",
+      "readiness_state": "ACTIVE_GOVERNED",
+      "blocking_reasons": [],
+      "label_ru": "Исход матча — П1 / Х / П2",
+      "registry_status": "ACTIVE_CANONICAL_AND_CHALLENGER",
+      "registry_next_gate": "Continue clean forward and challenger governance"
+    },
+    {
+      "market_id": "DOUBLE_CHANCE",
+      "readiness_state": "COLLECTING_OPENERS",
+      "opener_rows": 137,
+      "opener_fixtures": 137,
+      "snapshot_rows": 108,
+      "snapshot_fixtures": 108,
+      "close_rows": 0,
+      "close_fixtures": 0,
+      "marathonbet_close_fixture_coverage_pct": null,
+      "settled_fixture_coverage_pct": null,
+      "settled_fixtures": 0,
+      "signals_created": 0,
+      "blocking_reasons": [
+        "CLOSED_FIXTURES_0/120"
+      ],
+      "label_ru": "Двойной шанс — 1Х / Х2 / 12",
+      "registry_status": "PROSPECTIVE_DATA_COLLECTION",
+      "registry_next_gate": "Freeze discovery sample, preregister hypothesis, test on independent future holdout"
+    },
+    {
+      "market_id": "DRAW_NO_BET",
+      "readiness_state": "COLLECTING_OPENERS",
+      "opener_rows": 121,
+      "opener_fixtures": 121,
+      "snapshot_rows": 95,
+      "snapshot_fixtures": 95,
+      "close_rows": 0,
+      "close_fixtures": 0,
+      "marathonbet_close_fixture_coverage_pct": null,
+      "settled_fixture_coverage_pct": null,
+      "settled_fixtures": 0,
+      "signals_created": 0,
+      "blocking_reasons": [
+        "CLOSED_FIXTURES_0/120"
+      ],
+      "label_ru": "Фора 0 — Ф1(0) / Ф2(0)",
+      "registry_status": "HISTORICAL_TESTED_NO_CANDIDATE_PLUS_PROSPECTIVE_COLLECTION",
+      "registry_next_gate": "Collect a new prospective discovery sample; any future hypothesis requires new preregistration and independent future holdout"
+    },
+    {
+      "market_id": "ASIAN_HANDICAP",
+      "readiness_state": "HISTORICAL_NO_CANDIDATE",
+      "blocking_reasons": [
+        "NEW_INDEPENDENT_HYPOTHESIS_REQUIRED"
+      ],
+      "label_ru": "Азиатская фора",
+      "registry_status": "HISTORICAL_TESTED_NO_CANDIDATE",
+      "registry_next_gate": "Only a new independently preregistered hypothesis or regime-change prospective path"
+    },
+    {
+      "market_id": "EUROPEAN_HANDICAP",
+      "readiness_state": "COLLECTING_OPENERS",
+      "opener_rows": 709,
+      "opener_fixtures": 137,
+      "snapshot_rows": 558,
+      "snapshot_fixtures": 108,
+      "close_rows": 0,
+      "close_fixtures": 0,
+      "marathonbet_close_fixture_coverage_pct": null,
+      "settled_fixture_coverage_pct": null,
+      "settled_fixtures": 0,
+      "signals_created": 0,
+      "blocking_reasons": [
+        "CLOSED_FIXTURES_0/120"
+      ],
+      "label_ru": "Европейская фора 3-way",
+      "registry_status": "PROSPECTIVE_DATA_COLLECTION",
+      "registry_next_gate": "Freeze discovery sample, preregister line/selection logic, test on independent future holdout"
+    },
+    {
+      "market_id": "MATCH_TOTAL",
+      "readiness_state": "WATCH_GOVERNED",
+      "blocking_reasons": [],
+      "label_ru": "Тотал матча — ТБ / ТМ",
+      "registry_status": "FORWARD_WATCH_CANDIDATE",
+      "registry_next_gate": "Prospective WATCH promotion policy only; no automatic R-rule"
+    },
+    {
+      "market_id": "TEAM_TOTAL",
+      "readiness_state": "COLLECTING_OPENERS",
+      "opener_rows": 1252,
+      "opener_fixtures": 137,
+      "snapshot_rows": 1980,
+      "snapshot_fixtures": 108,
+      "close_rows": 0,
+      "close_fixtures": 0,
+      "marathonbet_close_fixture_coverage_pct": null,
+      "settled_fixture_coverage_pct": null,
+      "settled_fixtures": 0,
+      "signals_created": 0,
+      "blocking_reasons": [
+        "CLOSED_FIXTURES_0/120"
+      ],
+      "label_ru": "Индивидуальные тоталы — ИТБ/ИТМ",
+      "registry_status": "PROSPECTIVE_DATA_COLLECTION",
+      "registry_next_gate": "Freeze discovery sample, preregister team/line/selection logic, independent future holdout"
+    },
+    {
+      "market_id": "BTTS",
+      "readiness_state": "WATCH_GOVERNED",
+      "blocking_reasons": [],
+      "label_ru": "Обе забьют — ОЗ Да / Нет",
+      "registry_status": "PROSPECTIVE_DISCOVERY_WATCH",
+      "registry_next_gate": "Prospective evidence and Stage69 promotion gate; no direct promotion from discovery sample"
+    }
+  ],
+  "api_calls": 0
+}
