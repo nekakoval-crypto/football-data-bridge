@@ -9,9 +9,11 @@
         reverse_proxy 127.0.0.1:8787
     }
 
-    root * /opt/pbk/repo/app
-    try_files {path} /index.html
-    file_server
+    handle {
+        root * /opt/pbk/repo/app
+        try_files {path} /index.html
+        file_server
+    }
 
     header {
         X-Content-Type-Options nosniff
