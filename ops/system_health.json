@@ -1,9 +1,9 @@
 {
-  "generated_at_utc": "2026-09-11T21:05:45Z",
+  "generated_at_utc": "2026-09-11T22:05:55Z",
   "status": "WARN",
   "summary": {
     "critical_issues": 0,
-    "warnings": 1,
+    "warnings": 2,
     "active_canonical_rows": 3,
     "frozen_user_execution_rows": 3,
     "active_rows_with_context": 3,
@@ -36,31 +36,31 @@
       "file": "last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T10:47:47Z",
-      "age_h": 10.299,
+      "age_h": 11.302,
       "max_age_h": 30.0
     },
     {
       "stage": "Stage54 odds/closing",
       "file": "stage54_last_run.json",
       "status": "OK",
-      "run_at_utc": "2026-09-11T20:44:16Z",
-      "age_h": 0.358,
+      "run_at_utc": "2026-09-11T21:41:40Z",
+      "age_h": 0.404,
       "max_age_h": 3.0
     },
     {
       "stage": "Stage55 context",
       "file": "stage55_last_run.json",
       "status": "OK",
-      "run_at_utc": "2026-09-11T20:16:56Z",
-      "age_h": 0.814,
+      "run_at_utc": "2026-09-11T21:15:31Z",
+      "age_h": 0.84,
       "max_age_h": 3.0
     },
     {
       "stage": "Stage56 weather/XI",
       "file": "stage56_last_run.json",
       "status": "OK",
-      "run_at_utc": "2026-09-11T20:55:12Z",
-      "age_h": 0.176,
+      "run_at_utc": "2026-09-11T21:55:04Z",
+      "age_h": 0.181,
       "max_age_h": 1.5
     },
     {
@@ -68,15 +68,15 @@
       "file": "stage57_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T10:21:25Z",
-      "age_h": 10.739,
+      "age_h": 11.742,
       "max_age_h": 30.0
     },
     {
       "stage": "Stage58 daily brief",
       "file": "stage58_last_run.json",
       "status": "OK",
-      "run_at_utc": "2026-09-11T21:02:37Z",
-      "age_h": 0.052,
+      "run_at_utc": "2026-09-11T22:02:35Z",
+      "age_h": 0.056,
       "max_age_h": 3.0
     },
     {
@@ -84,31 +84,31 @@
       "file": "stage59_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T20:53:21Z",
-      "age_h": 0.207,
+      "age_h": 1.209,
       "max_age_h": 3.0
     },
     {
       "stage": "Stage60 forward performance",
       "file": "stage60_last_run.json",
       "status": "OK",
-      "run_at_utc": "2026-09-11T19:51:59Z",
-      "age_h": 1.229,
+      "run_at_utc": "2026-09-11T21:51:48Z",
+      "age_h": 0.235,
       "max_age_h": 3.0
     },
     {
       "stage": "Stage61 EPL steam watch",
       "file": "stage61_last_run.json",
       "status": "OK",
-      "run_at_utc": "2026-09-11T20:28:29Z",
-      "age_h": 0.621,
+      "run_at_utc": "2026-09-11T21:26:02Z",
+      "age_h": 0.665,
       "max_age_h": 2.0
     },
     {
       "stage": "Stage62 Bundesliga totals watch",
       "file": "stage62_last_run.json",
       "status": "OK",
-      "run_at_utc": "2026-09-11T20:49:54Z",
-      "age_h": 0.264,
+      "run_at_utc": "2026-09-11T21:46:41Z",
+      "age_h": 0.321,
       "max_age_h": 2.0
     },
     {
@@ -116,31 +116,31 @@
       "file": "stage63_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T20:16:06Z",
-      "age_h": 0.828,
+      "age_h": 1.83,
       "max_age_h": 3.0
     },
     {
       "stage": "Stage65 WATCH performance",
       "file": "stage65_last_run.json",
       "status": "OK",
-      "run_at_utc": "2026-09-11T21:05:36Z",
-      "age_h": 0.003,
+      "run_at_utc": "2026-09-11T22:05:34Z",
+      "age_h": 0.006,
       "max_age_h": 3.0
     },
     {
       "stage": "Stage66 attention board",
       "file": "stage66_last_run.json",
       "status": "OK",
-      "run_at_utc": "2026-09-11T21:00:29Z",
-      "age_h": 0.088,
+      "run_at_utc": "2026-09-11T22:00:24Z",
+      "age_h": 0.092,
       "max_age_h": 3.0
     },
     {
       "stage": "Stage70 lifecycle",
       "file": "stage70_last_run.json",
       "status": "OK",
-      "run_at_utc": "2026-09-11T20:08:48Z",
-      "age_h": 0.949,
+      "run_at_utc": "2026-09-11T21:07:55Z",
+      "age_h": 0.967,
       "max_age_h": 3.0
     },
     {
@@ -148,7 +148,7 @@
       "file": "stage71_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T20:52:32Z",
-      "age_h": 0.22,
+      "age_h": 1.223,
       "max_age_h": 8.0
     },
     {
@@ -156,7 +156,7 @@
       "file": "stage71c_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T18:41:56Z",
-      "age_h": 2.397,
+      "age_h": 3.4,
       "max_age_h": 8.0
     },
     {
@@ -164,7 +164,7 @@
       "file": "stage71e_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T18:41:56Z",
-      "age_h": 2.397,
+      "age_h": 3.4,
       "max_age_h": 8.0
     },
     {
@@ -172,7 +172,7 @@
       "file": "stage71f_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T18:41:56Z",
-      "age_h": 2.397,
+      "age_h": 3.4,
       "max_age_h": 8.0
     },
     {
@@ -180,15 +180,15 @@
       "file": "stage71g_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T18:41:56Z",
-      "age_h": 2.397,
+      "age_h": 3.4,
       "max_age_h": 8.0
     },
     {
       "stage": "Stage71H readiness",
       "file": "stage71h_last_run.json",
-      "status": "OK",
+      "status": "STALE",
       "run_at_utc": "2026-09-11T18:35:22Z",
-      "age_h": 2.506,
+      "age_h": 3.509,
       "max_age_h": 3.0
     },
     {
@@ -196,23 +196,23 @@
       "file": "stage71i_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T20:47:13Z",
-      "age_h": 0.309,
+      "age_h": 1.312,
       "max_age_h": 3.0
     },
     {
       "stage": "Stage72 data layer",
       "file": "stage72_last_run.json",
       "status": "OK",
-      "run_at_utc": "2026-09-11T20:56:54Z",
-      "age_h": 0.147,
+      "run_at_utc": "2026-09-11T21:54:47Z",
+      "age_h": 0.186,
       "max_age_h": 1.0
     },
     {
       "stage": "Stage73 internal API",
       "file": "stage73_last_run.json",
       "status": "OK",
-      "run_at_utc": "2026-09-11T20:18:20Z",
-      "age_h": 0.79,
+      "run_at_utc": "2026-09-11T21:16:37Z",
+      "age_h": 0.822,
       "max_age_h": 1.0
     },
     {
@@ -220,19 +220,24 @@
       "file": "stage68_last_run.json",
       "status": "OK",
       "run_at_utc": "2026-09-11T19:07:59Z",
-      "age_h": 1.963,
+      "age_h": 2.966,
       "max_age_h": 3.0
     },
     {
       "stage": "Stage69 promotion gate",
       "file": "stage69_last_run.json",
       "status": "OK",
-      "run_at_utc": "2026-09-11T21:03:35Z",
-      "age_h": 0.036,
+      "run_at_utc": "2026-09-11T22:03:37Z",
+      "age_h": 0.038,
       "max_age_h": 3.0
     }
   ],
   "issues": [
+    {
+      "severity": "WARN",
+      "code": "STALE_STAGE",
+      "message": "Stage71H readiness: age 3.51h > 3.00h"
+    },
     {
       "severity": "WARN",
       "code": "SCHEMA_VERSION",
