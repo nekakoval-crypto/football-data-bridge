@@ -1,0 +1,65 @@
+{
+  "run_at_utc": "2026-09-11T13:08:45Z",
+  "status": "OK",
+  "api_version": "v1",
+  "db_path": "build/pbk_unified.sqlite",
+  "tests": [
+    {
+      "path": "/v1/health",
+      "http_status": 200,
+      "passed": true,
+      "count": null
+    },
+    {
+      "path": "/v1/competitions?limit=100",
+      "http_status": 200,
+      "passed": true,
+      "count": 16
+    },
+    {
+      "path": "/v1/signals/canonical",
+      "http_status": 200,
+      "passed": true,
+      "count": 3
+    },
+    {
+      "path": "/v1/signals/challengers",
+      "http_status": 200,
+      "passed": true,
+      "count": 18
+    },
+    {
+      "path": "/v1/signals/watch",
+      "http_status": 200,
+      "passed": true,
+      "count": 0
+    },
+    {
+      "path": "/v1/lifecycle",
+      "http_status": 200,
+      "passed": true,
+      "count": 29
+    },
+    {
+      "path": "/v1/attention",
+      "http_status": 200,
+      "passed": true,
+      "count": null
+    },
+    {
+      "path": "/v1/governance",
+      "http_status": 200,
+      "passed": true,
+      "count": null
+    },
+    {
+      "path": "/v1/config/strategy-filter",
+      "http_status": 200,
+      "passed": true,
+      "count": null
+    }
+  ],
+  "passed": 9,
+  "total": 9,
+  "api_calls": 0
+}
