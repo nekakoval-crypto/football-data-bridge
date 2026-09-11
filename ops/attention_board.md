@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 11.09.2026 16:45 (Europe/Berlin)
+Обновлено: 11.09.2026 17:01 (Europe/Berlin)
 Canonical: 3 | active WATCH crossings: 1 | RED: 0 | ORANGE: 1
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -39,9 +39,9 @@ Canonical: 3 | active WATCH crossings: 1 | RED: 0 | ORANGE: 1
 - **Union Berlin — FC Schalke 04** | 11.09 20:30
   - ИТБ1/ИТМ1(1.5): ИТБ 2 / ИТМ 1.82 @ Marathonbet
   - ИТБ2/ИТМ2(1.5): ИТБ 2.2 / ИТМ 1.68 @ Marathonbet
-  - 1Х 1.44 | Х2 1.61 | 12 1.32 @ Marathonbet
+  - 1Х 1.46 | Х2 1.6 | 12 1.32 @ Marathonbet
   - Ф1(0) 1.76 | Ф2(0) 2.07 @ Marathonbet
-  - Европ. фора: хозяева +1 → 1:1.44 / Х:4.85 / 2:5.65 @ Marathonbet
+  - Европ. фора: хозяева +1 → 1:1.46 / Х:4.8 / 2:5.55 @ Marathonbet
 
 - **Venezia — Fiorentina** | 11.09 20:45
   - ИТБ1/ИТМ1(1.5): ИТБ 2.27 / ИТМ 1.64 @ Marathonbet
@@ -54,8 +54,8 @@ Canonical: 3 | active WATCH crossings: 1 | RED: 0 | ORANGE: 1
   - ИТБ1/ИТМ1(1.5): ИТБ 1.68 / ИТМ 2.2 @ Marathonbet
   - ИТБ2/ИТМ2(1.5): ИТБ 2.29 / ИТМ 1.63 @ Marathonbet
   - 1Х 1.33 | Х2 1.86 | 12 1.28 @ Marathonbet
-  - Ф1(0) 1.52 | Ф2(0) 2.53 @ Marathonbet
-  - Европ. фора: хозяева +1 → 1:1.34 / Х:5.35 / 2:6.55 @ Marathonbet
+  - Ф1(0) 1.5 | Ф2(0) 2.59 @ Marathonbet
+  - Европ. фора: хозяева +1 → 1:1.33 / Х:5.4 / 2:6.75 @ Marathonbet
 
 - **Borussia Dortmund — SC Paderborn 07** | 12.09 15:30
   - ИТБ1/ИТМ1(1.5): ИТБ 1.23 / ИТМ 3.94 @ Marathonbet
@@ -65,9 +65,9 @@ Canonical: 3 | active WATCH crossings: 1 | RED: 0 | ORANGE: 1
 - **1899 Hoffenheim — VfB Stuttgart** | 12.09 15:30
   - ИТБ1/ИТМ1(1.5): ИТБ 1.66 / ИТМ 2.24 @ Marathonbet
   - ИТБ2/ИТМ2(1.5): ИТБ 1.78 / ИТМ 2.05 @ Marathonbet
-  - 1Х 1.5 | Х2 1.62 | 12 1.27 @ Marathonbet
+  - 1Х 1.5 | Х2 1.63 | 12 1.27 @ Marathonbet
   - Ф1(0) 1.78 | Ф2(0) 2.04 @ Marathonbet
-  - Европ. фора: хозяева +1 → 1:1.5 / Х:4.8 / 2:4.7 @ Marathonbet
+  - Европ. фора: хозяева +1 → 1:1.5 / Х:4.85 / 2:4.7 @ Marathonbet
 
 - **Aston Villa — Nottingham Forest** | 12.09 16:00
   - ИТБ1/ИТМ1(1.5): ИТБ 2.26 / ИТМ 1.65 @ Marathonbet
