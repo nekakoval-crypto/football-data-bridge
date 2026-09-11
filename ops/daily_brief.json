@@ -1,0 +1,366 @@
+{
+  "generated_at_utc": "2026-09-11T10:23:03Z",
+  "status": "OK",
+  "active_signals": 3,
+  "policy": {
+    "trigger": "immutable Bet365 first capture",
+    "market_best": "observed API market price; not necessarily user executable",
+    "user_execution": "only populated after bookmaker allowlist is configured",
+    "context": "explanatory only; does not change locked rules"
+  },
+  "matches": [
+    {
+      "forward_id": "R1|I1|1550124",
+      "rule": "R1",
+      "league": "Serie A",
+      "fixture_id": "1550124",
+      "kickoff_utc": "2026-09-13T18:45:00Z",
+      "home_team": "Sassuolo",
+      "away_team": "Juventus",
+      "selection": "Away",
+      "stake_u": "1.000",
+      "status": "PAPER",
+      "trigger": {
+        "source": "Stage53 immutable first-captured Bet365 via API-Football",
+        "b365_home": "5.25",
+        "b365_draw": "4.0",
+        "b365_away": "1.62",
+        "selected_odds": "1.62",
+        "immutable": true
+      },
+      "market_observed": {
+        "captured_at_utc": "2026-09-11T10:01:11Z",
+        "best_odds": "1.69",
+        "best_bookmaker": "1xBet",
+        "bet365_odds": "1.62",
+        "api_odds_update_utc": "2026-09-11T04:54:21+00:00",
+        "note": "Observed market-best is not automatically a user-executable price"
+      },
+      "user_execution": {
+        "status": "NOT_CONFIGURED",
+        "odds": "",
+        "bookmaker": ""
+      },
+      "league_state": {
+        "home_rank": "11",
+        "away_rank": "6",
+        "home_points": "4",
+        "away_points": "7",
+        "home_played": "3",
+        "away_played": "3",
+        "home_last5_ppg": "1.33",
+        "away_last5_ppg": "2.33"
+      },
+      "calendar": {
+        "snapshot_type": "BASELINE",
+        "captured_at_utc": "2026-09-11T10:09:18Z",
+        "referee": "J. L. Sacchi",
+        "venue": "",
+        "city": "Reggio Emilia",
+        "home_prev": {
+          "competition": "Serie A",
+          "opponent": "Bologna",
+          "date_utc": "2026-09-06T16:00:00Z",
+          "rest_hours": "170.8"
+        },
+        "away_prev": {
+          "competition": "Serie A",
+          "opponent": "AC Milan",
+          "date_utc": "2026-09-06T18:45:00Z",
+          "rest_hours": "168.0"
+        },
+        "home_next": {
+          "competition": "Serie A",
+          "opponent": "Monza",
+          "date_utc": "2026-09-18T18:45:00Z",
+          "hours_after": "120.0"
+        },
+        "away_next": {
+          "competition": "UEFA Europa League",
+          "opponent": "NEC Nijmegen",
+          "date_utc": "2026-09-17T19:00:00Z",
+          "hours_after": "96.2"
+        }
+      },
+      "injuries": {
+        "status": "NOT_QUERIED_YET",
+        "total": "",
+        "home": "",
+        "away": ""
+      },
+      "weather": {
+        "snapshot_type": "BASELINE",
+        "captured_at_utc": "2026-09-11T10:18:25Z",
+        "temperature_c": "22.9",
+        "precipitation_probability_pct": "1",
+        "precipitation_mm": "0.0",
+        "wind_speed_kmh": "3.6",
+        "wind_gusts_kmh": "6.8",
+        "visibility_m": "40700.0",
+        "weather_code": "3",
+        "role": "context-only"
+      },
+      "rotation": {
+        "status": "WAITING_OFFICIAL_XI",
+        "captured_at_utc": "",
+        "home_retained_starters": "",
+        "away_retained_starters": "",
+        "home_changed_starters": "",
+        "away_changed_starters": "",
+        "home_retained_pct": "",
+        "away_retained_pct": ""
+      },
+      "international": {
+        "fifa_relation": "BEFORE",
+        "window": "FIFA 2026 combined Sep-Oct window",
+        "hours_to_start": "173.2",
+        "hours_since_end": "",
+        "within_7d_before": "NO",
+        "within_7d_after": "NO",
+        "player_level": "UNVERIFIED",
+        "player_level_reason": "Nationality is not evidence of call-up, travel, or appearance"
+      },
+      "flags": [
+        "AWAY_NEXT_UEFA_OR_CUP",
+        "OFFICIAL_ROTATION_PENDING",
+        "USER_BOOKMAKERS_NOT_CONFIGURED"
+      ]
+    },
+    {
+      "forward_id": "R1|I1|1550125",
+      "rule": "R1",
+      "league": "Serie A",
+      "fixture_id": "1550125",
+      "kickoff_utc": "2026-09-14T16:30:00Z",
+      "home_team": "Torino",
+      "away_team": "AS Roma",
+      "selection": "Away",
+      "stake_u": "1.000",
+      "status": "PAPER",
+      "trigger": {
+        "source": "Stage53 immutable first-captured Bet365 via API-Football",
+        "b365_home": "6.0",
+        "b365_draw": "4.0",
+        "b365_away": "1.57",
+        "selected_odds": "1.57",
+        "immutable": true
+      },
+      "market_observed": {
+        "captured_at_utc": "2026-09-11T10:01:11Z",
+        "best_odds": "1.62",
+        "best_bookmaker": "1xBet",
+        "bet365_odds": "1.57",
+        "api_odds_update_utc": "2026-09-11T04:54:21+00:00",
+        "note": "Observed market-best is not automatically a user-executable price"
+      },
+      "user_execution": {
+        "status": "NOT_CONFIGURED",
+        "odds": "",
+        "bookmaker": ""
+      },
+      "league_state": {
+        "home_rank": "13",
+        "away_rank": "1",
+        "home_points": "3",
+        "away_points": "9",
+        "home_played": "3",
+        "away_played": "3",
+        "home_last5_ppg": "1.00",
+        "away_last5_ppg": "3.00"
+      },
+      "calendar": {
+        "snapshot_type": "BASELINE",
+        "captured_at_utc": "2026-09-11T10:09:18Z",
+        "referee": "F. Maresca",
+        "venue": "Stadio Olimpico di Torino",
+        "city": "Turin",
+        "home_prev": {
+          "competition": "Serie A",
+          "opponent": "Fiorentina",
+          "date_utc": "2026-09-05T13:00:00Z",
+          "rest_hours": "219.5"
+        },
+        "away_prev": {
+          "competition": "UEFA Champions League",
+          "opponent": "Fenerbahçe",
+          "date_utc": "2026-09-10T16:45:00Z",
+          "rest_hours": "95.8"
+        },
+        "home_next": {
+          "competition": "Serie A",
+          "opponent": "Bologna",
+          "date_utc": "2026-09-19T13:00:00Z",
+          "hours_after": "116.5"
+        },
+        "away_next": {
+          "competition": "Serie A",
+          "opponent": "Inter",
+          "date_utc": "2026-09-19T16:00:00Z",
+          "hours_after": "119.5"
+        }
+      },
+      "injuries": {
+        "status": "NOT_QUERIED_YET",
+        "total": "",
+        "home": "",
+        "away": ""
+      },
+      "weather": {
+        "snapshot_type": "BASELINE",
+        "captured_at_utc": "2026-09-11T10:18:25Z",
+        "temperature_c": "29.1",
+        "precipitation_probability_pct": "0",
+        "precipitation_mm": "0.0",
+        "wind_speed_kmh": "5.4",
+        "wind_gusts_kmh": "14.0",
+        "visibility_m": "43380.0",
+        "weather_code": "1",
+        "role": "context-only"
+      },
+      "rotation": {
+        "status": "WAITING_OFFICIAL_XI",
+        "captured_at_utc": "",
+        "home_retained_starters": "",
+        "away_retained_starters": "",
+        "home_changed_starters": "",
+        "away_changed_starters": "",
+        "home_retained_pct": "",
+        "away_retained_pct": ""
+      },
+      "international": {
+        "fifa_relation": "BEFORE",
+        "window": "FIFA 2026 combined Sep-Oct window",
+        "hours_to_start": "151.5",
+        "hours_since_end": "",
+        "within_7d_before": "YES",
+        "within_7d_after": "NO",
+        "player_level": "UNVERIFIED",
+        "player_level_reason": "Nationality is not evidence of call-up, travel, or appearance"
+      },
+      "flags": [
+        "AWAY_PREV_UEFA_OR_CUP",
+        "WITHIN_7D_BEFORE_FIFA_WINDOW",
+        "OFFICIAL_ROTATION_PENDING",
+        "USER_BOOKMAKERS_NOT_CONFIGURED"
+      ]
+    },
+    {
+      "forward_id": "R1|I1|1550131",
+      "rule": "R1",
+      "league": "Serie A",
+      "fixture_id": "1550131",
+      "kickoff_utc": "2026-09-20T13:00:00Z",
+      "home_team": "Frosinone",
+      "away_team": "Como",
+      "selection": "Away",
+      "stake_u": "1.000",
+      "status": "PAPER",
+      "trigger": {
+        "source": "Stage53 immutable first-captured Bet365 via API-Football",
+        "b365_home": "5.25",
+        "b365_draw": "3.9",
+        "b365_away": "1.62",
+        "selected_odds": "1.62",
+        "immutable": true
+      },
+      "market_observed": {
+        "captured_at_utc": "2026-09-11T10:01:11Z",
+        "best_odds": "1.69",
+        "best_bookmaker": "1xBet",
+        "bet365_odds": "1.62",
+        "api_odds_update_utc": "2026-09-11T09:01:15+00:00",
+        "note": "Observed market-best is not automatically a user-executable price"
+      },
+      "user_execution": {
+        "status": "NOT_CONFIGURED",
+        "odds": "",
+        "bookmaker": ""
+      },
+      "league_state": {
+        "home_rank": "7",
+        "away_rank": "4",
+        "home_points": "6",
+        "away_points": "7",
+        "home_played": "3",
+        "away_played": "3",
+        "home_last5_ppg": "2.00",
+        "away_last5_ppg": "2.33"
+      },
+      "calendar": {
+        "snapshot_type": "BASELINE",
+        "captured_at_utc": "2026-09-11T10:09:18Z",
+        "referee": "",
+        "venue": "Stadio Benito Stirpe",
+        "city": "Frosinone",
+        "home_prev": {
+          "competition": "Serie A",
+          "opponent": "Venezia",
+          "date_utc": "2026-09-06T13:00:00Z",
+          "rest_hours": "336.0"
+        },
+        "away_prev": {
+          "competition": "UEFA Champions League",
+          "opponent": "RB Leipzig",
+          "date_utc": "2026-09-10T19:00:00Z",
+          "rest_hours": "234.0"
+        },
+        "home_next": {
+          "competition": "Serie A",
+          "opponent": "Napoli",
+          "date_utc": "2026-10-10T18:45:00Z",
+          "hours_after": "485.8"
+        },
+        "away_next": {
+          "competition": "Serie A",
+          "opponent": "AS Roma",
+          "date_utc": "2026-10-11T10:30:00Z",
+          "hours_after": "501.5"
+        }
+      },
+      "injuries": {
+        "status": "NOT_QUERIED_YET",
+        "total": "",
+        "home": "",
+        "away": ""
+      },
+      "weather": {
+        "snapshot_type": "BASELINE",
+        "captured_at_utc": "2026-09-11T10:18:25Z",
+        "temperature_c": "27.3",
+        "precipitation_probability_pct": "15",
+        "precipitation_mm": "0.0",
+        "wind_speed_kmh": "10.3",
+        "wind_gusts_kmh": "28.8",
+        "visibility_m": "41920.0",
+        "weather_code": "1",
+        "role": "context-only"
+      },
+      "rotation": {
+        "status": "WAITING_OFFICIAL_XI",
+        "captured_at_utc": "",
+        "home_retained_starters": "",
+        "away_retained_starters": "",
+        "home_changed_starters": "",
+        "away_changed_starters": "",
+        "home_retained_pct": "",
+        "away_retained_pct": ""
+      },
+      "international": {
+        "fifa_relation": "BEFORE",
+        "window": "FIFA 2026 combined Sep-Oct window",
+        "hours_to_start": "11.0",
+        "hours_since_end": "",
+        "within_7d_before": "YES",
+        "within_7d_after": "NO",
+        "player_level": "UNVERIFIED",
+        "player_level_reason": "Nationality is not evidence of call-up, travel, or appearance"
+      },
+      "flags": [
+        "AWAY_PREV_UEFA_OR_CUP",
+        "WITHIN_7D_BEFORE_FIFA_WINDOW",
+        "OFFICIAL_ROTATION_PENDING",
+        "USER_BOOKMAKERS_NOT_CONFIGURED"
+      ]
+    }
+  ]
+}
