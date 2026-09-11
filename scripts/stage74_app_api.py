@@ -21,6 +21,7 @@ TABLES={
     'lifecycle':'lifecycle_events',
     'exposure':'exposure_positions',
     'odds':'odds_snapshots',
+    'probability_predictions':'probability_predictions',
     'team_total_openers':'team_total_openers',
     'team_total_snapshots':'team_total_snapshots',
     'team_total_closes':'team_total_closes',
@@ -50,7 +51,7 @@ def fixture_rows(conn,table,fixture_id,limit=500):
     cols=set(base.columns(conn,table))
     if 'api_fixture_id' not in cols: return []
     order=''
-    for candidate in ('captured_at_utc','event_at_utc','event_time_utc','kickoff_utc','line','home_handicap_line'):
+    for candidate in ('captured_at_utc','created_at_utc','event_at_utc','event_time_utc','kickoff_utc','line','home_handicap_line'):
         if candidate in cols:
             order=f' ORDER BY "{candidate}" ASC';break
     rows=conn.execute(f'SELECT * FROM "{table}" WHERE CAST("api_fixture_id" AS TEXT)=?{order} LIMIT ?', (str(fixture_id),limit)).fetchall()
@@ -81,10 +82,19 @@ def aggregate_match(fixture_id):
                     identity['fixture_id']=identity.pop('api_fixture_id',str(fixture_id));break
         found=bool(card or any(payload.values()))
         if not found:return 404,{'error':'MATCH_NOT_FOUND','fixture_id':str(fixture_id)}
+        rankings=base.state_doc(conn,'probability_rankings.json') or {}
+        rank_rows=[];seen=set()
+        for group in ('max_probability','best_value'):
+            for row in rankings.get(group) or []:
+                if str(row.get('api_fixture_id') or '')!=str(fixture_id):continue
+                key=(str(row.get('rule') or ''),str(row.get('api_fixture_id') or ''),str(row.get('selection') or ''))
+                if key in seen:continue
+                seen.add(key);rank_rows.append(row)
         return 200,{
             'fixture_id':str(fixture_id),'identity':identity,'attention_card':card,
             'canonical':payload['canonical'],'watch':payload['watch'],'challengers':payload['challengers'],
             'context':payload['context'],'lifecycle':payload['lifecycle'],'exposure':payload['exposure'],'odds':payload['odds'],
+            'probability':{'predictions':payload['probability_predictions'],'active_rankings':rank_rows,'strategy_mutation':False,'stake_changes':False},
             'markets':{
                 'team_totals':{'openers':payload['team_total_openers'],'snapshots':payload['team_total_snapshots'],'closes':payload['team_total_closes']},
                 'double_chance':{'openers':payload['double_chance_openers'],'snapshots':payload['double_chance_snapshots'],'closes':payload['double_chance_closes']},
@@ -99,16 +109,26 @@ def performance_payload():
         canonical=base.state_doc(conn,'forward_performance.json') or {}
         watch=base.state_doc(conn,'watch_performance.json') or {}
         readiness=base.state_doc(conn,'core_market_readiness.json') or {}
+        rankings=base.state_doc(conn,'probability_rankings.json') or {}
+        probability_performance=base.state_doc(conn,'probability_performance.json') or {}
+        probability_meta=base.state_doc(conn,'stage75_last_run.json') or {}
         research_settlement_rows=0
         if base.table_exists(conn,'core_market_settlements'):
             research_settlement_rows=conn.execute('SELECT COUNT(*) AS n FROM core_market_settlements').fetchone()['n']
+        active=str(rankings.get('status') or '').upper()=='OK'
+        max_probability=rankings.get('max_probability') or []
+        best_value=rankings.get('best_value') or []
         return 200,{
             'scope':'prospective operational performance; historical research kept separate',
             'canonical':canonical,'watch':watch,'core_market_readiness':readiness,
             'research_market_settlement_rows':research_settlement_rows,
             'probability_module':{
-                'status':'NOT_VALIDATED_YET','max_probability_ranking_available':False,'value_ranking_available':False,
-                'policy':'Do not invent model probabilities. Rankings activate only after a separately validated probability model exists.'
+                'status':'ACTIVE_FORWARD_MONITORING' if active else 'NOT_READY',
+                'model_version':rankings.get('model_version') or probability_meta.get('model_version'),
+                'max_probability_ranking_available':bool(max_probability),'value_ranking_available':bool(best_value),
+                'max_probability':max_probability,'best_value':best_value,
+                'forward_performance':probability_performance,'stage75_meta':probability_meta,
+                'policy':{'canonical_only':True,'watch_excluded':True,'stake_changes':False,'predictions_frozen_prematch':True,'historical_backfill':'FORBIDDEN','paper_execution_is_not_proof_real_bet':True}
             },'read_only':True,
         }
 
@@ -156,7 +176,7 @@ def runtime_payload():
     except OSError:db_size=0;db_mtime=None
     release=_read_text('/opt/pbk/data/release_commit') or os.getenv('PBK_RELEASE_COMMIT','') or 'UNTRACKED'
     return 200,{
-        'status':'OK','api_version':'1.4','release_commit':release,
+        'status':'OK','api_version':'1.5','release_commit':release,
         'api_process_uptime_seconds':round(max(0,time.time()-STARTED_AT),1),
         'host_uptime_seconds':round(host_uptime,1) if host_uptime is not None else None,
         'load_average_1m':round(load1,3),'load_average_5m':round(load5,3),'load_average_15m':round(load15,3),
@@ -277,7 +297,7 @@ def dispatch_post(path,body):
     return 404,{'error':'NOT_FOUND'}
 
 class Handler(BaseHTTPRequestHandler):
-    server_version='PBKAppAPI/1.4'
+    server_version='PBKAppAPI/1.5'
     def _reply(self,status,payload):
         raw=json.dumps(payload,ensure_ascii=False,separators=(',',':')).encode('utf-8')
         self.send_response(status);self.send_header('Content-Type','application/json; charset=utf-8');self.send_header('Cache-Control','no-store');self.send_header('Content-Length',str(len(raw)));self.end_headers();self.wfile.write(raw)
@@ -304,13 +324,13 @@ def self_test():
     with base.connect() as conn:
         att=base.state_doc(conn,'attention_board.json') or {};candidates=(att.get('market_cards') or [])+(att.get('canonical') or [])+(att.get('watch') or []);fid=str((candidates[0] if candidates else {}).get('fixture_id') or '')
     if not fid:print(json.dumps({'status':'FAIL','reason':'no fixture available for match-detail self-test'}));return 1
-    status,p=aggregate_match(fid);match_ok=status==200 and p.get('fixture_id')==fid and p.get('read_only') is True and isinstance(p.get('markets'),dict)
-    perf_status,perf=performance_payload();perf_ok=perf_status==200 and 'canonical' in perf and 'watch' in perf and perf.get('read_only') is True
+    status,p=aggregate_match(fid);match_ok=status==200 and p.get('fixture_id')==fid and p.get('read_only') is True and isinstance(p.get('markets'),dict) and isinstance(p.get('probability'),dict)
+    perf_status,perf=performance_payload();pm=perf.get('probability_module') or {};perf_ok=perf_status==200 and 'canonical' in perf and 'watch' in perf and perf.get('read_only') is True and pm.get('status') in {'ACTIVE_FORWARD_MONITORING','NOT_READY'}
     note_status,notes=notifications_payload(100);note_ok=note_status==200 and isinstance(notes.get('items'),list) and notes.get('read_only') is True and notes.get('delivery',{}).get('in_app') is True
-    run_status,runtime=runtime_payload();runtime_ok=run_status==200 and runtime.get('status')=='OK' and runtime.get('api_version')=='1.4'
+    run_status,runtime=runtime_payload();runtime_ok=run_status==200 and runtime.get('status')=='OK' and runtime.get('api_version')=='1.5'
     push_status,push=push_status_payload();push_ok=push_status==200 and 'enabled' in push and push.get('football_api_calls')==0
     ok=match_ok and perf_ok and note_ok and runtime_ok and push_ok
-    print(json.dumps({'status':'OK' if ok else 'FAIL','match_detail_fixture_id':fid,'http_status':status,'canonical_rows':len(p.get('canonical') or []),'watch_rows':len(p.get('watch') or []),'lifecycle_rows':len(p.get('lifecycle') or []),'performance_http_status':perf_status,'notifications_http_status':note_status,'notification_rows':len(notes.get('items') or []),'runtime_http_status':run_status,'runtime_api_version':runtime.get('api_version'),'push_status':push.get('status'),'probability_module':(perf.get('probability_module') or {}).get('status'),'read_only':p.get('read_only')},ensure_ascii=False))
+    print(json.dumps({'status':'OK' if ok else 'FAIL','match_detail_fixture_id':fid,'http_status':status,'canonical_rows':len(p.get('canonical') or []),'watch_rows':len(p.get('watch') or []),'probability_prediction_rows':len((p.get('probability') or {}).get('predictions') or []),'performance_http_status':perf_status,'notifications_http_status':note_status,'notification_rows':len(notes.get('items') or []),'runtime_http_status':run_status,'runtime_api_version':runtime.get('api_version'),'push_status':push.get('status'),'probability_module':pm.get('status'),'read_only':p.get('read_only')},ensure_ascii=False))
     return 0 if ok else 1
 
 def main():
