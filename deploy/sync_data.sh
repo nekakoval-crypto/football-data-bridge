@@ -5,10 +5,13 @@ REPO=/opt/pbk/repo
 DATA=/opt/pbk/data
 TMP="$DATA/pbk_unified.next.sqlite"
 LIVE="$DATA/pbk_unified.sqlite"
+PREV="$DATA/pbk_unified.prev.sqlite"
 
 cd "$REPO"
-git fetch --quiet origin main
-git reset --hard origin/main >/dev/null
+if [ "${PBK_SKIP_FETCH:-0}" != "1" ]; then
+  git fetch --quiet origin main
+  git reset --hard origin/main >/dev/null
+fi
 
 mkdir -p "$DATA"
 rm -f "$TMP"
@@ -27,6 +30,7 @@ if [ "$check" != "ok" ]; then
   exit 1
 fi
 
+if [ -s "$LIVE" ]; then cp -f "$LIVE" "$PREV"; fi
 mv -f "$TMP" "$LIVE"
 chmod 640 "$LIVE"
 
