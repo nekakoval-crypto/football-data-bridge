@@ -2,7 +2,8 @@
 """Stage71J — shared cached capture for prospective core markets.
 
 Runs Stage71C/E/F/G in one Python process and memoizes API-Football GETs.
-A single /fixtures or /odds response is therefore reused across team totals,
+Before child parsers run, Stage71J prefetches the common 16-league fixture set
+and one /odds payload per fixture. The same payload then feeds team totals,
 double chance, European handicap and DNB parsers.
 
 Research data only. Creates no betting signal or WATCH.
@@ -26,7 +27,7 @@ import stage71g_dnb_capture as g
 
 OPS=Path(os.getenv('OPS_DIR','ops'))
 META=OPS/'stage71j_last_run.json'
-MAX_REAL_CALLS=int(os.getenv('STAGE71J_MAX_REAL_API_CALLS','220'))
+MAX_REAL_CALLS=int(os.getenv('STAGE71J_MAX_REAL_API_CALLS','190'))
 _real=s53.api_get
 _cache={}
 real_calls=0
@@ -57,8 +58,25 @@ def read_meta(path):
     try:return json.loads(path.read_text(encoding='utf-8-sig'))
     except Exception:return {}
 
+def prefetch_common_universe():
+    """Fetch the shared 16-league fixture universe and one odds payload per fixture."""
+    fixture_ids=[]
+    season=c.SEASON
+    next_n=max(c.NEXT_N,e.NEXT_N,f.NEXT_N,g.NEXT_N)
+    # One catalog response is shared across children that still inspect /odds/bets.
+    cached_api_get('/odds/bets')
+    for _lname,lid in c.LEAGUES.items():
+        data=cached_api_get('/fixtures',{'league':lid,'season':season,'next':next_n,'timezone':'UTC'})
+        for r in (data or {}).get('response',[]):
+            fid=str(((r.get('fixture') or {}).get('id')) or '')
+            if fid and fid not in fixture_ids:fixture_ids.append(fid)
+    for fid in fixture_ids:
+        cached_api_get('/odds',{'fixture':fid})
+    return fixture_ids
+
 def main():
     OPS.mkdir(parents=True,exist_ok=True)
+    fixture_ids=prefetch_common_universe()
     children=[]
     for label,mod,meta in [
         ('TEAM_TOTAL',c,c.META),
@@ -80,7 +98,8 @@ def main():
         })
     payload={
         'status':'OK',
-        'mode':'SHARED_CACHED_PROSPECTIVE_CAPTURE',
+        'mode':'SHARED_PREFETCHED_PROSPECTIVE_CAPTURE',
+        'prefetched_fixture_ids':len(fixture_ids),
         'real_api_calls':real_calls,
         'api_hard_cap':MAX_REAL_CALLS,
         'cache_hits':cache_hits,
@@ -88,7 +107,7 @@ def main():
         'real_calls_by_path':by_path,
         'children':children,
         'signals_created':0,
-        'policy':'One API response may feed multiple market parsers; market ledgers remain separate and auditable.'
+        'policy':'One fixture odds response feeds multiple market parsers; market ledgers remain separate and auditable.'
     }
     META.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding='utf-8')
     print(json.dumps(payload,ensure_ascii=False,indent=2))
