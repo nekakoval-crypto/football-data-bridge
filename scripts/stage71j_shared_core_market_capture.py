@@ -7,8 +7,8 @@ and one unfiltered /odds payload per fixture. Filtered child requests such as
 /odds?fixture=...&bet=12 are intentionally served from that same fixture cache,
 because each child parser performs its own market-id filtering locally.
 
-The already-needed /odds/bets catalog is persisted for offline deferred-market
-audits, so those audits add zero API calls.
+The already-needed /odds/bets catalog and observed market-presence counts are
+persisted for offline deferred-market audits, adding zero API calls.
 
 Research data only. Creates no betting signal or WATCH.
 """
@@ -32,6 +32,7 @@ import stage71g_dnb_capture as g
 OPS=Path(os.getenv('OPS_DIR','ops'))
 META=OPS/'stage71j_last_run.json'
 BET_CATALOG=OPS/'api_football_odds_bet_catalog.json'
+MARKET_PRESENCE=OPS/'api_football_market_presence.json'
 MAX_REAL_CALLS=int(os.getenv('STAGE71J_MAX_REAL_API_CALLS','190'))
 _real=s53.api_get
 _cache={}
@@ -81,18 +82,42 @@ def prefetch_common_universe():
         for r in (data or {}).get('response',[]):
             fid=str(((r.get('fixture') or {}).get('id')) or '')
             if fid and fid not in fixture_ids:fixture_ids.append(fid)
-    for fid in fixture_ids:
-        cached_api_get('/odds',{'fixture':fid})
+    for fid in fixture_ids:cached_api_get('/odds',{'fixture':fid})
     return fixture_ids
+
+def persist_market_presence(fixture_ids):
+    presence={}
+    for k,payload in _cache.items():
+        if not k or k[0]!='/odds':continue
+        fid=''
+        for a,b in (k[1] if len(k)>1 else ()): 
+            if a=='fixture':fid=str(b)
+        if not fid:continue
+        for item in (payload or {}).get('response',[]) or []:
+            for bm in item.get('bookmakers',[]) or []:
+                bname=str(bm.get('name') or '').strip();bnorm=bname.lower()
+                for bet in bm.get('bets',[]) or []:
+                    try:bid=int(bet.get('id'))
+                    except Exception:continue
+                    row=presence.setdefault(bid,{'bet_id':bid,'bet_name':str(bet.get('name') or '').strip(),'fixtures_any':set(),'fixtures_bet365':set(),'fixtures_marathonbet':set()})
+                    if not row['bet_name']:row['bet_name']=str(bet.get('name') or '').strip()
+                    row['fixtures_any'].add(fid)
+                    if bnorm=='bet365':row['fixtures_bet365'].add(fid)
+                    if bnorm=='marathonbet':row['fixtures_marathonbet'].add(fid)
+    out=[];den=max(1,len(fixture_ids))
+    for bid in sorted(presence):
+        r=presence[bid];out.append({'bet_id':bid,'bet_name':r['bet_name'],'fixture_sample':len(fixture_ids),'fixtures_any':len(r['fixtures_any']),'fixtures_bet365':len(r['fixtures_bet365']),'fixtures_marathonbet':len(r['fixtures_marathonbet']),'bet365_coverage_pct':round(100*len(r['fixtures_bet365'])/den,2),'marathonbet_coverage_pct':round(100*len(r['fixtures_marathonbet'])/den,2)})
+    MARKET_PRESENCE.write_text(json.dumps({'generated_at_utc':now_iso(),'fixture_sample':len(fixture_ids),'api_calls_added':0,'markets':out},ensure_ascii=False,indent=2),encoding='utf-8')
+    return len(out)
 
 def main():
     started=now_iso();OPS.mkdir(parents=True,exist_ok=True)
-    fixture_ids=prefetch_common_universe()
+    fixture_ids=prefetch_common_universe();presence_markets=persist_market_presence(fixture_ids)
     children=[]
     for label,mod,meta in [('TEAM_TOTAL',c,c.META),('DOUBLE_CHANCE',e,e.META),('EUROPEAN_HANDICAP',f,f.META),('DRAW_NO_BET',g,g.META)]:
         mod.main();m=read_meta(meta)
         children.append({'market_family':label,'status':m.get('status'),'fixtures_scanned':m.get('fixtures_scanned'),'logical_odds_calls':m.get('odds_calls'),'new_openers':m.get('new_openers'),'new_snapshots':m.get('new_snapshots'),'new_closes':m.get('new_closes'),'warnings':len(m.get('warnings') or [])})
-    payload={'run_at_utc':started,'status':'OK','mode':'SHARED_PREFETCHED_PROSPECTIVE_CAPTURE','prefetched_fixture_ids':len(fixture_ids),'real_api_calls':real_calls,'api_hard_cap':MAX_REAL_CALLS,'cache_hits':cache_hits,'unique_cached_requests':len(_cache),'real_calls_by_path':by_path,'bet_catalog_saved':BET_CATALOG.exists(),'bet_catalog_api_calls_added':0,'children':children,'signals_created':0,'policy':'One fixture odds response feeds multiple market parsers; market ledgers remain separate and auditable. Odds bet catalog is persisted from the already-required shared catalog call.'}
+    payload={'run_at_utc':started,'status':'OK','mode':'SHARED_PREFETCHED_PROSPECTIVE_CAPTURE','prefetched_fixture_ids':len(fixture_ids),'real_api_calls':real_calls,'api_hard_cap':MAX_REAL_CALLS,'cache_hits':cache_hits,'unique_cached_requests':len(_cache),'real_calls_by_path':by_path,'bet_catalog_saved':BET_CATALOG.exists(),'bet_catalog_api_calls_added':0,'market_presence_saved':MARKET_PRESENCE.exists(),'market_presence_count':presence_markets,'market_presence_api_calls_added':0,'children':children,'signals_created':0,'policy':'One fixture odds response feeds multiple market parsers; market ledgers remain separate and auditable. Catalog and observed market presence reuse already-required calls.'}
     META.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding='utf-8');print(json.dumps(payload,ensure_ascii=False,indent=2))
 
 if __name__=='__main__':main()
