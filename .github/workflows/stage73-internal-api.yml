@@ -1,0 +1,71 @@
+name: Stage 73 Internal API
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '4 * * * *'
+  push:
+    paths:
+      - 'scripts/stage72_build_data_layer.py'
+      - 'scripts/stage73_internal_api.py'
+      - 'config/pbk_strategy_filter.json'
+      - '.github/workflows/stage73-internal-api.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  api-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPS_DIR: 'ops'
+      STAGE72_DB_PATH: 'build/pbk_unified.sqlite'
+      PBK_DB_PATH: 'build/pbk_unified.sqlite'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Rebuild Stage 72 data layer
+        run: python scripts/stage72_build_data_layer.py
+
+      - name: Test Stage 73 API contract
+        run: python scripts/stage73_internal_api.py --self-test
+
+      - name: Show Stage 73 summary
+        run: cat ops/stage73_last_run.json
+
+      - name: Commit Stage 73 metadata
+        run: |
+          git config user.name 'stage73-bot'
+          git config user.email 'stage73-bot@users.noreply.github.com'
+          git add ops/stage72_last_run.json ops/stage72_schema.json ops/stage73_last_run.json
+          if git diff --cached --quiet; then
+            echo 'No Stage73 metadata changes to commit.'
+          else
+            git commit -m 'Stage 73 internal API contract update'
+            for attempt in 1 2 3; do
+              if git pull --rebase origin main && git push origin main; then
+                exit 0
+              fi
+              echo "Concurrent push detected; retry ${attempt}/3"
+              git rebase --abort 2>/dev/null || true
+              git fetch origin main
+              sleep 2
+            done
+            exit 1
+          fi
+
+      - name: Upload API-ready SQLite artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pbk-stage73-api-data
+          path: build/pbk_unified.sqlite
+          if-no-files-found: error
+          retention-days: 30
