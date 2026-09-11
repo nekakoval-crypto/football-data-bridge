@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "locked_at_utc": "2026-09-11",
+  "scope": "PBK_CORE_8",
+  "principle": "Market-family status is descriptive governance metadata. It never creates a bet, changes canonical eligibility, promotes a WATCH, or permits post-hoc substitution between markets.",
+  "markets": [
+    {
+      "id": "MATCH_RESULT_1X2",
+      "label_ru": "Исход матча — П1 / Х / П2",
+      "status": "ACTIVE_CANONICAL_AND_CHALLENGER",
+      "evidence": ["R1/R2 canonical", "R3 canonical prospective", "Stage71 league challenger"],
+      "live_data": "ACTIVE",
+      "next_gate": "Continue clean forward and challenger governance"
+    },
+    {
+      "id": "DOUBLE_CHANCE",
+      "label_ru": "Двойной шанс — 1Х / Х2 / 12",
+      "status": "PROSPECTIVE_DATA_COLLECTION",
+      "evidence": ["Stage71E preregistration", "Real Bet365 + Marathonbet Double Chance capture"],
+      "live_data": "ACTIVE",
+      "next_gate": "Freeze discovery sample, preregister hypothesis, test on independent future holdout"
+    },
+    {
+      "id": "DRAW_NO_BET",
+      "label_ru": "Фора 0 — Ф1(0) / Ф2(0)",
+      "status": "HISTORICAL_TESTED_NO_CANDIDATE",
+      "evidence": ["Stage71D preregistered Bet365 AH=0 movement audit", "No hypothesis met minimum TEST sample/gate"],
+      "live_data": "PLANNED_PROSPECTIVE_CAPTURE",
+      "next_gate": "Collect current line-0 Bet365 + Marathonbet data; no WATCH until a new preregistered holdout exists"
+    },
+    {
+      "id": "ASIAN_HANDICAP",
+      "label_ru": "Азиатская фора",
+      "status": "HISTORICAL_TESTED_NO_CANDIDATE",
+      "evidence": ["Stage64 preregistration", "Stage64 TRAIN→TEST audit rejected all preregistered variants"],
+      "live_data": "REFERENCE_AVAILABLE",
+      "next_gate": "Only a new independently preregistered hypothesis or regime-change prospective path"
+    },
+    {
+      "id": "EUROPEAN_HANDICAP",
+      "label_ru": "Европейская фора 3-way",
+      "status": "PROSPECTIVE_DATA_COLLECTION",
+      "evidence": ["Stage71F preregistration", "API-Football bet 9 Handicap Result", "Real Bet365 + Marathonbet capture"],
+      "live_data": "ACTIVE",
+      "next_gate": "Freeze discovery sample, preregister line/selection logic, test on independent future holdout"
+    },
+    {
+      "id": "MATCH_TOTAL",
+      "label_ru": "Тотал матча — ТБ / ТМ",
+      "status": "FORWARD_WATCH_CANDIDATE",
+      "evidence": ["Stage62 Bundesliga ТБ(2.5) Steam", "Historical TEST positive but statistically weak"],
+      "live_data": "ACTIVE_WATCH",
+      "next_gate": "Prospective WATCH promotion policy only; no automatic R-rule"
+    },
+    {
+      "id": "TEAM_TOTAL",
+      "label_ru": "Индивидуальные тоталы — ИТБ/ИТМ",
+      "status": "PROSPECTIVE_DATA_COLLECTION",
+      "evidence": ["Stage71C preregistration", "API-Football Total - Home/Total - Away", "Real Bet365 + Marathonbet capture"],
+      "live_data": "ACTIVE",
+      "next_gate": "Freeze discovery sample, preregister team/line/selection logic, independent future holdout"
+    },
+    {
+      "id": "BTTS",
+      "label_ru": "Обе забьют — ОЗ Да / Нет",
+      "status": "PROSPECTIVE_DISCOVERY_WATCH",
+      "evidence": ["Stage63 prospective capture", "Stage65 first-crossing WATCH ledger"],
+      "live_data": "ACTIVE",
+      "next_gate": "Prospective evidence and Stage69 promotion gate; no direct promotion from discovery sample"
+    }
+  ],
+  "coverage_rule": "All eight core families must retain an auditable evidence/data path. A rejected historical hypothesis rejects that hypothesis, not the market family forever.",
+  "promotion_rule": "No status in this registry is itself a betting signal or strategy promotion. Promotion requires the strategy-specific preregistered gate and independent evidence."
+}
