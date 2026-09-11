@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-11T14:32:39Z",
+  "run_at_utc": "2026-09-11T14:54:07Z",
   "status": "OK",
   "system_health": "HEALTHY",
   "critical_issues": 0,
@@ -14,5 +14,9 @@
   "stage71i_settlement_rows": 0,
   "stage72_schema_version": "6",
   "stage72_integrity": "ok",
-  "stage73_api_tests": "16/16"
+  "stage73_api_tests": "16/16",
+  "stage71j_real_api_calls": 177,
+  "stage71j_api_budget": 190,
+  "stage71j_cache_hits": 590,
+  "stage71j_child_warnings": 0
 }
