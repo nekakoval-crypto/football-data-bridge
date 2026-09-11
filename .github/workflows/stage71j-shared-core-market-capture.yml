@@ -4,10 +4,6 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '27 */6 * * *'
-  push:
-    paths:
-      - 'scripts/stage71j_shared_core_market_capture.py'
-      - '.github/workflows/stage71j-shared-core-market-capture.yml'
 
 permissions:
   contents: write
@@ -36,7 +32,7 @@ jobs:
       STAGE71E_NEXT_PER_LEAGUE: '10'
       STAGE71F_NEXT_PER_LEAGUE: '10'
       STAGE71G_NEXT_PER_LEAGUE: '10'
-      STAGE71J_MAX_REAL_API_CALLS: '220'
+      STAGE71J_MAX_REAL_API_CALLS: '190'
 
     steps:
       - uses: actions/checkout@v4
