@@ -3,11 +3,18 @@ name: Stage 71 League Market Challenger
 on:
   workflow_dispatch:
   schedule:
-    - cron: '17 7,13 * * *'
+    - cron: '17 7,15,23 * * *'
+  pull_request:
+    paths:
+      - 'scripts/stage71*'
+      - 'scripts/tests/test_stage71*'
+      - '.github/workflows/stage71-league-market-challenger.yml'
   push:
     paths:
       - 'scripts/stage71_league_market_challenger.py'
       - 'scripts/stage71_challenger_capture.py'
+      - 'scripts/stage71_observation_audit.py'
+      - 'scripts/tests/test_stage71*'
       - 'scripts/stage71_regime_overlay.py'
       - 'scripts/stage71_progress_overlay.py'
       - 'research/stage71_challenger_policy_2026-09-11.md'
@@ -16,10 +23,33 @@ on:
       - '.github/workflows/stage71-league-market-challenger.yml'
 
 permissions:
-  contents: write
+  contents: read
+
+concurrency:
+  group: stage71-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate observation reconciliation without API calls
+        run: python -m unittest discover -s scripts/tests -p 'test_stage71*.py' -v
+      - name: Validate data layer and API compatibility
+        run: |
+          python scripts/stage72_build_data_layer.py
+          python scripts/stage73_internal_api.py --self-test
+          python scripts/stage74_app_api.py --self-test
+
   challenger:
+    needs: validate
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
@@ -28,6 +58,8 @@ jobs:
       OPS_DIR: 'ops'
       STAGE71_NEXT_PER_LEAGUE: '5'
       STAGE71_R2_FREEZE_HOURS: '12'
+      STAGE71_MAX_API_CALLS: '60'
+      STAGE71_MAX_DAILY_API_CALLS: '180'
 
     steps:
       - name: Checkout
@@ -44,6 +76,9 @@ jobs:
       - name: Capture prospective league challengers
         run: python scripts/stage71_challenger_capture.py
 
+      - name: Audit observation completeness and settlement health
+        run: python scripts/stage71_observation_audit.py
+
       - name: Rebuild board with fresh prospective rows
         run: python scripts/stage71_league_market_challenger.py
 
@@ -56,6 +91,7 @@ jobs:
       - name: Show Stage 71 summary
         run: |
           cat ops/stage71_capture_last_run.json
+          cat ops/stage71_observation_health.json
           cat ops/stage71_last_run.json
           echo '--- challenger board ---'
           cat ops/stage71_challenger_board.md
@@ -64,15 +100,17 @@ jobs:
         run: |
           git config user.name 'stage71-bot'
           git config user.email 'stage71-bot@users.noreply.github.com'
-          git add -A ops
+          git add ops/stage71_*
           if git diff --cached --quiet; then
             echo 'No Stage 71 changes to commit.'
           else
             git commit -m 'Stage 71 challenger capture update'
+            git pull --rebase origin main
             git push
           fi
 
       - name: Upload Stage 71 snapshot
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: stage71-challenger-board
@@ -81,6 +119,8 @@ jobs:
             ops/stage71_research_trigger_ledger.csv
             ops/stage71_challenger_forward.csv
             ops/stage71_capture_last_run.json
+            ops/stage71_observation_state.json
+            ops/stage71_observation_health.json
             ops/stage71_challenger_board.csv
             ops/stage71_challenger_board.json
             ops/stage71_challenger_board.md
