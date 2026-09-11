@@ -34,9 +34,11 @@ jobs:
       - name: Validate frontend syntax and manifest
         run: |
           node --check app/app.js
+          node --check app/filters.js
           python -m json.tool app/manifest.webmanifest >/dev/null
           test -s app/index.html
           test -s app/app.css
+          test -s app/filters.css
           test -s app/sw.js
       - name: Validate deployment scripts
         run: |
@@ -51,5 +53,5 @@ jobs:
         run: python scripts/stage74_app_api.py --self-test
       - name: Report
         run: |
-          echo 'Stage74 PWA + match detail: OK'
+          echo 'Stage74 PWA + match detail + display filters: OK'
           cat ops/stage73_last_run.json
