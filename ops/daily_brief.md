@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-11T19:02:18Z
+Generated UTC: 2026-09-11T20:02:50Z
 Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -8,7 +8,7 @@ Active canonical signals: 3
 ## R1 | Sassuolo — Juventus
 - Kickoff UTC: 2026-09-13T18:45:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 5.25 / Х 4.0 / П2 1.62 (immutable)
-- Market-best observed: 1.69 @ 1xBet | Bet365 now: 1.62
+- Market-best observed: 1.71 @ 1xBet | Bet365 now: 1.62
 - Current user-executable: 1.68 @ Marathonbet
 - Paper user-execution (frozen): 1.65 @ Marathonbet [2026-09-11T10:32:01Z]
 - Referee / venue: J. L. Sacchi | TBD, Reggio Emilia
@@ -73,7 +73,7 @@ Active canonical signals: 3
 - Scope: Бундеслига: ТБ(2.5) — движение рынка (+3 pp no-vig from frozen Bet365 O/U 2.5 opener).
 - Frozen O/U openers tracked: 18
 - Active +3 pp crossings ТБ(2.5): 0
-- Observed closes: 0 | Close-qualified O1 watches: 0
+- Observed closes: 1 | Close-qualified O1 watches: 0
 - Executable bookmaker being observed: Marathonbet
 
 - No active +3 pp Over crossing is currently recorded.
