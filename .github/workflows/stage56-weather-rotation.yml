@@ -7,6 +7,7 @@ on:
   push:
     paths:
       - 'scripts/stage56_weather_rotation.py'
+      - 'scripts/stage56_latest_view.py'
       - '.github/workflows/stage56-weather-rotation.yml'
 
 permissions:
@@ -42,6 +43,9 @@ jobs:
             fi
             sleep $((attempt * 10))
           done
+
+      - name: Rebuild compact Stage 56 view
+        run: python scripts/stage56_latest_view.py
 
       - name: Show Stage 56 summary
         run: |
