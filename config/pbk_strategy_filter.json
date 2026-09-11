@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "purpose": "Future UI/API strategy visibility filter. This configuration controls display/selection only and must never mutate canonical eligibility.",
+  "global_odds_cap": null,
+  "global_odds_cap_policy": "NONE. Odds limits belong to individual strategies only.",
+  "groups": [
+    {
+      "id": "canonical",
+      "label_ru": "Основные стратегии",
+      "default_enabled": true,
+      "members": ["R1", "R2", "R3"]
+    },
+    {
+      "id": "watch",
+      "label_ru": "WATCH / исследование",
+      "default_enabled": true,
+      "members": ["Stage61", "Stage62", "Stage63"]
+    },
+    {
+      "id": "challengers",
+      "label_ru": "Претенденты по лигам",
+      "default_enabled": false,
+      "members": ["Stage71_R1_ANALOGUE", "Stage71_R2_ANALOGUE"]
+    },
+    {
+      "id": "discovery",
+      "label_ru": "Discovery-кандидаты",
+      "default_enabled": false,
+      "members": ["Stage71B_1X2_OPEN_ODDS"]
+    }
+  ],
+  "future_ui_filters": [
+    "strategy",
+    "league",
+    "market",
+    "status",
+    "bookmaker",
+    "kickoff_window",
+    "odds_range_user_view_only"
+  ],
+  "guardrails": [
+    "Changing a UI odds filter never changes strategy eligibility.",
+    "R1/R2 retain their locked 1.20 <= odds < 2.10 rule regardless of UI filter settings.",
+    "A future strategy may use odds above 3.00, 4.00 or higher if separately validated.",
+    "WATCH and discovery rows never become canonical exposure through display filters."
+  ]
+}
