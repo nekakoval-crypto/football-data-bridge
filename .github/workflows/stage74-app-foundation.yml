@@ -8,6 +8,7 @@ on:
       - 'deploy/**'
       - 'docs/stage74_*.md'
       - 'scripts/stage73_internal_api.py'
+      - 'scripts/tests/test_challenger_observations_api.py'
       - 'scripts/stage74_app_api.py'
       - 'scripts/stage75_probability_value.py'
       - 'scripts/stage72_build_data_layer.py'

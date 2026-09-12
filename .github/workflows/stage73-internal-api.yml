@@ -8,6 +8,7 @@ on:
     paths:
       - 'scripts/stage72_build_data_layer.py'
       - 'scripts/stage73_internal_api.py'
+      - 'scripts/tests/test_challenger_observations_api.py'
       - 'config/pbk_strategy_filter.json'
       - 'config/pbk_market_scope.json'
       - '.github/workflows/stage73-internal-api.yml'
@@ -37,12 +38,15 @@ jobs:
         run: python scripts/stage72_build_data_layer.py
 
       - name: Test Stage 73 API contract
-        run: python scripts/stage73_internal_api.py --self-test
+        run: |
+          python scripts/stage73_internal_api.py --self-test
+          python -m unittest discover -s scripts/tests -p test_challenger_observations_api.py
 
       - name: Show Stage 73 summary
         run: cat ops/stage73_last_run.json
 
       - name: Commit Stage 73 metadata
+        if: github.ref == 'refs/heads/main'
         run: |
           git config user.name 'stage73-bot'
           git config user.email 'stage73-bot@users.noreply.github.com'
