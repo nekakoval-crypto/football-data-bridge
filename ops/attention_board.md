@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 12.09.2026 08:00 (Europe/Berlin)
+Обновлено: 12.09.2026 09:00 (Europe/Berlin)
 Canonical: 3 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -46,55 +46,55 @@ Canonical: 3 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Европ. фора: хозяева +1 → 1:1.48 / Х:4.6 / 2:5.4 @ Marathonbet
 
 - **Genoa — Frosinone** | 12.09 15:00
-  - ИТБ1/ИТМ1(1.5): ИТБ 2.07 / ИТМ 1.76 @ Marathonbet
-  - ИТБ2/ИТМ2(1.5): ИТБ 2.88 / ИТМ 1.41 @ Marathonbet
-  - 1Х 1.32 | Х2 1.75 | 12 1.35 @ Marathonbet
-  - Ф1(0) 1.49 | Ф2(0) 2.41 @ Marathonbet
-  - Европ. фора: хозяева +1 → 1:1.32 / Х:5.05 / 2:6.8 @ Marathonbet
+  - ИТБ1/ИТМ1(1.5): ИТБ 2.09 / ИТМ 1.75 @ Marathonbet
+  - ИТБ2/ИТМ2(1.5): ИТБ 2.84 / ИТМ 1.42 @ Marathonbet
+  - 1Х 1.33 | Х2 1.73 | 12 1.35 @ Marathonbet
+  - Ф1(0) 1.51 | Ф2(0) 2.36 @ Marathonbet
+  - Европ. фора: хозяева +1 → 1:1.33 / Х:5 / 2:6.65 @ Marathonbet
 
 - **Borussia Dortmund — SC Paderborn 07** | 12.09 15:30
   - ИТБ1/ИТМ1(1.5): ИТБ 1.23 / ИТМ 3.94 @ Marathonbet
   - ИТБ2/ИТМ2(1.5): ИТБ 4.25 / ИТМ 1.22 @ Marathonbet
-  - 1Х 1.06 | Х2 4.15 | 12 1.12 @ Marathonbet
+  - 1Х 1.06 | Х2 4.25 | 12 1.12 @ Marathonbet
 
 - **1899 Hoffenheim — VfB Stuttgart** | 12.09 15:30
-  - ИТБ1/ИТМ1(1.5): ИТБ 1.66 / ИТМ 2.24 @ Marathonbet
+  - ИТБ1/ИТМ1(1.5): ИТБ 1.63 / ИТМ 2.27 @ Marathonbet
   - ИТБ2/ИТМ2(1.5): ИТБ 1.77 / ИТМ 2.06 @ Marathonbet
-  - 1Х 1.5 | Х2 1.63 | 12 1.26 @ Marathonbet
-  - Ф1(0) 1.79 | Ф2(0) 2.03 @ Marathonbet
-  - Европ. фора: хозяева +1 → 1:1.5 / Х:4.85 / 2:4.7 @ Marathonbet
+  - 1Х 1.49 | Х2 1.65 | 12 1.26 @ Marathonbet
+  - Ф1(0) 1.76 | Ф2(0) 2.07 @ Marathonbet
+  - Европ. фора: хозяева +1 → 1:1.49 / Х:4.9 / 2:4.75 @ Marathonbet
 
 - **SC Freiburg — Borussia Mönchengladbach** | 12.09 15:30
-  - ИТБ1/ИТМ1(1.5): ИТБ 1.58 / ИТМ 2.38 @ Marathonbet
-  - ИТБ2/ИТМ2(1.5): ИТБ 2.85 / ИТМ 1.42 @ Marathonbet
+  - ИТБ1/ИТМ1(1.5): ИТБ 1.59 / ИТМ 2.35 @ Marathonbet
+  - ИТБ2/ИТМ2(1.5): ИТБ 2.89 / ИТМ 1.41 @ Marathonbet
   - 1Х 1.22 | Х2 2.22 | 12 1.25 @ Marathonbet
   - Ф1(0) 1.28 | Ф2(0) 3.28 @ Marathonbet
   - Европ. фора: хозяева +1 → 1:1.22 / Х:6.15 / 2:8.5 @ Marathonbet
 
 - **Aston Villa — Nottingham Forest** | 12.09 16:00
-  - ИТБ1/ИТМ1(1.5): ИТБ 2.27 / ИТМ 1.64 @ Marathonbet
-  - ИТБ2/ИТМ2(1.5): ИТБ 2.85 / ИТМ 1.42 @ Marathonbet
-  - 1Х 1.38 | Х2 1.66 | 12 1.35 @ Marathonbet
-  - Ф1(0) 1.64 | Ф2(0) 2.26 @ Marathonbet
-  - Европ. фора: хозяева +1 → 1:1.38 / Х:4.85 / 2:6.8 @ Marathonbet
+  - ИТБ1/ИТМ1(1.5): ИТБ 2.26 / ИТМ 1.65 @ Marathonbet
+  - ИТБ2/ИТМ2(1.5): ИТБ 2.89 / ИТМ 1.41 @ Marathonbet
+  - 1Х 1.37 | Х2 1.67 | 12 1.35 @ Marathonbet
+  - Ф1(0) 1.62 | Ф2(0) 2.31 @ Marathonbet
+  - Европ. фора: хозяева +1 → 1:1.37 / Х:4.95 / 2:7 @ Marathonbet
 
 - **Bournemouth — Brentford** | 12.09 16:00
-  - ИТБ1/ИТМ1(1.5): ИТБ 2.03 / ИТМ 1.8 @ Marathonbet
-  - ИТБ2/ИТМ2(1.5): ИТБ 2.13 / ИТМ 1.73 @ Marathonbet
-  - 1Х 1.49 | Х2 1.56 | 12 1.31 @ Marathonbet
-  - Ф1(0) 1.83 | Ф2(0) 1.97 @ Marathonbet
-  - Европ. фора: хозяева +1 → 1:1.49 / Х:4.45 / 2:4.8 @ Marathonbet
+  - ИТБ1/ИТМ1(1.5): ИТБ 2.05 / ИТМ 1.78 @ Marathonbet
+  - ИТБ2/ИТМ2(1.5): ИТБ 2.09 / ИТМ 1.75 @ Marathonbet
+  - 1Х 1.51 | Х2 1.54 | 12 1.31 @ Marathonbet
+  - Ф1(0) 1.88 | Ф2(0) 1.92 @ Marathonbet
+  - Европ. фора: хозяева +1 → 1:1.51 / Х:4.4 / 2:4.7 @ Marathonbet
 
 - **Chelsea — Hull City** | 12.09 16:00
   - ИТБ1/ИТМ1(1.5): ИТБ 1.26 / ИТМ 3.66 @ Marathonbet
-  - ИТБ2/ИТМ2(1.5): ИТБ 5.15 / ИТМ 1.16 @ Marathonbet
+  - ИТБ2/ИТМ2(1.5): ИТБ 5.2 / ИТМ 1.16 @ Marathonbet
   - 1Х 1.04 | Х2 4.25 | 12 1.13 @ Marathonbet
 
 
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 3
+- System Health: **WARN** | critical 0 | warnings 2
 - Логическая canonical экспозиция: **3.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 15 | data required 9
