@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-12T16:02:51Z
+Generated UTC: 2026-09-12T17:02:29Z
 Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -59,7 +59,7 @@ Active canonical signals: 3
 - Scope: АПЛ: движение фаворита П1/П2 (+3 pp no-vig from frozen Bet365 opener).
 - Frozen openers tracked: 20
 - Active +3 pp crossings: 0
-- Observed closes: 5 | Close-qualified M1 watches: 0
+- Observed closes: 6 | Close-qualified M1 watches: 0
 - Executable bookmaker being observed: Marathonbet
 
 - No active +3 pp crossing is currently recorded.
@@ -73,7 +73,7 @@ Active canonical signals: 3
 - Scope: Бундеслига: ТБ(2.5) — движение рынка (+3 pp no-vig from frozen Bet365 O/U 2.5 opener).
 - Frozen O/U openers tracked: 18
 - Active +3 pp crossings ТБ(2.5): 0
-- Observed closes: 6 | Close-qualified O1 watches: 0
+- Observed closes: 7 | Close-qualified O1 watches: 0
 - Executable bookmaker being observed: Marathonbet
 
 - No active +3 pp Over crossing is currently recorded.
@@ -87,7 +87,7 @@ Active canonical signals: 3
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 95
 - Активные движения ≥3 п.п.: всего 4 | ОЗ — Да 4 | ОЗ — Нет 0
-- Зафиксировано observed close: 16
+- Зафиксировано observed close: 19
 - Исполнимый букмекер для наблюдения: Marathonbet
 
 ## Текущие ОЗ-watch
