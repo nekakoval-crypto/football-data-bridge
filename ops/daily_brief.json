@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-12T11:02:22Z",
+  "generated_at_utc": "2026-09-12T12:03:23Z",
   "status": "OK",
   "active_signals": 3,
   "policy": {
@@ -30,11 +30,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-12T10:41:54Z",
+        "captured_at_utc": "2026-09-12T11:41:33Z",
         "best_odds": "1.69",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.62",
-        "api_odds_update_utc": "2026-09-12T08:15:52+00:00",
+        "api_odds_update_utc": "2026-09-12T09:24:22+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -155,7 +155,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-12T10:41:54Z",
+        "captured_at_utc": "2026-09-12T11:41:33Z",
         "best_odds": "1.62",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.57",
@@ -281,7 +281,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-12T10:41:54Z",
+        "captured_at_utc": "2026-09-12T11:41:33Z",
         "best_odds": "1.63",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.55",
@@ -399,7 +399,7 @@
     "observed_closes": 0,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-12T10:53:06Z",
+    "latest_run_utc": "2026-09-12T11:26:09Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [],
@@ -416,7 +416,7 @@
     "observed_closes": 1,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-12T10:47:04Z",
+    "latest_run_utc": "2026-09-12T11:47:03Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [],
@@ -467,7 +467,7 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-12T10:53:16Z",
+    "generated_at_utc": "2026-09-12T11:53:14Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
