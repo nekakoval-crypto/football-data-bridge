@@ -1,0 +1,110 @@
+{
+  "generated_at_utc": "2026-09-12T18:28:10Z",
+  "status": "OK",
+  "model_version": "stage75_v1_2026-09-11",
+  "scope": "research-only frozen prematch probability/value",
+  "items": [
+    {
+      "api_fixture_id": "1550124",
+      "kickoff_utc": "2026-09-13T18:45:00Z",
+      "home_team": "Sassuolo",
+      "away_team": "Juventus",
+      "selection": "Away",
+      "p_pbk": 0.655458375,
+      "p_market_no_vig": 0.58357649,
+      "p_pbk_pct": 65.5458375,
+      "p_market_pct": 58.357649,
+      "edge_pp": 7.1881885,
+      "executable_odds": 1.65,
+      "executable_bookmaker": "Marathonbet",
+      "ev": 0.08150631875,
+      "ev_pct": 8.150631875,
+      "primary_rule": "R1",
+      "source_rules": [
+        "R1"
+      ],
+      "model_version": "stage75_v1_2026-09-11",
+      "probability_prediction_id": "stage75_v1_2026-09-11|R1|1550124|Away",
+      "probability_status": "HISTORICALLY_VALIDATED_FORWARD_MONITORING",
+      "creates_signal": false,
+      "stake_changes": false,
+      "source": "STAGE75_FROZEN_PREMATCH",
+      "radar_level": "STRONG_VALUE",
+      "radar_tags": [],
+      "first_crossed_at_utc_by_kind": {
+        "STRONG_VALUE": "2026-09-12T18:28:10Z"
+      }
+    },
+    {
+      "api_fixture_id": "1550131",
+      "kickoff_utc": "2026-09-20T13:00:00Z",
+      "home_team": "Frosinone",
+      "away_team": "Como",
+      "selection": "Away",
+      "p_pbk": 0.652188225,
+      "p_market_no_vig": 0.580061193,
+      "p_pbk_pct": 65.2188225,
+      "p_market_pct": 58.0061193,
+      "edge_pp": 7.2127032,
+      "executable_odds": 1.65,
+      "executable_bookmaker": "Marathonbet",
+      "ev": 0.07611057125,
+      "ev_pct": 7.611057125,
+      "primary_rule": "R1",
+      "source_rules": [
+        "R1"
+      ],
+      "model_version": "stage75_v1_2026-09-11",
+      "probability_prediction_id": "stage75_v1_2026-09-11|R1|1550131|Away",
+      "probability_status": "HISTORICALLY_VALIDATED_FORWARD_MONITORING",
+      "creates_signal": false,
+      "stake_changes": false,
+      "source": "STAGE75_FROZEN_PREMATCH",
+      "radar_level": "STRONG_VALUE",
+      "radar_tags": [],
+      "first_crossed_at_utc_by_kind": {
+        "STRONG_VALUE": "2026-09-12T18:28:10Z"
+      }
+    },
+    {
+      "api_fixture_id": "1550125",
+      "kickoff_utc": "2026-09-14T16:30:00Z",
+      "home_team": "Torino",
+      "away_team": "AS Roma",
+      "selection": "Away",
+      "p_pbk": 0.67481411,
+      "p_market_no_vig": 0.604534005,
+      "p_pbk_pct": 67.481411,
+      "p_market_pct": 60.4534005,
+      "edge_pp": 7.0280105,
+      "executable_odds": 1.58,
+      "executable_bookmaker": "Marathonbet",
+      "ev": 0.0662062938,
+      "ev_pct": 6.62062938,
+      "primary_rule": "R1",
+      "source_rules": [
+        "R1"
+      ],
+      "model_version": "stage75_v1_2026-09-11",
+      "probability_prediction_id": "stage75_v1_2026-09-11|R1|1550125|Away",
+      "probability_status": "HISTORICALLY_VALIDATED_FORWARD_MONITORING",
+      "creates_signal": false,
+      "stake_changes": false,
+      "source": "STAGE75_FROZEN_PREMATCH",
+      "radar_level": "STRONG_VALUE",
+      "radar_tags": [],
+      "first_crossed_at_utc_by_kind": {
+        "STRONG_VALUE": "2026-09-12T18:28:10Z"
+      }
+    }
+  ],
+  "policy": {
+    "research_only": true,
+    "watch_excluded": true,
+    "canonical_mutation": false,
+    "creates_signal": false,
+    "stake_changes": false,
+    "historical_backfill": "FORBIDDEN",
+    "executable_bookmaker": "Marathonbet"
+  }
+}
