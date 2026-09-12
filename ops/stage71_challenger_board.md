@@ -1,6 +1,6 @@
 # PBK Stage71 — League & Market Challenger Board
 
-Обновлено UTC: 2026-09-11T23:27:18Z
+Обновлено UTC: 2026-09-12T07:27:32Z
 Текущие лидеры R1/R2: Serie A / Serie A
 
 > Captured → executable → settled — это исследовательский прогресс. Он не меняет canonical eligibility и не создаёт автоматический promotion.
@@ -35,15 +35,15 @@
 | Serie A 🏆 | ACTIVE | 0 | 0 | 0 | — | — | — | — | 60 | 120 |
 | Bundesliga | MONITORING_REJECTED_CURRENT_RULE | 0 | 0 | 0 | — | — | — | — | 60 | 120 |
 | Ligue 1 | MONITORING_REJECTED_CURRENT_RULE | 0 | 0 | 0 | — | — | — | — | 60 | 120 |
-| Austrian Bundesliga | MONITORING | 1 | 1 | 1 | 100.0 | -100.00 | — | -100.00 | 59 | 119 |
+| Austrian Bundesliga | MONITORING | 2 | 2 | 1 | 100.0 | -100.00 | — | -100.00 | 59 | 119 |
 | Belgian Pro League | MONITORING | 1 | 1 | 1 | 100.0 | 78.00 | — | 78.00 | 59 | 119 |
 | Danish Superliga | DATA_REQUIRED | 0 | 0 | 0 | — | — | — | — | 60 | 120 |
 | A Lyga | DATA_REQUIRED | 0 | 0 | 0 | — | — | — | — | 60 | 120 |
 | Virsliga | MONITORING | 1 | 1 | 1 | 100.0 | -100.00 | — | -100.00 | 59 | 119 |
-| Eredivisie | DATA_REQUIRED | 0 | 0 | 0 | — | — | — | — | 60 | 120 |
+| Eredivisie | MONITORING | 1 | 1 | 0 | 100.0 | — | — | — | 60 | 120 |
 | Eliteserien | DATA_REQUIRED | 0 | 0 | 0 | — | — | — | — | 60 | 120 |
 | Ekstraklasa | DATA_REQUIRED | 0 | 0 | 0 | — | — | — | — | 60 | 120 |
-| Primeira Liga | DATA_REQUIRED | 0 | 0 | 0 | — | — | — | — | 60 | 120 |
+| Primeira Liga | MONITORING | 1 | 1 | 0 | 100.0 | — | — | — | 60 | 120 |
 | Super Lig | DATA_REQUIRED | 0 | 0 | 0 | — | — | — | — | 60 | 120 |
 | Scottish Premiership | DATA_REQUIRED | 0 | 0 | 0 | — | — | — | — | 60 | 120 |
 
