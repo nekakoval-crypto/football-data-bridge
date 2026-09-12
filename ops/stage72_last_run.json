@@ -1,13 +1,13 @@
 {
-  "run_at_utc": "2026-09-12T18:28:10Z",
+  "run_at_utc": "2026-09-12T18:28:20Z",
   "status": "OK",
   "schema_version": "8",
   "db_path": "build/pbk_unified.sqlite",
-  "db_bytes": 17358848,
-  "db_sha256": "02cf916901e31162e73516c028ebd85bf18996a8ccf7b1536dbd66a2c0a640ff",
+  "db_bytes": 17362944,
+  "db_sha256": "926fe9d66bdf96bcc25393a2aeb78aab6b81c4da00385d133766461a69e1132e",
   "integrity_check": "ok",
   "tables": 79,
-  "manifest_sources": 70,
+  "manifest_sources": 72,
   "stable_counts": {
     "competitions": 16,
     "canonical_signals": 3,
@@ -32,7 +32,7 @@
     "core_market_settlements": 243,
     "probability_predictions": 3,
     "probability_settlements": 0,
-    "value_radar_events": 0
+    "value_radar_events": 3
   },
   "missing_stable_sources": [],
   "api_calls": 0
