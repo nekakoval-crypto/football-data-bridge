@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-12T01:02:26Z",
+  "generated_at_utc": "2026-09-12T02:02:58Z",
   "status": "OK",
   "active_signals": 3,
   "policy": {
@@ -30,11 +30,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-12T00:47:34Z",
+        "captured_at_utc": "2026-09-12T01:43:03Z",
         "best_odds": "1.69",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.62",
-        "api_odds_update_utc": "2026-09-11T21:23:41+00:00",
+        "api_odds_update_utc": "2026-09-12T01:28:18+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -155,11 +155,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-12T00:47:34Z",
+        "captured_at_utc": "2026-09-12T01:43:03Z",
         "best_odds": "1.62",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.57",
-        "api_odds_update_utc": "2026-09-11T21:23:42+00:00",
+        "api_odds_update_utc": "2026-09-12T01:28:18+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -281,7 +281,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-12T00:47:34Z",
+        "captured_at_utc": "2026-09-12T01:43:03Z",
         "best_odds": "1.69",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.62",
@@ -399,7 +399,7 @@
     "observed_closes": 0,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-12T00:56:25Z",
+    "latest_run_utc": "2026-09-12T01:26:00Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [],
@@ -416,7 +416,7 @@
     "observed_closes": 1,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-12T00:28:47Z",
+    "latest_run_utc": "2026-09-12T01:48:06Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [],
@@ -467,7 +467,7 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-12T00:58:53Z",
+    "generated_at_utc": "2026-09-12T01:53:38Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
