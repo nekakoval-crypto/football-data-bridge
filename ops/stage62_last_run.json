@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-12T07:46:59Z",
+  "run_at_utc": "2026-09-12T08:22:49Z",
   "status": "OK",
   "scope": "Bundesliga O/U 2.5 Over Steam only",
   "season": 2026,
@@ -11,14 +11,14 @@
   "user_bookmaker": "Marathonbet",
   "upcoming_fixtures_seen": 20,
   "active_fixture_ids": 20,
-  "odds_api_calls": 8,
+  "odds_api_calls": 7,
   "fixture_state_api_calls": 0,
   "new_openers": 0,
-  "new_snapshots": 8,
+  "new_snapshots": 7,
   "new_crossings": 0,
   "new_closes": 0,
   "total_openers": 18,
-  "total_snapshots": 334,
+  "total_snapshots": 341,
   "total_crossings": 0,
   "total_closes": 1,
   "close_qualified_total": 0,
@@ -28,5 +28,7 @@
     "historical_match": "requires observed closing Over no-vig probability >= opener + 0.03",
     "execution_evidence": "Marathonbet Over 2.5 price captured at first crossing and observed close when available"
   },
-  "warnings": []
+  "warnings": [
+    "odds 1575165: API-Football /odds: {'rateLimit': 'Too many requests. You have exceeded the limit of requests per minute of your subscription.'}"
+  ]
 }
