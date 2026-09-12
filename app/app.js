@@ -1,3 +1,4 @@
+import { marketCard } from './markets.js';
 import { initChallengers } from './challengers.js';
 const challengers = initChallengers();
 const $=s=>document.querySelector(s);const $$=s=>[...document.querySelectorAll(s)];
@@ -8,7 +9,6 @@ const cardClass=p=>({RED:'red',ORANGE:'orange',BLUE:'blue',GRAY:'gray'}[p]||'gra
 const READ_NOTIFICATIONS_KEY='pbkReadNotificationsV1';let notificationPayload={items:[],summary:{}};
 
 function signalCard(x){const odds=x.paper_user_odds??x.user_odds??'';const book=x.paper_user_book??x.user_book??'';return `<article class="card ${cardClass(x.priority)}" ${x.fixture_id?`data-fixture="${esc(x.fixture_id)}"`:''}><div><div class="eyebrow">${esc(x.rule||x.stage||x.league||'')}</div><div class="teams">${esc(x.home_team)} — ${esc(x.away_team)}</div><div class="meta">${esc(x.league||'')} · ${esc(x.kickoff_local||'')} ${x.context?`· ${esc(x.context)}`:''}${x.reason?`· ${esc(x.reason)}`:''}</div></div><div class="pick"><div class="selection">${esc(x.selection||x.market||'')}</div>${odds?`<div class="odds">${esc(fmtOdds(odds))}${book?` @ ${esc(book)}`:''}</div>`:''}</div></article>`}
-function marketCard(x){const rows=(x.markets||[]).map(m=>`<div class="market-row">${esc(m.text||m.market||'')}</div>`).join('');return `<article class="match-card" data-fixture="${esc(x.fixture_id||'')}"><div class="eyebrow">${esc(x.league||'')} · ${esc(x.kickoff_local||'')}</div><div class="match-title">${esc(x.home_team)} — ${esc(x.away_team)}</div><div class="match-meta">Матч №${esc(x.fixture_id||'')} · нажми для полной карточки</div><div class="market-list">${rows||'<div class="empty">Рыночные строки пока не собраны.</div>'}</div><div class="market-note">MARKET VIEW ONLY — не сигнал и не рекомендация</div></article>`}
 function setList(id,items,renderer=signalCard){const el=$(id);el.innerHTML=items?.length?items.map(renderer).join(''):'<div class="empty">Сейчас ничего нет.</div>'}
 function setHealthPill(status){const el=$('#health-pill');el.classList.remove('ok','warn','bad');const s=String(status||'UNKNOWN').toUpperCase();el.classList.add(s==='HEALTHY'||s==='OK'?'ok':s==='WARN'?'warn':'bad');el.querySelector('span:last-child').textContent=s}
 function setDataSafety(level='',title='',text=''){const el=$('#data-safety-banner');if(!el)return;if(!level){el.hidden=true;el.className='safety-banner';return}el.hidden=false;el.className=`safety-banner ${level}`;$('#data-safety-title').textContent=title;$('#data-safety-text').textContent=text}
@@ -23,7 +23,7 @@ const first=v=>Array.isArray(v)&&v.length?v[0]:null;const last=v=>Array.isArray(
 function cleanPairs(obj,keys){return keys.map(([label,key])=>[label,obj?.[key]]).filter(([,v])=>v!==null&&v!==undefined&&v!=='')}
 function section(title,html){return `<section class="detail-section"><h3>${esc(title)}</h3>${html}</section>`}
 function pairGrid(pairs){return `<div class="detail-grid">${pairs.map(([k,v])=>`<div class="detail-row"><div class="eyebrow">${esc(k)}</div><b>${esc(v)}</b></div>`).join('')}</div>`}
-function currentMarketRows(d){const out=[];const tt=d.markets?.team_totals||{};const dnb=d.markets?.dnb||{};const dc=d.markets?.double_chance||{};const eh=d.markets?.european_handicap||{};
+function currentMarketRows(d){if(d.attention_card?.markets)return d.attention_card.markets.map(m=>`${m.text}${m.captured_at_utc?' · снимок '+m.captured_at_utc:''}`);const out=[];const tt=d.markets?.team_totals||{};const dnb=d.markets?.dnb||{};const dc=d.markets?.double_chance||{};const eh=d.markets?.european_handicap||{};
   const ttRows=tt.snapshots?.length?tt.snapshots:tt.openers||[];for(const r of ttRows.filter(x=>String(x.line)==='1.5').slice(-2)){const n=r.team_side==='H'?'1':'2';const over=r.user_over??r.open_user_over??r.open_b365_over??r.b365_over;const under=r.user_under??r.open_user_under??r.open_b365_under??r.b365_under;out.push(`ИТБ${n}(1.5) ${fmtOdds(over)} · ИТМ${n}(1.5) ${fmtOdds(under)}`)}
   const x=last(dc.snapshots)||last(dc.openers);if(x)out.push(`1Х ${fmtOdds(x.user_1x??x.open_b365_1x??x.b365_1x)} · Х2 ${fmtOdds(x.user_x2??x.open_b365_x2??x.b365_x2)} · 12 ${fmtOdds(x.user_12??x.open_b365_12??x.b365_12)}`);
   const y=last(dnb.snapshots)||last(dnb.openers);if(y)out.push(`Ф1(0) ${fmtOdds(y.user_f1_0??y.open_b365_f1_0??y.b365_f1_0)} · Ф2(0) ${fmtOdds(y.user_f2_0??y.open_b365_f2_0??y.b365_f2_0)}`);

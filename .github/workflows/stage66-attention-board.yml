@@ -47,6 +47,7 @@ jobs:
           cat ops/attention_board.md
 
       - name: Commit Stage 66 operational files
+        if: github.ref == 'refs/heads/main'
         run: |
           git config user.name 'stage66-bot'
           git config user.email 'stage66-bot@users.noreply.github.com'
