@@ -2,6 +2,7 @@
 """Stage 73 — read-only PBK HTTP API over the Stage72 SQLite projection."""
 from __future__ import annotations
 import argparse, json, os, sqlite3
+from contextlib import closing
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -75,9 +76,58 @@ def config_doc(path,fallback):
     try:return json.loads(path.read_text(encoding='utf-8'))
     except Exception:return fallback
 
+def challenger_observations(conn, q):
+    """Explain the board's source selection; never query a football provider."""
+    family, league = qfirst(q, 'family'), qfirst(q, 'league')
+    board = state_doc(conn, 'stage71_challenger_board.json') or {}
+    card = next((r for r in board.get('rows', [])
+                 if r.get('family') == family and r.get('league') == league), None)
+    if card is None:
+        return 404, {'error': 'UNKNOWN_CHALLENGER_CARD'}
+    active = card.get('status') in {'ACTIVE', 'DEGRADATION_REVIEW', 'SUSPENSION_REVIEW'}
+    table = 'canonical_signals' if active else 'challenger_signals'
+    source = 'canonical' if active else 'research-only'
+    limit = as_int(qfirst(q, 'limit'), 5, 1, MAX_LIMIT)
+    offset = as_int(qfirst(q, 'offset'), 0, 0, 10_000_000)
+    payload = {'items': [], 'count': 0, 'limit': limit, 'offset': offset,
+               'source': source, 'read_only': True, 'available': False}
+    cols = set(columns(conn, table)) if table_exists(conn, table) else set()
+    family_col = 'rule' if active else 'family'
+    if family_col not in cols:
+        return 200, payload
+    # Same legacy Serie A fallback as stage71_progress_overlay.group_rows.
+    league_expr = "COALESCE(NULLIF(league, ''), 'Serie A')" if active and 'league' in cols else ("'Serie A'" if active else 'league')
+    where = f' WHERE "{family_col}" = ? AND {league_expr} = ?'
+    args = [family, league]
+    payload['count'] = conn.execute(f'SELECT COUNT(*) FROM "{table}"' + where, args).fetchone()[0]
+    id_col = 'forward_id' if active else 'research_id'
+    rows = conn.execute(f'SELECT * FROM "{table}"' + where +
+                        f' ORDER BY julianday(kickoff_utc) DESC, "{id_col}" DESC LIMIT ? OFFSET ?',
+                        args + [limit, offset]).fetchall()
+    for row in rows:
+        r = enrich(row)
+        selection = r.get('selection_ru')
+        price_col = {'П1': 'trigger_b365_home', 'Х': 'trigger_b365_draw', 'П2': 'trigger_b365_away'}.get(selection)
+        bookmaker = r.get('paper_user_execution_bookmaker') if active else r.get('user_bookmaker')
+        status = r.get('status')
+        item = {key: r.get(key) or None for key in ('kickoff_utc', 'home_team', 'away_team', 'final_home_goals', 'final_away_goals')}
+        item.update({'id': r.get(id_col), 'selection': selection,
+                     'bet365_price': r.get('trigger_selected_odds') if active else r.get(price_col),
+                     'marathonbet_price': (r.get('paper_user_execution_odds') if active else r.get('user_odds')) if str(bookmaker).lower() == 'marathonbet' else None,
+                     'status': 'PENDING' if status == 'PAPER' else status,
+                     'result': r.get('result') if status == 'SETTLED' else None,
+                     'user_profit_u': r.get('user_profit_u') if status == 'SETTLED' else None})
+        if status != 'SETTLED':
+            item['final_home_goals'] = item['final_away_goals'] = None
+        payload['items'].append(item)
+    payload['available'] = True
+    return 200, payload
+
+
 def dispatch(path_with_query):
     u=urlparse(path_with_query);path=u.path.rstrip('/') or '/';q=parse_qs(u.query,keep_blank_values=True)
-    with connect() as conn:
+    with closing(connect()) as conn:
+        if path=='/v1/challengers/observations':return challenger_observations(conn,q)
         if path=='/':return 200,{'service':'PBK Internal API','api_version':API_VERSION,'read_only':True,'docs':'/v1/meta'}
         if path in {'/health','/v1/health'}:
             meta=dict(conn.execute('SELECT key,value FROM pbk_meta').fetchall()) if table_exists(conn,'pbk_meta') else {};sh=state_doc(conn,'system_health.json') or {};return 200,{'status':'OK' if str(sh.get('status','HEALTHY')).upper()!='CRITICAL' else 'CRITICAL','api_version':API_VERSION,'db_schema_version':meta.get('schema_version'),'db_built_at_utc':meta.get('built_at_utc'),'system_health':sh.get('status','UNKNOWN'),'read_only':True}
