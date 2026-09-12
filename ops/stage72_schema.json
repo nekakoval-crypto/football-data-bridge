@@ -1,5 +1,5 @@
 {
-  "schema_version": "7",
+  "schema_version": "8",
   "stable_tables": {
     "competitions": "stage71_league_catalog.csv",
     "canonical_signals": "user_forward_view.csv",
@@ -43,7 +43,8 @@
     "stage71i_last_run.json",
     "probability_rankings.json",
     "probability_performance.json",
-    "stage75_last_run.json"
+    "stage75_last_run.json",
+    "value_radar_current.json"
   ],
   "raw_csv_policy": "every ops/*.csv is imported as raw_<filename_stem> with TEXT columns"
 }
