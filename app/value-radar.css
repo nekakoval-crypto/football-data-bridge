@@ -1,0 +1,7 @@
+.radar-card {min-width:0; overflow-wrap:anywhere; border-left:3px solid #a78bfa;}
+.radar-card h3 {margin:8px 0;}
+.radar-card p {font-size:13px;}
+.radar-card button {max-width:100%; white-space:normal; text-align:left;}
+.radar-metrics {display:grid; grid-template-columns:repeat(auto-fit,minmax(min(120px,100%),1fr)); gap:12px;}
+.radar-metrics dt {font-size:12px; color:var(--muted);}
+.radar-metrics dd {margin:4px 0 0; font-weight:700;}

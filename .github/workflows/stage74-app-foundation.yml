@@ -45,6 +45,7 @@ jobs:
           node --check app/runtime.js
           node --check app/push.js
           node --check app/probability.js
+          node --check app/value-radar.js
           node --check app/challengers.js
           node --check app/markets.js
           node --test app/tests/*.test.mjs
@@ -79,7 +80,7 @@ jobs:
           grep -q '/v1/push/subscribe' app/push.js
           grep -q '/api/v1/performance' app/probability.js
           grep -q 'applyFreshnessGuard' app/app.js
-          grep -q "pbk-shell-v9" app/sw.js
+          grep -q "pbk-shell-v10" app/sw.js
           grep -q "beforeinstallprompt" app/install.js
           grep -q "addEventListener('push'" app/sw.js
           grep -q 'probability.js' app/sw.js
@@ -118,6 +119,8 @@ jobs:
           grep -q '/swapfile' deploy/harden_server.sh
       - name: Market research projection and contract tests
         run: python -m unittest discover -s scripts/tests -p test_market_cards.py
+      - name: Value Radar offline contracts
+        run: python -m unittest discover -s scripts/tests -p test_value_radar.py
       - name: Rebuild unified data layer
         run: python scripts/stage72_build_data_layer.py
       - name: Validate Stage73 API contract

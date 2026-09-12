@@ -9,6 +9,7 @@ import csv, json, math, os
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
+from stage75_value_radar import materialize as materialize_radar
 
 OPS=Path(os.getenv('OPS_DIR','ops'))
 CFG=Path(os.getenv('PBK_PROBABILITY_CONFIG','config/pbk_probability_models.json'))
@@ -116,5 +117,6 @@ def main():
         by_rule[rule]={'settled_predictions':len(rr),'brier_market':sum(bm)/len(bm) if bm else None,'brier_pbk':sum(bp)/len(bp) if bp else None,'logloss_market':sum(lm)/len(lm) if lm else None,'logloss_pbk':sum(lp)/len(lp) if lp else None,'forward_review_ready':len(rr)>=int(cfg.get('forward_review_min_settled_per_rule',50))}
     PERF.write_text(json.dumps({'generated_at_utc':now,'status':'OK','model_version':model_version,'settled_predictions':len(settles),'by_rule':by_rule,'review_min_settled_per_rule':cfg.get('forward_review_min_settled_per_rule',50),'historical_backfill':'FORBIDDEN'},ensure_ascii=False,indent=2),encoding='utf-8')
     meta={'run_at_utc':now,'status':'OK','model_version':model_version,'predictions':len(preds),'predictions_created':created,'settlements':len(settles),'settlements_created':settled_new,'active_unique_ranked':len(unique),'api_calls':0}
+    meta.update(materialize_radar(OPS,forward,preds,cfg,now))
     META.write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding='utf-8');print(json.dumps(meta,ensure_ascii=False))
 if __name__=='__main__':main()
