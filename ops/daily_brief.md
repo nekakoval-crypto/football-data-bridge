@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-12T14:02:27Z
+Generated UTC: 2026-09-12T15:02:33Z
 Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -59,7 +59,7 @@ Active canonical signals: 3
 - Scope: АПЛ: движение фаворита П1/П2 (+3 pp no-vig from frozen Bet365 opener).
 - Frozen openers tracked: 20
 - Active +3 pp crossings: 0
-- Observed closes: 0 | Close-qualified M1 watches: 0
+- Observed closes: 5 | Close-qualified M1 watches: 0
 - Executable bookmaker being observed: Marathonbet
 
 - No active +3 pp crossing is currently recorded.
@@ -86,13 +86,15 @@ Active canonical signals: 3
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 95
-- Активные движения ≥3 п.п.: всего 2 | ОЗ — Да 2 | ОЗ — Нет 0
-- Зафиксировано observed close: 4
+- Активные движения ≥3 п.п.: всего 4 | ОЗ — Да 4 | ОЗ — Нет 0
+- Зафиксировано observed close: 16
 - Исполнимый букмекер для наблюдения: Marathonbet
 
 ## Текущие ОЗ-watch
 - WATCH | Ligue 1 | Stade Brestois 29 — Paris Saint Germain | ОЗ — Да | движение P(ОЗ — Да) +3.33 п.п. | Marathonbet 1.75 | 3241.3 мин до матча
 - WATCH | Serie A | Torino — AS Roma | ОЗ — Да | движение P(ОЗ — Да) +3.33 п.п. | Marathonbet 1.81 | 3974.6 мин до матча
+- WATCH | Ligue 1 | Paris FC — Lyon | ОЗ — Да | движение P(ОЗ — Да) +3.60 п.п. | Marathonbet 1.47 | 270.6 мин до матча
+- WATCH | Premier League | Tottenham — Everton | ОЗ — Да | движение P(ОЗ — Да) +4.26 п.п. | Marathonbet 1.58 | 135.7 мин до матча
 
 ---
 
@@ -100,11 +102,11 @@ Active canonical signals: 3
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 3 | settled 1 | pending 2
+- Crossings: 5 | settled 1 | pending 4
 - Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: 0.490u | ROI 49.0% | W-L 1-0
 - Close: observed 1 | stayed qualified 1 | reverted 0 | persistence 100.0%
 - Close-qualified ROI: 49.0% | Reverted ROI: N/A
 
 ## By WATCH family
-- Big-5 ОЗ market movement — ОЗ — Да: crossings 3, settled 1, ROI 49.0%, close persistence 100.0%
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 5, settled 1, ROI 49.0%, close persistence 100.0%
