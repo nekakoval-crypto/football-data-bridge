@@ -2,6 +2,7 @@
 """Stage74 app API: Stage73-compatible API plus app aggregations and delivery settings."""
 from __future__ import annotations
 import argparse, json, os, shutil, tempfile, time
+from contextlib import closing
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, urlparse
@@ -92,6 +93,7 @@ def aggregate_match(fixture_id):
                 seen.add(key);rank_rows.append(row)
         return 200,{
             'fixture_id':str(fixture_id),'identity':identity,'attention_card':card,
+            'value_radar':{'items':[r for r in radar_document(conn)['items'] if str(r.get('api_fixture_id'))==str(fixture_id)],'research_only':True,'creates_signal':False},
             'canonical':payload['canonical'],'watch':payload['watch'],'challengers':payload['challengers'],
             'context':payload['context'],'lifecycle':payload['lifecycle'],'exposure':payload['exposure'],'odds':payload['odds'],
             'probability':{'predictions':payload['probability_predictions'],'active_rankings':rank_rows,'strategy_mutation':False,'stake_changes':False},
@@ -103,6 +105,22 @@ def aggregate_match(fixture_id):
             },
             'settlements':payload['settlements'],'read_only':True,'creates_signal':False,
         }
+
+def radar_document(conn):
+    doc=base.state_doc(conn,'value_radar_current.json') or {}
+    return {'status':doc.get('status','NO_DATA'),'generated_at_utc':doc.get('generated_at_utc'),
+            'model_version':doc.get('model_version'),'items':doc.get('items') or [],
+            'policy':doc.get('policy') or {},'read_only':True,'research_only':True,'creates_signal':False}
+
+def value_radar_payload(limit=50):
+    try:limit=max(1,min(100,int(limit)))
+    except (ValueError,TypeError):limit=50
+    with closing(base.connect()) as conn:
+        payload=radar_document(conn)
+        payload['count']=len(payload['items'])
+        payload['items']=payload['items'][:limit]
+        payload['limit']=limit
+        return 200,payload
 
 def performance_payload():
     with base.connect() as conn:
@@ -282,6 +300,7 @@ def dispatch(path_with_query):
     u=urlparse(path_with_query);path=u.path.rstrip('/') or '/';q=parse_qs(u.query,keep_blank_values=True)
     if path=='/v1/match':return aggregate_match((q.get('fixture_id') or [''])[0])
     if path=='/v1/performance':return performance_payload()
+    if path=='/v1/value-radar':return value_radar_payload((q.get('limit') or ['50'])[0])
     if path=='/v1/runtime':return runtime_payload()
     if path=='/v1/push/status':return push_status_payload()
     if path=='/v1/notifications':
@@ -329,7 +348,9 @@ def self_test():
     note_status,notes=notifications_payload(100);note_ok=note_status==200 and isinstance(notes.get('items'),list) and notes.get('read_only') is True and notes.get('delivery',{}).get('in_app') is True
     run_status,runtime=runtime_payload();runtime_ok=run_status==200 and runtime.get('status')=='OK' and runtime.get('api_version')=='1.5'
     push_status,push=push_status_payload();push_ok=push_status==200 and 'enabled' in push and push.get('football_api_calls')==0
-    ok=match_ok and perf_ok and note_ok and runtime_ok and push_ok
+    radar_status,radar=value_radar_payload()
+    radar_ok=radar_status==200 and isinstance(radar.get('items'),list) and radar.get('creates_signal') is False and p.get('value_radar',{}).get('creates_signal') is False
+    ok=match_ok and perf_ok and note_ok and runtime_ok and push_ok and radar_ok
     print(json.dumps({'status':'OK' if ok else 'FAIL','match_detail_fixture_id':fid,'http_status':status,'canonical_rows':len(p.get('canonical') or []),'watch_rows':len(p.get('watch') or []),'probability_prediction_rows':len((p.get('probability') or {}).get('predictions') or []),'performance_http_status':perf_status,'notifications_http_status':note_status,'notification_rows':len(notes.get('items') or []),'runtime_http_status':run_status,'runtime_api_version':runtime.get('api_version'),'push_status':push.get('status'),'probability_module':pm.get('status'),'read_only':p.get('read_only')},ensure_ascii=False))
     return 0 if ok else 1
 

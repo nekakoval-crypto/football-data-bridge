@@ -9,10 +9,11 @@ from __future__ import annotations
 import csv, json, os, re, sqlite3, hashlib
 from datetime import datetime, timezone
 from pathlib import Path
+from stage75_value_radar import read_jsonl, EVENT_FIELDS
 
 OPS=Path(os.getenv('OPS_DIR','ops'))
 OUT=Path(os.getenv('STAGE72_DB_PATH','build/pbk_unified.sqlite'))
-META=OPS/'stage72_last_run.json';SCHEMA=OPS/'stage72_schema.json';SCHEMA_VERSION='7'
+META=OPS/'stage72_last_run.json';SCHEMA=OPS/'stage72_schema.json';SCHEMA_VERSION='8'
 CORE_ALIASES={
     'competitions':'stage71_league_catalog.csv','canonical_signals':'user_forward_view.csv','challenger_signals':'stage71_challenger_forward.csv','watch_signals':'stage65_watch_ledger.csv','lifecycle_events':'signal_lifecycle_events.csv','exposure_positions':'exposure_map.csv','context_latest':'context_latest.csv','odds_snapshots':'odds_snapshots.csv',
     'team_total_openers':'stage71c_team_total_openers.csv','team_total_snapshots':'stage71c_team_total_snapshots.csv','team_total_closes':'stage71c_team_total_closes.csv',
@@ -24,6 +25,7 @@ CORE_ALIASES={
 }
 JSON_DOCS=['attention_board.json','daily_brief.json','forward_performance.json','watch_performance.json','watch_promotion_gate.json','system_health.json','exposure_summary.json','stage71_challenger_board.json','signal_lifecycle_cards.json','stage71b_fonbet_coverage.json','stage71c_last_run.json','stage71e_last_run.json','stage71f_last_run.json','stage71g_last_run.json','stage71i_last_run.json','probability_rankings.json','probability_performance.json','stage75_last_run.json']
 def now_iso():return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00','Z')
+JSON_DOCS.append('value_radar_current.json')
 def safe(s):
     s=re.sub(r'[^0-9A-Za-z_]+','_',str(s)).strip('_').lower()
     if not s:s='unnamed'
@@ -59,6 +61,14 @@ def main():
         p=OPS/filename
         if not p.exists():missing.append(filename);create_text_table(conn,table,[],[]);stable_counts[table]=0;continue
         fields,rows=read_csv(p);count,_=create_text_table(conn,table,fields,rows);stable_counts[table]=count
+    radar_path=OPS/'stage75_value_radar.jsonl'
+    _,radar_rows=read_jsonl(radar_path)
+    radar_fields=EVENT_FIELDS+sorted({k for r in radar_rows for k in r}-set(EVENT_FIELDS))
+    text_rows=[{k:json.dumps(v,ensure_ascii=False,sort_keys=True) if isinstance(v,(list,dict,bool)) else ('' if v is None else str(v)) for k,v in r.items()} for r in radar_rows]
+    stable_counts['value_radar_events'],_=create_text_table(conn,'value_radar_events',radar_fields,text_rows)
+    for field in ('radar_id','radar_kind','first_crossed_at_utc'):
+        conn.execute(f'CREATE INDEX "idx_value_radar_events_{field}" ON value_radar_events ("{field}")')
+    if radar_path.exists():conn.execute('INSERT INTO source_manifest VALUES (?,?,?,?)',(radar_path.name,'jsonl',len(radar_rows),file_sha(radar_path)))
     conn.execute('CREATE TABLE state_documents (name TEXT PRIMARY KEY, payload_json TEXT NOT NULL, sha256 TEXT NOT NULL)')
     for name in JSON_DOCS:
         p=OPS/name

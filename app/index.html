@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/runtime.css">
   <link rel="stylesheet" href="/push.css">
   <link rel="stylesheet" href="/probability.css">
+  <link rel="stylesheet" href="/value-radar.css">
   <link rel="stylesheet" href="/challengers.css">
 </head>
 <body>
@@ -47,6 +48,8 @@
         <div class="summary-grid" id="summary-grid"></div>
         <div class="section-head"><h2>Оценки ПБК</h2><span>validated canonical · вероятность ≠ value</span></div>
         <div id="probability-today" class="probability-grid"><div class="empty">Загрузка probability…</div></div>
+        <div class="section-head"><h2>РАСХОЖДЕНИЕ С РЫНКОМ</h2><span>Value Radar · research only · не новый сигнал</span></div>
+        <div id="value-radar-list" class="stack" aria-live="polite"><div class="empty">Загрузка Radar…</div></div>
         <div class="section-head"><h2>Требует внимания</h2><span id="updated-at"></span></div>
         <div id="attention-list" class="stack"></div>
         <div class="section-head"><h2>Активные R</h2></div>
@@ -145,5 +148,6 @@
   <script type="module" src="/install.js"></script>
   <script type="module" src="/push.js"></script>
   <script type="module" src="/probability.js"></script>
+  <script type="module" src="/value-radar.js"></script>
 </body>
 </html>

@@ -7,6 +7,7 @@ on:
   push:
     paths:
       - 'scripts/stage75_probability_value.py'
+      - 'scripts/stage75_value_radar.py'
       - 'config/pbk_probability_models.json'
       - 'research/stage75_probability_value_policy_2026-09-11.md'
       - 'research/stage75_probability_value_test_report_2026-09-11.md'
@@ -15,8 +16,13 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: stage75-probability-value
+  cancel-in-progress: false
+
 jobs:
   probability:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -40,7 +46,7 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             python scripts/stage75_probability_value.py
-            git add ops/stage75_probability_predictions.csv ops/stage75_probability_settlements.csv ops/probability_rankings.json ops/probability_performance.json ops/stage75_last_run.json
+            git add ops/stage75_probability_predictions.csv ops/stage75_probability_settlements.csv ops/probability_rankings.json ops/probability_performance.json ops/stage75_last_run.json ops/stage75_value_radar.jsonl ops/value_radar_current.json
             if git diff --cached --quiet; then exit 0; fi
             git commit -m 'Stage75 probability and value update'
             if git push origin HEAD:main; then exit 0; fi
@@ -56,4 +62,6 @@ jobs:
             ops/probability_rankings.json
             ops/probability_performance.json
             ops/stage75_last_run.json
+            ops/stage75_value_radar.jsonl
+            ops/value_radar_current.json
           retention-days: 30
