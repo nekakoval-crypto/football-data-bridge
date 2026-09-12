@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 12.09.2026 13:00 (Europe/Berlin)
+Обновлено: 12.09.2026 14:00 (Europe/Berlin)
 Canonical: 3 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -22,12 +22,12 @@ Canonical: 3 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 - **Stage63 | Torino — AS Roma** | ОЗ — Да | 14.09 18:30 | 1.81 @ Marathonbet
 
 ## ⚪ Ближайшие матчи под наблюдением (без сигнала)
-- **Stage63 | Racing Santander — Alaves** | La Liga | 12.09 14:00 | ОЗ — Да / ОЗ — Нет | Bet365 Да 1.57 / Нет 2.25
 - **Stage63 | Genoa — Frosinone** | Serie A | 12.09 15:00 | ОЗ — Да / ОЗ — Нет | Bet365 Да 1.7 / Нет 2.05
 - **Stage62 | Borussia Dortmund — SC Paderborn 07** | Бундеслига | 12.09 15:30 | ТБ(2.5) steam | Bet365 ТБ 1.36 / ТМ 3.2
 - **Stage62 | 1899 Hoffenheim — VfB Stuttgart** | Бундеслига | 12.09 15:30 | ТБ(2.5) steam | Bet365 ТБ 1.36 / ТМ 3.2
 - **Stage62 | SC Freiburg — Borussia Mönchengladbach** | Бундеслига | 12.09 15:30 | ТБ(2.5) steam | Bet365 ТБ 1.53 / ТМ 2.5
 - **Stage63 | Borussia Dortmund — SC Paderborn 07** | Bundesliga | 12.09 15:30 | ОЗ — Да / ОЗ — Нет | Bet365 Да 1.7 / Нет 2.05
+- **Stage63 | 1899 Hoffenheim — VfB Stuttgart** | Bundesliga | 12.09 15:30 | ОЗ — Да / ОЗ — Нет | Bet365 Да 1.33 / Нет 3.25
 - **Stage61 | Aston Villa — Nottingham Forest** | АПЛ | 12.09 16:00 | П1/П2 steam | Bet365 2.25/3.4/3.2
 - **Stage61 | Bournemouth — Brentford** | АПЛ | 12.09 16:00 | П1/П2 steam | Bet365 2.5/3.6/2.75
 - **Stage61 | Chelsea — Hull City** | АПЛ | 12.09 16:00 | П1/П2 steam | Bet365 1.22/6.5/11.0
@@ -37,13 +37,6 @@ Canonical: 3 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 
 ## 🧩 Рыночные карточки ближайших матчей
 > Только обзор доступных рынков. Эти строки **не являются сигналами или рекомендациями**.
-
-- **Racing Santander — Alaves** | 12.09 14:00
-  - ИТБ1/ИТМ1(1.5): ИТБ 2.15 / ИТМ 1.71 @ Marathonbet
-  - ИТБ2/ИТМ2(1.5): ИТБ 2.31 / ИТМ 1.62 @ Marathonbet
-  - 1Х 1.48 | Х2 1.57 | 12 1.32 @ Marathonbet
-  - Ф1(0) 1.81 | Ф2(0) 2 @ Marathonbet
-  - Европ. фора: хозяева +1 → 1:1.48 / Х:4.6 / 2:5.4 @ Marathonbet
 
 - **Genoa — Frosinone** | 12.09 15:00
   - ИТБ1/ИТМ1(1.5): ИТБ 2.09 / ИТМ 1.75 @ Marathonbet
@@ -90,11 +83,17 @@ Canonical: 3 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - ИТБ2/ИТМ2(1.5): ИТБ 5.2 / ИТМ 1.16 @ Marathonbet
   - 1Х 1.04 | Х2 4.25 | 12 1.13 @ Marathonbet
 
+- **Stade Brestois 29 — Paris Saint Germain** | 13.09 20:45
+  - ИТБ1/ИТМ1(1.5): ИТБ 4.6 / ИТМ 1.19 @ Marathonbet
+  - ИТБ2/ИТМ2(1.5): ИТБ 1.26 / ИТМ 3.66 @ Marathonbet
+  - 1Х 4.05 | Х2 1.06 | 12 1.14 @ Marathonbet
+  - Европ. фора: хозяева +1 → 1:4.05 / Х:4.2 / 2:1.7 @ Marathonbet
+
 
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 1
+- System Health: **WARN** | critical 0 | warnings 2
 - Логическая canonical экспозиция: **3.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 17 | data required 7
