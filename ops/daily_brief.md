@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-12T13:02:24Z
+Generated UTC: 2026-09-12T14:02:27Z
 Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -14,7 +14,7 @@ Active canonical signals: 3
 - Referee / venue: J. L. Sacchi | TBD, Reggio Emilia
 - Previous: home Serie A vs Bologna (170.8h rest); away Serie A vs AC Milan (168.0h rest)
 - Next: home Serie A vs Monza (120.0h after); away UEFA Europa League vs NEC Nijmegen (96.2h after)
-- Injuries: NOT_QUERIED_YET
+- Injuries: QUERIED
 - Weather [T24]: 23.2°C, precip 0%, wind 2.3 km/h, gusts 4.3 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: BEFORE FIFA window; to start 173.2h; player-level UNVERIFIED
@@ -73,7 +73,7 @@ Active canonical signals: 3
 - Scope: Бундеслига: ТБ(2.5) — движение рынка (+3 pp no-vig from frozen Bet365 O/U 2.5 opener).
 - Frozen O/U openers tracked: 18
 - Active +3 pp crossings ТБ(2.5): 0
-- Observed closes: 1 | Close-qualified O1 watches: 0
+- Observed closes: 6 | Close-qualified O1 watches: 0
 - Executable bookmaker being observed: Marathonbet
 
 - No active +3 pp Over crossing is currently recorded.
