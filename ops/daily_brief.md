@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-12T18:03:14Z
+Generated UTC: 2026-09-12T19:02:09Z
 Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -86,15 +86,14 @@ Active canonical signals: 3
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 95
-- Активные движения ≥3 п.п.: всего 4 | ОЗ — Да 4 | ОЗ — Нет 0
-- Зафиксировано observed close: 19
+- Активные движения ≥3 п.п.: всего 3 | ОЗ — Да 3 | ОЗ — Нет 0
+- Зафиксировано observed close: 22
 - Исполнимый букмекер для наблюдения: Marathonbet
 
 ## Текущие ОЗ-watch
 - WATCH | Ligue 1 | Stade Brestois 29 — Paris Saint Germain | ОЗ — Да | движение P(ОЗ — Да) +3.33 п.п. | Marathonbet 1.75 | 3241.3 мин до матча
 - WATCH | Serie A | Torino — AS Roma | ОЗ — Да | движение P(ОЗ — Да) +3.33 п.п. | Marathonbet 1.81 | 3974.6 мин до матча
 - WATCH | Ligue 1 | Paris FC — Lyon | ОЗ — Да | движение P(ОЗ — Да) +3.60 п.п. | Marathonbet 1.47 | 270.6 мин до матча
-- WATCH | Premier League | Tottenham — Everton | ОЗ — Да | движение P(ОЗ — Да) +4.26 п.п. | Marathonbet 1.58 | 135.7 мин до матча
 
 ---
 
@@ -102,11 +101,11 @@ Active canonical signals: 3
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 5 | settled 1 | pending 4
+- Crossings: 5 | settled 2 | pending 3
 - Marathonbet coverage at crossing: 100.0%
-- First-crossing P&L: 0.490u | ROI 49.0% | W-L 1-0
-- Close: observed 1 | stayed qualified 1 | reverted 0 | persistence 100.0%
-- Close-qualified ROI: 49.0% | Reverted ROI: N/A
+- First-crossing P&L: -0.510u | ROI -25.5% | W-L 1-1
+- Close: observed 2 | stayed qualified 2 | reverted 0 | persistence 100.0%
+- Close-qualified ROI: -25.5% | Reverted ROI: N/A
 
 ## By WATCH family
-- Big-5 ОЗ market movement — ОЗ — Да: crossings 5, settled 1, ROI 49.0%, close persistence 100.0%
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 5, settled 2, ROI -25.5%, close persistence 100.0%
