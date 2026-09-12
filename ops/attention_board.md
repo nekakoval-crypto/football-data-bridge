@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 13.09.2026 00:00 (Europe/Berlin)
+Обновлено: 13.09.2026 01:00 (Europe/Berlin)
 Canonical: 3 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -517,7 +517,7 @@ Canonical: 3 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
   - Европейская фора хозяев (-1) · П1: 8.9 | Х: 5.9 | П2: 1.26 @ Marathonbet
   - Европейская фора хозяев (-2) · П1: 23 | Х: 12 | П2: 1.07 @ Bet365
   - 1X2 · П1: 3.75 | Х: 3.9 | П2: 1.91 @ Bet365
-  - 1X2 · П1: 4.1 | Х: 3.82 | П2: 1.9 @ Marathonbet
+  - 1X2 · П1: 4.1 | Х: 3.8 | П2: 1.91 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.17 | ИТМ: 5 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.83 | ИТМ: 1.83 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.84 | ИТМ: 1.98 @ Marathonbet
@@ -537,7 +537,7 @@ Canonical: 3 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
 
 - **Lecce — Monza** | Serie A | 13.09 13:00 UTC
   - ОЗ · ОЗ Да: 1.95 | ОЗ Нет: 1.8 @ Bet365
-  - ОЗ · ОЗ Да: 1.92 | ОЗ Нет: 1.79 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.9 | ОЗ Нет: 1.8 @ Marathonbet
   - Ф(0) · Ф1(0): 1.85 | Ф2(0): 2 @ Bet365
   - Ф(0) · Ф1(0): 1.84 | Ф2(0): 1.97 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.4 | Х2: 1.44 | 12: 1.36 @ Bet365
@@ -1008,7 +1008,7 @@ Canonical: 3 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
   - ИТБ/ИТМ 1 (2.5) · ИТБ: 10.5 | ИТМ: 1.02 @ Marathonbet
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 29 | ИТМ: 1.01 @ Bet365
   - Тотал 2.5 · ТБ(2.5): 1.17 | ТМ(2.5): 5 @ Bet365
-  - Тотал 2.5 · ТБ(2.5): 1.13 | ТМ(2.5): 4.7 @ Marathonbet
+  - Тотал 2.5 · ТБ(2.5): 1.12 | ТМ(2.5): 4.9 @ Marathonbet
   - Ф(0) — нет данных
 
 - **Legia Warszawa — Widzew Łódź** | Ekstraklasa | 13.09 15:30 UTC
@@ -1057,8 +1057,8 @@ Canonical: 3 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
   - Европейская фора хозяев (-1) · П1: 6 | Х: 5.5 | П2: 1.36 @ Bet365
   - Европейская фора хозяев (-1) · П1: 5.85 | Х: 4.95 | П2: 1.38 @ Marathonbet
   - Европейская фора хозяев (-2) · П1: 15 | Х: 9 | П2: 1.12 @ Bet365
-  - 1X2 · П1: 3.2 | Х: 3.9 | П2: 2.1 @ Bet365
-  - 1X2 · П1: 3.22 | Х: 3.94 | П2: 2.14 @ Marathonbet
+  - 1X2 · П1: 3.2 | Х: 3.8 | П2: 2.1 @ Bet365
+  - 1X2 · П1: 3.2 | Х: 3.94 | П2: 2.15 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.14 | ИТМ: 5.5 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.73 | ИТМ: 2 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.76 | ИТМ: 2.08 @ Marathonbet
@@ -1678,7 +1678,7 @@ Canonical: 3 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
 
 - **Torino — AS Roma** | Serie A | 14.09 16:30 UTC
   - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
-  - ОЗ · ОЗ Да: 1.82 | ОЗ Нет: 1.88 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.81 | ОЗ Нет: 1.89 @ Marathonbet
   - Ф(0) · Ф1(0): 4.25 | Ф2(0): 1.21 @ Bet365
   - Ф(0) · Ф1(0): 4.4 | Ф2(0): 1.16 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 2.3 | Х2: 1.14 | 12: 1.22 @ Bet365
@@ -1871,7 +1871,7 @@ Canonical: 3 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
 
 - **Inter — Udinese** | Serie A | 14.09 18:45 UTC
   - ОЗ · ОЗ Да: 1.95 | ОЗ Нет: 1.8 @ Bet365
-  - ОЗ · ОЗ Да: 2 | ОЗ Нет: 1.72 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.99 | ОЗ Нет: 1.73 @ Marathonbet
   - Ф(0) · Ф1(0): 1.1 | Ф2(0): 7 @ Bet365
   - Ф(0) · Ф1(0): 1.04 | Ф2(0): 7.1 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.04 | Х2: 3.75 | 12: 1.14 @ Bet365
@@ -1955,7 +1955,7 @@ Canonical: 3 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
   - Европейская фора хозяев (-2) · П1: 8.3 | Х: 6.5 | П2: 1.16 @ Marathonbet
   - Европейская фора хозяев (-3) · П1: 23 | Х: 15 | П2: 1.05 @ Bet365
   - 1X2 · П1: 2.3 | Х: 3.5 | П2: 3 @ Bet365
-  - 1X2 · П1: 2.38 | Х: 3.58 | П2: 3.02 @ Marathonbet
+  - 1X2 · П1: 2.36 | Х: 3.58 | П2: 3.04 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.28 | ИТМ: 3.5 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.28 | ИТМ: 3.3 @ Marathonbet
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 2.38 | ИТМ: 1.53 @ Bet365
@@ -3142,7 +3142,7 @@ Canonical: 3 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 1
+- System Health: **WARN** | critical 0 | warnings 2
 - Логическая canonical экспозиция: **3.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 18 | data required 7
