@@ -78,9 +78,20 @@ class MarketCards(unittest.TestCase):
         self.fixtures[7]['api_league_id']='999999'
         self.save_inventory()
         out=self.build()
-        self.assertEqual(len(out),9)
+        self.assertEqual(len(out),11)
         first=next(c for c in out if c['fixture_id']=='1')
         self.assertTrue(all(m['status']=='NO_DATA' for m in first['markets']))
+
+    def test_disrupted_fixtures_visible_with_status_and_no_prices(self):
+        for status in ('PST','CANC','SUSP','INT','TBD'):
+            with self.subTest(status=status):
+                self.fixtures[0]['fixture_status']=status
+                self.write('stage71e_double_chance_snapshots.csv',[self.row(b365_1x='1.4',fixture_status='NS')])
+                self.save_inventory()
+                card=next(c for c in self.build() if c['fixture_id']=='1')
+                self.assertEqual(card['fixture_status'],status)
+                self.assertFalse(card['creates_signal'])
+                self.assertTrue(all(m['status']=='NO_DATA' for m in card['markets']))
 
     def test_cached_inventory_keeps_fixture_without_any_odds(self):
         cache={('/fixtures',(('league','39'),)):{'response':[{'fixture':{'id':99,'date':'2026-09-13T14:00:00Z','status':{'short':'NS'}},'league':{'id':39},'teams':{'home':{'name':'H'},'away':{'name':'A'}}}]},('/odds',()):{'response':[]}}

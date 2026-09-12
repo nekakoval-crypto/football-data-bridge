@@ -77,9 +77,11 @@ def build_cards(ops=OPS, now=None):
             fx = {**fx, **{k:current[k] for k in ('kickoff_utc','fixture_status') if k in current}}
         kickoff = dt(fx.get('kickoff_utc'))
         if not kickoff or not now < kickoff <= now + timedelta(days=14): continue
-        if fx.get('fixture_status') not in (None, '', 'NS'): continue
+        fixture_status = fx.get('fixture_status') or 'NS'
+        if fixture_status not in ('NS', 'PST', 'CANC', 'SUSP', 'INT', 'TBD'): continue
         markets = []
         for key, (row, suffixes, labels, filename) in sorted(grouped[fid].items()):
+            if fixture_status != 'NS': continue
             captured = dt(row['captured_at_utc'])
             # Never attach old prices to a rescheduled fixture or a post-kickoff capture.
             if dt(row.get('kickoff_utc')) != kickoff or captured >= kickoff: continue
@@ -102,7 +104,7 @@ def build_cards(ops=OPS, now=None):
         cards.append({'fixture_id':fid, 'league':lg['league'], 'league_id':lg['api_league_id'], 'country':lg['country'],
                       'home_team':fx.get('home_team') or 'нет данных', 'away_team':fx.get('away_team') or 'нет данных',
                       'kickoff_utc':fx['kickoff_utc'], 'kickoff_local':kickoff.strftime('%d.%m %H:%M UTC'),
-                      'markets':markets, 'status':'MARKET_VIEW_ONLY', 'creates_signal':False})
+                      'markets':markets, 'fixture_status':fixture_status, 'status':'MARKET_VIEW_ONLY', 'creates_signal':False})
     return sorted(cards, key=lambda c:(c['kickoff_utc'], c['league'], c['fixture_id']))
 
 def main():

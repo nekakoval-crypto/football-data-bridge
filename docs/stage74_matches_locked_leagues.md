@@ -26,8 +26,7 @@ cache, independently of odds availability. The first scheduled shared capture cr
 that file; existing snapshot identities supply a migration fallback immediately.
 This is the observed capture universe, not a claim of a complete season schedule.
 
-Newer Stage71 observation status/kickoff overrides obsolete identities. Started,
-finished, cancelled and postponed fixtures are excluded. Prices from a different
+Newer Stage71 observation status/kickoff overrides obsolete identities. Started and finished fixtures are excluded. PST/CANC/SUSP/INT/TBD fixtures within the horizon remain visible with explicit status and NO_DATA prices. Prices from a different
 kickoff or a post-kickoff/future capture are not attached. All collected TT/EH lines
 remain available. Latest rows are chosen per fixture/family/line; a missing price does
 not fall back to an older snapshot. Bet365 reference and user-bookmaker prices remain
@@ -49,7 +48,7 @@ each displayed price is labelled as a collected snapshot. Shell cache is v9.
 
 ## Validation and recovery
 
-30 Python tests, including six offline projection/cache/Stage72-to-Stage74 contract
+31 Python tests, including seven offline projection/cache/Stage72-to-Stage74 contract
 tests; 12 frontend tests. Local Edge browser smoke checks all 16 league options,
 missing DNB filtering, reset, and long-name overflow at 320, 390 and 1440px.
 An offline projection of the source checkout found 160 fixtures across all 16 leagues.
