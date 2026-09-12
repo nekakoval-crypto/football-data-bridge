@@ -28,6 +28,7 @@ import stage71c_team_totals_capture as c
 import stage71e_double_chance_capture as e
 import stage71f_european_handicap_capture as f
 import stage71g_dnb_capture as g
+import market_research_inventory
 
 OPS=Path(os.getenv('OPS_DIR','ops'))
 META=OPS/'stage71j_last_run.json'
@@ -113,6 +114,7 @@ def persist_market_presence(fixture_ids):
 def main():
     started=now_iso();OPS.mkdir(parents=True,exist_ok=True)
     fixture_ids=prefetch_common_universe();presence_markets=persist_market_presence(fixture_ids)
+    market_research_inventory.persist(OPS, _cache, now_iso())
     children=[]
     for label,mod,meta in [('TEAM_TOTAL',c,c.META),('DOUBLE_CHANCE',e,e.META),('EUROPEAN_HANDICAP',f,f.META),('DRAW_NO_BET',g,g.META)]:
         mod.main();m=read_meta(meta)
