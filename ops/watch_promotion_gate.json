@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-12T18:04:11Z",
+  "generated_at_utc": "2026-09-12T19:03:04Z",
   "status": "OK",
   "policy_locked_at": "2026-09-11",
   "families": {
@@ -63,16 +63,16 @@
         "crossings": 5,
         "user_price_rows": 5,
         "execution_coverage_pct": 100.0,
-        "settled_executable": 1,
-        "roi_pct": 49.0,
-        "first_half_n": 0,
-        "first_half_roi_pct": null,
+        "settled_executable": 2,
+        "roi_pct": -25.5,
+        "first_half_n": 1,
+        "first_half_roi_pct": 49.0,
         "second_half_n": 1,
-        "second_half_roi_pct": 49.0,
-        "close_observed_settled": 1,
+        "second_half_roi_pct": -100.0,
+        "close_observed_settled": 2,
         "close_observed_coverage_pct": 100.0,
-        "close_qualified_settled": 1,
-        "close_qualified_roi_pct": 49.0
+        "close_qualified_settled": 2,
+        "close_qualified_roi_pct": -25.5
       },
       "blocking_reasons": [
         "No historical BTTS first/close dataset; any finding needs a new preregistration and fresh holdout."
