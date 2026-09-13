@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-13T15:02:29Z
+Generated UTC: 2026-09-13T16:02:51Z
 Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -8,8 +8,8 @@ Active canonical signals: 3
 ## R1 | Sassuolo — Juventus
 - Kickoff UTC: 2026-09-13T18:45:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 5.25 / Х 4.0 / П2 1.62 (immutable)
-- Market-best observed: 1.72 @ Betano | Bet365 now: 1.67
-- Current user-executable: 1.68 @ Marathonbet
+- Market-best observed: 1.68 @ 1xBet | Bet365 now: 1.62
+- Current user-executable: 1.65 @ Marathonbet
 - Paper user-execution (frozen): 1.65 @ Marathonbet [2026-09-11T10:32:01Z]
 - Referee / venue: J. L. Sacchi | TBD, Reggio Emilia
 - Previous: home Serie A vs Bologna (170.8h rest); away Serie A vs AC Milan (168.0h rest)
@@ -59,7 +59,7 @@ Active canonical signals: 3
 - Scope: АПЛ: движение фаворита П1/П2 (+3 pp no-vig from frozen Bet365 opener).
 - Frozen openers tracked: 20
 - Active +3 pp crossings: 0
-- Observed closes: 8 | Close-qualified M1 watches: 0
+- Observed closes: 9 | Close-qualified M1 watches: 0
 - Executable bookmaker being observed: Marathonbet
 
 - No active +3 pp crossing is currently recorded.
@@ -72,15 +72,15 @@ Active canonical signals: 3
 
 - Scope: Бундеслига: ТБ(2.5) — движение рынка (+3 pp no-vig from frozen Bet365 O/U 2.5 opener).
 - Frozen O/U openers tracked: 18
-- Active +3 pp crossings ТБ(2.5): 1
-- Observed closes: 8 | Close-qualified O1 watches: 1
+- Active +3 pp crossings ТБ(2.5): 0
+- Observed closes: 9 | Close-qualified O1 watches: 2
 - Executable bookmaker being observed: Marathonbet
 
-## Current O/U crossings
-- WATCH | SV Elversberg — Bayern München | Over move +3.23 pp | Bet365 O2.5 1.12 | Marathonbet O2.5 1.09 | 183.7 min to kickoff
+- No active +3 pp Over crossing is currently recorded.
 
 ## Recent close-qualified O/U watches
 - RB Leipzig — Hamburger SV | move +6.37 pp | B365 close O2.5 1.28 | Marathonbet close O2.5 1.26
+- SV Elversberg — Bayern München | move +3.23 pp | B365 close O2.5 1.12 | Marathonbet close O2.5 1.1
 
 ---
 
@@ -106,12 +106,12 @@ Active canonical signals: 3
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 11 | settled 3 | pending 8
+- Crossings: 11 | settled 6 | pending 5
 - Marathonbet coverage at crossing: 100.0%
-- First-crossing P&L: -1.510u | ROI -50.333% | W-L 1-2
-- Close: observed 6 | stayed qualified 6 | reverted 0 | persistence 100.0%
-- Close-qualified ROI: -50.333% | Reverted ROI: N/A
+- First-crossing P&L: -3.250u | ROI -54.167% | W-L 2-4
+- Close: observed 7 | stayed qualified 7 | reverted 0 | persistence 100.0%
+- Close-qualified ROI: -54.167% | Reverted ROI: N/A
 
 ## By WATCH family
-- Big-5 ОЗ market movement — ОЗ — Да: crossings 9, settled 3, ROI -50.333%, close persistence 100.0%
-- Бундеслига ТБ(2.5) steam: crossings 2, settled 0, ROI N/A, close persistence 100.0%
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 9, settled 5, ROI -70.2%, close persistence 100.0%
+- Бундеслига ТБ(2.5) steam: crossings 2, settled 1, ROI 26.0%, close persistence 100.0%
