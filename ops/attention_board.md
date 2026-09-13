@@ -1,12 +1,12 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 13.09.2026 22:00 (Europe/Berlin)
+Обновлено: 13.09.2026 23:00 (Europe/Berlin)
 Canonical: 3 | active WATCH crossings: 2 | RED: 1 | ORANGE: 3
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
 
 ## 🔴 Срочно
-- **Sassuolo — Juventus** | R1 | П2 | 13.09 20:45 | официальный XI / ротация уже доступны
+- **Sassuolo — Juventus** | R1 | П2 | 13.09 20:45 | ≤3ч до kickoff
 
 ## 🟠 Ближайшие 24 часа / активные WATCH
 - **Torino — AS Roma** | R1 | П2 | 14.09 18:30 | ≤24ч до kickoff
@@ -14,7 +14,7 @@ Canonical: 3 | active WATCH crossings: 2 | RED: 1 | ORANGE: 3
 - **Elche — Real Madrid** | Stage63 | ОЗ — Да | 15.09 21:30 | prospective движение ОЗ ≥3 п.п. | 1.61 @ Marathonbet
 
 ## 🔵 Активные R1/R2/R3
-- **R1 | Sassuolo — Juventus** | П2 | 13.09 20:45 | 1.65 @ Marathonbet | у гостей следующий матч еврокубок/кубок; ротация подтверждена
+- **R1 | Sassuolo — Juventus** | П2 | 13.09 20:45 | 1.65 @ Marathonbet | у гостей следующий матч еврокубок/кубок
 - **R1 | Torino — AS Roma** | П2 | 14.09 18:30 | 1.58 @ Marathonbet | гости после еврокубка/кубка
 - **R1 | Frosinone — Como** | П2 | 20.09 15:00 | 1.65 @ Marathonbet | гости после еврокубка/кубка
 
@@ -300,7 +300,7 @@ Canonical: 3 | active WATCH crossings: 2 | RED: 1 | ORANGE: 3
 
 - **Inter — Udinese** | Serie A | 14.09 18:45 UTC
   - ОЗ · ОЗ Да: 1.95 | ОЗ Нет: 1.8 @ Bet365
-  - ОЗ · ОЗ Да: 1.99 | ОЗ Нет: 1.73 @ Marathonbet
+  - ОЗ · ОЗ Да: 2 | ОЗ Нет: 1.72 @ Marathonbet
   - Ф(0) · Ф1(0): 1.1 | Ф2(0): 7 @ Bet365
   - Ф(0) · Ф1(0): 1.05 | Ф2(0): 7.6 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.04 | Х2: 3.75 | 12: 1.14 @ Bet365
@@ -713,8 +713,8 @@ Canonical: 3 | active WATCH crossings: 2 | RED: 1 | ORANGE: 3
   - ОЗ — нет данных
 
 - **Elche — Real Madrid** | La Liga | 15.09 19:30 UTC
-  - ОЗ · ОЗ Да: 1.62 | ОЗ Нет: 2.2 @ Bet365
-  - ОЗ · ОЗ Да: 1.67 | ОЗ Нет: 2.08 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.05 @ Bet365
+  - ОЗ · ОЗ Да: 1.68 | ОЗ Нет: 2.06 @ Marathonbet
   - Ф(0) · Ф1(0): 7 | Ф2(0): 1.1 @ Bet365
   - Ф(0) · Ф1(0): 6.35 | Ф2(0): 1.06 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 3.75 | Х2: 1.06 | 12: 1.12 @ Bet365
@@ -834,7 +834,7 @@ Canonical: 3 | active WATCH crossings: 2 | RED: 1 | ORANGE: 3
 
 - **Barcelona — Racing Santander** | La Liga | 16.09 19:30 UTC
   - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
-  - ОЗ · ОЗ Да: 1.77 | ОЗ Нет: 1.94 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.79 | ОЗ Нет: 1.92 @ Marathonbet
   - 1X2 — нет данных
   - Тотал 2.5 — нет данных
   - ИТБ/ИТМ — нет данных
@@ -843,7 +843,7 @@ Canonical: 3 | active WATCH crossings: 2 | RED: 1 | ORANGE: 3
   - Ф(0) — нет данных
 
 - **Levante — Athletic Club** | La Liga | 16.09 19:30 UTC
-  - ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 2 @ Bet365
+  - ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.05 @ Bet365
   - ОЗ · ОЗ Да: 1.69 | ОЗ Нет: 2.04 @ Marathonbet
   - 1X2 — нет данных
   - Тотал 2.5 — нет данных
