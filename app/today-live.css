@@ -1,8 +1,13 @@
 .page-layout{max-width:1640px;margin:0 auto;padding:18px;display:block}
-.page-layout .shell{max-width:1200px;margin:0;padding:0}
-.page-layout:not(:has(#view-today.active)) .shell{margin:0 auto}
+.page-layout .shell{max-width:none;margin:0;padding:0}
+.page-layout .topbar,.page-layout .tabs{width:min(1200px,100%);margin-left:auto}
+.content-layout{width:min(1200px,100%);margin:0 auto}
+.page-layout footer{width:min(1200px,100%);margin-left:auto}
+.page-layout:not(:has(#view-today.active)) .topbar,
+.page-layout:not(:has(#view-today.active)) .tabs,
+.page-layout:not(:has(#view-today.active)) footer{margin-left:auto;margin-right:auto}
 .today-live-sidebar{display:none;position:sticky;top:18px;border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);overflow:hidden}
-.page-layout:has(#view-today.active){display:grid;grid-template-columns:minmax(360px,420px) minmax(0,1200px);gap:18px;align-items:start}
+.page-layout:has(#view-today.active) .content-layout{width:min(1640px,100%);margin-left:auto;display:grid;grid-template-columns:minmax(360px,420px) minmax(0,1200px);gap:18px;align-items:start}
 .page-layout:has(#view-today.active) .today-live-sidebar{display:block}
 .today-live-widget-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;padding:15px 16px;border-bottom:1px solid var(--line);background:linear-gradient(110deg,rgba(57,217,138,.13),var(--panel))}
 .today-live-widget-head h2{font-size:18px;margin:0}.today-live-widget-head span,.today-live-widget-head small{color:var(--muted);font-size:11px}.today-live-widget-head small{text-align:right;margin-top:3px}
@@ -26,7 +31,7 @@
 .today-live-error{margin:10px}.today-live-sidebar .empty{margin:10px;padding:12px}
 @media(max-width:900px){
   .page-layout,.page-layout:has(#view-today.active){display:block;padding:14px}
-  .page-layout .shell{max-width:none}
+  .page-layout .topbar,.page-layout .tabs,.content-layout,.page-layout:has(#view-today.active) .content-layout,.page-layout footer{width:100%;margin:0;display:block}
   .today-live-sidebar{position:static;margin-bottom:16px}
   .page-layout:has(#view-today.active) .today-live-sidebar{display:block}
 }
