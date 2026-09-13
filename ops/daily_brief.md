@@ -1,24 +1,9 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-13T20:03:10Z
-Active canonical signals: 3
+Generated UTC: 2026-09-13T21:02:20Z
+Active canonical signals: 2
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
-
-## R1 | Sassuolo — Juventus
-- Kickoff UTC: 2026-09-13T18:45:00Z | Ставка: П2 | Stake: 1.000u
-- Trigger Bet365: П1 5.25 / Х 4.0 / П2 1.62 (immutable)
-- Market-best observed: 1.68 @ 1xBet | Bet365 now: 1.62
-- Current user-executable: 1.65 @ Marathonbet
-- Paper user-execution (frozen): 1.65 @ Marathonbet [2026-09-11T10:32:01Z]
-- Referee / venue: J. L. Sacchi | TBD, Reggio Emilia
-- Previous: home Serie A vs Bologna (170.8h rest); away Serie A vs AC Milan (168.0h rest)
-- Next: home Serie A vs Monza (120.0h after); away UEFA Europa League vs NEC Nijmegen (96.2h after)
-- Injuries: QUERIED
-- Weather [T60]: 24.1°C, precip 0%, wind 2.8 km/h, gusts 5.0 km/h
-- Rotation: VERIFIED
-- International: BEFORE FIFA window; to start 173.2h; player-level UNVERIFIED
-- Flags: AWAY_NEXT_UEFA_OR_CUP
 
 ## R1 | Torino — AS Roma
 - Kickoff UTC: 2026-09-14T16:30:00Z | Ставка: П2 | Stake: 1.000u
@@ -90,12 +75,11 @@ Active canonical signals: 3
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 101
-- Активные движения ≥3 п.п.: всего 3 | ОЗ — Да 3 | ОЗ — Нет 0
-- Зафиксировано observed close: 39
+- Активные движения ≥3 п.п.: всего 2 | ОЗ — Да 2 | ОЗ — Нет 0
+- Зафиксировано observed close: 43
 - Исполнимый букмекер для наблюдения: Marathonbet
 
 ## Текущие ОЗ-watch
-- WATCH | Ligue 1 | Stade Brestois 29 — Paris Saint Germain | ОЗ — Да | движение P(ОЗ — Да) +3.33 п.п. | Marathonbet 1.75 | 3241.3 мин до матча
 - WATCH | Serie A | Torino — AS Roma | ОЗ — Да | движение P(ОЗ — Да) +3.33 п.п. | Marathonbet 1.81 | 3974.6 мин до матча
 - WATCH | La Liga | Elche — Real Madrid | ОЗ — Да | движение P(ОЗ — Да) +5.57 п.п. | Marathonbet 1.61 | 4026.7 мин до матча
 
@@ -105,12 +89,12 @@ Active canonical signals: 3
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 11 | settled 8 | pending 3
+- Crossings: 11 | settled 9 | pending 2
 - Marathonbet coverage at crossing: 100.0%
-- First-crossing P&L: -4.160u | ROI -52.0% | W-L 3-5
-- Close: observed 8 | stayed qualified 8 | reverted 0 | persistence 100.0%
-- Close-qualified ROI: -52.0% | Reverted ROI: N/A
+- First-crossing P&L: -5.160u | ROI -57.333% | W-L 3-6
+- Close: observed 9 | stayed qualified 9 | reverted 0 | persistence 100.0%
+- Close-qualified ROI: -57.333% | Reverted ROI: N/A
 
 ## By WATCH family
-- Big-5 ОЗ market movement — ОЗ — Да: crossings 9, settled 6, ROI -75.167%, close persistence 100.0%
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 9, settled 7, ROI -78.714%, close persistence 100.0%
 - Бундеслига ТБ(2.5) steam: crossings 2, settled 2, ROI 17.5%, close persistence 100.0%

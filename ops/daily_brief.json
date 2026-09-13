@@ -1,7 +1,7 @@
 {
-  "generated_at_utc": "2026-09-13T20:03:10Z",
+  "generated_at_utc": "2026-09-13T21:02:20Z",
   "status": "OK",
-  "active_signals": 3,
+  "active_signals": 2,
   "policy": {
     "trigger": "immutable Bet365 first capture",
     "market_best": "observed API market price; not necessarily user executable",
@@ -10,130 +10,6 @@
     "context": "explanatory only; does not change locked rules"
   },
   "matches": [
-    {
-      "forward_id": "R1|I1|1550124",
-      "rule": "R1",
-      "league": "Serie A",
-      "fixture_id": "1550124",
-      "kickoff_utc": "2026-09-13T18:45:00Z",
-      "home_team": "Sassuolo",
-      "away_team": "Juventus",
-      "selection": "Away",
-      "stake_u": "1.000",
-      "status": "PAPER",
-      "trigger": {
-        "source": "Stage53 immutable first-captured Bet365 via API-Football",
-        "b365_home": "5.25",
-        "b365_draw": "4.0",
-        "b365_away": "1.62",
-        "selected_odds": "1.62",
-        "immutable": true
-      },
-      "market_observed": {
-        "captured_at_utc": "2026-09-13T17:42:34Z",
-        "best_odds": "1.68",
-        "best_bookmaker": "1xBet",
-        "bet365_odds": "1.62",
-        "api_odds_update_utc": "2026-09-13T13:09:20+00:00",
-        "note": "Observed market-best is not automatically a user-executable price"
-      },
-      "user_execution": {
-        "status": "AVAILABLE",
-        "odds": "1.65",
-        "bookmaker": "Marathonbet"
-      },
-      "paper_user_execution": {
-        "status": "FROZEN",
-        "odds": "1.65",
-        "bookmaker": "Marathonbet",
-        "captured_at_utc": "2026-09-11T10:32:01Z",
-        "execution_type": "PAPER_FIRST_OBSERVED_ALLOWLISTED_PRICE",
-        "note": "standardized paper execution; not proof of a real placed bet"
-      },
-      "league_state": {
-        "home_rank": "11",
-        "away_rank": "6",
-        "home_points": "4",
-        "away_points": "7",
-        "home_played": "3",
-        "away_played": "3",
-        "home_last5_ppg": "1.33",
-        "away_last5_ppg": "2.33"
-      },
-      "calendar": {
-        "snapshot_type": "T3",
-        "captured_at_utc": "2026-09-13T12:48:36Z",
-        "referee": "J. L. Sacchi",
-        "venue": "",
-        "city": "Reggio Emilia",
-        "home_prev": {
-          "competition": "Serie A",
-          "opponent": "Bologna",
-          "date_utc": "2026-09-06T16:00:00Z",
-          "rest_hours": "170.8"
-        },
-        "away_prev": {
-          "competition": "Serie A",
-          "opponent": "AC Milan",
-          "date_utc": "2026-09-06T18:45:00Z",
-          "rest_hours": "168.0"
-        },
-        "home_next": {
-          "competition": "Serie A",
-          "opponent": "Monza",
-          "date_utc": "2026-09-18T18:45:00Z",
-          "hours_after": "120.0"
-        },
-        "away_next": {
-          "competition": "UEFA Europa League",
-          "opponent": "NEC Nijmegen",
-          "date_utc": "2026-09-17T19:00:00Z",
-          "hours_after": "96.2"
-        }
-      },
-      "injuries": {
-        "status": "QUERIED",
-        "total": "32",
-        "home": "14",
-        "away": "18"
-      },
-      "weather": {
-        "snapshot_type": "T60",
-        "captured_at_utc": "2026-09-13T17:29:10Z",
-        "temperature_c": "24.1",
-        "precipitation_probability_pct": "0",
-        "precipitation_mm": "0.0",
-        "wind_speed_kmh": "2.8",
-        "wind_gusts_kmh": "5.0",
-        "visibility_m": "40800.0",
-        "weather_code": "3",
-        "role": "context-only"
-      },
-      "rotation": {
-        "status": "VERIFIED",
-        "captured_at_utc": "2026-09-13T18:42:47Z",
-        "home_retained_starters": "8",
-        "away_retained_starters": "10",
-        "home_changed_starters": "3",
-        "away_changed_starters": "1",
-        "home_retained_pct": "72.7",
-        "away_retained_pct": "90.9"
-      },
-      "international": {
-        "fifa_relation": "BEFORE",
-        "window": "FIFA 2026 combined Sep-Oct window",
-        "hours_to_start": "173.2",
-        "hours_since_end": "",
-        "within_7d_before": "NO",
-        "within_7d_after": "NO",
-        "player_level": "UNVERIFIED",
-        "player_level_reason": "Nationality is not evidence of call-up, travel, or appearance"
-      },
-      "flags": [
-        "AWAY_NEXT_UEFA_OR_CUP"
-      ],
-      "display_selection": "П2"
-    },
     {
       "forward_id": "R1|I1|1550125",
       "rule": "R1",
@@ -154,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-13T19:41:01Z",
+        "captured_at_utc": "2026-09-13T20:42:47Z",
         "best_odds": "1.61",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.55",
@@ -280,7 +156,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-13T19:41:01Z",
+        "captured_at_utc": "2026-09-13T20:42:47Z",
         "best_odds": "1.62",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.55",
@@ -398,7 +274,7 @@
     "observed_closes": 9,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-13T19:53:19Z",
+    "latest_run_utc": "2026-09-13T20:28:03Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [],
@@ -415,7 +291,7 @@
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-13T19:46:41Z",
+    "latest_run_utc": "2026-09-13T20:47:02Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -448,28 +324,16 @@
     "historical_edge_reason": "Canonical 10-year dataset has no historical BTTS first/close odds",
     "canonical_forward_changed": false,
     "tracked_openers": 101,
-    "active_crossings_total": 3,
-    "active_yes_crossings": 3,
+    "active_crossings_total": 2,
+    "active_yes_crossings": 2,
     "active_no_crossings": 0,
     "total_crossings": 9,
-    "observed_closes": 39,
+    "observed_closes": 43,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-13T16:15:55Z",
+    "latest_run_utc": "2026-09-13T20:15:29Z",
     "warnings": [],
     "crossings": [
-      {
-        "fixture_id": "1552757",
-        "league": "Ligue 1",
-        "home_team": "Stade Brestois 29",
-        "away_team": "Paris Saint Germain",
-        "selection": "ОЗ — Да",
-        "movement_yes_pp": "0.03333333",
-        "crossed_at_utc": "2026-09-11T12:43:40Z",
-        "minutes_to_kickoff": "3241.3",
-        "user_selected_odds": "1.75",
-        "note": "research watch only; not a bet signal"
-      },
       {
         "fixture_id": "1550125",
         "league": "Serie A",
@@ -497,59 +361,59 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-13T19:53:19Z",
+    "generated_at_utc": "2026-09-13T20:52:58Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
       "crossings": 11,
-      "pending": 3,
-      "settled": 8,
+      "pending": 2,
+      "settled": 9,
       "void": 0,
       "review": 0,
       "user_price_rows": 11,
       "user_execution_coverage_pct": 100.0,
-      "user_settled_rows": 8,
+      "user_settled_rows": 9,
       "wins": 3,
-      "losses": 5,
-      "user_profit_u": -4.16,
-      "user_roi_pct": -52.0,
-      "close_observed": 8,
-      "close_qualified": 8,
+      "losses": 6,
+      "user_profit_u": -5.16,
+      "user_roi_pct": -57.333,
+      "close_observed": 9,
+      "close_qualified": 9,
       "reverted_at_close": 0,
       "close_persistence_pct": 100.0,
-      "close_qualified_settled": 8,
-      "close_qualified_profit_u": -4.16,
-      "close_qualified_roi_pct": -52.0,
+      "close_qualified_settled": 9,
+      "close_qualified_profit_u": -5.16,
+      "close_qualified_roi_pct": -57.333,
       "reverted_settled": 0,
       "reverted_profit_u": 0,
       "reverted_roi_pct": null,
-      "observed_max_drawdown_u": 4.65
+      "observed_max_drawdown_u": 5.65
     },
     "by_family": {
       "Big-5 ОЗ market movement — ОЗ — Да": {
         "crossings": 9,
-        "pending": 3,
-        "settled": 6,
+        "pending": 2,
+        "settled": 7,
         "void": 0,
         "review": 0,
         "user_price_rows": 9,
         "user_execution_coverage_pct": 100.0,
-        "user_settled_rows": 6,
+        "user_settled_rows": 7,
         "wins": 1,
-        "losses": 5,
-        "user_profit_u": -4.51,
-        "user_roi_pct": -75.167,
-        "close_observed": 6,
-        "close_qualified": 6,
+        "losses": 6,
+        "user_profit_u": -5.51,
+        "user_roi_pct": -78.714,
+        "close_observed": 7,
+        "close_qualified": 7,
         "reverted_at_close": 0,
         "close_persistence_pct": 100.0,
-        "close_qualified_settled": 6,
-        "close_qualified_profit_u": -4.51,
-        "close_qualified_roi_pct": -75.167,
+        "close_qualified_settled": 7,
+        "close_qualified_profit_u": -5.51,
+        "close_qualified_roi_pct": -78.714,
         "reverted_settled": 0,
         "reverted_profit_u": 0,
         "reverted_roi_pct": null,
-        "observed_max_drawdown_u": 5.0
+        "observed_max_drawdown_u": 6.0
       },
       "Бундеслига ТБ(2.5) steam": {
         "crossings": 2,
