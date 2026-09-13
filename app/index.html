@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="/today-live.css">
 </head>
 <body>
+  <div class="page-layout">
   <div class="shell">
     <header class="topbar">
       <div><div class="brand">ПБК</div><div class="subtitle">Футбольная аналитика</div></div>
@@ -44,11 +45,14 @@
       <button class="tab" data-view="health">Health</button>
     </nav>
 
-    <main>
+    <div class="content-layout">
+      <aside class="today-live-sidebar" id="today-live-sidebar">
+        <div class="today-live-widget-head"><div><h2>Футбол</h2><span>Сегодня / LIVE</span></div><small>UTC-день · время МСК</small></div>
+        <div id="today-live-content" aria-live="polite"><div class="empty">Загрузка Матчи сегодня / LIVE…</div></div>
+      </aside>
+      <main>
       <section class="view active" id="view-today">
         <div class="summary-grid" id="summary-grid"></div>
-        <div class="section-head"><h2>Матчи сегодня / LIVE</h2><span>состав дня по UTC · время МСК</span></div>
-        <div id="today-live-content" aria-live="polite"><div class="empty">Загрузка Матчи сегодня / LIVE…</div></div>
         <div class="section-head"><h2>Оценки ПБК</h2><span>validated canonical · вероятность ≠ value</span></div>
         <div id="probability-today" class="probability-grid"><div class="empty">Загрузка probability…</div></div>
         <div class="section-head"><h2>РАСХОЖДЕНИЕ С РЫНКОМ</h2><span>Value Radar · research only · не новый сигнал</span></div>
@@ -137,8 +141,10 @@
         <div class="section-head"><h2>Production runtime</h2><span id="runtime-badge" class="runtime-badge">проверка…</span></div>
         <div id="runtime-panel" class="panel"><div class="empty">Проверяю VPS…</div></div>
       </section>
-    </main>
+      </main>
+    </div>
     <footer>ПБК · read-only strategy interface · delivery settings не меняют правила стратегий</footer>
+  </div>
   </div>
 
   <dialog id="match-dialog" class="match-dialog">
