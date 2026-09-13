@@ -136,11 +136,13 @@ def current_rounds_payload(conn):
                         row['score'] = {'home': home, 'away': away} if home is not None or away is not None else None
                     except (TypeError, ValueError):
                         row['score'] = None
-                    for key in ('fixture_id','kickoff_utc','home_team','away_team','status',
+                    for key in ('fixture_id','kickoff_utc','home_team','home_team_logo_url',
+                                'away_team','away_team_logo_url','status',
                                 'source_status','observed_at_utc'):
                         row.setdefault(key, None)
-                    item['matches'].append({key: row.get(key) for key in (
-                        'fixture_id','kickoff_utc','home_team','away_team','status',
+                    item['matches'].append({key: (row.get(key) or None) for key in (
+                        'fixture_id','kickoff_utc','home_team','home_team_logo_url',
+                        'away_team','away_team_logo_url','status',
                         'source_status','score','observed_at_utc')})
             leagues.append(item)
     return {

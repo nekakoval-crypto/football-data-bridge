@@ -26,8 +26,8 @@ LEAGUE_FIELDS = [
 FIXTURE_FIELDS = [
     "fixture_id", "provider_league_id", "league_name", "country",
     "country_flag_url", "league_logo_url", "season", "round", "kickoff_utc",
-    "home_team", "away_team", "status", "source_status", "score_home",
-    "score_away", "observed_at_utc",
+    "home_team", "home_team_logo_url", "away_team", "away_team_logo_url",
+    "status", "source_status", "score_home", "score_away", "observed_at_utc",
 ]
 
 
@@ -76,7 +76,9 @@ def extract_fixture(item, league, round_name, observed_at):
         "round": provider_league.get("round") or round_name or None,
         "kickoff_utc": fixture.get("date") or None,
         "home_team": home.get("name") or None,
+        "home_team_logo_url": home.get("logo") or None,
         "away_team": away.get("name") or None,
+        "away_team_logo_url": away.get("logo") or None,
         "status": today_status(raw_status),
         "source_status": raw_status or None,
         "score_home": goals.get("home"),

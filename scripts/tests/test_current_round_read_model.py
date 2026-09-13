@@ -25,15 +25,19 @@ class CurrentRoundTests(unittest.TestCase):
     def tearDown(self):
         self.temp.cleanup()
 
-    def fixture(self, fid, status, date, goals=(None, None), metadata=True):
+    def fixture(self, fid, status, date, goals=(None, None), metadata=True, team_logos=True):
         league = {'id': 39, 'name': 'Premier League', 'country': 'England',
                   'season': 2026, 'round': 'Regular Season - 4'}
         if metadata:
             league.update(flag='https://flag', logo='https://logo')
+        teams = {'home': {'name': f'Home {fid}'}, 'away': {'name': f'Away {fid}'}}
+        if team_logos:
+            teams['home']['logo'] = 'https://home-logo'
+            teams['away']['logo'] = 'https://away-logo'
         return {
             'fixture': {'id': fid, 'date': date, 'status': {'short': status}},
             'league': league,
-            'teams': {'home': {'name': f'Home {fid}'}, 'away': {'name': f'Away {fid}'}},
+            'teams': teams,
             'goals': {'home': goals[0], 'away': goals[1]},
         }
 
@@ -48,17 +52,22 @@ class CurrentRoundTests(unittest.TestCase):
         self.assertEqual(round_name, 'Regular Season - 4')
         self.assertEqual(rows[0]['country_flag_url'], 'https://flag')
         self.assertEqual(rows[0]['league_logo_url'], 'https://logo')
+        self.assertEqual(rows[0]['home_team_logo_url'], 'https://home-logo')
+        self.assertEqual(rows[0]['away_team_logo_url'], 'https://away-logo')
         self.assertEqual(rows[0]['status'], 'finished')
         self.assertEqual(rows[0]['score_home'], 2)
         self.assertTrue(all(call[2]['force_refresh'] for call in calls))
+        self.assertEqual(len(calls), 2)
         self.assertEqual(calls[1][1]['round'], 'Regular Season - 4')
 
     def test_nullable_provider_metadata_and_missing_score(self):
         row = capture.extract_fixture(
-            self.fixture(2, 'NS', '2026-09-13T13:00:00Z', metadata=False),
+            self.fixture(2, 'NS', '2026-09-13T13:00:00Z', metadata=False, team_logos=False),
             self.league, 'Regular Season - 4', '2026-09-13T15:00:00Z')
         self.assertIsNone(row['country_flag_url'])
         self.assertIsNone(row['league_logo_url'])
+        self.assertIsNone(row['home_team_logo_url'])
+        self.assertIsNone(row['away_team_logo_url'])
         self.assertIsNone(row['score_home'])
         self.assertIsNone(row['score_away'])
         self.assertEqual(row['status'], 'scheduled')
@@ -84,19 +93,23 @@ class CurrentRoundTests(unittest.TestCase):
             {'fixture_id': '3', 'provider_league_id': '39', 'league_name': 'Premier League',
              'country': 'England', 'country_flag_url': '', 'league_logo_url': '',
              'season': '2026', 'round': 'Regular Season - 4',
-             'kickoff_utc': '2026-09-13T16:00:00Z', 'home_team': 'H3', 'away_team': 'A3',
+             'kickoff_utc': '2026-09-13T16:00:00Z', 'home_team': 'H3',
+             'home_team_logo_url': '', 'away_team': 'A3', 'away_team_logo_url': '',
              'status': 'scheduled', 'source_status': 'NS', 'score_home': '', 'score_away': '',
              'observed_at_utc': '2026-09-13T15:00:00Z'},
             {'fixture_id': '1', 'provider_league_id': '39', 'league_name': 'Premier League',
              'country': 'England', 'country_flag_url': '', 'league_logo_url': '',
              'season': '2026', 'round': 'Regular Season - 4',
-             'kickoff_utc': '2026-09-13T12:00:00Z', 'home_team': 'H1', 'away_team': 'A1',
+             'kickoff_utc': '2026-09-13T12:00:00Z', 'home_team': 'H1',
+             'home_team_logo_url': 'https://h1', 'away_team': 'A1',
+             'away_team_logo_url': 'https://a1',
              'status': 'finished', 'source_status': 'FT', 'score_home': '2', 'score_away': '1',
              'observed_at_utc': '2026-09-13T15:00:00Z'},
             {'fixture_id': '2', 'provider_league_id': '39', 'league_name': 'Premier League',
              'country': 'England', 'country_flag_url': '', 'league_logo_url': '',
              'season': '2026', 'round': 'Regular Season - 4',
-             'kickoff_utc': '2026-09-13T14:00:00Z', 'home_team': 'H2', 'away_team': 'A2',
+             'kickoff_utc': '2026-09-13T14:00:00Z', 'home_team': 'H2',
+             'home_team_logo_url': '', 'away_team': 'A2', 'away_team_logo_url': '',
              'status': 'postponed', 'source_status': 'PST', 'score_home': '', 'score_away': '',
              'observed_at_utc': '2026-09-13T15:00:00Z'},
         ])
@@ -105,6 +118,10 @@ class CurrentRoundTests(unittest.TestCase):
         conn.execute('CREATE TABLE pbk_meta (key TEXT, value TEXT)')
         conn.executemany('INSERT INTO pbk_meta VALUES (?,?)', [('built_at_utc', '2026-09-13T15:05:00Z')])
         builder.create_current_round_tables(conn, self.ops)
+        projected = conn.execute(
+            'SELECT home_team_logo_url, away_team_logo_url FROM current_round_matches '
+            'WHERE fixture_id = ?', ('1',)).fetchone()
+        self.assertEqual(tuple(projected), ('https://h1', 'https://a1'))
         conn.commit()
         conn.close()
         with patch.object(api, 'DB', db):
@@ -112,6 +129,9 @@ class CurrentRoundTests(unittest.TestCase):
         self.assertEqual(code, 200)
         self.assertEqual([x['fixture_id'] for x in payload['leagues'][0]['matches']], ['1', '2', '3'])
         self.assertEqual(payload['leagues'][0]['matches'][0]['score'], {'home': '2', 'away': '1'})
+        self.assertEqual(payload['leagues'][0]['matches'][0]['home_team_logo_url'], 'https://h1')
+        self.assertEqual(payload['leagues'][0]['matches'][0]['away_team_logo_url'], 'https://a1')
+        self.assertIsNone(payload['leagues'][0]['matches'][1]['home_team_logo_url'])
         self.assertIsNone(payload['leagues'][0]['matches'][1]['score'])
         self.assertEqual(payload['leagues'][1]['status'], 'unavailable')
         self.assertTrue(payload['coverage']['partial_leagues_possible'])

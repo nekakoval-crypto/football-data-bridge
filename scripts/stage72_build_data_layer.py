@@ -13,7 +13,7 @@ from stage75_value_radar import read_jsonl, EVENT_FIELDS
 
 OPS=Path(os.getenv('OPS_DIR','ops'))
 OUT=Path(os.getenv('STAGE72_DB_PATH','build/pbk_unified.sqlite'))
-META=OPS/'stage72_last_run.json';SCHEMA=OPS/'stage72_schema.json';SCHEMA_VERSION='9'
+META=OPS/'stage72_last_run.json';SCHEMA=OPS/'stage72_schema.json';SCHEMA_VERSION='10'
 CORE_ALIASES={
     'competitions':'stage71_league_catalog.csv','canonical_signals':'user_forward_view.csv','challenger_signals':'stage71_challenger_forward.csv','watch_signals':'stage65_watch_ledger.csv','lifecycle_events':'signal_lifecycle_events.csv','exposure_positions':'exposure_map.csv','context_latest':'context_latest.csv','odds_snapshots':'odds_snapshots.csv',
     'team_total_openers':'stage71c_team_total_openers.csv','team_total_snapshots':'stage71c_team_total_snapshots.csv','team_total_closes':'stage71c_team_total_closes.csv',
@@ -24,7 +24,7 @@ CORE_ALIASES={
     'probability_predictions':'stage75_probability_predictions.csv','probability_settlements':'stage75_probability_settlements.csv',
 }
 CURRENT_ROUND_LEAGUE_FIELDS=['provider_league_id','league_name','country','country_flag_url','league_logo_url','season','round','observed_at_utc','status','error']
-CURRENT_ROUND_FIXTURE_FIELDS=['fixture_id','provider_league_id','league_name','country','country_flag_url','league_logo_url','season','round','kickoff_utc','home_team','away_team','status','source_status','score_home','score_away','observed_at_utc']
+CURRENT_ROUND_FIXTURE_FIELDS=['fixture_id','provider_league_id','league_name','country','country_flag_url','league_logo_url','season','round','kickoff_utc','home_team','home_team_logo_url','away_team','away_team_logo_url','status','source_status','score_home','score_away','observed_at_utc']
 JSON_DOCS=['attention_board.json','daily_brief.json','forward_performance.json','watch_performance.json','watch_promotion_gate.json','system_health.json','exposure_summary.json','stage71_challenger_board.json','signal_lifecycle_cards.json','stage71b_fonbet_coverage.json','stage71c_last_run.json','stage71e_last_run.json','stage71f_last_run.json','stage71g_last_run.json','stage71i_last_run.json','probability_rankings.json','probability_performance.json','stage75_last_run.json']
 def now_iso():return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00','Z')
 JSON_DOCS.append('value_radar_current.json')
