@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-13T14:02:39Z
+Generated UTC: 2026-09-13T15:02:29Z
 Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -89,9 +89,9 @@ Active canonical signals: 3
 > Это **не ставка и не новая стратегия**. Исторического edge по ОЗ мы не заявляем: в 10-летней базе нет first/close коэффициентов ОЗ.
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
-- Заморожено Bet365 opener'ов: 96
-- Активные движения ≥3 п.п.: всего 6 | ОЗ — Да 6 | ОЗ — Нет 0
-- Зафиксировано observed close: 30
+- Заморожено Bet365 opener'ов: 101
+- Активные движения ≥3 п.п.: всего 4 | ОЗ — Да 4 | ОЗ — Нет 0
+- Зафиксировано observed close: 34
 - Исполнимый букмекер для наблюдения: Marathonbet
 
 ## Текущие ОЗ-watch
@@ -99,8 +99,6 @@ Active canonical signals: 3
 - WATCH | Serie A | Torino — AS Roma | ОЗ — Да | движение P(ОЗ — Да) +3.33 п.п. | Marathonbet 1.81 | 3974.6 мин до матча
 - WATCH | La Liga | Elche — Real Madrid | ОЗ — Да | движение P(ОЗ — Да) +5.57 п.п. | Marathonbet 1.61 | 4026.7 мин до матча
 - WATCH | Serie A | Napoli — Bologna | ОЗ — Да | движение P(ОЗ — Да) +4.00 п.п. | Marathonbet 1.76 | 220.6 мин до матча
-- WATCH | Ligue 1 | Lille — Estac Troyes | ОЗ — Да | движение P(ОЗ — Да) +4.00 п.п. | Marathonbet 1.81 | 40.6 мин до матча
-- WATCH | Bundesliga | RB Leipzig — Hamburger SV | ОЗ — Да | движение P(ОЗ — Да) +4.91 п.п. | Marathonbet 1.46 | 70.6 мин до матча
 
 ---
 
@@ -111,7 +109,7 @@ Active canonical signals: 3
 - Crossings: 11 | settled 3 | pending 8
 - Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: -1.510u | ROI -50.333% | W-L 1-2
-- Close: observed 4 | stayed qualified 4 | reverted 0 | persistence 100.0%
+- Close: observed 6 | stayed qualified 6 | reverted 0 | persistence 100.0%
 - Close-qualified ROI: -50.333% | Reverted ROI: N/A
 
 ## By WATCH family
