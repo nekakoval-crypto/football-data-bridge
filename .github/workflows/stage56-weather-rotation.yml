@@ -5,6 +5,8 @@ on:
   schedule:
     - cron: '*/15 * * * *'
   push:
+    branches:
+      - main
     paths:
       - 'scripts/stage56_weather_rotation.py'
       - 'scripts/stage56_latest_view.py'

@@ -5,6 +5,8 @@ on:
   schedule:
     - cron: '5 * * * *'
   push:
+    branches:
+      - main
     paths:
       - 'scripts/stage55_context_enrichment.py'
       - '.github/workflows/stage55-context-enrichment.yml'

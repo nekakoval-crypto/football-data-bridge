@@ -5,6 +5,8 @@ on:
   schedule:
     - cron: '35 * * * *'
   push:
+    branches:
+      - main
     paths:
       - 'scripts/stage54_forward_ops.py'
       - '.github/workflows/stage54-forward-ops.yml'
