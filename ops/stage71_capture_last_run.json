@@ -1,28 +1,28 @@
 {
-  "run_at_utc": "2026-09-13T15:32:09Z",
-  "status": "OK",
+  "run_at_utc": "2026-09-13T23:28:41Z",
+  "status": "ATTENTION",
   "research_leagues": 15,
-  "new_triggers": 2,
-  "new_r1_rows": 0,
+  "new_triggers": 3,
+  "new_r1_rows": 1,
   "new_r2_rows": 0,
-  "settled_rows": 0,
-  "trigger_rows": 141,
-  "forward_rows": 38,
-  "api_calls": 38,
-  "odds_calls": 23,
-  "marathon_calls": 0,
+  "settled_rows": 10,
+  "trigger_rows": 144,
+  "forward_rows": 39,
+  "api_calls": 30,
+  "odds_calls": 35,
+  "marathon_calls": 1,
   "scan": [
     {
       "league": "Premier League",
-      "expected": 0,
-      "scanned": 0,
+      "expected": 1,
+      "scanned": 1,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "La Liga",
-      "expected": 2,
-      "scanned": 2,
+      "expected": 1,
+      "scanned": 1,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -35,8 +35,8 @@
     },
     {
       "league": "Ligue 1",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -49,8 +49,8 @@
     },
     {
       "league": "Belgian Pro League",
-      "expected": 2,
-      "scanned": 2,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -77,8 +77,8 @@
     },
     {
       "league": "Eredivisie",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -91,8 +91,8 @@
     },
     {
       "league": "Ekstraklasa",
-      "expected": 0,
-      "scanned": 0,
+      "expected": 1,
+      "scanned": 1,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -105,8 +105,8 @@
     },
     {
       "league": "Super Lig",
-      "expected": 2,
-      "scanned": 2,
+      "expected": 1,
+      "scanned": 1,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -118,6 +118,28 @@
       "inventory": "COMPLETE"
     }
   ],
-  "warnings": [],
+  "warnings": [
+    "1515926: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
+    "1558636: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
+    "1494765: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
+    "1584414: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
+    "1584419: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
+    "1575505: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
+    "1575504: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
+    "1549025: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
+    "1494766: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
+    "1558637: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
+    "1547636: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
+    "1584413: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
+    "1552174: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
+    "1552772: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
+    "1558639: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
+    "1558638: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
+    "1515927: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
+    "1547637: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
+    "1549026: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
+    "1549022: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
+    "1494770: Bet365 capture failed: Stage71 API budget exhausted; retry next run"
+  ],
   "canonical_captured": 3
 }
