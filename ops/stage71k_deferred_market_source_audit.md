@@ -32,12 +32,12 @@ Fixture sample: **160** | API calls: **0**
 ## Угловые
 - Catalog markets: 35 | observed: 23
 - Source status: **API_FOOTBALL_PROSPECTIVE_SOURCE_POSSIBLE**
-- Max coverage: Bet365 42.5% | Marathonbet 36.9%
-  - bet 45 `Corners Over Under` — Bet365 42.5% | Marathonbet 36.9%
-  - bet 85 `Total Corners (3 way)` — Bet365 42.5% | Marathonbet 36.9%
-  - bet 77 `Total Corners (1st Half)` — Bet365 40.6% | Marathonbet 36.9%
-  - bet 57 `Home Corners Over/Under` — Bet365 40.0% | Marathonbet 36.9%
-  - bet 58 `Away Corners Over/Under` — Bet365 40.0% | Marathonbet 36.9%
+- Max coverage: Bet365 42.5% | Marathonbet 39.4%
+  - bet 45 `Corners Over Under` — Bet365 42.5% | Marathonbet 39.4%
+  - bet 85 `Total Corners (3 way)` — Bet365 42.5% | Marathonbet 39.4%
+  - bet 77 `Total Corners (1st Half)` — Bet365 41.9% | Marathonbet 39.4%
+  - bet 56 `Corners Asian Handicap` — Bet365 40.0% | Marathonbet 39.4%
+  - bet 57 `Home Corners Over/Under` — Bet365 40.0% | Marathonbet 39.4%
 
 ## Карточки / предупреждения
 - Catalog markets: 21 | observed: 14
@@ -46,8 +46,8 @@ Fixture sample: **160** | API calls: **0**
   - bet 80 `Cards Over/Under` — Bet365 13.1% | Marathonbet 0.0%
   - bet 81 `Cards Asian Handicap` — Bet365 13.1% | Marathonbet 0.0%
   - bet 299 `Cards over/under between 0 and 10 m` — Bet365 13.1% | Marathonbet 0.0%
+  - bet 79 `Cards European Handicap` — Bet365 12.5% | Marathonbet 0.0%
   - bet 82 `Home Team Total Cards` — Bet365 11.9% | Marathonbet 0.0%
-  - bet 83 `Away Team Total Cards` — Bet365 11.9% | Marathonbet 0.0%
 
 ## Удары / удары в створ
 - Catalog markets: 21 | observed: 10
