@@ -200,7 +200,6 @@ class ApiFootballBroker:
                     self._memory[key] = (fetched, float(expires), json.loads(payload))
                     self._stats["disk_cache_hits"] += 1
                     return self._memory[key][2]
-                return self._request_after_stale_disk(key, path, params, ttl)
         self._stats["cache_misses"] += 1
         with self._lock:
             # Another thread may have populated either cache while this
@@ -264,10 +263,6 @@ class ApiFootballBroker:
                         continue
                     raise
             raise last_error or ApiFootballProviderError(f"API-Football request failed: {path}")
-
-    def _request_after_stale_disk(self, key, path, params, ttl):
-        self._memory.pop(key, None)
-        return self.get(path, params, ttl_seconds=ttl, force_refresh=True)
 
     def _retry_delay(self, attempt, headers):
         self._stats["retries"] += 1

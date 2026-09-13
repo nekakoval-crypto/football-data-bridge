@@ -84,6 +84,19 @@ class BrokerTests(unittest.TestCase):
             second.get("/fixtures", {"id": 1}, ttl_seconds=1)
         self.assertEqual(len(self.calls), 2)
 
+    def test_stale_disk_refresh_counts_one_logical_request(self):
+        first = self.broker()
+        with patch("api_football_broker._utc_timestamp", return_value=1000.0):
+            first.get("/fixtures", {"id": 1}, ttl_seconds=3600)
+        second = self.broker()
+        with patch("api_football_broker._utc_timestamp", return_value=1003.0):
+            second.get("/fixtures", {"id": 1}, ttl_seconds=1)
+        stats = second.stats()
+        self.assertEqual(len(self.calls), 2)
+        self.assertEqual(stats["logical_requests"], 1)
+        self.assertEqual(stats["real_api_calls"], 1)
+        self.assertEqual(stats["disk_cache_hits"], 0)
+
         third = self.broker()
         with patch("api_football_broker._utc_timestamp", return_value=1003.5):
             third.get("/fixtures", {"id": 1}, ttl_seconds=3600)
