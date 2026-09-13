@@ -1,9 +1,9 @@
 {
-  "run_at_utc": "2026-09-13T15:29:01.312376Z",
+  "run_at_utc": "2026-09-13T15:32:15.094782Z",
   "status": "ATTENTION",
   "counts": {
-    "expected": 17,
-    "scanned": 17,
+    "expected": 14,
+    "scanned": 14,
     "captured": 38,
     "missed_or_at_risk": 0,
     "pending": 13,
@@ -18,8 +18,8 @@
   "scan": [
     {
       "league": "Premier League",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -32,8 +32,8 @@
     },
     {
       "league": "Bundesliga",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -95,8 +95,8 @@
     },
     {
       "league": "Ekstraklasa",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -135,6 +135,6 @@
   "legacy_max_schedule_gap_hours": 18,
   "schedule_gap_hours": 8,
   "r2_freeze_hours": 12,
-  "api_calls": 52,
-  "api_day_calls": 80
+  "api_calls": 38,
+  "api_day_calls": 150
 }

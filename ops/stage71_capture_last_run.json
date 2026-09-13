@@ -1,21 +1,21 @@
 {
-  "run_at_utc": "2026-09-13T15:29:01Z",
+  "run_at_utc": "2026-09-13T15:32:09Z",
   "status": "OK",
   "research_leagues": 15,
-  "new_triggers": 15,
-  "new_r1_rows": 1,
-  "new_r2_rows": 1,
-  "settled_rows": 7,
-  "trigger_rows": 139,
+  "new_triggers": 2,
+  "new_r1_rows": 0,
+  "new_r2_rows": 0,
+  "settled_rows": 0,
+  "trigger_rows": 141,
   "forward_rows": 38,
-  "api_calls": 52,
-  "odds_calls": 35,
-  "marathon_calls": 2,
+  "api_calls": 38,
+  "odds_calls": 23,
+  "marathon_calls": 0,
   "scan": [
     {
       "league": "Premier League",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -28,8 +28,8 @@
     },
     {
       "league": "Bundesliga",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -91,8 +91,8 @@
     },
     {
       "league": "Ekstraklasa",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
