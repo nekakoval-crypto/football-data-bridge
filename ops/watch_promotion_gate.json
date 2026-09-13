@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-13T15:03:32Z",
+  "generated_at_utc": "2026-09-13T16:03:51Z",
   "status": "OK",
   "policy_locked_at": "2026-09-11",
   "families": {
@@ -36,24 +36,21 @@
         "crossings": 2,
         "user_price_rows": 2,
         "execution_coverage_pct": 100.0,
-        "settled_executable": 0,
-        "roi_pct": null,
+        "settled_executable": 1,
+        "roi_pct": 26.0,
         "first_half_n": 0,
         "first_half_roi_pct": null,
-        "second_half_n": 0,
-        "second_half_roi_pct": null,
-        "close_observed_settled": 0,
-        "close_observed_coverage_pct": null,
-        "close_qualified_settled": 0,
-        "close_qualified_roi_pct": null
+        "second_half_n": 1,
+        "second_half_roi_pct": 26.0,
+        "close_observed_settled": 1,
+        "close_observed_coverage_pct": 100.0,
+        "close_qualified_settled": 1,
+        "close_qualified_roi_pct": 26.0
       },
       "blocking_reasons": [
-        "settled 0/60",
-        "ROI None not >0",
+        "settled 1/60",
         "first-half ROI None not >0",
-        "second-half ROI None not >0",
-        "close coverage None% <90%",
-        "close-qualified subset 0/20"
+        "close-qualified subset 1/20"
       ]
     },
     "Stage63": {
@@ -62,16 +59,16 @@
         "crossings": 9,
         "user_price_rows": 9,
         "execution_coverage_pct": 100.0,
-        "settled_executable": 3,
-        "roi_pct": -50.333,
-        "first_half_n": 1,
-        "first_half_roi_pct": 49.0,
-        "second_half_n": 2,
+        "settled_executable": 5,
+        "roi_pct": -70.2,
+        "first_half_n": 2,
+        "first_half_roi_pct": -25.5,
+        "second_half_n": 3,
         "second_half_roi_pct": -100.0,
-        "close_observed_settled": 3,
+        "close_observed_settled": 5,
         "close_observed_coverage_pct": 100.0,
-        "close_qualified_settled": 3,
-        "close_qualified_roi_pct": -50.333
+        "close_qualified_settled": 5,
+        "close_qualified_roi_pct": -70.2
       },
       "blocking_reasons": [
         "No historical BTTS first/close dataset; any finding needs a new preregistration and fresh holdout."
