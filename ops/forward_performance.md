@@ -1,18 +1,18 @@
 # PBK Forward Performance
 
-Generated UTC: 2026-09-13T20:51:43Z
+Generated UTC: 2026-09-13T21:51:37Z
 Scope: clean prospective canonical forward only; no historical backfill.
 
 ## Overall
-- Rows: 3 | pending 3 | settled 0 | void 0
+- Rows: 3 | pending 2 | settled 1 | void 0
 - Executable-price coverage: 100.0% (3/3)
-- User paper P&L: 0.000u on 0.000u settled stake | ROI N/A
-- Market paper P&L: 0.000u on 0.000u settled stake | ROI N/A
+- User paper P&L: -1.000u on 1.000u settled stake | ROI -100.0%
+- Market paper P&L: -1.000u on 1.000u settled stake | ROI -100.0%
 - User CLV rows: 1 | avg price-ratio CLV 0.0%
-- Observed user max drawdown: N/A
+- Observed user max drawdown: 1.0u
 
 ## R1
-- Rows: 3 | pending 3 | settled 0 | void 0
+- Rows: 3 | pending 2 | settled 1 | void 0
 - Executable-price coverage: 100.0%
-- User paper P&L: 0.000u | ROI N/A | W-L 0-0
+- User paper P&L: -1.000u | ROI -100.0% | W-L 0-1
 - Avg user price-ratio CLV: 0.0%
