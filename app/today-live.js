@@ -1,212 +1,174 @@
 const STATUS_LABELS = {
-  scheduled: 'По расписанию',
-  live: 'LIVE',
-  finished: 'Завершён',
-  postponed: 'Перенесён',
-  cancelled: 'Отменён',
-  suspended: 'Приостановлен',
-  interrupted: 'Прерван',
-  abandoned: 'Прекращён',
-  awarded: 'Тех. результат',
-  walkover: 'Тех. победа',
-  unknown: 'Статус не подтверждён',
+  scheduled: 'По расписанию', live: 'LIVE', finished: 'FT', postponed: 'Перенесён',
+  cancelled: 'Отменён', suspended: 'Приост.', interrupted: 'Прерван',
+  abandoned: 'Прекращён', awarded: 'Тех.', walkover: 'Тех. поб.', unknown: 'Не подтв.',
 };
-
-const STATUS_GROUP = {
-  live: 0,
-  scheduled: 1,
-  interrupted: 2,
-  suspended: 2,
-  postponed: 3,
-  cancelled: 3,
-  abandoned: 3,
-  awarded: 3,
-  walkover: 3,
-  unknown: 3,
-  finished: 4,
-};
-
-const FRESHNESS_LABELS = {
-  fresh: 'Свежие данные',
-  stale: 'Данные устарели',
-  unknown: 'Свежесть неизвестна',
-};
-
-const COMPACT_STATUS_LABELS = {
-  scheduled: 'По расписанию',
-  live: 'LIVE',
-  finished: 'FT',
-  postponed: 'Перенесён',
-  cancelled: 'Отменён',
-  suspended: 'Приост.',
-  interrupted: 'Прерван',
-  abandoned: 'Прекращён',
-  awarded: 'Тех.',
-  walkover: 'Тех. поб.',
-  unknown: 'Не подтв.',
-};
-
-export function statusLabel(status) {
-  return STATUS_LABELS[status] || STATUS_LABELS.unknown;
-}
-
-export function freshnessLabel(status) {
-  return FRESHNESS_LABELS[status] || FRESHNESS_LABELS.unknown;
-}
-
-export function compactStatusLabel(status) {
-  return COMPACT_STATUS_LABELS[status] || COMPACT_STATUS_LABELS.unknown;
-}
-
-export function formatScore(score) {
-  if (!score || score.home === null || score.home === undefined ||
-      score.away === null || score.away === undefined ||
-      score.home === '' || score.away === '') return '';
-  return `${score.home} : ${score.away}`;
-}
-
-export function compactRightSideValue(match = {}) {
-  const score = formatScore(match.score);
-  if (score) return score.replaceAll(' ', '');
-  if (match.status === 'scheduled' && match.kickoff_utc) {
-    const date = new Date(match.kickoff_utc);
-    if (!Number.isNaN(date.getTime())) {
-      return `${new Intl.DateTimeFormat('ru-RU', {
-        timeZone: 'Europe/Moscow', hour: '2-digit', minute: '2-digit',
-      }).format(date)} МСК`;
-    }
-  }
-  return compactStatusLabel(match.status);
-}
-
-export function formatMoscowTime(value, dateUtc = '') {
-  if (!value) return 'Время неизвестно';
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return 'Время неизвестно';
-  const formatted = new Intl.DateTimeFormat('ru-RU', {
-    timeZone: 'Europe/Moscow',
-    day: '2-digit',
-    month: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-  }).format(date).replace(',', ' ·');
-  const moscowDate = new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'Europe/Moscow',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  }).format(date);
-  return moscowDate === dateUtc ? `${formatted} МСК` : `${formatted} МСК · UTC-день ${dateUtc || 'неизвестен'}`;
-}
-
-export function sortMatches(matches = []) {
-  return [...matches].sort((a, b) => {
-    const group = (STATUS_GROUP[a?.status] ?? STATUS_GROUP.unknown) -
-      (STATUS_GROUP[b?.status] ?? STATUS_GROUP.unknown);
-    if (group) return group;
-    const kickoff = String(a?.kickoff_utc || '').localeCompare(String(b?.kickoff_utc || ''));
-    if (kickoff) return kickoff;
-    return String(a?.fixture_id || '').localeCompare(String(b?.fixture_id || ''), undefined, { numeric: true });
-  });
-}
-
-export function groupMatchesByCompetition(matches = []) {
-  const groups = new Map();
-  for (const match of sortMatches(matches)) {
-    const competition = match?.competition || 'Соревнование неизвестно';
-    if (!groups.has(competition)) groups.set(competition, []);
-    groups.get(competition).push(match);
-  }
-  return [...groups.entries()].map(([competition, groupedMatches]) => ({
-    competition,
-    matches: groupedMatches,
-  }));
-}
-
-export function todayViewModel(payload = {}) {
-  const matches = sortMatches(Array.isArray(payload.matches) ? payload.matches : []);
-  return {
-    dateUtc: payload.date_utc || null,
-    generatedAt: payload.generated_at_utc || null,
-    coverageWarning: payload.coverage?.live_completeness_guaranteed === false,
-    matches,
-    summary: {
-      total: matches.length,
-      live: matches.filter(x => x.status === 'live').length,
-      upcoming: matches.filter(x => x.status === 'scheduled').length,
-      finished: matches.filter(x => x.status === 'finished').length,
-    },
-  };
-}
 
 const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, char => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;',
 }[char]));
 
-function compactMoscow(value) {
-  if (!value) return '—';
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return '—';
-  return new Intl.DateTimeFormat('ru-RU', {
-    timeZone: 'Europe/Moscow', day: '2-digit', month: '2-digit',
-    hour: '2-digit', minute: '2-digit',
-  }).format(date).replace(',', ' ·') + ' МСК';
+export function statusLabel(status) {
+  return STATUS_LABELS[status] || STATUS_LABELS.unknown;
 }
 
-function matchRow(match, dateUtc) {
+export function formatScore(score) {
+  if (!score || score.home === null || score.home === undefined || score.home === '' ||
+      score.away === null || score.away === undefined || score.away === '') return '';
+  return `${score.home}:${score.away}`;
+}
+
+export function safeMediaUrl(value) {
+  try {
+    const url = new URL(String(value || ''));
+    return url.protocol === 'https:' ? url.href : '';
+  } catch {
+    return '';
+  }
+}
+
+export function roundLabel(value) {
+  if (!value) return 'Тур не подтверждён';
+  const match = String(value).match(/^Regular Season\s*-\s*(\d+)$/i);
+  return match ? `Тур ${match[1]}` : String(value);
+}
+
+export function formatScheduledTime(value) {
+  if (!value) return {date: 'Дата неизвестна', time: 'Время неизвестно'};
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return {date: 'Дата неизвестна', time: 'Время неизвестно'};
+  const parts = new Intl.DateTimeFormat('ru-RU', {
+    timeZone: 'Europe/Moscow', day: '2-digit', month: '2-digit',
+    hour: '2-digit', minute: '2-digit',
+  }).formatToParts(date);
+  const part = type => parts.find(item => item.type === type)?.value || '';
+  return {date: `${part('day')}.${part('month')}`, time: `${part('hour')}:${part('minute')} МСК`};
+}
+
+export function sortMatches(matches = []) {
+  return [...matches].sort((a, b) => {
+    const kickoff = String(a?.kickoff_utc || '').localeCompare(String(b?.kickoff_utc || ''));
+    if (kickoff) return kickoff;
+    return String(a?.fixture_id || '').localeCompare(String(b?.fixture_id || ''), undefined, {numeric: true});
+  });
+}
+
+export function liveMatches(leagues = []) {
+  return leagues.filter(league => league?.status === 'available')
+    .flatMap(league => (Array.isArray(league?.matches) ? league.matches : [])
+    .filter(match => match?.status === 'live')
+    .map(match => ({...match, provider_league_id: league.provider_league_id})));
+}
+
+export function groupMatchesByLeague(leagues = [], mode = 'tour') {
+  return leagues.map(league => ({
+    ...league,
+    matches: sortMatches(mode === 'live'
+      ? (Array.isArray(league.matches) ? league.matches.filter(match => match?.status === 'live') : [])
+      : (Array.isArray(league.matches) ? league.matches : [])),
+  })).filter(league => mode === 'tour'
+    ? true
+    : league.status === 'available' && league.matches.length);
+}
+
+function imageMarkup(url, className, label) {
+  const safe = safeMediaUrl(url);
+  if (!safe) return `<span class="${className} today-live-image-placeholder" aria-label="${escapeHtml(label)}"></span>`;
+  return `<img class="${className}" src="${escapeHtml(safe)}" alt="" loading="lazy" onerror="this.classList.add('today-live-image-broken');this.removeAttribute('src')">`;
+}
+
+function matchStatusLine(match) {
+  if (match.status === 'live') {
+    return `LIVE${match.source_status ? ` · ${escapeHtml(match.source_status)}` : ''}`;
+  }
+  return statusLabel(match.status);
+}
+
+function matchRow(match) {
   const status = STATUS_LABELS[match.status] ? match.status : 'unknown';
-  const observed = match.observed_at_utc ? ` · ${escapeHtml(compactMoscow(match.observed_at_utc))}` : '';
+  const scheduled = status === 'scheduled' ? formatScheduledTime(match.kickoff_utc) : null;
+  const score = formatScore(match.score);
+  const right = score || (scheduled ? `<span>${escapeHtml(scheduled.date)}</span><span>${escapeHtml(scheduled.time)}</span>` : '');
   return `<article class="today-live-row today-live-${status}" data-fixture="${escapeHtml(match.fixture_id)}">
     <div class="today-live-row-main">
-      <div class="today-live-team">${escapeHtml(match.home_team || 'Хозяева неизвестны')}</div>
-      <div class="today-live-team">${escapeHtml(match.away_team || 'Гости неизвестны')}</div>
-      <div class="today-live-row-meta">${escapeHtml(freshnessLabel(match.freshness_status))}${observed}</div>
+      <div class="today-live-team">${imageMarkup(match.home_team_logo_url, 'today-live-team-logo', 'Логотип хозяев')}<span>${escapeHtml(match.home_team || 'Хозяева неизвестны')}</span></div>
+      <div class="today-live-team">${imageMarkup(match.away_team_logo_url, 'today-live-team-logo', 'Логотип гостей')}<span>${escapeHtml(match.away_team || 'Гости неизвестны')}</span></div>
     </div>
-    <div class="today-live-row-side">
-      <strong>${escapeHtml(compactRightSideValue({...match, status}))}</strong>
-      <span class="today-live-status">${escapeHtml(compactStatusLabel(status))}</span>
-    </div>
+    <div class="today-live-row-side"><strong>${right || escapeHtml(matchStatusLine({...match, status}))}</strong><span class="today-live-status">${escapeHtml(matchStatusLine({...match, status}))}</span></div>
   </article>`;
 }
 
-export function renderTodayLive(container, payload) {
-  const model = todayViewModel(payload);
-  const warning = model.coverageWarning
-    ? '<div class="today-live-notice">LIVE-покрытие неполное</div>' : '';
-  const generated = model.generatedAt ? ` · ${escapeHtml(compactMoscow(model.generatedAt))}` : '';
-  const groups = model.matches.length
-    ? groupMatchesByCompetition(model.matches).map(group => `<section class="today-live-competition-group">
-        <h3>${escapeHtml(group.competition)} <span>${group.matches.length}</span></h3>
-        <div>${group.matches.map(match => matchRow(match, model.dateUtc)).join('')}</div>
-      </section>`).join('')
-    : '<div class="empty">Сегодняшние матчи пока не собраны.</div>';
-  container.innerHTML = `<div class="today-live-compact-meta">
-    <span>Всего ${model.summary.total} · LIVE ${model.summary.live} · Предст. ${model.summary.upcoming} · Зав. ${model.summary.finished}</span>
-    <span>UTC-день ${escapeHtml(model.dateUtc || 'неизвестен')}${generated}</span>
-  </div>${warning}<div class="today-live-groups">${groups}</div>`;
+function leagueHeader(league) {
+  return `<header class="today-live-league-head">
+    <div class="today-live-league-identity">
+      ${imageMarkup(league.country_flag_url, 'today-live-flag', 'Флаг страны')}
+      <strong>${escapeHtml(league.league_name || 'Лига не подтверждена')}</strong>
+      ${imageMarkup(league.league_logo_url, 'today-live-league-logo', 'Логотип лиги')}
+    </div>
+    <span class="today-live-round">${escapeHtml(roundLabel(league.round))}</span>
+  </header>`;
+}
+
+export function renderTodayLive(container, payload = {}, selectedMode = 'live') {
+  const leagues = Array.isArray(payload.leagues) ? payload.leagues : [];
+  const groups = groupMatchesByLeague(leagues, selectedMode);
+  const liveCount = liveMatches(leagues).length;
+  const warning = payload.coverage?.partial_leagues_possible
+    ? '<div class="today-live-notice">Часть данных туров недоступна</div>' : '';
+  const generated = payload.generated_at_utc
+    ? `Снимок: ${escapeHtml(formatScheduledTime(payload.generated_at_utc).date)} ${escapeHtml(formatScheduledTime(payload.generated_at_utc).time)}`
+    : 'Снимок неизвестен';
+  let body = '';
+  if (selectedMode === 'live' && !liveCount) {
+    body = '<div class="empty">Сейчас подтверждённых LIVE-матчей нет.</div>';
+  } else if (!groups.length) {
+    body = '<div class="empty">Данные тура пока недоступны.</div>';
+  } else {
+    body = groups.map(league => `<section class="today-live-league-group">
+      ${leagueHeader(league)}
+      ${league.status !== 'available' ? '<div class="today-live-unavailable">Данные тура недоступны</div>' :
+        `<div class="today-live-group-matches">${league.matches.map(matchRow).join('')}</div>`}
+    </section>`).join('');
+  }
+  container.innerHTML = `<div class="today-live-compact-meta"><span>${selectedMode === 'live' ? `LIVE ${liveCount}` : `Лиг ${leagues.length}`}</span><span>${generated}</span></div>${warning}<div class="today-live-groups">${body}</div>`;
 }
 
 function renderError(container) {
-  container.innerHTML = '<div class="empty today-live-error">Не удалось загрузить Матчи сегодня / LIVE. Остальные разделы ПБК доступны.</div>';
+  container.innerHTML = '<div class="empty today-live-error">Не удалось загрузить данные LIVE / тура.</div>';
 }
 
 export function initTodayLive(documentRef = document) {
   const container = documentRef.querySelector('#today-live-content');
   if (!container) return () => {};
+  const buttons = [...documentRef.querySelectorAll('[data-today-live-mode]')];
+  let selectedMode = 'live';
+  let payload = null;
   let loading = false;
+  const render = () => {
+    buttons.forEach(button => {
+      const active = button.dataset.todayLiveMode === selectedMode;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-selected', String(active));
+    });
+    if (payload) renderTodayLive(container, payload, selectedMode);
+  };
+  buttons.forEach(button => button.addEventListener('click', () => {
+    selectedMode = button.dataset.todayLiveMode === 'tour' ? 'tour' : 'live';
+    render();
+  }));
   const load = async () => {
     if (loading) return;
     loading = true;
     try {
-      const response = await fetch('/api/v1/today', {
-        headers: {Accept: 'application/json'},
-        cache: 'no-store',
+      const response = await fetch('/api/v1/rounds/current', {
+        headers: {Accept: 'application/json'}, cache: 'no-store',
       });
       if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-      renderTodayLive(container, await response.json());
+      payload = await response.json();
+      render();
     } catch (error) {
       renderError(container);
-      console.error('Today/LIVE unavailable', error);
+      console.error('LIVE / tour unavailable', error);
     } finally {
       loading = false;
     }
@@ -218,6 +180,7 @@ export function initTodayLive(documentRef = document) {
   return () => {
     clearInterval(timer);
     documentRef.removeEventListener('visibilitychange', refresh);
+    buttons.forEach(button => button.replaceWith(button.cloneNode(true)));
   };
 }
 
