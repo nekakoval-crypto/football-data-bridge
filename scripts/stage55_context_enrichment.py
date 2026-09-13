@@ -25,13 +25,10 @@ import csv
 import json
 import math
 import os
-import time
-import urllib.parse
-import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
+from api_football_broker import api_get as broker_api_get
 
-API_BASE = "https://v3.football.api-sports.io"
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 FORWARD = OPS / "forward_log.csv"
 SNAPSHOTS = OPS / "match_context_snapshots.csv"
@@ -97,26 +94,8 @@ def write_csv(path, fields, rows):
         w.writerows(rows)
 
 
-def api_get(path, params=None, attempts=3):
-    key = os.getenv("API_FOOTBALL_KEY", "").strip()
-    if not key:
-        raise RuntimeError("API_FOOTBALL_KEY is missing")
-    qs = urllib.parse.urlencode(params or {})
-    url = API_BASE + path + ("?" + qs if qs else "")
-    last = None
-    for n in range(1, attempts + 1):
-        try:
-            req = urllib.request.Request(url, headers={"x-apisports-key": key, "User-Agent": "football-data-bridge/5.0"})
-            with urllib.request.urlopen(req, timeout=30) as resp:
-                data = json.load(resp)
-            if data.get("errors"):
-                raise RuntimeError(f"API-Football {path}: {data['errors']}")
-            return data
-        except Exception as exc:
-            last = exc
-            if n < attempts:
-                time.sleep(n * 3)
-    raise last
+def api_get(path, params=None, attempts=3, **kwargs):
+    return broker_api_get(path, params, **kwargs)
 
 
 def comp_class(league_obj):
@@ -178,13 +157,13 @@ def surrounding_fixture(team_id, target_fixture_id, target_dt, direction):
 
 
 def get_fixture(fixture_id):
-    d = api_get("/fixtures", {"id": fixture_id, "timezone": "UTC"})
+    d = api_get("/fixtures", {"id": fixture_id, "timezone": "UTC"}, force_refresh=True)
     return (d.get("response") or [None])[0]
 
 
 def get_injuries(fixture_id):
     try:
-        d = api_get("/injuries", {"fixture": fixture_id})
+        d = api_get("/injuries", {"fixture": fixture_id}, force_refresh=True)
     except Exception as exc:
         return [], f"injuries unavailable: {exc}"
     out = []
@@ -200,7 +179,7 @@ def get_injuries(fixture_id):
 
 def get_lineups(fixture_id):
     try:
-        d = api_get("/fixtures/lineups", {"fixture": fixture_id})
+        d = api_get("/fixtures/lineups", {"fixture": fixture_id}, force_refresh=True)
     except Exception as exc:
         return [], f"lineups unavailable: {exc}"
     return d.get("response", []) or [], ""

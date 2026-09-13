@@ -7,6 +7,8 @@ on:
   schedule:
     - cron: '15 6 * * *'
   push:
+    branches:
+      - main
     paths:
       - 'scripts/stage53_daily_screener.py'
       - 'scripts/stage53_r3_guard.py'

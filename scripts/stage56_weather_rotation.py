@@ -24,6 +24,7 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
+from api_football_broker import api_get as broker_api_get
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 FORWARD = OPS / "forward_log.csv"
@@ -33,7 +34,6 @@ ROTATION = OPS / "rotation_snapshots.csv"
 LATEST = OPS / "stage56_latest.csv"
 META = OPS / "stage56_last_run.json"
 
-API_FOOTBALL = "https://v3.football.api-sports.io"
 OPEN_METEO_FORECAST = "https://api.open-meteo.com/v1/forecast"
 OPEN_METEO_GEOCODING = "https://geocoding-api.open-meteo.com/v1/search"
 
@@ -129,15 +129,8 @@ def http_json(url, headers=None, attempts=3):
     raise last
 
 
-def api_get(path, params=None):
-    key = os.getenv("API_FOOTBALL_KEY", "").strip()
-    if not key:
-        raise RuntimeError("API_FOOTBALL_KEY is missing")
-    qs = urllib.parse.urlencode(params or {})
-    data = http_json(API_FOOTBALL + path + ("?" + qs if qs else ""), {"x-apisports-key": key, "User-Agent": "football-data-bridge/6.0"})
-    if data.get("errors"):
-        raise RuntimeError(f"API-Football {path}: {data['errors']}")
-    return data
+def api_get(path, params=None, **kwargs):
+    return broker_api_get(path, params, **kwargs)
 
 
 def om_get(base, params):
@@ -199,7 +192,7 @@ def nearest_hourly_weather(lat, lon, kickoff):
 
 
 def get_lineups(fixture_id):
-    d = api_get("/fixtures/lineups", {"fixture": fixture_id})
+    d = api_get("/fixtures/lineups", {"fixture": fixture_id}, force_refresh=True)
     return d.get("response") or []
 
 

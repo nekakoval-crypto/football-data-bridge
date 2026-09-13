@@ -29,6 +29,7 @@ import stage71e_double_chance_capture as e
 import stage71f_european_handicap_capture as f
 import stage71g_dnb_capture as g
 import market_research_inventory
+from api_football_broker import get_broker
 
 OPS=Path(os.getenv('OPS_DIR','ops'))
 META=OPS/'stage71j_last_run.json'
@@ -37,6 +38,7 @@ MARKET_PRESENCE=OPS/'api_football_market_presence.json'
 MAX_REAL_CALLS=int(os.getenv('STAGE71J_MAX_REAL_API_CALLS','190'))
 _real=s53.api_get
 _cache={}
+_fixture_odds_cache={}
 real_calls=0
 cache_hits=0
 by_path={}
@@ -44,10 +46,7 @@ by_path={}
 def now_iso():return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00','Z')
 
 def _key(path,params):
-    p=params or {}
-    if path=='/odds' and p.get('fixture') not in (None,''):
-        return path, (('fixture',str(p.get('fixture'))),)
-    return path, tuple(sorted((str(k),str(v)) for k,v in p.items()))
+    return path, tuple(sorted((str(k),str(v)) for k,v in (params or {}).items()))
 
 def cached_api_get(path,params=None):
     global real_calls, cache_hits
@@ -55,15 +54,40 @@ def cached_api_get(path,params=None):
     if k in _cache:
         cache_hits+=1
         return _cache[k]
-    if real_calls>=MAX_REAL_CALLS:
-        raise RuntimeError(f'Stage71J API hard cap reached: {real_calls}/{MAX_REAL_CALLS}')
-    actual_params=params
     if path=='/odds' and (params or {}).get('fixture') not in (None,''):
-        actual_params={'fixture':(params or {}).get('fixture')}
-    val=_real(path,actual_params)
+        fixture_key=str((params or {}).get('fixture'))
+        if fixture_key in _fixture_odds_cache:
+            cache_hits+=1
+            return _fixture_odds_cache[fixture_key]
+    broker = get_broker() if _real is s53._stage53_api_get else None
+    before = broker.stats() if broker else None
+    if (before and before['real_api_calls'] >= MAX_REAL_CALLS) or (not before and real_calls>=MAX_REAL_CALLS):
+        raise RuntimeError(f'Stage71J API hard cap reached: {real_calls}/{MAX_REAL_CALLS}')
+    fresh = path == '/fixtures' or path == '/odds'
+    if broker:
+        broker.max_real_calls = MAX_REAL_CALLS
+    try:
+        if _real is s53._stage53_api_get:
+            val=_real(path,params,**({'force_refresh':True} if fresh else {}))
+        else:
+            val=_real(path,params)
+    finally:
+        after = broker.stats() if broker else None
+        if before is not None:
+            provider_calls = after['real_api_calls'] - before['real_api_calls']
+            broker_hits = (
+                after['memory_cache_hits'] + after['disk_cache_hits']
+                - before['memory_cache_hits'] - before['disk_cache_hits']
+            )
+        else:
+            provider_calls, broker_hits = 1, 0
+        real_calls += provider_calls
+        cache_hits += broker_hits
+        if provider_calls:
+            by_path[path]=by_path.get(path,0)+provider_calls
     _cache[k]=val
-    real_calls+=1
-    by_path[path]=by_path.get(path,0)+1
+    if path=='/odds' and set((params or {}).keys())=={'fixture'}:
+        _fixture_odds_cache[str((params or {}).get('fixture'))]=val
     return val
 
 s53.api_get=cached_api_get
