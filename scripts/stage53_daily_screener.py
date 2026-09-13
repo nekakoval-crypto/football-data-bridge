@@ -22,6 +22,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from difflib import SequenceMatcher
 from pathlib import Path
+from api_football_broker import api_get as broker_api_get
 
 SEASON_YEAR = int(os.getenv("API_FOOTBALL_SEASON", "2026"))
 FD_SEASON_CODE = os.getenv("FD_SEASON_CODE", "2627")
@@ -70,15 +71,12 @@ def http_text(url,headers=None,timeout=30):
         except UnicodeDecodeError:pass
     return raw.decode("latin-1",errors="replace")
 
-def api_get(path,params=None):
-    key=os.getenv("API_FOOTBALL_KEY","").strip()
-    if not key:return None
-    qs=urllib.parse.urlencode(params or {})
-    url=API_BASE+path+("?"+qs if qs else "")
-    data=json.loads(http_text(url,{"x-apisports-key":key}))
-    if data.get("errors"):
-        raise RuntimeError(f"API-Football {path}: {data['errors']}")
-    return data
+def api_get(path,params=None,**kwargs):
+    if not os.getenv("API_FOOTBALL_KEY","").strip():
+        return None
+    return broker_api_get(path, params, **kwargs)
+
+_stage53_api_get = api_get
 
 def rows_csv(text):return list(csv.DictReader(io.StringIO(text)))
 def parse_date(s):
@@ -167,16 +165,18 @@ def unpack_matchwinner(api_response,home,away):
                     prices.append((sel,odd,bname,update))
     return prices
 
-def get_bet365_prices(fixture_id,bookmaker_id,bet_id,home,away):
+def get_bet365_prices(fixture_id,bookmaker_id,bet_id,home,away,force_refresh=False):
     if not bookmaker_id or not bet_id:return {}
-    d=api_get("/odds",{"fixture":fixture_id,"bookmaker":bookmaker_id,"bet":bet_id})
+    params={"fixture":fixture_id,"bookmaker":bookmaker_id,"bet":bet_id}
+    d=api_get("/odds",params,**({"force_refresh":True} if force_refresh and api_get is _stage53_api_get else {}))
     if not d:return {}
     out={}
     for sel,odd,bm,upd in unpack_matchwinner(d,home,away):out[sel]=(odd,bm,upd)
     return out
 
-def get_best_prices(fixture_id,bet_id,home,away):
-    d=api_get("/odds",{"fixture":fixture_id,"bet":bet_id})
+def get_best_prices(fixture_id,bet_id,home,away,force_refresh=False):
+    params={"fixture":fixture_id,"bet":bet_id}
+    d=api_get("/odds",params,**({"force_refresh":True} if force_refresh and api_get is _stage53_api_get else {}))
     if not d:return {}
     best={}
     for sel,odd,bm,upd in unpack_matchwinner(d,home,away):
@@ -236,7 +236,7 @@ def main():
         hs=states.get(hm,TeamState()); as_=states.get(am,TeamState()); remh=max(info["games_per_team"]-hs.played,0); rema=max(info["games_per_team"]-as_.played,0)
         if div=="I1" and str(fixture_id) not in trigger_by_fixture:
             try:
-                fresh=get_bet365_prices(fixture_id,bookmaker_id,bet_id,home,away)
+                fresh=get_bet365_prices(fixture_id,bookmaker_id,bet_id,home,away,force_refresh=True)
                 fh=fresh.get("home",(None,"","") )[0]; fd=fresh.get("draw",(None,"","") )[0]; fa=fresh.get("away",(None,"","") )[0]
                 if fh and fd and fa:
                     upd=max([fresh.get(k,(None,"","") )[2] for k in ("home","draw","away")])
@@ -256,7 +256,7 @@ def main():
         best={}; exec_source=""; verified="NO"; last=""
         if is_signal:
             try:
-                if fixture_id not in best_cache:best_cache[fixture_id]=get_best_prices(fixture_id,bet_id,home,away)
+                if fixture_id not in best_cache:best_cache[fixture_id]=get_best_prices(fixture_id,bet_id,home,away,force_refresh=True)
                 best=best_cache[fixture_id]; exec_source="API-Football all-bookmaker Match Winner"; verified="YES" if best else "NO"
                 last=max([v[2] for v in best.values()] or [""])
             except Exception as e:print("WARN execution odds",fixture_id,e,file=sys.stderr)

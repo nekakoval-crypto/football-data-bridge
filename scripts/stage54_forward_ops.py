@@ -17,12 +17,10 @@ import csv
 import json
 import math
 import os
-import urllib.parse
-import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
+from api_football_broker import api_get as broker_api_get
 
-API_BASE = "https://v3.football.api-sports.io"
 OUT_DIR = Path(os.getenv("OPS_DIR", "ops"))
 FORWARD_LOG = OUT_DIR / "forward_log.csv"
 SNAPSHOTS = OUT_DIR / "odds_snapshots.csv"
@@ -82,18 +80,8 @@ def row_original_kickoff(row):
         return None
 
 
-def api_get(path, params=None):
-    key = os.getenv("API_FOOTBALL_KEY", "").strip()
-    if not key:
-        raise RuntimeError("API_FOOTBALL_KEY is missing")
-    qs = urllib.parse.urlencode(params or {})
-    url = API_BASE + path + ("?" + qs if qs else "")
-    req = urllib.request.Request(url, headers={"x-apisports-key": key, "User-Agent": "football-data-bridge/4.0"})
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        data = json.load(resp)
-    if data.get("errors"):
-        raise RuntimeError(f"API-Football {path}: {data['errors']}")
-    return data
+def api_get(path, params=None, **kwargs):
+    return broker_api_get(path, params, **kwargs)
 
 
 def read_csv(path):
@@ -158,7 +146,7 @@ def matchwinner_prices(api_response, selection):
 
 
 def fixture_state(fixture_id):
-    d = api_get("/fixtures", {"id": fixture_id, "timezone": "UTC"})
+    d = api_get("/fixtures", {"id": fixture_id, "timezone": "UTC"}, force_refresh=True)
     if not d.get("response"):
         return None
     x = d["response"][0]
@@ -288,7 +276,8 @@ def main():
         if kickoff and now < kickoff and status in {"NS", "TBD", "PST"} and row.get("status") in {"PAPER", "OPEN", "REVIEW"}:
             if fid not in odds_cache:
                 try:
-                    odds_cache[fid] = api_get("/odds", {"fixture": fid, "bet": MATCH_WINNER_BET_ID})
+                    odds_cache[fid] = api_get("/odds", {"fixture": fid, "bet": MATCH_WINNER_BET_ID},
+                                              force_refresh=True)
                 except Exception as e:
                     print(f"WARN odds {fid}: {e}")
                     odds_cache[fid] = None
