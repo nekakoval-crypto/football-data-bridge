@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-13T17:07:34Z",
+  "generated_at_utc": "2026-09-13T18:09:34Z",
   "status": "OK",
   "cards": [
     {
@@ -414,9 +414,9 @@
       "away_team": "Bayern München",
       "kickoff_utc": "2026-09-13T15:30:00Z",
       "selection": "ТБ(2.5)",
-      "latest_event": "WATCH_CLOSE",
-      "latest_status": "QUALIFIED_AT_CLOSE",
-      "event_count": 2,
+      "latest_event": "WATCH_SETTLEMENT",
+      "latest_status": "SETTLED",
+      "event_count": 3,
       "timeline": [
         {
           "entity_id": "ST62-O1-1575166",
@@ -451,6 +451,23 @@
           "bookmaker": "Marathonbet",
           "odds": "1.1",
           "details": "close_qualified=YES"
+        },
+        {
+          "entity_id": "ST62-O1-1575166",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage62",
+          "api_fixture_id": "1575166",
+          "league": "Bundesliga",
+          "home_team": "SV Elversberg",
+          "away_team": "Bayern München",
+          "kickoff_utc": "2026-09-13T15:30:00Z",
+          "event_time_utc": "2026-09-13T17:28:23Z",
+          "event_type": "WATCH_SETTLEMENT",
+          "status": "SETTLED",
+          "selection": "ТБ(2.5)",
+          "bookmaker": "Marathonbet",
+          "odds": "1.09",
+          "details": "result=W profit_u=0.090"
         }
       ]
     },
@@ -464,9 +481,9 @@
       "away_team": "Bologna",
       "kickoff_utc": "2026-09-13T16:00:00Z",
       "selection": "ОЗ — Да",
-      "latest_event": "WATCH_CLOSE",
-      "latest_status": "QUALIFIED_AT_CLOSE",
-      "event_count": 2,
+      "latest_event": "WATCH_SETTLEMENT",
+      "latest_status": "SETTLED",
+      "event_count": 3,
       "timeline": [
         {
           "entity_id": "BTTS_YES|1550123",
@@ -501,6 +518,23 @@
           "bookmaker": "Marathonbet",
           "odds": "1.77",
           "details": "close_qualified=YES"
+        },
+        {
+          "entity_id": "BTTS_YES|1550123",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage63",
+          "api_fixture_id": "1550123",
+          "league": "Serie A",
+          "home_team": "Napoli",
+          "away_team": "Bologna",
+          "kickoff_utc": "2026-09-13T16:00:00Z",
+          "event_time_utc": "2026-09-13T18:06:37Z",
+          "event_type": "WATCH_SETTLEMENT",
+          "status": "SETTLED",
+          "selection": "ОЗ — Да",
+          "bookmaker": "Marathonbet",
+          "odds": "1.76",
+          "details": "result=L profit_u=-1.000"
         }
       ]
     },
@@ -516,7 +550,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 67,
+      "event_count": 69,
       "timeline": [
         {
           "entity_id": "R1|I1|1550124",
@@ -1656,6 +1690,40 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550124",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550124",
+          "league": "Serie A",
+          "home_team": "Sassuolo",
+          "away_team": "Juventus",
+          "kickoff_utc": "2026-09-13T18:45:00Z",
+          "event_time_utc": "2026-09-13T17:29:10Z",
+          "event_type": "WEATHER_SNAPSHOT",
+          "status": "",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "temp=24.1C precip=0%"
+        },
+        {
+          "entity_id": "R1|I1|1550124",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550124",
+          "league": "Serie A",
+          "home_team": "Sassuolo",
+          "away_team": "Juventus",
+          "kickoff_utc": "2026-09-13T18:45:00Z",
+          "event_time_utc": "2026-09-13T17:42:34Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     },
@@ -1704,7 +1772,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 64,
+      "event_count": 65,
       "timeline": [
         {
           "entity_id": "R1|I1|1550125",
@@ -2793,6 +2861,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550125",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550125",
+          "league": "Serie A",
+          "home_team": "Torino",
+          "away_team": "AS Roma",
+          "kickoff_utc": "2026-09-14T16:30:00Z",
+          "event_time_utc": "2026-09-13T17:42:34Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     },
@@ -2874,7 +2959,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 63,
+      "event_count": 64,
       "timeline": [
         {
           "entity_id": "R1|I1|1550131",
@@ -3946,6 +4031,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550131",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550131",
+          "league": "Serie A",
+          "home_team": "Frosinone",
+          "away_team": "Como",
+          "kickoff_utc": "2026-09-20T13:00:00Z",
+          "event_time_utc": "2026-09-13T17:42:34Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     }
@@ -3954,7 +4056,7 @@
     "cards": 14,
     "canonical_cards": 3,
     "watch_cards": 11,
-    "events": 219
+    "events": 225
   },
   "policy": {
     "read_only": true,
