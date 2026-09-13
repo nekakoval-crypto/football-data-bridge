@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-13T20:08:48Z",
+  "generated_at_utc": "2026-09-13T21:07:40Z",
   "status": "OK",
   "cards": [
     {
@@ -563,7 +563,7 @@
           "kickoff_utc": "2026-09-13T18:45:00Z",
           "event_time_utc": "2026-09-11T09:57:16Z",
           "event_type": "SIGNAL_CREATED",
-          "status": "PAPER",
+          "status": "SETTLED",
           "selection": "П2",
           "bookmaker": "Bet365",
           "odds": "1.62",
@@ -1771,9 +1771,9 @@
       "away_team": "Paris Saint Germain",
       "kickoff_utc": "2026-09-13T18:45:00Z",
       "selection": "ОЗ — Да",
-      "latest_event": "WATCH_CROSSING",
-      "latest_status": "WATCH_ONLY",
-      "event_count": 1,
+      "latest_event": "WATCH_SETTLEMENT",
+      "latest_status": "SETTLED",
+      "event_count": 3,
       "timeline": [
         {
           "entity_id": "BTTS_YES|1552757",
@@ -1791,6 +1791,40 @@
           "bookmaker": "Marathonbet",
           "odds": "1.75",
           "details": "movement_pp=0.03333333"
+        },
+        {
+          "entity_id": "BTTS_YES|1552757",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage63",
+          "api_fixture_id": "1552757",
+          "league": "Ligue 1",
+          "home_team": "Stade Brestois 29",
+          "away_team": "Paris Saint Germain",
+          "kickoff_utc": "2026-09-13T18:45:00Z",
+          "event_time_utc": "2026-09-13T16:15:55Z",
+          "event_type": "WATCH_CLOSE",
+          "status": "QUALIFIED_AT_CLOSE",
+          "selection": "ОЗ — Да",
+          "bookmaker": "Marathonbet",
+          "odds": "1.75",
+          "details": "close_qualified=YES"
+        },
+        {
+          "entity_id": "BTTS_YES|1552757",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage63",
+          "api_fixture_id": "1552757",
+          "league": "Ligue 1",
+          "home_team": "Stade Brestois 29",
+          "away_team": "Paris Saint Germain",
+          "kickoff_utc": "2026-09-13T18:45:00Z",
+          "event_time_utc": "2026-09-13T20:46:43Z",
+          "event_type": "WATCH_SETTLEMENT",
+          "status": "SETTLED",
+          "selection": "ОЗ — Да",
+          "bookmaker": "Marathonbet",
+          "odds": "1.75",
+          "details": "result=L profit_u=-1.000"
         }
       ]
     },
@@ -1806,7 +1840,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 67,
+      "event_count": 68,
       "timeline": [
         {
           "entity_id": "R1|I1|1550125",
@@ -2946,6 +2980,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550125",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550125",
+          "league": "Serie A",
+          "home_team": "Torino",
+          "away_team": "AS Roma",
+          "kickoff_utc": "2026-09-14T16:30:00Z",
+          "event_time_utc": "2026-09-13T20:42:47Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     },
@@ -3027,7 +3078,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 66,
+      "event_count": 67,
       "timeline": [
         {
           "entity_id": "R1|I1|1550131",
@@ -4150,6 +4201,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550131",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550131",
+          "league": "Serie A",
+          "home_team": "Frosinone",
+          "away_team": "Como",
+          "kickoff_utc": "2026-09-20T13:00:00Z",
+          "event_time_utc": "2026-09-13T20:42:47Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     }
@@ -4158,7 +4226,7 @@
     "cards": 14,
     "canonical_cards": 3,
     "watch_cards": 11,
-    "events": 231
+    "events": 235
   },
   "policy": {
     "read_only": true,
