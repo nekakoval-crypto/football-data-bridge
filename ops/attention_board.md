@@ -1,12 +1,12 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 13.09.2026 23:00 (Europe/Berlin)
-Canonical: 3 | active WATCH crossings: 2 | RED: 1 | ORANGE: 3
+Обновлено: 14.09.2026 00:00 (Europe/Berlin)
+Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
 
 ## 🔴 Срочно
-- **Sassuolo — Juventus** | R1 | П2 | 13.09 20:45 | ≤3ч до kickoff
+- Сейчас срочных матчей нет.
 
 ## 🟠 Ближайшие 24 часа / активные WATCH
 - **Torino — AS Roma** | R1 | П2 | 14.09 18:30 | ≤24ч до kickoff
@@ -14,7 +14,6 @@ Canonical: 3 | active WATCH crossings: 2 | RED: 1 | ORANGE: 3
 - **Elche — Real Madrid** | Stage63 | ОЗ — Да | 15.09 21:30 | prospective движение ОЗ ≥3 п.п. | 1.61 @ Marathonbet
 
 ## 🔵 Активные R1/R2/R3
-- **R1 | Sassuolo — Juventus** | П2 | 13.09 20:45 | 1.65 @ Marathonbet | у гостей следующий матч еврокубок/кубок
 - **R1 | Torino — AS Roma** | П2 | 14.09 18:30 | 1.58 @ Marathonbet | гости после еврокубка/кубка
 - **R1 | Frosinone — Como** | П2 | 20.09 15:00 | 1.65 @ Marathonbet | гости после еврокубка/кубка
 
@@ -34,7 +33,7 @@ Canonical: 3 | active WATCH crossings: 2 | RED: 1 | ORANGE: 3
 - **Stage62 | Hamburger SV — 1. FC Köln** | Бундеслига | 19.09 15:30 | ТБ(2.5) steam | Bet365 ТБ 1.57 / ТМ 2.38
 
 ## ✅ Последние рассчитанные результаты
-- Пока нет завершённых prospective ставок/WATCH для расчёта.
+- CANONICAL | **Sassuolo — Juventus** | П2 | H | P/L -1.000u
 
 ## 🧩 Рыночные карточки ближайших матчей
 > Собранные снимки рынков; не сигналы и не рекомендации.
@@ -2010,7 +2009,7 @@ Canonical: 3 | active WATCH crossings: 2 | RED: 1 | ORANGE: 3
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 2
+- System Health: **WARN** | critical 0 | warnings 1
 - Логическая canonical экспозиция: **3.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 21 | data required 4
