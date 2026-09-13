@@ -69,14 +69,14 @@ class Budget:
         if state.get('api_day') != day:
             state.update(api_day=day, api_day_calls=0)
 
-    def __call__(self, path, params=None):
+    def __call__(self, path, params=None, **kwargs):
         if self.calls >= self.limit or self.state['api_day_calls'] >= self.daily_limit:
             raise RuntimeError('Stage71 API budget exhausted; retry next run')
         self.calls += 1
         self.state['api_day_calls'] += 1
         if self.checkpoint:
             self.checkpoint(self.state)
-        data = self.get(path, params)
+        data = self.get(path, params, **kwargs)
         if not isinstance(data, dict) or data.get('errors') or not isinstance(data.get('response'), list):
             raise RuntimeError('Missing/invalid API response (including missing credentials)')
         if int((data.get('paging') or {}).get('total', 1)) > 1:

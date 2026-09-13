@@ -13,6 +13,7 @@ on:
     paths:
       - 'scripts/stage71_league_market_challenger.py'
       - 'scripts/stage71_challenger_capture.py'
+      - 'scripts/stage71_current_round_capture.py'
       - 'scripts/stage71_observation_audit.py'
       - 'scripts/tests/test_stage71*'
       - 'scripts/stage71_regime_overlay.py'
@@ -76,6 +77,9 @@ jobs:
       - name: Capture prospective league challengers
         run: python scripts/stage71_challenger_capture.py
 
+      - name: Capture provider-defined current rounds
+        run: python scripts/stage71_current_round_capture.py
+
       - name: Audit observation completeness and settlement health
         run: python scripts/stage71_observation_audit.py
 
@@ -100,7 +104,7 @@ jobs:
         run: |
           git config user.name 'stage71-bot'
           git config user.email 'stage71-bot@users.noreply.github.com'
-          git add ops/stage71_*
+          git add ops/stage71_* ops/current_round_*
           if git diff --cached --quiet; then
             echo 'No Stage 71 changes to commit.'
           else
@@ -125,5 +129,8 @@ jobs:
             ops/stage71_challenger_board.json
             ops/stage71_challenger_board.md
             ops/stage71_last_run.json
+            ops/current_round_leagues.csv
+            ops/current_round_fixtures.csv
+            ops/current_round_last_run.json
           if-no-files-found: error
           retention-days: 30
