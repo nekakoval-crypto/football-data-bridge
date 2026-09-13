@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-13T22:02:54Z",
+  "generated_at_utc": "2026-09-13T23:02:16Z",
   "status": "OK",
   "active_signals": 2,
   "policy": {
@@ -30,11 +30,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-13T21:42:50Z",
+        "captured_at_utc": "2026-09-13T22:42:56Z",
         "best_odds": "1.61",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.55",
-        "api_odds_update_utc": "2026-09-13T16:48:14+00:00",
+        "api_odds_update_utc": "2026-09-13T20:45:22+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -156,7 +156,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-13T21:42:50Z",
+        "captured_at_utc": "2026-09-13T22:42:56Z",
         "best_odds": "1.61",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.55",
@@ -274,7 +274,7 @@
     "observed_closes": 9,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-13T21:53:06Z",
+    "latest_run_utc": "2026-09-13T22:54:03Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [],
@@ -291,7 +291,7 @@
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-13T21:46:58Z",
+    "latest_run_utc": "2026-09-13T22:48:02Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -331,7 +331,7 @@
     "observed_closes": 43,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-13T20:15:29Z",
+    "latest_run_utc": "2026-09-13T22:15:30Z",
     "warnings": [],
     "crossings": [
       {
@@ -361,7 +361,7 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-13T21:52:56Z",
+    "generated_at_utc": "2026-09-13T22:54:53Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
