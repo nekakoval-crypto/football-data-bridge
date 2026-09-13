@@ -1,3 +1,4 @@
+import { statusLabel } from './status-glossary.js';
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
 export function numeric(value) {
   if (value === null || value === undefined || typeof value === 'boolean' || String(value).trim() === '') return null;
@@ -22,7 +23,7 @@ export function renderObservation(row) {
   return `<li class="challenger-observation"><b>${value(row.home_team)} — ${value(row.away_team)}</b>
     <div class="meta">Начало: ${kickoff}</div>
     <dl class="observation-fields">${[
-      ['Выбор', value(row.selection)], ['Статус', value(row.status)],
+      ['Выбор', value(row.selection)], ['Статус', esc(statusLabel({status: row.status}))],
       ['Bet365 · frozen', number(row.bet365_price)], ['Marathonbet · executable', number(row.marathonbet_price)],
       ['Счёт · FT', score], ['Результат', settled && ['W', 'L', 'PUSH'].includes(row.result) ? row.result : '—'],
       ['P/L · user_profit_u', profit === null ? '—' : `${profit > 0 ? '+' : ''}${profit.toFixed(3)} u`]
@@ -35,7 +36,7 @@ export function renderCard(row) {
     <div class="eyebrow">${esc(row.family)} · ${esc(row.country)} · ${esc(row.group)}</div>
     <h3>${esc(row.league)}</h3>
     <div class="meta">${active ? 'Действующий canonical forward · справочная строка' : 'Research-only · не canonical сигнал'}</div>
-    <div class="challenger-status">Статус: <b>${esc(row.status || '—')}</b></div>
+    <div class="challenger-status">Статус: <b>${esc(statusLabel({status: row.status, canonical: active, research: !active}))}</b></div>
     <div class="challenger-flow">${[['Captured', 'prospective_captured', 'Зафиксировано'], ['Executable', 'prospective_executable', 'Доступна цена'], ['Settled', 'prospective_settled', 'Рассчитано']].map(([label, key, title]) => `<div><span>${label}</span><b>${number(row[key])}</b><small>${title}</small></div>`).join('<span aria-hidden="true">→</span>')}</div>
     <dl class="challenger-metrics">${[['Marathonbet coverage', 'marathonbet_coverage_pct'], ['ROI', 'prospective_roi_pct'], ['1H ROI', 'prospective_first_half_roi_pct'], ['2H ROI', 'prospective_second_half_roi_pct']].map(([label, key]) => `<div><dt>${label}</dt><dd>${percent(row[key])}</dd></div>`).join('')}</dl>
     <p class="meta">${settled === null ? 'Размер выборки неизвестен.' : settled < 10 ? 'Слишком мало данных: settled < 10. ROI не позволяет сделать вывод об эффективности.' : 'Наблюдаемый ROI сам по себе не подтверждает эффективность.'} 1H/2H — первая и вторая хронологические половины выборки, не таймы матча.</p>
