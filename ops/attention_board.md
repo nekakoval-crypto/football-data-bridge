@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 13.09.2026 09:00 (Europe/Berlin)
+Обновлено: 13.09.2026 10:00 (Europe/Berlin)
 Canonical: 3 | active WATCH crossings: 3 | RED: 0 | ORANGE: 4
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -519,8 +519,8 @@ Canonical: 3 | active WATCH crossings: 3 | RED: 0 | ORANGE: 4
   - Европейская фора хозяев (-1) · П1: 9 | Х: 6 | П2: 1.28 @ Bet365
   - Европейская фора хозяев (-1) · П1: 8.5 | Х: 5.75 | П2: 1.28 @ Marathonbet
   - Европейская фора хозяев (-2) · П1: 23 | Х: 12 | П2: 1.07 @ Bet365
-  - 1X2 · П1: 3.75 | Х: 3.9 | П2: 1.91 @ Bet365
-  - 1X2 · П1: 4 | Х: 3.8 | П2: 1.93 @ Marathonbet
+  - 1X2 · П1: 3.7 | Х: 3.9 | П2: 1.91 @ Bet365
+  - 1X2 · П1: 3.96 | Х: 3.82 | П2: 1.93 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.17 | ИТМ: 5 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.8 | ИТМ: 1.91 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.86 | ИТМ: 1.95 @ Marathonbet
@@ -1061,8 +1061,8 @@ Canonical: 3 | active WATCH crossings: 3 | RED: 0 | ORANGE: 4
   - Европейская фора хозяев (-1) · П1: 6.5 | Х: 5.5 | П2: 1.33 @ Bet365
   - Европейская фора хозяев (-1) · П1: 5.8 | Х: 4.9 | П2: 1.38 @ Marathonbet
   - Европейская фора хозяев (-2) · П1: 15 | Х: 9 | П2: 1.11 @ Bet365
-  - 1X2 · П1: 3.2 | Х: 3.8 | П2: 2.1 @ Bet365
-  - 1X2 · П1: 3.22 | Х: 3.92 | П2: 2.15 @ Marathonbet
+  - 1X2 · П1: 3.1 | Х: 3.75 | П2: 2.2 @ Bet365
+  - 1X2 · П1: 3.14 | Х: 3.88 | П2: 2.2 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.14 | ИТМ: 5.5 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.73 | ИТМ: 2 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.77 | ИТМ: 2.06 @ Marathonbet
@@ -3276,7 +3276,7 @@ Canonical: 3 | active WATCH crossings: 3 | RED: 0 | ORANGE: 4
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 2
+- System Health: **WARN** | critical 0 | warnings 1
 - Логическая canonical экспозиция: **3.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
-- League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 18 | data required 7
+- League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 21 | data required 4
