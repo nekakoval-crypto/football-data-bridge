@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 13.09.2026 04:00 (Europe/Berlin)
+Обновлено: 13.09.2026 05:00 (Europe/Berlin)
 Canonical: 3 | active WATCH crossings: 3 | RED: 0 | ORANGE: 4
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -737,7 +737,7 @@ Canonical: 3 | active WATCH crossings: 3 | RED: 0 | ORANGE: 4
 
 - **Levante — Barcelona** | La Liga | 13.09 14:15 UTC
   - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
-  - ОЗ · ОЗ Да: 1.76 | ОЗ Нет: 1.95 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.77 | ОЗ Нет: 1.94 @ Marathonbet
   - Ф(0) · Ф1(0): 5.75 | Ф2(0): 1.14 @ Bet365
   - Ф(0) · Ф1(0): 7.1 | Ф2(0): 1.04 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 5.5 | Х2: 1.02 | 12: 1.08 @ Bet365
