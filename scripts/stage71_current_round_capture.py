@@ -8,6 +8,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import stage53_daily_screener as s53
+import stage71_observation_audit as audit
 from api_football_broker import ApiFootballBrokerError
 from stage72_build_data_layer import today_status
 
@@ -104,6 +105,8 @@ def capture_round(league, observed_at, get=s53.api_get):
     fixtures = (fixtures_payload or {}).get("response")
     if not isinstance(fixtures, list):
         raise RuntimeError("provider returned no complete round fixture list")
+    if not fixtures:
+        raise RuntimeError(f"provider returned an empty fixture list for current round {round_name}")
     rows = [extract_fixture(item, league, round_name, observed_at)
             for item in fixtures if (item.get("fixture") or {}).get("id")]
     if any(row["provider_league_id"] != lid for row in rows):
@@ -118,11 +121,14 @@ def main():
     leagues = []
     fixtures = []
     warnings = []
-    provider_calls = 0
-    def provider_get(path, params, **kwargs):
-        nonlocal provider_calls
-        provider_calls += 1
-        return s53.api_get(path, params, **kwargs)
+    state_path = OPS / "stage71_observation_state.json"
+    state = audit.read(state_path)
+    budget = audit.Budget(
+        s53.api_get, state, datetime.now(timezone.utc),
+        int(os.getenv("STAGE71_MAX_API_CALLS", "60")),
+        int(os.getenv("STAGE71_MAX_DAILY_API_CALLS", "180")),
+        checkpoint=lambda data: audit.save(state_path, data),
+    )
     for league in read_csv(CATALOG):
         base = {
             "provider_league_id": league.get("api_league_id") or None,
@@ -137,7 +143,7 @@ def main():
             "error": None,
         }
         try:
-            round_name, rows = capture_round(league, observed_at, provider_get)
+            round_name, rows = capture_round(league, observed_at, budget)
             base.update({
                 "round": round_name,
                 "status": "available",
@@ -149,6 +155,7 @@ def main():
             base["error"] = str(exc)
             warnings.append(f"{base['league_name']}: {exc}")
         leagues.append(base)
+    audit.save(state_path, state)
     fixtures.sort(key=lambda row: (row.get("provider_league_id") or "", row.get("kickoff_utc") or "", row["fixture_id"]))
     write_csv(LEAGUES_OUT, LEAGUE_FIELDS, leagues)
     write_csv(FIXTURES_OUT, FIXTURE_FIELDS, fixtures)
@@ -160,7 +167,10 @@ def main():
         "available_leagues": sum(row["status"] == "available" for row in leagues),
         "fixture_rows": len(fixtures),
         "warnings": warnings,
-        "api_calls": provider_calls,
+        "api_calls": budget.calls,
+        "api_day_calls": state.get("api_day_calls", 0),
+        "api_budget_limit": budget.limit,
+        "api_daily_budget_limit": budget.daily_limit,
         "provider_polling": True,
     }
     META_OUT.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
