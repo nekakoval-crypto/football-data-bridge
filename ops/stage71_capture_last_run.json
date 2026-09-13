@@ -1,98 +1,98 @@
 {
-  "run_at_utc": "2026-09-13T07:28:20Z",
+  "run_at_utc": "2026-09-13T15:29:01Z",
   "status": "OK",
   "research_leagues": 15,
-  "new_triggers": 0,
-  "new_r1_rows": 0,
-  "new_r2_rows": 5,
-  "settled_rows": 0,
-  "trigger_rows": 124,
-  "forward_rows": 36,
-  "api_calls": 28,
-  "odds_calls": 8,
-  "marathon_calls": 5,
+  "new_triggers": 15,
+  "new_r1_rows": 1,
+  "new_r2_rows": 1,
+  "settled_rows": 7,
+  "trigger_rows": 139,
+  "forward_rows": 38,
+  "api_calls": 52,
+  "odds_calls": 35,
+  "marathon_calls": 2,
   "scan": [
     {
       "league": "Premier League",
-      "expected": 2,
-      "scanned": 2,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
-    },
-    {
-      "league": "La Liga",
-      "expected": 4,
-      "scanned": 4,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
-    },
-    {
-      "league": "Bundesliga",
-      "expected": 2,
-      "scanned": 2,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
-    },
-    {
-      "league": "Ligue 1",
-      "expected": 3,
-      "scanned": 3,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
-    },
-    {
-      "league": "Austrian Bundesliga",
-      "expected": 3,
-      "scanned": 3,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
-    },
-    {
-      "league": "Belgian Pro League",
-      "expected": 4,
-      "scanned": 4,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
-    },
-    {
-      "league": "Danish Superliga",
-      "expected": 4,
-      "scanned": 4,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
-    },
-    {
-      "league": "A Lyga",
-      "expected": 3,
-      "scanned": 3,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
-    },
-    {
-      "league": "Virsliga",
       "expected": 1,
       "scanned": 1,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
+      "league": "La Liga",
+      "expected": 2,
+      "scanned": 2,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "Bundesliga",
+      "expected": 1,
+      "scanned": 1,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "Ligue 1",
+      "expected": 1,
+      "scanned": 1,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "Austrian Bundesliga",
+      "expected": 0,
+      "scanned": 0,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "Belgian Pro League",
+      "expected": 2,
+      "scanned": 2,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "Danish Superliga",
+      "expected": 1,
+      "scanned": 1,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "A Lyga",
+      "expected": 1,
+      "scanned": 1,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "Virsliga",
+      "expected": 0,
+      "scanned": 0,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
       "league": "Eredivisie",
-      "expected": 4,
-      "scanned": 4,
+      "expected": 1,
+      "scanned": 1,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Eliteserien",
-      "expected": 5,
-      "scanned": 5,
+      "expected": 1,
+      "scanned": 1,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Ekstraklasa",
-      "expected": 3,
-      "scanned": 3,
+      "expected": 1,
+      "scanned": 1,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -105,8 +105,8 @@
     },
     {
       "league": "Super Lig",
-      "expected": 3,
-      "scanned": 3,
+      "expected": 2,
+      "scanned": 2,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
