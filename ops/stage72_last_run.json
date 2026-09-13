@@ -1,12 +1,12 @@
 {
-  "run_at_utc": "2026-09-13T15:29:42Z",
+  "run_at_utc": "2026-09-13T15:31:50Z",
   "status": "OK",
-  "schema_version": "8",
+  "schema_version": "10",
   "db_path": "build/pbk_unified.sqlite",
-  "db_bytes": 23023616,
-  "db_sha256": "25d368b079e8394633d85ab984059853eb4728460745bb69ae781397fb774b55",
+  "db_bytes": 23052288,
+  "db_sha256": "bc026d514ebc1ee127f3a042b4695d68884461f2207253677497bdb06f299218",
   "integrity_check": "ok",
-  "tables": 80,
+  "tables": 82,
   "manifest_sources": 72,
   "stable_counts": {
     "competitions": 16,
@@ -33,7 +33,9 @@
     "probability_predictions": 3,
     "probability_settlements": 0,
     "value_radar_events": 3,
-    "today_matches": 13
+    "today_matches": 13,
+    "current_round_leagues": 0,
+    "current_round_matches": 0
   },
   "missing_stable_sources": [],
   "api_calls": 0
