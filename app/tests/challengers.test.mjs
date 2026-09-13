@@ -1,8 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-const source = readFileSync(new URL('../challengers.js', import.meta.url), 'utf8');
-const { numeric, filterRows, renderCard, renderObservation, initChallengers } = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
+const { numeric, filterRows, renderCard, renderObservation, initChallengers } = await import(new URL('../challengers.js', import.meta.url));
 const board = JSON.parse(readFileSync(new URL('../../ops/stage71_challenger_board.json', import.meta.url), 'utf8'));
 
 test('real board retains all 16 leagues and both families without mutation', () => {
@@ -36,7 +35,7 @@ test('gates use server remaining counts and clamp only visual bars', () => {
   const html = renderCard({review_remaining_settled: '59', discovery_remaining_settled: '119', prospective_settled: 999, status: 'MONITORING'});
   assert.match(html, /max="60" value="1"/);
   assert.match(html, /max="120" value="1"/);
-  assert.match(html, /MONITORING/);
+  assert.match(html, /ИССЛЕДОВАНИЕ/);
   assert.match(renderCard({review_remaining_settled: -1}), /max="60" value="60"/);
   assert.doesNotMatch(renderCard({}), /<progress/);
 });

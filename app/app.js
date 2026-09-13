@@ -1,5 +1,7 @@
 import { marketCard } from './markets.js';
 import { initChallengers } from './challengers.js';
+import { statusLabel } from './status-glossary.js';
+import { projectLifecycle, renderLifecycleEvent } from './lifecycle.js';
 const challengers = initChallengers();
 const $=s=>document.querySelector(s);const $$=s=>[...document.querySelectorAll(s)];
 const api=async path=>{const r=await fetch(`/api${path}`,{headers:{Accept:'application/json'},cache:'no-store'});if(!r.ok)throw new Error(`${r.status} ${r.statusText}`);return r.json()};
@@ -31,10 +33,10 @@ function currentMarketRows(d){if(d.attention_card?.markets)return d.attention_ca
   return out}
 
 function renderMatchDetail(d){const i=d.identity||{};$('#detail-eyebrow').textContent=`${i.league||'Матч'} · ${i.kickoff_local||i.kickoff_utc||''}`;$('#detail-title').textContent=`${i.home_team||'—'} — ${i.away_team||'—'}`;let html='';
-  const tags=[];(d.canonical||[]).forEach(x=>tags.push(`<span class="tag blue">${esc(x.rule||'R')} · ${esc(x.selection_ru||x.selection||'')} ${x.paper_user_execution_odds?`@${esc(x.paper_user_execution_odds)}`:''}</span>`));(d.watch||[]).forEach(x=>tags.push(`<span class="tag orange">WATCH · ${esc(x.selection_ru||x.selection||x.watch_family||'')}</span>`));html+=section('Статус',`<div class="detail-tags">${tags.join('')||'<span class="tag">Нет R/WATCH сигнала</span>'}</div>`);
+  const tags=[];(d.canonical||[]).forEach(x=>tags.push(`<span class="tag blue">${esc(statusLabel({canonical:true}))} · ${esc(x.rule||'R')} · ${esc(x.selection_ru||x.selection||'')} ${x.paper_user_execution_odds?`@${esc(x.paper_user_execution_odds)}`:''}</span>`));(d.watch||[]).forEach(x=>tags.push(`<span class="tag orange">${esc(statusLabel({watch:true}))} · ${esc(x.selection_ru||x.selection||x.watch_family||'')}</span>`));html+=section('Статус',`<div class="detail-tags">${tags.join('')||'<span class="tag">Нет сигнала</span>'}</div>`);
   const marketRows=currentMarketRows(d);html+=section('Текущий обзор рынков',marketRows.length?`<div class="market-list">${marketRows.map(x=>`<div class="market-row">${esc(x)}</div>`).join('')}</div><div class="market-note">Рынки ≠ сигналы. Выводятся только как market view.</div>`:'<div class="empty">Рынки пока не собраны.</div>');
   const c=first(d.context);if(c){const pairs=cleanPairs(c,[['Стадион','venue_name'],['Судья','referee'],['Отдых хозяев, ч','home_rest_hours'],['Отдых гостей, ч','away_rest_hours'],['След. матч хозяев, ч','home_next_match_hours'],['След. матч гостей, ч','away_next_match_hours'],['Snapshot','snapshot_type']]);html+=section('Контекст',pairs.length?pairGrid(pairs):'<div class="empty">Контекст есть, но компактных полей пока нет.</div>')}
-  const life=d.lifecycle||[];html+=section('Lifecycle',life.length?`<div class="timeline">${life.slice(-20).map(x=>`<div class="timeline-item"><b>${esc(x.event_type||x.event||x.status||'EVENT')}</b><div>${esc(x.event_at_utc||x.event_time_utc||x.captured_at_utc||'')} ${x.details?`· ${esc(x.details)}`:''}</div></div>`).join('')}</div>`:'<div class="empty">Lifecycle для этого fixture пока пуст.</div>');
+  const life=d.lifecycle||[];const visibleLife=projectLifecycle(life);const technical=life.slice().sort((a,b)=>String(a.event_time_utc||'').localeCompare(String(b.event_time_utc||'')));html+=section('История матча',`${visibleLife.length?`<div class="timeline">${visibleLife.map(x=>renderLifecycleEvent(x,esc)).join('')}</div>`:'<div class="empty">Значимых событий пока нет.</div>'}${life.length?`<details class="technical-history"><summary>Техническая история / Все события и снимки</summary><div class="timeline">${technical.map(x=>renderLifecycleEvent(x,esc)).join('')}</div></details>`:''}`);
   if((d.settlements||[]).length)html+=section('Результат / settlement',pairGrid([['Settlement rows',d.settlements.length],['Последний статус',last(d.settlements)?.settlement_status||'—']]));
   $('#detail-body').innerHTML=html}
 
@@ -46,7 +48,7 @@ function renderPerformance(perf){const c=perf.canonical?.overall||{};const w=per
 function readNotificationIds(){try{const raw=JSON.parse(localStorage.getItem(READ_NOTIFICATIONS_KEY)||'[]');return new Set(Array.isArray(raw)?raw:[])}catch{return new Set()}}
 function writeNotificationIds(ids){try{localStorage.setItem(READ_NOTIFICATIONS_KEY,JSON.stringify([...ids].slice(-500)))}catch{}}
 function fmtNotificationTime(v){if(!v)return '—';const d=new Date(v);if(Number.isNaN(d.getTime()))return String(v);return new Intl.DateTimeFormat('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}).format(d)}
-function notificationLabel(category){return ({SIGNAL:'R-сигнал',WATCH:'WATCH',LINEUP:'Составы',SETTLEMENT:'Результат',FIXTURE:'Матч',SYSTEM:'Система'})[category]||category||'Событие'}
+function notificationLabel(category){return ({SIGNAL:'БРАТЬ ПО СИСТЕМЕ',WATCH:'НАБЛЮДЕНИЕ',LINEUP:'Составы',SETTLEMENT:'Результат',FIXTURE:'Матч',SYSTEM:'СИСТЕМНОЕ ПРЕДУПРЕЖДЕНИЕ'})[category]||category||'ИНФОРМАЦИЯ'}
 function markNotificationRead(id){if(!id)return;const read=readNotificationIds();read.add(id);writeNotificationIds(read)}
 function renderNotifications(payload=notificationPayload){notificationPayload=payload||{items:[],summary:{}};const all=notificationPayload.items||[];const read=readNotificationIds();const filter=$('#notification-filter')?.value||'';const visible=filter?all.filter(x=>x.category===filter):all;const unread=all.filter(x=>!read.has(x.id)).length;const badge=$('#notification-badge');if(badge){badge.textContent=String(unread);badge.hidden=unread===0}
   const summary=$('#notification-summary');if(summary){const categories=[['R',all.filter(x=>x.category==='SIGNAL').length],['WATCH',all.filter(x=>x.category==='WATCH').length],['Составы',all.filter(x=>x.category==='LINEUP').length],['Непрочитано',unread]];summary.innerHTML=categories.map(([k,v])=>`<div class="metric"><b>${esc(v)}</b><span>${esc(k)}</span></div>`).join('')}
