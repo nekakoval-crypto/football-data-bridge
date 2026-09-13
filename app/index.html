@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="/probability.css">
   <link rel="stylesheet" href="/value-radar.css">
   <link rel="stylesheet" href="/challengers.css">
+  <link rel="stylesheet" href="/today-live.css">
 </head>
 <body>
   <div class="shell">
@@ -46,6 +47,8 @@
     <main>
       <section class="view active" id="view-today">
         <div class="summary-grid" id="summary-grid"></div>
+        <div class="section-head"><h2>Матчи сегодня / LIVE</h2><span>состав дня по UTC · время МСК</span></div>
+        <div id="today-live-content" aria-live="polite"><div class="empty">Загрузка Матчи сегодня / LIVE…</div></div>
         <div class="section-head"><h2>Оценки ПБК</h2><span>validated canonical · вероятность ≠ value</span></div>
         <div id="probability-today" class="probability-grid"><div class="empty">Загрузка probability…</div></div>
         <div class="section-head"><h2>РАСХОЖДЕНИЕ С РЫНКОМ</h2><span>Value Radar · research only · не новый сигнал</span></div>
@@ -149,5 +152,6 @@
   <script type="module" src="/push.js"></script>
   <script type="module" src="/probability.js"></script>
   <script type="module" src="/value-radar.js"></script>
+  <script type="module" src="/today-live.js"></script>
 </body>
 </html>
