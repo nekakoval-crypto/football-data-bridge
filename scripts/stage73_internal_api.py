@@ -72,6 +72,47 @@ def state_doc(conn,name):
     if not r:return None
     try:return json.loads(r['payload_json'])
     except:return None
+def today_payload(conn):
+    generated=dict(conn.execute('SELECT key,value FROM pbk_meta').fetchall()).get('built_at_utc')
+    rows=[]
+    if table_exists(conn,'today_matches'):
+        for raw in conn.execute('SELECT * FROM today_matches ORDER BY kickoff_utc ASC, fixture_id ASC').fetchall():
+            row=dict(raw)
+            try: row['score']=json.loads(row.get('score') or 'null')
+            except (TypeError,ValueError): row['score']=None
+            observed=row.get('observed_at_utc') or None
+            freshness='unknown'
+            if observed and generated:
+                try:
+                    age=(datetime.fromisoformat(generated.replace('Z','+00:00')) -
+                         datetime.fromisoformat(observed.replace('Z','+00:00'))).total_seconds()
+                    freshness='fresh' if 0 <= age <= 21600 else ('stale' if age > 21600 else 'unknown')
+                except ValueError:
+                    freshness='unknown'
+            row.update({'freshness_status':freshness,
+                        'observed_at_utc':observed,
+                        'score':row.get('score')})
+            rows.append(row)
+    return {
+        'api_version':API_VERSION,
+        'day_basis':'UTC',
+        'day_definition':'projection day is the UTC date of the Stage72 build timestamp',
+        'date_utc':generated[:10] if generated else None,
+        'generated_at_utc':generated,
+        'matches':rows,
+        'coverage':{
+            'live_completeness_guaranteed':False,
+            'source':'Stage53/Stage54 operational data projected by Stage72',
+            'limitations':['Current PBK sources do not provide a complete real-time LIVE feed.'],
+        },
+        'freshness':{
+            'status':'unknown' if not generated else 'known',
+            'generated_at_utc':generated,
+            'per_match_field':'freshness_status',
+        },
+        'read_only':True,
+        'provider_polling':False,
+    }
 def config_doc(path,fallback):
     try:return json.loads(path.read_text(encoding='utf-8'))
     except Exception:return fallback
@@ -133,6 +174,7 @@ def dispatch(path_with_query):
             meta=dict(conn.execute('SELECT key,value FROM pbk_meta').fetchall()) if table_exists(conn,'pbk_meta') else {};sh=state_doc(conn,'system_health.json') or {};return 200,{'status':'OK' if str(sh.get('status','HEALTHY')).upper()!='CRITICAL' else 'CRITICAL','api_version':API_VERSION,'db_schema_version':meta.get('schema_version'),'db_built_at_utc':meta.get('built_at_utc'),'system_health':sh.get('status','UNKNOWN'),'read_only':True}
         if path=='/v1/meta':
             meta=dict(conn.execute('SELECT key,value FROM pbk_meta').fetchall()) if table_exists(conn,'pbk_meta') else {};return 200,{'api_version':API_VERSION,'db':meta,'global_odds_cap':None,'eligibility_mutation':False}
+        if path=='/v1/today':return 200,today_payload(conn)
         if path=='/v1/competitions':return 200,query_table(conn,'competitions',q,{'country':'country','league':'league','group':'group'},default_order=['country','league'])
         if path=='/v1/signals/canonical':return 200,query_table(conn,'canonical_signals',q,{'strategy':'rule','status':'status','team':'away_team'},['paper_user_execution_odds','market_execution_odds','trigger_selected_odds'],['kickoff_utc','forward_id'])
         if path=='/v1/signals/challengers':return 200,query_table(conn,'challenger_signals',q,{'strategy':'family','league':'league','status':'status','country':'country'},['user_odds','trigger_b365_away'],['kickoff_utc','research_id'])
