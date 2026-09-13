@@ -84,10 +84,10 @@ jobs:
           grep -q '/v1/push/subscribe' app/push.js
           grep -q '/api/v1/performance' app/probability.js
           grep -q 'applyFreshnessGuard' app/app.js
-          grep -q '/api/v1/today' app/today-live.js
+          grep -q '/api/v1/rounds/current' app/today-live.js
           grep -q 'today-live.js' app/sw.js
           grep -q 'today-live.css' app/sw.js
-          grep -q "pbk-shell-v11" app/sw.js
+          grep -q "pbk-shell-v12" app/sw.js
           grep -q "beforeinstallprompt" app/install.js
           grep -q "addEventListener('push'" app/sw.js
           grep -q 'probability.js' app/sw.js

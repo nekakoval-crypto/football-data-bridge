@@ -1,75 +1,125 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
 import {
-  compactRightSideValue, compactStatusLabel, formatMoscowTime, formatScore, freshnessLabel,
-  groupMatchesByCompetition, renderTodayLive, sortMatches, statusLabel, todayViewModel,
+  formatScore, formatScheduledTime, groupMatchesByLeague, liveMatches, renderTodayLive,
+  roundLabel, safeMediaUrl, sortMatches,
 } from '../today-live.js';
 
-test('normalizes status labels and keeps unknown explicit', () => {
-  assert.equal(statusLabel('live'), 'LIVE');
-  assert.equal(statusLabel('suspended'), 'Приостановлен');
-  assert.equal(statusLabel('unknown'), 'Статус не подтверждён');
-  assert.equal(statusLabel('new-provider-state'), 'Статус не подтверждён');
+const fixture = (id, status, kickoff, extra = {}) => ({
+  fixture_id: String(id), status, kickoff_utc: kickoff,
+  home_team: `Home ${id}`, away_team: `Away ${id}`,
+  home_team_logo_url: 'https://cdn.test/home.png',
+  away_team_logo_url: 'https://cdn.test/away.png',
+  ...extra,
 });
 
-test('formats only known scores', () => {
+const payload = {
+  generated_at_utc: '2026-09-13T15:00:00Z',
+  coverage: {partial_leagues_possible: true},
+  leagues: [
+    {
+      provider_league_id: '39', league_name: 'Premier League', country: 'England',
+      country_flag_url: 'https://cdn.test/gb.png', league_logo_url: 'https://cdn.test/epl.png',
+      round: 'Regular Season - 4', status: 'available',
+      matches: [
+        fixture(2, 'scheduled', '2026-09-14T16:30:00Z'),
+        fixture(1, 'finished', '2026-09-14T14:00:00Z', {score: {home: '2', away: '1'}, source_status: 'FT'}),
+        fixture(3, 'live', '2026-09-14T15:00:00Z', {score: null, source_status: '1H'}),
+        fixture(4, 'postponed', '2026-09-14T17:00:00Z'),
+      ],
+    },
+    {
+      provider_league_id: '140', league_name: 'La Liga', country: 'Spain',
+      country_flag_url: null, league_logo_url: null, round: 'Matchday 4',
+      status: 'available', matches: [fixture(5, 'scheduled', '2026-09-15T16:00:00Z')],
+    },
+    {
+      provider_league_id: '61', league_name: 'Ligue 1', country: 'France',
+      round: null, status: 'unavailable', error: 'provider error', matches: [],
+    },
+  ],
+};
+
+test('LIVE and ТУР data preserve league order and deterministic match chronology', () => {
+  assert.deepEqual(groupMatchesByLeague(payload.leagues, 'live').map(x => x.league_name),
+    ['Premier League']);
+  assert.deepEqual(liveMatches(payload.leagues).map(x => x.fixture_id), ['3']);
+  assert.deepEqual(groupMatchesByLeague(payload.leagues, 'tour')[0].matches.map(x => x.fixture_id),
+    ['1', '3', '2', '4']);
+  assert.deepEqual(sortMatches([{fixture_id: '10'}, {fixture_id: '2'}]).map(x => x.fixture_id), ['2', '10']);
+});
+
+test('round formatting and null round stay explicit', () => {
+  assert.equal(roundLabel('Regular Season - 4'), 'Тур 4');
+  assert.equal(roundLabel('Matchday 4'), 'Matchday 4');
+  assert.equal(roundLabel(null), 'Тур не подтверждён');
+});
+
+test('media URLs accept only HTTPS and scores never invent 0:0', () => {
+  assert.equal(safeMediaUrl('https://cdn.test/logo.png'), 'https://cdn.test/logo.png');
+  assert.equal(safeMediaUrl('http://cdn.test/logo.png'), '');
+  assert.equal(safeMediaUrl(null), '');
   assert.equal(formatScore(null), '');
-  assert.equal(formatScore({home: '2', away: '1'}), '2 : 1');
+  assert.equal(formatScore({home: 0, away: 0}), '0:0');
 });
 
-test('maps freshness explicitly', () => {
-  assert.equal(freshnessLabel('fresh'), 'Свежие данные');
-  assert.equal(freshnessLabel('stale'), 'Данные устарели');
-  assert.equal(freshnessLabel('unknown'), 'Свежесть неизвестна');
+test('scheduled kickoff contains Moscow date and time', () => {
+  assert.deepEqual(formatScheduledTime('2026-09-14T16:30:00Z'), {date: '14.09', time: '19:30 МСК'});
 });
 
-test('uses compact status labels and right-side score/status values', () => {
-  assert.equal(compactStatusLabel('finished'), 'FT');
-  assert.equal(compactStatusLabel('unknown'), 'Не подтв.');
-  assert.equal(compactRightSideValue({status: 'live', score: {home: '2', away: '0'}}), '2:0');
-  assert.equal(compactRightSideValue({status: 'unknown'}), 'Не подтв.');
-  assert.match(compactRightSideValue({
-    status: 'scheduled', kickoff_utc: '2026-09-13T15:30:00Z',
-  }), /18:30 МСК/);
-});
-
-test('orders live, upcoming, exceptional, then finished deterministically', () => {
-  const rows = [
-    {fixture_id: '2', status: 'finished', kickoff_utc: '2026-09-13T10:00:00Z'},
-    {fixture_id: '3', status: 'scheduled', kickoff_utc: '2026-09-13T09:00:00Z'},
-    {fixture_id: '1', status: 'live', kickoff_utc: '2026-09-13T12:00:00Z'},
-    {fixture_id: '4', status: 'unknown', kickoff_utc: '2026-09-13T08:00:00Z'},
-  ];
-  assert.deepEqual(sortMatches(rows).map(row => row.fixture_id), ['1', '3', '4', '2']);
-});
-
-test('formats kickoff in Moscow time and exposes UTC boundary when dates differ', () => {
-  assert.match(formatMoscowTime('2026-09-12T21:30:00Z', '2026-09-13'), /13\.09 · 00:30 МСК/);
-  assert.match(formatMoscowTime('2026-09-12T21:30:00Z', '2026-09-12'), /UTC-день 2026-09-12/);
-});
-
-test('groups competitions after deterministic status and kickoff ordering', () => {
-  const groups = groupMatchesByCompetition([
-    {fixture_id: '2', competition: 'Лига B', status: 'scheduled', kickoff_utc: '2026-09-13T12:00:00Z'},
-    {fixture_id: '1', competition: 'Лига A', status: 'live', kickoff_utc: '2026-09-13T11:00:00Z'},
-    {fixture_id: '3', competition: 'Лига B', status: 'live', kickoff_utc: '2026-09-13T10:00:00Z'},
-  ]);
-  assert.deepEqual(groups.map(group => group.competition), ['Лига B', 'Лига A']);
-  assert.deepEqual(groups[0].matches.map(match => match.fixture_id), ['3', '2']);
-});
-
-test('coverage warning and missing optional fields are safe', () => {
-  const payload = {
-    date_utc: '2026-09-13',
-    coverage: {live_completeness_guaranteed: false},
-    matches: [{fixture_id: '1', status: 'unknown'}],
-  };
-  const model = todayViewModel(payload);
-  assert.equal(model.coverageWarning, true);
-  assert.equal(model.matches.length, 1);
-  assert.equal(model.summary.upcoming, 0);
+test('LIVE mode renders only confirmed live matches and explicit empty state', () => {
   const container = {innerHTML: ''};
-  renderTodayLive(container, payload);
-  assert.match(container.innerHTML, /LIVE-покрытие неполное/);
-  assert.match(container.innerHTML, /Не подтв\./);
+  renderTodayLive(container, payload, 'live');
+  assert.match(container.innerHTML, /LIVE · 1H/);
+  assert.match(container.innerHTML, /data-fixture="3"/);
+  assert.doesNotMatch(container.innerHTML, /data-fixture="1"/);
+  assert.doesNotMatch(container.innerHTML, /data-fixture="2"/);
+  renderTodayLive(container, {...payload, leagues: payload.leagues.map(x => ({...x, matches: []}))}, 'live');
+  assert.match(container.innerHTML, /Сейчас подтверждённых LIVE-матчей нет/);
+});
+
+test('ТУР renders complete rounds, logos, order, unavailable league, and warning', () => {
+  const container = {innerHTML: ''};
+  renderTodayLive(container, payload, 'tour');
+  assert.match(container.innerHTML, /data-fixture="1"/);
+  assert.match(container.innerHTML, /data-fixture="3"/);
+  assert.match(container.innerHTML, /data-fixture="4"/);
+  assert.match(container.innerHTML, /Данные тура недоступны/);
+  assert.match(container.innerHTML, /Часть данных туров недоступна/);
+  assert.match(container.innerHTML, /https:\/\/cdn.test\/gb.png/);
+  assert.match(container.innerHTML, /https:\/\/cdn.test\/epl.png/);
+  assert.match(container.innerHTML, /https:\/\/cdn.test\/home.png/);
+  assert.match(container.innerHTML, /https:\/\/cdn.test\/away.png/);
+  assert.match(container.innerHTML, /Тур 4/);
+  assert.match(container.innerHTML, /Matchday 4/);
+  assert.match(container.innerHTML, /Тур не подтверждён/);
+  assert.match(container.innerHTML, /2:1/);
+  assert.doesNotMatch(container.innerHTML, /0:0/);
+  assert.match(container.innerHTML, /14\.09/);
+  assert.match(container.innerHTML, /19:30 МСК/);
+  assert.match(container.innerHTML, /data-fixture="1"[\s\S]*data-fixture="3"[\s\S]*data-fixture="2"/);
+});
+
+test('invalid and missing media use reserved placeholders and text is escaped', () => {
+  const container = {innerHTML: ''};
+  renderTodayLive(container, {
+    leagues: [{league_name: '<League>', status: 'available', matches: [{
+      ...fixture('<x>', 'unknown', null, {home_team_logo_url: 'javascript:bad', away_team_logo_url: null}),
+      home_team: '<Home>',
+    }]}],
+  }, 'tour');
+  assert.match(container.innerHTML, /&lt;League&gt;/);
+  assert.match(container.innerHTML, /&lt;Home&gt;/);
+  assert.match(container.innerHTML, /today-live-image-placeholder/);
+  assert.doesNotMatch(container.innerHTML, /javascript:bad/);
+  assert.doesNotMatch(container.innerHTML, /src="null"/);
+});
+
+test('only the local current-round endpoint and v12 shell cache are used', async () => {
+  const source = await readFile(new URL('../today-live.js', import.meta.url), 'utf8');
+  const sw = await readFile(new URL('../sw.js', import.meta.url), 'utf8');
+  assert.ok(source.includes("fetch('/api/v1/rounds/current'"));
+  assert.ok(!source.includes("fetch('/api/v1/today'"));
+  assert.ok(sw.includes('pbk-shell-v12'));
 });
