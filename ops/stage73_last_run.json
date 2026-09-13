@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-13T00:26:07Z",
+  "run_at_utc": "2026-09-13T01:16:05Z",
   "status": "OK",
   "api_version": "v1",
   "db_path": "build/pbk_unified.sqlite",
@@ -32,43 +32,43 @@
       "path": "/v1/signals/watch",
       "http_status": 200,
       "passed": true,
-      "count": 5
+      "count": 6
     },
     {
       "path": "/v1/markets/team-totals/openers?limit=1",
       "http_status": 200,
       "passed": true,
-      "count": 1520
+      "count": 1594
     },
     {
       "path": "/v1/markets/double-chance/openers?limit=1",
       "http_status": 200,
       "passed": true,
-      "count": 165
+      "count": 173
     },
     {
       "path": "/v1/markets/european-handicap/openers?limit=1",
       "http_status": 200,
       "passed": true,
-      "count": 854
+      "count": 896
     },
     {
       "path": "/v1/markets/dnb/openers?limit=1",
       "http_status": 200,
       "passed": true,
-      "count": 148
+      "count": 156
     },
     {
       "path": "/v1/markets/settlements?limit=1",
       "http_status": 200,
       "passed": true,
-      "count": 811
+      "count": 989
     },
     {
       "path": "/v1/lifecycle",
       "http_status": 200,
       "passed": true,
-      "count": 144
+      "count": 148
     },
     {
       "path": "/v1/attention",
