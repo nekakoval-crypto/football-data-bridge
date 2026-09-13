@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-13T11:02:40Z",
+  "generated_at_utc": "2026-09-13T12:03:17Z",
   "status": "OK",
   "active_signals": 3,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-13T10:43:24Z",
+        "captured_at_utc": "2026-09-13T11:42:02Z",
         "best_odds": "1.72",
         "best_bookmaker": "Betano",
         "bet365_odds": "1.67",
@@ -155,7 +155,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-13T10:43:24Z",
+        "captured_at_utc": "2026-09-13T11:42:02Z",
         "best_odds": "1.62",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.57",
@@ -186,8 +186,8 @@
         "away_last5_ppg": "3.00"
       },
       "calendar": {
-        "snapshot_type": "BASELINE",
-        "captured_at_utc": "2026-09-11T10:09:18Z",
+        "snapshot_type": "T24",
+        "captured_at_utc": "2026-09-13T11:14:53Z",
         "referee": "F. Maresca",
         "venue": "Stadio Olimpico di Torino",
         "city": "Turin",
@@ -217,10 +217,10 @@
         }
       },
       "injuries": {
-        "status": "NOT_QUERIED_YET",
-        "total": "",
-        "home": "",
-        "away": ""
+        "status": "QUERIED",
+        "total": "12",
+        "home": "8",
+        "away": "4"
       },
       "weather": {
         "snapshot_type": "T24",
@@ -281,7 +281,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-13T10:43:24Z",
+        "captured_at_utc": "2026-09-13T11:42:02Z",
         "best_odds": "1.62",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.55",
@@ -399,7 +399,7 @@
     "observed_closes": 7,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-13T10:53:09Z",
+    "latest_run_utc": "2026-09-13T11:53:22Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [],
@@ -416,7 +416,7 @@
     "observed_closes": 7,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-13T10:26:06Z",
+    "latest_run_utc": "2026-09-13T11:47:06Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [],
@@ -479,7 +479,7 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-13T10:54:29Z",
+    "generated_at_utc": "2026-09-13T11:53:23Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {

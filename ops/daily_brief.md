@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-13T11:02:40Z
+Generated UTC: 2026-09-13T12:03:17Z
 Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -29,7 +29,7 @@ Active canonical signals: 3
 - Referee / venue: F. Maresca | Stadio Olimpico di Torino, Turin
 - Previous: home Serie A vs Fiorentina (219.5h rest); away UEFA Champions League vs Fenerbahçe (95.8h rest)
 - Next: home Serie A vs Bologna (116.5h after); away Serie A vs Inter (119.5h after)
-- Injuries: NOT_QUERIED_YET
+- Injuries: QUERIED
 - Weather [T24]: 29.5°C, precip 0%, wind 6.1 km/h, gusts 10.1 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: BEFORE FIFA window; to start 151.5h; player-level UNVERIFIED
