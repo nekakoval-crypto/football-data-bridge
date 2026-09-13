@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-13T20:51:17Z",
+  "generated_at_utc": "2026-09-13T21:51:16Z",
   "status": "OK",
   "model_version": "stage75_v1_2026-09-11",
   "scope": "unique active canonical exposures only",
@@ -21,26 +21,7 @@
       "ev_pct": 6.621,
       "probability_status": "HISTORICALLY_VALIDATED_FORWARD_MONITORING",
       "probability_rank": 1,
-      "value_rank": 3
-    },
-    {
-      "rule": "R1",
-      "api_fixture_id": "1550124",
-      "kickoff_utc": "2026-09-13T18:45:00Z",
-      "home_team": "Sassuolo",
-      "away_team": "Juventus",
-      "selection": "Away",
-      "p_market_no_vig": 0.58357649,
-      "p_pbk": 0.655458375,
-      "p_market_pct": 58.358,
-      "p_pbk_pct": 65.546,
-      "paper_user_odds": 1.65,
-      "paper_user_bookmaker": "Marathonbet",
-      "ev": 0.08150631875000003,
-      "ev_pct": 8.151,
-      "probability_status": "HISTORICALLY_VALIDATED_FORWARD_MONITORING",
-      "probability_rank": 2,
-      "value_rank": 1
+      "value_rank": 2
     },
     {
       "rule": "R1",
@@ -58,32 +39,13 @@
       "ev": 0.07611057124999987,
       "ev_pct": 7.611,
       "probability_status": "HISTORICALLY_VALIDATED_FORWARD_MONITORING",
-      "probability_rank": 3,
-      "value_rank": 2
+      "probability_rank": 2,
+      "value_rank": 1
     }
   ],
   "best_value": [
     {
       "rule": "R1",
-      "api_fixture_id": "1550124",
-      "kickoff_utc": "2026-09-13T18:45:00Z",
-      "home_team": "Sassuolo",
-      "away_team": "Juventus",
-      "selection": "Away",
-      "p_market_no_vig": 0.58357649,
-      "p_pbk": 0.655458375,
-      "p_market_pct": 58.358,
-      "p_pbk_pct": 65.546,
-      "paper_user_odds": 1.65,
-      "paper_user_bookmaker": "Marathonbet",
-      "ev": 0.08150631875000003,
-      "ev_pct": 8.151,
-      "probability_status": "HISTORICALLY_VALIDATED_FORWARD_MONITORING",
-      "probability_rank": 2,
-      "value_rank": 1
-    },
-    {
-      "rule": "R1",
       "api_fixture_id": "1550131",
       "kickoff_utc": "2026-09-20T13:00:00Z",
       "home_team": "Frosinone",
@@ -98,8 +60,8 @@
       "ev": 0.07611057124999987,
       "ev_pct": 7.611,
       "probability_status": "HISTORICALLY_VALIDATED_FORWARD_MONITORING",
-      "probability_rank": 3,
-      "value_rank": 2
+      "probability_rank": 2,
+      "value_rank": 1
     },
     {
       "rule": "R1",
@@ -118,7 +80,7 @@
       "ev_pct": 6.621,
       "probability_status": "HISTORICALLY_VALIDATED_FORWARD_MONITORING",
       "probability_rank": 1,
-      "value_rank": 3
+      "value_rank": 2
     }
   ],
   "policy": {
