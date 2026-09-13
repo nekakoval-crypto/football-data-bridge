@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-13T17:02:37Z
+Generated UTC: 2026-09-13T18:03:09Z
 Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -15,7 +15,7 @@ Active canonical signals: 3
 - Previous: home Serie A vs Bologna (170.8h rest); away Serie A vs AC Milan (168.0h rest)
 - Next: home Serie A vs Monza (120.0h after); away UEFA Europa League vs NEC Nijmegen (96.2h after)
 - Injuries: QUERIED
-- Weather [T3]: 24.1°C, precip 0%, wind 2.5 km/h, gusts 4.7 km/h
+- Weather [T60]: 24.1°C, precip 0%, wind 2.8 km/h, gusts 5.0 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: BEFORE FIFA window; to start 173.2h; player-level UNVERIFIED
 - Flags: AWAY_NEXT_UEFA_OR_CUP, OFFICIAL_ROTATION_PENDING
@@ -105,12 +105,12 @@ Active canonical signals: 3
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 11 | settled 6 | pending 5
+- Crossings: 11 | settled 7 | pending 4
 - Marathonbet coverage at crossing: 100.0%
-- First-crossing P&L: -3.250u | ROI -54.167% | W-L 2-4
+- First-crossing P&L: -3.160u | ROI -45.143% | W-L 3-4
 - Close: observed 8 | stayed qualified 8 | reverted 0 | persistence 100.0%
-- Close-qualified ROI: -54.167% | Reverted ROI: N/A
+- Close-qualified ROI: -45.143% | Reverted ROI: N/A
 
 ## By WATCH family
 - Big-5 ОЗ market movement — ОЗ — Да: crossings 9, settled 5, ROI -70.2%, close persistence 100.0%
-- Бундеслига ТБ(2.5) steam: crossings 2, settled 1, ROI 26.0%, close persistence 100.0%
+- Бундеслига ТБ(2.5) steam: crossings 2, settled 2, ROI 17.5%, close persistence 100.0%
