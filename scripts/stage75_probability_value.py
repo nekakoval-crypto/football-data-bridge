@@ -10,6 +10,7 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from stage75_value_radar import materialize as materialize_radar
+from stage75_value_radar import is_watch
 
 OPS=Path(os.getenv('OPS_DIR','ops'))
 CFG=Path(os.getenv('PBK_PROBABILITY_CONFIG','config/pbk_probability_models.json'))
@@ -58,7 +59,10 @@ def main():
     for r in forward:
         rule=str(r.get('rule') or '').strip();fid=str(r.get('api_fixture_id') or '').strip();selection=str(r.get('selection') or '').strip()
         model=models.get(rule)
-        if not model or model.get('gate')!='PASS' or not fid:continue
+        if not model or model.get('gate')!='PASS' or not fid or is_watch(r):continue
+        family = str(r.get('market_family') or r.get('bet_market') or 'MATCH_WINNER').strip().lower()
+        if family not in {'match winner', 'matchwinner', '1x2', 'moneyline'}:
+            continue
         pid=f'{model_version}|{rule}|{fid}|{selection}'
         if pid in pred_ids:continue
         tr=trigger_by_fixture.get(fid)

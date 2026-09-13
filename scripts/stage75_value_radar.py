@@ -15,6 +15,7 @@ POLICY = dict(research_only=True, watch_excluded=True, canonical_mutation=False,
               executable_bookmaker='Marathonbet')
 EVENT_FIELDS = ['radar_id', 'model_version', 'radar_kind', 'first_crossed_at_utc',
                 'api_fixture_id', 'kickoff_utc', 'home_team', 'away_team', 'selection',
+                'market_family', 'line',
                 'primary_rule', 'source_rules', 'p_market_no_vig', 'p_pbk', 'p_market_pct',
                 'p_pbk_pct', 'edge_pp', 'executable_odds', 'executable_bookmaker', 'ev',
                 'ev_pct', 'probability_prediction_id', 'status', 'creates_signal',
@@ -35,6 +36,33 @@ def instant(value):
         return value if value.tzinfo else None
     except ValueError:
         return None
+
+
+def normalize(value):
+    return ' '.join(str(value or '').strip().lower().replace('_', ' ').replace('-', ' ').split())
+
+
+def identity(row):
+    family = normalize(row.get('market_family') or row.get('bet_market') or 'MATCH_WINNER')
+    selection = normalize(row.get('selection') or row.get('bet_selection') or row.get('selection_code'))
+    line = normalize(row.get('line') or row.get('market_line') or '')
+    return str(row.get('api_fixture_id') or row.get('fixture_id') or ''), family, selection, line
+
+
+def is_match_winner(row):
+    return identity(row)[1] in {'match winner', 'matchwinner', '1x2', 'moneyline'}
+
+
+def is_watch(row):
+    return normalize(row.get('rule')) == 'watch' or normalize(row.get('source_stage')).startswith('stage6') or bool(row.get('watch_family'))
+
+
+def independent_probability(prediction):
+    status = normalize(prediction.get('probability_status') or prediction.get('validation_status'))
+    marker = normalize(prediction.get('independent_probability'))
+    return marker in {'true', 'yes'} or status in {
+        'independently validated', 'independently validated forward monitoring'
+    }
 
 
 def classify(p_pbk, p_market, odds=None, bookmaker=None):
@@ -109,9 +137,16 @@ def _materialize(ops, forward, predictions, config, now):
     models = config.get('models', {})
     prediction_map = {(p.get('rule'), str(p.get('api_fixture_id')), p.get('selection')): p
                       for p in predictions if p.get('model_version') == version}
+    canonical_exposures = {
+        identity(row) for row in forward
+        if row.get('rule') in PRIORITY and row.get('status') in {'PAPER', 'OPEN', 'REVIEW'}
+        and not is_watch(row) and is_match_winner(row)
+    }
     for row in forward:
         rule = row.get('rule')
-        if rule not in PRIORITY or row.get('status') not in {'PAPER', 'OPEN', 'REVIEW'}:
+        if rule not in PRIORITY or row.get('status') not in {'PAPER', 'OPEN', 'REVIEW'} or is_watch(row):
+            continue
+        if not is_match_winner(row):
             continue
         if models.get(rule, {}).get('gate') != 'PASS' or row.get('result') or row.get('user_profit_u'):
             continue
@@ -119,6 +154,15 @@ def _materialize(ops, forward, predictions, config, now):
         key = (rule, str(row.get('api_fixture_id') or ''), row.get('selection'))
         p = prediction_map.get(key)
         if not p or not key[1] or not key[2] or not kickoff or current_time >= kickoff:
+            continue
+        row_identity = identity(row)
+        if row_identity in canonical_exposures:
+            continue
+        if not independent_probability(p):
+            continue
+        prediction_family = normalize(p.get('market_family') or p.get('bet_market') or '')
+        prediction_line = normalize(p.get('line') or p.get('market_line') or '')
+        if prediction_family and (prediction_family, prediction_line) != (row_identity[1], row_identity[3]):
             continue
         times = [instant(p.get(field)) for field in ('created_at_utc', 'trigger_captured_at_utc')]
         if p.get('status') != 'FROZEN_PREMATCH' or any(t is None or t > current_time or t >= kickoff for t in times):
@@ -133,19 +177,22 @@ def _materialize(ops, forward, predictions, config, now):
                            row.get('paper_user_execution_bookmaker'))
         if metrics is None:
             continue
-        groups.setdefault(key[1:], []).append((row, p, metrics))
+        groups.setdefault((row_identity[0], row_identity[1], row_identity[2], row_identity[3]), []).append((row, p, metrics))
     for key, rows in sorted(groups.items()):
         row, prediction, metrics = max(rows, key=lambda entry: PRIORITY[entry[0]['rule']])
+        row_identity = identity(row)
         kinds = metrics.pop('kinds')
         if not kinds:
             continue
         item = {field: row.get(field) for field in ('api_fixture_id', 'kickoff_utc', 'home_team', 'away_team', 'selection')}
+        item.update(market_family=row_identity[1], line=row_identity[3])
         item.update(metrics, primary_rule=row['rule'], source_rules=sorted({r[0]['rule'] for r in rows}),
                     model_version=version, probability_prediction_id=prediction['prediction_id'],
                     probability_status='HISTORICALLY_VALIDATED_FORWARD_MONITORING',
                     creates_signal=False, stake_changes=False, source='STAGE75_FROZEN_PREMATCH')
         for kind in kinds:
-            radar_id = hashlib.sha256('|'.join((version, *key, kind)).encode()).hexdigest()[:24]
+            radar_id = hashlib.sha256('|'.join((version, str(row_identity[0]), row_identity[1],
+                                                row_identity[2], row_identity[3], kind)).encode()).hexdigest()[:24]
             if radar_id not in known:
                 event = dict(item, radar_id=radar_id, radar_kind=kind,
                              first_crossed_at_utc=now, status='FIRST_CROSSING_FROZEN')
@@ -154,7 +201,7 @@ def _materialize(ops, forward, predictions, config, now):
         item.update(radar_level=kinds[0], radar_tags=[k for k in kinds if k == 'LONGSHOT_STRONG'],
                     first_crossed_at_utc_by_kind={e['radar_kind']: e['first_crossed_at_utc']
                         for e in known.values() if e['model_version'] == version
-                        and str(e['api_fixture_id']) == key[0] and e['selection'] == key[1]})
+                        and identity(e) == row_identity})
         items.append(item)
     items.sort(key=lambda r: (LEVELS.index(r['radar_level']),
                -(r['ev_pct'] if r['ev_pct'] is not None else -1e99), -r['edge_pp'], r['kickoff_utc'], str(r['api_fixture_id']), r['selection']))
@@ -163,6 +210,8 @@ def _materialize(ops, forward, predictions, config, now):
         atomic_write(ledger, original + separator + b''.join(
             (json.dumps(event, ensure_ascii=False, sort_keys=True, allow_nan=False)+'\n').encode() for event in added))
     current = dict(generated_at_utc=now, status='OK', model_version=version,
-                   scope='research-only frozen prematch probability/value', items=items, policy=POLICY)
+                   scope='research-only frozen prematch probability/value', items=items,
+                   canonical_exposures=[list(value) for value in sorted(canonical_exposures)],
+                   policy=POLICY)
     atomic_write(ops/'value_radar_current.json', json.dumps(current, ensure_ascii=False, indent=2, allow_nan=False).encode())
     return dict(radar_events_total=len(known), radar_events_created=len(added), radar_active_items=len(items))
