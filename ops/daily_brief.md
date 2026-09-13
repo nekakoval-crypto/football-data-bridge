@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-13T08:02:51Z
+Generated UTC: 2026-09-13T09:23:27Z
 Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -85,7 +85,7 @@ Active canonical signals: 3
 > Это **не ставка и не новая стратегия**. Исторического edge по ОЗ мы не заявляем: в 10-летней базе нет first/close коэффициентов ОЗ.
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
-- Заморожено Bet365 opener'ов: 95
+- Заморожено Bet365 opener'ов: 96
 - Активные движения ≥3 п.п.: всего 3 | ОЗ — Да 3 | ОЗ — Нет 0
 - Зафиксировано observed close: 29
 - Исполнимый букмекер для наблюдения: Marathonbet
