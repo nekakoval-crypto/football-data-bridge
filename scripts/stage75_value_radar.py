@@ -146,6 +146,8 @@ def _materialize(ops, forward, predictions, config, now):
         rule = row.get('rule')
         if rule not in PRIORITY or row.get('status') not in {'PAPER', 'OPEN', 'REVIEW'} or is_watch(row):
             continue
+        if not is_match_winner(row):
+            continue
         if models.get(rule, {}).get('gate') != 'PASS' or row.get('result') or row.get('user_profit_u'):
             continue
         kickoff = instant(row.get('kickoff_utc'))
@@ -175,9 +177,10 @@ def _materialize(ops, forward, predictions, config, now):
                            row.get('paper_user_execution_bookmaker'))
         if metrics is None:
             continue
-        groups.setdefault(key[1:], []).append((row, p, metrics))
+        groups.setdefault((row_identity[0], row_identity[1], row_identity[2], row_identity[3]), []).append((row, p, metrics))
     for key, rows in sorted(groups.items()):
         row, prediction, metrics = max(rows, key=lambda entry: PRIORITY[entry[0]['rule']])
+        row_identity = identity(row)
         kinds = metrics.pop('kinds')
         if not kinds:
             continue

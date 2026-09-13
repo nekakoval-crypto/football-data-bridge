@@ -30,11 +30,11 @@ class RadarTests(unittest.TestCase):
         self.addCleanup(gc.collect)
         self.ops = Path(self.tmp.name)
         self.cfg = {'version':'v1','models':{r:{'gate':'PASS'} for r in ('R1','R2','R3')}}
-        self.row = dict(rule='R1',api_fixture_id='123',market_family='BTTS',line='2.5',selection='Yes',kickoff_utc=KICK,
+        self.row = dict(rule='R1',api_fixture_id='123',market_family='MATCH_WINNER',line='',selection='Away',kickoff_utc=KICK,
                         home_team='Home',away_team='Away',status='PAPER',result='',
                         paper_user_execution_odds='2',paper_user_execution_bookmaker='Marathonbet',
                         user_execution_status='FROZEN',paper_user_execution_at_utc=NOW)
-        self.pred = dict(rule='R1',api_fixture_id='123',market_family='BTTS',line='2.5',selection='Yes',kickoff_utc=KICK,
+        self.pred = dict(rule='R1',api_fixture_id='123',market_family='MATCH_WINNER',line='',selection='Away',kickoff_utc=KICK,
                          prediction_id='v1|R1|123|Away',model_version='v1',p_pbk='.525',
                          p_market_no_vig='.495',created_at_utc=NOW,trigger_captured_at_utc=NOW,
                          status='FROZEN_PREMATCH',independent_probability=True)
@@ -81,32 +81,27 @@ class RadarTests(unittest.TestCase):
 
     def test_first_crossing_bytes_rerun_and_transition(self):
         self.pred.update(p_pbk='.51',p_market_no_vig='.48')
-        self.assertEqual(self.run_radar()['radar_events_created'],1)
+        self.assertEqual(self.run_radar()['radar_events_created'],0)
         first=(self.ops/'stage75_value_radar.jsonl').read_bytes()
         self.assertEqual(self.run_radar()['radar_events_created'],0)
         self.assertEqual((self.ops/'stage75_value_radar.jsonl').read_bytes(),first)
-        # Synthetic later input exercises the transition without rewriting the event.
         self.row['paper_user_execution_odds']='2.1'
-        self.assertEqual(self.run_radar()['radar_events_created'],2)
-        self.assertTrue((self.ops/'stage75_value_radar.jsonl').read_bytes().startswith(first))
-        frozen=(self.ops/'stage75_value_radar.jsonl').read_bytes()
+        self.assertEqual(self.run_radar()['radar_events_created'],0)
+        self.assertEqual((self.ops/'stage75_value_radar.jsonl').read_bytes(),first)
         self.row['paper_user_execution_odds']='1.5'
         self.run_radar()
-        self.assertEqual((self.ops/'stage75_value_radar.jsonl').read_bytes(),frozen)
+        self.assertEqual((self.ops/'stage75_value_radar.jsonl').read_bytes(),first)
         self.assertEqual(self.current()['items'],[])
 
     def test_model_version_and_nested_dedupe(self):
         row2=dict(self.row,rule='R2')
         pred2=dict(self.pred,rule='R2',prediction_id='v1|R2|123|Away')
         self.run_radar([self.row,row2],[self.pred,pred2])
-        item=self.current()['items'][0]
-        self.assertEqual(item['source_rules'],['R1','R2'])
-        self.assertEqual(item['primary_rule'],'R2')
-        self.assertEqual(len(self.current()['items']),1)
+        self.assertEqual(self.current()['items'],[])
         first=(self.ops/'stage75_value_radar.jsonl').read_bytes()
         self.cfg['version']='v2';self.pred['model_version']='v2'
-        self.assertEqual(self.run_radar()['radar_events_created'],2)
-        self.assertTrue((self.ops/'stage75_value_radar.jsonl').read_bytes().startswith(first))
+        self.assertEqual(self.run_radar()['radar_events_created'],0)
+        self.assertEqual((self.ops/'stage75_value_radar.jsonl').read_bytes(),first)
 
     def test_watch_invalid_model_and_result_exclusion(self):
         for rule in ('Stage61','Stage62','Stage63','WATCH','R4'):
@@ -118,20 +113,24 @@ class RadarTests(unittest.TestCase):
         self.cfg['models']['R1']['gate']='FAIL'
         self.assertEqual(self.run_radar()['radar_events_created'],0)
 
-    def test_exact_canonical_exposure_is_excluded(self):
-        canonical = dict(self.row, market_family='MATCH_WINNER', line='', selection='Away')
-        prediction = dict(self.pred, market_family='MATCH_WINNER', line='', selection='Away',
-                          independent_probability=True)
-        self.assertEqual(self.run_radar([canonical], [prediction])['radar_events_created'], 0)
+    def test_active_canonical_exposure_is_excluded(self):
+        self.assertEqual(self.run_radar()['radar_events_created'], 0)
         self.assertEqual(self.current()['items'], [])
 
-    def test_alternative_selection_requires_independent_probability(self):
-        row = dict(self.row, selection='No')
-        prediction = dict(self.pred, selection='No')
+    def test_fake_noncanonical_probability_is_rejected_even_with_marker(self):
+        row = dict(self.row, market_family='BTTS', line='2.5', selection='Yes')
+        prediction = dict(self.pred, market_family='BTTS', line='2.5', selection='Yes',
+                          independent_probability=True)
+        self.assertEqual(self.run_radar([row], [prediction])['radar_events_created'], 0)
+        self.assertEqual(self.current()['items'], [])
+
+    def test_canonical_selection_is_excluded_even_with_independent_marker(self):
+        row = dict(self.row, selection='Home')
+        prediction = dict(self.pred, selection='Home')
         prediction.pop('independent_probability')
         self.assertEqual(self.run_radar([row], [prediction])['radar_events_created'], 0)
         prediction['independent_probability'] = True
-        self.assertEqual(self.run_radar([row], [prediction])['radar_events_created'], 2)
+        self.assertEqual(self.run_radar([row], [prediction])['radar_events_created'], 0)
 
     def test_no_postkickoff_future_or_historical_backfill(self):
         self.assertEqual(self.run_radar(now=KICK)['radar_events_created'],0)
@@ -142,8 +141,8 @@ class RadarTests(unittest.TestCase):
         self.assertEqual(self.run_radar()['radar_events_created'],0)
 
     def test_duplicate_ledger_and_concurrent_writer_fail_closed(self):
-        self.run_radar()
-        ledger=self.ops/'stage75_value_radar.jsonl';raw=ledger.read_bytes()
+        ledger=self.ops/'stage75_value_radar.jsonl'
+        raw=b'{"radar_id":"duplicate"}\n'
         ledger.write_bytes(raw+raw)
         with self.assertRaisesRegex(ValueError,'Duplicate'):
             self.run_radar()
@@ -165,7 +164,7 @@ class RadarTests(unittest.TestCase):
         self.assertEqual(self.build(),before)
         with contextlib.closing(sqlite3.connect(self.ops/'db.sqlite')) as conn:
             self.assertEqual(conn.execute('pragma integrity_check').fetchone()[0],'ok')
-            self.assertEqual(conn.execute('select count(*) from value_radar_events').fetchone()[0],2)
+            self.assertEqual(conn.execute('select count(*) from value_radar_events').fetchone()[0],0)
             self.assertEqual(conn.execute("select value from pbk_meta where key='schema_version'").fetchone()[0],'8')
             conn.execute('drop table canonical_signals')
             conn.execute('create table canonical_signals (api_fixture_id TEXT)')
@@ -179,7 +178,7 @@ class RadarTests(unittest.TestCase):
             status,match=api.aggregate_match('123')
             self.assertEqual(status,200)
             self.assertTrue({'canonical','watch','markets','probability','lifecycle','odds','value_radar'} <= set(match))
-            self.assertEqual(len(match['value_radar']['items']),1)
+            self.assertEqual(len(match['value_radar']['items']),0)
             self.assertFalse(match['value_radar']['creates_signal'])
         gc.collect()
 

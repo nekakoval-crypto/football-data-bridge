@@ -12,8 +12,9 @@ export function renderRadar(payload) {
   const seen = new Set();
   const canonical = new Set((payload.canonical_exposures || []).map(value => Array.isArray(value) ? value.map(norm).join('|') : String(value)));
   const items = payload.items.filter(row => {
-    const key = `${row.api_fixture_id}|${row.selection}`;
-    if (['WATCH','Stage61','Stage62','Stage63'].includes(row.primary_rule) || (row.source_rules || []).some(rule => ['WATCH','Stage61','Stage62','Stage63'].includes(rule)) || !['R1','R2','R3'].includes(row.primary_rule) || !LABELS[row.radar_level] || canonical.has(identity(row)) || seen.has(key)) return false;
+    const key = identity(row);
+    const watch = rule => ['watch','stage61','stage62','stage63'].includes(norm(rule));
+    if (watch(row.primary_rule) || (row.source_rules || []).some(watch) || !LABELS[row.radar_level] || canonical.has(key) || seen.has(key)) return false;
     seen.add(key); return true;
   });
   return `<p class="meta">Обновлено UTC: ${esc(payload.generated_at_utc || 'неизвестно')}</p>` + (items.length ? items.map(row => `
