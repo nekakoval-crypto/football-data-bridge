@@ -1,8 +1,8 @@
 # PBK Signal Lifecycle
 
-Обновлено UTC: 2026-09-13T15:08:11Z
+Обновлено UTC: 2026-09-13T16:08:55Z
 
-Cards: 14 | canonical 3 | WATCH 11 | events 209
+Cards: 14 | canonical 3 | WATCH 11 | events 215
 
 ## WATCH | Stage63 | Venezia — Fiorentina
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-11T18:45:00Z
@@ -34,20 +34,23 @@ Cards: 14 | canonical 3 | WATCH 11 | events 209
 
 ## WATCH | Stage63 | RB Leipzig — Hamburger SV
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-13T13:30:00Z
-- Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 2
+- Последнее событие: WATCH_SETTLEMENT | статус: SETTLED | событий: 3
   - 2026-09-13T12:19:23Z — WATCH_CLOSE — Marathonbet | 1.46 | close_qualified=YES
   - 2026-09-13T12:19:23Z — WATCH_CROSSING — Marathonbet | 1.46 | movement_pp=0.04908377
+  - 2026-09-13T15:29:20Z — WATCH_SETTLEMENT — Marathonbet | 1.46 | result=L profit_u=-1.000
 
 ## WATCH | Stage62 | RB Leipzig — Hamburger SV
 - Ставка/рынок: ТБ(2.5) | kickoff: 2026-09-13T13:30:00Z
-- Последнее событие: WATCH_CLOSE | статус: QUALIFIED_AT_CLOSE | событий: 2
+- Последнее событие: WATCH_SETTLEMENT | статус: SETTLED | событий: 3
   - 2026-09-13T12:26:19Z — WATCH_CROSSING — Marathonbet | 1.26 | movement_pp=0.06370866
   - 2026-09-13T13:21:20Z — WATCH_CLOSE — Marathonbet | 1.26 | close_qualified=YES
+  - 2026-09-13T15:29:20Z — WATCH_SETTLEMENT — Marathonbet | 1.26 | result=W profit_u=0.260
 
 ## WATCH | Stage62 | SV Elversberg — Bayern München
 - Ставка/рынок: ТБ(2.5) | kickoff: 2026-09-13T15:30:00Z
-- Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
+- Последнее событие: WATCH_CLOSE | статус: QUALIFIED_AT_CLOSE | событий: 2
   - 2026-09-13T12:26:19Z — WATCH_CROSSING — Marathonbet | 1.09 | movement_pp=0.03232386
+  - 2026-09-13T15:21:47Z — WATCH_CLOSE — Marathonbet | 1.1 | close_qualified=YES
 
 ## WATCH | Stage63 | Napoli — Bologna
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-13T16:00:00Z
@@ -56,8 +59,7 @@ Cards: 14 | canonical 3 | WATCH 11 | events 209
 
 ## CANONICAL | R1 | Sassuolo — Juventus
 - Ставка/рынок: П2 | kickoff: 2026-09-13T18:45:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 65
-  - 2026-09-13T11:42:02Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 66
   - 2026-09-13T12:28:48Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-13T12:46:36Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-13T12:48:35Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -65,6 +67,7 @@ Cards: 14 | canonical 3 | WATCH 11 | events 209
   - 2026-09-13T12:48:37Z — WEATHER_SNAPSHOT — temp=24.1C precip=0%
   - 2026-09-13T13:42:02Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-13T14:42:44Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-13T15:42:34Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
 
 ## WATCH | Stage63 | Stade Brestois 29 — Paris Saint Germain
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-13T18:45:00Z
@@ -73,8 +76,7 @@ Cards: 14 | canonical 3 | WATCH 11 | events 209
 
 ## CANONICAL | R1 | Torino — AS Roma
 - Ставка/рынок: П2 | kickoff: 2026-09-14T16:30:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 62
-  - 2026-09-13T10:43:24Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 63
   - 2026-09-13T11:14:53Z — CONTEXT_SNAPSHOT — T24; lineups=NO; injuries=12
   - 2026-09-13T11:42:02Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-13T12:28:48Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -82,6 +84,7 @@ Cards: 14 | canonical 3 | WATCH 11 | events 209
   - 2026-09-13T12:48:35Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-13T13:42:02Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-13T14:42:44Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-13T15:42:34Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
 
 ## WATCH | Stage63 | Torino — AS Roma
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-14T16:30:00Z
@@ -95,8 +98,7 @@ Cards: 14 | canonical 3 | WATCH 11 | events 209
 
 ## CANONICAL | R1 | Frosinone — Como
 - Ставка/рынок: П2 | kickoff: 2026-09-20T13:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 61
-  - 2026-09-13T10:05:15Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 62
   - 2026-09-13T10:43:24Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-13T11:42:02Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-13T12:28:48Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -104,3 +106,4 @@ Cards: 14 | canonical 3 | WATCH 11 | events 209
   - 2026-09-13T12:48:35Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-13T13:42:02Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-13T14:42:44Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-13T15:42:34Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
