@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-13T12:04:35Z",
+  "generated_at_utc": "2026-09-13T13:03:07Z",
   "status": "OK",
   "policy_locked_at": "2026-09-11",
   "families": {
@@ -33,9 +33,9 @@
     "Stage62": {
       "status": "COLLECTING",
       "metrics": {
-        "crossings": 0,
-        "user_price_rows": 0,
-        "execution_coverage_pct": null,
+        "crossings": 2,
+        "user_price_rows": 2,
+        "execution_coverage_pct": 100.0,
         "settled_executable": 0,
         "roi_pct": null,
         "first_half_n": 0,
@@ -49,7 +49,6 @@
       },
       "blocking_reasons": [
         "settled 0/60",
-        "Marathonbet coverage None% <90%",
         "ROI None not >0",
         "first-half ROI None not >0",
         "second-half ROI None not >0",
@@ -60,8 +59,8 @@
     "Stage63": {
       "status": "DISCOVERY_ONLY_NO_DIRECT_PROMOTION",
       "metrics": {
-        "crossings": 6,
-        "user_price_rows": 6,
+        "crossings": 9,
+        "user_price_rows": 9,
         "execution_coverage_pct": 100.0,
         "settled_executable": 3,
         "roi_pct": -50.333,
