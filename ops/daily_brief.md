@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-13T09:23:27Z
+Generated UTC: 2026-09-13T11:02:40Z
 Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -30,7 +30,7 @@ Active canonical signals: 3
 - Previous: home Serie A vs Fiorentina (219.5h rest); away UEFA Champions League vs Fenerbahçe (95.8h rest)
 - Next: home Serie A vs Bologna (116.5h after); away Serie A vs Inter (119.5h after)
 - Injuries: NOT_QUERIED_YET
-- Weather [BASELINE]: 29.1°C, precip 0%, wind 5.4 km/h, gusts 14.0 km/h
+- Weather [T24]: 29.5°C, precip 0%, wind 6.1 km/h, gusts 10.1 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: BEFORE FIFA window; to start 151.5h; player-level UNVERIFIED
 - Flags: AWAY_PREV_UEFA_OR_CUP, WITHIN_7D_BEFORE_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
@@ -38,8 +38,8 @@ Active canonical signals: 3
 ## R1 | Frosinone — Como
 - Kickoff UTC: 2026-09-20T13:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 5.25 / Х 3.9 / П2 1.62 (immutable)
-- Market-best observed: 1.63 @ 1xBet | Bet365 now: 1.55
-- Current user-executable: 1.59 @ Marathonbet
+- Market-best observed: 1.62 @ 1xBet | Bet365 now: 1.55
+- Current user-executable: 1.58 @ Marathonbet
 - Paper user-execution (frozen): 1.65 @ Marathonbet [2026-09-11T10:32:01Z]
 - Referee / venue: TBD | Stadio Benito Stirpe, Frosinone
 - Previous: home Serie A vs Venezia (336.0h rest); away UEFA Champions League vs RB Leipzig (234.0h rest)
