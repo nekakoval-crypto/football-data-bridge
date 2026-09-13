@@ -32,6 +32,20 @@ const FRESHNESS_LABELS = {
   unknown: 'Свежесть неизвестна',
 };
 
+const COMPACT_STATUS_LABELS = {
+  scheduled: 'По расписанию',
+  live: 'LIVE',
+  finished: 'FT',
+  postponed: 'Перенесён',
+  cancelled: 'Отменён',
+  suspended: 'Приост.',
+  interrupted: 'Прерван',
+  abandoned: 'Прекращён',
+  awarded: 'Тех.',
+  walkover: 'Тех. поб.',
+  unknown: 'Не подтв.',
+};
+
 export function statusLabel(status) {
   return STATUS_LABELS[status] || STATUS_LABELS.unknown;
 }
@@ -40,11 +54,29 @@ export function freshnessLabel(status) {
   return FRESHNESS_LABELS[status] || FRESHNESS_LABELS.unknown;
 }
 
+export function compactStatusLabel(status) {
+  return COMPACT_STATUS_LABELS[status] || COMPACT_STATUS_LABELS.unknown;
+}
+
 export function formatScore(score) {
   if (!score || score.home === null || score.home === undefined ||
       score.away === null || score.away === undefined ||
       score.home === '' || score.away === '') return '';
   return `${score.home} : ${score.away}`;
+}
+
+export function compactRightSideValue(match = {}) {
+  const score = formatScore(match.score);
+  if (score) return score.replaceAll(' ', '');
+  if (match.status === 'scheduled' && match.kickoff_utc) {
+    const date = new Date(match.kickoff_utc);
+    if (!Number.isNaN(date.getTime())) {
+      return `${new Intl.DateTimeFormat('ru-RU', {
+        timeZone: 'Europe/Moscow', hour: '2-digit', minute: '2-digit',
+      }).format(date)} МСК`;
+    }
+  }
+  return compactStatusLabel(match.status);
 }
 
 export function formatMoscowTime(value, dateUtc = '') {
@@ -78,6 +110,19 @@ export function sortMatches(matches = []) {
   });
 }
 
+export function groupMatchesByCompetition(matches = []) {
+  const groups = new Map();
+  for (const match of sortMatches(matches)) {
+    const competition = match?.competition || 'Соревнование неизвестно';
+    if (!groups.has(competition)) groups.set(competition, []);
+    groups.get(competition).push(match);
+  }
+  return [...groups.entries()].map(([competition, groupedMatches]) => ({
+    competition,
+    matches: groupedMatches,
+  }));
+}
+
 export function todayViewModel(payload = {}) {
   const matches = sortMatches(Array.isArray(payload.matches) ? payload.matches : []);
   return {
@@ -108,20 +153,18 @@ function compactMoscow(value) {
   }).format(date).replace(',', ' ·') + ' МСК';
 }
 
-function matchCard(match, dateUtc) {
+function matchRow(match, dateUtc) {
   const status = STATUS_LABELS[match.status] ? match.status : 'unknown';
-  const score = formatScore(match.score);
-  const observed = match.observed_at_utc ? `<div>Наблюдение: ${escapeHtml(compactMoscow(match.observed_at_utc))}</div>` : '';
-  return `<article class="today-live-card today-live-${status}" data-fixture="${escapeHtml(match.fixture_id)}">
-    <div class="today-live-card-main">
-      <div class="today-live-competition">${escapeHtml(match.competition || 'Соревнование неизвестно')}</div>
-      <div class="today-live-teams">${escapeHtml(match.home_team || 'Хозяева неизвестны')} — ${escapeHtml(match.away_team || 'Гости неизвестны')}</div>
-      <div class="today-live-meta">${escapeHtml(formatMoscowTime(match.kickoff_utc, dateUtc))}${score ? ` · ${escapeHtml(score)}` : ''}</div>
+  const observed = match.observed_at_utc ? ` · ${escapeHtml(compactMoscow(match.observed_at_utc))}` : '';
+  return `<article class="today-live-row today-live-${status}" data-fixture="${escapeHtml(match.fixture_id)}">
+    <div class="today-live-row-main">
+      <div class="today-live-team">${escapeHtml(match.home_team || 'Хозяева неизвестны')}</div>
+      <div class="today-live-team">${escapeHtml(match.away_team || 'Гости неизвестны')}</div>
+      <div class="today-live-row-meta">${escapeHtml(freshnessLabel(match.freshness_status))}${observed}</div>
     </div>
-    <div class="today-live-card-side">
-      <span class="today-live-status">${escapeHtml(statusLabel(status))}</span>
-      <span class="today-live-freshness freshness-${escapeHtml(match.freshness_status || 'unknown')}">${escapeHtml(freshnessLabel(match.freshness_status))}</span>
-      ${observed}
+    <div class="today-live-row-side">
+      <strong>${escapeHtml(compactRightSideValue({...match, status}))}</strong>
+      <span class="today-live-status">${escapeHtml(compactStatusLabel(status))}</span>
     </div>
   </article>`;
 }
@@ -129,16 +172,18 @@ function matchCard(match, dateUtc) {
 export function renderTodayLive(container, payload) {
   const model = todayViewModel(payload);
   const warning = model.coverageWarning
-    ? '<div class="today-live-notice">LIVE-покрытие неполное: ПБК показывает только уже собранные статусы.</div>' : '';
-  const generated = model.generatedAt ? ` · собрано ${escapeHtml(compactMoscow(model.generatedAt))}` : '';
-  const cards = model.matches.length
-    ? model.matches.map(match => matchCard(match, model.dateUtc)).join('')
+    ? '<div class="today-live-notice">LIVE-покрытие неполное</div>' : '';
+  const generated = model.generatedAt ? ` · ${escapeHtml(compactMoscow(model.generatedAt))}` : '';
+  const groups = model.matches.length
+    ? groupMatchesByCompetition(model.matches).map(group => `<section class="today-live-competition-group">
+        <h3>${escapeHtml(group.competition)} <span>${group.matches.length}</span></h3>
+        <div>${group.matches.map(match => matchRow(match, model.dateUtc)).join('')}</div>
+      </section>`).join('')
     : '<div class="empty">Сегодняшние матчи пока не собраны.</div>';
-  container.innerHTML = `<div class="today-live-summary">
-    ${[['Всего', model.summary.total], ['LIVE', model.summary.live], ['Предстоящие', model.summary.upcoming], ['Завершены', model.summary.finished]]
-      .map(([label, value]) => `<div class="metric"><b>${value}</b><span>${label}</span></div>`).join('')}
-  </div>${warning}<div class="today-live-generated">UTC-день ${escapeHtml(model.dateUtc || 'неизвестен')}${generated}</div>
-  <div class="today-live-list">${cards}</div>`;
+  container.innerHTML = `<div class="today-live-compact-meta">
+    <span>Всего ${model.summary.total} · LIVE ${model.summary.live} · Предст. ${model.summary.upcoming} · Зав. ${model.summary.finished}</span>
+    <span>UTC-день ${escapeHtml(model.dateUtc || 'неизвестен')}${generated}</span>
+  </div>${warning}<div class="today-live-groups">${groups}</div>`;
 }
 
 function renderError(container) {
