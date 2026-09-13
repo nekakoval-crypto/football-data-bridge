@@ -8,6 +8,7 @@ on:
     branches:
       - main
     paths:
+      - 'scripts/publish_operational_commit.py'
       - 'scripts/stage55_context_enrichment.py'
       - '.github/workflows/stage55-context-enrichment.yml'
 
@@ -16,6 +17,7 @@ permissions:
 
 jobs:
   context:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
@@ -25,6 +27,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -71,10 +76,11 @@ jobs:
             echo 'No Stage 55 operational changes to commit.'
           else
             git commit -m 'Stage 55 context enrichment update'
-            git push
+            python scripts/publish_operational_commit.py
           fi
 
       - name: Upload Stage 55 snapshot
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: stage55-context
