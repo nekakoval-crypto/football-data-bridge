@@ -26,6 +26,20 @@ CORE_ALIASES={
 JSON_DOCS=['attention_board.json','daily_brief.json','forward_performance.json','watch_performance.json','watch_promotion_gate.json','system_health.json','exposure_summary.json','stage71_challenger_board.json','signal_lifecycle_cards.json','stage71b_fonbet_coverage.json','stage71c_last_run.json','stage71e_last_run.json','stage71f_last_run.json','stage71g_last_run.json','stage71i_last_run.json','probability_rankings.json','probability_performance.json','stage75_last_run.json']
 def now_iso():return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00','Z')
 JSON_DOCS.append('value_radar_current.json')
+TODAY_STATUSES = {
+    'NS': 'scheduled', 'TBD': 'scheduled', 'SCHEDULED': 'scheduled',
+    '1H': 'live', 'HT': 'live', '2H': 'live', 'ET': 'live', 'BT': 'live',
+    'P': 'live',
+    'LIVE': 'live', 'FT': 'finished', 'AET': 'finished', 'PEN': 'finished',
+    'SETTLED': 'finished',
+    'PST': 'postponed', 'POSTPONED': 'postponed',
+    'CANC': 'cancelled', 'CANCELLED': 'cancelled',
+    'SUSP': 'suspended',
+    'INT': 'interrupted',
+    'ABD': 'abandoned',
+    'AWD': 'awarded',
+    'WO': 'walkover',
+}
 def safe(s):
     s=re.sub(r'[^0-9A-Za-z_]+','_',str(s)).strip('_').lower()
     if not s:s='unnamed'
@@ -50,6 +64,86 @@ def file_sha(path):
     with path.open('rb') as f:
         for chunk in iter(lambda:f.read(1024*1024),b''):h.update(chunk)
     return h.hexdigest()
+def today_status(value, default='unknown'):
+    return TODAY_STATUSES.get(str(value or '').strip().upper(), default)
+def today_value(row, *names):
+    for name in names:
+        value=row.get(name)
+        if value not in (None,''):
+            return value
+    return None
+def today_observed(row):
+    return today_value(row, 'observed_at_utc', 'captured_at_utc', 'screened_at_utc',
+                       'paper_user_execution_at_utc')
+def today_sort_key(candidate):
+    observed=today_observed(candidate) or ''
+    source_order={'fixture_events.csv': 3, 'latest_screen.csv': 2, 'user_forward_view.csv': 1}
+    return observed, source_order.get(candidate.get('_source',''), 0)
+def today_projection(ops, today):
+    """Build a read-only current-day view from already-collected operational files."""
+    sources={}
+    for filename in ('latest_screen.csv','user_forward_view.csv'):
+        fields,rows=read_csv(ops/filename)
+        for row in rows:
+            fid=str(today_value(row,'api_fixture_id','fixture_id') or '').strip()
+            kickoff=today_value(row,'kickoff_utc')
+            match_date=today_value(row,'match_date') or (str(kickoff)[:10] if kickoff else '')
+            if not fid or match_date != today: continue
+            item={k:v for k,v in row.items() if v not in (None,'')}
+            if not item.get('kickoff_utc') and item.get('match_date') and item.get('kickoff_time'):
+                item['kickoff_utc']=f"{item['match_date']}T{item['kickoff_time']}:00Z"
+            item['_source']=filename
+            sources.setdefault(fid,[]).append(item)
+    fields,events=read_csv(ops/'fixture_events.csv')
+    for event in events:
+        fid=str(event.get('api_fixture_id') or '').strip()
+        if not fid: continue
+        if event.get('event_type') == 'STATUS_CHANGE':
+            event_item=dict(event)
+            event_item['_source']='fixture_events.csv'
+            sources.setdefault(fid,[]).append(event_item)
+    output=[]
+    for fid,candidates in sources.items():
+        candidates.sort(key=today_sort_key)
+        newest=candidates[-1]
+        # Merge non-status context from the newest records without allowing
+        # CSV iteration order to decide the effective state.
+        row={}
+        for candidate in candidates:
+            for key,value in candidate.items():
+                if not key.startswith('_') and value not in (None,''):
+                    row[key]=value
+        kickoff=today_value(row,'kickoff_utc')
+        if not kickoff:
+            continue
+        if kickoff and str(kickoff)[:10] != today:
+            continue
+        raw_status=today_value(newest,'new_value','fixture_status','status')
+        status=today_status(raw_status, 'unknown')
+        observed=today_observed(newest) or today_observed(row)
+        score={
+            'home': today_value(row,'home_goals','final_home_goals','score_home'),
+            'away': today_value(row,'away_goals','final_away_goals','score_away'),
+        }
+        if score['home'] is None and score['away'] is None: score=None
+        output.append({
+            'fixture_id': fid,
+            'competition': today_value(row,'league','competition'),
+            'home_team': today_value(row,'home_team'),
+            'away_team': today_value(row,'away_team'),
+            'kickoff_utc': kickoff,
+            'status': status,
+            'source_status': raw_status or None,
+            'score': score,
+            'observed_at_utc': observed,
+            'source': newest.get('_source'),
+        })
+    return sorted(output,key=lambda r:(r.get('kickoff_utc') or '',r['fixture_id']))
+def create_today_table(conn, rows):
+    fields=['fixture_id','competition','home_team','away_team','kickoff_utc','status',
+            'source_status','score','observed_at_utc','source']
+    text=[{k:(json.dumps(r[k],ensure_ascii=False,sort_keys=True) if isinstance(r[k],dict) else (r[k] or '')) for k in fields} for r in rows]
+    return create_text_table(conn,'today_matches',fields,text)
 def main():
     built=now_iso();OUT.parent.mkdir(parents=True,exist_ok=True);OPS.mkdir(parents=True,exist_ok=True)
     if OUT.exists():OUT.unlink()
@@ -77,6 +171,8 @@ def main():
         try:json.loads(raw)
         except Exception:continue
         conn.execute('INSERT INTO state_documents VALUES (?,?,?)',(name,raw,file_sha(p)));conn.execute('INSERT OR REPLACE INTO source_manifest VALUES (?,?,?,?)',(name,'json',1,file_sha(p)))
+    today_rows=today_projection(OPS,built[:10])
+    stable_counts['today_matches'],_=create_today_table(conn,today_rows)
     meta={'schema_version':SCHEMA_VERSION,'built_at_utc':built,'source_policy':'ops CSV/JSON remain audit source; SQLite is reproducible projection'};conn.executemany('INSERT INTO pbk_meta VALUES (?,?)',meta.items());conn.commit();integrity=conn.execute('PRAGMA integrity_check').fetchone()[0];tables=[r[0] for r in conn.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name")];manifest_rows=conn.execute('SELECT COUNT(*) FROM source_manifest').fetchone()[0];conn.close()
     status='OK' if integrity=='ok' and stable_counts.get('competitions')==16 else 'WARN';payload={'run_at_utc':built,'status':status,'schema_version':SCHEMA_VERSION,'db_path':str(OUT),'db_bytes':OUT.stat().st_size,'db_sha256':file_sha(OUT),'integrity_check':integrity,'tables':len(tables),'manifest_sources':manifest_rows,'stable_counts':stable_counts,'missing_stable_sources':missing,'api_calls':0};META.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding='utf-8');SCHEMA.write_text(json.dumps({'schema_version':SCHEMA_VERSION,'stable_tables':CORE_ALIASES,'json_state_documents':JSON_DOCS,'raw_csv_policy':'every ops/*.csv is imported as raw_<filename_stem> with TEXT columns'},ensure_ascii=False,indent=2),encoding='utf-8');print(json.dumps(payload,ensure_ascii=False,indent=2))
 if __name__=='__main__':main()
