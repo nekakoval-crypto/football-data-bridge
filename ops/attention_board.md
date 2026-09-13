@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 14.09.2026 00:00 (Europe/Berlin)
+Обновлено: 14.09.2026 01:00 (Europe/Berlin)
 Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -334,7 +334,7 @@ Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
 
 - **Villarreal — Real Betis** | La Liga | 14.09 19:00 UTC
   - ОЗ · ОЗ Да: 1.53 | ОЗ Нет: 2.38 @ Bet365
-  - ОЗ · ОЗ Да: 1.52 | ОЗ Нет: 2.36 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.51 | ОЗ Нет: 2.39 @ Marathonbet
   - Ф(0) · Ф1(0): 1.45 | Ф2(0): 2.68 @ Bet365
   - Ф(0) · Ф1(0): 1.4 | Ф2(0): 2.77 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.28 | Х2: 1.83 | 12: 1.22 @ Bet365
@@ -487,7 +487,7 @@ Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
 
 - **Rayo Vallecano — Espanyol** | La Liga | 15.09 17:00 UTC
   - ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 2 @ Bet365
-  - ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 1.96 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.74 | ОЗ Нет: 1.98 @ Marathonbet
   - Ф(0) · Ф1(0): 1.45 | Ф2(0): 2.68 @ Bet365
   - Ф(0) · Ф1(0): 1.49 | Ф2(0): 2.62 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.25 | Х2: 1.8 | 12: 1.3 @ Bet365
