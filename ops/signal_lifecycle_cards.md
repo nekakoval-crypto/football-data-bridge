@@ -1,8 +1,8 @@
 # PBK Signal Lifecycle
 
-Обновлено UTC: 2026-09-13T13:07:53Z
+Обновлено UTC: 2026-09-13T14:08:12Z
 
-Cards: 14 | canonical 3 | WATCH 11 | events 199
+Cards: 14 | canonical 3 | WATCH 11 | events 203
 
 ## WATCH | Stage63 | Venezia — Fiorentina
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-11T18:45:00Z
@@ -37,8 +37,9 @@ Cards: 14 | canonical 3 | WATCH 11 | events 199
 
 ## WATCH | Stage62 | RB Leipzig — Hamburger SV
 - Ставка/рынок: ТБ(2.5) | kickoff: 2026-09-13T13:30:00Z
-- Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
+- Последнее событие: WATCH_CLOSE | статус: QUALIFIED_AT_CLOSE | событий: 2
   - 2026-09-13T12:26:19Z — WATCH_CROSSING — Marathonbet | 1.26 | movement_pp=0.06370866
+  - 2026-09-13T13:21:20Z — WATCH_CLOSE — Marathonbet | 1.26 | close_qualified=YES
 
 ## WATCH | Stage62 | SV Elversberg — Bayern München
 - Ставка/рынок: ТБ(2.5) | kickoff: 2026-09-13T15:30:00Z
@@ -52,8 +53,7 @@ Cards: 14 | canonical 3 | WATCH 11 | events 199
 
 ## CANONICAL | R1 | Sassuolo — Juventus
 - Ставка/рынок: П2 | kickoff: 2026-09-13T18:45:00Z
-- Последнее событие: WEATHER_SNAPSHOT | статус: — | событий: 63
-  - 2026-09-13T10:05:15Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 64
   - 2026-09-13T10:43:24Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-13T11:42:02Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-13T12:28:48Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -61,6 +61,7 @@ Cards: 14 | canonical 3 | WATCH 11 | events 199
   - 2026-09-13T12:48:35Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-13T12:48:36Z — CONTEXT_SNAPSHOT — T3; lineups=NO; injuries=32
   - 2026-09-13T12:48:37Z — WEATHER_SNAPSHOT — temp=24.1C precip=0%
+  - 2026-09-13T13:42:02Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
 
 ## WATCH | Stage63 | Stade Brestois 29 — Paris Saint Germain
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-13T18:45:00Z
@@ -69,8 +70,7 @@ Cards: 14 | canonical 3 | WATCH 11 | events 199
 
 ## CANONICAL | R1 | Torino — AS Roma
 - Ставка/рынок: П2 | kickoff: 2026-09-14T16:30:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 60
-  - 2026-09-13T10:05:15Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 61
   - 2026-09-13T10:41:38Z — WEATHER_SNAPSHOT — temp=29.5C precip=0%
   - 2026-09-13T10:43:24Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-13T11:14:53Z — CONTEXT_SNAPSHOT — T24; lineups=NO; injuries=12
@@ -78,6 +78,7 @@ Cards: 14 | canonical 3 | WATCH 11 | events 199
   - 2026-09-13T12:28:48Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-13T12:46:36Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-13T12:48:35Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-13T13:42:02Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
 
 ## WATCH | Stage63 | Torino — AS Roma
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-14T16:30:00Z
@@ -91,8 +92,7 @@ Cards: 14 | canonical 3 | WATCH 11 | events 199
 
 ## CANONICAL | R1 | Frosinone — Como
 - Ставка/рынок: П2 | kickoff: 2026-09-20T13:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 59
-  - 2026-09-13T07:43:01Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 60
   - 2026-09-13T08:49:38Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-13T10:05:15Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-13T10:43:24Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -100,3 +100,4 @@ Cards: 14 | canonical 3 | WATCH 11 | events 199
   - 2026-09-13T12:28:48Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-13T12:46:36Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-13T12:48:35Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-13T13:42:02Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
