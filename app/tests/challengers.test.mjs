@@ -77,6 +77,11 @@ test('observation fields escape text, preserve zero and hide pending settlement'
   assert.doesNotMatch(renderObservation({kickoff_utc:'bad', user_profit_u:'', bet365_price:false}), /NaN|Invalid|0\.000/);
   for (const result of ['W', 'L']) assert.match(renderObservation({...row, result, user_profit_u:0.5}), /\+0\.500 u/);
 });
+test('observation status uses glossary and never exposes ACTIVE', () => {
+  const html = renderObservation({status:'ACTIVE'});
+  assert.doesNotMatch(html, /(^|[^A-Za-z])ACTIVE([^A-Za-z]|$)/);
+  assert.match(html, /ИНФОРМАЦИЯ/);
+});
 
 function observationHarness(request) {
   const elements = new Map();

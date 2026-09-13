@@ -23,7 +23,7 @@ export function renderObservation(row) {
   return `<li class="challenger-observation"><b>${value(row.home_team)} — ${value(row.away_team)}</b>
     <div class="meta">Начало: ${kickoff}</div>
     <dl class="observation-fields">${[
-      ['Выбор', value(row.selection)], ['Статус', value(row.status)],
+      ['Выбор', value(row.selection)], ['Статус', esc(statusLabel({status: row.status}))],
       ['Bet365 · frozen', number(row.bet365_price)], ['Marathonbet · executable', number(row.marathonbet_price)],
       ['Счёт · FT', score], ['Результат', settled && ['W', 'L', 'PUSH'].includes(row.result) ? row.result : '—'],
       ['P/L · user_profit_u', profit === null ? '—' : `${profit > 0 ? '+' : ''}${profit.toFixed(3)} u`]

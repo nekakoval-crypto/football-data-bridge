@@ -36,3 +36,33 @@ test('lifecycle default projection keeps meaningful events and compresses odds',
   assert.equal(rows.length,10);
   assert.ok(rows.some(x=>x.event_type==='TECHNICAL_EVENT'));
 });
+
+test('odds summary sorts input, preserves invalid endpoints, and counts all snapshots',()=>{
+  const unsorted=[
+    {event_type:'ODDS_SNAPSHOT',event_time_utc:'2026-01-01T10:02:00Z',odds:'2.7'},
+    {event_type:'ODDS_SNAPSHOT',event_time_utc:'2026-01-01T10:00:00Z',odds:'bad'},
+    {event_type:'ODDS_SNAPSHOT',event_time_utc:'2026-01-01T10:03:00Z',odds:'NaN'},
+    {event_type:'ODDS_SNAPSHOT',event_time_utc:'2026-01-01T10:01:00Z',odds:'1.8'}
+  ];
+  assert.equal(oddsSummary(unsorted).odds,'Коэффициент: первый — → min 1.8 → max 2.7 → последний — · 4 снимков');
+  assert.equal(oddsSummary([
+    {event_type:'ODDS_SNAPSHOT',event_time_utc:'2026-01-01T10:00:00Z',odds:'bad'},
+    {event_type:'ODDS_SNAPSHOT',event_time_utc:'2026-01-01T10:01:00Z',odds:'NaN'}
+  ]).odds,'Коэффициент: первый — → min — → max — → последний — · 2 снимков');
+});
+
+test('default history keeps only latest context families while raw rows remain available',()=>{
+  const rows=[
+    {event_type:'CONTEXT_SNAPSHOT',event_time_utc:'2026-01-01T10:00:00Z',details:'same'},
+    {event_type:'CONTEXT_SNAPSHOT',event_time_utc:'2026-01-01T10:01:00Z',details:'same'},
+    {event_type:'CONTEXT_SNAPSHOT',event_time_utc:'2026-01-01T10:02:00Z',details:'changed'},
+    {event_type:'WEATHER_SNAPSHOT',event_time_utc:'2026-01-01T10:00:00Z',details:'same'},
+    {event_type:'WEATHER_SNAPSHOT',event_time_utc:'2026-01-01T10:01:00Z',details:'same'},
+    {event_type:'XI_ROTATION',event_time_utc:'2026-01-01T10:00:00Z',details:'same'},
+    {event_type:'XI_ROTATION',event_time_utc:'2026-01-01T10:01:00Z',details:'changed'}
+  ];
+  const projected=projectLifecycle(rows);
+  assert.deepEqual(new Set(projected.map(x=>x.event_type)),new Set(['CONTEXT_SNAPSHOT','WEATHER_SNAPSHOT','XI_ROTATION']));
+  assert.equal(projected.find(x=>x.event_type==='CONTEXT_SNAPSHOT').details,'changed');
+  assert.equal(rows.length,7);
+});
