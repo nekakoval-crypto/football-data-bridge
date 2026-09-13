@@ -165,7 +165,8 @@ class RadarTests(unittest.TestCase):
         with contextlib.closing(sqlite3.connect(self.ops/'db.sqlite')) as conn:
             self.assertEqual(conn.execute('pragma integrity_check').fetchone()[0],'ok')
             self.assertEqual(conn.execute('select count(*) from value_radar_events').fetchone()[0],0)
-            self.assertEqual(conn.execute("select value from pbk_meta where key='schema_version'").fetchone()[0],'8')
+            self.assertEqual(conn.execute("select value from pbk_meta where key='schema_version'").fetchone()[0],
+                             builder.SCHEMA_VERSION)
             conn.execute('drop table canonical_signals')
             conn.execute('create table canonical_signals (api_fixture_id TEXT)')
             conn.execute("insert into canonical_signals values ('123')")
