@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-13T16:02:51Z
+Generated UTC: 2026-09-13T17:02:37Z
 Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -23,8 +23,8 @@ Active canonical signals: 3
 ## R1 | Torino — AS Roma
 - Kickoff UTC: 2026-09-14T16:30:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 6.0 / Х 4.0 / П2 1.57 (immutable)
-- Market-best observed: 1.62 @ 1xBet | Bet365 now: 1.57
-- Current user-executable: 1.58 @ Marathonbet
+- Market-best observed: 1.61 @ 1xBet | Bet365 now: 1.55
+- Current user-executable: 1.57 @ Marathonbet
 - Paper user-execution (frozen): 1.58 @ Marathonbet [2026-09-11T10:32:01Z]
 - Referee / venue: F. Maresca | Stadio Olimpico di Torino, Turin
 - Previous: home Serie A vs Fiorentina (219.5h rest); away UEFA Champions League vs Fenerbahçe (95.8h rest)
@@ -90,15 +90,14 @@ Active canonical signals: 3
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 101
-- Активные движения ≥3 п.п.: всего 4 | ОЗ — Да 4 | ОЗ — Нет 0
-- Зафиксировано observed close: 34
+- Активные движения ≥3 п.п.: всего 3 | ОЗ — Да 3 | ОЗ — Нет 0
+- Зафиксировано observed close: 39
 - Исполнимый букмекер для наблюдения: Marathonbet
 
 ## Текущие ОЗ-watch
 - WATCH | Ligue 1 | Stade Brestois 29 — Paris Saint Germain | ОЗ — Да | движение P(ОЗ — Да) +3.33 п.п. | Marathonbet 1.75 | 3241.3 мин до матча
 - WATCH | Serie A | Torino — AS Roma | ОЗ — Да | движение P(ОЗ — Да) +3.33 п.п. | Marathonbet 1.81 | 3974.6 мин до матча
 - WATCH | La Liga | Elche — Real Madrid | ОЗ — Да | движение P(ОЗ — Да) +5.57 п.п. | Marathonbet 1.61 | 4026.7 мин до матча
-- WATCH | Serie A | Napoli — Bologna | ОЗ — Да | движение P(ОЗ — Да) +4.00 п.п. | Marathonbet 1.76 | 220.6 мин до матча
 
 ---
 
@@ -109,7 +108,7 @@ Active canonical signals: 3
 - Crossings: 11 | settled 6 | pending 5
 - Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: -3.250u | ROI -54.167% | W-L 2-4
-- Close: observed 7 | stayed qualified 7 | reverted 0 | persistence 100.0%
+- Close: observed 8 | stayed qualified 8 | reverted 0 | persistence 100.0%
 - Close-qualified ROI: -54.167% | Reverted ROI: N/A
 
 ## By WATCH family
