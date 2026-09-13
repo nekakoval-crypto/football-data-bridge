@@ -17,6 +17,7 @@ permissions:
 
 jobs:
   enrich:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
@@ -26,6 +27,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -101,6 +105,7 @@ jobs:
           exit 1
 
       - name: Upload Stage 56 snapshot
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: stage56-weather-rotation

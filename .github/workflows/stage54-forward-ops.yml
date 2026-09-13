@@ -8,6 +8,7 @@ on:
     branches:
       - main
     paths:
+      - 'scripts/publish_operational_commit.py'
       - 'scripts/stage54_forward_ops.py'
       - '.github/workflows/stage54-forward-ops.yml'
       - 'config/pbk_bookmakers.json'
@@ -17,6 +18,7 @@ permissions:
 
 jobs:
   forward-ops:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
@@ -29,6 +31,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -86,10 +91,11 @@ jobs:
             echo 'No Stage 54 operational changes to commit.'
           else
             git commit -m 'Stage 54 forward governance update'
-            git push
+            python scripts/publish_operational_commit.py
           fi
 
       - name: Upload Stage 54 snapshot
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: stage54-forward-ops

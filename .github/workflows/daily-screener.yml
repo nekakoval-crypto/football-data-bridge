@@ -10,6 +10,7 @@ on:
     branches:
       - main
     paths:
+      - 'scripts/publish_operational_commit.py'
       - 'scripts/stage53_daily_screener.py'
       - 'scripts/stage53_r3_guard.py'
       - '.github/workflows/daily-screener.yml'
@@ -19,6 +20,7 @@ permissions:
 
 jobs:
   screen:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
@@ -29,6 +31,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -119,10 +124,11 @@ jobs:
             echo 'No operational changes to commit.'
           else
             git commit -m 'Stage 53 daily screener update'
-            git push
+            python scripts/publish_operational_commit.py
           fi
 
       - name: Upload daily operational snapshot
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: stage53-daily-ops
