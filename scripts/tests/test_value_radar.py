@@ -30,14 +30,14 @@ class RadarTests(unittest.TestCase):
         self.addCleanup(gc.collect)
         self.ops = Path(self.tmp.name)
         self.cfg = {'version':'v1','models':{r:{'gate':'PASS'} for r in ('R1','R2','R3')}}
-        self.row = dict(rule='R1',api_fixture_id='123',selection='Away',kickoff_utc=KICK,
+        self.row = dict(rule='R1',api_fixture_id='123',market_family='BTTS',line='2.5',selection='Yes',kickoff_utc=KICK,
                         home_team='Home',away_team='Away',status='PAPER',result='',
                         paper_user_execution_odds='2',paper_user_execution_bookmaker='Marathonbet',
                         user_execution_status='FROZEN',paper_user_execution_at_utc=NOW)
-        self.pred = dict(rule='R1',api_fixture_id='123',selection='Away',kickoff_utc=KICK,
+        self.pred = dict(rule='R1',api_fixture_id='123',market_family='BTTS',line='2.5',selection='Yes',kickoff_utc=KICK,
                          prediction_id='v1|R1|123|Away',model_version='v1',p_pbk='.525',
                          p_market_no_vig='.495',created_at_utc=NOW,trigger_captured_at_utc=NOW,
-                         status='FROZEN_PREMATCH')
+                         status='FROZEN_PREMATCH',independent_probability=True)
 
     def run_radar(self, rows=None, preds=None, now=NOW):
         with patch.object(socket, 'socket', side_effect=AssertionError('Network forbidden')):
@@ -117,6 +117,21 @@ class RadarTests(unittest.TestCase):
             self.assertEqual(self.run_radar([dict(self.row,**change)])['radar_events_created'],0)
         self.cfg['models']['R1']['gate']='FAIL'
         self.assertEqual(self.run_radar()['radar_events_created'],0)
+
+    def test_exact_canonical_exposure_is_excluded(self):
+        canonical = dict(self.row, market_family='MATCH_WINNER', line='', selection='Away')
+        prediction = dict(self.pred, market_family='MATCH_WINNER', line='', selection='Away',
+                          independent_probability=True)
+        self.assertEqual(self.run_radar([canonical], [prediction])['radar_events_created'], 0)
+        self.assertEqual(self.current()['items'], [])
+
+    def test_alternative_selection_requires_independent_probability(self):
+        row = dict(self.row, selection='No')
+        prediction = dict(self.pred, selection='No')
+        prediction.pop('independent_probability')
+        self.assertEqual(self.run_radar([row], [prediction])['radar_events_created'], 0)
+        prediction['independent_probability'] = True
+        self.assertEqual(self.run_radar([row], [prediction])['radar_events_created'], 2)
 
     def test_no_postkickoff_future_or_historical_backfill(self):
         self.assertEqual(self.run_radar(now=KICK)['radar_events_created'],0)

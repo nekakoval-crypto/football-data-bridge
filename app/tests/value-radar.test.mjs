@@ -15,7 +15,7 @@ test('missing price/EV remains unknown and no-data differs from zero items',()=>
   const html=renderRadar({status:'OK',items:[{...row,radar_level:'MARKET_DISAGREEMENT',executable_odds:null,ev_pct:null}]});
   assert.match(html,/<dd>—<\/dd>/);assert.doesNotMatch(html,/КЭФ ≥2/);
   assert.match(renderRadar({status:'NO_DATA',items:[]}),/не подтверждена/);
-  assert.match(renderRadar({status:'OK',items:[]}),/нет подходящих/);
+  assert.match(renderRadar({status:'OK',items:[]}),/Независимых расхождений вне активных R пока нет/);
 });
 test('fetch uses only local API and failures clear stale cards',async()=>{
   const list={innerHTML:'stale'};const root={querySelector:()=>list};
