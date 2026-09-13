@@ -113,6 +113,47 @@ def today_payload(conn):
         'read_only':True,
         'provider_polling':False,
     }
+def current_rounds_payload(conn):
+    generated=dict(conn.execute('SELECT key,value FROM pbk_meta').fetchall()).get('built_at_utc')
+    leagues=[]
+    if table_exists(conn,'current_round_leagues'):
+        league_rows=conn.execute('SELECT * FROM current_round_leagues ORDER BY rowid').fetchall()
+        for league in league_rows:
+            item={key: dict(league).get(key) or None for key in (
+                'provider_league_id','league_name','country','country_flag_url',
+                'league_logo_url','season','round','observed_at_utc','status','error')}
+            item['matches']=[]
+            if table_exists(conn,'current_round_matches') and item['provider_league_id']:
+                rows=conn.execute(
+                    'SELECT * FROM current_round_matches WHERE provider_league_id=? '
+                    'ORDER BY kickoff_utc ASC, fixture_id ASC',
+                    (str(item['provider_league_id']),)).fetchall()
+                for raw in rows:
+                    row=dict(raw)
+                    try:
+                        home = row.pop('score_home') or None
+                        away = row.pop('score_away') or None
+                        row['score'] = {'home': home, 'away': away} if home is not None or away is not None else None
+                    except (TypeError, ValueError):
+                        row['score'] = None
+                    for key in ('fixture_id','kickoff_utc','home_team','away_team','status',
+                                'source_status','observed_at_utc'):
+                        row.setdefault(key, None)
+                    item['matches'].append({key: row.get(key) for key in (
+                        'fixture_id','kickoff_utc','home_team','away_team','status',
+                        'source_status','score','observed_at_utc')})
+            leagues.append(item)
+    return {
+        'api_version': API_VERSION,
+        'generated_at_utc': generated,
+        'leagues': leagues,
+        'read_only': True,
+        'provider_polling': False,
+        'coverage': {
+            'partial_leagues_possible': any(row.get('status') != 'available' for row in leagues),
+            'source': 'current_round_leagues/current_round_matches SQLite projection',
+        },
+    }
 def config_doc(path,fallback):
     try:return json.loads(path.read_text(encoding='utf-8'))
     except Exception:return fallback
@@ -175,6 +216,7 @@ def dispatch(path_with_query):
         if path=='/v1/meta':
             meta=dict(conn.execute('SELECT key,value FROM pbk_meta').fetchall()) if table_exists(conn,'pbk_meta') else {};return 200,{'api_version':API_VERSION,'db':meta,'global_odds_cap':None,'eligibility_mutation':False}
         if path=='/v1/today':return 200,today_payload(conn)
+        if path=='/v1/rounds/current':return 200,current_rounds_payload(conn)
         if path=='/v1/competitions':return 200,query_table(conn,'competitions',q,{'country':'country','league':'league','group':'group'},default_order=['country','league'])
         if path=='/v1/signals/canonical':return 200,query_table(conn,'canonical_signals',q,{'strategy':'rule','status':'status','team':'away_team'},['paper_user_execution_odds','market_execution_odds','trigger_selected_odds'],['kickoff_utc','forward_id'])
         if path=='/v1/signals/challengers':return 200,query_table(conn,'challenger_signals',q,{'strategy':'family','league':'league','status':'status','country':'country'},['user_odds','trigger_b365_away'],['kickoff_utc','research_id'])
