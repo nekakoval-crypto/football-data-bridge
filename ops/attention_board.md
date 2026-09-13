@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 13.09.2026 06:00 (Europe/Berlin)
+Обновлено: 13.09.2026 07:00 (Europe/Berlin)
 Canonical: 3 | active WATCH crossings: 3 | RED: 0 | ORANGE: 4
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -1681,7 +1681,7 @@ Canonical: 3 | active WATCH crossings: 3 | RED: 0 | ORANGE: 4
 
 - **Torino — AS Roma** | Serie A | 14.09 16:30 UTC
   - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
-  - ОЗ · ОЗ Да: 1.81 | ОЗ Нет: 1.89 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.9 @ Marathonbet
   - Ф(0) · Ф1(0): 4.25 | Ф2(0): 1.21 @ Bet365
   - Ф(0) · Ф1(0): 4.45 | Ф2(0): 1.16 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 2.3 | Х2: 1.14 | 12: 1.22 @ Bet365
