@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-13T13:02:10Z",
+  "generated_at_utc": "2026-09-13T14:02:39Z",
   "status": "OK",
   "active_signals": 3,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-13T12:48:35Z",
+        "captured_at_utc": "2026-09-13T13:42:02Z",
         "best_odds": "1.72",
         "best_bookmaker": "Betano",
         "bet365_odds": "1.67",
@@ -155,7 +155,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-13T12:48:35Z",
+        "captured_at_utc": "2026-09-13T13:42:02Z",
         "best_odds": "1.62",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.57",
@@ -281,7 +281,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-13T12:48:35Z",
+        "captured_at_utc": "2026-09-13T13:42:02Z",
         "best_odds": "1.62",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.55",
@@ -396,10 +396,10 @@
     "tracked_openers": 20,
     "active_crossings": 0,
     "total_crossings": 0,
-    "observed_closes": 7,
+    "observed_closes": 8,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-13T12:55:29Z",
+    "latest_run_utc": "2026-09-13T13:53:15Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [],
@@ -411,25 +411,14 @@
     "definition": "Bet365 no-vig P(Over 2.5) rises by >=3pp from frozen opener to observed close",
     "canonical_forward_changed": false,
     "tracked_openers": 18,
-    "active_crossings": 2,
+    "active_crossings": 1,
     "total_crossings": 2,
-    "observed_closes": 7,
-    "close_qualified_total": 0,
+    "observed_closes": 8,
+    "close_qualified_total": 1,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-13T12:51:12Z",
+    "latest_run_utc": "2026-09-13T13:47:08Z",
     "warnings": [],
     "crossings": [
-      {
-        "fixture_id": "1575159",
-        "home_team": "RB Leipzig",
-        "away_team": "Hamburger SV",
-        "movement_pp": "0.06370866",
-        "crossed_at_utc": "2026-09-13T12:26:19Z",
-        "minutes_to_kickoff": "63.7",
-        "bet365_over25": "1.28",
-        "user_over25": "1.26",
-        "note": "WATCH only; not a canonical bet"
-      },
       {
         "fixture_id": "1575166",
         "home_team": "SV Elversberg",
@@ -442,7 +431,17 @@
         "note": "WATCH only; not a canonical bet"
       }
     ],
-    "recent_close_qualified": [],
+    "recent_close_qualified": [
+      {
+        "fixture_id": "1575159",
+        "home_team": "RB Leipzig",
+        "away_team": "Hamburger SV",
+        "movement_pp": "0.06370866",
+        "close_gap_minutes": "8.7",
+        "bet365_close_over25": "1.28",
+        "user_close_over25": "1.26"
+      }
+    ],
     "display_selection": "ТБ(2.5)"
   },
   "btts_market_watch": {
@@ -538,7 +537,7 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-13T12:57:10Z",
+    "generated_at_utc": "2026-09-13T13:53:15Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
@@ -554,8 +553,8 @@
       "losses": 2,
       "user_profit_u": -1.51,
       "user_roi_pct": -50.333,
-      "close_observed": 3,
-      "close_qualified": 3,
+      "close_observed": 4,
+      "close_qualified": 4,
       "reverted_at_close": 0,
       "close_persistence_pct": 100.0,
       "close_qualified_settled": 3,
@@ -605,10 +604,10 @@
         "losses": 0,
         "user_profit_u": 0,
         "user_roi_pct": null,
-        "close_observed": 0,
-        "close_qualified": 0,
+        "close_observed": 1,
+        "close_qualified": 1,
         "reverted_at_close": 0,
-        "close_persistence_pct": null,
+        "close_persistence_pct": 100.0,
         "close_qualified_settled": 0,
         "close_qualified_profit_u": 0,
         "close_qualified_roi_pct": null,

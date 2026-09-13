@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-13T13:02:10Z
+Generated UTC: 2026-09-13T14:02:39Z
 Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -59,7 +59,7 @@ Active canonical signals: 3
 - Scope: АПЛ: движение фаворита П1/П2 (+3 pp no-vig from frozen Bet365 opener).
 - Frozen openers tracked: 20
 - Active +3 pp crossings: 0
-- Observed closes: 7 | Close-qualified M1 watches: 0
+- Observed closes: 8 | Close-qualified M1 watches: 0
 - Executable bookmaker being observed: Marathonbet
 
 - No active +3 pp crossing is currently recorded.
@@ -72,13 +72,15 @@ Active canonical signals: 3
 
 - Scope: Бундеслига: ТБ(2.5) — движение рынка (+3 pp no-vig from frozen Bet365 O/U 2.5 opener).
 - Frozen O/U openers tracked: 18
-- Active +3 pp crossings ТБ(2.5): 2
-- Observed closes: 7 | Close-qualified O1 watches: 0
+- Active +3 pp crossings ТБ(2.5): 1
+- Observed closes: 8 | Close-qualified O1 watches: 1
 - Executable bookmaker being observed: Marathonbet
 
 ## Current O/U crossings
-- WATCH | RB Leipzig — Hamburger SV | Over move +6.37 pp | Bet365 O2.5 1.28 | Marathonbet O2.5 1.26 | 63.7 min to kickoff
 - WATCH | SV Elversberg — Bayern München | Over move +3.23 pp | Bet365 O2.5 1.12 | Marathonbet O2.5 1.09 | 183.7 min to kickoff
+
+## Recent close-qualified O/U watches
+- RB Leipzig — Hamburger SV | move +6.37 pp | B365 close O2.5 1.28 | Marathonbet close O2.5 1.26
 
 ---
 
@@ -109,9 +111,9 @@ Active canonical signals: 3
 - Crossings: 11 | settled 3 | pending 8
 - Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: -1.510u | ROI -50.333% | W-L 1-2
-- Close: observed 3 | stayed qualified 3 | reverted 0 | persistence 100.0%
+- Close: observed 4 | stayed qualified 4 | reverted 0 | persistence 100.0%
 - Close-qualified ROI: -50.333% | Reverted ROI: N/A
 
 ## By WATCH family
 - Big-5 ОЗ market movement — ОЗ — Да: crossings 9, settled 3, ROI -50.333%, close persistence 100.0%
-- Бундеслига ТБ(2.5) steam: crossings 2, settled 0, ROI N/A, close persistence N/A
+- Бундеслига ТБ(2.5) steam: crossings 2, settled 0, ROI N/A, close persistence 100.0%
