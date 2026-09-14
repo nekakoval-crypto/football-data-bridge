@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 14.09.2026 02:00 (Europe/Berlin)
+Обновлено: 14.09.2026 03:01 (Europe/Berlin)
 Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -367,7 +367,7 @@ Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
 
 - **Leeds — Newcastle** | Premier League | 14.09 19:00 UTC
   - ОЗ · ОЗ Да: 1.62 | ОЗ Нет: 2.2 @ Bet365
-  - ОЗ · ОЗ Да: 1.61 | ОЗ Нет: 2.17 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.62 | ОЗ Нет: 2.16 @ Marathonbet
   - Ф(0) · Ф1(0): 1.65 | Ф2(0): 2.2 @ Bet365
   - Ф(0) · Ф1(0): 1.69 | Ф2(0): 2.17 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.36 | Х2: 1.57 | 12: 1.28 @ Bet365
@@ -487,7 +487,7 @@ Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
 
 - **Rayo Vallecano — Espanyol** | La Liga | 15.09 17:00 UTC
   - ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 2 @ Bet365
-  - ОЗ · ОЗ Да: 1.74 | ОЗ Нет: 1.98 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.73 | ОЗ Нет: 1.99 @ Marathonbet
   - Ф(0) · Ф1(0): 1.45 | Ф2(0): 2.68 @ Bet365
   - Ф(0) · Ф1(0): 1.49 | Ф2(0): 2.62 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.25 | Х2: 1.8 | 12: 1.3 @ Bet365
@@ -713,7 +713,7 @@ Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
 
 - **Elche — Real Madrid** | La Liga | 15.09 19:30 UTC
   - ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.05 @ Bet365
-  - ОЗ · ОЗ Да: 1.68 | ОЗ Нет: 2.06 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.66 | ОЗ Нет: 2.09 @ Marathonbet
   - Ф(0) · Ф1(0): 7 | Ф2(0): 1.1 @ Bet365
   - Ф(0) · Ф1(0): 6.35 | Ф2(0): 1.06 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 3.75 | Х2: 1.06 | 12: 1.12 @ Bet365
@@ -2010,6 +2010,6 @@ Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
 
 ## 🛡️ Состояние системы / governance
 - System Health: **WARN** | critical 0 | warnings 2
-- Логическая canonical экспозиция: **3.0u** | конфликтов матчей 0 | убрано дублей 0.0u
+- Логическая canonical экспозиция: **2.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 22 | data required 4
