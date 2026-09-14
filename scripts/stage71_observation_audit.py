@@ -4,8 +4,10 @@ from __future__ import annotations
 
 import json
 import os
+import csv
+import math
 from collections import Counter
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 
@@ -59,10 +61,21 @@ def duplicates(triggers, forward):
         excess((r.get('family'), r.get('api_league_id'), r.get('api_fixture_id')) for r in forward))
 
 
+class ProtectedBudgetError(RuntimeError):
+    """Raised when a low-priority consumer reaches protected product quota."""
+
+
+def challenger_available_calls(daily_limit, api_day_calls, protected_calls):
+    return max(0, int(daily_limit) - int(api_day_calls) - int(protected_calls))
+
+
 class Budget:
     """Counts attempted calls, including failures, before issuing requests."""
-    def __init__(self, get, state, now, limit=60, daily_limit=180, checkpoint=None):
+    def __init__(self, get, state, now, limit=60, daily_limit=180, checkpoint=None,
+                 protected_calls=0):
         self.get, self.state, self.limit, self.daily_limit = get, state, limit, daily_limit
+        self.protected_calls = max(0, int(protected_calls))
+        self.protection_reached = False
         self.calls = 0
         self.checkpoint = checkpoint
         day = now.date().isoformat()
@@ -70,7 +83,14 @@ class Budget:
             state.update(api_day=day, api_day_calls=0)
 
     def __call__(self, path, params=None, **kwargs):
-        if self.calls >= self.limit or self.state['api_day_calls'] >= self.daily_limit:
+        protected_limit = max(0, self.daily_limit - self.protected_calls)
+        if self.calls >= self.limit:
+            raise RuntimeError('Stage71 API budget exhausted; retry next run')
+        if self.state['api_day_calls'] >= protected_limit:
+            if self.protected_calls:
+                self.protection_reached = True
+                raise ProtectedBudgetError(
+                    'Stage71 protected API reserve reached; Challenger deferred')
             raise RuntimeError('Stage71 API budget exhausted; retry next run')
         self.calls += 1
         self.state['api_day_calls'] += 1
@@ -82,6 +102,78 @@ class Budget:
         if int((data.get('paging') or {}).get('total', 1)) > 1:
             raise RuntimeError('Incomplete paginated response; no clean evaluation')
         return data
+
+
+def _forecast_rows(path):
+    required = {'fixture_id', 'kickoff_utc'}
+    if not path.exists():
+        return None
+    try:
+        with path.open(encoding='utf-8-sig', newline='') as stream:
+            reader = csv.DictReader(stream)
+            if not reader.fieldnames or not required.issubset(reader.fieldnames):
+                return None
+            rows = list(reader)
+    except (OSError, csv.Error, UnicodeError):
+        return None
+    seen = set()
+    for row in rows:
+        fixture_id = str(row.get('fixture_id') or '').strip()
+        kickoff = dt(row.get('kickoff_utc'))
+        if not fixture_id or not kickoff or fixture_id in seen:
+            return None
+        seen.add(fixture_id)
+    return rows
+
+
+def live_forecast(path, now):
+    """Forecast remaining UTC-day LIVE batches from the tracked fixture snapshot."""
+    rows = _forecast_rows(path)
+    if rows is None:
+        return {
+            'status': 'SCHEDULE_UNKNOWN', 'reserved_live_calls': 0,
+            'live_forecast_cycles': 0, 'live_peak_candidates': 0,
+            'live_peak_batches': 0,
+        }
+    now = now.astimezone(timezone.utc)
+    day_end = (now + timedelta(days=1)).replace(
+        hour=0, minute=0, second=0, microsecond=0)
+    cycle = now.replace(second=0, microsecond=0)
+    cycle += timedelta(minutes=30 - cycle.minute % 30)
+    windows = []
+    for row in rows:
+        kickoff = dt(row['kickoff_utc'])
+        start = kickoff - timedelta(minutes=15)
+        end = kickoff + timedelta(hours=4)
+        if end >= cycle and start < day_end:
+            windows.append((start, end))
+    calls = 0
+    peak = 0
+    cycles = 0
+    while cycle < day_end:
+        candidates = sum(start <= cycle <= end for start, end in windows)
+        batches = math.ceil(candidates / 20) if candidates else 0
+        calls += batches
+        cycles += bool(candidates)
+        peak = max(peak, candidates)
+        cycle += timedelta(minutes=30)
+    return {
+        'status': 'OPEN',
+        'reserved_live_calls': calls,
+        'live_forecast_cycles': cycles,
+        'live_peak_candidates': peak,
+        'live_peak_batches': math.ceil(peak / 20) if peak else 0,
+    }
+
+
+def current_round_forecast(now, calls_per_run=32):
+    """Reserve only known scheduled current-round runs still ahead today."""
+    now = now.astimezone(timezone.utc)
+    scheduled = [
+        now.replace(hour=hour, minute=17, second=0, microsecond=0)
+        for hour in (7, 15, 23)
+    ]
+    return sum(calls_per_run for run_at in scheduled if run_at > now)
 
 
 def remember(state, fixtures, now):

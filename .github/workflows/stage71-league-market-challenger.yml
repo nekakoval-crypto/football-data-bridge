@@ -48,7 +48,7 @@ jobs:
 
   challenger:
     needs: validate
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
     permissions:
       contents: write
     runs-on: ubuntu-latest
@@ -61,6 +61,7 @@ jobs:
       STAGE71_R2_FREEZE_HOURS: '12'
       STAGE71_MAX_API_CALLS: '60'
       STAGE71_MAX_DAILY_API_CALLS: '180'
+      STAGE71_API_SAFETY_MARGIN: '10'
 
     steps:
       - name: Checkout
@@ -71,14 +72,14 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Capture provider-defined current rounds
+        run: python scripts/stage71_current_round_capture.py
+
       - name: Resolve Stage 71 catalog and baseline board
         run: python scripts/stage71_league_market_challenger.py
 
       - name: Capture prospective league challengers
         run: python scripts/stage71_challenger_capture.py
-
-      - name: Capture provider-defined current rounds
-        run: python scripts/stage71_current_round_capture.py
 
       - name: Audit observation completeness and settlement health
         run: python scripts/stage71_observation_audit.py

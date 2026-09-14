@@ -87,6 +87,91 @@ class Guards(unittest.TestCase):
         with self.assertRaises(RuntimeError): budget('/fixtures')
         self.assertEqual(budget.calls, 0)
 
+    def test_protected_budget_stops_at_reserved_ceiling(self):
+        state = {}
+        budget = a.Budget(lambda *args: {'response': []}, state, NOW,
+                          daily_limit=10, protected_calls=4)
+        for _ in range(6):
+            budget('/fixtures')
+        with self.assertRaises(a.ProtectedBudgetError):
+            budget('/fixtures')
+        self.assertEqual(state['api_day_calls'], 6)
+        self.assertTrue(budget.protection_reached)
+
+    def test_protected_reserve_adds_live_current_round_and_safety(self):
+        protected = 17 + 64 + 10
+        self.assertEqual(protected, 91)
+        self.assertEqual(a.challenger_available_calls(180, 0, protected), 89)
+        self.assertEqual(a.challenger_available_calls(180, 50, protected), 39)
+        self.assertEqual(a.challenger_available_calls(180, 89, protected), 0)
+        self.assertEqual(a.challenger_available_calls(180, 180, protected), 0)
+
+    def test_exhausted_daily_state_defers_without_provider_call(self):
+        calls = []
+        state = {'api_day': NOW.date().isoformat(), 'api_day_calls': 180}
+        budget = a.Budget(lambda *args: calls.append(args), state, NOW,
+                          daily_limit=180, protected_calls=91)
+        with self.assertRaises(a.ProtectedBudgetError):
+            budget('/fixtures')
+        self.assertEqual(calls, [])
+        self.assertEqual(budget.calls, 0)
+        self.assertEqual(state['api_day_calls'], 180)
+        self.assertTrue(budget.protection_reached)
+
+    def test_live_forecast_is_match_aware_and_fail_closed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'current_round_fixtures.csv'
+            path.write_text('fixture_id,kickoff_utc\n1,2026-09-12T10:10:00Z\n',
+                            encoding='utf-8')
+            forecast = a.live_forecast(path, NOW)
+            self.assertEqual(forecast['reserved_live_calls'], 8)
+            self.assertEqual(forecast['live_peak_candidates'], 1)
+            path.write_text('fixture_id,kickoff_utc\n1,2026-09-15T10:00:00Z\n',
+                            encoding='utf-8')
+            self.assertEqual(a.live_forecast(path, NOW)['reserved_live_calls'], 0)
+            path.write_text('bad\nvalue\n', encoding='utf-8')
+            self.assertEqual(a.live_forecast(path, NOW)['status'], 'SCHEDULE_UNKNOWN')
+            self.assertEqual(a.live_forecast(Path(directory) / 'missing.csv', NOW)['status'],
+                             'SCHEDULE_UNKNOWN')
+
+    def test_live_forecast_batches_and_utc_day_boundary(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'fixtures.csv'
+            rows = ['fixture_id,kickoff_utc'] + [
+                f'{i},2026-09-12T12:00:00Z' for i in range(21)
+            ]
+            rows.append('late,2026-09-13T00:05:00Z')
+            path.write_text('\n'.join(rows) + '\n', encoding='utf-8')
+            forecast = a.live_forecast(path, NOW)
+            self.assertEqual(forecast['reserved_live_calls'], 18)
+            self.assertEqual(forecast['live_peak_candidates'], 21)
+            self.assertEqual(forecast['live_peak_batches'], 2)
+
+    def test_current_round_reserve_counts_future_scheduled_runs(self):
+        self.assertEqual(a.current_round_forecast(NOW), 64)
+        self.assertEqual(a.current_round_forecast(
+            datetime(2026, 9, 12, 16, tzinfo=timezone.utc)), 32)
+        self.assertEqual(a.current_round_forecast(
+            datetime(2026, 9, 12, 23, 30, tzinfo=timezone.utc)), 0)
+
+    def test_challenger_workflow_protects_provider_job_and_orders_current_round(self):
+        workflow = (Path(__file__).resolve().parents[2] / '.github' / 'workflows' /
+                    'stage71-league-market-challenger.yml').read_text(encoding='utf-8')
+        self.assertIn(
+            "github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'",
+            workflow)
+        self.assertLess(
+            workflow.index('run: python scripts/stage71_current_round_capture.py'),
+            workflow.index('run: python scripts/stage71_challenger_capture.py'))
+        self.assertIn("STAGE71_API_SAFETY_MARGIN: '10'", workflow)
+
+    def test_challenger_telemetry_uses_actual_prior_day_calls(self):
+        source = (Path(__file__).resolve().parents[1] / 'stage71_challenger_capture.py').read_text(
+            encoding='utf-8')
+        self.assertIn("'api_day_calls_before_challenger': api_day_calls_before", source)
+        self.assertIn("challenger_deferred", source)
+        self.assertIn("'budget_protection_status':", source)
+
     def test_missing_key_and_partial_pagination_not_empty_success(self):
         for response in [None, {'errors': ['quota'], 'response': []}, {'response': [], 'paging': {'total': 2}}]:
             budget = a.Budget(lambda *args: response, {}, NOW)
@@ -122,6 +207,8 @@ class CaptureIntegration(unittest.TestCase):
                          ('META', 'stage71_capture_last_run.json')]]
         for p in self.patches: p.start()
         self.patches.append(patch.object(c, 'now_dt', return_value=NOW)); self.patches[-1].start()
+        (self.ops / 'current_round_fixtures.csv').write_text(
+            'fixture_id,kickoff_utc\n', encoding='utf-8')
         self.calls = []
         self.fixtures = [fixture(fid=i) for i in range(1, 9)]
         self.fail_odds = False

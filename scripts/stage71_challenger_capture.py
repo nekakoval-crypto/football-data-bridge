@@ -151,6 +151,7 @@ def run_capture(state, budget):
     live, completed_by_league, candidate_ids = {}, {}, set()
     # A single season inventory replaces next=5 AND the separate FT history call.
     # Fetch all inventories before spending quota on odds; no stale cache capture.
+    deferred = False
     for lg in research_catalog:
         lid = lg['api_league_id']
         try:
@@ -170,9 +171,22 @@ def run_capture(state, budget):
             candidate_ids.update(str(x['fixture']['id']) for x in upcoming[:NEXT_PER_LEAGUE] + due)
             scans.append({'league': lg['league'], 'expected': len(due), 'scanned': len(due),
                           'legacy_next5_omitted': max(0, len(due)-NEXT_PER_LEAGUE), 'inventory': 'COMPLETE'})
+        except audit.ProtectedBudgetError as exc:
+            warnings.append(str(exc))
+            deferred = True
+            break
         except Exception as exc:
             warnings.append(f"{lg['league']}: inventory unavailable: {exc}")
             scans.append({'league': lg['league'], 'inventory': 'UNKNOWN', 'expected': None, 'scanned': 0})
+    if deferred:
+        return dict(run_at_utc=iso(now_dt()), status='ATTENTION',
+                    research_leagues=len(research_catalog), new_triggers=0,
+                    new_r1_rows=0, new_r2_rows=0, settled_rows=0,
+                    trigger_rows=len(triggers), forward_rows=len(forward),
+                    api_calls=budget.calls, odds_calls=odds_calls,
+                    marathon_calls=marathon_calls, scan=scans,
+                    warnings=warnings, canonical_captured=0,
+                    challenger_deferred=True)
     # Retry missing pending fixtures (including previous seasons) fairly, in one bounded batch.
     missing = {r['api_fixture_id'] for r in forward if r['status'] == 'PENDING' and r['api_fixture_id'] not in live}
     retry = state.setdefault('retry', {})
@@ -185,8 +199,20 @@ def run_capture(state, budget):
             fixtures = [x for x in fixtures if str((x.get('fixture') or {}).get('id')) in selected]
             audit.remember(state, fixtures, now)
             live.update({str(x['fixture']['id']): x for x in fixtures})
+        except audit.ProtectedBudgetError as exc:
+            warnings.append(str(exc))
+            deferred = True
         except Exception as exc:
             warnings.append(f'Pending fixture retry failed: {exc}')
+        if deferred:
+            return dict(run_at_utc=iso(now_dt()), status='ATTENTION',
+                        research_leagues=len(research_catalog), new_triggers=0,
+                        new_r1_rows=0, new_r2_rows=0, settled_rows=0,
+                        trigger_rows=len(triggers), forward_rows=len(forward),
+                        api_calls=budget.calls, odds_calls=odds_calls,
+                        marathon_calls=marathon_calls, scan=scans,
+                        warnings=warnings, canonical_captured=0,
+                        challenger_deferred=True)
     catalog_by_id = {r['api_league_id']: r for r in research_catalog}
     candidates = sorted([x for fid, x in live.items() if fid in candidate_ids and audit.pregame(x, now)],
                         key=lambda x: parse_dt(x['fixture']['date']))
@@ -219,10 +245,16 @@ def run_capture(state, budget):
                 triggers.append(tr); trig_by_id[fid] = tr; new_triggers += 1
                 # Persist opener before execution request, so interrupted runs never replace it.
                 write_csv(TRIGGERS, TRIGGER_FIELDS, triggers)
+            except audit.ProtectedBudgetError as exc:
+                warnings.append(str(exc))
+                deferred = True
+                break
             except Exception as exc:
                 item['capture_reason'] = 'odds_error_or_budget; retry_required'
                 warnings.append(f'{fid}: Bet365 capture failed: {exc}')
                 continue
+        if deferred:
+            break
         t = trig_by_id[fid]
         if not audit.clean_trigger(t):
             item['capture_reason'] = 'invalid_trigger_provenance'
@@ -253,6 +285,10 @@ def run_capture(state, budget):
         try:
             marathon_calls += 1
             user_odd, update = marathon_away_price(fid, MATCH_WINNER_BET_ID, t['home_team'], t['away_team'])
+        except audit.ProtectedBudgetError as exc:
+            warnings.append(str(exc))
+            deferred = True
+            break
         except Exception as exc:
             warnings.append(f'{fid}: execution price retry required: {exc}')
             continue
@@ -282,7 +318,8 @@ def run_capture(state, budget):
                 new_r2_rows=new_r2, settled_rows=settled, trigger_rows=len(triggers), forward_rows=len(forward),
                 api_calls=budget.calls, odds_calls=odds_calls, marathon_calls=marathon_calls,
                 scan=scans, warnings=warnings,
-                canonical_captured=sum(r.get('rule') in {'R1', 'R2'} for r in read_csv(OPS/'user_forward_view.csv')))
+                canonical_captured=sum(r.get('rule') in {'R1', 'R2'} for r in read_csv(OPS/'user_forward_view.csv')),
+                challenger_deferred=deferred)
 
 
 def main():
@@ -295,10 +332,21 @@ def main():
     original = s53.api_get
     try:
         state = audit.read(state_path)
-        budget = audit.Budget(original, state, now_dt(),
-                              int(os.getenv('STAGE71_MAX_API_CALLS', '60')),
-                              int(os.getenv('STAGE71_MAX_DAILY_API_CALLS', '180')),
-                              checkpoint=lambda data: audit.save(state_path, data))
+        run_now = now_dt()
+        daily_limit = int(os.getenv('STAGE71_MAX_DAILY_API_CALLS', '180'))
+        api_day_calls_before = state.get('api_day_calls', 0) if state.get('api_day') == run_now.date().isoformat() else 0
+        forecast = audit.live_forecast(OPS / 'current_round_fixtures.csv', run_now)
+        reserved_live = forecast['reserved_live_calls']
+        reserved_round = audit.current_round_forecast(run_now)
+        safety_margin = int(os.getenv('STAGE71_API_SAFETY_MARGIN', '10'))
+        protected_calls = (daily_limit if forecast['status'] == 'SCHEDULE_UNKNOWN'
+                           else reserved_live + reserved_round + safety_margin)
+        budget = audit.Budget(
+            original, state, run_now,
+            int(os.getenv('STAGE71_MAX_API_CALLS', '60')),
+            daily_limit,
+            checkpoint=lambda data: audit.save(state_path, data),
+            protected_calls=protected_calls)
         s53.api_get = budget
         meta = {'run_at_utc': iso(now_dt()), 'status': 'ERROR', 'warnings': ['Capture interrupted']}
         try:
@@ -308,6 +356,22 @@ def main():
             raise
         finally:
             meta['api_calls'] = budget.calls
+            meta.update({
+                'api_day_calls_before_challenger': api_day_calls_before,
+                'reserved_live_calls': reserved_live,
+                'reserved_current_round_calls': reserved_round,
+                'safety_margin_calls': safety_margin,
+                'challenger_available_calls': audit.challenger_available_calls(
+                    daily_limit, api_day_calls_before, protected_calls),
+                'challenger_calls_used': budget.calls,
+                'live_forecast_cycles': forecast['live_forecast_cycles'],
+                'live_peak_candidates': forecast['live_peak_candidates'],
+                'live_peak_batches': forecast['live_peak_batches'],
+                'budget_protection_status': (
+                    forecast['status'] if forecast['status'] == 'SCHEDULE_UNKNOWN'
+                    else 'PROTECTED' if protected_calls >= daily_limit - api_day_calls_before
+                    else 'LIMITED' if protected_calls else 'OPEN'),
+            })
             audit.save(state_path, state)
             audit.save(META, meta)
             audit.save(OPS / 'stage71_observation_health.json', audit.report(
