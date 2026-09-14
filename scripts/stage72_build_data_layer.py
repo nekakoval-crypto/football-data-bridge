@@ -13,7 +13,7 @@ from stage75_value_radar import read_jsonl, EVENT_FIELDS
 
 OPS=Path(os.getenv('OPS_DIR','ops'))
 OUT=Path(os.getenv('STAGE72_DB_PATH','build/pbk_unified.sqlite'))
-META=OPS/'stage72_last_run.json';SCHEMA=OPS/'stage72_schema.json';SCHEMA_VERSION='10'
+META=OPS/'stage72_last_run.json';SCHEMA=OPS/'stage72_schema.json';SCHEMA_VERSION='11'
 CORE_ALIASES={
     'competitions':'stage71_league_catalog.csv','canonical_signals':'user_forward_view.csv','challenger_signals':'stage71_challenger_forward.csv','watch_signals':'stage65_watch_ledger.csv','lifecycle_events':'signal_lifecycle_events.csv','exposure_positions':'exposure_map.csv','context_latest':'context_latest.csv','odds_snapshots':'odds_snapshots.csv',
     'team_total_openers':'stage71c_team_total_openers.csv','team_total_snapshots':'stage71c_team_total_snapshots.csv','team_total_closes':'stage71c_team_total_closes.csv',
@@ -24,7 +24,7 @@ CORE_ALIASES={
     'probability_predictions':'stage75_probability_predictions.csv','probability_settlements':'stage75_probability_settlements.csv',
 }
 CURRENT_ROUND_LEAGUE_FIELDS=['provider_league_id','league_name','country','country_flag_url','league_logo_url','season','round','observed_at_utc','status','error']
-CURRENT_ROUND_FIXTURE_FIELDS=['fixture_id','provider_league_id','league_name','country','country_flag_url','league_logo_url','season','round','kickoff_utc','home_team','home_team_logo_url','away_team','away_team_logo_url','status','source_status','score_home','score_away','observed_at_utc']
+CURRENT_ROUND_FIXTURE_FIELDS=['fixture_id','provider_league_id','league_name','country','country_flag_url','league_logo_url','season','round','kickoff_utc','home_team','home_team_logo_url','away_team','away_team_logo_url','status','source_status','score_home','score_away','observed_at_utc','live_observed_at_utc','live_freshness_status','elapsed']
 JSON_DOCS=['attention_board.json','daily_brief.json','forward_performance.json','watch_performance.json','watch_promotion_gate.json','system_health.json','exposure_summary.json','stage71_challenger_board.json','signal_lifecycle_cards.json','stage71b_fonbet_coverage.json','stage71c_last_run.json','stage71e_last_run.json','stage71f_last_run.json','stage71g_last_run.json','stage71i_last_run.json','probability_rankings.json','probability_performance.json','stage75_last_run.json']
 def now_iso():return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00','Z')
 JSON_DOCS.append('value_radar_current.json')
@@ -55,7 +55,12 @@ def create_text_table(conn,table,fields,rows):
     for field in fields:
         base=safe(field);n=used.get(base,0);used[base]=n+1;col=base if n==0 else f'{base}_{n+1}';cols.append(col);mapping.append((field,col))
     if not cols:conn.execute(f'CREATE TABLE "{table}" (_empty TEXT)');return 0,[]
-    conn.execute(f'CREATE TABLE "{table}" ({", ".join([f"\"{c}\" TEXT" for c in cols])})');q=f'INSERT INTO "{table}" ({", ".join([f"\"{c}\"" for c in cols])}) VALUES ({", ".join(["?"]*len(cols))})';conn.executemany(q,[[r.get(orig,'') for orig,col in mapping] for r in rows])
+    column_sql=', '.join(f'"{c}" TEXT' for c in cols)
+    insert_columns=', '.join(f'"{c}"' for c in cols)
+    placeholders=', '.join('?' for _ in cols)
+    conn.execute(f'CREATE TABLE "{table}" ({column_sql})')
+    q=f'INSERT INTO "{table}" ({insert_columns}) VALUES ({placeholders})'
+    conn.executemany(q,[[r.get(orig,'') for orig,col in mapping] for r in rows])
     for candidate in ('api_fixture_id','fixture_id','forward_id','research_id','watch_id','signal_id','prediction_id','market_key','settlement_key','kickoff_utc','league','family','market_family','rule','status','settlement_status','team_side','line','home_handicap_line'):
         if candidate in cols:
             try:conn.execute(f'CREATE INDEX "idx_{table}_{candidate}" ON "{table}" ("{candidate}")')
@@ -146,12 +151,39 @@ def create_today_table(conn, rows):
             'source_status','score','observed_at_utc','source']
     text=[{k:(json.dumps(r[k],ensure_ascii=False,sort_keys=True) if isinstance(r[k],dict) else (r[k] or '')) for k in fields} for r in rows]
     return create_text_table(conn,'today_matches',fields,text)
+def parse_utc(value):
+    try:return datetime.fromisoformat(str(value).replace('Z','+00:00')).astimezone(timezone.utc)
+    except (TypeError,ValueError):return None
+def merge_live_overlay(base_rows, overlay_rows):
+    overlays={str(row.get('fixture_id') or ''):row for row in overlay_rows}
+    dynamic=('status','source_status','score_home','score_away','elapsed','observed_at_utc',
+             'live_observed_at_utc','live_freshness_status')
+    merged=[]
+    for base in base_rows:
+        row=dict(base); overlay=overlays.get(str(base.get('fixture_id') or ''))
+        bt=parse_utc(row.get('observed_at_utc')); ot=parse_utc((overlay or {}).get('observed_at_utc'))
+        if overlay and ot and (not bt or ot>bt):
+            terminal = row.get('status') == 'finished'
+            regresses_terminal = terminal and overlay.get('status') in {'live','suspended','interrupted'}
+            if not regresses_terminal:
+                for key in dynamic:
+                    if key in overlay:row[key]=overlay[key]
+        if row.get('status') in {'live','suspended','interrupted'}:
+            observed=parse_utc(row.get('live_observed_at_utc') or row.get('observed_at_utc'))
+            # The 40-minute bound covers the 30-minute schedule plus normal workflow delay.
+            row['live_freshness_status']='fresh' if observed and (datetime.now(timezone.utc)-observed).total_seconds()<=2400 else 'stale'
+        else:row['live_freshness_status']=row.get('live_freshness_status') or 'unknown'
+        merged.append(row)
+    return merged
 def create_current_round_tables(conn, ops):
     league_fields, league_rows = read_csv(ops/'current_round_leagues.csv')
     fixture_fields, fixture_rows = read_csv(ops/'current_round_fixtures.csv')
     if not league_fields: league_fields = CURRENT_ROUND_LEAGUE_FIELDS
     if not fixture_fields: fixture_fields = CURRENT_ROUND_FIXTURE_FIELDS
     league_count, _ = create_text_table(conn, 'current_round_leagues', league_fields, league_rows)
+    _, overlay_rows = read_csv(ops/'live_fixture_overlay.csv')
+    fixture_rows=merge_live_overlay(fixture_rows, overlay_rows)
+    fixture_fields=list(dict.fromkeys(fixture_fields+['live_observed_at_utc','live_freshness_status','elapsed']))
     fixture_count, _ = create_text_table(conn, 'current_round_matches', fixture_fields, fixture_rows)
     return league_count, fixture_count
 def main():
