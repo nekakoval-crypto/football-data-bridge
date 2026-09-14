@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-14T08:19:34.458849Z",
+  "run_at_utc": "2026-09-14T15:33:35.276360Z",
   "status": "ATTENTION",
   "counts": {
     "expected": null,
@@ -15,118 +15,12 @@
   },
   "risks": [],
   "stale_ids": [],
-  "scan": [
-    {
-      "league": "Premier League",
-      "inventory": "UNKNOWN",
-      "expected": null,
-      "scanned": 0
-    },
-    {
-      "league": "La Liga",
-      "inventory": "UNKNOWN",
-      "expected": null,
-      "scanned": 0
-    },
-    {
-      "league": "Bundesliga",
-      "inventory": "UNKNOWN",
-      "expected": null,
-      "scanned": 0
-    },
-    {
-      "league": "Ligue 1",
-      "inventory": "UNKNOWN",
-      "expected": null,
-      "scanned": 0
-    },
-    {
-      "league": "Austrian Bundesliga",
-      "inventory": "UNKNOWN",
-      "expected": null,
-      "scanned": 0
-    },
-    {
-      "league": "Belgian Pro League",
-      "inventory": "UNKNOWN",
-      "expected": null,
-      "scanned": 0
-    },
-    {
-      "league": "Danish Superliga",
-      "inventory": "UNKNOWN",
-      "expected": null,
-      "scanned": 0
-    },
-    {
-      "league": "A Lyga",
-      "inventory": "UNKNOWN",
-      "expected": null,
-      "scanned": 0
-    },
-    {
-      "league": "Virsliga",
-      "inventory": "UNKNOWN",
-      "expected": null,
-      "scanned": 0
-    },
-    {
-      "league": "Eredivisie",
-      "inventory": "UNKNOWN",
-      "expected": null,
-      "scanned": 0
-    },
-    {
-      "league": "Eliteserien",
-      "inventory": "UNKNOWN",
-      "expected": null,
-      "scanned": 0
-    },
-    {
-      "league": "Ekstraklasa",
-      "inventory": "UNKNOWN",
-      "expected": null,
-      "scanned": 0
-    },
-    {
-      "league": "Primeira Liga",
-      "inventory": "UNKNOWN",
-      "expected": null,
-      "scanned": 0
-    },
-    {
-      "league": "Super Lig",
-      "inventory": "UNKNOWN",
-      "expected": null,
-      "scanned": 0
-    },
-    {
-      "league": "Scottish Premiership",
-      "inventory": "UNKNOWN",
-      "expected": null,
-      "scanned": 0
-    }
-  ],
+  "scan": [],
   "warnings": [
-    "Premier League: inventory unavailable: Stage71 API budget exhausted; retry next run",
-    "La Liga: inventory unavailable: Stage71 API budget exhausted; retry next run",
-    "Bundesliga: inventory unavailable: Stage71 API budget exhausted; retry next run",
-    "Ligue 1: inventory unavailable: Stage71 API budget exhausted; retry next run",
-    "Austrian Bundesliga: inventory unavailable: Stage71 API budget exhausted; retry next run",
-    "Belgian Pro League: inventory unavailable: Stage71 API budget exhausted; retry next run",
-    "Danish Superliga: inventory unavailable: Stage71 API budget exhausted; retry next run",
-    "A Lyga: inventory unavailable: Stage71 API budget exhausted; retry next run",
-    "Virsliga: inventory unavailable: Stage71 API budget exhausted; retry next run",
-    "Eredivisie: inventory unavailable: Stage71 API budget exhausted; retry next run",
-    "Eliteserien: inventory unavailable: Stage71 API budget exhausted; retry next run",
-    "Ekstraklasa: inventory unavailable: Stage71 API budget exhausted; retry next run",
-    "Primeira Liga: inventory unavailable: Stage71 API budget exhausted; retry next run",
-    "Super Lig: inventory unavailable: Stage71 API budget exhausted; retry next run",
-    "Scottish Premiership: inventory unavailable: Stage71 API budget exhausted; retry next run",
-    "Pending fixture retry failed: Stage71 API budget exhausted; retry next run"
+    "Stage71 protected API reserve reached; Challenger deferred"
   ],
   "scope": "16 locked leagues; 15 research writers; Serie A canonical read-only, completeness not certified",
-  "canonical_captured": 3,
+  "canonical_captured": 0,
   "definitions": {
     "expected": "scheduled NS fixtures in next 24h, not inferred qualifying bets",
     "scanned": "those fixtures evaluated for capture using a fresh complete league inventory",
