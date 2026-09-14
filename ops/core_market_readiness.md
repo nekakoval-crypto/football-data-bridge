@@ -1,6 +1,6 @@
 # PBK Core Market Data Readiness
 
-Обновлено UTC: 2026-09-14T06:41:14Z
+Обновлено UTC: 2026-09-14T12:39:57Z
 
 > Это data-readiness board. `DISCOVERY_POOL_READY` не означает value, WATCH или ставку.
 
@@ -9,15 +9,15 @@
 - Next gate: Continue clean forward and challenger governance
 
 ## Двойной шанс — 1Х / Х2 / 12 — COLLECTING_CLOSES
-- Openers: 188 rows / 188 fixtures; snapshots: 1138 rows / 131 fixtures; closes: 104 rows / 104 fixtures.
-- Marathonbet close coverage: 96.15%; settlement coverage: 100.0%.
-- Blocking: CLOSED_FIXTURES_104/120
+- Openers: 191 rows / 191 fixtures; snapshots: 1164 rows / 134 fixtures; closes: 108 rows / 108 fixtures.
+- Marathonbet close coverage: 96.3%; settlement coverage: 100.0%.
+- Blocking: CLOSED_FIXTURES_108/120
 - Next gate: Freeze discovery sample, preregister hypothesis, test on independent future holdout
 
 ## Фора 0 — Ф1(0) / Ф2(0) — COLLECTING_CLOSES
-- Openers: 168 rows / 168 fixtures; snapshots: 912 rows / 116 fixtures; closes: 92 rows / 92 fixtures.
+- Openers: 171 rows / 171 fixtures; snapshots: 935 rows / 118 fixtures; closes: 95 rows / 95 fixtures.
 - Marathonbet close coverage: 100.0%; settlement coverage: 100.0%.
-- Blocking: CLOSED_FIXTURES_92/120
+- Blocking: CLOSED_FIXTURES_95/120
 - Next gate: Collect a new prospective discovery sample; any future hypothesis requires new preregistration and independent future holdout
 
 ## Азиатская фора — HISTORICAL_NO_CANDIDATE
@@ -25,9 +25,9 @@
 - Next gate: Only a new independently preregistered hypothesis or regime-change prospective path
 
 ## Европейская фора 3-way — COLLECTING_CLOSES
-- Openers: 974 rows / 188 fixtures; snapshots: 5415 rows / 131 fixtures; closes: 541 rows / 104 fixtures.
+- Openers: 989 rows / 191 fixtures; snapshots: 5552 rows / 134 fixtures; closes: 562 rows / 108 fixtures.
 - Marathonbet close coverage: 100.0%; settlement coverage: 100.0%.
-- Blocking: CLOSED_FIXTURES_104/120
+- Blocking: CLOSED_FIXTURES_108/120
 - Next gate: Freeze discovery sample, preregister line/selection logic, test on independent future holdout
 
 ## Тотал матча — ТБ / ТМ — WATCH_GOVERNED
@@ -35,9 +35,9 @@
 - Next gate: Prospective WATCH promotion policy only; no automatic R-rule
 
 ## Индивидуальные тоталы — ИТБ/ИТМ — COLLECTING_CLOSES
-- Openers: 1743 rows / 188 fixtures; snapshots: 12402 rows / 131 fixtures; closes: 962 rows / 104 fixtures.
+- Openers: 1772 rows / 191 fixtures; snapshots: 12638 rows / 134 fixtures; closes: 998 rows / 108 fixtures.
 - Marathonbet close coverage: 100.0%; settlement coverage: 100.0%.
-- Blocking: CLOSED_FIXTURES_104/120
+- Blocking: CLOSED_FIXTURES_108/120
 - Next gate: Freeze discovery sample, preregister team/line/selection logic, independent future holdout
 
 ## Обе забьют — ОЗ Да / Нет — WATCH_GOVERNED
