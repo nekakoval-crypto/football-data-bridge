@@ -1,7 +1,7 @@
 {
-  "generated_at_utc": "2026-09-14T18:03:07Z",
+  "generated_at_utc": "2026-09-14T19:04:16Z",
   "status": "OK",
-  "active_signals": 2,
+  "active_signals": 1,
   "policy": {
     "trigger": "immutable Bet365 first capture",
     "market_best": "observed API market price; not necessarily user executable",
@@ -10,131 +10,6 @@
     "context": "explanatory only; does not change locked rules"
   },
   "matches": [
-    {
-      "forward_id": "R1|I1|1550125",
-      "rule": "R1",
-      "league": "Serie A",
-      "fixture_id": "1550125",
-      "kickoff_utc": "2026-09-14T16:30:00Z",
-      "home_team": "Torino",
-      "away_team": "AS Roma",
-      "selection": "Away",
-      "stake_u": "1.000",
-      "status": "PAPER",
-      "trigger": {
-        "source": "Stage53 immutable first-captured Bet365 via API-Football",
-        "b365_home": "6.0",
-        "b365_draw": "4.0",
-        "b365_away": "1.57",
-        "selected_odds": "1.57",
-        "immutable": true
-      },
-      "market_observed": {
-        "captured_at_utc": "2026-09-14T15:47:52Z",
-        "best_odds": "1.6",
-        "best_bookmaker": "Betano",
-        "bet365_odds": "1.5",
-        "api_odds_update_utc": "2026-09-14T12:34:18+00:00",
-        "note": "Observed market-best is not automatically a user-executable price"
-      },
-      "user_execution": {
-        "status": "AVAILABLE",
-        "odds": "1.54",
-        "bookmaker": "Marathonbet"
-      },
-      "paper_user_execution": {
-        "status": "FROZEN",
-        "odds": "1.58",
-        "bookmaker": "Marathonbet",
-        "captured_at_utc": "2026-09-11T10:32:01Z",
-        "execution_type": "PAPER_FIRST_OBSERVED_ALLOWLISTED_PRICE",
-        "note": "standardized paper execution; not proof of a real placed bet"
-      },
-      "league_state": {
-        "home_rank": "13",
-        "away_rank": "1",
-        "home_points": "3",
-        "away_points": "9",
-        "home_played": "3",
-        "away_played": "3",
-        "home_last5_ppg": "1.00",
-        "away_last5_ppg": "3.00"
-      },
-      "calendar": {
-        "snapshot_type": "T60",
-        "captured_at_utc": "2026-09-14T16:16:59Z",
-        "referee": "F. Maresca",
-        "venue": "Stadio Olimpico di Torino",
-        "city": "Turin",
-        "home_prev": {
-          "competition": "Serie A",
-          "opponent": "Fiorentina",
-          "date_utc": "2026-09-05T13:00:00Z",
-          "rest_hours": "219.5"
-        },
-        "away_prev": {
-          "competition": "UEFA Champions League",
-          "opponent": "Fenerbahçe",
-          "date_utc": "2026-09-10T16:45:00Z",
-          "rest_hours": "95.8"
-        },
-        "home_next": {
-          "competition": "Serie A",
-          "opponent": "Bologna",
-          "date_utc": "2026-09-19T13:00:00Z",
-          "hours_after": "116.5"
-        },
-        "away_next": {
-          "competition": "Serie A",
-          "opponent": "Inter",
-          "date_utc": "2026-09-19T16:00:00Z",
-          "hours_after": "119.5"
-        }
-      },
-      "injuries": {
-        "status": "QUERIED",
-        "total": "12",
-        "home": "10",
-        "away": "2"
-      },
-      "weather": {
-        "snapshot_type": "T60",
-        "captured_at_utc": "2026-09-14T15:17:13Z",
-        "temperature_c": "29.3",
-        "precipitation_probability_pct": "0",
-        "precipitation_mm": "0.0",
-        "wind_speed_kmh": "7.8",
-        "wind_gusts_kmh": "13.3",
-        "visibility_m": "43660.0",
-        "weather_code": "0",
-        "role": "context-only"
-      },
-      "rotation": {
-        "status": "VERIFIED",
-        "captured_at_utc": "2026-09-14T16:15:17Z",
-        "home_retained_starters": "9",
-        "away_retained_starters": "7",
-        "home_changed_starters": "2",
-        "away_changed_starters": "4",
-        "home_retained_pct": "81.8",
-        "away_retained_pct": "63.6"
-      },
-      "international": {
-        "fifa_relation": "BEFORE",
-        "window": "FIFA 2026 combined Sep-Oct window",
-        "hours_to_start": "151.5",
-        "hours_since_end": "",
-        "within_7d_before": "YES",
-        "within_7d_after": "NO",
-        "player_level": "UNVERIFIED",
-        "player_level_reason": "Nationality is not evidence of call-up, travel, or appearance"
-      },
-      "flags": [
-        "AWAY_PREV_UEFA_OR_CUP",
-        "WITHIN_7D_BEFORE_FIFA_WINDOW"
-      ],
-      "display_selection": "П2"
-    },
     {
       "forward_id": "R1|I1|1550131",
       "rule": "R1",
@@ -155,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-14T17:44:50Z",
+        "captured_at_utc": "2026-09-14T18:49:34Z",
         "best_odds": "1.6",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.53",
@@ -273,7 +148,7 @@
     "observed_closes": 9,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-14T17:28:11Z",
+    "latest_run_utc": "2026-09-14T18:58:27Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [],
@@ -290,7 +165,7 @@
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-14T17:50:28Z",
+    "latest_run_utc": "2026-09-14T18:53:42Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -323,28 +198,16 @@
     "historical_edge_reason": "Canonical 10-year dataset has no historical BTTS first/close odds",
     "canonical_forward_changed": false,
     "tracked_openers": 105,
-    "active_crossings_total": 3,
-    "active_yes_crossings": 2,
+    "active_crossings_total": 2,
+    "active_yes_crossings": 1,
     "active_no_crossings": 1,
     "total_crossings": 10,
-    "observed_closes": 43,
+    "observed_closes": 45,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-14T16:16:41Z",
+    "latest_run_utc": "2026-09-14T18:18:26Z",
     "warnings": [],
     "crossings": [
-      {
-        "fixture_id": "1550125",
-        "league": "Serie A",
-        "home_team": "Torino",
-        "away_team": "AS Roma",
-        "selection": "ОЗ — Да",
-        "movement_yes_pp": "0.03333333",
-        "crossed_at_utc": "2026-09-11T22:15:22Z",
-        "minutes_to_kickoff": "3974.6",
-        "user_selected_odds": "1.81",
-        "note": "research watch only; not a bet signal"
-      },
       {
         "fixture_id": "1570388",
         "league": "La Liga",
@@ -372,59 +235,59 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-14T17:55:28Z",
+    "generated_at_utc": "2026-09-14T18:54:39Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
       "crossings": 12,
-      "pending": 3,
-      "settled": 9,
+      "pending": 2,
+      "settled": 10,
       "void": 0,
       "review": 0,
       "user_price_rows": 12,
       "user_execution_coverage_pct": 100.0,
-      "user_settled_rows": 9,
+      "user_settled_rows": 10,
       "wins": 3,
-      "losses": 6,
-      "user_profit_u": -5.16,
-      "user_roi_pct": -57.333,
-      "close_observed": 9,
+      "losses": 7,
+      "user_profit_u": -6.16,
+      "user_roi_pct": -61.6,
+      "close_observed": 10,
       "close_qualified": 9,
-      "reverted_at_close": 0,
-      "close_persistence_pct": 100.0,
+      "reverted_at_close": 1,
+      "close_persistence_pct": 90.0,
       "close_qualified_settled": 9,
       "close_qualified_profit_u": -5.16,
       "close_qualified_roi_pct": -57.333,
-      "reverted_settled": 0,
-      "reverted_profit_u": 0,
-      "reverted_roi_pct": null,
-      "observed_max_drawdown_u": 5.65
+      "reverted_settled": 1,
+      "reverted_profit_u": -1.0,
+      "reverted_roi_pct": -100.0,
+      "observed_max_drawdown_u": 6.65
     },
     "by_family": {
       "Big-5 ОЗ market movement — ОЗ — Да": {
         "crossings": 9,
-        "pending": 2,
-        "settled": 7,
+        "pending": 1,
+        "settled": 8,
         "void": 0,
         "review": 0,
         "user_price_rows": 9,
         "user_execution_coverage_pct": 100.0,
-        "user_settled_rows": 7,
+        "user_settled_rows": 8,
         "wins": 1,
-        "losses": 6,
-        "user_profit_u": -5.51,
-        "user_roi_pct": -78.714,
-        "close_observed": 7,
+        "losses": 7,
+        "user_profit_u": -6.51,
+        "user_roi_pct": -81.375,
+        "close_observed": 8,
         "close_qualified": 7,
-        "reverted_at_close": 0,
-        "close_persistence_pct": 100.0,
+        "reverted_at_close": 1,
+        "close_persistence_pct": 87.5,
         "close_qualified_settled": 7,
         "close_qualified_profit_u": -5.51,
         "close_qualified_roi_pct": -78.714,
-        "reverted_settled": 0,
-        "reverted_profit_u": 0,
-        "reverted_roi_pct": null,
-        "observed_max_drawdown_u": 6.0
+        "reverted_settled": 1,
+        "reverted_profit_u": -1.0,
+        "reverted_roi_pct": -100.0,
+        "observed_max_drawdown_u": 7.0
       },
       "Big-5 ОЗ market movement — ОЗ — Нет": {
         "crossings": 1,
