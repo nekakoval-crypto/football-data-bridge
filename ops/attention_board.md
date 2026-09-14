@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 14.09.2026 09:02 (Europe/Berlin)
+Обновлено: 14.09.2026 10:01 (Europe/Berlin)
 Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -383,8 +383,8 @@ Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
   - Европейская фора хозяев (-2) · П1: 11 | Х: 6.5 | П2: 1.2 @ Bet365
   - Европейская фора хозяев (-2) · П1: 8.3 | Х: 6.4 | П2: 1.18 @ Marathonbet
   - Европейская фора хозяев (-3) · П1: 26 | Х: 15 | П2: 1.05 @ Bet365
-  - 1X2 · П1: 2.3 | Х: 3.5 | П2: 3 @ Bet365
-  - 1X2 · П1: 2.35 | Х: 3.55 | П2: 3.08 @ Marathonbet
+  - 1X2 · П1: 2.25 | Х: 3.5 | П2: 3.1 @ Bet365
+  - 1X2 · П1: 2.33 | Х: 3.54 | П2: 3.12 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.3 | ИТМ: 3.4 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.3 | ИТМ: 3.2 @ Marathonbet
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 2.5 | ИТМ: 1.5 @ Bet365
@@ -1486,7 +1486,7 @@ Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
   - Ф(0) — нет данных
 
 - **Ajax — Excelsior** | Eredivisie | 19.09 18:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 1.36 | Х: 5.25 | П2: 6.5 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -1554,7 +1554,7 @@ Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
 - **Toulouse — Le Havre** | Ligue 1 | 19.09 18:45 UTC
   - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
   - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.9 @ Marathonbet
-  - 1X2 — нет данных
+  - 1X2 · П1: 1.8 | Х: 3.5 | П2: 4.5 @ Bet365
   - Тотал 2.5 — нет данных
   - ИТБ/ИТМ — нет данных
   - 1Х/Х2/12 — нет данных
@@ -2129,7 +2129,7 @@ Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 6
+- System Health: **WARN** | critical 0 | warnings 1
 - Логическая canonical экспозиция: **2.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 22 | data required 4
