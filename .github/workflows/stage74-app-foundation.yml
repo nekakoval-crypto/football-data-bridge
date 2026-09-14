@@ -40,6 +40,7 @@ jobs:
       - name: Validate frontend syntax and manifest
         run: |
           node --check app/app.js
+          node --check app/match-card.js
           node --check app/filters.js
           node --check app/install.js
           node --check app/runtime.js
@@ -54,6 +55,8 @@ jobs:
           python -m json.tool app/manifest.webmanifest >/dev/null
           test -s app/index.html
           test -s app/app.css
+          test -s app/match-card.js
+          test -s app/match-card.css
           test -s app/filters.css
           test -s app/install.css
           test -s app/runtime.css
@@ -75,11 +78,14 @@ jobs:
           grep -q 'probability-today' app/index.html
           grep -q 'probability-stats-detail' app/index.html
           grep -q 'today-live-content' app/index.html
+          grep -q '/match-card.css' app/index.html
           grep -q '/runtime.js' app/index.html
           grep -q '/install.js' app/index.html
           grep -q '/push.js' app/index.html
           grep -q '/probability.js' app/index.html
           grep -q '/v1/notifications' app/app.js
+          grep -q '/v1/match-card?fixture_id=' app/app.js
+          ! grep -q '/v1/match?fixture_id=' app/app.js
           grep -q '/api/v1/runtime' app/runtime.js
           grep -q '/v1/push/subscribe' app/push.js
           grep -q '/api/v1/performance' app/probability.js
@@ -87,7 +93,9 @@ jobs:
           grep -q '/api/v1/rounds/current' app/today-live.js
           grep -q 'today-live.js' app/sw.js
           grep -q 'today-live.css' app/sw.js
-          grep -q "pbk-shell-v12" app/sw.js
+          grep -q 'match-card.js' app/sw.js
+          grep -q 'match-card.css' app/sw.js
+          grep -q "pbk-shell-v13" app/sw.js
           grep -q "beforeinstallprompt" app/install.js
           grep -q "addEventListener('push'" app/sw.js
           grep -q 'probability.js' app/sw.js
@@ -154,5 +162,5 @@ jobs:
           PY
       - name: Report
         run: |
-          echo 'Stage74 PWA + Stage75 probability/value + runtime + Web Push + auto-release + hardening + freshness: OK'
+          echo 'Stage74 PWA + Match Card v2 UI + Stage75 probability/value + runtime + Web Push + auto-release + hardening + freshness: OK'
           cat ops/stage73_last_run.json

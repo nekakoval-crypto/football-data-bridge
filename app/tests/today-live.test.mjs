@@ -136,10 +136,10 @@ test('invalid and missing media use reserved placeholders and text is escaped', 
   assert.doesNotMatch(container.innerHTML, /src="null"/);
 });
 
-test('only the local current-round endpoint and v12 shell cache are used', async () => {
+test('only the local current-round endpoint and v13 shell cache are used', async () => {
   const source = await readFile(new URL('../today-live.js', import.meta.url), 'utf8');
   const sw = await readFile(new URL('../sw.js', import.meta.url), 'utf8');
   assert.ok(source.includes("fetch('/api/v1/rounds/current'"));
   assert.ok(!source.includes("fetch('/api/v1/today'"));
-  assert.ok(sw.includes('pbk-shell-v12'));
+  assert.ok(sw.includes('pbk-shell-v13'));
 });
