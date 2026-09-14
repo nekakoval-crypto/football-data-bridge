@@ -1,5 +1,5 @@
 {
-  "schema_version": "11",
+  "schema_version": "12",
   "stable_tables": [
     "competitions",
     "canonical_signals",
@@ -25,7 +25,8 @@
     "probability_predictions",
     "probability_settlements",
     "current_round_leagues",
-    "current_round_matches"
+    "current_round_matches",
+    "standings_snapshots"
   ],
   "json_state_documents": [
     "attention_board.json",
