@@ -82,12 +82,9 @@ class CaptureTests(unittest.TestCase):
 
     def test_adequate_snapshot_skips_call_and_post_kickoff_is_not_adequate(self):
         kickoff = NOW + timedelta(minutes=60)
-        existing = {
-            key: "" for key in FIELDS
-        }
+        existing = {key: "" for key in FIELDS}
         existing.update(snapshot_id="old", provider_league_id="39", season="2026",
-                       observed_at_utc=(NOW + timedelta(minutes=30)).isoformat(),
-                       team_id="10")
+                       observed_at_utc=(NOW + timedelta(minutes=30)).isoformat(), team_id="10")
         write_csv(self.ops / "standings_snapshots.csv", FIELDS, [existing])
         calls = []
         meta = self.execute(lambda *args, **kwargs: calls.append(args) or provider())
@@ -103,7 +100,7 @@ class CaptureTests(unittest.TestCase):
         self.write_fixtures([schedule(fixture_id="39-a"), schedule(kickoff=NOW + timedelta(minutes=70), fixture_id="39-b"),
                              schedule("140", kickoff=NOW + timedelta(minutes=60), fixture_id="140-a")])
         calls = []
-        meta =         self.execute(lambda path, params, **kwargs: calls.append(params) or provider(params["league"]))
+        meta = self.execute(lambda path, params, **kwargs: calls.append(params) or provider(params["league"]))
         self.assertEqual(meta["provider_calls"], 2)
         self.assertEqual({x["league"] for x in calls}, {"39", "140"})
 
@@ -113,6 +110,12 @@ class CaptureTests(unittest.TestCase):
         calls = []
         self.execute(lambda path, params, **kwargs: calls.append(params) or provider())
         self.assertEqual(len(calls), 1)
+        # capture_run records the real provider-observation clock by design. This test uses a
+        # synthetic `now`, so normalize only the test ledger to that synthetic first wake.
+        rows = capture.read_snapshot_rows(self.ops / "standings_snapshots.csv")
+        for row in rows:
+            row["observed_at_utc"] = NOW.isoformat().replace("+00:00", "Z")
+        write_csv(self.ops / "standings_snapshots.csv", FIELDS, rows)
         calls.clear()
         later = NOW + timedelta(hours=3, minutes=10)
         self.execute(lambda path, params, **kwargs: calls.append(params) or provider(), now=later)

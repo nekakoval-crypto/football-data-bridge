@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Stage 72 — deterministic PBK unified SQLite data layer.
 
-CSV/JSON operational files remain the audit/source-of-truth during migration.
+CSV/JSON operational files remain audit/source-of-truth during migration.
 This script builds a disposable, reproducible SQLite database for Stage73/API
 and future PC/Android clients. No API calls and no mutation of source ledgers.
 """
@@ -14,7 +14,7 @@ import standings_motivation as motivation
 
 OPS=Path(os.getenv('OPS_DIR','ops'))
 OUT=Path(os.getenv('STAGE72_DB_PATH','build/pbk_unified.sqlite'))
-META=OPS/'stage72_last_run.json';SCHEMA=OPS/'stage72_schema.json';SCHEMA_VERSION='13'
+META=OPS/'stage72_last_run.json';SCHEMA=OPS/'stage72_schema.json';SCHEMA_VERSION='14'
 STANDINGS_FIELDS=['snapshot_id','provider_league_id','league_name','season','observed_at_utc',
                   'team_id','team_name','team_logo_url','rank','points','played','win','draw',
                   'lose','goals_for','goals_against','goals_diff','form','group_name',
@@ -28,6 +28,7 @@ MOTIVATION_FIELDS=['fixture_id','provider_league_id','season','kickoff_utc','sna
                    'away_reason_codes_json','payload_json']
 CORE_ALIASES={
     'competitions':'stage71_league_catalog.csv','canonical_signals':'user_forward_view.csv','challenger_signals':'stage71_challenger_forward.csv','watch_signals':'stage65_watch_ledger.csv','lifecycle_events':'signal_lifecycle_events.csv','exposure_positions':'exposure_map.csv','context_latest':'context_latest.csv','odds_snapshots':'odds_snapshots.csv',
+    'screen_matches':'latest_screen.csv','match_result_snapshots':'stage61_market_snapshots.csv','match_total_snapshots':'stage62_ou_snapshots.csv','btts_snapshots':'stage63_btts_snapshots.csv',
     'team_total_openers':'stage71c_team_total_openers.csv','team_total_snapshots':'stage71c_team_total_snapshots.csv','team_total_closes':'stage71c_team_total_closes.csv',
     'double_chance_openers':'stage71e_double_chance_openers.csv','double_chance_snapshots':'stage71e_double_chance_snapshots.csv','double_chance_closes':'stage71e_double_chance_closes.csv',
     'european_handicap_openers':'stage71f_eh_openers.csv','european_handicap_snapshots':'stage71f_eh_snapshots.csv','european_handicap_closes':'stage71f_eh_closes.csv',
