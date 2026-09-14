@@ -10,14 +10,22 @@ import csv, json, os, re, sqlite3, hashlib
 from datetime import datetime, timezone
 from pathlib import Path
 from stage75_value_radar import read_jsonl, EVENT_FIELDS
+import standings_motivation as motivation
 
 OPS=Path(os.getenv('OPS_DIR','ops'))
 OUT=Path(os.getenv('STAGE72_DB_PATH','build/pbk_unified.sqlite'))
-META=OPS/'stage72_last_run.json';SCHEMA=OPS/'stage72_schema.json';SCHEMA_VERSION='12'
+META=OPS/'stage72_last_run.json';SCHEMA=OPS/'stage72_schema.json';SCHEMA_VERSION='13'
 STANDINGS_FIELDS=['snapshot_id','provider_league_id','league_name','season','observed_at_utc',
                   'team_id','team_name','team_logo_url','rank','points','played','win','draw',
                   'lose','goals_for','goals_against','goals_diff','form','group_name',
                   'description','source']
+MOTIVATION_FIELDS=['fixture_id','provider_league_id','season','kickoff_utc','snapshot_id',
+                   'snapshot_observed_at_utc','home_team_id','away_team_id','home_rank','away_rank',
+                   'home_points','away_points','home_primary_context','away_primary_context',
+                   'home_pressure','away_pressure','home_season_phase','away_season_phase',
+                   'motivation_status','coverage_status','available','no_lookahead','limitations_json',
+                   'home_objectives_json','away_objectives_json','home_reason_codes_json',
+                   'away_reason_codes_json','payload_json']
 CORE_ALIASES={
     'competitions':'stage71_league_catalog.csv','canonical_signals':'user_forward_view.csv','challenger_signals':'stage71_challenger_forward.csv','watch_signals':'stage65_watch_ledger.csv','lifecycle_events':'signal_lifecycle_events.csv','exposure_positions':'exposure_map.csv','context_latest':'context_latest.csv','odds_snapshots':'odds_snapshots.csv',
     'team_total_openers':'stage71c_team_total_openers.csv','team_total_snapshots':'stage71c_team_total_snapshots.csv','team_total_closes':'stage71c_team_total_closes.csv',
@@ -117,42 +125,27 @@ def today_projection(ops, today):
     for fid,candidates in sources.items():
         candidates.sort(key=today_sort_key)
         newest=candidates[-1]
-        # Merge non-status context from the newest records without allowing
-        # CSV iteration order to decide the effective state.
         row={}
         for candidate in candidates:
             for key,value in candidate.items():
                 if not key.startswith('_') and value not in (None,''):
                     row[key]=value
         kickoff=today_value(row,'kickoff_utc')
-        if not kickoff:
-            continue
-        if kickoff and str(kickoff)[:10] != today:
-            continue
+        if not kickoff:continue
+        if kickoff and str(kickoff)[:10] != today:continue
         raw_status=today_value(newest,'new_value','fixture_status','status')
         status=today_status(raw_status, 'unknown')
         observed=today_observed(newest) or today_observed(row)
-        score={
-            'home': today_value(row,'home_goals','final_home_goals','score_home'),
-            'away': today_value(row,'away_goals','final_away_goals','score_away'),
-        }
-        if score['home'] is None and score['away'] is None: score=None
-        output.append({
-            'fixture_id': fid,
-            'competition': today_value(row,'league','competition'),
-            'home_team': today_value(row,'home_team'),
-            'away_team': today_value(row,'away_team'),
-            'kickoff_utc': kickoff,
-            'status': status,
-            'source_status': raw_status or None,
-            'score': score,
-            'observed_at_utc': observed,
-            'source': newest.get('_source'),
-        })
+        score={'home': today_value(row,'home_goals','final_home_goals','score_home'),
+               'away': today_value(row,'away_goals','final_away_goals','score_away')}
+        if score['home'] is None and score['away'] is None:score=None
+        output.append({'fixture_id':fid,'competition':today_value(row,'league','competition'),
+                       'home_team':today_value(row,'home_team'),'away_team':today_value(row,'away_team'),
+                       'kickoff_utc':kickoff,'status':status,'source_status':raw_status or None,
+                       'score':score,'observed_at_utc':observed,'source':newest.get('_source')})
     return sorted(output,key=lambda r:(r.get('kickoff_utc') or '',r['fixture_id']))
 def create_today_table(conn, rows):
-    fields=['fixture_id','competition','home_team','away_team','kickoff_utc','status',
-            'source_status','score','observed_at_utc','source']
+    fields=['fixture_id','competition','home_team','away_team','kickoff_utc','status','source_status','score','observed_at_utc','source']
     text=[{k:(json.dumps(r[k],ensure_ascii=False,sort_keys=True) if isinstance(r[k],dict) else (r[k] or '')) for k in fields} for r in rows]
     return create_text_table(conn,'today_matches',fields,text)
 def parse_utc(value):
@@ -160,39 +153,31 @@ def parse_utc(value):
     except (TypeError,ValueError):return None
 def merge_live_overlay(base_rows, overlay_rows):
     overlays={str(row.get('fixture_id') or ''):row for row in overlay_rows}
-    dynamic=('status','source_status','score_home','score_away','elapsed','observed_at_utc',
-             'live_observed_at_utc','live_freshness_status',
-             'red_cards_home','red_cards_away')
+    dynamic=('status','source_status','score_home','score_away','elapsed','observed_at_utc','live_observed_at_utc','live_freshness_status','red_cards_home','red_cards_away')
     merged=[]
     for base in base_rows:
-        row=dict(base); overlay=overlays.get(str(base.get('fixture_id') or ''))
-        bt=parse_utc(row.get('observed_at_utc')); ot=parse_utc((overlay or {}).get('observed_at_utc'))
+        row=dict(base);overlay=overlays.get(str(base.get('fixture_id') or ''))
+        bt=parse_utc(row.get('observed_at_utc'));ot=parse_utc((overlay or {}).get('observed_at_utc'))
         if overlay and ot and (not bt or ot>bt):
-            terminal = row.get('status') == 'finished'
-            regresses_terminal = terminal and overlay.get('status') in {'live','suspended','interrupted'}
+            terminal=row.get('status')=='finished';regresses_terminal=terminal and overlay.get('status') in {'live','suspended','interrupted'}
             if not regresses_terminal:
                 for key in dynamic:
                     if key in overlay:row[key]=overlay[key]
         if row.get('status') in {'live','suspended','interrupted'}:
             observed=parse_utc(row.get('live_observed_at_utc') or row.get('observed_at_utc'))
-            # The 40-minute bound covers the 30-minute schedule plus normal workflow delay.
             row['live_freshness_status']='fresh' if observed and (datetime.now(timezone.utc)-observed).total_seconds()<=2400 else 'stale'
         else:row['live_freshness_status']=row.get('live_freshness_status') or 'unknown'
         merged.append(row)
     return merged
 def create_current_round_tables(conn, ops):
-    league_fields, league_rows = read_csv(ops/'current_round_leagues.csv')
-    fixture_fields, fixture_rows = read_csv(ops/'current_round_fixtures.csv')
-    if not league_fields: league_fields = CURRENT_ROUND_LEAGUE_FIELDS
-    if not fixture_fields: fixture_fields = CURRENT_ROUND_FIXTURE_FIELDS
-    league_count, _ = create_text_table(conn, 'current_round_leagues', league_fields, league_rows)
-    _, overlay_rows = read_csv(ops/'live_fixture_overlay.csv')
-    fixture_rows=merge_live_overlay(fixture_rows, overlay_rows)
-    fixture_fields=list(dict.fromkeys(fixture_fields+[
-        'live_observed_at_utc','live_freshness_status','elapsed',
-        'red_cards_home','red_cards_away']))
-    fixture_count, _ = create_text_table(conn, 'current_round_matches', fixture_fields, fixture_rows)
-    return league_count, fixture_count
+    league_fields,league_rows=read_csv(ops/'current_round_leagues.csv');fixture_fields,fixture_rows=read_csv(ops/'current_round_fixtures.csv')
+    if not league_fields:league_fields=CURRENT_ROUND_LEAGUE_FIELDS
+    if not fixture_fields:fixture_fields=CURRENT_ROUND_FIXTURE_FIELDS
+    league_count,_=create_text_table(conn,'current_round_leagues',league_fields,league_rows)
+    _,overlay_rows=read_csv(ops/'live_fixture_overlay.csv');fixture_rows=merge_live_overlay(fixture_rows,overlay_rows)
+    fixture_fields=list(dict.fromkeys(fixture_fields+['live_observed_at_utc','live_freshness_status','elapsed','red_cards_home','red_cards_away']))
+    fixture_count,_=create_text_table(conn,'current_round_matches',fixture_fields,fixture_rows)
+    return league_count,fixture_count
 
 def _standings_timestamp(value):
     try:
@@ -201,71 +186,84 @@ def _standings_timestamp(value):
     except (TypeError,ValueError):return None
 
 def validate_standings_rows(rows):
-    """Return only complete immutable snapshots; corrupt groups are unavailable."""
-    groups={}
-    invalid_snapshots=set()
+    groups={};invalid_snapshots=set()
     for row in rows:
         snapshot=str(row.get('snapshot_id') or '').strip()
-        if snapshot:
-            groups.setdefault(snapshot, []).append(row)
-        league=str(row.get('provider_league_id') or '').strip()
-        season=str(row.get('season') or '').strip()
-        observed=str(row.get('observed_at_utc') or '').strip()
-        team=str(row.get('team_id') or '').strip()
-        timestamp=_standings_timestamp(observed)
+        if snapshot:groups.setdefault(snapshot,[]).append(row)
+        league=str(row.get('provider_league_id') or '').strip();season=str(row.get('season') or '').strip();observed=str(row.get('observed_at_utc') or '').strip();team=str(row.get('team_id') or '').strip();timestamp=_standings_timestamp(observed)
         if not snapshot or not league or not season or not observed or not timestamp or not team:
-            if snapshot: invalid_snapshots.add(snapshot)
-            continue
+            if snapshot:invalid_snapshots.add(snapshot)
     valid=[]
-    for snapshot, raw_items in groups.items():
+    for snapshot,raw_items in groups.items():
         items=[]
         for row in raw_items:
             timestamp=_standings_timestamp(row.get('observed_at_utc'))
-            if timestamp is not None:
-                items.append((row,timestamp,str(row.get('provider_league_id') or '').strip(),
-                              str(row.get('season') or '').strip(),str(row.get('team_id') or '').strip()))
-        if snapshot in invalid_snapshots: continue
-        keys={(x[2],x[3],x[1]) for x in items}
-        teams=[x[4] for x in items]
-        if len(keys)!=1 or len(teams)!=len(set(teams)):
-            continue
+            if timestamp is not None:items.append((row,timestamp,str(row.get('provider_league_id') or '').strip(),str(row.get('season') or '').strip(),str(row.get('team_id') or '').strip()))
+        if snapshot in invalid_snapshots:continue
+        keys={(x[2],x[3],x[1]) for x in items};teams=[x[4] for x in items]
+        if len(keys)!=1 or len(teams)!=len(set(teams)):continue
         valid.extend(x[0] for x in items)
     return valid
 
 def create_standings_table(conn, ops):
-    _, rows=read_csv(ops/'standings_snapshots.csv')
-    rows=validate_standings_rows(rows)
+    _,rows=read_csv(ops/'standings_snapshots.csv');rows=validate_standings_rows(rows)
     columns=', '.join(f'"{safe(field)}" TEXT' for field in STANDINGS_FIELDS)
-    conn.execute('DROP TABLE IF EXISTS standings_snapshots')
-    conn.execute(f'CREATE TABLE standings_snapshots ({columns})')
-    conn.executemany(
-        f'INSERT INTO standings_snapshots VALUES ({",".join("?" for _ in STANDINGS_FIELDS)})',
-        [[row.get(field,'') for field in STANDINGS_FIELDS] for row in rows])
+    conn.execute('DROP TABLE IF EXISTS standings_snapshots');conn.execute(f'CREATE TABLE standings_snapshots ({columns})')
+    conn.executemany(f'INSERT INTO standings_snapshots VALUES ({",".join("?" for _ in STANDINGS_FIELDS)})',[[row.get(field,'') for field in STANDINGS_FIELDS] for row in rows])
     for name in ('provider_league_id','season','observed_at_utc','snapshot_id','team_id'):
-        conn.execute(f'CREATE INDEX idx_standings_snapshots_{name} '
-                     f'ON standings_snapshots ("{name}")')
+        conn.execute(f'CREATE INDEX idx_standings_snapshots_{name} ON standings_snapshots ("{name}")')
     return len(rows)
 
 def select_standings_as_of(conn, provider_league_id, season, as_of_utc):
     cutoff=_standings_timestamp(as_of_utc)
     if cutoff is None:return None
-    result=conn.execute(
-        'SELECT * FROM standings_snapshots WHERE provider_league_id=? AND season=?',
-        (str(provider_league_id),str(season)))
-    rows_raw=result.fetchall()
-    names=[description[0] for description in result.description] if result.description else []
-    rows=[dict(zip(names,row)) for row in rows_raw]
-    eligible=[row for row in rows if (_standings_timestamp(row['observed_at_utc'])
-                                      and _standings_timestamp(row['observed_at_utc'])<=cutoff)]
+    result=conn.execute('SELECT * FROM standings_snapshots WHERE provider_league_id=? AND season=?',(str(provider_league_id),str(season)))
+    rows_raw=result.fetchall();names=[description[0] for description in result.description] if result.description else [];rows=[dict(zip(names,row)) for row in rows_raw]
+    eligible=[row for row in rows if (_standings_timestamp(row['observed_at_utc']) and _standings_timestamp(row['observed_at_utc'])<=cutoff)]
     if not eligible:return None
-    latest=max(_standings_timestamp(row['observed_at_utc']) for row in eligible)
-    snapshots={row['snapshot_id'] for row in eligible
-               if _standings_timestamp(row['observed_at_utc'])==latest}
+    latest=max(_standings_timestamp(row['observed_at_utc']) for row in eligible);snapshots={row['snapshot_id'] for row in eligible if _standings_timestamp(row['observed_at_utc'])==latest}
     if len(snapshots)!=1:return None
-    return [dict(row) for row in eligible if row['snapshot_id'] in snapshots]
+    snapshot_id=next(iter(snapshots))
+    return [dict(row) for row in eligible if row['snapshot_id']==snapshot_id]
 
 def standings_as_of_fixture(conn, provider_league_id, season, kickoff_utc):
     return select_standings_as_of(conn, provider_league_id, season, kickoff_utc)
+
+def _cursor_dicts(cursor):
+    names=[item[0] for item in cursor.description] if cursor.description else []
+    return [dict(zip(names,row)) for row in cursor.fetchall()]
+
+def create_fixture_motivation_table(conn):
+    rows=[];violations=0
+    fixtures=_cursor_dicts(conn.execute('SELECT * FROM current_round_matches ORDER BY kickoff_utc, fixture_id')) if conn.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='current_round_matches'").fetchone() else []
+    for fixture in fixtures:
+        snapshot=standings_as_of_fixture(conn,fixture.get('provider_league_id'),fixture.get('season'),fixture.get('kickoff_utc'))
+        payload=motivation.analyze_fixture(fixture,snapshot)
+        context=payload.get('standings_context') or {};home=payload.get('home') or {};away=payload.get('away') or {};coverage=payload.get('coverage') or {}
+        observed=context.get('snapshot_observed_at_utc');kickoff=fixture.get('kickoff_utc')
+        if observed and kickoff:
+            ot,kt=parse_utc(observed),parse_utc(kickoff)
+            if ot and kt and ot>kt:violations+=1
+        hs=home.get('standings') or {};as_=away.get('standings') or {}
+        row={
+            'fixture_id':fixture.get('fixture_id'),'provider_league_id':fixture.get('provider_league_id'),'season':fixture.get('season'),'kickoff_utc':kickoff,
+            'snapshot_id':context.get('snapshot_id'),'snapshot_observed_at_utc':observed,
+            'home_team_id':hs.get('team_id'),'away_team_id':as_.get('team_id'),'home_rank':hs.get('rank'),'away_rank':as_.get('rank'),'home_points':hs.get('points'),'away_points':as_.get('points'),
+            'home_primary_context':home.get('primary_context'),'away_primary_context':away.get('primary_context'),'home_pressure':home.get('pressure') or 'UNKNOWN','away_pressure':away.get('pressure') or 'UNKNOWN',
+            'home_season_phase':home.get('season_phase') or 'UNKNOWN','away_season_phase':away.get('season_phase') or 'UNKNOWN','motivation_status':coverage.get('motivation_status') or 'UNKNOWN','coverage_status':coverage.get('status') or 'UNKNOWN',
+            'available':'1' if coverage.get('available') else '0','no_lookahead':'1',
+            'limitations_json':json.dumps(coverage.get('limitations') or [],ensure_ascii=False,sort_keys=True),
+            'home_objectives_json':json.dumps(home.get('objectives') or [],ensure_ascii=False,sort_keys=True),
+            'away_objectives_json':json.dumps(away.get('objectives') or [],ensure_ascii=False,sort_keys=True),
+            'home_reason_codes_json':json.dumps(home.get('reason_codes') or [],ensure_ascii=False,sort_keys=True),
+            'away_reason_codes_json':json.dumps(away.get('reason_codes') or [],ensure_ascii=False,sort_keys=True),
+            'payload_json':json.dumps(payload,ensure_ascii=False,sort_keys=True),
+        }
+        rows.append(row)
+    count,_=create_text_table(conn,'fixture_motivation',MOTIVATION_FIELDS,rows)
+    if violations:raise RuntimeError(f'historical standings leakage detected: {violations}')
+    return count,violations
+
 def main():
     built=now_iso();OUT.parent.mkdir(parents=True,exist_ok=True);OPS.mkdir(parents=True,exist_ok=True)
     if OUT.exists():OUT.unlink()
@@ -277,13 +275,9 @@ def main():
         p=OPS/filename
         if not p.exists():missing.append(filename);create_text_table(conn,table,[],[]);stable_counts[table]=0;continue
         fields,rows=read_csv(p);count,_=create_text_table(conn,table,fields,rows);stable_counts[table]=count
-    radar_path=OPS/'stage75_value_radar.jsonl'
-    _,radar_rows=read_jsonl(radar_path)
-    radar_fields=EVENT_FIELDS+sorted({k for r in radar_rows for k in r}-set(EVENT_FIELDS))
-    text_rows=[{k:json.dumps(v,ensure_ascii=False,sort_keys=True) if isinstance(v,(list,dict,bool)) else ('' if v is None else str(v)) for k,v in r.items()} for r in radar_rows]
+    radar_path=OPS/'stage75_value_radar.jsonl';_,radar_rows=read_jsonl(radar_path);radar_fields=EVENT_FIELDS+sorted({k for r in radar_rows for k in r}-set(EVENT_FIELDS));text_rows=[{k:json.dumps(v,ensure_ascii=False,sort_keys=True) if isinstance(v,(list,dict,bool)) else ('' if v is None else str(v)) for k,v in r.items()} for r in radar_rows]
     stable_counts['value_radar_events'],_=create_text_table(conn,'value_radar_events',radar_fields,text_rows)
-    for field in ('radar_id','radar_kind','first_crossed_at_utc'):
-        conn.execute(f'CREATE INDEX "idx_value_radar_events_{field}" ON value_radar_events ("{field}")')
+    for field in ('radar_id','radar_kind','first_crossed_at_utc'):conn.execute(f'CREATE INDEX "idx_value_radar_events_{field}" ON value_radar_events ("{field}")')
     if radar_path.exists():conn.execute('INSERT INTO source_manifest VALUES (?,?,?,?)',(radar_path.name,'jsonl',len(radar_rows),file_sha(radar_path)))
     conn.execute('CREATE TABLE state_documents (name TEXT PRIMARY KEY, payload_json TEXT NOT NULL, sha256 TEXT NOT NULL)')
     for name in JSON_DOCS:
@@ -293,11 +287,9 @@ def main():
         try:json.loads(raw)
         except Exception:continue
         conn.execute('INSERT INTO state_documents VALUES (?,?,?)',(name,raw,file_sha(p)));conn.execute('INSERT OR REPLACE INTO source_manifest VALUES (?,?,?,?)',(name,'json',1,file_sha(p)))
-    today_rows=today_projection(OPS,built[:10])
-    stable_counts['today_matches'],_=create_today_table(conn,today_rows)
-    stable_counts['current_round_leagues'],stable_counts['current_round_matches']=create_current_round_tables(conn,OPS)
-    stable_counts['standings_snapshots']=create_standings_table(conn,OPS)
+    today_rows=today_projection(OPS,built[:10]);stable_counts['today_matches'],_=create_today_table(conn,today_rows);stable_counts['current_round_leagues'],stable_counts['current_round_matches']=create_current_round_tables(conn,OPS);stable_counts['standings_snapshots']=create_standings_table(conn,OPS)
     if not (OPS/'standings_snapshots.csv').exists():missing.append('standings_snapshots.csv')
+    stable_counts['fixture_motivation'],leakage_violations=create_fixture_motivation_table(conn)
     meta={'schema_version':SCHEMA_VERSION,'built_at_utc':built,'source_policy':'ops CSV/JSON remain audit source; SQLite is reproducible projection'};conn.executemany('INSERT INTO pbk_meta VALUES (?,?)',meta.items());conn.commit();integrity=conn.execute('PRAGMA integrity_check').fetchone()[0];tables=[r[0] for r in conn.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name")];manifest_rows=conn.execute('SELECT COUNT(*) FROM source_manifest').fetchone()[0];conn.close()
-    status='OK' if integrity=='ok' and stable_counts.get('competitions')==16 else 'WARN';payload={'run_at_utc':built,'status':status,'schema_version':SCHEMA_VERSION,'db_path':str(OUT),'db_bytes':OUT.stat().st_size,'db_sha256':file_sha(OUT),'integrity_check':integrity,'tables':len(tables),'manifest_sources':manifest_rows,'stable_counts':stable_counts,'missing_stable_sources':missing,'api_calls':0};META.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding='utf-8');SCHEMA.write_text(json.dumps({'schema_version':SCHEMA_VERSION,'stable_tables':list(CORE_ALIASES) + ['current_round_leagues','current_round_matches','standings_snapshots'],'json_state_documents':JSON_DOCS,'raw_csv_policy':'every ops/*.csv is imported as raw_<filename_stem> with TEXT columns'},ensure_ascii=False,indent=2),encoding='utf-8');print(json.dumps(payload,ensure_ascii=False,indent=2))
+    status='OK' if integrity=='ok' and stable_counts.get('competitions')==16 and leakage_violations==0 else 'WARN';payload={'run_at_utc':built,'status':status,'schema_version':SCHEMA_VERSION,'db_path':str(OUT),'db_bytes':OUT.stat().st_size,'db_sha256':file_sha(OUT),'integrity_check':integrity,'tables':len(tables),'manifest_sources':manifest_rows,'stable_counts':stable_counts,'missing_stable_sources':missing,'historical_leakage_violations':leakage_violations,'api_calls':0};META.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding='utf-8');SCHEMA.write_text(json.dumps({'schema_version':SCHEMA_VERSION,'stable_tables':list(CORE_ALIASES)+['current_round_leagues','current_round_matches','standings_snapshots','fixture_motivation'],'json_state_documents':JSON_DOCS,'raw_csv_policy':'every ops/*.csv is imported as raw_<filename_stem> with TEXT columns'},ensure_ascii=False,indent=2),encoding='utf-8');print(json.dumps(payload,ensure_ascii=False,indent=2))
 if __name__=='__main__':main()
