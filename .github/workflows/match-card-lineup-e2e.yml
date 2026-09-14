@@ -1,0 +1,43 @@
+name: Match Card E2E + Lineup Context
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/lineup_context.py'
+      - 'scripts/lineup_surprise.py'
+      - 'scripts/tests/test_lineup_context.py'
+      - 'scripts/tests/test_lineup_surprise.py'
+      - 'scripts/tests/test_match_card_v2_e2e.py'
+      - 'scripts/match_card_v2.py'
+      - 'scripts/stage72_build_data_layer.py'
+      - 'scripts/stage73_internal_api.py'
+      - 'app/match-card.js'
+      - 'app/tests/**'
+      - '.github/workflows/match-card-lineup-e2e.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Formation coach expected-XI tests
+        run: python -m unittest discover -s scripts/tests -p 'test_lineup_context.py' -v
+      - name: Lineup surprise and concentration tests
+        run: python -m unittest discover -s scripts/tests -p 'test_lineup_surprise.py' -v
+      - name: Stage72 to Stage73 Match Card E2E
+        run: python -m unittest discover -s scripts/tests -p 'test_match_card_v2_e2e.py' -v
+      - name: Match Card regressions
+        run: python -m unittest discover -s scripts/tests -p 'test_match_card_v2*.py' -v
+      - name: Today LIVE regression
+        run: python -m unittest discover -s scripts/tests -p 'test_today_live_api.py' -v
+      - name: Standings no-lookahead regression
+        run: python -m unittest discover -s scripts/tests -p 'test_standings*.py' -v
+      - name: Compile read models
+        run: python -m py_compile scripts/lineup_context.py scripts/lineup_surprise.py scripts/match_card_v2.py scripts/stage72_build_data_layer.py scripts/stage73_internal_api.py
