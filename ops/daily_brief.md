@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-14T15:04:54Z
+Generated UTC: 2026-09-14T16:02:41Z
 Active canonical signals: 2
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -15,7 +15,7 @@ Active canonical signals: 2
 - Previous: home Serie A vs Fiorentina (219.5h rest); away UEFA Champions League vs Fenerbahçe (95.8h rest)
 - Next: home Serie A vs Bologna (116.5h after); away Serie A vs Inter (119.5h after)
 - Injuries: QUERIED
-- Weather [T3]: 29.1°C, precip 0%, wind 7.1 km/h, gusts 13.0 km/h
+- Weather [T60]: 29.3°C, precip 0%, wind 7.8 km/h, gusts 13.3 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: BEFORE FIFA window; to start 151.5h; player-level UNVERIFIED
 - Flags: AWAY_PREV_UEFA_OR_CUP, WITHIN_7D_BEFORE_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
