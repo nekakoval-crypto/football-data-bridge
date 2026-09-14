@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-14T16:02:41Z
+Generated UTC: 2026-09-14T17:02:13Z
 Active canonical signals: 2
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -16,9 +16,9 @@ Active canonical signals: 2
 - Next: home Serie A vs Bologna (116.5h after); away Serie A vs Inter (119.5h after)
 - Injuries: QUERIED
 - Weather [T60]: 29.3°C, precip 0%, wind 7.8 km/h, gusts 13.3 km/h
-- Rotation: WAITING_OFFICIAL_XI
+- Rotation: VERIFIED
 - International: BEFORE FIFA window; to start 151.5h; player-level UNVERIFIED
-- Flags: AWAY_PREV_UEFA_OR_CUP, WITHIN_7D_BEFORE_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
+- Flags: AWAY_PREV_UEFA_OR_CUP, WITHIN_7D_BEFORE_FIFA_WINDOW
 
 ## R1 | Frosinone — Como
 - Kickoff UTC: 2026-09-20T13:00:00Z | Ставка: П2 | Stake: 1.000u
