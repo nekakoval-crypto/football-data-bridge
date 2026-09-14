@@ -5,7 +5,9 @@ on:
     paths:
       - 'scripts/match_card_v2.py'
       - 'scripts/stage73_internal_api.py'
-      - 'scripts/tests/test_match_card_v2.py'
+      - 'scripts/tests/test_match_card_v2*.py'
+      - 'app/match-card.js'
+      - 'app/tests/match-card*.test.mjs'
       - '.github/workflows/match-card-v2.yml'
   workflow_dispatch:
 
@@ -21,7 +23,9 @@ jobs:
         with:
           python-version: '3.12'
       - name: Match Card v2 tests
-        run: python -m unittest discover -s scripts/tests -p 'test_match_card_v2.py' -v
+        run: python -m unittest discover -s scripts/tests -p 'test_match_card_v2*.py' -v
+      - name: Match Card frontend lifecycle tests
+        run: node --test app/tests/match-card*.test.mjs
       - name: Today LIVE regression
         run: python -m unittest discover -s scripts/tests -p 'test_today_live_api.py' -v
       - name: Standings motivation regression
