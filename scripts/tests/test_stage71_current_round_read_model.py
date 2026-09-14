@@ -129,7 +129,7 @@ class CurrentRoundTests(unittest.TestCase):
             code, payload = api.dispatch('/v1/rounds/current')
         self.assertEqual(code, 200)
         self.assertEqual([x['fixture_id'] for x in payload['leagues'][0]['matches']], ['1', '2', '3'])
-        self.assertEqual(payload['leagues'][0]['matches'][0]['score'], {'home': '2', 'away': '1'})
+        self.assertEqual(payload['leagues'][0]['matches'][0]['score'], {'home': 2, 'away': 1})
         self.assertEqual(payload['leagues'][0]['matches'][0]['home_team_logo_url'], 'https://h1')
         self.assertEqual(payload['leagues'][0]['matches'][0]['away_team_logo_url'], 'https://a1')
         self.assertIsNone(payload['leagues'][0]['matches'][1]['home_team_logo_url'])

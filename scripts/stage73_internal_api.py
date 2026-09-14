@@ -131,19 +131,23 @@ def current_rounds_payload(conn):
                 for raw in rows:
                     row=dict(raw)
                     try:
-                        home = row.pop('score_home') or None
-                        away = row.pop('score_away') or None
+                        home = row.pop('score_home', None)
+                        away = row.pop('score_away', None)
+                        home = None if home in (None,'') else int(home) if str(home).lstrip('-').isdigit() else home
+                        away = None if away in (None,'') else int(away) if str(away).lstrip('-').isdigit() else away
                         row['score'] = {'home': home, 'away': away} if home is not None or away is not None else None
                     except (TypeError, ValueError):
                         row['score'] = None
                     for key in ('fixture_id','kickoff_utc','home_team','home_team_logo_url',
                                 'away_team','away_team_logo_url','status',
-                                'source_status','observed_at_utc'):
+                                'source_status','elapsed','observed_at_utc',
+                                'live_observed_at_utc','live_freshness_status'):
                         row.setdefault(key, None)
                     item['matches'].append({key: (row.get(key) or None) for key in (
                         'fixture_id','kickoff_utc','home_team','home_team_logo_url',
                         'away_team','away_team_logo_url','status',
-                        'source_status','score','observed_at_utc')})
+                        'source_status','elapsed','score','observed_at_utc',
+                        'live_observed_at_utc','live_freshness_status')})
             leagues.append(item)
     return {
         'api_version': API_VERSION,
