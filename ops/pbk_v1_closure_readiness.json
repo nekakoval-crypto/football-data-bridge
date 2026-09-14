@@ -1,0 +1,120 @@
+{
+  "version": "PBK_V1_CLOSURE_READINESS_V1",
+  "run_at_utc": "2026-09-14T19:13:06Z",
+  "status": "WAITING",
+  "ready_for_manual_close": false,
+  "hard_failure": false,
+  "production_acceptance": {
+    "checks": [
+      {
+        "code": "PRODUCTION_ACCEPTANCE",
+        "status": "WAITING",
+        "message": "waiting for real provider-backed Today/LIVE and standings/motivation evidence",
+        "evidence": {
+          "gate_status": "WAITING",
+          "ready_to_close": false,
+          "hard_failure": false,
+          "roadmap_4_status": null,
+          "roadmap_5_status": null,
+          "run_at_utc": null
+        }
+      }
+    ],
+    "status": "WAITING"
+  },
+  "real_performance": {
+    "checks": [
+      {
+        "code": "CANONICAL_FORWARD_MEASUREMENT",
+        "status": "PASS",
+        "message": "real prospective canonical performance is being measured",
+        "evidence": {
+          "status": "OK",
+          "scope": "clean prospective canonical forward only",
+          "rows": 3,
+          "settled_rows": 2,
+          "execution_coverage_pct": 100.0,
+          "roi_pct": -21.0,
+          "historical_backfill": "forbidden",
+          "profitability_required_for_closure": false
+        }
+      },
+      {
+        "code": "WATCH_RESEARCH_MEASUREMENT",
+        "status": "PASS",
+        "message": "WATCH has separate real prospective research performance",
+        "evidence": {
+          "status": "OK",
+          "scope": "prospective research WATCH crossings only",
+          "crossings": 12,
+          "settled": 10,
+          "roi_pct": -61.6,
+          "canonical_forward": "unchanged",
+          "historical_backfill": "forbidden",
+          "profitability_required_for_closure": false
+        }
+      }
+    ],
+    "status": "PASS"
+  },
+  "static_hygiene": {
+    "checks": [
+      {
+        "code": "REQUIRED_V1_MODULES",
+        "status": "PASS",
+        "message": "all PBK v1 closure modules are present",
+        "evidence": {
+          "missing": []
+        }
+      },
+      {
+        "code": "FRONTEND_PROVIDER_ISOLATION",
+        "status": "PASS",
+        "message": "frontend has no direct provider/legacy match endpoint",
+        "evidence": {
+          "violations": [],
+          "files_scanned": 15
+        }
+      },
+      {
+        "code": "PWA_API_NETWORK_ONLY",
+        "status": "PASS",
+        "message": "PWA shell is v13 and API traffic remains network-only/no-store",
+        "evidence": {
+          "cache_v13": true,
+          "api_no_store": true
+        }
+      },
+      {
+        "code": "STAGE72_SCHEMA_BASELINE",
+        "status": "PASS",
+        "message": "Stage72 schema is at or above the PBK v1 baseline",
+        "evidence": {
+          "schema_version": 14,
+          "minimum": 14
+        }
+      },
+      {
+        "code": "CORE_API_ROUTES",
+        "status": "PASS",
+        "message": "Today/LIVE, Match Card and motivation API routes are present",
+        "evidence": {}
+      },
+      {
+        "code": "CANONICAL_OPERATIONAL_PUBLISHER",
+        "status": "PASS",
+        "message": "critical operational workflows use the canonical safe publisher",
+        "evidence": {
+          "unsafe_workflows": []
+        }
+      }
+    ],
+    "status": "PASS"
+  },
+  "policy": {
+    "provider_calls": 0,
+    "profitability_threshold": null,
+    "automatic_pbk_close": false,
+    "historical_backfill": "forbidden"
+  }
+}
