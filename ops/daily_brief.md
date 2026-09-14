@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-14T10:03:00Z
+Generated UTC: 2026-09-14T11:02:51Z
 Active canonical signals: 2
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -8,14 +8,14 @@ Active canonical signals: 2
 ## R1 | Torino — AS Roma
 - Kickoff UTC: 2026-09-14T16:30:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 6.0 / Х 4.0 / П2 1.57 (immutable)
-- Market-best observed: 1.59 @ 1xBet | Bet365 now: 1.53
+- Market-best observed: 1.6 @ Betano | Bet365 now: 1.53
 - Current user-executable: 1.55 @ Marathonbet
 - Paper user-execution (frozen): 1.58 @ Marathonbet [2026-09-11T10:32:01Z]
 - Referee / venue: F. Maresca | Stadio Olimpico di Torino, Turin
 - Previous: home Serie A vs Fiorentina (219.5h rest); away UEFA Champions League vs Fenerbahçe (95.8h rest)
 - Next: home Serie A vs Bologna (116.5h after); away Serie A vs Inter (119.5h after)
 - Injuries: QUERIED
-- Weather [T24]: 29.5°C, precip 0%, wind 6.1 km/h, gusts 10.1 km/h
+- Weather [T3]: 29.1°C, precip 0%, wind 7.1 km/h, gusts 13.0 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: BEFORE FIFA window; to start 151.5h; player-level UNVERIFIED
 - Flags: AWAY_PREV_UEFA_OR_CUP, WITHIN_7D_BEFORE_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
@@ -75,13 +75,14 @@ Active canonical signals: 2
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 105
-- Активные движения ≥3 п.п.: всего 2 | ОЗ — Да 2 | ОЗ — Нет 0
+- Активные движения ≥3 п.п.: всего 3 | ОЗ — Да 2 | ОЗ — Нет 1
 - Зафиксировано observed close: 43
 - Исполнимый букмекер для наблюдения: Marathonbet
 
 ## Текущие ОЗ-watch
 - WATCH | Serie A | Torino — AS Roma | ОЗ — Да | движение P(ОЗ — Да) +3.33 п.п. | Marathonbet 1.81 | 3974.6 мин до матча
 - WATCH | La Liga | Elche — Real Madrid | ОЗ — Да | движение P(ОЗ — Да) +5.57 п.п. | Marathonbet 1.61 | 4026.7 мин до матча
+- WATCH | La Liga | Atletico Madrid — Osasuna | ОЗ — Нет | движение P(ОЗ — Да) -4.00 п.п. | Marathonbet 1.81 | 3283.8 мин до матча
 
 ---
 
@@ -89,7 +90,7 @@ Active canonical signals: 2
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 11 | settled 9 | pending 2
+- Crossings: 12 | settled 9 | pending 3
 - Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: -5.160u | ROI -57.333% | W-L 3-6
 - Close: observed 9 | stayed qualified 9 | reverted 0 | persistence 100.0%
@@ -97,4 +98,5 @@ Active canonical signals: 2
 
 ## By WATCH family
 - Big-5 ОЗ market movement — ОЗ — Да: crossings 9, settled 7, ROI -78.714%, close persistence 100.0%
+- Big-5 ОЗ market movement — ОЗ — Нет: crossings 1, settled 0, ROI N/A, close persistence N/A
 - Бундеслига ТБ(2.5) steam: crossings 2, settled 2, ROI 17.5%, close persistence 100.0%
