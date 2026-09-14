@@ -1,0 +1,94 @@
+name: PBK v1 Production Acceptance
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 * * * *'
+  pull_request:
+    paths:
+      - 'scripts/pbk_v1_production_acceptance.py'
+      - 'scripts/tests/test_pbk_v1_production_acceptance.py'
+      - '.github/workflows/pbk-v1-production-acceptance.yml'
+      - '.github/workflows/standings-snapshot.yml'
+  push:
+    paths:
+      - 'scripts/pbk_v1_production_acceptance.py'
+      - 'scripts/tests/test_pbk_v1_production_acceptance.py'
+      - '.github/workflows/pbk-v1-production-acceptance.yml'
+      - '.github/workflows/standings-snapshot.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pbk-v1-production-acceptance-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Production acceptance tests
+        run: python -m unittest discover -s scripts/tests -p 'test_pbk_v1_production_acceptance.py' -v
+      - name: Standings capture regressions
+        run: python -m unittest discover -s scripts/tests -p 'test_standings*.py' -v
+      - name: Compile acceptance gate
+        run: python -m py_compile scripts/pbk_v1_production_acceptance.py
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        run: |
+          git fetch origin main
+          if git diff --name-only origin/main...HEAD | grep -E '^ops/'; then
+            echo 'Generated ops/* files are forbidden in the feature PR.' >&2
+            exit 1
+          fi
+
+  accept:
+    needs: validate
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    permissions:
+      contents: write
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build disposable current read model without provider calls
+        shell: bash
+        run: |
+          TMP_OPS="$RUNNER_TEMP/pbk-acceptance-ops"
+          TMP_DB="$RUNNER_TEMP/pbk-acceptance.sqlite"
+          cp -a ops "$TMP_OPS"
+          OPS_DIR="$TMP_OPS" STAGE72_DB_PATH="$TMP_DB" python scripts/stage72_build_data_layer.py
+          OPS_DIR="$TMP_OPS" PBK_DB_PATH="$TMP_DB" python scripts/stage73_internal_api.py --self-test
+          OPS_DIR="$TMP_OPS" STAGE72_DB_PATH="$TMP_DB" python scripts/pbk_v1_production_acceptance.py
+          cp "$TMP_OPS/pbk_v1_production_acceptance.json" ops/pbk_v1_production_acceptance.json
+          cp "$TMP_OPS/pbk_v1_production_acceptance.md" ops/pbk_v1_production_acceptance.md
+      - name: Show acceptance result
+        run: |
+          cat ops/pbk_v1_production_acceptance.json
+          cat ops/pbk_v1_production_acceptance.md
+      - name: Publish acceptance state safely
+        run: |
+          git config user.name 'pbk-acceptance-bot'
+          git config user.email 'pbk-acceptance-bot@users.noreply.github.com'
+          git add ops/pbk_v1_production_acceptance.json ops/pbk_v1_production_acceptance.md
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'PBK v1 production acceptance update'
+          python scripts/publish_operational_commit.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pbk-v1-production-acceptance
+          path: |
+            ops/pbk_v1_production_acceptance.json
+            ops/pbk_v1_production_acceptance.md
+          retention-days: 30
