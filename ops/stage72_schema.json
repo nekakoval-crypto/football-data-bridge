@@ -1,5 +1,5 @@
 {
-  "schema_version": "14",
+  "schema_version": "15",
   "stable_tables": [
     "competitions",
     "canonical_signals",
@@ -31,7 +31,8 @@
     "current_round_leagues",
     "current_round_matches",
     "standings_snapshots",
-    "fixture_motivation"
+    "fixture_motivation",
+    "formation_research_events"
   ],
   "json_state_documents": [
     "attention_board.json",
