@@ -1,0 +1,22 @@
+{
+  "run_at_utc": "2026-09-14T17:50:48Z",
+  "status": "OK",
+  "journal_version": "PBK_FORWARD_JOURNAL_V1",
+  "calculation_contract_version": "PBK_CALC_V1",
+  "prematch_events_total": 2,
+  "prematch_events_created": 0,
+  "settlement_events_total": 0,
+  "settlement_events_created": 0,
+  "immutable_drift_detected": 0,
+  "skipped_first_seen_at_or_after_kickoff": 2,
+  "skipped_lookahead_or_invalid_time": 0,
+  "historical_backfill": "FORBIDDEN",
+  "api_calls": 0,
+  "policy": {
+    "prematch_journal": "append-only; old bytes preserved exactly",
+    "settlement_journal": "separate append-only ledger; never mutates prematch evidence",
+    "source_drift": "fail visible; never overwrite frozen evidence",
+    "creates_signal": false,
+    "stake_changes": false
+  }
+}
