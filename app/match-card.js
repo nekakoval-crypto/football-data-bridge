@@ -1,3 +1,4 @@
+import {renderPitch, selectedTeam, positions} from './formations.js';
 import { renderMatchCard as renderCoreMatchCard } from './match-card-core.js';
 export * from './match-card-core.js';
 
@@ -21,18 +22,19 @@ function lineupStatus(team={}){
 }
 
 function lineupTeam(label,team={}){
+  team=selectedTeam(team);
   const xi=list(team.starting_xi);
   const names=xi.map(playerName).filter(Boolean);
   const confidence=team.expected_confidence?badge(`Expected: ${team.expected_confidence}`,team.expected_confidence==='HIGH'?'good':'neutral'):'';
   const basis=Number(team.expected_basis_fixtures||0)>0?`<small>Основание expected XI: ${esc(team.expected_basis_fixtures)} прошлых официальных составов</small>`:'';
-  return `<div class="match-card-v2-lineup"><div class="match-card-v2-context-meta"><span>${esc(label)}</span>${lineupStatus(team)}${confidence}</div><strong>${esc(team.formation||'Схема не подтверждена')}</strong><small>${team.coach?`Тренер: ${esc(team.coach)}`:'Тренер не подтверждён'}</small>${basis}${names.length?`<div class="match-card-v2-reasons">${names.map(name=>badge(name)).join('')}</div>`:empty('Стартовый XI пока недоступен.')}</div>`;
+  return `<div class="match-card-v2-lineup"><div class="match-card-v2-context-meta"><span>${esc(label)}</span>${lineupStatus(team)}${confidence}</div><strong>${esc(team.formation||'Схема не подтверждена')}</strong><small>${team.coach?`Тренер: ${esc(team.coach)}`:'Тренер не подтверждён'}</small><small>Обновлено: ${esc(team.captured_at_utc||team.updated_at_utc||'неизвестно')}</small>${basis}${names.length&&!positions(team).length?`<div class="match-card-v2-reasons">${names.map(name=>badge(name)).join('')}</div>`:(!names.length?empty('Стартовый XI пока недоступен.'):'')}</div>`;
 }
 
 function lineupContext(payload={}){
   const l=payload.lineup_context||{};
-  if(!l.available)return section('Схема / тренер / состав',empty('Expected/official XI пока недоступен.'));
+  if(!l.available)return section('Схема / тренер / состав',empty('Нет данных по составу. Expected/official XI пока недоступен.'));
   const trust=`<div class="match-card-v2-trust">${l.no_lookahead?badge('Только данные до kickoff','good'):badge('Cutoff не подтверждён','warn')}${badge('provider-free')}${l.rotation_projection?`<span>${esc(l.rotation_projection)}</span>`:''}</div>`;
-  return section('Схема / тренер / состав',`<div class="match-card-v2-two">${lineupTeam('Хозяева',l.home)}${lineupTeam('Гости',l.away)}</div>${trust}<div class="match-card-v2-note">Официальный XI имеет приоритет. Expected XI — детерминированный контекст по прошлым подтверждённым стартовым составам, а не новый прогноз ПБК.</div>`,'lineup-context');
+  return section('Схема / тренер / состав',`<div class="match-card-v2-two">${lineupTeam(l.home?.team_name||'Хозяева',l.home)}${lineupTeam(l.away?.team_name||'Гости',l.away)}</div>${renderPitch(l.home,l.away)}${trust}<div class="match-card-v2-note">Официальный XI имеет приоритет. Expected XI — детерминированный контекст по прошлым подтверждённым стартовым составам, а не новый прогноз ПБК.</div>`,'lineup-context');
 }
 
 function surpriseTeam(label,team={}){

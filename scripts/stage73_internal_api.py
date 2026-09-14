@@ -2,6 +2,7 @@
 """Stage 73 — read-only PBK HTTP API over the Stage72 SQLite projection."""
 from __future__ import annotations
 import argparse, json, os, sqlite3
+from formation_research import read_audit
 from contextlib import closing
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -214,6 +215,7 @@ def dispatch(path_with_query):
         if path=='/v1/markets/settlements':return 200,query_table(conn,'core_market_settlements',q,{'fixture_id':'api_fixture_id','league':'league','market_family':'market_family','status':'settlement_status'},['marathon_close_a','bet365_close_a'],['kickoff_utc','api_fixture_id','market_family','settlement_key'])
         if path=='/v1/lifecycle':return 200,query_table(conn,'lifecycle_events',q,{'signal_id':'signal_id','fixture_id':'api_fixture_id','strategy':'rule'},[],['event_at_utc','signal_id'])
         if path=='/v1/exposure':return 200,query_table(conn,'exposure_positions',q,{'fixture_id':'api_fixture_id','status':'status','strategy':'rules'},[],['kickoff_utc','api_fixture_id'])
+        if path=='/v1/research/formations':return 200,read_audit(conn,(q.get('team_id') or [None])[0],(q.get('fixture_id') or [None])[0])
         if path=='/v1/context':return 200,query_table(conn,'context_latest',q,{'fixture_id':'api_fixture_id'},[],['kickoff_utc','api_fixture_id'])
         if path=='/v1/odds':return 200,query_table(conn,'odds_snapshots',q,{'fixture_id':'api_fixture_id','bookmaker':'bookmaker'},['odds'],['captured_at_utc','api_fixture_id'])
         if path=='/v1/attention':return 200,(state_doc(conn,'attention_board.json') or {})

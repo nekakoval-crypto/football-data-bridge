@@ -97,6 +97,8 @@ def _complete_xi(value):
             "number": player.get("number"),
             "pos": player.get("pos") or None,
             "grid": player.get("grid") or None,
+            "position": player.get("position"),
+            "lastname": player.get("lastname") or player.get("last_name"),
         })
     return output
 
@@ -117,13 +119,16 @@ def _fixture_identity(conn, fixture_id):
     row = rows[0]
     context_rows = _fixture_rows(conn, "context_latest", fixture_id)
     context = _latest_before(context_rows, _parse_utc(row.get("kickoff_utc")))
+    rotation_table = _rotation_table(conn)
+    rotation = _latest_before(_fixture_rows(conn, rotation_table, fixture_id),
+                              _parse_utc(row.get("kickoff_utc"))) if rotation_table else None
     return {
         "fixture_id": str(row.get("fixture_id") or fixture_id),
         "kickoff_utc": row.get("kickoff_utc") or None,
         "home_team": row.get("home_team") or (context or {}).get("home_team") or None,
         "away_team": row.get("away_team") or (context or {}).get("away_team") or None,
-        "home_team_id": (context or {}).get("home_team_id") or None,
-        "away_team_id": (context or {}).get("away_team_id") or None,
+        "home_team_id": row.get("home_team_id") or (context or {}).get("home_team_id") or (rotation or {}).get("home_team_id") or None,
+        "away_team_id": row.get("away_team_id") or (context or {}).get("away_team_id") or (rotation or {}).get("away_team_id") or None,
         "status": row.get("status") or None,
     }
 
@@ -262,6 +267,7 @@ def _expected_from_history(history, source_table="rotation_snapshots"):
         "confidence": confidence,
         "basis_fixtures": sample,
         "source": f"{source_table}:prior_official_xi",
+        "captured_at_utc": max(row["captured"] for row in history).isoformat().replace("+00:00", "Z"),
         "latest_basis_kickoff_utc": history[0]["kickoff"].replace(microsecond=0).isoformat().replace("+00:00", "Z"),
     }
 
@@ -282,6 +288,7 @@ def _team_payload(name, team_id, confirmed, expected):
         "formation": display.get("formation"),
         "coach": display.get("coach"),
         "starting_xi": display.get("xi", []),
+        "updated_at_utc": display.get("captured_at_utc"),
         "official": confirmed,
         "expected": expected,
         "expected_confidence": (expected or {}).get("confidence"),
@@ -304,18 +311,23 @@ def build_lineup_context(conn, fixture_id):
             "read_only": True, "provider_polling": False, "no_lookahead": True,
         }
     cutoff = _parse_utc(fixture.get("kickoff_utc"))
-    context = _latest_before(_fixture_rows(conn, "context_latest", fixture_id), cutoff)
     rotation_table = _rotation_table(conn)
-    rotation = _latest_before(_fixture_rows(conn, rotation_table, fixture_id), cutoff) if rotation_table else None
+    def latest_official(side):
+        best = None
+        for table in ("context_latest", rotation_table):
+            if not table:
+                continue
+            for row in _fixture_rows(conn, table, fixture_id):
+                observed = _parse_utc(row.get("captured_at_utc"))
+                if cutoff is None or observed is None or observed > cutoff:
+                    continue
+                candidate = (_confirmed_from_context(row, side) if table == "context_latest"
+                             else _confirmed_from_rotation(row, side, table))
+                best = _newer(best, candidate)
+        return best
 
-    home_confirmed = _newer(
-        _confirmed_from_context(context, "home"),
-        _confirmed_from_rotation(rotation, "home", rotation_table or "rotation_snapshots"),
-    )
-    away_confirmed = _newer(
-        _confirmed_from_context(context, "away"),
-        _confirmed_from_rotation(rotation, "away", rotation_table or "rotation_snapshots"),
-    )
+    home_confirmed = latest_official("home")
+    away_confirmed = latest_official("away")
     home_history = _history_for_team(conn, fixture.get("home_team_id"), cutoff, fixture_id, rotation_table)
     away_history = _history_for_team(conn, fixture.get("away_team_id"), cutoff, fixture_id, rotation_table)
     home_expected = _expected_from_history(home_history, rotation_table or "rotation_snapshots")

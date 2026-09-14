@@ -1,3 +1,4 @@
+import sqlite3
 import sys
 import unittest
 from pathlib import Path
@@ -8,6 +9,10 @@ import match_card_v2 as card
 
 
 class MatchCardLineupCompositionTests(unittest.TestCase):
+    def setUp(self):
+        self.conn = sqlite3.connect(":memory:")
+        self.addCleanup(self.conn.close)
+
     def base_payload(self):
         return {
             'fixture_id': '999',
@@ -32,7 +37,7 @@ class MatchCardLineupCompositionTests(unittest.TestCase):
         with patch.object(card._core, 'build_match_card', return_value=(200, self.base_payload())), \
              patch.object(card, 'build_lineup_context', return_value=(200, lineup)), \
              patch.object(card, 'build_surprise_context', return_value=surprise):
-            status, payload = card.build_match_card(object(), '999')
+            status, payload = card.build_match_card(self.conn, '999')
         self.assertEqual(status, 200)
         self.assertIs(payload['lineup_context'], lineup)
         self.assertIs(payload['lineup_surprise'], surprise)
@@ -49,7 +54,7 @@ class MatchCardLineupCompositionTests(unittest.TestCase):
     def test_lineup_unavailable_is_honest_but_does_not_degrade_core_coverage(self):
         with patch.object(card._core, 'build_match_card', return_value=(200, self.base_payload())), \
              patch.object(card, 'build_lineup_context', return_value=(404, {'error': 'UNKNOWN_FIXTURE'})):
-            status, payload = card.build_match_card(object(), '999')
+            status, payload = card.build_match_card(self.conn, '999')
         self.assertEqual(status, 200)
         self.assertFalse(payload['lineup_context']['available'])
         self.assertFalse(payload['lineup_surprise']['available'])
@@ -62,7 +67,7 @@ class MatchCardLineupCompositionTests(unittest.TestCase):
 
     def test_base_error_contract_is_preserved(self):
         with patch.object(card._core, 'build_match_card', return_value=(404, {'error': 'UNKNOWN_FIXTURE'})):
-            status, payload = card.build_match_card(object(), 'missing')
+            status, payload = card.build_match_card(self.conn, 'missing')
         self.assertEqual(status, 404)
         self.assertEqual(payload['error'], 'UNKNOWN_FIXTURE')
 
