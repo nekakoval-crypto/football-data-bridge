@@ -9,6 +9,16 @@ on:
       - 'scripts/stage67_system_health.py'
       - 'scripts/stage67_append_governance_health.py'
       - 'scripts/stage67_append_api_budget.py'
+      - 'scripts/stage67_health_policy.py'
+      - 'scripts/tests/test_stage67_health_policy.py'
+      - '.github/workflows/stage67-system-health.yml'
+  pull_request:
+    paths:
+      - 'scripts/stage67_system_health.py'
+      - 'scripts/stage67_append_governance_health.py'
+      - 'scripts/stage67_append_api_budget.py'
+      - 'scripts/stage67_health_policy.py'
+      - 'scripts/tests/test_stage67_health_policy.py'
       - '.github/workflows/stage67-system-health.yml'
 
 permissions:
@@ -30,6 +40,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Test current health policy
+        run: python -m unittest discover -s scripts/tests -p 'test_stage67_health_policy.py' -v
+
       - name: Build Stage 67 system health
         run: python scripts/stage67_system_health.py
 
@@ -39,22 +52,26 @@ jobs:
       - name: Include API-Football budget guard
         run: python scripts/stage67_append_api_budget.py
 
+      - name: Apply current Stage 67 health policy
+        run: python scripts/stage67_health_policy.py
+
       - name: Show Stage 67 summary
         run: |
           cat ops/stage67_last_run.json
           echo '--- system_health.md ---'
           cat ops/system_health.md
 
-      - name: Commit Stage 67 operational files
+      - name: Commit and safely publish Stage 67 operational files
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         run: |
           git config user.name 'stage67-bot'
           git config user.email 'stage67-bot@users.noreply.github.com'
-          git add -A ops
+          git add ops/system_health.json ops/system_health.md ops/stage67_last_run.json
           if git diff --cached --quiet; then
             echo 'No Stage 67 changes to commit.'
           else
             git commit -m 'Stage 67 system health update'
-            git push
+            python scripts/publish_operational_commit.py
           fi
 
       - name: Upload Stage 67 snapshot
