@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-14T16:08:52Z",
+  "generated_at_utc": "2026-09-14T17:07:02Z",
   "status": "OK",
   "cards": [
     {
@@ -1855,9 +1855,9 @@
       "away_team": "AS Roma",
       "kickoff_utc": "2026-09-14T16:30:00Z",
       "selection": "П2",
-      "latest_event": "ODDS_SNAPSHOT",
-      "latest_status": "NS",
-      "event_count": 90,
+      "latest_event": "CLOSE_LOCKED",
+      "latest_status": "",
+      "event_count": 93,
       "timeline": [
         {
           "entity_id": "R1|I1|1550125",
@@ -3388,6 +3388,57 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550125",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550125",
+          "league": "Serie A",
+          "home_team": "Torino",
+          "away_team": "AS Roma",
+          "kickoff_utc": "2026-09-14T16:30:00Z",
+          "event_time_utc": "2026-09-14T16:15:17Z",
+          "event_type": "XI_ROTATION",
+          "status": "",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "home_changed=2 away_changed=4"
+        },
+        {
+          "entity_id": "R1|I1|1550125",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550125",
+          "league": "Serie A",
+          "home_team": "Torino",
+          "away_team": "AS Roma",
+          "kickoff_utc": "2026-09-14T16:30:00Z",
+          "event_time_utc": "2026-09-14T16:16:59Z",
+          "event_type": "CONTEXT_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "T60; lineups=YES; injuries=12"
+        },
+        {
+          "entity_id": "R1|I1|1550125",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550125",
+          "league": "Serie A",
+          "home_team": "Torino",
+          "away_team": "AS Roma",
+          "kickoff_utc": "2026-09-14T16:30:00Z",
+          "event_time_utc": "2026-09-14T16:47:32Z",
+          "event_type": "CLOSE_LOCKED",
+          "status": "",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "1.54",
+          "details": "Latest observed pre-kickoff close"
         }
       ]
     },
@@ -3502,7 +3553,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 86,
+      "event_count": 87,
       "timeline": [
         {
           "entity_id": "R1|I1|1550131",
@@ -4965,6 +5016,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550131",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550131",
+          "league": "Serie A",
+          "home_team": "Frosinone",
+          "away_team": "Como",
+          "kickoff_utc": "2026-09-20T13:00:00Z",
+          "event_time_utc": "2026-09-14T16:47:32Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     }
@@ -4973,7 +5041,7 @@
     "cards": 15,
     "canonical_cards": 3,
     "watch_cards": 12,
-    "events": 278
+    "events": 282
   },
   "policy": {
     "read_only": true,

@@ -1,8 +1,8 @@
 # PBK Signal Lifecycle
 
-Обновлено UTC: 2026-09-14T16:08:52Z
+Обновлено UTC: 2026-09-14T17:07:02Z
 
-Cards: 15 | canonical 3 | WATCH 12 | events 278
+Cards: 15 | canonical 3 | WATCH 12 | events 282
 
 ## WATCH | Stage63 | Venezia — Fiorentina
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-11T18:45:00Z
@@ -81,15 +81,15 @@ Cards: 15 | canonical 3 | WATCH 12 | events 278
 
 ## CANONICAL | R1 | Torino — AS Roma
 - Ставка/рынок: П2 | kickoff: 2026-09-14T16:30:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 90
-  - 2026-09-14T10:46:30Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
-  - 2026-09-14T11:17:21Z — CONTEXT_SNAPSHOT — T3; lineups=NO; injuries=12
-  - 2026-09-14T11:45:52Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: CLOSE_LOCKED | статус: — | событий: 93
   - 2026-09-14T12:51:07Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-14T13:47:30Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-14T14:48:28Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-14T15:17:13Z — WEATHER_SNAPSHOT — temp=29.3C precip=0%
   - 2026-09-14T15:47:52Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-14T16:15:17Z — XI_ROTATION — home_changed=2 away_changed=4
+  - 2026-09-14T16:16:59Z — CONTEXT_SNAPSHOT — T60; lineups=YES; injuries=12
+  - 2026-09-14T16:47:32Z — CLOSE_LOCKED — 1.54 | Latest observed pre-kickoff close
 
 ## WATCH | Stage63 | Torino — AS Roma
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-14T16:30:00Z
@@ -108,8 +108,7 @@ Cards: 15 | canonical 3 | WATCH 12 | events 278
 
 ## CANONICAL | R1 | Frosinone — Como
 - Ставка/рынок: П2 | kickoff: 2026-09-20T13:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 86
-  - 2026-09-14T08:47:03Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 87
   - 2026-09-14T09:46:50Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-14T10:46:30Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-14T11:45:52Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -117,3 +116,4 @@ Cards: 15 | canonical 3 | WATCH 12 | events 278
   - 2026-09-14T13:47:30Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-14T14:48:28Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-14T15:47:52Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-14T16:47:32Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
