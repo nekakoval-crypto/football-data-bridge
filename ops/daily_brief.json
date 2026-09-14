@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-14T13:05:25Z",
+  "generated_at_utc": "2026-09-14T15:04:54Z",
   "status": "OK",
   "active_signals": 2,
   "policy": {
@@ -30,16 +30,16 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-14T12:51:07Z",
+        "captured_at_utc": "2026-09-14T14:48:28Z",
         "best_odds": "1.6",
         "best_bookmaker": "Betano",
-        "bet365_odds": "1.53",
-        "api_odds_update_utc": "2026-09-14T08:35:17+00:00",
+        "bet365_odds": "1.5",
+        "api_odds_update_utc": "2026-09-14T12:34:18+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
         "status": "AVAILABLE",
-        "odds": "1.55",
+        "odds": "1.54",
         "bookmaker": "Marathonbet"
       },
       "paper_user_execution": {
@@ -156,11 +156,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-14T12:51:07Z",
+        "captured_at_utc": "2026-09-14T14:48:28Z",
         "best_odds": "1.61",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.53",
-        "api_odds_update_utc": "2026-09-14T08:35:17+00:00",
+        "api_odds_update_utc": "2026-09-14T12:34:18+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -274,7 +274,7 @@
     "observed_closes": 9,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-14T13:00:15Z",
+    "latest_run_utc": "2026-09-14T14:58:45Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [],
@@ -291,7 +291,7 @@
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-14T12:54:42Z",
+    "latest_run_utc": "2026-09-14T14:26:19Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -331,7 +331,7 @@
     "observed_closes": 43,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-14T12:22:05Z",
+    "latest_run_utc": "2026-09-14T14:18:09Z",
     "warnings": [],
     "crossings": [
       {
@@ -373,7 +373,7 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-14T13:00:15Z",
+    "generated_at_utc": "2026-09-14T14:53:45Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
