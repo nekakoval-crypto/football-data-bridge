@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 14.09.2026 01:00 (Europe/Berlin)
+Обновлено: 14.09.2026 02:00 (Europe/Berlin)
 Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -448,6 +448,7 @@ Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
   - Европейская фора хозяев (-2) · П1: 3.92 | Х: 4.45 | П2: 1.57 @ Marathonbet
   - Европейская фора хозяев (-3) · П1: 9 | Х: 6.5 | П2: 1.22 @ Bet365
   - Европейская фора хозяев (-3) · П1: 8.1 | Х: 6.75 | П2: 1.18 @ Marathonbet
+  - 1X2 · П1: 1.44 | Х: 4.2 | П2: 7.5 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.67 | ИТМ: 2.1 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.63 | ИТМ: 2.11 @ Marathonbet
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 4.33 | ИТМ: 1.2 @ Bet365
@@ -463,7 +464,6 @@ Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 4.9 | ИТМ: 1.14 @ Marathonbet
   - ИТБ/ИТМ 1 (4.5) · ИТБ: 13 | ИТМ: 1.04 @ Bet365
   - ИТБ/ИТМ 1 (5.5) · ИТБ: 29 | ИТМ: 1.01 @ Bet365
-  - 1X2 — нет данных
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
 
@@ -727,6 +727,7 @@ Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
   - Европейская фора хозяев (+4) · П1: 1.14 | Х: 8.5 | П2: 11 @ Bet365
   - Европейская фора хозяев (+4) · П1: 1.15 | Х: 7.3 | П2: 7.5 @ Marathonbet
   - Европейская фора хозяев (-1) · П1: 19 | Х: 11 | П2: 1.08 @ Bet365
+  - 1X2 · П1: 10 | Х: 6.25 | П2: 1.27 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.04 | ИТМ: 13 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.25 | ИТМ: 3.75 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.25 | ИТМ: 3.75 @ Marathonbet
@@ -744,7 +745,6 @@ Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
   - ИТБ/ИТМ 1 (2.5) · ИТБ: 13 | ИТМ: 1.04 @ Bet365
   - ИТБ/ИТМ 1 (2.5) · ИТБ: 11.25 | ИТМ: 1.02 @ Marathonbet
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 29 | ИТМ: 1.01 @ Bet365
-  - 1X2 — нет данных
   - Тотал 2.5 — нет данных
 
 - **FK Zalgiris Vilnius — Kauno Žalgiris** | A Lyga | 16.09 15:45 UTC
@@ -781,6 +781,7 @@ Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
   - Европейская фора хозяев (-2) · П1: 4.15 | Х: 4.6 | П2: 1.55 @ Marathonbet
   - Европейская фора хозяев (-3) · П1: 10 | Х: 7 | П2: 1.2 @ Bet365
   - Европейская фора хозяев (-3) · П1: 8.5 | Х: 7.2 | П2: 1.16 @ Marathonbet
+  - 1X2 · П1: 1.48 | Х: 4.1 | П2: 7 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.62 | ИТМ: 2.2 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.59 | ИТМ: 2.21 @ Marathonbet
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 4 | ИТМ: 1.22 @ Bet365
@@ -796,7 +797,6 @@ Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 5.15 | ИТМ: 1.14 @ Marathonbet
   - ИТБ/ИТМ 1 (4.5) · ИТБ: 13 | ИТМ: 1.04 @ Bet365
   - ИТБ/ИТМ 1 (5.5) · ИТБ: 29 | ИТМ: 1.01 @ Bet365
-  - 1X2 — нет данных
   - Тотал 2.5 — нет данных
 
 - **Deportivo La Coruna — Sevilla** | La Liga | 16.09 17:00 UTC
@@ -2009,7 +2009,7 @@ Canonical: 2 | active WATCH crossings: 2 | RED: 0 | ORANGE: 3
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 1
+- System Health: **WARN** | critical 0 | warnings 2
 - Логическая canonical экспозиция: **3.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
-- League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 21 | data required 4
+- League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 22 | data required 4
