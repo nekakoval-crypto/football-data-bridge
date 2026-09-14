@@ -1,0 +1,49 @@
+name: Stage76 Disaster Recovery
+
+on:
+  schedule:
+    - cron: '17 2 * * *'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/stage76_disaster_recovery.py'
+      - 'scripts/tests/test_stage76_disaster_recovery.py'
+      - 'docs/stage76-disaster-recovery.md'
+      - '.github/workflows/stage76-disaster-recovery.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage76-recovery-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate-and-pack:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Stage76 unit tests
+        run: python -m unittest discover -s scripts/tests -p 'test_stage76_disaster_recovery.py' -v
+      - name: Compile recovery tool
+        run: python -m py_compile scripts/stage76_disaster_recovery.py
+      - name: Create recovery checkpoint
+        run: python scripts/stage76_disaster_recovery.py create --output build/stage76-recovery --repository-sha "${GITHUB_SHA}"
+      - name: Verify recovery checkpoint
+        run: python scripts/stage76_disaster_recovery.py verify --pack build/stage76-recovery
+      - name: Prove restore defaults to dry-run
+        run: |
+          python scripts/stage76_disaster_recovery.py restore --pack build/stage76-recovery --target-root build/stage76-restore-drill
+          test ! -e build/stage76-restore-drill
+      - name: Upload verified recovery checkpoint
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pbk-stage76-${{ github.sha }}
+          path: build/stage76-recovery/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 6
