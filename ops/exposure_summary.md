@@ -1,12 +1,11 @@
 # PBK Exposure & Conflict Map
 
-Обновлено UTC: 2026-09-14T18:10:26Z
-Активные rule-строки: 2 | логических экспозиций: 2
-Raw stake: 2.000u | логическая экспозиция: 2.000u | убрано дублей: 0.000u
-Canonical conflicts: 0 | WATCH overlaps: 1
+Обновлено UTC: 2026-09-14T19:09:38Z
+Активные rule-строки: 1 | логических экспозиций: 1
+Raw stake: 1.000u | логическая экспозиция: 1.000u | убрано дублей: 0.000u
+Canonical conflicts: 0 | WATCH overlaps: 0
 
 ## Активные логические экспозиции
-- **Torino — AS Roma** | R1 | П2 | 1.000u | 1.58 @ Marathonbet | WATCH overlap x1
 - **Frosinone — Como** | R1 | П2 | 1.000u | 1.65 @ Marathonbet
 
 ## Конфликты
