@@ -204,6 +204,117 @@ class CurrentRoundTests(unittest.TestCase):
         self.assertIn('budget exhausted', league['error'])
         self.assertEqual(len(calls), 1)
 
+    def test_budget_exhaustion_preserves_previous_snapshot_and_stops_calls(self):
+        catalog = self.ops / 'catalog.csv'
+        leagues = [dict(self.league, api_league_id=str(39 + i),
+                        api_league_name=f'League {i}') for i in range(3)]
+        self.write('catalog.csv', leagues)
+        self.write('current_round_leagues.csv', [
+            {'provider_league_id': str(39 + i), 'league_name': f'League {i}',
+             'country': 'England', 'country_flag_url': f'https://flag/{i}',
+             'league_logo_url': f'https://logo/{i}', 'season': '2026',
+             'round': 'Regular Season - 4', 'observed_at_utc': '2026-09-13T15:00:00Z',
+             'status': 'available', 'error': ''}
+            for i in range(3)
+        ])
+        self.write('current_round_fixtures.csv', [
+            {'fixture_id': str(100 + i), 'provider_league_id': str(39 + i),
+             'league_name': f'League {i}', 'country': 'England',
+             'country_flag_url': f'https://flag/{i}', 'league_logo_url': f'https://logo/{i}',
+             'season': '2026', 'round': 'Regular Season - 4',
+             'kickoff_utc': f'2026-09-13T1{i}:00:00Z', 'home_team': f'H{i}',
+             'home_team_logo_url': '', 'away_team': f'A{i}', 'away_team_logo_url': '',
+             'status': 'finished', 'source_status': 'FT', 'score_home': '1',
+             'score_away': '0', 'observed_at_utc': '2026-09-13T15:00:00Z'}
+            for i in range(3)
+        ])
+        self.write('catalog.csv', leagues)
+        calls = []
+        def get(path, params, **kwargs):
+            calls.append(params['league'])
+            raise RuntimeError('Stage71 API budget exhausted; retry next run')
+        with patch.object(capture, 'CATALOG', catalog), \
+             patch.object(capture, 'OPS', self.ops), \
+             patch.object(capture, 'LEAGUES_OUT', self.ops / 'current_round_leagues.csv'), \
+             patch.object(capture, 'FIXTURES_OUT', self.ops / 'current_round_fixtures.csv'), \
+             patch.object(capture, 'META_OUT', self.ops / 'current_round_last_run.json'), \
+             patch.object(capture.s53, 'api_get', get):
+            capture.main()
+        served = capture.read_csv(self.ops / 'current_round_fixtures.csv')
+        meta = json.loads((self.ops / 'current_round_last_run.json').read_text())
+        self.assertEqual(len(calls), 1)
+        self.assertEqual(len(served), 3)
+        self.assertEqual(meta['served_fixture_rows'], 3)
+        self.assertTrue(meta['last_good_preserved'])
+        self.assertEqual(meta['preserved_leagues'], 3)
+
+    def test_transient_failure_preserves_only_failed_league_and_observation_time(self):
+        catalog = self.ops / 'catalog.csv'
+        leagues = [dict(self.league, api_league_id='39', api_league_name='Good'),
+                   dict(self.league, api_league_id='140', api_league_name='Broken')]
+        self.write('catalog.csv', leagues)
+        self.write('current_round_leagues.csv', [
+            {'provider_league_id': '39', 'league_name': 'Old Good', 'country': 'England',
+             'country_flag_url': '', 'league_logo_url': '', 'season': '2026',
+             'round': 'Old Round', 'observed_at_utc': '2026-09-13T15:00:00Z',
+             'status': 'available', 'error': ''},
+            {'provider_league_id': '140', 'league_name': 'Old Broken', 'country': 'Spain',
+             'country_flag_url': '', 'league_logo_url': '', 'season': '2026',
+             'round': 'Old Round', 'observed_at_utc': '2026-09-13T15:00:00Z',
+             'status': 'available', 'error': ''},
+        ])
+        self.write('current_round_fixtures.csv', [
+            {'fixture_id': '1', 'provider_league_id': '39', 'league_name': 'Old Good',
+             'country': 'England', 'country_flag_url': '', 'league_logo_url': '',
+             'season': '2026', 'round': 'Old Round', 'kickoff_utc': '2026-09-13T15:00:00Z',
+             'home_team': 'Old H', 'home_team_logo_url': '', 'away_team': 'Old A',
+             'away_team_logo_url': '', 'status': 'finished', 'source_status': 'FT',
+             'score_home': '1', 'score_away': '0', 'observed_at_utc': '2026-09-13T15:00:00Z'},
+            {'fixture_id': '2', 'provider_league_id': '140', 'league_name': 'Old Broken',
+             'country': 'Spain', 'country_flag_url': '', 'league_logo_url': '',
+             'season': '2026', 'round': 'Old Round', 'kickoff_utc': '2026-09-13T16:00:00Z',
+             'home_team': 'Old H2', 'home_team_logo_url': '', 'away_team': 'Old A2',
+             'away_team_logo_url': '', 'status': 'finished', 'source_status': 'FT',
+             'score_home': '2', 'score_away': '0', 'observed_at_utc': '2026-09-13T15:00:00Z'},
+        ])
+        def get(path, params, **kwargs):
+            if params['league'] == '140':
+                raise RuntimeError('temporary provider failure')
+            return {'response': [self.fixture(9, 'FT', '2026-09-14T12:00:00Z', (3, 2))]}
+        with patch.object(capture, 'CATALOG', catalog), \
+             patch.object(capture, 'OPS', self.ops), \
+             patch.object(capture, 'LEAGUES_OUT', self.ops / 'current_round_leagues.csv'), \
+             patch.object(capture, 'FIXTURES_OUT', self.ops / 'current_round_fixtures.csv'), \
+             patch.object(capture, 'META_OUT', self.ops / 'current_round_last_run.json'), \
+             patch.object(capture.s53, 'api_get', get):
+            capture.main()
+        served_leagues = {r['provider_league_id']: r for r in capture.read_csv(self.ops / 'current_round_leagues.csv')}
+        served_fixtures = capture.read_csv(self.ops / 'current_round_fixtures.csv')
+        self.assertNotEqual(served_leagues['39']['observed_at_utc'], '2026-09-13T15:00:00Z')
+        self.assertEqual(
+            next(row['fixture_id'] for row in served_fixtures if row['provider_league_id'] == '39'),
+            '9',
+        )
+        self.assertEqual(served_leagues['140']['round'], 'Old Round')
+        self.assertEqual({r['provider_league_id'] for r in served_fixtures}, {'39', '140'})
+        self.assertEqual(served_leagues['140']['observed_at_utc'], '2026-09-13T15:00:00Z')
+
+    def test_first_run_failure_can_serve_unavailable_league(self):
+        catalog = self.ops / 'catalog.csv'
+        self.write('catalog.csv', [self.league])
+        def get(path, params, **kwargs):
+            raise RuntimeError('provider unavailable')
+        with patch.object(capture, 'CATALOG', catalog), \
+             patch.object(capture, 'OPS', self.ops), \
+             patch.object(capture, 'LEAGUES_OUT', self.ops / 'leagues.csv'), \
+             patch.object(capture, 'FIXTURES_OUT', self.ops / 'fixtures.csv'), \
+             patch.object(capture, 'META_OUT', self.ops / 'run.json'), \
+             patch.object(capture.s53, 'api_get', get):
+            capture.main()
+        row = capture.read_csv(self.ops / 'leagues.csv')[0]
+        self.assertEqual(row['status'], 'unavailable')
+        self.assertEqual(capture.read_csv(self.ops / 'fixtures.csv'), [])
+
     def test_budget_forwards_force_refresh_kwargs(self):
         calls = []
         def get(path, params, **kwargs):

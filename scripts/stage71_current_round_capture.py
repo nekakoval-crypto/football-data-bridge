@@ -118,9 +118,19 @@ def capture_round(league, observed_at, get=s53.api_get):
 
 def main():
     observed_at = now_iso()
+    previous_leagues = {str(row.get("provider_league_id") or ""): row
+                        for row in read_csv(LEAGUES_OUT)}
+    previous_fixtures = read_csv(FIXTURES_OUT)
+    previous_by_league = {}
+    for row in previous_fixtures:
+        previous_by_league.setdefault(str(row.get("provider_league_id") or ""), []).append(row)
     leagues = []
     fixtures = []
     warnings = []
+    refreshed_leagues = []
+    preserved_leagues = []
+    failed_leagues = []
+    budget_exhausted = False
     state_path = OPS / "stage71_observation_state.json"
     state = audit.read(state_path)
     budget = audit.Budget(
@@ -129,9 +139,13 @@ def main():
         int(os.getenv("STAGE71_MAX_DAILY_API_CALLS", "180")),
         checkpoint=lambda data: audit.save(state_path, data),
     )
-    for league in read_csv(CATALOG):
+    catalog = read_csv(CATALOG)
+    for index, league in enumerate(catalog):
+        lid = str(league.get("api_league_id") or "")
+        previous = previous_leagues.get(lid)
+        previous_rows = previous_by_league.get(lid, [])
         base = {
-            "provider_league_id": league.get("api_league_id") or None,
+            "provider_league_id": lid or None,
             "league_name": league.get("api_league_name") or league.get("league") or None,
             "country": league.get("country") or None,
             "country_flag_url": None,
@@ -151,10 +165,42 @@ def main():
                 "league_logo_url": next((r["league_logo_url"] for r in rows if r["league_logo_url"]), None),
             })
             fixtures.extend(rows)
+            refreshed_leagues.append(lid)
+            leagues.append(base)
         except (ApiFootballBrokerError, RuntimeError, ValueError, KeyError, TypeError) as exc:
-            base["error"] = str(exc)
-            warnings.append(f"{base['league_name']}: {exc}")
-        leagues.append(base)
+            message = str(exc)
+            warnings.append(f"{base['league_name']}: {message}")
+            failed_leagues.append(lid)
+            if previous and previous.get("status") == "available":
+                leagues.append(dict(previous))
+                fixtures.extend(previous_rows)
+                preserved_leagues.append(lid)
+            else:
+                base["error"] = message
+                leagues.append(base)
+            if "budget exhausted" in message.lower():
+                budget_exhausted = True
+                for remaining in catalog[index + 1:]:
+                    remaining_id = str(remaining.get("api_league_id") or "")
+                    old = previous_leagues.get(remaining_id)
+                    old_rows = previous_by_league.get(remaining_id, [])
+                    if old and old.get("status") == "available":
+                        leagues.append(dict(old))
+                        fixtures.extend(old_rows)
+                        preserved_leagues.append(remaining_id)
+                    else:
+                        leagues.append({
+                            "provider_league_id": remaining_id or None,
+                            "league_name": remaining.get("api_league_name") or remaining.get("league") or None,
+                            "country": remaining.get("country") or None,
+                            "country_flag_url": None, "league_logo_url": None,
+                            "season": remaining.get("season") or SEASON,
+                            "round": None, "observed_at_utc": observed_at,
+                            "status": "unavailable",
+                            "error": message,
+                        })
+                    failed_leagues.append(remaining_id)
+                break
     audit.save(state_path, state)
     fixtures.sort(key=lambda row: (row.get("provider_league_id") or "", row.get("kickoff_utc") or "", row["fixture_id"]))
     write_csv(LEAGUES_OUT, LEAGUE_FIELDS, leagues)
@@ -172,6 +218,14 @@ def main():
         "api_budget_limit": budget.limit,
         "api_daily_budget_limit": budget.daily_limit,
         "provider_polling": True,
+        "refresh_status": "BUDGET_EXHAUSTED" if budget_exhausted else "PARTIAL" if warnings else "OK",
+        "budget_exhausted": budget_exhausted,
+        "refreshed_leagues": len(refreshed_leagues),
+        "preserved_leagues": len(preserved_leagues),
+        "failed_leagues": len(failed_leagues),
+        "served_available_leagues": sum(row["status"] == "available" for row in leagues),
+        "served_fixture_rows": len(fixtures),
+        "last_good_preserved": bool(preserved_leagues),
     }
     META_OUT.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(meta, ensure_ascii=False))
