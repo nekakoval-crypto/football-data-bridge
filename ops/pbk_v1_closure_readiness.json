@@ -1,6 +1,6 @@
 {
   "version": "PBK_V1_CLOSURE_READINESS_V1",
-  "run_at_utc": "2026-09-14T19:48:39Z",
+  "run_at_utc": "2026-09-14T20:01:37Z",
   "status": "WAITING",
   "ready_for_manual_close": false,
   "hard_failure": false,
@@ -73,7 +73,7 @@
         "message": "frontend has no direct provider/legacy match endpoint",
         "evidence": {
           "violations": [],
-          "files_scanned": 15
+          "files_scanned": 16
         }
       },
       {
@@ -81,7 +81,7 @@
         "status": "PASS",
         "message": "PWA shell is v13 and API traffic remains network-only/no-store",
         "evidence": {
-          "cache_v13": true,
+          "cache_v14": true,
           "api_no_store": true
         }
       },
@@ -90,7 +90,7 @@
         "status": "PASS",
         "message": "Stage72 schema is at or above the PBK v1 baseline",
         "evidence": {
-          "schema_version": 14,
+          "schema_version": 15,
           "minimum": 14
         }
       },
