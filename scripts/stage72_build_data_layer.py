@@ -13,7 +13,11 @@ from stage75_value_radar import read_jsonl, EVENT_FIELDS
 
 OPS=Path(os.getenv('OPS_DIR','ops'))
 OUT=Path(os.getenv('STAGE72_DB_PATH','build/pbk_unified.sqlite'))
-META=OPS/'stage72_last_run.json';SCHEMA=OPS/'stage72_schema.json';SCHEMA_VERSION='11'
+META=OPS/'stage72_last_run.json';SCHEMA=OPS/'stage72_schema.json';SCHEMA_VERSION='12'
+STANDINGS_FIELDS=['snapshot_id','provider_league_id','league_name','season','observed_at_utc',
+                  'team_id','team_name','team_logo_url','rank','points','played','win','draw',
+                  'lose','goals_for','goals_against','goals_diff','form','group_name',
+                  'description','source']
 CORE_ALIASES={
     'competitions':'stage71_league_catalog.csv','canonical_signals':'user_forward_view.csv','challenger_signals':'stage71_challenger_forward.csv','watch_signals':'stage65_watch_ledger.csv','lifecycle_events':'signal_lifecycle_events.csv','exposure_positions':'exposure_map.csv','context_latest':'context_latest.csv','odds_snapshots':'odds_snapshots.csv',
     'team_total_openers':'stage71c_team_total_openers.csv','team_total_snapshots':'stage71c_team_total_snapshots.csv','team_total_closes':'stage71c_team_total_closes.csv',
@@ -189,6 +193,79 @@ def create_current_round_tables(conn, ops):
         'red_cards_home','red_cards_away']))
     fixture_count, _ = create_text_table(conn, 'current_round_matches', fixture_fields, fixture_rows)
     return league_count, fixture_count
+
+def _standings_timestamp(value):
+    try:
+        parsed=datetime.fromisoformat(str(value).replace('Z','+00:00'))
+        return parsed.astimezone(timezone.utc) if parsed.tzinfo else None
+    except (TypeError,ValueError):return None
+
+def validate_standings_rows(rows):
+    """Return only complete immutable snapshots; corrupt groups are unavailable."""
+    groups={}
+    invalid_snapshots=set()
+    for row in rows:
+        snapshot=str(row.get('snapshot_id') or '').strip()
+        if snapshot:
+            groups.setdefault(snapshot, []).append(row)
+        league=str(row.get('provider_league_id') or '').strip()
+        season=str(row.get('season') or '').strip()
+        observed=str(row.get('observed_at_utc') or '').strip()
+        team=str(row.get('team_id') or '').strip()
+        timestamp=_standings_timestamp(observed)
+        if not snapshot or not league or not season or not observed or not timestamp or not team:
+            if snapshot: invalid_snapshots.add(snapshot)
+            continue
+    valid=[]
+    for snapshot, raw_items in groups.items():
+        items=[]
+        for row in raw_items:
+            timestamp=_standings_timestamp(row.get('observed_at_utc'))
+            if timestamp is not None:
+                items.append((row,timestamp,str(row.get('provider_league_id') or '').strip(),
+                              str(row.get('season') or '').strip(),str(row.get('team_id') or '').strip()))
+        if snapshot in invalid_snapshots: continue
+        keys={(x[2],x[3],x[1]) for x in items}
+        teams=[x[4] for x in items]
+        if len(keys)!=1 or len(teams)!=len(set(teams)):
+            continue
+        valid.extend(x[0] for x in items)
+    return valid
+
+def create_standings_table(conn, ops):
+    _, rows=read_csv(ops/'standings_snapshots.csv')
+    rows=validate_standings_rows(rows)
+    columns=', '.join(f'"{safe(field)}" TEXT' for field in STANDINGS_FIELDS)
+    conn.execute('DROP TABLE IF EXISTS standings_snapshots')
+    conn.execute(f'CREATE TABLE standings_snapshots ({columns})')
+    conn.executemany(
+        f'INSERT INTO standings_snapshots VALUES ({",".join("?" for _ in STANDINGS_FIELDS)})',
+        [[row.get(field,'') for field in STANDINGS_FIELDS] for row in rows])
+    for name in ('provider_league_id','season','observed_at_utc','snapshot_id','team_id'):
+        conn.execute(f'CREATE INDEX idx_standings_snapshots_{name} '
+                     f'ON standings_snapshots ("{name}")')
+    return len(rows)
+
+def select_standings_as_of(conn, provider_league_id, season, as_of_utc):
+    cutoff=_standings_timestamp(as_of_utc)
+    if cutoff is None:return None
+    result=conn.execute(
+        'SELECT * FROM standings_snapshots WHERE provider_league_id=? AND season=?',
+        (str(provider_league_id),str(season)))
+    rows_raw=result.fetchall()
+    names=[description[0] for description in result.description] if result.description else []
+    rows=[dict(zip(names,row)) for row in rows_raw]
+    eligible=[row for row in rows if (_standings_timestamp(row['observed_at_utc'])
+                                      and _standings_timestamp(row['observed_at_utc'])<=cutoff)]
+    if not eligible:return None
+    latest=max(_standings_timestamp(row['observed_at_utc']) for row in eligible)
+    snapshots={row['snapshot_id'] for row in eligible
+               if _standings_timestamp(row['observed_at_utc'])==latest}
+    if len(snapshots)!=1:return None
+    return [dict(row) for row in eligible if row['snapshot_id'] in snapshots]
+
+def standings_as_of_fixture(conn, provider_league_id, season, kickoff_utc):
+    return select_standings_as_of(conn, provider_league_id, season, kickoff_utc)
 def main():
     built=now_iso();OUT.parent.mkdir(parents=True,exist_ok=True);OPS.mkdir(parents=True,exist_ok=True)
     if OUT.exists():OUT.unlink()
@@ -219,6 +296,8 @@ def main():
     today_rows=today_projection(OPS,built[:10])
     stable_counts['today_matches'],_=create_today_table(conn,today_rows)
     stable_counts['current_round_leagues'],stable_counts['current_round_matches']=create_current_round_tables(conn,OPS)
+    stable_counts['standings_snapshots']=create_standings_table(conn,OPS)
+    if not (OPS/'standings_snapshots.csv').exists():missing.append('standings_snapshots.csv')
     meta={'schema_version':SCHEMA_VERSION,'built_at_utc':built,'source_policy':'ops CSV/JSON remain audit source; SQLite is reproducible projection'};conn.executemany('INSERT INTO pbk_meta VALUES (?,?)',meta.items());conn.commit();integrity=conn.execute('PRAGMA integrity_check').fetchone()[0];tables=[r[0] for r in conn.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name")];manifest_rows=conn.execute('SELECT COUNT(*) FROM source_manifest').fetchone()[0];conn.close()
-    status='OK' if integrity=='ok' and stable_counts.get('competitions')==16 else 'WARN';payload={'run_at_utc':built,'status':status,'schema_version':SCHEMA_VERSION,'db_path':str(OUT),'db_bytes':OUT.stat().st_size,'db_sha256':file_sha(OUT),'integrity_check':integrity,'tables':len(tables),'manifest_sources':manifest_rows,'stable_counts':stable_counts,'missing_stable_sources':missing,'api_calls':0};META.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding='utf-8');SCHEMA.write_text(json.dumps({'schema_version':SCHEMA_VERSION,'stable_tables':list(CORE_ALIASES) + ['current_round_leagues','current_round_matches'],'json_state_documents':JSON_DOCS,'raw_csv_policy':'every ops/*.csv is imported as raw_<filename_stem> with TEXT columns'},ensure_ascii=False,indent=2),encoding='utf-8');print(json.dumps(payload,ensure_ascii=False,indent=2))
+    status='OK' if integrity=='ok' and stable_counts.get('competitions')==16 else 'WARN';payload={'run_at_utc':built,'status':status,'schema_version':SCHEMA_VERSION,'db_path':str(OUT),'db_bytes':OUT.stat().st_size,'db_sha256':file_sha(OUT),'integrity_check':integrity,'tables':len(tables),'manifest_sources':manifest_rows,'stable_counts':stable_counts,'missing_stable_sources':missing,'api_calls':0};META.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding='utf-8');SCHEMA.write_text(json.dumps({'schema_version':SCHEMA_VERSION,'stable_tables':list(CORE_ALIASES) + ['current_round_leagues','current_round_matches','standings_snapshots'],'json_state_documents':JSON_DOCS,'raw_csv_policy':'every ops/*.csv is imported as raw_<filename_stem> with TEXT columns'},ensure_ascii=False,indent=2),encoding='utf-8');print(json.dumps(payload,ensure_ascii=False,indent=2))
 if __name__=='__main__':main()

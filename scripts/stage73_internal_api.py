@@ -165,6 +165,55 @@ def current_rounds_payload(conn):
             'source': 'current_round_leagues/current_round_matches SQLite projection',
         },
     }
+def standings_payload(conn, q):
+    league=qfirst(q,'provider_league_id')
+    season=qfirst(q,'season')
+    built=dict(conn.execute('SELECT key,value FROM pbk_meta').fetchall()).get('built_at_utc')
+    base={'api_version':API_VERSION,'provider_league_id':league,'season':season,
+          'requested_as_of_utc':qfirst(q,'as_of_utc') or built,
+          'snapshot_id':None,'snapshot_observed_at_utc':None,'available':False,
+          'no_lookahead':True,'age_seconds_at_cutoff':None,'source':None,'teams':[]}
+    if not league or not season:
+        base.update({'error':'MISSING_STANDINGS_SCOPE'})
+        return 400,base
+    cutoff=base['requested_as_of_utc']
+    try:
+        parsed_cutoff=datetime.fromisoformat(str(cutoff).replace('Z','+00:00'))
+        if parsed_cutoff.tzinfo is None: raise ValueError('timezone required')
+        cutoff_dt=parsed_cutoff.astimezone(timezone.utc)
+    except (TypeError,ValueError):
+        base.update({'error':'INVALID_AS_OF_UTC'})
+        return 400,base
+    if not table_exists(conn,'standings_snapshots'):
+        return 200,base
+    rows=conn.execute(
+        'SELECT * FROM standings_snapshots WHERE provider_league_id=? AND season=?',
+        (str(league),str(season))).fetchall()
+    eligible=[]
+    for row in rows:
+        try: observed=datetime.fromisoformat(str(row['observed_at_utc']).replace('Z','+00:00')).astimezone(timezone.utc)
+        except (TypeError,ValueError): continue
+        if observed<=cutoff_dt: eligible.append((observed,row))
+    if not eligible:return 200,base
+    latest=max(observed for observed,_ in eligible)
+    snapshot_ids={row['snapshot_id'] for observed,row in eligible if observed==latest}
+    if len(snapshot_ids)!=1:return 200,base
+    snapshot_id=next(iter(snapshot_ids))
+    selected=[dict(row) for observed,row in eligible if row['snapshot_id']==snapshot_id]
+    observed=latest
+    teams=[]
+    for row in selected:
+        item={key:row.get(key) for key in (
+            'team_id','team_name','team_logo_url','rank','points','played','win','draw',
+            'lose','goals_for','goals_against','goals_diff','form','group_name','description',
+            'source')}
+        teams.append(item)
+    teams.sort(key=lambda row: (row.get('rank') or '', row.get('team_id') or ''))
+    base.update({'snapshot_id':snapshot_id,
+                 'snapshot_observed_at_utc':observed.isoformat().replace('+00:00','Z'),
+                 'available':True,'source':selected[0].get('source') or None,'teams':teams,
+                 'age_seconds_at_cutoff':(cutoff_dt-observed).total_seconds()})
+    return 200,base
 def config_doc(path,fallback):
     try:return json.loads(path.read_text(encoding='utf-8'))
     except Exception:return fallback
@@ -228,6 +277,7 @@ def dispatch(path_with_query):
             meta=dict(conn.execute('SELECT key,value FROM pbk_meta').fetchall()) if table_exists(conn,'pbk_meta') else {};return 200,{'api_version':API_VERSION,'db':meta,'global_odds_cap':None,'eligibility_mutation':False}
         if path=='/v1/today':return 200,today_payload(conn)
         if path=='/v1/rounds/current':return 200,current_rounds_payload(conn)
+        if path=='/v1/standings':return standings_payload(conn,q)
         if path=='/v1/competitions':return 200,query_table(conn,'competitions',q,{'country':'country','league':'league','group':'group'},default_order=['country','league'])
         if path=='/v1/signals/canonical':return 200,query_table(conn,'canonical_signals',q,{'strategy':'rule','status':'status','team':'away_team'},['paper_user_execution_odds','market_execution_odds','trigger_selected_odds'],['kickoff_utc','forward_id'])
         if path=='/v1/signals/challengers':return 200,query_table(conn,'challenger_signals',q,{'strategy':'family','league':'league','status':'status','country':'country'},['user_odds','trigger_b365_away'],['kickoff_utc','research_id'])
