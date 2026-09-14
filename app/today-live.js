@@ -18,6 +18,12 @@ export function formatScore(score) {
   return `${score.home}:${score.away}`;
 }
 
+export function redCardBadge(count) {
+  const value = Number(count);
+  if (!Number.isInteger(value) || value <= 0) return '';
+  return `<span class="today-live-red-card" aria-label="${value === 1 ? 'Удаление' : `Удаления: ${value}`}">🟥${value > 1 ? ` ${value}` : ''}</span>`;
+}
+
 export function safeMediaUrl(value) {
   try {
     const url = new URL(String(value || ''));
@@ -91,8 +97,8 @@ function matchRow(match) {
   const right = score || (scheduled ? `<span>${escapeHtml(scheduled.date)}</span><span>${escapeHtml(scheduled.time)}</span>` : '');
   return `<article class="today-live-row today-live-${status}" data-fixture="${escapeHtml(match.fixture_id)}">
     <div class="today-live-row-main">
-      <div class="today-live-team">${imageMarkup(match.home_team_logo_url, 'today-live-team-logo', 'Логотип хозяев')}<span>${escapeHtml(match.home_team || 'Хозяева неизвестны')}</span></div>
-      <div class="today-live-team">${imageMarkup(match.away_team_logo_url, 'today-live-team-logo', 'Логотип гостей')}<span>${escapeHtml(match.away_team || 'Гости неизвестны')}</span></div>
+      <div class="today-live-team">${imageMarkup(match.home_team_logo_url, 'today-live-team-logo', 'Логотип хозяев')}<span>${escapeHtml(match.home_team || 'Хозяева неизвестны')}${redCardBadge(match.red_cards_home)}</span></div>
+      <div class="today-live-team">${imageMarkup(match.away_team_logo_url, 'today-live-team-logo', 'Логотип гостей')}<span>${escapeHtml(match.away_team || 'Гости неизвестны')}${redCardBadge(match.red_cards_away)}</span></div>
     </div>
     <div class="today-live-row-side"><strong>${right || escapeHtml(matchStatusLine({...match, status}))}</strong><span class="today-live-status">${escapeHtml(matchStatusLine({...match, status}))}</span></div>
   </article>`;

@@ -141,13 +141,18 @@ def current_rounds_payload(conn):
                     for key in ('fixture_id','kickoff_utc','home_team','home_team_logo_url',
                                 'away_team','away_team_logo_url','status',
                                 'source_status','elapsed','observed_at_utc',
-                                'live_observed_at_utc','live_freshness_status'):
+                                'live_observed_at_utc','live_freshness_status',
+                                'red_cards_home','red_cards_away'):
                         row.setdefault(key, None)
+                    for key in ('red_cards_home', 'red_cards_away'):
+                        value = row.get(key)
+                        row[key] = int(value) if str(value).isdigit() else None
                     item['matches'].append({key: (row.get(key) or None) for key in (
                         'fixture_id','kickoff_utc','home_team','home_team_logo_url',
                         'away_team','away_team_logo_url','status',
                         'source_status','elapsed','score','observed_at_utc',
-                        'live_observed_at_utc','live_freshness_status')})
+                        'live_observed_at_utc','live_freshness_status',
+                        'red_cards_home','red_cards_away')})
             leagues.append(item)
     return {
         'api_version': API_VERSION,

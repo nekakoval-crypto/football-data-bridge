@@ -19,7 +19,7 @@ META = OPS / "live_fixture_overlay_last_run.json"
 FIELDS = [
     "fixture_id", "source_status", "status", "score_home", "score_away",
     "elapsed", "observed_at_utc", "live_observed_at_utc",
-    "live_freshness_status",
+    "live_freshness_status", "red_cards_home", "red_cards_away",
 ]
 TERMINAL = {"finished", "postponed", "cancelled", "abandoned", "awarded", "walkover"}
 ACTIVE = {"live", "suspended", "interrupted"}
@@ -70,11 +70,49 @@ def candidates(base_rows, previous, now):
     return result
 
 
+def _event_identity(fixture_id, event):
+    team = event.get("team") or {}
+    player = event.get("player") or {}
+    clock = event.get("time") or {}
+    return (str(fixture_id), team.get("id"), player.get("id"),
+            event.get("type"), event.get("detail"),
+            clock.get("elapsed"), clock.get("extra"))
+
+
+def _red_card_counts(item):
+    events = item.get("events")
+    if not isinstance(events, list):
+        return None, None
+    fixture = item.get("fixture") or {}
+    teams = item.get("teams") or {}
+    home_id = (teams.get("home") or {}).get("id")
+    away_id = (teams.get("away") or {}).get("id")
+    home = away = 0
+    seen = set()
+    for event in events:
+        if not isinstance(event, dict):
+            continue
+        detail = " ".join(str(event.get("detail") or "").split()).casefold()
+        if detail not in {"red card", "yellow-red card"}:
+            continue
+        identity = _event_identity(fixture.get("id"), event)
+        if identity in seen:
+            continue
+        seen.add(identity)
+        team_id = (event.get("team") or {}).get("id")
+        if team_id == home_id:
+            home += 1
+        elif team_id == away_id:
+            away += 1
+    return home, away
+
+
 def provider_row(item, observed):
     fixture = item.get("fixture") or {}
     status = fixture.get("status") or {}
     goals = item.get("goals") or {}
     raw = status.get("short")
+    red_home, red_away = _red_card_counts(item)
     return {
         "fixture_id": str(fixture.get("id") or ""),
         "source_status": raw or None,
@@ -85,6 +123,8 @@ def provider_row(item, observed):
         "observed_at_utc": observed,
         "live_observed_at_utc": observed if today_status(raw) in ACTIVE else None,
         "live_freshness_status": "fresh",
+        "red_cards_home": red_home,
+        "red_cards_away": red_away,
     }
 
 
@@ -96,11 +136,31 @@ def refresh(base_rows, previous_rows, get, now):
     updated_ids = set()
     warnings = []
     calls = 0
-    dates = sorted({parse_time(row["kickoff_utc"]).date().isoformat() for row in tracked})
-    for date in dates:
+    def priority(row):
+        old = previous.get(str(row.get("fixture_id") or "")) or row
+        status = old.get("status")
+        kickoff = parse_time(row.get("kickoff_utc"))
+        active = status in ACTIVE
+        post_kickoff = kickoff and kickoff <= now
+        return (0 if active else 1 if post_kickoff else 2, kickoff or now)
+
+    tracked.sort(key=priority)
+    batches = [tracked[i:i + 20] for i in range(0, len(tracked), 20)]
+    max_calls = getattr(get, "limit", None)
+    calls_used = getattr(get, "calls", 0)
+    daily_limit = getattr(get, "daily_limit", None)
+    daily_calls = getattr(get, "state", {}).get("api_day_calls", 0)
+    if max_calls is not None:
+        max_calls = min(max_calls - calls_used,
+                        daily_limit - daily_calls if daily_limit is not None else max_calls)
+        batches = batches[:max(0, max_calls)]
+        if max_calls <= 0 and tracked:
+            warnings.append("Stage71 API budget exhausted; retry next run")
+    for batch in batches:
+        ids = "-".join(str(row.get("fixture_id")) for row in batch)
         calls += 1
         try:
-            payload = get("/fixtures", {"date": date, "timezone": "UTC"}, force_refresh=True)
+            payload = get("/fixtures", {"ids": ids, "timezone": "UTC"}, force_refresh=True)
             for item in payload.get("response", []):
                 current = provider_row(item, iso(now))
                 if current["fixture_id"] in tracked_ids:
@@ -110,14 +170,19 @@ def refresh(base_rows, previous_rows, get, now):
                     output[current["fixture_id"]] = current
                     updated_ids.add(current["fixture_id"])
         except (ApiFootballBrokerError, RuntimeError, ValueError, KeyError, TypeError) as exc:
-            warnings.append(f"{date}: {exc}")
+            warnings.append(f"{ids}: {exc}")
     for fixture_id in tracked_ids - updated_ids:
         if fixture_id in output:
             output[fixture_id]["live_freshness_status"] = "stale"
+    skipped = tracked[len(batches) * 20:]
+    if skipped:
+        warnings.append(f"skipped {len(skipped)} candidate fixtures due to provider budget")
     return list(output.values()), {
         "provider_calls": calls,
         "candidate_fixtures": len(tracked),
         "updated_fixtures": len(updated_ids),
+        "batch_size": 20,
+        "skipped_fixtures": len(skipped),
         "skipped_no_candidates": not tracked,
         "budget_exhausted": any("budget exhausted" in warning.lower() for warning in warnings),
         "observed_at_utc": iso(now),
