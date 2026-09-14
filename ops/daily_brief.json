@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-14T04:02:44Z",
+  "generated_at_utc": "2026-09-14T05:02:28Z",
   "status": "OK",
   "active_signals": 2,
   "policy": {
@@ -30,11 +30,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-14T03:46:35Z",
-        "best_odds": "1.6",
-        "best_bookmaker": "1xBet",
+        "captured_at_utc": "2026-09-14T04:46:20Z",
+        "best_odds": "1.62",
+        "best_bookmaker": "Betano",
         "bet365_odds": "1.55",
-        "api_odds_update_utc": "2026-09-14T00:35:19+00:00",
+        "api_odds_update_utc": "2026-09-14T03:52:14+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -156,7 +156,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-14T03:46:35Z",
+        "captured_at_utc": "2026-09-14T04:46:20Z",
         "best_odds": "1.61",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.55",
@@ -274,7 +274,7 @@
     "observed_closes": 9,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-14T03:56:20Z",
+    "latest_run_utc": "2026-09-14T04:56:17Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [],
@@ -291,7 +291,7 @@
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-14T03:51:40Z",
+    "latest_run_utc": "2026-09-14T04:51:24Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -331,7 +331,7 @@
     "observed_closes": 43,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-14T02:16:12Z",
+    "latest_run_utc": "2026-09-14T04:16:57Z",
     "warnings": [],
     "crossings": [
       {
@@ -361,7 +361,7 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-14T03:57:22Z",
+    "generated_at_utc": "2026-09-14T04:58:34Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
