@@ -1,6 +1,6 @@
 # PBK Stage71 — League & Market Challenger Board
 
-Обновлено UTC: 2026-09-14T15:33:35Z
+Обновлено UTC: 2026-09-14T23:27:46Z
 Текущие лидеры R1/R2: Serie A / Serie A
 
 > Captured → executable → settled — это исследовательский прогресс. Он не меняет canonical eligibility и не создаёт автоматический promotion.
@@ -11,7 +11,7 @@
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | Premier League | MONITORING | 2 | 2 | 2 | 100.0 | 69.50 | 50.00 | 89.00 | 58 | 118 |
 | La Liga | MONITORING | 1 | 1 | 0 | 100.0 | — | — | — | 60 | 120 |
-| Serie A 🏆 | ACTIVE | 3 | 3 | 1 | 100.0 | -100.00 | — | -100.00 | 59 | 119 |
+| Serie A 🏆 | ACTIVE | 3 | 3 | 2 | 100.0 | -21.00 | -100.00 | 58.00 | 58 | 118 |
 | Bundesliga | MONITORING | 1 | 1 | 1 | 100.0 | -100.00 | — | -100.00 | 59 | 119 |
 | Ligue 1 | MONITORING | 2 | 2 | 2 | 100.0 | -37.00 | -100.00 | 26.00 | 58 | 118 |
 | Austrian Bundesliga | MONITORING | 3 | 3 | 2 | 100.0 | -17.00 | -100.00 | 66.00 | 58 | 118 |

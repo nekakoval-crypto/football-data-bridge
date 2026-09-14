@@ -1,11 +1,11 @@
 {
-  "run_at_utc": "2026-09-14T15:33:35.276360Z",
+  "run_at_utc": "2026-09-14T23:27:46.266361Z",
   "status": "ATTENTION",
   "counts": {
     "expected": null,
     "scanned": 0,
     "captured": 39,
-    "missed_or_at_risk": 0,
+    "missed_or_at_risk": 1,
     "pending": 4,
     "stale": 0,
     "rescheduled": 0,
@@ -13,7 +13,12 @@
     "settled": 35,
     "duplicates": 0
   },
-  "risks": [],
+  "risks": [
+    {
+      "fixture_id": "1515889",
+      "reason": "complete_Bet365_odds_unavailable"
+    }
+  ],
   "stale_ids": [],
   "scan": [],
   "warnings": [
