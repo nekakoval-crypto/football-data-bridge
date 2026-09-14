@@ -1,16 +1,15 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 14.09.2026 15:03 (Europe/Berlin)
-Canonical: 2 | active WATCH crossings: 3 | RED: 0 | ORANGE: 4
+Обновлено: 14.09.2026 16:02 (Europe/Berlin)
+Canonical: 2 | active WATCH crossings: 3 | RED: 2 | ORANGE: 2
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
 
 ## 🔴 Срочно
-- Сейчас срочных матчей нет.
+- **Torino — AS Roma** | R1 | П2 | 14.09 18:30 | ≤3ч до kickoff
+- **Torino — AS Roma** | Stage63 | ОЗ — Да | 14.09 18:30 | prospective движение ОЗ ≥3 п.п.
 
 ## 🟠 Ближайшие 24 часа / активные WATCH
-- **Torino — AS Roma** | R1 | П2 | 14.09 18:30 | ≤24ч до kickoff
-- **Torino — AS Roma** | Stage63 | ОЗ — Да | 14.09 18:30 | prospective движение ОЗ ≥3 п.п. | 1.81 @ Marathonbet
 - **Elche — Real Madrid** | Stage63 | ОЗ — Да | 15.09 21:30 | prospective движение ОЗ ≥3 п.п. | 1.61 @ Marathonbet
 - **Atletico Madrid — Osasuna** | Stage63 | ОЗ — Нет | 16.09 19:00 | prospective движение ОЗ ≥3 п.п. | 1.81 @ Marathonbet
 
@@ -387,7 +386,7 @@ Canonical: 2 | active WATCH crossings: 3 | RED: 0 | ORANGE: 4
   - Европейская фора хозяев (-2) · П1: 7.8 | Х: 6.2 | П2: 1.2 @ Marathonbet
   - Европейская фора хозяев (-3) · П1: 26 | Х: 15 | П2: 1.05 @ Bet365
   - 1X2 · П1: 2.2 | Х: 3.5 | П2: 3.1 @ Bet365
-  - 1X2 · П1: 2.27 | Х: 3.54 | П2: 3.24 @ Marathonbet
+  - 1X2 · П1: 2.32 | Х: 3.52 | П2: 3.16 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.3 | ИТМ: 3.4 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.31 | ИТМ: 3.14 @ Marathonbet
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 2.5 | ИТМ: 1.5 @ Bet365
@@ -2132,7 +2131,7 @@ Canonical: 2 | active WATCH crossings: 3 | RED: 0 | ORANGE: 4
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 2
+- System Health: **HEALTHY** | critical 0 | warnings 0
 - Логическая canonical экспозиция: **2.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 22 | data required 4
