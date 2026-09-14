@@ -78,193 +78,108 @@ def today_payload(conn):
     if table_exists(conn,'today_matches'):
         for raw in conn.execute('SELECT * FROM today_matches ORDER BY kickoff_utc ASC, fixture_id ASC').fetchall():
             row=dict(raw)
-            try: row['score']=json.loads(row.get('score') or 'null')
-            except (TypeError,ValueError): row['score']=None
-            observed=row.get('observed_at_utc') or None
-            freshness='unknown'
+            try:row['score']=json.loads(row.get('score') or 'null')
+            except (TypeError,ValueError):row['score']=None
+            observed=row.get('observed_at_utc') or None;freshness='unknown'
             if observed and generated:
                 try:
-                    age=(datetime.fromisoformat(generated.replace('Z','+00:00')) -
-                         datetime.fromisoformat(observed.replace('Z','+00:00'))).total_seconds()
-                    freshness='fresh' if 0 <= age <= 21600 else ('stale' if age > 21600 else 'unknown')
-                except ValueError:
-                    freshness='unknown'
-            row.update({'freshness_status':freshness,
-                        'observed_at_utc':observed,
-                        'score':row.get('score')})
-            rows.append(row)
-    return {
-        'api_version':API_VERSION,
-        'day_basis':'UTC',
-        'day_definition':'projection day is the UTC date of the Stage72 build timestamp',
-        'date_utc':generated[:10] if generated else None,
-        'generated_at_utc':generated,
-        'matches':rows,
-        'coverage':{
-            'live_completeness_guaranteed':False,
-            'source':'Stage53/Stage54 operational data projected by Stage72',
-            'limitations':['Current PBK sources do not provide a complete real-time LIVE feed.'],
-        },
-        'freshness':{
-            'status':'unknown' if not generated else 'known',
-            'generated_at_utc':generated,
-            'per_match_field':'freshness_status',
-        },
-        'read_only':True,
-        'provider_polling':False,
-    }
+                    age=(datetime.fromisoformat(generated.replace('Z','+00:00'))-datetime.fromisoformat(observed.replace('Z','+00:00'))).total_seconds();freshness='fresh' if 0<=age<=21600 else ('stale' if age>21600 else 'unknown')
+                except ValueError:freshness='unknown'
+            row.update({'freshness_status':freshness,'observed_at_utc':observed,'score':row.get('score')});rows.append(row)
+    return {'api_version':API_VERSION,'day_basis':'UTC','day_definition':'projection day is the UTC date of the Stage72 build timestamp','date_utc':generated[:10] if generated else None,'generated_at_utc':generated,'matches':rows,'coverage':{'live_completeness_guaranteed':False,'source':'Stage53/Stage54 operational data projected by Stage72','limitations':['Current PBK sources do not provide a complete real-time LIVE feed.']},'freshness':{'status':'unknown' if not generated else 'known','generated_at_utc':generated,'per_match_field':'freshness_status'},'read_only':True,'provider_polling':False}
+
+def motivation_compact(conn,fixture_id):
+    empty={'available':False,'home_primary_context':None,'away_primary_context':None,
+           'home_pressure':'UNKNOWN','away_pressure':'UNKNOWN',
+           'snapshot_observed_at_utc':None,'no_lookahead':True,'status':'UNKNOWN'}
+    if not fixture_id or not table_exists(conn,'fixture_motivation'):return empty
+    row=conn.execute('SELECT * FROM fixture_motivation WHERE fixture_id=?',(str(fixture_id),)).fetchone()
+    if not row:return empty
+    item=dict(row)
+    return {'available':item.get('available')=='1',
+            'home_primary_context':item.get('home_primary_context') or None,
+            'away_primary_context':item.get('away_primary_context') or None,
+            'home_pressure':item.get('home_pressure') or 'UNKNOWN',
+            'away_pressure':item.get('away_pressure') or 'UNKNOWN',
+            'snapshot_observed_at_utc':item.get('snapshot_observed_at_utc') or None,
+            'no_lookahead':item.get('no_lookahead')=='1',
+            'status':item.get('coverage_status') or 'UNKNOWN'}
+
 def current_rounds_payload(conn):
-    generated=dict(conn.execute('SELECT key,value FROM pbk_meta').fetchall()).get('built_at_utc')
-    leagues=[]
+    generated=dict(conn.execute('SELECT key,value FROM pbk_meta').fetchall()).get('built_at_utc');leagues=[]
     if table_exists(conn,'current_round_leagues'):
         league_rows=conn.execute('SELECT * FROM current_round_leagues ORDER BY rowid').fetchall()
         for league in league_rows:
-            item={key: dict(league).get(key) or None for key in (
-                'provider_league_id','league_name','country','country_flag_url',
-                'league_logo_url','season','round','observed_at_utc','status','error')}
-            item['matches']=[]
+            item={key:dict(league).get(key) or None for key in ('provider_league_id','league_name','country','country_flag_url','league_logo_url','season','round','observed_at_utc','status','error')};item['matches']=[]
             if table_exists(conn,'current_round_matches') and item['provider_league_id']:
-                rows=conn.execute(
-                    'SELECT * FROM current_round_matches WHERE provider_league_id=? '
-                    'ORDER BY kickoff_utc ASC, fixture_id ASC',
-                    (str(item['provider_league_id']),)).fetchall()
+                rows=conn.execute('SELECT * FROM current_round_matches WHERE provider_league_id=? ORDER BY kickoff_utc ASC, fixture_id ASC',(str(item['provider_league_id']),)).fetchall()
                 for raw in rows:
                     row=dict(raw)
                     try:
-                        home = row.pop('score_home', None)
-                        away = row.pop('score_away', None)
-                        home = None if home in (None,'') else int(home) if str(home).lstrip('-').isdigit() else home
-                        away = None if away in (None,'') else int(away) if str(away).lstrip('-').isdigit() else away
-                        row['score'] = {'home': home, 'away': away} if home is not None or away is not None else None
-                    except (TypeError, ValueError):
-                        row['score'] = None
-                    for key in ('fixture_id','kickoff_utc','home_team','home_team_logo_url',
-                                'away_team','away_team_logo_url','status',
-                                'source_status','elapsed','observed_at_utc',
-                                'live_observed_at_utc','live_freshness_status',
-                                'red_cards_home','red_cards_away'):
-                        row.setdefault(key, None)
-                    for key in ('red_cards_home', 'red_cards_away'):
-                        value = row.get(key)
-                        row[key] = int(value) if str(value).isdigit() else None
-                    item['matches'].append({key: (row.get(key) or None) for key in (
-                        'fixture_id','kickoff_utc','home_team','home_team_logo_url',
-                        'away_team','away_team_logo_url','status',
-                        'source_status','elapsed','score','observed_at_utc',
-                        'live_observed_at_utc','live_freshness_status',
-                        'red_cards_home','red_cards_away')})
+                        home=row.pop('score_home',None);away=row.pop('score_away',None);home=None if home in (None,'') else int(home) if str(home).lstrip('-').isdigit() else home;away=None if away in (None,'') else int(away) if str(away).lstrip('-').isdigit() else away;row['score']={'home':home,'away':away} if home is not None or away is not None else None
+                    except (TypeError,ValueError):row['score']=None
+                    for key in ('fixture_id','kickoff_utc','home_team','home_team_logo_url','away_team','away_team_logo_url','status','source_status','elapsed','observed_at_utc','live_observed_at_utc','live_freshness_status','red_cards_home','red_cards_away'):row.setdefault(key,None)
+                    for key in ('red_cards_home','red_cards_away'):
+                        value=row.get(key);row[key]=int(value) if str(value).isdigit() else None
+                    match={key:(row.get(key) or None) for key in ('fixture_id','kickoff_utc','home_team','home_team_logo_url','away_team','away_team_logo_url','status','source_status','elapsed','score','observed_at_utc','live_observed_at_utc','live_freshness_status','red_cards_home','red_cards_away')}
+                    match['motivation']=motivation_compact(conn,row.get('fixture_id'));item['matches'].append(match)
             leagues.append(item)
-    return {
-        'api_version': API_VERSION,
-        'generated_at_utc': generated,
-        'leagues': leagues,
-        'read_only': True,
-        'provider_polling': False,
-        'coverage': {
-            'partial_leagues_possible': any(row.get('status') != 'available' for row in leagues),
-            'source': 'current_round_leagues/current_round_matches SQLite projection',
-        },
-    }
-def standings_payload(conn, q):
-    league=qfirst(q,'provider_league_id')
-    season=qfirst(q,'season')
-    built=dict(conn.execute('SELECT key,value FROM pbk_meta').fetchall()).get('built_at_utc')
-    base={'api_version':API_VERSION,'provider_league_id':league,'season':season,
-          'requested_as_of_utc':qfirst(q,'as_of_utc') or built,
-          'snapshot_id':None,'snapshot_observed_at_utc':None,'available':False,
-          'no_lookahead':True,'age_seconds_at_cutoff':None,'source':None,'teams':[]}
-    if not league or not season:
-        base.update({'error':'MISSING_STANDINGS_SCOPE'})
-        return 400,base
+    return {'api_version':API_VERSION,'generated_at_utc':generated,'leagues':leagues,'read_only':True,'provider_polling':False,'coverage':{'partial_leagues_possible':any(row.get('status')!='available' for row in leagues),'source':'current_round_leagues/current_round_matches SQLite projection'}}
+
+def standings_payload(conn,q):
+    league=qfirst(q,'provider_league_id');season=qfirst(q,'season');built=dict(conn.execute('SELECT key,value FROM pbk_meta').fetchall()).get('built_at_utc');base={'api_version':API_VERSION,'provider_league_id':league,'season':season,'requested_as_of_utc':qfirst(q,'as_of_utc') or built,'snapshot_id':None,'snapshot_observed_at_utc':None,'available':False,'no_lookahead':True,'age_seconds_at_cutoff':None,'source':None,'teams':[]}
+    if not league or not season:base.update({'error':'MISSING_STANDINGS_SCOPE'});return 400,base
     cutoff=base['requested_as_of_utc']
     try:
         parsed_cutoff=datetime.fromisoformat(str(cutoff).replace('Z','+00:00'))
-        if parsed_cutoff.tzinfo is None: raise ValueError('timezone required')
+        if parsed_cutoff.tzinfo is None:raise ValueError('timezone required')
         cutoff_dt=parsed_cutoff.astimezone(timezone.utc)
-    except (TypeError,ValueError):
-        base.update({'error':'INVALID_AS_OF_UTC'})
-        return 400,base
-    if not table_exists(conn,'standings_snapshots'):
-        return 200,base
-    rows=conn.execute(
-        'SELECT * FROM standings_snapshots WHERE provider_league_id=? AND season=?',
-        (str(league),str(season))).fetchall()
-    eligible=[]
+    except (TypeError,ValueError):base.update({'error':'INVALID_AS_OF_UTC'});return 400,base
+    if not table_exists(conn,'standings_snapshots'):return 200,base
+    rows=conn.execute('SELECT * FROM standings_snapshots WHERE provider_league_id=? AND season=?',(str(league),str(season))).fetchall();eligible=[]
     for row in rows:
-        try: observed=datetime.fromisoformat(str(row['observed_at_utc']).replace('Z','+00:00')).astimezone(timezone.utc)
-        except (TypeError,ValueError): continue
-        if observed<=cutoff_dt: eligible.append((observed,row))
+        try:observed=datetime.fromisoformat(str(row['observed_at_utc']).replace('Z','+00:00')).astimezone(timezone.utc)
+        except (TypeError,ValueError):continue
+        if observed<=cutoff_dt:eligible.append((observed,row))
     if not eligible:return 200,base
-    latest=max(observed for observed,_ in eligible)
-    snapshot_ids={row['snapshot_id'] for observed,row in eligible if observed==latest}
+    latest=max(observed for observed,_ in eligible);snapshot_ids={row['snapshot_id'] for observed,row in eligible if observed==latest}
     if len(snapshot_ids)!=1:return 200,base
-    snapshot_id=next(iter(snapshot_ids))
-    selected=[dict(row) for observed,row in eligible if row['snapshot_id']==snapshot_id]
-    observed=latest
-    teams=[]
+    snapshot_id=next(iter(snapshot_ids));selected=[dict(row) for observed,row in eligible if row['snapshot_id']==snapshot_id];teams=[]
     for row in selected:
-        item={key:row.get(key) for key in (
-            'team_id','team_name','team_logo_url','rank','points','played','win','draw',
-            'lose','goals_for','goals_against','goals_diff','form','group_name','description',
-            'source')}
-        teams.append(item)
-    teams.sort(key=lambda row: (row.get('rank') or '', row.get('team_id') or ''))
-    base.update({'snapshot_id':snapshot_id,
-                 'snapshot_observed_at_utc':observed.isoformat().replace('+00:00','Z'),
-                 'available':True,'source':selected[0].get('source') or None,'teams':teams,
-                 'age_seconds_at_cutoff':(cutoff_dt-observed).total_seconds()})
-    return 200,base
+        item={key:row.get(key) for key in ('team_id','team_name','team_logo_url','rank','points','played','win','draw','lose','goals_for','goals_against','goals_diff','form','group_name','description','source')};teams.append(item)
+    teams.sort(key=lambda row:(row.get('rank') or '',row.get('team_id') or ''));base.update({'snapshot_id':snapshot_id,'snapshot_observed_at_utc':latest.isoformat().replace('+00:00','Z'),'available':True,'source':selected[0].get('source') or None,'teams':teams,'age_seconds_at_cutoff':(cutoff_dt-latest).total_seconds()});return 200,base
+
+def motivation_payload(conn,q):
+    fixture_id=qfirst(q,'fixture_id')
+    if not fixture_id:return 400,{'api_version':API_VERSION,'error':'MISSING_FIXTURE_ID','read_only':True,'provider_polling':False}
+    if not table_exists(conn,'fixture_motivation'):
+        return 404,{'api_version':API_VERSION,'error':'UNKNOWN_FIXTURE','fixture_id':fixture_id,'read_only':True,'provider_polling':False}
+    row=conn.execute('SELECT * FROM fixture_motivation WHERE fixture_id=?',(str(fixture_id),)).fetchone()
+    if not row:
+        known=table_exists(conn,'current_round_matches') and conn.execute('SELECT 1 FROM current_round_matches WHERE fixture_id=?',(str(fixture_id),)).fetchone()
+        if known:
+            return 200,{'api_version':API_VERSION,'fixture_id':fixture_id,'available':False,'no_lookahead':True,'coverage':{'available':False,'status':'UNKNOWN','limitations':['NO_STANDINGS_SNAPSHOT']},'read_only':True,'provider_polling':False}
+        return 404,{'api_version':API_VERSION,'error':'UNKNOWN_FIXTURE','fixture_id':fixture_id,'read_only':True,'provider_polling':False}
+    try:payload=json.loads(row['payload_json'])
+    except (TypeError,ValueError,json.JSONDecodeError):
+        return 500,{'api_version':API_VERSION,'error':'INVALID_MOTIVATION_PROJECTION','fixture_id':fixture_id,'read_only':True,'provider_polling':False}
+    payload['api_version']=API_VERSION;payload['read_only']=True;payload['provider_polling']=False;return 200,payload
+
 def config_doc(path,fallback):
     try:return json.loads(path.read_text(encoding='utf-8'))
     except Exception:return fallback
 
-def challenger_observations(conn, q):
-    """Explain the board's source selection; never query a football provider."""
-    family, league = qfirst(q, 'family'), qfirst(q, 'league')
-    board = state_doc(conn, 'stage71_challenger_board.json') or {}
-    card = next((r for r in board.get('rows', [])
-                 if r.get('family') == family and r.get('league') == league), None)
-    if card is None:
-        return 404, {'error': 'UNKNOWN_CHALLENGER_CARD'}
-    active = card.get('status') in {'ACTIVE', 'DEGRADATION_REVIEW', 'SUSPENSION_REVIEW'}
-    table = 'canonical_signals' if active else 'challenger_signals'
-    source = 'canonical' if active else 'research-only'
-    limit = as_int(qfirst(q, 'limit'), 5, 1, MAX_LIMIT)
-    offset = as_int(qfirst(q, 'offset'), 0, 0, 10_000_000)
-    payload = {'items': [], 'count': 0, 'limit': limit, 'offset': offset,
-               'source': source, 'read_only': True, 'available': False}
-    cols = set(columns(conn, table)) if table_exists(conn, table) else set()
-    family_col = 'rule' if active else 'family'
-    if family_col not in cols:
-        return 200, payload
-    # Same legacy Serie A fallback as stage71_progress_overlay.group_rows.
-    league_expr = "COALESCE(NULLIF(league, ''), 'Serie A')" if active and 'league' in cols else ("'Serie A'" if active else 'league')
-    where = f' WHERE "{family_col}" = ? AND {league_expr} = ?'
-    args = [family, league]
-    payload['count'] = conn.execute(f'SELECT COUNT(*) FROM "{table}"' + where, args).fetchone()[0]
-    id_col = 'forward_id' if active else 'research_id'
-    rows = conn.execute(f'SELECT * FROM "{table}"' + where +
-                        f' ORDER BY julianday(kickoff_utc) DESC, "{id_col}" DESC LIMIT ? OFFSET ?',
-                        args + [limit, offset]).fetchall()
+def challenger_observations(conn,q):
+    family,league=qfirst(q,'family'),qfirst(q,'league');board=state_doc(conn,'stage71_challenger_board.json') or {};card=next((r for r in board.get('rows',[]) if r.get('family')==family and r.get('league')==league),None)
+    if card is None:return 404,{'error':'UNKNOWN_CHALLENGER_CARD'}
+    active=card.get('status') in {'ACTIVE','DEGRADATION_REVIEW','SUSPENSION_REVIEW'};table='canonical_signals' if active else 'challenger_signals';source='canonical' if active else 'research-only';limit=as_int(qfirst(q,'limit'),5,1,MAX_LIMIT);offset=as_int(qfirst(q,'offset'),0,0,10_000_000);payload={'items':[],'count':0,'limit':limit,'offset':offset,'source':source,'read_only':True,'available':False};cols=set(columns(conn,table)) if table_exists(conn,table) else set();family_col='rule' if active else 'family'
+    if family_col not in cols:return 200,payload
+    league_expr="COALESCE(NULLIF(league, ''), 'Serie A')" if active and 'league' in cols else ("'Serie A'" if active else 'league');where=f' WHERE "{family_col}" = ? AND {league_expr} = ?';args=[family,league];payload['count']=conn.execute(f'SELECT COUNT(*) FROM "{table}"'+where,args).fetchone()[0];id_col='forward_id' if active else 'research_id';rows=conn.execute(f'SELECT * FROM "{table}"'+where+f' ORDER BY julianday(kickoff_utc) DESC, "{id_col}" DESC LIMIT ? OFFSET ?',args+[limit,offset]).fetchall()
     for row in rows:
-        r = enrich(row)
-        selection = r.get('selection_ru')
-        price_col = {'П1': 'trigger_b365_home', 'Х': 'trigger_b365_draw', 'П2': 'trigger_b365_away'}.get(selection)
-        bookmaker = r.get('paper_user_execution_bookmaker') if active else r.get('user_bookmaker')
-        status = r.get('status')
-        item = {key: r.get(key) or None for key in ('kickoff_utc', 'home_team', 'away_team', 'final_home_goals', 'final_away_goals')}
-        item.update({'id': r.get(id_col), 'selection': selection,
-                     'bet365_price': r.get('trigger_selected_odds') if active else r.get(price_col),
-                     'marathonbet_price': (r.get('paper_user_execution_odds') if active else r.get('user_odds')) if str(bookmaker).lower() == 'marathonbet' else None,
-                     'status': 'PENDING' if status == 'PAPER' else status,
-                     'result': r.get('result') if status == 'SETTLED' else None,
-                     'user_profit_u': r.get('user_profit_u') if status == 'SETTLED' else None})
-        if status != 'SETTLED':
-            item['final_home_goals'] = item['final_away_goals'] = None
+        r=enrich(row);selection=r.get('selection_ru');price_col={'П1':'trigger_b365_home','Х':'trigger_b365_draw','П2':'trigger_b365_away'}.get(selection);bookmaker=r.get('paper_user_execution_bookmaker') if active else r.get('user_bookmaker');status=r.get('status');item={key:r.get(key) or None for key in ('kickoff_utc','home_team','away_team','final_home_goals','final_away_goals')};item.update({'id':r.get(id_col),'selection':selection,'bet365_price':r.get('trigger_selected_odds') if active else r.get(price_col),'marathonbet_price':(r.get('paper_user_execution_odds') if active else r.get('user_odds')) if str(bookmaker).lower()=='marathonbet' else None,'status':'PENDING' if status=='PAPER' else status,'result':r.get('result') if status=='SETTLED' else None,'user_profit_u':r.get('user_profit_u') if status=='SETTLED' else None})
+        if status!='SETTLED':item['final_home_goals']=item['final_away_goals']=None
         payload['items'].append(item)
-    payload['available'] = True
-    return 200, payload
-
+    payload['available']=True;return 200,payload
 
 def dispatch(path_with_query):
     u=urlparse(path_with_query);path=u.path.rstrip('/') or '/';q=parse_qs(u.query,keep_blank_values=True)
@@ -278,6 +193,7 @@ def dispatch(path_with_query):
         if path=='/v1/today':return 200,today_payload(conn)
         if path=='/v1/rounds/current':return 200,current_rounds_payload(conn)
         if path=='/v1/standings':return standings_payload(conn,q)
+        if path=='/v1/motivation':return motivation_payload(conn,q)
         if path=='/v1/competitions':return 200,query_table(conn,'competitions',q,{'country':'country','league':'league','group':'group'},default_order=['country','league'])
         if path=='/v1/signals/canonical':return 200,query_table(conn,'canonical_signals',q,{'strategy':'rule','status':'status','team':'away_team'},['paper_user_execution_odds','market_execution_odds','trigger_selected_odds'],['kickoff_utc','forward_id'])
         if path=='/v1/signals/challengers':return 200,query_table(conn,'challenger_signals',q,{'strategy':'family','league':'league','status':'status','country':'country'},['user_odds','trigger_b365_away'],['kickoff_utc','research_id'])
