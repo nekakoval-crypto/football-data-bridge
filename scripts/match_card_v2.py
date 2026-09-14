@@ -1,16 +1,38 @@
 #!/usr/bin/env python3
 """PBK Match Card v2 read model.
 
-This module is provider-free and read-only.  It composes already-projected
+This module is provider-free and read-only. It composes already-projected
 Stage72 data for one current-round fixture without changing model eligibility,
 probabilities, Value Radar, Forward, or settlement state.
 """
 from __future__ import annotations
 
 import json
+import math
 from datetime import datetime, timezone
 
 CARD_VERSION = "v2"
+
+MARKET_FAMILY_ORDER = (
+    "MATCH_RESULT_1X2",
+    "DOUBLE_CHANCE",
+    "DRAW_NO_BET",
+    "ASIAN_HANDICAP",
+    "EUROPEAN_HANDICAP",
+    "MATCH_TOTAL",
+    "TEAM_TOTAL",
+    "BTTS",
+)
+MARKET_LABELS = {
+    "MATCH_RESULT_1X2": "Исход матча — П1 / Х / П2",
+    "DOUBLE_CHANCE": "Двойной шанс — 1Х / Х2 / 12",
+    "DRAW_NO_BET": "Фора 0 — Ф1(0) / Ф2(0)",
+    "ASIAN_HANDICAP": "Азиатская фора",
+    "EUROPEAN_HANDICAP": "Европейская фора 3-way",
+    "MATCH_TOTAL": "Тотал матча — ТБ / ТМ",
+    "TEAM_TOTAL": "Индивидуальные тоталы — ИТБ / ИТМ",
+    "BTTS": "Обе забьют — Да / Нет",
+}
 
 
 def _table_exists(conn, table):
@@ -84,6 +106,25 @@ def _int_or_value(value):
         return int(value)
     except (TypeError, ValueError):
         return value
+
+
+def _float_or_none(value):
+    try:
+        number = float(str(value).strip())
+        return number if math.isfinite(number) else None
+    except (TypeError, ValueError):
+        return None
+
+
+def _novig_three_way(home, draw, away):
+    odds = [_float_or_none(home), _float_or_none(draw), _float_or_none(away)]
+    if any(value is None or value <= 1 for value in odds):
+        return [None, None, None]
+    implied = [1 / value for value in odds]
+    total = sum(implied)
+    if total <= 0:
+        return [None, None, None]
+    return [value / total for value in implied]
 
 
 def _fixture_section(conn, fixture_id):
@@ -233,17 +274,252 @@ def _prediction_section(conn, fixture_id):
     rows = _fixture_rows(conn, "probability_predictions", fixture_id)
     items = []
     for row in sorted(rows, key=lambda item: (item.get("rule") or "", item.get("selection") or "", item.get("created_at_utc") or "")):
-        items.append({key: row.get(key) or None for key in (
+        item = {key: row.get(key) or None for key in (
             "prediction_id", "model_version", "rule", "selection",
             "trigger_captured_at_utc", "trigger_b365_home", "trigger_b365_draw",
             "trigger_b365_away", "p_market_no_vig", "p_pbk", "model_alpha",
             "created_at_utc", "status",
-        )})
+        )}
+        item["market_family"] = "MATCH_RESULT_1X2" if str(row.get("rule") or "").upper() in {"R1", "R2", "R3"} else None
+        items.append(item)
     return {
         "available": bool(items),
         "scope": "frozen_prematch_probability",
         "items": items,
         "eligibility_mutation": False,
+    }
+
+
+def _market_rows_before_kickoff(conn, table, fixture_id, kickoff_utc, timestamp_field="captured_at_utc"):
+    cutoff = _parse_utc(kickoff_utc)
+    if cutoff is None:
+        return []
+    output = []
+    for row in _fixture_rows(conn, table, fixture_id):
+        observed = _parse_utc(row.get(timestamp_field))
+        if observed is not None and observed <= cutoff:
+            output.append(row)
+    return output
+
+
+def _latest_market_row(conn, table, fixture_id, kickoff_utc, timestamp_field="captured_at_utc"):
+    return _latest(_market_rows_before_kickoff(conn, table, fixture_id, kickoff_utc, timestamp_field), timestamp_field)
+
+
+def _latest_market_groups(conn, table, fixture_id, kickoff_utc, key_fields):
+    rows = _market_rows_before_kickoff(conn, table, fixture_id, kickoff_utc)
+    latest = {}
+    for row in rows:
+        key = tuple(str(row.get(field) or "") for field in key_fields)
+        previous = latest.get(key)
+        if previous is None:
+            latest[key] = row
+            continue
+        current_dt = _parse_utc(row.get("captured_at_utc"))
+        previous_dt = _parse_utc(previous.get("captured_at_utc"))
+        if current_dt and (previous_dt is None or current_dt >= previous_dt):
+            latest[key] = row
+    return [latest[key] for key in sorted(latest)]
+
+
+def _market_item(selection, row, bet365=None, user=None, probability=None, *, line=None,
+                 team_side=None, team_name=None, movement=None, best_odds=None, best_book=None):
+    return {
+        "selection": selection,
+        "line": line,
+        "team_side": team_side,
+        "team_name": team_name,
+        "bet365_odds": row.get(bet365) or None if bet365 else None,
+        "user_odds": row.get(user) or None if user else None,
+        "user_bookmaker": row.get("user_bookmaker") or None,
+        "best_odds": row.get(best_odds) or None if best_odds else None,
+        "best_book": row.get(best_book) or None if best_book else None,
+        "market_no_vig": row.get(probability) or None if probability else None,
+        "movement_pp": row.get(movement) or None if movement else None,
+    }
+
+
+def _market_family(family_id, *, items=None, observed_at=None, source=None, scope="OBSERVATION_ONLY",
+                   limitations=None, no_quarter_lines=False):
+    items = items or []
+    limitations = limitations or []
+    return {
+        "id": family_id,
+        "label_ru": MARKET_LABELS[family_id],
+        "available": bool(items),
+        "scope": scope,
+        "research_only": scope in {"RESEARCH_ONLY", "PROSPECTIVE_DATA", "WATCH_RESEARCH"},
+        "creates_signal": False,
+        "stake_changes": False,
+        "observed_at_utc": observed_at,
+        "source": source,
+        "pre_match_frozen": True,
+        "no_quarter_lines": bool(no_quarter_lines),
+        "items": items,
+        "limitations": limitations,
+    }
+
+
+def _match_result_family(conn, fixture_id, kickoff_utc):
+    row = _latest_market_row(conn, "match_result_snapshots", fixture_id, kickoff_utc)
+    if row:
+        items = [
+            _market_item("П1", row, "b365_home", "user_home", "p_home"),
+            _market_item("Х", row, "b365_draw", "user_draw", "p_draw"),
+            _market_item("П2", row, "b365_away", "user_away", "p_away"),
+        ]
+        return _market_family("MATCH_RESULT_1X2", items=items, observed_at=row.get("captured_at_utc") or None,
+                              source="stage61_market_snapshots", scope="WATCH_RESEARCH")
+    screen = _latest_market_row(conn, "screen_matches", fixture_id, kickoff_utc, "screened_at_utc")
+    if screen:
+        p_home, p_draw, p_away = _novig_three_way(screen.get("b365_home"), screen.get("b365_draw"), screen.get("b365_away"))
+        items = []
+        for selection, odds_field, best_field, book_field, probability in (
+            ("П1", "b365_home", "best_home_odds", "best_home_book", p_home),
+            ("Х", "b365_draw", "best_draw_odds", "best_draw_book", p_draw),
+            ("П2", "b365_away", "best_away_odds", "best_away_book", p_away),
+        ):
+            item = _market_item(selection, screen, odds_field, best_odds=best_field, best_book=book_field)
+            item["market_no_vig"] = probability
+            items.append(item)
+        if any(any(item.get(field) not in (None, "") for field in ("bet365_odds", "best_odds")) for item in items):
+            return _market_family("MATCH_RESULT_1X2", items=items, observed_at=screen.get("screened_at_utc") or None,
+                                  source="stage53_latest_screen", scope="CANONICAL_INPUT_OBSERVATION")
+    return _market_family("MATCH_RESULT_1X2", limitations=["NO_PREMATCH_1X2_SNAPSHOT"])
+
+
+def _double_chance_family(conn, fixture_id, kickoff_utc):
+    row = _latest_market_row(conn, "double_chance_snapshots", fixture_id, kickoff_utc)
+    if not row:
+        return _market_family("DOUBLE_CHANCE", scope="PROSPECTIVE_DATA", limitations=["NO_PREMATCH_DOUBLE_CHANCE_SNAPSHOT"])
+    items = [
+        _market_item("1Х", row, "b365_1x", "user_1x", "p_1x", movement="move_1x_pp"),
+        _market_item("Х2", row, "b365_x2", "user_x2", "p_x2", movement="move_x2_pp"),
+        _market_item("12", row, "b365_12", "user_12", "p_12", movement="move_12_pp"),
+    ]
+    return _market_family("DOUBLE_CHANCE", items=items, observed_at=row.get("captured_at_utc") or None,
+                          source="stage71e_double_chance_snapshots", scope="PROSPECTIVE_DATA")
+
+
+def _dnb_family(conn, fixture_id, kickoff_utc):
+    row = _latest_market_row(conn, "dnb_snapshots", fixture_id, kickoff_utc)
+    if not row:
+        return _market_family("DRAW_NO_BET", scope="PROSPECTIVE_DATA", limitations=["NO_PREMATCH_DNB_SNAPSHOT"])
+    items = [
+        _market_item("Ф1(0)", row, "b365_f1_0", "user_f1_0", "p_f1_0", line="0", movement="move_f1_0_pp"),
+        _market_item("Ф2(0)", row, "b365_f2_0", "user_f2_0", "p_f2_0", line="0", movement="move_f2_0_pp"),
+    ]
+    return _market_family("DRAW_NO_BET", items=items, observed_at=row.get("captured_at_utc") or None,
+                          source="stage71g_dnb_snapshots", scope="PROSPECTIVE_DATA", no_quarter_lines=True)
+
+
+def _european_handicap_family(conn, fixture_id, kickoff_utc):
+    rows = _latest_market_groups(conn, "european_handicap_snapshots", fixture_id, kickoff_utc, ("home_handicap_line",))
+    items = []
+    observed = None
+    for row in rows:
+        line = str(row.get("home_handicap_line") or "").strip()
+        try:
+            numeric_line = float(line)
+        except ValueError:
+            continue
+        if not numeric_line.is_integer():
+            continue
+        observed_dt = _parse_utc(row.get("captured_at_utc"))
+        if observed_dt and (observed is None or observed_dt > observed):
+            observed = observed_dt
+        items.extend([
+            _market_item("П1", row, "b365_home", "user_home", "p_home", line=line, movement="move_home_pp"),
+            _market_item("Х", row, "b365_draw", "user_draw", "p_draw", line=line, movement="move_draw_pp"),
+            _market_item("П2", row, "b365_away", "user_away", "p_away", line=line, movement="move_away_pp"),
+        ])
+    return _market_family(
+        "EUROPEAN_HANDICAP", items=items,
+        observed_at=observed.replace(microsecond=0).isoformat().replace("+00:00", "Z") if observed else None,
+        source="stage71f_european_handicap_snapshots" if items else None,
+        scope="PROSPECTIVE_DATA", limitations=[] if items else ["NO_PREMATCH_EUROPEAN_HANDICAP_SNAPSHOT"],
+        no_quarter_lines=True,
+    )
+
+
+def _match_total_family(conn, fixture_id, kickoff_utc):
+    row = _latest_market_row(conn, "match_total_snapshots", fixture_id, kickoff_utc)
+    if not row:
+        return _market_family("MATCH_TOTAL", scope="WATCH_RESEARCH", limitations=["NO_PREMATCH_MATCH_TOTAL_SNAPSHOT"])
+    items = [
+        _market_item("ТБ(2.5)", row, "b365_over25", "user_over25", "p_over25", line="2.5", movement="over_move_pp"),
+        _market_item("ТМ(2.5)", row, "b365_under25", "user_under25", "p_under25", line="2.5"),
+    ]
+    return _market_family("MATCH_TOTAL", items=items, observed_at=row.get("captured_at_utc") or None,
+                          source="stage62_ou_snapshots", scope="WATCH_RESEARCH")
+
+
+def _team_total_family(conn, fixture_id, kickoff_utc):
+    rows = _latest_market_groups(conn, "team_total_snapshots", fixture_id, kickoff_utc, ("team_side", "line"))
+    items = []
+    observed = None
+    for row in rows:
+        observed_dt = _parse_utc(row.get("captured_at_utc"))
+        if observed_dt and (observed is None or observed_dt > observed):
+            observed = observed_dt
+        side = str(row.get("team_side") or "").upper() or None
+        line = row.get("line") or None
+        name = row.get("team_name") or None
+        items.extend([
+            _market_item("ИТБ", row, "b365_over", "user_over", "p_over", line=line, team_side=side,
+                         team_name=name, movement="over_move_pp"),
+            _market_item("ИТМ", row, "b365_under", "user_under", "p_under", line=line, team_side=side,
+                         team_name=name),
+        ])
+    return _market_family(
+        "TEAM_TOTAL", items=items,
+        observed_at=observed.replace(microsecond=0).isoformat().replace("+00:00", "Z") if observed else None,
+        source="stage71c_team_total_snapshots" if items else None,
+        scope="PROSPECTIVE_DATA", limitations=[] if items else ["NO_PREMATCH_TEAM_TOTAL_SNAPSHOT"],
+    )
+
+
+def _btts_family(conn, fixture_id, kickoff_utc):
+    row = _latest_market_row(conn, "btts_snapshots", fixture_id, kickoff_utc)
+    if not row:
+        return _market_family("BTTS", scope="WATCH_RESEARCH", limitations=["NO_PREMATCH_BTTS_SNAPSHOT"])
+    items = [
+        _market_item("ОЗ — Да", row, "b365_yes", "user_yes", "p_yes", movement="yes_move_pp"),
+        _market_item("ОЗ — Нет", row, "b365_no", "user_no", "p_no"),
+    ]
+    return _market_family("BTTS", items=items, observed_at=row.get("captured_at_utc") or None,
+                          source="stage63_btts_snapshots", scope="WATCH_RESEARCH")
+
+
+def _markets_section(conn, fixture_id, kickoff_utc):
+    families = {
+        "MATCH_RESULT_1X2": _match_result_family(conn, fixture_id, kickoff_utc),
+        "DOUBLE_CHANCE": _double_chance_family(conn, fixture_id, kickoff_utc),
+        "DRAW_NO_BET": _dnb_family(conn, fixture_id, kickoff_utc),
+        "ASIAN_HANDICAP": _market_family(
+            "ASIAN_HANDICAP", scope="REFERENCE_ONLY",
+            limitations=["GENERAL_ASIAN_HANDICAP_NOT_EXPOSED", "QUARTER_LINES_SUPPRESSED"],
+            no_quarter_lines=True,
+        ),
+        "EUROPEAN_HANDICAP": _european_handicap_family(conn, fixture_id, kickoff_utc),
+        "MATCH_TOTAL": _match_total_family(conn, fixture_id, kickoff_utc),
+        "TEAM_TOTAL": _team_total_family(conn, fixture_id, kickoff_utc),
+        "BTTS": _btts_family(conn, fixture_id, kickoff_utc),
+    }
+    ordered = [families[family_id] for family_id in MARKET_FAMILY_ORDER]
+    available_count = sum(1 for family in ordered if family.get("available"))
+    return {
+        "available": available_count > 0,
+        "scope": "PREMATCH_MARKET_OBSERVATIONS",
+        "pre_match_frozen": True,
+        "creates_signal": False,
+        "stake_changes": False,
+        "model_probability_created": False,
+        "user_line_policy": "NO_QUARTER_ASIAN_HANDICAPS",
+        "available_family_count": available_count,
+        "total_family_count": len(ordered),
+        "coverage_status": "AVAILABLE" if available_count == len(ordered) else ("PARTIAL" if available_count else "UNKNOWN"),
+        "families": ordered,
     }
 
 
@@ -326,6 +602,7 @@ def build_match_card(conn, fixture_id):
     motivation = _motivation_section(conn, fixture_id)
     context = _context_section(conn, fixture_id)
     prediction = _prediction_section(conn, fixture_id)
+    markets = _markets_section(conn, fixture_id, fixture.get("kickoff_utc"))
     odds = _latest_odds_section(conn, fixture_id)
     radar = _value_radar_section(conn, fixture_id)
     canonical = _canonical_section(conn, fixture_id)
@@ -333,6 +610,7 @@ def build_match_card(conn, fixture_id):
         "motivation": bool(motivation.get("available")),
         "context": bool(context.get("available")),
         "prediction": bool(prediction.get("available")),
+        "markets": bool(markets.get("available")),
         "odds": bool(odds.get("available")),
         "value_radar": bool(radar.get("available")),
         "canonical": bool(canonical.get("available")),
@@ -346,6 +624,7 @@ def build_match_card(conn, fixture_id):
         "motivation": motivation,
         "context": context,
         "prediction": prediction,
+        "markets": markets,
         "odds": odds,
         "value_radar": radar,
         "canonical": canonical,

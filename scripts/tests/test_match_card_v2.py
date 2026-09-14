@@ -27,7 +27,7 @@ class MatchCardV2Tests(unittest.TestCase):
         c = self.conn
         c.execute('CREATE TABLE pbk_meta (key TEXT PRIMARY KEY, value TEXT)')
         c.executemany('INSERT INTO pbk_meta VALUES (?,?)', [
-            ('schema_version', '13'), ('built_at_utc', '2026-09-14T12:00:00Z')])
+            ('schema_version', '14'), ('built_at_utc', '2026-09-14T12:00:00Z')])
         c.execute('CREATE TABLE current_round_leagues ('
                   'provider_league_id TEXT, league_name TEXT, country TEXT, country_flag_url TEXT, '
                   'league_logo_url TEXT, season TEXT, round TEXT)')
@@ -44,6 +44,59 @@ class MatchCardV2Tests(unittest.TestCase):
             '999', '39', 'Premier League', 'England', 'flag', 'league-logo', '2026', 'Round 5',
             '2026-09-14T16:30:00Z', 'Alpha', 'alpha-logo', 'Beta', 'beta-logo', 'live', '2H',
             '1', '0', '2026-09-14T17:00:00Z', '2026-09-14T17:00:00Z', 'fresh', '65', '1', '0'))
+        c.commit()
+
+    def _add_market_sections(self):
+        c = self.conn
+        c.execute('CREATE TABLE match_result_snapshots ('
+                  'api_fixture_id TEXT, captured_at_utc TEXT, b365_home TEXT, b365_draw TEXT, b365_away TEXT, '
+                  'p_home TEXT, p_draw TEXT, p_away TEXT, user_bookmaker TEXT, user_home TEXT, user_draw TEXT, user_away TEXT)')
+        c.execute('INSERT INTO match_result_snapshots VALUES (?,?,?,?,?,?,?,?,?,?,?,?)',
+                  ('999', '2026-09-14T15:00:00Z', '2.10', '3.40', '3.60', '0.45', '0.28', '0.27', 'Marathonbet', '2.12', '3.45', '3.65'))
+        c.execute('INSERT INTO match_result_snapshots VALUES (?,?,?,?,?,?,?,?,?,?,?,?)',
+                  ('999', '2026-09-14T17:00:00Z', '1.01', '50', '90', '0.97', '0.02', '0.01', 'Marathonbet', '1.01', '50', '90'))
+
+        c.execute('CREATE TABLE double_chance_snapshots ('
+                  'api_fixture_id TEXT, captured_at_utc TEXT, b365_1x TEXT, b365_x2 TEXT, b365_12 TEXT, '
+                  'p_1x TEXT, p_x2 TEXT, p_12 TEXT, move_1x_pp TEXT, move_x2_pp TEXT, move_12_pp TEXT, '
+                  'user_bookmaker TEXT, user_1x TEXT, user_x2 TEXT, user_12 TEXT)')
+        c.execute('INSERT INTO double_chance_snapshots VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                  ('999', '2026-09-14T15:05:00Z', '1.30', '1.70', '1.35', '0.73', '0.54', '0.70', '0.01', '-0.01', '0.00', 'Marathonbet', '1.31', '1.72', '1.36'))
+
+        c.execute('CREATE TABLE dnb_snapshots ('
+                  'api_fixture_id TEXT, captured_at_utc TEXT, b365_f1_0 TEXT, b365_f2_0 TEXT, p_f1_0 TEXT, p_f2_0 TEXT, '
+                  'move_f1_0_pp TEXT, move_f2_0_pp TEXT, user_bookmaker TEXT, user_f1_0 TEXT, user_f2_0 TEXT)')
+        c.execute('INSERT INTO dnb_snapshots VALUES (?,?,?,?,?,?,?,?,?,?,?)',
+                  ('999', '2026-09-14T15:06:00Z', '1.55', '2.40', '0.61', '0.39', '0.02', '-0.02', 'Marathonbet', '1.57', '2.42'))
+
+        c.execute('CREATE TABLE european_handicap_snapshots ('
+                  'api_fixture_id TEXT, captured_at_utc TEXT, home_handicap_line TEXT, b365_home TEXT, b365_draw TEXT, b365_away TEXT, '
+                  'p_home TEXT, p_draw TEXT, p_away TEXT, move_home_pp TEXT, move_draw_pp TEXT, move_away_pp TEXT, '
+                  'user_bookmaker TEXT, user_home TEXT, user_draw TEXT, user_away TEXT)')
+        c.execute('INSERT INTO european_handicap_snapshots VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                  ('999', '2026-09-14T15:07:00Z', '-1', '3.20', '3.50', '2.05', '0.29', '0.27', '0.44', '0.01', '0', '-0.01', 'Marathonbet', '3.25', '3.55', '2.08'))
+        c.execute('INSERT INTO european_handicap_snapshots VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                  ('999', '2026-09-14T15:08:00Z', '-0.25', '2.00', '3.00', '4.00', '0.5', '0.3', '0.2', '', '', '', 'Marathonbet', '2.0', '3.0', '4.0'))
+
+        c.execute('CREATE TABLE match_total_snapshots ('
+                  'api_fixture_id TEXT, captured_at_utc TEXT, b365_over25 TEXT, b365_under25 TEXT, p_over25 TEXT, p_under25 TEXT, '
+                  'open_p_over25 TEXT, over_move_pp TEXT, user_bookmaker TEXT, user_over25 TEXT, user_under25 TEXT)')
+        c.execute('INSERT INTO match_total_snapshots VALUES (?,?,?,?,?,?,?,?,?,?,?)',
+                  ('999', '2026-09-14T15:09:00Z', '1.90', '1.95', '0.506', '0.494', '0.48', '0.026', 'Marathonbet', '1.92', '1.97'))
+
+        c.execute('CREATE TABLE team_total_snapshots ('
+                  'api_fixture_id TEXT, captured_at_utc TEXT, team_side TEXT, team_name TEXT, line TEXT, b365_over TEXT, b365_under TEXT, '
+                  'p_over TEXT, p_under TEXT, over_move_pp TEXT, user_bookmaker TEXT, user_over TEXT, user_under TEXT)')
+        c.execute('INSERT INTO team_total_snapshots VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                  ('999', '2026-09-14T15:10:00Z', 'H', 'Alpha', '1.5', '2.05', '1.75', '0.46', '0.54', '0.01', 'Marathonbet', '2.08', '1.78'))
+        c.execute('INSERT INTO team_total_snapshots VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                  ('999', '2026-09-14T15:10:00Z', 'A', 'Beta', '1.5', '2.50', '1.50', '0.37', '0.63', '-0.01', 'Marathonbet', '2.55', '1.52'))
+
+        c.execute('CREATE TABLE btts_snapshots ('
+                  'api_fixture_id TEXT, captured_at_utc TEXT, b365_yes TEXT, b365_no TEXT, p_yes TEXT, p_no TEXT, yes_move_pp TEXT, '
+                  'user_bookmaker TEXT, user_yes TEXT, user_no TEXT)')
+        c.execute('INSERT INTO btts_snapshots VALUES (?,?,?,?,?,?,?,?,?,?)',
+                  ('999', '2026-09-14T15:11:00Z', '1.80', '2.00', '0.526', '0.474', '0.015', 'Marathonbet', '1.82', '2.02'))
         c.commit()
 
     def _add_full_sections(self):
@@ -131,6 +184,7 @@ class MatchCardV2Tests(unittest.TestCase):
         c.execute('INSERT INTO canonical_signals VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', (
             'f1', 'R1', '999', 'Away', '1.0', 'PAPER', '', '1.57', '1.65', 'Book B',
             '1.62', 'Marathonbet', '2026-09-14T11:00:00Z', '', '', 'FROZEN', 'paper only'))
+        self._add_market_sections()
         c.commit()
 
     def test_missing_and_unknown_fixture_are_stable(self):
@@ -192,6 +246,50 @@ class MatchCardV2Tests(unittest.TestCase):
         self.assertEqual(odds[0]['captured_at_utc'], '2026-09-14T11:00:00Z')
         self.assertEqual(odds[0]['best_odds'], '1.65')
 
+    def test_market_board_covers_core_families_without_creating_signal(self):
+        self._add_full_sections()
+        _, payload = card.build_match_card(self.conn, '999')
+        markets = payload['markets']
+        self.assertTrue(markets['available'])
+        self.assertEqual(markets['total_family_count'], 8)
+        self.assertFalse(markets['creates_signal'])
+        self.assertFalse(markets['model_probability_created'])
+        self.assertEqual(markets['user_line_policy'], 'NO_QUARTER_ASIAN_HANDICAPS')
+        by_id = {family['id']: family for family in markets['families']}
+        self.assertTrue(by_id['MATCH_RESULT_1X2']['available'])
+        self.assertTrue(by_id['MATCH_TOTAL']['available'])
+        self.assertTrue(by_id['TEAM_TOTAL']['available'])
+        self.assertTrue(by_id['DOUBLE_CHANCE']['available'])
+        self.assertTrue(by_id['DRAW_NO_BET']['available'])
+        self.assertTrue(by_id['EUROPEAN_HANDICAP']['available'])
+        self.assertTrue(by_id['BTTS']['available'])
+        self.assertFalse(by_id['ASIAN_HANDICAP']['available'])
+        self.assertIn('QUARTER_LINES_SUPPRESSED', by_id['ASIAN_HANDICAP']['limitations'])
+
+    def test_market_board_freezes_at_kickoff_and_rejects_post_kickoff_snapshot(self):
+        self._add_market_sections()
+        _, payload = card.build_match_card(self.conn, '999')
+        family = next(f for f in payload['markets']['families'] if f['id'] == 'MATCH_RESULT_1X2')
+        self.assertEqual(family['observed_at_utc'], '2026-09-14T15:00:00Z')
+        self.assertEqual(family['items'][0]['bet365_odds'], '2.10')
+        self.assertNotEqual(family['items'][0]['bet365_odds'], '1.01')
+        self.assertTrue(family['pre_match_frozen'])
+
+    def test_european_handicap_suppresses_non_integer_lines(self):
+        self._add_market_sections()
+        _, payload = card.build_match_card(self.conn, '999')
+        family = next(f for f in payload['markets']['families'] if f['id'] == 'EUROPEAN_HANDICAP')
+        self.assertTrue(family['no_quarter_lines'])
+        self.assertEqual({item['line'] for item in family['items']}, {'-1'})
+
+    def test_prediction_identifies_market_family_without_changing_probability(self):
+        self._add_full_sections()
+        _, payload = card.build_match_card(self.conn, '999')
+        prediction = payload['prediction']['items'][0]
+        self.assertEqual(prediction['market_family'], 'MATCH_RESULT_1X2')
+        self.assertEqual(prediction['p_pbk'], '0.67')
+        self.assertEqual(prediction['p_market_no_vig'], '0.60')
+
     def test_value_radar_remains_research_only(self):
         self._add_full_sections()
         _, payload = card.build_match_card(self.conn, '999')
@@ -214,6 +312,7 @@ class MatchCardV2Tests(unittest.TestCase):
         self.assertTrue(payload['read_only'])
         self.assertFalse(payload['provider_polling'])
         self.assertEqual(payload['fixture']['fixture_id'], '999')
+        self.assertTrue(payload['markets']['pre_match_frozen'])
 
 
 if __name__ == '__main__':
