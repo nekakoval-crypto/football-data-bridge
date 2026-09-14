@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {
   formatScore, formatScheduledTime, groupMatchesByLeague, liveMatches, renderTodayLive,
-  roundLabel, safeMediaUrl, sortMatches,
+  redCardBadge, roundLabel, safeMediaUrl, sortMatches,
 } from '../today-live.js';
 
 const fixture = (id, status, kickoff, extra = {}) => ({
@@ -62,6 +62,26 @@ test('media URLs accept only HTTPS and scores never invent 0:0', () => {
   assert.equal(safeMediaUrl(null), '');
   assert.equal(formatScore(null), '');
   assert.equal(formatScore({home: 0, away: 0}), '0:0');
+});
+
+test('red-card badges render one, multiple, and no unavailable cards', () => {
+  assert.equal(redCardBadge(1), '<span class="today-live-red-card" aria-label="Удаление">🟥</span>');
+  assert.equal(redCardBadge(2), '<span class="today-live-red-card" aria-label="Удаления: 2">🟥 2</span>');
+  assert.equal(redCardBadge(0), '');
+  assert.equal(redCardBadge(null), '');
+});
+
+test('LIVE and ТУР render confirmed red cards next to the affected teams', () => {
+  const container = {innerHTML: ''};
+  const leagues = [{...payload.leagues[0], matches: [
+    fixture(9, 'live', '2026-09-14T15:00:00Z',
+      {red_cards_home: 1, red_cards_away: 2, score: {home: 0, away: 1}}),
+  ]}];
+  renderTodayLive(container, {leagues}, 'live');
+  assert.match(container.innerHTML, /Home 9<span class="today-live-red-card"[^>]*>🟥<\/span>/);
+  assert.match(container.innerHTML, /Away 9<span class="today-live-red-card"[^>]*>🟥 2<\/span>/);
+  renderTodayLive(container, {leagues}, 'tour');
+  assert.match(container.innerHTML, /🟥 2/);
 });
 
 test('scheduled kickoff contains Moscow date and time', () => {

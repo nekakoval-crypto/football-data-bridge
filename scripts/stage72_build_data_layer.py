@@ -24,7 +24,7 @@ CORE_ALIASES={
     'probability_predictions':'stage75_probability_predictions.csv','probability_settlements':'stage75_probability_settlements.csv',
 }
 CURRENT_ROUND_LEAGUE_FIELDS=['provider_league_id','league_name','country','country_flag_url','league_logo_url','season','round','observed_at_utc','status','error']
-CURRENT_ROUND_FIXTURE_FIELDS=['fixture_id','provider_league_id','league_name','country','country_flag_url','league_logo_url','season','round','kickoff_utc','home_team','home_team_logo_url','away_team','away_team_logo_url','status','source_status','score_home','score_away','observed_at_utc','live_observed_at_utc','live_freshness_status','elapsed']
+CURRENT_ROUND_FIXTURE_FIELDS=['fixture_id','provider_league_id','league_name','country','country_flag_url','league_logo_url','season','round','kickoff_utc','home_team','home_team_logo_url','away_team','away_team_logo_url','status','source_status','score_home','score_away','observed_at_utc','live_observed_at_utc','live_freshness_status','elapsed','red_cards_home','red_cards_away']
 JSON_DOCS=['attention_board.json','daily_brief.json','forward_performance.json','watch_performance.json','watch_promotion_gate.json','system_health.json','exposure_summary.json','stage71_challenger_board.json','signal_lifecycle_cards.json','stage71b_fonbet_coverage.json','stage71c_last_run.json','stage71e_last_run.json','stage71f_last_run.json','stage71g_last_run.json','stage71i_last_run.json','probability_rankings.json','probability_performance.json','stage75_last_run.json']
 def now_iso():return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00','Z')
 JSON_DOCS.append('value_radar_current.json')
@@ -157,7 +157,8 @@ def parse_utc(value):
 def merge_live_overlay(base_rows, overlay_rows):
     overlays={str(row.get('fixture_id') or ''):row for row in overlay_rows}
     dynamic=('status','source_status','score_home','score_away','elapsed','observed_at_utc',
-             'live_observed_at_utc','live_freshness_status')
+             'live_observed_at_utc','live_freshness_status',
+             'red_cards_home','red_cards_away')
     merged=[]
     for base in base_rows:
         row=dict(base); overlay=overlays.get(str(base.get('fixture_id') or ''))
@@ -183,7 +184,9 @@ def create_current_round_tables(conn, ops):
     league_count, _ = create_text_table(conn, 'current_round_leagues', league_fields, league_rows)
     _, overlay_rows = read_csv(ops/'live_fixture_overlay.csv')
     fixture_rows=merge_live_overlay(fixture_rows, overlay_rows)
-    fixture_fields=list(dict.fromkeys(fixture_fields+['live_observed_at_utc','live_freshness_status','elapsed']))
+    fixture_fields=list(dict.fromkeys(fixture_fields+[
+        'live_observed_at_utc','live_freshness_status','elapsed',
+        'red_cards_home','red_cards_away']))
     fixture_count, _ = create_text_table(conn, 'current_round_matches', fixture_fields, fixture_rows)
     return league_count, fixture_count
 def main():
