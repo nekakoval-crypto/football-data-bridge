@@ -1,0 +1,172 @@
+{
+  "version": "PBK_V1_PRODUCTION_ACCEPTANCE_V1",
+  "status": "WAITING",
+  "ready_to_close": false,
+  "provider_calls": 0,
+  "network_calls": 0,
+  "items": {
+    "4_today_live": {
+      "status": "WAITING",
+      "checks": [
+        {
+          "code": "CURRENT_ROUND_SERVING",
+          "status": "PASS",
+          "message": "current round remains populated",
+          "evidence": {
+            "served_available_leagues": 16,
+            "served_fixture_rows": 129,
+            "last_good_preserved": true
+          }
+        },
+        {
+          "code": "CURRENT_ROUND_PROVIDER_REFRESH",
+          "status": "WAITING",
+          "message": "waiting for a provider-backed current-round refresh after budget reset",
+          "evidence": {
+            "run_at_utc": "2026-09-14T15:33:34Z",
+            "api_calls": 0,
+            "refreshed_leagues": 0,
+            "budget_exhausted": true,
+            "refresh_status": "BUDGET_EXHAUSTED"
+          }
+        },
+        {
+          "code": "CURRENT_ROUND_BUDGET_SAFETY",
+          "status": "PASS",
+          "message": "budget pressure is non-destructive",
+          "evidence": {
+            "budget_exhausted": true,
+            "last_good_preserved": true
+          }
+        },
+        {
+          "code": "LIVE_PROVIDER_OBSERVATION",
+          "status": "WAITING",
+          "message": "waiting for a LIVE candidate batch with available provider budget",
+          "evidence": {
+            "observed_at_utc": "2026-09-14T18:39:36Z",
+            "candidate_fixtures": 9,
+            "provider_calls": 0,
+            "updated_fixtures": 0,
+            "budget_exhausted": true,
+            "status": "ATTENTION"
+          }
+        },
+        {
+          "code": "LIVE_OVERLAY_CONTRACT",
+          "status": "WAITING",
+          "message": "LIVE overlay schema is ready; waiting for a real observed row",
+          "evidence": {
+            "rows": 0,
+            "observed_rows": 0,
+            "missing_fields": []
+          }
+        },
+        {
+          "code": "LIVE_STAGE72_STAGE73_PROPAGATION",
+          "status": "WAITING",
+          "message": "data layer is healthy; waiting for real LIVE evidence to propagate",
+          "evidence": {
+            "live_observed_at_utc": "2026-09-14T18:39:36Z",
+            "stage72_run_at_utc": "2026-09-14T18:56:27Z",
+            "stage72_status": "OK",
+            "stage73_run_at_utc": "2026-09-14T18:56:28Z",
+            "stage73_status": "OK",
+            "stage73_passed": 16,
+            "stage73_total": 16
+          }
+        }
+      ]
+    },
+    "5_standings_motivation": {
+      "status": "WAITING",
+      "checks": [
+        {
+          "code": "STANDINGS_PROVIDER_SNAPSHOT",
+          "status": "WAITING",
+          "message": "standings snapshot ledger not captured yet",
+          "evidence": {
+            "valid_snapshots": 0,
+            "rows": 0,
+            "missing_fields": [
+              "observed_at_utc",
+              "provider_league_id",
+              "season",
+              "snapshot_id",
+              "source",
+              "team_id"
+            ]
+          }
+        },
+        {
+          "code": "STANDINGS_NO_LOOKAHEAD_EVIDENCE",
+          "status": "WAITING",
+          "message": "waiting for pre-kickoff standings evidence",
+          "evidence": {
+            "prematch_snapshots": 0
+          }
+        },
+        {
+          "code": "STAGE72_STANDINGS_INGESTION",
+          "status": "WAITING",
+          "message": "Stage72 is healthy but has not ingested standings yet",
+          "evidence": {
+            "stage72_status": "OK",
+            "standings_snapshots": 0,
+            "historical_leakage_violations": 0
+          }
+        },
+        {
+          "code": "MOTIVATION_READ_MODEL",
+          "status": "WAITING",
+          "message": "motivation projection exists; waiting for captured standings evidence",
+          "evidence": {
+            "rows": 129,
+            "available_no_lookahead_rows": 0
+          }
+        }
+      ]
+    }
+  },
+  "global": {
+    "status": "PASS",
+    "checks": [
+      {
+        "code": "SYSTEM_HEALTH_NO_CRITICAL",
+        "status": "PASS",
+        "message": "no CRITICAL system-health issues",
+        "evidence": {
+          "health_status": "WARN",
+          "critical_issues": 0,
+          "warnings": 2
+        }
+      },
+      {
+        "code": "DATA_LAYER_INTEGRITY",
+        "status": "PASS",
+        "message": "Stage72 integrity is OK",
+        "evidence": {
+          "status": "OK",
+          "integrity_check": "ok",
+          "schema_version": "14"
+        }
+      },
+      {
+        "code": "INTERNAL_API_SELF_TEST",
+        "status": "PASS",
+        "message": "Stage73 self-tests pass",
+        "evidence": {
+          "status": "OK",
+          "passed": 16,
+          "total": 16
+        }
+      }
+    ]
+  },
+  "next_actions": [
+    "Wait for post-reset current-round and LIVE candidate provider observations.",
+    "Wait for a <=75m pre-kickoff standings capture and downstream Stage72 motivation rebuild."
+  ],
+  "evaluated_at_utc": "2026-09-14T18:56:28Z",
+  "state_fingerprint": "6aad1df4b3abe94e7c9225015d146447273327a839aab996043a06a1edbbb3e2"
+}
