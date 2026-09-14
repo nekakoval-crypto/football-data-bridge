@@ -1,0 +1,90 @@
+name: PBK v1 Closure Readiness
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '41 * * * *'
+  pull_request:
+    paths:
+      - 'scripts/pbk_v1_closure_readiness.py'
+      - 'scripts/tests/test_pbk_v1_closure_readiness.py'
+      - '.github/workflows/pbk-v1-closure-readiness.yml'
+      - 'app/**'
+      - 'scripts/stage72_build_data_layer.py'
+      - 'scripts/stage73_internal_api.py'
+      - '.github/workflows/stage75-probability-value.yml'
+      - '.github/workflows/standings-snapshot.yml'
+      - '.github/workflows/pbk-v1-production-acceptance.yml'
+  push:
+    paths:
+      - 'scripts/pbk_v1_closure_readiness.py'
+      - 'scripts/tests/test_pbk_v1_closure_readiness.py'
+      - '.github/workflows/pbk-v1-closure-readiness.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pbk-v1-closure-readiness-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Closure readiness tests
+        run: python -m unittest discover -s scripts/tests -p 'test_pbk_v1_closure_readiness.py' -v
+      - name: Compile closure gate
+        run: python -m py_compile scripts/pbk_v1_closure_readiness.py
+      - name: Evaluate current evidence provider-free
+        run: python scripts/pbk_v1_closure_readiness.py
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          if git diff --name-only origin/main...HEAD | grep -E '^ops/'; then
+            echo 'Generated ops/* files are forbidden in the feature PR.' >&2
+            exit 1
+          fi
+
+  publish:
+    needs: validate
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    permissions:
+      contents: write
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build closure readiness state
+        run: python scripts/pbk_v1_closure_readiness.py
+      - name: Show result
+        run: |
+          cat ops/pbk_v1_closure_readiness.json
+          cat ops/pbk_v1_closure_readiness.md
+      - name: Publish closure readiness safely
+        run: |
+          git config user.name 'pbk-closure-bot'
+          git config user.email 'pbk-closure-bot@users.noreply.github.com'
+          git add ops/pbk_v1_closure_readiness.json ops/pbk_v1_closure_readiness.md
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'PBK v1 closure readiness update'
+          python scripts/publish_operational_commit.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pbk-v1-closure-readiness
+          path: |
+            ops/pbk_v1_closure_readiness.json
+            ops/pbk_v1_closure_readiness.md
+          retention-days: 30
