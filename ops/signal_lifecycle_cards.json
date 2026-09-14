@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-14T04:09:04Z",
+  "generated_at_utc": "2026-09-14T05:08:05Z",
   "status": "OK",
   "cards": [
     {
@@ -1857,7 +1857,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 75,
+      "event_count": 76,
       "timeline": [
         {
           "entity_id": "R1|I1|1550125",
@@ -3133,6 +3133,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550125",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550125",
+          "league": "Serie A",
+          "home_team": "Torino",
+          "away_team": "AS Roma",
+          "kickoff_utc": "2026-09-14T16:30:00Z",
+          "event_time_utc": "2026-09-14T04:46:20Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     },
@@ -3214,7 +3231,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 74,
+      "event_count": 75,
       "timeline": [
         {
           "entity_id": "R1|I1|1550131",
@@ -4473,6 +4490,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550131",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550131",
+          "league": "Serie A",
+          "home_team": "Frosinone",
+          "away_team": "Como",
+          "kickoff_utc": "2026-09-20T13:00:00Z",
+          "event_time_utc": "2026-09-14T04:46:20Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     }
@@ -4481,7 +4515,7 @@
     "cards": 14,
     "canonical_cards": 3,
     "watch_cards": 11,
-    "events": 250
+    "events": 252
   },
   "policy": {
     "read_only": true,
