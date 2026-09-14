@@ -1,6 +1,6 @@
 # PBK Forward Performance
 
-Generated UTC: 2026-09-14T02:54:03Z
+Generated UTC: 2026-09-14T03:55:05Z
 Scope: clean prospective canonical forward only; no historical backfill.
 
 ## Overall
