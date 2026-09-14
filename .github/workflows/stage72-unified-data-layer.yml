@@ -5,6 +5,7 @@ on:
   schedule:
     - cron: '4,14,24,34,44,54 * * * *'
   push:
+    branches: [main]
     paths:
       - 'scripts/stage72_build_data_layer.py'
       - 'scripts/formation_research.py'
@@ -16,6 +17,7 @@ permissions:
 
 jobs:
   build-data-layer:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
