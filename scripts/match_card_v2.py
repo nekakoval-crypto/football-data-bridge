@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import match_card_core as _core
 from lineup_context import build_lineup_context
+from formation_research import read_audit
 from lineup_surprise import build_surprise_context
 
 CARD_VERSION = _core.CARD_VERSION
@@ -85,6 +86,7 @@ def build_match_card(conn, fixture_id):
     else:
         surprise = _surprise_unavailable(fixture_id)
 
+    payload["formation_research"] = read_audit(conn, fixture_id=fixture_id)
     payload["lineup_context"] = lineup
     payload["lineup_surprise"] = surprise
 

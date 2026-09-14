@@ -3,10 +3,12 @@
 
 CSV/JSON operational files remain audit/source-of-truth during migration.
 This script builds a disposable, reproducible SQLite database for Stage73/API
-and future PC/Android clients. No API calls and no mutation of source ledgers.
+and future PC/Android clients. No API calls. Formation research appends a separate
+context-only journal; strategy and settlement source ledgers are never changed.
 """
 from __future__ import annotations
 import csv, json, os, re, sqlite3, hashlib
+import formation_research
 from datetime import datetime, timezone
 from pathlib import Path
 from stage75_value_radar import read_jsonl, EVENT_FIELDS
@@ -14,7 +16,7 @@ import standings_motivation as motivation
 
 OPS=Path(os.getenv('OPS_DIR','ops'))
 OUT=Path(os.getenv('STAGE72_DB_PATH','build/pbk_unified.sqlite'))
-META=OPS/'stage72_last_run.json';SCHEMA=OPS/'stage72_schema.json';SCHEMA_VERSION='14'
+META=OPS/'stage72_last_run.json';SCHEMA=OPS/'stage72_schema.json';SCHEMA_VERSION='15'
 STANDINGS_FIELDS=['snapshot_id','provider_league_id','league_name','season','observed_at_utc',
                   'team_id','team_name','team_logo_url','rank','points','played','win','draw',
                   'lose','goals_for','goals_against','goals_diff','form','group_name',
@@ -291,6 +293,8 @@ def main():
     today_rows=today_projection(OPS,built[:10]);stable_counts['today_matches'],_=create_today_table(conn,today_rows);stable_counts['current_round_leagues'],stable_counts['current_round_matches']=create_current_round_tables(conn,OPS);stable_counts['standings_snapshots']=create_standings_table(conn,OPS)
     if not (OPS/'standings_snapshots.csv').exists():missing.append('standings_snapshots.csv')
     stable_counts['fixture_motivation'],leakage_violations=create_fixture_motivation_table(conn)
+    audit_events=formation_research.capture(conn,OPS/'formation_research.jsonl',built)
+    stable_counts['formation_research_events']=formation_research.project(conn,audit_events)
     meta={'schema_version':SCHEMA_VERSION,'built_at_utc':built,'source_policy':'ops CSV/JSON remain audit source; SQLite is reproducible projection'};conn.executemany('INSERT INTO pbk_meta VALUES (?,?)',meta.items());conn.commit();integrity=conn.execute('PRAGMA integrity_check').fetchone()[0];tables=[r[0] for r in conn.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name")];manifest_rows=conn.execute('SELECT COUNT(*) FROM source_manifest').fetchone()[0];conn.close()
-    status='OK' if integrity=='ok' and stable_counts.get('competitions')==16 and leakage_violations==0 else 'WARN';payload={'run_at_utc':built,'status':status,'schema_version':SCHEMA_VERSION,'db_path':str(OUT),'db_bytes':OUT.stat().st_size,'db_sha256':file_sha(OUT),'integrity_check':integrity,'tables':len(tables),'manifest_sources':manifest_rows,'stable_counts':stable_counts,'missing_stable_sources':missing,'historical_leakage_violations':leakage_violations,'api_calls':0};META.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding='utf-8');SCHEMA.write_text(json.dumps({'schema_version':SCHEMA_VERSION,'stable_tables':list(CORE_ALIASES)+['current_round_leagues','current_round_matches','standings_snapshots','fixture_motivation'],'json_state_documents':JSON_DOCS,'raw_csv_policy':'every ops/*.csv is imported as raw_<filename_stem> with TEXT columns'},ensure_ascii=False,indent=2),encoding='utf-8');print(json.dumps(payload,ensure_ascii=False,indent=2))
+    status='OK' if integrity=='ok' and stable_counts.get('competitions')==16 and leakage_violations==0 else 'WARN';payload={'run_at_utc':built,'status':status,'schema_version':SCHEMA_VERSION,'db_path':str(OUT),'db_bytes':OUT.stat().st_size,'db_sha256':file_sha(OUT),'integrity_check':integrity,'tables':len(tables),'manifest_sources':manifest_rows,'stable_counts':stable_counts,'missing_stable_sources':missing,'historical_leakage_violations':leakage_violations,'api_calls':0};META.write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding='utf-8');SCHEMA.write_text(json.dumps({'schema_version':SCHEMA_VERSION,'stable_tables':list(CORE_ALIASES)+['current_round_leagues','current_round_matches','standings_snapshots','fixture_motivation','formation_research_events'],'json_state_documents':JSON_DOCS,'raw_csv_policy':'every ops/*.csv is imported as raw_<filename_stem> with TEXT columns'},ensure_ascii=False,indent=2),encoding='utf-8');print(json.dumps(payload,ensure_ascii=False,indent=2))
 if __name__=='__main__':main()

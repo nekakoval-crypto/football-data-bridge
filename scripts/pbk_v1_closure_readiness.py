@@ -189,11 +189,11 @@ def static_hygiene_checks(root: Path):
     ))
 
     sw = read_text(root / "app/sw.js")
-    pwa_ok = "pbk-shell-v13" in sw and "u.pathname.startsWith('/api/')" in sw and "cache:'no-store'" in sw
+    pwa_ok = "pbk-shell-v14" in sw and "u.pathname.startsWith('/api/')" in sw and "cache:'no-store'" in sw
     checks.append(check(
         "PWA_API_NETWORK_ONLY", "PASS" if pwa_ok else "FAIL",
         "PWA shell is v13 and API traffic remains network-only/no-store" if pwa_ok else "PWA API cache invariant is missing",
-        {"cache_v13": "pbk-shell-v13" in sw, "api_no_store": "cache:'no-store'" in sw},
+        {"cache_v14": "pbk-shell-v14" in sw, "api_no_store": "cache:'no-store'" in sw},
     ))
 
     stage72 = read_text(root / "scripts/stage72_build_data_layer.py")

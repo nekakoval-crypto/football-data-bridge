@@ -5,8 +5,10 @@ on:
   schedule:
     - cron: '4,14,24,34,44,54 * * * *'
   push:
+    branches: [main]
     paths:
       - 'scripts/stage72_build_data_layer.py'
+      - 'scripts/formation_research.py'
       - 'config/pbk_strategy_filter.json'
       - '.github/workflows/stage72-unified-data-layer.yml'
 
@@ -15,6 +17,7 @@ permissions:
 
 jobs:
   build-data-layer:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -48,6 +51,7 @@ jobs:
             git reset --hard origin/main
             python scripts/stage72_build_data_layer.py
             git add ops/stage72_last_run.json ops/stage72_schema.json
+            if [ -f ops/formation_research.jsonl ]; then git add ops/formation_research.jsonl; fi
             if git diff --cached --quiet; then
               echo 'No Stage72 metadata changes to commit.'
               exit 0
