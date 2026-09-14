@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-14T11:02:51Z",
+  "generated_at_utc": "2026-09-14T12:03:47Z",
   "status": "OK",
   "active_signals": 2,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-14T10:46:30Z",
+        "captured_at_utc": "2026-09-14T11:45:52Z",
         "best_odds": "1.6",
         "best_bookmaker": "Betano",
         "bet365_odds": "1.53",
@@ -61,8 +61,8 @@
         "away_last5_ppg": "3.00"
       },
       "calendar": {
-        "snapshot_type": "T24",
-        "captured_at_utc": "2026-09-13T11:14:53Z",
+        "snapshot_type": "T3",
+        "captured_at_utc": "2026-09-14T11:17:21Z",
         "referee": "F. Maresca",
         "venue": "Stadio Olimpico di Torino",
         "city": "Turin",
@@ -94,8 +94,8 @@
       "injuries": {
         "status": "QUERIED",
         "total": "12",
-        "home": "8",
-        "away": "4"
+        "home": "10",
+        "away": "2"
       },
       "weather": {
         "snapshot_type": "T3",
@@ -156,11 +156,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-14T10:46:30Z",
+        "captured_at_utc": "2026-09-14T11:45:52Z",
         "best_odds": "1.61",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.53",
-        "api_odds_update_utc": "2026-09-14T04:35:16+00:00",
+        "api_odds_update_utc": "2026-09-14T08:35:17+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -274,7 +274,7 @@
     "observed_closes": 9,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-14T10:55:30Z",
+    "latest_run_utc": "2026-09-14T11:56:37Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [],
@@ -291,7 +291,7 @@
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-14T10:51:16Z",
+    "latest_run_utc": "2026-09-14T11:51:53Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -373,7 +373,7 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-14T10:56:24Z",
+    "generated_at_utc": "2026-09-14T11:56:54Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
