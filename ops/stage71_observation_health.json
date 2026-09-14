@@ -1,9 +1,9 @@
 {
-  "run_at_utc": "2026-09-14T07:43:34.381886Z",
+  "run_at_utc": "2026-09-14T08:19:34.458849Z",
   "status": "ATTENTION",
   "counts": {
-    "expected": 10,
-    "scanned": 10,
+    "expected": null,
+    "scanned": 0,
     "captured": 39,
     "missed_or_at_risk": 0,
     "pending": 4,
@@ -18,132 +18,112 @@
   "scan": [
     {
       "league": "Premier League",
-      "expected": 1,
-      "scanned": 1,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "La Liga",
-      "expected": 1,
-      "scanned": 1,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Bundesliga",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Ligue 1",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Austrian Bundesliga",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Belgian Pro League",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Danish Superliga",
-      "expected": 1,
-      "scanned": 1,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "A Lyga",
-      "expected": 1,
-      "scanned": 1,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Virsliga",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Eredivisie",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Eliteserien",
-      "expected": 1,
-      "scanned": 1,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Ekstraklasa",
-      "expected": 1,
-      "scanned": 1,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Primeira Liga",
-      "expected": 3,
-      "scanned": 3,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Super Lig",
-      "expected": 1,
-      "scanned": 1,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Scottish Premiership",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     }
   ],
   "warnings": [
-    "1515925: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1547635: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1515926: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1558636: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1494765: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1584414: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1584419: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1575505: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1575504: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1549025: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1494766: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1558637: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1547636: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1584413: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1558639: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1558638: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1515927: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1547637: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1549026: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1549022: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1494770: Bet365 capture failed: Stage71 API budget exhausted; retry next run"
+    "Premier League: inventory unavailable: Stage71 API budget exhausted; retry next run",
+    "La Liga: inventory unavailable: Stage71 API budget exhausted; retry next run",
+    "Bundesliga: inventory unavailable: Stage71 API budget exhausted; retry next run",
+    "Ligue 1: inventory unavailable: Stage71 API budget exhausted; retry next run",
+    "Austrian Bundesliga: inventory unavailable: Stage71 API budget exhausted; retry next run",
+    "Belgian Pro League: inventory unavailable: Stage71 API budget exhausted; retry next run",
+    "Danish Superliga: inventory unavailable: Stage71 API budget exhausted; retry next run",
+    "A Lyga: inventory unavailable: Stage71 API budget exhausted; retry next run",
+    "Virsliga: inventory unavailable: Stage71 API budget exhausted; retry next run",
+    "Eredivisie: inventory unavailable: Stage71 API budget exhausted; retry next run",
+    "Eliteserien: inventory unavailable: Stage71 API budget exhausted; retry next run",
+    "Ekstraklasa: inventory unavailable: Stage71 API budget exhausted; retry next run",
+    "Primeira Liga: inventory unavailable: Stage71 API budget exhausted; retry next run",
+    "Super Lig: inventory unavailable: Stage71 API budget exhausted; retry next run",
+    "Scottish Premiership: inventory unavailable: Stage71 API budget exhausted; retry next run",
+    "Pending fixture retry failed: Stage71 API budget exhausted; retry next run"
   ],
   "scope": "16 locked leagues; 15 research writers; Serie A canonical read-only, completeness not certified",
   "canonical_captured": 3,
@@ -157,6 +137,6 @@
   "legacy_max_schedule_gap_hours": 18,
   "schedule_gap_hours": 8,
   "r2_freeze_hours": 12,
-  "api_calls": 24,
+  "api_calls": 0,
   "api_day_calls": 180
 }
