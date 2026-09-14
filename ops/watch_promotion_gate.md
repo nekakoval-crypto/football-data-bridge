@@ -1,6 +1,6 @@
 # PBK WATCH Promotion Gate
 
-Обновлено UTC: 2026-09-14T10:03:55Z
+Обновлено UTC: 2026-09-14T11:03:47Z
 Никакой WATCH не может автоматически стать R-правилом.
 
 ## Stage61 — COLLECTING
@@ -22,7 +22,7 @@
 - Blocking: settled 2/60; close-qualified subset 2/20
 
 ## Stage63 — DISCOVERY_ONLY_NO_DIRECT_PROMOTION
-- Crossings: 9 | settled executable: 7
+- Crossings: 10 | settled executable: 7
 - Marathonbet coverage: 100.0%
 - ROI: -78.714%
 - Chronological halves ROI: -50.333% / -100.0%
