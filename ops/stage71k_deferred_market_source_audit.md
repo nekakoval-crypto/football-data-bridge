@@ -7,57 +7,57 @@ Fixture sample: **160** | API calls: **0**
 ## Точный счёт
 - Catalog markets: 3 | observed: 3
 - Source status: **API_FOOTBALL_PROSPECTIVE_SOURCE_POSSIBLE**
-- Max coverage: Bet365 51.9% | Marathonbet 74.4%
-  - bet 10 `Exact Score` — Bet365 51.9% | Marathonbet 74.4%
-  - bet 31 `Correct Score - First Half` — Bet365 51.9% | Marathonbet 0.0%
+- Max coverage: Bet365 56.9% | Marathonbet 73.8%
+  - bet 10 `Exact Score` — Bet365 56.9% | Marathonbet 73.8%
+  - bet 31 `Correct Score - First Half` — Bet365 56.9% | Marathonbet 0.0%
   - bet 62 `Correct Score - Second Half` — Bet365 0.0% | Marathonbet 0.0%
 
 ## Комбо ОЗ + ТБ/ТМ / исход + тотал
 - Catalog markets: 5 | observed: 2
 - Source status: **API_FOOTBALL_PROSPECTIVE_SOURCE_POSSIBLE**
-- Max coverage: Bet365 51.9% | Marathonbet 74.4%
-  - bet 25 `Result/Total Goals` — Bet365 51.9% | Marathonbet 74.4%
-  - bet 49 `Total Goals/Both Teams To Score` — Bet365 51.9% | Marathonbet 0.0%
+- Max coverage: Bet365 55.0% | Marathonbet 73.8%
+  - bet 25 `Result/Total Goals` — Bet365 55.0% | Marathonbet 73.8%
+  - bet 49 `Total Goals/Both Teams To Score` — Bet365 55.0% | Marathonbet 0.0%
 
 ## Игроки / бомбардиры
 - Catalog markets: 68 | observed: 28
 - Source status: **API_FOOTBALL_PROSPECTIVE_SOURCE_POSSIBLE**
-- Max coverage: Bet365 51.9% | Marathonbet 74.4%
-  - bet 35 `Both Teams To Score - Second Half` — Bet365 51.9% | Marathonbet 74.4%
-  - bet 14 `Team To Score First` — Bet365 51.9% | Marathonbet 74.4%
-  - bet 15 `Team To Score Last` — Bet365 51.9% | Marathonbet 74.4%
-  - bet 184 `To Score in Both Halves` — Bet365 0.0% | Marathonbet 74.4%
-  - bet 185 `First Team to Score (3 way) 1st Half` — Bet365 0.0% | Marathonbet 74.4%
+- Max coverage: Bet365 55.6% | Marathonbet 73.8%
+  - bet 35 `Both Teams To Score - Second Half` — Bet365 55.6% | Marathonbet 73.8%
+  - bet 14 `Team To Score First` — Bet365 51.2% | Marathonbet 73.8%
+  - bet 15 `Team To Score Last` — Bet365 50.6% | Marathonbet 73.8%
+  - bet 184 `To Score in Both Halves` — Bet365 0.0% | Marathonbet 73.8%
+  - bet 185 `First Team to Score (3 way) 1st Half` — Bet365 0.0% | Marathonbet 73.8%
 
 ## Угловые
 - Catalog markets: 35 | observed: 23
 - Source status: **BET365_REFERENCE_PRESENT_USER_BOOK_SOURCE_WEAK**
-- Max coverage: Bet365 29.4% | Marathonbet 16.9%
-  - bet 45 `Corners Over Under` — Bet365 29.4% | Marathonbet 16.9%
-  - bet 85 `Total Corners (3 way)` — Bet365 29.4% | Marathonbet 16.9%
-  - bet 57 `Home Corners Over/Under` — Bet365 28.1% | Marathonbet 16.9%
-  - bet 58 `Away Corners Over/Under` — Bet365 28.1% | Marathonbet 16.9%
-  - bet 77 `Total Corners (1st Half)` — Bet365 25.0% | Marathonbet 16.9%
+- Max coverage: Bet365 29.4% | Marathonbet 12.5%
+  - bet 85 `Total Corners (3 way)` — Bet365 29.4% | Marathonbet 12.5%
+  - bet 45 `Corners Over Under` — Bet365 26.9% | Marathonbet 12.5%
+  - bet 57 `Home Corners Over/Under` — Bet365 25.6% | Marathonbet 12.5%
+  - bet 58 `Away Corners Over/Under` — Bet365 25.6% | Marathonbet 12.5%
+  - bet 56 `Corners Asian Handicap` — Bet365 21.9% | Marathonbet 12.5%
 
 ## Карточки / предупреждения
 - Catalog markets: 21 | observed: 14
 - Source status: **LOW_OBSERVED_COVERAGE_REVIEW**
-- Max coverage: Bet365 5.0% | Marathonbet 0.0%
+- Max coverage: Bet365 5.6% | Marathonbet 0.0%
+  - bet 81 `Cards Asian Handicap` — Bet365 5.6% | Marathonbet 0.0%
+  - bet 299 `Cards over/under between 0 and 10 m` — Bet365 5.6% | Marathonbet 0.0%
   - bet 80 `Cards Over/Under` — Bet365 5.0% | Marathonbet 0.0%
-  - bet 81 `Cards Asian Handicap` — Bet365 5.0% | Marathonbet 0.0%
-  - bet 82 `Home Team Total Cards` — Bet365 5.0% | Marathonbet 0.0%
-  - bet 83 `Away Team Total Cards` — Bet365 5.0% | Marathonbet 0.0%
-  - bet 79 `Cards European Handicap` — Bet365 5.0% | Marathonbet 0.0%
+  - bet 82 `Home Team Total Cards` — Bet365 3.8% | Marathonbet 0.0%
+  - bet 83 `Away Team Total Cards` — Bet365 3.8% | Marathonbet 0.0%
 
 ## Удары / удары в створ
 - Catalog markets: 21 | observed: 10
 - Source status: **BET365_REFERENCE_PRESENT_USER_BOOK_SOURCE_WEAK**
 - Max coverage: Bet365 43.1% | Marathonbet 0.0%
   - bet 275 `Away Player Shots On Target Total` — Bet365 43.1% | Marathonbet 0.0%
-  - bet 240 `Home Player Shots` — Bet365 28.8% | Marathonbet 0.0%
-  - bet 241 `Away Player Shots` — Bet365 28.8% | Marathonbet 0.0%
-  - bet 269 `Home Player Shots On Target Total` — Bet365 28.8% | Marathonbet 0.0%
-  - bet 87 `Total ShotOnGoal` — Bet365 9.4% | Marathonbet 0.0%
+  - bet 240 `Home Player Shots` — Bet365 39.4% | Marathonbet 0.0%
+  - bet 241 `Away Player Shots` — Bet365 39.4% | Marathonbet 0.0%
+  - bet 269 `Home Player Shots On Target Total` — Bet365 39.4% | Marathonbet 0.0%
+  - bet 87 `Total ShotOnGoal` — Bet365 8.1% | Marathonbet 0.0%
 
 ## Офсайды
 - Catalog markets: 7 | observed: 6
@@ -72,12 +72,12 @@ Fixture sample: **160** | API calls: **0**
 ## Таймы / периодные рынки
 - Catalog markets: 69 | observed: 47
 - Source status: **API_FOOTBALL_PROSPECTIVE_SOURCE_POSSIBLE**
-- Max coverage: Bet365 51.9% | Marathonbet 74.4%
-  - bet 3 `Second Half Winner` — Bet365 51.9% | Marathonbet 74.4%
-  - bet 6 `Goals Over/Under First Half` — Bet365 51.9% | Marathonbet 74.4%
-  - bet 13 `First Half Winner` — Bet365 51.9% | Marathonbet 74.4%
-  - bet 19 `Asian Handicap First Half` — Bet365 51.9% | Marathonbet 74.4%
-  - bet 20 `Double Chance - First Half` — Bet365 51.9% | Marathonbet 74.4%
+- Max coverage: Bet365 56.9% | Marathonbet 73.8%
+  - bet 34 `Both Teams Score - First Half` — Bet365 55.6% | Marathonbet 73.8%
+  - bet 35 `Both Teams To Score - Second Half` — Bet365 55.6% | Marathonbet 73.8%
+  - bet 13 `First Half Winner` — Bet365 55.0% | Marathonbet 73.8%
+  - bet 20 `Double Chance - First Half` — Bet365 55.0% | Marathonbet 73.8%
+  - bet 18 `Handicap Result - First Half` — Bet365 55.0% | Marathonbet 73.8%
 
 ## Время гола / интервалы
 - Catalog markets: 8 | observed: 6
