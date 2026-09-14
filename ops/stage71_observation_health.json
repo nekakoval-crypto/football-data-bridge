@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-13T23:28:41.841639Z",
+  "run_at_utc": "2026-09-14T07:10:28.282301Z",
   "status": "ATTENTION",
   "counts": {
     "expected": 10,
@@ -122,29 +122,7 @@
       "inventory": "COMPLETE"
     }
   ],
-  "warnings": [
-    "1515926: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1558636: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1494765: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1584414: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1584419: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1575505: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1575504: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1549025: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1494766: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1558637: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1547636: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1584413: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1552174: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1552772: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1558639: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1558638: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1515927: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1547637: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1549026: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1549022: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1494770: Bet365 capture failed: Stage71 API budget exhausted; retry next run"
-  ],
+  "warnings": [],
   "scope": "16 locked leagues; 15 research writers; Serie A canonical read-only, completeness not certified",
   "canonical_captured": 3,
   "definitions": {
@@ -157,6 +135,6 @@
   "legacy_max_schedule_gap_hours": 18,
   "schedule_gap_hours": 8,
   "r2_freeze_hours": 12,
-  "api_calls": 30,
-  "api_day_calls": 180
+  "api_calls": 47,
+  "api_day_calls": 79
 }
