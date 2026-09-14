@@ -194,6 +194,7 @@ def dispatch(path_with_query):
         if path=='/v1/rounds/current':return 200,current_rounds_payload(conn)
         if path=='/v1/standings':return standings_payload(conn,q)
         if path=='/v1/motivation':return motivation_payload(conn,q)
+        if path=='/v1/match-card':return __import__('match_card_v2').build_match_card(conn,qfirst(q,'fixture_id'))
         if path=='/v1/competitions':return 200,query_table(conn,'competitions',q,{'country':'country','league':'league','group':'group'},default_order=['country','league'])
         if path=='/v1/signals/canonical':return 200,query_table(conn,'canonical_signals',q,{'strategy':'rule','status':'status','team':'away_team'},['paper_user_execution_odds','market_execution_odds','trigger_selected_odds'],['kickoff_utc','forward_id'])
         if path=='/v1/signals/challengers':return 200,query_table(conn,'challenger_signals',q,{'strategy':'family','league':'league','status':'status','country':'country'},['user_odds','trigger_b365_away'],['kickoff_utc','research_id'])
