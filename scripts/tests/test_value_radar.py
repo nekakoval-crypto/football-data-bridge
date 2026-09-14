@@ -191,12 +191,19 @@ class RadarTests(unittest.TestCase):
                    FORWARD=self.ops/'user_forward_view.csv',TRIGGERS=self.ops/'trigger_ledger.csv',
                    LEDGER=self.ops/'stage75_probability_predictions.csv',SETTLE=self.ops/'stage75_probability_settlements.csv',
                    RANK=self.ops/'probability_rankings.json',PERF=self.ops/'probability_performance.json',META=self.ops/'stage75_last_run.json')
-        source={key:path.read_bytes() for key,path in paths.items() if key in {'FORWARD','TRIGGERS','LEDGER','SETTLE'}}
+        # FORWARD and TRIGGERS are true upstream inputs and must remain byte-identical.
+        # LEDGER and SETTLE are Stage75 append-only outputs: the first run may legitimately
+        # catch them up to a newer forward state, but the second identical run must be stable.
+        source={key:paths[key].read_bytes() for key in ('FORWARD','TRIGGERS')}
         with patch.multiple(probability,**paths),patch.object(probability,'now_iso',return_value=NOW),patch.object(socket,'socket',side_effect=AssertionError('Network forbidden')),contextlib.redirect_stdout(io.StringIO()):
             probability.main()
-            first=(self.ops/'stage75_value_radar.jsonl').read_bytes()
+            first_radar=(self.ops/'stage75_value_radar.jsonl').read_bytes()
+            first_ledger=paths['LEDGER'].read_bytes()
+            first_settle=paths['SETTLE'].read_bytes()
             probability.main()
-        self.assertEqual((self.ops/'stage75_value_radar.jsonl').read_bytes(),first)
+        self.assertEqual((self.ops/'stage75_value_radar.jsonl').read_bytes(),first_radar)
+        self.assertEqual(paths['LEDGER'].read_bytes(),first_ledger,'LEDGER rerun drift')
+        self.assertEqual(paths['SETTLE'].read_bytes(),first_settle,'SETTLE rerun drift')
         for key,raw in source.items():self.assertEqual(paths[key].read_bytes(),raw,key)
         meta=json.loads(paths['META'].read_text())
         self.assertEqual(meta['api_calls'],0)
