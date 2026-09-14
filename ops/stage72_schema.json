@@ -1,5 +1,5 @@
 {
-  "schema_version": "13",
+  "schema_version": "14",
   "stable_tables": [
     "competitions",
     "canonical_signals",
@@ -9,6 +9,10 @@
     "exposure_positions",
     "context_latest",
     "odds_snapshots",
+    "screen_matches",
+    "match_result_snapshots",
+    "match_total_snapshots",
+    "btts_snapshots",
     "team_total_openers",
     "team_total_snapshots",
     "team_total_closes",
