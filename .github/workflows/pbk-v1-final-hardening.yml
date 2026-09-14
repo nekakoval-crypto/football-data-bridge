@@ -1,0 +1,71 @@
+name: PBK v1 Final Hardening
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/pbk_calculation_contract.py'
+      - 'scripts/pbk_forward_journal.py'
+      - 'scripts/stage75_probability_value.py'
+      - 'scripts/stage75_value_radar.py'
+      - 'scripts/stage59_executable_forward.py'
+      - 'scripts/tests/test_pbk_final_hardening.py'
+      - 'scripts/tests/test_value_radar.py'
+      - '.github/workflows/pbk-v1-final-hardening.yml'
+      - '.github/workflows/stage75-probability-value.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Canonical calculation and immutable Forward journal
+        run: python -m unittest discover -s scripts/tests -p 'test_pbk_final_hardening.py' -v
+
+      - name: Value Radar semantic regression
+        run: python -m unittest discover -s scripts/tests -p 'test_value_radar.py' -v
+
+      - name: Match Card end-to-end regression
+        run: python -m unittest discover -s scripts/tests -p 'test_match_card_v2*.py' -v
+
+      - name: Today LIVE regression
+        run: python -m unittest discover -s scripts/tests -p 'test_today_live_api.py' -v
+
+      - name: Standings and motivation no-lookahead regression
+        run: python -m unittest discover -s scripts/tests -p 'test_standings*.py' -v
+
+      - name: Disaster recovery regression
+        run: python -m unittest discover -s scripts/tests -p 'test_stage76_disaster_recovery.py' -v
+
+      - name: Match Card frontend lifecycle regression
+        run: node --test app/tests/match-card*.test.mjs
+
+      - name: Compile final PBK contract modules
+        run: >-
+          python -m py_compile
+          scripts/pbk_calculation_contract.py
+          scripts/pbk_forward_journal.py
+          scripts/stage75_probability_value.py
+          scripts/stage75_value_radar.py
+          scripts/stage59_executable_forward.py
+
+      - name: Feature diff hygiene guard
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -E '^ops/'; then
+            echo 'Generated ops/* files are forbidden in the feature PR.' >&2
+            exit 1
+          fi
