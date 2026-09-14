@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-14T07:04:39Z
+Generated UTC: 2026-09-14T08:03:07Z
 Active canonical signals: 2
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -8,8 +8,8 @@ Active canonical signals: 2
 ## R1 | Torino — AS Roma
 - Kickoff UTC: 2026-09-14T16:30:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 6.0 / Х 4.0 / П2 1.57 (immutable)
-- Market-best observed: 1.62 @ Betano | Bet365 now: 1.55
-- Current user-executable: 1.56 @ Marathonbet
+- Market-best observed: 1.59 @ 1xBet | Bet365 now: 1.53
+- Current user-executable: 1.55 @ Marathonbet
 - Paper user-execution (frozen): 1.58 @ Marathonbet [2026-09-11T10:32:01Z]
 - Referee / venue: F. Maresca | Stadio Olimpico di Torino, Turin
 - Previous: home Serie A vs Fiorentina (219.5h rest); away UEFA Champions League vs Fenerbahçe (95.8h rest)

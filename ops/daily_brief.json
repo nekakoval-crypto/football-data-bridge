@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-14T07:04:39Z",
+  "generated_at_utc": "2026-09-14T08:03:07Z",
   "status": "OK",
   "active_signals": 2,
   "policy": {
@@ -30,16 +30,16 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-14T06:50:56Z",
-        "best_odds": "1.62",
-        "best_bookmaker": "Betano",
-        "bet365_odds": "1.55",
-        "api_odds_update_utc": "2026-09-14T03:52:14+00:00",
+        "captured_at_utc": "2026-09-14T07:47:02Z",
+        "best_odds": "1.59",
+        "best_bookmaker": "1xBet",
+        "bet365_odds": "1.53",
+        "api_odds_update_utc": "2026-09-14T06:00:18+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
         "status": "AVAILABLE",
-        "odds": "1.56",
+        "odds": "1.55",
         "bookmaker": "Marathonbet"
       },
       "paper_user_execution": {
@@ -156,7 +156,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-14T06:50:56Z",
+        "captured_at_utc": "2026-09-14T07:47:02Z",
         "best_odds": "1.61",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.53",
@@ -274,7 +274,7 @@
     "observed_closes": 9,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-14T06:59:25Z",
+    "latest_run_utc": "2026-09-14T07:56:15Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [],
@@ -291,7 +291,7 @@
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-14T06:54:34Z",
+    "latest_run_utc": "2026-09-14T07:51:52Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -361,7 +361,7 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-14T06:59:39Z",
+    "generated_at_utc": "2026-09-14T07:58:29Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
