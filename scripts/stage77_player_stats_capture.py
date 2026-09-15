@@ -5,6 +5,10 @@ The capture consumes API-Football ``/fixtures/players`` only through the shared
 broker path used by Stage53/Stage71. It is deliberately lower priority than
 LIVE/current-round/standings work and stops before protected daily reserve.
 
+Finished fixtures are persisted into a durable backfill queue before any provider
+call is attempted. Therefore a fixture deferred by quota protection cannot be
+lost merely because the current-round inventory later advances to another round.
+
 Outputs are research/context only. They never mutate canonical probability, EV,
 R1/R2/R3 eligibility, stake, settlement or the immutable Forward journal.
 """
@@ -25,6 +29,7 @@ OPS = Path(os.getenv("OPS_DIR", "ops"))
 FIXTURES = OPS / "current_round_fixtures.csv"
 STATS = OPS / "player_stats_snapshots.csv"
 GRADES = OPS / "player_grade_snapshots.csv"
+BACKLOG = OPS / "stage77_player_stats_backlog.csv"
 META = OPS / "stage77_last_run.json"
 SHARED_STATE = OPS / "stage71_observation_state.json"
 
@@ -46,6 +51,13 @@ GRADE_FIELDS = [
     "confidence", "coverage_pct", "provider_rating_reference", "grade_version",
     "components_json", "limitations_json", "source", "research_only",
     "creates_signal", "probability_mutation", "eligibility_mutation", "stake_changes",
+]
+
+BACKLOG_FIELDS = [
+    "fixture_id", "provider_league_id", "league_name", "season", "round",
+    "kickoff_utc", "home_team", "away_team", "source_status",
+    "first_queued_at_utc", "last_seen_at_utc", "backlog_status",
+    "captured_at_utc", "queue_source",
 ]
 
 
@@ -101,6 +113,90 @@ def completed_fixture_ids(stats_rows, grade_rows):
     stats = {str(row.get("fixture_id") or "") for row in stats_rows if row.get("player_id")}
     grades = {str(row.get("fixture_id") or "") for row in grade_rows if row.get("player_id")}
     return stats & grades
+
+
+def captured_at_by_fixture(stats_rows, grade_rows):
+    completed = completed_fixture_ids(stats_rows, grade_rows)
+    observed = {}
+    for row in list(stats_rows) + list(grade_rows):
+        fixture_id = str(row.get("fixture_id") or "").strip()
+        stamp = str(row.get("observed_at_utc") or "").strip()
+        if fixture_id not in completed or not stamp:
+            continue
+        if fixture_id not in observed or stamp < observed[fixture_id]:
+            observed[fixture_id] = stamp
+    return observed
+
+
+def terminal_fixture(row, now):
+    fixture_id = str(row.get("fixture_id") or "").strip()
+    kickoff = parse_utc(row.get("kickoff_utc"))
+    raw_status = str(row.get("source_status") or row.get("status") or "").strip().upper()
+    normalized = str(row.get("status") or "").strip().upper()
+    return bool(
+        fixture_id and kickoff and kickoff <= now and
+        (raw_status in TERMINAL or normalized == "FINISHED")
+    )
+
+
+def sync_backlog(existing, fixtures, stats_rows, grade_rows, now):
+    """Persist every observed terminal fixture until player data is captured.
+
+    The queue is operational state, not a claim that player stats were available at
+    FT. A queued fixture remains eligible even after it disappears from the rolling
+    current-round inventory. Existing first-queue provenance is never rewritten.
+    """
+    merged = {
+        str(row.get("fixture_id") or "").strip(): {field: row.get(field, "") for field in BACKLOG_FIELDS}
+        for row in existing
+        if str(row.get("fixture_id") or "").strip()
+    }
+    now_iso = iso(now)
+    new_rows = 0
+    terminal_seen = 0
+    for fixture in fixtures:
+        if not terminal_fixture(fixture, now):
+            continue
+        terminal_seen += 1
+        fixture_id = str(fixture.get("fixture_id") or "").strip()
+        old = merged.get(fixture_id)
+        if old is None:
+            old = {field: "" for field in BACKLOG_FIELDS}
+            old["fixture_id"] = fixture_id
+            old["first_queued_at_utc"] = now_iso
+            old["queue_source"] = "current_round_terminal_fixture"
+            new_rows += 1
+        # Latest observed fixture metadata may safely improve the queue projection;
+        # first_queued_at_utc and queue_source remain immutable provenance.
+        for field in (
+            "provider_league_id", "league_name", "season", "round",
+            "kickoff_utc", "home_team", "away_team", "source_status",
+        ):
+            value = str(fixture.get(field) or "").strip()
+            if value:
+                old[field] = value
+        old["last_seen_at_utc"] = now_iso
+        merged[fixture_id] = old
+
+    captured_at = captured_at_by_fixture(stats_rows, grade_rows)
+    for fixture_id, row in merged.items():
+        if fixture_id in captured_at:
+            row["backlog_status"] = "CAPTURED"
+            row["captured_at_utc"] = row.get("captured_at_utc") or captured_at[fixture_id]
+        else:
+            row["backlog_status"] = "PENDING"
+            row["captured_at_utc"] = ""
+
+    rows = [merged[key] for key in sorted(merged, key=lambda fid: (
+        parse_utc(merged[fid].get("kickoff_utc")) or now, fid
+    ))]
+    return {
+        "rows": rows,
+        "new_rows": new_rows,
+        "terminal_seen": terminal_seen,
+        "pending": sum(row.get("backlog_status") == "PENDING" for row in rows),
+        "captured": sum(row.get("backlog_status") == "CAPTURED" for row in rows),
+    }
 
 
 def candidate_fixtures(fixtures, captured, now, limit):
@@ -239,6 +335,14 @@ def main():
     fixtures = read_csv(FIXTURES)
     existing_stats = read_csv(STATS)
     existing_grades = read_csv(GRADES)
+    existing_backlog = read_csv(BACKLOG)
+
+    # Queue terminal fixtures before touching the API budget. If quota protection
+    # defers the capture, the fixture remains durable for a later run.
+    backlog_before = sync_backlog(
+        existing_backlog, fixtures, existing_stats, existing_grades, now
+    )
+
     state = audit.read(SHARED_STATE)
     reserve = protected_calls(OPS, now)
     max_calls = int(os.getenv("STAGE77_MAX_API_CALLS", "4"))
@@ -251,18 +355,28 @@ def main():
         checkpoint=lambda value: audit.save(SHARED_STATE, value),
     )
     result = capture(
-        fixtures, existing_stats, existing_grades, budget, now,
+        backlog_before["rows"], existing_stats, existing_grades, budget, now,
         int(os.getenv("STAGE77_MAX_FIXTURES_PER_RUN", str(max_calls))),
     )
+
+    # Reconcile queue status from actual persisted-result candidates, never merely
+    # from a successful HTTP call. A fixture is CAPTURED only when both stats and
+    # grade ledgers contain player rows.
+    backlog_after = sync_backlog(
+        backlog_before["rows"], [], result["stats"], result["grades"], now
+    )
+
     # Never destroy last-good ledgers on quota/provider failures. Only rewrite when
     # there are actual rows or a ledger already exists.
     if result["stats"] or STATS.exists():
         write_csv_atomic(STATS, STAT_FIELDS, result["stats"])
     if result["grades"] or GRADES.exists():
         write_csv_atomic(GRADES, GRADE_FIELDS, result["grades"])
+    if backlog_after["rows"] or BACKLOG.exists():
+        write_csv_atomic(BACKLOG, BACKLOG_FIELDS, backlog_after["rows"])
     audit.save(SHARED_STATE, state)
     meta = {
-        "version": "PBK_STAGE77_PLAYER_STATS_CAPTURE_V1",
+        "version": "PBK_STAGE77_PLAYER_STATS_CAPTURE_V2_BACKLOG",
         "run_at_utc": iso(now),
         "status": "ATTENTION" if result["warnings"] else ("WAITING" if result["deferred_fixtures"] else "OK"),
         "provider_endpoint": "/fixtures/players",
@@ -273,6 +387,12 @@ def main():
         "captured_fixtures": result["captured_fixtures"],
         "captured_fixture_ids": result["captured_fixture_ids"],
         "deferred_fixtures": result["deferred_fixtures"],
+        "backlog_terminal_seen_this_run": backlog_before["terminal_seen"],
+        "backlog_new_this_run": backlog_before["new_rows"],
+        "backlog_rows": len(backlog_after["rows"]),
+        "backlog_pending": backlog_after["pending"],
+        "backlog_captured": backlog_after["captured"],
+        "backlog_persists_across_round_rotation": True,
         "new_stats_rows": result["new_stats_rows"],
         "new_grade_rows": result["new_grade_rows"],
         "total_stats_rows": len(result["stats"]),

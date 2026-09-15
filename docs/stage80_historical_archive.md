@@ -65,6 +65,20 @@ It reports, without inventing missing data:
 
 The readiness board never calls API-Football and never creates signals or mutates probability, EV, eligibility, stake or Forward. Missing source files remain explicit missing sources; a missing denominator is shown as unknown rather than fake 0% coverage.
 
+## Durable player-stat backfill queue
+
+Stage77 is intentionally lower priority than LIVE/current-round/standings and may be deferred by the protected API reserve. To prevent deferred finished fixtures from disappearing when the rolling current-round inventory advances, Stage77 now persists `stage77_player_stats_backlog.csv`.
+
+- a fixture enters the queue only after PBK observes a terminal result state and kickoff has passed;
+- queueing happens **before** any `/fixtures/players` provider call is attempted;
+- a PENDING fixture remains eligible on future Stage77 runs even after it disappears from `current_round_fixtures.csv`;
+- the queue is marked CAPTURED only when both player-stat and Player Grade ledgers actually contain player rows for that fixture;
+- a successful HTTP response by itself is not enough to mark archive completion;
+- first queue timestamp is preserved; later current-inventory observations may update non-authoritative display metadata and last-seen time;
+- protected quota semantics are unchanged — the queue prevents data loss, it does not steal quota from higher-priority collectors.
+
+This is operational archive reliability, not a betting/model change.
+
 ## What this does not yet claim
 
 This is still an archive foundation, not the complete football warehouse. The following remain separate future slices:
@@ -78,7 +92,7 @@ This is still an archive foundation, not the complete football warehouse. The fo
 
 ## Relationship to existing stages
 
-- Stage77 already preserves per-fixture player-stat and Player Grade snapshots.
+- Stage77 preserves per-fixture player-stat and Player Grade snapshots and now retains deferred terminal fixtures in a durable backfill queue.
 - Stage78 provides provider-free Player Grade / XI Quality / Player Importance research.
 - Stage79 captures current team squads for the manual lineup picker.
 - Stage80 preserves historical roster observations, derives conservative observed membership intervals, adds the storage-neutral raw-response archive hook to the shared provider broker, and continuously measures archive completeness/gaps.
