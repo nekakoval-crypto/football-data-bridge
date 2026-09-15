@@ -14,6 +14,7 @@ on:
       - 'scripts/tests/test_stage80_fixture_history_readiness.py'
       - 'scripts/tests/test_stage80_archive_manifest.py'
       - 'scripts/tests/test_stage80_historical_fixture_catalog.py'
+      - 'scripts/tests/test_stage80_historical_fixture_catalog_readiness.py'
       - 'docs/stage80_historical_archive.md'
       - 'docs/stage80_fixture_history.md'
       - 'docs/stage80_archive_manifest.md'
@@ -29,6 +30,7 @@ on:
       - 'scripts/tests/test_stage80_fixture_history_readiness.py'
       - 'scripts/tests/test_stage80_archive_manifest.py'
       - 'scripts/tests/test_stage80_historical_fixture_catalog.py'
+      - 'scripts/tests/test_stage80_historical_fixture_catalog_readiness.py'
       - 'docs/stage80_historical_archive.md'
       - 'docs/stage80_fixture_history.md'
       - 'docs/stage80_archive_manifest.md'
@@ -66,6 +68,7 @@ jobs:
           python -m unittest scripts.tests.test_stage80_fixture_history_readiness -v
           python -m unittest scripts.tests.test_stage80_archive_manifest -v
           python -m unittest scripts.tests.test_stage80_historical_fixture_catalog -v
+          python -m unittest scripts.tests.test_stage80_historical_fixture_catalog_readiness -v
       - name: Real-repo catalog, manifest and readiness smoke
         run: |
           python scripts/stage80_historical_fixture_catalog.py
