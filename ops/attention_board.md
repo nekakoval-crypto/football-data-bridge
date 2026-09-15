@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 15.09.2026 09:03 (Europe/Berlin)
+Обновлено: 15.09.2026 10:01 (Europe/Berlin)
 Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -81,6 +81,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Европейская фора хозяев (+4) · П1: 1.22 | Х: 7 | П2: 8 @ Bet365
   - Европейская фора хозяев (+4) · П1: 1.18 | Х: 6.65 | П2: 6.75 @ Marathonbet
   - Европейская фора хозяев (-1) · П1: 21 | Х: 12 | П2: 1.07 @ Bet365
+  - 1X2 · П1: 8.5 | Х: 6 | П2: 1.22 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.04 | ИТМ: 9 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.22 | ИТМ: 4 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.2 | ИТМ: 3.7 @ Marathonbet
@@ -96,7 +97,6 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - ИТБ/ИТМ 1 (1.5) · ИТБ: 4 | ИТМ: 1.22 @ Bet365
   - ИТБ/ИТМ 1 (1.5) · ИТБ: 4.05 | ИТМ: 1.18 @ Marathonbet
   - ИТБ/ИТМ 1 (2.5) · ИТБ: 9 | ИТМ: 1.04 @ Bet365
-  - 1X2 — нет данных
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
 
@@ -432,6 +432,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Европейская фора хозяев (-2) · П1: 13 | Х: 7 | П2: 1.17 @ Bet365
   - Европейская фора хозяев (-2) · П1: 6.45 | Х: 4.45 | П2: 1.13 @ Marathonbet
   - Европейская фора хозяев (-3) · П1: 29 | Х: 17 | П2: 1.04 @ Bet365
+  - 1X2 · П1: 2.4 | Х: 3.2 | П2: 3 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.44 | ИТМ: 2.62 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.38 | ИТМ: 2.81 @ Marathonbet
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 3 | ИТМ: 1.36 @ Bet365
@@ -446,7 +447,6 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - ИТБ/ИТМ 1 (2.5) · ИТБ: 6.5 | ИТМ: 1.11 @ Bet365
   - ИТБ/ИТМ 1 (2.5) · ИТБ: 5.45 | ИТМ: 1.12 @ Marathonbet
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 19 | ИТМ: 1.02 @ Bet365
-  - 1X2 — нет данных
   - Тотал 2.5 — нет данных
 
 - **Barcelona — Racing Santander** | La Liga | 16.09 19:30 UTC
@@ -593,7 +593,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **Lyngby — Silkeborg** | Danish Superliga | 18.09 17:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 1.9 | Х: 3.75 | П2: 3.4 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -611,7 +611,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **Kasımpaşa — Konyaspor** | Super Lig | 18.09 17:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 2.35 | Х: 3.2 | П2: 3 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -658,7 +658,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **Gent — Standard Liege** | Belgian Pro League | 18.09 18:45 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 1.83 | Х: 3.4 | П2: 4 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -826,7 +826,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **OH Leuven — RAAL La Louvière** | Belgian Pro League | 19.09 14:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 2 | Х: 3.3 | П2: 3.4 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -846,8 +846,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 - **Brighton — Arsenal** | Premier League | 19.09 14:00 UTC
   - ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 2 @ Bet365
   - ОЗ · ОЗ Да: 1.73 | ОЗ Нет: 1.99 @ Marathonbet
-  - 1X2 · П1: 4.33 | Х: 3.6 | П2: 1.75 @ Bet365
-  - 1X2 · П1: 4.65 | Х: 3.8 | П2: 1.81 @ Marathonbet
+  - 1X2 · П1: 5 | Х: 3.75 | П2: 1.62 @ Bet365
   - Тотал 2.5 — нет данных
   - ИТБ/ИТМ — нет данных
   - 1Х/Х2/12 — нет данных
@@ -911,7 +910,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **Çorum FK — Alanyaspor** | Super Lig | 19.09 14:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 2.1 | Х: 3.1 | П2: 3.6 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -920,7 +919,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **Kocaelispor — Gaziantep FK** | Super Lig | 19.09 14:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 2.15 | Х: 3.2 | П2: 3.4 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -947,7 +946,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **GIL Vicente — Maritimo** | Primeira Liga | 19.09 14:30 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 2 | Х: 3.2 | П2: 3.8 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -956,7 +955,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **Nacional — Famalicao** | Primeira Liga | 19.09 14:30 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 3.9 | Х: 3.4 | П2: 1.95 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -993,7 +992,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **Odense — FC Midtjylland** | Danish Superliga | 19.09 16:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 3.8 | Х: 3.7 | П2: 1.8 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -1021,7 +1020,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **Charleroi — Cercle Brugge** | Belgian Pro League | 19.09 16:15 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 1.7 | Х: 3.7 | П2: 4.2 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -1088,7 +1087,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **Alverca — Rio Ave** | Primeira Liga | 19.09 17:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 1.85 | Х: 3.5 | П2: 4 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -1097,7 +1096,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **Başakşehir — Gençlerbirliği S.K.** | Super Lig | 19.09 17:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 1.45 | Х: 4.33 | П2: 6.5 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -1106,7 +1105,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **Trabzonspor — Galatasaray** | Super Lig | 19.09 17:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 2.9 | Х: 3.7 | П2: 2.15 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -1142,7 +1141,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **Anderlecht — Zulte Waregem** | Belgian Pro League | 19.09 18:45 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 1.75 | Х: 3.7 | П2: 4.1 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -1151,7 +1150,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **Lommel United — KV Mechelen** | Belgian Pro League | 19.09 18:45 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 2.55 | Х: 3.3 | П2: 2.55 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -1228,7 +1227,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **Sporting CP — Arouca** | Primeira Liga | 19.09 19:30 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 1.18 | Х: 7 | П2: 13 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -1301,7 +1300,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **Brondby — FC Copenhagen** | Danish Superliga | 20.09 12:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 2.8 | Х: 3.5 | П2: 2.3 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -1310,7 +1309,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **Sonderjyske — Randers FC** | Danish Superliga | 20.09 12:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 2.88 | Х: 3.4 | П2: 2.25 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -1794,7 +1793,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 1
+- System Health: **HEALTHY** | critical 0 | warnings 0
 - Логическая canonical экспозиция: **1.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
-- League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 22 | data required 4
+- League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 24 | data required 3
