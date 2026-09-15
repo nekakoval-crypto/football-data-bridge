@@ -1,6 +1,6 @@
 # Stage80 — PBK Historical Data Archive foundation
 
-Status: **ACTIVE FOUNDATION — roster history + observed membership + raw-provider archive contract implemented**
+Status: **ACTIVE FOUNDATION — roster history + observed membership + raw-provider archive contract + readiness telemetry implemented**
 
 ## Why this exists
 
@@ -51,6 +51,20 @@ The shared API-Football broker can now copy every **successful real provider res
 
 **Storage gate:** the archive code/contract can be complete while durable production retention remains pending. PBK must not claim raw historical durability until `API_FOOTBALL_ARCHIVE_DIR` is backed by a persistent/off-site-retained location and a restore/readback check succeeds.
 
+## Archive Readiness telemetry
+
+`stage80_archive_readiness.py` is a provider-free governance/coverage board. It reads already persisted files and publishes `ops/stage80_archive_readiness.json` plus a human-readable markdown companion.
+
+It reports, without inventing missing data:
+- current fixture inventory and finished-fixture denominator where available;
+- player-stat / Player Grade fixture and player coverage;
+- current roster, append-only roster-history and observed-membership counts;
+- existing Stage55 official-XI / injury evidence with an explicit warning that Stage55 context is canonical-signal scoped, not full 16-league coverage;
+- raw-provider archive storage/manifest state when a persistent archive directory is actually mounted;
+- named gaps such as first roster-history capture pending, partial player-stat coverage, durable raw storage not configured, transfer evidence missing and xG/xA source missing.
+
+The readiness board never calls API-Football and never creates signals or mutates probability, EV, eligibility, stake or Forward. Missing source files remain explicit missing sources; a missing denominator is shown as unknown rather than fake 0% coverage.
+
 ## What this does not yet claim
 
 This is still an archive foundation, not the complete football warehouse. The following remain separate future slices:
@@ -59,7 +73,7 @@ This is still an archive foundation, not the complete football warehouse. The fo
 2. verified transfer-source integration that can turn observation boundaries into factual transfer events where evidence exists;
 3. append-only fixture / lineup / event / injury / transfer archive and normalized warehouse projections;
 4. broader historical backfill by league/season under API-budget controls;
-5. stable archive read APIs and completeness/coverage dashboards;
+5. stable archive read APIs / UI over the growing warehouse;
 6. xG/xA/event-level data only where a verified source actually provides it — PBK never fabricates missing metrics.
 
 ## Relationship to existing stages
@@ -67,6 +81,6 @@ This is still an archive foundation, not the complete football warehouse. The fo
 - Stage77 already preserves per-fixture player-stat and Player Grade snapshots.
 - Stage78 provides provider-free Player Grade / XI Quality / Player Importance research.
 - Stage79 captures current team squads for the manual lineup picker.
-- Stage80 preserves historical roster observations, derives conservative observed membership intervals, and adds the storage-neutral raw-response archive hook to the shared provider broker.
+- Stage80 preserves historical roster observations, derives conservative observed membership intervals, adds the storage-neutral raw-response archive hook to the shared provider broker, and continuously measures archive completeness/gaps.
 
 This numbering reflects the repository's actual merged state: Stage77–79 already exist and are not renumbered retroactively.
