@@ -1,0 +1,99 @@
+name: Stage 77 Player Stats Capture
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Deliberately sparse/low-priority. Shared Stage71 concurrency + protected
+    # reserve prevent Player Grade history from competing with LIVE/standings.
+    - cron: '47 */4 * * *'
+  pull_request:
+    paths:
+      - 'scripts/stage77_player_stats_capture.py'
+      - 'scripts/player_grade_context.py'
+      - 'scripts/tests/test_stage77_player_stats_capture.py'
+      - 'scripts/tests/test_player_grade_context.py'
+      - '.github/workflows/stage77-player-stats-capture.yml'
+  push:
+    paths:
+      - 'scripts/stage77_player_stats_capture.py'
+      - 'scripts/player_grade_context.py'
+      - 'scripts/tests/test_stage77_player_stats_capture.py'
+      - 'scripts/tests/test_player_grade_context.py'
+      - '.github/workflows/stage77-player-stats-capture.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage71-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile Stage77
+        run: python -m py_compile scripts/stage77_player_stats_capture.py scripts/player_grade_context.py
+      - name: Provider-free Stage77 tests
+        run: |
+          python -m unittest scripts.tests.test_stage77_player_stats_capture -v
+          python -m unittest scripts.tests.test_player_grade_context -v
+      - name: Provider isolation
+        shell: bash
+        run: |
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/stage77_player_stats_capture.py; then
+            echo 'Stage77 must reach API-Football only through the shared broker/backend.' >&2
+            exit 1
+          fi
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated ops files are forbidden in the Stage77 feature PR.' >&2
+            exit 1
+          fi
+
+  capture:
+    needs: validate
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      OPS_DIR: ops
+      STAGE77_MAX_API_CALLS: '4'
+      STAGE77_MAX_FIXTURES_PER_RUN: '4'
+      STAGE71_MAX_DAILY_API_CALLS: '180'
+      STAGE77_STANDINGS_RESERVE_CALLS: '16'
+      STAGE77_SAFETY_RESERVE_CALLS: '8'
+      STAGE77_CURRENT_ROUND_CALLS_PER_RUN: '32'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Capture finished-fixture player stats
+        run: python scripts/stage77_player_stats_capture.py
+      - name: Publish Stage77 operational files safely
+        shell: bash
+        run: |
+          git config user.name 'stage77-bot'
+          git config user.email 'stage77-bot@users.noreply.github.com'
+          git add ops/stage77_last_run.json ops/stage71_observation_state.json
+          if [ -f ops/player_stats_snapshots.csv ]; then git add ops/player_stats_snapshots.csv; fi
+          if [ -f ops/player_grade_snapshots.csv ]; then git add ops/player_grade_snapshots.csv; fi
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 77 player stats capture update'
+          python scripts/publish_operational_commit.py

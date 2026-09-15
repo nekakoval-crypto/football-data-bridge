@@ -6,7 +6,8 @@ already-captured lineup/rotation evidence. Stage72 imports every operational CSV
 as ``raw_*``, so the read model accepts either a future stable alias or the raw
 projection. It never calls a provider and never writes canonical state. For a
 target fixture all grade evidence is restricted to matches strictly before the
-target kickoff.
+target kickoff and, when capture provenance exists, to observations available no
+later than that kickoff.
 """
 from __future__ import annotations
 
@@ -84,7 +85,18 @@ def _history_by_player(conn, cutoff):
     table = _grade_table(conn)
     if not table or not cutoff:
         return {}
-    rows = _rows(conn, f'SELECT * FROM "{table}" WHERE kickoff_utc < ? ORDER BY kickoff_utc ASC', (str(cutoff),))
+    cols = {row[1] for row in conn.execute(f'PRAGMA table_info("{table}")')}
+    if "observed_at_utc" in cols:
+        rows = _rows(
+            conn,
+            f'''SELECT * FROM "{table}"
+                WHERE kickoff_utc < ?
+                  AND (observed_at_utc IS NULL OR observed_at_utc='' OR observed_at_utc <= ?)
+                ORDER BY kickoff_utc ASC''',
+            (str(cutoff), str(cutoff)),
+        )
+    else:
+        rows = _rows(conn, f'SELECT * FROM "{table}" WHERE kickoff_utc < ? ORDER BY kickoff_utc ASC', (str(cutoff),))
     out = defaultdict(list)
     for row in rows:
         pid = str(row.get("player_id") or "").strip()
@@ -126,6 +138,7 @@ def _grade_for_player(player, history, cutoff):
         "sample_10": form.get("sample_10", 0),
         "last_grade": last.get("overall_grade") if last else None,
         "last_grade_kickoff_utc": last.get("kickoff_utc") if last else None,
+        "last_grade_observed_at_utc": last.get("observed_at_utc") if last else None,
         "confidence": confidence,
         "source": last.get("source") if last else None,
     }

@@ -23,13 +23,17 @@ class PlayerGradeContextTests(unittest.TestCase):
         self.conn.execute("INSERT INTO current_round_matches VALUES ('999','2026-09-20T18:00:00Z')")
         self.conn.execute('''CREATE TABLE player_grade_snapshots (
             fixture_id TEXT, player_id TEXT, player_name TEXT, team_id TEXT,
-            kickoff_utc TEXT, overall_grade TEXT, source TEXT
+            kickoff_utc TEXT, observed_at_utc TEXT, overall_grade TEXT, source TEXT
         )''')
         for i, value in enumerate((6.0, 7.0, 8.0), start=1):
-            self.conn.execute('INSERT INTO player_grade_snapshots VALUES (?,?,?,?,?,?,?)',
-                              (f'h{i}', 'H2', 'H Player 2', '10', f'2026-09-0{i}T18:00:00Z', str(value), 'TEST'))
-        # This row is after target kickoff and must never enter Form/grade.
-        self.conn.execute("INSERT INTO player_grade_snapshots VALUES ('future','H2','H Player 2','10','2026-09-21T18:00:00Z','10.0','TEST')")
+            self.conn.execute('INSERT INTO player_grade_snapshots VALUES (?,?,?,?,?,?,?,?)',
+                              (f'h{i}', 'H2', 'H Player 2', '10', f'2026-09-0{i}T18:00:00Z',
+                               f'2026-09-0{i}T20:00:00Z', str(value), 'TEST'))
+        # Match itself is after target kickoff and must never enter Form/grade.
+        self.conn.execute("INSERT INTO player_grade_snapshots VALUES ('future','H2','H Player 2','10','2026-09-21T18:00:00Z','2026-09-21T20:00:00Z','10.0','TEST')")
+        # Historical kickoff captured only after target kickoff is also unavailable
+        # at the target decision time and must not leak into a replay/read-model.
+        self.conn.execute("INSERT INTO player_grade_snapshots VALUES ('late_capture','H2','H Player 2','10','2026-09-10T18:00:00Z','2026-09-20T20:00:00Z','9.9','TEST')")
         self.conn.execute('''CREATE TABLE raw_rotation_snapshots (
             captured_at_utc TEXT, home_team_id TEXT, away_team_id TEXT,
             home_current_xi_json TEXT, away_current_xi_json TEXT
@@ -49,12 +53,14 @@ class PlayerGradeContextTests(unittest.TestCase):
             'away': {'team_id': '20', 'team_name': 'Away', 'status': 'EXPECTED', 'formation': '4-2-3-1', 'starting_xi': xi('A')},
         }
 
-    def test_form_grade_strictly_uses_prior_matches(self):
+    def test_form_grade_strictly_uses_prior_matches_and_available_capture_time(self):
         payload = context.build_player_grade_context(self.conn, '999', self.lineup())
         grade = payload['home']['grades_by_player']['H2']
         self.assertEqual(grade['form_5'], 7.0)
         self.assertEqual(grade['sample_5'], 3)
         self.assertNotEqual(grade['current_grade'], 10.0)
+        self.assertNotEqual(grade['current_grade'], 9.9)
+        self.assertLessEqual(grade['last_grade_observed_at_utc'], '2026-09-20T18:00:00Z')
         self.assertTrue(payload['no_lookahead'])
         self.assertTrue(payload['available'])
 
