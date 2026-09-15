@@ -1,27 +1,28 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 15.09.2026 21:00 (Europe/Berlin)
-Canonical: 1 | active WATCH crossings: 2 | RED: 1 | ORANGE: 1
+Обновлено: 15.09.2026 22:00 (Europe/Berlin)
+Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
 
 ## 🔴 Срочно
-- **Elche — Real Madrid** | Stage63 | ОЗ — Да | 15.09 21:30 | prospective движение ОЗ ≥3 п.п.
+- Сейчас срочных матчей нет.
 
 ## 🟠 Ближайшие 24 часа / активные WATCH
 - **Atletico Madrid — Osasuna** | Stage63 | ОЗ — Нет | 16.09 19:00 | prospective движение ОЗ ≥3 п.п. | 1.81 @ Marathonbet
+- **Brentford — Chelsea** | Stage61 | П2 | 18.09 21:00 | первый +3 п.п. steam фаворита | 2.27 @ Marathonbet
 
 ## 🔵 Активные R1/R2/R3
 - **R1 | Frosinone — Como** | П2 | 20.09 15:00 | 1.65 @ Marathonbet | гости после еврокубка/кубка
 
 ## 🟡 Research WATCH crossings
-- **Stage63 | Elche — Real Madrid** | ОЗ — Да | 15.09 21:30 | 1.61 @ Marathonbet
 - **Stage63 | Atletico Madrid — Osasuna** | ОЗ — Нет | 16.09 19:00 | 1.81 @ Marathonbet
+- **Stage61 | Brentford — Chelsea** | П2 | 18.09 21:00 | 2.27 @ Marathonbet
 
 ## ⚪ Ближайшие матчи под наблюдением (без сигнала)
-- **Stage63 | Elche — Real Madrid** | La Liga | 15.09 21:30 | ОЗ — Да / ОЗ — Нет | Bet365 Да 1.75 / Нет 2.0
 - **Stage63 | Atletico Madrid — Osasuna** | La Liga | 16.09 19:00 | ОЗ — Да / ОЗ — Нет | Bet365 Да 1.8 / Нет 1.95
 - **Stage63 | Deportivo La Coruna — Sevilla** | La Liga | 16.09 19:00 | ОЗ — Да / ОЗ — Нет | Bet365 Да 1.95 / Нет 1.8
+- **Stage63 | Barcelona — Racing Santander** | La Liga | 16.09 21:30 | ОЗ — Да / ОЗ — Нет | Bet365 Да 1.8 / Нет 1.95
 - **Stage62 | Bayern München — Union Berlin** | Бундеслига | 18.09 20:30 | ТБ(2.5) steam | Bet365 ТБ 1.17 / ТМ 5.0
 - **Stage61 | Brentford — Chelsea** | АПЛ | 18.09 21:00 | П1/П2 steam | Bet365 2.6/3.5/2.5
 - **Stage61 | Tottenham — Aston Villa** | АПЛ | 19.09 13:30 | П1/П2 steam | Bet365 2.2/3.3/3.2
@@ -35,43 +36,6 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 1 | ORANGE: 1
 
 ## 🧩 Рыночные карточки ближайших матчей
 > Собранные снимки рынков; не сигналы и не рекомендации.
-
-- **Elche — Real Madrid** | La Liga | 15.09 19:30 UTC
-  - ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 2 @ Bet365
-  - ОЗ · ОЗ Да: 1.73 | ОЗ Нет: 1.99 @ Marathonbet
-  - Ф(0) · Ф1(0): 7 | Ф2(0): 1.1 @ Bet365
-  - Ф(0) · Ф1(0): 7.7 | Ф2(0): 1.04 @ Marathonbet
-  - 1Х/Х2/12 · 1Х: 4.33 | Х2: 1.05 | 12: 1.1 @ Bet365
-  - 1Х/Х2/12 · 1Х: 4.65 | Х2: 1.04 | 12: 1.11 @ Marathonbet
-  - Европейская фора хозяев (+1) · П1: 4.5 | Х: 4.5 | П2: 1.53 @ Bet365
-  - Европейская фора хозяев (+1) · П1: 4.65 | Х: 4.3 | П2: 1.58 @ Marathonbet
-  - Европейская фора хозяев (+2) · П1: 2.38 | Х: 4.33 | П2: 2.25 @ Bet365
-  - Европейская фора хозяев (+2) · П1: 2.38 | Х: 4.15 | П2: 2.25 @ Marathonbet
-  - Европейская фора хозяев (+3) · П1: 1.57 | Х: 5 | П2: 3.75 @ Bet365
-  - Европейская фора хозяев (+3) · П1: 1.57 | Х: 4.8 | П2: 3.6 @ Marathonbet
-  - Европейская фора хозяев (+4) · П1: 1.25 | Х: 7 | П2: 7 @ Bet365
-  - Европейская фора хозяев (+4) · П1: 1.21 | Х: 6.6 | П2: 6.25 @ Marathonbet
-  - Европейская фора хозяев (-1) · П1: 29 | Х: 15 | П2: 1.05 @ Bet365
-  - 1X2 · П1: 10 | Х: 6.25 | П2: 1.27 @ Bet365
-  - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.02 | ИТМ: 17 @ Bet365
-  - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.18 | ИТМ: 4.5 @ Bet365
-  - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.21 | ИТМ: 4.2 @ Marathonbet
-  - ИТБ/ИТМ 2 (2.5) · ИТБ: 1.62 | ИТМ: 2.2 @ Bet365
-  - ИТБ/ИТМ 2 (2.5) · ИТБ: 1.67 | ИТМ: 2.19 @ Marathonbet
-  - ИТБ/ИТМ 2 (3.5) · ИТБ: 2.62 | ИТМ: 1.44 @ Bet365
-  - ИТБ/ИТМ 2 (3.5) · ИТБ: 2.63 | ИТМ: 1.48 @ Marathonbet
-  - ИТБ/ИТМ 2 (4.5) · ИТБ: 4.5 | ИТМ: 1.18 @ Bet365
-  - ИТБ/ИТМ 2 (4.5) · ИТБ: 4.65 | ИТМ: 1.17 @ Marathonbet
-  - ИТБ/ИТМ 2 (5.5) · ИТБ: 10 | ИТМ: 1.06 @ Bet365
-  - ИТБ/ИТМ 2 (6.5) · ИТБ: 19 | ИТМ: 1.02 @ Bet365
-  - ИТБ/ИТМ 1 (0.5) · ИТБ: 1.67 | ИТМ: 2.1 @ Bet365
-  - ИТБ/ИТМ 1 (0.5) · ИТБ: 1.65 | ИТМ: 2.11 @ Marathonbet
-  - ИТБ/ИТМ 1 (1.5) · ИТБ: 4.33 | ИТМ: 1.2 @ Bet365
-  - ИТБ/ИТМ 1 (1.5) · ИТБ: 4.4 | ИТМ: 1.21 @ Marathonbet
-  - ИТБ/ИТМ 1 (2.5) · ИТБ: 15 | ИТМ: 1.03 @ Bet365
-  - ИТБ/ИТМ 1 (2.5) · ИТБ: 12.25 | ИТМ: 1.01 @ Marathonbet
-  - ИТБ/ИТМ 1 (3.5) · ИТБ: 29 | ИТМ: 1.01 @ Bet365
-  - Тотал 2.5 — нет данных
 
 - **FK Zalgiris Vilnius — Kauno Žalgiris** | A Lyga | 16.09 15:45 UTC
   - Ф(0) · Ф1(0): 2.1 | Ф2(0): 1.7 @ Bet365
@@ -562,7 +526,8 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 1 | ORANGE: 1
 - **Brentford — Chelsea** | Premier League | 18.09 19:00 UTC
   - ОЗ · ОЗ Да: 1.53 | ОЗ Нет: 2.38 @ Bet365
   - ОЗ · ОЗ Да: 1.51 | ОЗ Нет: 2.39 @ Marathonbet
-  - 1X2 · П1: 2.75 | Х: 3.7 | П2: 2.25 @ Bet365
+  - 1X2 · П1: 2.88 | Х: 3.7 | П2: 2.2 @ Bet365
+  - 1X2 · П1: 2.92 | Х: 3.84 | П2: 2.27 @ Marathonbet
   - Тотал 2.5 — нет данных
   - ИТБ/ИТМ — нет данных
   - 1Х/Х2/12 — нет данных
@@ -1665,7 +1630,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 1 | ORANGE: 1
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 2
+- System Health: **WARN** | critical 0 | warnings 1
 - Логическая canonical экспозиция: **1.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 24 | data required 3
