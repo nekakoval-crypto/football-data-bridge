@@ -1,8 +1,8 @@
 # PBK Signal Lifecycle
 
-Обновлено UTC: 2026-09-15T20:09:28Z
+Обновлено UTC: 2026-09-15T21:08:16Z
 
-Cards: 16 | canonical 3 | WATCH 13 | events 313
+Cards: 17 | canonical 3 | WATCH 14 | events 316
 
 ## WATCH | Stage63 | Venezia — Fiorentina
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-11T18:45:00Z
@@ -100,13 +100,19 @@ Cards: 16 | canonical 3 | WATCH 13 | events 313
 
 ## WATCH | Stage63 | Elche — Real Madrid
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-15T19:30:00Z
-- Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
+- Последнее событие: WATCH_CLOSE | статус: REVERTED_AT_CLOSE | событий: 2
   - 2026-09-13T00:23:21Z — WATCH_CROSSING — Marathonbet | 1.61 | movement_pp=0.05567191
+  - 2026-09-15T18:17:31Z — WATCH_CLOSE — Marathonbet | 1.73 | close_qualified=NO
 
 ## WATCH | Stage63 | Atletico Madrid — Osasuna
 - Ставка/рынок: ОЗ — Нет | kickoff: 2026-09-16T17:00:00Z
 - Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
   - 2026-09-14T10:16:12Z — WATCH_CROSSING — Marathonbet | 1.81 | movement_pp=-0.04000000
+
+## WATCH | Stage63 | Brentford — Chelsea
+- Ставка/рынок: ОЗ — Да | kickoff: 2026-09-18T19:00:00Z
+- Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
+  - 2026-09-15T20:16:28Z — WATCH_CROSSING — Marathonbet | 1.41 | movement_pp=0.03662455
 
 ## WATCH | Stage61 | Brentford — Chelsea
 - Ставка/рынок: П2 | kickoff: 2026-09-18T19:00:00Z
@@ -115,8 +121,7 @@ Cards: 16 | canonical 3 | WATCH 13 | events 313
 
 ## CANONICAL | R1 | Frosinone — Como
 - Ставка/рынок: П2 | kickoff: 2026-09-20T13:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 114
-  - 2026-09-15T12:49:36Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 115
   - 2026-09-15T13:46:26Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-15T14:46:53Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-15T15:45:34Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -124,3 +129,4 @@ Cards: 16 | canonical 3 | WATCH 13 | events 313
   - 2026-09-15T17:43:38Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-15T18:46:58Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-15T19:43:55Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-15T20:44:32Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
