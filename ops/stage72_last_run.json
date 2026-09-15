@@ -1,10 +1,10 @@
 {
-  "run_at_utc": "2026-09-15T20:55:13Z",
+  "run_at_utc": "2026-09-15T21:08:54Z",
   "status": "OK",
   "schema_version": "15",
   "db_path": "build/pbk_unified.sqlite",
-  "db_bytes": 28905472,
-  "db_sha256": "6004a06edfa840a3d19e9a0d0c3368c43e4ce0c73741f6e42c43151ef0584b87",
+  "db_bytes": 28913664,
+  "db_sha256": "233d1b18effe1b15ffe0e46873e7b3fcac97ee973bfd0f76f3bb7696ca6bac86",
   "integrity_check": "ok",
   "tables": 99,
   "manifest_sources": 82,
@@ -13,7 +13,7 @@
     "canonical_signals": 3,
     "challenger_signals": 45,
     "watch_signals": 14,
-    "lifecycle_events": 313,
+    "lifecycle_events": 316,
     "exposure_positions": 1,
     "context_latest": 3,
     "odds_snapshots": 252,
@@ -42,7 +42,7 @@
     "current_round_matches": 129,
     "standings_snapshots": 20,
     "fixture_motivation": 129,
-    "formation_research_events": 443
+    "formation_research_events": 449
   },
   "missing_stable_sources": [],
   "historical_leakage_violations": 0,
