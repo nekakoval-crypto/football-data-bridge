@@ -1,0 +1,50 @@
+name: Player Grade and Manual Lineup
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/player_grade.py'
+      - 'scripts/manual_lineup_scenario.py'
+      - 'scripts/tests/test_player_grade_manual_scenario.py'
+      - 'docs/player_grade_manual_lineup.md'
+      - '.github/workflows/player-grade-manual-lineup.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile
+        run: python -m py_compile scripts/player_grade.py scripts/manual_lineup_scenario.py scripts/tests/test_player_grade_manual_scenario.py
+      - name: Player Grade and manual scenario tests
+        run: python -m unittest scripts.tests.test_player_grade_manual_scenario -v
+      - name: Lineup regressions
+        run: |
+          python -m unittest scripts.tests.test_lineup_context -v
+          python -m unittest scripts.tests.test_lineup_surprise -v
+      - name: Feature hygiene
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated ops files are forbidden in feature diff.' >&2
+            exit 1
+          fi
+      - name: Provider-free contract scan
+        shell: bash
+        run: |
+          if grep -R -nE 'requests\.|urllib\.|api-football|api-sports\.io' scripts/player_grade.py scripts/manual_lineup_scenario.py; then
+            echo 'Provider/network access is forbidden in these research modules.' >&2
+            exit 1
+          fi
