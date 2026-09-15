@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-15T06:40:11Z",
+  "generated_at_utc": "2026-09-15T12:38:27Z",
   "status": "OK",
   "scope": "PBK_CORE_8",
   "policy": {
@@ -27,9 +27,9 @@
     {
       "market_id": "DOUBLE_CHANCE",
       "readiness_state": "DISCOVERY_POOL_READY",
-      "opener_rows": 211,
-      "opener_fixtures": 211,
-      "snapshot_rows": 1225,
+      "opener_rows": 221,
+      "opener_fixtures": 221,
+      "snapshot_rows": 1241,
       "snapshot_fixtures": 137,
       "close_rows": 121,
       "close_fixtures": 121,
@@ -45,9 +45,9 @@
     {
       "market_id": "DRAW_NO_BET",
       "readiness_state": "COLLECTING_CLOSES",
-      "opener_rows": 194,
-      "opener_fixtures": 194,
-      "snapshot_rows": 989,
+      "opener_rows": 201,
+      "opener_fixtures": 201,
+      "snapshot_rows": 1003,
       "snapshot_fixtures": 121,
       "close_rows": 107,
       "close_fixtures": 107,
@@ -75,9 +75,9 @@
     {
       "market_id": "EUROPEAN_HANDICAP",
       "readiness_state": "DISCOVERY_POOL_READY",
-      "opener_rows": 1053,
-      "opener_fixtures": 208,
-      "snapshot_rows": 5859,
+      "opener_rows": 1121,
+      "opener_fixtures": 221,
+      "snapshot_rows": 5940,
       "snapshot_fixtures": 137,
       "close_rows": 634,
       "close_fixtures": 121,
@@ -101,9 +101,9 @@
     {
       "market_id": "TEAM_TOTAL",
       "readiness_state": "DISCOVERY_POOL_READY",
-      "opener_rows": 1920,
-      "opener_fixtures": 207,
-      "snapshot_rows": 13199,
+      "opener_rows": 2025,
+      "opener_fixtures": 219,
+      "snapshot_rows": 13347,
       "snapshot_fixtures": 137,
       "close_rows": 1115,
       "close_fixtures": 121,
