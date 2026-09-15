@@ -32,16 +32,27 @@ export function positions(team={}){
   return [1,...lines].flatMap((n,row)=>Array.from({length:n},(_,col)=>({...ordered[i++],x:100*(col+1)/(n+1),y:8+84*row/lines.length,basis:'template'})));
 }
 
-export function renderPitch(home={},away={}){
+function gradeMap(context,side){
+  const team=context?.[side]||{};
+  if(team.grades_by_player&&typeof team.grades_by_player==='object')return team.grades_by_player;
+  return Object.fromEntries((team.grades||[]).filter(x=>x?.player_id).map(x=>[String(x.player_id),x]));
+}
+
+export function renderPitch(home={},away={},gradeContext={}){
   const half=(raw,side)=>{
-    const team=selectedTeam(raw),players=positions(team);
+    const team=selectedTeam(raw),players=positions(team),grades=gradeMap(gradeContext,side);
     if(!players.length)return `<div class="formation-no-data ${side}">Нет данных по расстановке${team.starting_xi?.length?' · XI доступен списком':''}</div>`;
     return players.map(p=>{
       const name=p.lastname||p.last_name||String(p.name||p.player_name||'—').trim().split(/\s+/).slice(-1)[0];
       const x=side==='home'?p.x:100-p.x,y=side==='home'?p.y/2:100-p.y/2;
-      return `<div class="formation-player ${side}" style="left:${x}%;top:${y}%" title="${esc(p.name||name)}"><b>${esc(p.number??'—')}</b><span>${esc(name)}</span></div>`;
+      const pid=String(p.id??p.player_id??'');
+      const g=grades[pid]||{};
+      const value=g.current_grade??g.form_5??g.last_grade;
+      const grade=value===null||value===undefined||value===''?'':`<small class="formation-grade" title="PBK Player Grade · ${esc(g.grade_basis||'research')} · confidence ${esc(g.confidence||'UNKNOWN')}">PBK ${esc(Number(value).toFixed(1))}</small>`;
+      return `<div class="formation-player ${side}" style="left:${x}%;top:${y}%" title="${esc(p.name||name)}"><b>${esc(p.number??'—')}</b><span>${esc(name)}</span>${grade}</div>`;
     }).join('');
   };
   const template=[home,away].some(t=>positions(selectedTeam(t)).some(p=>p.basis==='template'));
-  return `<div class="formation-pitch" role="group" aria-label="Составы: хозяева сверху, гости снизу"><div class="formation-circle" aria-hidden="true"></div><div class="formation-box top" aria-hidden="true"></div><div class="formation-box bottom" aria-hidden="true"></div>${half(home,'home')}${half(away,'away')}</div><div class="match-card-v2-note">Хозяева сверху · гости снизу.${template?' Шаблонные позиции — условная расстановка.':''}</div>`;
+  const graded=Object.keys(gradeMap(gradeContext,'home')).length+Object.keys(gradeMap(gradeContext,'away')).length>0;
+  return `<div class="formation-pitch" role="group" aria-label="Составы: хозяева сверху, гости снизу"><div class="formation-circle" aria-hidden="true"></div><div class="formation-box top" aria-hidden="true"></div><div class="formation-box bottom" aria-hidden="true"></div>${half(home,'home')}${half(away,'away')}</div><div class="match-card-v2-note">Хозяева сверху · гости снизу.${template?' Шаблонные позиции — условная расстановка.':''}${graded?' PBK Grade под фамилией — research Form/last-match, не live-рейтинг текущего матча.':''}</div>`;
 }

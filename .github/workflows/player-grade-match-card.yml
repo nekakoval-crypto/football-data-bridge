@@ -1,0 +1,66 @@
+name: Player Grade Match Card
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/player_grade_context.py'
+      - 'scripts/match_card_v2.py'
+      - 'scripts/tests/test_player_grade_context.py'
+      - 'scripts/tests/test_match_card_v2_lineup.py'
+      - 'app/formations.js'
+      - 'app/manual-lineup.js'
+      - 'app/match-card.js'
+      - 'app/sw.js'
+      - 'app/tests/manual-lineup.test.mjs'
+      - '.github/workflows/player-grade-match-card.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compile Python
+        run: python -m py_compile scripts/player_grade.py scripts/player_grade_context.py scripts/manual_lineup_scenario.py scripts/match_card_v2.py
+      - name: Player Grade read model and scenario tests
+        run: |
+          python -m unittest scripts.tests.test_player_grade_manual_scenario -v
+          python -m unittest scripts.tests.test_player_grade_context -v
+          python -m unittest scripts.tests.test_match_card_v2_lineup -v
+      - name: Existing lineup and Match Card regressions
+        run: |
+          python -m unittest scripts.tests.test_lineup_context -v
+          python -m unittest scripts.tests.test_lineup_surprise -v
+          python -m unittest discover -s scripts/tests -p 'test_formation_research.py' -v
+          python -m unittest scripts.tests.test_match_card_v2_e2e -v
+      - name: Frontend formation and manual scenario tests
+        run: |
+          node --test app/tests/formations.test.mjs app/tests/manual-lineup.test.mjs app/tests/match-card-lineup.test.mjs app/tests/match-card-v2.test.mjs
+      - name: Provider-free safety scan
+        shell: bash
+        run: |
+          if grep -R -nE 'requests\.|urllib\.|api-sports\.io|v3\.football\.api-sports' scripts/player_grade_context.py scripts/manual_lineup_scenario.py app/manual-lineup.js; then
+            echo 'Provider/network calls are forbidden in Player Grade read-model/configurator.' >&2
+            exit 1
+          fi
+      - name: Feature hygiene
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated ops files are forbidden in feature diff.' >&2
+            exit 1
+          fi

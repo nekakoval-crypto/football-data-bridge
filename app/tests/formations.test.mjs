@@ -37,10 +37,11 @@ test('official XI overrides expected data including formation and coach',()=>{
   assert.equal(selectedTeam(team).formation,'3-5-2');
   assert.match(renderPitch(team,{}),/<b>99<\/b>/);
 });
-test('single pitch is integrated, escaped, timestamped and handles missing opponent',()=>{
+test('lineup pitch and manual scenario preview are integrated, escaped, timestamped and handle missing opponent',()=>{
   const players=xi();players[0].lastname='<img onerror=1>';
   const html=renderMatchCard({lineup_context:{available:true,home:{formation:'4-3-3',starting_xi:players,updated_at_utc:'2026-09-14T12:00:00Z'},away:{}}});
-  assert.equal((html.match(/class="formation-pitch"/g)||[]).length,1);
+  assert.equal((html.match(/class="formation-pitch"/g)||[]).length,2);
+  assert.match(html,/MANUAL \/ INSIDER · WHAT-IF/);
   assert.match(html,/2026-09-14T12:00:00Z/);
   assert.match(html,/Нет данных по расстановке/);
   assert.doesNotMatch(html,/<img onerror/);

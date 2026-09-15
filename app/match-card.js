@@ -1,4 +1,5 @@
 import {renderPitch, selectedTeam, positions} from './formations.js';
+import {renderManualConfigurator,initManualLineupConfigurator} from './manual-lineup.js';
 import { renderMatchCard as renderCoreMatchCard } from './match-card-core.js';
 export * from './match-card-core.js';
 
@@ -34,7 +35,19 @@ function lineupContext(payload={}){
   const l=payload.lineup_context||{};
   if(!l.available)return section('Схема / тренер / состав',empty('Нет данных по составу. Expected/official XI пока недоступен.'));
   const trust=`<div class="match-card-v2-trust">${l.no_lookahead?badge('Только данные до kickoff','good'):badge('Cutoff не подтверждён','warn')}${badge('provider-free')}${l.rotation_projection?`<span>${esc(l.rotation_projection)}</span>`:''}</div>`;
-  return section('Схема / тренер / состав',`<div class="match-card-v2-two">${lineupTeam(l.home?.team_name||'Хозяева',l.home)}${lineupTeam(l.away?.team_name||'Гости',l.away)}</div>${renderPitch(l.home,l.away)}${trust}<div class="match-card-v2-note">Официальный XI имеет приоритет. Expected XI — детерминированный контекст по прошлым подтверждённым стартовым составам, а не новый прогноз ПБК.</div>`,'lineup-context');
+  return section('Схема / тренер / состав',`<div class="match-card-v2-two">${lineupTeam(l.home?.team_name||'Хозяева',l.home)}${lineupTeam(l.away?.team_name||'Гости',l.away)}</div>${renderPitch(l.home,l.away,payload.player_grade||{})}${trust}<div class="match-card-v2-note">Официальный XI имеет приоритет. Expected XI — детерминированный контекст по прошлым подтверждённым стартовым составам, а не новый прогноз ПБК.</div>`,'lineup-context');
+}
+
+function gradeTeam(label,team={}){
+  const q=team.xi_quality||{};const grades=list(team.grades).filter(x=>x?.current_grade!==null&&x?.current_grade!==undefined);
+  const top=[...grades].sort((a,b)=>Number(b.current_grade)-Number(a.current_grade)).slice(0,3);
+  return `<div class="match-card-v2-team-context"><span>${esc(label)}</span><strong>${q.xi_quality===null||q.xi_quality===undefined?'XI Quality пока нет':`XI Quality ${esc(Number(q.xi_quality).toFixed(2))}`}</strong><small>Покрытие: ${esc(q.covered_players??0)}/${esc(team.xi?.length??11)} · pool ${esc(team.pool_size??0)}</small>${top.length?`<div class="match-card-v2-reasons">${top.map(g=>badge(`${g.player_name||g.player_id}: ${Number(g.current_grade).toFixed(1)} · ${g.grade_basis||'grade'}`,g.confidence==='HIGH'?'good':'neutral')).join('')}</div>`:''}</div>`;
+}
+
+function playerGrade(payload={}){
+  const pg=payload.player_grade||{};
+  if(!pg.available)return section('PBK Player Grade / XI Quality',`<div class="match-card-v2-empty">История Player Grade пока не накоплена. Поле состава и ручной сценарий работают, но числовой XI Quality будет появляться только из pre-match-safe истории.</div><div class="match-card-v2-note">Research only · no-lookahead · отсутствие grade не превращается в ноль.</div>`,'research');
+  return section('PBK Player Grade / XI Quality',`<div class="match-card-v2-research-label">RESEARCH / CONTEXT</div><div class="match-card-v2-two">${gradeTeam('Хозяева',pg.home)}${gradeTeam('Гости',pg.away)}</div><div class="match-card-v2-note">Grade под игроками — Form 5 либо последняя доступная историческая оценка до kickoff. Не является live-рейтингом текущего матча и не меняет canonical probability/eligibility/stake.</div>`,'research');
 }
 
 function surpriseTeam(label,team={}){
@@ -51,9 +64,19 @@ function lineupSurprise(payload={}){
   return section('M5 · отклонение состава',`<div class="match-card-v2-two">${surpriseTeam('Хозяева',s.home)}${surpriseTeam('Гости',s.away)}</div><div class="match-card-v2-note">Только фактическое отклонение состава. Этот блок не создаёт сигнал, не меняет вероятность, eligibility или размер ставки.</div>`,'lineup-surprise');
 }
 
+function manualScenario(payload={}){
+  return section('Ручной конфигуратор состава',`<div class="match-card-v2-research-label">MANUAL / INSIDER · WHAT-IF</div>${renderManualConfigurator(payload)}`,'research manual-lineup-section');
+}
+
 export function renderMatchCard(payload={}){
   const base=renderCoreMatchCard(payload);
-  const addition=`${lineupContext(payload)}${lineupSurprise(payload)}`;
+  const addition=`${lineupContext(payload)}${playerGrade(payload)}${lineupSurprise(payload)}${manualScenario(payload)}`;
   const end=base.lastIndexOf('</div>');
-  return end>=0?`${base.slice(0,end)}${addition}${base.slice(end)}`:`${base}${addition}`;
+  const html=end>=0?`${base.slice(0,end)}${addition}${base.slice(end)}`:`${base}${addition}`;
+  if(typeof document!=='undefined'&&typeof queueMicrotask==='function')queueMicrotask(()=>initManualLineupConfigurator(payload,document));
+  return html;
+}
+
+export function initMatchCardExtensions(payload={},container=document){
+  initManualLineupConfigurator(payload,container);
 }
