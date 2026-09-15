@@ -44,10 +44,10 @@
           "status": "PASS",
           "message": "real LIVE provider batch observed",
           "evidence": {
-            "observed_at_utc": "2026-09-15T18:02:10Z",
-            "candidate_fixtures": 5,
+            "observed_at_utc": "2026-09-15T19:01:40Z",
+            "candidate_fixtures": 8,
             "provider_calls": 1,
-            "updated_fixtures": 5,
+            "updated_fixtures": 8,
             "budget_exhausted": false,
             "status": "OK"
           }
@@ -57,8 +57,8 @@
           "status": "PASS",
           "message": "LIVE overlay carries score/status/freshness/red-card fields",
           "evidence": {
-            "rows": 5,
-            "observed_rows": 3,
+            "rows": 8,
+            "observed_rows": 5,
             "missing_fields": []
           }
         },
@@ -67,10 +67,10 @@
           "status": "PASS",
           "message": "real LIVE observation propagated through Stage72 and Stage73",
           "evidence": {
-            "live_observed_at_utc": "2026-09-15T18:02:10Z",
-            "stage72_run_at_utc": "2026-09-15T18:35:36Z",
+            "live_observed_at_utc": "2026-09-15T19:01:40Z",
+            "stage72_run_at_utc": "2026-09-15T19:33:03Z",
             "stage72_status": "OK",
-            "stage73_run_at_utc": "2026-09-15T18:35:38Z",
+            "stage73_run_at_utc": "2026-09-15T19:33:04Z",
             "stage73_status": "OK",
             "stage73_passed": 16,
             "stage73_total": 16
@@ -131,7 +131,7 @@
         "evidence": {
           "health_status": "WARN",
           "critical_issues": 0,
-          "warnings": 2
+          "warnings": 1
         }
       },
       {
@@ -159,6 +159,6 @@
   "next_actions": [
     "Production acceptance is complete; PBK v1 may proceed to final closure bookkeeping."
   ],
-  "evaluated_at_utc": "2026-09-15T18:35:38Z",
-  "state_fingerprint": "270aff4586e1a95a7bdcabe3eb4ce47751810f74d69abc94008afc54062e38ae"
+  "evaluated_at_utc": "2026-09-15T19:33:04Z",
+  "state_fingerprint": "c14f6dc0bcc87da2f592640c89f9acf0c8267425cc3835c6ddc0ef693a1398a0"
 }
