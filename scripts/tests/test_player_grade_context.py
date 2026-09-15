@@ -19,8 +19,14 @@ class PlayerGradeContextTests(unittest.TestCase):
     def setUp(self):
         self.conn = sqlite3.connect(':memory:')
         self.addCleanup(self.conn.close)
-        self.conn.execute('CREATE TABLE current_round_matches (fixture_id TEXT, kickoff_utc TEXT)')
-        self.conn.execute("INSERT INTO current_round_matches VALUES ('999','2026-09-20T18:00:00Z')")
+        self.conn.execute('''CREATE TABLE current_round_matches (
+            fixture_id TEXT, kickoff_utc TEXT, home_team TEXT, away_team TEXT,
+            home_team_logo_url TEXT, away_team_logo_url TEXT
+        )''')
+        self.conn.execute("""INSERT INTO current_round_matches VALUES (
+            '999','2026-09-20T18:00:00Z','Home','Away',
+            'https://media.api-sports.io/football/teams/10.png',
+            'https://media.api-sports.io/football/teams/20.png')""")
         self.conn.execute('''CREATE TABLE player_grade_snapshots (
             fixture_id TEXT, player_id TEXT, player_name TEXT, team_id TEXT,
             kickoff_utc TEXT, observed_at_utc TEXT, overall_grade TEXT, source TEXT
@@ -29,10 +35,7 @@ class PlayerGradeContextTests(unittest.TestCase):
             self.conn.execute('INSERT INTO player_grade_snapshots VALUES (?,?,?,?,?,?,?,?)',
                               (f'h{i}', 'H2', 'H Player 2', '10', f'2026-09-0{i}T18:00:00Z',
                                f'2026-09-0{i}T20:00:00Z', str(value), 'TEST'))
-        # Match itself is after target kickoff and must never enter Form/grade.
         self.conn.execute("INSERT INTO player_grade_snapshots VALUES ('future','H2','H Player 2','10','2026-09-21T18:00:00Z','2026-09-21T20:00:00Z','10.0','TEST')")
-        # Historical kickoff captured only after target kickoff is also unavailable
-        # at the target decision time and must not leak into a replay/read-model.
         self.conn.execute("INSERT INTO player_grade_snapshots VALUES ('late_capture','H2','H Player 2','10','2026-09-10T18:00:00Z','2026-09-20T20:00:00Z','9.9','TEST')")
         self.conn.execute('''CREATE TABLE raw_rotation_snapshots (
             captured_at_utc TEXT, home_team_id TEXT, away_team_id TEXT,
@@ -41,10 +44,17 @@ class PlayerGradeContextTests(unittest.TestCase):
         old = [{'id': 'H12', 'name': 'Known Reserve', 'number': 22, 'pos': 'M'}]
         self.conn.execute('INSERT INTO raw_rotation_snapshots VALUES (?,?,?,?,?)',
                           ('2026-09-10T10:00:00Z', '10', '20', json.dumps(old), '[]'))
-        # Future player must not leak into pool.
         future = [{'id': 'H99', 'name': 'Future Leak', 'number': 99, 'pos': 'F'}]
         self.conn.execute('INSERT INTO raw_rotation_snapshots VALUES (?,?,?,?,?)',
                           ('2026-09-21T10:00:00Z', '10', '20', json.dumps(future), '[]'))
+        self.conn.execute('''CREATE TABLE raw_team_rosters (
+            team_id TEXT, team_name TEXT, captured_at_utc TEXT, player_id TEXT,
+            player_name TEXT, age TEXT, number TEXT, position TEXT, photo_url TEXT, source TEXT
+        )''')
+        self.conn.execute("INSERT INTO raw_team_rosters VALUES ('10','Home','2026-09-15T10:00:00Z','H13','Roster Defender','24','13','Defender','','TEST')")
+        self.conn.execute("INSERT INTO raw_team_rosters VALUES ('20','Away','2026-09-15T10:00:00Z','A13','Roster Attacker','22','19','Attacker','','TEST')")
+        # Captured after target kickoff: must not leak into this pre-match card.
+        self.conn.execute("INSERT INTO raw_team_rosters VALUES ('10','Home','2026-09-20T20:00:00Z','H98','Late Roster Leak','20','98','Attacker','','TEST')")
 
     def lineup(self):
         return {
@@ -64,12 +74,28 @@ class PlayerGradeContextTests(unittest.TestCase):
         self.assertTrue(payload['no_lookahead'])
         self.assertTrue(payload['available'])
 
-    def test_known_player_pool_uses_only_pre_kickoff_rotation_evidence(self):
+    def test_known_player_pool_combines_roster_and_pre_kickoff_rotation(self):
         payload = context.build_player_grade_context(self.conn, '999', self.lineup())
         ids = {row['id'] for row in payload['home']['player_pool']}
         self.assertIn('H12', ids)
+        self.assertIn('H13', ids)
         self.assertNotIn('H99', ids)
-        self.assertGreaterEqual(payload['home']['pool_size'], 12)
+        self.assertNotIn('H98', ids)
+        self.assertTrue(payload['home']['roster_available'])
+        self.assertGreaterEqual(payload['home']['pool_size'], 13)
+
+    def test_roster_pool_works_without_expected_or_official_xi_using_logo_team_ids(self):
+        no_lineup = {
+            'available': False,
+            'home': {'team_name': 'Home', 'status': 'UNKNOWN', 'starting_xi': []},
+            'away': {'team_name': 'Away', 'status': 'UNKNOWN', 'starting_xi': []},
+        }
+        payload = context.build_player_grade_context(self.conn, '999', no_lineup)
+        self.assertEqual(payload['home']['team_id'], '10')
+        self.assertEqual(payload['away']['team_id'], '20')
+        self.assertIn('H13', {row['id'] for row in payload['home']['player_pool']})
+        self.assertIn('A13', {row['id'] for row in payload['away']['player_pool']})
+        self.assertTrue(payload['coverage']['roster_available'])
 
     def test_missing_grade_history_is_honest_and_does_not_zero_players(self):
         self.conn.execute('DELETE FROM player_grade_snapshots')
@@ -78,6 +104,7 @@ class PlayerGradeContextTests(unittest.TestCase):
         self.assertEqual(payload['home']['xi_quality']['covered_players'], 0)
         self.assertIsNone(payload['home']['xi_quality']['xi_quality'])
         self.assertIn('PLAYER_GRADE_HISTORY_UNAVAILABLE', payload['coverage']['limitations'])
+        self.assertNotIn('TEAM_ROSTER_UNAVAILABLE', payload['coverage']['limitations'])
         self.assertFalse(payload['probability_mutation'])
         self.assertFalse(payload['eligibility_mutation'])
         self.assertFalse(payload['stake_changes'])
