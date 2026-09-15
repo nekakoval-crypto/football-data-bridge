@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-15T22:02:44Z",
+  "generated_at_utc": "2026-09-15T23:02:23Z",
   "status": "OK",
   "active_signals": 1,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-15T21:42:42Z",
+        "captured_at_utc": "2026-09-15T22:42:25Z",
         "best_odds": "1.58",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.53",
@@ -148,7 +148,7 @@
     "observed_closes": 10,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-15T21:26:57Z",
+    "latest_run_utc": "2026-09-15T22:52:57Z",
     "warnings": [],
     "crossings": [
       {
@@ -178,7 +178,7 @@
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-15T21:21:48Z",
+    "latest_run_utc": "2026-09-15T22:46:57Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -218,11 +218,8 @@
     "observed_closes": 51,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-15T20:16:28Z",
-    "warnings": [
-      "odds 1570387: API-Football /odds: {'rateLimit': 'Too many requests. You have exceeded the limit of requests per minute of your subscription.'}",
-      "odds 1570390: API-Football /odds: {'rateLimit': 'Too many requests. You have exceeded the limit of requests per minute of your subscription.'}"
-    ],
+    "latest_run_utc": "2026-09-15T22:15:39Z",
+    "warnings": [],
     "crossings": [
       {
         "fixture_id": "1570384",
@@ -251,7 +248,7 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-15T21:53:37Z",
+    "generated_at_utc": "2026-09-15T22:53:05Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
