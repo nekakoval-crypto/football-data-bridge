@@ -68,10 +68,15 @@ The readiness board never calls API-Football and never creates signals or mutate
 
 ## Durable player-stat backfill queue
 
-Stage77 is intentionally lower priority than LIVE/current-round/standings and may be deferred by the protected API reserve. To prevent deferred finished fixtures from disappearing when the rolling current-round inventory advances, Stage77 now persists `stage77_player_stats_backlog.csv`.
+Stage77 is intentionally lower priority than LIVE/current-round/standings and may be deferred by the protected API reserve. To prevent deferred finished fixtures from disappearing when the rolling current-round inventory advances, PBK persists `stage77_player_stats_backlog.csv`.
 
+The queue has two deliberately separated roles:
+- **Stage71 current-round is the producer.** Immediately after a successful current-round capture it runs a provider-free refresh that copies any already-observed terminal fixtures into the durable backlog and publishes that backlog with the same operational commit.
+- **Stage77 is the consumer/reconciler.** It later fetches `/fixtures/players` only when protected quota permits and reconciles queue status against the player-stat and Player Grade ledgers.
+
+Contract:
 - a fixture enters the queue only after PBK observes a terminal result state and kickoff has passed;
-- queueing happens **before** any `/fixtures/players` provider call is attempted;
+- queueing requires **0 additional provider calls** and no longer depends on the low-priority Stage77 cron starting on time;
 - a PENDING fixture remains eligible on future Stage77 runs even after it disappears from `current_round_fixtures.csv`;
 - the queue is marked CAPTURED only when both player-stat and Player Grade ledgers actually contain player rows for that fixture;
 - a successful HTTP response by itself is not enough to mark archive completion;
@@ -93,7 +98,8 @@ This is still an archive foundation, not the complete football warehouse. The fo
 
 ## Relationship to existing stages
 
-- Stage77 preserves per-fixture player-stat and Player Grade snapshots and now retains deferred terminal fixtures in a durable backfill queue.
+- Stage71 produces the durable finished-fixture backlog from already observed current-round state without extra provider traffic.
+- Stage77 consumes that backlog and preserves per-fixture player-stat and Player Grade snapshots under protected quota.
 - Stage78 provides provider-free Player Grade / XI Quality / Player Importance research.
 - Stage79 captures current team squads for the manual lineup picker.
 - Stage80 preserves historical roster observations, derives conservative observed membership intervals, adds the storage-neutral raw-response archive hook to the shared provider broker, and continuously measures archive completeness/gaps including the Stage77 durable queue.
