@@ -7,20 +7,26 @@ on:
   pull_request:
     paths:
       - 'scripts/stage80_archive_readiness.py'
+      - 'scripts/stage80_archive_manifest.py'
       - 'scripts/tests/test_stage80_archive_readiness.py'
       - 'scripts/tests/test_stage80_stage77_backlog_readiness.py'
       - 'scripts/tests/test_stage80_fixture_history_readiness.py'
+      - 'scripts/tests/test_stage80_archive_manifest.py'
       - 'docs/stage80_historical_archive.md'
       - 'docs/stage80_fixture_history.md'
+      - 'docs/stage80_archive_manifest.md'
       - '.github/workflows/stage80-archive-readiness.yml'
   push:
     paths:
       - 'scripts/stage80_archive_readiness.py'
+      - 'scripts/stage80_archive_manifest.py'
       - 'scripts/tests/test_stage80_archive_readiness.py'
       - 'scripts/tests/test_stage80_stage77_backlog_readiness.py'
       - 'scripts/tests/test_stage80_fixture_history_readiness.py'
+      - 'scripts/tests/test_stage80_archive_manifest.py'
       - 'docs/stage80_historical_archive.md'
       - 'docs/stage80_fixture_history.md'
+      - 'docs/stage80_archive_manifest.md'
       - '.github/workflows/stage80-archive-readiness.yml'
 
 permissions:
@@ -42,20 +48,25 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Compile Stage80 readiness
-        run: python -m py_compile scripts/stage80_archive_readiness.py
-      - name: Provider-free readiness tests
+      - name: Compile Stage80 archive governance
+        run: |
+          python -m py_compile scripts/stage80_archive_readiness.py
+          python -m py_compile scripts/stage80_archive_manifest.py
+      - name: Provider-free readiness and manifest tests
         run: |
           python -m unittest scripts.tests.test_stage80_archive_readiness -v
           python -m unittest scripts.tests.test_stage80_stage77_backlog_readiness -v
           python -m unittest scripts.tests.test_stage80_fixture_history_readiness -v
-      - name: Real-repo smoke report
-        run: python scripts/stage80_archive_readiness.py
+          python -m unittest scripts.tests.test_stage80_archive_manifest -v
+      - name: Real-repo manifest and readiness smoke
+        run: |
+          python scripts/stage80_archive_manifest.py
+          python scripts/stage80_archive_readiness.py
       - name: Assert provider isolation
         shell: bash
         run: |
-          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/stage80_archive_readiness.py; then
-            echo 'Stage80 readiness must remain provider-free.' >&2
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/stage80_archive_readiness.py scripts/stage80_archive_manifest.py; then
+            echo 'Stage80 archive governance must remain provider-free.' >&2
             exit 1
           fi
       - name: Feature diff hygiene
@@ -66,7 +77,7 @@ jobs:
           changed="$(git diff --name-only origin/main...HEAD)"
           printf '%s\n' "$changed"
           if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
-            echo 'Generated Stage80 readiness outputs are forbidden in the feature PR.' >&2
+            echo 'Generated Stage80 outputs are forbidden in the feature PR.' >&2
             exit 1
           fi
 
@@ -85,14 +96,17 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Build provider-free Stage80 readiness
-        run: python scripts/stage80_archive_readiness.py
-      - name: Publish readiness outputs safely
+      - name: Build provider-free Stage80 archive governance
+        run: |
+          python scripts/stage80_archive_manifest.py
+          python scripts/stage80_archive_readiness.py
+      - name: Publish Stage80 outputs safely
         shell: bash
         run: |
           git config user.name 'stage80-bot'
           git config user.email 'stage80-bot@users.noreply.github.com'
+          git add ops/stage80_archive_manifest.json ops/stage80_archive_manifest.csv
           git add ops/stage80_archive_readiness.json ops/stage80_archive_readiness.md
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Stage 80 archive readiness update'
+          git commit -m 'Stage 80 archive governance update'
           python scripts/publish_operational_commit.py
