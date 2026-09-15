@@ -18,11 +18,12 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V1"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V2_FIXTURE_CATALOG"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
     "fixture_history": "fixture_history_snapshots.csv",
+    "historical_fixtures": "historical_fixtures.csv",
     "player_stats": "player_stats_snapshots.csv",
     "player_grades": "player_grade_snapshots.csv",
     "stage77_backlog": "stage77_player_stats_backlog.csv",
@@ -160,6 +161,32 @@ def build_report(ops=OPS, archive_dir=None):
     }
     fixture_history_invalid = len(fixture_history) - len(fixture_history_valid)
 
+    historical_fixtures = data["historical_fixtures"] or []
+    historical_fixture_valid = [row for row in historical_fixtures if sval(row, "fixture_id")]
+    historical_fixture_ids = {sval(row, "fixture_id") for row in historical_fixture_valid}
+    historical_fixture_invalid = len(historical_fixtures) - len(historical_fixture_valid)
+    historical_fixture_duplicate_ids = len(historical_fixture_valid) - len(historical_fixture_ids)
+    historical_fixture_terminal_ids = {
+        sval(row, "fixture_id") for row in historical_fixture_valid
+        if is_true(row.get("terminal_observed"))
+    }
+    historical_fixture_rescheduled_ids = {
+        sval(row, "fixture_id") for row in historical_fixture_valid
+        if is_true(row.get("reschedule_observed"))
+    }
+    catalog_missing_history_ids = fixture_history_ids - historical_fixture_ids
+    catalog_orphan_ids = historical_fixture_ids - fixture_history_ids
+    catalog_missing_terminal_ids = fixture_history_finished_ids - historical_fixture_terminal_ids
+    catalog_orphan_terminal_ids = historical_fixture_terminal_ids - fixture_history_finished_ids
+    observation_count_total = 0
+    observation_count_invalid = 0
+    for row in historical_fixture_valid:
+        try:
+            observation_count_total += int(sval(row, "observation_count") or "0")
+        except ValueError:
+            observation_count_invalid += 1
+    expected_observation_count = len(fixture_history_valid)
+
     stats = data["player_stats"] or []
     grades = data["player_grades"] or []
     stat_fixture_ids = {sval(row, "fixture_id") for row in stats if sval(row, "fixture_id")}
@@ -240,6 +267,20 @@ def build_report(ops=OPS, archive_dir=None):
         gaps.append("FIXTURE_HISTORY_WAITING_FIRST_PRODUCTION_SEED")
     if fixture_history_invalid:
         gaps.append("FIXTURE_HISTORY_INVALID_IDENTITY_ROWS")
+    if data["historical_fixtures"] is None:
+        gaps.append("HISTORICAL_FIXTURE_CATALOG_WAITING_FIRST_BUILD")
+    if historical_fixture_invalid:
+        gaps.append("HISTORICAL_FIXTURE_CATALOG_INVALID_IDENTITY_ROWS")
+    if historical_fixture_duplicate_ids:
+        gaps.append("HISTORICAL_FIXTURE_CATALOG_DUPLICATE_FIXTURE_IDS")
+    if fixture_history_ids and data["historical_fixtures"] is not None and catalog_missing_history_ids:
+        gaps.append("HISTORICAL_FIXTURE_CATALOG_MISSING_HISTORY_FIXTURES")
+    if data["fixture_history"] is not None and historical_fixture_ids and catalog_orphan_ids:
+        gaps.append("HISTORICAL_FIXTURE_CATALOG_ORPHAN_FIXTURES")
+    if fixture_history_ids and historical_fixture_ids and (catalog_missing_terminal_ids or catalog_orphan_terminal_ids):
+        gaps.append("HISTORICAL_FIXTURE_CATALOG_TERMINAL_EVIDENCE_MISMATCH")
+    if fixture_history_ids and historical_fixture_ids and (observation_count_invalid or observation_count_total != expected_observation_count):
+        gaps.append("HISTORICAL_FIXTURE_CATALOG_OBSERVATION_COUNT_MISMATCH")
     if data["roster_history"] is None or roster_history_rows == 0:
         gaps.append("ROSTER_HISTORY_WAITING_FIRST_CAPTURE")
     if data["membership_intervals"] is None or len(intervals) == 0:
@@ -294,6 +335,25 @@ def build_report(ops=OPS, archive_dir=None):
             "invalid_identity_rows": fixture_history_invalid,
             "evidence_note": "Counts represent only Stage71 current-round observations persisted after the fixture-history archive was enabled; they are not a pre-PBK historical backfill claim.",
         },
+        "historical_fixture_catalog": {
+            "present": data["historical_fixtures"] is not None,
+            "rows": len(historical_fixtures),
+            "valid_rows": len(historical_fixture_valid),
+            "unique_fixtures": len(historical_fixture_ids),
+            "terminal_fixtures": len(historical_fixture_terminal_ids),
+            "rescheduled_fixtures": len(historical_fixture_rescheduled_ids),
+            "invalid_identity_rows": historical_fixture_invalid,
+            "duplicate_fixture_ids": historical_fixture_duplicate_ids,
+            "history_fixture_coverage_pct": pct(len(fixture_history_ids & historical_fixture_ids), len(fixture_history_ids)),
+            "missing_history_fixtures": len(catalog_missing_history_ids),
+            "orphan_catalog_fixtures": len(catalog_orphan_ids),
+            "missing_terminal_evidence": len(catalog_missing_terminal_ids),
+            "orphan_terminal_evidence": len(catalog_orphan_terminal_ids),
+            "observation_count_total": observation_count_total,
+            "expected_history_observations": expected_observation_count,
+            "invalid_observation_count_rows": observation_count_invalid,
+            "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth.",
+        },
         "stage77_backlog": {
             "present": data["stage77_backlog"] is not None,
             "total_fixtures": len(backlog_fixture_ids),
@@ -341,6 +401,7 @@ def build_report(ops=OPS, archive_dir=None):
 def render_markdown(report):
     f = report["fixtures"]
     fh = report["fixture_history"]
+    fc = report["historical_fixture_catalog"]
     b = report["stage77_backlog"]
     r = report["rosters"]
     p = report["players"]
@@ -348,6 +409,8 @@ def render_markdown(report):
     raw = report["raw_provider_archive"]
     coverage = f["finished_current_inventory_player_stats_coverage_pct"]
     coverage_text = "—" if coverage is None else f"{coverage:.2f}%"
+    catalog_coverage = fc["history_fixture_coverage_pct"]
+    catalog_coverage_text = "—" if catalog_coverage is None else f"{catalog_coverage:.2f}%"
     lines = [
         "# PBK Stage80 Archive Readiness",
         "",
@@ -357,6 +420,7 @@ def render_markdown(report):
         "## Покрытие",
         f"- Fixtures в текущем inventory: {f['current_inventory']} (finished: {f['finished_in_current_inventory']}).",
         f"- Fixture history: {fh['unique_fixtures']} unique fixtures / {fh['valid_observations']} observations / {fh['observation_runs']} observation runs (finished observed: {fh['finished_fixtures_observed']}).",
+        f"- Historical fixture catalog: {fc['unique_fixtures']} fixtures (terminal {fc['terminal_fixtures']}, rescheduled {fc['rescheduled_fixtures']}), history coverage {catalog_coverage_text}; missing {fc['missing_history_fixtures']}, orphan {fc['orphan_catalog_fixtures']}.",
         f"- Finished fixtures с player stats: {f['finished_current_inventory_with_player_stats']} / {f['finished_in_current_inventory']} ({coverage_text}).",
         f"- Stage77 durable backlog: pending {b['pending_fixtures']}; captured {b['captured_fixtures']}; total {b['total_fixtures']}.",
         f"- Player stat rows: {p['player_stat_rows']}; уникальных игроков: {p['unique_players_with_stats']}.",
@@ -391,6 +455,8 @@ def main():
         "provider_calls": 0,
         "gaps": len(report["gaps"]),
         "fixture_history_observations": report["fixture_history"]["valid_observations"],
+        "historical_fixture_catalog_rows": report["historical_fixture_catalog"]["unique_fixtures"],
+        "historical_fixture_catalog_coverage_pct": report["historical_fixture_catalog"]["history_fixture_coverage_pct"],
         "stage77_backlog_pending": report["stage77_backlog"]["pending_fixtures"],
         "roster_history_rows": report["rosters"]["history_rows"],
         "player_stats_fixtures": report["fixtures"]["player_stats_fixture_count_all_snapshots"],

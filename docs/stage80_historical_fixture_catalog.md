@@ -31,6 +31,21 @@ The catalog deliberately preserves terminal evidence even if a later malformed/n
 - A missing history source yields a header-only catalog plus `WAITING_SOURCE`; this is bootstrapping, not fake completeness.
 - The layer never creates signals and cannot mutate probability, EV, R1/R2/R3 eligibility, stake, settlement or Forward journal.
 
+## Readiness integrity checks
+
+Stage80 Archive Readiness independently cross-checks the rebuildable catalog against append-only fixture history. It reports:
+
+- catalog rows and unique fixture IDs;
+- terminal and observed-reschedule fixture counts;
+- percentage of historical fixture IDs represented in the catalog;
+- historical fixture IDs missing from the catalog;
+- catalog fixtures that do not exist in history;
+- duplicate catalog fixture identities;
+- terminal-evidence mismatches between history and catalog;
+- total catalog `observation_count` versus the number of persisted history observations.
+
+Named gaps are emitted for each integrity failure. This keeps a successful catalog build from being mistaken for complete evidence if rows are silently lost, duplicated or detached from the append-only source.
+
 ## Reschedule meaning
 
 `reschedule_observed=YES` means PBK historical evidence contains more than one distinct kickoff timestamp for that fixture. It does **not** infer why the kickoff changed.
