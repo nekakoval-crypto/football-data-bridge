@@ -1,0 +1,116 @@
+{
+  "version": 1,
+  "name": "PBK Brain Grade Readiness",
+  "purpose": "Runtime truth about whether player/lineup grades are merely implemented, actually populated, proxy-limited, validation-ready, or validated. This registry is research/governance only and never changes betting eligibility, probability, EV, stake, or the forward journal.",
+  "allowed_statuses": ["CODE_READY", "DATA_BLOCKED", "PROXY_LIMITED", "VALIDATION_PENDING", "VALIDATED", "NOT_IMPLEMENTED"],
+  "global_guardrails": [
+    "CODE_READY is not DATA_READY.",
+    "A metric with zero production evidence rows cannot be called operationally ready.",
+    "A calculated metric is not validated until predictive value is tested out of sample.",
+    "Missing player or lineup evidence remains unknown; never fabricate or backfill it.",
+    "No player/lineup research metric may mutate canonical R1/R2/R3 eligibility, stake, probability or the immutable forward journal before explicit validation and project-owner approval."
+  ],
+  "metrics": [
+    {
+      "id": "PLAYER_OVERALL_GRADE",
+      "status": "DATA_BLOCKED",
+      "code_ready": true,
+      "production_evidence_required": true,
+      "historical_10y_validation_available": false,
+      "reason": "PBK Overall Grade implementation exists, but Stage77 has not yet produced player_stats_snapshots/player_grade_snapshots in production.",
+      "components": {
+        "attack": "COMPUTED",
+        "progression": "PROXY_LIMITED",
+        "creation": "COMPUTED",
+        "possession": "COMPUTED",
+        "defending": "COMPUTED",
+        "pressing": "UNAVAILABLE_IN_AGGREGATE_SOURCE",
+        "discipline": "COMPUTED"
+      },
+      "limitations": ["AGGREGATE_SOURCE_NO_TRUE_ACTION_QUALITY", "PROGRESSION_PROXY_ONLY", "PRESSING_UNAVAILABLE"],
+      "next_gate": "Capture real prior-match player rows, then test stability/calibration by position and predictive contribution out of sample."
+    },
+    {
+      "id": "PLAYER_FORM_GRADE",
+      "status": "DATA_BLOCKED",
+      "code_ready": true,
+      "production_evidence_required": true,
+      "historical_10y_validation_available": false,
+      "reason": "Rolling Form-5/Form-10 logic exists with no-lookahead, but there are zero production grade rows to roll.",
+      "next_gate": "Populate grade history and validate Form-5/Form-10 versus season baseline and future team outcomes without leakage."
+    },
+    {
+      "id": "XI_QUALITY",
+      "status": "DATA_BLOCKED",
+      "code_ready": true,
+      "production_evidence_required": true,
+      "historical_10y_validation_available": false,
+      "reason": "Official/provider-current XI snapshots exist, but current XI-quality rows have zero covered players and blank quality values because player grades are absent.",
+      "next_gate": "Obtain player-grade coverage for confirmed/expected XI and validate XI edge/delta prospectively."
+    },
+    {
+      "id": "PLAYER_IMPORTANCE",
+      "status": "DATA_BLOCKED",
+      "code_ready": true,
+      "production_evidence_required": true,
+      "historical_10y_validation_available": false,
+      "reason": "Starts-vs-no-starts research logic with minimum samples and shrinkage exists, but production importance rows are zero.",
+      "limitations": ["DESCRIPTIVE_STARTS_VS_NO_STARTS", "NO_CAUSAL_CLAIM"],
+      "next_gate": "Accumulate finished fixtures with XI and player evidence, then evaluate stability and confounding before any decision use."
+    },
+    {
+      "id": "ROTATION_COUNT",
+      "status": "VALIDATION_PENDING",
+      "code_ready": true,
+      "production_evidence_required": true,
+      "historical_10y_validation_available": false,
+      "reason": "Rotation snapshots and current-vs-previous XI membership exist; raw turnover can be measured now, but quality-weighted rotation is blocked by player grades.",
+      "next_gate": "Validate simple turnover descriptively, then add grade-weighted rotation only after XI Quality has coverage."
+    },
+    {
+      "id": "ROTATION_QUALITY_IMPACT",
+      "status": "DATA_BLOCKED",
+      "code_ready": true,
+      "production_evidence_required": true,
+      "historical_10y_validation_available": false,
+      "reason": "Delta-vs-previous-XI code exists, but current XI Quality values are blank because player grades are absent.",
+      "next_gate": "Populate XI grades and test whether quality delta predicts outcomes/markets beyond price and team strength."
+    },
+    {
+      "id": "ABSENCE_IMPACT",
+      "status": "NOT_IMPLEMENTED",
+      "code_ready": false,
+      "production_evidence_required": true,
+      "historical_10y_validation_available": false,
+      "reason": "No validated metric yet combines confirmed absence, player importance/grade and replacement quality.",
+      "next_gate": "Define no-lookahead absence evidence and replacement-quality contract after stable team identity, roster, lineup and grade coverage exist."
+    },
+    {
+      "id": "RETURN_IMPACT",
+      "status": "NOT_IMPLEMENTED",
+      "code_ready": false,
+      "production_evidence_required": true,
+      "historical_10y_validation_available": false,
+      "reason": "Key-player return is an intended hypothesis but has no validated metric or sufficient longitudinal player evidence yet.",
+      "next_gate": "Define return event from observed absence/presence history without inferred injury dates, then validate prospectively."
+    },
+    {
+      "id": "TEAM_OVERALL_GRADE",
+      "status": "NOT_IMPLEMENTED",
+      "code_ready": false,
+      "production_evidence_required": true,
+      "historical_10y_validation_available": false,
+      "reason": "There is no validated composite Team Overall Grade. Team strength, XI quality, availability, form and context must remain separate until their incremental predictive value is measured.",
+      "next_gate": "Validate component features first; do not create an arbitrary weighted average."
+    },
+    {
+      "id": "MATCHUP_GRADE",
+      "status": "NOT_IMPLEMENTED",
+      "code_ready": false,
+      "production_evidence_required": true,
+      "historical_10y_validation_available": false,
+      "reason": "No validated style-vs-style matchup grade currently exists.",
+      "next_gate": "Build only after event/style data coverage can support explicit matchup features."
+    }
+  ]
+}
