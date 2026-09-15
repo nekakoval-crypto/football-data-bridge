@@ -8,12 +8,14 @@ on:
     paths:
       - 'scripts/stage80_archive_readiness.py'
       - 'scripts/tests/test_stage80_archive_readiness.py'
+      - 'scripts/tests/test_stage80_stage77_backlog_readiness.py'
       - 'docs/stage80_historical_archive.md'
       - '.github/workflows/stage80-archive-readiness.yml'
   push:
     paths:
       - 'scripts/stage80_archive_readiness.py'
       - 'scripts/tests/test_stage80_archive_readiness.py'
+      - 'scripts/tests/test_stage80_stage77_backlog_readiness.py'
       - 'docs/stage80_historical_archive.md'
       - '.github/workflows/stage80-archive-readiness.yml'
 
@@ -39,7 +41,9 @@ jobs:
       - name: Compile Stage80 readiness
         run: python -m py_compile scripts/stage80_archive_readiness.py
       - name: Provider-free readiness tests
-        run: python -m unittest scripts.tests.test_stage80_archive_readiness -v
+        run: |
+          python -m unittest scripts.tests.test_stage80_archive_readiness -v
+          python -m unittest scripts.tests.test_stage80_stage77_backlog_readiness -v
       - name: Real-repo smoke report
         run: python scripts/stage80_archive_readiness.py
       - name: Assert provider isolation
