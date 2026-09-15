@@ -7,15 +7,20 @@ on:
   pull_request:
     paths:
       - 'scripts/stage71*'
+      - 'scripts/stage77_player_stats_capture.py'
       - 'scripts/tests/test_stage71*'
+      - 'scripts/tests/test_stage77_player_stats_backlog.py'
       - '.github/workflows/stage71-league-market-challenger.yml'
   push:
     paths:
       - 'scripts/stage71_league_market_challenger.py'
       - 'scripts/stage71_challenger_capture.py'
       - 'scripts/stage71_current_round_capture.py'
+      - 'scripts/stage71_stage77_backlog_refresh.py'
       - 'scripts/stage71_observation_audit.py'
+      - 'scripts/stage77_player_stats_capture.py'
       - 'scripts/tests/test_stage71*'
+      - 'scripts/tests/test_stage77_player_stats_backlog.py'
       - 'scripts/stage71_regime_overlay.py'
       - 'scripts/stage71_progress_overlay.py'
       - 'research/stage71_challenger_policy_2026-09-11.md'
@@ -39,7 +44,16 @@ jobs:
         with:
           python-version: '3.12'
       - name: Validate observation reconciliation without API calls
-        run: python -m unittest discover -s scripts/tests -p 'test_stage71*.py' -v
+        run: |
+          python -m unittest discover -s scripts/tests -p 'test_stage71*.py' -v
+          python -m unittest scripts.tests.test_stage77_player_stats_backlog -v
+      - name: Validate Stage71 backlog producer provider isolation
+        shell: bash
+        run: |
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/stage71_stage77_backlog_refresh.py; then
+            echo 'Stage71 backlog refresh must remain provider-free.' >&2
+            exit 1
+          fi
       - name: Validate data layer and API compatibility
         run: |
           python scripts/stage72_build_data_layer.py
@@ -75,6 +89,9 @@ jobs:
       - name: Capture provider-defined current rounds
         run: python scripts/stage71_current_round_capture.py
 
+      - name: Refresh durable Stage77 finished-fixture backlog
+        run: python scripts/stage71_stage77_backlog_refresh.py
+
       - name: Resolve Stage 71 catalog and baseline board
         run: python scripts/stage71_league_market_challenger.py
 
@@ -98,6 +115,10 @@ jobs:
           cat ops/stage71_capture_last_run.json
           cat ops/stage71_observation_health.json
           cat ops/stage71_last_run.json
+          if [ -f ops/stage77_player_stats_backlog.csv ]; then
+            echo '--- Stage77 durable backlog ---'
+            cat ops/stage77_player_stats_backlog.csv
+          fi
           echo '--- challenger board ---'
           cat ops/stage71_challenger_board.md
 
@@ -106,6 +127,7 @@ jobs:
           git config user.name 'stage71-bot'
           git config user.email 'stage71-bot@users.noreply.github.com'
           git add ops/stage71_* ops/current_round_*
+          if [ -f ops/stage77_player_stats_backlog.csv ]; then git add ops/stage77_player_stats_backlog.csv; fi
           if git diff --cached --quiet; then
             echo 'No Stage 71 changes to commit.'
           else
@@ -133,5 +155,6 @@ jobs:
             ops/current_round_leagues.csv
             ops/current_round_fixtures.csv
             ops/current_round_last_run.json
+            ops/stage77_player_stats_backlog.csv
           if-no-files-found: error
           retention-days: 30
