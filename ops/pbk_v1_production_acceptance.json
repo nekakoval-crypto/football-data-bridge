@@ -23,7 +23,7 @@
           "status": "PASS",
           "message": "real provider-backed current-round refresh observed",
           "evidence": {
-            "run_at_utc": "2026-09-15T07:33:16Z",
+            "run_at_utc": "2026-09-15T15:30:03Z",
             "api_calls": 32,
             "refreshed_leagues": 16,
             "budget_exhausted": false,
@@ -44,7 +44,7 @@
           "status": "WAITING",
           "message": "waiting for a LIVE candidate batch with available provider budget",
           "evidence": {
-            "observed_at_utc": "2026-09-15T14:02:06Z",
+            "observed_at_utc": "2026-09-15T15:02:41Z",
             "candidate_fixtures": 0,
             "provider_calls": 0,
             "updated_fixtures": 0,
@@ -67,10 +67,10 @@
           "status": "WAITING",
           "message": "data layer is healthy; waiting for real LIVE evidence to propagate",
           "evidence": {
-            "live_observed_at_utc": "2026-09-15T14:02:06Z",
-            "stage72_run_at_utc": "2026-09-15T14:34:38Z",
+            "live_observed_at_utc": "2026-09-15T15:02:41Z",
+            "stage72_run_at_utc": "2026-09-15T15:33:47Z",
             "stage72_status": "OK",
-            "stage73_run_at_utc": "2026-09-15T14:34:40Z",
+            "stage73_run_at_utc": "2026-09-15T15:33:48Z",
             "stage73_status": "OK",
             "stage73_passed": 16,
             "stage73_total": 16
@@ -167,6 +167,6 @@
     "Wait for post-reset current-round and LIVE candidate provider observations.",
     "Wait for a <=75m pre-kickoff standings capture and downstream Stage72 motivation rebuild."
   ],
-  "evaluated_at_utc": "2026-09-15T14:34:40Z",
-  "state_fingerprint": "260bdf09c427027b19ff55bc076ceca51310f708eb4c940436bdd83396344552"
+  "evaluated_at_utc": "2026-09-15T15:33:48Z",
+  "state_fingerprint": "907f91dac89cfb0d41e78af16494b702f140a50535b2e8bb6c9422b808188580"
 }
