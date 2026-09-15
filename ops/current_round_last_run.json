@@ -1,24 +1,22 @@
 {
-  "run_at_utc": "2026-09-14T23:27:45Z",
-  "status": "ATTENTION",
+  "run_at_utc": "2026-09-15T07:33:16Z",
+  "status": "OK",
   "season": 2026,
   "leagues": 16,
   "available_leagues": 16,
   "fixture_rows": 129,
-  "warnings": [
-    "Premier League: Stage71 API budget exhausted; retry next run"
-  ],
-  "api_calls": 0,
-  "api_day_calls": 180,
+  "warnings": [],
+  "api_calls": 32,
+  "api_day_calls": 32,
   "api_budget_limit": 60,
   "api_daily_budget_limit": 180,
   "provider_polling": true,
-  "refresh_status": "BUDGET_EXHAUSTED",
-  "budget_exhausted": true,
-  "refreshed_leagues": 0,
-  "preserved_leagues": 16,
-  "failed_leagues": 16,
+  "refresh_status": "OK",
+  "budget_exhausted": false,
+  "refreshed_leagues": 16,
+  "preserved_leagues": 0,
+  "failed_leagues": 0,
   "served_available_leagues": 16,
   "served_fixture_rows": 129,
-  "last_good_preserved": true
+  "last_good_preserved": false
 }
