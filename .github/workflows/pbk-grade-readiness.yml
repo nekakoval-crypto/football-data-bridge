@@ -1,0 +1,31 @@
+name: PBK Grade Readiness
+
+on:
+  pull_request:
+    paths:
+      - "config/pbk_grade_readiness.json"
+      - "scripts/validate_grade_readiness.py"
+      - "scripts/tests/test_grade_readiness.py"
+      - "docs/pbk_brain_grade_readiness.md"
+      - ".github/workflows/pbk-grade-readiness.yml"
+  push:
+    branches: [main]
+    paths:
+      - "config/pbk_grade_readiness.json"
+      - "scripts/validate_grade_readiness.py"
+      - "scripts/tests/test_grade_readiness.py"
+      - "docs/pbk_brain_grade_readiness.md"
+      - ".github/workflows/pbk-grade-readiness.yml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate registry
+        run: python scripts/validate_grade_readiness.py
+      - name: Run guardrail tests
+        run: python -m unittest scripts.tests.test_grade_readiness -v
