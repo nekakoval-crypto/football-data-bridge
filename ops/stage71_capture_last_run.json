@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-15T15:30:16Z",
+  "run_at_utc": "2026-09-15T23:28:30Z",
   "status": "ATTENTION",
   "research_leagues": 15,
   "new_triggers": 0,
@@ -17,14 +17,14 @@
   ],
   "canonical_captured": 0,
   "challenger_deferred": true,
-  "api_day_calls_before_challenger": 122,
-  "reserved_live_calls": 16,
-  "reserved_current_round_calls": 32,
+  "api_day_calls_before_challenger": 170,
+  "reserved_live_calls": 1,
+  "reserved_current_round_calls": 0,
   "safety_margin_calls": 10,
   "challenger_available_calls": 0,
   "challenger_calls_used": 0,
-  "live_forecast_cycles": 16,
-  "live_peak_candidates": 9,
+  "live_forecast_cycles": 1,
+  "live_peak_candidates": 1,
   "live_peak_batches": 1,
   "budget_protection_status": "PROTECTED"
 }
