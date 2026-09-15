@@ -1,0 +1,334 @@
+#!/usr/bin/env python3
+"""Stage80 — provider-free archive readiness and coverage board.
+
+This is a telemetry/governance layer for the PBK Historical Data Archive. It
+reads already-persisted operational/archive evidence, makes no provider calls and
+never changes betting/model state. Missing sources are reported explicitly rather
+than converted to zeros that look like complete coverage.
+"""
+from __future__ import annotations
+
+import csv
+import json
+import os
+from collections import defaultdict
+from datetime import datetime, timezone
+from pathlib import Path
+
+OPS = Path(os.getenv("OPS_DIR", "ops"))
+OUT_JSON = OPS / "stage80_archive_readiness.json"
+OUT_MD = OPS / "stage80_archive_readiness.md"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V1"
+
+SOURCES = {
+    "fixtures": "current_round_fixtures.csv",
+    "player_stats": "player_stats_snapshots.csv",
+    "player_grades": "player_grade_snapshots.csv",
+    "current_rosters": "team_rosters.csv",
+    "roster_history": "team_roster_history.csv",
+    "membership_intervals": "team_membership_intervals.csv",
+    "match_context": "match_context_snapshots.csv",
+}
+FINAL_PROVIDER_CODES = {"FT", "AET", "PEN"}
+FINAL_NORMALIZED = {"finished", "ft", "aet", "pen"}
+TRUE_VALUES = {"1", "true", "yes", "y"}
+
+
+def iso_now():
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+def read_csv(path):
+    if not path.exists():
+        return None
+    with path.open(encoding="utf-8-sig", newline="") as stream:
+        return list(csv.DictReader(stream))
+
+
+def sval(row, key):
+    return str((row or {}).get(key) or "").strip()
+
+
+def uniq(rows, key):
+    if rows is None:
+        return None
+    return len({sval(row, key) for row in rows if sval(row, key)})
+
+
+def pct(num, den):
+    if den in (None, 0):
+        return None
+    return round(100.0 * num / den, 2)
+
+
+def is_finished_fixture(row):
+    return sval(row, "source_status").upper() in FINAL_PROVIDER_CODES or sval(row, "status").lower() in FINAL_NORMALIZED
+
+
+def is_true(value):
+    return str(value or "").strip().lower() in TRUE_VALUES
+
+
+def raw_archive_inventory(archive_dir=None):
+    configured = archive_dir is not None and str(archive_dir).strip() != ""
+    if not configured:
+        raw = os.getenv("API_FOOTBALL_ARCHIVE_DIR", "").strip()
+        archive_dir = Path(raw) if raw else None
+        configured = archive_dir is not None
+    else:
+        archive_dir = Path(archive_dir)
+
+    result = {
+        "configured": configured,
+        "status": "STORAGE_NOT_CONFIGURED" if not configured else "CONFIGURED_EMPTY_OR_MISSING",
+        "manifest_observations": None if not configured else 0,
+        "unique_payloads": None if not configured else 0,
+        "unique_paths": None if not configured else 0,
+        "manifest_invalid_lines": None if not configured else 0,
+        "manifest_payload_bytes": None if not configured else 0,
+    }
+    if not configured:
+        return result
+    manifest = archive_dir / "manifest.jsonl"
+    if not manifest.exists():
+        return result
+
+    observations = 0
+    hashes = set()
+    paths = set()
+    invalid = 0
+    payload_bytes = 0
+    with manifest.open(encoding="utf-8") as stream:
+        for line in stream:
+            if not line.strip():
+                continue
+            try:
+                row = json.loads(line)
+            except json.JSONDecodeError:
+                invalid += 1
+                continue
+            observations += 1
+            if row.get("payload_sha256"):
+                hashes.add(str(row["payload_sha256"]))
+            if row.get("path"):
+                paths.add(str(row["path"]))
+            try:
+                payload_bytes += int(row.get("payload_bytes") or 0)
+            except (TypeError, ValueError):
+                invalid += 1
+    result.update({
+        "status": "OK" if invalid == 0 else "ATTENTION",
+        "manifest_observations": observations,
+        "unique_payloads": len(hashes),
+        "unique_paths": len(paths),
+        "manifest_invalid_lines": invalid,
+        "manifest_payload_bytes": payload_bytes,
+    })
+    return result
+
+
+def build_report(ops=OPS, archive_dir=None):
+    data = {name: read_csv(Path(ops) / filename) for name, filename in SOURCES.items()}
+    source_presence = {
+        name: {
+            "file": filename,
+            "present": rows is not None,
+            "rows": None if rows is None else len(rows),
+        }
+        for (name, filename), rows in zip(SOURCES.items(), data.values())
+    }
+
+    fixtures = data["fixtures"] or []
+    finished = [row for row in fixtures if is_finished_fixture(row)]
+    finished_ids = {sval(row, "fixture_id") for row in finished if sval(row, "fixture_id")}
+    stats = data["player_stats"] or []
+    grades = data["player_grades"] or []
+    stat_fixture_ids = {sval(row, "fixture_id") for row in stats if sval(row, "fixture_id")}
+    grade_fixture_ids = {sval(row, "fixture_id") for row in grades if sval(row, "fixture_id")}
+
+    league_finished = defaultdict(set)
+    league_stats = defaultdict(set)
+    fixture_to_league = {}
+    for row in fixtures:
+        fixture_id = sval(row, "fixture_id")
+        league = sval(row, "league_name") or sval(row, "provider_league_id") or "UNKNOWN"
+        if fixture_id:
+            fixture_to_league[fixture_id] = league
+        if fixture_id and is_finished_fixture(row):
+            league_finished[league].add(fixture_id)
+    for fixture_id in stat_fixture_ids:
+        league = fixture_to_league.get(fixture_id)
+        if league:
+            league_stats[league].add(fixture_id)
+    per_league = []
+    for league in sorted(set(league_finished) | set(league_stats)):
+        den = len(league_finished[league])
+        num = len(league_stats[league] & league_finished[league]) if den else 0
+        per_league.append({
+            "league": league,
+            "finished_fixtures_in_current_inventory": den,
+            "finished_fixtures_with_player_stats": num,
+            "player_stats_coverage_pct": pct(num, den),
+        })
+
+    current_rosters = data["current_rosters"] or []
+    history = data["roster_history"] or []
+    intervals = data["membership_intervals"] or []
+    contexts = data["match_context"] or []
+
+    history_snapshots = {
+        (sval(row, "team_id"), sval(row, "captured_at_utc"))
+        for row in history
+        if sval(row, "team_id") and sval(row, "captured_at_utc")
+    }
+    context_fixture_ids = {sval(row, "api_fixture_id") for row in contexts if sval(row, "api_fixture_id")}
+    lineup_fixture_ids = {
+        sval(row, "api_fixture_id") for row in contexts
+        if sval(row, "api_fixture_id") and is_true(row.get("lineups_available"))
+    }
+    injury_fixture_ids = set()
+    for row in contexts:
+        fixture_id = sval(row, "api_fixture_id")
+        if not fixture_id:
+            continue
+        try:
+            injuries_count = int(float(sval(row, "injuries_count") or "0"))
+        except ValueError:
+            injuries_count = 0
+        if injuries_count > 0 or sval(row, "injuries_json") not in {"", "[]", "{}", "null"}:
+            injury_fixture_ids.add(fixture_id)
+
+    raw_archive = raw_archive_inventory(archive_dir)
+    roster_history_rows = len(history)
+    player_stats_fixture_count = len(stat_fixture_ids)
+
+    gaps = []
+    if data["roster_history"] is None or roster_history_rows == 0:
+        gaps.append("ROSTER_HISTORY_WAITING_FIRST_CAPTURE")
+    if data["membership_intervals"] is None or len(intervals) == 0:
+        gaps.append("MEMBERSHIP_INTERVALS_WAITING_HISTORY")
+    if data["player_stats"] is None or player_stats_fixture_count == 0:
+        gaps.append("PLAYER_STATS_NO_CAPTURED_FIXTURES")
+    if len(finished_ids) == 0:
+        gaps.append("CURRENT_INVENTORY_HAS_NO_FINISHED_FIXTURE_DENOMINATOR")
+    elif len(stat_fixture_ids & finished_ids) < len(finished_ids):
+        gaps.append("PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE")
+    if not raw_archive["configured"]:
+        gaps.append("RAW_ARCHIVE_DURABLE_STORAGE_NOT_CONFIGURED")
+    elif raw_archive["status"] != "OK":
+        gaps.append("RAW_ARCHIVE_STORAGE_NEEDS_ATTENTION")
+    gaps.append("MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY")
+    gaps.append("VERIFIED_TRANSFER_EVENTS_NOT_YET_INGESTED")
+    gaps.append("XG_XA_REQUIRE_VERIFIED_SOURCE")
+
+    if roster_history_rows == 0 and player_stats_fixture_count == 0:
+        status = "BOOTSTRAPPING"
+    else:
+        status = "COLLECTING"
+
+    report = {
+        "version": VERSION,
+        "generated_at_utc": iso_now(),
+        "status": status,
+        "scope": "historical archive telemetry only",
+        "source_presence": source_presence,
+        "fixtures": {
+            "current_inventory": len(fixtures),
+            "finished_in_current_inventory": len(finished_ids),
+            "player_stats_fixture_count_all_snapshots": len(stat_fixture_ids),
+            "player_grade_fixture_count_all_snapshots": len(grade_fixture_ids),
+            "finished_current_inventory_with_player_stats": len(finished_ids & stat_fixture_ids),
+            "finished_current_inventory_player_stats_coverage_pct": pct(len(finished_ids & stat_fixture_ids), len(finished_ids)),
+            "per_league": per_league,
+        },
+        "players": {
+            "player_stat_rows": len(stats),
+            "unique_players_with_stats": uniq(stats, "player_id") or 0,
+            "player_grade_rows": len(grades),
+            "unique_players_with_grades": uniq(grades, "player_id") or 0,
+        },
+        "rosters": {
+            "current_roster_rows": len(current_rosters),
+            "current_roster_teams": uniq(current_rosters, "team_id") or 0,
+            "history_rows": roster_history_rows,
+            "history_teams": uniq(history, "team_id") or 0,
+            "history_team_snapshots": len(history_snapshots),
+            "membership_intervals": len(intervals),
+            "open_latest_intervals": sum(1 for row in intervals if sval(row, "interval_status") == "OPEN_LATEST"),
+            "closed_by_observed_absence_intervals": sum(1 for row in intervals if sval(row, "interval_status") == "CLOSED_BY_OBSERVED_ABSENCE"),
+        },
+        "context": {
+            "snapshot_rows": len(contexts),
+            "unique_fixtures": len(context_fixture_ids),
+            "fixtures_with_official_lineup_snapshot": len(lineup_fixture_ids),
+            "fixtures_with_injury_evidence": len(injury_fixture_ids),
+            "coverage_note": "Stage55 context is canonical-signal scoped; these counts are not full 16-league archive coverage.",
+        },
+        "raw_provider_archive": raw_archive,
+        "gaps": gaps,
+        "creates_signal": False,
+        "probability_mutation": False,
+        "eligibility_mutation": False,
+        "stake_changes": False,
+        "forward_journal_mutation": False,
+        "provider_calls": 0,
+    }
+    return report
+
+
+def render_markdown(report):
+    f = report["fixtures"]
+    r = report["rosters"]
+    p = report["players"]
+    c = report["context"]
+    raw = report["raw_provider_archive"]
+    coverage = f["finished_current_inventory_player_stats_coverage_pct"]
+    coverage_text = "—" if coverage is None else f"{coverage:.2f}%"
+    lines = [
+        "# PBK Stage80 Archive Readiness",
+        "",
+        f"Обновлено UTC: {report['generated_at_utc']}",
+        f"Статус: **{report['status']}**",
+        "",
+        "## Покрытие",
+        f"- Fixtures в текущем inventory: {f['current_inventory']} (finished: {f['finished_in_current_inventory']}).",
+        f"- Finished fixtures с player stats: {f['finished_current_inventory_with_player_stats']} / {f['finished_in_current_inventory']} ({coverage_text}).",
+        f"- Player stat rows: {p['player_stat_rows']}; уникальных игроков: {p['unique_players_with_stats']}.",
+        f"- Player Grade rows: {p['player_grade_rows']}; уникальных игроков: {p['unique_players_with_grades']}.",
+        f"- Current roster: {r['current_roster_teams']} команд / {r['current_roster_rows']} игроковых строк.",
+        f"- Roster history: {r['history_teams']} команд / {r['history_team_snapshots']} team-snapshots / {r['history_rows']} строк.",
+        f"- Membership intervals: {r['membership_intervals']} (open {r['open_latest_intervals']}, closed-by-observed-absence {r['closed_by_observed_absence_intervals']}).",
+        f"- Match context: {c['unique_fixtures']} fixtures; official XI {c['fixtures_with_official_lineup_snapshot']}; injury evidence {c['fixtures_with_injury_evidence']}.",
+        "",
+        "## Raw provider archive",
+        f"- Storage configured: {raw['configured']}.",
+        f"- Status: {raw['status']}.",
+        f"- Observations: {raw['manifest_observations'] if raw['manifest_observations'] is not None else '—'}; unique payloads: {raw['unique_payloads'] if raw['unique_payloads'] is not None else '—'}.",
+        "",
+        "## Незакрытые пробелы",
+    ]
+    lines.extend(f"- {gap}" for gap in report["gaps"])
+    lines += [
+        "",
+        "Readiness — telemetry only. Этот отчёт не создаёт ставки, не меняет probability/EV, eligibility, stake или Forward journal.",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def main():
+    report = build_report()
+    OPS.mkdir(parents=True, exist_ok=True)
+    OUT_JSON.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    OUT_MD.write_text(render_markdown(report), encoding="utf-8")
+    print(json.dumps({
+        "status": report["status"],
+        "provider_calls": 0,
+        "gaps": len(report["gaps"]),
+        "roster_history_rows": report["rosters"]["history_rows"],
+        "player_stats_fixtures": report["fixtures"]["player_stats_fixture_count_all_snapshots"],
+        "raw_archive_status": report["raw_provider_archive"]["status"],
+    }, ensure_ascii=False))
+
+
+if __name__ == "__main__":
+    main()
