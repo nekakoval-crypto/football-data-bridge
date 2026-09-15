@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V1"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V2"
 
 DATASETS = [
     {
@@ -42,6 +42,17 @@ DATASETS = [
         "effective_time_fields": ["kickoff_utc"],
         "source": "Stage80 archive of already-persisted Stage71 observations",
         "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
+    },
+    {
+        "dataset_id": "historical_fixtures",
+        "path": "historical_fixtures.csv",
+        "role": "DERIVED_WAREHOUSE",
+        "lifecycle": "DETERMINISTIC_PROJECTION",
+        "identity_key": ["fixture_id"],
+        "observed_time_fields": ["first_seen_at_utc", "last_seen_at_utc"],
+        "effective_time_fields": ["latest_kickoff_utc"],
+        "source": "Stage80 normalized projection from fixture_history_snapshots",
+        "limitations": "Rebuildable convenience layer; fixture_history_snapshots remains historical evidence source-of-truth.",
     },
     {
         "dataset_id": "stage77_player_stats_backlog",
