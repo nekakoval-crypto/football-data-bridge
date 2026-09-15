@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 16.09.2026 00:00 (Europe/Berlin)
+Обновлено: 16.09.2026 01:00 (Europe/Berlin)
 Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -84,7 +84,7 @@ Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
 
 - **Atletico Madrid — Osasuna** | La Liga | 16.09 17:00 UTC
   - ОЗ · ОЗ Да: 2 | ОЗ Нет: 1.75 @ Bet365
-  - ОЗ · ОЗ Да: 1.95 | ОЗ Нет: 1.76 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.96 | ОЗ Нет: 1.75 @ Marathonbet
   - Ф(0) · Ф1(0): 1.12 | Ф2(0): 6.4 @ Bet365
   - Ф(0) · Ф1(0): 1.09 | Ф2(0): 6.45 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.08 | Х2: 3 | 12: 1.18 @ Bet365
@@ -1632,7 +1632,7 @@ Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 1
+- System Health: **WARN** | critical 0 | warnings 3
 - Логическая canonical экспозиция: **1.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 24 | data required 3
