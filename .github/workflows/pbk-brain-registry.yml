@@ -1,0 +1,37 @@
+name: PBK Brain Registry
+
+on:
+  pull_request:
+    paths:
+      - "config/pbk_hypothesis_registry.json"
+      - "config/pbk_competition_scope.json"
+      - "scripts/validate_hypothesis_registry.py"
+      - "scripts/tests/test_hypothesis_registry.py"
+      - "docs/pbk_brain_hypothesis_registry.md"
+      - ".github/workflows/pbk-brain-registry.yml"
+  push:
+    branches: [main]
+    paths:
+      - "config/pbk_hypothesis_registry.json"
+      - "config/pbk_competition_scope.json"
+      - "scripts/validate_hypothesis_registry.py"
+      - "scripts/tests/test_hypothesis_registry.py"
+      - "docs/pbk_brain_hypothesis_registry.md"
+      - ".github/workflows/pbk-brain-registry.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate machine registry
+        run: python scripts/validate_hypothesis_registry.py
+      - name: Run registry guardrail tests
+        run: python -m unittest scripts.tests.test_hypothesis_registry -v
