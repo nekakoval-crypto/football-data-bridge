@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-15T18:17:31Z",
+  "run_at_utc": "2026-09-15T20:16:28Z",
   "status": "OK",
   "scope": "Big-5 BTTS prospective market watch",
   "season": 2026,
@@ -10,17 +10,17 @@
   "track_horizon_hours": 72.0,
   "user_bookmaker": "Marathonbet",
   "upcoming_fixtures_seen": 100,
-  "active_fixture_ids": 102,
-  "odds_api_calls": 7,
-  "fixture_state_api_calls": 2,
+  "active_fixture_ids": 101,
+  "odds_api_calls": 9,
+  "fixture_state_api_calls": 1,
   "new_openers": 0,
-  "new_snapshots": 7,
-  "new_crossings": 0,
-  "new_closes": 2,
+  "new_snapshots": 9,
+  "new_crossings": 1,
+  "new_closes": 1,
   "total_openers": 105,
-  "total_snapshots": 1292,
-  "total_crossings": 10,
-  "total_closes": 50,
+  "total_snapshots": 1301,
+  "total_crossings": 11,
+  "total_closes": 51,
   "policy": {
     "canonical_forward": "UNCHANGED",
     "historical_edge": "NONE CLAIMED — historical BTTS first/close odds unavailable in canonical dataset",
@@ -28,5 +28,8 @@
     "display_market": "ОЗ — Да / ОЗ — Нет",
     "execution_evidence": "Marathonbet Yes/No captured at crossing and observed close when available"
   },
-  "warnings": []
+  "warnings": [
+    "odds 1570387: API-Football /odds: {'rateLimit': 'Too many requests. You have exceeded the limit of requests per minute of your subscription.'}",
+    "odds 1570390: API-Football /odds: {'rateLimit': 'Too many requests. You have exceeded the limit of requests per minute of your subscription.'}"
+  ]
 }
