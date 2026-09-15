@@ -1,12 +1,12 @@
 {
   "version": "PBK_V1_PRODUCTION_ACCEPTANCE_V1",
-  "status": "WAITING",
-  "ready_to_close": false,
+  "status": "PASS",
+  "ready_to_close": true,
   "provider_calls": 0,
   "network_calls": 0,
   "items": {
     "4_today_live": {
-      "status": "WAITING",
+      "status": "PASS",
       "checks": [
         {
           "code": "CURRENT_ROUND_SERVING",
@@ -41,36 +41,36 @@
         },
         {
           "code": "LIVE_PROVIDER_OBSERVATION",
-          "status": "WAITING",
-          "message": "waiting for a LIVE candidate batch with available provider budget",
+          "status": "PASS",
+          "message": "real LIVE provider batch observed",
           "evidence": {
-            "observed_at_utc": "2026-09-15T15:02:41Z",
-            "candidate_fixtures": 0,
-            "provider_calls": 0,
-            "updated_fixtures": 0,
+            "observed_at_utc": "2026-09-15T16:02:21Z",
+            "candidate_fixtures": 2,
+            "provider_calls": 1,
+            "updated_fixtures": 2,
             "budget_exhausted": false,
             "status": "OK"
           }
         },
         {
           "code": "LIVE_OVERLAY_CONTRACT",
-          "status": "WAITING",
-          "message": "LIVE overlay schema is ready; waiting for a real observed row",
+          "status": "PASS",
+          "message": "LIVE overlay carries score/status/freshness/red-card fields",
           "evidence": {
-            "rows": 0,
-            "observed_rows": 0,
+            "rows": 2,
+            "observed_rows": 1,
             "missing_fields": []
           }
         },
         {
           "code": "LIVE_STAGE72_STAGE73_PROPAGATION",
-          "status": "WAITING",
-          "message": "data layer is healthy; waiting for real LIVE evidence to propagate",
+          "status": "PASS",
+          "message": "real LIVE observation propagated through Stage72 and Stage73",
           "evidence": {
-            "live_observed_at_utc": "2026-09-15T15:02:41Z",
-            "stage72_run_at_utc": "2026-09-15T15:33:47Z",
+            "live_observed_at_utc": "2026-09-15T16:02:21Z",
+            "stage72_run_at_utc": "2026-09-15T16:35:19Z",
             "stage72_status": "OK",
-            "stage73_run_at_utc": "2026-09-15T15:33:48Z",
+            "stage73_run_at_utc": "2026-09-15T16:35:20Z",
             "stage73_status": "OK",
             "stage73_passed": 16,
             "stage73_total": 16
@@ -79,50 +79,43 @@
       ]
     },
     "5_standings_motivation": {
-      "status": "WAITING",
+      "status": "PASS",
       "checks": [
         {
           "code": "STANDINGS_PROVIDER_SNAPSHOT",
-          "status": "WAITING",
-          "message": "standings snapshot ledger not captured yet",
+          "status": "PASS",
+          "message": "real provider standings snapshot exists",
           "evidence": {
-            "valid_snapshots": 0,
-            "rows": 0,
-            "missing_fields": [
-              "observed_at_utc",
-              "provider_league_id",
-              "season",
-              "snapshot_id",
-              "source",
-              "team_id"
-            ]
+            "valid_snapshots": 1,
+            "rows": 20,
+            "missing_fields": []
           }
         },
         {
           "code": "STANDINGS_NO_LOOKAHEAD_EVIDENCE",
-          "status": "WAITING",
-          "message": "waiting for pre-kickoff standings evidence",
+          "status": "PASS",
+          "message": "provider standings evidence is tied to a pre-kickoff cutoff",
           "evidence": {
-            "prematch_snapshots": 0
+            "prematch_snapshots": 1
           }
         },
         {
           "code": "STAGE72_STANDINGS_INGESTION",
-          "status": "WAITING",
-          "message": "Stage72 is healthy but has not ingested standings yet",
+          "status": "PASS",
+          "message": "Stage72 ingested real standings without leakage",
           "evidence": {
             "stage72_status": "OK",
-            "standings_snapshots": 0,
+            "standings_snapshots": 20,
             "historical_leakage_violations": 0
           }
         },
         {
           "code": "MOTIVATION_READ_MODEL",
-          "status": "WAITING",
-          "message": "motivation projection exists; waiting for captured standings evidence",
+          "status": "PASS",
+          "message": "at least one real no-lookahead motivation projection is available",
           "evidence": {
             "rows": 129,
-            "available_no_lookahead_rows": 0
+            "available_no_lookahead_rows": 9
           }
         }
       ]
@@ -138,7 +131,7 @@
         "evidence": {
           "health_status": "WARN",
           "critical_issues": 0,
-          "warnings": 1
+          "warnings": 2
         }
       },
       {
@@ -164,9 +157,8 @@
     ]
   },
   "next_actions": [
-    "Wait for post-reset current-round and LIVE candidate provider observations.",
-    "Wait for a <=75m pre-kickoff standings capture and downstream Stage72 motivation rebuild."
+    "Production acceptance is complete; PBK v1 may proceed to final closure bookkeeping."
   ],
-  "evaluated_at_utc": "2026-09-15T15:33:48Z",
-  "state_fingerprint": "907f91dac89cfb0d41e78af16494b702f140a50535b2e8bb6c9422b808188580"
+  "evaluated_at_utc": "2026-09-15T16:35:20Z",
+  "state_fingerprint": "50c938c4cd2dc2c48c1d8890fc722e4a99f1a9a4372cca44dff5f3ecb1fe80af"
 }
