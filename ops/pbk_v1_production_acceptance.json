@@ -44,7 +44,7 @@
           "status": "WAITING",
           "message": "waiting for a LIVE candidate batch with available provider budget",
           "evidence": {
-            "observed_at_utc": "2026-09-15T03:02:44Z",
+            "observed_at_utc": "2026-09-15T04:03:11Z",
             "candidate_fixtures": 0,
             "provider_calls": 0,
             "updated_fixtures": 0,
@@ -67,10 +67,10 @@
           "status": "WAITING",
           "message": "data layer is healthy; waiting for real LIVE evidence to propagate",
           "evidence": {
-            "live_observed_at_utc": "2026-09-15T03:02:44Z",
-            "stage72_run_at_utc": "2026-09-15T03:36:11Z",
+            "live_observed_at_utc": "2026-09-15T04:03:11Z",
+            "stage72_run_at_utc": "2026-09-15T04:35:50Z",
             "stage72_status": "OK",
-            "stage73_run_at_utc": "2026-09-15T03:36:12Z",
+            "stage73_run_at_utc": "2026-09-15T04:35:51Z",
             "stage73_status": "OK",
             "stage73_passed": 16,
             "stage73_total": 16
@@ -136,9 +136,9 @@
         "status": "PASS",
         "message": "no CRITICAL system-health issues",
         "evidence": {
-          "health_status": "HEALTHY",
+          "health_status": "WARN",
           "critical_issues": 0,
-          "warnings": 0
+          "warnings": 1
         }
       },
       {
@@ -167,6 +167,6 @@
     "Wait for post-reset current-round and LIVE candidate provider observations.",
     "Wait for a <=75m pre-kickoff standings capture and downstream Stage72 motivation rebuild."
   ],
-  "evaluated_at_utc": "2026-09-15T03:36:12Z",
-  "state_fingerprint": "7f7d4cd21b9c9b831c60a0f6c043a40b9be2755ddd93592f3feb05623ba07776"
+  "evaluated_at_utc": "2026-09-15T04:35:52Z",
+  "state_fingerprint": "ac6dd3aef3e17c478cc8de939bbefd197fa9f78e06872f99198fdde742b60092"
 }
