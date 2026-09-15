@@ -1,0 +1,65 @@
+import csv
+import tempfile
+import unittest
+from pathlib import Path
+
+import scripts.stage80_archive_manifest as manifest
+
+
+class Stage80ArchiveManifestTests(unittest.TestCase):
+    def write_csv(self, root, name, fields, rows=None):
+        path = Path(root) / name
+        with path.open("w", encoding="utf-8", newline="") as stream:
+            writer = csv.DictWriter(stream, fieldnames=fields)
+            writer.writeheader()
+            for row in rows or []:
+                writer.writerow(row)
+        return path
+
+    def test_missing_declared_files_are_pending_not_false_attention(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            report = manifest.build_manifest(Path(tmp), raw_archive_dir="")
+        self.assertEqual(report["status"], "OK")
+        self.assertGreater(report["summary"]["pending_materializations_or_storage"], 0)
+        fixture = next(x for x in report["datasets"] if x["dataset_id"] == "fixture_history_snapshots")
+        self.assertEqual(fixture["contract_status"], "PENDING_MATERIALIZATION")
+
+    def test_materialized_good_fixture_history_passes_contract(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            self.write_csv(tmp, "fixture_history_snapshots.csv", [
+                "fixture_id", "observed_at_utc", "kickoff_utc", "status"
+            ], [{"fixture_id": "10", "observed_at_utc": "2026-09-15T10:00:00Z", "kickoff_utc": "2026-09-15T12:00:00Z", "status": "scheduled"}])
+            report = manifest.build_manifest(Path(tmp), raw_archive_dir="")
+        fixture = next(x for x in report["datasets"] if x["dataset_id"] == "fixture_history_snapshots")
+        self.assertEqual(fixture["contract_status"], "OK")
+        self.assertEqual(fixture["row_count"], 1)
+        self.assertEqual(fixture["identity_key_text"], "fixture_id+observed_at_utc")
+
+    def test_materialized_contract_drift_is_attention(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            self.write_csv(tmp, "team_roster_history.csv", ["team_id", "player_id", "player_name"])
+            report = manifest.build_manifest(Path(tmp), raw_archive_dir="")
+        roster = next(x for x in report["datasets"] if x["dataset_id"] == "team_roster_history")
+        self.assertEqual(report["status"], "ATTENTION")
+        self.assertEqual(roster["contract_status"], "ATTENTION")
+        self.assertIn("captured_at_utc", roster["missing_required_fields"])
+
+    def test_raw_archive_does_not_expose_real_storage_path(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            report = manifest.build_manifest(Path(tmp), raw_archive_dir="/secret/server/archive")
+        raw = next(x for x in report["datasets"] if x["dataset_id"] == "raw_api_football_payloads")
+        self.assertTrue(raw["present"])
+        self.assertEqual(raw["path"], "EXTERNAL_ENV:API_FOOTBALL_ARCHIVE_DIR")
+        self.assertNotIn("/secret/server/archive", str(report))
+
+    def test_write_outputs_round_trip(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            report = manifest.build_manifest(root, raw_archive_dir="")
+            manifest.write_outputs(report, root)
+            self.assertTrue((root / "stage80_archive_manifest.json").exists())
+            self.assertTrue((root / "stage80_archive_manifest.csv").exists())
+
+
+if __name__ == "__main__":
+    unittest.main()
