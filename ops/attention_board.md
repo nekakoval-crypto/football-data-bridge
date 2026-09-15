@@ -1,7 +1,7 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 15.09.2026 22:00 (Europe/Berlin)
-Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
+Обновлено: 15.09.2026 23:00 (Europe/Berlin)
+Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
 
@@ -11,6 +11,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 ## 🟠 Ближайшие 24 часа / активные WATCH
 - **Atletico Madrid — Osasuna** | Stage63 | ОЗ — Нет | 16.09 19:00 | prospective движение ОЗ ≥3 п.п. | 1.81 @ Marathonbet
 - **Brentford — Chelsea** | Stage61 | П2 | 18.09 21:00 | первый +3 п.п. steam фаворита | 2.27 @ Marathonbet
+- **Brentford — Chelsea** | Stage63 | ОЗ — Да | 18.09 21:00 | prospective движение ОЗ ≥3 п.п. | 1.41 @ Marathonbet
 
 ## 🔵 Активные R1/R2/R3
 - **R1 | Frosinone — Como** | П2 | 20.09 15:00 | 1.65 @ Marathonbet | гости после еврокубка/кубка
@@ -18,6 +19,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 ## 🟡 Research WATCH crossings
 - **Stage63 | Atletico Madrid — Osasuna** | ОЗ — Нет | 16.09 19:00 | 1.81 @ Marathonbet
 - **Stage61 | Brentford — Chelsea** | П2 | 18.09 21:00 | 2.27 @ Marathonbet
+- **Stage63 | Brentford — Chelsea** | ОЗ — Да | 18.09 21:00 | 1.41 @ Marathonbet
 
 ## ⚪ Ближайшие матчи под наблюдением (без сигнала)
 - **Stage63 | Atletico Madrid — Osasuna** | La Liga | 16.09 19:00 | ОЗ — Да / ОЗ — Нет | Bet365 Да 1.8 / Нет 1.95
@@ -438,7 +440,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 
 - **Bayern München — Union Berlin** | Bundesliga | 18.09 18:30 UTC
   - ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 2 @ Bet365
-  - ОЗ · ОЗ Да: 1.72 | ОЗ Нет: 2 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.9 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.01 | Х2: 9 | 12: 1.04 @ Bet365
   - Европейская фора хозяев (+1) · П1: 1.04 | Х: 17 | П2: 34 @ Bet365
   - Европейская фора хозяев (-1) · П1: 1.22 | Х: 6.5 | П2: 9 @ Bet365
@@ -494,8 +496,8 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **Monaco — Lens** | Ligue 1 | 18.09 18:45 UTC
-  - ОЗ · ОЗ Да: 1.44 | ОЗ Нет: 2.62 @ Bet365
-  - ОЗ · ОЗ Да: 1.44 | ОЗ Нет: 2.58 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.5 | ОЗ Нет: 2.5 @ Bet365
+  - ОЗ · ОЗ Да: 1.47 | ОЗ Нет: 2.49 @ Marathonbet
   - 1X2 · П1: 2.25 | Х: 3.7 | П2: 2.88 @ Bet365
   - Тотал 2.5 — нет данных
   - ИТБ/ИТМ — нет данных
@@ -504,8 +506,8 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **Monza — Sassuolo** | Serie A | 18.09 18:45 UTC
-  - ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.05 @ Bet365
-  - ОЗ · ОЗ Да: 1.68 | ОЗ Нет: 2.06 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.67 | ОЗ Нет: 2.1 @ Bet365
+  - ОЗ · ОЗ Да: 1.63 | ОЗ Нет: 2.14 @ Marathonbet
   - 1X2 — нет данных
   - Тотал 2.5 — нет данных
   - ИТБ/ИТМ — нет данных
@@ -514,8 +516,8 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **Espanyol — Elche** | La Liga | 18.09 19:00 UTC
-  - ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 2 @ Bet365
-  - ОЗ · ОЗ Да: 1.83 | ОЗ Нет: 1.87 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
+  - ОЗ · ОЗ Да: 1.77 | ОЗ Нет: 1.94 @ Marathonbet
   - 1X2 — нет данных
   - Тотал 2.5 — нет данных
   - ИТБ/ИТМ — нет данных
@@ -524,8 +526,8 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - Ф(0) — нет данных
 
 - **Brentford — Chelsea** | Premier League | 18.09 19:00 UTC
-  - ОЗ · ОЗ Да: 1.53 | ОЗ Нет: 2.38 @ Bet365
-  - ОЗ · ОЗ Да: 1.51 | ОЗ Нет: 2.39 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.44 | ОЗ Нет: 2.62 @ Bet365
+  - ОЗ · ОЗ Да: 1.41 | ОЗ Нет: 2.69 @ Marathonbet
   - 1X2 · П1: 2.88 | Х: 3.7 | П2: 2.2 @ Bet365
   - 1X2 · П1: 2.92 | Х: 3.84 | П2: 2.27 @ Marathonbet
   - Тотал 2.5 — нет данных
