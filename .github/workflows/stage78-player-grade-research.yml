@@ -1,0 +1,68 @@
+name: Stage 78 Player Grade Research
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */4 * * *'
+  pull_request:
+    paths:
+      - 'scripts/stage78_player_grade_research.py'
+      - 'scripts/tests/test_stage78_player_grade_research.py'
+      - '.github/workflows/stage78-player-grade-research.yml'
+  push:
+    paths:
+      - 'scripts/stage78_player_grade_research.py'
+      - 'scripts/tests/test_stage78_player_grade_research.py'
+      - '.github/workflows/stage78-player-grade-research.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage78-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Stage78 provider-free tests
+        run: python -m unittest discover -s scripts/tests -p 'test_stage78_player_grade_research.py' -v
+      - name: Verify no provider dependency in Stage78
+        run: |
+          if grep -E 'api_get\(|/fixtures/players|API_FOOTBALL_KEY' scripts/stage78_player_grade_research.py; then
+            echo 'Stage78 must remain provider-free'
+            exit 1
+          fi
+      - name: Compile research modules
+        run: python -m py_compile scripts/stage78_player_grade_research.py
+
+  research:
+    needs: validate
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPS_DIR: ops
+      STAGE78_IMPORTANCE_MIN_WITH: '5'
+      STAGE78_IMPORTANCE_MIN_WITHOUT: '5'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/stage78_player_grade_research.py
+      - name: Publish Stage78 operational research outputs
+        run: |
+          git config user.name 'stage78-bot'
+          git config user.email 'stage78-bot@users.noreply.github.com'
+          git add ops/player_grade_coverage.json ops/xi_quality_history.csv ops/player_importance_research.csv ops/stage78_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 78 player grade research update'
+          python scripts/publish_operational_commit.py
