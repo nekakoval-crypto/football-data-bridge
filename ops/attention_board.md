@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 15.09.2026 10:01 (Europe/Berlin)
+Обновлено: 15.09.2026 11:02 (Europe/Berlin)
 Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -330,7 +330,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 
 - **Elche — Real Madrid** | La Liga | 15.09 19:30 UTC
   - ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.05 @ Bet365
-  - ОЗ · ОЗ Да: 1.68 | ОЗ Нет: 2.06 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.69 | ОЗ Нет: 2.04 @ Marathonbet
   - Ф(0) · Ф1(0): 7 | Ф2(0): 1.1 @ Bet365
   - Ф(0) · Ф1(0): 7.6 | Ф2(0): 1.05 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 4 | Х2: 1.05 | 12: 1.1 @ Bet365
@@ -385,7 +385,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 
 - **Atletico Madrid — Osasuna** | La Liga | 16.09 17:00 UTC
   - ОЗ · ОЗ Да: 1.95 | ОЗ Нет: 1.8 @ Bet365
-  - ОЗ · ОЗ Да: 1.9 | ОЗ Нет: 1.8 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.93 | ОЗ Нет: 1.78 @ Marathonbet
   - Ф(0) · Ф1(0): 1.13 | Ф2(0): 5.9 @ Bet365
   - Ф(0) · Ф1(0): 1.09 | Ф2(0): 6.1 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.1 | Х2: 2.75 | 12: 1.18 @ Bet365
@@ -451,7 +451,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 
 - **Barcelona — Racing Santander** | La Liga | 16.09 19:30 UTC
   - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
-  - ОЗ · ОЗ Да: 1.76 | ОЗ Нет: 1.95 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 1.96 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.01 | Х2: 10 | 12: 1.04 @ Bet365
   - Европейская фора хозяев (-1) · П1: 1.2 | Х: 7 | П2: 9 @ Bet365
   - Европейская фора хозяев (-1) · П1: 1.25 | Х: 6.1 | П2: 7.6 @ Marathonbet
