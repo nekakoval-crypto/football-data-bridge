@@ -19,6 +19,19 @@ Stage80 therefore preserves the already-paid Stage71 observations in `ops/fixtur
 - Stage72 automatically imports the CSV through its existing every-`ops/*.csv` policy as `raw_fixture_history_snapshots`;
 - this archive does not create signals or mutate probability, EV, R1/R2/R3 eligibility, stake, settlement or Forward journal.
 
+## Archive Readiness
+
+Stage80 Readiness treats fixture history as its own evidence layer and reports:
+
+- whether `fixture_history_snapshots.csv` has been materialized in production;
+- total valid fixture observations;
+- unique fixture IDs represented in history;
+- unique observation timestamps/runs;
+- number of fixtures ever observed in a terminal state;
+- invalid rows missing either `fixture_id` or `observed_at_utc`.
+
+Before the first production seed, readiness reports `FIXTURE_HISTORY_WAITING_FIRST_PRODUCTION_SEED` instead of presenting a misleading 0-row archive as complete. Invalid archive identities raise `FIXTURE_HISTORY_INVALID_IDENTITY_ROWS`.
+
 ## What this archive proves
 
 A row proves only what PBK's current-round collector observed at the row's `observed_at_utc` timestamp. It does not create data for times before PBK observed the fixture and it does not claim complete historical backfill.

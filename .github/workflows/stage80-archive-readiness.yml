@@ -9,14 +9,18 @@ on:
       - 'scripts/stage80_archive_readiness.py'
       - 'scripts/tests/test_stage80_archive_readiness.py'
       - 'scripts/tests/test_stage80_stage77_backlog_readiness.py'
+      - 'scripts/tests/test_stage80_fixture_history_readiness.py'
       - 'docs/stage80_historical_archive.md'
+      - 'docs/stage80_fixture_history.md'
       - '.github/workflows/stage80-archive-readiness.yml'
   push:
     paths:
       - 'scripts/stage80_archive_readiness.py'
       - 'scripts/tests/test_stage80_archive_readiness.py'
       - 'scripts/tests/test_stage80_stage77_backlog_readiness.py'
+      - 'scripts/tests/test_stage80_fixture_history_readiness.py'
       - 'docs/stage80_historical_archive.md'
+      - 'docs/stage80_fixture_history.md'
       - '.github/workflows/stage80-archive-readiness.yml'
 
 permissions:
@@ -44,6 +48,7 @@ jobs:
         run: |
           python -m unittest scripts.tests.test_stage80_archive_readiness -v
           python -m unittest scripts.tests.test_stage80_stage77_backlog_readiness -v
+          python -m unittest scripts.tests.test_stage80_fixture_history_readiness -v
       - name: Real-repo smoke report
         run: python scripts/stage80_archive_readiness.py
       - name: Assert provider isolation
