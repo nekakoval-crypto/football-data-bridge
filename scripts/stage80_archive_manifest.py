@@ -1,0 +1,252 @@
+#!/usr/bin/env python3
+"""Stage80 — provider-free archive manifest and provenance registry.
+
+The manifest is a governance contract for PBK historical/evidence datasets. It
+never calls a provider and never mutates betting/model state. It records what a
+dataset means, how rows are identified, which timestamps carry observation vs
+effective-time semantics, whether the dataset is append-only/current/derived,
+and whether a materialized CSV still satisfies its declared header contract.
+"""
+from __future__ import annotations
+
+import csv
+import json
+import os
+from datetime import datetime, timezone
+from pathlib import Path
+
+OPS = Path(os.getenv("OPS_DIR", "ops"))
+OUT_JSON = OPS / "stage80_archive_manifest.json"
+OUT_CSV = OPS / "stage80_archive_manifest.csv"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V1"
+
+DATASETS = [
+    {
+        "dataset_id": "current_round_fixtures",
+        "path": "current_round_fixtures.csv",
+        "role": "CURRENT_READ_MODEL",
+        "lifecycle": "ROLLING_REPLACE",
+        "identity_key": ["fixture_id"],
+        "observed_time_fields": ["observed_at_utc"],
+        "effective_time_fields": ["kickoff_utc"],
+        "source": "Stage71 current-round capture / API-Football broker",
+        "limitations": "Rolling inventory; not a historical archive by itself.",
+    },
+    {
+        "dataset_id": "fixture_history_snapshots",
+        "path": "fixture_history_snapshots.csv",
+        "role": "HISTORICAL_EVIDENCE",
+        "lifecycle": "APPEND_ONLY_FIRST_OBSERVATION_WINS",
+        "identity_key": ["fixture_id", "observed_at_utc"],
+        "observed_time_fields": ["observed_at_utc"],
+        "effective_time_fields": ["kickoff_utc"],
+        "source": "Stage80 archive of already-persisted Stage71 observations",
+        "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
+    },
+    {
+        "dataset_id": "stage77_player_stats_backlog",
+        "path": "stage77_player_stats_backlog.csv",
+        "role": "DURABLE_WORK_QUEUE",
+        "lifecycle": "DURABLE_STATE_MACHINE",
+        "identity_key": ["fixture_id"],
+        "observed_time_fields": ["first_queued_at_utc", "last_seen_at_utc"],
+        "effective_time_fields": ["kickoff_utc"],
+        "source": "Stage71 terminal observation + Stage77 reconciliation",
+        "limitations": "Queue evidence is not player-stat evidence; CAPTURED requires both stats and grade ledgers.",
+    },
+    {
+        "dataset_id": "player_stats_snapshots",
+        "path": "player_stats_snapshots.csv",
+        "role": "HISTORICAL_EVIDENCE",
+        "lifecycle": "PERSISTED_FIXTURE_PLAYER_ROWS",
+        "identity_key": ["fixture_id", "team_id", "player_id"],
+        "observed_time_fields": ["observed_at_utc"],
+        "effective_time_fields": ["kickoff_utc"],
+        "source": "Stage77 /fixtures/players via shared broker",
+        "limitations": "Only fixtures successfully captured under protected provider budget.",
+    },
+    {
+        "dataset_id": "player_grade_snapshots",
+        "path": "player_grade_snapshots.csv",
+        "role": "DERIVED_RESEARCH",
+        "lifecycle": "DETERMINISTIC_DERIVED_ROWS",
+        "identity_key": ["fixture_id", "team_id", "player_id"],
+        "observed_time_fields": ["observed_at_utc"],
+        "effective_time_fields": ["kickoff_utc"],
+        "source": "Stage77/78 derived from captured player stats",
+        "limitations": "Research-derived grade; not raw provider fact and not canonical authority.",
+    },
+    {
+        "dataset_id": "team_rosters",
+        "path": "team_rosters.csv",
+        "role": "CURRENT_READ_MODEL",
+        "lifecycle": "LATEST_TEAM_SNAPSHOT",
+        "identity_key": ["team_id", "player_id"],
+        "observed_time_fields": ["captured_at_utc"],
+        "effective_time_fields": [],
+        "source": "Stage79 /players/squads via shared broker",
+        "limitations": "Latest roster only; use team_roster_history for historical membership evidence.",
+    },
+    {
+        "dataset_id": "team_roster_history",
+        "path": "team_roster_history.csv",
+        "role": "HISTORICAL_EVIDENCE",
+        "lifecycle": "APPEND_ONLY_FIRST_OBSERVATION_WINS",
+        "identity_key": ["team_id", "captured_at_utc", "player_id"],
+        "observed_time_fields": ["captured_at_utc"],
+        "effective_time_fields": [],
+        "source": "Stage80 archive of already-captured Stage79 roster snapshots",
+        "limitations": "Observed squad membership, not an exact transfer-date claim.",
+    },
+    {
+        "dataset_id": "team_membership_intervals",
+        "path": "team_membership_intervals.csv",
+        "role": "DERIVED_RESEARCH",
+        "lifecycle": "DETERMINISTIC_PROJECTION",
+        "identity_key": ["interval_id"],
+        "observed_time_fields": ["first_seen_at_utc", "last_seen_at_utc"],
+        "effective_time_fields": [],
+        "source": "Stage80 derived from team_roster_history",
+        "limitations": "Observed presence intervals are not verified transfer events.",
+    },
+    {
+        "dataset_id": "match_context_snapshots",
+        "path": "match_context_snapshots.csv",
+        "role": "HISTORICAL_EVIDENCE",
+        "lifecycle": "APPEND_ONLY_BY_FORWARD_AND_SNAPSHOT_TYPE",
+        "identity_key": ["forward_id", "snapshot_type"],
+        "observed_time_fields": ["captured_at_utc"],
+        "effective_time_fields": ["current_kickoff_utc"],
+        "source": "Stage55 timestamped context via shared broker",
+        "limitations": "Canonical-forward scope only; not complete 16-league context coverage.",
+    },
+    {
+        "dataset_id": "context_latest",
+        "path": "context_latest.csv",
+        "role": "CURRENT_READ_MODEL",
+        "lifecycle": "LATEST_PROJECTION",
+        "identity_key": ["forward_id"],
+        "observed_time_fields": ["captured_at_utc"],
+        "effective_time_fields": ["current_kickoff_utc"],
+        "source": "Stage55/56 latest projection from context snapshots",
+        "limitations": "Convenience read model; historical evidence remains match_context_snapshots.",
+    },
+]
+
+
+def iso_now():
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+def inspect_csv(path: Path, contract: dict) -> dict:
+    if not path.exists():
+        return {
+            "present": False,
+            "row_count": None,
+            "columns": [],
+            "missing_required_fields": [],
+            "contract_status": "PENDING_MATERIALIZATION",
+        }
+    with path.open(encoding="utf-8-sig", newline="") as stream:
+        reader = csv.DictReader(stream)
+        columns = list(reader.fieldnames or [])
+        row_count = sum(1 for _ in reader)
+    required = list(dict.fromkeys(
+        contract["identity_key"] + contract["observed_time_fields"] + contract["effective_time_fields"]
+    ))
+    missing = [field for field in required if field not in columns]
+    return {
+        "present": True,
+        "row_count": row_count,
+        "columns": columns,
+        "missing_required_fields": missing,
+        "contract_status": "ATTENTION" if missing else "OK",
+    }
+
+
+def build_manifest(ops: Path = OPS, raw_archive_dir: str | None = None) -> dict:
+    entries = []
+    attention = 0
+    pending = 0
+    for declared in DATASETS:
+        runtime = inspect_csv(Path(ops) / declared["path"], declared)
+        entry = {**declared, **runtime}
+        entry["identity_key_text"] = "+".join(declared["identity_key"])
+        entry["observed_time_fields_text"] = ",".join(declared["observed_time_fields"])
+        entry["effective_time_fields_text"] = ",".join(declared["effective_time_fields"])
+        entries.append(entry)
+        attention += runtime["contract_status"] == "ATTENTION"
+        pending += runtime["contract_status"] == "PENDING_MATERIALIZATION"
+
+    configured = bool((raw_archive_dir if raw_archive_dir is not None else os.getenv("API_FOOTBALL_ARCHIVE_DIR", "")).strip())
+    entries.append({
+        "dataset_id": "raw_api_football_payloads",
+        "path": "EXTERNAL_ENV:API_FOOTBALL_ARCHIVE_DIR",
+        "role": "RAW_PROVIDER_ARCHIVE",
+        "lifecycle": "CONTENT_ADDRESSED_APPEND_ONLY",
+        "identity_key": ["payload_sha256"],
+        "identity_key_text": "payload_sha256",
+        "observed_time_fields": ["observed_at_utc"],
+        "observed_time_fields_text": "observed_at_utc",
+        "effective_time_fields": [],
+        "effective_time_fields_text": "",
+        "source": "API-Football broker successful real responses",
+        "limitations": "Physical durable storage is separate from Git; cache hits do not create false provider observations.",
+        "present": configured,
+        "row_count": None,
+        "columns": [],
+        "missing_required_fields": [],
+        "contract_status": "CONFIGURED" if configured else "PENDING_DURABLE_STORAGE",
+    })
+    if not configured:
+        pending += 1
+
+    return {
+        "version": VERSION,
+        "generated_at_utc": iso_now(),
+        "status": "ATTENTION" if attention else "OK",
+        "datasets": entries,
+        "summary": {
+            "declared_datasets": len(entries),
+            "materialized_csv_datasets": sum(1 for e in entries if e["path"].endswith(".csv") and e["present"]),
+            "pending_materializations_or_storage": pending,
+            "contract_attention": attention,
+        },
+        "provider_calls": 0,
+        "creates_signal": False,
+        "probability_mutation": False,
+        "eligibility_mutation": False,
+        "stake_changes": False,
+        "forward_journal_mutation": False,
+    }
+
+
+def write_outputs(report: dict, ops: Path = OPS) -> None:
+    ops.mkdir(parents=True, exist_ok=True)
+    (ops / OUT_JSON.name).write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    fields = [
+        "dataset_id", "path", "role", "lifecycle", "identity_key_text",
+        "observed_time_fields_text", "effective_time_fields_text", "source",
+        "present", "row_count", "contract_status", "missing_required_fields", "limitations",
+    ]
+    temp = ops / (OUT_CSV.name + ".tmp")
+    with temp.open("w", encoding="utf-8-sig", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=fields, extrasaction="ignore")
+        writer.writeheader()
+        for entry in report["datasets"]:
+            row = dict(entry)
+            row["missing_required_fields"] = ",".join(entry.get("missing_required_fields") or [])
+            writer.writerow(row)
+    temp.replace(ops / OUT_CSV.name)
+
+
+def main():
+    report = build_manifest()
+    write_outputs(report)
+    print(json.dumps({"status": report["status"], **report["summary"], "provider_calls": 0}, ensure_ascii=False))
+    if report["status"] == "ATTENTION":
+        raise SystemExit(2)
+
+
+if __name__ == "__main__":
+    main()
