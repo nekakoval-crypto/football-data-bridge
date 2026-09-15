@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 15.09.2026 04:02 (Europe/Berlin)
+Обновлено: 15.09.2026 05:01 (Europe/Berlin)
 Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -323,8 +323,8 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
   - ОЗ — нет данных
 
 - **Elche — Real Madrid** | La Liga | 15.09 19:30 UTC
-  - ОЗ · ОЗ Да: 1.62 | ОЗ Нет: 2.2 @ Bet365
-  - ОЗ · ОЗ Да: 1.67 | ОЗ Нет: 2.08 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.05 @ Bet365
+  - ОЗ · ОЗ Да: 1.68 | ОЗ Нет: 2.06 @ Marathonbet
   - Ф(0) · Ф1(0): 7 | Ф2(0): 1.1 @ Bet365
   - Ф(0) · Ф1(0): 7.4 | Ф2(0): 1.05 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 4 | Х2: 1.05 | 12: 1.1 @ Bet365
@@ -444,7 +444,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 
 - **Barcelona — Racing Santander** | La Liga | 16.09 19:30 UTC
   - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
-  - ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 1.96 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.76 | ОЗ Нет: 1.95 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.01 | Х2: 10 | 12: 1.04 @ Bet365
   - Европейская фора хозяев (-1) · П1: 1.2 | Х: 7 | П2: 9 @ Bet365
   - Европейская фора хозяев (-1) · П1: 1.25 | Х: 6.1 | П2: 7.6 @ Marathonbet
@@ -544,7 +544,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 
 - **Malaga — Villarreal** | La Liga | 17.09 19:30 UTC
   - ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Bet365
-  - ОЗ · ОЗ Да: 1.56 | ОЗ Нет: 2.27 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.55 | ОЗ Нет: 2.29 @ Marathonbet
   - Ф(0) · Ф1(0): 2.75 | Ф2(0): 1.42 @ Bet365
   - Ф(0) · Ф1(0): 2.76 | Ф2(0): 1.46 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.83 | Х2: 1.28 | 12: 1.28 @ Bet365
