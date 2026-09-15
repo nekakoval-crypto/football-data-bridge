@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V2"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V3_PLAYER_CATALOG"
 
 DATASETS = [
     {
@@ -86,6 +86,17 @@ DATASETS = [
         "effective_time_fields": ["kickoff_utc"],
         "source": "Stage77/78 derived from captured player stats",
         "limitations": "Research-derived grade; not raw provider fact and not canonical authority.",
+    },
+    {
+        "dataset_id": "historical_players",
+        "path": "historical_players.csv",
+        "role": "DERIVED_WAREHOUSE",
+        "lifecycle": "DETERMINISTIC_PROJECTION",
+        "identity_key": ["player_id"],
+        "observed_time_fields": ["first_seen_at_utc", "last_seen_at_utc"],
+        "effective_time_fields": [],
+        "source": "Stage80 normalized projection from team_roster_history + player_stats_snapshots",
+        "limitations": "Observed player directory only; does not infer current team, exact transfer dates, xG or xA.",
     },
     {
         "dataset_id": "team_rosters",
