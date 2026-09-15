@@ -24,6 +24,7 @@ SOURCES = {
     "fixtures": "current_round_fixtures.csv",
     "player_stats": "player_stats_snapshots.csv",
     "player_grades": "player_grade_snapshots.csv",
+    "stage77_backlog": "stage77_player_stats_backlog.csv",
     "current_rosters": "team_rosters.csv",
     "roster_history": "team_roster_history.csv",
     "membership_intervals": "team_membership_intervals.csv",
@@ -145,6 +146,20 @@ def build_report(ops=OPS, archive_dir=None):
     grades = data["player_grades"] or []
     stat_fixture_ids = {sval(row, "fixture_id") for row in stats if sval(row, "fixture_id")}
     grade_fixture_ids = {sval(row, "fixture_id") for row in grades if sval(row, "fixture_id")}
+    completed_player_fixture_ids = stat_fixture_ids & grade_fixture_ids
+
+    backlog = data["stage77_backlog"] or []
+    backlog_fixture_ids = {sval(row, "fixture_id") for row in backlog if sval(row, "fixture_id")}
+    backlog_captured_ids = {
+        sval(row, "fixture_id") for row in backlog
+        if sval(row, "fixture_id") and sval(row, "backlog_status").upper() == "CAPTURED"
+    }
+    backlog_pending_ids = backlog_fixture_ids - backlog_captured_ids
+    backlog_captured_without_ledgers = backlog_captured_ids - completed_player_fixture_ids
+    pending_first_queued = sorted(
+        sval(row, "first_queued_at_utc") for row in backlog
+        if sval(row, "fixture_id") in backlog_pending_ids and sval(row, "first_queued_at_utc")
+    )
 
     league_finished = defaultdict(set)
     league_stats = defaultdict(set)
@@ -209,6 +224,12 @@ def build_report(ops=OPS, archive_dir=None):
         gaps.append("MEMBERSHIP_INTERVALS_WAITING_HISTORY")
     if data["player_stats"] is None or player_stats_fixture_count == 0:
         gaps.append("PLAYER_STATS_NO_CAPTURED_FIXTURES")
+    if data["stage77_backlog"] is None:
+        gaps.append("STAGE77_BACKLOG_WAITING_FIRST_OPERATIONAL_RUN")
+    elif backlog_pending_ids:
+        gaps.append("PLAYER_STATS_BACKLOG_PENDING")
+    if backlog_captured_without_ledgers:
+        gaps.append("STAGE77_BACKLOG_CAPTURED_LEDGER_MISMATCH")
     if len(finished_ids) == 0:
         gaps.append("CURRENT_INVENTORY_HAS_NO_FINISHED_FIXTURE_DENOMINATOR")
     elif len(stat_fixture_ids & finished_ids) < len(finished_ids):
@@ -240,6 +261,15 @@ def build_report(ops=OPS, archive_dir=None):
             "finished_current_inventory_with_player_stats": len(finished_ids & stat_fixture_ids),
             "finished_current_inventory_player_stats_coverage_pct": pct(len(finished_ids & stat_fixture_ids), len(finished_ids)),
             "per_league": per_league,
+        },
+        "stage77_backlog": {
+            "present": data["stage77_backlog"] is not None,
+            "total_fixtures": len(backlog_fixture_ids),
+            "pending_fixtures": len(backlog_pending_ids),
+            "captured_fixtures": len(backlog_captured_ids),
+            "captured_without_complete_ledgers": len(backlog_captured_without_ledgers),
+            "oldest_pending_first_queued_at_utc": pending_first_queued[0] if pending_first_queued else None,
+            "evidence_note": "A pending backlog fixture is an observed terminal fixture awaiting player stats/Player Grade; it is not a provider-availability or completeness claim.",
         },
         "players": {
             "player_stat_rows": len(stats),
@@ -278,6 +308,7 @@ def build_report(ops=OPS, archive_dir=None):
 
 def render_markdown(report):
     f = report["fixtures"]
+    b = report["stage77_backlog"]
     r = report["rosters"]
     p = report["players"]
     c = report["context"]
@@ -293,6 +324,7 @@ def render_markdown(report):
         "## Покрытие",
         f"- Fixtures в текущем inventory: {f['current_inventory']} (finished: {f['finished_in_current_inventory']}).",
         f"- Finished fixtures с player stats: {f['finished_current_inventory_with_player_stats']} / {f['finished_in_current_inventory']} ({coverage_text}).",
+        f"- Stage77 durable backlog: pending {b['pending_fixtures']}; captured {b['captured_fixtures']}; total {b['total_fixtures']}.",
         f"- Player stat rows: {p['player_stat_rows']}; уникальных игроков: {p['unique_players_with_stats']}.",
         f"- Player Grade rows: {p['player_grade_rows']}; уникальных игроков: {p['unique_players_with_grades']}.",
         f"- Current roster: {r['current_roster_teams']} команд / {r['current_roster_rows']} игроковых строк.",
@@ -324,6 +356,7 @@ def main():
         "status": report["status"],
         "provider_calls": 0,
         "gaps": len(report["gaps"]),
+        "stage77_backlog_pending": report["stage77_backlog"]["pending_fixtures"],
         "roster_history_rows": report["rosters"]["history_rows"],
         "player_stats_fixtures": report["fixtures"]["player_stats_fixture_count_all_snapshots"],
         "raw_archive_status": report["raw_provider_archive"]["status"],
