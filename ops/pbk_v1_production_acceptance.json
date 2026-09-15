@@ -15,19 +15,19 @@
           "evidence": {
             "served_available_leagues": 16,
             "served_fixture_rows": 129,
-            "last_good_preserved": true
+            "last_good_preserved": false
           }
         },
         {
           "code": "CURRENT_ROUND_PROVIDER_REFRESH",
-          "status": "WAITING",
-          "message": "waiting for a provider-backed current-round refresh after budget reset",
+          "status": "PASS",
+          "message": "real provider-backed current-round refresh observed",
           "evidence": {
-            "run_at_utc": "2026-09-14T23:27:45Z",
-            "api_calls": 0,
-            "refreshed_leagues": 0,
-            "budget_exhausted": true,
-            "refresh_status": "BUDGET_EXHAUSTED"
+            "run_at_utc": "2026-09-15T07:33:16Z",
+            "api_calls": 32,
+            "refreshed_leagues": 16,
+            "budget_exhausted": false,
+            "refresh_status": "OK"
           }
         },
         {
@@ -35,8 +35,8 @@
           "status": "PASS",
           "message": "budget pressure is non-destructive",
           "evidence": {
-            "budget_exhausted": true,
-            "last_good_preserved": true
+            "budget_exhausted": false,
+            "last_good_preserved": false
           }
         },
         {
@@ -44,7 +44,7 @@
           "status": "WAITING",
           "message": "waiting for a LIVE candidate batch with available provider budget",
           "evidence": {
-            "observed_at_utc": "2026-09-15T06:02:39Z",
+            "observed_at_utc": "2026-09-15T07:04:47Z",
             "candidate_fixtures": 0,
             "provider_calls": 0,
             "updated_fixtures": 0,
@@ -67,10 +67,10 @@
           "status": "WAITING",
           "message": "data layer is healthy; waiting for real LIVE evidence to propagate",
           "evidence": {
-            "live_observed_at_utc": "2026-09-15T06:02:39Z",
-            "stage72_run_at_utc": "2026-09-15T06:41:09Z",
+            "live_observed_at_utc": "2026-09-15T07:04:47Z",
+            "stage72_run_at_utc": "2026-09-15T07:36:28Z",
             "stage72_status": "OK",
-            "stage73_run_at_utc": "2026-09-15T06:41:11Z",
+            "stage73_run_at_utc": "2026-09-15T07:36:30Z",
             "stage73_status": "OK",
             "stage73_passed": 16,
             "stage73_total": 16
@@ -136,9 +136,9 @@
         "status": "PASS",
         "message": "no CRITICAL system-health issues",
         "evidence": {
-          "health_status": "WARN",
+          "health_status": "HEALTHY",
           "critical_issues": 0,
-          "warnings": 1
+          "warnings": 0
         }
       },
       {
@@ -167,6 +167,6 @@
     "Wait for post-reset current-round and LIVE candidate provider observations.",
     "Wait for a <=75m pre-kickoff standings capture and downstream Stage72 motivation rebuild."
   ],
-  "evaluated_at_utc": "2026-09-15T06:41:11Z",
-  "state_fingerprint": "06fe7b1d494d48bfbe08e1a1416d7d8f0c35ce4fe6f59b608e06f88f9edc7bf8"
+  "evaluated_at_utc": "2026-09-15T07:36:30Z",
+  "state_fingerprint": "394a05816382667dd8e08a24544e369924757ef03afe38e9559d8fea5fa9c908"
 }

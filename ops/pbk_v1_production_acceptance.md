@@ -9,7 +9,7 @@ Provider/network calls by this gate: **0**.
 Status: **🟡 WAITING**
 
 - ✅ `CURRENT_ROUND_SERVING` — current round remains populated
-- 🟡 `CURRENT_ROUND_PROVIDER_REFRESH` — waiting for a provider-backed current-round refresh after budget reset
+- ✅ `CURRENT_ROUND_PROVIDER_REFRESH` — real provider-backed current-round refresh observed
 - ✅ `CURRENT_ROUND_BUDGET_SAFETY` — budget pressure is non-destructive
 - 🟡 `LIVE_PROVIDER_OBSERVATION` — waiting for a LIVE candidate batch with available provider budget
 - 🟡 `LIVE_OVERLAY_CONTRACT` — LIVE overlay schema is ready; waiting for a real observed row
