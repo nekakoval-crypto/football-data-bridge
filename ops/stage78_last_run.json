@@ -1,0 +1,22 @@
+{
+  "coverage_status": "WAITING",
+  "creates_signal": false,
+  "eligibility_mutation": false,
+  "forward_journal_mutation": false,
+  "grade_rows": 0,
+  "importance_eligible_rows": 0,
+  "importance_rows": 0,
+  "limitations": [
+    "PLAYER_IMPORTANCE_IS_DESCRIPTIVE_STARTS_VS_NO_STARTS_WITH_SHRINKAGE",
+    "NO_CAUSAL_CLAIM"
+  ],
+  "no_lookahead": true,
+  "probability_mutation": false,
+  "provider_calls": 0,
+  "research_only": true,
+  "run_at_utc": "2026-09-15T12:32:24Z",
+  "stake_changes": false,
+  "status": "WAITING",
+  "version": "PBK_STAGE78_PLAYER_RESEARCH_V1",
+  "xi_quality_rows": 4
+}
