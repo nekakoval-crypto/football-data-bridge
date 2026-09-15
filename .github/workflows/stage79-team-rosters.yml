@@ -1,0 +1,102 @@
+name: Stage 79 Team Rosters
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Slow-changing reference data. Missing/stale teams only; each successful
+    # roster is cached for seven days and LIVE/current-round/standings quota wins.
+    - cron: '13 */2 * * *'
+  pull_request:
+    paths:
+      - 'scripts/stage79_team_roster_capture.py'
+      - 'scripts/player_grade_context.py'
+      - 'scripts/tests/test_stage79_team_roster_capture.py'
+      - 'scripts/tests/test_player_grade_context.py'
+      - '.github/workflows/stage79-team-rosters.yml'
+  push:
+    paths:
+      - 'scripts/stage79_team_roster_capture.py'
+      - 'scripts/player_grade_context.py'
+      - 'scripts/tests/test_stage79_team_roster_capture.py'
+      - 'scripts/tests/test_player_grade_context.py'
+      - '.github/workflows/stage79-team-rosters.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage71-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile Stage79
+        run: python -m py_compile scripts/stage79_team_roster_capture.py scripts/player_grade_context.py
+      - name: Provider-free roster tests
+        run: |
+          python -m unittest scripts.tests.test_stage79_team_roster_capture -v
+          python -m unittest scripts.tests.test_player_grade_context -v
+      - name: Match Card regressions
+        run: |
+          python -m unittest scripts.tests.test_match_card_v2_lineup -v
+          node --test app/tests/manual-lineup.test.mjs app/tests/match-card-lineup.test.mjs
+      - name: Provider isolation
+        shell: bash
+        run: |
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/stage79_team_roster_capture.py scripts/player_grade_context.py; then
+            echo 'Stage79/read model must reach API-Football only through the shared broker/backend.' >&2
+            exit 1
+          fi
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated ops files are forbidden in the Stage79 feature PR.' >&2
+            exit 1
+          fi
+
+  capture:
+    needs: validate
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      OPS_DIR: ops
+      STAGE79_MAX_API_CALLS: '8'
+      STAGE79_ROSTER_TTL_DAYS: '7'
+      STAGE71_MAX_DAILY_API_CALLS: '180'
+      STAGE79_STANDINGS_RESERVE_CALLS: '16'
+      STAGE79_SAFETY_RESERVE_CALLS: '8'
+      STAGE79_CURRENT_ROUND_CALLS_PER_RUN: '32'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Capture stale or missing current-team rosters
+        run: python scripts/stage79_team_roster_capture.py
+      - name: Publish Stage79 operational files safely
+        shell: bash
+        run: |
+          git config user.name 'stage79-bot'
+          git config user.email 'stage79-bot@users.noreply.github.com'
+          git add ops/stage79_last_run.json ops/stage71_observation_state.json
+          if [ -f ops/team_rosters.csv ]; then git add ops/team_rosters.csv; fi
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 79 team roster update'
+          python scripts/publish_operational_commit.py

@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 """Provider-free Player Grade read model for Match Card v2.
 
-The read model consumes optional historical ``player_grade_snapshots`` rows and
-already-captured lineup/rotation evidence. Stage72 imports every operational CSV
-as ``raw_*``, so the read model accepts either a future stable alias or the raw
-projection. It never calls a provider and never writes canonical state. For a
-target fixture all grade evidence is restricted to matches strictly before the
-target kickoff and, when capture provenance exists, to observations available no
-later than that kickoff.
+Consumes historical Player Grade plus already-captured lineup/rotation/roster
+evidence. Stage72 imports operational CSVs as ``raw_*`` tables. No provider
+calls occur here. All historical grade/roster evidence is restricted to data
+available no later than target kickoff.
 """
 from __future__ import annotations
 
 import json
+import re
 from collections import defaultdict
 
 from player_grade import rolling_form, xi_quality
+
+TEAM_ID_RE = re.compile(r"/teams/(\d+)(?:\.[A-Za-z0-9]+)?(?:\?|$)")
 
 
 def _table_exists(conn, name):
@@ -25,6 +25,10 @@ def _rows(conn, sql, args=()):
     cur = conn.execute(sql, args)
     names = [d[0] for d in cur.description] if cur.description else []
     return [dict(zip(names, row)) for row in cur.fetchall()]
+
+
+def _columns(conn, table):
+    return {row[1] for row in conn.execute(f'PRAGMA table_info("{table}")')}
 
 
 def _player_id(player):
@@ -46,6 +50,19 @@ def _player_payload(player):
     }
 
 
+def _position_short(value):
+    value = str(value or "").strip().upper()
+    if value.startswith("G"):
+        return "G"
+    if value.startswith("D"):
+        return "D"
+    if value.startswith("M"):
+        return "M"
+    if value.startswith("A") or value.startswith("F") or value in {"ST", "CF", "LW", "RW"}:
+        return "F"
+    return value[:1] if value else ""
+
+
 def _selected_xi(team):
     team = team or {}
     official = team.get("official") or {}
@@ -63,7 +80,7 @@ def _kickoff(conn, fixture_id):
     for table, fid in (("current_round_matches", "fixture_id"), ("screen_matches", "api_fixture_id"), ("canonical_signals", "api_fixture_id")):
         if not _table_exists(conn, table):
             continue
-        cols = {row[1] for row in conn.execute(f'PRAGMA table_info("{table}")')}
+        cols = _columns(conn, table)
         if fid not in cols or "kickoff_utc" not in cols:
             continue
         row = conn.execute(f'SELECT kickoff_utc FROM "{table}" WHERE "{fid}"=? AND kickoff_utc IS NOT NULL AND kickoff_utc<>\'\' LIMIT 1', (str(fixture_id),)).fetchone()
@@ -72,10 +89,30 @@ def _kickoff(conn, fixture_id):
     return None
 
 
+def _fixture_identity(conn, fixture_id):
+    if not _table_exists(conn, "current_round_matches"):
+        return {"home": {}, "away": {}}
+    cols = _columns(conn, "current_round_matches")
+    if "fixture_id" not in cols:
+        return {"home": {}, "away": {}}
+    rows = _rows(conn, 'SELECT * FROM current_round_matches WHERE CAST(fixture_id AS TEXT)=? LIMIT 1', (str(fixture_id),))
+    if not rows:
+        return {"home": {}, "away": {}}
+    row = rows[0]
+    out = {}
+    for side in ("home", "away"):
+        tid = str(row.get(f"{side}_team_id") or "").strip()
+        if not tid:
+            match = TEAM_ID_RE.search(str(row.get(f"{side}_team_logo_url") or ""))
+            tid = match.group(1) if match else ""
+        out[side] = {"team_id": tid or None, "team_name": row.get(f"{side}_team") or None}
+    return out
+
+
 def _grade_table(conn):
     for table in ("player_grade_snapshots", "raw_player_grade_snapshots"):
         if _table_exists(conn, table):
-            cols = {row[1] for row in conn.execute(f'PRAGMA table_info("{table}")')}
+            cols = _columns(conn, table)
             if {"player_id", "kickoff_utc", "overall_grade"}.issubset(cols):
                 return table
     return None
@@ -85,7 +122,7 @@ def _history_by_player(conn, cutoff):
     table = _grade_table(conn)
     if not table or not cutoff:
         return {}
-    cols = {row[1] for row in conn.execute(f'PRAGMA table_info("{table}")')}
+    cols = _columns(conn, table)
     if "observed_at_utc" in cols:
         rows = _rows(
             conn,
@@ -144,27 +181,63 @@ def _grade_for_player(player, history, cutoff):
     }
 
 
+def _roster_players(conn, team_id, cutoff):
+    table = "team_rosters" if _table_exists(conn, "team_rosters") else ("raw_team_rosters" if _table_exists(conn, "raw_team_rosters") else None)
+    if not team_id or not table:
+        return []
+    cols = _columns(conn, table)
+    if not {"team_id", "player_id"}.issubset(cols):
+        return []
+    args = [str(team_id)]
+    sql = f'SELECT * FROM "{table}" WHERE CAST(team_id AS TEXT)=?'
+    if cutoff and "captured_at_utc" in cols:
+        sql += " AND captured_at_utc <= ?"
+        args.append(str(cutoff))
+    rows = _rows(conn, sql, tuple(args))
+    if not rows:
+        return []
+    if "captured_at_utc" in cols:
+        latest = max(str(row.get("captured_at_utc") or "") for row in rows)
+        rows = [row for row in rows if str(row.get("captured_at_utc") or "") == latest]
+    players = []
+    for row in rows:
+        pid = str(row.get("player_id") or "").strip()
+        if not pid:
+            continue
+        players.append({
+            "id": pid,
+            "name": row.get("player_name") or None,
+            "lastname": row.get("last_name") or None,
+            "number": row.get("number") or None,
+            "pos": _position_short(row.get("position")),
+            "grid": None,
+        })
+    return players
+
+
 def _known_player_pool(conn, team_id, cutoff, current_xi):
     pool = {_player_id(p): _player_payload(p) for p in current_xi if _player_id(p)}
-    if not team_id or not _table_exists(conn, "raw_rotation_snapshots"):
-        return list(pool.values())
-    cols = {row[1] for row in conn.execute('PRAGMA table_info("raw_rotation_snapshots")')}
-    needed = {"captured_at_utc", "home_team_id", "away_team_id", "home_current_xi_json", "away_current_xi_json"}
-    if not needed.issubset(cols):
-        return list(pool.values())
-    rows = _rows(conn, "SELECT * FROM raw_rotation_snapshots WHERE captured_at_utc <= ? ORDER BY captured_at_utc ASC", (str(cutoff or "9999"),))
-    for row in rows:
-        for side in ("home", "away"):
-            if str(row.get(f"{side}_team_id") or "") != str(team_id):
-                continue
-            try:
-                xi = json.loads(row.get(f"{side}_current_xi_json") or "[]")
-            except (TypeError, ValueError, json.JSONDecodeError):
-                xi = []
-            for player in xi if isinstance(xi, list) else []:
-                pid = _player_id(player)
-                if pid:
-                    pool[pid] = {**pool.get(pid, {}), **_player_payload(player)}
+    for player in _roster_players(conn, team_id, cutoff):
+        pid = _player_id(player)
+        if pid:
+            pool[pid] = {**pool.get(pid, {}), **_player_payload(player)}
+    if team_id and _table_exists(conn, "raw_rotation_snapshots"):
+        cols = _columns(conn, "raw_rotation_snapshots")
+        needed = {"captured_at_utc", "home_team_id", "away_team_id", "home_current_xi_json", "away_current_xi_json"}
+        if needed.issubset(cols):
+            rows = _rows(conn, "SELECT * FROM raw_rotation_snapshots WHERE captured_at_utc <= ? ORDER BY captured_at_utc ASC", (str(cutoff or "9999"),))
+            for row in rows:
+                for side in ("home", "away"):
+                    if str(row.get(f"{side}_team_id") or "") != str(team_id):
+                        continue
+                    try:
+                        xi = json.loads(row.get(f"{side}_current_xi_json") or "[]")
+                    except (TypeError, ValueError, json.JSONDecodeError):
+                        xi = []
+                    for player in xi if isinstance(xi, list) else []:
+                        pid = _player_id(player)
+                        if pid:
+                            pool[pid] = {**pool.get(pid, {}), **_player_payload(player)}
     return sorted(pool.values(), key=lambda p: (str(p.get("pos") or ""), str(p.get("name") or ""), str(p.get("id") or "")))
 
 
@@ -194,15 +267,28 @@ def _team_context(conn, team, history, cutoff):
         "xi_quality": quality,
         "player_pool": pool,
         "pool_size": len(pool),
+        "roster_available": bool(_roster_players(conn, team_id, cutoff)),
     }
 
 
 def build_player_grade_context(conn, fixture_id, lineup_context):
     cutoff = _kickoff(conn, fixture_id)
     history = _history_by_player(conn, cutoff)
-    home = _team_context(conn, (lineup_context or {}).get("home") or {}, history, cutoff)
-    away = _team_context(conn, (lineup_context or {}).get("away") or {}, history, cutoff)
+    identity = _fixture_identity(conn, fixture_id)
+    home_team = dict((lineup_context or {}).get("home") or {})
+    away_team = dict((lineup_context or {}).get("away") or {})
+    for side, team in (("home", home_team), ("away", away_team)):
+        if not team.get("team_id"):
+            team["team_id"] = identity.get(side, {}).get("team_id")
+        if not team.get("team_name"):
+            team["team_name"] = identity.get(side, {}).get("team_name")
+    home = _team_context(conn, home_team, history, cutoff)
+    away = _team_context(conn, away_team, history, cutoff)
     available = any(g.get("current_grade") is not None for side in (home, away) for g in side["grades"])
+    roster_available = bool(home.get("roster_available") or away.get("roster_available"))
+    limitations = [] if available else ["PLAYER_GRADE_HISTORY_UNAVAILABLE"]
+    if not roster_available:
+        limitations.append("TEAM_ROSTER_UNAVAILABLE")
     return {
         "version": "PBK_PLAYER_GRADE_CONTEXT_V1",
         "fixture_id": str(fixture_id or ""),
@@ -215,7 +301,8 @@ def build_player_grade_context(conn, fixture_id, lineup_context):
             "away_covered_players": away["xi_quality"].get("covered_players", 0),
             "historical_player_rows": sum(len(v) for v in history.values()),
             "grade_table": _grade_table(conn),
-            "limitations": [] if available else ["PLAYER_GRADE_HISTORY_UNAVAILABLE"],
+            "roster_available": roster_available,
+            "limitations": limitations,
         },
         "research_only": True,
         "no_lookahead": True,
