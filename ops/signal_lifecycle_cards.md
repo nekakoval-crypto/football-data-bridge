@@ -1,8 +1,8 @@
 # PBK Signal Lifecycle
 
-Обновлено UTC: 2026-09-15T14:08:49Z
+Обновлено UTC: 2026-09-15T15:08:52Z
 
-Cards: 15 | canonical 3 | WATCH 12 | events 306
+Cards: 15 | canonical 3 | WATCH 12 | events 307
 
 ## WATCH | Stage63 | Venezia — Fiorentina
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-11T18:45:00Z
@@ -110,8 +110,7 @@ Cards: 15 | canonical 3 | WATCH 12 | events 306
 
 ## CANONICAL | R1 | Frosinone — Como
 - Ставка/рынок: П2 | kickoff: 2026-09-20T13:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 108
-  - 2026-09-15T06:50:40Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 109
   - 2026-09-15T07:47:31Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-15T08:49:04Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-15T09:48:15Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -119,3 +118,4 @@ Cards: 15 | canonical 3 | WATCH 12 | events 306
   - 2026-09-15T11:44:17Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-15T12:49:36Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-15T13:46:26Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-15T14:46:53Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
