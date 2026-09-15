@@ -1,14 +1,14 @@
 {
-  "provider_calls": 1,
-  "candidate_fixtures": 1,
-  "updated_fixtures": 1,
+  "provider_calls": 0,
+  "candidate_fixtures": 0,
+  "updated_fixtures": 0,
   "batch_size": 20,
   "skipped_fixtures": 0,
-  "skipped_no_candidates": false,
+  "skipped_no_candidates": true,
   "budget_exhausted": false,
-  "observed_at_utc": "2026-09-15T23:01:49Z",
+  "observed_at_utc": "2026-09-15T23:33:15Z",
   "warnings": [],
   "status": "OK",
-  "api_day_calls": 138,
+  "api_day_calls": 170,
   "provider_polling": true
 }
