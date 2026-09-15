@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-15T21:03:05Z",
+  "generated_at_utc": "2026-09-15T22:02:44Z",
   "status": "OK",
   "active_signals": 1,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-15T20:44:32Z",
+        "captured_at_utc": "2026-09-15T21:42:42Z",
         "best_odds": "1.58",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.53",
@@ -148,7 +148,7 @@
     "observed_closes": 10,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-15T20:53:53Z",
+    "latest_run_utc": "2026-09-15T21:26:57Z",
     "warnings": [],
     "crossings": [
       {
@@ -178,7 +178,7 @@
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-15T20:49:19Z",
+    "latest_run_utc": "2026-09-15T21:21:48Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -251,22 +251,22 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-15T20:55:27Z",
+    "generated_at_utc": "2026-09-15T21:53:37Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
       "crossings": 14,
-      "pending": 4,
-      "settled": 10,
+      "pending": 3,
+      "settled": 11,
       "void": 0,
       "review": 0,
       "user_price_rows": 14,
       "user_execution_coverage_pct": 100.0,
-      "user_settled_rows": 10,
-      "wins": 3,
+      "user_settled_rows": 11,
+      "wins": 4,
       "losses": 7,
-      "user_profit_u": -6.16,
-      "user_roi_pct": -61.6,
+      "user_profit_u": -5.55,
+      "user_roi_pct": -50.455,
       "close_observed": 11,
       "close_qualified": 9,
       "reverted_at_close": 2,
@@ -274,25 +274,25 @@
       "close_qualified_settled": 9,
       "close_qualified_profit_u": -5.16,
       "close_qualified_roi_pct": -57.333,
-      "reverted_settled": 1,
-      "reverted_profit_u": -1.0,
-      "reverted_roi_pct": -100.0,
+      "reverted_settled": 2,
+      "reverted_profit_u": -0.39,
+      "reverted_roi_pct": -19.5,
       "observed_max_drawdown_u": 6.65
     },
     "by_family": {
       "Big-5 ОЗ market movement — ОЗ — Да": {
         "crossings": 10,
-        "pending": 2,
-        "settled": 8,
+        "pending": 1,
+        "settled": 9,
         "void": 0,
         "review": 0,
         "user_price_rows": 10,
         "user_execution_coverage_pct": 100.0,
-        "user_settled_rows": 8,
-        "wins": 1,
+        "user_settled_rows": 9,
+        "wins": 2,
         "losses": 7,
-        "user_profit_u": -6.51,
-        "user_roi_pct": -81.375,
+        "user_profit_u": -5.9,
+        "user_roi_pct": -65.556,
         "close_observed": 9,
         "close_qualified": 7,
         "reverted_at_close": 2,
@@ -300,9 +300,9 @@
         "close_qualified_settled": 7,
         "close_qualified_profit_u": -5.51,
         "close_qualified_roi_pct": -78.714,
-        "reverted_settled": 1,
-        "reverted_profit_u": -1.0,
-        "reverted_roi_pct": -100.0,
+        "reverted_settled": 2,
+        "reverted_profit_u": -0.39,
+        "reverted_roi_pct": -19.5,
         "observed_max_drawdown_u": 7.0
       },
       "Big-5 ОЗ market movement — ОЗ — Нет": {
