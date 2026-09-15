@@ -1,14 +1,14 @@
 {
-  "generated_at_utc": "2026-09-15T19:03:13Z",
+  "generated_at_utc": "2026-09-15T20:04:16Z",
   "status": "OK",
   "policy_locked_at": "2026-09-11",
   "families": {
     "Stage61": {
       "status": "COLLECTING",
       "metrics": {
-        "crossings": 0,
-        "user_price_rows": 0,
-        "execution_coverage_pct": null,
+        "crossings": 1,
+        "user_price_rows": 1,
+        "execution_coverage_pct": 100.0,
         "settled_executable": 0,
         "roi_pct": null,
         "first_half_n": 0,
@@ -22,7 +22,6 @@
       },
       "blocking_reasons": [
         "settled 0/60",
-        "Marathonbet coverage None% <90%",
         "ROI None not >0",
         "first-half ROI None not >0",
         "second-half ROI None not >0",
