@@ -9,15 +9,19 @@ on:
   pull_request:
     paths:
       - 'scripts/stage79_team_roster_capture.py'
+      - 'scripts/stage80_roster_history_archive.py'
       - 'scripts/player_grade_context.py'
       - 'scripts/tests/test_stage79_team_roster_capture.py'
+      - 'scripts/tests/test_stage80_roster_history_archive.py'
       - 'scripts/tests/test_player_grade_context.py'
       - '.github/workflows/stage79-team-rosters.yml'
   push:
     paths:
       - 'scripts/stage79_team_roster_capture.py'
+      - 'scripts/stage80_roster_history_archive.py'
       - 'scripts/player_grade_context.py'
       - 'scripts/tests/test_stage79_team_roster_capture.py'
+      - 'scripts/tests/test_stage80_roster_history_archive.py'
       - 'scripts/tests/test_player_grade_context.py'
       - '.github/workflows/stage79-team-rosters.yml'
 
@@ -38,11 +42,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Compile Stage79
-        run: python -m py_compile scripts/stage79_team_roster_capture.py scripts/player_grade_context.py
-      - name: Provider-free roster tests
+      - name: Compile Stage79/80
+        run: python -m py_compile scripts/stage79_team_roster_capture.py scripts/stage80_roster_history_archive.py scripts/player_grade_context.py
+      - name: Provider-free roster/archive tests
         run: |
           python -m unittest scripts.tests.test_stage79_team_roster_capture -v
+          python -m unittest scripts.tests.test_stage80_roster_history_archive -v
           python -m unittest scripts.tests.test_player_grade_context -v
       - name: Match Card regressions
         run: |
@@ -51,8 +56,8 @@ jobs:
       - name: Provider isolation
         shell: bash
         run: |
-          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/stage79_team_roster_capture.py scripts/player_grade_context.py; then
-            echo 'Stage79/read model must reach API-Football only through the shared broker/backend.' >&2
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/stage79_team_roster_capture.py scripts/stage80_roster_history_archive.py scripts/player_grade_context.py; then
+            echo 'Stage79/80/read model must reach API-Football only through the shared broker/backend; Stage80 itself is provider-free.' >&2
             exit 1
           fi
       - name: Feature diff hygiene
@@ -63,7 +68,7 @@ jobs:
           changed="$(git diff --name-only origin/main...HEAD)"
           printf '%s\n' "$changed"
           if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
-            echo 'Generated ops files are forbidden in the Stage79 feature PR.' >&2
+            echo 'Generated ops files are forbidden in the Stage79/80 feature PR.' >&2
             exit 1
           fi
 
@@ -90,13 +95,16 @@ jobs:
           python-version: '3.12'
       - name: Capture stale or missing current-team rosters
         run: python scripts/stage79_team_roster_capture.py
-      - name: Publish Stage79 operational files safely
+      - name: Append current roster snapshots to Stage80 history
+        run: python scripts/stage80_roster_history_archive.py
+      - name: Publish Stage79/80 operational files safely
         shell: bash
         run: |
           git config user.name 'stage79-bot'
           git config user.email 'stage79-bot@users.noreply.github.com'
-          git add ops/stage79_last_run.json ops/stage71_observation_state.json
+          git add ops/stage79_last_run.json ops/stage80_last_run.json ops/stage71_observation_state.json
           if [ -f ops/team_rosters.csv ]; then git add ops/team_rosters.csv; fi
+          if [ -f ops/team_roster_history.csv ]; then git add ops/team_roster_history.csv; fi
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Stage 79 team roster update'
+          git commit -m 'Stage 79/80 roster archive update'
           python scripts/publish_operational_commit.py
