@@ -78,13 +78,13 @@ class Stage79RosterTests(unittest.TestCase):
             return {'response': [{'team': {'id': int(tid), 'name': f'Team {tid}'}, 'players': [
                 {'id': int(tid) * 10 + 1, 'name': 'Player', 'position': 'Defender'}
             ]}], 'paging': {'current': 1, 'total': 1}, 'errors': []}
-        first = s79.capture(self.fixtures(), [], get, self.now, 2)
-        self.assertEqual(len(first['captured_teams']), 2)
+        first = s79.capture(self.fixtures(), [], get, self.now, 4)
+        self.assertEqual(len(first['captured_teams']), 4)
         self.assertEqual(calls[0][0], '/players/squads')
         self.assertEqual(calls[0][2]['ttl_seconds'], 7 * 24 * 3600)
-        second = s79.capture(self.fixtures(), first['rows'], get, self.now, 2)
+        second = s79.capture(self.fixtures(), first['rows'], get, self.now, 4)
         self.assertEqual(second['candidate_teams'], 0)
-        self.assertEqual(len(calls), 2)
+        self.assertEqual(len(calls), 4)
 
 
 if __name__ == '__main__':
