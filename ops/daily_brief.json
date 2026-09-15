@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-15T20:03:11Z",
+  "generated_at_utc": "2026-09-15T21:03:05Z",
   "status": "OK",
   "active_signals": 1,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-15T19:43:55Z",
+        "captured_at_utc": "2026-09-15T20:44:32Z",
         "best_odds": "1.58",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.53",
@@ -148,7 +148,7 @@
     "observed_closes": 10,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-15T19:53:47Z",
+    "latest_run_utc": "2026-09-15T20:53:53Z",
     "warnings": [],
     "crossings": [
       {
@@ -178,7 +178,7 @@
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-15T19:49:22Z",
+    "latest_run_utc": "2026-09-15T20:49:19Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -214,25 +214,16 @@
     "active_crossings_total": 2,
     "active_yes_crossings": 1,
     "active_no_crossings": 1,
-    "total_crossings": 10,
-    "observed_closes": 50,
+    "total_crossings": 11,
+    "observed_closes": 51,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-15T18:17:31Z",
-    "warnings": [],
+    "latest_run_utc": "2026-09-15T20:16:28Z",
+    "warnings": [
+      "odds 1570387: API-Football /odds: {'rateLimit': 'Too many requests. You have exceeded the limit of requests per minute of your subscription.'}",
+      "odds 1570390: API-Football /odds: {'rateLimit': 'Too many requests. You have exceeded the limit of requests per minute of your subscription.'}"
+    ],
     "crossings": [
-      {
-        "fixture_id": "1570388",
-        "league": "La Liga",
-        "home_team": "Elche",
-        "away_team": "Real Madrid",
-        "selection": "ОЗ — Да",
-        "movement_yes_pp": "0.05567191",
-        "crossed_at_utc": "2026-09-13T00:23:21Z",
-        "minutes_to_kickoff": "4026.7",
-        "user_selected_odds": "1.61",
-        "note": "research watch only; not a bet signal"
-      },
       {
         "fixture_id": "1570384",
         "league": "La Liga",
@@ -244,30 +235,42 @@
         "minutes_to_kickoff": "3283.8",
         "user_selected_odds": "1.81",
         "note": "research watch only; not a bet signal"
+      },
+      {
+        "fixture_id": "1557408",
+        "league": "Premier League",
+        "home_team": "Brentford",
+        "away_team": "Chelsea",
+        "selection": "ОЗ — Да",
+        "movement_yes_pp": "0.03662455",
+        "crossed_at_utc": "2026-09-15T20:16:28Z",
+        "minutes_to_kickoff": "4243.5",
+        "user_selected_odds": "1.41",
+        "note": "research watch only; not a bet signal"
       }
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-15T19:54:18Z",
+    "generated_at_utc": "2026-09-15T20:55:27Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
-      "crossings": 13,
-      "pending": 3,
+      "crossings": 14,
+      "pending": 4,
       "settled": 10,
       "void": 0,
       "review": 0,
-      "user_price_rows": 13,
+      "user_price_rows": 14,
       "user_execution_coverage_pct": 100.0,
       "user_settled_rows": 10,
       "wins": 3,
       "losses": 7,
       "user_profit_u": -6.16,
       "user_roi_pct": -61.6,
-      "close_observed": 10,
+      "close_observed": 11,
       "close_qualified": 9,
-      "reverted_at_close": 1,
-      "close_persistence_pct": 90.0,
+      "reverted_at_close": 2,
+      "close_persistence_pct": 81.818,
       "close_qualified_settled": 9,
       "close_qualified_profit_u": -5.16,
       "close_qualified_roi_pct": -57.333,
@@ -278,22 +281,22 @@
     },
     "by_family": {
       "Big-5 ОЗ market movement — ОЗ — Да": {
-        "crossings": 9,
-        "pending": 1,
+        "crossings": 10,
+        "pending": 2,
         "settled": 8,
         "void": 0,
         "review": 0,
-        "user_price_rows": 9,
+        "user_price_rows": 10,
         "user_execution_coverage_pct": 100.0,
         "user_settled_rows": 8,
         "wins": 1,
         "losses": 7,
         "user_profit_u": -6.51,
         "user_roi_pct": -81.375,
-        "close_observed": 8,
+        "close_observed": 9,
         "close_qualified": 7,
-        "reverted_at_close": 1,
-        "close_persistence_pct": 87.5,
+        "reverted_at_close": 2,
+        "close_persistence_pct": 77.778,
         "close_qualified_settled": 7,
         "close_qualified_profit_u": -5.51,
         "close_qualified_roi_pct": -78.714,
