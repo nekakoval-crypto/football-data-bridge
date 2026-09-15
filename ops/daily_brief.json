@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-15T19:02:21Z",
+  "generated_at_utc": "2026-09-15T20:03:11Z",
   "status": "OK",
   "active_signals": 1,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-15T18:46:58Z",
+        "captured_at_utc": "2026-09-15T19:43:55Z",
         "best_odds": "1.58",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.53",
@@ -143,14 +143,27 @@
     "definition": "same opening favorite remains favorite; no-vig probability +3pp by observed close",
     "canonical_forward_changed": false,
     "tracked_openers": 20,
-    "active_crossings": 0,
-    "total_crossings": 0,
+    "active_crossings": 1,
+    "total_crossings": 1,
     "observed_closes": 10,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-15T18:56:03Z",
+    "latest_run_utc": "2026-09-15T19:53:47Z",
     "warnings": [],
-    "crossings": [],
+    "crossings": [
+      {
+        "fixture_id": "1557408",
+        "home_team": "Brentford",
+        "away_team": "Chelsea",
+        "opening_favorite": "A",
+        "movement_pp": "0.05028464",
+        "crossed_at_utc": "2026-09-15T19:27:33Z",
+        "minutes_to_kickoff": "4292.4",
+        "bet365_cross_odds": "2.2",
+        "user_cross_odds": "2.27",
+        "note": "WATCH only; not a canonical bet"
+      }
+    ],
     "recent_close_qualified": [],
     "display_market": "П1/П2 — движение коэффициента фаворита"
   },
@@ -165,7 +178,7 @@
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-15T18:52:10Z",
+    "latest_run_utc": "2026-09-15T19:49:22Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -235,16 +248,16 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-15T18:58:29Z",
+    "generated_at_utc": "2026-09-15T19:54:18Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
-      "crossings": 12,
-      "pending": 2,
+      "crossings": 13,
+      "pending": 3,
       "settled": 10,
       "void": 0,
       "review": 0,
-      "user_price_rows": 12,
+      "user_price_rows": 13,
       "user_execution_coverage_pct": 100.0,
       "user_settled_rows": 10,
       "wins": 3,
@@ -290,6 +303,31 @@
         "observed_max_drawdown_u": 7.0
       },
       "Big-5 ОЗ market movement — ОЗ — Нет": {
+        "crossings": 1,
+        "pending": 1,
+        "settled": 0,
+        "void": 0,
+        "review": 0,
+        "user_price_rows": 1,
+        "user_execution_coverage_pct": 100.0,
+        "user_settled_rows": 0,
+        "wins": 0,
+        "losses": 0,
+        "user_profit_u": 0,
+        "user_roi_pct": null,
+        "close_observed": 0,
+        "close_qualified": 0,
+        "reverted_at_close": 0,
+        "close_persistence_pct": null,
+        "close_qualified_settled": 0,
+        "close_qualified_profit_u": 0,
+        "close_qualified_roi_pct": null,
+        "reverted_settled": 0,
+        "reverted_profit_u": 0,
+        "reverted_roi_pct": null,
+        "observed_max_drawdown_u": null
+      },
+      "АПЛ favorite steam": {
         "crossings": 1,
         "pending": 1,
         "settled": 0,
