@@ -2,8 +2,9 @@
 """PBK Match Card v2 public composition layer.
 
 The established Match Card implementation lives in ``match_card_core``. This
-module adds Formation/Coach/Expected-XI and factual M5 lineup-surprise context
-without changing the existing market/probability/canonical contract.
+module adds Formation/Coach/Expected-XI, factual M5 lineup-surprise context and
+the provider-free Player Grade read model without changing the existing
+market/probability/canonical contract.
 """
 from __future__ import annotations
 
@@ -11,6 +12,7 @@ import match_card_core as _core
 from lineup_context import build_lineup_context
 from formation_research import read_audit
 from lineup_surprise import build_surprise_context
+from player_grade_context import build_player_grade_context
 
 CARD_VERSION = _core.CARD_VERSION
 MARKET_FAMILY_ORDER = _core.MARKET_FAMILY_ORDER
@@ -62,12 +64,29 @@ def _surprise_unavailable(fixture_id, limitation="LINEUP_CONTEXT_UNAVAILABLE"):
     }
 
 
-def build_match_card(conn, fixture_id):
-    """Build Match Card v2 and enrich it with optional no-lookahead lineup context.
+def _player_grade_unavailable(fixture_id, limitation="LINEUP_CONTEXT_UNAVAILABLE"):
+    return {
+        "version": "PBK_PLAYER_GRADE_CONTEXT_V1",
+        "fixture_id": str(fixture_id or ""),
+        "available": False,
+        "home": {"grades": [], "player_pool": [], "xi_quality": {"available": False}},
+        "away": {"grades": [], "player_pool": [], "xi_quality": {"available": False}},
+        "coverage": {"limitations": [limitation]},
+        "research_only": True,
+        "no_lookahead": True,
+        "provider_polling": False,
+        "creates_signal": False,
+        "probability_mutation": False,
+        "eligibility_mutation": False,
+        "stake_changes": False,
+    }
 
-    Both lineup extensions are additive. Their natural unavailability before
-    enough history / official XI publication must not downgrade the established
-    Match Card core coverage contract.
+
+def build_match_card(conn, fixture_id):
+    """Build Match Card v2 and enrich it with optional research contexts.
+
+    Extensions are additive. Their natural unavailability before enough history
+    or official XI publication must not downgrade the established core coverage.
     """
     status, payload = _core.build_match_card(conn, fixture_id)
     if status != 200:
@@ -83,22 +102,28 @@ def build_match_card(conn, fixture_id):
 
     if lineup_status == 200:
         surprise = build_surprise_context(lineup)
+        player_grade = build_player_grade_context(conn, fixture_id, lineup)
     else:
         surprise = _surprise_unavailable(fixture_id)
+        player_grade = _player_grade_unavailable(fixture_id)
 
     payload["formation_research"] = read_audit(conn, fixture_id=fixture_id)
     payload["lineup_context"] = lineup
     payload["lineup_surprise"] = surprise
+    payload["player_grade"] = player_grade
 
     coverage = payload.setdefault("coverage", {})
     optional = coverage.setdefault("optional_sections", {})
     optional["lineup_context"] = bool(lineup.get("available"))
     optional["lineup_surprise"] = bool(surprise.get("available"))
+    optional["player_grade"] = bool(player_grade.get("available"))
     extension_limitations = []
     if not lineup.get("available"):
         extension_limitations.append("LINEUP_CONTEXT_UNAVAILABLE")
     if not surprise.get("available"):
         extension_limitations.append("LINEUP_SURPRISE_PENDING_OR_UNAVAILABLE")
+    if not player_grade.get("available"):
+        extension_limitations.append("PLAYER_GRADE_HISTORY_UNAVAILABLE")
     coverage["extension_limitations"] = extension_limitations
 
     payload["feature_contract"] = {
@@ -106,6 +131,9 @@ def build_match_card(conn, fixture_id):
         "lineup_context_optional": True,
         "lineup_surprise_context_only": True,
         "lineup_surprise_optional_until_official_xi": True,
+        "player_grade_research_only": True,
+        "player_grade_no_lookahead": bool(player_grade.get("no_lookahead", True)),
+        "manual_lineup_scenario_what_if_only": True,
         "provider_polling": False,
         "probability_mutation": False,
         "eligibility_mutation": False,
