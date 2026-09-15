@@ -155,7 +155,8 @@ def build_scenario(fixture_id, lineup_context, manual, grades_by_player=None,
             "importance_delta": importance_delta,
         }
 
-    draft = bool(allow_draft and errors) or any(len(sides[s]["manual"]["xi"]) != 11 for s in sides)
+    draft = bool(allow_draft and any(len(sides[s]["manual"]["xi"]) != 11 for s in sides))
+    status = "INVALID" if errors else ("DRAFT" if draft else "READY")
     payload = {
         "version": SCENARIO_VERSION,
         "fixture_id": fixture_id,
@@ -163,7 +164,7 @@ def build_scenario(fixture_id, lineup_context, manual, grades_by_player=None,
         "created_at_utc": created_at_utc,
         "source_label": "MANUAL/INSIDER",
         "source_note": source_note,
-        "status": "DRAFT" if draft else ("INVALID" if errors else "READY"),
+        "status": status,
         "errors": errors,
         "home": sides["home"],
         "away": sides["away"],
