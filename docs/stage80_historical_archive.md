@@ -58,10 +58,11 @@ The shared API-Football broker can now copy every **successful real provider res
 It reports, without inventing missing data:
 - current fixture inventory and finished-fixture denominator where available;
 - player-stat / Player Grade fixture and player coverage;
+- Stage77 durable backlog presence, pending/captured fixture counts, oldest pending observation and any impossible CAPTURED-without-ledgers mismatch;
 - current roster, append-only roster-history and observed-membership counts;
 - existing Stage55 official-XI / injury evidence with an explicit warning that Stage55 context is canonical-signal scoped, not full 16-league coverage;
 - raw-provider archive storage/manifest state when a persistent archive directory is actually mounted;
-- named gaps such as first roster-history capture pending, partial player-stat coverage, durable raw storage not configured, transfer evidence missing and xG/xA source missing.
+- named gaps such as first Stage77 backlog operational run pending, player-stat backlog pending, first roster-history capture pending, partial player-stat coverage, durable raw storage not configured, transfer evidence missing and xG/xA source missing.
 
 The readiness board never calls API-Football and never creates signals or mutates probability, EV, eligibility, stake or Forward. Missing source files remain explicit missing sources; a missing denominator is shown as unknown rather than fake 0% coverage.
 
@@ -95,6 +96,6 @@ This is still an archive foundation, not the complete football warehouse. The fo
 - Stage77 preserves per-fixture player-stat and Player Grade snapshots and now retains deferred terminal fixtures in a durable backfill queue.
 - Stage78 provides provider-free Player Grade / XI Quality / Player Importance research.
 - Stage79 captures current team squads for the manual lineup picker.
-- Stage80 preserves historical roster observations, derives conservative observed membership intervals, adds the storage-neutral raw-response archive hook to the shared provider broker, and continuously measures archive completeness/gaps.
+- Stage80 preserves historical roster observations, derives conservative observed membership intervals, adds the storage-neutral raw-response archive hook to the shared provider broker, and continuously measures archive completeness/gaps including the Stage77 durable queue.
 
 This numbering reflects the repository's actual merged state: Stage77–79 already exist and are not renumbered retroactively.
