@@ -1,0 +1,542 @@
+{
+  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V3_PLAYER_CATALOG",
+  "generated_at_utc": "2026-09-15T18:46:02Z",
+  "status": "OK",
+  "datasets": [
+    {
+      "dataset_id": "current_round_fixtures",
+      "path": "current_round_fixtures.csv",
+      "role": "CURRENT_READ_MODEL",
+      "lifecycle": "ROLLING_REPLACE",
+      "identity_key": [
+        "fixture_id"
+      ],
+      "observed_time_fields": [
+        "observed_at_utc"
+      ],
+      "effective_time_fields": [
+        "kickoff_utc"
+      ],
+      "source": "Stage71 current-round capture / API-Football broker",
+      "limitations": "Rolling inventory; not a historical archive by itself.",
+      "present": true,
+      "row_count": 129,
+      "columns": [
+        "fixture_id",
+        "provider_league_id",
+        "league_name",
+        "country",
+        "country_flag_url",
+        "league_logo_url",
+        "season",
+        "round",
+        "kickoff_utc",
+        "home_team",
+        "home_team_logo_url",
+        "away_team",
+        "away_team_logo_url",
+        "status",
+        "source_status",
+        "score_home",
+        "score_away",
+        "observed_at_utc"
+      ],
+      "missing_required_fields": [],
+      "contract_status": "OK",
+      "identity_key_text": "fixture_id",
+      "observed_time_fields_text": "observed_at_utc",
+      "effective_time_fields_text": "kickoff_utc"
+    },
+    {
+      "dataset_id": "fixture_history_snapshots",
+      "path": "fixture_history_snapshots.csv",
+      "role": "HISTORICAL_EVIDENCE",
+      "lifecycle": "APPEND_ONLY_FIRST_OBSERVATION_WINS",
+      "identity_key": [
+        "fixture_id",
+        "observed_at_utc"
+      ],
+      "observed_time_fields": [
+        "observed_at_utc"
+      ],
+      "effective_time_fields": [
+        "kickoff_utc"
+      ],
+      "source": "Stage80 archive of already-persisted Stage71 observations",
+      "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "fixture_id+observed_at_utc",
+      "observed_time_fields_text": "observed_at_utc",
+      "effective_time_fields_text": "kickoff_utc"
+    },
+    {
+      "dataset_id": "historical_fixtures",
+      "path": "historical_fixtures.csv",
+      "role": "DERIVED_WAREHOUSE",
+      "lifecycle": "DETERMINISTIC_PROJECTION",
+      "identity_key": [
+        "fixture_id"
+      ],
+      "observed_time_fields": [
+        "first_seen_at_utc",
+        "last_seen_at_utc"
+      ],
+      "effective_time_fields": [
+        "latest_kickoff_utc"
+      ],
+      "source": "Stage80 normalized projection from fixture_history_snapshots",
+      "limitations": "Rebuildable convenience layer; fixture_history_snapshots remains historical evidence source-of-truth.",
+      "present": true,
+      "row_count": 0,
+      "columns": [
+        "fixture_id",
+        "provider_league_id",
+        "league_name",
+        "country",
+        "season",
+        "round",
+        "home_team",
+        "away_team",
+        "first_kickoff_utc",
+        "latest_kickoff_utc",
+        "reschedule_observed",
+        "first_seen_at_utc",
+        "last_seen_at_utc",
+        "observation_count",
+        "latest_status",
+        "latest_source_status",
+        "terminal_observed",
+        "terminal_observed_at_utc",
+        "final_score_home",
+        "final_score_away",
+        "source",
+        "projection_version"
+      ],
+      "missing_required_fields": [],
+      "contract_status": "OK",
+      "identity_key_text": "fixture_id",
+      "observed_time_fields_text": "first_seen_at_utc,last_seen_at_utc",
+      "effective_time_fields_text": "latest_kickoff_utc"
+    },
+    {
+      "dataset_id": "stage77_player_stats_backlog",
+      "path": "stage77_player_stats_backlog.csv",
+      "role": "DURABLE_WORK_QUEUE",
+      "lifecycle": "DURABLE_STATE_MACHINE",
+      "identity_key": [
+        "fixture_id"
+      ],
+      "observed_time_fields": [
+        "first_queued_at_utc",
+        "last_seen_at_utc"
+      ],
+      "effective_time_fields": [
+        "kickoff_utc"
+      ],
+      "source": "Stage71 terminal observation + Stage77 reconciliation",
+      "limitations": "Queue evidence is not player-stat evidence; CAPTURED requires both stats and grade ledgers.",
+      "present": true,
+      "row_count": 26,
+      "columns": [
+        "fixture_id",
+        "provider_league_id",
+        "league_name",
+        "season",
+        "round",
+        "kickoff_utc",
+        "home_team",
+        "away_team",
+        "source_status",
+        "first_queued_at_utc",
+        "last_seen_at_utc",
+        "backlog_status",
+        "captured_at_utc",
+        "queue_source"
+      ],
+      "missing_required_fields": [],
+      "contract_status": "OK",
+      "identity_key_text": "fixture_id",
+      "observed_time_fields_text": "first_queued_at_utc,last_seen_at_utc",
+      "effective_time_fields_text": "kickoff_utc"
+    },
+    {
+      "dataset_id": "player_stats_snapshots",
+      "path": "player_stats_snapshots.csv",
+      "role": "HISTORICAL_EVIDENCE",
+      "lifecycle": "PERSISTED_FIXTURE_PLAYER_ROWS",
+      "identity_key": [
+        "fixture_id",
+        "team_id",
+        "player_id"
+      ],
+      "observed_time_fields": [
+        "observed_at_utc"
+      ],
+      "effective_time_fields": [
+        "kickoff_utc"
+      ],
+      "source": "Stage77 /fixtures/players via shared broker",
+      "limitations": "Only fixtures successfully captured under protected provider budget.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "fixture_id+team_id+player_id",
+      "observed_time_fields_text": "observed_at_utc",
+      "effective_time_fields_text": "kickoff_utc"
+    },
+    {
+      "dataset_id": "player_grade_snapshots",
+      "path": "player_grade_snapshots.csv",
+      "role": "DERIVED_RESEARCH",
+      "lifecycle": "DETERMINISTIC_DERIVED_ROWS",
+      "identity_key": [
+        "fixture_id",
+        "team_id",
+        "player_id"
+      ],
+      "observed_time_fields": [
+        "observed_at_utc"
+      ],
+      "effective_time_fields": [
+        "kickoff_utc"
+      ],
+      "source": "Stage77/78 derived from captured player stats",
+      "limitations": "Research-derived grade; not raw provider fact and not canonical authority.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "fixture_id+team_id+player_id",
+      "observed_time_fields_text": "observed_at_utc",
+      "effective_time_fields_text": "kickoff_utc"
+    },
+    {
+      "dataset_id": "historical_players",
+      "path": "historical_players.csv",
+      "role": "DERIVED_WAREHOUSE",
+      "lifecycle": "DETERMINISTIC_PROJECTION",
+      "identity_key": [
+        "player_id"
+      ],
+      "observed_time_fields": [
+        "first_seen_at_utc",
+        "last_seen_at_utc"
+      ],
+      "effective_time_fields": [],
+      "source": "Stage80 normalized projection from team_roster_history + player_stats_snapshots",
+      "limitations": "Observed player directory only; does not infer current team, exact transfer dates, xG or xA.",
+      "present": true,
+      "row_count": 0,
+      "columns": [
+        "player_id",
+        "latest_observed_name",
+        "latest_observed_position",
+        "latest_observed_age",
+        "latest_observed_number",
+        "latest_observed_photo_url",
+        "first_seen_at_utc",
+        "last_seen_at_utc",
+        "latest_roster_seen_at_utc",
+        "latest_stats_seen_at_utc",
+        "roster_observation_rows",
+        "roster_team_count",
+        "latest_roster_team_ids",
+        "latest_roster_team_names",
+        "stats_fixture_count",
+        "stats_row_count",
+        "has_roster_evidence",
+        "has_match_stats_evidence",
+        "evidence_sources",
+        "source",
+        "projection_version"
+      ],
+      "missing_required_fields": [],
+      "contract_status": "OK",
+      "identity_key_text": "player_id",
+      "observed_time_fields_text": "first_seen_at_utc,last_seen_at_utc",
+      "effective_time_fields_text": ""
+    },
+    {
+      "dataset_id": "team_rosters",
+      "path": "team_rosters.csv",
+      "role": "CURRENT_READ_MODEL",
+      "lifecycle": "LATEST_TEAM_SNAPSHOT",
+      "identity_key": [
+        "team_id",
+        "player_id"
+      ],
+      "observed_time_fields": [
+        "captured_at_utc"
+      ],
+      "effective_time_fields": [],
+      "source": "Stage79 /players/squads via shared broker",
+      "limitations": "Latest roster only; use team_roster_history for historical membership evidence.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "team_id+player_id",
+      "observed_time_fields_text": "captured_at_utc",
+      "effective_time_fields_text": ""
+    },
+    {
+      "dataset_id": "team_roster_history",
+      "path": "team_roster_history.csv",
+      "role": "HISTORICAL_EVIDENCE",
+      "lifecycle": "APPEND_ONLY_FIRST_OBSERVATION_WINS",
+      "identity_key": [
+        "team_id",
+        "captured_at_utc",
+        "player_id"
+      ],
+      "observed_time_fields": [
+        "captured_at_utc"
+      ],
+      "effective_time_fields": [],
+      "source": "Stage80 archive of already-captured Stage79 roster snapshots",
+      "limitations": "Observed squad membership, not an exact transfer-date claim.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "team_id+captured_at_utc+player_id",
+      "observed_time_fields_text": "captured_at_utc",
+      "effective_time_fields_text": ""
+    },
+    {
+      "dataset_id": "team_membership_intervals",
+      "path": "team_membership_intervals.csv",
+      "role": "DERIVED_RESEARCH",
+      "lifecycle": "DETERMINISTIC_PROJECTION",
+      "identity_key": [
+        "interval_id"
+      ],
+      "observed_time_fields": [
+        "first_seen_at_utc",
+        "last_seen_at_utc"
+      ],
+      "effective_time_fields": [],
+      "source": "Stage80 derived from team_roster_history",
+      "limitations": "Observed presence intervals are not verified transfer events.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "interval_id",
+      "observed_time_fields_text": "first_seen_at_utc,last_seen_at_utc",
+      "effective_time_fields_text": ""
+    },
+    {
+      "dataset_id": "match_context_snapshots",
+      "path": "match_context_snapshots.csv",
+      "role": "HISTORICAL_EVIDENCE",
+      "lifecycle": "APPEND_ONLY_BY_FORWARD_AND_SNAPSHOT_TYPE",
+      "identity_key": [
+        "forward_id",
+        "snapshot_type"
+      ],
+      "observed_time_fields": [
+        "captured_at_utc"
+      ],
+      "effective_time_fields": [
+        "current_kickoff_utc"
+      ],
+      "source": "Stage55 timestamped context via shared broker",
+      "limitations": "Canonical-forward scope only; not complete 16-league context coverage.",
+      "present": true,
+      "row_count": 8,
+      "columns": [
+        "forward_id",
+        "rule",
+        "api_fixture_id",
+        "snapshot_type",
+        "captured_at_utc",
+        "current_kickoff_utc",
+        "hours_to_kickoff",
+        "fixture_status",
+        "league",
+        "home_team",
+        "away_team",
+        "home_team_id",
+        "away_team_id",
+        "referee",
+        "venue_name",
+        "venue_city",
+        "home_prev_fixture_id",
+        "home_prev_date_utc",
+        "home_prev_opponent",
+        "home_prev_competition",
+        "home_prev_comp_class",
+        "away_prev_fixture_id",
+        "away_prev_date_utc",
+        "away_prev_opponent",
+        "away_prev_competition",
+        "away_prev_comp_class",
+        "home_next_fixture_id",
+        "home_next_date_utc",
+        "home_next_opponent",
+        "home_next_competition",
+        "home_next_comp_class",
+        "away_next_fixture_id",
+        "away_next_date_utc",
+        "away_next_opponent",
+        "away_next_competition",
+        "away_next_comp_class",
+        "home_rest_hours",
+        "away_rest_hours",
+        "home_hours_to_next",
+        "away_hours_to_next",
+        "home_prev_is_uefa_or_cup",
+        "away_prev_is_uefa_or_cup",
+        "home_next_is_uefa_or_cup",
+        "away_next_is_uefa_or_cup",
+        "injuries_count",
+        "home_injuries_count",
+        "away_injuries_count",
+        "injuries_json",
+        "lineups_available",
+        "home_formation",
+        "away_formation",
+        "home_coach",
+        "away_coach",
+        "home_start_xi_json",
+        "away_start_xi_json",
+        "context_only",
+        "notes"
+      ],
+      "missing_required_fields": [],
+      "contract_status": "OK",
+      "identity_key_text": "forward_id+snapshot_type",
+      "observed_time_fields_text": "captured_at_utc",
+      "effective_time_fields_text": "current_kickoff_utc"
+    },
+    {
+      "dataset_id": "context_latest",
+      "path": "context_latest.csv",
+      "role": "CURRENT_READ_MODEL",
+      "lifecycle": "LATEST_PROJECTION",
+      "identity_key": [
+        "forward_id"
+      ],
+      "observed_time_fields": [
+        "captured_at_utc"
+      ],
+      "effective_time_fields": [
+        "current_kickoff_utc"
+      ],
+      "source": "Stage55/56 latest projection from context snapshots",
+      "limitations": "Convenience read model; historical evidence remains match_context_snapshots.",
+      "present": true,
+      "row_count": 3,
+      "columns": [
+        "forward_id",
+        "rule",
+        "api_fixture_id",
+        "snapshot_type",
+        "captured_at_utc",
+        "current_kickoff_utc",
+        "hours_to_kickoff",
+        "fixture_status",
+        "league",
+        "home_team",
+        "away_team",
+        "home_team_id",
+        "away_team_id",
+        "referee",
+        "venue_name",
+        "venue_city",
+        "home_prev_fixture_id",
+        "home_prev_date_utc",
+        "home_prev_opponent",
+        "home_prev_competition",
+        "home_prev_comp_class",
+        "away_prev_fixture_id",
+        "away_prev_date_utc",
+        "away_prev_opponent",
+        "away_prev_competition",
+        "away_prev_comp_class",
+        "home_next_fixture_id",
+        "home_next_date_utc",
+        "home_next_opponent",
+        "home_next_competition",
+        "home_next_comp_class",
+        "away_next_fixture_id",
+        "away_next_date_utc",
+        "away_next_opponent",
+        "away_next_competition",
+        "away_next_comp_class",
+        "home_rest_hours",
+        "away_rest_hours",
+        "home_hours_to_next",
+        "away_hours_to_next",
+        "home_prev_is_uefa_or_cup",
+        "away_prev_is_uefa_or_cup",
+        "home_next_is_uefa_or_cup",
+        "away_next_is_uefa_or_cup",
+        "injuries_count",
+        "home_injuries_count",
+        "away_injuries_count",
+        "injuries_json",
+        "lineups_available",
+        "home_formation",
+        "away_formation",
+        "home_coach",
+        "away_coach",
+        "home_start_xi_json",
+        "away_start_xi_json",
+        "context_only",
+        "notes"
+      ],
+      "missing_required_fields": [],
+      "contract_status": "OK",
+      "identity_key_text": "forward_id",
+      "observed_time_fields_text": "captured_at_utc",
+      "effective_time_fields_text": "current_kickoff_utc"
+    },
+    {
+      "dataset_id": "raw_api_football_payloads",
+      "path": "EXTERNAL_ENV:API_FOOTBALL_ARCHIVE_DIR",
+      "role": "RAW_PROVIDER_ARCHIVE",
+      "lifecycle": "CONTENT_ADDRESSED_APPEND_ONLY",
+      "identity_key": [
+        "payload_sha256"
+      ],
+      "identity_key_text": "payload_sha256",
+      "observed_time_fields": [
+        "observed_at_utc"
+      ],
+      "observed_time_fields_text": "observed_at_utc",
+      "effective_time_fields": [],
+      "effective_time_fields_text": "",
+      "source": "API-Football broker successful real responses",
+      "limitations": "Physical durable storage is separate from Git; cache hits do not create false provider observations.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_DURABLE_STORAGE"
+    }
+  ],
+  "summary": {
+    "declared_datasets": 13,
+    "materialized_csv_datasets": 6,
+    "pending_materializations_or_storage": 7,
+    "contract_attention": 0
+  },
+  "provider_calls": 0,
+  "creates_signal": false,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "stake_changes": false,
+  "forward_journal_mutation": false
+}
