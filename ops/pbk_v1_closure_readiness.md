@@ -1,13 +1,13 @@
 # PBK v1 Closure Readiness
 
-- Run: `2026-09-15T15:50:40Z`
-- Status: **WAITING**
-- Ready for manual PBK v1 close: **false**
+- Run: `2026-09-15T16:50:58Z`
+- Status: **READY**
+- Ready for manual PBK v1 close: **true**
 - Profitability threshold: **not used for technical v1 closure**
 
-## Production acceptance — WAITING
+## Production acceptance — PASS
 
-- ⏳ `PRODUCTION_ACCEPTANCE` — waiting for real provider-backed Today/LIVE and standings/motivation evidence
+- ✅ `PRODUCTION_ACCEPTANCE` — real Today/LIVE and standings/motivation production acceptance passed
 
 ## Real prospective measurement — PASS
 
