@@ -1,13 +1,14 @@
 {
-  "run_at_utc": "2026-09-15T00:40:54Z",
+  "run_at_utc": "2026-09-15T06:40:11Z",
   "status": "OK",
   "markets": 8,
   "state_counts": {
     "ACTIVE_GOVERNED": 1,
-    "COLLECTING_CLOSES": 4,
+    "DISCOVERY_POOL_READY": 3,
+    "COLLECTING_CLOSES": 1,
     "HISTORICAL_NO_CANDIDATE": 1,
     "WATCH_GOVERNED": 2
   },
-  "discovery_pool_ready": 0,
+  "discovery_pool_ready": 3,
   "api_calls": 0
 }
