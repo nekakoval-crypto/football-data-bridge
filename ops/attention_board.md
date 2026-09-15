@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 15.09.2026 12:02 (Europe/Berlin)
+Обновлено: 15.09.2026 13:01 (Europe/Berlin)
 Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -521,7 +521,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 
 - **Real Betis — Getafe** | La Liga | 17.09 17:00 UTC
   - ОЗ · ОЗ Да: 2.1 | ОЗ Нет: 1.67 @ Bet365
-  - ОЗ · ОЗ Да: 2.11 | ОЗ Нет: 1.65 @ Marathonbet
+  - ОЗ · ОЗ Да: 2.09 | ОЗ Нет: 1.66 @ Marathonbet
   - Ф(0) · Ф1(0): 1.27 | Ф2(0): 3.55 @ Bet365
   - Ф(0) · Ф1(0): 1.24 | Ф2(0): 3.64 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.17 | Х2: 2.1 | 12: 1.28 @ Bet365
@@ -1793,7 +1793,7 @@ Canonical: 1 | active WATCH crossings: 2 | RED: 0 | ORANGE: 2
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **HEALTHY** | critical 0 | warnings 0
+- System Health: **WARN** | critical 0 | warnings 1
 - Логическая canonical экспозиция: **1.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 24 | data required 3
