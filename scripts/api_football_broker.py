@@ -14,6 +14,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from threading import Lock
 
+from api_football_raw_archive import archive_response, archive_root_from_env
+
 API_BASE = "https://v3.football.api-sports.io"
 
 
@@ -79,12 +81,18 @@ class ApiFootballBroker:
     A custom transport receives ``(path, params, headers, timeout)`` and may
     return a JSON payload, ``(status, headers, payload)``, or
     ``(status, headers, raw_json_bytes)``.
+
+    Successful *real* provider responses can additionally be copied into the
+    Stage80 raw archive. The archive is disabled unless ``archive_dir`` is passed
+    or ``API_FOOTBALL_ARCHIVE_DIR`` is configured. Cache hits never create fake
+    provider observations and archive failures never block primary collection.
     """
 
-    def __init__(self, *, transport=None, cache_path=None, max_real_calls=None,
-                 default_ttl_seconds=300, attempts=3, sleep=None):
+    def __init__(self, *, transport=None, cache_path=None, archive_dir=None,
+                 max_real_calls=None, default_ttl_seconds=300, attempts=3, sleep=None):
         self.transport = transport or self._transport
         self.cache_path = Path(cache_path) if cache_path else _default_cache_path()
+        self.archive_dir = Path(archive_dir) if archive_dir is not None else archive_root_from_env()
         self.max_real_calls = (
             int(max_real_calls) if max_real_calls is not None
             else self._env_limit()
@@ -99,6 +107,8 @@ class ApiFootballBroker:
             "memory_cache_hits": 0, "disk_cache_hits": 0,
             "cache_misses": 0, "retries": 0, "errors": 0,
             "budget_rejections": 0, "real_calls_by_path": {},
+            "archive_observations": 0, "archive_blob_dedup_hits": 0,
+            "archive_manifest_dedup_hits": 0, "archive_errors": 0,
         }
         self._rate_limit = {}
 
@@ -150,6 +160,30 @@ class ApiFootballBroker:
             conn.commit()
         finally:
             conn.close()
+
+    def _archive_success(self, key, path, params, payload, fetched):
+        if self.archive_dir is None:
+            return
+        try:
+            result = archive_response(
+                root=self.archive_dir,
+                request_key=key,
+                path=path,
+                normalized_params=normalize_params(params),
+                payload=payload,
+                fetched_at=fetched,
+            )
+            if result.get("manifest_appended"):
+                self._stats["archive_observations"] += 1
+            else:
+                self._stats["archive_manifest_dedup_hits"] += 1
+            if not result.get("blob_created"):
+                self._stats["archive_blob_dedup_hits"] += 1
+        except Exception:
+            # Archive storage is secondary evidence storage. A bad/missing mount
+            # must be visible in telemetry but must not discard a valid football
+            # provider response needed by operational stages.
+            self._stats["archive_errors"] += 1
 
     @staticmethod
     def _transport(path, params, headers, timeout):
@@ -252,6 +286,7 @@ class ApiFootballBroker:
                     expires = fetched + max(0.0, ttl)
                     self._memory[key] = (fetched, expires, payload)
                     self._disk_put(key, path, params, payload, fetched, expires)
+                    self._archive_success(key, path, params, payload, fetched)
                     return payload
                 except (ApiFootballProviderError, OSError, TimeoutError, urllib.error.URLError) as exc:
                     last_error = exc
@@ -276,6 +311,7 @@ class ApiFootballBroker:
     def stats(self):
         out = json.loads(json.dumps(self._stats))
         out["rate_limit"] = dict(self._rate_limit)
+        out["archive_enabled"] = self.archive_dir is not None
         return out
 
 

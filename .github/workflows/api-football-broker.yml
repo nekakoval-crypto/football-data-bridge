@@ -4,22 +4,26 @@ on:
   push:
     paths:
       - 'scripts/api_football_broker.py'
+      - 'scripts/api_football_raw_archive.py'
       - 'scripts/stage53_daily_screener.py'
       - 'scripts/stage54_forward_ops.py'
       - 'scripts/stage55_context_enrichment.py'
       - 'scripts/stage56_weather_rotation.py'
       - 'scripts/stage71j_shared_core_market_capture.py'
       - 'scripts/tests/test_api_football_broker.py'
+      - 'scripts/tests/test_api_football_raw_archive.py'
       - '.github/workflows/api-football-broker.yml'
   pull_request:
     paths:
       - 'scripts/api_football_broker.py'
+      - 'scripts/api_football_raw_archive.py'
       - 'scripts/stage53_daily_screener.py'
       - 'scripts/stage54_forward_ops.py'
       - 'scripts/stage55_context_enrichment.py'
       - 'scripts/stage56_weather_rotation.py'
       - 'scripts/stage71j_shared_core_market_capture.py'
       - 'scripts/tests/test_api_football_broker.py'
+      - 'scripts/tests/test_api_football_raw_archive.py'
       - '.github/workflows/api-football-broker.yml'
 
 jobs:
@@ -27,6 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       API_FOOTBALL_KEY: ''
+      API_FOOTBALL_ARCHIVE_DIR: ''
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -34,7 +39,9 @@ jobs:
           python-version: '3.13'
       - name: Install test dependency
         run: python -m pip install pytest
-      - name: Run broker tests
-        run: python -m pytest scripts/tests/test_api_football_broker.py -q
+      - name: Run broker and raw-archive tests
+        run: |
+          python -m pytest scripts/tests/test_api_football_broker.py -q
+          python -m pytest scripts/tests/test_api_football_raw_archive.py -q
       - name: Compile migrated scripts
-        run: python -m py_compile scripts/api_football_broker.py scripts/stage53_daily_screener.py scripts/stage54_forward_ops.py scripts/stage55_context_enrichment.py scripts/stage56_weather_rotation.py scripts/stage71j_shared_core_market_capture.py scripts/stage67_append_api_budget.py
+        run: python -m py_compile scripts/api_football_broker.py scripts/api_football_raw_archive.py scripts/stage53_daily_screener.py scripts/stage54_forward_ops.py scripts/stage55_context_enrichment.py scripts/stage56_weather_rotation.py scripts/stage71j_shared_core_market_capture.py scripts/stage67_append_api_budget.py
