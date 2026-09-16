@@ -7,12 +7,44 @@
   "historical_result_required_verdict": "PASS_HISTORICAL_PROBABILITY_GATE",
   "scope": {
     "market": "BET365_MATCH_WINNER_1X2",
-    "leagues": [
+    "locked_total_leagues": 16,
+    "tracked_leagues": [
+      "Premier League",
+      "La Liga",
+      "Serie A",
+      "Bundesliga",
+      "Ligue 1",
+      "Austrian Bundesliga",
+      "Belgian Pro League",
+      "Danish Superliga",
+      "A Lyga",
+      "Virsliga",
+      "Eredivisie",
+      "Eliteserien",
+      "Ekstraklasa",
+      "Primeira Liga",
+      "Super Lig",
+      "Scottish Premiership"
+    ],
+    "validated_domain_leagues": [
       "Premier League",
       "La Liga",
       "Serie A",
       "Bundesliga",
       "Ligue 1"
+    ],
+    "extended_shadow_leagues": [
+      "Austrian Bundesliga",
+      "Belgian Pro League",
+      "Danish Superliga",
+      "A Lyga",
+      "Virsliga",
+      "Eredivisie",
+      "Eliteserien",
+      "Ekstraklasa",
+      "Primeira Liga",
+      "Super Lig",
+      "Scottish Premiership"
     ],
     "complete_hda_required": true,
     "bookmaker_substitution": false,
@@ -28,9 +60,13 @@
     "snapshot": "FIRST_COMPLETE_VALID_BET365_PREMATCH_OBSERVATION",
     "observation_must_precede_kickoff": true,
     "monitor_process_must_precede_kickoff": true,
-    "append_only": true
+    "append_only": true,
+    "domain_is_frozen_with_observation": true
   },
   "forward_review": {
+    "formal_review_domain": "VALIDATED_DOMAIN",
+    "shadow_domain": "EXTENDED_SHADOW_RESEARCH",
+    "shadow_excluded_from_official_gate": true,
     "diagnostic_checkpoints": [
       250,
       500

@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """Forward-only monitor core for PBK Generic 1X2 Probability v1.
 
-Provider-free by design. It freezes the first complete valid Bet365 H/D/A
-observation seen before kickoff, stores settlements separately, and evaluates
-proper scoring rules only. It cannot create bets, value labels, stakes, or
-canonical promotion.
+Provider-free by design. Captures all 16 locked PBK leagues, while keeping the
+historically validated Big-5 domain separate from the 11-league shadow domain.
+Only Big-5 settlements can enter the formal Generic 1X2 v1 forward gate.
 """
 from __future__ import annotations
 
@@ -23,6 +22,8 @@ DEFAULT_CFG = ROOT / "config" / "pbk_generic_1x2_probability_v1_forward.json"
 CLASSES = ("H", "D", "A")
 PREMATCH_EVENT = "GENERIC_1X2_V1_PREMATCH_FROZEN"
 SETTLEMENT_EVENT = "GENERIC_1X2_V1_SETTLEMENT_FROZEN"
+VALIDATED_DOMAIN = "VALIDATED_DOMAIN"
+SHADOW_DOMAIN = "EXTENDED_SHADOW_RESEARCH"
 
 
 def now_iso() -> str:
@@ -124,9 +125,41 @@ def multiclass_logloss(p, outcome):
     return -math.log(max(p[CLASSES.index(outcome)], 1e-15))
 
 
+def normalize_league(value):
+    return " ".join(str(value or "").strip().lower().replace("-", " ").split())
+
+
+def _scope_sets(cfg):
+    scope = cfg["scope"]
+    validated = {normalize_league(x) for x in scope["validated_domain_leagues"]}
+    shadow = {normalize_league(x) for x in scope["extended_shadow_leagues"]}
+    tracked = {normalize_league(x) for x in scope["tracked_leagues"]}
+    if validated & shadow:
+        raise ValueError("forward scope domains must be disjoint")
+    if validated | shadow != tracked:
+        raise ValueError("tracked_leagues must equal validated + shadow domains")
+    if len(tracked) != int(scope.get("locked_total_leagues", len(tracked))):
+        raise ValueError("locked forward league count drifted")
+    return validated, shadow, tracked
+
+
+def monitoring_domain(cfg, league):
+    validated, shadow, _ = _scope_sets(cfg)
+    key = normalize_league(league)
+    if key in validated:
+        return VALIDATED_DOMAIN
+    if key in shadow:
+        return SHADOW_DOMAIN
+    return None
+
+
 def load_contract(config_path=DEFAULT_CFG):
     config_path = Path(config_path)
     cfg = json.loads(config_path.read_text(encoding="utf-8"))
+    _scope_sets(cfg)
+    if cfg["forward_review"].get("formal_review_domain") != VALIDATED_DOMAIN:
+        raise ValueError("formal review domain must remain VALIDATED_DOMAIN")
+
     result_path = Path(cfg["historical_result_path"])
     if not result_path.is_absolute():
         result_path = ROOT / result_path
@@ -152,10 +185,6 @@ def load_contract(config_path=DEFAULT_CFG):
     return cfg, historical
 
 
-def normalize_league(value):
-    return " ".join(str(value or "").strip().lower().replace("-", " ").split())
-
-
 def observation_to_event(row, cfg, process_time=None):
     fixture_id = str(row.get("fixture_id") or row.get("api_fixture_id") or "").strip()
     if not fixture_id:
@@ -171,9 +200,9 @@ def observation_to_event(row, cfg, process_time=None):
     if processed >= kickoff:
         raise ValueError("historical_backfill_forbidden")
 
-    allowed = {normalize_league(value) for value in cfg["scope"]["leagues"]}
     league = str(row.get("league") or "").strip()
-    if normalize_league(league) not in allowed:
+    domain = monitoring_domain(cfg, league)
+    if domain is None:
         raise ValueError("outside_scope")
 
     p_market = market_probabilities(
@@ -192,6 +221,8 @@ def observation_to_event(row, cfg, process_time=None):
         "model_version": cfg["model_version"],
         "fixture_id": fixture_id,
         "league": league,
+        "monitoring_domain": domain,
+        "formal_review_eligible": domain == VALIDATED_DOMAIN,
         "home_team": str(row.get("home_team") or "").strip(),
         "away_team": str(row.get("away_team") or "").strip(),
         "kickoff_utc": kickoff.replace(microsecond=0).isoformat().replace("+00:00", "Z"),
@@ -260,6 +291,9 @@ def settlement_to_event(row, prematch_by_fixture):
         "research_id": prematch["payload"]["research_id"],
         "model_version": prematch["payload"]["model_version"],
         "fixture_id": fixture_id,
+        "league": prematch["payload"]["league"],
+        "monitoring_domain": prematch["payload"]["monitoring_domain"],
+        "formal_review_eligible": prematch["payload"]["formal_review_eligible"],
         "prematch_event_id": prematch["event_id"],
         "kickoff_utc": prematch["payload"]["kickoff_utc"],
         "settled_at_utc": settled_at.replace(microsecond=0).isoformat().replace("+00:00", "Z"),
@@ -308,12 +342,13 @@ def calibration(settlements):
     count = len(settlements)
     for label in CLASSES:
         mean_probability = sum(float(event["payload"]["p_m1"][label]) for event in settlements) / count
-        observed = sum(event["payload"]["result"] == label for event in settlements) / count
+        outcomes = sum(event["payload"]["result"] == label for event in settlements)
+        observed = outcomes / count
         result[label] = {
             "mean_probability": mean_probability,
             "observed_rate": observed,
             "abs_error": abs(mean_probability - observed),
-            "outcomes": sum(event["payload"]["result"] == label for event in settlements),
+            "outcomes": outcomes,
         }
     return result
 
@@ -331,22 +366,17 @@ def prematch_forward_only(events):
     return True
 
 
-def performance_report(cfg, prematch_events, settlements):
+def _domain_metrics(cfg, prematch_events, settlements, formal):
     review = cfg["forward_review"]
     guards = cfg["guards"]
     counts = Counter(event["payload"]["result"] for event in settlements)
     n = len(settlements)
-    sample_ready = (
-        n >= int(review["minimum_settled_rows"])
-        and all(counts[label] >= int(review["minimum_settled_outcomes_per_class"]) for label in CLASSES)
-    )
     forward_guard = prematch_forward_only(prematch_events)
     probability_guard = bool(settlements) and all(
         abs(sum(float(event["payload"]["p_m1"][label]) for label in CLASSES) - 1.0)
         <= float(guards["probability_sum_tolerance"])
         for event in settlements
     )
-
     if settlements:
         m0_brier = sum(float(e["payload"]["brier_market"]) for e in settlements) / n
         m1_brier = sum(float(e["payload"]["brier_m1"]) for e in settlements) / n
@@ -357,6 +387,11 @@ def performance_report(cfg, prematch_events, settlements):
         m0_brier = m1_brier = m0_logloss = m1_logloss = None
         cal = {}
 
+    sample_ready = (
+        formal
+        and n >= int(review["minimum_settled_rows"])
+        and all(counts[label] >= int(review["minimum_settled_outcomes_per_class"]) for label in CLASSES)
+    )
     checks = {
         "minimum_forward_rows": n >= int(review["minimum_settled_rows"]),
         "minimum_forward_outcomes_per_class": all(
@@ -371,31 +406,26 @@ def performance_report(cfg, prematch_events, settlements):
         "probability_sum": probability_guard,
         "forward_only_no_backfill": forward_guard,
     }
-    quality_keys = (
+    if not formal:
+        status = "SHADOW_COLLECTING"
+    elif not sample_ready:
+        status = "COLLECTING"
+    elif all(checks[key] for key in (
         "brier_strict_improvement", "logloss_strict_improvement", "class_calibration",
         "probability_sum", "forward_only_no_backfill"
-    )
-    if not sample_ready:
-        status = "COLLECTING"
-    elif all(checks[key] for key in quality_keys):
+    )):
         status = "FORWARD_REVIEW_READY_PASS"
     else:
         status = "FORWARD_REVIEW_READY_FAIL"
 
-    diagnostic = {
-        str(point): n >= int(point)
-        for point in review.get("diagnostic_checkpoints", [])
-    }
     return {
-        "generated_at_utc": now_iso(),
-        "research_id": cfg["research_id"],
-        "model_version": cfg["model_version"],
         "status": status,
-        "authority": "RESEARCH",
         "prematch_frozen": len(prematch_events),
         "settled_rows": n,
         "forward_outcomes": {label: counts[label] for label in CLASSES},
-        "diagnostic_checkpoints_reached": diagnostic,
+        "diagnostic_checkpoints_reached": {
+            str(point): n >= int(point) for point in review.get("diagnostic_checkpoints", [])
+        },
         "formal_review_sample_ready": sample_ready,
         "scores": {
             "m0_multiclass_brier": m0_brier,
@@ -407,8 +437,35 @@ def performance_report(cfg, prematch_events, settlements):
         },
         "m1_class_calibration": cal,
         "checks": checks,
+    }
+
+
+def performance_report(cfg, prematch_events, settlements):
+    validated_prematch = [e for e in prematch_events if e["payload"].get("monitoring_domain") == VALIDATED_DOMAIN]
+    shadow_prematch = [e for e in prematch_events if e["payload"].get("monitoring_domain") == SHADOW_DOMAIN]
+    validated_settlements = [e for e in settlements if e["payload"].get("monitoring_domain") == VALIDATED_DOMAIN]
+    shadow_settlements = [e for e in settlements if e["payload"].get("monitoring_domain") == SHADOW_DOMAIN]
+
+    official = _domain_metrics(cfg, validated_prematch, validated_settlements, formal=True)
+    shadow = _domain_metrics(cfg, shadow_prematch, shadow_settlements, formal=False)
+    return {
+        "generated_at_utc": now_iso(),
+        "research_id": cfg["research_id"],
+        "model_version": cfg["model_version"],
+        "status": official["status"],
+        "authority": "RESEARCH",
+        "tracked_leagues": len(cfg["scope"]["tracked_leagues"]),
+        "official_forward_review": official,
+        "extended_shadow_research": shadow,
+        "all_domains": {
+            "prematch_frozen": len(prematch_events),
+            "settled_rows": len(settlements),
+        },
         "policy": {
             "snapshot": cfg["capture_policy"]["snapshot"],
+            "formal_review_domain": VALIDATED_DOMAIN,
+            "shadow_domain": SHADOW_DOMAIN,
+            "shadow_excluded_from_official_gate": True,
             "historical_backfill": "FORBIDDEN",
             "bookmaker_substitution": False,
             "profitability_or_roi_conclusion": False,
@@ -449,6 +506,8 @@ def run_capture(input_path: Path, ops_dir: Path, config_path=DEFAULT_CFG, proces
         "observations_rejected": len(rejected),
         "prematch_frozen": len(prematch),
         "settled_rows": len(settlements),
+        "validated_domain_prematch": report["official_forward_review"]["prematch_frozen"],
+        "shadow_domain_prematch": report["extended_shadow_research"]["prematch_frozen"],
         "rejections": rejected,
         "api_calls": 0,
     }
@@ -470,6 +529,8 @@ def run_settle(input_path: Path, ops_dir: Path, config_path=DEFAULT_CFG):
         "settlements_rejected": len(rejected),
         "prematch_frozen": len(prematch),
         "settled_rows": len(settlements),
+        "validated_domain_settled": report["official_forward_review"]["settled_rows"],
+        "shadow_domain_settled": report["extended_shadow_research"]["settled_rows"],
         "rejections": rejected,
         "api_calls": 0,
     }
