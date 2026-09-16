@@ -34,6 +34,20 @@ class AvailabilityImpactTests(unittest.TestCase):
         self.assertIsNone(result["candidate_total_impact"])
         self.assertFalse(result["probability_mutation"])
 
+    def test_confirmed_absence_with_missing_component_stays_blocked(self):
+        events = [
+            {"player_id":"7","team_id":"10","observed_at_utc":"2026-09-16T10:00:00Z","state":"ABSENT"},
+        ]
+        result = impacts.absence_impact_components(
+            events, "7", "10", "2026-09-16T12:00:00Z",
+            importance_row={"eligible":"true","importance_score":"0.8"},
+            player_grade=7.4,
+            replacement_grade=None,
+        )
+        self.assertTrue(result["confirmed_absence"])
+        self.assertEqual(result["status"], "DATA_BLOCKED")
+        self.assertIn("NO_REPLACEMENT_GRADE", result["blockers"])
+
     def test_future_availability_evidence_is_rejected(self):
         events = [
             {"player_id":"7","team_id":"10","observed_at_utc":"2026-09-16T13:00:00Z","state":"ABSENT","source":"late"},
@@ -46,10 +60,12 @@ class AvailabilityImpactTests(unittest.TestCase):
         events = [
             {"player_id":"7","team_id":"10","observed_at_utc":"2026-09-01T10:00:00Z","state":"ABSENT"},
             {"player_id":"7","team_id":"10","observed_at_utc":"2026-09-10T10:00:00Z","state":"STARTER"},
+            {"player_id":"7","team_id":"10","observed_at_utc":"2026-09-12T10:00:00Z","state":"BENCH"},
         ]
         result = impacts.return_event(events, "7", "10", "2026-09-16T12:00:00Z")
         self.assertTrue(result["return_event"])
         self.assertEqual(result["prior_absent_events"], 1)
+        self.assertEqual(result["return_observed_at_utc"], "2026-09-10T10:00:00Z")
         self.assertIsNone(result["return_impact_score"])
 
     def test_missing_observation_does_not_create_return(self):
@@ -59,6 +75,17 @@ class AvailabilityImpactTests(unittest.TestCase):
         result = impacts.return_event(events, "7", "10", "2026-09-16T12:00:00Z")
         self.assertFalse(result["return_event"])
         self.assertIn("NO_EXPLICIT_PRIOR_ABSENCE_RUN", result["blockers"])
+
+    def test_unknown_breaks_absence_to_presence_chain(self):
+        events = [
+            {"player_id":"7","team_id":"10","observed_at_utc":"2026-09-01T10:00:00Z","state":"ABSENT"},
+            {"player_id":"7","team_id":"10","observed_at_utc":"2026-09-05T10:00:00Z","state":"PRESENT"},
+            {"player_id":"7","team_id":"10","observed_at_utc":"2026-09-08T10:00:00Z","state":"UNKNOWN"},
+            {"player_id":"7","team_id":"10","observed_at_utc":"2026-09-10T10:00:00Z","state":"STARTER"},
+        ]
+        result = impacts.return_event(events, "7", "10", "2026-09-16T12:00:00Z")
+        self.assertFalse(result["return_event"])
+        self.assertEqual(result["prior_absent_events"], 0)
 
     def test_unsupported_state_fails_closed(self):
         with self.assertRaises(ValueError):
@@ -89,6 +116,14 @@ class AvailabilityImpactTests(unittest.TestCase):
         self.assertIsNone(result["quality_delta"])
         self.assertIn("CURRENT_XI_GRADE_COVERAGE_LOW", result["blockers"])
         self.assertIn("PREVIOUS_XI_GRADE_COVERAGE_LOW", result["blockers"])
+
+    def test_rotation_quality_requires_complete_xis(self):
+        previous = [{"id":str(i)} for i in range(1, 12)]
+        current = [{"id":str(i)} for i in range(1, 11)]
+        grades = {str(i): 7.0 for i in range(1, 12)}
+        result = impacts.rotation_quality_components(current, previous, grades, minimum_quality_coverage=8)
+        self.assertIsNone(result["quality_delta"])
+        self.assertIn("CURRENT_XI_NOT_COMPLETE", result["blockers"])
 
 
 if __name__ == "__main__":
