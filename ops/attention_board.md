@@ -1,7 +1,7 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 16.09.2026 19:00 (Europe/Berlin)
-Canonical: 1 | active WATCH crossings: 11 | RED: 0 | ORANGE: 11
+Обновлено: 16.09.2026 20:00 (Europe/Berlin)
+Canonical: 1 | active WATCH crossings: 12 | RED: 0 | ORANGE: 12
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
 
@@ -20,6 +20,7 @@ Canonical: 1 | active WATCH crossings: 11 | RED: 0 | ORANGE: 11
 - **Everton — Ipswich** | Stage63 | ОЗ — Да | 19.09 16:00 | prospective движение ОЗ ≥3 п.п. | 1.67 @ Marathonbet
 - **Athletic Club — Alaves** | Stage63 | ОЗ — Нет | 19.09 16:15 | prospective движение ОЗ ≥3 п.п. | 1.78 @ Marathonbet
 - **AS Roma — Inter** | Stage63 | ОЗ — Да | 19.09 18:00 | prospective движение ОЗ ≥3 п.п. | 1.49 @ Marathonbet
+- **Nottingham Forest — Coventry** | Stage61 | П1 | 19.09 18:30 | первый +3 п.п. steam фаворита | 1.66 @ Marathonbet
 
 ## 🔵 Активные R1/R2/R3
 - **R1 | Frosinone — Como** | П2 | 20.09 15:00 | 1.65 @ Marathonbet | гости после еврокубка/кубка
@@ -36,6 +37,7 @@ Canonical: 1 | active WATCH crossings: 11 | RED: 0 | ORANGE: 11
 - **Stage63 | Everton — Ipswich** | ОЗ — Да | 19.09 16:00 | 1.67 @ Marathonbet
 - **Stage63 | Athletic Club — Alaves** | ОЗ — Нет | 19.09 16:15 | 1.78 @ Marathonbet
 - **Stage63 | AS Roma — Inter** | ОЗ — Да | 19.09 18:00 | 1.49 @ Marathonbet
+- **Stage61 | Nottingham Forest — Coventry** | П1 | 19.09 18:30 | 1.66 @ Marathonbet
 
 ## ⚪ Ближайшие матчи под наблюдением (без сигнала)
 - **Stage63 | Barcelona — Racing Santander** | La Liga | 16.09 21:30 | ОЗ — Да / ОЗ — Нет | Bet365 Да 1.8 / Нет 1.95
@@ -1024,8 +1026,8 @@ Canonical: 1 | active WATCH crossings: 11 | RED: 0 | ORANGE: 11
 - **Nottingham Forest — Coventry** | Premier League | 19.09 16:30 UTC
   - ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.05 @ Bet365
   - ОЗ · ОЗ Да: 1.71 | ОЗ Нет: 2.02 @ Marathonbet
-  - 1X2 · П1: 1.75 | Х: 3.7 | П2: 4.5 @ Bet365
-  - 1X2 · П1: 1.79 | Х: 3.88 | П2: 4.65 @ Marathonbet
+  - 1X2 · П1: 1.62 | Х: 4 | П2: 5.25 @ Bet365
+  - 1X2 · П1: 1.66 | Х: 4 | П2: 5.25 @ Marathonbet
   - Тотал 2.5 — нет данных
   - ИТБ/ИТМ — нет данных
   - 1Х/Х2/12 — нет данных
