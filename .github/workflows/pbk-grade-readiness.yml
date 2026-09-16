@@ -5,7 +5,9 @@ on:
     paths:
       - "config/pbk_grade_readiness.json"
       - "scripts/validate_grade_readiness.py"
+      - "scripts/pbk_team_player_grades.py"
       - "scripts/tests/test_grade_readiness.py"
+      - "scripts/tests/test_pbk_team_player_grades.py"
       - "docs/pbk_brain_grade_readiness.md"
       - ".github/workflows/pbk-grade-readiness.yml"
   push:
@@ -13,9 +15,15 @@ on:
     paths:
       - "config/pbk_grade_readiness.json"
       - "scripts/validate_grade_readiness.py"
+      - "scripts/pbk_team_player_grades.py"
       - "scripts/tests/test_grade_readiness.py"
+      - "scripts/tests/test_pbk_team_player_grades.py"
       - "docs/pbk_brain_grade_readiness.md"
       - ".github/workflows/pbk-grade-readiness.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   validate:
@@ -25,7 +33,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Compile grade foundation
+        run: python -m py_compile scripts/validate_grade_readiness.py scripts/pbk_team_player_grades.py
       - name: Validate registry
         run: python scripts/validate_grade_readiness.py
-      - name: Run guardrail tests
+      - name: Run readiness guardrail tests
         run: python -m unittest scripts.tests.test_grade_readiness -v
+      - name: Run Team and Player Grade tests
+        run: python -m unittest scripts.tests.test_pbk_team_player_grades -v
