@@ -1,0 +1,114 @@
+{
+  "research_id": "PBK_GENERIC_1X2_PROBABILITY_V1",
+  "model_version": "PBK_GENERIC_1X2_PROBABILITY_V1",
+  "authority": "RESEARCH",
+  "result_date": "2026-09-16",
+  "final_verdict": "PASS_HISTORICAL_PROBABILITY_GATE",
+  "research_status": "HISTORICALLY_VALIDATED_RESEARCH",
+  "registry_phase": "HIST TESTED",
+  "registry_decision": "PASSED",
+  "next_phase": "FORWARD_REVIEW_REQUIRED",
+  "references": {
+    "preregistration_pr": 59,
+    "preregistration_path": "research/generic_1x2_probability_v1_prereg_2026-09-16.md",
+    "pretest_gate_pr": 60,
+    "schema_corrigendum_pr": 61,
+    "schema_corrigendum_path": "research/generic_1x2_probability_v1_pretest_schema_corrigendum_2026-09-16.md",
+    "frozen_execution_commit": "aef23cf32284cbfda1a1e93be7391777d6b9d918"
+  },
+  "source": {
+    "canonical_filename": "Football_Top5_2016-2026.csv",
+    "sha256": "a49cd84b1b4d6d2aad2856d7c81b4ae8b34954dabf4dd356fe41588f370cd004",
+    "raw_rows": 17937,
+    "raw_columns": 187,
+    "rejected_rows": {
+      "season": 5478,
+      "price": 5
+    }
+  },
+  "execution": {
+    "python_version": "3.12.10",
+    "environment": "Local Windows PowerShell outside ChatGPT Work sandbox",
+    "result_recovered_via_deterministic_replay": true,
+    "original_blind_test_result_was_lost_before_metrics_were_observed": true,
+    "failed_recovery_attempts_before_final_replay_reread_test": false,
+    "no_posthoc_tuning": true,
+    "model_changed_after_first_test_open": false,
+    "config_changed_after_first_test_open": false,
+    "canonical_rules_changed": false
+  },
+  "split": {
+    "train_seasons": ["2019/20", "2020/21", "2021/22", "2022/23"],
+    "test_seasons": ["2023/24", "2024/25", "2025/26"],
+    "train_rows": 7198,
+    "test_rows": 5256,
+    "test_outcomes": {
+      "H": 2262,
+      "D": 1346,
+      "A": 1648
+    }
+  },
+  "fit": {
+    "alpha_h": -0.018000000000000002,
+    "alpha_d": 0.0,
+    "alpha_a": -0.004,
+    "train_logloss": 0.9786826002938076
+  },
+  "test": {
+    "m0": {
+      "name": "BET365_1X2_NO_VIG",
+      "multiclass_brier": 0.5743448663957984,
+      "logloss": 0.9661933045794492
+    },
+    "m1": {
+      "name": "MULTICLASS_MARKET_INTERCEPT_SHIFT",
+      "multiclass_brier": 0.5742689609113001,
+      "logloss": 0.9660505956293809,
+      "class_calibration": {
+        "H": {
+          "mean_probability": 0.43673198135133834,
+          "observed_rate": 0.430365296803653,
+          "abs_error": 0.006366684547685353,
+          "outcomes": 2262
+        },
+        "D": {
+          "mean_probability": 0.24979857634558597,
+          "observed_rate": 0.2560882800608828,
+          "abs_error": 0.006289703715296829,
+          "outcomes": 1346
+        },
+        "A": {
+          "mean_probability": 0.3134694423030757,
+          "observed_rate": 0.3135464231354642,
+          "abs_error": 0.00007698083238849573,
+          "outcomes": 1648
+        }
+      }
+    },
+    "improvement": {
+      "brier_absolute_m0_minus_m1": 0.00007590548449831758,
+      "brier_relative_percent": 0.013216011657708247,
+      "logloss_absolute_m0_minus_m1": 0.0001427089500682932,
+      "logloss_relative_percent": 0.014770227592335625
+    }
+  },
+  "frozen_gate_checks": {
+    "minimum_test_rows": true,
+    "minimum_test_outcomes_per_class": true,
+    "brier_strict_improvement": true,
+    "logloss_strict_improvement": true,
+    "class_calibration": true,
+    "probability_sum": true,
+    "no_future_or_post_kickoff_predictors": true,
+    "all_mandatory_criteria_passed": true
+  },
+  "authorization": {
+    "value_authorized": false,
+    "stake_changes_authorized": false,
+    "betting_strategy_authorized": false,
+    "production_integration_authorized": false,
+    "r1_r2_r3_changes_authorized": false,
+    "canonical_status_authorized": false
+  },
+  "interpretation": "The preregistered M1 model strictly improved both Brier score and log-loss over the Bet365 no-vig baseline on the locked TEST set, satisfying the historical probability gate. The magnitude of improvement was small, so this result is historical validation of the probability calibration layer only; it is not evidence of betting profitability or material economic edge."
+}
