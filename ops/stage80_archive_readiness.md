@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-16T00:48:08Z
+Обновлено UTC: 2026-09-16T06:49:47Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -11,9 +11,9 @@
 - Stage77 durable backlog: pending 35; captured 0; total 35.
 - Player stat rows: 0; уникальных игроков: 0.
 - Player Grade rows: 0; уникальных игроков: 0.
-- Current roster: 8 команд / 249 игроковых строк.
-- Roster history: 8 команд / 8 team-snapshots / 249 строк.
-- Membership intervals: 249 (open 249, closed-by-observed-absence 0).
+- Current roster: 32 команд / 1008 игроковых строк.
+- Roster history: 32 команд / 32 team-snapshots / 1008 строк.
+- Membership intervals: 1008 (open 1008, closed-by-observed-absence 0).
 - Match context: 3 fixtures; official XI 1; injury evidence 2.
 
 ## Raw provider archive

@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V2_FIXTURE_CATALOG",
-  "generated_at_utc": "2026-09-16T00:48:08Z",
+  "generated_at_utc": "2026-09-16T06:49:47Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -37,17 +37,17 @@
     "current_rosters": {
       "file": "team_rosters.csv",
       "present": true,
-      "rows": 249
+      "rows": 1008
     },
     "roster_history": {
       "file": "team_roster_history.csv",
       "present": true,
-      "rows": 249
+      "rows": 1008
     },
     "membership_intervals": {
       "file": "team_membership_intervals.csv",
       "present": true,
-      "rows": 249
+      "rows": 1008
     },
     "match_context": {
       "file": "match_context_snapshots.csv",
@@ -146,13 +146,13 @@
     "unique_players_with_grades": 0
   },
   "rosters": {
-    "current_roster_rows": 249,
-    "current_roster_teams": 8,
-    "history_rows": 249,
-    "history_teams": 8,
-    "history_team_snapshots": 8,
-    "membership_intervals": 249,
-    "open_latest_intervals": 249,
+    "current_roster_rows": 1008,
+    "current_roster_teams": 32,
+    "history_rows": 1008,
+    "history_teams": 32,
+    "history_team_snapshots": 32,
+    "membership_intervals": 1008,
+    "open_latest_intervals": 1008,
     "closed_by_observed_absence_intervals": 0
   },
   "context": {
