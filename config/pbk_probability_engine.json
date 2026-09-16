@@ -1,0 +1,75 @@
+{
+  "version": "PBK_PROBABILITY_ENGINE_V1",
+  "authority": "GOVERNED_ANALYTIC",
+  "scope": "FULL_MARKET_SCANNER_EXACT_SELECTIONS",
+  "purpose": "Attach market-implied probabilities and only independently authorized PBK probabilities to exact market/line/selection rows from the Full Market Scanner.",
+  "inputs": {
+    "full_market_scanner": "ops/full_market_scanner_latest.json",
+    "canonical_probability_predictions": "ops/stage75_probability_predictions.csv",
+    "canonical_model_config": "config/pbk_probability_models.json",
+    "generic_1x2_forward_config": "config/pbk_generic_1x2_probability_v1_forward.json",
+    "generic_1x2_forward_journal": "ops/generic_1x2_v1_forward_prematch.jsonl"
+  },
+  "output": "ops/probability_engine_latest.json",
+  "validated_contexts": {
+    "R1": {"market_family": "MATCH_RESULT_1X2", "selection_label": "P2"},
+    "R2": {"market_family": "MATCH_RESULT_1X2", "selection_label": "P2"},
+    "R3": {"market_family": "MATCH_RESULT_1X2", "selection_label": "X"}
+  },
+  "validated_context_priority": ["R2", "R1", "R3"],
+  "market_probability_policy": {
+    "reference_bookmaker": "Bet365",
+    "raw_implied_formula": "p_market_raw = 1 / reference_price",
+    "no_vig_formula": "p_market_no_vig_i = (1/odds_i) / sum_j(1/odds_j)",
+    "no_vig_valid_for": [
+      "MATCH_RESULT_1X2 complete P1/X/P2",
+      "EUROPEAN_HANDICAP complete H/D/A on the exact same line",
+      "BTTS complete YES/NO",
+      "MATCH_TOTAL and TEAM_TOTAL complete Over/Under on half-goal lines",
+      "ASIAN_HANDICAP complete opposing half-goal lines"
+    ],
+    "conditional_no_push_only_for": [
+      "DRAW_NO_BET",
+      "integer ASIAN_HANDICAP lines",
+      "integer MATCH_TOTAL lines",
+      "integer TEAM_TOTAL lines"
+    ],
+    "raw_only_for": [
+      "DOUBLE_CHANCE because 1X/X2/12 overlap",
+      "quarter/split lines where a simple two-outcome normalization is not an unconditional win probability"
+    ]
+  },
+  "pbk_probability_policy": {
+    "official_p_pbk_requires_validated_exact_context": true,
+    "canonical_source": "Stage75 frozen R1/R2/R3 probability prediction",
+    "do_not_recalculate_canonical_probability_from_latest_market_price": true,
+    "generic_1x2_historical_pass_authority": "POOLED_BIG5_RESEARCH_ONLY",
+    "generic_1x2_forward_status": "FORWARD_REVIEW_REQUIRED_PER_LEAGUE",
+    "generic_1x2_official_p_pbk_authorized": false,
+    "generic_1x2_research_candidate_source": "Generic 1X2 frozen forward prematch journal only",
+    "generic_1x2_research_candidate_may_be_exposed": true,
+    "cross_market_probability_transfer": false,
+    "cross_line_probability_transfer": false,
+    "cross_selection_probability_transfer": false,
+    "missing_model_status": "NO_VALIDATED_MODEL"
+  },
+  "derived_metrics": {
+    "fair_odds": "1 / p_pbk",
+    "edge_vs_model_market": "p_pbk - p_market_model_input",
+    "execution_implied_raw": "1 / executable_price",
+    "edge_vs_execution_implied": "p_pbk - execution_implied_raw",
+    "ev": "p_pbk * executable_price - 1"
+  },
+  "guardrails": {
+    "ev_requires_official_p_pbk": true,
+    "fair_odds_requires_official_p_pbk": true,
+    "edge_requires_official_p_pbk": true,
+    "no_signal_creation": true,
+    "no_watch_creation": true,
+    "no_stake_changes": true,
+    "no_canonical_promotion": true,
+    "no_r1_r2_r3_changes": true,
+    "no_ui_changes": true,
+    "api_calls": 0
+  }
+}

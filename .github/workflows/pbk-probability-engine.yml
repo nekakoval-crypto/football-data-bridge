@@ -1,0 +1,39 @@
+name: PBK Probability Engine
+
+on:
+  pull_request:
+    paths:
+      - "config/pbk_probability_engine.json"
+      - "config/pbk_market_probability_readiness.json"
+      - "scripts/pbk_probability_engine.py"
+      - "scripts/tests/test_pbk_probability_engine.py"
+      - ".github/workflows/pbk-probability-engine.yml"
+      - ".github/workflows/stage71j-shared-core-market-capture.yml"
+      - ".github/workflows/stage75-probability-value.yml"
+  push:
+    branches: [main]
+    paths:
+      - "config/pbk_probability_engine.json"
+      - "config/pbk_market_probability_readiness.json"
+      - "scripts/pbk_probability_engine.py"
+      - "scripts/tests/test_pbk_probability_engine.py"
+      - ".github/workflows/pbk-probability-engine.yml"
+      - ".github/workflows/stage71j-shared-core-market-capture.yml"
+      - ".github/workflows/stage75-probability-value.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probability-engine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile Probability Engine
+        run: python -m py_compile scripts/pbk_probability_engine.py
+      - name: Run Probability Engine guardrail tests
+        run: python -m unittest scripts.tests.test_pbk_probability_engine -v
