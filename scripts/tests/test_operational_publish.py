@@ -66,6 +66,22 @@ class PublishTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, 'requires'):
                 publish(self.a)
 
+    def test_generic_1x2_forward_writers_share_safe_publish_contract(self):
+        repo = Path(__file__).resolve().parents[2]
+        workflow_paths = [
+            repo / '.github/workflows/stage71j-shared-core-market-capture.yml',
+            repo / '.github/workflows/stage71-live-snapshot.yml',
+        ]
+        for path in workflow_paths:
+            text = path.read_text(encoding='utf-8')
+            self.assertIn('group: pbk-generic-1x2-forward-writers-${{ github.ref }}', text)
+            self.assertIn('cancel-in-progress: false', text)
+            self.assertIn('fetch-depth: 0', text)
+            self.assertIn('python scripts/publish_operational_commit.py', text)
+            self.assertIn('if: always()', text)
+            self.assertNotIn('git pull --rebase origin main', text)
+            self.assertNotIn('git push origin main || true', text)
+
 
 if __name__ == '__main__':
     unittest.main()

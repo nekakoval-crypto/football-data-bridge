@@ -8,8 +8,13 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: pbk-generic-1x2-forward-writers-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   capture:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 25
     env:
@@ -36,6 +41,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -74,13 +82,9 @@ jobs:
             exit 0
           fi
           git commit -m 'Stage71J shared core market capture update'
-          if ! git pull --rebase origin main; then
-            git rebase --abort || true
-            echo 'Concurrent update; leave outputs in artifact and retry next scheduled run.'
-            exit 0
-          fi
-          git push origin main || true
+          python scripts/publish_operational_commit.py
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: stage71j-shared-core-market-capture
           path: |
