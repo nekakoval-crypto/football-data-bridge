@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "name": "PBK Full Market Scanner",
+  "authority": "RESEARCH",
+  "scope": "LOCKED_16_LEAGUES",
+  "reference_bookmaker": "Bet365",
+  "executable_bookmaker": "Marathonbet",
+  "target_market_families": [
+    "MATCH_RESULT_1X2",
+    "DOUBLE_CHANCE",
+    "DRAW_NO_BET",
+    "ASIAN_HANDICAP",
+    "EUROPEAN_HANDICAP",
+    "MATCH_TOTAL",
+    "BTTS",
+    "TEAM_TOTAL_HOME",
+    "TEAM_TOTAL_AWAY"
+  ],
+  "fixed_selection_targets": {
+    "MATCH_RESULT_1X2": ["P1", "X", "P2"],
+    "DOUBLE_CHANCE": ["1X", "X2", "12"],
+    "DRAW_NO_BET": ["F1(0)", "F2(0)"],
+    "BTTS": ["YES", "NO"]
+  },
+  "known_api_football_bet_ids": {
+    "DOUBLE_CHANCE": 12,
+    "EUROPEAN_HANDICAP": 9,
+    "ASIAN_HANDICAP": 4,
+    "TEAM_TOTAL_HOME": 16,
+    "TEAM_TOTAL_AWAY": 17
+  },
+  "line_policy": {
+    "asian_handicap_executable_increment": 0.5,
+    "quarter_asian_handicap_final_execution": false,
+    "draw_no_bet_line": 0.0,
+    "match_total_lines": "ALL_OBSERVED_FULL_TIME_GOALS_LINES",
+    "team_total_lines": "ALL_OBSERVED_FULL_TIME_GOALS_LINES",
+    "european_handicap_lines": "ALL_OBSERVED_COMPLETE_INTEGER_LINES"
+  },
+  "scanner_policy": {
+    "api_calls": 0,
+    "use_cached_provider_payloads": true,
+    "missing_markets_are_explicit": true,
+    "same_selection_best_price_only": true,
+    "cross_market_best_bet": false,
+    "probability_model_evaluation": false,
+    "ev_calculation": false,
+    "signal_creation": false,
+    "watch_creation": false,
+    "stake_changes": false,
+    "canonical_promotion": false,
+    "ui_changes": false
+  },
+  "guardrails": [
+    "The scanner inventories prices and availability; it does not decide whether a bet has value.",
+    "A best price may only be selected for the exact same market, line and selection.",
+    "Never transfer probability from one market or selection to another.",
+    "Quarter Asian handicap lines may be observed for audit but are blocked from executable output.",
+    "Missing provider evidence remains MISSING; never synthesize a market from another family.",
+    "Canonical R1/R2/R3 eligibility, stake and exposure are untouched."
+  ]
+}
