@@ -1,7 +1,10 @@
 import copy
+import csv
 import json
 import math
+import os
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -27,6 +30,28 @@ class Generic1X2ProbabilityV1Tests(unittest.TestCase):
         self.assertEqual(train, {"2019/20", "2020/21", "2021/22", "2022/23"})
         self.assertEqual(test, {"2023/24", "2024/25", "2025/26"})
         self.assertTrue(CFG["split"]["test_never_used_for_fit_or_model_selection"])
+
+    def test_canonical_schema_uses_lowercase_season(self):
+        self.assertIn("season", CFG["dataset"]["required_columns"])
+        self.assertNotIn("Season", CFG["dataset"]["required_columns"])
+
+    def test_load_rows_assigns_lowercase_season_to_locked_split(self):
+        fields = ["Div", "season", "FTR", "B365H", "B365D", "B365A"]
+        rows = [
+            {"Div": "E0", "season": "2019/20", "FTR": "H", "B365H": "2.0", "B365D": "3.0", "B365A": "4.0"},
+            {"Div": "E0", "season": "2023/24", "FTR": "D", "B365H": "2.1", "B365D": "3.1", "B365A": "3.9"},
+        ]
+        with tempfile.NamedTemporaryFile(mode="w", newline="", encoding="utf-8", delete=False) as handle:
+            writer = csv.DictWriter(handle, fieldnames=fields)
+            writer.writeheader(); writer.writerows(rows)
+            source = Path(handle.name)
+        try:
+            train, test, rejected = target.load_rows(source, CFG)
+        finally:
+            os.unlink(source)
+        self.assertEqual([outcome for _, outcome in train], ["H"])
+        self.assertEqual([outcome for _, outcome in test], ["D"])
+        self.assertEqual(rejected, {})
 
     def test_market_no_vig_sums_to_one(self):
         p = target.market_probabilities({"B365H": "2.00", "B365D": "3.50", "B365A": "4.00"})
@@ -79,3 +104,4 @@ class Generic1X2ProbabilityV1Tests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
