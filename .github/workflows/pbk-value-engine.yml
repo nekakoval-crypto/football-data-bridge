@@ -1,0 +1,35 @@
+name: PBK Value Engine v2
+
+on:
+  pull_request:
+    paths:
+      - 'config/pbk_value_engine.json'
+      - 'scripts/pbk_value_engine.py'
+      - 'scripts/tests/test_pbk_value_engine.py'
+      - '.github/workflows/pbk-value-engine.yml'
+      - '.github/workflows/stage75-probability-value.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'config/pbk_value_engine.json'
+      - 'scripts/pbk_value_engine.py'
+      - 'scripts/tests/test_pbk_value_engine.py'
+      - '.github/workflows/pbk-value-engine.yml'
+      - '.github/workflows/stage75-probability-value.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  value-engine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile Value Engine
+        run: python -m py_compile scripts/pbk_value_engine.py
+      - name: Run Value Engine guardrail tests
+        run: python -m unittest scripts.tests.test_pbk_value_engine -v
