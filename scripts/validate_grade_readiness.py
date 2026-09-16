@@ -34,7 +34,6 @@ def validate(payload: dict) -> list[str]:
     missing = sorted(REQUIRED_IDS - set(by_id))
     if missing:
         errors.append(f"missing required metric ids: {', '.join(missing)}")
-
     if len(by_id) != len(metrics):
         errors.append("metric ids must be non-empty and unique")
 
@@ -75,6 +74,20 @@ def validate(payload: dict) -> list[str]:
     missing_team = sorted(required_team_components - set(component_map))
     if missing_team:
         errors.append(f"TEAM_COMPONENT_GRADES: missing components {', '.join(missing_team)}")
+
+    for metric_id in ("ABSENCE_IMPACT", "RETURN_IMPACT", "ROTATION_QUALITY_IMPACT"):
+        row = by_id.get(metric_id, {})
+        if row.get("code_ready") is not True:
+            errors.append(f"{metric_id}: research foundation must remain code_ready=true")
+        if row.get("status") not in {"DATA_BLOCKED", "VALIDATION_PENDING", "PROXY_LIMITED"}:
+            errors.append(f"{metric_id}: cannot be promoted before evidence and validation")
+
+    absence_components = by_id.get("ABSENCE_IMPACT", {}).get("components") or {}
+    if absence_components.get("total_impact") != "FORBIDDEN_UNTIL_WEIGHTING_VALIDATED":
+        errors.append("ABSENCE_IMPACT: total impact must remain forbidden until weighting validation")
+    return_components = by_id.get("RETURN_IMPACT", {}).get("components") or {}
+    if return_components.get("return_impact_score") != "NOT_AUTHORIZED":
+        errors.append("RETURN_IMPACT: return impact score must remain unauthorized")
 
     team_overall = by_id.get("TEAM_OVERALL_GRADE", {})
     if team_overall.get("status") != "NOT_IMPLEMENTED" or team_overall.get("code_ready") is not False:
