@@ -16,7 +16,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: stage71-${{ github.ref }}
+  group: pbk-generic-1x2-forward-writers-${{ github.ref }}
   cancel-in-progress: false
 jobs:
   validate:
@@ -39,6 +39,9 @@ jobs:
       STAGE71_MAX_DAILY_API_CALLS: '180'
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - run: python scripts/stage71_live_snapshot.py
@@ -52,11 +55,21 @@ jobs:
                   ops/generic_1x2_v1_forward_settlements.jsonl \
                   ops/generic_1x2_v1_forward_performance.json \
                   ops/generic_1x2_v1_stage71_settlement_last_run.json
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Stage 71 live fixture snapshot update'
-          if ! git pull --rebase origin main; then
-            git rebase --abort || true
-            echo 'Concurrent update; leave local outputs for the next scheduled retry.'
+          if git diff --cached --quiet; then
+            echo 'No Stage71 live or Generic 1X2 settlement changes to commit.'
             exit 0
           fi
-          git push origin main || true
+          git commit -m 'Stage 71 live fixture snapshot update'
+          python scripts/publish_operational_commit.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage71-live-generic-1x2-settlement
+          path: |
+            ops/live_fixture_overlay.csv
+            ops/live_fixture_overlay_last_run.json
+            ops/stage71_observation_state.json
+            ops/generic_1x2_v1_forward_settlements.jsonl
+            ops/generic_1x2_v1_forward_performance.json
+            ops/generic_1x2_v1_stage71_settlement_last_run.json
+          retention-days: 30
