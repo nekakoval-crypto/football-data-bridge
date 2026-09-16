@@ -1,0 +1,35 @@
+name: PBK Full Market Scanner
+
+on:
+  pull_request:
+    paths:
+      - "config/pbk_full_market_scanner.json"
+      - "scripts/full_market_scanner.py"
+      - "scripts/stage71j_shared_core_market_capture.py"
+      - "scripts/tests/test_full_market_scanner.py"
+      - ".github/workflows/pbk-full-market-scanner.yml"
+  push:
+    branches: [main]
+    paths:
+      - "config/pbk_full_market_scanner.json"
+      - "scripts/full_market_scanner.py"
+      - "scripts/stage71j_shared_core_market_capture.py"
+      - "scripts/tests/test_full_market_scanner.py"
+      - ".github/workflows/pbk-full-market-scanner.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scanner:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile scanner and shared capture
+        run: python -m py_compile scripts/full_market_scanner.py scripts/stage71j_shared_core_market_capture.py
+      - name: Run Full Market Scanner tests
+        run: python -m unittest scripts.tests.test_full_market_scanner -v
