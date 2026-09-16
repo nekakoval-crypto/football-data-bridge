@@ -8,10 +8,12 @@ Stage71J. It never calls API-Football itself. Only complete Bet365 Match Winner
 from __future__ import annotations
 
 from collections import Counter
-from datetime import datetime, timezone
 from pathlib import Path
 
-import generic_1x2_probability_v1_forward as fwd
+try:
+    import generic_1x2_probability_v1_forward as fwd
+except ModuleNotFoundError:  # package import in unit tests
+    from scripts import generic_1x2_probability_v1_forward as fwd
 
 BOOKMAKER = "Bet365"
 MATCH_WINNER_BET_ID = 1
