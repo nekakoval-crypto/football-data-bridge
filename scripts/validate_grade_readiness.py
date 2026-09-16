@@ -87,7 +87,7 @@ def validate(payload: dict) -> list[str]:
         errors.append("ABSENCE_IMPACT: total impact must remain forbidden until weighting validation")
     return_components = by_id.get("RETURN_IMPACT", {}).get("components") or {}
     if return_components.get("return_impact_score") != "NOT_AUTHORIZED":
-        errors.append("RETURN_IMACT: return impact score must remain unauthorized")
+        errors.append("RETURN_IMPACT: return impact score must remain unauthorized")
 
     team_overall = by_id.get("TEAM_OVERALL_GRADE", {})
     if team_overall.get("status") != "NOT_IMPLEMENTED" or team_overall.get("code_ready") is not False:
