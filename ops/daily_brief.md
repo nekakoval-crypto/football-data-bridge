@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-16T11:02:46Z
+Generated UTC: 2026-09-16T12:03:30Z
 Active canonical signals: 1
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -28,12 +28,13 @@ Active canonical signals: 1
 
 - Scope: АПЛ: движение фаворита П1/П2 (+3 pp no-vig from frozen Bet365 opener).
 - Frozen openers tracked: 20
-- Active +3 pp crossings: 1
+- Active +3 pp crossings: 2
 - Observed closes: 10 | Close-qualified M1 watches: 0
 - Executable bookmaker being observed: Marathonbet
 
 ## Current crossings
 - WATCH | Brentford — Chelsea | фаворит на opener A | move +5.03 pp | Bet365 2.2 | Marathonbet 2.27 | 4292.4 min to kickoff
+- WATCH | Tottenham — Aston Villa | фаворит на opener H | move +6.19 pp | Bet365 1.95 | Marathonbet 2.02 | 4295.2 min to kickoff
 
 ---
 
@@ -75,7 +76,7 @@ Active canonical signals: 1
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 14 | settled 11 | pending 3
+- Crossings: 15 | settled 11 | pending 4
 - Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: -5.550u | ROI -50.455% | W-L 4-7
 - Close: observed 11 | stayed qualified 9 | reverted 2 | persistence 81.818%
@@ -84,5 +85,5 @@ Active canonical signals: 1
 ## By WATCH family
 - Big-5 ОЗ market movement — ОЗ — Да: crossings 10, settled 9, ROI -65.556%, close persistence 77.778%
 - Big-5 ОЗ market movement — ОЗ — Нет: crossings 1, settled 0, ROI N/A, close persistence N/A
-- АПЛ favorite steam: crossings 1, settled 0, ROI N/A, close persistence N/A
+- АПЛ favorite steam: crossings 2, settled 0, ROI N/A, close persistence N/A
 - Бундеслига ТБ(2.5) steam: crossings 2, settled 2, ROI 17.5%, close persistence 100.0%
