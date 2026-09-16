@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 16.09.2026 06:00 (Europe/Berlin)
+Обновлено: 16.09.2026 07:00 (Europe/Berlin)
 Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -566,7 +566,7 @@ Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
   - Тотал 2.5 — нет данных
 
 - **Monza — Sassuolo** | Serie A | 18.09 18:45 UTC
-  - ОЗ · ОЗ Да: 1.67 | ОЗ Нет: 2.1 @ Bet365
+  - ОЗ · ОЗ Да: 1.62 | ОЗ Нет: 2.2 @ Bet365
   - ОЗ · ОЗ Да: 1.62 | ОЗ Нет: 2.16 @ Marathonbet
   - Ф(0) · Ф1(0): 2.1 | Ф2(0): 1.7 @ Bet365
   - Ф(0) · Ф1(0): 2.12 | Ф2(0): 1.73 @ Marathonbet
@@ -1763,7 +1763,7 @@ Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 1
+- System Health: **WARN** | critical 0 | warnings 2
 - Логическая canonical экспозиция: **1.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 24 | data required 3
