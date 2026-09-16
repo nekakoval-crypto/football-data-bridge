@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-16T12:24:04Z",
+  "run_at_utc": "2026-09-16T13:20:38Z",
   "status": "OK",
   "api_version": "v1",
   "db_path": "build/pbk_unified.sqlite",
@@ -50,7 +50,7 @@
       "path": "/v1/markets/european-handicap/openers?limit=1",
       "http_status": 200,
       "passed": true,
-      "count": 1268
+      "count": 1269
     },
     {
       "path": "/v1/markets/dnb/openers?limit=1",
@@ -68,7 +68,7 @@
       "path": "/v1/lifecycle",
       "http_status": 200,
       "passed": true,
-      "count": 333
+      "count": 334
     },
     {
       "path": "/v1/attention",
