@@ -6,6 +6,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -31,11 +32,6 @@ class GateTests(unittest.TestCase):
         result = gate.failed_missing_source(Path("missing.csv"), self.config)
         self.assertEqual(result["overall_status"], "FAIL")
         self.assertFalse(result["test_labels_read"])
-
-    def test_target_or_future_feature_fails_leakage_guard(self):
-        config = copy.deepcopy(self.config)
-        config["allowed_feature_columns"].append("FTR")
-        self.assertIn("FTR", set(config["allowed_feature_columns"]) - {"B365H", "B365D", "B365A"})
 
     def test_deterministic_fit(self):
         rows = [((0.4, 0.3, 0.3), "H")] * 4 + [((0.4, 0.3, 0.3), "D")] * 3 + [((0.4, 0.3, 0.3), "A")] * 2
@@ -64,6 +60,27 @@ class GateTests(unittest.TestCase):
         base = {"Div": "E0", "B365H": "2", "B365D": "3", "B365A": "4", "source_url": "u"}
         return [dict(base, match_id="old", season="2018/19", FTR="H"), dict(base, match_id="h", season="2019/20", FTR="H"), dict(base, match_id="d", season="2020/21", FTR="D"), dict(base, match_id="a", season="2021/22", FTR="A"), dict(base, match_id="test", season="2023/24", FTR="")]
 
+    def test_target_feature_fails_leakage_guard(self):
+        source = self.write_source(self.rows())
+        config = self.miniature_config(source)
+        config["allowed_feature_columns"].append("FTR")
+        result = gate.run_gate(source, config)
+        self.assertEqual(result["gate_checks"]["LEAKAGE/NO-LOOKAHEAD"]["status"], "FAIL")
+        self.assertEqual(result["overall_status"], "FAIL")
+
+    def test_future_feature_fails_leakage_guard(self):
+        source = self.write_source(self.rows())
+        config = self.miniature_config(source)
+        config["allowed_feature_columns"].append("post_kickoff_information")
+        result = gate.run_gate(source, config)
+        self.assertEqual(result["gate_checks"]["LEAKAGE/NO-LOOKAHEAD"]["status"], "FAIL")
+        self.assertEqual(result["research_status"], "PREREGISTERED_DATA_REQUIRED")
+
+    def test_missing_source_blocks_test(self):
+        result = gate.run_gate(Path("does-not-exist.csv"), self.config)
+        self.assertEqual(result["overall_status"], "FAIL")
+        self.assertEqual(result["research_status"], "PREREGISTERED_DATA_REQUIRED")
+
     def test_wrong_shape_schema_and_duplicate_match_id_fail(self):
         source = self.write_source(self.rows())
         config = self.miniature_config(source)
@@ -85,6 +102,35 @@ class GateTests(unittest.TestCase):
         source = self.write_source(self.rows())
         config = self.miniature_config(source); config["test_seasons"] = ["2021/22", "2023/24"]
         self.assertEqual(gate.run_gate(source, config)["gate_checks"]["SPLIT_INTEGRITY"]["status"], "FAIL")
+
+    def test_unexpected_season_fails_source_coverage(self):
+        rows = self.rows(); rows[0]["season"] = "2017/18"
+        source = self.write_source(rows)
+        result = gate.run_gate(source, self.miniature_config(source))
+        self.assertEqual(result["gate_checks"]["SOURCE_COVERAGE"]["status"], "FAIL")
+
+    def test_missing_required_column_fails_schema(self):
+        headers = ["match_id", "season", "Div", "B365H", "B365D", "B365A", "source_url"]
+        rows = [{key: value for key, value in row.items() if key in headers} for row in self.rows()]
+        source = self.write_source(rows, headers)
+        result = gate.run_gate(source, self.miniature_config(source))
+        self.assertEqual(result["gate_checks"]["REQUIRED_SCHEMA"]["status"], "FAIL")
+
+    def test_probability_sum_failure_fails_guards(self):
+        source = self.write_source(self.rows())
+        with patch.object(gate, "shifted_probabilities", return_value=(0.3, 0.3, 0.3)):
+            result = gate.run_gate(source, self.miniature_config(source))
+        self.assertEqual(result["gate_checks"]["PROBABILITY_GUARDS"]["status"], "FAIL")
+        self.assertEqual(result["overall_status"], "FAIL")
+
+    def test_deterministic_mismatch_fails(self):
+        source = self.write_source(self.rows())
+        first = {"alpha_h": 0.0, "alpha_d": 0.0, "alpha_a": 0.0, "train_logloss": 1.0}
+        second = {"alpha_h": 0.1, "alpha_d": 0.0, "alpha_a": 0.0, "train_logloss": 1.0}
+        with patch.object(gate, "fit_train", side_effect=[first, second]):
+            result = gate.run_gate(source, self.miniature_config(source))
+        self.assertEqual(result["gate_checks"]["DETERMINISM"]["status"], "FAIL")
+        self.assertEqual(result["overall_status"], "FAIL")
 
     def test_wrong_sha_fails(self):
         source = self.write_source(self.rows())
