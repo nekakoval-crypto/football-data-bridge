@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 16.09.2026 09:01 (Europe/Berlin)
+Обновлено: 16.09.2026 10:00 (Europe/Berlin)
 Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -52,6 +52,7 @@ Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
   - Европейская фора хозяев (-1) · П1: 6.5 | Х: 4.75 | П2: 1.36 @ Bet365
   - Европейская фора хозяев (-1) · П1: 5.8 | Х: 4.45 | П2: 1.32 @ Marathonbet
   - Европейская фора хозяев (-2) · П1: 15 | Х: 8.5 | П2: 1.11 @ Bet365
+  - 1X2 · П1: 2.75 | Х: 3.4 | П2: 2.15 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.22 | ИТМ: 4 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 2.1 | ИТМ: 1.67 @ Bet365
   - ИТБ/ИТМ 2 (2.5) · ИТБ: 4.33 | ИТМ: 1.2 @ Bet365
@@ -63,7 +64,6 @@ Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
   - ИТБ/ИТМ 1 (2.5) · ИТБ: 6 | ИТМ: 1.11 @ Bet365
   - ИТБ/ИТМ 1 (2.5) · ИТБ: 5.2 | ИТМ: 1.1 @ Marathonbet
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 10.5 | ИТМ: 1.02 @ Bet365
-  - 1X2 — нет данных
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
 
@@ -81,6 +81,7 @@ Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
   - Европейская фора хозяев (-3) · П1: 5.5 | Х: 5.5 | П2: 1.4 @ Bet365
   - Европейская фора хозяев (-3) · П1: 5.45 | Х: 5.45 | П2: 1.31 @ Marathonbet
   - Европейская фора хозяев (-4) · П1: 11 | Х: 8 | П2: 1.14 @ Bet365
+  - 1X2 · П1: 1.3 | Х: 5 | П2: 8 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.67 | ИТМ: 2.1 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.6 | ИТМ: 2.11 @ Marathonbet
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 4.33 | ИТМ: 1.2 @ Bet365
@@ -97,7 +98,6 @@ Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 3.58 | ИТМ: 1.21 @ Marathonbet
   - ИТБ/ИТМ 1 (4.5) · ИТБ: 6.5 | ИТМ: 1.1 @ Bet365
   - ИТБ/ИТМ 1 (5.5) · ИТБ: 10 | ИТМ: 1.03 @ Bet365
-  - 1X2 — нет данных
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
 
@@ -1806,7 +1806,7 @@ Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 2
+- System Health: **HEALTHY** | critical 0 | warnings 0
 - Логическая canonical экспозиция: **1.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 24 | data required 3
