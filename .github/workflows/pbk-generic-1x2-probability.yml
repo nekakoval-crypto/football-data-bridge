@@ -16,10 +16,13 @@ on:
       - 'research/generic_1x2_probability_v1_stage71j_capture_integration_2026-09-16.md'
       - 'scripts/generic_1x2_probability_v1_forward.py'
       - 'scripts/generic_1x2_probability_v1_stage71j_capture.py'
+      - 'scripts/generic_1x2_probability_v1_stage71_settlement.py'
       - 'scripts/stage71j_shared_core_market_capture.py'
       - 'scripts/tests/test_generic_1x2_probability_v1_forward.py'
       - 'scripts/tests/test_generic_1x2_probability_v1_stage71j_capture.py'
+      - 'scripts/tests/test_generic_1x2_probability_v1_stage71_settlement.py'
       - '.github/workflows/stage71j-shared-core-market-capture.yml'
+      - '.github/workflows/stage71-live-snapshot.yml'
       - '.github/workflows/pbk-generic-1x2-probability.yml'
   push:
     branches: [main]
@@ -37,10 +40,13 @@ on:
       - 'research/generic_1x2_probability_v1_stage71j_capture_integration_2026-09-16.md'
       - 'scripts/generic_1x2_probability_v1_forward.py'
       - 'scripts/generic_1x2_probability_v1_stage71j_capture.py'
+      - 'scripts/generic_1x2_probability_v1_stage71_settlement.py'
       - 'scripts/stage71j_shared_core_market_capture.py'
       - 'scripts/tests/test_generic_1x2_probability_v1_forward.py'
       - 'scripts/tests/test_generic_1x2_probability_v1_stage71j_capture.py'
+      - 'scripts/tests/test_generic_1x2_probability_v1_stage71_settlement.py'
       - '.github/workflows/stage71j-shared-core-market-capture.yml'
+      - '.github/workflows/stage71-live-snapshot.yml'
       - '.github/workflows/pbk-generic-1x2-probability.yml'
 
 jobs:
@@ -59,6 +65,8 @@ jobs:
         run: python -m py_compile scripts/generic_1x2_probability_v1_forward.py
       - name: Compile Stage71J forward adapter
         run: python -m py_compile scripts/generic_1x2_probability_v1_stage71j_capture.py scripts/stage71j_shared_core_market_capture.py
+      - name: Compile Stage71 settlement adapter
+        run: python -m py_compile scripts/generic_1x2_probability_v1_stage71_settlement.py
       - name: Run research guardrail tests
         run: python -m unittest scripts.tests.test_generic_1x2_probability_v1
       - name: Run pre-TEST gate tests
@@ -67,3 +75,5 @@ jobs:
         run: python -m unittest scripts.tests.test_generic_1x2_probability_v1_forward
       - name: Run Stage71J capture guardrail tests
         run: python -m unittest scripts.tests.test_generic_1x2_probability_v1_stage71j_capture
+      - name: Run Stage71 settlement guardrail tests
+        run: python -m unittest scripts.tests.test_generic_1x2_probability_v1_stage71_settlement
