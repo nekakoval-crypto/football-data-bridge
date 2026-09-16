@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-16T19:02:06Z",
+  "run_at_utc": "2026-09-16T19:34:11Z",
   "status": "OK",
   "mode": "STAGE71_EXISTING_OVERLAY_SETTLEMENT",
   "provider_calls_added": 0,
@@ -8,6 +8,7 @@
   "prematch_required": true,
   "extraction": {
     "without_frozen_prematch": 13,
+    "not_finished": 2,
     "eligible_settlement_rows": 0
   },
   "settlements_added": 0,
