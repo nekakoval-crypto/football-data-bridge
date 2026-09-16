@@ -15,7 +15,7 @@
           "evidence": {
             "served_available_leagues": 16,
             "served_fixture_rows": 129,
-            "last_good_preserved": false
+            "last_good_preserved": true
           }
         },
         {
@@ -23,11 +23,11 @@
           "status": "PASS",
           "message": "real provider-backed current-round refresh observed",
           "evidence": {
-            "run_at_utc": "2026-09-16T15:30:37Z",
-            "api_calls": 32,
-            "refreshed_leagues": 16,
+            "run_at_utc": "2026-09-16T23:29:15Z",
+            "api_calls": 31,
+            "refreshed_leagues": 15,
             "budget_exhausted": false,
-            "refresh_status": "OK"
+            "refresh_status": "PARTIAL"
           }
         },
         {
@@ -36,7 +36,7 @@
           "message": "budget pressure is non-destructive",
           "evidence": {
             "budget_exhausted": false,
-            "last_good_preserved": false
+            "last_good_preserved": true
           }
         },
         {
@@ -44,7 +44,7 @@
           "status": "PASS",
           "message": "real LIVE provider batch observed",
           "evidence": {
-            "observed_at_utc": "2026-09-16T22:02:09Z",
+            "observed_at_utc": "2026-09-16T23:02:04Z",
             "candidate_fixtures": 2,
             "provider_calls": 1,
             "updated_fixtures": 2,
@@ -67,10 +67,10 @@
           "status": "PASS",
           "message": "real LIVE observation propagated through Stage72 and Stage73",
           "evidence": {
-            "live_observed_at_utc": "2026-09-16T22:02:09Z",
-            "stage72_run_at_utc": "2026-09-16T22:33:17Z",
+            "live_observed_at_utc": "2026-09-16T23:02:04Z",
+            "stage72_run_at_utc": "2026-09-16T23:32:59Z",
             "stage72_status": "OK",
-            "stage73_run_at_utc": "2026-09-16T22:33:19Z",
+            "stage73_run_at_utc": "2026-09-16T23:33:00Z",
             "stage73_status": "OK",
             "stage73_passed": 16,
             "stage73_total": 16
@@ -159,6 +159,6 @@
   "next_actions": [
     "Production acceptance is complete; PBK v1 may proceed to final closure bookkeeping."
   ],
-  "evaluated_at_utc": "2026-09-16T22:33:19Z",
-  "state_fingerprint": "c2585259fbc9ab205867e47ec521ddd788983ae99e2569b0bda1d642ff498099"
+  "evaluated_at_utc": "2026-09-16T23:33:00Z",
+  "state_fingerprint": "588d13bec2560c7d178f38eca70cccfb0d2cef555e6bb5c85e70ef769e140be1"
 }
