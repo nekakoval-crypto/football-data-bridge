@@ -1,0 +1,31 @@
+name: PBK Generic 1X2 Probability Research
+
+on:
+  pull_request:
+    paths:
+      - 'config/pbk_generic_1x2_probability_v1.json'
+      - 'research/generic_1x2_probability_v1_prereg_2026-09-16.md'
+      - 'scripts/research_generic_1x2_probability_v1.py'
+      - 'scripts/tests/test_generic_1x2_probability_v1.py'
+      - '.github/workflows/pbk-generic-1x2-probability.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'config/pbk_generic_1x2_probability_v1.json'
+      - 'research/generic_1x2_probability_v1_prereg_2026-09-16.md'
+      - 'scripts/research_generic_1x2_probability_v1.py'
+      - 'scripts/tests/test_generic_1x2_probability_v1.py'
+      - '.github/workflows/pbk-generic-1x2-probability.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile evaluator
+        run: python -m py_compile scripts/research_generic_1x2_probability_v1.py
+      - name: Run research guardrail tests
+        run: python -m unittest scripts.tests.test_generic_1x2_probability_v1
