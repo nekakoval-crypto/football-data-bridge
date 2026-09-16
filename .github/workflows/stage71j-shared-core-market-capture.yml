@@ -39,11 +39,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Capture four core markets through one shared API cache
+      - name: Capture core markets and Generic 1X2 through one shared API cache
         run: python scripts/stage71j_shared_core_market_capture.py
       - name: Show shared capture summary
         run: cat ops/stage71j_last_run.json
-      - name: Commit shared market ledgers and already-fetched catalog/presence
+      - name: Commit shared market ledgers and Generic 1X2 forward journal
         run: |
           git config user.name 'stage71j-bot'
           git config user.email 'stage71j-bot@users.noreply.github.com'
@@ -63,6 +63,9 @@ jobs:
                   ops/stage71g_dnb_snapshots.csv \
                   ops/stage71g_dnb_closes.csv \
                   ops/stage71g_last_run.json \
+                  ops/generic_1x2_v1_forward_prematch.jsonl \
+                  ops/generic_1x2_v1_forward_performance.json \
+                  ops/generic_1x2_v1_stage71j_last_run.json \
                   ops/api_football_odds_bet_catalog.json \
                   ops/api_football_market_presence.json \
                   ops/stage71j_last_run.json
@@ -85,6 +88,9 @@ jobs:
             ops/stage71j_last_run.json
             ops/api_football_odds_bet_catalog.json
             ops/api_football_market_presence.json
+            ops/generic_1x2_v1_forward_prematch.jsonl
+            ops/generic_1x2_v1_forward_performance.json
+            ops/generic_1x2_v1_stage71j_last_run.json
             ops/stage71c_*.csv
             ops/stage71e_*.csv
             ops/stage71f_*.csv
