@@ -1,8 +1,8 @@
 # PBK Signal Lifecycle
 
-Обновлено UTC: 2026-09-16T17:07:49Z
+Обновлено UTC: 2026-09-16T18:10:09Z
 
-Cards: 26 | canonical 3 | WATCH 23 | events 346
+Cards: 27 | canonical 3 | WATCH 24 | events 348
 
 ## WATCH | Stage63 | Venezia — Fiorentina
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-11T18:45:00Z
@@ -165,10 +165,14 @@ Cards: 26 | canonical 3 | WATCH 23 | events 346
 - Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
   - 2026-09-16T16:16:35Z — WATCH_CROSSING — Marathonbet | 1.49 | movement_pp=0.03277942
 
+## WATCH | Stage61 | Nottingham Forest — Coventry
+- Ставка/рынок: П1 | kickoff: 2026-09-19T16:30:00Z
+- Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
+  - 2026-09-16T17:27:24Z — WATCH_CROSSING — Marathonbet | 1.66 | movement_pp=0.04647972
+
 ## CANONICAL | R1 | Frosinone — Como
 - Ставка/рынок: П2 | kickoff: 2026-09-20T13:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 135
-  - 2026-09-16T09:45:34Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 136
   - 2026-09-16T10:45:16Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-16T11:45:36Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-16T12:50:49Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -176,3 +180,4 @@ Cards: 26 | canonical 3 | WATCH 23 | events 346
   - 2026-09-16T14:45:49Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-16T15:44:44Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-16T16:45:27Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-16T17:44:03Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
