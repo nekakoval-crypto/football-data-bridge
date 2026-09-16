@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-16T18:38:31Z",
+  "generated_at_utc": "2026-09-16T18:44:17Z",
   "research_id": "PBK_GENERIC_1X2_PROBABILITY_V1_FORWARD",
   "model_version": "PBK_GENERIC_1X2_PROBABILITY_V1",
   "status": "PER_LEAGUE_FORWARD_REVIEW",
@@ -8,7 +8,7 @@
   "league_reviews": {
     "Premier League": {
       "status": "COLLECTING",
-      "prematch_frozen": 0,
+      "prematch_frozen": 10,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -44,7 +44,7 @@
     },
     "La Liga": {
       "status": "COLLECTING",
-      "prematch_frozen": 0,
+      "prematch_frozen": 10,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -80,7 +80,7 @@
     },
     "Serie A": {
       "status": "COLLECTING",
-      "prematch_frozen": 0,
+      "prematch_frozen": 10,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -116,7 +116,7 @@
     },
     "Bundesliga": {
       "status": "COLLECTING",
-      "prematch_frozen": 0,
+      "prematch_frozen": 9,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -152,7 +152,7 @@
     },
     "Ligue 1": {
       "status": "COLLECTING",
-      "prematch_frozen": 0,
+      "prematch_frozen": 9,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -188,7 +188,7 @@
     },
     "Austrian Bundesliga": {
       "status": "COLLECTING",
-      "prematch_frozen": 0,
+      "prematch_frozen": 6,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -224,7 +224,7 @@
     },
     "Belgian Pro League": {
       "status": "COLLECTING",
-      "prematch_frozen": 0,
+      "prematch_frozen": 9,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -260,7 +260,7 @@
     },
     "Danish Superliga": {
       "status": "COLLECTING",
-      "prematch_frozen": 0,
+      "prematch_frozen": 6,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -368,7 +368,7 @@
     },
     "Eredivisie": {
       "status": "COLLECTING",
-      "prematch_frozen": 0,
+      "prematch_frozen": 9,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -404,7 +404,7 @@
     },
     "Eliteserien": {
       "status": "COLLECTING",
-      "prematch_frozen": 0,
+      "prematch_frozen": 8,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -440,7 +440,7 @@
     },
     "Ekstraklasa": {
       "status": "COLLECTING",
-      "prematch_frozen": 0,
+      "prematch_frozen": 9,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -476,7 +476,7 @@
     },
     "Primeira Liga": {
       "status": "COLLECTING",
-      "prematch_frozen": 0,
+      "prematch_frozen": 9,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -512,7 +512,7 @@
     },
     "Super Lig": {
       "status": "COLLECTING",
-      "prematch_frozen": 0,
+      "prematch_frozen": 9,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -548,7 +548,7 @@
     },
     "Scottish Premiership": {
       "status": "COLLECTING",
-      "prematch_frozen": 0,
+      "prematch_frozen": 6,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -588,7 +588,7 @@
   },
   "pooled_big5_diagnostic": {
     "status": "DIAGNOSTIC_ONLY",
-    "prematch_frozen": 0,
+    "prematch_frozen": 48,
     "settled_rows": 0,
     "forward_outcomes": {
       "H": 0,
@@ -622,7 +622,7 @@
   },
   "pooled_all16_diagnostic": {
     "status": "DIAGNOSTIC_ONLY",
-    "prematch_frozen": 0,
+    "prematch_frozen": 119,
     "settled_rows": 0,
     "forward_outcomes": {
       "H": 0,
@@ -655,7 +655,7 @@
     "purpose": "ALL_16_POOLED_DIAGNOSTIC_ONLY_NOT_AN_OFFICIAL_FORWARD_VERDICT"
   },
   "all_leagues_totals": {
-    "prematch_frozen": 0,
+    "prematch_frozen": 119,
     "settled_rows": 0
   },
   "policy": {
