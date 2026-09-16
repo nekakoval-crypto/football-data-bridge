@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Forward-only monitor core for PBK Generic 1X2 Probability v1.
 
-Provider-free by design. Captures all 16 locked PBK leagues, while keeping the
-historically validated Big-5 domain separate from the 11-league shadow domain.
-Only Big-5 settlements can enter the formal Generic 1X2 v1 forward gate.
+All 16 locked PBK leagues are captured prospectively. Formal forward validation
+is league-specific: every league has its own sample readiness, proper scoring,
+class calibration and PASS/FAIL status. The historical Big-5 PASS remains pooled
+historical evidence only and is never treated as proof for any individual league.
 """
 from __future__ import annotations
 
@@ -22,8 +23,8 @@ DEFAULT_CFG = ROOT / "config" / "pbk_generic_1x2_probability_v1_forward.json"
 CLASSES = ("H", "D", "A")
 PREMATCH_EVENT = "GENERIC_1X2_V1_PREMATCH_FROZEN"
 SETTLEMENT_EVENT = "GENERIC_1X2_V1_SETTLEMENT_FROZEN"
-VALIDATED_DOMAIN = "VALIDATED_DOMAIN"
-SHADOW_DOMAIN = "EXTENDED_SHADOW_RESEARCH"
+HISTORICAL_BIG5_POOL_MEMBER = "HISTORICAL_BIG5_POOL_MEMBER"
+NO_HISTORICAL_LEAGUE_VALIDATION = "NO_HISTORICAL_LEAGUE_VALIDATION"
 
 
 def now_iso() -> str:
@@ -117,8 +118,10 @@ def shifted_probabilities(p, alpha_h, alpha_a):
 
 
 def multiclass_brier(p, outcome):
-    return sum((p[index] - (1.0 if outcome == label else 0.0)) ** 2
-               for index, label in enumerate(CLASSES))
+    return sum(
+        (p[index] - (1.0 if outcome == label else 0.0)) ** 2
+        for index, label in enumerate(CLASSES)
+    )
 
 
 def multiclass_logloss(p, outcome):
@@ -131,25 +134,27 @@ def normalize_league(value):
 
 def _scope_sets(cfg):
     scope = cfg["scope"]
-    validated = {normalize_league(x) for x in scope["validated_domain_leagues"]}
-    shadow = {normalize_league(x) for x in scope["extended_shadow_leagues"]}
+    historical_big5 = {normalize_league(x) for x in scope["historical_big5_pooled_leagues"]}
+    unvalidated = {normalize_league(x) for x in scope["historically_unvalidated_leagues"]}
     tracked = {normalize_league(x) for x in scope["tracked_leagues"]}
-    if validated & shadow:
-        raise ValueError("forward scope domains must be disjoint")
-    if validated | shadow != tracked:
-        raise ValueError("tracked_leagues must equal validated + shadow domains")
+    if historical_big5 & unvalidated:
+        raise ValueError("historical scope groups must be disjoint")
+    if historical_big5 | unvalidated != tracked:
+        raise ValueError("tracked_leagues must equal historical Big-5 + historically unvalidated leagues")
     if len(tracked) != int(scope.get("locked_total_leagues", len(tracked))):
         raise ValueError("locked forward league count drifted")
-    return validated, shadow, tracked
+    if len(historical_big5) != 5:
+        raise ValueError("historical pooled Big-5 membership drifted")
+    return historical_big5, unvalidated, tracked
 
 
-def monitoring_domain(cfg, league):
-    validated, shadow, _ = _scope_sets(cfg)
+def historical_evidence_status(cfg, league):
+    historical_big5, unvalidated, _ = _scope_sets(cfg)
     key = normalize_league(league)
-    if key in validated:
-        return VALIDATED_DOMAIN
-    if key in shadow:
-        return SHADOW_DOMAIN
+    if key in historical_big5:
+        return HISTORICAL_BIG5_POOL_MEMBER
+    if key in unvalidated:
+        return NO_HISTORICAL_LEAGUE_VALIDATION
     return None
 
 
@@ -157,8 +162,13 @@ def load_contract(config_path=DEFAULT_CFG):
     config_path = Path(config_path)
     cfg = json.loads(config_path.read_text(encoding="utf-8"))
     _scope_sets(cfg)
-    if cfg["forward_review"].get("formal_review_domain") != VALIDATED_DOMAIN:
-        raise ValueError("formal review domain must remain VALIDATED_DOMAIN")
+    review = cfg["forward_review"]
+    if review.get("review_unit") != "LEAGUE":
+        raise ValueError("forward review unit must remain LEAGUE")
+    if review.get("pooled_big5_diagnostic_only") is not True:
+        raise ValueError("pooled Big-5 forward metrics must remain diagnostic only")
+    if review.get("combined_16_league_verdict") is not False:
+        raise ValueError("combined 16-league verdict must remain disabled")
 
     result_path = Path(cfg["historical_result_path"])
     if not result_path.is_absolute():
@@ -201,8 +211,8 @@ def observation_to_event(row, cfg, process_time=None):
         raise ValueError("historical_backfill_forbidden")
 
     league = str(row.get("league") or "").strip()
-    domain = monitoring_domain(cfg, league)
-    if domain is None:
+    evidence = historical_evidence_status(cfg, league)
+    if evidence is None:
         raise ValueError("outside_scope")
 
     p_market = market_probabilities(
@@ -221,8 +231,8 @@ def observation_to_event(row, cfg, process_time=None):
         "model_version": cfg["model_version"],
         "fixture_id": fixture_id,
         "league": league,
-        "monitoring_domain": domain,
-        "formal_review_eligible": domain == VALIDATED_DOMAIN,
+        "historical_evidence_status": evidence,
+        "league_forward_review_eligible": True,
         "home_team": str(row.get("home_team") or "").strip(),
         "away_team": str(row.get("away_team") or "").strip(),
         "kickoff_utc": kickoff.replace(microsecond=0).isoformat().replace("+00:00", "Z"),
@@ -236,7 +246,11 @@ def observation_to_event(row, cfg, process_time=None):
         "b365_away": fnum(row.get("b365_away") or row.get("B365A")),
         "p_market": dict(zip(CLASSES, p_market)),
         "p_m1": dict(zip(CLASSES, p_m1)),
-        "alpha": {"H": float(frozen["alpha_h"]), "D": float(frozen["alpha_d"]), "A": float(frozen["alpha_a"])},
+        "alpha": {
+            "H": float(frozen["alpha_h"]),
+            "D": float(frozen["alpha_d"]),
+            "A": float(frozen["alpha_a"]),
+        },
         "authority": "RESEARCH",
         "forward_only": True,
         "creates_signal": False,
@@ -292,8 +306,8 @@ def settlement_to_event(row, prematch_by_fixture):
         "model_version": prematch["payload"]["model_version"],
         "fixture_id": fixture_id,
         "league": prematch["payload"]["league"],
-        "monitoring_domain": prematch["payload"]["monitoring_domain"],
-        "formal_review_eligible": prematch["payload"]["formal_review_eligible"],
+        "historical_evidence_status": prematch["payload"]["historical_evidence_status"],
+        "league_forward_review_eligible": True,
         "prematch_event_id": prematch["event_id"],
         "kickoff_utc": prematch["payload"]["kickoff_utc"],
         "settled_at_utc": settled_at.replace(microsecond=0).isoformat().replace("+00:00", "Z"),
@@ -366,7 +380,7 @@ def prematch_forward_only(events):
     return True
 
 
-def _domain_metrics(cfg, prematch_events, settlements, formal):
+def _metrics(cfg, prematch_events, settlements, formal=True):
     review = cfg["forward_review"]
     guards = cfg["guards"]
     counts = Counter(event["payload"]["result"] for event in settlements)
@@ -387,16 +401,16 @@ def _domain_metrics(cfg, prematch_events, settlements, formal):
         m0_brier = m1_brier = m0_logloss = m1_logloss = None
         cal = {}
 
+    minimum_rows = int(review["minimum_settled_rows_per_league"])
+    minimum_class = int(review["minimum_settled_outcomes_per_class_per_league"])
     sample_ready = (
         formal
-        and n >= int(review["minimum_settled_rows"])
-        and all(counts[label] >= int(review["minimum_settled_outcomes_per_class"]) for label in CLASSES)
+        and n >= minimum_rows
+        and all(counts[label] >= minimum_class for label in CLASSES)
     )
     checks = {
-        "minimum_forward_rows": n >= int(review["minimum_settled_rows"]),
-        "minimum_forward_outcomes_per_class": all(
-            counts[label] >= int(review["minimum_settled_outcomes_per_class"]) for label in CLASSES
-        ),
+        "minimum_forward_rows": n >= minimum_rows,
+        "minimum_forward_outcomes_per_class": all(counts[label] >= minimum_class for label in CLASSES),
         "brier_strict_improvement": bool(settlements) and m1_brier < m0_brier,
         "logloss_strict_improvement": bool(settlements) and m1_logloss < m0_logloss,
         "class_calibration": bool(settlements) and all(
@@ -406,14 +420,18 @@ def _domain_metrics(cfg, prematch_events, settlements, formal):
         "probability_sum": probability_guard,
         "forward_only_no_backfill": forward_guard,
     }
+    quality_keys = (
+        "brier_strict_improvement",
+        "logloss_strict_improvement",
+        "class_calibration",
+        "probability_sum",
+        "forward_only_no_backfill",
+    )
     if not formal:
-        status = "SHADOW_COLLECTING"
+        status = "DIAGNOSTIC_ONLY"
     elif not sample_ready:
         status = "COLLECTING"
-    elif all(checks[key] for key in (
-        "brier_strict_improvement", "logloss_strict_improvement", "class_calibration",
-        "probability_sum", "forward_only_no_backfill"
-    )):
+    elif all(checks[key] for key in quality_keys):
         status = "FORWARD_REVIEW_READY_PASS"
     else:
         status = "FORWARD_REVIEW_READY_FAIL"
@@ -424,7 +442,8 @@ def _domain_metrics(cfg, prematch_events, settlements, formal):
         "settled_rows": n,
         "forward_outcomes": {label: counts[label] for label in CLASSES},
         "diagnostic_checkpoints_reached": {
-            str(point): n >= int(point) for point in review.get("diagnostic_checkpoints", [])
+            str(point): n >= int(point)
+            for point in review.get("diagnostic_checkpoints_per_league", [])
         },
         "formal_review_sample_ready": sample_ready,
         "scores": {
@@ -441,31 +460,65 @@ def _domain_metrics(cfg, prematch_events, settlements, formal):
 
 
 def performance_report(cfg, prematch_events, settlements):
-    validated_prematch = [e for e in prematch_events if e["payload"].get("monitoring_domain") == VALIDATED_DOMAIN]
-    shadow_prematch = [e for e in prematch_events if e["payload"].get("monitoring_domain") == SHADOW_DOMAIN]
-    validated_settlements = [e for e in settlements if e["payload"].get("monitoring_domain") == VALIDATED_DOMAIN]
-    shadow_settlements = [e for e in settlements if e["payload"].get("monitoring_domain") == SHADOW_DOMAIN]
+    scope = cfg["scope"]
+    historical_big5 = {normalize_league(x) for x in scope["historical_big5_pooled_leagues"]}
+    reviews = {}
+    for league in scope["tracked_leagues"]:
+        key = normalize_league(league)
+        league_prematch = [
+            e for e in prematch_events
+            if normalize_league(e["payload"].get("league")) == key
+        ]
+        league_settlements = [
+            e for e in settlements
+            if normalize_league(e["payload"].get("league")) == key
+        ]
+        metrics = _metrics(cfg, league_prematch, league_settlements, formal=True)
+        metrics["league"] = league
+        metrics["historical_evidence"] = (
+            "POOLED_BIG5_HISTORICAL_PASS_ONLY_NOT_LEAGUE_SPECIFIC"
+            if key in historical_big5
+            else "NO_HISTORICAL_VALIDATION"
+        )
+        metrics["forward_validation_scope"] = "THIS_LEAGUE_ONLY"
+        reviews[league] = metrics
 
-    official = _domain_metrics(cfg, validated_prematch, validated_settlements, formal=True)
-    shadow = _domain_metrics(cfg, shadow_prematch, shadow_settlements, formal=False)
+    big5_prematch = [
+        e for e in prematch_events
+        if normalize_league(e["payload"].get("league")) in historical_big5
+    ]
+    big5_settlements = [
+        e for e in settlements
+        if normalize_league(e["payload"].get("league")) in historical_big5
+    ]
+    big5_diag = _metrics(cfg, big5_prematch, big5_settlements, formal=False)
+    big5_diag["purpose"] = "POOLED_DIAGNOSTIC_ONLY_NOT_AN_OFFICIAL_FORWARD_VERDICT"
+
+    all16_diag = _metrics(cfg, prematch_events, settlements, formal=False)
+    all16_diag["purpose"] = "ALL_16_POOLED_DIAGNOSTIC_ONLY_NOT_AN_OFFICIAL_FORWARD_VERDICT"
+
+    status_counts = Counter(review["status"] for review in reviews.values())
     return {
         "generated_at_utc": now_iso(),
         "research_id": cfg["research_id"],
         "model_version": cfg["model_version"],
-        "status": official["status"],
+        "status": "PER_LEAGUE_FORWARD_REVIEW",
         "authority": "RESEARCH",
-        "tracked_leagues": len(cfg["scope"]["tracked_leagues"]),
-        "official_forward_review": official,
-        "extended_shadow_research": shadow,
-        "all_domains": {
+        "tracked_leagues": len(scope["tracked_leagues"]),
+        "league_reviews": reviews,
+        "league_status_counts": dict(status_counts),
+        "pooled_big5_diagnostic": big5_diag,
+        "pooled_all16_diagnostic": all16_diag,
+        "all_leagues_totals": {
             "prematch_frozen": len(prematch_events),
             "settled_rows": len(settlements),
         },
         "policy": {
             "snapshot": cfg["capture_policy"]["snapshot"],
-            "formal_review_domain": VALIDATED_DOMAIN,
-            "shadow_domain": SHADOW_DOMAIN,
-            "shadow_excluded_from_official_gate": True,
+            "official_verdict_scope": "PER_LEAGUE_ONLY",
+            "pooled_big5_forward_verdict": False,
+            "combined_16_league_verdict": False,
+            "historical_big5_pass_is_not_league_specific_validation": True,
             "historical_backfill": "FORBIDDEN",
             "bookmaker_substitution": False,
             "profitability_or_roi_conclusion": False,
@@ -506,8 +559,7 @@ def run_capture(input_path: Path, ops_dir: Path, config_path=DEFAULT_CFG, proces
         "observations_rejected": len(rejected),
         "prematch_frozen": len(prematch),
         "settled_rows": len(settlements),
-        "validated_domain_prematch": report["official_forward_review"]["prematch_frozen"],
-        "shadow_domain_prematch": report["extended_shadow_research"]["prematch_frozen"],
+        "league_status_counts": report["league_status_counts"],
         "rejections": rejected,
         "api_calls": 0,
     }
@@ -529,8 +581,7 @@ def run_settle(input_path: Path, ops_dir: Path, config_path=DEFAULT_CFG):
         "settlements_rejected": len(rejected),
         "prematch_frozen": len(prematch),
         "settled_rows": len(settlements),
-        "validated_domain_settled": report["official_forward_review"]["settled_rows"],
-        "shadow_domain_settled": report["extended_shadow_research"]["settled_rows"],
+        "league_status_counts": report["league_status_counts"],
         "rejections": rejected,
         "api_calls": 0,
     }
