@@ -7,9 +7,11 @@ on:
       - "scripts/validate_grade_readiness.py"
       - "scripts/pbk_team_player_grades.py"
       - "scripts/pbk_availability_impacts.py"
+      - "scripts/pbk_matchup_style.py"
       - "scripts/tests/test_grade_readiness.py"
       - "scripts/tests/test_pbk_team_player_grades.py"
       - "scripts/tests/test_pbk_availability_impacts.py"
+      - "scripts/tests/test_pbk_matchup_style.py"
       - "docs/pbk_brain_grade_readiness.md"
       - ".github/workflows/pbk-grade-readiness.yml"
   push:
@@ -19,9 +21,11 @@ on:
       - "scripts/validate_grade_readiness.py"
       - "scripts/pbk_team_player_grades.py"
       - "scripts/pbk_availability_impacts.py"
+      - "scripts/pbk_matchup_style.py"
       - "scripts/tests/test_grade_readiness.py"
       - "scripts/tests/test_pbk_team_player_grades.py"
       - "scripts/tests/test_pbk_availability_impacts.py"
+      - "scripts/tests/test_pbk_matchup_style.py"
       - "docs/pbk_brain_grade_readiness.md"
       - ".github/workflows/pbk-grade-readiness.yml"
   workflow_dispatch:
@@ -38,7 +42,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Compile grade foundation
-        run: python -m py_compile scripts/validate_grade_readiness.py scripts/pbk_team_player_grades.py scripts/pbk_availability_impacts.py
+        run: python -m py_compile scripts/validate_grade_readiness.py scripts/pbk_team_player_grades.py scripts/pbk_availability_impacts.py scripts/pbk_matchup_style.py
       - name: Validate registry
         run: python scripts/validate_grade_readiness.py
       - name: Run readiness guardrail tests
@@ -47,3 +51,5 @@ jobs:
         run: python -m unittest scripts.tests.test_pbk_team_player_grades -v
       - name: Run availability and rotation impact tests
         run: python -m unittest scripts.tests.test_pbk_availability_impacts -v
+      - name: Run matchup style foundation tests
+        run: python -m unittest scripts.tests.test_pbk_matchup_style -v
