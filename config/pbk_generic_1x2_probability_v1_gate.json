@@ -1,0 +1,19 @@
+{
+  "version": "PBK_GENERIC_1X2_PROBABILITY_V1_GATE",
+  "authority": "RESEARCH",
+  "expected_source": {
+    "sha256": "a49cd84b1b4d6d2aad2856d7c81b4ae8b34954dabf4dd356fe41588f370cd004",
+    "rows": 17937,
+    "columns": 187,
+    "seasons": ["2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24", "2024/25", "2025/26"],
+    "divisions": ["E0", "SP1", "I1", "D1", "F1"],
+    "unique_source_urls": 50
+  },
+  "required_columns": ["match_id", "season", "Div", "FTR", "B365H", "B365D", "B365A", "source_url"],
+  "train_seasons": ["2019/20", "2020/21", "2021/22", "2022/23"],
+  "test_seasons": ["2023/24", "2024/25", "2025/26"],
+  "allowed_feature_columns": ["B365H", "B365D", "B365A"],
+  "required_train_outcomes": ["H", "D", "A"],
+  "probability_sum_tolerance": 1e-9
+}
+
