@@ -36,6 +36,9 @@ class Stage77BacklogTests(unittest.TestCase):
         self.assertEqual(row["source_status"], "FT")
         self.assertEqual(row["first_queued_at_utc"], stage77.iso(NOW))
         self.assertEqual(row["queue_source"], "current_round_terminal_fixture")
+        self.assertEqual(row["attempt_count"], "0")
+        self.assertEqual(row["last_attempt_at_utc"], "")
+        self.assertEqual(row["last_attempt_result"], "")
 
     def test_deferred_fixture_survives_after_round_inventory_rotates_away(self):
         first = stage77.sync_backlog([], [fixture()], [], [], NOW)
@@ -76,11 +79,19 @@ class Stage77BacklogTests(unittest.TestCase):
 
     def test_repeat_observation_preserves_first_queue_time_and_updates_last_seen(self):
         first = stage77.sync_backlog([], [fixture()], [], [], NOW)
+        attempted = stage77.record_attempts(first["rows"], [{
+            "fixture_id": "100",
+            "attempted_at_utc": "2026-09-15T12:15:00Z",
+            "result": "NO_DATA",
+        }])
         later = NOW + timedelta(hours=3)
-        second = stage77.sync_backlog(first["rows"], [fixture()], [], [], later)
+        second = stage77.sync_backlog(attempted, [fixture()], [], [], later)
         row = second["rows"][0]
         self.assertEqual(row["first_queued_at_utc"], stage77.iso(NOW))
         self.assertEqual(row["last_seen_at_utc"], stage77.iso(later))
+        self.assertEqual(row["attempt_count"], "1")
+        self.assertEqual(row["last_attempt_at_utc"], "2026-09-15T12:15:00Z")
+        self.assertEqual(row["last_attempt_result"], "NO_DATA")
         self.assertEqual(second["new_rows"], 0)
         self.assertEqual(len(second["rows"]), 1)
 
@@ -89,6 +100,55 @@ class Stage77BacklogTests(unittest.TestCase):
         self.assertEqual(len(result["rows"]), 1)
         self.assertEqual(result["new_rows"], 1)
         self.assertEqual(result["terminal_seen"], 2)
+
+    def test_no_data_attempt_does_not_mark_fixture_captured(self):
+        queued = stage77.sync_backlog([], [fixture()], [], [], NOW)
+        attempted = stage77.record_attempts(queued["rows"], [{
+            "fixture_id": "100",
+            "attempted_at_utc": "2026-09-15T12:10:00Z",
+            "result": "NO_DATA",
+        }])
+        reconciled = stage77.sync_backlog(attempted, [], [], [], NOW)
+        row = reconciled["rows"][0]
+        self.assertEqual(row["backlog_status"], "PENDING")
+        self.assertEqual(row["attempt_count"], "1")
+        self.assertEqual(row["last_attempt_result"], "NO_DATA")
+
+    def test_never_attempted_fixture_is_served_before_older_no_data_fixture(self):
+        older = fixture("100", kickoff="2026-09-14T09:00:00Z")
+        newer = fixture("200", kickoff="2026-09-15T09:00:00Z")
+        queued = stage77.sync_backlog([], [older, newer], [], [], NOW)
+        attempted = stage77.record_attempts(queued["rows"], [{
+            "fixture_id": "100",
+            "attempted_at_utc": "2026-09-15T10:00:00Z",
+            "result": "NO_DATA",
+        }])
+        candidates = stage77.candidate_fixtures(attempted, set(), NOW, 1)
+        self.assertEqual([row["fixture_id"] for row in candidates], ["200"])
+
+    def test_retry_order_is_least_recent_attempt_first_after_everyone_was_tried(self):
+        rows = stage77.sync_backlog(
+            [],
+            [fixture("100", kickoff="2026-09-14T09:00:00Z"), fixture("200")],
+            [], [], NOW,
+        )["rows"]
+        rows = stage77.record_attempts(rows, [
+            {"fixture_id": "100", "attempted_at_utc": "2026-09-15T10:00:00Z", "result": "NO_DATA"},
+            {"fixture_id": "200", "attempted_at_utc": "2026-09-15T11:00:00Z", "result": "NO_DATA"},
+        ])
+        candidates = stage77.candidate_fixtures(rows, set(), NOW, 2)
+        self.assertEqual([row["fixture_id"] for row in candidates], ["100", "200"])
+
+    def test_record_attempts_increments_existing_count(self):
+        queued = stage77.sync_backlog([], [fixture()], [], [], NOW)
+        first = stage77.record_attempts(queued["rows"], [{
+            "fixture_id": "100", "attempted_at_utc": "2026-09-15T10:00:00Z", "result": "NO_DATA",
+        }])
+        second = stage77.record_attempts(first, [{
+            "fixture_id": "100", "attempted_at_utc": "2026-09-16T10:00:00Z", "result": "ERROR",
+        }])
+        self.assertEqual(second[0]["attempt_count"], "2")
+        self.assertEqual(second[0]["last_attempt_result"], "ERROR")
 
 
 if __name__ == "__main__":
