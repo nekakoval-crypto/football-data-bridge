@@ -1,0 +1,59 @@
+{
+  "version": "PBK_VALUE_ENGINE_V2",
+  "authority": "GOVERNED_ANALYTIC",
+  "scope": "PROBABILITY_ENGINE_EXACT_SELECTIONS",
+  "purpose": "Compare fair price with current executable and reference market prices only when an exact independently validated PBK probability exists.",
+  "input": "ops/probability_engine_latest.json",
+  "output": "ops/value_engine_latest.json",
+  "official_probability_status": "VALIDATED_CANONICAL_CONTEXT",
+  "classifications": {
+    "STRONG_VALUE": {
+      "minimum_ev": 0.05,
+      "minimum_execution_edge": 0.03
+    },
+    "VALUE_WATCH": {
+      "minimum_ev": 0.02,
+      "minimum_execution_edge": 0.02,
+      "attention_only": true,
+      "does_not_create_stage_watch": true
+    },
+    "MARKET_DISAGREEMENT": {
+      "minimum_reference_edge": 0.05,
+      "requires_missing_executable_price": true
+    },
+    "HIGH_PROB_LOW_VALUE": {
+      "minimum_p_pbk": 0.65,
+      "maximum_ev_exclusive": 0.02
+    }
+  },
+  "longshot": {
+    "minimum_executable_odds": 2.0,
+    "requires_classification": "STRONG_VALUE"
+  },
+  "ranking": {
+    "official_only": true,
+    "eligible_classes": ["STRONG_VALUE", "VALUE_WATCH"],
+    "class_priority": ["STRONG_VALUE", "VALUE_WATCH", "MARKET_DISAGREEMENT", "HIGH_PROB_LOW_VALUE", "NO_VALUE_THRESHOLD", "NO_EXECUTABLE_PRICE"],
+    "sort_within_class": ["ev_desc", "execution_edge_desc", "p_pbk_desc"],
+    "best_official_value_per_fixture": true
+  },
+  "research_probability_policy": {
+    "generic_1x2_forward_candidate_visible": true,
+    "generic_1x2_official_value_authorized": false,
+    "generic_1x2_official_ranking_authorized": false,
+    "status": "RESEARCH_ONLY_NOT_VALUE_AUTHORIZED"
+  },
+  "guardrails": {
+    "no_value_without_official_p_pbk": true,
+    "no_cross_market_probability_transfer": true,
+    "no_cross_line_probability_transfer": true,
+    "no_cross_selection_probability_transfer": true,
+    "no_signal_creation": true,
+    "no_stage_watch_creation": true,
+    "no_stake_changes": true,
+    "no_canonical_promotion": true,
+    "no_r1_r2_r3_changes": true,
+    "no_ui_changes": true,
+    "api_calls": 0
+  }
+}
