@@ -1,0 +1,59 @@
+{
+  "version": "PBK_GENERIC_1X2_PROBABILITY_V1",
+  "locked_at_utc": "2026-09-16",
+  "status": "PREREGISTERED_DATA_REQUIRED",
+  "authority": "RESEARCH",
+  "purpose": "Test whether a symmetric three-outcome calibration layer can improve Big-5 Bet365 no-vig 1X2 probabilities without changing R1/R2/R3 or creating betting eligibility.",
+  "dataset": {
+    "canonical_name": "Football_Top5_2016-2026.csv",
+    "scope": "CORE_BIG5",
+    "required_columns": ["Div", "Season", "FTR", "B365H", "B365D", "B365A"],
+    "allowed_divisions": ["E0", "D1", "I1", "SP1", "F1"],
+    "complete_price_rows_only": true
+  },
+  "split": {
+    "train_seasons": ["2019/20", "2020/21", "2021/22", "2022/23"],
+    "test_seasons": ["2023/24", "2024/25", "2025/26"],
+    "test_never_used_for_fit_or_model_selection": true
+  },
+  "baseline_m0": {
+    "name": "BET365_1X2_NO_VIG",
+    "formula": "p_market_c=(1/odds_c)/sum_j(1/odds_j)",
+    "classes": ["H", "D", "A"]
+  },
+  "candidate_m1": {
+    "name": "MULTICLASS_MARKET_INTERCEPT_SHIFT",
+    "formula": "p_pbk_c=softmax(log(p_market_c)+alpha_c)",
+    "identification": "alpha_D=0; fit alpha_H and alpha_A on TRAIN only",
+    "fit_objective": "multiclass_logloss",
+    "optimizer": {
+      "type": "deterministic_grid_refinement",
+      "coarse_min": -1.0,
+      "coarse_max": 1.0,
+      "coarse_step": 0.05,
+      "refine_steps": [0.01, 0.002],
+      "refine_radius_steps": 5
+    },
+    "features_allowed": ["Bet365 first complete 1X2 no-vig probability vector"],
+    "features_forbidden_v1": ["form", "xG", "injuries", "lineups", "weather", "referee", "post_kickoff_information", "test_outcomes"]
+  },
+  "test_gate": {
+    "minimum_test_rows": 3000,
+    "minimum_test_outcomes_per_class": 300,
+    "require_multiclass_brier_strict_improvement": true,
+    "require_logloss_strict_improvement": true,
+    "maximum_absolute_class_calibration_error": 0.03,
+    "probabilities_must_sum_to_one_tolerance": 1e-09,
+    "no_future_information": true
+  },
+  "governance": {
+    "research_only_until_gate_passes": true,
+    "no_value_until_gate_passes": true,
+    "no_betting_signal_generation": true,
+    "no_stake_changes": true,
+    "no_auto_promotion": true,
+    "r1_r2_r3_unchanged": true,
+    "failed_test_must_remain_failed_without_new_preregistration": true,
+    "forward_review_required_after_historical_pass": true
+  }
+}
