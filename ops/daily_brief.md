@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-16T18:03:19Z
+Generated UTC: 2026-09-16T19:02:25Z
 Active canonical signals: 1
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -66,18 +66,18 @@ Active canonical signals: 1
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 105
-- Активные движения ≥3 п.п.: всего 7 | ОЗ — Да 4 | ОЗ — Нет 3
-- Зафиксировано observed close: 51
+- Активные движения ≥3 п.п.: всего 7 | ОЗ — Да 5 | ОЗ — Нет 2
+- Зафиксировано observed close: 53
 - Исполнимый букмекер для наблюдения: Marathonbet
 
 ## Текущие ОЗ-watch
-- WATCH | La Liga | Atletico Madrid — Osasuna | ОЗ — Нет | движение P(ОЗ — Да) -4.00 п.п. | Marathonbet 1.81 | 3283.8 мин до матча
 - WATCH | Premier League | Brentford — Chelsea | ОЗ — Да | движение P(ОЗ — Да) +3.66 п.п. | Marathonbet 1.41 | 4243.5 мин до матча
 - WATCH | Serie A | Udinese — Cagliari | ОЗ — Да | движение P(ОЗ — Да) +3.33 п.п. | Marathonbet 1.85 | 4242.8 мин до матча
 - WATCH | Premier League | Everton — Ipswich | ОЗ — Да | движение P(ОЗ — Да) +3.70 п.п. | Marathonbet 1.67 | 4302.8 мин до матча
 - WATCH | La Liga | Athletic Club — Alaves | ОЗ — Нет | движение P(ОЗ — Да) -4.00 п.п. | Marathonbet 1.78 | 4317.8 мин до матча
 - WATCH | Bundesliga | Bayern München — Union Berlin | ОЗ — Нет | движение P(ОЗ — Да) -3.33 п.п. | Marathonbet 1.89 | 3132.8 мин до матча
 - WATCH | Serie A | AS Roma — Inter | ОЗ — Да | движение P(ОЗ — Да) +3.28 п.п. | Marathonbet 1.49 | 4303.4 мин до матча
+- WATCH | La Liga | Barcelona — Racing Santander | ОЗ — Да | движение P(ОЗ — Да) +5.59 п.п. | Marathonbet 1.64 | 71.5 мин до матча
 
 ---
 
@@ -85,14 +85,14 @@ Active canonical signals: 1
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 24 | settled 11 | pending 13
+- Crossings: 25 | settled 12 | pending 13
 - Marathonbet coverage at crossing: 100.0%
-- First-crossing P&L: -5.550u | ROI -50.455% | W-L 4-7
-- Close: observed 11 | stayed qualified 9 | reverted 2 | persistence 81.818%
-- Close-qualified ROI: -57.333% | Reverted ROI: -19.5%
+- First-crossing P&L: -4.740u | ROI -39.5% | W-L 5-7
+- Close: observed 12 | stayed qualified 10 | reverted 2 | persistence 83.333%
+- Close-qualified ROI: -43.5% | Reverted ROI: -19.5%
 
 ## By WATCH family
-- Big-5 ОЗ market movement — ОЗ — Да: crossings 13, settled 9, ROI -65.556%, close persistence 77.778%
-- Big-5 ОЗ market movement — ОЗ — Нет: crossings 3, settled 0, ROI N/A, close persistence N/A
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 14, settled 9, ROI -65.556%, close persistence 77.778%
+- Big-5 ОЗ market movement — ОЗ — Нет: crossings 3, settled 1, ROI 81.0%, close persistence 100.0%
 - АПЛ favorite steam: crossings 4, settled 0, ROI N/A, close persistence N/A
 - Бундеслига ТБ(2.5) steam: crossings 4, settled 2, ROI 17.5%, close persistence 100.0%
