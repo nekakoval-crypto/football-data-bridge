@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 17.09.2026 00:00 (Europe/Berlin)
+Обновлено: 17.09.2026 01:00 (Europe/Berlin)
 Canonical: 1 | active WATCH crossings: 12 | RED: 0 | ORANGE: 12
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -90,7 +90,7 @@ Canonical: 1 | active WATCH crossings: 12 | RED: 0 | ORANGE: 12
 
 - **Malaga — Villarreal** | La Liga | 17.09 19:30 UTC
   - ОЗ · ОЗ Да: 1.53 | ОЗ Нет: 2.38 @ Bet365
-  - ОЗ · ОЗ Да: 1.54 | ОЗ Нет: 2.32 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.53 | ОЗ Нет: 2.33 @ Marathonbet
   - Ф(0) · Ф1(0): 2.68 | Ф2(0): 1.45 @ Bet365
   - Ф(0) · Ф1(0): 2.69 | Ф2(0): 1.48 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.8 | Х2: 1.28 | 12: 1.28 @ Bet365
@@ -489,8 +489,8 @@ Canonical: 1 | active WATCH crossings: 12 | RED: 0 | ORANGE: 12
   - Тотал 2.5 — нет данных
 
 - **Espanyol — Elche** | La Liga | 18.09 19:00 UTC
-  - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
-  - ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 1.96 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.05 @ Bet365
+  - ОЗ · ОЗ Да: 1.72 | ОЗ Нет: 2 @ Marathonbet
   - Ф(0) · Ф1(0): 1.38 | Ф2(0): 3 @ Bet365
   - Ф(0) · Ф1(0): 1.37 | Ф2(0): 3.15 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.22 | Х2: 1.91 | 12: 1.28 @ Bet365
@@ -1256,7 +1256,7 @@ Canonical: 1 | active WATCH crossings: 12 | RED: 0 | ORANGE: 12
 
 - **Athletic Club — Alaves** | La Liga | 19.09 14:15 UTC
   - ОЗ · ОЗ Да: 1.95 | ОЗ Нет: 1.8 @ Bet365
-  - ОЗ · ОЗ Да: 1.93 | ОЗ Нет: 1.78 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.92 | ОЗ Нет: 1.79 @ Marathonbet
   - Ф(0) · Ф1(0): 1.24 | Ф2(0): 3.9 @ Bet365
   - Ф(0) · Ф1(0): 1.22 | Ф2(0): 3.82 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.14 | Х2: 2.25 | 12: 1.25 @ Bet365
@@ -2004,8 +2004,8 @@ Canonical: 1 | active WATCH crossings: 12 | RED: 0 | ORANGE: 12
   - Ф(0) — нет данных
 
 - **Angers — Estac Troyes** | Ligue 1 | 19.09 18:45 UTC
-  - ОЗ · ОЗ Да: 1.91 | ОЗ Нет: 1.91 @ Bet365
-  - ОЗ · ОЗ Да: 1.84 | ОЗ Нет: 1.86 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
+  - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.9 @ Marathonbet
   - 1X2 · П1: 2.25 | Х: 3.2 | П2: 3.4 @ Bet365
   - Тотал 2.5 — нет данных
   - ИТБ/ИТМ — нет данных
@@ -2014,8 +2014,8 @@ Canonical: 1 | active WATCH crossings: 12 | RED: 0 | ORANGE: 12
   - Ф(0) — нет данных
 
 - **Le Mans — Lorient** | Ligue 1 | 19.09 18:45 UTC
-  - ОЗ · ОЗ Да: 1.67 | ОЗ Нет: 2.1 @ Bet365
-  - ОЗ · ОЗ Да: 1.63 | ОЗ Нет: 2.14 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.62 | ОЗ Нет: 2.2 @ Bet365
+  - ОЗ · ОЗ Да: 1.61 | ОЗ Нет: 2.17 @ Marathonbet
   - 1X2 — нет данных
   - Тотал 2.5 — нет данных
   - ИТБ/ИТМ — нет данных
@@ -2024,8 +2024,8 @@ Canonical: 1 | active WATCH crossings: 12 | RED: 0 | ORANGE: 12
   - Ф(0) — нет данных
 
 - **Lyon — Rennes** | Ligue 1 | 19.09 18:45 UTC
-  - ОЗ · ОЗ Да: 1.5 | ОЗ Нет: 2.5 @ Bet365
-  - ОЗ · ОЗ Да: 1.44 | ОЗ Нет: 2.58 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.44 | ОЗ Нет: 2.62 @ Bet365
+  - ОЗ · ОЗ Да: 1.46 | ОЗ Нет: 2.52 @ Marathonbet
   - 1X2 · П1: 2.1 | Х: 3.75 | П2: 3.1 @ Bet365
   - Тотал 2.5 — нет данных
   - ИТБ/ИТМ — нет данных
@@ -2035,7 +2035,7 @@ Canonical: 1 | active WATCH crossings: 12 | RED: 0 | ORANGE: 12
 
 - **Toulouse — Le Havre** | Ligue 1 | 19.09 18:45 UTC
   - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
-  - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.9 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.78 | ОЗ Нет: 1.93 @ Marathonbet
   - 1X2 · П1: 1.8 | Х: 3.5 | П2: 4.5 @ Bet365
   - Тотал 2.5 — нет данных
   - ИТБ/ИТМ — нет данных
@@ -2044,8 +2044,8 @@ Canonical: 1 | active WATCH crossings: 12 | RED: 0 | ORANGE: 12
   - Ф(0) — нет данных
 
 - **Venezia — Lazio** | Serie A | 19.09 18:45 UTC
-  - ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.05 @ Bet365
-  - ОЗ · ОЗ Да: 1.68 | ОЗ Нет: 2.06 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.67 | ОЗ Нет: 2.1 @ Bet365
+  - ОЗ · ОЗ Да: 1.64 | ОЗ Нет: 2.12 @ Marathonbet
   - 1X2 — нет данных
   - Тотал 2.5 — нет данных
   - ИТБ/ИТМ — нет данных
@@ -2064,6 +2064,7 @@ Canonical: 1 | active WATCH crossings: 12 | RED: 0 | ORANGE: 12
 
 - **Sevilla — Barcelona** | La Liga | 19.09 19:00 UTC
   - ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 2 @ Bet365
+  - ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 1.96 @ Marathonbet
   - 1X2 — нет данных
   - Тотал 2.5 — нет данных
   - ИТБ/ИТМ — нет данных
@@ -2647,7 +2648,7 @@ Canonical: 1 | active WATCH crossings: 12 | RED: 0 | ORANGE: 12
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 1
+- System Health: **WARN** | critical 0 | warnings 2
 - Логическая canonical экспозиция: **1.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 24 | data required 3
