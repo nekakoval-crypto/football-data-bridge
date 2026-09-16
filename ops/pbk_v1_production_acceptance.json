@@ -130,9 +130,9 @@
         "status": "PASS",
         "message": "no CRITICAL system-health issues",
         "evidence": {
-          "health_status": "WARN",
+          "health_status": "HEALTHY",
           "critical_issues": 0,
-          "warnings": 2
+          "warnings": 0
         }
       },
       {
@@ -160,6 +160,6 @@
   "next_actions": [
     "Production acceptance is complete; PBK v1 may proceed to final closure bookkeeping."
   ],
-  "evaluated_at_utc": "2026-09-16T04:34:49Z",
-  "state_fingerprint": "4610240587d596023dfb0717e48bb24c16ded63a8a41f28133c48e44cd874de4"
+  "evaluated_at_utc": "2026-09-16T07:34:27Z",
+  "state_fingerprint": "1fc8956c0b9972e250360317b3972834e869dd351486679a55d6136ccf8e0990"
 }
