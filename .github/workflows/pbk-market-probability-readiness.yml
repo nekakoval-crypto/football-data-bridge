@@ -1,0 +1,33 @@
+name: PBK Market Probability Readiness
+
+on:
+  pull_request:
+    paths:
+      - 'config/pbk_market_probability_readiness.json'
+      - 'config/pbk_core_market_registry.json'
+      - 'scripts/validate_market_probability_readiness.py'
+      - 'scripts/tests/test_market_probability_readiness.py'
+      - 'docs/pbk_market_probability_readiness.md'
+      - '.github/workflows/pbk-market-probability-readiness.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'config/pbk_market_probability_readiness.json'
+      - 'config/pbk_core_market_registry.json'
+      - 'scripts/validate_market_probability_readiness.py'
+      - 'scripts/tests/test_market_probability_readiness.py'
+      - 'docs/pbk_market_probability_readiness.md'
+      - '.github/workflows/pbk-market-probability-readiness.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate contract
+        run: python scripts/validate_market_probability_readiness.py
+      - name: Run tests
+        run: python -m unittest scripts.tests.test_market_probability_readiness
