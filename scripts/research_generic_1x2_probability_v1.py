@@ -120,7 +120,7 @@ def load_rows(path: Path, cfg: dict):
         for row in reader:
             if row.get("Div") not in allowed:
                 rejected["division"] += 1; continue
-            season = normalize_season(row.get("Season"))
+            season = normalize_season(row.get("season"))
             if season not in train_s | test_s:
                 rejected["season"] += 1; continue
             y = str(row.get("FTR") or "").strip().upper()
@@ -187,3 +187,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
