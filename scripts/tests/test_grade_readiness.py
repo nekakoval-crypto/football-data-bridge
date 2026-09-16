@@ -28,6 +28,18 @@ class GradeReadinessTests(unittest.TestCase):
             row = next(row for row in self.payload["metrics"] if row["id"] == metric_id)
             self.assertIn(row["status"], {"DATA_BLOCKED", "VALIDATION_PENDING", "PROXY_LIMITED"})
 
+    def test_availability_foundations_are_code_ready_but_not_promoted(self):
+        for metric_id in ("ABSENCE_IMPACT", "RETURN_IMPACT", "ROTATION_QUALITY_IMPACT"):
+            row = next(row for row in self.payload["metrics"] if row["id"] == metric_id)
+            self.assertTrue(row["code_ready"])
+            self.assertIn(row["status"], {"DATA_BLOCKED", "VALIDATION_PENDING", "PROXY_LIMITED"})
+
+    def test_absence_and_return_scores_remain_unauthorized(self):
+        absence = next(row for row in self.payload["metrics"] if row["id"] == "ABSENCE_IMPACT")
+        returned = next(row for row in self.payload["metrics"] if row["id"] == "RETURN_IMPACT")
+        self.assertEqual(absence["components"]["total_impact"], "FORBIDDEN_UNTIL_WEIGHTING_VALIDATED")
+        self.assertEqual(returned["components"]["return_impact_score"], "NOT_AUTHORIZED")
+
     def test_not_implemented_metrics_do_not_claim_code_ready(self):
         for row in self.payload["metrics"]:
             if row["status"] == "NOT_IMPLEMENTED":
