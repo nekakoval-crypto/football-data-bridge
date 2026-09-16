@@ -40,6 +40,13 @@ class GradeReadinessTests(unittest.TestCase):
         self.assertEqual(absence["components"]["total_impact"], "FORBIDDEN_UNTIL_WEIGHTING_VALIDATED")
         self.assertEqual(returned["components"]["return_impact_score"], "NOT_AUTHORIZED")
 
+    def test_matchup_foundation_is_code_ready_but_not_promoted(self):
+        row = next(row for row in self.payload["metrics"] if row["id"] == "MATCHUP_GRADE")
+        self.assertTrue(row["code_ready"])
+        self.assertIn(row["status"], {"DATA_BLOCKED", "VALIDATION_PENDING", "PROXY_LIMITED"})
+        self.assertEqual(row["components"]["formation"], "CONTEXT_ONLY_NOT_STYLE")
+        self.assertEqual(row["components"]["overall_matchup_grade"], "NOT_AUTHORIZED")
+
     def test_not_implemented_metrics_do_not_claim_code_ready(self):
         for row in self.payload["metrics"]:
             if row["status"] == "NOT_IMPLEMENTED":
