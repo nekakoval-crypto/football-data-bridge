@@ -1,16 +1,16 @@
 {
-  "run_at_utc": "2026-09-15T23:28:30.803496Z",
+  "run_at_utc": "2026-09-16T07:31:42.935522Z",
   "status": "ATTENTION",
   "counts": {
-    "expected": null,
-    "scanned": 0,
+    "expected": 6,
+    "scanned": 6,
     "captured": 45,
-    "missed_or_at_risk": 4,
-    "pending": 9,
+    "missed_or_at_risk": 2,
+    "pending": 4,
     "stale": 0,
-    "rescheduled": 38,
+    "rescheduled": 128,
     "cancelled": 19,
-    "settled": 36,
+    "settled": 41,
     "duplicates": 0
   },
   "risks": [
@@ -21,23 +21,121 @@
     {
       "fixture_id": "1570389",
       "reason": "awaiting_odds_scan"
-    },
-    {
-      "fixture_id": "1547599",
-      "reason": "complete_Bet365_odds_unavailable"
-    },
-    {
-      "fixture_id": "1515898",
-      "reason": "complete_Bet365_odds_unavailable"
     }
   ],
   "stale_ids": [],
-  "scan": [],
+  "scan": [
+    {
+      "league": "Premier League",
+      "expected": 0,
+      "scanned": 0,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "La Liga",
+      "expected": 4,
+      "scanned": 4,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "Bundesliga",
+      "expected": 0,
+      "scanned": 0,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "Ligue 1",
+      "expected": 0,
+      "scanned": 0,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "Austrian Bundesliga",
+      "expected": 0,
+      "scanned": 0,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "Belgian Pro League",
+      "expected": 0,
+      "scanned": 0,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "Danish Superliga",
+      "expected": 0,
+      "scanned": 0,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "A Lyga",
+      "expected": 1,
+      "scanned": 1,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "Virsliga",
+      "expected": 1,
+      "scanned": 1,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "Eredivisie",
+      "expected": 0,
+      "scanned": 0,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "Eliteserien",
+      "expected": 0,
+      "scanned": 0,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "Ekstraklasa",
+      "expected": 0,
+      "scanned": 0,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "Primeira Liga",
+      "expected": 0,
+      "scanned": 0,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "Super Lig",
+      "expected": 0,
+      "scanned": 0,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "Scottish Premiership",
+      "expected": 0,
+      "scanned": 0,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    }
+  ],
   "warnings": [
     "Stage71 protected API reserve reached; Challenger deferred"
   ],
   "scope": "16 locked leagues; 15 research writers; Serie A canonical read-only, completeness not certified",
-  "canonical_captured": 0,
+  "canonical_captured": 3,
   "definitions": {
     "expected": "scheduled NS fixtures in next 24h, not inferred qualifying bets",
     "scanned": "those fixtures evaluated for capture using a fresh complete league inventory",
@@ -48,6 +146,6 @@
   "legacy_max_schedule_gap_hours": 18,
   "schedule_gap_hours": 8,
   "r2_freeze_hours": 12,
-  "api_calls": 0,
-  "api_day_calls": 170
+  "api_calls": 17,
+  "api_day_calls": 89
 }
