@@ -6,13 +6,13 @@ This document is the operational truth for checklist item **МОЗГИ #3 — Gr
 
 `CODE_READY` is not the same as `DATA_READY`, and a calculated metric is not the same as a validated predictive feature.
 
-No grade/lineup metric in this audit may alter canonical R1/R2/R3 eligibility, probability, EV, stake, settlement or the immutable Forward journal before separate out-of-sample validation and explicit project-owner approval.
+No grade, availability, rotation or matchup metric in this audit may alter canonical R1/R2/R3 eligibility, probability, EV, stake, settlement or the immutable Forward journal before separate out-of-sample validation and explicit project-owner approval.
 
 ## Current audit
 
 | Metric | Current status | What exists | What blocks decision use |
 | --- | --- | --- | --- |
-| Player Overall Grade | DATA_BLOCKED | PBK V1 grade, position weights, component scores, confidence | production player stats/grade history is empty |
+| Player Overall Grade | DATA_BLOCKED | PBK V1 grade, position weights, component scores, confidence | production player stats/grade history is insufficient |
 | Attack | CODE_READY within Overall | aggregate attacking inputs | predictive validation pending |
 | Progression | PROXY_LIMITED | pass/dribble proxy | no true progression/event quality in aggregate source |
 | Creation | CODE_READY within Overall | chance-creation related aggregate inputs | predictive validation pending |
@@ -20,21 +20,41 @@ No grade/lineup metric in this audit may alter canonical R1/R2/R3 eligibility, p
 | Defending | CODE_READY within Overall | tackles/interceptions/duels | predictive validation pending |
 | Pressing | unavailable in aggregate source | event prototype can represent pressure | no production event feed for locked leagues |
 | Discipline | CODE_READY within Overall | fouls/cards/penalties | predictive validation pending |
-| Form-5 / Form-10 | DATA_BLOCKED | strict prior-match rolling logic | zero production grade rows |
-| XI Quality | DATA_BLOCKED | confirmed/expected XI aggregation and no-lookahead logic | XI exists, but covered players=0 and quality is blank |
-| Player Importance | DATA_BLOCKED | starts-vs-no-starts, min sample guard, shrinkage | zero production importance rows; descriptive, not causal |
+| Form-5 / Form-10 | DATA_BLOCKED | strict prior-match rolling logic | production grade history is insufficient |
+| XI Quality | DATA_BLOCKED | confirmed/expected XI aggregation and no-lookahead logic | insufficient pre-kickoff player-grade coverage |
+| Player Importance | DATA_BLOCKED | starts-vs-no-starts, min sample guard, shrinkage | insufficient eligible samples; descriptive, not causal |
 | Rotation Count | VALIDATION_PENDING | current XI vs previous XI membership snapshots | needs explicit historical/prospective validation |
-| Rotation Quality Impact | DATA_BLOCKED | XI-quality delta plumbing exists | player grade coverage is empty |
-| Absence Impact | NOT_IMPLEMENTED | hypothesis only | needs confirmed absence + importance/grade + replacement quality |
-| Return Impact | NOT_IMPLEMENTED | hypothesis only | needs longitudinal observed presence/absence evidence |
-| Team Overall Grade | NOT_IMPLEMENTED | intentionally not an arbitrary average | component incremental value must be validated first |
-| Matchup Grade | NOT_IMPLEMENTED | hypothesis only | needs explicit style/event features and validation |
+| Rotation Quality Impact | DATA_BLOCKED | retained/changed starters + XI quality delta plumbing | player-grade coverage and OOS validation are missing |
+| Absence Impact | DATA_BLOCKED | explicit no-lookahead ABSENT evidence + separate importance/player/replacement components | durable availability ledger, coverage and OOS validation |
+| Return Impact | DATA_BLOCKED | explicit observed ABSENT → PRESENT/STARTER/BENCH transition | longitudinal availability evidence and OOS validation |
+| Team Overall Grade | NOT_IMPLEMENTED | intentionally not an arbitrary average | component incremental value and weighting must be validated first |
+| Matchup Grade | DATA_BLOCKED | explicit style vector + directional style-vs-style components | production style evidence and OOS component validation |
+
+## Matchup / Style-vs-Style foundation
+
+The Matchup foundation is now code-ready as a **research representation**, not as a betting score.
+
+It keeps explicit style dimensions separate and builds directional components such as:
+
+- press intensity vs buildup resistance;
+- transition attack vs transition defence;
+- width attack vs wide defence;
+- aerial/direct attack vs aerial defence;
+- set-piece attack vs set-piece defence;
+- low-block breaking vs low-block defence;
+- central progression vs central compactness.
+
+Each usable dimension must carry an explicit source and aware `observed_at_utc` timestamp known before the target kickoff/cutoff. Post-cutoff evidence is rejected. Missing evidence stays `UNKNOWN`; it is never converted to zero.
+
+**Formation alone is not style.** A `4-3-3`, `3-4-2-1`, etc. may be retained as context, but formation names do not create a style vector or matchup signal by themselves.
+
+Directional deltas are transparent descriptive components only. There is deliberately no combined Matchup Grade, selected winner, hand-written component weight, probability adjustment or stake change.
 
 ## Production evidence at audit time
 
-Stage78 is `WAITING`: `grade_rows=0`, `importance_rows=0`, while four XI history rows exist. Those XI rows have 11 named starters but `covered_players=0`, `coverage_pct=0`, `grade_confidence=UNKNOWN`, and blank XI quality values.
+Stage77/Stage78 still do not provide enough real player-grade history to validate Player Overall, XI Quality, Player Importance, Rotation Quality, Absence or Return components. API reserve protections must not be weakened merely to populate research grades.
 
-Stage77 has a durable backlog of finished fixtures, but protected API reserve currently defers `/fixtures/players`; this must not be weakened merely to populate research grades.
+The Matchup foundation also has no production style-feature pipeline yet. Existing formation research is useful context, but formation observations cannot substitute for event/style evidence.
 
 ## Source limitations that must remain visible
 
@@ -45,6 +65,8 @@ The aggregate Player Grade source cannot honestly claim full event quality:
 - aggregate data cannot reconstruct true action quality;
 - provider rating may be retained as reference only and is not PBK Overall Grade.
 
+Matchup style evidence must preserve the same honesty: if a required event/style feature is unavailable, that component remains unknown rather than inferred from a formation or team name.
+
 ## Validation gates
 
 1. Preserve API safety and allow Stage77 to capture real finished-fixture player data when budget permits.
@@ -53,8 +75,10 @@ The aggregate Player Grade source cannot honestly claim full event quality:
 4. Test Form-5/Form-10 versus season baseline without leakage.
 5. Validate XI Quality and XI delta versus market baseline/team strength.
 6. Evaluate Player Importance stability and confounding; do not make causal claims from starts-vs-no-starts alone.
-7. Define Absence/Return metrics only from observed evidence and replacement quality.
-8. Only after component evidence exists, evaluate whether a Team Overall Grade or Matchup Grade adds out-of-sample predictive information.
+7. Populate explicit availability evidence and validate Absence/Return components independently.
+8. Build durable pre-kickoff style evidence from event/context sources.
+9. Validate every directional matchup component out of sample against future outcomes and market residuals.
+10. Only after component evidence exists, evaluate whether a Team Overall Grade or composite Matchup Grade adds incremental predictive information. Do not create either by arbitrary averaging.
 
 ## Separate identity issue discovered by audit
 
@@ -62,4 +86,4 @@ The aggregate Player Grade source cannot honestly claim full event quality:
 
 ## UI freeze
 
-No UI work is required by this audit. Grade readiness is a brain/data/governance concern.
+No UI work is required by this audit. Grade and matchup readiness are brain/data/governance concerns.
