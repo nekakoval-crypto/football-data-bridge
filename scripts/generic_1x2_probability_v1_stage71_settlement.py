@@ -13,7 +13,10 @@ import os
 from collections import Counter
 from pathlib import Path
 
-import generic_1x2_probability_v1_forward as fwd
+try:
+    import generic_1x2_probability_v1_forward as fwd
+except ModuleNotFoundError:  # package import in unit tests
+    from scripts import generic_1x2_probability_v1_forward as fwd
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OVERLAY = OPS / "live_fixture_overlay.csv"
