@@ -1,19 +1,8 @@
 #!/usr/bin/env python3
 """PBK availability / return / rotation impact research foundation.
 
-This module is deliberately provider-free and fail-closed.
-
-It separates *observed evidence* from *impact inference*:
-- ABSENCE requires an explicit observed availability state. A player missing from
-  the starting XI is never silently called injured/suspended/absent.
-- RETURN requires an observed transition from explicit ABSENT evidence to an
-  explicit PRESENT/STARTER/BENCH state. Missing observations do not create a
-  return event.
-- ROTATION QUALITY compares official/current XI membership and pre-kickoff
-  player-grade evidence. It exposes coverage, changed players and quality delta;
-  it does not turn that delta into a betting signal or probability adjustment.
-
-No canonical R1/R2/R3 eligibility, probability, EV, stake, settlement or forward
+Provider-free and fail-closed. Observed evidence is kept separate from impact
+inference. No canonical signal, probability, EV, stake, settlement or forward
 journal state is mutated here.
 """
 from __future__ import annotations
@@ -71,11 +60,7 @@ def observed_player_timeline(
     *,
     team_id: str | None = None,
 ) -> list[dict[str, Any]]:
-    """Return explicit availability evidence known no later than `before_utc`.
-
-    Events without an aware observation timestamp are ignored. This prevents an
-    undated injury/availability claim from leaking into a pre-match state.
-    """
+    """Return explicit availability evidence known no later than `before_utc`."""
     cutoff = _iso(before_utc)
     if cutoff is None:
         raise ValueError("aware before_utc is required")
@@ -108,12 +93,7 @@ def absence_impact_components(
     player_grade: float | None = None,
     replacement_grade: float | None = None,
 ) -> dict[str, Any]:
-    """Describe an explicit confirmed absence without inventing a total impact.
-
-    The latest explicit availability event must be ABSENT. Importance, player
-    grade and replacement quality remain separate components until a weighting
-    method is validated out of sample.
-    """
+    """Describe a confirmed absence without inventing a combined impact score."""
     timeline = observed_player_timeline(events, player_id, before_utc, team_id=team_id)
     latest = timeline[-1] if timeline else None
     confirmed = bool(latest and latest.get("state") == "ABSENT")
@@ -125,7 +105,7 @@ def absence_impact_components(
     r_grade = _num(replacement_grade)
     replacement_gap = round(p_grade - r_grade, 3) if p_grade is not None and r_grade is not None else None
 
-    blockers = []
+    blockers: list[str] = []
     if not confirmed:
         blockers.append("NO_EXPLICIT_CONFIRMED_ABSENCE")
     if importance_score is None:
@@ -150,7 +130,7 @@ def absence_impact_components(
         "replacement_quality_gap": replacement_gap,
         "candidate_total_impact": None,
         "candidate_total_impact_status": "FORBIDDEN_UNTIL_WEIGHTING_VALIDATED",
-        "status": "COMPONENTS_AVAILABLE" if confirmed and not blockers[1:] else "DATA_BLOCKED",
+        "status": "COMPONENTS_AVAILABLE" if confirmed and not blockers else "DATA_BLOCKED",
         "blockers": blockers,
         "research_only": True,
         "no_lookahead": True,
@@ -161,6 +141,16 @@ def absence_impact_components(
     }
 
 
+def _current_presence_run(timeline: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Split timeline into history and the trailing uninterrupted presence run."""
+    if not timeline or timeline[-1].get("state") not in PRESENT_STATES:
+        return timeline, []
+    start = len(timeline) - 1
+    while start > 0 and timeline[start - 1].get("state") in PRESENT_STATES:
+        start -= 1
+    return timeline[:start], timeline[start:]
+
+
 def return_event(
     events: list[dict[str, Any]],
     player_id: str,
@@ -169,25 +159,35 @@ def return_event(
     *,
     min_prior_absent_events: int = 1,
 ) -> dict[str, Any]:
-    """Detect an evidence-backed return, not a guessed medical recovery.
+    """Detect an evidence-backed return from the immediately preceding state run.
 
-    A return exists only when the latest explicit state is PRESENT/STARTER/BENCH
-    and at least `min_prior_absent_events` explicit ABSENT observations precede
-    that latest presence state.
+    Historical absence somewhere in the past is insufficient. The current
+    uninterrupted presence run must be immediately preceded by an explicit
+    ABSENT run. UNKNOWN breaks the chain and therefore fails closed.
     """
     timeline = observed_player_timeline(events, player_id, before_utc, team_id=team_id)
     latest = timeline[-1] if timeline else None
     latest_state = latest.get("state") if latest else None
-    latest_is_present = latest_state in PRESENT_STATES
-    prior = timeline[:-1] if latest else []
-    prior_absent = [row for row in prior if row.get("state") == "ABSENT"]
-    returned = bool(latest_is_present and len(prior_absent) >= max(1, int(min_prior_absent_events)))
-    last_absent = prior_absent[-1] if prior_absent else None
+    history, presence_run = _current_presence_run(timeline)
+    latest_is_present = bool(presence_run)
 
-    blockers = []
+    prior_absent_run: list[dict[str, Any]] = []
+    if latest_is_present:
+        index = len(history) - 1
+        while index >= 0 and history[index].get("state") == "ABSENT":
+            prior_absent_run.append(history[index])
+            index -= 1
+        prior_absent_run.reverse()
+
+    required = max(1, int(min_prior_absent_events))
+    returned = bool(latest_is_present and len(prior_absent_run) >= required)
+    last_absent = prior_absent_run[-1] if prior_absent_run else None
+    first_present = presence_run[0] if presence_run else None
+
+    blockers: list[str] = []
     if not latest_is_present:
         blockers.append("NO_EXPLICIT_CURRENT_PRESENCE")
-    if len(prior_absent) < max(1, int(min_prior_absent_events)):
+    if len(prior_absent_run) < required:
         blockers.append("NO_EXPLICIT_PRIOR_ABSENCE_RUN")
 
     return {
@@ -198,7 +198,8 @@ def return_event(
         "return_event": returned,
         "current_state": latest_state,
         "current_observed_at_utc": latest.get("observed_at_utc") if latest else None,
-        "prior_absent_events": len(prior_absent),
+        "return_observed_at_utc": first_present.get("observed_at_utc") if returned and first_present else None,
+        "prior_absent_events": len(prior_absent_run),
         "last_absent_observed_at_utc": last_absent.get("observed_at_utc") if last_absent else None,
         "return_impact_score": None,
         "return_impact_status": "NOT_AUTHORIZED_WITHOUT_VALIDATED_OUTCOME_MODEL",
@@ -219,7 +220,7 @@ def rotation_quality_components(
     *,
     minimum_quality_coverage: int = 8,
 ) -> dict[str, Any]:
-    """Measure membership turnover and XI quality delta without causal claims."""
+    """Measure XI membership turnover and quality delta without causal claims."""
     current_ids = {_pid(row) for row in current_xi or [] if _pid(row)}
     previous_ids = {_pid(row) for row in previous_xi or [] if _pid(row)}
     grades = _grade_map(player_grades)
@@ -234,15 +235,17 @@ def rotation_quality_components(
     previous_quality = round(mean(previous_values), 3) if previous_values else None
     current_covered = len(current_values)
     previous_covered = len(previous_values)
+    complete_xis = len(current_ids) == 11 and len(previous_ids) == 11
     quality_ready = (
-        current_quality is not None
+        complete_xis
+        and current_quality is not None
         and previous_quality is not None
         and current_covered >= minimum_quality_coverage
         and previous_covered >= minimum_quality_coverage
     )
     delta = round(current_quality - previous_quality, 3) if quality_ready else None
 
-    blockers = []
+    blockers: list[str] = []
     if len(current_ids) != 11:
         blockers.append("CURRENT_XI_NOT_COMPLETE")
     if len(previous_ids) != 11:
@@ -257,7 +260,7 @@ def rotation_quality_components(
         "current_xi_count": len(current_ids),
         "previous_xi_count": len(previous_ids),
         "retained_starters": len(retained),
-        "changed_starters": len(changed_in) if len(current_ids) == 11 and len(previous_ids) == 11 else None,
+        "changed_starters": len(changed_in) if complete_xis else None,
         "changed_in_player_ids": changed_in,
         "changed_out_player_ids": changed_out,
         "current_xi_quality": current_quality,
