@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-16T19:02:25Z
+Generated UTC: 2026-09-16T20:03:21Z
 Active canonical signals: 1
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
