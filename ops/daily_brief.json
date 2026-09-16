@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-16T17:02:38Z",
+  "generated_at_utc": "2026-09-16T18:03:19Z",
   "status": "OK",
   "active_signals": 1,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-16T16:45:27Z",
+        "captured_at_utc": "2026-09-16T17:44:03Z",
         "best_odds": "1.58",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.5",
@@ -143,12 +143,12 @@
     "definition": "same opening favorite remains favorite; no-vig probability +3pp by observed close",
     "canonical_forward_changed": false,
     "tracked_openers": 20,
-    "active_crossings": 3,
-    "total_crossings": 3,
+    "active_crossings": 4,
+    "total_crossings": 4,
     "observed_closes": 10,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-16T16:29:12Z",
+    "latest_run_utc": "2026-09-16T17:27:24Z",
     "warnings": [],
     "crossings": [
       {
@@ -186,6 +186,18 @@
         "bet365_cross_odds": "1.7",
         "user_cross_odds": "1.75",
         "note": "WATCH only; not a canonical bet"
+      },
+      {
+        "fixture_id": "1557415",
+        "home_team": "Nottingham Forest",
+        "away_team": "Coventry",
+        "opening_favorite": "H",
+        "movement_pp": "0.04647972",
+        "crossed_at_utc": "2026-09-16T17:27:24Z",
+        "minutes_to_kickoff": "4262.6",
+        "bet365_cross_odds": "1.62",
+        "user_cross_odds": "1.66",
+        "note": "WATCH only; not a canonical bet"
       }
     ],
     "recent_close_qualified": [],
@@ -202,7 +214,7 @@
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-16T16:50:55Z",
+    "latest_run_utc": "2026-09-16T17:48:57Z",
     "warnings": [],
     "crossings": [
       {
@@ -355,16 +367,16 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-16T16:55:40Z",
+    "generated_at_utc": "2026-09-16T17:54:21Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
-      "crossings": 23,
-      "pending": 12,
+      "crossings": 24,
+      "pending": 13,
       "settled": 11,
       "void": 0,
       "review": 0,
-      "user_price_rows": 23,
+      "user_price_rows": 24,
       "user_execution_coverage_pct": 100.0,
       "user_settled_rows": 11,
       "wins": 4,
@@ -435,12 +447,12 @@
         "observed_max_drawdown_u": null
       },
       "АПЛ favorite steam": {
-        "crossings": 3,
-        "pending": 3,
+        "crossings": 4,
+        "pending": 4,
         "settled": 0,
         "void": 0,
         "review": 0,
-        "user_price_rows": 3,
+        "user_price_rows": 4,
         "user_execution_coverage_pct": 100.0,
         "user_settled_rows": 0,
         "wins": 0,
