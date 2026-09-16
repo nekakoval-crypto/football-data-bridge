@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-16T02:25:20Z",
+  "run_at_utc": "2026-09-16T04:25:33Z",
   "status": "OK",
   "provider_endpoint": "/players/squads",
   "provider_calls": 8,
-  "daily_api_calls": 20,
+  "daily_api_calls": 28,
   "protected_calls": {
     "live": 17,
     "current_round": 96,
@@ -16,48 +16,48 @@
   "candidate_teams": 8,
   "captured_teams": [
     {
-      "team_id": "543",
-      "team_name": "Real Betis",
-      "players": 30
-    },
-    {
-      "team_id": "546",
-      "team_name": "Getafe",
-      "players": 33
-    },
-    {
-      "team_id": "533",
-      "team_name": "Villarreal",
-      "players": 30
-    },
-    {
-      "team_id": "535",
-      "team_name": "Malaga",
-      "players": 33
-    },
-    {
-      "team_id": "157",
-      "team_name": "Bayern München",
-      "players": 32
-    },
-    {
-      "team_id": "182",
-      "team_name": "Union Berlin",
-      "players": 37
-    },
-    {
-      "team_id": "116",
-      "team_name": "Lens",
-      "players": 30
-    },
-    {
-      "team_id": "1579",
-      "team_name": "Monza",
+      "team_id": "488",
+      "team_name": "Sassuolo",
       "players": 34
+    },
+    {
+      "team_id": "91",
+      "team_name": "Monaco",
+      "players": 29
+    },
+    {
+      "team_id": "49",
+      "team_name": "Chelsea",
+      "players": 30
+    },
+    {
+      "team_id": "55",
+      "team_name": "Brentford",
+      "players": 30
+    },
+    {
+      "team_id": "47",
+      "team_name": "Tottenham",
+      "players": 34
+    },
+    {
+      "team_id": "66",
+      "team_name": "Aston Villa",
+      "players": 33
+    },
+    {
+      "team_id": "490",
+      "team_name": "Cagliari",
+      "players": 33
+    },
+    {
+      "team_id": "494",
+      "team_name": "Udinese",
+      "players": 28
     }
   ],
   "deferred_teams": 0,
-  "total_roster_rows": 508,
+  "total_roster_rows": 759,
   "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
