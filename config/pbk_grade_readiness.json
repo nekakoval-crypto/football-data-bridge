@@ -1,14 +1,17 @@
 {
-  "version": 1,
+  "version": 2,
   "name": "PBK Brain Grade Readiness",
-  "purpose": "Runtime truth about whether player/lineup grades are merely implemented, actually populated, proxy-limited, validation-ready, or validated. This registry is research/governance only and never changes betting eligibility, probability, EV, stake, or the forward journal.",
+  "purpose": "Runtime truth about whether player/team grades are merely implemented, actually populated, proxy-limited, validation-ready, or validated. This registry is research/governance only and never changes betting eligibility, probability, EV, stake, or the forward journal.",
   "allowed_statuses": ["CODE_READY", "DATA_BLOCKED", "PROXY_LIMITED", "VALIDATION_PENDING", "VALIDATED", "NOT_IMPLEMENTED"],
   "global_guardrails": [
     "CODE_READY is not DATA_READY.",
     "A metric with zero production evidence rows cannot be called operationally ready.",
     "A calculated metric is not validated until predictive value is tested out of sample.",
-    "Missing player or lineup evidence remains unknown; never fabricate or backfill it.",
-    "No player/lineup research metric may mutate canonical R1/R2/R3 eligibility, stake, probability or the immutable forward journal before explicit validation and project-owner approval."
+    "Missing player, team or lineup evidence remains unknown; never fabricate or backfill it.",
+    "Player Form windows must use only evidence known before target kickoff.",
+    "Team component grades remain independent until each component is separately validated.",
+    "Do not create Team Overall by arbitrary averaging or hand-written weights.",
+    "No player/team research metric may mutate canonical R1/R2/R3 eligibility, stake, probability or the immutable forward journal before explicit validation and project-owner approval."
   ],
   "metrics": [
     {
@@ -36,8 +39,17 @@
       "code_ready": true,
       "production_evidence_required": true,
       "historical_10y_validation_available": false,
-      "reason": "Rolling Form-5/Form-10 logic exists with no-lookahead, but there are zero production grade rows to roll.",
-      "next_gate": "Populate grade history and validate Form-5/Form-10 versus season baseline and future team outcomes without leakage."
+      "reason": "No-lookahead Last/Form-3/Form-5/Form-10/Season profile code exists, including trend and season-deviation fields, but there are zero production grade rows to roll.",
+      "components": {
+        "last": "CODE_READY",
+        "form_3": "CODE_READY",
+        "form_5": "CODE_READY",
+        "form_10": "CODE_READY",
+        "season": "REQUIRES_EXPLICIT_SEASON_LABEL",
+        "trend_3_vs_10": "CODE_READY",
+        "deviation_last_vs_season": "CODE_READY"
+      },
+      "next_gate": "Populate grade history, preserve season provenance, then validate form windows versus season baseline and future team outcomes without leakage."
     },
     {
       "id": "XI_QUALITY",
@@ -95,12 +107,34 @@
       "next_gate": "Define return event from observed absence/presence history without inferred injury dates, then validate prospectively."
     },
     {
+      "id": "TEAM_COMPONENT_GRADES",
+      "status": "DATA_BLOCKED",
+      "code_ready": true,
+      "production_evidence_required": true,
+      "historical_10y_validation_available": false,
+      "reason": "A governed Team Component Vector now exists for Attack, Defence, Form, Home, Away, Schedule/Fatigue, Squad, XI Quality, Availability, Motivation and Market. It exposes research candidate component grades only when supplied by a component-specific producer, and exposes an official component grade only after that component is separately VALIDATED. Current production evidence is incomplete and player-dependent components are blocked by zero Stage77 grade rows.",
+      "components": {
+        "attack": "INDEPENDENT_COMPONENT",
+        "defence": "INDEPENDENT_COMPONENT",
+        "form": "INDEPENDENT_COMPONENT",
+        "home": "INDEPENDENT_COMPONENT",
+        "away": "INDEPENDENT_COMPONENT",
+        "schedule_fatigue": "INDEPENDENT_COMPONENT",
+        "squad": "PLAYER_DATA_BLOCKED",
+        "xi_quality": "PLAYER_DATA_BLOCKED",
+        "availability": "RAW_EVIDENCE_ONLY_UNTIL_IMPACT_VALIDATED",
+        "motivation": "RAW_EVIDENCE_ONLY_UNTIL_VALIDATED",
+        "market": "SEPARATE_MARKET_ENGINE_EVIDENCE"
+      },
+      "next_gate": "Populate player/XI evidence and validate each team component independently against future outcomes and market residuals before any component receives official-grade authority."
+    },
+    {
       "id": "TEAM_OVERALL_GRADE",
       "status": "NOT_IMPLEMENTED",
       "code_ready": false,
       "production_evidence_required": true,
       "historical_10y_validation_available": false,
-      "reason": "There is no validated composite Team Overall Grade. Team strength, XI quality, availability, form and context must remain separate until their incremental predictive value is measured.",
+      "reason": "There is no validated composite Team Overall Grade. Team component grades intentionally remain separate until incremental predictive value and a weighting method are validated.",
       "next_gate": "Validate component features first; do not create an arbitrary weighted average."
     },
     {
