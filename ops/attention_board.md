@@ -1,7 +1,7 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 16.09.2026 13:00 (Europe/Berlin)
-Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
+Обновлено: 16.09.2026 14:00 (Europe/Berlin)
+Canonical: 1 | active WATCH crossings: 4 | RED: 0 | ORANGE: 4
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
 
@@ -12,6 +12,7 @@ Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
 - **Atletico Madrid — Osasuna** | Stage63 | ОЗ — Нет | 16.09 19:00 | prospective движение ОЗ ≥3 п.п. | 1.81 @ Marathonbet
 - **Brentford — Chelsea** | Stage61 | П2 | 18.09 21:00 | первый +3 п.п. steam фаворита | 2.27 @ Marathonbet
 - **Brentford — Chelsea** | Stage63 | ОЗ — Да | 18.09 21:00 | prospective движение ОЗ ≥3 п.п. | 1.41 @ Marathonbet
+- **Tottenham — Aston Villa** | Stage61 | П1 | 19.09 13:30 | первый +3 п.п. steam фаворита | 2.02 @ Marathonbet
 
 ## 🔵 Активные R1/R2/R3
 - **R1 | Frosinone — Como** | П2 | 20.09 15:00 | 1.65 @ Marathonbet | гости после еврокубка/кубка
@@ -20,6 +21,7 @@ Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
 - **Stage63 | Atletico Madrid — Osasuna** | ОЗ — Нет | 16.09 19:00 | 1.81 @ Marathonbet
 - **Stage61 | Brentford — Chelsea** | П2 | 18.09 21:00 | 2.27 @ Marathonbet
 - **Stage63 | Brentford — Chelsea** | ОЗ — Да | 18.09 21:00 | 1.41 @ Marathonbet
+- **Stage61 | Tottenham — Aston Villa** | П1 | 19.09 13:30 | 2.02 @ Marathonbet
 
 ## ⚪ Ближайшие матчи под наблюдением (без сигнала)
 - **Stage63 | Atletico Madrid — Osasuna** | La Liga | 16.09 19:00 | ОЗ — Да / ОЗ — Нет | Bet365 Да 1.8 / Нет 1.95
@@ -731,7 +733,8 @@ Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
 - **Tottenham — Aston Villa** | Premier League | 19.09 11:30 UTC
   - ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 2 @ Bet365
   - ОЗ · ОЗ Да: 1.69 | ОЗ Нет: 2.04 @ Marathonbet
-  - 1X2 · П1: 1.95 | Х: 3.5 | П2: 3.7 @ Bet365
+  - 1X2 · П1: 1.95 | Х: 3.6 | П2: 3.8 @ Bet365
+  - 1X2 · П1: 2.02 | Х: 3.64 | П2: 3.65 @ Marathonbet
   - Тотал 2.5 — нет данных
   - ИТБ/ИТМ — нет данных
   - 1Х/Х2/12 — нет данных
