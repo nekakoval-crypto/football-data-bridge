@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-16T16:03:41Z",
+  "generated_at_utc": "2026-09-16T17:02:38Z",
   "status": "OK",
   "active_signals": 1,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-16T15:44:44Z",
+        "captured_at_utc": "2026-09-16T16:45:27Z",
         "best_odds": "1.58",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.5",
@@ -148,7 +148,7 @@
     "observed_closes": 10,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-16T15:29:00Z",
+    "latest_run_utc": "2026-09-16T16:29:12Z",
     "warnings": [],
     "crossings": [
       {
@@ -202,7 +202,7 @@
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-16T15:50:16Z",
+    "latest_run_utc": "2026-09-16T16:50:55Z",
     "warnings": [],
     "crossings": [
       {
@@ -258,14 +258,14 @@
     "historical_edge_reason": "Canonical 10-year dataset has no historical BTTS first/close odds",
     "canonical_forward_changed": false,
     "tracked_openers": 105,
-    "active_crossings_total": 6,
-    "active_yes_crossings": 3,
+    "active_crossings_total": 7,
+    "active_yes_crossings": 4,
     "active_no_crossings": 3,
-    "total_crossings": 15,
+    "total_crossings": 16,
     "observed_closes": 51,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-16T14:17:14Z",
+    "latest_run_utc": "2026-09-16T16:16:35Z",
     "warnings": [],
     "crossings": [
       {
@@ -339,20 +339,32 @@
         "minutes_to_kickoff": "3132.8",
         "user_selected_odds": "1.89",
         "note": "research watch only; not a bet signal"
+      },
+      {
+        "fixture_id": "1550128",
+        "league": "Serie A",
+        "home_team": "AS Roma",
+        "away_team": "Inter",
+        "selection": "ОЗ — Да",
+        "movement_yes_pp": "0.03277942",
+        "crossed_at_utc": "2026-09-16T16:16:35Z",
+        "minutes_to_kickoff": "4303.4",
+        "user_selected_odds": "1.49",
+        "note": "research watch only; not a bet signal"
       }
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-16T15:55:32Z",
+    "generated_at_utc": "2026-09-16T16:55:40Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
-      "crossings": 22,
-      "pending": 11,
+      "crossings": 23,
+      "pending": 12,
       "settled": 11,
       "void": 0,
       "review": 0,
-      "user_price_rows": 22,
+      "user_price_rows": 23,
       "user_execution_coverage_pct": 100.0,
       "user_settled_rows": 11,
       "wins": 4,
@@ -373,12 +385,12 @@
     },
     "by_family": {
       "Big-5 ОЗ market movement — ОЗ — Да": {
-        "crossings": 12,
-        "pending": 3,
+        "crossings": 13,
+        "pending": 4,
         "settled": 9,
         "void": 0,
         "review": 0,
-        "user_price_rows": 12,
+        "user_price_rows": 13,
         "user_execution_coverage_pct": 100.0,
         "user_settled_rows": 9,
         "wins": 2,

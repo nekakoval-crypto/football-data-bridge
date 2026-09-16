@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-16T16:03:41Z
+Generated UTC: 2026-09-16T17:02:38Z
 Active canonical signals: 1
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -65,7 +65,7 @@ Active canonical signals: 1
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 105
-- Активные движения ≥3 п.п.: всего 6 | ОЗ — Да 3 | ОЗ — Нет 3
+- Активные движения ≥3 п.п.: всего 7 | ОЗ — Да 4 | ОЗ — Нет 3
 - Зафиксировано observed close: 51
 - Исполнимый букмекер для наблюдения: Marathonbet
 
@@ -76,6 +76,7 @@ Active canonical signals: 1
 - WATCH | Premier League | Everton — Ipswich | ОЗ — Да | движение P(ОЗ — Да) +3.70 п.п. | Marathonbet 1.67 | 4302.8 мин до матча
 - WATCH | La Liga | Athletic Club — Alaves | ОЗ — Нет | движение P(ОЗ — Да) -4.00 п.п. | Marathonbet 1.78 | 4317.8 мин до матча
 - WATCH | Bundesliga | Bayern München — Union Berlin | ОЗ — Нет | движение P(ОЗ — Да) -3.33 п.п. | Marathonbet 1.89 | 3132.8 мин до матча
+- WATCH | Serie A | AS Roma — Inter | ОЗ — Да | движение P(ОЗ — Да) +3.28 п.п. | Marathonbet 1.49 | 4303.4 мин до матча
 
 ---
 
@@ -83,14 +84,14 @@ Active canonical signals: 1
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 22 | settled 11 | pending 11
+- Crossings: 23 | settled 11 | pending 12
 - Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: -5.550u | ROI -50.455% | W-L 4-7
 - Close: observed 11 | stayed qualified 9 | reverted 2 | persistence 81.818%
 - Close-qualified ROI: -57.333% | Reverted ROI: -19.5%
 
 ## By WATCH family
-- Big-5 ОЗ market movement — ОЗ — Да: crossings 12, settled 9, ROI -65.556%, close persistence 77.778%
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 13, settled 9, ROI -65.556%, close persistence 77.778%
 - Big-5 ОЗ market movement — ОЗ — Нет: crossings 3, settled 0, ROI N/A, close persistence N/A
 - АПЛ favorite steam: crossings 3, settled 0, ROI N/A, close persistence N/A
 - Бундеслига ТБ(2.5) steam: crossings 4, settled 2, ROI 17.5%, close persistence 100.0%
