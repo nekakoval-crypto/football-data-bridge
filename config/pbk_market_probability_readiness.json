@@ -1,9 +1,9 @@
 {
-  "version": "PBK_MARKET_PROBABILITY_READINESS_V1",
+  "version": "PBK_MARKET_PROBABILITY_READINESS_V2",
   "updated_at_utc": "2026-09-16",
   "scope": "PBK_CORE_8",
-  "principle": "Market data availability is not a PBK probability model. A PBK probability may be emitted only for a market/selection context with an explicitly validated model. Otherwise the status must remain NO_VALIDATED_MODEL.",
-  "statuses": ["VALIDATED", "PARTIAL_VALIDATED", "VALIDATION_PENDING", "DATA_ONLY", "NO_VALIDATED_MODEL"],
+  "principle": "Market data availability is not a PBK probability model. A PBK probability may be emitted only for a market/selection context with an explicitly validated model. Otherwise the official status must remain NO_VALIDATED_MODEL even when a research candidate exists.",
+  "statuses": ["VALIDATED", "PARTIAL_VALIDATED", "FORWARD_REVIEW_REQUIRED", "VALIDATION_PENDING", "DATA_ONLY", "NO_VALIDATED_MODEL"],
   "markets": [
     {
       "id": "MATCH_RESULT_1X2",
@@ -12,10 +12,12 @@
       "historical_price_evidence": true,
       "pbk_probability_status": "PARTIAL_VALIDATED",
       "validated_contexts": ["R1_AWAY_WIN", "R2_AWAY_WIN", "R3_DRAW"],
-      "unvalidated_contexts": ["GENERIC_HOME_WIN", "GENERIC_DRAW", "GENERIC_AWAY_WIN", "NON_CANONICAL_1X2"],
+      "research_contexts": ["GENERIC_1X2_V1_POOLED_BIG5_HISTORICAL_PASS_FORWARD_REVIEW_PER_LEAGUE"],
+      "unvalidated_contexts": ["GENERIC_HOME_WIN_OFFICIAL", "GENERIC_DRAW_OFFICIAL", "GENERIC_AWAY_WIN_OFFICIAL", "NON_CANONICAL_1X2"],
       "current_model_source": "config/pbk_probability_models.json",
+      "current_research_model_source": "config/pbk_generic_1x2_probability_v1_forward.json",
       "value_allowed": "VALIDATED_CONTEXTS_ONLY",
-      "next_gate": "Build and independently validate generic/multi-context 1X2 candidates without changing locked R1/R2/R3."
+      "next_gate": "Complete prospective league-specific Generic 1X2 forward review. Pooled historical Big-5 PASS is research evidence only and does not authorize generic official P_PBK or value."
     },
     {
       "id": "MATCH_TOTAL",
@@ -106,6 +108,7 @@
     "no_probability_from_odds_only": true,
     "no_value_without_pbk_probability": true,
     "market_no_vig_is_not_pbk_probability": true,
+    "generic_forward_research_probability_is_not_official_p_pbk": true,
     "no_auto_promotion": true,
     "canonical_rules_unchanged": true,
     "research_cannot_change_stake": true,
