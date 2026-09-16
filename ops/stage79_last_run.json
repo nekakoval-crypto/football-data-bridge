@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-16T00:31:04Z",
+  "run_at_utc": "2026-09-16T02:25:20Z",
   "status": "OK",
   "provider_endpoint": "/players/squads",
   "provider_calls": 8,
-  "daily_api_calls": 8,
+  "daily_api_calls": 20,
   "protected_calls": {
     "live": 17,
     "current_round": 96,
@@ -16,48 +16,48 @@
   "candidate_teams": 8,
   "captured_teams": [
     {
-      "team_id": "530",
-      "team_name": "Atletico Madrid",
-      "players": 33
-    },
-    {
-      "team_id": "536",
-      "team_name": "Sevilla",
-      "players": 31
-    },
-    {
-      "team_id": "544",
-      "team_name": "Deportivo La Coruna",
-      "players": 31
-    },
-    {
-      "team_id": "727",
-      "team_name": "Osasuna",
-      "players": 27
-    },
-    {
-      "team_id": "4665",
-      "team_name": "Racing Santander",
-      "players": 33
-    },
-    {
-      "team_id": "529",
-      "team_name": "Barcelona",
-      "players": 32
-    },
-    {
-      "team_id": "531",
-      "team_name": "Athletic Club",
+      "team_id": "543",
+      "team_name": "Real Betis",
       "players": 30
     },
     {
-      "team_id": "539",
-      "team_name": "Levante",
+      "team_id": "546",
+      "team_name": "Getafe",
+      "players": 33
+    },
+    {
+      "team_id": "533",
+      "team_name": "Villarreal",
+      "players": 30
+    },
+    {
+      "team_id": "535",
+      "team_name": "Malaga",
+      "players": 33
+    },
+    {
+      "team_id": "157",
+      "team_name": "Bayern München",
       "players": 32
+    },
+    {
+      "team_id": "182",
+      "team_name": "Union Berlin",
+      "players": 37
+    },
+    {
+      "team_id": "116",
+      "team_name": "Lens",
+      "players": 30
+    },
+    {
+      "team_id": "1579",
+      "team_name": "Monza",
+      "players": 34
     }
   ],
   "deferred_teams": 0,
-  "total_roster_rows": 249,
+  "total_roster_rows": 508,
   "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
