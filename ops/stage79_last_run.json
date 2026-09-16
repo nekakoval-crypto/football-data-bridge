@@ -1,25 +1,64 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-15T22:23:58Z",
-  "status": "ATTENTION",
+  "run_at_utc": "2026-09-16T00:31:04Z",
+  "status": "OK",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 0,
-  "daily_api_calls": 136,
+  "provider_calls": 8,
+  "daily_api_calls": 8,
   "protected_calls": {
-    "live": 3,
-    "current_round": 32,
+    "live": 17,
+    "current_round": 96,
     "standings": 16,
     "safety": 8,
-    "total": 59
+    "total": 137
   },
   "roster_ttl_days": 7,
   "candidate_teams": 8,
-  "captured_teams": [],
-  "deferred_teams": 8,
-  "total_roster_rows": 0,
-  "warnings": [
-    "Stage71 protected API reserve reached; Challenger deferred"
+  "captured_teams": [
+    {
+      "team_id": "530",
+      "team_name": "Atletico Madrid",
+      "players": 33
+    },
+    {
+      "team_id": "536",
+      "team_name": "Sevilla",
+      "players": 31
+    },
+    {
+      "team_id": "544",
+      "team_name": "Deportivo La Coruna",
+      "players": 31
+    },
+    {
+      "team_id": "727",
+      "team_name": "Osasuna",
+      "players": 27
+    },
+    {
+      "team_id": "4665",
+      "team_name": "Racing Santander",
+      "players": 33
+    },
+    {
+      "team_id": "529",
+      "team_name": "Barcelona",
+      "players": 32
+    },
+    {
+      "team_id": "531",
+      "team_name": "Athletic Club",
+      "players": 30
+    },
+    {
+      "team_id": "539",
+      "team_name": "Levante",
+      "players": 32
+    }
   ],
+  "deferred_teams": 0,
+  "total_roster_rows": 249,
+  "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
