@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-16T15:30:47Z",
+  "run_at_utc": "2026-09-16T23:29:22Z",
   "status": "ATTENTION",
   "research_leagues": 15,
   "new_triggers": 0,
@@ -8,31 +8,23 @@
   "settled_rows": 0,
   "trigger_rows": 169,
   "forward_rows": 45,
-  "api_calls": 1,
+  "api_calls": 0,
   "odds_calls": 0,
   "marathon_calls": 0,
-  "scan": [
-    {
-      "league": "Premier League",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
-    }
-  ],
+  "scan": [],
   "warnings": [
     "Stage71 protected API reserve reached; Challenger deferred"
   ],
   "canonical_captured": 0,
   "challenger_deferred": true,
-  "api_day_calls_before_challenger": 121,
-  "reserved_live_calls": 16,
-  "reserved_current_round_calls": 32,
+  "api_day_calls_before_challenger": 169,
+  "reserved_live_calls": 1,
+  "reserved_current_round_calls": 0,
   "safety_margin_calls": 10,
-  "challenger_available_calls": 1,
-  "challenger_calls_used": 1,
-  "live_forecast_cycles": 16,
-  "live_peak_candidates": 6,
+  "challenger_available_calls": 0,
+  "challenger_calls_used": 0,
+  "live_forecast_cycles": 1,
+  "live_peak_candidates": 2,
   "live_peak_batches": 1,
-  "budget_protection_status": "LIMITED"
+  "budget_protection_status": "PROTECTED"
 }

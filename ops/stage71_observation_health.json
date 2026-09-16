@@ -1,11 +1,11 @@
 {
-  "run_at_utc": "2026-09-16T15:30:47.888358Z",
+  "run_at_utc": "2026-09-16T23:29:22.443367Z",
   "status": "ATTENTION",
   "counts": {
-    "expected": 0,
+    "expected": null,
     "scanned": 0,
     "captured": 45,
-    "missed_or_at_risk": 2,
+    "missed_or_at_risk": 4,
     "pending": 4,
     "stale": 0,
     "rescheduled": 128,
@@ -16,23 +16,23 @@
   "risks": [
     {
       "fixture_id": "1570385",
-      "reason": "awaiting_odds_scan"
+      "reason": "kickoff_passed_without_trigger; qualification_unknown"
     },
     {
       "fixture_id": "1570389",
+      "reason": "kickoff_passed_without_trigger; qualification_unknown"
+    },
+    {
+      "fixture_id": "1570386",
+      "reason": "awaiting_odds_scan"
+    },
+    {
+      "fixture_id": "1570390",
       "reason": "awaiting_odds_scan"
     }
   ],
   "stale_ids": [],
-  "scan": [
-    {
-      "league": "Premier League",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
-    }
-  ],
+  "scan": [],
   "warnings": [
     "Stage71 protected API reserve reached; Challenger deferred"
   ],
@@ -48,6 +48,6 @@
   "legacy_max_schedule_gap_hours": 18,
   "schedule_gap_hours": 8,
   "r2_freeze_hours": 12,
-  "api_calls": 1,
-  "api_day_calls": 122
+  "api_calls": 0,
+  "api_day_calls": 169
 }
