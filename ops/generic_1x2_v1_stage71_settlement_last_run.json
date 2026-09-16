@@ -1,0 +1,21 @@
+{
+  "run_at_utc": "2026-09-16T14:02:55Z",
+  "status": "OK",
+  "mode": "STAGE71_EXISTING_OVERLAY_SETTLEMENT",
+  "provider_calls_added": 0,
+  "accepted_source_status": "FT_ONLY",
+  "historical_backfill": "FORBIDDEN",
+  "prematch_required": true,
+  "extraction": {
+    "without_frozen_prematch": 9,
+    "eligible_settlement_rows": 0
+  },
+  "settlements_added": 0,
+  "settlements_rejected": 0,
+  "prematch_frozen": 0,
+  "settled_rows": 0,
+  "league_status_counts": {
+    "COLLECTING": 16
+  },
+  "rejections": []
+}

@@ -1,0 +1,678 @@
+{
+  "generated_at_utc": "2026-09-16T14:02:55Z",
+  "research_id": "PBK_GENERIC_1X2_PROBABILITY_V1_FORWARD",
+  "model_version": "PBK_GENERIC_1X2_PROBABILITY_V1",
+  "status": "PER_LEAGUE_FORWARD_REVIEW",
+  "authority": "RESEARCH",
+  "tracked_leagues": 16,
+  "league_reviews": {
+    "Premier League": {
+      "status": "COLLECTING",
+      "prematch_frozen": 0,
+      "settled_rows": 0,
+      "forward_outcomes": {
+        "H": 0,
+        "D": 0,
+        "A": 0
+      },
+      "diagnostic_checkpoints_reached": {
+        "250": false,
+        "500": false
+      },
+      "formal_review_sample_ready": false,
+      "scores": {
+        "m0_multiclass_brier": null,
+        "m1_multiclass_brier": null,
+        "brier_improvement_m0_minus_m1": null,
+        "m0_logloss": null,
+        "m1_logloss": null,
+        "logloss_improvement_m0_minus_m1": null
+      },
+      "m1_class_calibration": {},
+      "checks": {
+        "minimum_forward_rows": false,
+        "minimum_forward_outcomes_per_class": false,
+        "brier_strict_improvement": false,
+        "logloss_strict_improvement": false,
+        "class_calibration": false,
+        "probability_sum": false,
+        "forward_only_no_backfill": true
+      },
+      "league": "Premier League",
+      "historical_evidence": "POOLED_BIG5_HISTORICAL_PASS_ONLY_NOT_LEAGUE_SPECIFIC",
+      "forward_validation_scope": "THIS_LEAGUE_ONLY"
+    },
+    "La Liga": {
+      "status": "COLLECTING",
+      "prematch_frozen": 0,
+      "settled_rows": 0,
+      "forward_outcomes": {
+        "H": 0,
+        "D": 0,
+        "A": 0
+      },
+      "diagnostic_checkpoints_reached": {
+        "250": false,
+        "500": false
+      },
+      "formal_review_sample_ready": false,
+      "scores": {
+        "m0_multiclass_brier": null,
+        "m1_multiclass_brier": null,
+        "brier_improvement_m0_minus_m1": null,
+        "m0_logloss": null,
+        "m1_logloss": null,
+        "logloss_improvement_m0_minus_m1": null
+      },
+      "m1_class_calibration": {},
+      "checks": {
+        "minimum_forward_rows": false,
+        "minimum_forward_outcomes_per_class": false,
+        "brier_strict_improvement": false,
+        "logloss_strict_improvement": false,
+        "class_calibration": false,
+        "probability_sum": false,
+        "forward_only_no_backfill": true
+      },
+      "league": "La Liga",
+      "historical_evidence": "POOLED_BIG5_HISTORICAL_PASS_ONLY_NOT_LEAGUE_SPECIFIC",
+      "forward_validation_scope": "THIS_LEAGUE_ONLY"
+    },
+    "Serie A": {
+      "status": "COLLECTING",
+      "prematch_frozen": 0,
+      "settled_rows": 0,
+      "forward_outcomes": {
+        "H": 0,
+        "D": 0,
+        "A": 0
+      },
+      "diagnostic_checkpoints_reached": {
+        "250": false,
+        "500": false
+      },
+      "formal_review_sample_ready": false,
+      "scores": {
+        "m0_multiclass_brier": null,
+        "m1_multiclass_brier": null,
+        "brier_improvement_m0_minus_m1": null,
+        "m0_logloss": null,
+        "m1_logloss": null,
+        "logloss_improvement_m0_minus_m1": null
+      },
+      "m1_class_calibration": {},
+      "checks": {
+        "minimum_forward_rows": false,
+        "minimum_forward_outcomes_per_class": false,
+        "brier_strict_improvement": false,
+        "logloss_strict_improvement": false,
+        "class_calibration": false,
+        "probability_sum": false,
+        "forward_only_no_backfill": true
+      },
+      "league": "Serie A",
+      "historical_evidence": "POOLED_BIG5_HISTORICAL_PASS_ONLY_NOT_LEAGUE_SPECIFIC",
+      "forward_validation_scope": "THIS_LEAGUE_ONLY"
+    },
+    "Bundesliga": {
+      "status": "COLLECTING",
+      "prematch_frozen": 0,
+      "settled_rows": 0,
+      "forward_outcomes": {
+        "H": 0,
+        "D": 0,
+        "A": 0
+      },
+      "diagnostic_checkpoints_reached": {
+        "250": false,
+        "500": false
+      },
+      "formal_review_sample_ready": false,
+      "scores": {
+        "m0_multiclass_brier": null,
+        "m1_multiclass_brier": null,
+        "brier_improvement_m0_minus_m1": null,
+        "m0_logloss": null,
+        "m1_logloss": null,
+        "logloss_improvement_m0_minus_m1": null
+      },
+      "m1_class_calibration": {},
+      "checks": {
+        "minimum_forward_rows": false,
+        "minimum_forward_outcomes_per_class": false,
+        "brier_strict_improvement": false,
+        "logloss_strict_improvement": false,
+        "class_calibration": false,
+        "probability_sum": false,
+        "forward_only_no_backfill": true
+      },
+      "league": "Bundesliga",
+      "historical_evidence": "POOLED_BIG5_HISTORICAL_PASS_ONLY_NOT_LEAGUE_SPECIFIC",
+      "forward_validation_scope": "THIS_LEAGUE_ONLY"
+    },
+    "Ligue 1": {
+      "status": "COLLECTING",
+      "prematch_frozen": 0,
+      "settled_rows": 0,
+      "forward_outcomes": {
+        "H": 0,
+        "D": 0,
+        "A": 0
+      },
+      "diagnostic_checkpoints_reached": {
+        "250": false,
+        "500": false
+      },
+      "formal_review_sample_ready": false,
+      "scores": {
+        "m0_multiclass_brier": null,
+        "m1_multiclass_brier": null,
+        "brier_improvement_m0_minus_m1": null,
+        "m0_logloss": null,
+        "m1_logloss": null,
+        "logloss_improvement_m0_minus_m1": null
+      },
+      "m1_class_calibration": {},
+      "checks": {
+        "minimum_forward_rows": false,
+        "minimum_forward_outcomes_per_class": false,
+        "brier_strict_improvement": false,
+        "logloss_strict_improvement": false,
+        "class_calibration": false,
+        "probability_sum": false,
+        "forward_only_no_backfill": true
+      },
+      "league": "Ligue 1",
+      "historical_evidence": "POOLED_BIG5_HISTORICAL_PASS_ONLY_NOT_LEAGUE_SPECIFIC",
+      "forward_validation_scope": "THIS_LEAGUE_ONLY"
+    },
+    "Austrian Bundesliga": {
+      "status": "COLLECTING",
+      "prematch_frozen": 0,
+      "settled_rows": 0,
+      "forward_outcomes": {
+        "H": 0,
+        "D": 0,
+        "A": 0
+      },
+      "diagnostic_checkpoints_reached": {
+        "250": false,
+        "500": false
+      },
+      "formal_review_sample_ready": false,
+      "scores": {
+        "m0_multiclass_brier": null,
+        "m1_multiclass_brier": null,
+        "brier_improvement_m0_minus_m1": null,
+        "m0_logloss": null,
+        "m1_logloss": null,
+        "logloss_improvement_m0_minus_m1": null
+      },
+      "m1_class_calibration": {},
+      "checks": {
+        "minimum_forward_rows": false,
+        "minimum_forward_outcomes_per_class": false,
+        "brier_strict_improvement": false,
+        "logloss_strict_improvement": false,
+        "class_calibration": false,
+        "probability_sum": false,
+        "forward_only_no_backfill": true
+      },
+      "league": "Austrian Bundesliga",
+      "historical_evidence": "NO_HISTORICAL_VALIDATION",
+      "forward_validation_scope": "THIS_LEAGUE_ONLY"
+    },
+    "Belgian Pro League": {
+      "status": "COLLECTING",
+      "prematch_frozen": 0,
+      "settled_rows": 0,
+      "forward_outcomes": {
+        "H": 0,
+        "D": 0,
+        "A": 0
+      },
+      "diagnostic_checkpoints_reached": {
+        "250": false,
+        "500": false
+      },
+      "formal_review_sample_ready": false,
+      "scores": {
+        "m0_multiclass_brier": null,
+        "m1_multiclass_brier": null,
+        "brier_improvement_m0_minus_m1": null,
+        "m0_logloss": null,
+        "m1_logloss": null,
+        "logloss_improvement_m0_minus_m1": null
+      },
+      "m1_class_calibration": {},
+      "checks": {
+        "minimum_forward_rows": false,
+        "minimum_forward_outcomes_per_class": false,
+        "brier_strict_improvement": false,
+        "logloss_strict_improvement": false,
+        "class_calibration": false,
+        "probability_sum": false,
+        "forward_only_no_backfill": true
+      },
+      "league": "Belgian Pro League",
+      "historical_evidence": "NO_HISTORICAL_VALIDATION",
+      "forward_validation_scope": "THIS_LEAGUE_ONLY"
+    },
+    "Danish Superliga": {
+      "status": "COLLECTING",
+      "prematch_frozen": 0,
+      "settled_rows": 0,
+      "forward_outcomes": {
+        "H": 0,
+        "D": 0,
+        "A": 0
+      },
+      "diagnostic_checkpoints_reached": {
+        "250": false,
+        "500": false
+      },
+      "formal_review_sample_ready": false,
+      "scores": {
+        "m0_multiclass_brier": null,
+        "m1_multiclass_brier": null,
+        "brier_improvement_m0_minus_m1": null,
+        "m0_logloss": null,
+        "m1_logloss": null,
+        "logloss_improvement_m0_minus_m1": null
+      },
+      "m1_class_calibration": {},
+      "checks": {
+        "minimum_forward_rows": false,
+        "minimum_forward_outcomes_per_class": false,
+        "brier_strict_improvement": false,
+        "logloss_strict_improvement": false,
+        "class_calibration": false,
+        "probability_sum": false,
+        "forward_only_no_backfill": true
+      },
+      "league": "Danish Superliga",
+      "historical_evidence": "NO_HISTORICAL_VALIDATION",
+      "forward_validation_scope": "THIS_LEAGUE_ONLY"
+    },
+    "A Lyga": {
+      "status": "COLLECTING",
+      "prematch_frozen": 0,
+      "settled_rows": 0,
+      "forward_outcomes": {
+        "H": 0,
+        "D": 0,
+        "A": 0
+      },
+      "diagnostic_checkpoints_reached": {
+        "250": false,
+        "500": false
+      },
+      "formal_review_sample_ready": false,
+      "scores": {
+        "m0_multiclass_brier": null,
+        "m1_multiclass_brier": null,
+        "brier_improvement_m0_minus_m1": null,
+        "m0_logloss": null,
+        "m1_logloss": null,
+        "logloss_improvement_m0_minus_m1": null
+      },
+      "m1_class_calibration": {},
+      "checks": {
+        "minimum_forward_rows": false,
+        "minimum_forward_outcomes_per_class": false,
+        "brier_strict_improvement": false,
+        "logloss_strict_improvement": false,
+        "class_calibration": false,
+        "probability_sum": false,
+        "forward_only_no_backfill": true
+      },
+      "league": "A Lyga",
+      "historical_evidence": "NO_HISTORICAL_VALIDATION",
+      "forward_validation_scope": "THIS_LEAGUE_ONLY"
+    },
+    "Virsliga": {
+      "status": "COLLECTING",
+      "prematch_frozen": 0,
+      "settled_rows": 0,
+      "forward_outcomes": {
+        "H": 0,
+        "D": 0,
+        "A": 0
+      },
+      "diagnostic_checkpoints_reached": {
+        "250": false,
+        "500": false
+      },
+      "formal_review_sample_ready": false,
+      "scores": {
+        "m0_multiclass_brier": null,
+        "m1_multiclass_brier": null,
+        "brier_improvement_m0_minus_m1": null,
+        "m0_logloss": null,
+        "m1_logloss": null,
+        "logloss_improvement_m0_minus_m1": null
+      },
+      "m1_class_calibration": {},
+      "checks": {
+        "minimum_forward_rows": false,
+        "minimum_forward_outcomes_per_class": false,
+        "brier_strict_improvement": false,
+        "logloss_strict_improvement": false,
+        "class_calibration": false,
+        "probability_sum": false,
+        "forward_only_no_backfill": true
+      },
+      "league": "Virsliga",
+      "historical_evidence": "NO_HISTORICAL_VALIDATION",
+      "forward_validation_scope": "THIS_LEAGUE_ONLY"
+    },
+    "Eredivisie": {
+      "status": "COLLECTING",
+      "prematch_frozen": 0,
+      "settled_rows": 0,
+      "forward_outcomes": {
+        "H": 0,
+        "D": 0,
+        "A": 0
+      },
+      "diagnostic_checkpoints_reached": {
+        "250": false,
+        "500": false
+      },
+      "formal_review_sample_ready": false,
+      "scores": {
+        "m0_multiclass_brier": null,
+        "m1_multiclass_brier": null,
+        "brier_improvement_m0_minus_m1": null,
+        "m0_logloss": null,
+        "m1_logloss": null,
+        "logloss_improvement_m0_minus_m1": null
+      },
+      "m1_class_calibration": {},
+      "checks": {
+        "minimum_forward_rows": false,
+        "minimum_forward_outcomes_per_class": false,
+        "brier_strict_improvement": false,
+        "logloss_strict_improvement": false,
+        "class_calibration": false,
+        "probability_sum": false,
+        "forward_only_no_backfill": true
+      },
+      "league": "Eredivisie",
+      "historical_evidence": "NO_HISTORICAL_VALIDATION",
+      "forward_validation_scope": "THIS_LEAGUE_ONLY"
+    },
+    "Eliteserien": {
+      "status": "COLLECTING",
+      "prematch_frozen": 0,
+      "settled_rows": 0,
+      "forward_outcomes": {
+        "H": 0,
+        "D": 0,
+        "A": 0
+      },
+      "diagnostic_checkpoints_reached": {
+        "250": false,
+        "500": false
+      },
+      "formal_review_sample_ready": false,
+      "scores": {
+        "m0_multiclass_brier": null,
+        "m1_multiclass_brier": null,
+        "brier_improvement_m0_minus_m1": null,
+        "m0_logloss": null,
+        "m1_logloss": null,
+        "logloss_improvement_m0_minus_m1": null
+      },
+      "m1_class_calibration": {},
+      "checks": {
+        "minimum_forward_rows": false,
+        "minimum_forward_outcomes_per_class": false,
+        "brier_strict_improvement": false,
+        "logloss_strict_improvement": false,
+        "class_calibration": false,
+        "probability_sum": false,
+        "forward_only_no_backfill": true
+      },
+      "league": "Eliteserien",
+      "historical_evidence": "NO_HISTORICAL_VALIDATION",
+      "forward_validation_scope": "THIS_LEAGUE_ONLY"
+    },
+    "Ekstraklasa": {
+      "status": "COLLECTING",
+      "prematch_frozen": 0,
+      "settled_rows": 0,
+      "forward_outcomes": {
+        "H": 0,
+        "D": 0,
+        "A": 0
+      },
+      "diagnostic_checkpoints_reached": {
+        "250": false,
+        "500": false
+      },
+      "formal_review_sample_ready": false,
+      "scores": {
+        "m0_multiclass_brier": null,
+        "m1_multiclass_brier": null,
+        "brier_improvement_m0_minus_m1": null,
+        "m0_logloss": null,
+        "m1_logloss": null,
+        "logloss_improvement_m0_minus_m1": null
+      },
+      "m1_class_calibration": {},
+      "checks": {
+        "minimum_forward_rows": false,
+        "minimum_forward_outcomes_per_class": false,
+        "brier_strict_improvement": false,
+        "logloss_strict_improvement": false,
+        "class_calibration": false,
+        "probability_sum": false,
+        "forward_only_no_backfill": true
+      },
+      "league": "Ekstraklasa",
+      "historical_evidence": "NO_HISTORICAL_VALIDATION",
+      "forward_validation_scope": "THIS_LEAGUE_ONLY"
+    },
+    "Primeira Liga": {
+      "status": "COLLECTING",
+      "prematch_frozen": 0,
+      "settled_rows": 0,
+      "forward_outcomes": {
+        "H": 0,
+        "D": 0,
+        "A": 0
+      },
+      "diagnostic_checkpoints_reached": {
+        "250": false,
+        "500": false
+      },
+      "formal_review_sample_ready": false,
+      "scores": {
+        "m0_multiclass_brier": null,
+        "m1_multiclass_brier": null,
+        "brier_improvement_m0_minus_m1": null,
+        "m0_logloss": null,
+        "m1_logloss": null,
+        "logloss_improvement_m0_minus_m1": null
+      },
+      "m1_class_calibration": {},
+      "checks": {
+        "minimum_forward_rows": false,
+        "minimum_forward_outcomes_per_class": false,
+        "brier_strict_improvement": false,
+        "logloss_strict_improvement": false,
+        "class_calibration": false,
+        "probability_sum": false,
+        "forward_only_no_backfill": true
+      },
+      "league": "Primeira Liga",
+      "historical_evidence": "NO_HISTORICAL_VALIDATION",
+      "forward_validation_scope": "THIS_LEAGUE_ONLY"
+    },
+    "Super Lig": {
+      "status": "COLLECTING",
+      "prematch_frozen": 0,
+      "settled_rows": 0,
+      "forward_outcomes": {
+        "H": 0,
+        "D": 0,
+        "A": 0
+      },
+      "diagnostic_checkpoints_reached": {
+        "250": false,
+        "500": false
+      },
+      "formal_review_sample_ready": false,
+      "scores": {
+        "m0_multiclass_brier": null,
+        "m1_multiclass_brier": null,
+        "brier_improvement_m0_minus_m1": null,
+        "m0_logloss": null,
+        "m1_logloss": null,
+        "logloss_improvement_m0_minus_m1": null
+      },
+      "m1_class_calibration": {},
+      "checks": {
+        "minimum_forward_rows": false,
+        "minimum_forward_outcomes_per_class": false,
+        "brier_strict_improvement": false,
+        "logloss_strict_improvement": false,
+        "class_calibration": false,
+        "probability_sum": false,
+        "forward_only_no_backfill": true
+      },
+      "league": "Super Lig",
+      "historical_evidence": "NO_HISTORICAL_VALIDATION",
+      "forward_validation_scope": "THIS_LEAGUE_ONLY"
+    },
+    "Scottish Premiership": {
+      "status": "COLLECTING",
+      "prematch_frozen": 0,
+      "settled_rows": 0,
+      "forward_outcomes": {
+        "H": 0,
+        "D": 0,
+        "A": 0
+      },
+      "diagnostic_checkpoints_reached": {
+        "250": false,
+        "500": false
+      },
+      "formal_review_sample_ready": false,
+      "scores": {
+        "m0_multiclass_brier": null,
+        "m1_multiclass_brier": null,
+        "brier_improvement_m0_minus_m1": null,
+        "m0_logloss": null,
+        "m1_logloss": null,
+        "logloss_improvement_m0_minus_m1": null
+      },
+      "m1_class_calibration": {},
+      "checks": {
+        "minimum_forward_rows": false,
+        "minimum_forward_outcomes_per_class": false,
+        "brier_strict_improvement": false,
+        "logloss_strict_improvement": false,
+        "class_calibration": false,
+        "probability_sum": false,
+        "forward_only_no_backfill": true
+      },
+      "league": "Scottish Premiership",
+      "historical_evidence": "NO_HISTORICAL_VALIDATION",
+      "forward_validation_scope": "THIS_LEAGUE_ONLY"
+    }
+  },
+  "league_status_counts": {
+    "COLLECTING": 16
+  },
+  "pooled_big5_diagnostic": {
+    "status": "DIAGNOSTIC_ONLY",
+    "prematch_frozen": 0,
+    "settled_rows": 0,
+    "forward_outcomes": {
+      "H": 0,
+      "D": 0,
+      "A": 0
+    },
+    "diagnostic_checkpoints_reached": {
+      "250": false,
+      "500": false
+    },
+    "formal_review_sample_ready": false,
+    "scores": {
+      "m0_multiclass_brier": null,
+      "m1_multiclass_brier": null,
+      "brier_improvement_m0_minus_m1": null,
+      "m0_logloss": null,
+      "m1_logloss": null,
+      "logloss_improvement_m0_minus_m1": null
+    },
+    "m1_class_calibration": {},
+    "checks": {
+      "minimum_forward_rows": false,
+      "minimum_forward_outcomes_per_class": false,
+      "brier_strict_improvement": false,
+      "logloss_strict_improvement": false,
+      "class_calibration": false,
+      "probability_sum": false,
+      "forward_only_no_backfill": true
+    },
+    "purpose": "POOLED_DIAGNOSTIC_ONLY_NOT_AN_OFFICIAL_FORWARD_VERDICT"
+  },
+  "pooled_all16_diagnostic": {
+    "status": "DIAGNOSTIC_ONLY",
+    "prematch_frozen": 0,
+    "settled_rows": 0,
+    "forward_outcomes": {
+      "H": 0,
+      "D": 0,
+      "A": 0
+    },
+    "diagnostic_checkpoints_reached": {
+      "250": false,
+      "500": false
+    },
+    "formal_review_sample_ready": false,
+    "scores": {
+      "m0_multiclass_brier": null,
+      "m1_multiclass_brier": null,
+      "brier_improvement_m0_minus_m1": null,
+      "m0_logloss": null,
+      "m1_logloss": null,
+      "logloss_improvement_m0_minus_m1": null
+    },
+    "m1_class_calibration": {},
+    "checks": {
+      "minimum_forward_rows": false,
+      "minimum_forward_outcomes_per_class": false,
+      "brier_strict_improvement": false,
+      "logloss_strict_improvement": false,
+      "class_calibration": false,
+      "probability_sum": false,
+      "forward_only_no_backfill": true
+    },
+    "purpose": "ALL_16_POOLED_DIAGNOSTIC_ONLY_NOT_AN_OFFICIAL_FORWARD_VERDICT"
+  },
+  "all_leagues_totals": {
+    "prematch_frozen": 0,
+    "settled_rows": 0
+  },
+  "policy": {
+    "snapshot": "FIRST_COMPLETE_VALID_BET365_PREMATCH_OBSERVATION",
+    "official_verdict_scope": "PER_LEAGUE_ONLY",
+    "pooled_big5_forward_verdict": false,
+    "combined_16_league_verdict": false,
+    "historical_big5_pass_is_not_league_specific_validation": true,
+    "historical_backfill": "FORBIDDEN",
+    "bookmaker_substitution": false,
+    "profitability_or_roi_conclusion": false,
+    "value_authorized": false,
+    "stake_changes_authorized": false,
+    "creates_signal": false,
+    "r1_r2_r3_changes_authorized": false,
+    "production_integration_authorized": false,
+    "automatic_canonical_promotion": false,
+    "manual_governance_review_required": true
+  }
+}
