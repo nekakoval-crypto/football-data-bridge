@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-16T13:04:20Z",
+  "generated_at_utc": "2026-09-16T14:03:41Z",
   "status": "OK",
   "active_signals": 1,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-16T12:50:49Z",
+        "captured_at_utc": "2026-09-16T13:46:57Z",
         "best_odds": "1.58",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.5",
@@ -148,7 +148,7 @@
     "observed_closes": 10,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-16T12:59:10Z",
+    "latest_run_utc": "2026-09-16T13:56:47Z",
     "warnings": [],
     "crossings": [
       {
@@ -185,14 +185,37 @@
     "definition": "Bet365 no-vig P(Over 2.5) rises by >=3pp from frozen opener to observed close",
     "canonical_forward_changed": false,
     "tracked_openers": 18,
-    "active_crossings": 0,
-    "total_crossings": 2,
+    "active_crossings": 2,
+    "total_crossings": 4,
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-16T12:54:03Z",
+    "latest_run_utc": "2026-09-16T13:52:13Z",
     "warnings": [],
-    "crossings": [],
+    "crossings": [
+      {
+        "fixture_id": "1575170",
+        "home_team": "Eintracht Frankfurt",
+        "away_team": "SC Freiburg",
+        "movement_pp": "0.03597719",
+        "crossed_at_utc": "2026-09-16T13:52:13Z",
+        "minutes_to_kickoff": "4297.8",
+        "bet365_over25": "1.44",
+        "user_over25": "1.42",
+        "note": "WATCH only; not a canonical bet"
+      },
+      {
+        "fixture_id": "1575172",
+        "home_team": "Werder Bremen",
+        "away_team": "FC Augsburg",
+        "movement_pp": "0.03597719",
+        "crossed_at_utc": "2026-09-16T13:52:13Z",
+        "minutes_to_kickoff": "4297.8",
+        "bet365_over25": "1.44",
+        "user_over25": "1.41",
+        "note": "WATCH only; not a canonical bet"
+      }
+    ],
     "recent_close_qualified": [
       {
         "fixture_id": "1575159",
@@ -260,16 +283,16 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-16T12:54:51Z",
+    "generated_at_utc": "2026-09-16T13:58:56Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
-      "crossings": 15,
-      "pending": 4,
+      "crossings": 17,
+      "pending": 6,
       "settled": 11,
       "void": 0,
       "review": 0,
-      "user_price_rows": 15,
+      "user_price_rows": 17,
       "user_execution_coverage_pct": 100.0,
       "user_settled_rows": 11,
       "wins": 4,
@@ -365,12 +388,12 @@
         "observed_max_drawdown_u": null
       },
       "Бундеслига ТБ(2.5) steam": {
-        "crossings": 2,
-        "pending": 0,
+        "crossings": 4,
+        "pending": 2,
         "settled": 2,
         "void": 0,
         "review": 0,
-        "user_price_rows": 2,
+        "user_price_rows": 4,
         "user_execution_coverage_pct": 100.0,
         "user_settled_rows": 2,
         "wins": 2,
