@@ -9,6 +9,11 @@ Finished fixtures are persisted into a durable backfill queue before any provide
 call is attempted. Therefore a fixture deferred by quota protection cannot be
 lost merely because the current-round inventory later advances to another round.
 
+The queue is fair across retries: fixtures that have never been attempted are
+served first, then previously attempted fixtures are retried oldest-attempt-first.
+A provider response with no usable player rows remains PENDING evidence; it is
+never mislabeled CAPTURED and cannot permanently starve later fixtures.
+
 Outputs are research/context only. They never mutate canonical probability, EV,
 R1/R2/R3 eligibility, stake, settlement or the immutable Forward journal.
 """
@@ -57,7 +62,8 @@ BACKLOG_FIELDS = [
     "fixture_id", "provider_league_id", "league_name", "season", "round",
     "kickoff_utc", "home_team", "away_team", "source_status",
     "first_queued_at_utc", "last_seen_at_utc", "backlog_status",
-    "captured_at_utc", "queue_source",
+    "captured_at_utc", "queue_source", "attempt_count", "last_attempt_at_utc",
+    "last_attempt_result",
 ]
 
 
@@ -144,7 +150,8 @@ def sync_backlog(existing, fixtures, stats_rows, grade_rows, now):
 
     The queue is operational state, not a claim that player stats were available at
     FT. A queued fixture remains eligible even after it disappears from the rolling
-    current-round inventory. Existing first-queue provenance is never rewritten.
+    current-round inventory. Existing first-queue and attempt provenance are never
+    rewritten by ordinary inventory refreshes.
     """
     merged = {
         str(row.get("fixture_id") or "").strip(): {field: row.get(field, "") for field in BACKLOG_FIELDS}
@@ -165,9 +172,8 @@ def sync_backlog(existing, fixtures, stats_rows, grade_rows, now):
             old["fixture_id"] = fixture_id
             old["first_queued_at_utc"] = now_iso
             old["queue_source"] = "current_round_terminal_fixture"
+            old["attempt_count"] = "0"
             new_rows += 1
-        # Latest observed fixture metadata may safely improve the queue projection;
-        # first_queued_at_utc and queue_source remain immutable provenance.
         for field in (
             "provider_league_id", "league_name", "season", "round",
             "kickoff_utc", "home_team", "away_team", "source_status",
@@ -199,6 +205,31 @@ def sync_backlog(existing, fixtures, stats_rows, grade_rows, now):
     }
 
 
+def attempt_count(row):
+    try:
+        return max(0, int(str(row.get("attempt_count") or "0").strip()))
+    except ValueError:
+        return 0
+
+
+def record_attempts(rows, attempts):
+    """Persist provider-attempt evidence without changing capture truth."""
+    by_fixture = {
+        str(row.get("fixture_id") or "").strip(): dict(row)
+        for row in rows
+        if str(row.get("fixture_id") or "").strip()
+    }
+    for attempt in attempts:
+        fixture_id = str(attempt.get("fixture_id") or "").strip()
+        row = by_fixture.get(fixture_id)
+        if row is None:
+            continue
+        row["attempt_count"] = str(attempt_count(row) + 1)
+        row["last_attempt_at_utc"] = str(attempt.get("attempted_at_utc") or "")
+        row["last_attempt_result"] = str(attempt.get("result") or "")
+    return [by_fixture[str(row.get("fixture_id") or "").strip()] for row in rows]
+
+
 def candidate_fixtures(fixtures, captured, now, limit):
     candidates = []
     for row in fixtures:
@@ -211,7 +242,19 @@ def candidate_fixtures(fixtures, captured, now, limit):
         if raw_status not in TERMINAL and normalized != "FINISHED":
             continue
         candidates.append(row)
-    candidates.sort(key=lambda row: (parse_utc(row.get("kickoff_utc")) or now, str(row.get("fixture_id") or "")))
+
+    def fair_key(row):
+        last_attempt = parse_utc(row.get("last_attempt_at_utc"))
+        # Never-attempted fixtures always go first. Once every pending fixture has
+        # had a chance, retry the least-recently attempted fixture first.
+        return (
+            0 if last_attempt is None else 1,
+            last_attempt or datetime.min.replace(tzinfo=timezone.utc),
+            parse_utc(row.get("kickoff_utc")) or now,
+            str(row.get("fixture_id") or ""),
+        )
+
+    candidates.sort(key=fair_key)
     return candidates[: max(0, int(limit))]
 
 
@@ -293,10 +336,11 @@ def capture(fixtures, existing_stats, existing_grades, get, now, max_fixtures):
     captured = completed_fixture_ids(existing_stats, existing_grades)
     candidates = candidate_fixtures(fixtures, captured, now, max_fixtures)
     new_stats, new_grades = [], []
-    captured_fixture_ids, warnings = [], []
+    captured_fixture_ids, warnings, attempts = [], [], []
     deferred = 0
     for index, fixture in enumerate(candidates):
         fixture_id = str(fixture.get("fixture_id") or "")
+        attempted_at = iso(now)
         try:
             payload = get(
                 "/fixtures/players", {"fixture": fixture_id},
@@ -307,13 +351,16 @@ def capture(fixtures, existing_stats, existing_grades, get, now, max_fixtures):
             warnings.append(str(exc))
             break
         except (ApiFootballBrokerError, RuntimeError, ValueError, TypeError, KeyError) as exc:
+            attempts.append({"fixture_id": fixture_id, "attempted_at_utc": attempted_at, "result": "ERROR"})
             warnings.append(f"{fixture_id}: {exc}")
             continue
         observed = iso(now)
         stats_rows, grade_rows = normalize_fixture_players(payload, fixture, observed)
         if not stats_rows:
+            attempts.append({"fixture_id": fixture_id, "attempted_at_utc": attempted_at, "result": "NO_DATA"})
             warnings.append(f"{fixture_id}: provider returned no usable player rows")
             continue
+        attempts.append({"fixture_id": fixture_id, "attempted_at_utc": attempted_at, "result": "CAPTURED"})
         new_stats.extend(stats_rows)
         new_grades.extend(grade_rows)
         captured_fixture_ids.append(fixture_id)
@@ -326,6 +373,7 @@ def capture(fixtures, existing_stats, existing_grades, get, now, max_fixtures):
         "captured_fixture_ids": captured_fixture_ids,
         "captured_fixtures": len(captured_fixture_ids),
         "deferred_fixtures": deferred,
+        "attempts": attempts,
         "warnings": warnings,
     }
 
@@ -337,8 +385,6 @@ def main():
     existing_grades = read_csv(GRADES)
     existing_backlog = read_csv(BACKLOG)
 
-    # Queue terminal fixtures before touching the API budget. If quota protection
-    # defers the capture, the fixture remains durable for a later run.
     backlog_before = sync_backlog(
         existing_backlog, fixtures, existing_stats, existing_grades, now
     )
@@ -359,15 +405,11 @@ def main():
         int(os.getenv("STAGE77_MAX_FIXTURES_PER_RUN", str(max_calls))),
     )
 
-    # Reconcile queue status from actual persisted-result candidates, never merely
-    # from a successful HTTP call. A fixture is CAPTURED only when both stats and
-    # grade ledgers contain player rows.
+    attempted_backlog = record_attempts(backlog_before["rows"], result["attempts"])
     backlog_after = sync_backlog(
-        backlog_before["rows"], [], result["stats"], result["grades"], now
+        attempted_backlog, [], result["stats"], result["grades"], now
     )
 
-    # Never destroy last-good ledgers on quota/provider failures. Only rewrite when
-    # there are actual rows or a ledger already exists.
     if result["stats"] or STATS.exists():
         write_csv_atomic(STATS, STAT_FIELDS, result["stats"])
     if result["grades"] or GRADES.exists():
@@ -375,8 +417,10 @@ def main():
     if backlog_after["rows"] or BACKLOG.exists():
         write_csv_atomic(BACKLOG, BACKLOG_FIELDS, backlog_after["rows"])
     audit.save(SHARED_STATE, state)
+    no_data_attempts = sum(item.get("result") == "NO_DATA" for item in result["attempts"])
+    error_attempts = sum(item.get("result") == "ERROR" for item in result["attempts"])
     meta = {
-        "version": "PBK_STAGE77_PLAYER_STATS_CAPTURE_V2_BACKLOG",
+        "version": "PBK_STAGE77_PLAYER_STATS_CAPTURE_V3_FAIR_BACKLOG",
         "run_at_utc": iso(now),
         "status": "ATTENTION" if result["warnings"] else ("WAITING" if result["deferred_fixtures"] else "OK"),
         "provider_endpoint": "/fixtures/players",
@@ -387,12 +431,16 @@ def main():
         "captured_fixtures": result["captured_fixtures"],
         "captured_fixture_ids": result["captured_fixture_ids"],
         "deferred_fixtures": result["deferred_fixtures"],
+        "attempted_fixtures": len(result["attempts"]),
+        "no_data_attempts": no_data_attempts,
+        "error_attempts": error_attempts,
         "backlog_terminal_seen_this_run": backlog_before["terminal_seen"],
         "backlog_new_this_run": backlog_before["new_rows"],
         "backlog_rows": len(backlog_after["rows"]),
         "backlog_pending": backlog_after["pending"],
         "backlog_captured": backlog_after["captured"],
         "backlog_persists_across_round_rotation": True,
+        "fair_retry_order": True,
         "new_stats_rows": result["new_stats_rows"],
         "new_grade_rows": result["new_grade_rows"],
         "total_stats_rows": len(result["stats"]),
