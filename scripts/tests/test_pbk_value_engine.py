@@ -57,8 +57,8 @@ class ValueEngineTests(unittest.TestCase):
         self.assertEqual(result["reports"][0]["best_official_value"]["validated_context"], "R2")
 
     def test_watch_threshold_is_inclusive_and_does_not_create_stage_watch(self):
-        # p=0.60, odds=1.70 -> EV=2%, execution edge ~=1.176pp, so raise p slightly.
-        row = option(p_pbk=0.62, executable_price=1.65, p_market=0.59)
+        # p=.61, odds=1.70 -> EV=3.7%, execution edge ~2.18pp: WATCH but not STRONG.
+        row = option(p_pbk=0.61, executable_price=1.70, p_market=0.58)
         result = ve.build_value_engine(payload([row]), CFG)
         item = result["reports"][0]["official_candidates"][0]
         self.assertEqual(item["value_status"], "VALUE_WATCH")
@@ -112,7 +112,7 @@ class ValueEngineTests(unittest.TestCase):
 
     def test_best_value_is_selected_within_fixture(self):
         strong = option(selection="Away", selection_label="P2", p_pbk=0.58, executable_price=2.00, validated_context="R2")
-        watch = option(selection="Draw", selection_label="X", p_pbk=0.34, executable_price=3.05, p_market=0.31, validated_context="R3", matching_validated_contexts=["R3"])
+        watch = option(selection="Draw", selection_label="X", p_pbk=0.35, executable_price=3.05, p_market=0.31, validated_context="R3", matching_validated_contexts=["R3"])
         result = ve.build_value_engine(payload([watch, strong]), CFG)
         best = result["reports"][0]["best_official_value"]
         self.assertEqual(best["value_status"], "STRONG_VALUE")
