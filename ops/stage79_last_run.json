@@ -1,64 +1,25 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-16T06:31:12Z",
-  "status": "OK",
+  "run_at_utc": "2026-09-16T08:27:06Z",
+  "status": "ATTENTION",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 8,
-  "daily_api_calls": 40,
+  "provider_calls": 0,
+  "daily_api_calls": 89,
   "protected_calls": {
     "live": 17,
-    "current_round": 96,
+    "current_round": 64,
     "standings": 16,
     "safety": 8,
-    "total": 137
+    "total": 105
   },
   "roster_ttl_days": 7,
   "candidate_teams": 8,
-  "captured_teams": [
-    {
-      "team_id": "500",
-      "team_name": "Bologna",
-      "players": 35
-    },
-    {
-      "team_id": "503",
-      "team_name": "Torino",
-      "players": 33
-    },
-    {
-      "team_id": "160",
-      "team_name": "SC Freiburg",
-      "players": 29
-    },
-    {
-      "team_id": "162",
-      "team_name": "Werder Bremen",
-      "players": 31
-    },
-    {
-      "team_id": "163",
-      "team_name": "Borussia Mönchengladbach",
-      "players": 32
-    },
-    {
-      "team_id": "164",
-      "team_name": "FSV Mainz 05",
-      "players": 31
-    },
-    {
-      "team_id": "169",
-      "team_name": "Eintracht Frankfurt",
-      "players": 29
-    },
-    {
-      "team_id": "170",
-      "team_name": "FC Augsburg",
-      "players": 29
-    }
-  ],
-  "deferred_teams": 0,
+  "captured_teams": [],
+  "deferred_teams": 8,
   "total_roster_rows": 1008,
-  "warnings": [],
+  "warnings": [
+    "Stage71 protected API reserve reached; Challenger deferred"
+  ],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
