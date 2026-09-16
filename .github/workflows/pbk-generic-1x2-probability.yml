@@ -13,8 +13,13 @@ on:
       - 'config/pbk_generic_1x2_probability_v1_forward.json'
       - 'research/results/generic_1x2_probability_v1_oos_test_2026-09-16.json'
       - 'research/generic_1x2_probability_v1_forward_protocol_2026-09-16.md'
+      - 'research/generic_1x2_probability_v1_stage71j_capture_integration_2026-09-16.md'
       - 'scripts/generic_1x2_probability_v1_forward.py'
+      - 'scripts/generic_1x2_probability_v1_stage71j_capture.py'
+      - 'scripts/stage71j_shared_core_market_capture.py'
       - 'scripts/tests/test_generic_1x2_probability_v1_forward.py'
+      - 'scripts/tests/test_generic_1x2_probability_v1_stage71j_capture.py'
+      - '.github/workflows/stage71j-shared-core-market-capture.yml'
       - '.github/workflows/pbk-generic-1x2-probability.yml'
   push:
     branches: [main]
@@ -29,8 +34,13 @@ on:
       - 'config/pbk_generic_1x2_probability_v1_forward.json'
       - 'research/results/generic_1x2_probability_v1_oos_test_2026-09-16.json'
       - 'research/generic_1x2_probability_v1_forward_protocol_2026-09-16.md'
+      - 'research/generic_1x2_probability_v1_stage71j_capture_integration_2026-09-16.md'
       - 'scripts/generic_1x2_probability_v1_forward.py'
+      - 'scripts/generic_1x2_probability_v1_stage71j_capture.py'
+      - 'scripts/stage71j_shared_core_market_capture.py'
       - 'scripts/tests/test_generic_1x2_probability_v1_forward.py'
+      - 'scripts/tests/test_generic_1x2_probability_v1_stage71j_capture.py'
+      - '.github/workflows/stage71j-shared-core-market-capture.yml'
       - '.github/workflows/pbk-generic-1x2-probability.yml'
 
 jobs:
@@ -47,9 +57,13 @@ jobs:
         run: python -m py_compile scripts/generic_1x2_probability_v1_gate.py
       - name: Compile forward monitor
         run: python -m py_compile scripts/generic_1x2_probability_v1_forward.py
+      - name: Compile Stage71J forward adapter
+        run: python -m py_compile scripts/generic_1x2_probability_v1_stage71j_capture.py scripts/stage71j_shared_core_market_capture.py
       - name: Run research guardrail tests
         run: python -m unittest scripts.tests.test_generic_1x2_probability_v1
       - name: Run pre-TEST gate tests
         run: python -m unittest scripts.tests.test_generic_1x2_probability_v1_gate
       - name: Run forward monitor guardrail tests
         run: python -m unittest scripts.tests.test_generic_1x2_probability_v1_forward
+      - name: Run Stage71J capture guardrail tests
+        run: python -m unittest scripts.tests.test_generic_1x2_probability_v1_stage71j_capture
