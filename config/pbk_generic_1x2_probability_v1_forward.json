@@ -1,0 +1,61 @@
+{
+  "research_id": "PBK_GENERIC_1X2_PROBABILITY_V1_FORWARD",
+  "model_version": "PBK_GENERIC_1X2_PROBABILITY_V1",
+  "status": "FORWARD_REVIEW",
+  "authority": "RESEARCH",
+  "historical_result_path": "research/results/generic_1x2_probability_v1_oos_test_2026-09-16.json",
+  "historical_result_required_verdict": "PASS_HISTORICAL_PROBABILITY_GATE",
+  "scope": {
+    "market": "BET365_MATCH_WINNER_1X2",
+    "leagues": [
+      "Premier League",
+      "La Liga",
+      "Serie A",
+      "Bundesliga",
+      "Ligue 1"
+    ],
+    "complete_hda_required": true,
+    "bookmaker_substitution": false,
+    "historical_backfill": false
+  },
+  "frozen_model": {
+    "formula": "softmax(log(p_market_c) + alpha_c)",
+    "alpha_h": -0.018000000000000002,
+    "alpha_d": 0.0,
+    "alpha_a": -0.004
+  },
+  "capture_policy": {
+    "snapshot": "FIRST_COMPLETE_VALID_BET365_PREMATCH_OBSERVATION",
+    "observation_must_precede_kickoff": true,
+    "monitor_process_must_precede_kickoff": true,
+    "append_only": true
+  },
+  "forward_review": {
+    "diagnostic_checkpoints": [
+      250,
+      500
+    ],
+    "minimum_settled_rows": 1000,
+    "minimum_settled_outcomes_per_class": 150,
+    "brier_strict_improvement_required": true,
+    "logloss_strict_improvement_required": true,
+    "maximum_absolute_class_calibration_error": 0.03,
+    "manual_governance_review_required": true,
+    "automatic_canonical_promotion": false
+  },
+  "guards": {
+    "probability_sum_tolerance": 1e-09,
+    "creates_signal": false,
+    "value_authorized": false,
+    "stake_changes_authorized": false,
+    "profitability_or_roi_conclusion": false,
+    "r1_r2_r3_changes_authorized": false,
+    "production_integration_authorized": false,
+    "ui_integration_authorized": false
+  },
+  "outputs": {
+    "prematch_journal": "generic_1x2_v1_forward_prematch.jsonl",
+    "settlement_journal": "generic_1x2_v1_forward_settlements.jsonl",
+    "performance_report": "generic_1x2_v1_forward_performance.json"
+  }
+}
