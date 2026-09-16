@@ -1,0 +1,114 @@
+{
+  "version": "PBK_MARKET_PROBABILITY_READINESS_V1",
+  "updated_at_utc": "2026-09-16",
+  "scope": "PBK_CORE_8",
+  "principle": "Market data availability is not a PBK probability model. A PBK probability may be emitted only for a market/selection context with an explicitly validated model. Otherwise the status must remain NO_VALIDATED_MODEL.",
+  "statuses": ["VALIDATED", "PARTIAL_VALIDATED", "VALIDATION_PENDING", "DATA_ONLY", "NO_VALIDATED_MODEL"],
+  "markets": [
+    {
+      "id": "MATCH_RESULT_1X2",
+      "market_data_status": "ACTIVE",
+      "settlement_status": "ACTIVE",
+      "historical_price_evidence": true,
+      "pbk_probability_status": "PARTIAL_VALIDATED",
+      "validated_contexts": ["R1_AWAY_WIN", "R2_AWAY_WIN", "R3_DRAW"],
+      "unvalidated_contexts": ["GENERIC_HOME_WIN", "GENERIC_DRAW", "GENERIC_AWAY_WIN", "NON_CANONICAL_1X2"],
+      "current_model_source": "config/pbk_probability_models.json",
+      "value_allowed": "VALIDATED_CONTEXTS_ONLY",
+      "next_gate": "Build and independently validate generic/multi-context 1X2 candidates without changing locked R1/R2/R3."
+    },
+    {
+      "id": "MATCH_TOTAL",
+      "market_data_status": "ACTIVE_WATCH",
+      "settlement_status": "ACTIVE",
+      "historical_price_evidence": true,
+      "pbk_probability_status": "NO_VALIDATED_MODEL",
+      "validated_contexts": [],
+      "unvalidated_contexts": ["OVER", "UNDER", "ALL_LINES"],
+      "current_model_source": null,
+      "value_allowed": "NO",
+      "next_gate": "Preregister line-specific probability candidates using historical O/U evidence, then independent holdout and prospective monitoring."
+    },
+    {
+      "id": "ASIAN_HANDICAP",
+      "market_data_status": "REFERENCE_AVAILABLE",
+      "settlement_status": "ACTIVE",
+      "historical_price_evidence": true,
+      "pbk_probability_status": "NO_VALIDATED_MODEL",
+      "validated_contexts": [],
+      "unvalidated_contexts": ["HOME_HANDICAP", "AWAY_HANDICAP", "ALL_LINES"],
+      "current_model_source": null,
+      "value_allowed": "NO",
+      "next_gate": "New preregistered hypothesis only. Prefer user-executable half-lines for final recommendations; prior rejected variants do not ban the family."
+    },
+    {
+      "id": "BTTS",
+      "market_data_status": "ACTIVE",
+      "settlement_status": "ACTIVE",
+      "historical_price_evidence": false,
+      "pbk_probability_status": "NO_VALIDATED_MODEL",
+      "validated_contexts": [],
+      "unvalidated_contexts": ["YES", "NO"],
+      "current_model_source": null,
+      "value_allowed": "NO",
+      "next_gate": "Use forward captured prices and outcomes for preregistered discovery followed by independent future holdout. Historical outcome rates alone cannot establish value."
+    },
+    {
+      "id": "TEAM_TOTAL",
+      "market_data_status": "ACTIVE",
+      "settlement_status": "ACTIVE",
+      "historical_price_evidence": false,
+      "pbk_probability_status": "NO_VALIDATED_MODEL",
+      "validated_contexts": [],
+      "unvalidated_contexts": ["HOME_OVER", "HOME_UNDER", "AWAY_OVER", "AWAY_UNDER", "ALL_LINES"],
+      "current_model_source": null,
+      "value_allowed": "NO",
+      "next_gate": "Use forward captured prices/outcomes; preregister team/line/selection logic before independent holdout."
+    },
+    {
+      "id": "DOUBLE_CHANCE",
+      "market_data_status": "ACTIVE",
+      "settlement_status": "ACTIVE",
+      "historical_price_evidence": false,
+      "pbk_probability_status": "NO_VALIDATED_MODEL",
+      "validated_contexts": [],
+      "unvalidated_contexts": ["1X", "X2", "12"],
+      "current_model_source": null,
+      "value_allowed": "NO",
+      "next_gate": "Prospective discovery and independent holdout. Do not derive PBK probability by mechanically summing unvalidated generic 1X2 outputs."
+    },
+    {
+      "id": "DRAW_NO_BET",
+      "market_data_status": "ACTIVE",
+      "settlement_status": "ACTIVE",
+      "historical_price_evidence": false,
+      "pbk_probability_status": "NO_VALIDATED_MODEL",
+      "validated_contexts": [],
+      "unvalidated_contexts": ["HOME_DNB", "AWAY_DNB"],
+      "current_model_source": null,
+      "value_allowed": "NO",
+      "next_gate": "Collect prospective discovery sample and preregister any new model; previously rejected movement hypothesis is not a probability model."
+    },
+    {
+      "id": "EUROPEAN_HANDICAP",
+      "market_data_status": "ACTIVE",
+      "settlement_status": "ACTIVE",
+      "historical_price_evidence": false,
+      "pbk_probability_status": "NO_VALIDATED_MODEL",
+      "validated_contexts": [],
+      "unvalidated_contexts": ["HOME", "DRAW", "AWAY", "ALL_LINES"],
+      "current_model_source": null,
+      "value_allowed": "NO",
+      "next_gate": "Prospective line-specific discovery, preregistration and independent future holdout."
+    }
+  ],
+  "guardrails": {
+    "no_probability_from_odds_only": true,
+    "no_value_without_pbk_probability": true,
+    "market_no_vig_is_not_pbk_probability": true,
+    "no_auto_promotion": true,
+    "canonical_rules_unchanged": true,
+    "research_cannot_change_stake": true,
+    "missing_model_label": "NO_VALIDATED_MODEL"
+  }
+}
