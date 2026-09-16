@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 16.09.2026 10:00 (Europe/Berlin)
+Обновлено: 16.09.2026 11:00 (Europe/Berlin)
 Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -102,8 +102,8 @@ Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
   - ОЗ — нет данных
 
 - **Atletico Madrid — Osasuna** | La Liga | 16.09 17:00 UTC
-  - ОЗ · ОЗ Да: 2 | ОЗ Нет: 1.75 @ Bet365
-  - ОЗ · ОЗ Да: 1.95 | ОЗ Нет: 1.76 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.95 | ОЗ Нет: 1.8 @ Bet365
+  - ОЗ · ОЗ Да: 1.98 | ОЗ Нет: 1.74 @ Marathonbet
   - Ф(0) · Ф1(0): 1.12 | Ф2(0): 6.25 @ Bet365
   - Ф(0) · Ф1(0): 1.09 | Ф2(0): 6.5 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.08 | Х2: 3 | 12: 1.18 @ Bet365
@@ -136,8 +136,8 @@ Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
   - Тотал 2.5 — нет данных
 
 - **Deportivo La Coruna — Sevilla** | La Liga | 16.09 17:00 UTC
-  - ОЗ · ОЗ Да: 1.95 | ОЗ Нет: 1.8 @ Bet365
-  - ОЗ · ОЗ Да: 1.89 | ОЗ Нет: 1.81 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.91 | ОЗ Нет: 1.91 @ Bet365
+  - ОЗ · ОЗ Да: 1.86 | ОЗ Нет: 1.84 @ Marathonbet
   - Ф(0) · Ф1(0): 1.68 | Ф2(0): 2.15 @ Bet365
   - Ф(0) · Ф1(0): 1.77 | Ф2(0): 2.08 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.36 | Х2: 1.53 | 12: 1.33 @ Bet365
@@ -169,7 +169,7 @@ Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
 
 - **Barcelona — Racing Santander** | La Liga | 16.09 19:30 UTC
   - ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 2 @ Bet365
-  - ОЗ · ОЗ Да: 1.74 | ОЗ Нет: 1.98 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 1.96 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.01 | Х2: 11 | 12: 1.04 @ Bet365
   - Европейская фора хозяев (-1) · П1: 1.2 | Х: 7 | П2: 9 @ Bet365
   - Европейская фора хозяев (-1) · П1: 1.25 | Х: 6.1 | П2: 7.6 @ Marathonbet
@@ -239,7 +239,7 @@ Canonical: 1 | active WATCH crossings: 3 | RED: 0 | ORANGE: 3
 
 - **Real Betis — Getafe** | La Liga | 17.09 17:00 UTC
   - ОЗ · ОЗ Да: 2.1 | ОЗ Нет: 1.67 @ Bet365
-  - ОЗ · ОЗ Да: 2.09 | ОЗ Нет: 1.66 @ Marathonbet
+  - ОЗ · ОЗ Да: 2.07 | ОЗ Нет: 1.67 @ Marathonbet
   - Ф(0) · Ф1(0): 1.26 | Ф2(0): 3.7 @ Bet365
   - Ф(0) · Ф1(0): 1.22 | Ф2(0): 3.82 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.17 | Х2: 2.15 | 12: 1.25 @ Bet365
