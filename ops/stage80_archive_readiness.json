@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V2_FIXTURE_CATALOG",
-  "generated_at_utc": "2026-09-16T06:49:47Z",
+  "generated_at_utc": "2026-09-16T12:49:42Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -12,12 +12,12 @@
     "fixture_history": {
       "file": "fixture_history_snapshots.csv",
       "present": true,
-      "rows": 129
+      "rows": 258
     },
     "historical_fixtures": {
       "file": "historical_fixtures.csv",
       "present": true,
-      "rows": 129
+      "rows": 158
     },
     "player_stats": {
       "file": "player_stats_snapshots.csv",
@@ -32,7 +32,7 @@
     "stage77_backlog": {
       "file": "stage77_player_stats_backlog.csv",
       "present": true,
-      "rows": 35
+      "rows": 38
     },
     "current_rosters": {
       "file": "team_rosters.csv",
@@ -57,7 +57,7 @@
   },
   "fixtures": {
     "current_inventory": 129,
-    "finished_in_current_inventory": 35,
+    "finished_in_current_inventory": 10,
     "player_stats_fixture_count_all_snapshots": 0,
     "player_grade_fixture_count_all_snapshots": 0,
     "finished_current_inventory_with_player_stats": 0,
@@ -70,32 +70,14 @@
         "player_stats_coverage_pct": 0.0
       },
       {
-        "league": "Ekstraklasa",
-        "finished_fixtures_in_current_inventory": 8,
-        "finished_fixtures_with_player_stats": 0,
-        "player_stats_coverage_pct": 0.0
-      },
-      {
-        "league": "Eredivisie",
-        "finished_fixtures_in_current_inventory": 9,
-        "finished_fixtures_with_player_stats": 0,
-        "player_stats_coverage_pct": 0.0
-      },
-      {
         "league": "La Liga",
         "finished_fixtures_in_current_inventory": 4,
         "finished_fixtures_with_player_stats": 0,
         "player_stats_coverage_pct": 0.0
       },
       {
-        "league": "Premiership",
-        "finished_fixtures_in_current_inventory": 6,
-        "finished_fixtures_with_player_stats": 0,
-        "player_stats_coverage_pct": 0.0
-      },
-      {
         "league": "Virsliga",
-        "finished_fixtures_in_current_inventory": 5,
+        "finished_fixtures_in_current_inventory": 3,
         "finished_fixtures_with_player_stats": 0,
         "player_stats_coverage_pct": 0.0
       }
@@ -103,20 +85,20 @@
   },
   "fixture_history": {
     "present": true,
-    "rows": 129,
-    "valid_observations": 129,
-    "unique_fixtures": 129,
-    "observation_runs": 1,
-    "finished_fixtures_observed": 35,
+    "rows": 258,
+    "valid_observations": 258,
+    "unique_fixtures": 158,
+    "observation_runs": 2,
+    "finished_fixtures_observed": 38,
     "invalid_identity_rows": 0,
     "evidence_note": "Counts represent only Stage71 current-round observations persisted after the fixture-history archive was enabled; they are not a pre-PBK historical backfill claim."
   },
   "historical_fixture_catalog": {
     "present": true,
-    "rows": 129,
-    "valid_rows": 129,
-    "unique_fixtures": 129,
-    "terminal_fixtures": 35,
+    "rows": 158,
+    "valid_rows": 158,
+    "unique_fixtures": 158,
+    "terminal_fixtures": 38,
     "rescheduled_fixtures": 0,
     "invalid_identity_rows": 0,
     "duplicate_fixture_ids": 0,
@@ -125,15 +107,15 @@
     "orphan_catalog_fixtures": 0,
     "missing_terminal_evidence": 0,
     "orphan_terminal_evidence": 0,
-    "observation_count_total": 129,
-    "expected_history_observations": 129,
+    "observation_count_total": 258,
+    "expected_history_observations": 258,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
   },
   "stage77_backlog": {
     "present": true,
-    "total_fixtures": 35,
-    "pending_fixtures": 35,
+    "total_fixtures": 38,
+    "pending_fixtures": 38,
     "captured_fixtures": 0,
     "captured_without_complete_ledgers": 0,
     "oldest_pending_first_queued_at_utc": "2026-09-15T16:55:09Z",

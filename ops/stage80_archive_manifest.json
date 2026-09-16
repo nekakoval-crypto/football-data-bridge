@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V3_PLAYER_CATALOG",
-  "generated_at_utc": "2026-09-16T06:49:47Z",
+  "generated_at_utc": "2026-09-16T12:49:42Z",
   "status": "OK",
   "datasets": [
     {
@@ -65,7 +65,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 129,
+      "row_count": 258,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -111,7 +111,7 @@
       "source": "Stage80 normalized projection from fixture_history_snapshots",
       "limitations": "Rebuildable convenience layer; fixture_history_snapshots remains historical evidence source-of-truth.",
       "present": true,
-      "row_count": 129,
+      "row_count": 158,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -160,7 +160,7 @@
       "source": "Stage71 terminal observation + Stage77 reconciliation",
       "limitations": "Queue evidence is not player-stat evidence; CAPTURED requires both stats and grade ledgers.",
       "present": true,
-      "row_count": 35,
+      "row_count": 38,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -175,7 +175,10 @@
         "last_seen_at_utc",
         "backlog_status",
         "captured_at_utc",
-        "queue_source"
+        "queue_source",
+        "attempt_count",
+        "last_attempt_at_utc",
+        "last_attempt_result"
       ],
       "missing_required_fields": [],
       "contract_status": "OK",
