@@ -1,19 +1,21 @@
 {
-  "version": 3,
+  "version": 4,
   "name": "PBK Brain Grade Readiness",
-  "purpose": "Runtime truth about whether player/team/availability grades are implemented, populated, proxy-limited, validation-ready, or validated. Governance only: never changes betting eligibility, probability, EV, stake, or the forward journal.",
+  "purpose": "Runtime truth about whether player/team/availability/matchup grades are implemented, populated, proxy-limited, validation-ready, or validated. Governance only: never changes betting eligibility, probability, EV, stake, or the forward journal.",
   "allowed_statuses": ["CODE_READY", "DATA_BLOCKED", "PROXY_LIMITED", "VALIDATION_PENDING", "VALIDATED", "NOT_IMPLEMENTED"],
   "global_guardrails": [
     "CODE_READY is not DATA_READY.",
     "A metric with zero production evidence rows cannot be called operationally ready.",
     "A calculated metric is not validated until predictive value is tested out of sample.",
-    "Missing player, team, lineup or availability evidence remains unknown; never fabricate or backfill it.",
+    "Missing player, team, lineup, availability or style evidence remains unknown; never fabricate or backfill it.",
     "Player Form windows must use only evidence known before target kickoff.",
     "A player missing from the starting XI is not automatically absent, injured or suspended.",
     "Return requires an explicit observed absence-to-presence transition; missing observations do not create a return event.",
+    "Formation alone is context, not a team style or Matchup Grade feature.",
+    "Directional matchup components remain independent until each component is separately validated.",
     "Team component grades remain independent until each component is separately validated.",
-    "Do not create Team Overall by arbitrary averaging or hand-written weights.",
-    "No player/team/availability research metric may mutate canonical R1/R2/R3 eligibility, stake, probability or the immutable forward journal before explicit validation and project-owner approval."
+    "Do not create Team Overall or Matchup Overall by arbitrary averaging or hand-written weights.",
+    "No player/team/availability/matchup research metric may mutate canonical R1/R2/R3 eligibility, stake, probability or the immutable forward journal before explicit validation and project-owner approval."
   ],
   "metrics": [
     {
@@ -164,12 +166,25 @@
     },
     {
       "id": "MATCHUP_GRADE",
-      "status": "NOT_IMPLEMENTED",
-      "code_ready": false,
+      "status": "DATA_BLOCKED",
+      "code_ready": true,
       "production_evidence_required": true,
       "historical_10y_validation_available": false,
-      "reason": "No validated style-vs-style matchup grade currently exists.",
-      "next_gate": "Build only after event/style data coverage can support explicit matchup features."
+      "reason": "Provider-free style-vs-style foundation now represents explicit pre-kickoff style dimensions and directional matchup components. Formation is context only, missing evidence remains unknown, and no overall Matchup Grade, winner, signal or probability adjustment is authorized.",
+      "components": {
+        "style_vector": "CODE_READY_EXPLICIT_EVIDENCE_ONLY",
+        "press_vs_buildup": "RESEARCH_COMPONENT_ONLY",
+        "transition_vs_transition_defence": "RESEARCH_COMPONENT_ONLY",
+        "width_vs_wide_defence": "RESEARCH_COMPONENT_ONLY",
+        "aerial_vs_aerial_defence": "RESEARCH_COMPONENT_ONLY",
+        "set_piece_vs_set_piece_defence": "RESEARCH_COMPONENT_ONLY",
+        "low_block_breaking_vs_low_block_defence": "RESEARCH_COMPONENT_ONLY",
+        "central_progression_vs_central_compactness": "RESEARCH_COMPONENT_ONLY",
+        "formation": "CONTEXT_ONLY_NOT_STYLE",
+        "overall_matchup_grade": "NOT_AUTHORIZED"
+      },
+      "limitations": ["NO_PRODUCTION_STYLE_FEATURE_PIPELINE_YET", "NO_OOS_COMPONENT_VALIDATION", "NO_CAUSAL_CLAIM", "NO_HAND_WRITTEN_WEIGHTS"],
+      "next_gate": "Build durable pre-kickoff style evidence from event/context sources, then validate each directional component out of sample against future outcomes and market residuals before considering any composite Matchup Grade."
     }
   ]
 }
