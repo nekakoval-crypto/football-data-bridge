@@ -19,6 +19,7 @@ REQUIRED_IDS = {
     "ROTATION_QUALITY_IMPACT",
     "ABSENCE_IMPACT",
     "RETURN_IMPACT",
+    "TEAM_COMPONENT_GRADES",
     "TEAM_OVERALL_GRADE",
     "MATCHUP_GRADE",
 }
@@ -59,7 +60,27 @@ def validate(payload: dict) -> list[str]:
     if components.get("pressing") != "UNAVAILABLE_IN_AGGREGATE_SOURCE":
         errors.append("PLAYER_OVERALL_GRADE: pressing must remain explicitly unavailable for aggregate source")
 
-    for metric_id in ("PLAYER_OVERALL_GRADE", "XI_QUALITY", "PLAYER_IMPORTANCE"):
+    form = by_id.get("PLAYER_FORM_GRADE", {})
+    form_components = form.get("components") or {}
+    for required in ("last", "form_3", "form_5", "form_10", "season"):
+        if required not in form_components:
+            errors.append(f"PLAYER_FORM_GRADE: missing {required} component")
+
+    team_components = by_id.get("TEAM_COMPONENT_GRADES", {})
+    component_map = team_components.get("components") or {}
+    required_team_components = {
+        "attack", "defence", "form", "home", "away", "schedule_fatigue",
+        "squad", "xi_quality", "availability", "motivation", "market",
+    }
+    missing_team = sorted(required_team_components - set(component_map))
+    if missing_team:
+        errors.append(f"TEAM_COMPONENT_GRADES: missing components {', '.join(missing_team)}")
+
+    team_overall = by_id.get("TEAM_OVERALL_GRADE", {})
+    if team_overall.get("status") != "NOT_IMPLEMENTED" or team_overall.get("code_ready") is not False:
+        errors.append("TEAM_OVERALL_GRADE must remain NOT_IMPLEMENTED until component weighting is validated")
+
+    for metric_id in ("PLAYER_OVERALL_GRADE", "XI_QUALITY", "PLAYER_IMPORTANCE", "TEAM_COMPONENT_GRADES"):
         if by_id.get(metric_id, {}).get("status") == "VALIDATED":
             errors.append(f"{metric_id}: cannot be pre-marked VALIDATED by governance registry")
 
