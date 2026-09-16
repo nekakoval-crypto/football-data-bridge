@@ -26,14 +26,14 @@
       "Super Lig",
       "Scottish Premiership"
     ],
-    "validated_domain_leagues": [
+    "historical_big5_pooled_leagues": [
       "Premier League",
       "La Liga",
       "Serie A",
       "Bundesliga",
       "Ligue 1"
     ],
-    "extended_shadow_leagues": [
+    "historically_unvalidated_leagues": [
       "Austrian Bundesliga",
       "Belgian Pro League",
       "Danish Superliga",
@@ -61,18 +61,18 @@
     "observation_must_precede_kickoff": true,
     "monitor_process_must_precede_kickoff": true,
     "append_only": true,
-    "domain_is_frozen_with_observation": true
+    "league_is_frozen_with_observation": true
   },
   "forward_review": {
-    "formal_review_domain": "VALIDATED_DOMAIN",
-    "shadow_domain": "EXTENDED_SHADOW_RESEARCH",
-    "shadow_excluded_from_official_gate": true,
-    "diagnostic_checkpoints": [
+    "review_unit": "LEAGUE",
+    "pooled_big5_diagnostic_only": true,
+    "combined_16_league_verdict": false,
+    "diagnostic_checkpoints_per_league": [
       250,
       500
     ],
-    "minimum_settled_rows": 1000,
-    "minimum_settled_outcomes_per_class": 150,
+    "minimum_settled_rows_per_league": 1000,
+    "minimum_settled_outcomes_per_class_per_league": 150,
     "brier_strict_improvement_required": true,
     "logloss_strict_improvement_required": true,
     "maximum_absolute_class_calibration_error": 0.03,

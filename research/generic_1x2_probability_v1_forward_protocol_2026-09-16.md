@@ -1,4 +1,4 @@
-# PBK Generic 1X2 Probability v1 — forward review protocol
+# PBK Generic 1X2 Probability v1 — per-league forward review protocol
 
 Date: 2026-09-16  
 Authority: RESEARCH  
@@ -7,13 +7,15 @@ Forward phase: `FORWARD_REVIEW_REQUIRED`
 
 ## Purpose
 
-Generic 1X2 Probability v1 passed its preregistered historical out-of-sample probability gate on the Big-5 historical domain. The improvement over the Bet365 no-vig baseline was positive but small. The next phase is prospective forward monitoring, not production promotion.
+Generic 1X2 Probability v1 passed its preregistered historical out-of-sample probability gate on the pooled Big-5 historical dataset. That result is valid as a pooled Big-5 result only. It does **not** prove that the model works independently in Premier League, La Liga, Serie A, Bundesliga or Ligue 1, and it says nothing about the 11 extended leagues that were absent from that historical TEST.
 
-This protocol freezes the forward rules before prospective outcomes accumulate. It does not create a betting strategy and does not authorize value, stakes, canonical status, production use, or UI use.
+Forward validation is therefore performed **separately for each of the 16 locked PBK leagues**.
+
+There is no official pooled Big-5 forward verdict and no combined 16-league verdict.
 
 ## Frozen model
 
-The model is unchanged from the historical PASS:
+The probability transform is unchanged:
 
 - M0: Bet365 1X2 no-vig probabilities.
 - M1: `softmax(log(p_market_c) + alpha_c)`.
@@ -21,17 +23,15 @@ The model is unchanged from the historical PASS:
 - `alpha_D = 0.0`
 - `alpha_A = -0.004`
 
-No fitting, tuning, subgroup rescue, league-specific adjustment, odds-band adjustment, or parameter update is allowed inside Generic 1X2 v1 forward monitoring.
+No fitting, tuning, league-specific alpha adjustment, odds-band adjustment, subgroup rescue or parameter update is allowed inside Generic 1X2 v1.
 
-Any changed model requires a separately named/versioned research protocol.
+If a league requires a changed model, that must be a separately named/versioned research model.
 
-## Locked 16-league capture universe
+## Locked 16-league forward universe
 
-PBK's locked competition universe contains 16 leagues. Forward capture therefore does not discard the 11 extended leagues.
+Every league below receives an independent forward ledger view and an independent validation status.
 
-### VALIDATED_DOMAIN — official Generic 1X2 v1 forward gate
-
-These are the same five league families represented in the historical OOS validation:
+Historical pooled Big-5 members:
 
 - Premier League
 - La Liga
@@ -39,11 +39,13 @@ These are the same five league families represented in the historical OOS valida
 - Bundesliga
 - Ligue 1
 
-Only settlements from this domain can enter the formal Generic 1X2 v1 forward gate.
+These leagues carry the annotation:
 
-### EXTENDED_SHADOW_RESEARCH — collected, scored, but excluded from the official gate
+`POOLED_BIG5_HISTORICAL_PASS_ONLY_NOT_LEAGUE_SPECIFIC`
 
-These 11 leagues are captured prospectively from the same day forward:
+That annotation is context only; none of these five starts with an individual league PASS.
+
+Historically unvalidated extended leagues:
 
 - Austrian Bundesliga
 - Belgian Pro League
@@ -57,11 +59,11 @@ These 11 leagues are captured prospectively from the same day forward:
 - Super Lig
 - Scottish Premiership
 
-For these leagues the same frozen M1 transform is applied and the same probability-quality metrics are recorded. This is transfer/shadow research only because the historical Generic 1X2 v1 TEST did not validate these leagues.
+These leagues carry:
 
-Their results must never be pooled into, rescue, weaken, strengthen, or otherwise alter the official Big-5 forward gate.
+`NO_HISTORICAL_VALIDATION`
 
-A future decision about extending the validated domain requires a separate explicit governance decision and, if needed, a separately preregistered model/version.
+All 16 begin league-specific forward monitoring from prospective observations.
 
 ## Market and snapshot rule
 
@@ -69,109 +71,107 @@ Market:
 
 `Bet365 Match Winner 1X2`
 
-A fixture is eligible for freezing only when a complete valid Bet365 H/D/A vector is observed before kickoff.
+A fixture is accepted only when a complete valid Bet365 H/D/A vector is observed before kickoff.
 
 There is:
 
 - no bookmaker substitution;
-- no Avg-odds fallback;
+- no Avg fallback;
 - no historical backfill;
 - no retroactive reconstruction of a missed prematch observation.
 
-For each fixture, freeze the:
+For each fixture freeze the:
 
 `FIRST_COMPLETE_VALID_BET365_PREMATCH_OBSERVATION`
 
-Both timestamps must be before kickoff:
+Both the source observation time and monitor processing time must be strictly before kickoff.
 
-1. source observation timestamp;
-2. monitor processing timestamp.
-
-Once a fixture is frozen, later prices cannot overwrite its forward record.
-
-The frozen record stores:
-
-- league;
-- monitoring domain;
-- whether it is formal-review eligible;
-- M0 H/D/A probabilities;
-- M1 H/D/A probabilities;
-- immutable frozen alphas.
-
-It contains no result.
+Once frozen, later prices cannot overwrite the record.
 
 ## Settlement
 
-Settlement is stored in a separate append-only journal.
+Settlement is stored separately and append-only.
 
 A settlement is accepted only when:
 
-- the fixture has a frozen prematch event;
-- the result is H, D, or A;
-- the settlement timestamp is after kickoff.
+- a frozen prematch event exists;
+- result is H, D or A;
+- settlement time is after kickoff.
 
-Settlement computes only prospective probability-quality metrics:
+Settlement computes only probability-quality metrics:
 
-- multiclass Brier score for M0 and M1;
+- multiclass Brier for M0 and M1;
 - multiclass log-loss for M0 and M1;
 - M1 H/D/A calibration.
 
-ROI, profit, EV, value labels and stake outcomes are outside this forward probability protocol.
+ROI, profit, EV, value labels and stake outcomes remain outside this protocol.
 
-## Official forward review
+## Independent league review
 
-Formal Generic 1X2 v1 review uses `VALIDATED_DOMAIN` only.
+The formal review unit is:
 
-Diagnostic checkpoints:
+`LEAGUE`
 
-- 250 settled validated-domain fixtures;
-- 500 settled validated-domain fixtures.
+Each league has its own:
 
-These checkpoints are descriptive only.
+- frozen prematch count;
+- settled count;
+- H/D/A outcome counts;
+- M0 and M1 multiclass Brier;
+- M0 and M1 log-loss;
+- H/D/A M1 calibration;
+- probability-sum guard;
+- forward-only/no-backfill guard;
+- sample readiness;
+- status.
 
-Formal forward review is allowed only after:
+The currently frozen minimum sample is applied **per league**:
 
-- at least 1,000 settled validated-domain fixtures;
-- at least 150 H outcomes;
-- at least 150 D outcomes;
-- at least 150 A outcomes.
+- at least 1,000 settled fixtures in that league;
+- at least 150 H outcomes in that league;
+- at least 150 D outcomes in that league;
+- at least 150 A outcomes in that league.
 
-At the formal review sample all of the following are required:
+Diagnostic checkpoints of 250 and 500 settled fixtures are also per league.
 
-1. M1 multiclass Brier score is strictly lower than M0.
+For a league-specific forward PASS all of the following must hold for that league only:
+
+1. M1 multiclass Brier is strictly lower than M0.
 2. M1 log-loss is strictly lower than M0.
-3. M1 absolute class-calibration error is at most 0.03 for H, D and A.
-4. Each M1 probability vector sums to one within `1e-9`.
-5. All accepted prematch observations satisfy forward-only / no-backfill rules.
+3. M1 absolute calibration error is at most 0.03 for H, D and A.
+4. Every M1 vector sums to one within `1e-9`.
+5. All accepted observations pass forward-only/no-backfill guards.
 
-Statuses:
+League statuses:
 
 - `COLLECTING`
 - `FORWARD_REVIEW_READY_PASS`
 - `FORWARD_REVIEW_READY_FAIL`
 
-Neither PASS nor FAIL automatically changes canonical or production authority.
+One league may PASS while another FAILS or remains COLLECTING.
 
-## Extended shadow reporting
+A result from one league must never rescue, weaken, strengthen or otherwise determine another league's verdict.
 
-`EXTENDED_SHADOW_RESEARCH` is reported separately.
+## Pooled diagnostics
 
-Shadow reporting includes:
+Two pooled views may be reported for diagnostics:
 
-- number of frozen prematch fixtures;
-- number of settled fixtures;
-- H/D/A counts;
-- M0/M1 Brier;
-- M0/M1 log-loss;
-- M1 class calibration;
-- probability-sum and no-backfill diagnostics.
+- pooled Big-5;
+- pooled all 16 leagues.
 
-Shadow status remains `SHADOW_COLLECTING` under this protocol.
+Both must always have status:
 
-There is no automatic shadow promotion and no combined 16-league forward verdict.
+`DIAGNOSTIC_ONLY`
+
+They are descriptive summaries, not official forward verdicts.
+
+The historical pooled Big-5 PASS remains preserved as historical evidence about the pooled dataset only.
 
 ## Governance locks
 
+- `review_unit = LEAGUE`
+- `pooled_big5_diagnostic_only = true`
+- `combined_16_league_verdict = false`
 - `authority = RESEARCH`
 - `creates_signal = false`
 - `value_authorized = false`
@@ -182,14 +182,11 @@ There is no automatic shadow promotion and no combined 16-league forward verdict
 - `ui_integration_authorized = false`
 - `automatic_canonical_promotion = false`
 - `manual_governance_review_required = true`
-- `shadow_excluded_from_official_gate = true`
 
-A forward PASS would authorize a separate governance review only. It would not by itself make Generic 1X2 v1 CANONICAL.
+A league-specific forward PASS authorizes only a later governance review for that league. It does not automatically make the model CANONICAL or authorize betting/value/stakes.
 
 ## Implementation boundary
 
-This change implements the provider-free forward ledger/calculation core and guardrail tests for all 16 locked leagues.
+The forward core captures and settles all 16 leagues but does not itself poll a provider. A separate integration may feed genuinely prospective Bet365 observations into the core.
 
-It deliberately does **not** wire a live provider polling schedule yet. A later separate integration change may feed genuinely prospective Bet365 H/D/A observations into this core, provided it preserves the frozen protocol exactly and cannot backfill missed fixtures.
-
-The historical canonical CSV is not an input to the forward monitor and must not be used to seed either domain.
+The historical canonical CSV is not an input to this forward monitor and must not be used to seed the forward journals.
