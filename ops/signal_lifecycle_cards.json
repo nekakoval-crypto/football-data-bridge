@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-16T18:10:09Z",
+  "generated_at_utc": "2026-09-16T19:07:40Z",
   "status": "OK",
   "cards": [
     {
@@ -3603,9 +3603,9 @@
       "away_team": "Osasuna",
       "kickoff_utc": "2026-09-16T17:00:00Z",
       "selection": "ОЗ — Нет",
-      "latest_event": "WATCH_CROSSING",
-      "latest_status": "WATCH_ONLY",
-      "event_count": 1,
+      "latest_event": "WATCH_SETTLEMENT",
+      "latest_status": "SETTLED",
+      "event_count": 3,
       "timeline": [
         {
           "entity_id": "BTTS_NO|1570384",
@@ -3623,6 +3623,73 @@
           "bookmaker": "Marathonbet",
           "odds": "1.81",
           "details": "movement_pp=-0.04000000"
+        },
+        {
+          "entity_id": "BTTS_NO|1570384",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage63",
+          "api_fixture_id": "1570384",
+          "league": "La Liga",
+          "home_team": "Atletico Madrid",
+          "away_team": "Osasuna",
+          "kickoff_utc": "2026-09-16T17:00:00Z",
+          "event_time_utc": "2026-09-16T16:16:35Z",
+          "event_type": "WATCH_CLOSE",
+          "status": "QUALIFIED_AT_CLOSE",
+          "selection": "ОЗ — Нет",
+          "bookmaker": "Marathonbet",
+          "odds": "1.66",
+          "details": "close_qualified=YES"
+        },
+        {
+          "entity_id": "BTTS_NO|1570384",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage63",
+          "api_fixture_id": "1570384",
+          "league": "La Liga",
+          "home_team": "Atletico Madrid",
+          "away_team": "Osasuna",
+          "kickoff_utc": "2026-09-16T17:00:00Z",
+          "event_time_utc": "2026-09-16T18:58:27Z",
+          "event_type": "WATCH_SETTLEMENT",
+          "status": "SETTLED",
+          "selection": "ОЗ — Нет",
+          "bookmaker": "Marathonbet",
+          "odds": "1.81",
+          "details": "result=W profit_u=0.810"
+        }
+      ]
+    },
+    {
+      "entity_id": "BTTS_YES|1570385",
+      "entity_type": "WATCH",
+      "rule_or_stage": "Stage63",
+      "api_fixture_id": "1570385",
+      "league": "La Liga",
+      "home_team": "Barcelona",
+      "away_team": "Racing Santander",
+      "kickoff_utc": "2026-09-16T19:30:00Z",
+      "selection": "ОЗ — Да",
+      "latest_event": "WATCH_CROSSING",
+      "latest_status": "WATCH_ONLY",
+      "event_count": 1,
+      "timeline": [
+        {
+          "entity_id": "BTTS_YES|1570385",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage63",
+          "api_fixture_id": "1570385",
+          "league": "La Liga",
+          "home_team": "Barcelona",
+          "away_team": "Racing Santander",
+          "kickoff_utc": "2026-09-16T19:30:00Z",
+          "event_time_utc": "2026-09-16T18:18:28Z",
+          "event_type": "WATCH_CROSSING",
+          "status": "WATCH_ONLY",
+          "selection": "ОЗ — Да",
+          "bookmaker": "Marathonbet",
+          "odds": "1.64",
+          "details": "movement_pp=0.05591623"
         }
       ]
     },
@@ -4034,7 +4101,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 136,
+      "event_count": 137,
       "timeline": [
         {
           "entity_id": "R1|I1|1550131",
@@ -6347,15 +6414,32 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550131",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550131",
+          "league": "Serie A",
+          "home_team": "Frosinone",
+          "away_team": "Como",
+          "kickoff_utc": "2026-09-20T13:00:00Z",
+          "event_time_utc": "2026-09-16T18:47:45Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     }
   ],
   "summary": {
-    "cards": 27,
+    "cards": 28,
     "canonical_cards": 3,
-    "watch_cards": 24,
-    "events": 348
+    "watch_cards": 25,
+    "events": 352
   },
   "policy": {
     "read_only": true,

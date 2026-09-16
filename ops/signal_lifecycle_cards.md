@@ -1,8 +1,8 @@
 # PBK Signal Lifecycle
 
-Обновлено UTC: 2026-09-16T18:10:09Z
+Обновлено UTC: 2026-09-16T19:07:40Z
 
-Cards: 27 | canonical 3 | WATCH 24 | events 348
+Cards: 28 | canonical 3 | WATCH 25 | events 352
 
 ## WATCH | Stage63 | Venezia — Fiorentina
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-11T18:45:00Z
@@ -107,8 +107,15 @@ Cards: 27 | canonical 3 | WATCH 24 | events 348
 
 ## WATCH | Stage63 | Atletico Madrid — Osasuna
 - Ставка/рынок: ОЗ — Нет | kickoff: 2026-09-16T17:00:00Z
-- Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
+- Последнее событие: WATCH_SETTLEMENT | статус: SETTLED | событий: 3
   - 2026-09-14T10:16:12Z — WATCH_CROSSING — Marathonbet | 1.81 | movement_pp=-0.04000000
+  - 2026-09-16T16:16:35Z — WATCH_CLOSE — Marathonbet | 1.66 | close_qualified=YES
+  - 2026-09-16T18:58:27Z — WATCH_SETTLEMENT — Marathonbet | 1.81 | result=W profit_u=0.810
+
+## WATCH | Stage63 | Barcelona — Racing Santander
+- Ставка/рынок: ОЗ — Да | kickoff: 2026-09-16T19:30:00Z
+- Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
+  - 2026-09-16T18:18:28Z — WATCH_CROSSING — Marathonbet | 1.64 | movement_pp=0.05591623
 
 ## WATCH | Stage63 | Bayern München — Union Berlin
 - Ставка/рынок: ОЗ — Нет | kickoff: 2026-09-18T18:30:00Z
@@ -172,8 +179,7 @@ Cards: 27 | canonical 3 | WATCH 24 | events 348
 
 ## CANONICAL | R1 | Frosinone — Como
 - Ставка/рынок: П2 | kickoff: 2026-09-20T13:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 136
-  - 2026-09-16T10:45:16Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 137
   - 2026-09-16T11:45:36Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-16T12:50:49Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-16T13:46:57Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -181,3 +187,4 @@ Cards: 27 | canonical 3 | WATCH 24 | events 348
   - 2026-09-16T15:44:44Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-16T16:45:27Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-16T17:44:03Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-16T18:47:45Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
