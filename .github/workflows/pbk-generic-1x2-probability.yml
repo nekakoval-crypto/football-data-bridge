@@ -7,6 +7,9 @@ on:
       - 'research/generic_1x2_probability_v1_prereg_2026-09-16.md'
       - 'scripts/research_generic_1x2_probability_v1.py'
       - 'scripts/tests/test_generic_1x2_probability_v1.py'
+      - 'config/pbk_generic_1x2_probability_v1_gate.json'
+      - 'scripts/generic_1x2_probability_v1_gate.py'
+      - 'scripts/tests/test_generic_1x2_probability_v1_gate.py'
       - '.github/workflows/pbk-generic-1x2-probability.yml'
   push:
     branches: [main]
@@ -15,6 +18,9 @@ on:
       - 'research/generic_1x2_probability_v1_prereg_2026-09-16.md'
       - 'scripts/research_generic_1x2_probability_v1.py'
       - 'scripts/tests/test_generic_1x2_probability_v1.py'
+      - 'config/pbk_generic_1x2_probability_v1_gate.json'
+      - 'scripts/generic_1x2_probability_v1_gate.py'
+      - 'scripts/tests/test_generic_1x2_probability_v1_gate.py'
       - '.github/workflows/pbk-generic-1x2-probability.yml'
 
 jobs:
@@ -27,5 +33,10 @@ jobs:
           python-version: '3.12'
       - name: Compile evaluator
         run: python -m py_compile scripts/research_generic_1x2_probability_v1.py
+      - name: Compile pre-TEST gate
+        run: python -m py_compile scripts/generic_1x2_probability_v1_gate.py
       - name: Run research guardrail tests
         run: python -m unittest scripts.tests.test_generic_1x2_probability_v1
+      - name: Run pre-TEST gate tests
+        run: python -m unittest scripts.tests.test_generic_1x2_probability_v1_gate
+
