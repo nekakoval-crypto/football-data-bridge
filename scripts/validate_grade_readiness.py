@@ -87,13 +87,41 @@ def validate(payload: dict) -> list[str]:
         errors.append("ABSENCE_IMPACT: total impact must remain forbidden until weighting validation")
     return_components = by_id.get("RETURN_IMPACT", {}).get("components") or {}
     if return_components.get("return_impact_score") != "NOT_AUTHORIZED":
-        errors.append("RETURN_IMPACT: return impact score must remain unauthorized")
+        errors.append("RETURN_IMACT: return impact score must remain unauthorized")
 
     team_overall = by_id.get("TEAM_OVERALL_GRADE", {})
     if team_overall.get("status") != "NOT_IMPLEMENTED" or team_overall.get("code_ready") is not False:
         errors.append("TEAM_OVERALL_GRADE must remain NOT_IMPLEMENTED until component weighting is validated")
 
-    for metric_id in ("PLAYER_OVERALL_GRADE", "XI_QUALITY", "PLAYER_IMPORTANCE", "TEAM_COMPONENT_GRADES"):
+    matchup = by_id.get("MATCHUP_GRADE", {})
+    matchup_components = matchup.get("components") or {}
+    if matchup.get("code_ready") is not True:
+        errors.append("MATCHUP_GRADE: research foundation must remain code_ready=true")
+    if matchup.get("status") not in {"DATA_BLOCKED", "VALIDATION_PENDING", "PROXY_LIMITED"}:
+        errors.append("MATCHUP_GRADE: cannot be promoted before style evidence and OOS validation")
+    if matchup_components.get("formation") != "CONTEXT_ONLY_NOT_STYLE":
+        errors.append("MATCHUP_GRADE: formation must remain context-only, not a style feature")
+    if matchup_components.get("overall_matchup_grade") != "NOT_AUTHORIZED":
+        errors.append("MATCHUP_GRADE: overall matchup grade must remain unauthorized")
+    for required in (
+        "press_vs_buildup",
+        "transition_vs_transition_defence",
+        "width_vs_wide_defence",
+        "aerial_vs_aerial_defence",
+        "set_piece_vs_set_piece_defence",
+        "low_block_breaking_vs_low_block_defence",
+        "central_progression_vs_central_compactness",
+    ):
+        if required not in matchup_components:
+            errors.append(f"MATCHUP_GRADE: missing {required} component")
+
+    for metric_id in (
+        "PLAYER_OVERALL_GRADE",
+        "XI_QUALITY",
+        "PLAYER_IMPORTANCE",
+        "TEAM_COMPONENT_GRADES",
+        "MATCHUP_GRADE",
+    ):
         if by_id.get(metric_id, {}).get("status") == "VALIDATED":
             errors.append(f"{metric_id}: cannot be pre-marked VALIDATED by governance registry")
 
