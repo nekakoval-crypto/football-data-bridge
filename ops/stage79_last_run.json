@@ -1,25 +1,64 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-16T22:23:53Z",
-  "status": "ATTENTION",
+  "run_at_utc": "2026-09-17T00:31:21Z",
+  "status": "OK",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 0,
-  "daily_api_calls": 136,
+  "provider_calls": 8,
+  "daily_api_calls": 8,
   "protected_calls": {
-    "live": 3,
-    "current_round": 32,
+    "live": 14,
+    "current_round": 96,
     "standings": 16,
     "safety": 8,
-    "total": 59
+    "total": 134
   },
   "roster_ttl_days": 7,
   "candidate_teams": 8,
-  "captured_teams": [],
-  "deferred_teams": 8,
-  "total_roster_rows": 1008,
-  "warnings": [
-    "Stage71 protected API reserve reached; Challenger deferred"
+  "captured_teams": [
+    {
+      "team_id": "175",
+      "team_name": "Hamburger SV",
+      "players": 27
+    },
+    {
+      "team_id": "192",
+      "team_name": "1. FC Köln",
+      "players": 29
+    },
+    {
+      "team_id": "34",
+      "team_name": "Newcastle",
+      "players": 29
+    },
+    {
+      "team_id": "42",
+      "team_name": "Arsenal",
+      "players": 30
+    },
+    {
+      "team_id": "45",
+      "team_name": "Everton",
+      "players": 26
+    },
+    {
+      "team_id": "51",
+      "team_name": "Brighton",
+      "players": 32
+    },
+    {
+      "team_id": "57",
+      "team_name": "Ipswich",
+      "players": 30
+    },
+    {
+      "team_id": "64",
+      "team_name": "Hull City",
+      "players": 36
+    }
   ],
+  "deferred_teams": 0,
+  "total_roster_rows": 1247,
+  "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
