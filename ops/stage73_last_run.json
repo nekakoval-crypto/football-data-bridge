@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-17T11:18:06Z",
+  "run_at_utc": "2026-09-17T12:23:44Z",
   "status": "OK",
   "api_version": "v1",
   "db_path": "build/pbk_unified.sqlite",
@@ -68,7 +68,7 @@
       "path": "/v1/lifecycle",
       "http_status": 200,
       "passed": true,
-      "count": 372
+      "count": 373
     },
     {
       "path": "/v1/attention",
