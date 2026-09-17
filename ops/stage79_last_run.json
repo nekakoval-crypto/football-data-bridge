@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-17T02:25:30Z",
+  "run_at_utc": "2026-09-17T04:26:21Z",
   "status": "OK",
   "provider_endpoint": "/players/squads",
   "provider_calls": 8,
-  "daily_api_calls": 20,
+  "daily_api_calls": 28,
   "protected_calls": {
     "live": 14,
     "current_round": 96,
@@ -16,48 +16,48 @@
   "candidate_teams": 8,
   "captured_teams": [
     {
-      "team_id": "114",
-      "team_name": "Paris FC",
-      "players": 27
-    },
-    {
-      "team_id": "95",
-      "team_name": "Strasbourg",
-      "players": 35
-    },
-    {
-      "team_id": "497",
-      "team_name": "AS Roma",
-      "players": 28
-    },
-    {
-      "team_id": "505",
-      "team_name": "Inter",
-      "players": 30
-    },
-    {
-      "team_id": "1346",
-      "team_name": "Coventry",
+      "team_id": "110",
+      "team_name": "Estac Troyes",
       "players": 29
     },
     {
-      "team_id": "165",
-      "team_name": "Borussia Dortmund",
+      "team_id": "111",
+      "team_name": "Le Havre",
+      "players": 33
+    },
+    {
+      "team_id": "1298",
+      "team_name": "Le Mans",
       "players": 30
     },
     {
-      "team_id": "172",
-      "team_name": "VfB Stuttgart",
-      "players": 34
+      "team_id": "487",
+      "team_name": "Lazio",
+      "players": 35
     },
     {
-      "team_id": "65",
-      "team_name": "Nottingham Forest",
-      "players": 30
+      "team_id": "517",
+      "team_name": "Venezia",
+      "players": 35
+    },
+    {
+      "team_id": "77",
+      "team_name": "Angers",
+      "players": 25
+    },
+    {
+      "team_id": "80",
+      "team_name": "Lyon",
+      "players": 29
+    },
+    {
+      "team_id": "94",
+      "team_name": "Rennes",
+      "players": 28
     }
   ],
   "deferred_teams": 0,
-  "total_roster_rows": 1490,
+  "total_roster_rows": 1734,
   "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
