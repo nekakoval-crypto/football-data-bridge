@@ -1,4 +1,5 @@
 ﻿entity_id,entity_type,rule_or_stage,api_fixture_id,league,home_team,away_team,kickoff_utc,event_time_utc,event_type,status,selection,bookmaker,odds,details
+BTTS_NO|1552773,WATCH,Stage63,1552773,Ligue 1,Marseille,Paris Saint Germain,2026-09-20T18:45:00Z,2026-09-17T20:16:57Z,WATCH_CROSSING,WATCH_ONLY,ОЗ — Нет,Marathonbet,2.39,movement_pp=-0.03662455
 BTTS_NO|1570384,WATCH,Stage63,1570384,La Liga,Atletico Madrid,Osasuna,2026-09-16T17:00:00Z,2026-09-14T10:16:12Z,WATCH_CROSSING,WATCH_ONLY,ОЗ — Нет,Marathonbet,1.81,movement_pp=-0.04000000
 BTTS_NO|1570384,WATCH,Stage63,1570384,La Liga,Atletico Madrid,Osasuna,2026-09-16T17:00:00Z,2026-09-16T16:16:35Z,WATCH_CLOSE,QUALIFIED_AT_CLOSE,ОЗ — Нет,Marathonbet,1.66,close_qualified=YES
 BTTS_NO|1570384,WATCH,Stage63,1570384,La Liga,Atletico Madrid,Osasuna,2026-09-16T17:00:00Z,2026-09-16T18:58:27Z,WATCH_SETTLEMENT,SETTLED,ОЗ — Нет,Marathonbet,1.81,result=W profit_u=0.810
@@ -374,6 +375,7 @@ R1|I1|1550131,CANONICAL,R1,1550131,Serie A,Frosinone,Como,2026-09-20T13:00:00Z,2
 R1|I1|1550131,CANONICAL,R1,1550131,Serie A,Frosinone,Como,2026-09-20T13:00:00Z,2026-09-17T17:43:53Z,ODDS_SNAPSHOT,NS,П2,,,Pre-kickoff odds snapshot
 R1|I1|1550131,CANONICAL,R1,1550131,Serie A,Frosinone,Como,2026-09-20T13:00:00Z,2026-09-17T18:47:32Z,ODDS_SNAPSHOT,NS,П2,,,Pre-kickoff odds snapshot
 R1|I1|1550131,CANONICAL,R1,1550131,Serie A,Frosinone,Como,2026-09-20T13:00:00Z,2026-09-17T19:42:41Z,ODDS_SNAPSHOT,NS,П2,,,Pre-kickoff odds snapshot
+R1|I1|1550131,CANONICAL,R1,1550131,Serie A,Frosinone,Como,2026-09-20T13:00:00Z,2026-09-17T20:43:16Z,ODDS_SNAPSHOT,NS,П2,,,Pre-kickoff odds snapshot
 ST62-O1-1575159,WATCH,Stage62,1575159,Bundesliga,RB Leipzig,Hamburger SV,2026-09-13T13:30:00Z,2026-09-13T12:26:19Z,WATCH_CROSSING,WATCH_ONLY,ТБ(2.5),Marathonbet,1.26,movement_pp=0.06370866
 ST62-O1-1575159,WATCH,Stage62,1575159,Bundesliga,RB Leipzig,Hamburger SV,2026-09-13T13:30:00Z,2026-09-13T13:21:20Z,WATCH_CLOSE,QUALIFIED_AT_CLOSE,ТБ(2.5),Marathonbet,1.26,close_qualified=YES
 ST62-O1-1575159,WATCH,Stage62,1575159,Bundesliga,RB Leipzig,Hamburger SV,2026-09-13T13:30:00Z,2026-09-13T15:29:20Z,WATCH_SETTLEMENT,SETTLED,ТБ(2.5),Marathonbet,1.26,result=W profit_u=0.260
