@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-17T13:09:57Z",
+  "generated_at_utc": "2026-09-17T14:09:37Z",
   "status": "OK",
   "cards": [
     {
@@ -4201,7 +4201,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 155,
+      "event_count": 156,
       "timeline": [
         {
           "entity_id": "R1|I1|1550131",
@@ -6837,15 +6837,65 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550131",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550131",
+          "league": "Serie A",
+          "home_team": "Frosinone",
+          "away_team": "Como",
+          "kickoff_utc": "2026-09-20T13:00:00Z",
+          "event_time_utc": "2026-09-17T13:46:04Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
+        }
+      ]
+    },
+    {
+      "entity_id": "M1PL|1557412",
+      "entity_type": "WATCH",
+      "rule_or_stage": "Stage61",
+      "api_fixture_id": "1557412",
+      "league": "Premier League",
+      "home_team": "Leeds",
+      "away_team": "Crystal Palace",
+      "kickoff_utc": "2026-09-20T13:00:00Z",
+      "selection": "П1",
+      "latest_event": "WATCH_CROSSING",
+      "latest_status": "WATCH_ONLY",
+      "event_count": 1,
+      "timeline": [
+        {
+          "entity_id": "M1PL|1557412",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage61",
+          "api_fixture_id": "1557412",
+          "league": "Premier League",
+          "home_team": "Leeds",
+          "away_team": "Crystal Palace",
+          "kickoff_utc": "2026-09-20T13:00:00Z",
+          "event_time_utc": "2026-09-17T13:29:51Z",
+          "event_type": "WATCH_CROSSING",
+          "status": "WATCH_ONLY",
+          "selection": "П1",
+          "bookmaker": "Marathonbet",
+          "odds": "1.8",
+          "details": "movement_pp=0.08753678"
         }
       ]
     }
   ],
   "summary": {
-    "cards": 30,
+    "cards": 31,
     "canonical_cards": 3,
-    "watch_cards": 27,
-    "events": 374
+    "watch_cards": 28,
+    "events": 376
   },
   "policy": {
     "read_only": true,
