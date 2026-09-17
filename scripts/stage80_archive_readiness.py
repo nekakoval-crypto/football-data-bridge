@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V2_FIXTURE_CATALOG"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V3_TEAM_STATS"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -27,6 +27,8 @@ SOURCES = {
     "player_stats": "player_stats_snapshots.csv",
     "player_grades": "player_grade_snapshots.csv",
     "stage77_backlog": "stage77_player_stats_backlog.csv",
+    "team_stats": "team_match_statistics.csv",
+    "stage81_backlog": "stage81_team_stats_backlog.csv",
     "current_rosters": "team_rosters.csv",
     "roster_history": "team_roster_history.csv",
     "membership_intervals": "team_membership_intervals.csv",
@@ -206,6 +208,46 @@ def build_report(ops=OPS, archive_dir=None):
         if sval(row, "fixture_id") in backlog_pending_ids and sval(row, "first_queued_at_utc")
     )
 
+    team_stats = data["team_stats"] or []
+    team_stat_sides = defaultdict(set)
+    for row in team_stats:
+        fixture_id = sval(row, "fixture_id")
+        team_id = sval(row, "team_id")
+        side = sval(row, "side").upper()
+        if fixture_id and team_id and side in {"HOME", "AWAY"}:
+            team_stat_sides[fixture_id].add(side)
+
+    team_stats_fixture_ids = {
+        fixture_id
+        for fixture_id, sides in team_stat_sides.items()
+        if {"HOME", "AWAY"}.issubset(sides)
+    }
+
+    stage81_backlog = data["stage81_backlog"] or []
+    stage81_backlog_fixture_ids = {
+        sval(row, "fixture_id")
+        for row in stage81_backlog
+        if sval(row, "fixture_id")
+    }
+    stage81_backlog_captured_ids = {
+        sval(row, "fixture_id")
+        for row in stage81_backlog
+        if sval(row, "fixture_id")
+        and sval(row, "backlog_status").upper() == "CAPTURED"
+    }
+    stage81_backlog_pending_ids = (
+        stage81_backlog_fixture_ids - stage81_backlog_captured_ids
+    )
+    stage81_captured_without_ledger = (
+        stage81_backlog_captured_ids - team_stats_fixture_ids
+    )
+    stage81_pending_first_queued = sorted(
+        sval(row, "first_queued_at_utc")
+        for row in stage81_backlog
+        if sval(row, "fixture_id") in stage81_backlog_pending_ids
+        and sval(row, "first_queued_at_utc")
+    )
+
     league_finished = defaultdict(set)
     league_stats = defaultdict(set)
     fixture_to_league = {}
@@ -285,6 +327,14 @@ def build_report(ops=OPS, archive_dir=None):
         gaps.append("ROSTER_HISTORY_WAITING_FIRST_CAPTURE")
     if data["membership_intervals"] is None or len(intervals) == 0:
         gaps.append("MEMBERSHIP_INTERVALS_WAITING_HISTORY")
+    if data["team_stats"] is None or len(team_stats_fixture_ids) == 0:
+        gaps.append("TEAM_STATS_NO_CAPTURED_FIXTURES")
+    if data["stage81_backlog"] is None:
+        gaps.append("STAGE81_BACKLOG_WAITING_FIRST_OPERATIONAL_RUN")
+    elif stage81_backlog_pending_ids:
+        gaps.append("TEAM_STATS_BACKLOG_PENDING")
+    if stage81_captured_without_ledger:
+        gaps.append("STAGE81_BACKLOG_CAPTURED_LEDGER_MISMATCH")
     if data["player_stats"] is None or player_stats_fixture_count == 0:
         gaps.append("PLAYER_STATS_NO_CAPTURED_FIXTURES")
     if data["stage77_backlog"] is None:
@@ -297,6 +347,8 @@ def build_report(ops=OPS, archive_dir=None):
         gaps.append("CURRENT_INVENTORY_HAS_NO_FINISHED_FIXTURE_DENOMINATOR")
     elif len(stat_fixture_ids & finished_ids) < len(finished_ids):
         gaps.append("PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE")
+    if finished_ids and len(team_stats_fixture_ids & finished_ids) < len(finished_ids):
+        gaps.append("TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE")
     if not raw_archive["configured"]:
         gaps.append("RAW_ARCHIVE_DURABLE_STORAGE_NOT_CONFIGURED")
     elif raw_archive["status"] != "OK":
@@ -363,6 +415,27 @@ def build_report(ops=OPS, archive_dir=None):
             "oldest_pending_first_queued_at_utc": pending_first_queued[0] if pending_first_queued else None,
             "evidence_note": "A pending backlog fixture is an observed terminal fixture awaiting player stats/Player Grade; it is not a provider-availability or completeness claim.",
         },
+        "stage81_backlog": {
+            "present": data["stage81_backlog"] is not None,
+            "total_fixtures": len(stage81_backlog_fixture_ids),
+            "pending_fixtures": len(stage81_backlog_pending_ids),
+            "captured_fixtures": len(stage81_backlog_captured_ids),
+            "captured_without_complete_ledger": len(stage81_captured_without_ledger),
+            "oldest_pending_first_queued_at_utc": stage81_pending_first_queued[0] if stage81_pending_first_queued else None,
+            "evidence_note": "Pending means PBK observed a terminal fixture but has not yet persisted complete HOME+AWAY /fixtures/statistics evidence.",
+        },
+        "team_statistics": {
+            "rows": len(team_stats),
+            "complete_fixture_count": len(team_stats_fixture_ids),
+            "finished_current_inventory_with_team_stats": len(
+                finished_ids & team_stats_fixture_ids
+            ),
+            "finished_current_inventory_team_stats_coverage_pct": pct(
+                len(finished_ids & team_stats_fixture_ids),
+                len(finished_ids),
+            ),
+            "evidence_note": "Complete means HOME and AWAY team rows exist; individual missing provider metrics remain UNKNOWN.",
+        },
         "players": {
             "player_stat_rows": len(stats),
             "unique_players_with_stats": uniq(stats, "player_id") or 0,
@@ -403,12 +476,16 @@ def render_markdown(report):
     fh = report["fixture_history"]
     fc = report["historical_fixture_catalog"]
     b = report["stage77_backlog"]
+    b81 = report["stage81_backlog"]
+    ts = report["team_statistics"]
     r = report["rosters"]
     p = report["players"]
     c = report["context"]
     raw = report["raw_provider_archive"]
     coverage = f["finished_current_inventory_player_stats_coverage_pct"]
     coverage_text = "—" if coverage is None else f"{coverage:.2f}%"
+    team_stats_coverage = ts["finished_current_inventory_team_stats_coverage_pct"]
+    team_stats_coverage_text = "—" if team_stats_coverage is None else f"{team_stats_coverage:.2f}%"
     catalog_coverage = fc["history_fixture_coverage_pct"]
     catalog_coverage_text = "—" if catalog_coverage is None else f"{catalog_coverage:.2f}%"
     lines = [
@@ -423,6 +500,8 @@ def render_markdown(report):
         f"- Historical fixture catalog: {fc['unique_fixtures']} fixtures (terminal {fc['terminal_fixtures']}, rescheduled {fc['rescheduled_fixtures']}), history coverage {catalog_coverage_text}; missing {fc['missing_history_fixtures']}, orphan {fc['orphan_catalog_fixtures']}.",
         f"- Finished fixtures с player stats: {f['finished_current_inventory_with_player_stats']} / {f['finished_in_current_inventory']} ({coverage_text}).",
         f"- Stage77 durable backlog: pending {b['pending_fixtures']}; captured {b['captured_fixtures']}; total {b['total_fixtures']}.",
+        f"- Stage81 durable backlog: pending {b81['pending_fixtures']}; captured {b81['captured_fixtures']}; total {b81['total_fixtures']}.",
+        f"- Team match statistics: {ts['complete_fixture_count']} complete fixtures / {ts['rows']} team rows; current finished coverage {team_stats_coverage_text}.",
         f"- Player stat rows: {p['player_stat_rows']}; уникальных игроков: {p['unique_players_with_stats']}.",
         f"- Player Grade rows: {p['player_grade_rows']}; уникальных игроков: {p['unique_players_with_grades']}.",
         f"- Current roster: {r['current_roster_teams']} команд / {r['current_roster_rows']} игроковых строк.",
@@ -458,6 +537,8 @@ def main():
         "historical_fixture_catalog_rows": report["historical_fixture_catalog"]["unique_fixtures"],
         "historical_fixture_catalog_coverage_pct": report["historical_fixture_catalog"]["history_fixture_coverage_pct"],
         "stage77_backlog_pending": report["stage77_backlog"]["pending_fixtures"],
+        "stage81_backlog_pending": report["stage81_backlog"]["pending_fixtures"],
+        "team_stats_complete_fixtures": report["team_statistics"]["complete_fixture_count"],
         "roster_history_rows": report["rosters"]["history_rows"],
         "player_stats_fixtures": report["fixtures"]["player_stats_fixture_count_all_snapshots"],
         "raw_archive_status": report["raw_provider_archive"]["status"],

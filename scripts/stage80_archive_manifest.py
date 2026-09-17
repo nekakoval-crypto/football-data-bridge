@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V3_PLAYER_CATALOG"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V4_TEAM_STATS"
 
 DATASETS = [
     {
@@ -64,6 +64,28 @@ DATASETS = [
         "effective_time_fields": ["kickoff_utc"],
         "source": "Stage71 terminal observation + Stage77 reconciliation",
         "limitations": "Queue evidence is not player-stat evidence; CAPTURED requires both stats and grade ledgers.",
+    },
+    {
+        "dataset_id": "stage81_team_stats_backlog",
+        "path": "stage81_team_stats_backlog.csv",
+        "role": "DURABLE_WORK_QUEUE",
+        "lifecycle": "DURABLE_STATE_MACHINE",
+        "identity_key": ["fixture_id"],
+        "observed_time_fields": ["first_queued_at_utc", "last_seen_at_utc"],
+        "effective_time_fields": ["kickoff_utc"],
+        "source": "Stage71 terminal observation + Stage81 reconciliation",
+        "limitations": "Queue evidence is not team-stat evidence; CAPTURED requires both HOME and AWAY team-stat ledger rows.",
+    },
+    {
+        "dataset_id": "team_match_statistics",
+        "path": "team_match_statistics.csv",
+        "role": "HISTORICAL_EVIDENCE",
+        "lifecycle": "APPEND_ONLY_FIRST_OBSERVATION_WINS",
+        "identity_key": ["fixture_id", "team_id"],
+        "observed_time_fields": ["observed_at_utc"],
+        "effective_time_fields": ["kickoff_utc"],
+        "source": "Stage81 /fixtures/statistics via shared API-Football broker",
+        "limitations": "Only observed finished fixtures captured under protected provider budget; missing provider metrics remain UNKNOWN and are never zero-filled.",
     },
     {
         "dataset_id": "player_stats_snapshots",
