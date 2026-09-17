@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_READINESS_V2_FIXTURE_CATALOG",
-  "generated_at_utc": "2026-09-17T06:49:35Z",
+  "version": "PBK_STAGE80_ARCHIVE_READINESS_V3_TEAM_STATS",
+  "generated_at_utc": "2026-09-17T12:48:33Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -12,12 +12,12 @@
     "fixture_history": {
       "file": "fixture_history_snapshots.csv",
       "present": true,
-      "rows": 506
+      "rows": 635
     },
     "historical_fixtures": {
       "file": "historical_fixtures.csv",
       "present": true,
-      "rows": 158
+      "rows": 168
     },
     "player_stats": {
       "file": "player_stats_snapshots.csv",
@@ -32,7 +32,17 @@
     "stage77_backlog": {
       "file": "stage77_player_stats_backlog.csv",
       "present": true,
-      "rows": 40
+      "rows": 44
+    },
+    "team_stats": {
+      "file": "team_match_statistics.csv",
+      "present": false,
+      "rows": null
+    },
+    "stage81_backlog": {
+      "file": "stage81_team_stats_backlog.csv",
+      "present": true,
+      "rows": 8
     },
     "current_rosters": {
       "file": "team_rosters.csv",
@@ -57,7 +67,7 @@
   },
   "fixtures": {
     "current_inventory": 129,
-    "finished_in_current_inventory": 12,
+    "finished_in_current_inventory": 8,
     "player_stats_fixture_count_all_snapshots": 0,
     "player_grade_fixture_count_all_snapshots": 0,
     "finished_current_inventory_with_player_stats": 0,
@@ -65,19 +75,13 @@
     "per_league": [
       {
         "league": "A Lyga",
-        "finished_fixtures_in_current_inventory": 4,
+        "finished_fixtures_in_current_inventory": 1,
         "finished_fixtures_with_player_stats": 0,
         "player_stats_coverage_pct": 0.0
       },
       {
         "league": "La Liga",
-        "finished_fixtures_in_current_inventory": 4,
-        "finished_fixtures_with_player_stats": 0,
-        "player_stats_coverage_pct": 0.0
-      },
-      {
-        "league": "Virsliga",
-        "finished_fixtures_in_current_inventory": 4,
+        "finished_fixtures_in_current_inventory": 7,
         "finished_fixtures_with_player_stats": 0,
         "player_stats_coverage_pct": 0.0
       }
@@ -85,20 +89,20 @@
   },
   "fixture_history": {
     "present": true,
-    "rows": 506,
-    "valid_observations": 506,
-    "unique_fixtures": 158,
-    "observation_runs": 4,
-    "finished_fixtures_observed": 40,
+    "rows": 635,
+    "valid_observations": 635,
+    "unique_fixtures": 168,
+    "observation_runs": 5,
+    "finished_fixtures_observed": 44,
     "invalid_identity_rows": 0,
     "evidence_note": "Counts represent only Stage71 current-round observations persisted after the fixture-history archive was enabled; they are not a pre-PBK historical backfill claim."
   },
   "historical_fixture_catalog": {
     "present": true,
-    "rows": 158,
-    "valid_rows": 158,
-    "unique_fixtures": 158,
-    "terminal_fixtures": 40,
+    "rows": 168,
+    "valid_rows": 168,
+    "unique_fixtures": 168,
+    "terminal_fixtures": 44,
     "rescheduled_fixtures": 0,
     "invalid_identity_rows": 0,
     "duplicate_fixture_ids": 0,
@@ -107,19 +111,35 @@
     "orphan_catalog_fixtures": 0,
     "missing_terminal_evidence": 0,
     "orphan_terminal_evidence": 0,
-    "observation_count_total": 506,
-    "expected_history_observations": 506,
+    "observation_count_total": 635,
+    "expected_history_observations": 635,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
   },
   "stage77_backlog": {
     "present": true,
-    "total_fixtures": 40,
-    "pending_fixtures": 40,
+    "total_fixtures": 44,
+    "pending_fixtures": 44,
     "captured_fixtures": 0,
     "captured_without_complete_ledgers": 0,
     "oldest_pending_first_queued_at_utc": "2026-09-15T16:55:09Z",
     "evidence_note": "A pending backlog fixture is an observed terminal fixture awaiting player stats/Player Grade; it is not a provider-availability or completeness claim."
+  },
+  "stage81_backlog": {
+    "present": true,
+    "total_fixtures": 8,
+    "pending_fixtures": 8,
+    "captured_fixtures": 0,
+    "captured_without_complete_ledger": 0,
+    "oldest_pending_first_queued_at_utc": "2026-09-17T10:41:55Z",
+    "evidence_note": "Pending means PBK observed a terminal fixture but has not yet persisted complete HOME+AWAY /fixtures/statistics evidence."
+  },
+  "team_statistics": {
+    "rows": 0,
+    "complete_fixture_count": 0,
+    "finished_current_inventory_with_team_stats": 0,
+    "finished_current_inventory_team_stats_coverage_pct": 0.0,
+    "evidence_note": "Complete means HOME and AWAY team rows exist; individual missing provider metrics remain UNKNOWN."
   },
   "players": {
     "player_stat_rows": 0,
@@ -154,9 +174,12 @@
     "manifest_payload_bytes": null
   },
   "gaps": [
+    "TEAM_STATS_NO_CAPTURED_FIXTURES",
+    "TEAM_STATS_BACKLOG_PENDING",
     "PLAYER_STATS_NO_CAPTURED_FIXTURES",
     "PLAYER_STATS_BACKLOG_PENDING",
     "PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
+    "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "RAW_ARCHIVE_DURABLE_STORAGE_NOT_CONFIGURED",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
     "VERIFIED_TRANSFER_EVENTS_NOT_YET_INGESTED",

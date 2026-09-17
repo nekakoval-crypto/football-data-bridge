@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V3_PLAYER_CATALOG",
-  "generated_at_utc": "2026-09-17T06:49:35Z",
+  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V4_TEAM_STATS",
+  "generated_at_utc": "2026-09-17T12:48:33Z",
   "status": "OK",
   "datasets": [
     {
@@ -65,7 +65,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 506,
+      "row_count": 635,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -111,7 +111,7 @@
       "source": "Stage80 normalized projection from fixture_history_snapshots",
       "limitations": "Rebuildable convenience layer; fixture_history_snapshots remains historical evidence source-of-truth.",
       "present": true,
-      "row_count": 158,
+      "row_count": 168,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -160,7 +160,7 @@
       "source": "Stage71 terminal observation + Stage77 reconciliation",
       "limitations": "Queue evidence is not player-stat evidence; CAPTURED requires both stats and grade ledgers.",
       "present": true,
-      "row_count": 40,
+      "row_count": 44,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -184,6 +184,76 @@
       "contract_status": "OK",
       "identity_key_text": "fixture_id",
       "observed_time_fields_text": "first_queued_at_utc,last_seen_at_utc",
+      "effective_time_fields_text": "kickoff_utc"
+    },
+    {
+      "dataset_id": "stage81_team_stats_backlog",
+      "path": "stage81_team_stats_backlog.csv",
+      "role": "DURABLE_WORK_QUEUE",
+      "lifecycle": "DURABLE_STATE_MACHINE",
+      "identity_key": [
+        "fixture_id"
+      ],
+      "observed_time_fields": [
+        "first_queued_at_utc",
+        "last_seen_at_utc"
+      ],
+      "effective_time_fields": [
+        "kickoff_utc"
+      ],
+      "source": "Stage71 terminal observation + Stage81 reconciliation",
+      "limitations": "Queue evidence is not team-stat evidence; CAPTURED requires both HOME and AWAY team-stat ledger rows.",
+      "present": true,
+      "row_count": 8,
+      "columns": [
+        "fixture_id",
+        "provider_league_id",
+        "league_name",
+        "season",
+        "round",
+        "kickoff_utc",
+        "home_team",
+        "away_team",
+        "source_status",
+        "first_queued_at_utc",
+        "last_seen_at_utc",
+        "backlog_status",
+        "captured_at_utc",
+        "queue_source",
+        "attempt_count",
+        "last_attempt_at_utc",
+        "last_attempt_result"
+      ],
+      "missing_required_fields": [],
+      "contract_status": "OK",
+      "identity_key_text": "fixture_id",
+      "observed_time_fields_text": "first_queued_at_utc,last_seen_at_utc",
+      "effective_time_fields_text": "kickoff_utc"
+    },
+    {
+      "dataset_id": "team_match_statistics",
+      "path": "team_match_statistics.csv",
+      "role": "HISTORICAL_EVIDENCE",
+      "lifecycle": "APPEND_ONLY_FIRST_OBSERVATION_WINS",
+      "identity_key": [
+        "fixture_id",
+        "team_id"
+      ],
+      "observed_time_fields": [
+        "observed_at_utc"
+      ],
+      "effective_time_fields": [
+        "kickoff_utc"
+      ],
+      "source": "Stage81 /fixtures/statistics via shared API-Football broker",
+      "limitations": "Only observed finished fixtures captured under protected provider budget; missing provider metrics remain UNKNOWN and are never zero-filled.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "fixture_id+team_id",
+      "observed_time_fields_text": "observed_at_utc",
       "effective_time_fields_text": "kickoff_utc"
     },
     {
@@ -592,9 +662,9 @@
     }
   ],
   "summary": {
-    "declared_datasets": 13,
-    "materialized_csv_datasets": 10,
-    "pending_materializations_or_storage": 3,
+    "declared_datasets": 15,
+    "materialized_csv_datasets": 11,
+    "pending_materializations_or_storage": 4,
     "contract_attention": 0
   },
   "provider_calls": 0,
