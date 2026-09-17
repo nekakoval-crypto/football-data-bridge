@@ -1,7 +1,7 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 17.09.2026 15:02 (Europe/Berlin)
-Canonical: 1 | active WATCH crossings: 14 | RED: 0 | ORANGE: 14
+Обновлено: 17.09.2026 16:00 (Europe/Berlin)
+Canonical: 1 | active WATCH crossings: 15 | RED: 0 | ORANGE: 15
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
 
@@ -23,6 +23,7 @@ Canonical: 1 | active WATCH crossings: 14 | RED: 0 | ORANGE: 14
 - **AS Roma — Inter** | Stage63 | ОЗ — Да | 19.09 18:00 | prospective движение ОЗ ≥3 п.п. | 1.49 @ Marathonbet
 - **Nottingham Forest — Coventry** | Stage61 | П1 | 19.09 18:30 | первый +3 п.п. steam фаворита | 1.66 @ Marathonbet
 - **Sevilla — Barcelona** | Stage63 | ОЗ — Нет | 19.09 21:00 | prospective движение ОЗ ≥3 п.п. | 2.0 @ Marathonbet
+- **Leeds — Crystal Palace** | Stage61 | П1 | 20.09 15:00 | первый +3 п.п. steam фаворита | 1.8 @ Marathonbet
 
 ## 🔵 Активные R1/R2/R3
 - **R1 | Frosinone — Como** | П2 | 20.09 15:00 | 1.65 @ Marathonbet | гости после еврокубка/кубка
@@ -42,6 +43,7 @@ Canonical: 1 | active WATCH crossings: 14 | RED: 0 | ORANGE: 14
 - **Stage63 | AS Roma — Inter** | ОЗ — Да | 19.09 18:00 | 1.49 @ Marathonbet
 - **Stage61 | Nottingham Forest — Coventry** | П1 | 19.09 18:30 | 1.66 @ Marathonbet
 - **Stage63 | Sevilla — Barcelona** | ОЗ — Нет | 19.09 21:00 | 2.0 @ Marathonbet
+- **Stage61 | Leeds — Crystal Palace** | П1 | 20.09 15:00 | 1.8 @ Marathonbet
 
 ## ⚪ Ближайшие матчи под наблюдением (без сигнала)
 - **Stage63 | Real Betis — Getafe** | La Liga | 17.09 19:00 | ОЗ — Да / ОЗ — Нет | Bet365 Да 2.05 / Нет 1.7
@@ -2814,8 +2816,8 @@ Canonical: 1 | active WATCH crossings: 14 | RED: 0 | ORANGE: 14
 - **Bournemouth — Liverpool** | Premier League | 20.09 13:00 UTC
   - ОЗ · ОЗ Да: 1.5 | ОЗ Нет: 2.5 @ Bet365
   - ОЗ · ОЗ Да: 1.46 | ОЗ Нет: 2.52 @ Marathonbet
-  - 1X2 · П1: 3 | Х: 3.6 | П2: 2.1 @ Bet365
-  - 1X2 · П1: 3.15 | Х: 3.84 | П2: 2.2 @ Marathonbet
+  - 1X2 · П1: 3.1 | Х: 3.8 | П2: 2.15 @ Bet365
+  - 1X2 · П1: 3.1 | Х: 3.82 | П2: 2.18 @ Marathonbet
   - Тотал 2.5 — нет данных
   - ИТБ/ИТМ — нет данных
   - 1Х/Х2/12 — нет данных
@@ -2825,8 +2827,8 @@ Canonical: 1 | active WATCH crossings: 14 | RED: 0 | ORANGE: 14
 - **Leeds — Crystal Palace** | Premier League | 20.09 13:00 UTC
   - ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 2 @ Bet365
   - ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.03 @ Marathonbet
-  - 1X2 · П1: 2.1 | Х: 3.4 | П2: 3.25 @ Bet365
-  - 1X2 · П1: 2.2 | Х: 3.55 | П2: 3.38 @ Marathonbet
+  - 1X2 · П1: 1.8 | Х: 3.8 | П2: 4.33 @ Bet365
+  - 1X2 · П1: 1.8 | Х: 3.78 | П2: 4.5 @ Marathonbet
   - Тотал 2.5 — нет данных
   - ИТБ/ИТМ — нет данных
   - 1Х/Х2/12 — нет данных
@@ -2836,8 +2838,8 @@ Canonical: 1 | active WATCH crossings: 14 | RED: 0 | ORANGE: 14
 - **Manchester City — Sunderland** | Premier League | 20.09 13:00 UTC
   - ОЗ · ОЗ Да: 2 | ОЗ Нет: 1.75 @ Bet365
   - ОЗ · ОЗ Да: 2 | ОЗ Нет: 1.72 @ Marathonbet
-  - 1X2 · П1: 1.25 | Х: 5.25 | П2: 10 @ Bet365
-  - 1X2 · П1: 1.27 | Х: 6.15 | П2: 12.25 @ Marathonbet
+  - 1X2 · П1: 1.3 | Х: 5.75 | П2: 9 @ Bet365
+  - 1X2 · П1: 1.3 | Х: 5.65 | П2: 10.25 @ Marathonbet
   - Тотал 2.5 — нет данных
   - ИТБ/ИТМ — нет данных
   - 1Х/Х2/12 — нет данных
@@ -2876,8 +2878,8 @@ Canonical: 1 | active WATCH crossings: 14 | RED: 0 | ORANGE: 14
 - **Bayer Leverkusen — RB Leipzig** | Bundesliga | 20.09 13:30 UTC
   - ОЗ · ОЗ Да: 1.36 | ОЗ Нет: 3 @ Bet365
   - ОЗ · ОЗ Да: 1.36 | ОЗ Нет: 2.89 @ Marathonbet
-  - Тотал 2.5 · ТБ(2.5): 1.36 | ТМ(2.5): 3.2 @ Bet365
-  - Тотал 2.5 · ТБ(2.5): 1.34 | ТМ(2.5): 2.93 @ Marathonbet
+  - Тотал 2.5 · ТБ(2.5): 1.33 | ТМ(2.5): 3.4 @ Bet365
+  - Тотал 2.5 · ТБ(2.5): 1.32 | ТМ(2.5): 3.04 @ Marathonbet
   - 1X2 — нет данных
   - ИТБ/ИТМ — нет данных
   - 1Х/Х2/12 — нет данных
