@@ -1,8 +1,8 @@
 # PBK Signal Lifecycle
 
-Обновлено UTC: 2026-09-17T04:09:00Z
+Обновлено UTC: 2026-09-17T05:08:26Z
 
-Cards: 29 | canonical 3 | WATCH 26 | events 363
+Cards: 29 | canonical 3 | WATCH 26 | events 365
 
 ## WATCH | Stage63 | Venezia — Fiorentina
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-11T18:45:00Z
@@ -114,9 +114,10 @@ Cards: 29 | canonical 3 | WATCH 26 | events 363
 
 ## WATCH | Stage63 | Barcelona — Racing Santander
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-16T19:30:00Z
-- Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 2
+- Последнее событие: WATCH_SETTLEMENT | статус: SETTLED | событий: 3
   - 2026-09-16T18:18:28Z — WATCH_CLOSE — Marathonbet | 1.64 | close_qualified=YES
   - 2026-09-16T18:18:28Z — WATCH_CROSSING — Marathonbet | 1.64 | movement_pp=0.05591623
+  - 2026-09-17T05:05:39Z — WATCH_SETTLEMENT — Marathonbet | 1.64 | result=W profit_u=0.640
 
 ## WATCH | Stage63 | Bayern München — Union Berlin
 - Ставка/рынок: ОЗ — Нет | kickoff: 2026-09-18T18:30:00Z
@@ -185,8 +186,7 @@ Cards: 29 | canonical 3 | WATCH 26 | events 363
 
 ## CANONICAL | R1 | Frosinone — Como
 - Ставка/рынок: П2 | kickoff: 2026-09-20T13:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 146
-  - 2026-09-16T20:45:02Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 147
   - 2026-09-16T21:44:20Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-16T22:43:35Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-16T23:42:36Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -194,3 +194,4 @@ Cards: 29 | canonical 3 | WATCH 26 | events 363
   - 2026-09-17T01:44:58Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-17T02:45:01Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-17T03:46:18Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-17T04:45:43Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
