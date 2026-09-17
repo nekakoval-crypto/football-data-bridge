@@ -15,7 +15,7 @@
           "evidence": {
             "served_available_leagues": 16,
             "served_fixture_rows": 129,
-            "last_good_preserved": true
+            "last_good_preserved": false
           }
         },
         {
@@ -23,11 +23,11 @@
           "status": "PASS",
           "message": "real provider-backed current-round refresh observed",
           "evidence": {
-            "run_at_utc": "2026-09-16T23:29:15Z",
-            "api_calls": 31,
-            "refreshed_leagues": 15,
+            "run_at_utc": "2026-09-17T15:30:11Z",
+            "api_calls": 32,
+            "refreshed_leagues": 16,
             "budget_exhausted": false,
-            "refresh_status": "PARTIAL"
+            "refresh_status": "OK"
           }
         },
         {
@@ -36,7 +36,7 @@
           "message": "budget pressure is non-destructive",
           "evidence": {
             "budget_exhausted": false,
-            "last_good_preserved": true
+            "last_good_preserved": false
           }
         },
         {
@@ -44,10 +44,10 @@
           "status": "PASS",
           "message": "real LIVE provider batch observed",
           "evidence": {
-            "observed_at_utc": "2026-09-16T23:02:04Z",
-            "candidate_fixtures": 2,
+            "observed_at_utc": "2026-09-17T17:01:58Z",
+            "candidate_fixtures": 1,
             "provider_calls": 1,
-            "updated_fixtures": 2,
+            "updated_fixtures": 1,
             "budget_exhausted": false,
             "status": "OK"
           }
@@ -57,7 +57,7 @@
           "status": "PASS",
           "message": "LIVE overlay carries score/status/freshness/red-card fields",
           "evidence": {
-            "rows": 15,
+            "rows": 16,
             "observed_rows": 1,
             "missing_fields": []
           }
@@ -67,17 +67,16 @@
           "status": "PASS",
           "message": "real LIVE observation propagated through Stage72 and Stage73",
           "evidence": {
-            "live_observed_at_utc": "2026-09-16T23:02:04Z",
-            "stage72_run_at_utc": "2026-09-16T23:32:59Z",
+            "live_observed_at_utc": "2026-09-17T17:01:58Z",
+            "stage72_run_at_utc": "2026-09-17T17:32:43Z",
             "stage72_status": "OK",
-            "stage73_run_at_utc": "2026-09-16T23:33:00Z",
+            "stage73_run_at_utc": "2026-09-17T17:32:45Z",
             "stage73_status": "OK",
             "stage73_passed": 16,
             "stage73_total": 16
           }
         }
-      ],
-      "latched": true
+      ]
     },
     "5_standings_motivation": {
       "status": "PASS",
@@ -160,6 +159,6 @@
   "next_actions": [
     "Production acceptance is complete; PBK v1 may proceed to final closure bookkeeping."
   ],
-  "evaluated_at_utc": "2026-09-17T16:34:16Z",
-  "state_fingerprint": "90d02e78d5edc9de00567e64349edfceb41c4b34e6037b1a29d30cd9c6d5b52d"
+  "evaluated_at_utc": "2026-09-17T17:32:45Z",
+  "state_fingerprint": "c34ac8b9e0fe2afe8a4e956846b84b686395945cdd9687e73358953eaaed1f66"
 }
