@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-17T22:08:21Z",
+  "generated_at_utc": "2026-09-17T23:06:49Z",
   "status": "OK",
   "cards": [
     {
@@ -3926,6 +3926,39 @@
       ]
     },
     {
+      "entity_id": "BTTS_YES|1575172",
+      "entity_type": "WATCH",
+      "rule_or_stage": "Stage63",
+      "api_fixture_id": "1575172",
+      "league": "Bundesliga",
+      "home_team": "Werder Bremen",
+      "away_team": "FC Augsburg",
+      "kickoff_utc": "2026-09-19T13:30:00Z",
+      "selection": "ОЗ — Да",
+      "latest_event": "WATCH_CROSSING",
+      "latest_status": "WATCH_ONLY",
+      "event_count": 1,
+      "timeline": [
+        {
+          "entity_id": "BTTS_YES|1575172",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage63",
+          "api_fixture_id": "1575172",
+          "league": "Bundesliga",
+          "home_team": "Werder Bremen",
+          "away_team": "FC Augsburg",
+          "kickoff_utc": "2026-09-19T13:30:00Z",
+          "event_time_utc": "2026-09-17T22:15:24Z",
+          "event_type": "WATCH_CROSSING",
+          "status": "WATCH_ONLY",
+          "selection": "ОЗ — Да",
+          "bookmaker": "Marathonbet",
+          "odds": "1.36",
+          "details": "movement_pp=0.04275319"
+        }
+      ]
+    },
+    {
       "entity_id": "ST62-O1-1575170",
       "entity_type": "WATCH",
       "rule_or_stage": "Stage62",
@@ -4201,7 +4234,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 164,
+      "event_count": 165,
       "timeline": [
         {
           "entity_id": "R1|I1|1550131",
@@ -6990,6 +7023,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550131",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550131",
+          "league": "Serie A",
+          "home_team": "Frosinone",
+          "away_team": "Como",
+          "kickoff_utc": "2026-09-20T13:00:00Z",
+          "event_time_utc": "2026-09-17T22:41:23Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     },
@@ -7160,10 +7210,10 @@
     }
   ],
   "summary": {
-    "cards": 35,
+    "cards": 36,
     "canonical_cards": 3,
-    "watch_cards": 32,
-    "events": 388
+    "watch_cards": 33,
+    "events": 390
   },
   "policy": {
     "read_only": true,
