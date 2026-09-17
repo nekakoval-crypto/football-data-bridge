@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-17T04:26:21Z",
+  "run_at_utc": "2026-09-17T06:31:22Z",
   "status": "OK",
   "provider_endpoint": "/players/squads",
   "provider_calls": 8,
-  "daily_api_calls": 28,
+  "daily_api_calls": 40,
   "protected_calls": {
     "live": 14,
     "current_round": 96,
@@ -16,48 +16,48 @@
   "candidate_teams": 8,
   "captured_teams": [
     {
-      "team_id": "110",
-      "team_name": "Estac Troyes",
-      "players": 29
+      "team_id": "96",
+      "team_name": "Toulouse",
+      "players": 27
     },
     {
-      "team_id": "111",
-      "team_name": "Le Havre",
-      "players": 33
-    },
-    {
-      "team_id": "1298",
-      "team_name": "Le Mans",
+      "team_id": "97",
+      "team_name": "Lorient",
       "players": 30
     },
     {
-      "team_id": "487",
-      "team_name": "Lazio",
-      "players": 35
-    },
-    {
-      "team_id": "517",
-      "team_name": "Venezia",
-      "players": 35
-    },
-    {
-      "team_id": "77",
-      "team_name": "Angers",
-      "players": 25
-    },
-    {
-      "team_id": "80",
-      "team_name": "Lyon",
-      "players": 29
-    },
-    {
-      "team_id": "94",
-      "team_name": "Rennes",
+      "team_id": "492",
+      "team_name": "Napoli",
       "players": 28
+    },
+    {
+      "team_id": "502",
+      "team_name": "Fiorentina",
+      "players": 28
+    },
+    {
+      "team_id": "106",
+      "team_name": "Stade Brestois 29",
+      "players": 28
+    },
+    {
+      "team_id": "108",
+      "team_name": "Auxerre",
+      "players": 35
+    },
+    {
+      "team_id": "35",
+      "team_name": "Bournemouth",
+      "players": 33
+    },
+    {
+      "team_id": "40",
+      "team_name": "Liverpool",
+      "players": 32
     }
   ],
   "deferred_teams": 0,
-  "total_roster_rows": 1734,
+  "total_roster_rows": 1975,
   "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
