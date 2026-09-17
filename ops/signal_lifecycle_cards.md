@@ -1,8 +1,8 @@
 # PBK Signal Lifecycle
 
-Обновлено UTC: 2026-09-17T14:09:37Z
+Обновлено UTC: 2026-09-17T15:09:07Z
 
-Cards: 31 | canonical 3 | WATCH 28 | events 376
+Cards: 32 | canonical 3 | WATCH 29 | events 378
 
 ## WATCH | Stage63 | Venezia — Fiorentina
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-11T18:45:00Z
@@ -191,8 +191,7 @@ Cards: 31 | canonical 3 | WATCH 28 | events 376
 
 ## CANONICAL | R1 | Frosinone — Como
 - Ставка/рынок: П2 | kickoff: 2026-09-20T13:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 156
-  - 2026-09-17T06:50:24Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 157
   - 2026-09-17T07:45:58Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-17T08:45:00Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-17T09:45:30Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -200,6 +199,12 @@ Cards: 31 | canonical 3 | WATCH 28 | events 376
   - 2026-09-17T11:44:34Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-17T12:49:21Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-17T13:46:04Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-17T14:45:04Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+
+## WATCH | Stage63 | Frosinone — Como
+- Ставка/рынок: ОЗ — Да | kickoff: 2026-09-20T13:00:00Z
+- Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
+  - 2026-09-17T14:17:24Z — WATCH_CROSSING — Marathonbet | 1.57 | movement_pp=0.03197606
 
 ## WATCH | Stage61 | Leeds — Crystal Palace
 - Ставка/рынок: П1 | kickoff: 2026-09-20T13:00:00Z
