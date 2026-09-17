@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-17T18:38:10Z",
+  "run_at_utc": "2026-09-17T19:02:22Z",
   "status": "OK",
   "mode": "STAGE71_EXISTING_OVERLAY_SETTLEMENT",
   "provider_calls_added": 0,
@@ -8,13 +8,13 @@
   "prematch_required": true,
   "extraction": {
     "without_frozen_prematch": 13,
-    "not_finished": 3,
-    "eligible_settlement_rows": 0
+    "not_finished": 2,
+    "eligible_settlement_rows": 1
   },
-  "settlements_added": 0,
+  "settlements_added": 1,
   "settlements_rejected": 0,
-  "prematch_frozen": 121,
-  "settled_rows": 0,
+  "prematch_frozen": 122,
+  "settled_rows": 1,
   "league_status_counts": {
     "COLLECTING": 16
   },

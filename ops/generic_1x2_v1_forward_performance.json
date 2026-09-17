@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-17T18:43:34Z",
+  "generated_at_utc": "2026-09-17T19:02:22Z",
   "research_id": "PBK_GENERIC_1X2_PROBABILITY_V1_FORWARD",
   "model_version": "PBK_GENERIC_1X2_PROBABILITY_V1",
   "status": "PER_LEAGUE_FORWARD_REVIEW",
@@ -45,9 +45,9 @@
     "La Liga": {
       "status": "COLLECTING",
       "prematch_frozen": 13,
-      "settled_rows": 0,
+      "settled_rows": 1,
       "forward_outcomes": {
-        "H": 0,
+        "H": 1,
         "D": 0,
         "A": 0
       },
@@ -57,21 +57,40 @@
       },
       "formal_review_sample_ready": false,
       "scores": {
-        "m0_multiclass_brier": null,
-        "m1_multiclass_brier": null,
-        "brier_improvement_m0_minus_m1": null,
-        "m0_logloss": null,
-        "m1_logloss": null,
-        "logloss_improvement_m0_minus_m1": null
+        "m0_multiclass_brier": 0.2820511435768266,
+        "m1_multiclass_brier": 0.2873290563281483,
+        "brier_improvement_m0_minus_m1": -0.005277912751321723,
+        "m0_logloss": 0.5665659385615275,
+        "m1_logloss": 0.5736266011306336,
+        "logloss_improvement_m0_minus_m1": -0.007060662569106091
       },
-      "m1_class_calibration": {},
+      "m1_class_calibration": {
+        "H": {
+          "mean_probability": 0.5634782179744391,
+          "observed_rate": 1.0,
+          "abs_error": 0.4365217820255609,
+          "outcomes": 1
+        },
+        "D": {
+          "mean_probability": 0.24566670293280315,
+          "observed_rate": 0.0,
+          "abs_error": 0.24566670293280315,
+          "outcomes": 0
+        },
+        "A": {
+          "mean_probability": 0.19085507909275773,
+          "observed_rate": 0.0,
+          "abs_error": 0.19085507909275773,
+          "outcomes": 0
+        }
+      },
       "checks": {
         "minimum_forward_rows": false,
         "minimum_forward_outcomes_per_class": false,
         "brier_strict_improvement": false,
         "logloss_strict_improvement": false,
         "class_calibration": false,
-        "probability_sum": false,
+        "probability_sum": true,
         "forward_only_no_backfill": true
       },
       "league": "La Liga",
@@ -589,9 +608,9 @@
   "pooled_big5_diagnostic": {
     "status": "DIAGNOSTIC_ONLY",
     "prematch_frozen": 51,
-    "settled_rows": 0,
+    "settled_rows": 1,
     "forward_outcomes": {
-      "H": 0,
+      "H": 1,
       "D": 0,
       "A": 0
     },
@@ -601,21 +620,40 @@
     },
     "formal_review_sample_ready": false,
     "scores": {
-      "m0_multiclass_brier": null,
-      "m1_multiclass_brier": null,
-      "brier_improvement_m0_minus_m1": null,
-      "m0_logloss": null,
-      "m1_logloss": null,
-      "logloss_improvement_m0_minus_m1": null
+      "m0_multiclass_brier": 0.2820511435768266,
+      "m1_multiclass_brier": 0.2873290563281483,
+      "brier_improvement_m0_minus_m1": -0.005277912751321723,
+      "m0_logloss": 0.5665659385615275,
+      "m1_logloss": 0.5736266011306336,
+      "logloss_improvement_m0_minus_m1": -0.007060662569106091
     },
-    "m1_class_calibration": {},
+    "m1_class_calibration": {
+      "H": {
+        "mean_probability": 0.5634782179744391,
+        "observed_rate": 1.0,
+        "abs_error": 0.4365217820255609,
+        "outcomes": 1
+      },
+      "D": {
+        "mean_probability": 0.24566670293280315,
+        "observed_rate": 0.0,
+        "abs_error": 0.24566670293280315,
+        "outcomes": 0
+      },
+      "A": {
+        "mean_probability": 0.19085507909275773,
+        "observed_rate": 0.0,
+        "abs_error": 0.19085507909275773,
+        "outcomes": 0
+      }
+    },
     "checks": {
       "minimum_forward_rows": false,
       "minimum_forward_outcomes_per_class": false,
       "brier_strict_improvement": false,
       "logloss_strict_improvement": false,
       "class_calibration": false,
-      "probability_sum": false,
+      "probability_sum": true,
       "forward_only_no_backfill": true
     },
     "purpose": "POOLED_DIAGNOSTIC_ONLY_NOT_AN_OFFICIAL_FORWARD_VERDICT"
@@ -623,9 +661,9 @@
   "pooled_all16_diagnostic": {
     "status": "DIAGNOSTIC_ONLY",
     "prematch_frozen": 122,
-    "settled_rows": 0,
+    "settled_rows": 1,
     "forward_outcomes": {
-      "H": 0,
+      "H": 1,
       "D": 0,
       "A": 0
     },
@@ -635,28 +673,47 @@
     },
     "formal_review_sample_ready": false,
     "scores": {
-      "m0_multiclass_brier": null,
-      "m1_multiclass_brier": null,
-      "brier_improvement_m0_minus_m1": null,
-      "m0_logloss": null,
-      "m1_logloss": null,
-      "logloss_improvement_m0_minus_m1": null
+      "m0_multiclass_brier": 0.2820511435768266,
+      "m1_multiclass_brier": 0.2873290563281483,
+      "brier_improvement_m0_minus_m1": -0.005277912751321723,
+      "m0_logloss": 0.5665659385615275,
+      "m1_logloss": 0.5736266011306336,
+      "logloss_improvement_m0_minus_m1": -0.007060662569106091
     },
-    "m1_class_calibration": {},
+    "m1_class_calibration": {
+      "H": {
+        "mean_probability": 0.5634782179744391,
+        "observed_rate": 1.0,
+        "abs_error": 0.4365217820255609,
+        "outcomes": 1
+      },
+      "D": {
+        "mean_probability": 0.24566670293280315,
+        "observed_rate": 0.0,
+        "abs_error": 0.24566670293280315,
+        "outcomes": 0
+      },
+      "A": {
+        "mean_probability": 0.19085507909275773,
+        "observed_rate": 0.0,
+        "abs_error": 0.19085507909275773,
+        "outcomes": 0
+      }
+    },
     "checks": {
       "minimum_forward_rows": false,
       "minimum_forward_outcomes_per_class": false,
       "brier_strict_improvement": false,
       "logloss_strict_improvement": false,
       "class_calibration": false,
-      "probability_sum": false,
+      "probability_sum": true,
       "forward_only_no_backfill": true
     },
     "purpose": "ALL_16_POOLED_DIAGNOSTIC_ONLY_NOT_AN_OFFICIAL_FORWARD_VERDICT"
   },
   "all_leagues_totals": {
     "prematch_frozen": 122,
-    "settled_rows": 0
+    "settled_rows": 1
   },
   "policy": {
     "snapshot": "FIRST_COMPLETE_VALID_BET365_PREMATCH_OBSERVATION",
