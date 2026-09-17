@@ -1,8 +1,8 @@
 # PBK Signal Lifecycle
 
-Обновлено UTC: 2026-09-17T16:09:25Z
+Обновлено UTC: 2026-09-17T17:07:12Z
 
-Cards: 32 | canonical 3 | WATCH 29 | events 379
+Cards: 34 | canonical 3 | WATCH 31 | events 382
 
 ## WATCH | Stage63 | Venezia — Fiorentina
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-11T18:45:00Z
@@ -191,8 +191,7 @@ Cards: 32 | canonical 3 | WATCH 29 | events 379
 
 ## CANONICAL | R1 | Frosinone — Como
 - Ставка/рынок: П2 | kickoff: 2026-09-20T13:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 158
-  - 2026-09-17T08:45:00Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 159
   - 2026-09-17T09:45:30Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-17T10:45:36Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-17T11:44:34Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -200,6 +199,7 @@ Cards: 32 | canonical 3 | WATCH 29 | events 379
   - 2026-09-17T13:46:04Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-17T14:45:04Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-17T15:45:15Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-17T16:45:00Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
 
 ## WATCH | Stage63 | Frosinone — Como
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-20T13:00:00Z
@@ -210,3 +210,13 @@ Cards: 32 | canonical 3 | WATCH 29 | events 379
 - Ставка/рынок: П1 | kickoff: 2026-09-20T13:00:00Z
 - Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
   - 2026-09-17T13:29:51Z — WATCH_CROSSING — Marathonbet | 1.8 | movement_pp=0.08753678
+
+## WATCH | Stage63 | FC Schalke 04 — SV Elversberg
+- Ставка/рынок: ОЗ — Да | kickoff: 2026-09-20T15:30:00Z
+- Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
+  - 2026-09-17T16:17:35Z — WATCH_CROSSING — Marathonbet | 1.44 | movement_pp=0.07364536
+
+## WATCH | Stage62 | FC Schalke 04 — SV Elversberg
+- Ставка/рынок: ТБ(2.5) | kickoff: 2026-09-20T15:30:00Z
+- Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
+  - 2026-09-17T16:24:13Z — WATCH_CROSSING — Marathonbet | 1.48 | movement_pp=0.06958989
