@@ -44,7 +44,7 @@
           "status": "PASS",
           "message": "real LIVE provider batch observed",
           "evidence": {
-            "observed_at_utc": "2026-09-17T17:01:58Z",
+            "observed_at_utc": "2026-09-17T18:02:39Z",
             "candidate_fixtures": 1,
             "provider_calls": 1,
             "updated_fixtures": 1,
@@ -58,7 +58,7 @@
           "message": "LIVE overlay carries score/status/freshness/red-card fields",
           "evidence": {
             "rows": 16,
-            "observed_rows": 1,
+            "observed_rows": 2,
             "missing_fields": []
           }
         },
@@ -67,10 +67,10 @@
           "status": "PASS",
           "message": "real LIVE observation propagated through Stage72 and Stage73",
           "evidence": {
-            "live_observed_at_utc": "2026-09-17T17:01:58Z",
-            "stage72_run_at_utc": "2026-09-17T17:32:43Z",
+            "live_observed_at_utc": "2026-09-17T18:02:39Z",
+            "stage72_run_at_utc": "2026-09-17T18:37:01Z",
             "stage72_status": "OK",
-            "stage73_run_at_utc": "2026-09-17T17:32:45Z",
+            "stage73_run_at_utc": "2026-09-17T18:37:03Z",
             "stage73_status": "OK",
             "stage73_passed": 16,
             "stage73_total": 16
@@ -159,6 +159,6 @@
   "next_actions": [
     "Production acceptance is complete; PBK v1 may proceed to final closure bookkeeping."
   ],
-  "evaluated_at_utc": "2026-09-17T17:32:45Z",
-  "state_fingerprint": "c34ac8b9e0fe2afe8a4e956846b84b686395945cdd9687e73358953eaaed1f66"
+  "evaluated_at_utc": "2026-09-17T18:37:03Z",
+  "state_fingerprint": "a43f12b9399cd5a8963b2c0bf95ad1642241407a7ac9c87700fafd5584c84554"
 }
