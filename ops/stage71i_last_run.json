@@ -1,11 +1,11 @@
 {
-  "run_at_utc": "2026-09-17T06:52:52Z",
+  "run_at_utc": "2026-09-17T10:49:45Z",
   "status": "OK",
   "mode": "RESEARCH_SETTLEMENT_ONLY",
-  "pending_market_rows": 34,
-  "pending_unique_fixtures": 2,
-  "fixture_api_calls": 2,
-  "new_settlement_rows": 18,
+  "pending_market_rows": 16,
+  "pending_unique_fixtures": 1,
+  "fixture_api_calls": 1,
+  "new_settlement_rows": 0,
   "total_settlement_rows": 2224,
   "settlement_rows_by_family": {
     "TEAM_TOTAL": 1257,
@@ -21,5 +21,5 @@
     }
   ],
   "signals_created": 0,
-  "api_calls": 2
+  "api_calls": 1
 }
