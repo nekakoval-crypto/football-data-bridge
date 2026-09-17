@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-17T13:04:22Z",
+  "generated_at_utc": "2026-09-17T14:03:02Z",
   "status": "OK",
   "active_signals": 1,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-17T12:49:21Z",
+        "captured_at_utc": "2026-09-17T13:46:04Z",
         "best_odds": "1.58",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.53",
@@ -143,12 +143,12 @@
     "definition": "same opening favorite remains favorite; no-vig probability +3pp by observed close",
     "canonical_forward_changed": false,
     "tracked_openers": 20,
-    "active_crossings": 4,
-    "total_crossings": 4,
+    "active_crossings": 5,
+    "total_crossings": 5,
     "observed_closes": 10,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-17T12:35:01Z",
+    "latest_run_utc": "2026-09-17T13:55:34Z",
     "warnings": [],
     "crossings": [
       {
@@ -198,6 +198,18 @@
         "bet365_cross_odds": "1.62",
         "user_cross_odds": "1.66",
         "note": "WATCH only; not a canonical bet"
+      },
+      {
+        "fixture_id": "1557412",
+        "home_team": "Leeds",
+        "away_team": "Crystal Palace",
+        "opening_favorite": "H",
+        "movement_pp": "0.08753678",
+        "crossed_at_utc": "2026-09-17T13:29:51Z",
+        "minutes_to_kickoff": "4290.1",
+        "bet365_cross_odds": "1.8",
+        "user_cross_odds": "1.8",
+        "note": "WATCH only; not a canonical bet"
       }
     ],
     "recent_close_qualified": [],
@@ -214,7 +226,7 @@
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-17T12:52:53Z",
+    "latest_run_utc": "2026-09-17T13:50:41Z",
     "warnings": [],
     "crossings": [
       {
@@ -378,16 +390,16 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-17T12:58:18Z",
+    "generated_at_utc": "2026-09-17T13:56:11Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
-      "crossings": 27,
-      "pending": 14,
+      "crossings": 28,
+      "pending": 15,
       "settled": 13,
       "void": 0,
       "review": 0,
-      "user_price_rows": 27,
+      "user_price_rows": 28,
       "user_execution_coverage_pct": 100.0,
       "user_settled_rows": 13,
       "wins": 6,
@@ -458,12 +470,12 @@
         "observed_max_drawdown_u": 0.0
       },
       "АПЛ favorite steam": {
-        "crossings": 4,
-        "pending": 4,
+        "crossings": 5,
+        "pending": 5,
         "settled": 0,
         "void": 0,
         "review": 0,
-        "user_price_rows": 4,
+        "user_price_rows": 5,
         "user_execution_coverage_pct": 100.0,
         "user_settled_rows": 0,
         "wins": 0,
