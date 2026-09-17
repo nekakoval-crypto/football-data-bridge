@@ -1,0 +1,107 @@
+﻿name: Stage 83 Team Style Operational Profiles
+
+on:
+  workflow_dispatch:
+
+  pull_request:
+    paths:
+      - ".github/workflows/stage83-team-style-operational-profiles.yml"
+      - "scripts/pbk_team_style_profiles.py"
+      - "scripts/stage83_team_style_operational_profiles.py"
+      - "scripts/stage83_team_style_profiles_readiness.py"
+      - "scripts/tests/test_pbk_team_style_profiles.py"
+      - "scripts/tests/test_stage83_team_style_operational_profiles.py"
+      - "scripts/tests/test_stage83_team_style_profiles_readiness.py"
+
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/stage83-team-style-operational-profiles.yml"
+      - "ops/team_style_operational_evidence.jsonl"
+      - "scripts/pbk_team_style_profiles.py"
+      - "scripts/stage83_team_style_operational_profiles.py"
+      - "scripts/stage83_team_style_profiles_readiness.py"
+      - "scripts/tests/test_pbk_team_style_profiles.py"
+      - "scripts/tests/test_stage83_team_style_operational_profiles.py"
+      - "scripts/tests/test_stage83_team_style_profiles_readiness.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stage83-team-style-operational-profiles-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile Stage83
+        run: |
+          python -m py_compile \
+            scripts/stage83_team_style_operational_profiles.py \
+            scripts/stage83_team_style_profiles_readiness.py
+
+      - name: Run Stage83 and Team Style Profile tests
+        run: |
+          python -m unittest \
+            scripts.tests.test_stage83_team_style_operational_profiles \
+            scripts.tests.test_stage83_team_style_profiles_readiness \
+            scripts.tests.test_pbk_team_style_profiles -v
+
+  operational:
+    needs: validate
+    if: >
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Materialize Stage83 profiles
+        run: |
+          python scripts/stage83_team_style_operational_profiles.py
+          python scripts/stage83_team_style_profiles_readiness.py
+
+      - name: Stage operational outputs
+        shell: bash
+        run: |
+          git add \
+            ops/stage83_team_style_profiles_last_run.json \
+            ops/stage83_team_style_profiles_readiness.json
+
+          if [ -f ops/team_style_operational_profiles.json ]; then
+            git add ops/team_style_operational_profiles.json
+          fi
+
+          if git diff --cached --quiet; then
+            echo "No Stage83 operational changes to publish."
+            exit 0
+          fi
+
+          git config user.name "stage83-bot"
+          git config user.email "stage83-bot@users.noreply.github.com"
+
+          git commit -m "Stage 83 team style operational profiles update"
+
+          python scripts/publish_operational_commit.py
