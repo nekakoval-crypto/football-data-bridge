@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 17.09.2026 06:01 (Europe/Berlin)
+Обновлено: 17.09.2026 07:00 (Europe/Berlin)
 Canonical: 1 | active WATCH crossings: 13 | RED: 0 | ORANGE: 13
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -676,7 +676,7 @@ Canonical: 1 | active WATCH crossings: 13 | RED: 0 | ORANGE: 13
   - ОЗ — нет данных
 
 - **Bologna — Torino** | Serie A | 19.09 13:00 UTC
-  - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
+  - ОЗ · ОЗ Да: 1.91 | ОЗ Нет: 1.91 @ Bet365
   - ОЗ · ОЗ Да: 1.83 | ОЗ Нет: 1.87 @ Marathonbet
   - Ф(0) · Ф1(0): 1.38 | Ф2(0): 3 @ Bet365
   - Ф(0) · Ф1(0): 1.42 | Ф2(0): 2.88 @ Marathonbet
@@ -2892,7 +2892,7 @@ Canonical: 1 | active WATCH crossings: 13 | RED: 0 | ORANGE: 13
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **HEALTHY** | critical 0 | warnings 0
+- System Health: **WARN** | critical 0 | warnings 1
 - Логическая canonical экспозиция: **1.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 24 | data required 3
