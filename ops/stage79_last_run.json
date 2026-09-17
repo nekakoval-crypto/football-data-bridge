@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-17T00:31:21Z",
+  "run_at_utc": "2026-09-17T02:25:30Z",
   "status": "OK",
   "provider_endpoint": "/players/squads",
   "provider_calls": 8,
-  "daily_api_calls": 8,
+  "daily_api_calls": 20,
   "protected_calls": {
     "live": 14,
     "current_round": 96,
@@ -16,48 +16,48 @@
   "candidate_teams": 8,
   "captured_teams": [
     {
-      "team_id": "175",
-      "team_name": "Hamburger SV",
+      "team_id": "114",
+      "team_name": "Paris FC",
       "players": 27
     },
     {
-      "team_id": "192",
-      "team_name": "1. FC Köln",
-      "players": 29
+      "team_id": "95",
+      "team_name": "Strasbourg",
+      "players": 35
     },
     {
-      "team_id": "34",
-      "team_name": "Newcastle",
-      "players": 29
+      "team_id": "497",
+      "team_name": "AS Roma",
+      "players": 28
     },
     {
-      "team_id": "42",
-      "team_name": "Arsenal",
+      "team_id": "505",
+      "team_name": "Inter",
       "players": 30
     },
     {
-      "team_id": "45",
-      "team_name": "Everton",
-      "players": 26
+      "team_id": "1346",
+      "team_name": "Coventry",
+      "players": 29
     },
     {
-      "team_id": "51",
-      "team_name": "Brighton",
-      "players": 32
-    },
-    {
-      "team_id": "57",
-      "team_name": "Ipswich",
+      "team_id": "165",
+      "team_name": "Borussia Dortmund",
       "players": 30
     },
     {
-      "team_id": "64",
-      "team_name": "Hull City",
-      "players": 36
+      "team_id": "172",
+      "team_name": "VfB Stuttgart",
+      "players": 34
+    },
+    {
+      "team_id": "65",
+      "team_name": "Nottingham Forest",
+      "players": 30
     }
   ],
   "deferred_teams": 0,
-  "total_roster_rows": 1247,
+  "total_roster_rows": 1490,
   "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
