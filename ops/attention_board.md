@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 17.09.2026 12:00 (Europe/Berlin)
+Обновлено: 17.09.2026 13:00 (Europe/Berlin)
 Canonical: 1 | active WATCH crossings: 14 | RED: 0 | ORANGE: 14
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -63,7 +63,7 @@ Canonical: 1 | active WATCH crossings: 14 | RED: 0 | ORANGE: 14
 
 - **Real Betis — Getafe** | La Liga | 17.09 17:00 UTC
   - ОЗ · ОЗ Да: 2.05 | ОЗ Нет: 1.7 @ Bet365
-  - ОЗ · ОЗ Да: 2.06 | ОЗ Нет: 1.68 @ Marathonbet
+  - ОЗ · ОЗ Да: 2.03 | ОЗ Нет: 1.7 @ Marathonbet
   - Ф(0) · Ф1(0): 1.25 | Ф2(0): 3.8 @ Bet365
   - Ф(0) · Ф1(0): 1.22 | Ф2(0): 3.92 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.17 | Х2: 2.15 | 12: 1.25 @ Bet365
@@ -94,7 +94,7 @@ Canonical: 1 | active WATCH crossings: 14 | RED: 0 | ORANGE: 14
 
 - **Malaga — Villarreal** | La Liga | 17.09 19:30 UTC
   - ОЗ · ОЗ Да: 1.53 | ОЗ Нет: 2.38 @ Bet365
-  - ОЗ · ОЗ Да: 1.54 | ОЗ Нет: 2.32 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.55 | ОЗ Нет: 2.29 @ Marathonbet
   - Ф(0) · Ф1(0): 2.68 | Ф2(0): 1.45 @ Bet365
   - Ф(0) · Ф1(0): 2.69 | Ф2(0): 1.48 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.8 | Х2: 1.28 | 12: 1.28 @ Bet365
@@ -460,7 +460,7 @@ Canonical: 1 | active WATCH crossings: 14 | RED: 0 | ORANGE: 14
   - Тотал 2.5 — нет данных
 
 - **Monza — Sassuolo** | Serie A | 18.09 18:45 UTC
-  - ОЗ · ОЗ Да: 1.67 | ОЗ Нет: 2.1 @ Bet365
+  - ОЗ · ОЗ Да: 1.62 | ОЗ Нет: 2.2 @ Bet365
   - ОЗ · ОЗ Да: 1.62 | ОЗ Нет: 2.16 @ Marathonbet
   - Ф(0) · Ф1(0): 2.2 | Ф2(0): 1.65 @ Bet365
   - Ф(0) · Ф1(0): 2.19 | Ф2(0): 1.68 @ Marathonbet
@@ -615,7 +615,7 @@ Canonical: 1 | active WATCH crossings: 14 | RED: 0 | ORANGE: 14
 
 - **Osasuna — Rayo Vallecano** | La Liga | 19.09 12:00 UTC
   - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
-  - ОЗ · ОЗ Да: 1.78 | ОЗ Нет: 1.93 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.77 | ОЗ Нет: 1.94 @ Marathonbet
   - Ф(0) · Ф1(0): 1.62 | Ф2(0): 2.25 @ Bet365
   - Ф(0) · Ф1(0): 1.66 | Ф2(0): 2.25 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.33 | Х2: 1.62 | 12: 1.33 @ Bet365
@@ -1259,7 +1259,7 @@ Canonical: 1 | active WATCH crossings: 14 | RED: 0 | ORANGE: 14
 
 - **Athletic Club — Alaves** | La Liga | 19.09 14:15 UTC
   - ОЗ · ОЗ Да: 1.95 | ОЗ Нет: 1.8 @ Bet365
-  - ОЗ · ОЗ Да: 1.93 | ОЗ Нет: 1.78 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.86 | ОЗ Нет: 1.84 @ Marathonbet
   - Ф(0) · Ф1(0): 1.24 | Ф2(0): 3.9 @ Bet365
   - Ф(0) · Ф1(0): 1.22 | Ф2(0): 3.82 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.14 | Х2: 2.25 | 12: 1.25 @ Bet365
@@ -2269,7 +2269,7 @@ Canonical: 1 | active WATCH crossings: 14 | RED: 0 | ORANGE: 14
 
 - **Sevilla — Barcelona** | La Liga | 19.09 19:00 UTC
   - ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.05 @ Bet365
-  - ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.03 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.69 | ОЗ Нет: 2.04 @ Marathonbet
   - Ф(0) · Ф1(0): 6.25 | Ф2(0): 1.12 @ Bet365
   - Ф(0) · Ф1(0): 7.7 | Ф2(0): 1.04 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 5 | Х2: 1.03 | 12: 1.1 @ Bet365
@@ -2902,7 +2902,7 @@ Canonical: 1 | active WATCH crossings: 14 | RED: 0 | ORANGE: 14
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **HEALTHY** | critical 0 | warnings 0
+- System Health: **WARN** | critical 0 | warnings 2
 - Логическая canonical экспозиция: **1.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 24 | data required 3
