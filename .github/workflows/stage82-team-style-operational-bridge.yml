@@ -1,0 +1,111 @@
+﻿name: Stage 82 Team Style Operational Bridge
+
+on:
+  workflow_dispatch:
+
+  pull_request:
+    paths:
+      - "scripts/stage82_team_style_operational_bridge.py"
+      - "scripts/stage82_team_style_bridge_readiness.py"
+      - "scripts/tests/test_stage82_team_style_operational_bridge.py"
+      - "scripts/tests/test_stage82_team_style_bridge_readiness.py"
+      - "scripts/pbk_team_style_evidence.py"
+      - ".github/workflows/stage82-team-style-operational-bridge.yml"
+
+  push:
+    branches:
+      - main
+    paths:
+      - "ops/team_match_statistics.csv"
+      - "scripts/stage82_team_style_operational_bridge.py"
+      - "scripts/stage82_team_style_bridge_readiness.py"
+      - "scripts/pbk_team_style_evidence.py"
+      - ".github/workflows/stage82-team-style-operational-bridge.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile Stage82
+        run: |
+          python -m py_compile \
+            scripts/stage82_team_style_operational_bridge.py \
+            scripts/stage82_team_style_bridge_readiness.py \
+            scripts/tests/test_stage82_team_style_operational_bridge.py \
+            scripts/tests/test_stage82_team_style_bridge_readiness.py
+
+      - name: Stage82 tests
+        run: |
+          python -m unittest \
+            scripts.tests.test_stage82_team_style_operational_bridge \
+            scripts.tests.test_stage82_team_style_bridge_readiness \
+            -v
+
+      - name: Team Style compatibility tests
+        run: |
+          python -m unittest \
+            scripts.tests.test_pbk_team_style_evidence \
+            scripts.tests.test_pbk_team_style_profiles \
+            -v
+
+  operational:
+    needs: validate
+    if: >
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build operational Team Style evidence
+        run: |
+          python scripts/stage82_team_style_operational_bridge.py
+          python scripts/stage82_team_style_bridge_readiness.py
+
+      - name: Publish Stage82 operational files safely
+        shell: bash
+        run: |
+          if [ ! -f ops/team_match_statistics.csv ]; then
+            echo "Stage81 team statistics ledger does not exist yet; nothing to publish."
+            exit 0
+          fi
+
+          git config user.name "stage82-bot"
+          git config user.email "stage82-bot@users.noreply.github.com"
+
+          git add ops/stage82_team_style_bridge_last_run.json
+          git add ops/stage82_team_style_bridge_readiness.json
+
+          if [ -f ops/team_style_operational_evidence.jsonl ]; then
+            git add ops/team_style_operational_evidence.jsonl
+          fi
+
+          if git diff --cached --quiet; then
+            echo "No Stage82 operational changes."
+            exit 0
+          fi
+
+          git commit -m "Stage 82 team style operational evidence update"
+          python scripts/publish_operational_commit.py
