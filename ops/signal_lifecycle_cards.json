@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-17T21:08:31Z",
+  "generated_at_utc": "2026-09-17T22:08:21Z",
   "status": "OK",
   "cards": [
     {
@@ -4201,7 +4201,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 163,
+      "event_count": 164,
       "timeline": [
         {
           "entity_id": "R1|I1|1550131",
@@ -6973,6 +6973,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550131",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550131",
+          "league": "Serie A",
+          "home_team": "Frosinone",
+          "away_team": "Como",
+          "kickoff_utc": "2026-09-20T13:00:00Z",
+          "event_time_utc": "2026-09-17T21:41:55Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     },
@@ -7146,7 +7163,7 @@
     "cards": 35,
     "canonical_cards": 3,
     "watch_cards": 32,
-    "events": 387
+    "events": 388
   },
   "policy": {
     "read_only": true,
