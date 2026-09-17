@@ -239,6 +239,32 @@ class Stage83OperationalProfilesTests(unittest.TestCase):
         self.assertEqual(exclusions["missing_or_naive_kickoff"], 1)
         self.assertEqual(exclusions["unknown_venue"], 1)
 
+    def test_preserves_single_league_and_season_provenance(self):
+        rows = [
+            evidence(
+                fixture_id=501,
+                team_id=77,
+                team_name="Provenance FC",
+                venue="HOME",
+                kickoff="2026-08-20T15:00:00+00:00",
+                observed="2026-08-20T18:00:00+00:00",
+                shots_for=12,
+            )
+        ]
 
+        rows[0]["league_id"] = "140"
+        rows[0]["league_name"] = "La Liga"
+        rows[0]["season"] = "2026"
+
+        result = build_operational_profiles(
+            rows,
+            "2026-09-01T00:00:00+00:00",
+        )
+
+        team = result["teams"]["77"]
+
+        self.assertEqual(team["league_id"], "140")
+        self.assertEqual(team["league_name"], "La Liga")
+        self.assertEqual(team["season"], "2026")
 if __name__ == "__main__":
     unittest.main()

@@ -160,7 +160,41 @@ def build_operational_profiles(
 
     for team_id in sorted(grouped, key=lambda value: (not value.isdigit(), value)):
         team_rows = grouped[team_id]
+        league_ids = {
+            str(row.get("league_id") or "").strip()
+            for row in team_rows
+            if str(row.get("league_id") or "").strip()
+        }
 
+        league_names = {
+            str(row.get("league_name") or "").strip()
+            for row in team_rows
+            if str(row.get("league_name") or "").strip()
+        }
+
+        seasons = {
+            str(row.get("season") or "").strip()
+            for row in team_rows
+            if str(row.get("season") or "").strip()
+        }
+
+        league_id = (
+            next(iter(league_ids))
+            if len(league_ids) == 1
+            else None
+        )
+
+        league_name = (
+            next(iter(league_names))
+            if len(league_names) == 1
+            else None
+        )
+
+        season = (
+            next(iter(seasons))
+            if len(seasons) == 1
+            else None
+        )
         names = [
             _team_name(row)
             for row in team_rows
@@ -182,6 +216,9 @@ def build_operational_profiles(
         teams[team_id] = {
             "team_id": team_id,
             "team_name": team_name,
+            "league_id": league_id,
+            "league_name": league_name,
+            "season": season,
             "profile": profile,
         }
 
