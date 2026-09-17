@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-17T15:03:22Z",
+  "generated_at_utc": "2026-09-17T17:02:22Z",
   "status": "OK",
   "active_signals": 1,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-17T14:45:04Z",
+        "captured_at_utc": "2026-09-17T16:45:00Z",
         "best_odds": "1.58",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.53",
@@ -148,7 +148,7 @@
     "observed_closes": 10,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-17T14:55:54Z",
+    "latest_run_utc": "2026-09-17T16:54:57Z",
     "warnings": [],
     "crossings": [
       {
@@ -221,12 +221,12 @@
     "definition": "Bet365 no-vig P(Over 2.5) rises by >=3pp from frozen opener to observed close",
     "canonical_forward_changed": false,
     "tracked_openers": 18,
-    "active_crossings": 3,
-    "total_crossings": 5,
+    "active_crossings": 4,
+    "total_crossings": 6,
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-17T14:50:43Z",
+    "latest_run_utc": "2026-09-17T16:24:13Z",
     "warnings": [],
     "crossings": [
       {
@@ -261,6 +261,17 @@
         "bet365_over25": "1.12",
         "user_over25": "1.07",
         "note": "WATCH only; not a canonical bet"
+      },
+      {
+        "fixture_id": "1575173",
+        "home_team": "FC Schalke 04",
+        "away_team": "SV Elversberg",
+        "movement_pp": "0.06958989",
+        "crossed_at_utc": "2026-09-17T16:24:13Z",
+        "minutes_to_kickoff": "4265.8",
+        "bet365_over25": "1.44",
+        "user_over25": "1.48",
+        "note": "WATCH only; not a canonical bet"
       }
     ],
     "recent_close_qualified": [
@@ -293,14 +304,14 @@
     "historical_edge_reason": "Canonical 10-year dataset has no historical BTTS first/close odds",
     "canonical_forward_changed": false,
     "tracked_openers": 105,
-    "active_crossings_total": 8,
-    "active_yes_crossings": 5,
+    "active_crossings_total": 9,
+    "active_yes_crossings": 6,
     "active_no_crossings": 3,
-    "total_crossings": 19,
+    "total_crossings": 20,
     "observed_closes": 55,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-17T14:17:24Z",
+    "latest_run_utc": "2026-09-17T16:17:35Z",
     "warnings": [],
     "crossings": [
       {
@@ -398,20 +409,32 @@
         "minutes_to_kickoff": "4242.6",
         "user_selected_odds": "1.57",
         "note": "research watch only; not a bet signal"
+      },
+      {
+        "fixture_id": "1575173",
+        "league": "Bundesliga",
+        "home_team": "FC Schalke 04",
+        "away_team": "SV Elversberg",
+        "selection": "ОЗ — Да",
+        "movement_yes_pp": "0.07364536",
+        "crossed_at_utc": "2026-09-17T16:17:35Z",
+        "minutes_to_kickoff": "4272.4",
+        "user_selected_odds": "1.44",
+        "note": "research watch only; not a bet signal"
       }
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-17T14:56:31Z",
+    "generated_at_utc": "2026-09-17T16:55:38Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
-      "crossings": 29,
-      "pending": 16,
+      "crossings": 31,
+      "pending": 18,
       "settled": 13,
       "void": 0,
       "review": 0,
-      "user_price_rows": 29,
+      "user_price_rows": 31,
       "user_execution_coverage_pct": 100.0,
       "user_settled_rows": 13,
       "wins": 6,
@@ -432,12 +455,12 @@
     },
     "by_family": {
       "Big-5 ОЗ market movement — ОЗ — Да": {
-        "crossings": 15,
-        "pending": 5,
+        "crossings": 16,
+        "pending": 6,
         "settled": 10,
         "void": 0,
         "review": 0,
-        "user_price_rows": 15,
+        "user_price_rows": 16,
         "user_execution_coverage_pct": 100.0,
         "user_settled_rows": 10,
         "wins": 3,
@@ -507,12 +530,12 @@
         "observed_max_drawdown_u": null
       },
       "Бундеслига ТБ(2.5) steam": {
-        "crossings": 5,
-        "pending": 3,
+        "crossings": 6,
+        "pending": 4,
         "settled": 2,
         "void": 0,
         "review": 0,
-        "user_price_rows": 5,
+        "user_price_rows": 6,
         "user_execution_coverage_pct": 100.0,
         "user_settled_rows": 2,
         "wins": 2,
