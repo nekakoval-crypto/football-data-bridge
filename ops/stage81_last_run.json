@@ -1,17 +1,17 @@
 {
   "version": "PBK_STAGE81_TEAM_MATCH_STATISTICS_V1",
-  "run_at_utc": "2026-09-17T12:32:11Z",
+  "run_at_utc": "2026-09-17T18:30:15Z",
   "status": "ATTENTION",
   "provider_endpoint": "/fixtures/statistics",
   "provider_calls": 0,
-  "daily_api_calls": 92,
+  "daily_api_calls": 127,
   "protected_calls": {
-    "live": 14,
-    "current_round": 64,
+    "live": 10,
+    "current_round": 32,
     "standings": 16,
     "player_stats_stage77": 4,
     "safety": 8,
-    "total": 106,
+    "total": 70,
     "live_forecast_status": "OPEN"
   },
   "candidate_fixtures": 2,
