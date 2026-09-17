@@ -1,12 +1,12 @@
 # PBK Exposure & Conflict Map
 
-Обновлено UTC: 2026-09-17T14:10:25Z
+Обновлено UTC: 2026-09-17T15:09:53Z
 Активные rule-строки: 1 | логических экспозиций: 1
 Raw stake: 1.000u | логическая экспозиция: 1.000u | убрано дублей: 0.000u
-Canonical conflicts: 0 | WATCH overlaps: 0
+Canonical conflicts: 0 | WATCH overlaps: 1
 
 ## Активные логические экспозиции
-- **Frosinone — Como** | R1 | П2 | 1.000u | 1.65 @ Marathonbet
+- **Frosinone — Como** | R1 | П2 | 1.000u | 1.65 @ Marathonbet | WATCH overlap x1
 
 ## Конфликты
 - Нет разных canonical экспозиций на один и тот же матч.
