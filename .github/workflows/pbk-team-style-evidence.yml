@@ -1,0 +1,48 @@
+name: PBK Team Style Evidence
+
+on:
+  pull_request:
+    paths:
+      - "config/pbk_team_style_profile.json"
+      - "config/pbk_team_style_evidence.json"
+      - "scripts/pbk_team_style_evidence.py"
+      - "scripts/tests/test_pbk_team_style_evidence.py"
+      - ".github/workflows/pbk-team-style-evidence.yml"
+  push:
+    branches: [main]
+    paths:
+      - "config/pbk_team_style_profile.json"
+      - "config/pbk_team_style_evidence.json"
+      - "scripts/pbk_team_style_evidence.py"
+      - "scripts/tests/test_pbk_team_style_evidence.py"
+      - ".github/workflows/pbk-team-style-evidence.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile evidence pipeline
+        run: python -m py_compile scripts/pbk_team_style_evidence.py
+      - name: Validate evidence guardrails
+        run: python -m unittest scripts.tests.test_pbk_team_style_evidence -v
+      - name: Confirm provider-free no-op without archive mount
+        run: |
+          tmp="$(mktemp -d)"
+          python scripts/pbk_team_style_evidence.py --out "$tmp/evidence.jsonl" --meta "$tmp/meta.json"
+          python - <<'PY' "$tmp/meta.json"
+          import json, sys
+          data = json.load(open(sys.argv[1], encoding="utf-8"))
+          assert data["provider_calls_added"] == 0
+          assert data["extraction"]["status"] == "ARCHIVE_DIR_NOT_CONFIGURED"
+          assert data["signals_created"] == 0
+          assert data["probability_mutation"] is False
+          assert data["stake_changes"] is False
+          PY
