@@ -1,7 +1,7 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 17.09.2026 22:00 (Europe/Berlin)
-Canonical: 1 | active WATCH crossings: 18 | RED: 0 | ORANGE: 18
+Обновлено: 17.09.2026 23:00 (Europe/Berlin)
+Canonical: 1 | active WATCH crossings: 19 | RED: 0 | ORANGE: 19
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
 
@@ -27,6 +27,7 @@ Canonical: 1 | active WATCH crossings: 18 | RED: 0 | ORANGE: 18
 - **Frosinone — Como** | Stage63 | ОЗ — Да | 20.09 15:00 | prospective движение ОЗ ≥3 п.п. | 1.57 @ Marathonbet
 - **FC Schalke 04 — SV Elversberg** | Stage62 | ТБ(2.5) | 20.09 17:30 | первый +3 п.п. steam ТБ(2.5) | 1.48 @ Marathonbet
 - **FC Schalke 04 — SV Elversberg** | Stage63 | ОЗ — Да | 20.09 17:30 | prospective движение ОЗ ≥3 п.п. | 1.44 @ Marathonbet
+- **Marseille — Paris Saint Germain** | Stage63 | ОЗ — Нет | 20.09 20:45 | prospective движение ОЗ ≥3 п.п. | 2.39 @ Marathonbet
 
 ## 🔵 Активные R1/R2/R3
 - **R1 | Frosinone — Como** | П2 | 20.09 15:00 | 1.65 @ Marathonbet | гости после еврокубка/кубка
@@ -50,6 +51,7 @@ Canonical: 1 | active WATCH crossings: 18 | RED: 0 | ORANGE: 18
 - **Stage63 | Frosinone — Como** | ОЗ — Да | 20.09 15:00 | 1.57 @ Marathonbet
 - **Stage62 | FC Schalke 04 — SV Elversberg** | ТБ(2.5) | 20.09 17:30 | 1.48 @ Marathonbet
 - **Stage63 | FC Schalke 04 — SV Elversberg** | ОЗ — Да | 20.09 17:30 | 1.44 @ Marathonbet
+- **Stage63 | Marseille — Paris Saint Germain** | ОЗ — Нет | 20.09 20:45 | 2.39 @ Marathonbet
 
 ## ⚪ Ближайшие матчи под наблюдением (без сигнала)
 - **Stage62 | Bayern München — Union Berlin** | Бундеслига | 18.09 20:30 | ТБ(2.5) steam | Bet365 ТБ 1.17 / ТМ 5.0
@@ -372,7 +374,7 @@ Canonical: 1 | active WATCH crossings: 18 | RED: 0 | ORANGE: 18
 
 - **Monaco — Lens** | Ligue 1 | 18.09 18:45 UTC
   - ОЗ · ОЗ Да: 1.5 | ОЗ Нет: 2.5 @ Bet365
-  - ОЗ · ОЗ Да: 1.47 | ОЗ Нет: 2.49 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.46 | ОЗ Нет: 2.52 @ Marathonbet
   - Ф(0) · Ф1(0): 1.5 | Ф2(0): 2.5 @ Bet365
   - Ф(0) · Ф1(0): 1.55 | Ф2(0): 2.49 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.28 | Х2: 1.8 | 12: 1.25 @ Bet365
@@ -3997,8 +3999,8 @@ Canonical: 1 | active WATCH crossings: 18 | RED: 0 | ORANGE: 18
   - Ф(0) — нет данных
 
 - **Marseille — Paris Saint Germain** | Ligue 1 | 20.09 18:45 UTC
-  - ОЗ · ОЗ Да: 1.44 | ОЗ Нет: 2.62 @ Bet365
-  - ОЗ · ОЗ Да: 1.43 | ОЗ Нет: 2.62 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.53 | ОЗ Нет: 2.38 @ Bet365
+  - ОЗ · ОЗ Да: 1.51 | ОЗ Нет: 2.39 @ Marathonbet
   - 1X2 — нет данных
   - Тотал 2.5 — нет данных
   - ИТБ/ИТМ — нет данных
@@ -4007,8 +4009,8 @@ Canonical: 1 | active WATCH crossings: 18 | RED: 0 | ORANGE: 18
   - Ф(0) — нет данных
 
 - **AC Milan — Lecce** | Serie A | 20.09 18:45 UTC
-  - ОЗ · ОЗ Да: 2.1 | ОЗ Нет: 1.67 @ Bet365
-  - ОЗ · ОЗ Да: 2.12 | ОЗ Нет: 1.64 @ Marathonbet
+  - ОЗ · ОЗ Да: 2.2 | ОЗ Нет: 1.62 @ Bet365
+  - ОЗ · ОЗ Да: 2.16 | ОЗ Нет: 1.62 @ Marathonbet
   - 1X2 — нет данных
   - Тотал 2.5 — нет данных
   - ИТБ/ИТМ — нет данных
