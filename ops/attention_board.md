@@ -1,7 +1,7 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 17.09.2026 11:00 (Europe/Berlin)
-Canonical: 1 | active WATCH crossings: 13 | RED: 0 | ORANGE: 13
+Обновлено: 17.09.2026 12:00 (Europe/Berlin)
+Canonical: 1 | active WATCH crossings: 14 | RED: 0 | ORANGE: 14
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
 
@@ -9,6 +9,7 @@ Canonical: 1 | active WATCH crossings: 13 | RED: 0 | ORANGE: 13
 - Сейчас срочных матчей нет.
 
 ## 🟠 Ближайшие 24 часа / активные WATCH
+- **Bayern München — Union Berlin** | Stage62 | ТБ(2.5) | 18.09 20:30 | первый +3 п.п. steam ТБ(2.5) | 1.07 @ Marathonbet
 - **Bayern München — Union Berlin** | Stage63 | ОЗ — Нет | 18.09 20:30 | prospective движение ОЗ ≥3 п.п. | 1.89 @ Marathonbet
 - **Brentford — Chelsea** | Stage61 | П2 | 18.09 21:00 | первый +3 п.п. steam фаворита | 2.27 @ Marathonbet
 - **Brentford — Chelsea** | Stage63 | ОЗ — Да | 18.09 21:00 | prospective движение ОЗ ≥3 п.п. | 1.41 @ Marathonbet
@@ -27,6 +28,7 @@ Canonical: 1 | active WATCH crossings: 13 | RED: 0 | ORANGE: 13
 - **R1 | Frosinone — Como** | П2 | 20.09 15:00 | 1.65 @ Marathonbet | гости после еврокубка/кубка
 
 ## 🟡 Research WATCH crossings
+- **Stage62 | Bayern München — Union Berlin** | ТБ(2.5) | 18.09 20:30 | 1.07 @ Marathonbet
 - **Stage63 | Bayern München — Union Berlin** | ОЗ — Нет | 18.09 20:30 | 1.89 @ Marathonbet
 - **Stage61 | Brentford — Chelsea** | П2 | 18.09 21:00 | 2.27 @ Marathonbet
 - **Stage63 | Brentford — Chelsea** | ОЗ — Да | 18.09 21:00 | 1.41 @ Marathonbet
@@ -355,8 +357,8 @@ Canonical: 1 | active WATCH crossings: 13 | RED: 0 | ORANGE: 13
   - ИТБ/ИТМ 1 (6.5) · ИТБ: 8 | ИТМ: 1.08 @ Bet365
   - ИТБ/ИТМ 1 (7.5) · ИТБ: 15 | ИТМ: 1.03 @ Bet365
   - ИТБ/ИТМ 1 (8.5) · ИТБ: 26 | ИТМ: 1.01 @ Bet365
-  - Тотал 2.5 · ТБ(2.5): 1.14 | ТМ(2.5): 5.5 @ Bet365
-  - Тотал 2.5 · ТБ(2.5): 1.08 | ТМ(2.5): 5.65 @ Marathonbet
+  - Тотал 2.5 · ТБ(2.5): 1.12 | ТМ(2.5): 6 @ Bet365
+  - Тотал 2.5 · ТБ(2.5): 1.07 | ТМ(2.5): 5.8 @ Marathonbet
   - Ф(0) — нет данных
 
 - **Wisla Krakow — Slask Wroclaw** | Ekstraklasa | 18.09 18:30 UTC
