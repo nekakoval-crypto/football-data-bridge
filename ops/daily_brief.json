@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-17T22:02:50Z",
+  "generated_at_utc": "2026-09-17T23:02:09Z",
   "status": "OK",
   "active_signals": 1,
   "policy": {
@@ -30,11 +30,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-17T21:41:55Z",
+        "captured_at_utc": "2026-09-17T22:41:23Z",
         "best_odds": "1.58",
         "best_bookmaker": "1xBet",
-        "bet365_odds": "1.53",
-        "api_odds_update_utc": "2026-09-17T03:48:19+00:00",
+        "bet365_odds": "1.5",
+        "api_odds_update_utc": "2026-09-17T20:47:15+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -148,7 +148,7 @@
     "observed_closes": 10,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-17T21:53:00Z",
+    "latest_run_utc": "2026-09-17T22:26:09Z",
     "warnings": [],
     "crossings": [
       {
@@ -226,7 +226,7 @@
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-17T21:46:57Z",
+    "latest_run_utc": "2026-09-17T22:46:55Z",
     "warnings": [],
     "crossings": [
       {
@@ -304,14 +304,14 @@
     "historical_edge_reason": "Canonical 10-year dataset has no historical BTTS first/close odds",
     "canonical_forward_changed": false,
     "tracked_openers": 105,
-    "active_crossings_total": 10,
-    "active_yes_crossings": 6,
+    "active_crossings_total": 11,
+    "active_yes_crossings": 7,
     "active_no_crossings": 4,
-    "total_crossings": 21,
+    "total_crossings": 22,
     "observed_closes": 57,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-17T20:16:57Z",
+    "latest_run_utc": "2026-09-17T22:15:24Z",
     "warnings": [],
     "crossings": [
       {
@@ -433,20 +433,32 @@
         "minutes_to_kickoff": "4228.1",
         "user_selected_odds": "2.39",
         "note": "research watch only; not a bet signal"
+      },
+      {
+        "fixture_id": "1575172",
+        "league": "Bundesliga",
+        "home_team": "Werder Bremen",
+        "away_team": "FC Augsburg",
+        "selection": "ОЗ — Да",
+        "movement_yes_pp": "0.04275319",
+        "crossed_at_utc": "2026-09-17T22:15:24Z",
+        "minutes_to_kickoff": "2354.6",
+        "user_selected_odds": "1.36",
+        "note": "research watch only; not a bet signal"
       }
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-17T21:53:05Z",
+    "generated_at_utc": "2026-09-17T22:52:58Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
-      "crossings": 32,
-      "pending": 19,
+      "crossings": 33,
+      "pending": 20,
       "settled": 13,
       "void": 0,
       "review": 0,
-      "user_price_rows": 32,
+      "user_price_rows": 33,
       "user_execution_coverage_pct": 100.0,
       "user_settled_rows": 13,
       "wins": 6,
@@ -467,12 +479,12 @@
     },
     "by_family": {
       "Big-5 ОЗ market movement — ОЗ — Да": {
-        "crossings": 16,
-        "pending": 6,
+        "crossings": 17,
+        "pending": 7,
         "settled": 10,
         "void": 0,
         "review": 0,
-        "user_price_rows": 16,
+        "user_price_rows": 17,
         "user_execution_coverage_pct": 100.0,
         "user_settled_rows": 10,
         "wins": 3,
