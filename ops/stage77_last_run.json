@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE77_PLAYER_STATS_CAPTURE_V3_FAIR_BACKLOG",
-  "run_at_utc": "2026-09-17T00:57:44Z",
+  "run_at_utc": "2026-09-17T04:55:20Z",
   "status": "ATTENTION",
   "provider_endpoint": "/fixtures/players",
   "provider_calls": 4,
-  "daily_api_calls": 12,
+  "daily_api_calls": 32,
   "protected_calls": {
     "live": 14,
     "current_round": 96,
@@ -32,10 +32,10 @@
   "total_stats_rows": 0,
   "total_grade_rows": 0,
   "warnings": [
-    "1515890: provider returned no usable player rows",
-    "1515892: provider returned no usable player rows",
-    "1515891: provider returned no usable player rows",
-    "1515893: provider returned no usable player rows"
+    "1515894: provider returned no usable player rows",
+    "1515895: provider returned no usable player rows",
+    "1515896: provider returned no usable player rows",
+    "1547600: provider returned no usable player rows"
   ],
   "research_only": true,
   "no_lookahead_consumption": true,
