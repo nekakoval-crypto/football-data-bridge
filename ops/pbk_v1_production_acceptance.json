@@ -76,7 +76,8 @@
             "stage73_total": 16
           }
         }
-      ]
+      ],
+      "latched": true
     },
     "5_standings_motivation": {
       "status": "PASS",
@@ -131,7 +132,7 @@
         "evidence": {
           "health_status": "WARN",
           "critical_issues": 0,
-          "warnings": 2
+          "warnings": 1
         }
       },
       {
@@ -159,6 +160,6 @@
   "next_actions": [
     "Production acceptance is complete; PBK v1 may proceed to final closure bookkeeping."
   ],
-  "evaluated_at_utc": "2026-09-16T23:33:00Z",
-  "state_fingerprint": "588d13bec2560c7d178f38eca70cccfb0d2cef555e6bb5c85e70ef769e140be1"
+  "evaluated_at_utc": "2026-09-17T00:39:42Z",
+  "state_fingerprint": "f0d4442076a9bf393701944534976599275d65f8d972821fac7e2ab6161cc64e"
 }
