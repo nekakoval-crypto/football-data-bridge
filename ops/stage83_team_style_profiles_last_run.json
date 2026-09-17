@@ -1,0 +1,20 @@
+{
+  "version": "PBK_STAGE83_TEAM_STYLE_OPERATIONAL_PROFILES_V1",
+  "status": "WAITING_FOR_STAGE82_EVIDENCE",
+  "source_evidence_rows": 0,
+  "teams_seen": 0,
+  "teams_with_eligible_evidence": 0,
+  "profiles_written": 0,
+  "output_path": "ops/team_style_operational_profiles.json",
+  "provider_calls_added": 0,
+  "missing_evidence_policy": "UNKNOWN_NOT_ZERO",
+  "research_only": true,
+  "creates_signal": false,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "stake_changes": false,
+  "forward_journal_mutation": false,
+  "r1_r2_r3_mutation": false,
+  "ui_changes": false,
+  "api_changes": false
+}
