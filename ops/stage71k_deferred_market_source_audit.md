@@ -32,22 +32,22 @@ Fixture sample: **160** | API calls: **0**
 ## Угловые
 - Catalog markets: 35 | observed: 23
 - Source status: **API_FOOTBALL_PROSPECTIVE_SOURCE_POSSIBLE**
-- Max coverage: Bet365 74.4% | Marathonbet 32.5%
-  - bet 45 `Corners Over Under` — Bet365 74.4% | Marathonbet 32.5%
-  - bet 56 `Corners Asian Handicap` — Bet365 74.4% | Marathonbet 32.5%
-  - bet 57 `Home Corners Over/Under` — Bet365 74.4% | Marathonbet 32.5%
-  - bet 58 `Away Corners Over/Under` — Bet365 74.4% | Marathonbet 32.5%
-  - bet 77 `Total Corners (1st Half)` — Bet365 74.4% | Marathonbet 32.5%
+- Max coverage: Bet365 74.4% | Marathonbet 31.9%
+  - bet 45 `Corners Over Under` — Bet365 74.4% | Marathonbet 31.9%
+  - bet 56 `Corners Asian Handicap` — Bet365 74.4% | Marathonbet 31.9%
+  - bet 57 `Home Corners Over/Under` — Bet365 74.4% | Marathonbet 31.9%
+  - bet 58 `Away Corners Over/Under` — Bet365 74.4% | Marathonbet 31.9%
+  - bet 77 `Total Corners (1st Half)` — Bet365 74.4% | Marathonbet 31.9%
 
 ## Карточки / предупреждения
-- Catalog markets: 21 | observed: 13
-- Source status: **LOW_OBSERVED_COVERAGE_REVIEW**
-- Max coverage: Bet365 18.8% | Marathonbet 0.0%
-  - bet 80 `Cards Over/Under` — Bet365 18.8% | Marathonbet 0.0%
-  - bet 81 `Cards Asian Handicap` — Bet365 18.8% | Marathonbet 0.0%
-  - bet 299 `Cards over/under between 0 and 10 m` — Bet365 18.8% | Marathonbet 0.0%
-  - bet 82 `Home Team Total Cards` — Bet365 18.1% | Marathonbet 0.0%
-  - bet 83 `Away Team Total Cards` — Bet365 18.1% | Marathonbet 0.0%
+- Catalog markets: 21 | observed: 14
+- Source status: **BET365_REFERENCE_PRESENT_USER_BOOK_SOURCE_WEAK**
+- Max coverage: Bet365 20.0% | Marathonbet 0.0%
+  - bet 80 `Cards Over/Under` — Bet365 20.0% | Marathonbet 0.0%
+  - bet 299 `Cards over/under between 0 and 10 m` — Bet365 20.0% | Marathonbet 0.0%
+  - bet 81 `Cards Asian Handicap` — Bet365 19.4% | Marathonbet 0.0%
+  - bet 82 `Home Team Total Cards` — Bet365 18.8% | Marathonbet 0.0%
+  - bet 83 `Away Team Total Cards` — Bet365 18.8% | Marathonbet 0.0%
 
 ## Удары / удары в створ
 - Catalog markets: 21 | observed: 10
