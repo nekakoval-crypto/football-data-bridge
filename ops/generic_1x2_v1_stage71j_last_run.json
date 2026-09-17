@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-17T12:44:23Z",
+  "run_at_utc": "2026-09-17T18:43:34Z",
   "status": "OK",
   "mode": "STAGE71J_ZERO_EXTRA_CALL_PROSPECTIVE_CAPTURE",
   "source": "API-Football /odds Bet365 Match Winner",
@@ -15,9 +15,9 @@
     "complete_candidate_rows": 119
   },
   "candidate_rows": 119,
-  "observations_added": 0,
-  "observations_rejected": 119,
-  "prematch_frozen": 121,
+  "observations_added": 1,
+  "observations_rejected": 118,
+  "prematch_frozen": 122,
   "settled_rows": 0,
   "rejections": [
     {
@@ -346,10 +346,6 @@
     },
     {
       "fixture_id": "1561935",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1570386",
       "reason": "already_frozen"
     },
     {
