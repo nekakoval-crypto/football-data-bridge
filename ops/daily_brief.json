@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-17T09:02:53Z",
+  "generated_at_utc": "2026-09-17T10:02:54Z",
   "status": "OK",
   "active_signals": 1,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-17T08:45:00Z",
+        "captured_at_utc": "2026-09-17T09:45:30Z",
         "best_odds": "1.58",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.53",
@@ -148,7 +148,7 @@
     "observed_closes": 10,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-17T08:54:51Z",
+    "latest_run_utc": "2026-09-17T09:55:13Z",
     "warnings": [],
     "crossings": [
       {
@@ -209,12 +209,12 @@
     "definition": "Bet365 no-vig P(Over 2.5) rises by >=3pp from frozen opener to observed close",
     "canonical_forward_changed": false,
     "tracked_openers": 18,
-    "active_crossings": 2,
-    "total_crossings": 4,
+    "active_crossings": 3,
+    "total_crossings": 5,
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-17T08:26:18Z",
+    "latest_run_utc": "2026-09-17T09:50:40Z",
     "warnings": [],
     "crossings": [
       {
@@ -237,6 +237,17 @@
         "minutes_to_kickoff": "4297.8",
         "bet365_over25": "1.44",
         "user_over25": "1.41",
+        "note": "WATCH only; not a canonical bet"
+      },
+      {
+        "fixture_id": "1575167",
+        "home_team": "Bayern München",
+        "away_team": "Union Berlin",
+        "movement_pp": "0.03232386",
+        "crossed_at_utc": "2026-09-17T09:24:14Z",
+        "minutes_to_kickoff": "1985.8",
+        "bet365_over25": "1.12",
+        "user_over25": "1.07",
         "note": "WATCH only; not a canonical bet"
       }
     ],
@@ -367,16 +378,16 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-17T08:55:10Z",
+    "generated_at_utc": "2026-09-17T09:55:36Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
-      "crossings": 26,
-      "pending": 13,
+      "crossings": 27,
+      "pending": 14,
       "settled": 13,
       "void": 0,
       "review": 0,
-      "user_price_rows": 26,
+      "user_price_rows": 27,
       "user_execution_coverage_pct": 100.0,
       "user_settled_rows": 13,
       "wins": 6,
@@ -472,12 +483,12 @@
         "observed_max_drawdown_u": null
       },
       "Бундеслига ТБ(2.5) steam": {
-        "crossings": 4,
-        "pending": 2,
+        "crossings": 5,
+        "pending": 3,
         "settled": 2,
         "void": 0,
         "review": 0,
-        "user_price_rows": 4,
+        "user_price_rows": 5,
         "user_execution_coverage_pct": 100.0,
         "user_settled_rows": 2,
         "wins": 2,

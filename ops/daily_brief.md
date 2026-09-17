@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-17T09:02:53Z
+Generated UTC: 2026-09-17T10:02:54Z
 Active canonical signals: 1
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -46,13 +46,14 @@ Active canonical signals: 1
 
 - Scope: Бундеслига: ТБ(2.5) — движение рынка (+3 pp no-vig from frozen Bet365 O/U 2.5 opener).
 - Frozen O/U openers tracked: 18
-- Active +3 pp crossings ТБ(2.5): 2
+- Active +3 pp crossings ТБ(2.5): 3
 - Observed closes: 9 | Close-qualified O1 watches: 2
 - Executable bookmaker being observed: Marathonbet
 
 ## Current O/U crossings
 - WATCH | Eintracht Frankfurt — SC Freiburg | Over move +3.60 pp | Bet365 O2.5 1.44 | Marathonbet O2.5 1.42 | 4297.8 min to kickoff
 - WATCH | Werder Bremen — FC Augsburg | Over move +3.60 pp | Bet365 O2.5 1.44 | Marathonbet O2.5 1.41 | 4297.8 min to kickoff
+- WATCH | Bayern München — Union Berlin | Over move +3.23 pp | Bet365 O2.5 1.12 | Marathonbet O2.5 1.07 | 1985.8 min to kickoff
 
 ## Recent close-qualified O/U watches
 - RB Leipzig — Hamburger SV | move +6.37 pp | B365 close O2.5 1.28 | Marathonbet close O2.5 1.26
@@ -85,7 +86,7 @@ Active canonical signals: 1
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 26 | settled 13 | pending 13
+- Crossings: 27 | settled 13 | pending 14
 - Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: -4.100u | ROI -31.538% | W-L 6-7
 - Close: observed 13 | stayed qualified 11 | reverted 2 | persistence 84.615%
@@ -95,4 +96,4 @@ Active canonical signals: 1
 - Big-5 ОЗ market movement — ОЗ — Да: crossings 14, settled 10, ROI -52.6%, close persistence 80.0%
 - Big-5 ОЗ market movement — ОЗ — Нет: crossings 4, settled 1, ROI 81.0%, close persistence 100.0%
 - АПЛ favorite steam: crossings 4, settled 0, ROI N/A, close persistence N/A
-- Бундеслига ТБ(2.5) steam: crossings 4, settled 2, ROI 17.5%, close persistence 100.0%
+- Бундеслига ТБ(2.5) steam: crossings 5, settled 2, ROI 17.5%, close persistence 100.0%
