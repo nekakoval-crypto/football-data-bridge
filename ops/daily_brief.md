@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-17T20:02:58Z
+Generated UTC: 2026-09-17T21:02:36Z
 Active canonical signals: 1
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -69,8 +69,8 @@ Active canonical signals: 1
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 105
-- Активные движения ≥3 п.п.: всего 9 | ОЗ — Да 6 | ОЗ — Нет 3
-- Зафиксировано observed close: 56
+- Активные движения ≥3 п.п.: всего 10 | ОЗ — Да 6 | ОЗ — Нет 4
+- Зафиксировано observed close: 57
 - Исполнимый букмекер для наблюдения: Marathonbet
 
 ## Текущие ОЗ-watch
@@ -83,6 +83,7 @@ Active canonical signals: 1
 - WATCH | La Liga | Sevilla — Barcelona | ОЗ — Нет | движение P(ОЗ — Да) -3.33 п.п. | Marathonbet 2.0 | 3883.9 мин до матча
 - WATCH | Serie A | Frosinone — Como | ОЗ — Да | движение P(ОЗ — Да) +3.20 п.п. | Marathonbet 1.57 | 4242.6 мин до матча
 - WATCH | Bundesliga | FC Schalke 04 — SV Elversberg | ОЗ — Да | движение P(ОЗ — Да) +7.36 п.п. | Marathonbet 1.44 | 4272.4 мин до матча
+- WATCH | Ligue 1 | Marseille — Paris Saint Germain | ОЗ — Нет | движение P(ОЗ — Да) -3.66 п.п. | Marathonbet 2.39 | 4228.1 мин до матча
 
 ---
 
@@ -90,7 +91,7 @@ Active canonical signals: 1
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 31 | settled 13 | pending 18
+- Crossings: 32 | settled 13 | pending 19
 - Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: -4.100u | ROI -31.538% | W-L 6-7
 - Close: observed 13 | stayed qualified 11 | reverted 2 | persistence 84.615%
@@ -98,6 +99,6 @@ Active canonical signals: 1
 
 ## By WATCH family
 - Big-5 ОЗ market movement — ОЗ — Да: crossings 16, settled 10, ROI -52.6%, close persistence 80.0%
-- Big-5 ОЗ market movement — ОЗ — Нет: crossings 4, settled 1, ROI 81.0%, close persistence 100.0%
+- Big-5 ОЗ market movement — ОЗ — Нет: crossings 5, settled 1, ROI 81.0%, close persistence 100.0%
 - АПЛ favorite steam: crossings 5, settled 0, ROI N/A, close persistence N/A
 - Бундеслига ТБ(2.5) steam: crossings 6, settled 2, ROI 17.5%, close persistence 100.0%

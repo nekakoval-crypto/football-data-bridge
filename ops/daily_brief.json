@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-17T20:02:58Z",
+  "generated_at_utc": "2026-09-17T21:02:36Z",
   "status": "OK",
   "active_signals": 1,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-17T19:42:41Z",
+        "captured_at_utc": "2026-09-17T20:43:16Z",
         "best_odds": "1.58",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.53",
@@ -148,7 +148,7 @@
     "observed_closes": 10,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-17T19:52:54Z",
+    "latest_run_utc": "2026-09-17T20:28:59Z",
     "warnings": [],
     "crossings": [
       {
@@ -226,7 +226,7 @@
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-17T19:47:18Z",
+    "latest_run_utc": "2026-09-17T20:47:23Z",
     "warnings": [],
     "crossings": [
       {
@@ -304,14 +304,14 @@
     "historical_edge_reason": "Canonical 10-year dataset has no historical BTTS first/close odds",
     "canonical_forward_changed": false,
     "tracked_openers": 105,
-    "active_crossings_total": 9,
+    "active_crossings_total": 10,
     "active_yes_crossings": 6,
-    "active_no_crossings": 3,
-    "total_crossings": 20,
-    "observed_closes": 56,
+    "active_no_crossings": 4,
+    "total_crossings": 21,
+    "observed_closes": 57,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-17T18:19:25Z",
+    "latest_run_utc": "2026-09-17T20:16:57Z",
     "warnings": [],
     "crossings": [
       {
@@ -421,20 +421,32 @@
         "minutes_to_kickoff": "4272.4",
         "user_selected_odds": "1.44",
         "note": "research watch only; not a bet signal"
+      },
+      {
+        "fixture_id": "1552773",
+        "league": "Ligue 1",
+        "home_team": "Marseille",
+        "away_team": "Paris Saint Germain",
+        "selection": "ОЗ — Нет",
+        "movement_yes_pp": "-0.03662455",
+        "crossed_at_utc": "2026-09-17T20:16:57Z",
+        "minutes_to_kickoff": "4228.1",
+        "user_selected_odds": "2.39",
+        "note": "research watch only; not a bet signal"
       }
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-17T19:52:54Z",
+    "generated_at_utc": "2026-09-17T20:52:59Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
-      "crossings": 31,
-      "pending": 18,
+      "crossings": 32,
+      "pending": 19,
       "settled": 13,
       "void": 0,
       "review": 0,
-      "user_price_rows": 31,
+      "user_price_rows": 32,
       "user_execution_coverage_pct": 100.0,
       "user_settled_rows": 13,
       "wins": 6,
@@ -480,12 +492,12 @@
         "observed_max_drawdown_u": 7.0
       },
       "Big-5 ОЗ market movement — ОЗ — Нет": {
-        "crossings": 4,
-        "pending": 3,
+        "crossings": 5,
+        "pending": 4,
         "settled": 1,
         "void": 0,
         "review": 0,
-        "user_price_rows": 4,
+        "user_price_rows": 5,
         "user_execution_coverage_pct": 100.0,
         "user_settled_rows": 1,
         "wins": 1,
