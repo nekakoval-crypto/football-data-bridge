@@ -131,6 +131,41 @@ class Stage82TeamStyleOperationalBridgeTests(unittest.TestCase):
         self.assertEqual(len(pairs), 1)
         self.assertEqual(exclusions["duplicate_side"], 1)
 
+    def test_preserves_league_and_season_provenance(self):
+        rows = [
+            {
+                "fixture_id": "1001",
+                "provider_league_id": "140",
+                "league_name": "La Liga",
+                "season": "2026",
+                "kickoff_utc": "2026-08-20T19:00:00+00:00",
+                "observed_at_utc": "2026-08-20T21:00:00+00:00",
+                "team_id": "1",
+                "team_name": "Home FC",
+                "side": "HOME",
+                "shots_total": "14",
+            },
+            {
+                "fixture_id": "1001",
+                "provider_league_id": "140",
+                "league_name": "La Liga",
+                "season": "2026",
+                "kickoff_utc": "2026-08-20T19:00:00+00:00",
+                "observed_at_utc": "2026-08-20T21:00:00+00:00",
+                "team_id": "2",
+                "team_name": "Away FC",
+                "side": "AWAY",
+                "shots_total": "9",
+            },
+        ]
 
+        evidence, _meta = build_evidence(rows)
+
+        self.assertEqual(len(evidence), 2)
+
+        for row in evidence:
+            self.assertEqual(row["league_id"], "140")
+            self.assertEqual(row["league_name"], "La Liga")
+            self.assertEqual(row["season"], "2026")
 if __name__ == "__main__":
     unittest.main()

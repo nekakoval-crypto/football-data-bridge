@@ -214,6 +214,15 @@ def build_evidence(
 
             normalized["schema_version"] = EVIDENCE_VERSION
             normalized["bridge_version"] = VERSION
+            normalized["league_id"] = (
+                str(row.get("provider_league_id") or "").strip() or None
+            )
+            normalized["league_name"] = (
+                str(row.get("league_name") or "").strip() or None
+            )
+            normalized["season"] = (
+                str(row.get("season") or "").strip() or None
+            )
             normalized["missing_evidence_policy"] = "UNKNOWN_NOT_ZERO"
             normalized["provider_calls_added"] = 0
             normalized["research_only"] = True
