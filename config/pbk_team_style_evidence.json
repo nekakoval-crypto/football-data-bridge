@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "name": "PBK Team Style Evidence Pipeline",
+  "purpose": "Provider-free adapter from already archived match/stat observations into an append-only team-style evidence ledger consumed by Team Style Profiles.",
+  "source_priority": [
+    "API_FOOTBALL_RAW_ARCHIVE",
+    "FOOTBALL_DATA_NORMALIZED_IMPORT"
+  ],
+  "api_football": {
+    "archive_source": "PBK_STAGE80_RAW_API_ARCHIVE_V1",
+    "fixture_metadata_path": "/fixtures",
+    "fixture_statistics_path": "/fixtures/statistics",
+    "provider_calls_added": 0,
+    "required_provenance": ["observation_id", "fetched_at_utc", "payload_sha256"]
+  },
+  "ledger": {
+    "schema": "PBK_TEAM_STYLE_EVIDENCE_V1",
+    "append_only": true,
+    "dedupe_key": ["source_observation_id", "fixture_id", "team_id"],
+    "missing_policy": "UNKNOWN_NOT_ZERO",
+    "requires_aware_observed_at": true,
+    "requires_aware_kickoff": true
+  },
+  "api_stat_mapping": {
+    "Shots on Goal": "shots_on_target_for",
+    "Total Shots": "shots_for",
+    "Ball Possession": "possession_pct",
+    "Corner Kicks": "corners_for",
+    "Total passes": "passes",
+    "Passes accurate %": "pass_accuracy_pct",
+    "expected_goals": "xg_for",
+    "Expected Goals": "xg_for"
+  },
+  "guardrails": [
+    "The evidence pipeline performs zero provider/API calls.",
+    "Only successful observations already present in the raw archive are eligible.",
+    "The provider fetched_at_utc timestamp is preserved as observed_at_utc.",
+    "Home/away venue is derived only from explicit fixture metadata for the same fixture id.",
+    "If fixture metadata or venue cannot be established, the statistics observation is not promoted to style evidence.",
+    "Missing statistics remain absent/unknown and are never converted to zero.",
+    "Historical normalized imports require explicit aware kickoff_utc and observed_at_utc; the adapter does not invent source availability timestamps.",
+    "No evidence row creates a style score, Matchup Grade, probability/value adjustment, betting signal or stake change."
+  ]
+}
