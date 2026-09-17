@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-17T21:02:08Z",
+  "generated_at_utc": "2026-09-17T21:33:09Z",
   "research_id": "PBK_GENERIC_1X2_PROBABILITY_V1_FORWARD",
   "model_version": "PBK_GENERIC_1X2_PROBABILITY_V1",
   "status": "PER_LEAGUE_FORWARD_REVIEW",
@@ -45,11 +45,11 @@
     "La Liga": {
       "status": "COLLECTING",
       "prematch_frozen": 13,
-      "settled_rows": 1,
+      "settled_rows": 2,
       "forward_outcomes": {
         "H": 1,
         "D": 0,
-        "A": 0
+        "A": 1
       },
       "diagnostic_checkpoints_reached": {
         "250": false,
@@ -57,31 +57,31 @@
       },
       "formal_review_sample_ready": false,
       "scores": {
-        "m0_multiclass_brier": 0.2820511435768266,
-        "m1_multiclass_brier": 0.2873290563281483,
-        "brier_improvement_m0_minus_m1": -0.005277912751321723,
-        "m0_logloss": 0.5665659385615275,
-        "m1_logloss": 0.5736266011306336,
-        "logloss_improvement_m0_minus_m1": -0.007060662569106091
+        "m0_multiclass_brier": 0.34119720852187463,
+        "m1_multiclass_brier": 0.3428426544458635,
+        "brier_improvement_m0_minus_m1": -0.001645445923988853,
+        "m0_logloss": 0.6467416403922415,
+        "m1_logloss": 0.6489606913350581,
+        "logloss_improvement_m0_minus_m1": -0.0022190509428166028
       },
       "m1_class_calibration": {
         "H": {
-          "mean_probability": 0.5634782179744391,
-          "observed_rate": 1.0,
-          "abs_error": 0.4365217820255609,
+          "mean_probability": 0.4111779946024278,
+          "observed_rate": 0.5,
+          "abs_error": 0.08882200539757218,
           "outcomes": 1
         },
         "D": {
-          "mean_probability": 0.24566670293280315,
+          "mean_probability": 0.25106134382824224,
           "observed_rate": 0.0,
-          "abs_error": 0.24566670293280315,
+          "abs_error": 0.25106134382824224,
           "outcomes": 0
         },
         "A": {
-          "mean_probability": 0.19085507909275773,
-          "observed_rate": 0.0,
-          "abs_error": 0.19085507909275773,
-          "outcomes": 0
+          "mean_probability": 0.33776066156932993,
+          "observed_rate": 0.5,
+          "abs_error": 0.16223933843067007,
+          "outcomes": 1
         }
       },
       "checks": {
@@ -608,11 +608,11 @@
   "pooled_big5_diagnostic": {
     "status": "DIAGNOSTIC_ONLY",
     "prematch_frozen": 51,
-    "settled_rows": 1,
+    "settled_rows": 2,
     "forward_outcomes": {
       "H": 1,
       "D": 0,
-      "A": 0
+      "A": 1
     },
     "diagnostic_checkpoints_reached": {
       "250": false,
@@ -620,31 +620,31 @@
     },
     "formal_review_sample_ready": false,
     "scores": {
-      "m0_multiclass_brier": 0.2820511435768266,
-      "m1_multiclass_brier": 0.2873290563281483,
-      "brier_improvement_m0_minus_m1": -0.005277912751321723,
-      "m0_logloss": 0.5665659385615275,
-      "m1_logloss": 0.5736266011306336,
-      "logloss_improvement_m0_minus_m1": -0.007060662569106091
+      "m0_multiclass_brier": 0.34119720852187463,
+      "m1_multiclass_brier": 0.3428426544458635,
+      "brier_improvement_m0_minus_m1": -0.001645445923988853,
+      "m0_logloss": 0.6467416403922415,
+      "m1_logloss": 0.6489606913350581,
+      "logloss_improvement_m0_minus_m1": -0.0022190509428166028
     },
     "m1_class_calibration": {
       "H": {
-        "mean_probability": 0.5634782179744391,
-        "observed_rate": 1.0,
-        "abs_error": 0.4365217820255609,
+        "mean_probability": 0.4111779946024278,
+        "observed_rate": 0.5,
+        "abs_error": 0.08882200539757218,
         "outcomes": 1
       },
       "D": {
-        "mean_probability": 0.24566670293280315,
+        "mean_probability": 0.25106134382824224,
         "observed_rate": 0.0,
-        "abs_error": 0.24566670293280315,
+        "abs_error": 0.25106134382824224,
         "outcomes": 0
       },
       "A": {
-        "mean_probability": 0.19085507909275773,
-        "observed_rate": 0.0,
-        "abs_error": 0.19085507909275773,
-        "outcomes": 0
+        "mean_probability": 0.33776066156932993,
+        "observed_rate": 0.5,
+        "abs_error": 0.16223933843067007,
+        "outcomes": 1
       }
     },
     "checks": {
@@ -661,11 +661,11 @@
   "pooled_all16_diagnostic": {
     "status": "DIAGNOSTIC_ONLY",
     "prematch_frozen": 122,
-    "settled_rows": 1,
+    "settled_rows": 2,
     "forward_outcomes": {
       "H": 1,
       "D": 0,
-      "A": 0
+      "A": 1
     },
     "diagnostic_checkpoints_reached": {
       "250": false,
@@ -673,31 +673,31 @@
     },
     "formal_review_sample_ready": false,
     "scores": {
-      "m0_multiclass_brier": 0.2820511435768266,
-      "m1_multiclass_brier": 0.2873290563281483,
-      "brier_improvement_m0_minus_m1": -0.005277912751321723,
-      "m0_logloss": 0.5665659385615275,
-      "m1_logloss": 0.5736266011306336,
-      "logloss_improvement_m0_minus_m1": -0.007060662569106091
+      "m0_multiclass_brier": 0.34119720852187463,
+      "m1_multiclass_brier": 0.3428426544458635,
+      "brier_improvement_m0_minus_m1": -0.001645445923988853,
+      "m0_logloss": 0.6467416403922415,
+      "m1_logloss": 0.6489606913350581,
+      "logloss_improvement_m0_minus_m1": -0.0022190509428166028
     },
     "m1_class_calibration": {
       "H": {
-        "mean_probability": 0.5634782179744391,
-        "observed_rate": 1.0,
-        "abs_error": 0.4365217820255609,
+        "mean_probability": 0.4111779946024278,
+        "observed_rate": 0.5,
+        "abs_error": 0.08882200539757218,
         "outcomes": 1
       },
       "D": {
-        "mean_probability": 0.24566670293280315,
+        "mean_probability": 0.25106134382824224,
         "observed_rate": 0.0,
-        "abs_error": 0.24566670293280315,
+        "abs_error": 0.25106134382824224,
         "outcomes": 0
       },
       "A": {
-        "mean_probability": 0.19085507909275773,
-        "observed_rate": 0.0,
-        "abs_error": 0.19085507909275773,
-        "outcomes": 0
+        "mean_probability": 0.33776066156932993,
+        "observed_rate": 0.5,
+        "abs_error": 0.16223933843067007,
+        "outcomes": 1
       }
     },
     "checks": {
@@ -713,7 +713,7 @@
   },
   "all_leagues_totals": {
     "prematch_frozen": 122,
-    "settled_rows": 1
+    "settled_rows": 2
   },
   "policy": {
     "snapshot": "FIRST_COMPLETE_VALID_BET365_PREMATCH_OBSERVATION",
