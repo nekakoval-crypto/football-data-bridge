@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 17.09.2026 03:01 (Europe/Berlin)
+Обновлено: 17.09.2026 04:00 (Europe/Berlin)
 Canonical: 1 | active WATCH crossings: 12 | RED: 0 | ORANGE: 12
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -591,7 +591,7 @@ Canonical: 1 | active WATCH crossings: 12 | RED: 0 | ORANGE: 12
   - Европейская фора хозяев (-2) · П1: 6.65 | Х: 5.65 | П2: 1.25 @ Marathonbet
   - Европейская фора хозяев (-3) · П1: 19 | Х: 11 | П2: 1.08 @ Bet365
   - 1X2 · П1: 1.95 | Х: 3.6 | П2: 3.8 @ Bet365
-  - 1X2 · П1: 2.02 | Х: 3.64 | П2: 3.65 @ Marathonbet
+  - 1X2 · П1: 2 | Х: 3.64 | П2: 3.72 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.36 | ИТМ: 3 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.34 | ИТМ: 2.99 @ Marathonbet
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 2.75 | ИТМ: 1.4 @ Bet365
@@ -781,7 +781,7 @@ Canonical: 1 | active WATCH crossings: 12 | RED: 0 | ORANGE: 12
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 6.25 | ИТМ: 1.08 @ Marathonbet
   - ИТБ/ИТМ 1 (4.5) · ИТБ: 19 | ИТМ: 1.02 @ Bet365
   - Тотал 2.5 · ТБ(2.5): 1.44 | ТМ(2.5): 2.75 @ Bet365
-  - Тотал 2.5 · ТБ(2.5): 1.42 | ТМ(2.5): 2.61 @ Marathonbet
+  - Тотал 2.5 · ТБ(2.5): 1.43 | ТМ(2.5): 2.58 @ Marathonbet
 
 - **Hamburger SV — 1. FC Köln** | Bundesliga | 19.09 13:30 UTC
   - ОЗ · ОЗ Да: 1.5 | ОЗ Нет: 2.5 @ Bet365
@@ -819,7 +819,7 @@ Canonical: 1 | active WATCH crossings: 12 | RED: 0 | ORANGE: 12
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 9.3 | ИТМ: 1.03 @ Marathonbet
   - ИТБ/ИТМ 1 (4.5) · ИТБ: 29 | ИТМ: 1.01 @ Bet365
   - Тотал 2.5 · ТБ(2.5): 1.57 | ТМ(2.5): 2.38 @ Bet365
-  - Тотал 2.5 · ТБ(2.5): 1.61 | ТМ(2.5): 2.35 @ Marathonbet
+  - Тотал 2.5 · ТБ(2.5): 1.6 | ТМ(2.5): 2.38 @ Marathonbet
 
 - **Werder Bremen — FC Augsburg** | Bundesliga | 19.09 13:30 UTC
   - ОЗ · ОЗ Да: 1.4 | ОЗ Нет: 2.75 @ Bet365
@@ -855,7 +855,7 @@ Canonical: 1 | active WATCH crossings: 12 | RED: 0 | ORANGE: 12
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 6.85 | ИТМ: 1.06 @ Marathonbet
   - ИТБ/ИТМ 1 (4.5) · ИТБ: 19 | ИТМ: 1.02 @ Bet365
   - Тотал 2.5 · ТБ(2.5): 1.44 | ТМ(2.5): 2.75 @ Bet365
-  - Тотал 2.5 · ТБ(2.5): 1.41 | ТМ(2.5): 2.64 @ Marathonbet
+  - Тотал 2.5 · ТБ(2.5): 1.39 | ТМ(2.5): 2.72 @ Marathonbet
 
 - **Borussia Mönchengladbach — FSV Mainz 05** | Bundesliga | 19.09 13:30 UTC
   - ОЗ · ОЗ Да: 1.44 | ОЗ Нет: 2.62 @ Bet365
@@ -1010,7 +1010,7 @@ Canonical: 1 | active WATCH crossings: 12 | RED: 0 | ORANGE: 12
   - Европейская фора хозяев (-3) · П1: 15 | Х: 9 | П2: 1.12 @ Bet365
   - Европейская фора хозяев (-3) · П1: 6.45 | Х: 4.95 | П2: 1.1 @ Marathonbet
   - 1X2 · П1: 1.73 | Х: 3.8 | П2: 4.5 @ Bet365
-  - 1X2 · П1: 1.77 | Х: 3.88 | П2: 4.55 @ Marathonbet
+  - 1X2 · П1: 1.77 | Х: 3.9 | П2: 4.5 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.44 | ИТМ: 2.62 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.4 | ИТМ: 2.73 @ Marathonbet
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 3.25 | ИТМ: 1.33 @ Bet365
@@ -1043,7 +1043,7 @@ Canonical: 1 | active WATCH crossings: 12 | RED: 0 | ORANGE: 12
   - Европейская фора хозяев (-3) · П1: 11 | Х: 7.5 | П2: 1.18 @ Bet365
   - Европейская фора хозяев (-3) · П1: 8.2 | Х: 6.95 | П2: 1.16 @ Marathonbet
   - 1X2 · П1: 1.6 | Х: 4.33 | П2: 5 @ Bet365
-  - 1X2 · П1: 1.58 | Х: 4.4 | П2: 5.45 @ Marathonbet
+  - 1X2 · П1: 1.59 | Х: 4.4 | П2: 5.35 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.5 | ИТМ: 2.5 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.45 | ИТМ: 2.56 @ Marathonbet
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 3.4 | ИТМ: 1.3 @ Bet365
@@ -2890,7 +2890,7 @@ Canonical: 1 | active WATCH crossings: 12 | RED: 0 | ORANGE: 12
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 1
+- System Health: **HEALTHY** | critical 0 | warnings 0
 - Логическая canonical экспозиция: **1.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 24 | data required 3
