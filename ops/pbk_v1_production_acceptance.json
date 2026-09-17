@@ -44,7 +44,7 @@
           "status": "PASS",
           "message": "real LIVE provider batch observed",
           "evidence": {
-            "observed_at_utc": "2026-09-17T18:02:39Z",
+            "observed_at_utc": "2026-09-17T19:02:21Z",
             "candidate_fixtures": 1,
             "provider_calls": 1,
             "updated_fixtures": 1,
@@ -58,7 +58,7 @@
           "message": "LIVE overlay carries score/status/freshness/red-card fields",
           "evidence": {
             "rows": 16,
-            "observed_rows": 2,
+            "observed_rows": 1,
             "missing_fields": []
           }
         },
@@ -67,10 +67,10 @@
           "status": "PASS",
           "message": "real LIVE observation propagated through Stage72 and Stage73",
           "evidence": {
-            "live_observed_at_utc": "2026-09-17T18:02:39Z",
-            "stage72_run_at_utc": "2026-09-17T18:37:01Z",
+            "live_observed_at_utc": "2026-09-17T19:02:21Z",
+            "stage72_run_at_utc": "2026-09-17T19:32:06Z",
             "stage72_status": "OK",
-            "stage73_run_at_utc": "2026-09-17T18:37:03Z",
+            "stage73_run_at_utc": "2026-09-17T19:32:07Z",
             "stage73_status": "OK",
             "stage73_passed": 16,
             "stage73_total": 16
@@ -86,8 +86,8 @@
           "status": "PASS",
           "message": "real provider standings snapshot exists",
           "evidence": {
-            "valid_snapshots": 1,
-            "rows": 20,
+            "valid_snapshots": 2,
+            "rows": 40,
             "missing_fields": []
           }
         },
@@ -96,7 +96,7 @@
           "status": "PASS",
           "message": "provider standings evidence is tied to a pre-kickoff cutoff",
           "evidence": {
-            "prematch_snapshots": 1
+            "prematch_snapshots": 2
           }
         },
         {
@@ -105,7 +105,7 @@
           "message": "Stage72 ingested real standings without leakage",
           "evidence": {
             "stage72_status": "OK",
-            "standings_snapshots": 20,
+            "standings_snapshots": 40,
             "historical_leakage_violations": 0
           }
         },
@@ -131,7 +131,7 @@
         "evidence": {
           "health_status": "WARN",
           "critical_issues": 0,
-          "warnings": 2
+          "warnings": 1
         }
       },
       {
@@ -159,6 +159,6 @@
   "next_actions": [
     "Production acceptance is complete; PBK v1 may proceed to final closure bookkeeping."
   ],
-  "evaluated_at_utc": "2026-09-17T18:37:03Z",
-  "state_fingerprint": "a43f12b9399cd5a8963b2c0bf95ad1642241407a7ac9c87700fafd5584c84554"
+  "evaluated_at_utc": "2026-09-17T19:32:07Z",
+  "state_fingerprint": "f1445e19bdac3963761ca8338138a14350b166e9bc98001566b3232ccdd7ee4b"
 }
