@@ -1,0 +1,185 @@
+{
+  "version": "PBK_TEAM_STYLE_DIMENSIONS_V1",
+  "stage": 85,
+  "status": "SPEC_LOCKED_CANDIDATE",
+  "research_only": true,
+  "provider_calls_added": 0,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "creates_signal": false,
+  "stake_changes": false,
+  "forward_journal_mutation": false,
+  "r1_r2_r3_mutation": false,
+  "ui_changes": false,
+  "api_changes": false,
+  "missing_evidence_policy": "UNKNOWN_NOT_ZERO",
+  "aggregation_policy": {
+    "arbitrary_weights_allowed": false,
+    "zero_to_ten_score_allowed": false,
+    "validation_required_before_aggregation": true,
+    "normalization_source": "PBK_STAGE84_TEAM_STYLE_METRIC_NORMALIZATION_V1"
+  },
+  "dimensions": [
+    {
+      "id": "ATTACK_VOLUME",
+      "status": "CANDIDATE",
+      "components": [
+        {
+          "metric": "shots_for",
+          "direction": "HIGHER_MORE"
+        },
+        {
+          "metric": "sot_for",
+          "direction": "HIGHER_MORE"
+        },
+        {
+          "metric": "xg_for",
+          "direction": "HIGHER_MORE",
+          "availability": "OPTIONAL_IF_KNOWN"
+        },
+        {
+          "metric": "corners_for",
+          "direction": "HIGHER_MORE"
+        }
+      ],
+      "minimum_known_components": 2,
+      "validation_required": true,
+      "notes": "Represents attacking activity volume, not attacking quality or expected scoring by itself."
+    },
+    {
+      "id": "POSSESSION_CONTROL",
+      "status": "CANDIDATE",
+      "components": [
+        {
+          "metric": "possession",
+          "direction": "HIGHER_MORE"
+        },
+        {
+          "metric": "passes",
+          "direction": "HIGHER_MORE"
+        },
+        {
+          "metric": "pass_accuracy",
+          "direction": "HIGHER_MORE"
+        }
+      ],
+      "minimum_known_components": 2,
+      "validation_required": true,
+      "notes": "Represents ball control characteristics. Must not be interpreted automatically as attacking superiority."
+    },
+    {
+      "id": "DEFENSIVE_RESISTANCE",
+      "status": "CANDIDATE",
+      "components": [
+        {
+          "metric": "shots_against",
+          "direction": "LOWER_MORE"
+        },
+        {
+          "metric": "sot_against",
+          "direction": "LOWER_MORE"
+        },
+        {
+          "metric": "xg_against",
+          "direction": "LOWER_MORE",
+          "availability": "OPTIONAL_IF_KNOWN"
+        },
+        {
+          "metric": "corners_against",
+          "direction": "LOWER_MORE"
+        }
+      ],
+      "minimum_known_components": 2,
+      "validation_required": true,
+      "notes": "Represents suppression of opponent attacking volume. Does not yet claim defensive quality as a validated composite."
+    },
+    {
+      "id": "HOME_STYLE_SHIFT",
+      "status": "RESEARCH_CONTEXT_ONLY",
+      "components": [],
+      "source_splits": [
+        "overall",
+        "home"
+      ],
+      "validation_required": true,
+      "notes": "Measures directional difference between HOME and OVERALL normalized raw metrics. Not a style score."
+    },
+    {
+      "id": "AWAY_STYLE_SHIFT",
+      "status": "RESEARCH_CONTEXT_ONLY",
+      "components": [],
+      "source_splits": [
+        "overall",
+        "away"
+      ],
+      "validation_required": true,
+      "notes": "Measures directional difference between AWAY and OVERALL normalized raw metrics. Not a style score."
+    },
+    {
+      "id": "PRESS_INTENSITY",
+      "status": "DATA_BLOCKED",
+      "required_future_metrics": [
+        "ppda",
+        "high_turnovers"
+      ],
+      "validation_required": true,
+      "notes": "Do not infer pressing intensity from possession, shots or formation."
+    },
+    {
+      "id": "TRANSITION_ATTACK",
+      "status": "DATA_BLOCKED",
+      "required_future_metrics": [
+        "transition_shots",
+        "progression"
+      ],
+      "validation_required": true,
+      "notes": "Do not infer transition attacking style from total shots alone."
+    },
+    {
+      "id": "TEMPO_DIRECTNESS",
+      "status": "DATA_BLOCKED",
+      "required_future_metrics": [
+        "progression",
+        "direct_attacks",
+        "sequence_speed"
+      ],
+      "validation_required": true,
+      "notes": "Requires event or possession-sequence evidence."
+    },
+    {
+      "id": "WIDTH_CROSSING",
+      "status": "DATA_BLOCKED",
+      "required_future_metrics": [
+        "crosses",
+        "field_tilt",
+        "wide_progressions"
+      ],
+      "validation_required": true,
+      "notes": "Formation is context only and cannot substitute for crossing or width evidence."
+    },
+    {
+      "id": "SET_PIECE_THREAT",
+      "status": "DATA_BLOCKED",
+      "available_context_metrics": [
+        "corners_for"
+      ],
+      "required_future_metrics": [
+        "set_piece_xg",
+        "set_piece_shots"
+      ],
+      "validation_required": true,
+      "notes": "Corner volume alone is insufficient to classify set-piece threat."
+    },
+    {
+      "id": "AERIAL_STYLE",
+      "status": "DATA_BLOCKED",
+      "required_future_metrics": [
+        "aerial_duels",
+        "aerial_duels_won",
+        "long_balls"
+      ],
+      "validation_required": true,
+      "notes": "Requires aerial-event evidence."
+    }
+  ]
+}
