@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-17T07:03:10Z",
+  "run_at_utc": "2026-09-17T07:36:03Z",
   "status": "OK",
   "tracked_leagues": 16,
   "candidate_leagues": 0,
@@ -10,12 +10,12 @@
   "skipped_adequate_snapshot": 0,
   "skipped_no_data_backoff": 0,
   "budget_deferred_leagues": [],
-  "api_day_calls_before": 40,
-  "api_day_calls_after": 40,
+  "api_day_calls_before": 92,
+  "api_day_calls_after": 92,
   "reserved_live_calls": 14,
-  "reserved_current_round_calls": 96,
+  "reserved_current_round_calls": 64,
   "safety_margin_calls": 10,
-  "standings_available_calls": 20,
+  "standings_available_calls": 0,
   "warnings": [],
   "provider_polling": true
 }
