@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-17T14:03:02Z
+Generated UTC: 2026-09-17T15:03:22Z
 Active canonical signals: 1
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -68,7 +68,7 @@ Active canonical signals: 1
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 105
-- Активные движения ≥3 п.п.: всего 7 | ОЗ — Да 4 | ОЗ — Нет 3
+- Активные движения ≥3 п.п.: всего 8 | ОЗ — Да 5 | ОЗ — Нет 3
 - Зафиксировано observed close: 55
 - Исполнимый букмекер для наблюдения: Marathonbet
 
@@ -80,6 +80,7 @@ Active canonical signals: 1
 - WATCH | Bundesliga | Bayern München — Union Berlin | ОЗ — Нет | движение P(ОЗ — Да) -3.33 п.п. | Marathonbet 1.89 | 3132.8 мин до матча
 - WATCH | Serie A | AS Roma — Inter | ОЗ — Да | движение P(ОЗ — Да) +3.28 п.п. | Marathonbet 1.49 | 4303.4 мин до матча
 - WATCH | La Liga | Sevilla — Barcelona | ОЗ — Нет | движение P(ОЗ — Да) -3.33 п.п. | Marathonbet 2.0 | 3883.9 мин до матча
+- WATCH | Serie A | Frosinone — Como | ОЗ — Да | движение P(ОЗ — Да) +3.20 п.п. | Marathonbet 1.57 | 4242.6 мин до матча
 
 ---
 
@@ -87,14 +88,14 @@ Active canonical signals: 1
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 28 | settled 13 | pending 15
+- Crossings: 29 | settled 13 | pending 16
 - Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: -4.100u | ROI -31.538% | W-L 6-7
 - Close: observed 13 | stayed qualified 11 | reverted 2 | persistence 84.615%
 - Close-qualified ROI: -33.727% | Reverted ROI: -19.5%
 
 ## By WATCH family
-- Big-5 ОЗ market movement — ОЗ — Да: crossings 14, settled 10, ROI -52.6%, close persistence 80.0%
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 15, settled 10, ROI -52.6%, close persistence 80.0%
 - Big-5 ОЗ market movement — ОЗ — Нет: crossings 4, settled 1, ROI 81.0%, close persistence 100.0%
 - АПЛ favorite steam: crossings 5, settled 0, ROI N/A, close persistence N/A
 - Бундеслига ТБ(2.5) steam: crossings 5, settled 2, ROI 17.5%, close persistence 100.0%

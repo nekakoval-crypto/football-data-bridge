@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-17T14:03:02Z",
+  "generated_at_utc": "2026-09-17T15:03:22Z",
   "status": "OK",
   "active_signals": 1,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-17T13:46:04Z",
+        "captured_at_utc": "2026-09-17T14:45:04Z",
         "best_odds": "1.58",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.53",
@@ -148,7 +148,7 @@
     "observed_closes": 10,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-17T13:55:34Z",
+    "latest_run_utc": "2026-09-17T14:55:54Z",
     "warnings": [],
     "crossings": [
       {
@@ -226,7 +226,7 @@
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-17T13:50:41Z",
+    "latest_run_utc": "2026-09-17T14:50:43Z",
     "warnings": [],
     "crossings": [
       {
@@ -293,14 +293,14 @@
     "historical_edge_reason": "Canonical 10-year dataset has no historical BTTS first/close odds",
     "canonical_forward_changed": false,
     "tracked_openers": 105,
-    "active_crossings_total": 7,
-    "active_yes_crossings": 4,
+    "active_crossings_total": 8,
+    "active_yes_crossings": 5,
     "active_no_crossings": 3,
-    "total_crossings": 18,
+    "total_crossings": 19,
     "observed_closes": 55,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-17T12:20:53Z",
+    "latest_run_utc": "2026-09-17T14:17:24Z",
     "warnings": [],
     "crossings": [
       {
@@ -386,20 +386,32 @@
         "minutes_to_kickoff": "3883.9",
         "user_selected_odds": "2.0",
         "note": "research watch only; not a bet signal"
+      },
+      {
+        "fixture_id": "1550131",
+        "league": "Serie A",
+        "home_team": "Frosinone",
+        "away_team": "Como",
+        "selection": "ОЗ — Да",
+        "movement_yes_pp": "0.03197606",
+        "crossed_at_utc": "2026-09-17T14:17:24Z",
+        "minutes_to_kickoff": "4242.6",
+        "user_selected_odds": "1.57",
+        "note": "research watch only; not a bet signal"
       }
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-17T13:56:11Z",
+    "generated_at_utc": "2026-09-17T14:56:31Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
-      "crossings": 28,
-      "pending": 15,
+      "crossings": 29,
+      "pending": 16,
       "settled": 13,
       "void": 0,
       "review": 0,
-      "user_price_rows": 28,
+      "user_price_rows": 29,
       "user_execution_coverage_pct": 100.0,
       "user_settled_rows": 13,
       "wins": 6,
@@ -420,12 +432,12 @@
     },
     "by_family": {
       "Big-5 ОЗ market movement — ОЗ — Да": {
-        "crossings": 14,
-        "pending": 4,
+        "crossings": 15,
+        "pending": 5,
         "settled": 10,
         "void": 0,
         "review": 0,
-        "user_price_rows": 14,
+        "user_price_rows": 15,
         "user_execution_coverage_pct": 100.0,
         "user_settled_rows": 10,
         "wins": 3,
