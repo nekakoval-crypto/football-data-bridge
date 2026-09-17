@@ -1,5 +1,10 @@
 ﻿#!/usr/bin/env python3
-"""Stage86 — forward-only operational normalized Team Style metrics."""
+"""Stage86 — forward-only operational normalized Team Style metrics.
+
+Stage91 migration:
+normalization now consumes the durable Stage90 population history instead of
+the transient Stage84 current snapshot.
+"""
 
 from __future__ import annotations
 
@@ -27,11 +32,12 @@ except ModuleNotFoundError:
 ROOT = Path(__file__).resolve().parents[1]
 OPS = ROOT / "ops"
 
-SOURCE = OPS / "team_style_metric_observations.jsonl"
+SOURCE = OPS / "team_style_metric_population_history.jsonl"
 OUT = OPS / "team_style_normalized_observations.jsonl"
 META = OPS / "stage86_team_style_normalization_last_run.json"
 
 VERSION = "PBK_STAGE86_OPERATIONAL_NORMALIZED_STYLE_METRICS_V1"
+POPULATION_SOURCE_VERSION = "PBK_STAGE90_TEAM_STYLE_POPULATION_HISTORY_V1"
 
 
 def utc_now() -> str:
@@ -49,13 +55,15 @@ def read_jsonl(path: Path) -> list[dict[str, Any]]:
 
     rows: list[dict[str, Any]] = []
 
-    with path.open("r", encoding="utf-8") as handle:
+    with path.open("r", encoding="utf-8-sig") as handle:
         for line_number, line in enumerate(handle, start=1):
             text = line.strip()
+
             if not text:
                 continue
 
             payload = json.loads(text)
+
             if not isinstance(payload, dict):
                 raise ValueError(
                     f"{path}:{line_number}: JSONL row must be an object"
@@ -66,10 +74,17 @@ def read_jsonl(path: Path) -> list[dict[str, Any]]:
     return rows
 
 
-def write_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
+def write_jsonl(
+    path: Path,
+    rows: list[dict[str, Any]],
+) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
 
-    with path.open("w", encoding="utf-8", newline="\n") as handle:
+    with path.open(
+        "w",
+        encoding="utf-8",
+        newline="\n",
+    ) as handle:
         for row in rows:
             handle.write(
                 json.dumps(
@@ -81,10 +96,17 @@ def write_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
             )
 
 
-def write_json(path: Path, payload: dict[str, Any]) -> None:
+def write_json(
+    path: Path,
+    payload: dict[str, Any],
+) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
 
-    with path.open("w", encoding="utf-8", newline="\n") as handle:
+    with path.open(
+        "w",
+        encoding="utf-8",
+        newline="\n",
+    ) as handle:
         json.dump(
             payload,
             handle,
@@ -95,7 +117,9 @@ def write_json(path: Path, payload: dict[str, Any]) -> None:
         handle.write("\n")
 
 
-def series_key(row: dict[str, Any]) -> tuple[str, ...]:
+def series_key(
+    row: dict[str, Any],
+) -> tuple[str, ...]:
     return (
         str(row.get("league_id") or ""),
         str(row.get("season") or ""),
@@ -106,119 +130,71 @@ def series_key(row: dict[str, Any]) -> tuple[str, ...]:
     )
 
 
-def observation_key(row: dict[str, Any]) -> tuple[str, ...]:
+def observation_key(
+    row: dict[str, Any],
+) -> tuple[str, ...]:
     return series_key(row) + (
         str(row.get("profile_before_utc") or ""),
     )
 
 
-def valid_source_row(row: dict[str, Any]) -> bool:
-    key = series_key(row)
-
-    if not all(key):
+def valid_source_row(
+    row: dict[str, Any],
+) -> bool:
+    if str(row.get("version") or "") != POPULATION_SOURCE_VERSION:
         return False
 
-    profile_before = parse_iso(row.get("profile_before_utc"))
-    observed_at = parse_iso(row.get("observed_at_utc"))
+    if not all(series_key(row)):
+        return False
+
+    profile_before = parse_iso(
+        row.get("profile_before_utc")
+    )
+    observed_at = parse_iso(
+        row.get("observed_at_utc")
+    )
 
     if profile_before is None or observed_at is None:
         return False
 
+    if observed_at > profile_before:
+        return False
+
     return True
-
-
-def latest_rows_by_series(
-    rows: list[dict[str, Any]],
-) -> dict[tuple[str, ...], dict[str, Any]]:
-    latest: dict[tuple[str, ...], dict[str, Any]] = {}
-
-    for row in rows:
-        if not valid_source_row(row):
-            continue
-
-        key = series_key(row)
-        profile_time = parse_iso(row.get("profile_before_utc"))
-
-        current = latest.get(key)
-
-        if current is None:
-            latest[key] = row
-            continue
-
-        current_time = parse_iso(current.get("profile_before_utc"))
-
-        if current_time is None or profile_time > current_time:
-            latest[key] = row
-
-    return latest
-
-
-def existing_watermarks(
-    rows: list[dict[str, Any]],
-) -> dict[tuple[str, ...], datetime]:
-    result: dict[tuple[str, ...], datetime] = {}
-
-    for row in rows:
-        key = series_key(row)
-        timestamp = parse_iso(row.get("profile_before_utc"))
-
-        if not all(key) or timestamp is None:
-            continue
-
-        current = result.get(key)
-
-        if current is None or timestamp > current:
-            result[key] = timestamp
-
-    return result
 
 
 def select_forward_candidates(
     source_rows: list[dict[str, Any]],
     existing_rows: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
-    valid_rows = [
-        row
-        for row in source_rows
-        if valid_source_row(row)
-    ]
+    existing_keys = {
+        observation_key(row)
+        for row in existing_rows
+        if all(observation_key(row))
+    }
 
-    watermarks = existing_watermarks(existing_rows)
-    latest = latest_rows_by_series(valid_rows)
+    unique: dict[
+        tuple[str, ...],
+        dict[str, Any],
+    ] = {}
 
-    candidates: list[dict[str, Any]] = []
-
-    for key, newest_row in latest.items():
-        newest_time = parse_iso(
-            newest_row.get("profile_before_utc")
-        )
-
-        watermark = watermarks.get(key)
-
-        # First sight of a series: bootstrap only its newest snapshot.
-        if watermark is None:
-            candidates.append(newest_row)
+    for row in source_rows:
+        if not valid_source_row(row):
             continue
 
-        # Existing series: only snapshots newer than the persisted watermark.
-        for row in valid_rows:
-            if series_key(row) != key:
-                continue
+        key = observation_key(row)
 
-            row_time = parse_iso(row.get("profile_before_utc"))
+        if key in existing_keys:
+            continue
 
-            if row_time is not None and row_time > watermark:
-                candidates.append(row)
-
-    unique: dict[tuple[str, ...], dict[str, Any]] = {}
-
-    for row in candidates:
-        unique[observation_key(row)] = row
+        unique[key] = row
 
     return sorted(
         unique.values(),
         key=lambda row: (
-            parse_iso(row.get("profile_before_utc")),
+            parse_iso(
+                row.get("profile_before_utc")
+            ),
             observation_key(row),
         ),
     )
@@ -228,19 +204,35 @@ def normalize_row(
     target_row: dict[str, Any],
     source_rows: list[dict[str, Any]],
 ) -> dict[str, Any]:
-    cutoff = str(target_row.get("profile_before_utc") or "")
+    cutoff = str(
+        target_row.get("profile_before_utc")
+        or ""
+    )
 
     population_rows = [
         row
         for row in source_rows
-        if str(row.get("metric_status") or "").upper() == "KNOWN"
+        if (
+            valid_source_row(row)
+            and str(
+                row.get("metric_status")
+                or ""
+            ).upper()
+            == "KNOWN"
+        )
     ]
 
     effective_target = dict(target_row)
 
-    if str(
-        effective_target.get("metric_status") or ""
-    ).upper() != "KNOWN":
+    if (
+        str(
+            effective_target.get(
+                "metric_status"
+            )
+            or ""
+        ).upper()
+        != "KNOWN"
+    ):
         effective_target["value"] = None
 
     result = normalize_against_population(
@@ -250,30 +242,77 @@ def normalize_row(
         min_population=MIN_POPULATION,
     )
 
-    normalized = result.get("normalized") or {}
+    normalized = (
+        result.get("normalized")
+        or {}
+    )
 
     return {
         "version": VERSION,
-        "normalization_source_version": STAGE84_NORMALIZATION_VERSION,
-        "league_id": target_row.get("league_id"),
-        "league_name": target_row.get("league_name"),
+        "normalization_source_version": (
+            STAGE84_NORMALIZATION_VERSION
+        ),
+        "population_source_version": (
+            POPULATION_SOURCE_VERSION
+        ),
+        "league_id": target_row.get(
+            "league_id"
+        ),
+        "league_name": target_row.get(
+            "league_name"
+        ),
         "season": target_row.get("season"),
-        "team_id": target_row.get("team_id"),
-        "split": str(target_row.get("split") or "").lower(),
+        "team_id": target_row.get(
+            "team_id"
+        ),
+        "split": str(
+            target_row.get("split")
+            or ""
+        ).lower(),
         "window": target_row.get("window"),
         "metric": target_row.get("metric"),
-        "profile_before_utc": target_row.get("profile_before_utc"),
-        "observed_at_utc": target_row.get("observed_at_utc"),
-        "raw_metric_status": target_row.get("metric_status"),
-        "raw_value": normalized.get("raw_value"),
-        "population_n": normalized.get("population_n"),
-        "population_mean": normalized.get("population_mean"),
-        "population_std": normalized.get("population_std"),
-        "percentile": normalized.get("percentile"),
-        "z_score": normalized.get("z_score"),
-        "normalization_status": result.get("status"),
-        "minimum_population": MIN_POPULATION,
-        "minimum_population_policy": "CALIBRATION_MIN_SAMPLE_POLICY",
+        "profile_before_utc": (
+            target_row.get(
+                "profile_before_utc"
+            )
+        ),
+        "observed_at_utc": (
+            target_row.get(
+                "observed_at_utc"
+            )
+        ),
+        "raw_metric_status": (
+            target_row.get(
+                "metric_status"
+            )
+        ),
+        "raw_value": normalized.get(
+            "raw_value"
+        ),
+        "population_n": normalized.get(
+            "population_n"
+        ),
+        "population_mean": normalized.get(
+            "population_mean"
+        ),
+        "population_std": normalized.get(
+            "population_std"
+        ),
+        "percentile": normalized.get(
+            "percentile"
+        ),
+        "z_score": normalized.get(
+            "z_score"
+        ),
+        "normalization_status": (
+            result.get("status")
+        ),
+        "minimum_population": (
+            MIN_POPULATION
+        ),
+        "minimum_population_policy": (
+            "CALIBRATION_MIN_SAMPLE_POLICY"
+        ),
         "validated_performance_threshold": False,
         "research_only": True,
         "provider_calls_added": 0,
@@ -300,41 +339,61 @@ def main() -> int:
             META,
             {
                 "version": VERSION,
+                "population_source_version": (
+                    POPULATION_SOURCE_VERSION
+                ),
                 "run_at_utc": run_at,
-                "status": "WAITING_FOR_STAGE84_OBSERVATIONS",
+                "status": (
+                    "WAITING_FOR_STAGE90_POPULATION_HISTORY"
+                ),
                 "source_rows": 0,
-                "existing_normalized_rows": len(existing_rows),
+                "existing_normalized_rows": len(
+                    existing_rows
+                ),
                 "new_normalized_rows": 0,
-                "total_normalized_rows": len(existing_rows),
+                "total_normalized_rows": len(
+                    existing_rows
+                ),
                 "provider_calls_added": 0,
                 "historical_backfill": False,
                 "research_only": True,
             },
         )
 
-        print("WAITING_FOR_STAGE84_OBSERVATIONS")
+        print(
+            "WAITING_FOR_STAGE90_POPULATION_HISTORY"
+        )
         return 0
+
+    valid_rows = [
+        row
+        for row in source_rows
+        if valid_source_row(row)
+    ]
 
     candidates = select_forward_candidates(
         source_rows,
         existing_rows,
     )
 
-    existing_keys = {
-        observation_key(row)
-        for row in existing_rows
-    }
-
     new_rows = [
-        normalize_row(row, source_rows)
+        normalize_row(
+            row,
+            valid_rows,
+        )
         for row in candidates
-        if observation_key(row) not in existing_keys
     ]
 
-    combined = existing_rows + new_rows
+    combined = (
+        existing_rows
+        + new_rows
+    )
 
     if new_rows or OUT.exists():
-        write_jsonl(OUT, combined)
+        write_jsonl(
+            OUT,
+            combined,
+        )
 
     status = (
         "NORMALIZED_NEW_OBSERVATIONS"
@@ -346,20 +405,48 @@ def main() -> int:
         META,
         {
             "version": VERSION,
-            "normalization_source_version": STAGE84_NORMALIZATION_VERSION,
+            "normalization_source_version": (
+                STAGE84_NORMALIZATION_VERSION
+            ),
+            "population_source_version": (
+                POPULATION_SOURCE_VERSION
+            ),
             "run_at_utc": run_at,
             "status": status,
-            "source_rows": len(source_rows),
-            "candidate_rows": len(candidates),
-            "existing_normalized_rows": len(existing_rows),
-            "new_normalized_rows": len(new_rows),
-            "total_normalized_rows": len(combined),
-            "minimum_population": MIN_POPULATION,
-            "minimum_population_policy": "CALIBRATION_MIN_SAMPLE_POLICY",
+            "source_rows": len(
+                source_rows
+            ),
+            "valid_population_rows": len(
+                valid_rows
+            ),
+            "candidate_rows": len(
+                candidates
+            ),
+            "existing_normalized_rows": len(
+                existing_rows
+            ),
+            "new_normalized_rows": len(
+                new_rows
+            ),
+            "total_normalized_rows": len(
+                combined
+            ),
+            "minimum_population": (
+                MIN_POPULATION
+            ),
+            "minimum_population_policy": (
+                "CALIBRATION_MIN_SAMPLE_POLICY"
+            ),
             "historical_backfill": False,
-            "first_seen_series_policy": "LATEST_SNAPSHOT_ONLY",
-            "existing_series_policy": "STRICTLY_NEWER_THAN_WATERMARK",
-            "missing_data_policy": "UNKNOWN_NOT_ZERO",
+            "candidate_source_policy": (
+                "ALL_UNNORMALIZED_STAGE90_FORWARD_OBSERVATIONS"
+            ),
+            "population_source_policy": (
+                "DURABLE_STAGE90_HISTORY_UP_TO_TARGET_CUTOFF"
+            ),
+            "missing_data_policy": (
+                "UNKNOWN_NOT_ZERO"
+            ),
             "provider_calls_added": 0,
             "research_only": True,
             "creates_signal": False,
@@ -377,9 +464,18 @@ def main() -> int:
         json.dumps(
             {
                 "status": status,
-                "source_rows": len(source_rows),
-                "new_rows": len(new_rows),
-                "total_rows": len(combined),
+                "source_rows": len(
+                    source_rows
+                ),
+                "valid_rows": len(
+                    valid_rows
+                ),
+                "new_rows": len(
+                    new_rows
+                ),
+                "total_rows": len(
+                    combined
+                ),
             },
             ensure_ascii=False,
         )
@@ -390,5 +486,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
-
