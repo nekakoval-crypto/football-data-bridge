@@ -50,7 +50,7 @@ Fixture sample: **160** | API calls: **0**
   - bet 83 `Away Team Total Cards` — Bet365 18.1% | Marathonbet 0.0%
 
 ## Удары / удары в створ
-- Catalog markets: 21 | observed: 9
+- Catalog markets: 21 | observed: 10
 - Source status: **BET365_REFERENCE_PRESENT_USER_BOOK_SOURCE_WEAK**
 - Max coverage: Bet365 60.0% | Marathonbet 0.0%
   - bet 240 `Home Player Shots` — Bet365 60.0% | Marathonbet 0.0%
@@ -60,13 +60,14 @@ Fixture sample: **160** | API calls: **0**
   - bet 87 `Total ShotOnGoal` — Bet365 31.2% | Marathonbet 0.0%
 
 ## Офсайды
-- Catalog markets: 7 | observed: 4
+- Catalog markets: 7 | observed: 6
 - Source status: **LOW_OBSERVED_COVERAGE_REVIEW**
 - Max coverage: Bet365 3.1% | Marathonbet 0.0%
   - bet 164 `Offsides Total` — Bet365 3.1% | Marathonbet 0.0%
   - bet 167 `Offsides Home Total` — Bet365 3.1% | Marathonbet 0.0%
   - bet 168 `Offsides Away Total` — Bet365 3.1% | Marathonbet 0.0%
   - bet 166 `Offsides Handicap` — Bet365 0.0% | Marathonbet 0.0%
+  - bet 165 `Offsides 1x2` — Bet365 0.0% | Marathonbet 0.0%
 
 ## Таймы / периодные рынки
 - Catalog markets: 69 | observed: 47
