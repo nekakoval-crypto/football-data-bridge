@@ -1,64 +1,25 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-17T06:31:22Z",
-  "status": "OK",
+  "run_at_utc": "2026-09-17T08:27:39Z",
+  "status": "ATTENTION",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 8,
-  "daily_api_calls": 40,
+  "provider_calls": 0,
+  "daily_api_calls": 92,
   "protected_calls": {
     "live": 14,
-    "current_round": 96,
+    "current_round": 64,
     "standings": 16,
     "safety": 8,
-    "total": 134
+    "total": 102
   },
   "roster_ttl_days": 7,
   "candidate_teams": 8,
-  "captured_teams": [
-    {
-      "team_id": "96",
-      "team_name": "Toulouse",
-      "players": 27
-    },
-    {
-      "team_id": "97",
-      "team_name": "Lorient",
-      "players": 30
-    },
-    {
-      "team_id": "492",
-      "team_name": "Napoli",
-      "players": 28
-    },
-    {
-      "team_id": "502",
-      "team_name": "Fiorentina",
-      "players": 28
-    },
-    {
-      "team_id": "106",
-      "team_name": "Stade Brestois 29",
-      "players": 28
-    },
-    {
-      "team_id": "108",
-      "team_name": "Auxerre",
-      "players": 35
-    },
-    {
-      "team_id": "35",
-      "team_name": "Bournemouth",
-      "players": 33
-    },
-    {
-      "team_id": "40",
-      "team_name": "Liverpool",
-      "players": 32
-    }
-  ],
-  "deferred_teams": 0,
+  "captured_teams": [],
+  "deferred_teams": 8,
   "total_roster_rows": 1975,
-  "warnings": [],
+  "warnings": [
+    "Stage71 protected API reserve reached; Challenger deferred"
+  ],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
