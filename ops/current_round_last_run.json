@@ -1,24 +1,22 @@
 {
-  "run_at_utc": "2026-09-16T23:29:15Z",
-  "status": "ATTENTION",
+  "run_at_utc": "2026-09-17T07:32:06Z",
+  "status": "OK",
   "season": 2026,
   "leagues": 16,
   "available_leagues": 16,
   "fixture_rows": 129,
-  "warnings": [
-    "La Liga: API-Football /fixtures/rounds: {'rateLimit': 'Too many requests. You have exceeded the limit of requests per minute of your subscription.'}"
-  ],
-  "api_calls": 31,
-  "api_day_calls": 169,
+  "warnings": [],
+  "api_calls": 32,
+  "api_day_calls": 72,
   "api_budget_limit": 60,
   "api_daily_budget_limit": 180,
   "provider_polling": true,
-  "refresh_status": "PARTIAL",
+  "refresh_status": "OK",
   "budget_exhausted": false,
-  "refreshed_leagues": 15,
-  "preserved_leagues": 1,
-  "failed_leagues": 1,
+  "refreshed_leagues": 16,
+  "preserved_leagues": 0,
+  "failed_leagues": 0,
   "served_available_leagues": 16,
   "served_fixture_rows": 129,
-  "last_good_preserved": true
+  "last_good_preserved": false
 }
