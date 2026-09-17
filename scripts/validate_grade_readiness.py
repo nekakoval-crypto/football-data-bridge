@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate PBK Brain Grade Readiness registry.
+"""Validate PBK Brain Grade Readiness registry and Team Style Profile contract.
 
 Governance-only. This script performs no provider calls and does not mutate any
 betting, probability, eligibility, stake, settlement or forward-journal state.
@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 
 REGISTRY = Path("config/pbk_grade_readiness.json")
+STYLE_PROFILE = Path("config/pbk_team_style_profile.json")
 REQUIRED_IDS = {
     "PLAYER_OVERALL_GRADE",
     "PLAYER_FORM_GRADE",
@@ -22,6 +23,15 @@ REQUIRED_IDS = {
     "TEAM_COMPONENT_GRADES",
     "TEAM_OVERALL_GRADE",
     "MATCHUP_GRADE",
+}
+EXPECTED_STYLE_WINDOWS = [5, 10, 20]
+EXPECTED_STYLE_SPLITS = ["overall", "home", "away"]
+EXPECTED_STYLE_SOURCES = {
+    "API_FOOTBALL_FIXTURE_STATS",
+    "UNDERSTAT_TEAM_MATCH_XG",
+    "FOOTBALL_DATA_MATCH_STATS",
+    "PBK_FORMATION_RESEARCH",
+    "DETAILED_EVENT_DATA",
 }
 
 
@@ -128,14 +138,70 @@ def validate(payload: dict) -> list[str]:
     return errors
 
 
+def validate_style_profile(payload: dict) -> list[str]:
+    errors: list[str] = []
+    if payload.get("version") != 1:
+        errors.append("TEAM_STYLE_PROFILE: version must be 1")
+    if payload.get("windows") != EXPECTED_STYLE_WINDOWS:
+        errors.append("TEAM_STYLE_PROFILE: rolling windows must remain [5, 10, 20]")
+    if payload.get("splits") != EXPECTED_STYLE_SPLITS:
+        errors.append("TEAM_STYLE_PROFILE: splits must remain overall/home/away")
+    if payload.get("missing_policy") != "UNKNOWN_NOT_ZERO":
+        errors.append("TEAM_STYLE_PROFILE: missing evidence must remain UNKNOWN_NOT_ZERO")
+    if payload.get("formation_policy") != "CONTEXT_ONLY_NOT_STYLE":
+        errors.append("TEAM_STYLE_PROFILE: formation must remain context-only")
+    if payload.get("aggregation_policy") != "RAW_COMPONENTS_ONLY_NO_HAND_WRITTEN_WEIGHTS":
+        errors.append("TEAM_STYLE_PROFILE: arbitrary style aggregation is forbidden")
+
+    sources = payload.get("sources") or {}
+    missing_sources = sorted(EXPECTED_STYLE_SOURCES - set(sources))
+    if missing_sources:
+        errors.append(f"TEAM_STYLE_PROFILE: missing source contracts {', '.join(missing_sources)}")
+    if sources.get("PBK_FORMATION_RESEARCH", {}).get("status") != "AVAILABLE_CONTEXT_ONLY":
+        errors.append("TEAM_STYLE_PROFILE: formation research must remain context-only")
+    if sources.get("UNDERSTAT_TEAM_MATCH_XG", {}).get("status") == "PRODUCTION_READY":
+        errors.append("TEAM_STYLE_PROFILE: current Understat player-artifact workflow cannot be called production team-match xG")
+    if sources.get("DETAILED_EVENT_DATA", {}).get("status") == "CONNECTED":
+        errors.append("TEAM_STYLE_PROFILE: detailed event data cannot be pre-marked connected")
+
+    raw_metrics = set(payload.get("raw_metrics") or [])
+    for required in ("shots_for", "shots_against", "xg_for", "xg_against", "ppda", "progressive_passes"):
+        if required not in raw_metrics:
+            errors.append(f"TEAM_STYLE_PROFILE: missing raw metric {required}")
+    dimensions = payload.get("matchup_dimension_candidates") or {}
+    for required in (
+        "PRESS_INTENSITY",
+        "BUILDUP_RESISTANCE",
+        "TRANSITION_ATTACK",
+        "TRANSITION_DEFENCE",
+        "WIDTH_ATTACK",
+        "WIDE_DEFENCE",
+        "AERIAL_ATTACK",
+        "AERIAL_DEFENCE",
+        "SET_PIECE_ATTACK",
+        "SET_PIECE_DEFENCE",
+        "LOW_BLOCK_BREAKING",
+        "LOW_BLOCK_DEFENCE",
+        "CENTRAL_PROGRESSION",
+        "CENTRAL_COMPACTNESS",
+    ):
+        if required not in dimensions:
+            errors.append(f"TEAM_STYLE_PROFILE: missing matchup dimension candidate {required}")
+    return errors
+
+
 def main() -> int:
     payload = json.loads(REGISTRY.read_text(encoding="utf-8"))
-    errors = validate(payload)
+    style_payload = json.loads(STYLE_PROFILE.read_text(encoding="utf-8"))
+    errors = validate(payload) + validate_style_profile(style_payload)
     if errors:
         for error in errors:
             print(f"ERROR: {error}")
         return 1
-    print(f"OK: PBK grade readiness registry ({len(payload.get('metrics') or [])} metrics)")
+    print(
+        f"OK: PBK grade readiness registry ({len(payload.get('metrics') or [])} metrics) "
+        f"+ Team Style Profile v{style_payload.get('version')}"
+    )
     return 0
 
 

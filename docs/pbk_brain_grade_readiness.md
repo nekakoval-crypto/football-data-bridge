@@ -28,7 +28,32 @@ No grade, availability, rotation or matchup metric in this audit may alter canon
 | Absence Impact | DATA_BLOCKED | explicit no-lookahead ABSENT evidence + separate importance/player/replacement components | durable availability ledger, coverage and OOS validation |
 | Return Impact | DATA_BLOCKED | explicit observed ABSENT → PRESENT/STARTER/BENCH transition | longitudinal availability evidence and OOS validation |
 | Team Overall Grade | NOT_IMPLEMENTED | intentionally not an arbitrary average | component incremental value and weighting must be validated first |
+| Team Style Profile | FOUNDATION CODE_READY / DATA_BLOCKED | rolling raw 5/10/20 profiles for overall/home/away + per-metric provenance/coverage | durable match-stat/event feeds and later calibration |
 | Matchup Grade | DATA_BLOCKED | explicit style vector + directional style-vs-style components | production style evidence and OOS component validation |
+
+## Team Style Profile foundation
+
+The Team Style Profile is now a provider-free, no-lookahead **raw evidence layer**. It is intentionally one step before the 0..10 style vector used by the Matchup foundation.
+
+For each team and target cutoff it can build independent rolling windows of **5 / 10 / 20 previous matches** for:
+
+- overall;
+- home only;
+- away only.
+
+A match is eligible only if its kickoff is strictly before the target cutoff and the source row itself was observed no later than the cutoff. Every usable row needs explicit `source` and aware `observed_at_utc` provenance.
+
+The profile exposes raw descriptive metrics such as shots, shots on target, xG/xGA when actually present, possession, corners, pass accuracy and any richer event metrics that later become available. Missing metrics stay `UNKNOWN`; they are never zero-filled. Partial coverage is retained explicitly through `sample_size`, `window_matches` and `coverage_pct`.
+
+The engine does **not** manufacture a style rating from these raw fields. A candidate link such as `ppda/high_turnovers -> PRESS_INTENSITY` or `progressive_passes/carries -> CENTRAL_PROGRESSION` is recorded only as `REQUIRES_CALIBRATION`. No 0..10 value is emitted until a separate historical/OOS calibration is designed and validated.
+
+Source truth at this stage:
+
+- **API-Football fixture statistics** are an intended live source, but there is not yet a durable style-stat archive wired into this profile. The style engine itself adds zero provider calls.
+- **Understat** is not currently a production team-match xG feed in PBK. The existing repository workflow clones an aggregate player dataset artifact, so it must not be mislabeled as live team style data.
+- **Football-Data** can provide partial historical shots/corners-style fields where the archived season actually contains them.
+- **PBK Formation Research** is available, but remains context only.
+- richer pressing/progression/transition/aerial/field-tilt features require a detailed event source that is not connected yet.
 
 ## Matchup / Style-vs-Style foundation
 
@@ -54,7 +79,7 @@ Directional deltas are transparent descriptive components only. There is deliber
 
 Stage77/Stage78 still do not provide enough real player-grade history to validate Player Overall, XI Quality, Player Importance, Rotation Quality, Absence or Return components. API reserve protections must not be weakened merely to populate research grades.
 
-The Matchup foundation also has no production style-feature pipeline yet. Existing formation research is useful context, but formation observations cannot substitute for event/style evidence.
+The Team Style Profile code can now consume historical match-stat/event rows safely, but production source coverage is still incomplete. Existing formation research is useful context, but formation observations cannot substitute for event/style evidence.
 
 ## Source limitations that must remain visible
 
@@ -76,9 +101,10 @@ Matchup style evidence must preserve the same honesty: if a required event/style
 5. Validate XI Quality and XI delta versus market baseline/team strength.
 6. Evaluate Player Importance stability and confounding; do not make causal claims from starts-vs-no-starts alone.
 7. Populate explicit availability evidence and validate Absence/Return components independently.
-8. Build durable pre-kickoff style evidence from event/context sources.
-9. Validate every directional matchup component out of sample against future outcomes and market residuals.
-10. Only after component evidence exists, evaluate whether a Team Overall Grade or composite Matchup Grade adds incremental predictive information. Do not create either by arbitrary averaging.
+8. Populate durable pre-kickoff Team Style Profile evidence for 5/10/20 overall/home/away windows.
+9. Calibrate raw style inputs into explicit style dimensions without hand-written weights or leakage.
+10. Validate every directional matchup component out of sample against future outcomes and market residuals.
+11. Only after component evidence exists, evaluate whether a Team Overall Grade or composite Matchup Grade adds incremental predictive information. Do not create either by arbitrary averaging.
 
 ## Separate identity issue discovered by audit
 

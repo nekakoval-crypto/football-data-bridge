@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "name": "PBK Team Style Profile",
+  "purpose": "Provider-free research contract for rolling pre-kickoff team-style evidence. Raw descriptive features only; no composite style score, betting signal, probability adjustment, stake change or canonical eligibility mutation.",
+  "windows": [5, 10, 20],
+  "splits": ["overall", "home", "away"],
+  "missing_policy": "UNKNOWN_NOT_ZERO",
+  "formation_policy": "CONTEXT_ONLY_NOT_STYLE",
+  "aggregation_policy": "RAW_COMPONENTS_ONLY_NO_HAND_WRITTEN_WEIGHTS",
+  "sources": {
+    "API_FOOTBALL_FIXTURE_STATS": {
+      "status": "NOT_DURABLY_CAPTURED_FOR_STYLE_YET",
+      "intended_fields": ["shots_for", "shots_on_target_for", "possession_pct", "corners_for", "passes", "pass_accuracy_pct"],
+      "note": "Use only after a durable pre-kickoff-safe historical match-stat capture exists. Do not add provider calls from the style engine itself."
+    },
+    "UNDERSTAT_TEAM_MATCH_XG": {
+      "status": "NOT_IN_PRODUCTION_PIPELINE",
+      "intended_fields": ["xg_for", "xg_against", "shots_for", "shots_against"],
+      "note": "Current repository workflow clones an aggregate player dataset artifact; that is not a production team-match xG feed."
+    },
+    "FOOTBALL_DATA_MATCH_STATS": {
+      "status": "HISTORICAL_PARTIAL",
+      "intended_fields": ["shots_for", "shots_against", "shots_on_target_for", "shots_on_target_against", "corners_for", "corners_against"],
+      "note": "Useful where the archived competition/season actually contains these columns. Missing seasons/fields stay unknown."
+    },
+    "PBK_FORMATION_RESEARCH": {
+      "status": "AVAILABLE_CONTEXT_ONLY",
+      "intended_fields": ["formation"],
+      "note": "Formation may be shown as context but cannot create or fill a style dimension."
+    },
+    "DETAILED_EVENT_DATA": {
+      "status": "NOT_CONNECTED",
+      "intended_fields": ["ppda", "high_turnovers", "progressive_passes", "progressive_carries", "field_tilt", "crosses", "aerial_duel_win_pct", "set_piece_xg_for", "set_piece_xg_against", "transition_shots_for", "transition_shots_against"],
+      "note": "Needed for higher-resolution pressing, progression, aerial, low-block and transition style dimensions."
+    }
+  },
+  "raw_metrics": [
+    "shots_for",
+    "shots_against",
+    "shots_on_target_for",
+    "shots_on_target_against",
+    "xg_for",
+    "xg_against",
+    "possession_pct",
+    "corners_for",
+    "corners_against",
+    "passes",
+    "pass_accuracy_pct",
+    "long_ball_share_pct",
+    "ppda",
+    "high_turnovers",
+    "crosses",
+    "aerial_duel_win_pct",
+    "set_piece_xg_for",
+    "set_piece_xg_against",
+    "progressive_passes",
+    "progressive_carries",
+    "field_tilt_pct",
+    "transition_shots_for",
+    "transition_shots_against"
+  ],
+  "matchup_dimension_candidates": {
+    "PRESS_INTENSITY": ["ppda", "high_turnovers"],
+    "BUILDUP_RESISTANCE": ["pass_accuracy_pct", "possession_pct"],
+    "TRANSITION_ATTACK": ["transition_shots_for"],
+    "TRANSITION_DEFENCE": ["transition_shots_against"],
+    "WIDTH_ATTACK": ["crosses", "corners_for"],
+    "WIDE_DEFENCE": ["corners_against"],
+    "AERIAL_ATTACK": ["aerial_duel_win_pct"],
+    "AERIAL_DEFENCE": ["aerial_duel_win_pct"],
+    "SET_PIECE_ATTACK": ["set_piece_xg_for", "corners_for"],
+    "SET_PIECE_DEFENCE": ["set_piece_xg_against", "corners_against"],
+    "LOW_BLOCK_BREAKING": ["field_tilt_pct", "progressive_passes", "progressive_carries"],
+    "LOW_BLOCK_DEFENCE": ["field_tilt_pct", "xg_against"],
+    "CENTRAL_PROGRESSION": ["progressive_passes", "progressive_carries"],
+    "CENTRAL_COMPACTNESS": ["xg_against", "shots_against"]
+  },
+  "guardrails": [
+    "Only matches with kickoff strictly before target cutoff are eligible.",
+    "Each source row must have explicit source and aware observed_at_utc not later than target cutoff.",
+    "Rolling windows are calculated independently for overall, home and away splits.",
+    "A raw metric with no observed values remains UNKNOWN and is never zero-filled.",
+    "Partial metric coverage is reported with sample_size and coverage_pct; it is not silently promoted to full coverage.",
+    "No raw metric is converted to a 0..10 style dimension without a separately validated calibration.",
+    "Formation is context only and cannot substitute for missing style evidence.",
+    "The style profile engine itself performs zero provider/API calls."
+  ]
+}
