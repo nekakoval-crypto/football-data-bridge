@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 17.09.2026 21:01 (Europe/Berlin)
+Обновлено: 17.09.2026 22:00 (Europe/Berlin)
 Canonical: 1 | active WATCH crossings: 18 | RED: 0 | ORANGE: 18
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -52,10 +52,10 @@ Canonical: 1 | active WATCH crossings: 18 | RED: 0 | ORANGE: 18
 - **Stage63 | FC Schalke 04 — SV Elversberg** | ОЗ — Да | 20.09 17:30 | 1.44 @ Marathonbet
 
 ## ⚪ Ближайшие матчи под наблюдением (без сигнала)
-- **Stage63 | Malaga — Villarreal** | La Liga | 17.09 21:30 | ОЗ — Да / ОЗ — Нет | Bet365 Да 1.57 / Нет 2.25
 - **Stage62 | Bayern München — Union Berlin** | Бундеслига | 18.09 20:30 | ТБ(2.5) steam | Bet365 ТБ 1.17 / ТМ 5.0
 - **Stage63 | Bayern München — Union Berlin** | Bundesliga | 18.09 20:30 | ОЗ — Да / ОЗ — Нет | Bet365 Да 1.75 / Нет 2.0
 - **Stage63 | Monza — Sassuolo** | Serie A | 18.09 20:45 | ОЗ — Да / ОЗ — Нет | Bet365 Да 1.7 / Нет 2.05
+- **Stage63 | Monaco — Lens** | Ligue 1 | 18.09 20:45 | ОЗ — Да / ОЗ — Нет | Bet365 Да 1.44 / Нет 2.62
 - **Stage61 | Brentford — Chelsea** | АПЛ | 18.09 21:00 | П1/П2 steam | Bet365 2.6/3.5/2.5
 - **Stage61 | Tottenham — Aston Villa** | АПЛ | 19.09 13:30 | П1/П2 steam | Bet365 2.2/3.3/3.2
 - **Stage62 | Eintracht Frankfurt — SC Freiburg** | Бундеслига | 19.09 15:30 | ТБ(2.5) steam | Bet365 ТБ 1.53 / ТМ 2.5
@@ -68,39 +68,6 @@ Canonical: 1 | active WATCH crossings: 18 | RED: 0 | ORANGE: 18
 
 ## 🧩 Рыночные карточки ближайших матчей
 > Собранные снимки рынков; не сигналы и не рекомендации.
-
-- **Malaga — Villarreal** | La Liga | 17.09 19:30 UTC
-  - ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Bet365
-  - ОЗ · ОЗ Да: 1.53 | ОЗ Нет: 2.33 @ Marathonbet
-  - Ф(0) · Ф1(0): 2.75 | Ф2(0): 1.42 @ Bet365
-  - Ф(0) · Ф1(0): 2.76 | Ф2(0): 1.46 @ Marathonbet
-  - 1Х/Х2/12 · 1Х: 1.91 | Х2: 1.28 | 12: 1.25 @ Bet365
-  - 1Х/Х2/12 · 1Х: 1.9 | Х2: 1.29 | 12: 1.28 @ Marathonbet
-  - Европейская фора хозяев (+1) · П1: 1.83 | Х: 4 | П2: 3.4 @ Bet365
-  - Европейская фора хозяев (+1) · П1: 1.9 | Х: 3.8 | П2: 3.15 @ Marathonbet
-  - Европейская фора хозяев (+2) · П1: 1.3 | Х: 5.5 | П2: 7 @ Bet365
-  - Европейская фора хозяев (+2) · П1: 1.29 | Х: 5.45 | П2: 5.9 @ Marathonbet
-  - Европейская фора хозяев (+3) · П1: 1.1 | Х: 10 | П2: 17 @ Bet365
-  - Европейская фора хозяев (-1) · П1: 8 | Х: 5.5 | П2: 1.28 @ Bet365
-  - Европейская фора хозяев (-1) · П1: 7.1 | Х: 5.35 | П2: 1.29 @ Marathonbet
-  - Европейская фора хозяев (-2) · П1: 19 | Х: 11 | П2: 1.08 @ Bet365
-  - 1X2 · П1: 3.6 | Х: 3.7 | П2: 1.95 @ Bet365
-  - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.14 | ИТМ: 5.5 @ Bet365
-  - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.73 | ИТМ: 2 @ Bet365
-  - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.76 | ИТМ: 2.06 @ Marathonbet
-  - ИТБ/ИТМ 2 (2.5) · ИТБ: 3.4 | ИТМ: 1.3 @ Bet365
-  - ИТБ/ИТМ 2 (2.5) · ИТБ: 3.26 | ИТМ: 1.31 @ Marathonbet
-  - ИТБ/ИТМ 2 (3.5) · ИТБ: 8 | ИТМ: 1.08 @ Bet365
-  - ИТБ/ИТМ 2 (3.5) · ИТБ: 6.75 | ИТМ: 1.06 @ Marathonbet
-  - ИТБ/ИТМ 2 (4.5) · ИТБ: 19 | ИТМ: 1.02 @ Bet365
-  - ИТБ/ИТМ 1 (0.5) · ИТБ: 1.3 | ИТМ: 3.4 @ Bet365
-  - ИТБ/ИТМ 1 (0.5) · ИТБ: 1.32 | ИТМ: 3.1 @ Marathonbet
-  - ИТБ/ИТМ 1 (1.5) · ИТБ: 2.5 | ИТМ: 1.5 @ Bet365
-  - ИТБ/ИТМ 1 (1.5) · ИТБ: 2.58 | ИТМ: 1.49 @ Marathonbet
-  - ИТБ/ИТМ 1 (2.5) · ИТБ: 6.5 | ИТМ: 1.11 @ Bet365
-  - ИТБ/ИТМ 1 (2.5) · ИТБ: 6.1 | ИТМ: 1.1 @ Marathonbet
-  - ИТБ/ИТМ 1 (3.5) · ИТБ: 17 | ИТМ: 1.02 @ Bet365
-  - Тотал 2.5 — нет данных
 
 - **Widzew Łódź — Wieczysta Kraków** | Ekstraklasa | 18.09 16:00 UTC
   - Ф(0) · Ф1(0): 1.42 | Ф2(0): 2.75 @ Bet365
@@ -4072,7 +4039,7 @@ Canonical: 1 | active WATCH crossings: 18 | RED: 0 | ORANGE: 18
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 2
+- System Health: **WARN** | critical 0 | warnings 1
 - Логическая canonical экспозиция: **1.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 24 | data required 3
