@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V6_RAW_S3"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V7_TRANSFER_HISTORY"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -32,6 +32,7 @@ SOURCES = {
     "current_rosters": "team_rosters.csv",
     "roster_history": "team_roster_history.csv",
     "membership_intervals": "team_membership_intervals.csv",
+    "transfer_history": "historical_transfer_events.csv",
     "match_context": "match_context_snapshots.csv",
     "lineup_archive": "lineup_snapshots.csv",
     "injury_archive": "injury_snapshots.csv",
@@ -315,6 +316,7 @@ def build_report(ops=OPS, archive_dir=None):
     current_rosters = data["current_rosters"] or []
     history = data["roster_history"] or []
     intervals = data["membership_intervals"] or []
+    transfers = data["transfer_history"] or []
     contexts = data["match_context"] or []
     lineup_archive = data["lineup_archive"] or []
     injury_archive = data["injury_archive"] or []
@@ -326,6 +328,20 @@ def build_report(ops=OPS, archive_dir=None):
         for row in history
         if sval(row, "team_id") and sval(row, "captured_at_utc")
     }
+    transfer_valid = [
+        row for row in transfers
+        if sval(row, "transfer_event_id")
+        and sval(row, "pbk_player_id")
+        and sval(row, "transfermarkt_player_id")
+        and sval(row, "transfer_date")
+        and sval(row, "mapping_method") == "EXACT_NAME_CURRENT_CLUB"
+        and sval(row, "mapping_confidence") == "HIGH"
+    ]
+    transfer_invalid = len(transfers) - len(transfer_valid)
+    transfer_dates = sorted(sval(row, "transfer_date") for row in transfer_valid if sval(row, "transfer_date"))
+    transfer_pbk_players = {sval(row, "pbk_player_id") for row in transfer_valid if sval(row, "pbk_player_id")}
+    transfer_tm_players = {sval(row, "transfermarkt_player_id") for row in transfer_valid if sval(row, "transfermarkt_player_id")}
+
     context_fixture_ids = {sval(row, "api_fixture_id") for row in contexts if sval(row, "api_fixture_id")}
     lineup_fixture_ids = {
         sval(row, "api_fixture_id") for row in contexts
@@ -413,7 +429,10 @@ def build_report(ops=OPS, archive_dir=None):
     elif raw_archive["status"] != "OK":
         gaps.append("RAW_ARCHIVE_STORAGE_NEEDS_ATTENTION")
     gaps.append("MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY")
-    gaps.append("VERIFIED_TRANSFER_EVENTS_NOT_YET_INGESTED")
+    if data["transfer_history"] is None or not transfer_valid:
+        gaps.append("VERIFIED_TRANSFER_EVENTS_NOT_YET_INGESTED")
+    if transfer_invalid:
+        gaps.append("TRANSFER_HISTORY_INVALID_IDENTITY_ROWS")
     gaps.append("XG_XA_REQUIRE_VERIFIED_SOURCE")
 
     if roster_history_rows == 0 and player_stats_fixture_count == 0:
@@ -511,6 +530,17 @@ def build_report(ops=OPS, archive_dir=None):
             "open_latest_intervals": sum(1 for row in intervals if sval(row, "interval_status") == "OPEN_LATEST"),
             "closed_by_observed_absence_intervals": sum(1 for row in intervals if sval(row, "interval_status") == "CLOSED_BY_OBSERVED_ABSENCE"),
         },
+        "transfer_history": {
+            "present": data["transfer_history"] is not None,
+            "rows": len(transfers),
+            "valid_rows": len(transfer_valid),
+            "invalid_identity_rows": transfer_invalid,
+            "unique_pbk_players": len(transfer_pbk_players),
+            "unique_transfermarkt_players": len(transfer_tm_players),
+            "earliest_transfer_date": transfer_dates[0] if transfer_dates else None,
+            "latest_transfer_date": transfer_dates[-1] if transfer_dates else None,
+            "evidence_note": "Only durable HIGH-confidence EXACT_NAME_CURRENT_CLUB mapped Transfermarkt events count as verified historical transfer enrichment; this is not current squad authority.",
+        },
         "context": {
             "snapshot_rows": len(contexts),
             "unique_fixtures": len(context_fixture_ids),
@@ -555,6 +585,7 @@ def render_markdown(report):
     r = report["rosters"]
     p = report["players"]
     c = report["context"]
+    transfers = report["transfer_history"]
     events = report["match_events"]
     norm = report["normalized_context_archives"]
     raw = report["raw_provider_archive"]
@@ -585,6 +616,7 @@ def render_markdown(report):
         f"- Current roster: {r['current_roster_teams']} команд / {r['current_roster_rows']} игроковых строк.",
         f"- Roster history: {r['history_teams']} команд / {r['history_team_snapshots']} team-snapshots / {r['history_rows']} строк.",
         f"- Membership intervals: {r['membership_intervals']} (open {r['open_latest_intervals']}, closed-by-observed-absence {r['closed_by_observed_absence_intervals']}).",
+        f"- Verified historical transfers: {transfers['valid_rows']} rows / {transfers['unique_pbk_players']} PBK players; dates {transfers['earliest_transfer_date'] or '—'} → {transfers['latest_transfer_date'] or '—'}; invalid {transfers['invalid_identity_rows']}.",
         f"- Match context: {c['unique_fixtures']} fixtures; official XI {c['fixtures_with_official_lineup_snapshot']}; injury evidence {c['fixtures_with_injury_evidence']}.",
         "",
         "## Raw provider archive",
@@ -622,6 +654,7 @@ def main():
         "roster_history_rows": report["rosters"]["history_rows"],
         "player_stats_fixtures": report["fixtures"]["player_stats_fixture_count_all_snapshots"],
         "raw_archive_status": report["raw_provider_archive"]["status"],
+        "verified_transfer_rows": report["transfer_history"]["valid_rows"],
     }, ensure_ascii=False))
 
 
