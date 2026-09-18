@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V19_PREMATCH_FACTOR_RESEARCH"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V20_PREMATCH_WALKFORWARD"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -53,6 +53,8 @@ SOURCES = {
     "prematch_context": "top5_prematch_context_research.csv",
     "prematch_factor_research": "top5_prematch_factor_research.csv",
     "prematch_factor_stability": "top5_prematch_factor_stability_research.csv",
+    "prematch_walkforward": "top5_prematch_factor_walkforward_research.csv",
+    "prematch_walkforward_summary": "top5_prematch_factor_walkforward_summary_research.csv",
 }
 FINAL_PROVIDER_CODES = {"FT", "AET", "PEN"}
 FINAL_NORMALIZED = {"finished", "ft", "aet", "pen"}
@@ -211,6 +213,7 @@ def build_report(ops=OPS, archive_dir=None):
     top5_referee_meta = read_json(Path(ops) / "stage80_top5_referee_backfill_last_run.json")
     prematch_context_meta = read_json(Path(ops) / "stage80_prematch_context_last_run.json")
     prematch_factor_meta = read_json(Path(ops) / "stage80_prematch_factor_research_last_run.json")
+    prematch_walkforward_meta = read_json(Path(ops) / "stage80_prematch_factor_walkforward_last_run.json")
     source_presence = {
         name: {
             "file": filename,
@@ -388,6 +391,8 @@ def build_report(ops=OPS, archive_dir=None):
     prematch_context = data["prematch_context"] or []
     prematch_factor_research = data["prematch_factor_research"] or []
     prematch_factor_stability = data["prematch_factor_stability"] or []
+    prematch_walkforward = data["prematch_walkforward"] or []
+    prematch_walkforward_summary = data["prematch_walkforward_summary"] or []
 
     history_snapshots = {
         (sval(row, "team_id"), sval(row, "captured_at_utc"))
@@ -797,6 +802,71 @@ def build_report(ops=OPS, archive_dir=None):
         and prematch_factor_meta.get("stake_changes") is False
         and prematch_factor_meta.get("forward_journal_mutation") is False
     )
+    expected_walkforward_targets = {"HOME","DRAW","AWAY","OVER25","UNDER25"}
+    prematch_walkforward_valid = [
+        row for row in prematch_walkforward
+        if sval(row, "factor") in expected_factor_names
+        and sval(row, "bucket")
+        and sval(row, "scope_type") in {"ALL","LEAGUE"}
+        and sval(row, "scope_value")
+        and sval(row, "target") in expected_walkforward_targets
+        and sval(row, "test_season")
+        and int(fnum(row.get("train_seasons")) or 0) >= 2
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+        and not is_true(row.get("probability_mutation"))
+        and not is_true(row.get("eligibility_mutation"))
+        and not is_true(row.get("stake_changes"))
+        and not is_true(row.get("forward_journal_mutation"))
+    ]
+    prematch_walkforward_summary_valid = [
+        row for row in prematch_walkforward_summary
+        if sval(row, "factor") in expected_factor_names
+        and sval(row, "bucket")
+        and sval(row, "scope_type") in {"ALL","LEAGUE"}
+        and sval(row, "scope_value")
+        and sval(row, "target") in expected_walkforward_targets
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+        and not is_true(row.get("promotes_factor"))
+        and not is_true(row.get("probability_mutation"))
+        and not is_true(row.get("eligibility_mutation"))
+        and not is_true(row.get("stake_changes"))
+        and not is_true(row.get("forward_journal_mutation"))
+    ]
+    prematch_walkforward_invalid = len(prematch_walkforward) - len(prematch_walkforward_valid)
+    prematch_walkforward_summary_invalid = len(prematch_walkforward_summary) - len(prematch_walkforward_summary_valid)
+    prematch_walkforward_meta_valid = bool(
+        prematch_walkforward_meta
+        and not prematch_walkforward_meta.get("_invalid_json")
+        and prematch_walkforward_meta.get("version") == "PBK_STAGE80_PREMATCH_FACTOR_WALKFORWARD_V1"
+        and prematch_walkforward_meta.get("status") == "OK"
+        and int(prematch_walkforward_meta.get("source_rows") or 0) == 16111
+        and int(prematch_walkforward_meta.get("context_rows") or 0) == 16111
+        and int(prematch_walkforward_meta.get("joined_rows") or 0) == 16111
+        and int(prematch_walkforward_meta.get("invalid_context_governance_rows") or 0) == 0
+        and int(prematch_walkforward_meta.get("source_without_context") or 0) == 0
+        and int(prematch_walkforward_meta.get("context_without_source") or 0) == 0
+        and len(prematch_walkforward_meta.get("season_labels") or []) == 9
+        and set(prematch_walkforward_meta.get("targets") or []) == expected_walkforward_targets
+        and int(prematch_walkforward_meta.get("fold_rows") or 0) == len(prematch_walkforward_valid)
+        and int(prematch_walkforward_meta.get("summary_rows") or 0) == len(prematch_walkforward_summary_valid)
+        and int(prematch_walkforward_meta.get("sample_threshold_pass_folds") or 0) > 0
+        and int(prematch_walkforward_meta.get("min_prior_seasons") or 0) == 2
+        and int(prematch_walkforward_meta.get("min_train_market_matches") or 0) == 100
+        and int(prematch_walkforward_meta.get("min_test_market_matches") or 0) == 30
+        and int(prematch_walkforward_meta.get("provider_calls") or 0) == 0
+        and prematch_walkforward_meta.get("research_only") is True
+        and prematch_walkforward_meta.get("operational_betting_authority") is False
+        and prematch_walkforward_meta.get("creates_signal") is False
+        and prematch_walkforward_meta.get("promotes_factor") is False
+        and prematch_walkforward_meta.get("probability_mutation") is False
+        and prematch_walkforward_meta.get("eligibility_mutation") is False
+        and prematch_walkforward_meta.get("stake_changes") is False
+        and prematch_walkforward_meta.get("forward_journal_mutation") is False
+    )
     raw_archive = raw_archive_inventory(archive_dir, ops=ops)
     roster_history_rows = len(history)
     player_stats_fixture_count = len(stat_fixture_ids)
@@ -903,6 +973,20 @@ def build_report(ops=OPS, archive_dir=None):
         or not prematch_factor_stability_valid
     ):
         gaps.append("PREMATCH_FACTOR_RESEARCH_INVALID_OR_INCOMPLETE")
+    if (
+        data["prematch_walkforward"] is None
+        or data["prematch_walkforward_summary"] is None
+        or prematch_walkforward_meta is None
+    ):
+        gaps.append("PREMATCH_FACTOR_WALKFORWARD_NOT_MATERIALIZED")
+    elif (
+        not prematch_walkforward_meta_valid
+        or prematch_walkforward_invalid
+        or prematch_walkforward_summary_invalid
+        or not prematch_walkforward_valid
+        or not prematch_walkforward_summary_valid
+    ):
+        gaps.append("PREMATCH_FACTOR_WALKFORWARD_INVALID_OR_INCOMPLETE")
     if data["lineup_archive"] is None:
         gaps.append("LINEUP_ARCHIVE_WAITING_FIRST_BUILD")
     if data["injury_archive"] is None:
@@ -1224,6 +1308,27 @@ def build_report(ops=OPS, archive_dir=None):
             "operational_betting_authority": False,
             "evidence_note": "Descriptive factor buckets and season-stability counts from no-lookahead prematch context joined to historical outcomes/closing markets. Observed ROI/calibration is research evidence only and does not promote a factor into a model.",
         },
+        "prematch_factor_walkforward": {
+            "folds_present": data["prematch_walkforward"] is not None,
+            "summary_present": data["prematch_walkforward_summary"] is not None,
+            "meta_present": prematch_walkforward_meta is not None,
+            "meta_valid": prematch_walkforward_meta_valid,
+            "fold_rows": len(prematch_walkforward),
+            "valid_fold_rows": len(prematch_walkforward_valid),
+            "invalid_fold_rows": prematch_walkforward_invalid,
+            "summary_rows": len(prematch_walkforward_summary),
+            "valid_summary_rows": len(prematch_walkforward_summary_valid),
+            "invalid_summary_rows": prematch_walkforward_summary_invalid,
+            "sample_threshold_pass_folds": int(prematch_walkforward_meta.get("sample_threshold_pass_folds") or 0) if prematch_walkforward_meta_valid else None,
+            "targets": list(prematch_walkforward_meta.get("targets") or []) if prematch_walkforward_meta_valid else [],
+            "min_prior_seasons": 2,
+            "min_train_market_matches": 100,
+            "min_test_market_matches": 30,
+            "market_probability_semantics": "Historical closing-market no-vig benchmark only; never PBK probability.",
+            "operational_betting_authority": False,
+            "promotes_factor": False,
+            "evidence_note": "Walk-forward research uses only strictly earlier seasons to evaluate each later test season. Sample-qualified sign persistence is descriptive validation evidence only.",
+        },
         "normalized_context_archives": {
             "lineup_rows": len(lineup_archive),
             "lineup_fixtures": len(lineup_archive_fixture_ids),
@@ -1263,6 +1368,7 @@ def render_markdown(report):
     referee_top5 = report["referee_top5_backfill"]
     prematch = report["prematch_context_research"]
     prematch_factor = report["prematch_factor_research"]
+    prematch_walkforward = report["prematch_factor_walkforward"]
     raw = report["raw_provider_archive"]
     coverage = f["finished_current_inventory_player_stats_coverage_pct"]
     coverage_text = "—" if coverage is None else f"{coverage:.2f}%"
@@ -1302,6 +1408,7 @@ def render_markdown(report):
         f"- Top-5 API-Football referee backfill: {referee_top5['captured_league_seasons']} / {referee_top5['expected_league_seasons']} league-seasons; {referee_top5['valid_fixture_rows']} fixture rows; referee coverage {referee_top5['referee_coverage_pct'] if referee_top5['referee_coverage_pct'] is not None else '—'}%; profiles {referee_top5['valid_profile_rows']}; referee×team pairs {referee_top5['valid_team_split_rows']}.",
         f"- Top-5 pre-match research context: {prematch['valid_rows']} valid rows / {prematch['unique_historical_match_ids']} unique matches / {prematch['league_seasons']} of {prematch['expected_league_seasons']} league-seasons; no-lookahead {prematch['no_lookahead']}.",
         f"- Pre-match factor research: {prematch_factor['valid_profile_rows']} profile rows / {prematch_factor['valid_stability_rows']} stability rows; closing 1X2 matches {prematch_factor['closing_1x2_matches'] if prematch_factor['closing_1x2_matches'] is not None else '—'}; closing O/U2.5 matches {prematch_factor['closing_total25_matches'] if prematch_factor['closing_total25_matches'] is not None else '—'}.",
+        f"- Pre-match walk-forward research: {prematch_walkforward['valid_fold_rows']} folds / {prematch_walkforward['valid_summary_rows']} summaries; sample-qualified folds {prematch_walkforward['sample_threshold_pass_folds'] if prematch_walkforward['sample_threshold_pass_folds'] is not None else '—'}; promotes factor {prematch_walkforward['promotes_factor']}.",
         f"- Match context: {c['unique_fixtures']} fixtures; official XI {c['fixtures_with_official_lineup_snapshot']}; injury evidence {c['fixtures_with_injury_evidence']}.",
         "",
         "## Raw provider archive",
@@ -1355,6 +1462,9 @@ def main():
         "prematch_context_no_lookahead": report["prematch_context_research"]["no_lookahead"],
         "prematch_factor_profile_rows": report["prematch_factor_research"]["valid_profile_rows"],
         "prematch_factor_stability_rows": report["prematch_factor_research"]["valid_stability_rows"],
+        "prematch_walkforward_fold_rows": report["prematch_factor_walkforward"]["valid_fold_rows"],
+        "prematch_walkforward_summary_rows": report["prematch_factor_walkforward"]["valid_summary_rows"],
+        "prematch_walkforward_sample_qualified_folds": report["prematch_factor_walkforward"]["sample_threshold_pass_folds"],
     }, ensure_ascii=False))
 
 
