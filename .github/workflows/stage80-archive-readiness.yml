@@ -15,6 +15,10 @@ on:
       - 'scripts/stage80_transfer_history_archive.py'
       - 'scripts/stage91_statsbomb_player_xg_xa.py'
       - 'scripts/tests/test_stage91_statsbomb_player_xg_xa.py'
+      - 'scripts/stage92_statsbomb_pbk_player_mapping.py'
+      - 'scripts/tests/test_stage92_statsbomb_pbk_player_mapping.py'
+      - 'docs/stage92_statsbomb_pbk_player_mapping.md'
+      - '.github/workflows/stage92-statsbomb-pbk-player-mapping.yml'
       - 'config/pbk_statsbomb_open_data.json'
       - 'docs/stage91_statsbomb_player_xg_xa.md'
       - 'scripts/tests/test_stage80_archive_readiness.py'
@@ -40,6 +44,9 @@ on:
       - 'ops/stage80_raw_archive_storage_last_run.json'
       - 'ops/stage80_raw_archive_provider_probe_last_run.json'
       - 'ops/statsbomb_player_xg_xa.csv'
+      - 'ops/statsbomb_pbk_player_mapping_candidates.csv'
+      - 'ops/pbk_player_xg_xa_research.csv'
+      - 'ops/stage92_statsbomb_pbk_player_mapping_last_run.json'
       - 'scripts/stage80_archive_manifest.py'
       - 'scripts/stage80_historical_fixture_catalog.py'
       - 'scripts/stage80_historical_player_catalog.py'
@@ -47,6 +54,10 @@ on:
       - 'scripts/stage80_transfer_history_archive.py'
       - 'scripts/stage91_statsbomb_player_xg_xa.py'
       - 'scripts/tests/test_stage91_statsbomb_player_xg_xa.py'
+      - 'scripts/stage92_statsbomb_pbk_player_mapping.py'
+      - 'scripts/tests/test_stage92_statsbomb_pbk_player_mapping.py'
+      - 'docs/stage92_statsbomb_pbk_player_mapping.md'
+      - '.github/workflows/stage92-statsbomb-pbk-player-mapping.yml'
       - 'config/pbk_statsbomb_open_data.json'
       - 'docs/stage91_statsbomb_player_xg_xa.md'
       - 'scripts/tests/test_stage80_lineup_injury_archive.py'
@@ -95,6 +106,7 @@ jobs:
           python -m py_compile scripts/stage80_lineup_injury_archive.py
           python -m py_compile scripts/stage80_transfer_history_archive.py
           python -m py_compile scripts/stage91_statsbomb_player_xg_xa.py
+          python -m py_compile scripts/stage92_statsbomb_pbk_player_mapping.py
       - name: Provider-free Stage80 tests
         run: |
           python -m unittest scripts.tests.test_stage80_archive_readiness -v
@@ -107,6 +119,7 @@ jobs:
           python -m unittest scripts.tests.test_stage80_lineup_injury_archive -v
           python -m unittest scripts.tests.test_stage80_transfer_history_archive -v
           python -m unittest scripts.tests.test_stage91_statsbomb_player_xg_xa -v
+          python -m unittest scripts.tests.test_stage92_statsbomb_pbk_player_mapping -v
       - name: Real-repo catalogs, manifest and readiness smoke
         run: |
           python scripts/stage80_historical_fixture_catalog.py
@@ -117,7 +130,7 @@ jobs:
       - name: Assert provider isolation
         shell: bash
         run: |
-          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports|raw\.githubusercontent' scripts/stage80_archive_readiness.py scripts/stage80_archive_manifest.py scripts/stage80_historical_fixture_catalog.py scripts/stage80_historical_player_catalog.py scripts/stage80_lineup_injury_archive.py scripts/stage80_transfer_history_archive.py scripts/stage91_statsbomb_player_xg_xa.py; then
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports|raw\.githubusercontent' scripts/stage80_archive_readiness.py scripts/stage80_archive_manifest.py scripts/stage80_historical_fixture_catalog.py scripts/stage80_historical_player_catalog.py scripts/stage80_lineup_injury_archive.py scripts/stage80_transfer_history_archive.py scripts/stage91_statsbomb_player_xg_xa.py scripts/stage92_statsbomb_pbk_player_mapping.py; then
             echo 'Stage80 archive governance/projections must remain provider-free.' >&2
             exit 1
           fi
