@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V10_STATSBOMB_PBK_MAPPING"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V11_STATS_NAME_TRANSFER_BRIDGE"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -364,7 +364,7 @@ def build_report(ops=OPS, archive_dir=None):
         and sval(row, "pbk_player_id")
         and sval(row, "transfermarkt_player_id")
         and sval(row, "transfer_date")
-        and sval(row, "mapping_method") == "EXACT_NAME_CURRENT_CLUB"
+        and sval(row, "mapping_method") in {"EXACT_NAME_CURRENT_CLUB", "EXACT_STATS_NAME_CURRENT_CLUB"}
         and sval(row, "mapping_confidence") == "HIGH"
     ]
     transfer_invalid = len(transfers) - len(transfer_valid)

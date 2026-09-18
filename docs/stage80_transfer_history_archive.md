@@ -14,7 +14,7 @@ mapping pipeline.
 A transfer row is eligible only when the player mapping is:
 
 - `match_status = AUTO_MATCH`;
-- `match_method = EXACT_NAME_CURRENT_CLUB`;
+- `match_method` is either `EXACT_NAME_CURRENT_CLUB` or `EXACT_STATS_NAME_CURRENT_CLUB`;
 - `match_confidence = HIGH`.
 
 REVIEW, ambiguous, initial+surname and other non-authoritative candidates are never
@@ -89,8 +89,7 @@ verified transfer history receives an explicit empty list and
 ## Readiness semantics
 
 Stage80 readiness removes
-`VERIFIED_TRANSFER_EVENTS_NOT_YET_INGESTED` only when at least one valid durable
-HIGH-confidence exact-mapped transfer row is present.
+`VERIFIED_TRANSFER_EVENTS_NOT_YET_INGESTED` only when at least one valid durable HIGH-confidence transfer row from one of the approved exact-name+club methods is present.
 
 A missing or entirely invalid dataset keeps that gap explicit. Invalid rows are
 reported separately and never count as verified coverage.

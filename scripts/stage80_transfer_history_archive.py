@@ -19,8 +19,8 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-VERSION = "PBK_STAGE80_TRANSFER_HISTORY_ARCHIVE_V1"
-SAFE_METHOD = "EXACT_NAME_CURRENT_CLUB"
+VERSION = "PBK_STAGE80_TRANSFER_HISTORY_ARCHIVE_V2_STATS_NAME"
+SAFE_METHODS = {"EXACT_NAME_CURRENT_CLUB", "EXACT_STATS_NAME_CURRENT_CLUB"}
 SAFE_CONFIDENCE = "HIGH"
 SAFE_STATUS = "AUTO_MATCH"
 
@@ -132,7 +132,7 @@ def mapping_index(mapping_rows):
     for row in mapping_rows:
         if (
             sval(row, "match_status") != SAFE_STATUS
-            or sval(row, "match_method") != SAFE_METHOD
+            or sval(row, "match_method") not in SAFE_METHODS
             or sval(row, "match_confidence") != SAFE_CONFIDENCE
         ):
             continue
@@ -148,6 +148,7 @@ def mapping_index(mapping_rows):
         safe[key] = {
             "pbk_player_name": sval(row, "pbk_player_name"),
             "transfermarkt_player_name": sval(row, "transfermarkt_player_name"),
+            "mapping_method": sval(row, "match_method"),
         }
     return {key: value for key, value in safe.items() if value is not None}
 
@@ -177,7 +178,8 @@ def normalize_mapped_rows(mapped_rows, mapping_rows, source_snapshot="", metadat
         mapped = safe.get((pbk_id, tm_id))
         if (
             mapped is None
-            or sval(row, "mapping_method") != SAFE_METHOD
+            or sval(row, "mapping_method") not in SAFE_METHODS
+            or sval(row, "mapping_method") != mapped["mapping_method"]
             or sval(row, "mapping_confidence") != SAFE_CONFIDENCE
         ):
             rejected += 1
@@ -196,7 +198,7 @@ def normalize_mapped_rows(mapped_rows, mapping_rows, source_snapshot="", metadat
             "to_club_name": sval(row, "to_club_name"),
             "transfer_fee": sval(row, "transfer_fee"),
             "market_value_in_eur": sval(row, "market_value_in_eur"),
-            "mapping_method": SAFE_METHOD,
+            "mapping_method": mapped["mapping_method"],
             "mapping_confidence": SAFE_CONFIDENCE,
             "source": sval(row, "source") or "dcaribou/transfermarkt-datasets:transfers",
             "source_snapshot": source_snapshot,
@@ -311,7 +313,7 @@ def run(mapped_path, mapping_path, metadata_path, existing_path, out_path, meta_
         "existing_rows": len(existing_rows),
         "archive_rows": len(merged),
         **merge_meta,
-        "mapping_policy": "AUTO_MATCH+EXACT_NAME_CURRENT_CLUB+HIGH_ONLY",
+        "mapping_policy": "AUTO_MATCH+HIGH with EXACT_NAME_CURRENT_CLUB or EXACT_STATS_NAME_CURRENT_CLUB",
         "provider_calls": 0,
         "research_only": True,
         "creates_signal": False,

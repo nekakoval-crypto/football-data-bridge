@@ -21,7 +21,7 @@ verified historical transfer rows preserve:
 - PBK observed name;
 - Transfermarkt player ID;
 - full Transfermarkt player name;
-- `EXACT_NAME_CURRENT_CLUB`;
+- `EXACT_NAME_CURRENT_CLUB` or `EXACT_STATS_NAME_CURRENT_CLUB`;
 - `HIGH` mapping confidence.
 
 Stage92 reuses only that already-verified bridge.
@@ -32,8 +32,7 @@ A StatsBomb player is authoritative for mapped PBK research only when:
 
 1. Stage91 has one stable name for that StatsBomb player ID;
 2. the normalized StatsBomb full name exactly matches a Transfermarkt full name;
-3. the Transfermarkt row comes from the verified Stage80
-   `EXACT_NAME_CURRENT_CLUB/HIGH` mapping;
+3. the Transfermarkt row comes from a verified Stage80 HIGH mapping produced by either `EXACT_NAME_CURRENT_CLUB` or `EXACT_STATS_NAME_CURRENT_CLUB`;
 4. all exact-name bridge rows resolve to one PBK player ID.
 
 The result is:
@@ -138,7 +137,7 @@ These rows are historical research enrichment only.
 
 ## Readiness states
 
-Stage80 V10 distinguishes:
+Stage80 V11 distinguishes:
 
 - Stage91 not materialized;
 - Stage91 materialized but Stage92 not materialized;

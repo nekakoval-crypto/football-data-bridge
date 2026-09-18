@@ -79,6 +79,7 @@ jobs:
           mkdir -p mapping
           python scripts/stage80_transfer_entity_mapping.py \
             --pbk ops/historical_players.csv \
+            --player-stats ops/player_stats_snapshots.csv \
             --players core/players.csv.gz \
             --transfers core/transfers.csv.gz \
             --mapping-out mapping/pbk_transfermarkt_player_mapping_candidates.csv \
