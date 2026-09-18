@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V8_TRANSFER_HISTORY"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V9_STATSBOMB_XG_XA"
 
 DATASETS = [
     {
@@ -108,6 +108,17 @@ DATASETS = [
         "effective_time_fields": ["kickoff_utc"],
         "source": "Stage77/78 derived from captured player stats",
         "limitations": "Research-derived grade; not raw provider fact and not canonical authority.",
+    },
+    {
+        "dataset_id": "statsbomb_player_xg_xa",
+        "path": "statsbomb_player_xg_xa.csv",
+        "role": "RESEARCH_ENRICHMENT",
+        "lifecycle": "DERIVED_EXTERNAL_OPEN_DATA_PROJECTION",
+        "identity_key": ["record_id"],
+        "observed_time_fields": [],
+        "effective_time_fields": ["match_date"],
+        "source": "Stage91 derived from local StatsBomb Open Data event files",
+        "limitations": "StatsBomb identity namespace only. xG is shot.statsbomb_xg; xA is derived by joining pass event id to shot.key_pass_id and assigning the shot xG. Research-only; attribution required; no PBK/API-Football identity mapping or betting authority.",
     },
     {
         "dataset_id": "historical_players",
