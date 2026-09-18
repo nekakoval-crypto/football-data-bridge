@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V13_PROFILE_DOB_IDENTITY_BRIDGE"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V14_EXTERNAL_STAGE91_ATTESTATION"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -59,6 +59,15 @@ def read_csv(path):
         return None
     with path.open(encoding="utf-8-sig", newline="") as stream:
         return list(csv.DictReader(stream))
+
+
+def read_json(path):
+    if not path.exists():
+        return None
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError, TypeError):
+        return {"_invalid_json": True}
 
 
 def sval(row, key):
@@ -188,6 +197,7 @@ def raw_archive_inventory(archive_dir=None, ops=OPS):
 
 def build_report(ops=OPS, archive_dir=None):
     data = {name: read_csv(Path(ops) / filename) for name, filename in SOURCES.items()}
+    stage91_meta = read_json(Path(ops) / "stage91_statsbomb_player_xg_xa_last_run.json")
     source_presence = {
         name: {
             "file": filename,
@@ -493,7 +503,31 @@ def build_report(ops=OPS, archive_dir=None):
         if sval(row, "statsbomb_match_id")
     }
 
-    if data["player_xg_xa_research"] is None:
+    stage91_meta_valid = bool(
+        stage91_meta
+        and not stage91_meta.get("_invalid_json")
+        and stage91_meta.get("version") == "PBK_STAGE91_STATSBOMB_PLAYER_XG_XA_V1"
+        and stage91_meta.get("status") == "OK"
+        and stage91_meta.get("source") == "StatsBomb Open Data"
+        and bool(str(stage91_meta.get("source_revision") or "").strip())
+        and int(stage91_meta.get("player_match_rows") or 0) > 0
+        and int(stage91_meta.get("unique_statsbomb_players") or 0) > 0
+        and stage91_meta.get("raw_data_committed_to_pbk") is False
+        and stage91_meta.get("research_only") is True
+        and stage91_meta.get("operational_betting_authority") is False
+        and int(stage91_meta.get("provider_calls") or 0) == 0
+    )
+    stage91_external_payload_attested = bool(
+        data["player_xg_xa_research"] is None
+        and stage91_meta_valid
+        and player_xg_xa_auto_mapping
+        and player_xg_xa_mapped_valid
+    )
+
+    if stage91_external_payload_attested:
+        player_xg_xa_source_status = "RESEARCH_SOURCE_EXTERNAL_LOCAL_ATTESTED_MAPPED_TO_PBK"
+        player_xg_xa_mapping_status = "AUTO_HIGH_MATERIALIZED"
+    elif data["player_xg_xa_research"] is None:
         player_xg_xa_source_status = "RESEARCH_ADAPTER_READY_NOT_MATERIALIZED"
         player_xg_xa_mapping_status = "WAITING_FOR_STAGE91_SOURCE"
     elif not player_xg_xa_valid:
@@ -617,9 +651,9 @@ def build_report(ops=OPS, archive_dir=None):
         or len(team_xg_complete_fixture_ids) < len(team_stats_fixture_ids)
     ):
         gaps.append("TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE")
-    if data["player_xg_xa_research"] is None:
+    if data["player_xg_xa_research"] is None and not stage91_external_payload_attested:
         gaps.append("PLAYER_XG_XA_RESEARCH_SOURCE_NOT_MATERIALIZED")
-    elif not player_xg_xa_valid:
+    elif data["player_xg_xa_research"] is not None and not player_xg_xa_valid:
         gaps.append("PLAYER_XG_XA_RESEARCH_SOURCE_INVALID")
     elif data["player_xg_xa_mapping"] is None or data["player_xg_xa_mapped"] is None:
         gaps.append("PLAYER_XG_XA_PBK_IDENTITY_MAPPING_NOT_MATERIALIZED")
@@ -727,6 +761,12 @@ def build_report(ops=OPS, archive_dir=None):
             ),
             "team_xg_evidence_note": "Verified provider field when present; API-Football may return it as missing for some competitions or fixtures and PBK preserves missing as UNKNOWN.",
             "player_xg_xa_source_status": player_xg_xa_source_status,
+            "player_xg_xa_source_payload_in_repository": data["player_xg_xa_research"] is not None,
+            "player_xg_xa_stage91_meta_present": stage91_meta is not None,
+            "player_xg_xa_stage91_meta_valid": stage91_meta_valid,
+            "player_xg_xa_stage91_attested_rows": int(stage91_meta.get("player_match_rows") or 0) if stage91_meta_valid else 0,
+            "player_xg_xa_stage91_attested_unique_players": int(stage91_meta.get("unique_statsbomb_players") or 0) if stage91_meta_valid else 0,
+            "player_xg_xa_stage91_source_revision": str(stage91_meta.get("source_revision") or "") if stage91_meta_valid else "",
             "player_xg_xa_research_rows": len(player_xg_xa_valid),
             "player_xg_xa_research_invalid_rows": player_xg_xa_invalid,
             "player_xg_xa_research_matches": len(player_xg_xa_matches),
@@ -743,7 +783,7 @@ def build_report(ops=OPS, archive_dir=None):
             "player_xg_xa_mapped_research_invalid_rows": player_xg_xa_mapped_invalid,
             "player_xg_xa_mapped_pbk_players": len(player_xg_xa_mapped_players),
             "player_xg_xa_mapped_matches": len(player_xg_xa_mapped_matches),
-            "player_xg_xa_evidence_note": "Stage91 provides StatsBomb research metrics. Stage92 maps only exact full names through the verified Transfermarkt→PBK bridge; abbreviated-name candidates remain REVIEW and never enter mapped research. Mapped xG/xA remains research-only and non-operational.",
+            "player_xg_xa_evidence_note": "Stage91 provides StatsBomb research metrics. The large Stage91 source payload may remain external/local when an OK Stage91 meta attestation plus valid Stage92 AUTO/HIGH mapped rows are persisted; this never implies the source CSV is stored in Git. Stage92 maps only exact full names through the verified Transfermarkt→PBK bridge; abbreviated-name candidates remain REVIEW and never enter mapped research. Mapped xG/xA remains research-only and non-operational.",
         },
         "players": {
             "player_stat_rows": len(stats),
