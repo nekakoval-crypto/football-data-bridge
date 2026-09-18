@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_READINESS_V11_STATS_NAME_TRANSFER_BRIDGE",
-  "generated_at_utc": "2026-09-18T17:16:07Z",
+  "version": "PBK_STAGE80_ARCHIVE_READINESS_V12_TRANSFER_IDENTITY_BRIDGE",
+  "generated_at_utc": "2026-09-18T17:23:36Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -58,6 +58,11 @@
       "file": "team_membership_intervals.csv",
       "present": true,
       "rows": 2949
+    },
+    "transfer_identity": {
+      "file": "pbk_transfermarkt_player_identity.csv",
+      "present": false,
+      "rows": null
     },
     "transfer_history": {
       "file": "historical_transfer_events.csv",
@@ -219,6 +224,19 @@
     "open_latest_intervals": 2949,
     "closed_by_observed_absence_intervals": 0
   },
+  "transfer_identity": {
+    "present": false,
+    "rows": 0,
+    "valid_rows": 0,
+    "invalid_rows": 0,
+    "unique_pbk_players": 0,
+    "unique_transfermarkt_players": 0,
+    "approved_methods": [
+      "EXACT_NAME_CURRENT_CLUB",
+      "EXACT_STATS_NAME_CURRENT_CLUB"
+    ],
+    "evidence_note": "Durable identity bridge independent of whether a player has any transfer-event rows; HIGH/AUTO only and research/enrichment authority only."
+  },
   "transfer_history": {
     "present": true,
     "rows": 1474,
@@ -228,7 +246,7 @@
     "unique_transfermarkt_players": 184,
     "earliest_transfer_date": "2001-07-01",
     "latest_transfer_date": "2026-07-01",
-    "evidence_note": "Only durable HIGH-confidence EXACT_NAME_CURRENT_CLUB mapped Transfermarkt events count as verified historical transfer enrichment; this is not current squad authority."
+    "evidence_note": "Durable transfer events count only when linked by an approved HIGH-confidence exact-name+club identity method; this is historical enrichment, not current squad authority."
   },
   "context": {
     "snapshot_rows": 11,
@@ -274,6 +292,7 @@
     "PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
+    "VERIFIED_TRANSFER_IDENTITY_NOT_MATERIALIZED",
     "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE",
     "PLAYER_XG_XA_RESEARCH_SOURCE_NOT_MATERIALIZED"
   ],

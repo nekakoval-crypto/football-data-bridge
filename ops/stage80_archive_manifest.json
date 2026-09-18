@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V10_STATSBOMB_PBK_MAPPING",
-  "generated_at_utc": "2026-09-18T17:16:07Z",
+  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V11_TRANSFER_IDENTITY",
+  "generated_at_utc": "2026-09-18T17:23:35Z",
   "status": "OK",
   "datasets": [
     {
@@ -515,6 +515,28 @@
       "contract_status": "OK",
       "identity_key_text": "player_id",
       "observed_time_fields_text": "first_seen_at_utc,last_seen_at_utc",
+      "effective_time_fields_text": ""
+    },
+    {
+      "dataset_id": "pbk_transfermarkt_player_identity",
+      "path": "pbk_transfermarkt_player_identity.csv",
+      "role": "VERIFIED_IDENTITY_BRIDGE",
+      "lifecycle": "DETERMINISTIC_PROJECTION",
+      "identity_key": [
+        "pbk_player_id",
+        "transfermarkt_player_id"
+      ],
+      "observed_time_fields": [],
+      "effective_time_fields": [],
+      "source": "Stage80 conservative PBK ↔ Transfermarkt AUTO_MATCH/HIGH identity projection",
+      "limitations": "Identity bridge only. Approved methods are exact name+club or exact non-abbreviated API-Football stats name+same club; no fuzzy authority and no betting/model authority.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "pbk_player_id+transfermarkt_player_id",
+      "observed_time_fields_text": "",
       "effective_time_fields_text": ""
     },
     {
@@ -1062,9 +1084,9 @@
     }
   ],
   "summary": {
-    "declared_datasets": 23,
+    "declared_datasets": 24,
     "materialized_csv_datasets": 19,
-    "pending_materializations_or_storage": 3,
+    "pending_materializations_or_storage": 4,
     "contract_attention": 0
   },
   "provider_calls": 0,
