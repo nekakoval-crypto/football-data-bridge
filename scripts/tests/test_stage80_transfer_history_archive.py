@@ -67,6 +67,18 @@ class Stage80TransferHistoryArchiveTests(unittest.TestCase):
         self.assertEqual(rows[0]["source_snapshot"], "2026-07-06")
         self.assertTrue(rows[0]["transfer_event_id"])
 
+    def test_stats_name_auto_high_is_persisted(self):
+        rows, rejected, invalid = normalize_mapped_rows(
+            [self.mapped_row(mapping_method="EXACT_STATS_NAME_CURRENT_CLUB")],
+            [self.mapping_row(method="EXACT_STATS_NAME_CURRENT_CLUB")],
+            source_snapshot="snap",
+            metadata_sha="abc",
+        )
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rejected, 0)
+        self.assertEqual(invalid, 0)
+        self.assertEqual(rows[0]["mapping_method"], "EXACT_STATS_NAME_CURRENT_CLUB")
+
     def test_review_mapping_is_not_authoritative_transfer_evidence(self):
         rows, rejected, invalid = normalize_mapped_rows(
             [self.mapped_row()],
