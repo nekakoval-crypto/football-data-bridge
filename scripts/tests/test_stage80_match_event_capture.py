@@ -1,7 +1,13 @@
+import sys
 import unittest
 from datetime import datetime, timezone
+from pathlib import Path
 
-from scripts.stage80_match_event_capture import (
+SCRIPTS = Path(__file__).resolve().parents[1]
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
+
+from stage80_match_event_capture import (
     candidate_fixtures,
     merge_rows,
     normalize_events,
