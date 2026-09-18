@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V18_PREMATCH_CONTEXT",
-  "generated_at_utc": "2026-09-18T21:46:08Z",
+  "generated_at_utc": "2026-09-18T21:47:10Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -146,8 +146,8 @@
     },
     "prematch_context": {
       "file": "top5_prematch_context_research.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 16111
     }
   },
   "fixtures": {
@@ -436,24 +436,24 @@
     "evidence_note": "Resumable API-Football league+season fixture backfill for Top-5 seasons 2017/18-2025/26. Referee is provider text with no stable referee ID; missing referee values remain UNKNOWN."
   },
   "prematch_context_research": {
-    "present": false,
-    "meta_present": false,
-    "meta_valid": false,
-    "rows": 0,
-    "valid_rows": 0,
+    "present": true,
+    "meta_present": true,
+    "meta_valid": true,
+    "rows": 16111,
+    "valid_rows": 16111,
     "invalid_rows": 0,
-    "unique_historical_match_ids": 0,
+    "unique_historical_match_ids": 16111,
     "duplicate_historical_match_ids": 0,
-    "league_seasons": 0,
+    "league_seasons": 45,
     "expected_league_seasons": 45,
-    "rows_with_kickoff_time": null,
-    "rows_with_both_rest": null,
-    "rows_with_both_pre_match_rank": null,
-    "rows_with_both_full_last5": null,
-    "rows_with_both_full_last10": null,
-    "same_day_results_excluded": null,
-    "no_lookahead": null,
-    "provider_calls": null,
+    "rows_with_kickoff_time": 12459,
+    "rows_with_both_rest": 15660,
+    "rows_with_both_pre_match_rank": 15660,
+    "rows_with_both_full_last5": 13903,
+    "rows_with_both_full_last10": 11704,
+    "same_day_results_excluded": true,
+    "no_lookahead": true,
+    "provider_calls": 0,
     "operational_betting_authority": false,
     "evidence_note": "Deterministic Football-Data Top-5 2017/18-2025/26 pre-match research projection. Features use strictly earlier calendar dates within league-season; same-day results are excluded and the layer has no probability/EV/eligibility/stake/Forward authority."
   },
@@ -486,7 +486,6 @@
     "PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL",
-    "PREMATCH_CONTEXT_TOP5_NOT_MATERIALIZED",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
     "PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE",
     "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE"
