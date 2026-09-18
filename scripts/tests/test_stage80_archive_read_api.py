@@ -1,0 +1,89 @@
+import json
+import sqlite3
+import tempfile
+import unittest
+from pathlib import Path
+from unittest.mock import patch
+
+import scripts.stage73_internal_api as api
+
+
+class Stage80ArchiveReadApiTests(unittest.TestCase):
+    def build_db(self, path):
+        conn=sqlite3.connect(path)
+        conn.execute("CREATE TABLE pbk_meta (key TEXT PRIMARY KEY, value TEXT NOT NULL)")
+        conn.execute("INSERT INTO pbk_meta VALUES ('schema_version','test')")
+        conn.execute("CREATE TABLE raw_historical_fixtures (fixture_id TEXT, home_team TEXT, away_team TEXT, terminal_observed TEXT)")
+        conn.execute("INSERT INTO raw_historical_fixtures VALUES ('100','Alpha','Beta','YES')")
+        conn.execute("CREATE TABLE raw_fixture_history_snapshots (fixture_id TEXT, observed_at_utc TEXT, status TEXT)")
+        conn.execute("INSERT INTO raw_fixture_history_snapshots VALUES ('100','2026-09-18T10:00:00Z','FINISHED')")
+        conn.execute("CREATE TABLE raw_lineup_snapshots (fixture_id TEXT, captured_at_utc TEXT, team_id TEXT, team_name TEXT)")
+        conn.execute("INSERT INTO raw_lineup_snapshots VALUES ('100','2026-09-18T09:00:00Z','1','Alpha')")
+        conn.execute("CREATE TABLE raw_injury_snapshots (fixture_id TEXT, captured_at_utc TEXT, team_id TEXT, player_id TEXT)")
+        conn.execute("INSERT INTO raw_injury_snapshots VALUES ('100','2026-09-18T08:00:00Z','1','11')")
+        conn.execute("CREATE TABLE raw_match_event_snapshots (fixture_id TEXT, elapsed TEXT, extra TEXT, event_id TEXT, event_type TEXT)")
+        conn.execute("INSERT INTO raw_match_event_snapshots VALUES ('100','10','','e1','Goal')")
+        conn.execute("CREATE TABLE raw_team_match_statistics (fixture_id TEXT, team_id TEXT, shots_total TEXT)")
+        conn.execute("INSERT INTO raw_team_match_statistics VALUES ('100','1','12')")
+        conn.execute("CREATE TABLE raw_player_stats_snapshots (fixture_id TEXT, observed_at_utc TEXT, team_id TEXT, player_id TEXT, player_name TEXT)")
+        conn.execute("INSERT INTO raw_player_stats_snapshots VALUES ('100','2026-09-18T10:05:00Z','1','11','Player One')")
+        conn.execute("CREATE TABLE raw_historical_players (player_id TEXT, latest_observed_name TEXT)")
+        conn.execute("INSERT INTO raw_historical_players VALUES ('11','Player One')")
+        conn.execute("CREATE TABLE raw_team_roster_history (player_id TEXT, captured_at_utc TEXT, team_id TEXT, team_name TEXT)")
+        conn.execute("INSERT INTO raw_team_roster_history VALUES ('11','2026-09-17T10:00:00Z','1','Alpha')")
+        conn.execute("CREATE TABLE raw_team_membership_intervals (player_id TEXT, first_seen_at_utc TEXT, team_id TEXT, interval_status TEXT)")
+        conn.execute("INSERT INTO raw_team_membership_intervals VALUES ('11','2026-09-17T10:00:00Z','1','OPEN_LATEST')")
+        conn.execute("CREATE TABLE raw_player_grade_snapshots (player_id TEXT, observed_at_utc TEXT, fixture_id TEXT, overall_grade TEXT)")
+        conn.execute("INSERT INTO raw_player_grade_snapshots VALUES ('11','2026-09-18T10:05:00Z','100','7.1')")
+        conn.commit(); conn.close()
+
+    def test_fixture_archive_endpoint_is_provider_free(self):
+        with tempfile.TemporaryDirectory() as td:
+            db=Path(td)/"pbk.sqlite"
+            self.build_db(db)
+            with patch.object(api,"DB",db):
+                status,payload=api.dispatch("/v1/archive/fixture?fixture_id=100")
+        self.assertEqual(status,200)
+        self.assertEqual(payload["fixture"]["home_team"],"Alpha")
+        self.assertEqual(payload["coverage"]["event_rows"],1)
+        self.assertEqual(payload["coverage"]["team_stat_rows"],1)
+        self.assertEqual(payload["coverage"]["player_stat_rows"],1)
+        self.assertFalse(payload["provider_polling"])
+        self.assertFalse(payload["creates_signal"])
+        self.assertFalse(payload["probability_mutation"])
+
+    def test_player_archive_endpoint_returns_persisted_history(self):
+        with tempfile.TemporaryDirectory() as td:
+            db=Path(td)/"pbk.sqlite"
+            self.build_db(db)
+            with patch.object(api,"DB",db):
+                status,payload=api.dispatch("/v1/archive/player?player_id=11")
+        self.assertEqual(status,200)
+        self.assertEqual(payload["player"]["latest_observed_name"],"Player One")
+        self.assertEqual(payload["coverage"]["roster_rows"],1)
+        self.assertEqual(payload["coverage"]["membership_intervals"],1)
+        self.assertEqual(payload["coverage"]["match_stat_rows"],1)
+        self.assertEqual(payload["coverage"]["grade_rows"],1)
+        self.assertFalse(payload["provider_polling"])
+
+    def test_missing_id_is_rejected(self):
+        with tempfile.TemporaryDirectory() as td:
+            db=Path(td)/"pbk.sqlite"
+            self.build_db(db)
+            with patch.object(api,"DB",db):
+                status,payload=api.dispatch("/v1/archive/fixture")
+        self.assertEqual(status,400)
+        self.assertEqual(payload["error"],"MISSING_FIXTURE_ID")
+
+    def test_unknown_archive_entity_is_404(self):
+        with tempfile.TemporaryDirectory() as td:
+            db=Path(td)/"pbk.sqlite"
+            self.build_db(db)
+            with patch.object(api,"DB",db):
+                status,payload=api.dispatch("/v1/archive/player?player_id=999")
+        self.assertEqual(status,404)
+        self.assertEqual(payload["error"],"ARCHIVE_PLAYER_NOT_FOUND")
+
+
+if __name__=="__main__":
+    unittest.main()
