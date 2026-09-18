@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 18.09.2026 06:00 (Europe/Berlin)
+Обновлено: 18.09.2026 07:00 (Europe/Berlin)
 Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -306,7 +306,7 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
   - ИТБ/ИТМ 1 (7.5) · ИТБ: 13 | ИТМ: 1.04 @ Bet365
   - ИТБ/ИТМ 1 (8.5) · ИТБ: 23 | ИТМ: 1.01 @ Bet365
   - Тотал 2.5 · ТБ(2.5): 1.11 | ТМ(2.5): 6.5 @ Bet365
-  - Тотал 2.5 · ТБ(2.5): 1.07 | ТМ(2.5): 6.15 @ Marathonbet
+  - Тотал 2.5 · ТБ(2.5): 1.07 | ТМ(2.5): 6.2 @ Marathonbet
   - Ф(0) — нет данных
 
 - **Wisla Krakow — Slask Wroclaw** | Ekstraklasa | 18.09 18:30 UTC
@@ -2947,7 +2947,7 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
 
 - **Parma — Genoa** | Serie A | 20.09 13:00 UTC
   - ОЗ · ОЗ Да: 2 | ОЗ Нет: 1.75 @ Bet365
-  - ОЗ · ОЗ Да: 2 | ОЗ Нет: 1.72 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.99 | ОЗ Нет: 1.73 @ Marathonbet
   - Ф(0) · Ф1(0): 2.15 | Ф2(0): 1.68 @ Bet365
   - Ф(0) · Ф1(0): 2.14 | Ф2(0): 1.71 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.53 | Х2: 1.36 | 12: 1.36 @ Bet365
@@ -4141,7 +4141,7 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 2
+- System Health: **WARN** | critical 0 | warnings 3
 - Логическая canonical экспозиция: **1.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 24 | data required 3
