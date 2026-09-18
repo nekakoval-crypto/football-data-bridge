@@ -3,21 +3,30 @@
 Status: **BOUNDED IDENTITY EVIDENCE — NO BETTING AUTHORITY**
 
 Stage80 collects richer API-Football player profiles for already known PBK roster
-teams so abbreviated roster names can be resolved conservatively without fuzzy
+players so abbreviated roster names can be resolved conservatively without fuzzy
 matching.
 
-## Source
+## Sources
 
-Provider endpoint:
+Primary team-season endpoint:
 
 `/players?team=<API_FOOTBALL_TEAM_ID>&season=<SEASON>`
 
-The collector uses only the shared API-Football broker/backend. Successful real
+Residual player-ID endpoint:
+
+`/players?id=<API_FOOTBALL_PLAYER_ID>&season=<SEASON>`
+
+The residual path is used only for current PBK roster player IDs still missing
+after team-season capture. The player's current team context comes from the PBK
+current roster. It is not inferred from a historical or season-statistics team
+returned by the residual endpoint.
+
+Both paths use only the shared API-Football broker/backend. Successful real
 provider payloads therefore follow the existing raw R2 archive path.
 
 ## Durable evidence
 
-PBK output:
+PBK profile output:
 
 `ops/player_profile_evidence.csv`
 
@@ -37,10 +46,22 @@ Persisted fields include:
 - birth place/country;
 - nationality;
 - height/weight;
-- provider team and season;
+- PBK current team and season;
 - capture timestamp and source.
 
 Missing facts remain empty/UNKNOWN. They are never zero-filled.
+
+Residual retry state is stored separately:
+
+`ops/player_profile_residual_state.csv`
+
+Identity key:
+
+- season;
+- API-Football player ID.
+
+The ledger records CAPTURED, EMPTY, or ERROR attempts. It is operational retry
+state only and never identity/model/betting authority.
 
 ## Bounded collection
 
@@ -48,10 +69,13 @@ The operational workflow is deliberately low priority.
 
 Current limits:
 
-- daily shared API ceiling: 7000;
-- maximum profile calls per run: 24;
-- maximum teams per run: 8;
+- shared daily API ceiling: 7000;
+- maximum profile provider calls per run: 384;
+- maximum team candidates per run: 96;
 - maximum pages per team: 4;
+- maximum residual player-ID candidates per run: 400;
+- team refresh TTL: 7 days;
+- residual EMPTY/CAPTURED retry TTL: 7 days;
 - protected reserve for LIVE/current-round/standings/safety remains unavailable
   to this collector.
 
@@ -60,13 +84,22 @@ Partial pagination does not create partial team evidence.
 
 Big-5 teams are prioritized when current-round league context is available.
 
-A successful team+season profile capture is treated as fresh for 7 days. During
-that TTL the collector does not re-query the team merely because some roster IDs
-were absent from the provider's `/players?team&season` response. This prevents
-scheduled runs from repeatedly spending API budget on the same team when the
-residual roster IDs are stale, transferred, or otherwise outside that endpoint's
-current season response. After the TTL expires, the team becomes eligible for a
-controlled refresh.
+A successful team+season capture is treated as fresh for 7 days. During that TTL
+the collector does not re-query the whole team merely because some roster IDs
+were absent from the provider's team-season response.
+
+After the team pass, the collector calculates current-roster IDs still absent
+from profile evidence and may call the player-ID endpoint one player at a time.
+Only player IDs with exactly one current-roster team context are eligible.
+
+For residual calls:
+
+- a matching profile becomes durable profile evidence;
+- an empty valid provider response is recorded as EMPTY and suppressed for the
+  retry TTL;
+- a transient provider/runtime error is recorded as ERROR but remains retryable;
+- an ambiguous current-roster team assignment is skipped rather than guessed;
+- protected-budget exhaustion defers the remaining candidates cleanly.
 
 ## Identity-ready evidence
 
@@ -79,13 +112,14 @@ A profile row can support the stronger Transfermarkt bridge only when it provide
 The downstream Stage80 Transfermarkt mapper requires all of the following before
 creating `EXACT_PROFILE_NAME_DOB_CURRENT_CLUB/HIGH`:
 
-1. exact full-name match;
+1. exact full-name match after deterministic normalization;
 2. exact date-of-birth match;
 3. current-club match;
 4. unique PBK owner of the profile name+club+DOB tuple;
 5. exactly one Transfermarkt candidate satisfying the tuple.
 
-There is no fuzzy fallback from profile evidence.
+There is no fuzzy fallback from either the team-source or residual profile
+evidence.
 
 ## Automation
 
@@ -95,7 +129,9 @@ PBK↔Transfermarkt identity bridge without manual file movement.
 
 Stage80 readiness separately reports:
 
-- profile rows;
+- total valid profile rows;
+- team-source profile rows;
+- residual player-ID profile rows;
 - unique profiled players/teams;
 - current-roster profile coverage;
 - identity-ready player coverage.
