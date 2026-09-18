@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V11_TRANSFER_IDENTITY"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V12_PLAYER_PROFILE_EVIDENCE"
 
 DATASETS = [
     {
@@ -99,6 +99,17 @@ DATASETS = [
         "limitations": "Only fixtures successfully captured under protected provider budget.",
     },
     {
+        "dataset_id": "player_profile_evidence",
+        "path": "player_profile_evidence.csv",
+        "role": "IDENTITY_ENRICHMENT_EVIDENCE",
+        "lifecycle": "BOUNDED_CURRENT_TEAM_PROFILE_PROJECTION",
+        "identity_key": ["team_id", "season", "player_id"],
+        "observed_time_fields": ["captured_at_utc"],
+        "effective_time_fields": ["season"],
+        "source": "Stage80 /players?team&season via shared API-Football broker",
+        "limitations": "Identity enrichment only; current-roster coverage is partial while the bounded collector fills teams. Missing profile fields remain UNKNOWN. No betting/model authority.",
+    },
+    {
         "dataset_id": "player_grade_snapshots",
         "path": "player_grade_snapshots.csv",
         "role": "DERIVED_RESEARCH",
@@ -162,7 +173,7 @@ DATASETS = [
         "observed_time_fields": [],
         "effective_time_fields": [],
         "source": "Stage80 conservative PBK ↔ Transfermarkt AUTO_MATCH/HIGH identity projection",
-        "limitations": "Identity bridge only. Approved methods are exact name+club or exact non-abbreviated API-Football stats name+same club; no fuzzy authority and no betting/model authority.",
+        "limitations": "Identity bridge only. Approved methods include exact catalog name+club, exact API-Football profile full-name+DOB+club, or exact non-abbreviated match-stat name+club; no fuzzy authority and no betting/model authority.",
     },
     {
         "dataset_id": "historical_transfer_events",

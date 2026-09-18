@@ -86,6 +86,16 @@ class Stage92StatsBombPbkMappingTests(unittest.TestCase):
         self.assertEqual(mapping[0]["match_confidence"], "HIGH")
         self.assertEqual(mapping[0]["pbk_player_id"], "5")
 
+    def test_verified_profile_dob_transfer_method_is_also_trusted(self):
+        mapping = s92.build_mapping(
+            [self.source_row()],
+            [self.transfer_row(mapping_method="EXACT_PROFILE_NAME_DOB_CURRENT_CLUB")],
+            [self.historical_row()],
+        )
+        self.assertEqual(mapping[0]["match_status"], "AUTO_MATCH")
+        self.assertEqual(mapping[0]["match_confidence"], "HIGH")
+        self.assertEqual(mapping[0]["pbk_player_id"], "5")
+
     def test_auto_high_is_the_only_mapping_allowed_into_pbk_research_metrics(self):
         source = [self.source_row()]
         mapping = s92.build_mapping(

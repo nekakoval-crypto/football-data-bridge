@@ -3,7 +3,7 @@
 
 Consumes the conservative PBK ↔ Transfermarkt mapping artifacts produced by
 stage80_transfer_entity_mapping.py and persists only HIGH-confidence
-EXACT_NAME_CURRENT_CLUB transfer evidence.
+transfer evidence from explicitly approved exact identity methods.
 
 The archive is provider-free and append-only: an existing transfer_event_id is
 never rewritten. If a later source snapshot disagrees with the first observed
@@ -19,8 +19,8 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-VERSION = "PBK_STAGE80_TRANSFER_HISTORY_ARCHIVE_V2_STATS_NAME"
-SAFE_METHODS = {"EXACT_NAME_CURRENT_CLUB", "EXACT_STATS_NAME_CURRENT_CLUB"}
+VERSION = "PBK_STAGE80_TRANSFER_HISTORY_ARCHIVE_V3_PROFILE_DOB"
+SAFE_METHODS = {"EXACT_NAME_CURRENT_CLUB", "EXACT_PROFILE_NAME_DOB_CURRENT_CLUB", "EXACT_STATS_NAME_CURRENT_CLUB"}
 SAFE_CONFIDENCE = "HIGH"
 SAFE_STATUS = "AUTO_MATCH"
 
@@ -313,7 +313,7 @@ def run(mapped_path, mapping_path, metadata_path, existing_path, out_path, meta_
         "existing_rows": len(existing_rows),
         "archive_rows": len(merged),
         **merge_meta,
-        "mapping_policy": "AUTO_MATCH+HIGH with EXACT_NAME_CURRENT_CLUB or EXACT_STATS_NAME_CURRENT_CLUB",
+        "mapping_policy": "AUTO_MATCH+HIGH with EXACT_NAME_CURRENT_CLUB, EXACT_PROFILE_NAME_DOB_CURRENT_CLUB or EXACT_STATS_NAME_CURRENT_CLUB",
         "provider_calls": 0,
         "research_only": True,
         "creates_signal": False,

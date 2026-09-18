@@ -24,20 +24,22 @@ import unicodedata
 from collections import defaultdict
 from pathlib import Path
 
-VERSION = "PBK_STAGE80_TRANSFER_ENTITY_MAPPING_V2_STATS_NAME"
+VERSION = "PBK_STAGE80_TRANSFER_ENTITY_MAPPING_V3_PROFILE_NAME_DOB"
 AUTO_METHOD_CATALOG = "EXACT_NAME_CURRENT_CLUB"
+AUTO_METHOD_PROFILE = "EXACT_PROFILE_NAME_DOB_CURRENT_CLUB"
 AUTO_METHOD_STATS = "EXACT_STATS_NAME_CURRENT_CLUB"
-SAFE_AUTO_METHODS = {AUTO_METHOD_CATALOG, AUTO_METHOD_STATS}
+SAFE_AUTO_METHODS = {AUTO_METHOD_CATALOG, AUTO_METHOD_PROFILE, AUTO_METHOD_STATS}
 
 MAPPING_FIELDS = [
     "pbk_player_id","pbk_player_name","pbk_latest_team_names",
-    "pbk_evidence_name","pbk_evidence_team_name","pbk_evidence_source",
+    "pbk_evidence_name","pbk_evidence_team_name","pbk_evidence_birth_date","pbk_evidence_source",
     "transfermarkt_player_id","transfermarkt_player_name","transfermarkt_current_club_id",
-    "transfermarkt_current_club_name","match_method","match_status","match_confidence",
+    "transfermarkt_current_club_name","transfermarkt_date_of_birth","match_method","match_status","match_confidence",
     "name_key","team_key","candidate_count","mapping_version",
 ]
 IDENTITY_FIELDS = [
     "pbk_player_id","pbk_player_name","transfermarkt_player_id","transfermarkt_player_name",
+    "pbk_evidence_birth_date","transfermarkt_date_of_birth",
     "mapping_method","mapping_confidence","match_status","source","mapping_version",
 ]
 TRANSFER_FIELDS = [
@@ -95,6 +97,54 @@ def team_alias_key(value):
     return aliases.get(key, key)
 
 
+def profile_club_key(value):
+    """Conservative club key for DOB-backed profile identity only.
+
+    Removes common legal/organizational club tokens and founding-year suffixes.
+    This is not fuzzy similarity and is never used without exact name+DOB.
+    """
+    parts = normalize_text(value).split()
+    stop = {
+        "fc", "cf", "afc", "ac", "sc", "cfc",
+        "football", "club", "calcio", "us", "aj",
+    }
+    filtered = [part for part in parts if part not in stop]
+    if filtered and filtered[0] == "1":
+        filtered = filtered[1:]
+    if filtered and re.fullmatch(r"(?:18|19|20)\d{2}", filtered[-1]):
+        filtered = filtered[:-1]
+    return " ".join(filtered)
+
+
+def date_key(value):
+    text = str(value or "").strip()
+    match = re.match(r"^(\d{4}-\d{2}-\d{2})", text)
+    return match.group(1) if match else ""
+
+
+def profile_name_variants(row):
+    first = sval(row, "firstname")
+    last = sval(row, "lastname")
+    display = sval(row, "player_name")
+    candidates = []
+    if first and last:
+        candidates.append(f"{first} {last}")
+        first_token = first.split()[0] if first.split() else ""
+        if first_token:
+            candidates.append(f"{first_token} {last}")
+    if display and is_non_abbreviated_name(display):
+        candidates.append(display)
+
+    result = []
+    seen = set()
+    for name in candidates:
+        key = normalize_text(name)
+        if key and key not in seen and is_non_abbreviated_name(name):
+            seen.add(key)
+            result.append(name)
+    return result
+
+
 def initial_surname_key(name):
     key = normalize_text(name)
     parts = key.split()
@@ -150,6 +200,35 @@ def build_stats_aliases(player_stat_rows):
     }, ownership
 
 
+def build_profile_aliases(player_profile_rows):
+    aliases = defaultdict(dict)
+    ownership = defaultdict(set)
+    for row in player_profile_rows or []:
+        pbk_id = sval(row, "player_id")
+        team = sval(row, "team_name")
+        birth_date = date_key(sval(row, "birth_date"))
+        tk = profile_club_key(team)
+        variants = profile_name_variants(row)
+        if not pbk_id or not team or not birth_date or not tk or not variants:
+            continue
+        for name in variants:
+            nk = normalize_text(name)
+            key = (nk, tk, birth_date)
+            ownership[key].add(pbk_id)
+            aliases[pbk_id][key] = {
+                "name": name,
+                "team_name": team,
+                "birth_date": birth_date,
+                "name_key": nk,
+                "team_key": tk,
+                "source": "API_FOOTBALL_PLAYERS_TEAM_SEASON_PROFILE",
+            }
+    return {
+        pbk_id: list(items.values())
+        for pbk_id, items in aliases.items()
+    }, ownership
+
+
 def build_tm_indexes(tm_players):
     by_exact = defaultdict(list)
     by_initial_team = defaultdict(list)
@@ -166,6 +245,7 @@ def build_tm_indexes(tm_players):
             "name": name,
             "current_club_id": sval(tm, "current_club_id"),
             "current_club_name": club,
+            "date_of_birth": date_key(sval(tm, "date_of_birth")),
         }
         by_exact[normalize_text(name)].append(record)
         ik = initial_surname_key(name)
@@ -175,8 +255,9 @@ def build_tm_indexes(tm_players):
     return by_exact, by_initial_team
 
 
-def build_mapping(pbk_rows, tm_players, player_stat_rows=None):
+def build_mapping(pbk_rows, tm_players, player_stat_rows=None, player_profile_rows=None):
     by_exact, by_initial_team = build_tm_indexes(tm_players)
+    profile_aliases, profile_ownership = build_profile_aliases(player_profile_rows or [])
     stats_aliases, stats_ownership = build_stats_aliases(player_stat_rows or [])
 
     rows = []
@@ -200,6 +281,7 @@ def build_mapping(pbk_rows, tm_players, player_stat_rows=None):
         method = status = confidence = ""
         evidence_name = pbk_name
         evidence_team = " | ".join(teams)
+        evidence_birth_date = ""
         evidence_source = "historical_players.latest_observed_name"
 
         if len(exact_team) == 1:
@@ -208,62 +290,93 @@ def build_mapping(pbk_rows, tm_players, player_stat_rows=None):
             status = "AUTO_MATCH"
             confidence = "HIGH"
         else:
-            stats_matches = {}
-            for alias in stats_aliases.get(pbk_id, []):
-                key = (alias["name_key"], alias["team_key"])
-                if stats_ownership.get(key) != {pbk_id}:
+            profile_matches = {}
+            for alias in profile_aliases.get(pbk_id, []):
+                key = (alias["name_key"], alias["team_key"], alias["birth_date"])
+                if profile_ownership.get(key) != {pbk_id}:
                     continue
                 tm_exact = by_exact.get(alias["name_key"], [])
                 tm_team = [
                     x for x in tm_exact
-                    if team_alias_key(x["current_club_name"]) == alias["team_key"]
+                    if profile_club_key(x["current_club_name"]) == alias["team_key"]
+                    and x.get("date_of_birth") == alias["birth_date"]
                 ]
                 if len(tm_team) == 1:
                     candidate = tm_team[0]
-                    stats_matches[candidate["player_id"]] = (candidate, alias)
+                    profile_matches[candidate["player_id"]] = (candidate, alias)
 
-            if len(stats_matches) == 1:
-                candidate, alias = next(iter(stats_matches.values()))
+            if len(profile_matches) == 1:
+                candidate, alias = next(iter(profile_matches.values()))
                 candidates = [candidate]
-                method = AUTO_METHOD_STATS
+                method = AUTO_METHOD_PROFILE
                 status = "AUTO_MATCH"
                 confidence = "HIGH"
                 evidence_name = alias["name"]
                 evidence_team = alias["team_name"]
+                evidence_birth_date = alias["birth_date"]
                 evidence_source = alias["source"]
-            elif len(stats_matches) > 1:
-                candidates = [item[0] for item in stats_matches.values()]
-                method = "EXACT_STATS_NAME_CURRENT_CLUB_AMBIGUOUS"
+            elif len(profile_matches) > 1:
+                candidates = [item[0] for item in profile_matches.values()]
+                method = "EXACT_PROFILE_NAME_DOB_CURRENT_CLUB_AMBIGUOUS"
                 status = "REVIEW"
                 confidence = "LOW"
-                evidence_source = "API_FOOTBALL_FIXTURES_PLAYERS"
-            elif len(exact) == 1:
-                candidates = exact
-                method = "EXACT_NAME_UNIQUE"
-                status = "REVIEW"
-                confidence = "MEDIUM"
+                evidence_source = "API_FOOTBALL_PLAYERS_TEAM_SEASON_PROFILE"
             else:
-                ik = initial_surname_key(pbk_name)
-                initial_team = []
-                for tk in team_keys:
-                    initial_team.extend(by_initial_team.get((ik, tk), []))
-                uniq = {x["player_id"]: x for x in initial_team}
-                initial_team = list(uniq.values())
-                if len(initial_team) == 1:
-                    candidates = initial_team
-                    method = "INITIAL_SURNAME_CURRENT_CLUB"
-                    status = "REVIEW"
-                    confidence = "MEDIUM"
-                elif exact:
-                    candidates = exact
-                    method = "EXACT_NAME_AMBIGUOUS"
+                stats_matches = {}
+                for alias in stats_aliases.get(pbk_id, []):
+                    key = (alias["name_key"], alias["team_key"])
+                    if stats_ownership.get(key) != {pbk_id}:
+                        continue
+                    tm_exact = by_exact.get(alias["name_key"], [])
+                    tm_team = [
+                        x for x in tm_exact
+                        if team_alias_key(x["current_club_name"]) == alias["team_key"]
+                    ]
+                    if len(tm_team) == 1:
+                        candidate = tm_team[0]
+                        stats_matches[candidate["player_id"]] = (candidate, alias)
+
+                if len(stats_matches) == 1:
+                    candidate, alias = next(iter(stats_matches.values()))
+                    candidates = [candidate]
+                    method = AUTO_METHOD_STATS
+                    status = "AUTO_MATCH"
+                    confidence = "HIGH"
+                    evidence_name = alias["name"]
+                    evidence_team = alias["team_name"]
+                    evidence_source = alias["source"]
+                elif len(stats_matches) > 1:
+                    candidates = [item[0] for item in stats_matches.values()]
+                    method = "EXACT_STATS_NAME_CURRENT_CLUB_AMBIGUOUS"
                     status = "REVIEW"
                     confidence = "LOW"
+                    evidence_source = "API_FOOTBALL_FIXTURES_PLAYERS"
+                elif len(exact) == 1:
+                    candidates = exact
+                    method = "EXACT_NAME_UNIQUE"
+                    status = "REVIEW"
+                    confidence = "MEDIUM"
                 else:
-                    method = "NO_SAFE_CANDIDATE"
-                    status = "UNMAPPED"
-                    confidence = "NONE"
-
+                    ik = initial_surname_key(pbk_name)
+                    initial_team = []
+                    for tk in team_keys:
+                        initial_team.extend(by_initial_team.get((ik, tk), []))
+                    uniq = {x["player_id"]: x for x in initial_team}
+                    initial_team = list(uniq.values())
+                    if len(initial_team) == 1:
+                        candidates = initial_team
+                        method = "INITIAL_SURNAME_CURRENT_CLUB"
+                        status = "REVIEW"
+                        confidence = "MEDIUM"
+                    elif exact:
+                        candidates = exact
+                        method = "EXACT_NAME_AMBIGUOUS"
+                        status = "REVIEW"
+                        confidence = "LOW"
+                    else:
+                        method = "NO_SAFE_CANDIDATE"
+                        status = "UNMAPPED"
+                        confidence = "NONE"
         if not candidates:
             rows.append({
                 "pbk_player_id": pbk_id,
@@ -271,6 +384,7 @@ def build_mapping(pbk_rows, tm_players, player_stat_rows=None):
                 "pbk_latest_team_names": " | ".join(teams),
                 "pbk_evidence_name": evidence_name,
                 "pbk_evidence_team_name": evidence_team,
+                "pbk_evidence_birth_date": evidence_birth_date,
                 "pbk_evidence_source": evidence_source,
                 "match_method": method,
                 "match_status": status,
@@ -289,11 +403,13 @@ def build_mapping(pbk_rows, tm_players, player_stat_rows=None):
                 "pbk_latest_team_names": " | ".join(teams),
                 "pbk_evidence_name": evidence_name,
                 "pbk_evidence_team_name": evidence_team,
+                "pbk_evidence_birth_date": evidence_birth_date,
                 "pbk_evidence_source": evidence_source,
                 "transfermarkt_player_id": candidate["player_id"],
                 "transfermarkt_player_name": candidate["name"],
                 "transfermarkt_current_club_id": candidate["current_club_id"],
                 "transfermarkt_current_club_name": candidate["current_club_name"],
+                "transfermarkt_date_of_birth": candidate.get("date_of_birth", ""),
                 "match_method": method,
                 "match_status": status,
                 "match_confidence": confidence,
@@ -360,6 +476,8 @@ def build_identity_map(mapping_rows):
             "pbk_player_name": sval(row, "pbk_player_name"),
             "transfermarkt_player_id": tm_id,
             "transfermarkt_player_name": sval(row, "transfermarkt_player_name"),
+            "pbk_evidence_birth_date": sval(row, "pbk_evidence_birth_date"),
+            "transfermarkt_date_of_birth": sval(row, "transfermarkt_date_of_birth"),
             "mapping_method": method,
             "mapping_confidence": "HIGH",
             "match_status": "AUTO_MATCH",
@@ -412,14 +530,16 @@ def run(
     transfers_out,
     meta_out,
     player_stats_path=None,
+    player_profiles_path=None,
     identity_out=None,
 ):
     pbk = open_csv(pbk_path)
     players = open_csv(players_path)
     transfers = open_csv(transfers_path)
     player_stats = open_csv(player_stats_path) if player_stats_path else []
+    player_profiles = open_csv(player_profiles_path) if player_profiles_path else []
 
-    mapping, auto = build_mapping(pbk, players, player_stats)
+    mapping, auto = build_mapping(pbk, players, player_stats, player_profiles)
     identities = build_identity_map(mapping)
     history = build_transfer_history(transfers, auto)
     write_csv(mapping_out, MAPPING_FIELDS, mapping)
@@ -441,6 +561,7 @@ def run(
         "version": VERSION,
         "pbk_players": len(pbk),
         "player_stat_rows": len(player_stats),
+        "player_profile_rows": len(player_profiles),
         "transfermarkt_players": len(players),
         "transfer_source_rows": len(transfers),
         "mapping_candidate_rows": len(mapping),
@@ -450,14 +571,19 @@ def run(
         "normalized_transfer_rows": len(history),
         "mapping_status_rows": dict(sorted(statuses.items())),
         "mapping_method_rows": dict(sorted(methods.items())),
-        "auto_match_policy": "EXACT_NAME_CURRENT_CLUB_OR_EXACT_STATS_NAME_CURRENT_CLUB_UNIQUE_ONLY",
+        "auto_match_policy": "EXACT_NAME_CURRENT_CLUB_OR_EXACT_PROFILE_NAME_DOB_CURRENT_CLUB_OR_EXACT_STATS_NAME_CURRENT_CLUB_UNIQUE_ONLY",
         "review_only_methods": [
             "EXACT_NAME_UNIQUE",
             "INITIAL_SURNAME_CURRENT_CLUB",
             "EXACT_NAME_AMBIGUOUS",
+            "EXACT_PROFILE_NAME_DOB_CURRENT_CLUB_AMBIGUOUS",
             "EXACT_STATS_NAME_CURRENT_CLUB_AMBIGUOUS",
         ],
         "fuzzy_auto_match": False,
+        "profile_name_requires_non_abbreviated": True,
+        "profile_name_requires_exact_birth_date": True,
+        "profile_name_requires_same_club": True,
+        "profile_name_requires_unique_pbk_evidence_owner": True,
         "stats_name_requires_non_abbreviated": True,
         "stats_name_requires_same_club": True,
         "stats_name_requires_unique_pbk_evidence_owner": True,
@@ -483,6 +609,7 @@ def main():
     p.add_argument("--players", required=True)
     p.add_argument("--transfers", required=True)
     p.add_argument("--player-stats", default="")
+    p.add_argument("--player-profiles", default="")
     p.add_argument("--identity-out", default="")
     p.add_argument("--mapping-out", required=True)
     p.add_argument("--transfers-out", required=True)
@@ -497,6 +624,7 @@ def main():
         a.transfers_out,
         a.meta_out,
         player_stats_path=a.player_stats or None,
+        player_profiles_path=a.player_profiles or None,
         identity_out=a.identity_out or None,
     ), ensure_ascii=False))
 

@@ -316,6 +316,51 @@ class Stage80ArchiveReadinessTests(unittest.TestCase):
         self.assertIn("PLAYER_XG_XA_RESEARCH_SOURCE_INVALID", report["gaps"])
         self.assertIn("PLAYER_XG_XA_RESEARCH_SOURCE_INVALID_ROWS", report["gaps"])
 
+    def test_player_profile_evidence_reports_partial_identity_ready_coverage(self):
+        self.write_csv(
+            "team_rosters.csv",
+            ["team_id", "player_id"],
+            [
+                {"team_id": "10", "player_id": "1"},
+                {"team_id": "10", "player_id": "2"},
+                {"team_id": "20", "player_id": "3"},
+            ],
+        )
+        self.write_csv(
+            "player_profile_evidence.csv",
+            [
+                "team_id", "season", "player_id", "captured_at_utc",
+                "firstname", "lastname", "player_name", "birth_date", "source",
+            ],
+            [
+                {
+                    "team_id": "10", "season": "2026", "player_id": "1",
+                    "captured_at_utc": "2026-09-18T17:34:38Z",
+                    "firstname": "Manuel", "lastname": "Akanji",
+                    "player_name": "M. Akanji", "birth_date": "1995-07-19",
+                    "source": "api-football:/players?team&season",
+                },
+                {
+                    "team_id": "10", "season": "2026", "player_id": "2",
+                    "captured_at_utc": "2026-09-18T17:34:38Z",
+                    "firstname": "", "lastname": "",
+                    "player_name": "Known Player", "birth_date": "",
+                    "source": "api-football:/players?team&season",
+                },
+            ],
+        )
+        report = s80.build_report(self.ops, archive_dir="")
+        profiles = report["player_profiles"]
+        self.assertTrue(profiles["present"])
+        self.assertEqual(profiles["valid_rows"], 2)
+        self.assertEqual(profiles["unique_players"], 2)
+        self.assertEqual(profiles["unique_teams"], 1)
+        self.assertEqual(profiles["identity_ready_unique_players"], 1)
+        self.assertEqual(profiles["current_roster_player_coverage_pct"], 66.67)
+        self.assertEqual(profiles["identity_ready_current_roster_coverage_pct"], 33.33)
+        self.assertIn("PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE", report["gaps"])
+        self.assertNotIn("PLAYER_PROFILE_EVIDENCE_NOT_MATERIALIZED", report["gaps"])
+
     def test_roster_history_and_membership_counts_are_reported(self):
         self.write_csv(
             "team_rosters.csv",
@@ -479,6 +524,26 @@ class Stage80ArchiveReadinessTests(unittest.TestCase):
                 "transfermarkt_player_id": "900",
                 "transfer_date": "2024-07-01",
                 "mapping_method": "EXACT_STATS_NAME_CURRENT_CLUB",
+                "mapping_confidence": "HIGH",
+            }],
+        )
+        report = s80.build_report(self.ops, archive_dir="")
+        self.assertEqual(report["transfer_history"]["valid_rows"], 1)
+        self.assertNotIn("VERIFIED_TRANSFER_EVENTS_NOT_YET_INGESTED", report["gaps"])
+
+    def test_profile_dob_transfer_method_also_counts_as_verified(self):
+        self.write_csv(
+            "historical_transfer_events.csv",
+            [
+                "transfer_event_id", "pbk_player_id", "transfermarkt_player_id",
+                "transfer_date", "mapping_method", "mapping_confidence",
+            ],
+            [{
+                "transfer_event_id": "evt-profile",
+                "pbk_player_id": "11",
+                "transfermarkt_player_id": "900",
+                "transfer_date": "2024-07-01",
+                "mapping_method": "EXACT_PROFILE_NAME_DOB_CURRENT_CLUB",
                 "mapping_confidence": "HIGH",
             }],
         )
