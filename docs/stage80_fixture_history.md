@@ -16,6 +16,7 @@ Stage80 therefore preserves the already-paid Stage71 observations in `ops/fixtur
 - when the same archive identity appears with drifted display values, the first persisted historical observation wins rather than being rewritten;
 - rows without fixture identity or observation timestamp are rejected and reported;
 - source fields are preserved together with `archive_version`;
+- referee and venue are preserved from the same already-paid API-Football `/fixtures` payload when the provider supplies them; missing values remain UNKNOWN/empty and cause **0 additional provider calls**;
 - Stage72 automatically imports the CSV through its existing every-`ops/*.csv` policy as `raw_fixture_history_snapshots`;
 - this archive does not create signals or mutate probability, EV, R1/R2/R3 eligibility, stake, settlement or Forward journal.
 
