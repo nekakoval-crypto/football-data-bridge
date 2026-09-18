@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V12_TRANSFER_IDENTITY_BRIDGE",
-  "generated_at_utc": "2026-09-18T17:23:36Z",
+  "generated_at_utc": "2026-09-18T17:24:12Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -61,8 +61,8 @@
     },
     "transfer_identity": {
       "file": "pbk_transfermarkt_player_identity.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 212
     },
     "transfer_history": {
       "file": "historical_transfer_events.csv",
@@ -225,12 +225,12 @@
     "closed_by_observed_absence_intervals": 0
   },
   "transfer_identity": {
-    "present": false,
-    "rows": 0,
-    "valid_rows": 0,
+    "present": true,
+    "rows": 212,
+    "valid_rows": 212,
     "invalid_rows": 0,
-    "unique_pbk_players": 0,
-    "unique_transfermarkt_players": 0,
+    "unique_pbk_players": 212,
+    "unique_transfermarkt_players": 212,
     "approved_methods": [
       "EXACT_NAME_CURRENT_CLUB",
       "EXACT_STATS_NAME_CURRENT_CLUB"
@@ -292,7 +292,6 @@
     "PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
-    "VERIFIED_TRANSFER_IDENTITY_NOT_MATERIALIZED",
     "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE",
     "PLAYER_XG_XA_RESEARCH_SOURCE_NOT_MATERIALIZED"
   ],

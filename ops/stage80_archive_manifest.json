@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V11_TRANSFER_IDENTITY",
-  "generated_at_utc": "2026-09-18T17:23:35Z",
+  "generated_at_utc": "2026-09-18T17:24:12Z",
   "status": "OK",
   "datasets": [
     {
@@ -530,11 +530,21 @@
       "effective_time_fields": [],
       "source": "Stage80 conservative PBK ↔ Transfermarkt AUTO_MATCH/HIGH identity projection",
       "limitations": "Identity bridge only. Approved methods are exact name+club or exact non-abbreviated API-Football stats name+same club; no fuzzy authority and no betting/model authority.",
-      "present": false,
-      "row_count": null,
-      "columns": [],
+      "present": true,
+      "row_count": 212,
+      "columns": [
+        "pbk_player_id",
+        "pbk_player_name",
+        "transfermarkt_player_id",
+        "transfermarkt_player_name",
+        "mapping_method",
+        "mapping_confidence",
+        "match_status",
+        "source",
+        "mapping_version"
+      ],
       "missing_required_fields": [],
-      "contract_status": "PENDING_MATERIALIZATION",
+      "contract_status": "OK",
       "identity_key_text": "pbk_player_id+transfermarkt_player_id",
       "observed_time_fields_text": "",
       "effective_time_fields_text": ""
@@ -1085,8 +1095,8 @@
   ],
   "summary": {
     "declared_datasets": 24,
-    "materialized_csv_datasets": 19,
-    "pending_materializations_or_storage": 4,
+    "materialized_csv_datasets": 20,
+    "pending_materializations_or_storage": 3,
     "contract_attention": 0
   },
   "provider_calls": 0,
