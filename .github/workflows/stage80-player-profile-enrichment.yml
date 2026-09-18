@@ -58,7 +58,7 @@ jobs:
 
   capture:
     needs: validate
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event_name == 'push')
     permissions:
       contents: write
     runs-on: ubuntu-latest
