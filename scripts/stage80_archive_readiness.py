@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V4_LINEUP_INJURY"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V5_MATCH_EVENTS"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -35,6 +35,8 @@ SOURCES = {
     "match_context": "match_context_snapshots.csv",
     "lineup_archive": "lineup_snapshots.csv",
     "injury_archive": "injury_snapshots.csv",
+    "match_events": "match_event_snapshots.csv",
+    "match_event_backlog": "stage80_match_event_backlog.csv",
 }
 FINAL_PROVIDER_CODES = {"FT", "AET", "PEN"}
 FINAL_NORMALIZED = {"finished", "ft", "aet", "pen"}
@@ -281,6 +283,8 @@ def build_report(ops=OPS, archive_dir=None):
     contexts = data["match_context"] or []
     lineup_archive = data["lineup_archive"] or []
     injury_archive = data["injury_archive"] or []
+    match_events = data["match_events"] or []
+    match_event_backlog = data["match_event_backlog"] or []
 
     history_snapshots = {
         (sval(row, "team_id"), sval(row, "captured_at_utc"))
@@ -306,6 +310,10 @@ def build_report(ops=OPS, archive_dir=None):
 
     lineup_archive_fixture_ids = {sval(row, "fixture_id") for row in lineup_archive if sval(row, "fixture_id")}
     injury_archive_fixture_ids = {sval(row, "fixture_id") for row in injury_archive if sval(row, "fixture_id")}
+    match_event_fixture_ids = {sval(row, "fixture_id") for row in match_events if sval(row, "fixture_id")}
+    event_backlog_ids = {sval(row, "fixture_id") for row in match_event_backlog if sval(row, "fixture_id")}
+    event_backlog_pending = {sval(row, "fixture_id") for row in match_event_backlog if sval(row, "fixture_id") and sval(row, "backlog_status").upper() == "PENDING"}
+    event_backlog_captured = {sval(row, "fixture_id") for row in match_event_backlog if sval(row, "fixture_id") and sval(row, "backlog_status").upper() == "CAPTURED"}
     raw_archive = raw_archive_inventory(archive_dir)
     roster_history_rows = len(history)
     player_stats_fixture_count = len(stat_fixture_ids)
@@ -355,6 +363,12 @@ def build_report(ops=OPS, archive_dir=None):
         gaps.append("PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE")
     if finished_ids and len(team_stats_fixture_ids & finished_ids) < len(finished_ids):
         gaps.append("TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE")
+    if data["match_events"] is None:
+        gaps.append("MATCH_EVENT_ARCHIVE_WAITING_FIRST_CAPTURE")
+    if data["match_event_backlog"] is None:
+        gaps.append("MATCH_EVENT_BACKLOG_WAITING_FIRST_OPERATIONAL_RUN")
+    elif event_backlog_pending:
+        gaps.append("MATCH_EVENT_BACKLOG_PENDING")
     if data["lineup_archive"] is None:
         gaps.append("LINEUP_ARCHIVE_WAITING_FIRST_BUILD")
     if data["injury_archive"] is None:
@@ -469,6 +483,14 @@ def build_report(ops=OPS, archive_dir=None):
             "fixtures_with_injury_evidence": len(injury_fixture_ids),
             "coverage_note": "Stage55 context is canonical-signal scoped; these counts are not full 16-league archive coverage.",
         },
+        "match_events": {
+            "event_rows": len(match_events),
+            "event_fixtures": len(match_event_fixture_ids),
+            "backlog_total_fixtures": len(event_backlog_ids),
+            "backlog_pending_fixtures": len(event_backlog_pending),
+            "backlog_captured_fixtures": len(event_backlog_captured),
+            "evidence_note": "Append-only normalized provider match events captured only after PBK observed a terminal fixture; empty provider responses remain retryable.",
+        },
         "normalized_context_archives": {
             "lineup_rows": len(lineup_archive),
             "lineup_fixtures": len(lineup_archive_fixture_ids),
@@ -498,6 +520,7 @@ def render_markdown(report):
     r = report["rosters"]
     p = report["players"]
     c = report["context"]
+    events = report["match_events"]
     norm = report["normalized_context_archives"]
     raw = report["raw_provider_archive"]
     coverage = f["finished_current_inventory_player_stats_coverage_pct"]
@@ -519,6 +542,7 @@ def render_markdown(report):
         f"- Finished fixtures с player stats: {f['finished_current_inventory_with_player_stats']} / {f['finished_in_current_inventory']} ({coverage_text}).",
         f"- Stage77 durable backlog: pending {b['pending_fixtures']}; captured {b['captured_fixtures']}; total {b['total_fixtures']}.",
         f"- Normalized lineup archive: {norm['lineup_rows']} rows / {norm['lineup_fixtures']} fixtures; injury archive: {norm['injury_rows']} rows / {norm['injury_fixtures']} fixtures.",
+        f"- Match event archive: {events['event_rows']} rows / {events['event_fixtures']} fixtures; backlog pending {events['backlog_pending_fixtures']} / total {events['backlog_total_fixtures']}.",
         f"- Stage81 durable backlog: pending {b81['pending_fixtures']}; captured {b81['captured_fixtures']}; total {b81['total_fixtures']}.",
         f"- Team match statistics: {ts['complete_fixture_count']} complete fixtures / {ts['rows']} team rows; current finished coverage {team_stats_coverage_text}.",
         f"- Player stat rows: {p['player_stat_rows']}; уникальных игроков: {p['unique_players_with_stats']}.",
