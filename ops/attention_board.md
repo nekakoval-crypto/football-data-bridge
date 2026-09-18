@@ -1,7 +1,7 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 18.09.2026 10:00 (Europe/Berlin)
-Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
+Обновлено: 18.09.2026 11:00 (Europe/Berlin)
+Canonical: 4 | active WATCH crossings: 21 | RED: 0 | ORANGE: 21
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
 
@@ -11,6 +11,7 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
 ## 🟠 Ближайшие 24 часа / активные WATCH
 - **Bayern München — Union Berlin** | Stage62 | ТБ(2.5) | 18.09 20:30 | первый +3 п.п. steam ТБ(2.5) | 1.07 @ Marathonbet
 - **Bayern München — Union Berlin** | Stage63 | ОЗ — Нет | 18.09 20:30 | prospective движение ОЗ ≥3 п.п. | 1.89 @ Marathonbet
+- **Monza — Sassuolo** | Stage63 | ОЗ — Да | 18.09 20:45 | prospective движение ОЗ ≥3 п.п. | 1.56 @ Marathonbet
 - **Brentford — Chelsea** | Stage61 | П2 | 18.09 21:00 | первый +3 п.п. steam фаворита | 2.27 @ Marathonbet
 - **Brentford — Chelsea** | Stage63 | ОЗ — Да | 18.09 21:00 | prospective движение ОЗ ≥3 п.п. | 1.41 @ Marathonbet
 - **Tottenham — Aston Villa** | Stage61 | П1 | 19.09 13:30 | первый +3 п.п. steam фаворита | 2.02 @ Marathonbet
@@ -32,10 +33,14 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
 
 ## 🔵 Активные R1/R2/R3
 - **R1 | Frosinone — Como** | П2 | 20.09 15:00 | 1.65 @ Marathonbet | гости после еврокубка/кубка
+- **R1 | Lecce — Bologna** | П2 | 11.10 15:00 | 2.0 @ Marathonbet | контекст без срочных флагов
+- **R1 | Sassuolo — AC Milan** | П2 | 11.10 18:00 | 1.79 @ Marathonbet | гости после еврокубка/кубка; у гостей следующий матч еврокубок/кубок
+- **R1 | Cagliari — Juventus** | П2 | 11.10 20:45 | 1.53 @ Marathonbet | гости после еврокубка/кубка; у гостей следующий матч еврокубок/кубок
 
 ## 🟡 Research WATCH crossings
 - **Stage62 | Bayern München — Union Berlin** | ТБ(2.5) | 18.09 20:30 | 1.07 @ Marathonbet
 - **Stage63 | Bayern München — Union Berlin** | ОЗ — Нет | 18.09 20:30 | 1.89 @ Marathonbet
+- **Stage63 | Monza — Sassuolo** | ОЗ — Да | 18.09 20:45 | 1.56 @ Marathonbet
 - **Stage61 | Brentford — Chelsea** | П2 | 18.09 21:00 | 2.27 @ Marathonbet
 - **Stage63 | Brentford — Chelsea** | ОЗ — Да | 18.09 21:00 | 1.41 @ Marathonbet
 - **Stage61 | Tottenham — Aston Villa** | П1 | 19.09 13:30 | 2.02 @ Marathonbet
@@ -408,8 +413,8 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
   - Тотал 2.5 — нет данных
 
 - **Monza — Sassuolo** | Serie A | 18.09 18:45 UTC
-  - ОЗ · ОЗ Да: 1.62 | ОЗ Нет: 2.2 @ Bet365
-  - ОЗ · ОЗ Да: 1.54 | ОЗ Нет: 2.32 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Bet365
+  - ОЗ · ОЗ Да: 1.56 | ОЗ Нет: 2.27 @ Marathonbet
   - Ф(0) · Ф1(0): 2.08 | Ф2(0): 1.72 @ Bet365
   - Ф(0) · Ф1(0): 2.1 | Ф2(0): 1.74 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.53 | Х2: 1.4 | 12: 1.3 @ Bet365
@@ -490,7 +495,7 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
   - Европейская фора хозяев (-2) · П1: 13 | Х: 8 | П2: 1.14 @ Bet365
   - Европейская фора хозяев (-2) · П1: 6.1 | Х: 4.8 | П2: 1.12 @ Marathonbet
   - 1X2 · П1: 2.7 | Х: 3.7 | П2: 2.45 @ Bet365
-  - 1X2 · П1: 2.77 | Х: 3.84 | П2: 2.44 @ Marathonbet
+  - 1X2 · П1: 2.76 | Х: 3.85 | П2: 2.44 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.17 | ИТМ: 5 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.8 | ИТМ: 1.91 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.81 | ИТМ: 2.01 @ Marathonbet
@@ -959,7 +964,7 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
   - Европейская фора хозяев (-2) · П1: 6 | Х: 5 | П2: 1.36 @ Bet365
   - Европейская фора хозяев (-2) · П1: 5.4 | Х: 5.05 | П2: 1.36 @ Marathonbet
   - Европейская фора хозяев (-3) · П1: 15 | Х: 9 | П2: 1.12 @ Bet365
-  - 1X2 · П1: 1.75 | Х: 3.8 | П2: 4.75 @ Bet365
+  - 1X2 · П1: 1.75 | Х: 3.8 | П2: 4.5 @ Bet365
   - 1X2 · П1: 1.78 | Х: 3.88 | П2: 4.5 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.44 | ИТМ: 2.62 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.4 | ИТМ: 2.73 @ Marathonbet
@@ -4142,7 +4147,7 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 2
+- System Health: **WARN** | critical 0 | warnings 1
 - Логическая canonical экспозиция: **1.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 24 | data required 3
