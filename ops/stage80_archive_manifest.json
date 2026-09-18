@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V14_EPL_REFEREE_RESEARCH",
-  "generated_at_utc": "2026-09-18T20:53:38Z",
+  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V15_TOP5_REFEREE_BACKFILL",
+  "generated_at_utc": "2026-09-18T21:17:28Z",
   "status": "OK",
   "datasets": [
     {
@@ -618,6 +618,108 @@
       "identity_key_text": "referee+team",
       "observed_time_fields_text": "",
       "effective_time_fields_text": "first_date,last_date"
+    },
+    {
+      "dataset_id": "top5_referee_fixture_history",
+      "path": "top5_referee_fixture_history.csv",
+      "role": "HISTORICAL_ENRICHMENT",
+      "lifecycle": "RESUMABLE_PROVIDER_BACKFILL",
+      "identity_key": [
+        "fixture_id"
+      ],
+      "observed_time_fields": [
+        "captured_at_utc"
+      ],
+      "effective_time_fields": [
+        "kickoff_utc"
+      ],
+      "source": "Stage80 API-Football /fixtures?league&season Top-5 9-season referee backfill",
+      "limitations": "Historical research/backfill only. Referee is provider text without a stable referee ID; missing referee values remain UNKNOWN. No cards, fouls or penalty counts are inferred from this endpoint.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "fixture_id",
+      "observed_time_fields_text": "captured_at_utc",
+      "effective_time_fields_text": "kickoff_utc"
+    },
+    {
+      "dataset_id": "top5_referee_profiles_research",
+      "path": "top5_referee_profiles_research.csv",
+      "role": "RESEARCH_ENRICHMENT",
+      "lifecycle": "DETERMINISTIC_PROJECTION",
+      "identity_key": [
+        "provider_league_id",
+        "referee"
+      ],
+      "observed_time_fields": [],
+      "effective_time_fields": [
+        "first_date",
+        "last_date"
+      ],
+      "source": "Stage80 projection from API-Football Top-5 referee fixture history",
+      "limitations": "League-scoped exact referee text only. Descriptive result/goal aggregates; cards, fouls and penalties unavailable; no bias or betting authority.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "provider_league_id+referee",
+      "observed_time_fields_text": "",
+      "effective_time_fields_text": "first_date,last_date"
+    },
+    {
+      "dataset_id": "top5_referee_team_splits_research",
+      "path": "top5_referee_team_splits_research.csv",
+      "role": "RESEARCH_ENRICHMENT",
+      "lifecycle": "DETERMINISTIC_PROJECTION",
+      "identity_key": [
+        "provider_league_id",
+        "referee",
+        "team_id"
+      ],
+      "observed_time_fields": [],
+      "effective_time_fields": [
+        "first_date",
+        "last_date"
+      ],
+      "source": "Stage80 projection from API-Football Top-5 referee fixture history",
+      "limitations": "League/referee/team historical association only. Small samples remain visible and are never treated as causation or referee bias.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "provider_league_id+referee+team_id",
+      "observed_time_fields_text": "",
+      "effective_time_fields_text": "first_date,last_date"
+    },
+    {
+      "dataset_id": "stage80_top5_referee_backfill_state",
+      "path": "stage80_top5_referee_backfill_state.csv",
+      "role": "OPERATIONAL_RETRY_LEDGER",
+      "lifecycle": "DURABLE_LEAGUE_SEASON_STATE",
+      "identity_key": [
+        "provider_league_id",
+        "season"
+      ],
+      "observed_time_fields": [
+        "last_attempt_at_utc"
+      ],
+      "effective_time_fields": [
+        "season"
+      ],
+      "source": "Stage80 Top-5 referee historical backfill state",
+      "limitations": "Operational resume state only; not match evidence and never betting/model authority.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "provider_league_id+season",
+      "observed_time_fields_text": "last_attempt_at_utc",
+      "effective_time_fields_text": "season"
     },
     {
       "dataset_id": "statsbomb_player_xg_xa",
@@ -1370,9 +1472,9 @@
     }
   ],
   "summary": {
-    "declared_datasets": 28,
+    "declared_datasets": 32,
     "materialized_csv_datasets": 26,
-    "pending_materializations_or_storage": 1,
+    "pending_materializations_or_storage": 5,
     "contract_attention": 0
   },
   "provider_calls": 0,
