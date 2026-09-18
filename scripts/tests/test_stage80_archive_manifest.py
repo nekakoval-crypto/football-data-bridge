@@ -148,6 +148,35 @@ class Stage80ArchiveManifestTests(unittest.TestCase):
         self.assertEqual(profile["effective_time_fields_text"], "season")
         self.assertEqual(profile["role"], "IDENTITY_ENRICHMENT_EVIDENCE")
 
+    def test_player_profile_residual_state_manifest_contract(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            self.write_csv(
+                tmp,
+                "player_profile_residual_state.csv",
+                [
+                    "season", "player_id", "team_id", "team_name", "status",
+                    "attempts", "last_attempt_at_utc", "last_error",
+                ],
+                [{
+                    "season": "2026",
+                    "player_id": "11",
+                    "team_id": "10",
+                    "team_name": "Alpha",
+                    "status": "EMPTY",
+                    "attempts": "1",
+                    "last_attempt_at_utc": "2026-09-18T18:00:00Z",
+                    "last_error": "",
+                }],
+            )
+            report = manifest.build_manifest(Path(tmp), raw_archive_dir="")
+        residual = next(
+            x for x in report["datasets"]
+            if x["dataset_id"] == "player_profile_residual_state"
+        )
+        self.assertEqual(residual["contract_status"], "OK")
+        self.assertEqual(residual["identity_key_text"], "season+player_id")
+        self.assertEqual(residual["role"], "OPERATIONAL_RETRY_LEDGER")
+
     def test_transfer_identity_manifest_contract(self):
         with tempfile.TemporaryDirectory() as tmp:
             self.write_csv(
