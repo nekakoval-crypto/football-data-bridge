@@ -80,7 +80,7 @@ class Stage80ArchiveReadinessTests(unittest.TestCase):
         self.assertEqual(advanced["team_xg_captured_fixture_coverage_pct"], 50.0)
         self.assertNotIn("TEAM_XG_NO_VERIFIED_OBSERVATIONS", report["gaps"])
         self.assertIn("TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE", report["gaps"])
-        self.assertIn("PLAYER_XG_XA_REQUIRE_VERIFIED_SOURCE", report["gaps"])
+        self.assertIn("PLAYER_XG_XA_RESEARCH_SOURCE_NOT_MATERIALIZED", report["gaps"])
         self.assertNotIn("XG_XA_REQUIRE_VERIFIED_SOURCE", report["gaps"])
 
     def test_team_xg_full_captured_coverage_closes_team_gap_only(self):
@@ -97,7 +97,7 @@ class Stage80ArchiveReadinessTests(unittest.TestCase):
         self.assertEqual(report["advanced_metrics"]["team_xg_captured_fixture_coverage_pct"], 100.0)
         self.assertNotIn("TEAM_XG_NO_VERIFIED_OBSERVATIONS", report["gaps"])
         self.assertNotIn("TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE", report["gaps"])
-        self.assertIn("PLAYER_XG_XA_REQUIRE_VERIFIED_SOURCE", report["gaps"])
+        self.assertIn("PLAYER_XG_XA_RESEARCH_SOURCE_NOT_MATERIALIZED", report["gaps"])
 
     def test_missing_team_xg_keeps_team_and_player_source_gaps_explicit(self):
         self.write_csv(
@@ -111,7 +111,74 @@ class Stage80ArchiveReadinessTests(unittest.TestCase):
         report = s80.build_report(self.ops, archive_dir="")
         self.assertEqual(report["advanced_metrics"]["team_xg_rows"], 0)
         self.assertIn("TEAM_XG_NO_VERIFIED_OBSERVATIONS", report["gaps"])
-        self.assertIn("PLAYER_XG_XA_REQUIRE_VERIFIED_SOURCE", report["gaps"])
+        self.assertIn("PLAYER_XG_XA_RESEARCH_SOURCE_NOT_MATERIALIZED", report["gaps"])
+
+    def test_materialized_statsbomb_player_xg_xa_becomes_research_source_not_operational_authority(self):
+        self.write_csv(
+            "statsbomb_player_xg_xa.csv",
+            [
+                "record_id", "statsbomb_match_id", "statsbomb_player_id",
+                "statsbomb_team_id", "source_event_sha256", "source",
+                "xg_source_field", "xa_derivation_method", "research_only",
+                "operational_betting_authority", "xg_total", "xa",
+            ],
+            [{
+                "record_id": "r1",
+                "statsbomb_match_id": "100",
+                "statsbomb_player_id": "10",
+                "statsbomb_team_id": "1",
+                "source_event_sha256": "abc",
+                "source": "StatsBomb Open Data",
+                "xg_source_field": "shot.statsbomb_xg",
+                "xa_derivation_method": "JOIN_PASS_EVENT_ID_TO_SHOT_KEY_PASS_ID_THEN_ASSIGN_SHOT_XG",
+                "research_only": "true",
+                "operational_betting_authority": "false",
+                "xg_total": "0.5",
+                "xa": "0.2",
+            }],
+        )
+        report = s80.build_report(self.ops, archive_dir="")
+        advanced = report["advanced_metrics"]
+        self.assertEqual(
+            advanced["player_xg_xa_source_status"],
+            "RESEARCH_ONLY_MATERIALIZED_NOT_OPERATIONAL",
+        )
+        self.assertEqual(advanced["player_xg_xa_research_rows"], 1)
+        self.assertEqual(advanced["player_xg_xa_research_matches"], 1)
+        self.assertEqual(advanced["player_xg_xa_research_unique_players"], 1)
+        self.assertFalse(advanced["player_xg_xa_operational_authority"])
+        self.assertNotIn("PLAYER_XG_XA_RESEARCH_SOURCE_NOT_MATERIALIZED", report["gaps"])
+        self.assertIn("PLAYER_XG_XA_PBK_IDENTITY_MAPPING_NOT_IMPLEMENTED", report["gaps"])
+
+    def test_invalid_statsbomb_player_xg_xa_fails_closed(self):
+        self.write_csv(
+            "statsbomb_player_xg_xa.csv",
+            [
+                "record_id", "statsbomb_match_id", "statsbomb_player_id",
+                "statsbomb_team_id", "source_event_sha256", "source",
+                "xg_source_field", "xa_derivation_method", "research_only",
+                "operational_betting_authority",
+            ],
+            [{
+                "record_id": "",
+                "statsbomb_match_id": "100",
+                "statsbomb_player_id": "10",
+                "statsbomb_team_id": "1",
+                "source_event_sha256": "",
+                "source": "StatsBomb Open Data",
+                "xg_source_field": "shot.statsbomb_xg",
+                "xa_derivation_method": "WRONG",
+                "research_only": "true",
+                "operational_betting_authority": "false",
+            }],
+        )
+        report = s80.build_report(self.ops, archive_dir="")
+        self.assertEqual(
+            report["advanced_metrics"]["player_xg_xa_source_status"],
+            "RESEARCH_SOURCE_EMPTY_OR_INVALID",
+        )
+        self.assertIn("PLAYER_XG_XA_RESEARCH_SOURCE_INVALID", report["gaps"])
+        self.assertIn("PLAYER_XG_XA_RESEARCH_SOURCE_INVALID_ROWS", report["gaps"])
 
     def test_roster_history_and_membership_counts_are_reported(self):
         self.write_csv(

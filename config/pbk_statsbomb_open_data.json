@@ -1,0 +1,36 @@
+{
+  "version": "PBK_STATSBOMB_OPEN_DATA_RESEARCH_V1",
+  "source_name": "StatsBomb Open Data",
+  "source_repository": "https://github.com/hudl/open-data",
+  "source_terms_note": "Use is subject to the StatsBomb Open Data User Agreement and attribution requirements.",
+  "publication_attribution": {
+    "required": true,
+    "source_name": "StatsBomb",
+    "logo_required_when_publishing_analysis": true
+  },
+  "raw_data_policy": {
+    "commit_raw_events_to_pbk_repository": false,
+    "redistribute_raw_events": false,
+    "local_source_checkout_only": true
+  },
+  "metrics": {
+    "player_xg": {
+      "source_field": "shot.statsbomb_xg",
+      "authority": "SOURCE_METRIC"
+    },
+    "player_xa": {
+      "authority": "DERIVED_RESEARCH_METRIC",
+      "method": "Join pass event id to shot.key_pass_id and assign the created shot's shot.statsbomb_xg to the passer"
+    }
+  },
+  "pbk_authority": {
+    "research_only": true,
+    "operational_betting_authority": false,
+    "creates_signal": false,
+    "probability_mutation": false,
+    "eligibility_mutation": false,
+    "stake_changes": false,
+    "forward_journal_mutation": false,
+    "requires_separate_pbk_identity_mapping": true
+  }
+}
