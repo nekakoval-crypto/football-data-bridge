@@ -1,15 +1,13 @@
 {
-  "run_at_utc": "2026-09-18T13:04:57Z",
+  "run_at_utc": "2026-09-18T13:20:06Z",
   "status": "OK",
   "new_watch_rows": 0,
   "newly_settled_rows": 0,
-  "fixture_api_calls": 16,
+  "fixture_api_calls": 17,
   "total_crossings": 34,
   "settled": 13,
   "pending": 21,
   "user_execution_coverage_pct": 100.0,
   "user_roi_pct": -31.538,
-  "warnings": [
-    "fixture 1575167: API-Football /fixtures: {'rateLimit': 'Too many requests. You have exceeded the limit of requests per minute of your subscription.'}"
-  ]
+  "warnings": []
 }

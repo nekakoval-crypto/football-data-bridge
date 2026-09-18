@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-18T13:04:57Z",
+  "generated_at_utc": "2026-09-18T13:20:06Z",
   "status": "OK",
   "scope": "prospective research WATCH crossings only",
   "overall": {
@@ -137,7 +137,5 @@
     "historical_backfill": "forbidden",
     "canonical_forward": "unchanged"
   },
-  "warnings": [
-    "fixture 1575167: API-Football /fixtures: {'rateLimit': 'Too many requests. You have exceeded the limit of requests per minute of your subscription.'}"
-  ]
+  "warnings": []
 }
