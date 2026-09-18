@@ -55,6 +55,7 @@ class Stage80PlayerProfileCaptureTests(unittest.TestCase):
         existing = [{
             "team_id":"10","season":"2026","player_id":"1",
             "captured_at_utc":"2026-09-18T10:00:00Z",
+            "source": p.TEAM_SOURCE,
         }]
         rows = p.candidate_teams(
             rosters, existing, "2026", [], 8,
@@ -62,6 +63,26 @@ class Stage80PlayerProfileCaptureTests(unittest.TestCase):
             refresh_days=7,
         )
         self.assertEqual(rows, [])
+
+    def test_residual_profile_does_not_refresh_whole_team_ttl(self):
+        rosters = [
+            {"team_id":"10","team_name":"Alpha","player_id":"1"},
+            {"team_id":"10","team_name":"Alpha","player_id":"2"},
+        ]
+        existing = [{
+            "team_id":"10","season":"2026","player_id":"1",
+            "captured_at_utc":"2026-09-18T10:00:00Z",
+            "source": p.RESIDUAL_SOURCE,
+        }]
+        rows = p.candidate_teams(
+            rosters, existing, "2026", [], 8,
+            now=datetime(2026,9,18,18,tzinfo=timezone.utc),
+            refresh_days=7,
+        )
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["team_id"], "10")
+        self.assertEqual(rows[0]["missing_roster_players"], 1)
+        self.assertEqual(rows[0]["last_profile_capture_at_utc"], "")
 
     def test_expired_team_capture_becomes_refresh_candidate(self):
         rosters = [
@@ -71,6 +92,7 @@ class Stage80PlayerProfileCaptureTests(unittest.TestCase):
         existing = [{
             "team_id":"10","season":"2026","player_id":"1",
             "captured_at_utc":"2026-09-01T10:00:00Z",
+            "source": p.TEAM_SOURCE,
         }]
         rows = p.candidate_teams(
             rosters, existing, "2026", [], 8,
@@ -81,6 +103,123 @@ class Stage80PlayerProfileCaptureTests(unittest.TestCase):
         self.assertEqual(rows[0]["team_id"],"10")
         self.assertEqual(rows[0]["missing_roster_players"],1)
         self.assertEqual(rows[0]["last_profile_capture_at_utc"],"2026-09-01T10:00:00Z")
+
+    def test_residual_candidates_include_missing_single_team_player(self):
+        rosters = [
+            {"team_id":"10","team_name":"Alpha","player_id":"1"},
+            {"team_id":"10","team_name":"Alpha","player_id":"2"},
+        ]
+        existing = [{
+            "team_id":"10","season":"2026","player_id":"1",
+            "captured_at_utc":"2026-09-18T10:00:00Z",
+        }]
+        rows, diag = p.residual_candidates(
+            rosters, existing, [], "2026", [], 20,
+            now=datetime(2026,9,18,18,tzinfo=timezone.utc),
+            retry_days=7,
+        )
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["player_id"], "2")
+        self.assertEqual(rows[0]["team_id"], "10")
+        self.assertEqual(diag["ambiguous_current_roster_player_ids"], 0)
+
+    def test_recent_empty_residual_attempt_is_suppressed(self):
+        rosters = [{"team_id":"10","team_name":"Alpha","player_id":"2"}]
+        state = [{
+            "season":"2026","player_id":"2","team_id":"10","team_name":"Alpha",
+            "status":"EMPTY","attempts":"1",
+            "last_attempt_at_utc":"2026-09-18T10:00:00Z","last_error":"",
+        }]
+        rows, diag = p.residual_candidates(
+            rosters, [], state, "2026", [], 20,
+            now=datetime(2026,9,18,18,tzinfo=timezone.utc),
+            retry_days=7,
+        )
+        self.assertEqual(rows, [])
+        self.assertEqual(diag["suppressed_recent_residual_attempts"], 1)
+
+    def test_residual_error_attempt_remains_retryable(self):
+        rosters = [{"team_id":"10","team_name":"Alpha","player_id":"2"}]
+        state = [{
+            "season":"2026","player_id":"2","team_id":"10","team_name":"Alpha",
+            "status":"ERROR","attempts":"1",
+            "last_attempt_at_utc":"2026-09-18T10:00:00Z","last_error":"temporary",
+        }]
+        rows, _ = p.residual_candidates(
+            rosters, [], state, "2026", [], 20,
+            now=datetime(2026,9,18,18,tzinfo=timezone.utc),
+            retry_days=7,
+        )
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["player_id"], "2")
+
+    def test_residual_candidate_rejects_ambiguous_current_roster_team(self):
+        rosters = [
+            {"team_id":"10","team_name":"Alpha","player_id":"2"},
+            {"team_id":"20","team_name":"Beta","player_id":"2"},
+        ]
+        rows, diag = p.residual_candidates(
+            rosters, [], [], "2026", [], 20,
+            now=datetime(2026,9,18,18,tzinfo=timezone.utc),
+            retry_days=7,
+        )
+        self.assertEqual(rows, [])
+        self.assertEqual(diag["ambiguous_current_roster_player_ids"], 1)
+
+    def test_capture_residual_player_uses_current_roster_team_context(self):
+        calls = []
+        def get_page(path, params, **kwargs):
+            calls.append((path, dict(params)))
+            return {
+                "response":[{
+                    "player":{
+                        "id":2,
+                        "name":"Full Player",
+                        "firstname":"Full",
+                        "lastname":"Player",
+                        "birth":{"date":"2000-01-01","place":"Town","country":"X"},
+                        "nationality":"X",
+                    },
+                    "statistics":[{"team":{"id":99,"name":"Old Team"}}],
+                }],
+            }
+        rows = p.capture_residual_player(
+            {"player_id":"2","team_id":"10","team_name":"Alpha"},
+            "2026",
+            get_page,
+            "2026-09-18T18:00:00Z",
+        )
+        self.assertEqual(calls, [("/players", {"id":"2","season":"2026"})])
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["team_id"], "10")
+        self.assertEqual(rows[0]["team_name"], "Alpha")
+        self.assertEqual(rows[0]["source"], p.RESIDUAL_SOURCE)
+
+    def test_capture_residual_player_empty_response_is_not_profile_evidence(self):
+        rows = p.capture_residual_player(
+            {"player_id":"2","team_id":"10","team_name":"Alpha"},
+            "2026",
+            lambda *args, **kwargs: {"response":[]},
+            "2026-09-18T18:00:00Z",
+        )
+        self.assertEqual(rows, [])
+
+    def test_update_residual_state_increments_attempts(self):
+        state = [{
+            "season":"2026","player_id":"2","team_id":"10","team_name":"Alpha",
+            "status":"EMPTY","attempts":"1",
+            "last_attempt_at_utc":"2026-09-10T00:00:00Z","last_error":"",
+        }]
+        updated = p.update_residual_state(
+            state,
+            "2026",
+            {"player_id":"2","team_id":"10","team_name":"Alpha"},
+            "CAPTURED",
+            "2026-09-18T18:00:00Z",
+        )
+        self.assertEqual(len(updated), 1)
+        self.assertEqual(updated[0]["attempts"], "2")
+        self.assertEqual(updated[0]["status"], "CAPTURED")
 
     def test_capture_team_reads_all_pages_before_returning(self):
         calls = []

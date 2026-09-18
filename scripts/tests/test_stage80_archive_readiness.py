@@ -478,7 +478,7 @@ class Stage80ArchiveReadinessTests(unittest.TestCase):
                     "captured_at_utc": "2026-09-18T17:34:38Z",
                     "firstname": "", "lastname": "",
                     "player_name": "Known Player", "birth_date": "",
-                    "source": "api-football:/players?team&season",
+                    "source": "api-football:/players?id&season+current_roster",
                 },
             ],
         )
@@ -486,6 +486,8 @@ class Stage80ArchiveReadinessTests(unittest.TestCase):
         profiles = report["player_profiles"]
         self.assertTrue(profiles["present"])
         self.assertEqual(profiles["valid_rows"], 2)
+        self.assertEqual(profiles["team_source_rows"], 1)
+        self.assertEqual(profiles["residual_player_id_source_rows"], 1)
         self.assertEqual(profiles["unique_players"], 2)
         self.assertEqual(profiles["unique_teams"], 1)
         self.assertEqual(profiles["identity_ready_unique_players"], 1)
@@ -493,6 +495,33 @@ class Stage80ArchiveReadinessTests(unittest.TestCase):
         self.assertEqual(profiles["identity_ready_current_roster_coverage_pct"], 33.33)
         self.assertIn("PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE", report["gaps"])
         self.assertNotIn("PLAYER_PROFILE_EVIDENCE_NOT_MATERIALIZED", report["gaps"])
+
+    def test_unknown_player_profile_source_is_invalid(self):
+        self.write_csv(
+            "team_rosters.csv",
+            ["team_id", "player_id"],
+            [{"team_id": "10", "player_id": "1"}],
+        )
+        self.write_csv(
+            "player_profile_evidence.csv",
+            [
+                "team_id", "season", "player_id", "captured_at_utc",
+                "firstname", "lastname", "player_name", "birth_date", "source",
+            ],
+            [{
+                "team_id": "10", "season": "2026", "player_id": "1",
+                "captured_at_utc": "2026-09-18T17:34:38Z",
+                "firstname": "Full", "lastname": "Player",
+                "player_name": "Full Player", "birth_date": "2000-01-01",
+                "source": "invented-source",
+            }],
+        )
+        report = s80.build_report(self.ops, archive_dir="")
+        profiles = report["player_profiles"]
+        self.assertEqual(profiles["valid_rows"], 0)
+        self.assertEqual(profiles["invalid_rows"], 1)
+        self.assertIn("PLAYER_PROFILE_EVIDENCE_NOT_MATERIALIZED", report["gaps"])
+        self.assertIn("PLAYER_PROFILE_INVALID_ROWS", report["gaps"])
 
     def test_roster_history_and_membership_counts_are_reported(self):
         self.write_csv(
