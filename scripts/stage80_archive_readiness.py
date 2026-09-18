@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V14_EXTERNAL_STAGE91_ATTESTATION"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V15_RESIDUAL_PLAYER_PROFILE"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -377,14 +377,26 @@ def build_report(ops=OPS, archive_dir=None):
         for row in current_rosters
         if sval(row, "player_id")
     }
+    player_profile_sources = {
+        "api-football:/players?team&season",
+        "api-football:/players?id&season+current_roster",
+    }
     player_profile_valid = [
         row for row in player_profiles
         if sval(row, "team_id")
         and sval(row, "season")
         and sval(row, "player_id")
         and sval(row, "captured_at_utc")
-        and sval(row, "source") == "api-football:/players?team&season"
+        and sval(row, "source") in player_profile_sources
     ]
+    player_profile_team_source_rows = sum(
+        1 for row in player_profile_valid
+        if sval(row, "source") == "api-football:/players?team&season"
+    )
+    player_profile_residual_source_rows = sum(
+        1 for row in player_profile_valid
+        if sval(row, "source") == "api-football:/players?id&season+current_roster"
+    )
     player_profile_invalid = len(player_profiles) - len(player_profile_valid)
     player_profile_identity_ready = [
         row for row in player_profile_valid
@@ -805,6 +817,8 @@ def build_report(ops=OPS, archive_dir=None):
             "present": data["player_profiles"] is not None,
             "rows": len(player_profiles),
             "valid_rows": len(player_profile_valid),
+            "team_source_rows": player_profile_team_source_rows,
+            "residual_player_id_source_rows": player_profile_residual_source_rows,
             "identity_ready_rows": len(player_profile_identity_ready),
             "invalid_rows": player_profile_invalid,
             "unique_players": len(player_profile_ids),
@@ -818,7 +832,7 @@ def build_report(ops=OPS, archive_dir=None):
                 len(current_roster_player_ids & player_profile_identity_ready_ids),
                 len(current_roster_player_ids),
             ),
-            "evidence_note": "Bounded /players?team&season profile evidence for identity enrichment. Full-name+DOB+club may support conservative cross-provider identity mapping; this never grants betting/model authority.",
+            "evidence_note": "Bounded API-Football player profile evidence from team+season plus residual player-id+season calls. Residual team context is taken from the current PBK roster, not inferred from season statistics. Full-name+DOB+club may support conservative cross-provider identity mapping; this never grants betting/model authority.",
         },
         "transfer_identity": {
             "present": data["transfer_identity"] is not None,
@@ -921,7 +935,7 @@ def render_markdown(report):
         f"- Player stat rows: {p['player_stat_rows']}; уникальных игроков: {p['unique_players_with_stats']}.",
         f"- Player Grade rows: {p['player_grade_rows']}; уникальных игроков: {p['unique_players_with_grades']}.",
         f"- Current roster: {r['current_roster_teams']} команд / {r['current_roster_rows']} игроковых строк.",
-        f"- Player profile evidence: {profiles['valid_rows']} rows / {profiles['unique_players']} players / {profiles['unique_teams']} teams; current-roster coverage {profiles['current_roster_player_coverage_pct'] if profiles['current_roster_player_coverage_pct'] is not None else '—'}%; identity-ready {profiles['identity_ready_unique_players']} players ({profiles['identity_ready_current_roster_coverage_pct'] if profiles['identity_ready_current_roster_coverage_pct'] is not None else '—'}%).",
+        f"- Player profile evidence: {profiles['valid_rows']} rows ({profiles['team_source_rows']} team-source + {profiles['residual_player_id_source_rows']} residual-ID) / {profiles['unique_players']} players / {profiles['unique_teams']} teams; current-roster coverage {profiles['current_roster_player_coverage_pct'] if profiles['current_roster_player_coverage_pct'] is not None else '—'}%; identity-ready {profiles['identity_ready_unique_players']} players ({profiles['identity_ready_current_roster_coverage_pct'] if profiles['identity_ready_current_roster_coverage_pct'] is not None else '—'}%).",
         f"- Roster history: {r['history_teams']} команд / {r['history_team_snapshots']} team-snapshots / {r['history_rows']} строк.",
         f"- Membership intervals: {r['membership_intervals']} (open {r['open_latest_intervals']}, closed-by-observed-absence {r['closed_by_observed_absence_intervals']}).",
         f"- Verified PBK↔Transfermarkt identities: {identities['valid_rows']} rows / {identities['unique_pbk_players']} PBK players; invalid {identities['invalid_rows']}.",
