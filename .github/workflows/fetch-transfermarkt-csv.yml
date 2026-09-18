@@ -7,6 +7,8 @@ on:
       - '.github/workflows/fetch-transfermarkt-csv.yml'
       - 'scripts/stage80_transfer_source_audit.py'
       - 'scripts/tests/test_stage80_transfer_source_audit.py'
+      - 'scripts/stage80_transfer_entity_mapping.py'
+      - 'scripts/tests/test_stage80_transfer_entity_mapping.py'
   pull_request:
     paths:
       - '.github/workflows/fetch-transfermarkt-csv.yml'
@@ -23,8 +25,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Unit test transfer source audit
-        run: python -m unittest scripts.tests.test_stage80_transfer_source_audit -v
+      - name: Unit test transfer source audit and entity mapping
+        run: |
+          python -m unittest scripts.tests.test_stage80_transfer_source_audit -v
+          python -m unittest scripts.tests.test_stage80_transfer_entity_mapping -v
       - name: Download Transfermarkt CSV.GZ tables
         shell: bash
         run: |
@@ -43,6 +47,24 @@ jobs:
 
       - name: Validate transfer source schema
         run: python scripts/stage80_transfer_source_audit.py dataset-metadata.json
+
+      - name: Build conservative PBK transfer mapping artifact
+        run: |
+          mkdir -p mapping
+          python scripts/stage80_transfer_entity_mapping.py \
+            --pbk ops/historical_players.csv \
+            --players core/players.csv.gz \
+            --transfers core/transfers.csv.gz \
+            --mapping-out mapping/pbk_transfermarkt_player_mapping_candidates.csv \
+            --transfers-out mapping/pbk_transfer_history_exact_mapped.csv \
+            --meta-out mapping/stage80_transfer_mapping_meta.json
+
+      - name: Upload transfer mapping artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: transfermarkt-pbk-mapping
+          path: mapping/
+          retention-days: 30
 
       - name: Upload core tables
         uses: actions/upload-artifact@v4
