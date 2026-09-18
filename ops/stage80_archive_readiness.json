@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V11_STATS_NAME_TRANSFER_BRIDGE",
-  "generated_at_utc": "2026-09-18T17:13:22Z",
+  "generated_at_utc": "2026-09-18T17:16:07Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -62,7 +62,7 @@
     "transfer_history": {
       "file": "historical_transfer_events.csv",
       "present": true,
-      "rows": 715
+      "rows": 1474
     },
     "match_context": {
       "file": "match_context_snapshots.csv",
@@ -221,11 +221,11 @@
   },
   "transfer_history": {
     "present": true,
-    "rows": 715,
-    "valid_rows": 715,
+    "rows": 1474,
+    "valid_rows": 1474,
     "invalid_identity_rows": 0,
-    "unique_pbk_players": 103,
-    "unique_transfermarkt_players": 103,
+    "unique_pbk_players": 184,
+    "unique_transfermarkt_players": 184,
     "earliest_transfer_date": "2001-07-01",
     "latest_transfer_date": "2026-07-01",
     "evidence_note": "Only durable HIGH-confidence EXACT_NAME_CURRENT_CLUB mapped Transfermarkt events count as verified historical transfer enrichment; this is not current squad authority."

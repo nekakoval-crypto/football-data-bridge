@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-18T17:13:22Z
+Обновлено UTC: 2026-09-18T17:16:07Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -20,7 +20,7 @@
 - Current roster: 96 команд / 2951 игроковых строк.
 - Roster history: 96 команд / 96 team-snapshots / 2949 строк.
 - Membership intervals: 2949 (open 2949, closed-by-observed-absence 0).
-- Verified historical transfers: 715 rows / 103 PBK players; dates 2001-07-01 → 2026-07-01; invalid 0.
+- Verified historical transfers: 1474 rows / 184 PBK players; dates 2001-07-01 → 2026-07-01; invalid 0.
 - Match context: 6 fixtures; official XI 1; injury evidence 2.
 
 ## Raw provider archive

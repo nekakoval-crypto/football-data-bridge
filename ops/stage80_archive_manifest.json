@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V10_STATSBOMB_PBK_MAPPING",
-  "generated_at_utc": "2026-09-18T17:13:22Z",
+  "generated_at_utc": "2026-09-18T17:16:07Z",
   "status": "OK",
   "datasets": [
     {
@@ -534,7 +534,7 @@
       "source": "Stage80 durable projection from conservative PBK ↔ Transfermarkt AUTO_MATCH/HIGH mapping",
       "limitations": "Historical enrichment only; Transfermarkt IDs remain separate from API-Football IDs and source snapshot age prevents current-squad authority.",
       "present": true,
-      "row_count": 715,
+      "row_count": 1474,
       "columns": [
         "transfer_event_id",
         "pbk_player_id",
