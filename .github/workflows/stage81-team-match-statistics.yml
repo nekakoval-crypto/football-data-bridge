@@ -5,7 +5,7 @@ on:
   schedule:
     # Low priority. Runs through the shared Stage71 budget and preserves
     # LIVE/current-round/standings + Stage77 player-stat reserve.
-    - cron: '17 */6 * * *'
+    - cron: '17 * * * *'
   pull_request:
     paths:
       - 'scripts/stage81_team_match_statistics_capture.py'
@@ -87,9 +87,9 @@ jobs:
       OPS_DIR: ops
 
       # Stage81 is deliberately below LIVE/current-round/standings and Stage77.
-      STAGE81_MAX_API_CALLS: '2'
-      STAGE81_MAX_FIXTURES_PER_RUN: '2'
-      STAGE71_MAX_DAILY_API_CALLS: '180'
+      STAGE81_MAX_API_CALLS: '12'
+      STAGE81_MAX_FIXTURES_PER_RUN: '12'
+      STAGE71_MAX_DAILY_API_CALLS: '7000'
       STAGE81_STANDINGS_RESERVE_CALLS: '16'
       STAGE81_PLAYER_STATS_RESERVE_CALLS: '4'
       STAGE81_SAFETY_RESERVE_CALLS: '8'

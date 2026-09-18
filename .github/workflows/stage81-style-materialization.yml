@@ -1,0 +1,120 @@
+name: PBK Team Style Operational Materialization
+
+on:
+  workflow_run:
+    workflows:
+      - "Stage 81 Team Match Statistics Capture"
+    types:
+      - completed
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pbk-team-style-operational
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (
+        github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.head_branch == 'main'
+      )
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    env:
+      OPS_DIR: ops
+      STAGE72_DB_PATH: build/pbk_unified.sqlite
+
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Materialize Team Style pipeline
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python scripts/stage82_team_style_operational_bridge.py
+          python scripts/stage83_team_style_operational_profiles.py
+          python scripts/stage84_team_style_metric_observations.py
+
+          # Stage90 must precede Stage86.
+          python scripts/stage90_team_style_population_history.py
+
+          python scripts/stage86_team_style_operational_normalization.py
+          python scripts/stage87_team_style_dimension_evidence.py
+          python scripts/stage88_team_style_dimension_validation_dataset.py
+          python scripts/stage89_team_style_dimension_forward_labels.py
+          python scripts/stage93_style_validation_readiness.py
+          python scripts/stage94_style_dimension_validation_statistics.py
+          python scripts/stage95_matchup_validation_gate.py
+
+      - name: Rebuild unified Stage72 projection
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build
+          python scripts/stage72_build_data_layer.py
+
+      - name: Publish operational outputs safely
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git config user.name 'team-style-bot'
+          git config user.email 'team-style-bot@users.noreply.github.com'
+
+          files=(
+            ops/team_style_operational_evidence.jsonl
+            ops/stage82_team_style_bridge_last_run.json
+            ops/team_style_operational_profiles.json
+            ops/stage83_team_style_profiles_last_run.json
+            ops/team_style_metric_observations.jsonl
+            ops/stage84_team_style_metric_observations_last_run.json
+            ops/team_style_metric_population_history.jsonl
+            ops/stage90_team_style_population_history_last_run.json
+            ops/team_style_normalized_observations.jsonl
+            ops/stage86_team_style_normalization_last_run.json
+            ops/team_style_dimension_evidence.jsonl
+            ops/stage87_team_style_dimensions_last_run.json
+            ops/team_style_dimension_validation_dataset.jsonl
+            ops/stage88_team_style_dimension_validation_last_run.json
+            ops/team_style_dimension_forward_labels.jsonl
+            ops/stage89_team_style_dimension_forward_labels_last_run.json
+            ops/team_style_validation_readiness.json
+            ops/stage93_team_style_validation_readiness_last_run.json
+            ops/team_style_dimension_validation_statistics.json
+            ops/stage94_team_style_validation_statistics_last_run.json
+            ops/matchup_validation_gate.json
+            ops/stage95_matchup_validation_gate_last_run.json
+            ops/stage72_last_run.json
+            ops/stage72_schema.json
+          )
+
+          for file in "${files[@]}"; do
+            if [ -f "$file" ]; then
+              git add "$file"
+            fi
+          done
+
+          if git diff --cached --quiet; then
+            echo "No Team Style operational changes to publish."
+            exit 0
+          fi
+
+          git commit -m 'Team Style operational materialization update'
+          python scripts/publish_operational_commit.py
