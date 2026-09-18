@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V15_TOP5_REFEREE_BACKFILL",
-  "generated_at_utc": "2026-09-18T21:19:30Z",
+  "generated_at_utc": "2026-09-18T21:28:09Z",
   "status": "OK",
   "datasets": [
     {
@@ -68,7 +68,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 1925,
+      "row_count": 2054,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -210,7 +210,7 @@
       "source": "Stage71 terminal observation + Stage81 reconciliation",
       "limitations": "Queue evidence is not team-stat evidence; CAPTURED requires both HOME and AWAY team-stat ledger rows.",
       "present": true,
-      "row_count": 16,
+      "row_count": 21,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -254,7 +254,7 @@
       "source": "Stage81 /fixtures/statistics via shared API-Football broker",
       "limitations": "Only observed finished fixtures captured under protected provider budget; missing provider metrics remain UNKNOWN and are never zero-filled.",
       "present": true,
-      "row_count": 30,
+      "row_count": 40,
       "columns": [
         "fixture_id",
         "provider_league_id",
