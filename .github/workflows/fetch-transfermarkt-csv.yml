@@ -16,18 +16,20 @@ on:
       - 'scripts/stage73_internal_api.py'
       - 'scripts/tests/test_stage80_archive_read_api.py'
       - 'docs/stage80_transfer_history_archive.md'
+  pull_request:
+    paths:
+      - '.github/workflows/fetch-transfermarkt-csv.yml'
+      - 'scripts/stage80_transfer_source_audit.py'
+      - 'scripts/tests/test_stage80_transfer_source_audit.py'
       - 'scripts/stage80_transfer_entity_mapping.py'
       - 'scripts/tests/test_stage80_transfer_entity_mapping.py'
       - 'scripts/stage80_transfer_history_archive.py'
       - 'scripts/tests/test_stage80_transfer_history_archive.py'
       - 'scripts/stage80_archive_manifest.py'
       - 'scripts/stage80_archive_readiness.py'
+      - 'scripts/stage73_internal_api.py'
+      - 'scripts/tests/test_stage80_archive_read_api.py'
       - 'docs/stage80_transfer_history_archive.md'
-  pull_request:
-    paths:
-      - '.github/workflows/fetch-transfermarkt-csv.yml'
-      - 'scripts/stage80_transfer_source_audit.py'
-      - 'scripts/tests/test_stage80_transfer_source_audit.py'
   workflow_dispatch:
 
 permissions:
