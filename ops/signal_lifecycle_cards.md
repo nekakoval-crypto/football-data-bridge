@@ -1,8 +1,8 @@
 # PBK Signal Lifecycle
 
-Обновлено UTC: 2026-09-18T08:09:10Z
+Обновлено UTC: 2026-09-18T09:08:31Z
 
-Cards: 39 | canonical 6 | WATCH 33 | events 414
+Cards: 40 | canonical 6 | WATCH 34 | events 422
 
 ## WATCH | Stage63 | Venezia — Fiorentina
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-11T18:45:00Z
@@ -129,6 +129,11 @@ Cards: 39 | canonical 6 | WATCH 33 | events 414
 - Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
   - 2026-09-17T09:24:14Z — WATCH_CROSSING — Marathonbet | 1.07 | movement_pp=0.03232386
 
+## WATCH | Stage63 | Monza — Sassuolo
+- Ставка/рынок: ОЗ — Да | kickoff: 2026-09-18T18:45:00Z
+- Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
+  - 2026-09-18T08:16:55Z — WATCH_CROSSING — Marathonbet | 1.56 | movement_pp=0.04233857
+
 ## WATCH | Stage63 | Brentford — Chelsea
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-18T19:00:00Z
 - Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
@@ -196,8 +201,7 @@ Cards: 39 | canonical 6 | WATCH 33 | events 414
 
 ## CANONICAL | R1 | Frosinone — Como
 - Ставка/рынок: П2 | kickoff: 2026-09-20T13:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 174
-  - 2026-09-18T00:48:17Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 175
   - 2026-09-18T01:43:07Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-18T02:44:04Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-18T03:44:33Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -205,6 +209,7 @@ Cards: 39 | canonical 6 | WATCH 33 | events 414
   - 2026-09-18T05:43:44Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-18T06:48:35Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-18T07:44:20Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-18T08:45:02Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
 
 ## WATCH | Stage63 | Frosinone — Como
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-20T13:00:00Z
@@ -233,27 +238,33 @@ Cards: 39 | canonical 6 | WATCH 33 | events 414
 
 ## CANONICAL | R1 | Lecce — Bologna
 - Ставка/рынок: П2 | kickoff: 2026-10-11T13:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 5
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 7
   - 2026-09-18T06:32:52Z — SIGNAL_CREATED — Bet365 | 1.91 | Canonical rule matched; trigger immutable
   - 2026-09-18T06:48:35Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-18T06:48:35Z — USER_EXECUTION_FROZEN — Marathonbet | 2.0 | Prospective paper execution; not proof of real bet
   - 2026-09-18T07:16:44Z — CONTEXT_SNAPSHOT — BASELINE; lineups=NO; injuries=0
   - 2026-09-18T07:31:54Z — WEATHER_SNAPSHOT — temp=22.4C precip=4%
   - 2026-09-18T07:44:20Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-18T08:45:02Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
 
 ## CANONICAL | R1 | Sassuolo — AC Milan
 - Ставка/рынок: П2 | kickoff: 2026-10-11T16:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 5
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 7
   - 2026-09-18T06:32:52Z — SIGNAL_CREATED — Bet365 | 1.75 | Canonical rule matched; trigger immutable
   - 2026-09-18T06:48:35Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-18T06:48:35Z — USER_EXECUTION_FROZEN — Marathonbet | 1.79 | Prospective paper execution; not proof of real bet
   - 2026-09-18T07:16:44Z — CONTEXT_SNAPSHOT — BASELINE; lineups=NO; injuries=0
   - 2026-09-18T07:31:54Z — WEATHER_SNAPSHOT — temp=18.9C precip=%
   - 2026-09-18T07:44:20Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-18T08:45:02Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
 
 ## CANONICAL | R1 | Cagliari — Juventus
 - Ставка/рынок: П2 | kickoff: 2026-10-11T18:45:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 5
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 7
   - 2026-09-18T06:32:52Z — SIGNAL_CREATED — Bet365 | 1.6 | Canonical rule matched; trigger immutable
   - 2026-09-18T06:48:35Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-18T06:48:35Z — USER_EXECUTION_FROZEN — Marathonbet | 1.53 | Prospective paper execution; not proof of real bet
   - 2026-09-18T07:16:44Z — CONTEXT_SNAPSHOT — BASELINE; lineups=NO; injuries=0
   - 2026-09-18T07:31:54Z — WEATHER_SNAPSHOT — temp=21.4C precip=27%
   - 2026-09-18T07:44:20Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-18T08:45:02Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
