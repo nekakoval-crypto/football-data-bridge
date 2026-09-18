@@ -1,22 +1,29 @@
 {
-  "generated_at_utc": "2026-09-18T07:09:19Z",
+  "generated_at_utc": "2026-09-18T09:08:47Z",
   "status": "OK",
-  "active_rule_rows": 1,
-  "logical_exposures": 1,
-  "raw_rule_stake_u": 1.0,
-  "logical_exposure_u": 1.0,
+  "active_rule_rows": 4,
+  "logical_exposures": 4,
+  "raw_rule_stake_u": 4.0,
+  "logical_exposure_u": 4.0,
   "deduplicated_overlap_u": 0.0,
   "canonical_conflict_fixtures": 0,
   "watch_overlap_fixtures": 1,
   "by_day_u": {
-    "2026-09-20": 1.0
+    "2026-09-20": 1.0,
+    "2026-10-11": 3.0
   },
   "by_league_u": {
-    "Serie A": 1.0
+    "Serie A": 4.0
   },
   "by_team_u": {
+    "AC Milan": 1.0,
+    "Bologna": 1.0,
+    "Cagliari": 1.0,
     "Como": 1.0,
-    "Frosinone": 1.0
+    "Frosinone": 1.0,
+    "Juventus": 1.0,
+    "Lecce": 1.0,
+    "Sassuolo": 1.0
   },
   "conflicts": [],
   "policy": {
