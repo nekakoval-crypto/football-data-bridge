@@ -1,7 +1,10 @@
+import sys
 import unittest
 from datetime import datetime, timezone
+from pathlib import Path
 
-from scripts import stage80_player_profile_capture as p
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import stage80_player_profile_capture as p
 
 
 class Stage80PlayerProfileCaptureTests(unittest.TestCase):
