@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_READINESS_V14_EXTERNAL_STAGE91_ATTESTATION",
-  "generated_at_utc": "2026-09-18T18:51:32Z",
+  "version": "PBK_STAGE80_ARCHIVE_READINESS_V15_RESIDUAL_PLAYER_PROFILE",
+  "generated_at_utc": "2026-09-18T18:55:21Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -239,6 +239,8 @@
     "present": true,
     "rows": 2667,
     "valid_rows": 2667,
+    "team_source_rows": 2667,
+    "residual_player_id_source_rows": 0,
     "identity_ready_rows": 2494,
     "invalid_rows": 0,
     "unique_players": 2592,
@@ -246,7 +248,7 @@
     "unique_teams": 96,
     "current_roster_player_coverage_pct": 82.5,
     "identity_ready_current_roster_coverage_pct": 77.45,
-    "evidence_note": "Bounded /players?team&season profile evidence for identity enrichment. Full-name+DOB+club may support conservative cross-provider identity mapping; this never grants betting/model authority."
+    "evidence_note": "Bounded API-Football player profile evidence from team+season plus residual player-id+season calls. Residual team context is taken from the current PBK roster, not inferred from season statistics. Full-name+DOB+club may support conservative cross-provider identity mapping; this never grants betting/model authority."
   },
   "transfer_identity": {
     "present": true,
