@@ -59,6 +59,12 @@ When materialized from a local StatsBomb Open Data checkout:
 
 `ops/statsbomb_player_xg_xa.csv`
 
+This large derived source payload is intentionally **local/external and gitignored**.
+PBK may persist only the small Stage91 telemetry and Stage92 mapped/audit outputs
+in Git. This avoids placing a 30+ MB research source payload into ordinary Git
+history while preserving source revision, attribution and per-row source hashes
+in downstream mapped research.
+
 The dataset is one row per:
 
 `StatsBomb match + StatsBomb player + StatsBomb team`
@@ -95,8 +101,12 @@ and archive-player read API.
 
 Stage80 reports one of:
 
-- `RESEARCH_ADAPTER_READY_NOT_MATERIALIZED` — code/contract exists, no derived
-  StatsBomb player xG/xA dataset has been materialized;
+- `RESEARCH_ADAPTER_READY_NOT_MATERIALIZED` — code/contract exists and no
+  trustworthy Stage91 materialization evidence is available;
+- `RESEARCH_SOURCE_EXTERNAL_LOCAL_ATTESTED_MAPPED_TO_PBK` — the large Stage91
+  payload is intentionally outside Git, but an OK Stage91 meta attestation plus
+  valid Stage92 AUTO/HIGH mapped rows prove that research materialization was
+  performed locally;
 - `RESEARCH_SOURCE_EMPTY_OR_INVALID` — a file exists but cannot prove the
   Stage91 source/provenance contract;
 - `RESEARCH_ONLY_MATERIALIZED_NOT_OPERATIONAL` — valid derived research rows
@@ -117,7 +127,11 @@ python scripts/stage91_statsbomb_player_xg_xa.py \
   --meta-out ops/stage91_statsbomb_player_xg_xa_last_run.json
 ```
 
-The raw StatsBomb checkout stays outside this repository.
+The raw StatsBomb checkout stays outside this repository. The derived
+`ops/statsbomb_player_xg_xa.csv` is also kept out of Git by `.gitignore`.
+The small `ops/stage91_statsbomb_player_xg_xa_last_run.json` telemetry may be
+persisted so Stage80 can verify the external/local materialization without
+pretending that the source payload itself is repository-resident.
 
 ## Governance
 
