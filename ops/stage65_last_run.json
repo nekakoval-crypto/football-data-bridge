@@ -1,16 +1,13 @@
 {
-  "run_at_utc": "2026-09-18T18:06:33Z",
+  "run_at_utc": "2026-09-18T18:22:25Z",
   "status": "OK",
-  "new_watch_rows": 0,
+  "new_watch_rows": 1,
   "newly_settled_rows": 0,
-  "fixture_api_calls": 19,
-  "total_crossings": 38,
+  "fixture_api_calls": 22,
+  "total_crossings": 39,
   "settled": 13,
-  "pending": 25,
+  "pending": 26,
   "user_execution_coverage_pct": 100.0,
   "user_roi_pct": -31.538,
-  "warnings": [
-    "fixture 1570400: API-Football /fixtures: {'rateLimit': 'Too many requests. You have exceeded the limit of requests per minute of your subscription.'}",
-    "fixture 1575172: API-Football /fixtures: {'rateLimit': 'Too many requests. You have exceeded the limit of requests per minute of your subscription.'}"
-  ]
+  "warnings": []
 }
