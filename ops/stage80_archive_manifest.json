@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V12_PLAYER_PROFILE_EVIDENCE",
-  "generated_at_utc": "2026-09-18T18:35:42Z",
+  "generated_at_utc": "2026-09-18T18:41:57Z",
   "status": "OK",
   "datasets": [
     {
@@ -531,7 +531,7 @@
       "source": "Stage92 AUTO_MATCH/HIGH projection from Stage91 StatsBomb player xG/xA",
       "limitations": "Research-only advanced metrics. xG is StatsBomb source metric; xA is derived xG Assisted. No betting/model authority is granted.",
       "present": true,
-      "row_count": 290,
+      "row_count": 1208,
       "columns": [
         "pbk_player_id",
         "pbk_player_name",
