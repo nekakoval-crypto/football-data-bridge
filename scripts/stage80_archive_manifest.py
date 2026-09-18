@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V15_TOP5_REFEREE_BACKFILL"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V16_PREMATCH_CONTEXT"
 
 DATASETS = [
     {
@@ -196,6 +196,17 @@ DATASETS = [
         "effective_time_fields": ["season"],
         "source": "Stage80 Top-5 referee historical backfill state",
         "limitations": "Operational resume state only; not match evidence and never betting/model authority.",
+    },
+    {
+        "dataset_id": "top5_prematch_context_research",
+        "path": "top5_prematch_context_research.csv",
+        "role": "RESEARCH_ENRICHMENT",
+        "lifecycle": "DETERMINISTIC_NO_LOOKAHEAD_PROJECTION",
+        "identity_key": ["historical_match_id"],
+        "observed_time_fields": [],
+        "effective_time_fields": ["date_iso", "time_local"],
+        "source": "Stage80 Football-Data Top-5 9-season no-lookahead pre-match context projection",
+        "limitations": "Historical research only. Every row uses strictly earlier calendar dates within league-season; same-day results are excluded. No probability, EV/value, eligibility, stake or Forward authority.",
     },
     {
         "dataset_id": "statsbomb_player_xg_xa",
