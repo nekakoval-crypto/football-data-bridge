@@ -1,0 +1,75 @@
+name: Stage 80 Football-Data Top5 History
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'config/stage80_football_data_top5_9seasons.json'
+      - 'scripts/stage80_football_data_history.py'
+      - 'scripts/tests/test_stage80_football_data_history.py'
+      - 'docs/stage80_football_data_history.md'
+      - '.github/workflows/stage80-football-data-history.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'config/stage80_football_data_top5_9seasons.json'
+      - 'scripts/stage80_football_data_history.py'
+      - 'scripts/tests/test_stage80_football_data_history.py'
+      - 'docs/stage80_football_data_history.md'
+      - '.github/workflows/stage80-football-data-history.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and unit test
+        run: |
+          python -m py_compile scripts/stage80_football_data_history.py
+          python -m unittest scripts.tests.test_stage80_football_data_history -v
+      - name: Download and normalize previous 9 completed Top5 seasons
+        run: |
+          mkdir -p source normalized
+          python scripts/stage80_football_data_history.py \
+            --config config/stage80_football_data_top5_9seasons.json \
+            --download-dir source \
+            --out-csv normalized/football_data_top5_9season_matches.csv \
+            --meta-out normalized/stage80_football_data_history_meta.json \
+            --fetch
+      - name: Verify complete source matrix
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open('normalized/stage80_football_data_history_meta.json',encoding='utf-8'))
+          assert p['expected_source_files']==45, p
+          assert p['present_source_files']==45, p
+          assert p['missing_source_files']==0, p
+          assert p['normalized_matches']>10000, p
+          assert p['forward_validation_input'] is False, p
+          print({
+            'normalized_matches':p['normalized_matches'],
+            'rows_by_season':p['rows_by_season'],
+            'rows_by_league':p['rows_by_league'],
+          })
+          PY
+      - name: Source checksums
+        run: sha256sum source/*.csv | sort > normalized/SHA256SUMS.source.txt
+      - name: Upload normalized historical source artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: football-data-top5-9seasons
+          path: normalized/
+          retention-days: 90
+      - name: Upload original source files
+        uses: actions/upload-artifact@v4
+        with:
+          name: football-data-top5-9seasons-source
+          path: source/
+          retention-days: 90
