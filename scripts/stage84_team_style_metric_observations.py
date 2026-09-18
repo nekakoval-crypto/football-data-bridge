@@ -117,6 +117,15 @@ def flatten_profiles(payload: dict[str, Any]) -> list[dict[str, Any]]:
                         "coverage": metric_payload.get("coverage"),
                         "window_actual_matches": window_payload.get("actual_matches"),
                         "window_complete": window_payload.get("window_complete"),
+                        "window_fixture_ids": list(
+                            window_payload.get("fixture_ids") or []
+                        ),
+                        "window_oldest_kickoff_utc": window_payload.get(
+                            "oldest_kickoff_utc"
+                        ),
+                        "window_newest_kickoff_utc": window_payload.get(
+                            "newest_kickoff_utc"
+                        ),
                         "style_dimension_value": None,
                     }
 
