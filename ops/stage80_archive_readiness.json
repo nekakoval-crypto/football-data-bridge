@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V10_STATSBOMB_PBK_MAPPING",
-  "generated_at_utc": "2026-09-18T15:36:25Z",
+  "generated_at_utc": "2026-09-18T15:38:32Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -145,7 +145,7 @@
     "orphan_catalog_fixtures": 0,
     "missing_terminal_evidence": 0,
     "orphan_terminal_evidence": 0,
-    "observation_count_total": 1409,
+    "observation_count_total": 1538,
     "expected_history_observations": 1538,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
@@ -269,7 +269,6 @@
     "inventory_note": "Remote S3/R2 object counts are intentionally not fetched by this provider-free readiness stage."
   },
   "gaps": [
-    "HISTORICAL_FIXTURE_CATALOG_OBSERVATION_COUNT_MISMATCH",
     "TEAM_STATS_BACKLOG_PENDING",
     "PLAYER_STATS_BACKLOG_PENDING",
     "PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
