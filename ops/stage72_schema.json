@@ -53,7 +53,10 @@
     "probability_rankings.json",
     "probability_performance.json",
     "stage75_last_run.json",
-    "value_radar_current.json"
+    "value_radar_current.json",
+    "team_style_validation_readiness.json",
+    "team_style_dimension_validation_statistics.json",
+    "matchup_validation_gate.json"
   ],
   "raw_csv_policy": "every ops/*.csv is imported as raw_<filename_stem> with TEXT columns"
 }
