@@ -1,18 +1,18 @@
 {
   "version": "PBK_V1_CLOSURE_READINESS_V1",
-  "run_at_utc": "2026-09-18T06:52:52Z",
-  "status": "READY",
-  "ready_for_manual_close": true,
+  "run_at_utc": "2026-09-18T07:48:56Z",
+  "status": "WAITING",
+  "ready_for_manual_close": false,
   "hard_failure": false,
   "production_acceptance": {
     "checks": [
       {
         "code": "PRODUCTION_ACCEPTANCE",
-        "status": "PASS",
-        "message": "real Today/LIVE and standings/motivation production acceptance passed",
+        "status": "WAITING",
+        "message": "waiting for real provider-backed Today/LIVE and standings/motivation evidence",
         "evidence": {
-          "gate_status": "PASS",
-          "ready_to_close": true,
+          "gate_status": "FAIL",
+          "ready_to_close": false,
           "hard_failure": false,
           "roadmap_4_status": null,
           "roadmap_5_status": null,
@@ -20,7 +20,7 @@
         }
       }
     ],
-    "status": "PASS"
+    "status": "WAITING"
   },
   "real_performance": {
     "checks": [
