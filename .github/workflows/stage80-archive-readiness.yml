@@ -3,16 +3,31 @@ name: Stage 80 Archive Readiness
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ['fetch-transfermarkt-csv', 'Stage 77 Player Stats Capture', 'Stage 81 Team Match Statistics Capture', 'Stage 80 Football-Data Top5 History']
+    workflows: ['fetch-transfermarkt-csv', 'Stage 77 Player Stats Capture', 'Stage 81 Team Match Statistics Capture', 'Stage 80 Football-Data Top5 History', 'Stage 80 Top5 Referee Backfill']
     types: [completed]
   schedule:
     - cron: '37 */6 * * *'
   pull_request:
     paths:
       - 'scripts/stage80_archive_readiness.py'
+      - 'scripts/stage80_top5_referee_backfill.py'
+      - 'scripts/tests/test_stage80_top5_referee_backfill.py'
+      - 'scripts/tests/test_stage80_top5_referee_backfill_readiness.py'
+      - 'config/stage80_api_football_top5_referee_9seasons.json'
+      - '.github/workflows/stage80-top5-referee-backfill.yml'
       - '.gitignore'
       - '.gitignore'
       - 'ops/stage80_raw_archive_storage_last_run.json'
+      - 'ops/top5_referee_fixture_history.csv'
+      - 'ops/top5_referee_profiles_research.csv'
+      - 'ops/top5_referee_team_splits_research.csv'
+      - 'ops/stage80_top5_referee_backfill_state.csv'
+      - 'ops/stage80_top5_referee_backfill_last_run.json'
+      - 'scripts/stage80_top5_referee_backfill.py'
+      - 'scripts/tests/test_stage80_top5_referee_backfill.py'
+      - 'scripts/tests/test_stage80_top5_referee_backfill_readiness.py'
+      - 'config/stage80_api_football_top5_referee_9seasons.json'
+      - '.github/workflows/stage80-top5-referee-backfill.yml'
       - 'scripts/stage80_archive_manifest.py'
       - 'scripts/stage80_historical_fixture_catalog.py'
       - 'scripts/stage80_historical_player_catalog.py'
@@ -123,6 +138,7 @@ jobs:
       - name: Compile Stage80 archive governance and projections
         run: |
           python -m py_compile scripts/stage80_archive_readiness.py
+          python -m py_compile scripts/stage80_top5_referee_backfill.py
           python -m py_compile scripts/stage80_archive_manifest.py
           python -m py_compile scripts/stage80_historical_fixture_catalog.py
           python -m py_compile scripts/stage80_historical_player_catalog.py
@@ -134,6 +150,8 @@ jobs:
         run: |
           python -m unittest scripts.tests.test_stage80_archive_readiness -v
           python -m unittest scripts.tests.test_stage80_referee_research_readiness -v
+          python -m unittest scripts.tests.test_stage80_top5_referee_backfill -v
+          python -m unittest scripts.tests.test_stage80_top5_referee_backfill_readiness -v
           python -m unittest scripts.tests.test_stage80_stage77_backlog_readiness -v
           python -m unittest scripts.tests.test_stage80_fixture_history_readiness -v
           python -m unittest scripts.tests.test_stage80_archive_manifest -v

@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V14_EPL_REFEREE_RESEARCH"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V15_TOP5_REFEREE_BACKFILL"
 
 DATASETS = [
     {
@@ -152,6 +152,50 @@ DATASETS = [
         "effective_time_fields": ["first_date", "last_date"],
         "source": "Stage80 Football-Data EPL referee×team research projection",
         "limitations": "EPL_ONLY historical association rows. Small samples remain visible; no observed split is treated as referee bias or betting authority.",
+    },
+    {
+        "dataset_id": "top5_referee_fixture_history",
+        "path": "top5_referee_fixture_history.csv",
+        "role": "HISTORICAL_ENRICHMENT",
+        "lifecycle": "RESUMABLE_PROVIDER_BACKFILL",
+        "identity_key": ["fixture_id"],
+        "observed_time_fields": ["captured_at_utc"],
+        "effective_time_fields": ["kickoff_utc"],
+        "source": "Stage80 API-Football /fixtures?league&season Top-5 9-season referee backfill",
+        "limitations": "Historical research/backfill only. Referee is provider text without a stable referee ID; missing referee values remain UNKNOWN. No cards, fouls or penalty counts are inferred from this endpoint.",
+    },
+    {
+        "dataset_id": "top5_referee_profiles_research",
+        "path": "top5_referee_profiles_research.csv",
+        "role": "RESEARCH_ENRICHMENT",
+        "lifecycle": "DETERMINISTIC_PROJECTION",
+        "identity_key": ["provider_league_id", "referee"],
+        "observed_time_fields": [],
+        "effective_time_fields": ["first_date", "last_date"],
+        "source": "Stage80 projection from API-Football Top-5 referee fixture history",
+        "limitations": "League-scoped exact referee text only. Descriptive result/goal aggregates; cards, fouls and penalties unavailable; no bias or betting authority.",
+    },
+    {
+        "dataset_id": "top5_referee_team_splits_research",
+        "path": "top5_referee_team_splits_research.csv",
+        "role": "RESEARCH_ENRICHMENT",
+        "lifecycle": "DETERMINISTIC_PROJECTION",
+        "identity_key": ["provider_league_id", "referee", "team_id"],
+        "observed_time_fields": [],
+        "effective_time_fields": ["first_date", "last_date"],
+        "source": "Stage80 projection from API-Football Top-5 referee fixture history",
+        "limitations": "League/referee/team historical association only. Small samples remain visible and are never treated as causation or referee bias.",
+    },
+    {
+        "dataset_id": "stage80_top5_referee_backfill_state",
+        "path": "stage80_top5_referee_backfill_state.csv",
+        "role": "OPERATIONAL_RETRY_LEDGER",
+        "lifecycle": "DURABLE_LEAGUE_SEASON_STATE",
+        "identity_key": ["provider_league_id", "season"],
+        "observed_time_fields": ["last_attempt_at_utc"],
+        "effective_time_fields": ["season"],
+        "source": "Stage80 Top-5 referee historical backfill state",
+        "limitations": "Operational resume state only; not match evidence and never betting/model authority.",
     },
     {
         "dataset_id": "statsbomb_player_xg_xa",
