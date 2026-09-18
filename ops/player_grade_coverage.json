@@ -1,25 +1,34 @@
 {
-  "confidence": {},
+  "confidence": {
+    "HIGH": 17,
+    "LOW": 8,
+    "MEDIUM": 6,
+    "UNKNOWN": 13
+  },
   "duplicate_grade_rows": 0,
   "duplicate_stat_rows": 0,
-  "fixture_team_pairs": 0,
-  "fixture_team_pairs_with_11plus_rows": 0,
-  "fixtures_with_grades": 0,
-  "generated_at_utc": "2026-09-18T00:33:04Z",
+  "fixture_team_pairs": 2,
+  "fixture_team_pairs_with_11plus_rows": 2,
+  "fixtures_with_grades": 1,
+  "generated_at_utc": "2026-09-18T04:27:05Z",
   "grade_only_keys": 0,
-  "grade_rows": 0,
-  "grade_stat_key_overlap": 0,
-  "limitations": [
-    "PLAYER_GRADE_SNAPSHOTS_NOT_CAPTURED_YET"
-  ],
-  "low_minute_rows_lt30": 0,
-  "low_minute_share_pct": 0.0,
-  "missing_overall_grade_rows": 0,
-  "position_groups": {},
+  "grade_rows": 44,
+  "grade_stat_key_overlap": 44,
+  "limitations": [],
+  "low_minute_rows_lt30": 18,
+  "low_minute_share_pct": 40.9,
+  "missing_overall_grade_rows": 13,
+  "position_groups": {
+    "D": 10,
+    "F": 4,
+    "G": 2,
+    "M": 15,
+    "UNKNOWN": 13
+  },
   "provider_polling": false,
   "research_only": true,
-  "stat_rows": 0,
+  "stat_rows": 44,
   "stats_only_keys": 0,
-  "status": "WAITING",
+  "status": "ATTENTION",
   "version": "PBK_STAGE78_PLAYER_RESEARCH_V1"
 }
