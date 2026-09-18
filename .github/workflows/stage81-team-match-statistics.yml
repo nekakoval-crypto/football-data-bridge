@@ -24,6 +24,10 @@ on:
     paths:
       - 'scripts/stage81_team_match_statistics_capture.py'
       - 'scripts/stage71_current_round_capture.py'
+      - 'scripts/stage80_fixture_history_archive.py'
+      - 'scripts/stage80_historical_fixture_catalog.py'
+      - 'scripts/tests/test_stage80_fixture_history_archive.py'
+      - 'scripts/tests/test_stage80_historical_fixture_catalog.py'
       - 'scripts/tests/test_stage71_current_round_read_model.py'
       - 'scripts/stage80_archive_manifest.py'
       - 'scripts/stage80_archive_readiness.py'
@@ -75,7 +79,7 @@ jobs:
       - name: Provider isolation
         shell: bash
         run: |
-          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/stage81_team_match_statistics_capture.py scripts/stage71_current_round_capture.py; then
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/stage81_team_match_statistics_capture.py scripts/stage71_current_round_capture.py scripts/stage80_fixture_history_archive.py scripts/stage80_historical_fixture_catalog.py; then
             echo 'Stage81/current-round refresh must reach API-Football only through the shared broker/backend.' >&2
             exit 1
           fi
