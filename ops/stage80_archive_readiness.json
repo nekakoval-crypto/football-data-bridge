@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V19_PREMATCH_FACTOR_RESEARCH",
-  "generated_at_utc": "2026-09-18T21:53:51Z",
+  "generated_at_utc": "2026-09-18T21:54:42Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -151,13 +151,13 @@
     },
     "prematch_factor_research": {
       "file": "top5_prematch_factor_research.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 2247
     },
     "prematch_factor_stability": {
       "file": "top5_prematch_factor_stability_research.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 237
     }
   },
   "fixtures": {
@@ -468,15 +468,15 @@
     "evidence_note": "Deterministic Football-Data Top-5 2017/18-2025/26 pre-match research projection. Features use strictly earlier calendar dates within league-season; same-day results are excluded and the layer has no probability/EV/eligibility/stake/Forward authority."
   },
   "prematch_factor_research": {
-    "profiles_present": false,
-    "stability_present": false,
-    "meta_present": false,
-    "meta_valid": false,
-    "profile_rows": 0,
-    "valid_profile_rows": 0,
+    "profiles_present": true,
+    "stability_present": true,
+    "meta_present": true,
+    "meta_valid": true,
+    "profile_rows": 2247,
+    "valid_profile_rows": 2247,
     "invalid_profile_rows": 0,
-    "stability_rows": 0,
-    "valid_stability_rows": 0,
+    "stability_rows": 237,
+    "valid_stability_rows": 237,
     "invalid_stability_rows": 0,
     "factor_names": [
       "WEEKDAY",
@@ -488,8 +488,8 @@
       "FORM5_PPG_DIFF",
       "VENUE_FORM5_PPG_DIFF"
     ],
-    "closing_1x2_matches": null,
-    "closing_total25_matches": null,
+    "closing_1x2_matches": 12459,
+    "closing_total25_matches": 12459,
     "market_probability_semantics": "Historical closing-market no-vig only; never PBK probability.",
     "operational_betting_authority": false,
     "evidence_note": "Descriptive factor buckets and season-stability counts from no-lookahead prematch context joined to historical outcomes/closing markets. Observed ROI/calibration is research evidence only and does not promote a factor into a model."
@@ -523,7 +523,6 @@
     "PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL",
-    "PREMATCH_FACTOR_RESEARCH_NOT_MATERIALIZED",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
     "PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE",
     "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE"
