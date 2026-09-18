@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Stage 72 — deterministic PBK unified SQLite data layer.
 
 CSV/JSON operational files remain audit/source-of-truth during migration.
@@ -43,6 +43,11 @@ CURRENT_ROUND_FIXTURE_FIELDS=['fixture_id','provider_league_id','league_name','c
 JSON_DOCS=['attention_board.json','daily_brief.json','forward_performance.json','watch_performance.json','watch_promotion_gate.json','system_health.json','exposure_summary.json','stage71_challenger_board.json','signal_lifecycle_cards.json','stage71b_fonbet_coverage.json','stage71c_last_run.json','stage71e_last_run.json','stage71f_last_run.json','stage71g_last_run.json','stage71i_last_run.json','probability_rankings.json','probability_performance.json','stage75_last_run.json']
 def now_iso():return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00','Z')
 JSON_DOCS.append('value_radar_current.json')
+JSON_DOCS.extend([
+    'team_style_validation_readiness.json',
+    'team_style_dimension_validation_statistics.json',
+    'matchup_validation_gate.json',
+])
 TODAY_STATUSES = {
     'NS': 'scheduled', 'TBD': 'scheduled', 'SCHEDULED': 'scheduled',
     '1H': 'live', 'HT': 'live', '2H': 'live', 'ET': 'live', 'BT': 'live',

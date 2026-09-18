@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """PBK Match Card v2 public composition layer.
 
 The established Match Card implementation lives in ``match_card_core``. This
@@ -13,6 +13,7 @@ from lineup_context import build_lineup_context
 from formation_research import read_audit
 from lineup_surprise import build_surprise_context
 from player_grade_context import build_player_grade_context
+from style_matchup_passport import build_style_matchup_passport
 
 CARD_VERSION = _core.CARD_VERSION
 MARKET_FAMILY_ORDER = _core.MARKET_FAMILY_ORDER
@@ -107,16 +108,23 @@ def build_match_card(conn, fixture_id):
         surprise = _surprise_unavailable(fixture_id)
         player_grade = _player_grade_unavailable(fixture_id)
 
+    style_matchup = build_style_matchup_passport(
+        conn,
+        payload.get("fixture") or {},
+    )
+
     payload["formation_research"] = read_audit(conn, fixture_id=fixture_id)
     payload["lineup_context"] = lineup
     payload["lineup_surprise"] = surprise
     payload["player_grade"] = player_grade
+    payload["style_matchup"] = style_matchup
 
     coverage = payload.setdefault("coverage", {})
     optional = coverage.setdefault("optional_sections", {})
     optional["lineup_context"] = bool(lineup.get("available"))
     optional["lineup_surprise"] = bool(surprise.get("available"))
     optional["player_grade"] = bool(player_grade.get("available"))
+    optional["style_matchup"] = bool(style_matchup.get("available"))
     extension_limitations = []
     if not lineup.get("available"):
         extension_limitations.append("LINEUP_CONTEXT_UNAVAILABLE")
@@ -133,6 +141,10 @@ def build_match_card(conn, fixture_id):
         "lineup_surprise_optional_until_official_xi": True,
         "player_grade_research_only": True,
         "player_grade_no_lookahead": bool(player_grade.get("no_lookahead", True)),
+        "style_matchup_research_only": True,
+        "style_matchup_no_lookahead": bool(style_matchup.get("no_lookahead", True)),
+        "style_matchup_validated_claim_allowed": False,
+        "matchup_grade_authorized": False,
         "manual_lineup_scenario_what_if_only": True,
         "provider_polling": False,
         "probability_mutation": False,

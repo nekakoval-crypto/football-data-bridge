@@ -141,6 +141,42 @@ def observation_key(
     )
 
 
+def profile_state_key(
+    row: dict[str, Any],
+) -> tuple[str, ...]:
+    fixture_ids = row.get("window_fixture_ids")
+
+    normalized_fixture_ids = (
+        tuple(
+            str(value)
+            for value in fixture_ids
+            if value is not None
+            and str(value).strip()
+        )
+        if isinstance(fixture_ids, list)
+        else ()
+    )
+
+    # Stage92 population-integrity dedupe is valid only when the
+    # rolling-window fixture composition is explicitly known.
+    #
+    # Legacy Stage90 rows may not carry window_fixture_ids at all.
+    # Treating every such row as the same empty composition would
+    # collapse genuinely newer observations and change Stage90
+    # forward-only behaviour.
+    if normalized_fixture_ids:
+        return (
+            series_key(row)
+            + ("FIXTURE_COMPOSITION",)
+            + normalized_fixture_ids
+        )
+
+    return (
+        observation_key(row)
+        + ("LEGACY_OBSERVATION_IDENTITY",)
+    )
+
+
 def valid_source_row(
     row: dict[str, Any],
 ) -> bool:
@@ -249,20 +285,30 @@ def select_forward_candidates(
     latest = latest_rows_by_series(valid_rows)
     watermarks = existing_watermarks(existing_rows)
 
+    existing_states = {
+        profile_state_key(row)
+        for row in existing_rows
+    }
+
     candidates: list[dict[str, Any]] = []
 
     for key, newest_row in latest.items():
         watermark = watermarks.get(key)
 
         # First sight:
-        # do NOT backfill all snapshots available in source.
-        # Bootstrap only the newest currently visible snapshot.
+        # bootstrap only the newest currently visible profile state.
         if watermark is None:
-            candidates.append(newest_row)
+            state = profile_state_key(newest_row)
+
+            if state not in existing_states:
+                candidates.append(newest_row)
+
             continue
 
         # Existing series:
-        # admit every genuinely newer source observation.
+        # admit only genuinely newer profile states.
+        newer_rows = []
+
         for row in valid_rows:
             if series_key(row) != key:
                 continue
@@ -275,7 +321,36 @@ def select_forward_candidates(
                 timestamp is not None
                 and timestamp > watermark
             ):
-                candidates.append(row)
+                newer_rows.append(row)
+
+        # Same rolling-window fixture composition is the same
+        # statistical profile state, even if the pipeline ran again
+        # at a later profile_before_utc.
+        state_candidates: dict[
+            tuple[str, ...],
+            dict[str, Any],
+        ] = {}
+
+        for row in sorted(
+            newer_rows,
+            key=lambda item: (
+                parse_iso(
+                    item.get("profile_before_utc")
+                ),
+                observation_key(item),
+            ),
+        ):
+            state = profile_state_key(row)
+
+            if state in existing_states:
+                continue
+
+            if state not in state_candidates:
+                state_candidates[state] = row
+
+        candidates.extend(
+            state_candidates.values()
+        )
 
     unique: dict[
         tuple[str, ...],
@@ -294,7 +369,6 @@ def select_forward_candidates(
             observation_key(row),
         ),
     )
-
 
 def history_row(
     source_row: dict[str, Any],
@@ -337,6 +411,15 @@ def history_row(
         "window_complete": source_row.get(
             "window_complete"
         ),
+        "window_fixture_ids": list(
+            source_row.get("window_fixture_ids") or []
+        ),
+        "window_oldest_kickoff_utc": source_row.get(
+            "window_oldest_kickoff_utc"
+        ),
+        "window_newest_kickoff_utc": source_row.get(
+            "window_newest_kickoff_utc"
+        ),
         "style_dimension_value": None,
         "historical_backfill": False,
         "first_seen_series_policy": (
@@ -348,6 +431,10 @@ def history_row(
         "missing_data_policy": (
             "UNKNOWN_NOT_ZERO"
         ),
+        "population_sample_unit": (
+            "DISTINCT_ROLLING_WINDOW_FIXTURE_COMPOSITION"
+        ),
+        "repeated_pipeline_snapshot_counts_as_new_sample": False,
         "research_only": True,
         "provider_calls_added": 0,
         "creates_signal": False,

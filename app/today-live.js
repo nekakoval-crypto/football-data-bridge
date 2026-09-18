@@ -1,4 +1,4 @@
-const STATUS_LABELS = {
+﻿const STATUS_LABELS = {
   scheduled: 'По расписанию', live: 'LIVE', finished: 'FT', postponed: 'Перенесён',
   cancelled: 'Отменён', suspended: 'Приост.', interrupted: 'Прерван',
   abandoned: 'Прекращён', awarded: 'Тех.', walkover: 'Тех. поб.', unknown: 'Не подтв.',
@@ -83,6 +83,38 @@ function imageMarkup(url, className, label) {
   return `<img class="${className}" src="${escapeHtml(safe)}" alt="" loading="lazy" onerror="this.classList.add('today-live-image-broken');this.removeAttribute('src')">`;
 }
 
+function compactResearchStatus(value) {
+  const status=String(value||'DATA_WAITING').toUpperCase();
+  const labels={
+    DATA_WAITING:'waiting',
+    READY_FOR_VALIDATION:'ready',
+    VALIDATION_EVIDENCE_AVAILABLE:'evidence',
+    DATA_BLOCKED:'blocked',
+    VALIDATION_POLICY_PENDING:'policy pending',
+    EVIDENCE_AVAILABLE_NOT_AUTHORIZED:'not authorized',
+  };
+  return labels[status]||status;
+}
+
+function styleMatchupCompact(match={}) {
+  const sm=match.style_matchup||{};
+
+  if(!sm||typeof sm!=='object')return '';
+
+  const style=String(
+    sm.style_status||'DATA_WAITING'
+  );
+
+  const matchup=String(
+    sm.matchup_status||'DATA_WAITING'
+  );
+
+  return `<div class="today-live-style-matchup">
+    <span>STYLE \u00b7 ${escapeHtml(compactResearchStatus(style))}</span>
+    <span>MATCHUP \u00b7 ${escapeHtml(compactResearchStatus(matchup))}</span>
+  </div>`;
+}
+
 function matchStatusLine(match) {
   if (match.status === 'live') {
     return `LIVE${match.source_status ? ` · ${escapeHtml(match.source_status)}` : ''}`;
@@ -99,6 +131,7 @@ function matchRow(match) {
     <div class="today-live-row-main">
       <div class="today-live-team">${imageMarkup(match.home_team_logo_url, 'today-live-team-logo', 'Логотип хозяев')}<span>${escapeHtml(match.home_team || 'Хозяева неизвестны')}${redCardBadge(match.red_cards_home)}</span></div>
       <div class="today-live-team">${imageMarkup(match.away_team_logo_url, 'today-live-team-logo', 'Логотип гостей')}<span>${escapeHtml(match.away_team || 'Гости неизвестны')}${redCardBadge(match.red_cards_away)}</span></div>
+      ${styleMatchupCompact(match)}
     </div>
     <div class="today-live-row-side"><strong>${right || escapeHtml(matchStatusLine({...match, status}))}</strong><span class="today-live-status">${escapeHtml(matchStatusLine({...match, status}))}</span></div>
   </article>`;

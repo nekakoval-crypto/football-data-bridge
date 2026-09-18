@@ -141,5 +141,5 @@ test('only the local current-round endpoint and v14 shell cache are used', async
   const sw = await readFile(new URL('../sw.js', import.meta.url), 'utf8');
   assert.ok(source.includes("fetch('/api/v1/rounds/current'"));
   assert.ok(!source.includes("fetch('/api/v1/today'"));
-  assert.ok(sw.includes('pbk-shell-v14'));
+  assert.ok(sw.includes('pbk-shell-v15'));
 });
