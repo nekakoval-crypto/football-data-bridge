@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V15_RESIDUAL_PLAYER_PROFILE",
-  "generated_at_utc": "2026-09-18T19:11:47Z",
+  "generated_at_utc": "2026-09-18T19:17:17Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -112,7 +112,7 @@
     "player_xg_xa_mapped": {
       "file": "pbk_player_xg_xa_research.csv",
       "present": true,
-      "rows": 1208
+      "rows": 1291
     }
   },
   "fixtures": {
@@ -211,12 +211,12 @@
     "player_xg_xa_operational_authority": false,
     "player_xg_xa_pbk_identity_mapping": "AUTO_HIGH_MATERIALIZED",
     "player_xg_xa_mapping_rows": 7787,
-    "player_xg_xa_auto_high_mappings": 165,
-    "player_xg_xa_review_mappings": 634,
-    "player_xg_xa_mapped_research_rows": 1208,
+    "player_xg_xa_auto_high_mappings": 169,
+    "player_xg_xa_review_mappings": 630,
+    "player_xg_xa_mapped_research_rows": 1291,
     "player_xg_xa_mapped_research_invalid_rows": 0,
-    "player_xg_xa_mapped_pbk_players": 165,
-    "player_xg_xa_mapped_matches": 784,
+    "player_xg_xa_mapped_pbk_players": 169,
+    "player_xg_xa_mapped_matches": 823,
     "player_xg_xa_evidence_note": "Stage91 provides StatsBomb research metrics. The large Stage91 source payload may remain external/local when an OK Stage91 meta attestation plus valid Stage92 AUTO/HIGH mapped rows are persisted; this never implies the source CSV is stored in Git. Stage92 maps only exact full names through the verified Transfermarkt→PBK bridge; abbreviated-name candidates remain REVIEW and never enter mapped research. Mapped xG/xA remains research-only and non-operational."
   },
   "players": {
