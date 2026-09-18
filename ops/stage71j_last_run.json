@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-18T06:43:26Z",
+  "run_at_utc": "2026-09-18T12:43:18Z",
   "status": "OK",
   "mode": "SHARED_PREFETCHED_PROSPECTIVE_CAPTURE",
   "prefetched_fixture_ids": 160,
@@ -18,7 +18,7 @@
   "market_presence_count": 183,
   "market_presence_api_calls_added": 0,
   "generic_1x2_forward_capture": {
-    "run_at_utc": "2026-09-18T06:44:15Z",
+    "run_at_utc": "2026-09-18T12:43:50Z",
     "status": "OK",
     "mode": "STAGE71J_ZERO_EXTRA_CALL_PROSPECTIVE_CAPTURE",
     "source": "API-Football /odds Bet365 Match Winner",
@@ -562,7 +562,7 @@
       "fixtures_scanned": 160,
       "logical_odds_calls": 129,
       "new_openers": 1,
-      "new_snapshots": 1101,
+      "new_snapshots": 1102,
       "new_closes": 0,
       "warnings": 0
     },
@@ -581,8 +581,8 @@
       "status": "OK",
       "fixtures_scanned": 160,
       "logical_odds_calls": 129,
-      "new_openers": 0,
-      "new_snapshots": 598,
+      "new_openers": 1,
+      "new_snapshots": 599,
       "new_closes": 0,
       "warnings": 0
     },
