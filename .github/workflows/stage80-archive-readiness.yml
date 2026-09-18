@@ -14,7 +14,6 @@ on:
       - 'scripts/tests/test_stage80_top5_referee_backfill.py'
       - 'scripts/tests/test_stage80_top5_referee_backfill_readiness.py'
       - 'scripts/tests/test_stage80_prematch_context_readiness.py'
-      - 'scripts/tests/test_stage80_prematch_context_readiness.py'
       - 'config/stage80_api_football_top5_referee_9seasons.json'
       - '.github/workflows/stage80-top5-referee-backfill.yml'
       - '.gitignore'
