@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-18T21:47:10Z
+Обновлено UTC: 2026-09-18T21:53:04Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -26,6 +26,7 @@
 - EPL referee research: 47 referees / 897 referee×team pairs / 3420 source matches; scope EPL_ONLY; penalties unavailable.
 - Top-5 API-Football referee backfill: 45 / 45 league-seasons; 16239 fixture rows; referee coverage 99.44%; profiles 453; referee×team pairs 7689.
 - Top-5 pre-match research context: 16111 valid rows / 16111 unique matches / 45 of 45 league-seasons; no-lookahead True.
+- Pre-match factor research: 0 profile rows / 0 stability rows; closing 1X2 matches —; closing O/U2.5 matches —.
 - Match context: 6 fixtures; official XI 1; injury evidence 2.
 
 ## Raw provider archive
@@ -41,6 +42,7 @@
 - PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE
 - TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE
 - REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL
+- PREMATCH_FACTOR_RESEARCH_NOT_MATERIALIZED
 - MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY
 - PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE
 - TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE

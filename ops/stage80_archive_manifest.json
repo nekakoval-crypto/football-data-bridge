@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V16_PREMATCH_CONTEXT",
-  "generated_at_utc": "2026-09-18T21:47:09Z",
+  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V17_PREMATCH_FACTOR_RESEARCH",
+  "generated_at_utc": "2026-09-18T21:53:04Z",
   "status": "OK",
   "datasets": [
     {
@@ -914,6 +914,54 @@
       "effective_time_fields_text": "date_iso,time_local"
     },
     {
+      "dataset_id": "top5_prematch_factor_research",
+      "path": "top5_prematch_factor_research.csv",
+      "role": "RESEARCH_ANALYSIS",
+      "lifecycle": "DETERMINISTIC_AGGREGATE_PROJECTION",
+      "identity_key": [
+        "factor",
+        "bucket",
+        "scope_type",
+        "scope_value"
+      ],
+      "observed_time_fields": [],
+      "effective_time_fields": [],
+      "source": "Stage80 descriptive factor research from Football-Data results/closing markets joined to no-lookahead prematch context",
+      "limitations": "Exploratory historical aggregates only. Closing market no-vig is not PBK probability; ROI/calibration observations do not create betting authority.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "factor+bucket+scope_type+scope_value",
+      "observed_time_fields_text": "",
+      "effective_time_fields_text": ""
+    },
+    {
+      "dataset_id": "top5_prematch_factor_stability_research",
+      "path": "top5_prematch_factor_stability_research.csv",
+      "role": "RESEARCH_ANALYSIS",
+      "lifecycle": "DETERMINISTIC_SEASON_STABILITY_PROJECTION",
+      "identity_key": [
+        "factor",
+        "bucket",
+        "scope_type",
+        "scope_value"
+      ],
+      "observed_time_fields": [],
+      "effective_time_fields": [],
+      "source": "Stage80 season-stability projection from Top-5 prematch factor research",
+      "limitations": "Counts season-level sign/stability observations only; no factor is selected, ranked, promoted, or granted model authority here.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "factor+bucket+scope_type+scope_value",
+      "observed_time_fields_text": "",
+      "effective_time_fields_text": ""
+    },
+    {
       "dataset_id": "statsbomb_player_xg_xa",
       "path": "statsbomb_player_xg_xa.csv",
       "role": "RESEARCH_ENRICHMENT",
@@ -1664,9 +1712,9 @@
     }
   ],
   "summary": {
-    "declared_datasets": 33,
+    "declared_datasets": 35,
     "materialized_csv_datasets": 31,
-    "pending_materializations_or_storage": 1,
+    "pending_materializations_or_storage": 3,
     "contract_attention": 0
   },
   "provider_calls": 0,
