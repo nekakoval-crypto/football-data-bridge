@@ -111,6 +111,9 @@ class ApiFootballBroker:
             "archive_observations": 0, "archive_blob_dedup_hits": 0,
             "archive_manifest_dedup_hits": 0, "archive_errors": 0,
             "archive_backend": None,
+            "archive_last_observation_path": None,
+            "archive_last_blob_path": None,
+            "archive_last_payload_sha256": None,
         }
         self._rate_limit = {}
 
@@ -176,6 +179,9 @@ class ApiFootballBroker:
                 fetched_at=fetched,
             )
             self._stats["archive_backend"] = result.get("backend")
+            self._stats["archive_last_observation_path"] = result.get("observation_path")
+            self._stats["archive_last_blob_path"] = result.get("blob_path")
+            self._stats["archive_last_payload_sha256"] = result.get("payload_sha256")
             if result.get("manifest_appended"):
                 self._stats["archive_observations"] += 1
             else:
