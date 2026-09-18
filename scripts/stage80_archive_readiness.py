@@ -783,6 +783,7 @@ def render_markdown(report):
     p = report["players"]
     advanced = report["advanced_metrics"]
     c = report["context"]
+    identities = report["transfer_identity"]
     transfers = report["transfer_history"]
     events = report["match_events"]
     norm = report["normalized_context_archives"]
