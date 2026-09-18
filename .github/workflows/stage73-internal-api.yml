@@ -28,6 +28,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: stage73-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   api-contract:
     runs-on: ubuntu-latest
@@ -60,19 +64,38 @@ jobs:
 
       - name: Commit Stage 73 metadata
         if: github.ref == 'refs/heads/main'
+        shell: bash
         run: |
           git config user.name 'stage73-bot'
           git config user.email 'stage73-bot@users.noreply.github.com'
-          git add ops/stage72_last_run.json ops/stage72_schema.json ops/stage73_last_run.json
-          if git diff --cached --quiet; then
-            echo 'No Stage73 metadata changes to commit.'
-          else
+          for attempt in 1 2 3; do
+            echo "Stage73 metadata publish attempt ${attempt}/3"
+            git fetch origin main
+            git reset --hard origin/main
+
+            # Rebuild against the latest Stage72 inputs, but Stage72 owns its
+            # own metadata files. Stage73 publishes only its own telemetry.
+            python scripts/stage72_build_data_layer.py
+            python scripts/stage73_internal_api.py --self-test
+
+            git add ops/stage73_last_run.json
+            if git diff --cached --quiet; then
+              echo 'No Stage73 metadata changes to commit.'
+              git restore --worktree -- .
+              exit 0
+            fi
+
             git commit -m 'Stage 73 internal API contract update'
-            echo 'Tracked worktree changes left after metadata commit:'
-            git status --short
             git restore --worktree -- .
-            python scripts/publish_operational_commit.py
-          fi
+
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+
+            echo 'Concurrent push detected; rebuilding Stage73 from latest main.'
+            sleep 2
+          done
+          exit 1
 
       - name: Upload API-ready SQLite artifact
         uses: actions/upload-artifact@v4
