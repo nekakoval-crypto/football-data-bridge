@@ -1,8 +1,9 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Stage 73 — read-only PBK HTTP API over the Stage72 SQLite projection."""
 from __future__ import annotations
 import argparse, json, os, sqlite3
 from formation_research import read_audit
+from stage97_style_matchup_today_live import build_today_live_style_context
 from contextlib import closing
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -86,7 +87,37 @@ def today_payload(conn):
                 try:
                     age=(datetime.fromisoformat(generated.replace('Z','+00:00'))-datetime.fromisoformat(observed.replace('Z','+00:00'))).total_seconds();freshness='fresh' if 0<=age<=21600 else ('stale' if age>21600 else 'unknown')
                 except ValueError:freshness='unknown'
-            row.update({'freshness_status':freshness,'observed_at_utc':observed,'score':row.get('score')});rows.append(row)
+            row.update({'freshness_status':freshness,'observed_at_utc':observed,'score':row.get('score')})
+
+            style_fixture = None
+            if table_exists(conn, 'current_round_matches'):
+                current = conn.execute(
+                    'SELECT * FROM current_round_matches WHERE fixture_id=? LIMIT 1',
+                    (str(row.get('fixture_id') or ''),),
+                ).fetchone()
+                if current:
+                    style_fixture = dict(current)
+
+            row['style_matchup'] = (
+                build_today_live_style_context(
+                    conn,
+                    style_fixture,
+                )
+                if style_fixture
+                else {
+                    'version': 'PBK_STAGE97_STYLE_MATCHUP_TODAY_LIVE_V1',
+                    'fixture_id': str(row.get('fixture_id') or ''),
+                    'available': False,
+                    'style_status': 'DATA_WAITING',
+                    'matchup_status': 'DATA_WAITING',
+                    'research_only': True,
+                    'provider_polling': False,
+                    'creates_signal': False,
+                    'probability_mutation': False,
+                    'eligibility_mutation': False,
+                }
+            )
+            rows.append(row)
     return {'api_version':API_VERSION,'day_basis':'UTC','day_definition':'projection day is the UTC date of the Stage72 build timestamp','date_utc':generated[:10] if generated else None,'generated_at_utc':generated,'matches':rows,'coverage':{'live_completeness_guaranteed':False,'source':'Stage53/Stage54 operational data projected by Stage72','limitations':['Current PBK sources do not provide a complete real-time LIVE feed.']},'freshness':{'status':'unknown' if not generated else 'known','generated_at_utc':generated,'per_match_field':'freshness_status'},'read_only':True,'provider_polling':False}
 
 def motivation_compact(conn,fixture_id):
@@ -123,7 +154,12 @@ def current_rounds_payload(conn):
                     for key in ('red_cards_home','red_cards_away'):
                         value=row.get(key);row[key]=int(value) if str(value).isdigit() else None
                     match={key:(row.get(key) or None) for key in ('fixture_id','kickoff_utc','home_team','home_team_logo_url','away_team','away_team_logo_url','status','source_status','elapsed','score','observed_at_utc','live_observed_at_utc','live_freshness_status','red_cards_home','red_cards_away')}
-                    match['motivation']=motivation_compact(conn,row.get('fixture_id'));item['matches'].append(match)
+                    match['motivation']=motivation_compact(conn,row.get('fixture_id'))
+                    match['style_matchup']=build_today_live_style_context(
+                        conn,
+                        row,
+                    )
+                    item['matches'].append(match)
             leagues.append(item)
     return {'api_version':API_VERSION,'generated_at_utc':generated,'leagues':leagues,'read_only':True,'provider_polling':False,'coverage':{'partial_leagues_possible':any(row.get('status')!='available' for row in leagues),'source':'current_round_leagues/current_round_matches SQLite projection'}}
 
