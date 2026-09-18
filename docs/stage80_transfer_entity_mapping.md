@@ -44,6 +44,20 @@ AUTO_MATCH is allowed only when:
 
 Method: `EXACT_PROFILE_NAME_DOB_CURRENT_CLUB`
 
+Profile matching normalizes provider formatting without using similarity:
+
+- a DOB such as `1995-07-19 00:00:00` is compared as the explicit ISO date
+  `1995-07-19`;
+- `firstname + lastname` is tried exactly after normalization;
+- when API-Football firstname contains middle names, the deterministic
+  `first firstname token + lastname` variant may also be tried;
+- common legal club tokens such as `FC`, `AFC`, `CFC`, `US`, `AJ`,
+  a leading German-style `1.`, and a trailing four-digit founding year are
+  removed only for this DOB-backed club confirmation.
+
+All accepted candidates still require exact DOB, unique PBK ownership and one
+unique Transfermarkt candidate. No edit-distance or fuzzy score is used.
+
 #### Match-stat full name + same club
 
 When the PBK catalog name is abbreviated, Stage80 may use API-Football
