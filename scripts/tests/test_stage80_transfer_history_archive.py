@@ -106,6 +106,25 @@ class Stage80TransferHistoryArchiveTests(unittest.TestCase):
         self.assertEqual(meta2["added_rows"], 0)
         self.assertGreaterEqual(meta2["duplicate_rows"], 1)
 
+    def test_new_source_snapshot_without_fact_change_is_idempotent(self):
+        candidate, _, _ = normalize_mapped_rows(
+            [self.mapped_row()],
+            [self.mapping_row()],
+            source_snapshot="snap-a",
+            metadata_sha="aaa",
+            ingested_at_utc="2026-09-18T13:00:00Z",
+        )
+        first, _ = merge_first_observation([], candidate)
+        same_facts = dict(candidate[0])
+        same_facts["source_snapshot"] = "snap-b"
+        same_facts["source_metadata_sha256"] = "bbb"
+        same_facts["ingested_at_utc"] = "2026-09-19T13:00:00Z"
+        second, meta = merge_first_observation(first, [same_facts])
+        self.assertEqual(len(second), 1)
+        self.assertEqual(second[0]["source_snapshot"], "snap-a")
+        self.assertEqual(meta["conflicts_preserved_first_observation"], 0)
+        self.assertGreaterEqual(meta["duplicate_rows"], 1)
+
     def test_conflicting_repeat_preserves_first_observation(self):
         candidate, _, _ = normalize_mapped_rows(
             [self.mapped_row(transfer_fee="100")],
