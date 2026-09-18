@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_READINESS_V7_TRANSFER_HISTORY",
-  "generated_at_utc": "2026-09-18T13:29:33Z",
+  "version": "PBK_STAGE80_ARCHIVE_READINESS_V8_TEAM_XG",
+  "generated_at_utc": "2026-09-18T13:44:59Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -160,6 +160,18 @@
     "finished_current_inventory_team_stats_coverage_pct": 0.0,
     "evidence_note": "Complete means HOME and AWAY team rows exist; individual missing provider metrics remain UNKNOWN."
   },
+  "advanced_metrics": {
+    "team_xg_source": "API-Football /fixtures/statistics expected_goals",
+    "team_xg_rows": 8,
+    "team_xg_complete_fixture_count": 4,
+    "team_stats_complete_fixture_count": 7,
+    "team_xg_captured_fixture_coverage_pct": 57.14,
+    "finished_current_inventory_with_team_xg": 0,
+    "finished_current_inventory_team_xg_coverage_pct": 0.0,
+    "team_xg_evidence_note": "Verified provider field when present; API-Football may return it as missing for some competitions or fixtures and PBK preserves missing as UNKNOWN.",
+    "player_xg_xa_source_status": "MISSING_VERIFIED_SOURCE",
+    "player_xg_xa_evidence_note": "API-Football /fixtures/players does not supply player xG/xA in the PBK capture contract; PBK does not derive or fabricate these fields."
+  },
   "players": {
     "player_stat_rows": 215,
     "unique_players_with_stats": 215,
@@ -231,7 +243,8 @@
     "PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
-    "XG_XA_REQUIRE_VERIFIED_SOURCE"
+    "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE",
+    "PLAYER_XG_XA_REQUIRE_VERIFIED_SOURCE"
   ],
   "creates_signal": false,
   "probability_mutation": false,
