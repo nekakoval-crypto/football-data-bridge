@@ -1,0 +1,15 @@
+{
+  "version": "PBK_STAGE80_API_FOOTBALL_TOP5_REFEREE_9SEASONS_V1",
+  "scope": "Top-5 domestic leagues; completed seasons 2017/18-2025/26",
+  "seasons": [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
+  "leagues": [
+    {"provider_league_id": 39, "league_name": "Premier League", "country": "England"},
+    {"provider_league_id": 78, "league_name": "Bundesliga", "country": "Germany"},
+    {"provider_league_id": 135, "league_name": "Serie A", "country": "Italy"},
+    {"provider_league_id": 140, "league_name": "La Liga", "country": "Spain"},
+    {"provider_league_id": 61, "league_name": "Ligue 1", "country": "France"}
+  ],
+  "expected_queries": 45,
+  "endpoint": "/fixtures",
+  "query_shape": "league+season"
+}
