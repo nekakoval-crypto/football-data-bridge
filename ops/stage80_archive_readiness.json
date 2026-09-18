@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V17_TOP5_REFEREE_BACKFILL",
-  "generated_at_utc": "2026-09-18T21:18:10Z",
+  "generated_at_utc": "2026-09-18T21:19:31Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -126,23 +126,23 @@
     },
     "top5_referee_fixtures": {
       "file": "top5_referee_fixture_history.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 16239
     },
     "top5_referee_profiles": {
       "file": "top5_referee_profiles_research.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 453
     },
     "top5_referee_team_splits": {
       "file": "top5_referee_team_splits_research.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 7689
     },
     "top5_referee_state": {
       "file": "stage80_top5_referee_backfill_state.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 45
     }
   },
   "fixtures": {
@@ -376,22 +376,22 @@
     "evidence_note": "Derived from the Football-Data EPL-only 2017/18-2025/26 referee slice. Descriptive historical aggregates only; missing Top-5 leagues remain UNKNOWN and no observed split is treated as referee bias or causation."
   },
   "referee_top5_backfill": {
-    "fixture_archive_present": false,
-    "profiles_present": false,
-    "team_splits_present": false,
-    "state_present": false,
-    "meta_present": false,
-    "meta_valid": false,
-    "fixture_rows": 0,
-    "valid_fixture_rows": 0,
+    "fixture_archive_present": true,
+    "profiles_present": true,
+    "team_splits_present": true,
+    "state_present": true,
+    "meta_present": true,
+    "meta_valid": true,
+    "fixture_rows": 16239,
+    "valid_fixture_rows": 16239,
     "invalid_fixture_rows": 0,
-    "rows_with_referee": 0,
-    "referee_coverage_pct": null,
-    "profile_rows": 0,
-    "valid_profile_rows": 0,
-    "team_split_rows": 0,
-    "valid_team_split_rows": 0,
-    "captured_league_seasons": 0,
+    "rows_with_referee": 16148,
+    "referee_coverage_pct": 99.44,
+    "profile_rows": 453,
+    "valid_profile_rows": 453,
+    "team_split_rows": 7689,
+    "valid_team_split_rows": 7689,
+    "captured_league_seasons": 45,
     "expected_league_seasons": 45,
     "source_scope": "TOP5_9_SEASONS_API_FOOTBALL",
     "cards_available": false,
@@ -428,8 +428,7 @@
     "PLAYER_STATS_BACKLOG_PENDING",
     "PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
-    "REFEREE_HISTORY_TOP5_BACKFILL_NOT_MATERIALIZED",
-    "REFEREE_HISTORY_TOP5_PARTIAL_EPL_ONLY",
+    "REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
     "PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE",
     "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE"
