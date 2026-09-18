@@ -7,6 +7,7 @@ on:
       - 'scripts/api_football_raw_archive.py'
       - 'scripts/api_football_broker.py'
       - 'scripts/stage80_raw_archive_storage_verify.py'
+      - 'scripts/stage80_raw_archive_provider_probe.py'
       - 'scripts/tests/test_stage80_r2_raw_archive.py'
       - '.github/workflows/stage80-raw-archive-storage.yml'
   push:
@@ -34,6 +35,7 @@ jobs:
           python -m py_compile scripts/api_football_raw_archive.py
           python -m py_compile scripts/api_football_broker.py
           python -m py_compile scripts/stage80_raw_archive_storage_verify.py
+          python -m py_compile scripts/stage80_raw_archive_provider_probe.py
           python -m unittest scripts.tests.test_api_football_raw_archive -v
           python -m unittest scripts.tests.test_stage80_r2_raw_archive -v
 
@@ -78,5 +80,50 @@ jobs:
         with:
           name: stage80-raw-archive-storage-verify
           path: ops/stage80_raw_archive_storage_last_run.json
+          if-no-files-found: error
+          retention-days: 30
+
+  provider-roundtrip:
+    needs: verify-storage
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      OPS_DIR: ops
+      PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+      PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+      PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+      PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+      PBK_RAW_ARCHIVE_S3_PREFIX: api-football-raw
+      PBK_RAW_ARCHIVE_S3_REGION: auto
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install S3 client
+        run: python -m pip install --disable-pip-version-check boto3
+      - name: Probe API-Football broker to R2 roundtrip
+        run: python scripts/stage80_raw_archive_provider_probe.py
+      - name: Publish provider roundtrip telemetry
+        shell: bash
+        run: |
+          git config user.name 'stage80-bot'
+          git config user.email 'stage80-bot@users.noreply.github.com'
+          git add ops/stage80_raw_archive_provider_probe_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 raw provider roundtrip verification update'
+          python scripts/publish_operational_commit.py
+      - name: Upload provider roundtrip telemetry
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage80-raw-provider-roundtrip
+          path: ops/stage80_raw_archive_provider_probe_last_run.json
           if-no-files-found: error
           retention-days: 30
