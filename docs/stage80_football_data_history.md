@@ -40,8 +40,10 @@ The normalized row includes:
 - deterministic historical match identity;
 - source URL/file/season/league provenance;
 - full-time and half-time result;
+- referee name where the source provides it;
 - shots, shots on target, fouls, corners and cards where the source provides them;
-- selected 1X2, total 2.5 and Asian-handicap market fields where available;
+- selected opening 1X2, total 2.5 and Asian-handicap market fields where available;
+- selected closing 1X2, total 2.5 and Asian-handicap fields where available, preserving open/close separation for later market-movement research;
 - explicit research/backfill flags.
 
 Missing columns remain empty. PBK does not zero-fill unavailable historical metrics.
