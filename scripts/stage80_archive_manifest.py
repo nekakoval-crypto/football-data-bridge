@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V17_PREMATCH_FACTOR_RESEARCH"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V18_PREMATCH_WALKFORWARD"
 
 DATASETS = [
     {
@@ -229,6 +229,28 @@ DATASETS = [
         "effective_time_fields": [],
         "source": "Stage80 season-stability projection from Top-5 prematch factor research",
         "limitations": "Counts season-level sign/stability observations only; no factor is selected, ranked, promoted, or granted model authority here.",
+    },
+    {
+        "dataset_id": "top5_prematch_factor_walkforward_research",
+        "path": "top5_prematch_factor_walkforward_research.csv",
+        "role": "RESEARCH_VALIDATION",
+        "lifecycle": "DETERMINISTIC_WALK_FORWARD_PROJECTION",
+        "identity_key": ["factor", "bucket", "scope_type", "scope_value", "target", "test_season"],
+        "observed_time_fields": [],
+        "effective_time_fields": ["test_season"],
+        "source": "Stage80 walk-forward research from Football-Data outcomes/closing markets plus no-lookahead prematch context",
+        "limitations": "Each test season uses strictly earlier seasons as training. Sample/sign persistence is descriptive validation evidence only; no factor promotion or betting/model authority.",
+    },
+    {
+        "dataset_id": "top5_prematch_factor_walkforward_summary_research",
+        "path": "top5_prematch_factor_walkforward_summary_research.csv",
+        "role": "RESEARCH_VALIDATION",
+        "lifecycle": "DETERMINISTIC_WALK_FORWARD_SUMMARY",
+        "identity_key": ["factor", "bucket", "scope_type", "scope_value", "target"],
+        "observed_time_fields": [],
+        "effective_time_fields": [],
+        "source": "Stage80 aggregate summary of prematch factor walk-forward folds",
+        "limitations": "Summarizes sample-qualified fold stability without ranking, selecting, promoting, or granting model authority to any factor.",
     },
     {
         "dataset_id": "statsbomb_player_xg_xa",

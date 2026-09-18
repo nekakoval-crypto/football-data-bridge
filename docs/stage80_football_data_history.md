@@ -135,6 +135,27 @@ On successful `main` builds the verified outputs are persisted as:
 - `ops/top5_prematch_factor_stability_research.csv`;
 - `ops/stage80_prematch_factor_research_last_run.json`.
 
+### Walk-forward validation research
+
+A separate walk-forward projection tests whether factor/market residuals remain directionally stable out of sample.
+
+For every factor bucket at ALL and league scope, and for HOME / DRAW / AWAY / OVER25 / UNDER25:
+
+- a test season can use only seasons strictly before it as training;
+- at least 2 prior seasons are required;
+- sample-qualified folds require at least 100 closing-market observations in training and 30 in the test season;
+- train/test observed hit rate, market no-vig baseline, calibration residual and flat-bet closing-price ROI are recorded;
+- calibration/ROI sign persistence is recorded descriptively;
+- summary rows aggregate fold counts and weighted held-out diagnostics.
+
+The thresholds are research-quality guards, not betting rules. A passing fold does not create a signal. The summary deliberately sets `promotes_factor=false`; model promotion requires a later explicit model-validation decision and remains separate from this archive research.
+
+Successful `main` builds persist:
+
+- `ops/top5_prematch_factor_walkforward_research.csv`;
+- `ops/top5_prematch_factor_walkforward_summary_research.csv`;
+- `ops/stage80_prematch_factor_walkforward_last_run.json`.
+
 ## Separation from forward evidence
 
 This dataset is explicitly:

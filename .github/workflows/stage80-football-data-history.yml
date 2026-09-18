@@ -9,9 +9,11 @@ on:
       - 'scripts/stage80_referee_research.py'
       - 'scripts/stage80_football_data_prematch_context.py'
       - 'scripts/stage80_prematch_factor_research.py'
+      - 'scripts/stage80_prematch_factor_walkforward.py'
       - 'scripts/tests/test_stage80_football_data_history.py'
       - 'scripts/tests/test_stage80_football_data_prematch_context.py'
       - 'scripts/tests/test_stage80_prematch_factor_research.py'
+      - 'scripts/tests/test_stage80_prematch_factor_walkforward.py'
       - 'scripts/tests/test_stage80_referee_research.py'
       - 'docs/stage80_football_data_history.md'
       - '.github/workflows/stage80-football-data-history.yml'
@@ -23,9 +25,11 @@ on:
       - 'scripts/stage80_referee_research.py'
       - 'scripts/stage80_football_data_prematch_context.py'
       - 'scripts/stage80_prematch_factor_research.py'
+      - 'scripts/stage80_prematch_factor_walkforward.py'
       - 'scripts/tests/test_stage80_football_data_history.py'
       - 'scripts/tests/test_stage80_football_data_prematch_context.py'
       - 'scripts/tests/test_stage80_prematch_factor_research.py'
+      - 'scripts/tests/test_stage80_prematch_factor_walkforward.py'
       - 'scripts/tests/test_stage80_referee_research.py'
       - 'docs/stage80_football_data_history.md'
       - '.github/workflows/stage80-football-data-history.yml'
@@ -44,8 +48,8 @@ jobs:
           python-version: '3.12'
       - name: Compile and unit test
         run: |
-          python -m py_compile scripts/stage80_football_data_history.py scripts/stage80_referee_research.py scripts/stage80_football_data_prematch_context.py scripts/stage80_prematch_factor_research.py
-          python -m unittest scripts.tests.test_stage80_football_data_history scripts.tests.test_stage80_referee_research scripts.tests.test_stage80_football_data_prematch_context scripts.tests.test_stage80_prematch_factor_research -v
+          python -m py_compile scripts/stage80_football_data_history.py scripts/stage80_referee_research.py scripts/stage80_football_data_prematch_context.py scripts/stage80_prematch_factor_research.py scripts/stage80_prematch_factor_walkforward.py
+          python -m unittest scripts.tests.test_stage80_football_data_history scripts.tests.test_stage80_referee_research scripts.tests.test_stage80_football_data_prematch_context scripts.tests.test_stage80_prematch_factor_research scripts.tests.test_stage80_prematch_factor_walkforward -v
       - name: Download and normalize previous 9 completed Top5 seasons
         run: |
           mkdir -p source normalized
@@ -211,6 +215,60 @@ jobs:
               'closing_total25_matches':meta['closing_total25_matches'],
           })
           PY
+      - name: Build walk-forward prematch factor validation research
+        run: |
+          python scripts/stage80_prematch_factor_walkforward.py \
+            --matches normalized/football_data_top5_9season_matches.csv \
+            --context normalized/football_data_top5_prematch_context.csv \
+            --folds-out normalized/football_data_top5_prematch_factor_walkforward.csv \
+            --summary-out normalized/football_data_top5_prematch_factor_walkforward_summary.csv \
+            --meta-out normalized/stage80_prematch_factor_walkforward_meta.json
+      - name: Verify walk-forward factor research governance
+        run: |
+          python - <<'PY'
+          import csv, json
+          meta=json.load(open('normalized/stage80_prematch_factor_walkforward_meta.json',encoding='utf-8'))
+          assert meta['status']=='OK', meta
+          assert meta['source_rows']==16111, meta
+          assert meta['context_rows']==16111, meta
+          assert meta['joined_rows']==16111, meta
+          assert meta['invalid_context_governance_rows']==0, meta
+          assert meta['source_without_context']==0, meta
+          assert meta['context_without_source']==0, meta
+          assert len(meta['season_labels'])==9, meta
+          assert meta['targets']==['HOME','DRAW','AWAY','OVER25','UNDER25'], meta
+          assert meta['fold_rows']>0, meta
+          assert meta['summary_rows']>0, meta
+          assert meta['sample_threshold_pass_folds']>0, meta
+          assert meta['min_prior_seasons']==2, meta
+          assert meta['min_train_market_matches']==100, meta
+          assert meta['min_test_market_matches']==30, meta
+          assert meta['provider_calls']==0, meta
+          assert meta['research_only'] is True, meta
+          assert meta['operational_betting_authority'] is False, meta
+          assert meta['creates_signal'] is False, meta
+          assert meta['promotes_factor'] is False, meta
+          assert meta['probability_mutation'] is False, meta
+          assert meta['eligibility_mutation'] is False, meta
+          assert meta['stake_changes'] is False, meta
+          assert meta['forward_journal_mutation'] is False, meta
+          with open('normalized/football_data_top5_prematch_factor_walkforward.csv',encoding='utf-8-sig',newline='') as f:
+              folds=list(csv.DictReader(f))
+          with open('normalized/football_data_top5_prematch_factor_walkforward_summary.csv',encoding='utf-8-sig',newline='') as f:
+              summary=list(csv.DictReader(f))
+          assert len(folds)==meta['fold_rows']
+          assert len(summary)==meta['summary_rows']
+          assert all(r['research_only']=='true' for r in folds)
+          assert all(r['operational_betting_authority']=='false' for r in folds)
+          assert all(r['creates_signal']=='false' for r in folds)
+          assert all(r['promotes_factor']=='false' for r in summary)
+          assert all(r['operational_betting_authority']=='false' for r in summary)
+          print({
+              'fold_rows':len(folds),
+              'summary_rows':len(summary),
+              'eligible_folds':meta['sample_threshold_pass_folds'],
+          })
+          PY
       - name: Source checksums
         run: sha256sum source/*.csv | sort > normalized/SHA256SUMS.source.txt
       - name: Upload normalized historical source artifact
@@ -300,6 +358,9 @@ jobs:
           cp normalized/football_data_top5_prematch_factor_research.csv ops/top5_prematch_factor_research.csv
           cp normalized/football_data_top5_prematch_factor_stability.csv ops/top5_prematch_factor_stability_research.csv
           cp normalized/stage80_prematch_factor_research_meta.json ops/stage80_prematch_factor_research_last_run.json
+          cp normalized/football_data_top5_prematch_factor_walkforward.csv ops/top5_prematch_factor_walkforward_research.csv
+          cp normalized/football_data_top5_prematch_factor_walkforward_summary.csv ops/top5_prematch_factor_walkforward_summary_research.csv
+          cp normalized/stage80_prematch_factor_walkforward_meta.json ops/stage80_prematch_factor_walkforward_last_run.json
           git config user.name 'stage80-football-data-bot'
           git config user.email 'stage80-football-data-bot@users.noreply.github.com'
           git add ops/epl_referee_profiles_research.csv
@@ -310,6 +371,9 @@ jobs:
           git add ops/top5_prematch_factor_research.csv
           git add ops/top5_prematch_factor_stability_research.csv
           git add ops/stage80_prematch_factor_research_last_run.json
+          git add ops/top5_prematch_factor_walkforward_research.csv
+          git add ops/top5_prematch_factor_walkforward_summary_research.csv
+          git add ops/stage80_prematch_factor_walkforward_last_run.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'Stage 80 Football-Data research archive update'
           python scripts/publish_operational_commit.py
