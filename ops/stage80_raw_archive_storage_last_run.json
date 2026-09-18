@@ -1,0 +1,21 @@
+{
+  "version": "PBK_STAGE80_RAW_ARCHIVE_STORAGE_VERIFY_V1",
+  "run_at_utc": "2026-09-18T13:01:15Z",
+  "status": "READY",
+  "backend": "S3",
+  "bucket": "pbk-api-football-raw",
+  "prefix": "api-football-raw",
+  "object_key": "api-football-raw/healthchecks/2026/09/18/f9f5bb5ab44482cb4147afd07b74868bc666d4ba2cdde6bd209f135989030a66.json",
+  "written_bytes": 181,
+  "sha256": "f9f5bb5ab44482cb4147afd07b74868bc666d4ba2cdde6bd209f135989030a66",
+  "readback_sha256": "f9f5bb5ab44482cb4147afd07b74868bc666d4ba2cdde6bd209f135989030a66",
+  "readback_match": true,
+  "durable": true,
+  "provider_calls": 0,
+  "research_only": true,
+  "creates_signal": false,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "stake_changes": false,
+  "forward_journal_mutation": false
+}
