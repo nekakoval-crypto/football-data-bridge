@@ -28,6 +28,9 @@ jobs:
           ls -lh core heavy dataset-metadata.json
           sha256sum core/* heavy/* dataset-metadata.json | tee SHA256SUMS.txt
 
+      - name: Validate transfer source schema
+        run: python scripts/stage80_transfer_source_audit.py dataset-metadata.json
+
       - name: Upload core tables
         uses: actions/upload-artifact@v4
         with:
