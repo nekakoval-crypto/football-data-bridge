@@ -158,10 +158,9 @@ def transfer_event_id(row):
     transfer_date = sval(row, "transfer_date")
     from_key = sval(row, "from_club_id") or sval(row, "from_club_name")
     to_key = sval(row, "to_club_id") or sval(row, "to_club_name")
-    season = sval(row, "transfer_season")
     if not pbk_id or not tm_id or not transfer_date:
         return ""
-    material = "\x1f".join([pbk_id, tm_id, transfer_date, season, from_key, to_key])
+    material = "\x1f".join([pbk_id, tm_id, transfer_date, from_key, to_key])
     return hashlib.sha256(material.encode("utf-8")).hexdigest()
 
 
@@ -229,7 +228,13 @@ def normalize_mapped_rows(mapped_rows, mapping_rows, source_snapshot="", metadat
 
 
 def row_signature(row):
-    return tuple(sval(row, field) for field in FIELDS if field != "ingested_at_utc")
+    provenance_only = {
+        "ingested_at_utc",
+        "source_snapshot",
+        "source_metadata_sha256",
+        "archive_version",
+    }
+    return tuple(sval(row, field) for field in FIELDS if field not in provenance_only)
 
 
 def merge_first_observation(existing_rows, candidate_rows):
