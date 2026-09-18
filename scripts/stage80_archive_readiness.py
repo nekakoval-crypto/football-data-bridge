@@ -459,7 +459,10 @@ def build_report(ops=OPS, archive_dir=None):
         gaps.append("TRANSFER_HISTORY_INVALID_IDENTITY_ROWS")
     if data["team_stats"] is None or team_xg_rows == 0:
         gaps.append("TEAM_XG_NO_VERIFIED_OBSERVATIONS")
-    elif len(team_xg_complete_fixture_ids) < len(team_stats_fixture_ids):
+    elif (
+        not team_xg_complete_fixture_ids
+        or len(team_xg_complete_fixture_ids) < len(team_stats_fixture_ids)
+    ):
         gaps.append("TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE")
     gaps.append("PLAYER_XG_XA_REQUIRE_VERIFIED_SOURCE")
 
@@ -642,6 +645,8 @@ def render_markdown(report):
     coverage_text = "—" if coverage is None else f"{coverage:.2f}%"
     team_stats_coverage = ts["finished_current_inventory_team_stats_coverage_pct"]
     team_stats_coverage_text = "—" if team_stats_coverage is None else f"{team_stats_coverage:.2f}%"
+    team_xg_coverage = advanced["team_xg_captured_fixture_coverage_pct"]
+    team_xg_coverage_text = "—" if team_xg_coverage is None else f"{team_xg_coverage:.2f}%"
     catalog_coverage = fc["history_fixture_coverage_pct"]
     catalog_coverage_text = "—" if catalog_coverage is None else f"{catalog_coverage:.2f}%"
     lines = [
@@ -660,7 +665,7 @@ def render_markdown(report):
         f"- Match event archive: {events['event_rows']} rows / {events['event_fixtures']} fixtures; backlog pending {events['backlog_pending_fixtures']} / total {events['backlog_total_fixtures']}.",
         f"- Stage81 durable backlog: pending {b81['pending_fixtures']}; captured {b81['captured_fixtures']}; total {b81['total_fixtures']}.",
         f"- Team match statistics: {ts['complete_fixture_count']} complete fixtures / {ts['rows']} team rows; current finished coverage {team_stats_coverage_text}.",
-        f"- Team xG: {advanced['team_xg_complete_fixture_count']} complete fixtures / {advanced['team_xg_rows']} team rows; captured-team-stat coverage {advanced['team_xg_captured_fixture_coverage_pct'] if advanced['team_xg_captured_fixture_coverage_pct'] is not None else '—'}%.",
+        f"- Team xG: {advanced['team_xg_complete_fixture_count']} complete fixtures / {advanced['team_xg_rows']} team rows; captured-team-stat coverage {team_xg_coverage_text}.",
         f"- Player xG/xA source: {advanced['player_xg_xa_source_status']}.",
         f"- Player stat rows: {p['player_stat_rows']}; уникальных игроков: {p['unique_players_with_stats']}.",
         f"- Player Grade rows: {p['player_grade_rows']}; уникальных игроков: {p['unique_players_with_grades']}.",
