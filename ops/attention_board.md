@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 18.09.2026 04:00 (Europe/Berlin)
+Обновлено: 18.09.2026 05:00 (Europe/Berlin)
 Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -272,7 +272,7 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
 
 - **Bayern München — Union Berlin** | Bundesliga | 18.09 18:30 UTC
   - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
-  - ОЗ · ОЗ Да: 1.77 | ОЗ Нет: 1.94 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.76 | ОЗ Нет: 1.95 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.01 | Х2: 11 | 12: 1.03 @ Bet365
   - Европейская фора хозяев (+1) · П1: 1.04 | Х: 17 | П2: 34 @ Bet365
   - Европейская фора хозяев (-1) · П1: 1.18 | Х: 7.5 | П2: 10 @ Bet365
@@ -993,7 +993,7 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
   - Европейская фора хозяев (-3) · П1: 11 | Х: 7.5 | П2: 1.18 @ Bet365
   - Европейская фора хозяев (-3) · П1: 8.2 | Х: 6.95 | П2: 1.16 @ Marathonbet
   - 1X2 · П1: 1.6 | Х: 4.33 | П2: 5 @ Bet365
-  - 1X2 · П1: 1.58 | Х: 4.4 | П2: 5.45 @ Marathonbet
+  - 1X2 · П1: 1.58 | Х: 4.45 | П2: 5.4 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.44 | ИТМ: 2.62 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.44 | ИТМ: 2.59 @ Marathonbet
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 3.4 | ИТМ: 1.3 @ Bet365
@@ -1207,7 +1207,7 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
 
 - **Athletic Club — Alaves** | La Liga | 19.09 14:15 UTC
   - ОЗ · ОЗ Да: 1.91 | ОЗ Нет: 1.91 @ Bet365
-  - ОЗ · ОЗ Да: 1.85 | ОЗ Нет: 1.85 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.86 | ОЗ Нет: 1.84 @ Marathonbet
   - Ф(0) · Ф1(0): 1.23 | Ф2(0): 4 @ Bet365
   - Ф(0) · Ф1(0): 1.22 | Ф2(0): 3.8 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.17 | Х2: 2.15 | 12: 1.25 @ Bet365
@@ -1648,7 +1648,7 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
   - Тотал 2.5 — нет данных
 
 - **Nottingham Forest — Coventry** | Premier League | 19.09 16:30 UTC
-  - ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 2 @ Bet365
+  - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
   - ОЗ · ОЗ Да: 1.78 | ОЗ Нет: 1.93 @ Marathonbet
   - Ф(0) · Ф1(0): 1.23 | Ф2(0): 4 @ Bet365
   - Ф(0) · Ф1(0): 1.2 | Ф2(0): 4.05 @ Marathonbet
@@ -2019,7 +2019,7 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
 
 - **Angers — Estac Troyes** | Ligue 1 | 19.09 18:45 UTC
   - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
-  - ОЗ · ОЗ Да: 1.77 | ОЗ Нет: 1.94 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.78 | ОЗ Нет: 1.93 @ Marathonbet
   - Ф(0) · Ф1(0): 1.55 | Ф2(0): 2.38 @ Bet365
   - Ф(0) · Ф1(0): 1.6 | Ф2(0): 2.38 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.3 | Х2: 1.67 | 12: 1.33 @ Bet365
@@ -2879,7 +2879,7 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
 
 - **Manchester City — Sunderland** | Premier League | 20.09 13:00 UTC
   - ОЗ · ОЗ Да: 1.95 | ОЗ Нет: 1.8 @ Bet365
-  - ОЗ · ОЗ Да: 1.95 | ОЗ Нет: 1.76 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.96 | ОЗ Нет: 1.75 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.07 | Х2: 3.4 | 12: 1.14 @ Bet365
   - 1Х/Х2/12 · 1Х: 1.06 | Х2: 3.66 | 12: 1.15 @ Marathonbet
   - Европейская фора хозяев (+1) · П1: 1.07 | Х: 12 | П2: 23 @ Bet365
@@ -2947,7 +2947,7 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
 
 - **Parma — Genoa** | Serie A | 20.09 13:00 UTC
   - ОЗ · ОЗ Да: 2 | ОЗ Нет: 1.75 @ Bet365
-  - ОЗ · ОЗ Да: 1.98 | ОЗ Нет: 1.74 @ Marathonbet
+  - ОЗ · ОЗ Да: 2 | ОЗ Нет: 1.72 @ Marathonbet
   - Ф(0) · Ф1(0): 2.15 | Ф2(0): 1.68 @ Bet365
   - Ф(0) · Ф1(0): 2.14 | Ф2(0): 1.71 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.53 | Х2: 1.36 | 12: 1.36 @ Bet365
@@ -3675,7 +3675,7 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
 
 - **Deportivo La Coruna — Real Betis** | La Liga | 20.09 16:30 UTC
   - ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.05 @ Bet365
-  - ОЗ · ОЗ Да: 1.69 | ОЗ Нет: 2.04 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.67 | ОЗ Нет: 2.07 @ Marathonbet
   - Ф(0) · Ф1(0): 2.35 | Ф2(0): 1.58 @ Bet365
   - Ф(0) · Ф1(0): 2.39 | Ф2(0): 1.59 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.7 | Х2: 1.33 | 12: 1.28 @ Bet365
@@ -4004,8 +4004,8 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
   - Ф(0) — нет данных
 
 - **Marseille — Paris Saint Germain** | Ligue 1 | 20.09 18:45 UTC
-  - ОЗ · ОЗ Да: 1.53 | ОЗ Нет: 2.38 @ Bet365
-  - ОЗ · ОЗ Да: 1.52 | ОЗ Нет: 2.36 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Bet365
+  - ОЗ · ОЗ Да: 1.53 | ОЗ Нет: 2.34 @ Marathonbet
   - Ф(0) · Ф1(0): 5.5 | Ф2(0): 1.15 @ Bet365
   - Ф(0) · Ф1(0): 5.5 | Ф2(0): 1.11 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 2.75 | Х2: 1.11 | 12: 1.17 @ Bet365
