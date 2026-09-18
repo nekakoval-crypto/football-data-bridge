@@ -390,12 +390,15 @@ def run(
     mapping_out: Path,
     mapped_out: Path,
     meta_out: Path,
+    identity_path: Path | None = None,
 ) -> dict[str, Any]:
     source_rows = read_csv(source_path)
     transfer_rows = read_csv(transfer_path)
+    identity_rows = read_csv(identity_path) if identity_path and identity_path.exists() else []
+    bridge_rows = identity_rows or transfer_rows
     historical_rows = read_csv(historical_path)
 
-    mapping_rows = build_mapping(source_rows, transfer_rows, historical_rows)
+    mapping_rows = build_mapping(source_rows, bridge_rows, historical_rows)
     mapped_rows = map_research_metrics(source_rows, mapping_rows)
 
     write_csv(mapping_out, MAPPING_FIELDS, mapping_rows)
@@ -412,6 +415,8 @@ def run(
         "source_rows": len(source_rows),
         "source_unique_statsbomb_players": len(statsbomb_players(source_rows)),
         "verified_transfer_rows": len(transfer_rows),
+        "verified_identity_rows": len(identity_rows),
+        "identity_bridge_source": "pbk_transfermarkt_player_identity.csv" if identity_rows else "historical_transfer_events.csv_fallback",
         "historical_player_rows": len(historical_rows),
         "mapping_rows": len(mapping_rows),
         "auto_match_high": counts["AUTO_MATCH"],
@@ -441,6 +446,7 @@ def main() -> None:
     parser.add_argument("--source", required=True)
     parser.add_argument("--transfers", required=True)
     parser.add_argument("--historical-players", required=True)
+    parser.add_argument("--identity-map", default="")
     parser.add_argument("--mapping-out", required=True)
     parser.add_argument("--mapped-out", required=True)
     parser.add_argument("--meta-out", required=True)
@@ -453,6 +459,7 @@ def main() -> None:
         Path(args.mapping_out),
         Path(args.mapped_out),
         Path(args.meta_out),
+        identity_path=Path(args.identity_map) if args.identity_map else None,
     )
     print(json.dumps(result, ensure_ascii=False))
 
