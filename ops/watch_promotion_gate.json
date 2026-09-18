@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-18T21:03:52Z",
+  "generated_at_utc": "2026-09-18T22:03:49Z",
   "status": "OK",
   "policy_locked_at": "2026-09-11",
   "families": {
@@ -9,23 +9,22 @@
         "crossings": 5,
         "user_price_rows": 5,
         "execution_coverage_pct": 100.0,
-        "settled_executable": 0,
-        "roi_pct": null,
+        "settled_executable": 1,
+        "roi_pct": -100.0,
         "first_half_n": 0,
         "first_half_roi_pct": null,
-        "second_half_n": 0,
-        "second_half_roi_pct": null,
-        "close_observed_settled": 0,
-        "close_observed_coverage_pct": null,
+        "second_half_n": 1,
+        "second_half_roi_pct": -100.0,
+        "close_observed_settled": 1,
+        "close_observed_coverage_pct": 100.0,
         "close_qualified_settled": 0,
         "close_qualified_roi_pct": null
       },
       "blocking_reasons": [
-        "settled 0/60",
-        "ROI None not >0",
+        "settled 1/60",
+        "ROI -100.0 not >0",
         "first-half ROI None not >0",
-        "second-half ROI None not >0",
-        "close coverage None% <90%",
+        "second-half ROI -100.0 not >0",
         "close-qualified subset 0/20"
       ]
     },
@@ -57,16 +56,16 @@
         "crossings": 28,
         "user_price_rows": 28,
         "execution_coverage_pct": 100.0,
-        "settled_executable": 14,
-        "roi_pct": -28.571,
+        "settled_executable": 15,
+        "roi_pct": -33.333,
         "first_half_n": 7,
         "first_half_roi_pct": -78.714,
-        "second_half_n": 7,
-        "second_half_roi_pct": 21.571,
-        "close_observed_settled": 14,
+        "second_half_n": 8,
+        "second_half_roi_pct": 6.375,
+        "close_observed_settled": 15,
         "close_observed_coverage_pct": 100.0,
-        "close_qualified_settled": 12,
-        "close_qualified_roi_pct": -30.083
+        "close_qualified_settled": 13,
+        "close_qualified_roi_pct": -35.462
       },
       "blocking_reasons": [
         "No historical BTTS first/close dataset; any finding needs a new preregistration and fresh holdout."
