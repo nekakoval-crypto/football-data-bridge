@@ -71,7 +71,14 @@ def team_alias_key(value):
     key = normalize_text(value)
     stop = {"fc","cf","afc","ac","sc","club","football","calcio"}
     parts = [p for p in key.split() if p not in stop]
-    return " ".join(parts)
+    key = " ".join(parts)
+    aliases = {
+        "bayern munchen": "bayern munich",
+        "inter milan": "inter",
+        "internazionale": "inter",
+        "atletico de madrid": "atletico madrid",
+    }
+    return aliases.get(key, key)
 
 
 def initial_surname_key(name):
