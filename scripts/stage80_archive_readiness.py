@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import csv
 import json
+import math
 import os
 from collections import defaultdict
 from datetime import datetime, timezone
@@ -18,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V7_TRANSFER_HISTORY"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V8_TEAM_XG"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -69,6 +70,14 @@ def pct(num, den):
     if den in (None, 0):
         return None
     return round(100.0 * num / den, 2)
+
+
+def fnum(value):
+    try:
+        number = float(str(value).strip())
+        return number if math.isfinite(number) else None
+    except (TypeError, ValueError):
+        return None
 
 
 def is_finished_fixture(row):
@@ -263,6 +272,21 @@ def build_report(ops=OPS, archive_dir=None):
         if {"HOME", "AWAY"}.issubset(sides)
     }
 
+    team_xg_rows = 0
+    team_xg_sides = defaultdict(set)
+    for row in team_stats:
+        fixture_id = sval(row, "fixture_id")
+        side = sval(row, "side").upper()
+        xg = fnum(row.get("expected_goals"))
+        if fixture_id and side in {"HOME", "AWAY"} and xg is not None and xg >= 0:
+            team_xg_rows += 1
+            team_xg_sides[fixture_id].add(side)
+    team_xg_complete_fixture_ids = {
+        fixture_id
+        for fixture_id, sides in team_xg_sides.items()
+        if {"HOME", "AWAY"}.issubset(sides)
+    }
+
     stage81_backlog = data["stage81_backlog"] or []
     stage81_backlog_fixture_ids = {
         sval(row, "fixture_id")
@@ -433,7 +457,11 @@ def build_report(ops=OPS, archive_dir=None):
         gaps.append("VERIFIED_TRANSFER_EVENTS_NOT_YET_INGESTED")
     if transfer_invalid:
         gaps.append("TRANSFER_HISTORY_INVALID_IDENTITY_ROWS")
-    gaps.append("XG_XA_REQUIRE_VERIFIED_SOURCE")
+    if data["team_stats"] is None or team_xg_rows == 0:
+        gaps.append("TEAM_XG_NO_VERIFIED_OBSERVATIONS")
+    elif len(team_xg_complete_fixture_ids) < len(team_stats_fixture_ids):
+        gaps.append("TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE")
+    gaps.append("PLAYER_XG_XA_REQUIRE_VERIFIED_SOURCE")
 
     if roster_history_rows == 0 and player_stats_fixture_count == 0:
         status = "BOOTSTRAPPING"
@@ -514,6 +542,26 @@ def build_report(ops=OPS, archive_dir=None):
             ),
             "evidence_note": "Complete means HOME and AWAY team rows exist; individual missing provider metrics remain UNKNOWN.",
         },
+        "advanced_metrics": {
+            "team_xg_source": "API-Football /fixtures/statistics expected_goals",
+            "team_xg_rows": team_xg_rows,
+            "team_xg_complete_fixture_count": len(team_xg_complete_fixture_ids),
+            "team_stats_complete_fixture_count": len(team_stats_fixture_ids),
+            "team_xg_captured_fixture_coverage_pct": pct(
+                len(team_xg_complete_fixture_ids & team_stats_fixture_ids),
+                len(team_stats_fixture_ids),
+            ),
+            "finished_current_inventory_with_team_xg": len(
+                finished_ids & team_xg_complete_fixture_ids
+            ),
+            "finished_current_inventory_team_xg_coverage_pct": pct(
+                len(finished_ids & team_xg_complete_fixture_ids),
+                len(finished_ids),
+            ),
+            "team_xg_evidence_note": "Verified provider field when present; API-Football may return it as missing for some competitions or fixtures and PBK preserves missing as UNKNOWN.",
+            "player_xg_xa_source_status": "MISSING_VERIFIED_SOURCE",
+            "player_xg_xa_evidence_note": "API-Football /fixtures/players does not supply player xG/xA in the PBK capture contract; PBK does not derive or fabricate these fields.",
+        },
         "players": {
             "player_stat_rows": len(stats),
             "unique_players_with_stats": uniq(stats, "player_id") or 0,
@@ -584,6 +632,7 @@ def render_markdown(report):
     ts = report["team_statistics"]
     r = report["rosters"]
     p = report["players"]
+    advanced = report["advanced_metrics"]
     c = report["context"]
     transfers = report["transfer_history"]
     events = report["match_events"]
@@ -611,6 +660,8 @@ def render_markdown(report):
         f"- Match event archive: {events['event_rows']} rows / {events['event_fixtures']} fixtures; backlog pending {events['backlog_pending_fixtures']} / total {events['backlog_total_fixtures']}.",
         f"- Stage81 durable backlog: pending {b81['pending_fixtures']}; captured {b81['captured_fixtures']}; total {b81['total_fixtures']}.",
         f"- Team match statistics: {ts['complete_fixture_count']} complete fixtures / {ts['rows']} team rows; current finished coverage {team_stats_coverage_text}.",
+        f"- Team xG: {advanced['team_xg_complete_fixture_count']} complete fixtures / {advanced['team_xg_rows']} team rows; captured-team-stat coverage {advanced['team_xg_captured_fixture_coverage_pct'] if advanced['team_xg_captured_fixture_coverage_pct'] is not None else '—'}%.",
+        f"- Player xG/xA source: {advanced['player_xg_xa_source_status']}.",
         f"- Player stat rows: {p['player_stat_rows']}; уникальных игроков: {p['unique_players_with_stats']}.",
         f"- Player Grade rows: {p['player_grade_rows']}; уникальных игроков: {p['unique_players_with_grades']}.",
         f"- Current roster: {r['current_roster_teams']} команд / {r['current_roster_rows']} игроковых строк.",
@@ -655,6 +706,8 @@ def main():
         "player_stats_fixtures": report["fixtures"]["player_stats_fixture_count_all_snapshots"],
         "raw_archive_status": report["raw_provider_archive"]["status"],
         "verified_transfer_rows": report["transfer_history"]["valid_rows"],
+        "team_xg_complete_fixtures": report["advanced_metrics"]["team_xg_complete_fixture_count"],
+        "player_xg_xa_source_status": report["advanced_metrics"]["player_xg_xa_source_status"],
     }, ensure_ascii=False))
 
 
