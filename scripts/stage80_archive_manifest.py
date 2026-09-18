@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V5_LINEUP_INJURY"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V6_MATCH_EVENTS"
 
 DATASETS = [
     {
@@ -174,6 +174,28 @@ DATASETS = [
         "effective_time_fields": ["kickoff_utc"],
         "source": "Stage80 normalized from already-persisted Stage55 injury evidence",
         "limitations": "Provider availability labels/reasons are archived as observed facts; absence from a later snapshot is not inferred as recovery.",
+    },
+    {
+        "dataset_id": "stage80_match_event_backlog",
+        "path": "stage80_match_event_backlog.csv",
+        "role": "DURABLE_WORK_QUEUE",
+        "lifecycle": "DURABLE_STATE_MACHINE",
+        "identity_key": ["fixture_id"],
+        "observed_time_fields": ["first_queued_at_utc", "last_seen_at_utc"],
+        "effective_time_fields": ["kickoff_utc"],
+        "source": "Stage71 terminal observation + Stage80 event capture reconciliation",
+        "limitations": "Queue evidence is not event evidence; CAPTURED requires at least one normalized provider event row.",
+    },
+    {
+        "dataset_id": "match_event_snapshots",
+        "path": "match_event_snapshots.csv",
+        "role": "HISTORICAL_EVIDENCE",
+        "lifecycle": "APPEND_ONLY_FIRST_OBSERVATION_WINS",
+        "identity_key": ["event_id"],
+        "observed_time_fields": ["observed_at_utc"],
+        "effective_time_fields": ["kickoff_utc"],
+        "source": "Stage80 /fixtures/events via shared API-Football broker",
+        "limitations": "Only terminal fixtures captured under protected provider budget; empty provider responses remain retryable and are not converted to fake no-event evidence.",
     },
     {
         "dataset_id": "match_context_snapshots",
