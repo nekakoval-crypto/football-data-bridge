@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V3_TEAM_STATS",
-  "generated_at_utc": "2026-09-17T18:46:55Z",
+  "generated_at_utc": "2026-09-18T00:47:28Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -36,8 +36,8 @@
     },
     "team_stats": {
       "file": "team_match_statistics.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 2
     },
     "stage81_backlog": {
       "file": "stage81_team_stats_backlog.csv",
@@ -47,17 +47,17 @@
     "current_rosters": {
       "file": "team_rosters.csv",
       "present": true,
-      "rows": 1975
+      "rows": 2230
     },
     "roster_history": {
       "file": "team_roster_history.csv",
       "present": true,
-      "rows": 1975
+      "rows": 2228
     },
     "membership_intervals": {
       "file": "team_membership_intervals.csv",
       "present": true,
-      "rows": 1975
+      "rows": 2228
     },
     "match_context": {
       "file": "match_context_snapshots.csv",
@@ -128,17 +128,17 @@
   "stage81_backlog": {
     "present": true,
     "total_fixtures": 8,
-    "pending_fixtures": 8,
-    "captured_fixtures": 0,
+    "pending_fixtures": 7,
+    "captured_fixtures": 1,
     "captured_without_complete_ledger": 0,
     "oldest_pending_first_queued_at_utc": "2026-09-17T10:41:55Z",
     "evidence_note": "Pending means PBK observed a terminal fixture but has not yet persisted complete HOME+AWAY /fixtures/statistics evidence."
   },
   "team_statistics": {
-    "rows": 0,
-    "complete_fixture_count": 0,
-    "finished_current_inventory_with_team_stats": 0,
-    "finished_current_inventory_team_stats_coverage_pct": 0.0,
+    "rows": 2,
+    "complete_fixture_count": 1,
+    "finished_current_inventory_with_team_stats": 1,
+    "finished_current_inventory_team_stats_coverage_pct": 12.5,
     "evidence_note": "Complete means HOME and AWAY team rows exist; individual missing provider metrics remain UNKNOWN."
   },
   "players": {
@@ -148,13 +148,13 @@
     "unique_players_with_grades": 0
   },
   "rosters": {
-    "current_roster_rows": 1975,
-    "current_roster_teams": 64,
-    "history_rows": 1975,
-    "history_teams": 64,
-    "history_team_snapshots": 64,
-    "membership_intervals": 1975,
-    "open_latest_intervals": 1975,
+    "current_roster_rows": 2230,
+    "current_roster_teams": 72,
+    "history_rows": 2228,
+    "history_teams": 72,
+    "history_team_snapshots": 72,
+    "membership_intervals": 2228,
+    "open_latest_intervals": 2228,
     "closed_by_observed_absence_intervals": 0
   },
   "context": {
@@ -174,7 +174,6 @@
     "manifest_payload_bytes": null
   },
   "gaps": [
-    "TEAM_STATS_NO_CAPTURED_FIXTURES",
     "TEAM_STATS_BACKLOG_PENDING",
     "PLAYER_STATS_NO_CAPTURED_FIXTURES",
     "PLAYER_STATS_BACKLOG_PENDING",
