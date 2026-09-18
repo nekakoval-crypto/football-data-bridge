@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-17T15:30:17Z",
+  "generated_at_utc": "2026-09-18T07:30:07Z",
   "status": "OK",
   "scope_leagues": 16,
   "families": [
@@ -64,23 +64,23 @@
       "test_roi_pct": "0.11",
       "positive_seasons": "4",
       "total_seasons": "10",
-      "prospective_settled": "1",
-      "prospective_roi_pct": "28.000",
-      "prospective_first_half_roi_pct": "",
-      "prospective_second_half_roi_pct": "28.000",
+      "prospective_settled": "2",
+      "prospective_roi_pct": "63.000",
+      "prospective_first_half_roi_pct": "28.000",
+      "prospective_second_half_roi_pct": "98.000",
       "marathonbet_coverage_pct": "100.000",
       "status": "MONITORING",
       "leader": "NO",
-      "blocking_reason": "fresh discovery sample 1/120 settled (119 remaining); executable 2/2; Marathonbet coverage 100.0%; ROI 28.00%; first-half —%; second-half 28.00%; no direct promotion",
+      "blocking_reason": "fresh discovery sample 2/120 settled (118 remaining); executable 2/2; Marathonbet coverage 100.0%; ROI 63.00%; first-half 28.00%; second-half 98.00%; no direct promotion",
       "prospective_captured": "2",
       "prospective_executable": "2",
-      "prospective_pending_executable": "1",
+      "prospective_pending_executable": "0",
       "review_target_settled": "60",
-      "review_remaining_settled": "59",
-      "review_progress_pct": "1.7",
+      "review_remaining_settled": "58",
+      "review_progress_pct": "3.3",
       "discovery_target_settled": "120",
-      "discovery_remaining_settled": "119",
-      "discovery_progress_pct": "0.8",
+      "discovery_remaining_settled": "118",
+      "discovery_progress_pct": "1.7",
       "progress_path": "REGIME_DISCOVERY"
     },
     {
@@ -1095,5 +1095,5 @@
     "automatic_promotion": "FORBIDDEN",
     "automatic_suspension": "FORBIDDEN"
   },
-  "progress_generated_at_utc": "2026-09-17T15:30:17Z"
+  "progress_generated_at_utc": "2026-09-18T07:30:07Z"
 }
