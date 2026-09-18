@@ -168,7 +168,12 @@ def candidate_teams(rosters, existing, season, fixtures, limit, *, now, refresh_
         if tid and pid:
             covered.setdefault(tid, set()).add(pid)
         captured = parse_iso_utc(row.get("captured_at_utc"))
-        if tid and captured and (tid not in latest_capture or captured > latest_capture[tid]):
+        if (
+            tid
+            and captured
+            and str(row.get("source") or "").strip() == TEAM_SOURCE
+            and (tid not in latest_capture or captured > latest_capture[tid])
+        ):
             latest_capture[tid] = captured
 
     league_by_team = fixture_league_by_team(fixtures)
