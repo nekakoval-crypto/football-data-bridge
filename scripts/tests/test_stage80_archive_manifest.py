@@ -64,6 +64,27 @@ class Stage80ArchiveManifestTests(unittest.TestCase):
         self.assertEqual(transfer["identity_key_text"], "transfer_event_id")
         self.assertEqual(transfer["effective_time_fields_text"], "transfer_date")
 
+    def test_statsbomb_player_xg_xa_manifest_contract(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            self.write_csv(
+                tmp,
+                "statsbomb_player_xg_xa.csv",
+                ["record_id", "match_date", "statsbomb_match_id", "statsbomb_player_id", "statsbomb_team_id"],
+                [{
+                    "record_id": "r1",
+                    "match_date": "2024-06-18",
+                    "statsbomb_match_id": "100",
+                    "statsbomb_player_id": "10",
+                    "statsbomb_team_id": "1",
+                }],
+            )
+            report = manifest.build_manifest(Path(tmp), raw_archive_dir="")
+        item = next(x for x in report["datasets"] if x["dataset_id"] == "statsbomb_player_xg_xa")
+        self.assertEqual(item["contract_status"], "OK")
+        self.assertEqual(item["identity_key_text"], "record_id")
+        self.assertEqual(item["effective_time_fields_text"], "match_date")
+        self.assertEqual(item["role"], "RESEARCH_ENRICHMENT")
+
     def test_raw_archive_does_not_expose_real_storage_path(self):
         with tempfile.TemporaryDirectory() as tmp:
             report = manifest.build_manifest(Path(tmp), raw_archive_dir="/secret/server/archive")
