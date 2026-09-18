@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V13_RESIDUAL_PLAYER_PROFILE",
-  "generated_at_utc": "2026-09-18T18:56:00Z",
+  "generated_at_utc": "2026-09-18T19:11:46Z",
   "status": "OK",
   "datasets": [
     {
@@ -372,7 +372,7 @@
       "source": "Stage80 /players?team&season plus residual /players?id&season via shared API-Football broker; residual team context comes from current PBK roster",
       "limitations": "Identity enrichment only. Residual calls are limited to current-roster player IDs still missing after team capture. Missing profile fields remain UNKNOWN. No betting/model authority.",
       "present": true,
-      "row_count": 2667,
+      "row_count": 2729,
       "columns": [
         "team_id",
         "team_name",
@@ -415,11 +415,20 @@
       ],
       "source": "Stage80 residual /players?id&season capture state",
       "limitations": "Operational retry ledger only. EMPTY responses are retried after a bounded TTL; transient ERROR rows remain retryable. Never betting/model authority.",
-      "present": false,
-      "row_count": null,
-      "columns": [],
+      "present": true,
+      "row_count": 384,
+      "columns": [
+        "season",
+        "player_id",
+        "team_id",
+        "team_name",
+        "status",
+        "attempts",
+        "last_attempt_at_utc",
+        "last_error"
+      ],
       "missing_required_fields": [],
-      "contract_status": "PENDING_MATERIALIZATION",
+      "contract_status": "OK",
       "identity_key_text": "season+player_id",
       "observed_time_fields_text": "last_attempt_at_utc",
       "effective_time_fields_text": "season"
@@ -660,7 +669,7 @@
       "source": "Stage80 conservative PBK ↔ Transfermarkt AUTO_MATCH/HIGH identity projection",
       "limitations": "Identity bridge only. Approved methods include exact catalog name+club, exact API-Football profile full-name+DOB+club, or exact non-abbreviated match-stat name+club; no fuzzy authority and no betting/model authority.",
       "present": true,
-      "row_count": 743,
+      "row_count": 754,
       "columns": [
         "pbk_player_id",
         "pbk_player_name",
@@ -697,7 +706,7 @@
       "source": "Stage80 durable projection from conservative PBK ↔ Transfermarkt AUTO_MATCH/HIGH mapping",
       "limitations": "Historical enrichment only; Transfermarkt IDs remain separate from API-Football IDs and source snapshot age prevents current-squad authority.",
       "present": true,
-      "row_count": 5630,
+      "row_count": 5711,
       "columns": [
         "transfer_event_id",
         "pbk_player_id",
@@ -1226,8 +1235,8 @@
   ],
   "summary": {
     "declared_datasets": 26,
-    "materialized_csv_datasets": 23,
-    "pending_materializations_or_storage": 2,
+    "materialized_csv_datasets": 24,
+    "pending_materializations_or_storage": 1,
     "contract_attention": 0
   },
   "provider_calls": 0,
