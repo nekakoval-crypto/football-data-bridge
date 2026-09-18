@@ -3,7 +3,7 @@ name: Stage 80 Archive Readiness
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ['fetch-transfermarkt-csv', 'Stage 77 Player Stats Capture', 'Stage 81 Team Match Statistics Capture']
+    workflows: ['fetch-transfermarkt-csv', 'Stage 77 Player Stats Capture', 'Stage 81 Team Match Statistics Capture', 'Stage 80 Football-Data Top5 History']
     types: [completed]
   schedule:
     - cron: '37 */6 * * *'
