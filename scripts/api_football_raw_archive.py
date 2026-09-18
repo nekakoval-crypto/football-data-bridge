@@ -284,7 +284,6 @@ def verify_s3_storage(*, client=None, keep_object=True):
     return {
         "status": "READY" if ok else "HASH_MISMATCH",
         "backend": "S3",
-        "endpoint": config["endpoint"],
         "bucket": config["bucket"],
         "prefix": config["prefix"],
         "object_key": key,
