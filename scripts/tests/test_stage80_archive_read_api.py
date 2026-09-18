@@ -50,6 +50,20 @@ class Stage80ArchiveReadApiTests(unittest.TestCase):
         conn.execute("CREATE TABLE raw_epl_referee_team_splits_research (referee TEXT, team TEXT, matches TEXT, wins TEXT, draws TEXT, losses TEXT, points_per_match TEXT, source_scope TEXT, penalties_available TEXT, research_only TEXT, operational_betting_authority TEXT)")
         conn.execute("INSERT INTO raw_epl_referee_team_splits_research VALUES ('A Taylor','Arsenal','12','7','3','2','2.0','EPL_ONLY','false','true','false')")
         conn.execute("INSERT INTO raw_epl_referee_team_splits_research VALUES ('A Taylor','Chelsea','10','4','2','4','1.4','EPL_ONLY','false','true','false')")
+        conn.execute("CREATE TABLE raw_top5_referee_profiles_research (provider_league_id TEXT, league_name TEXT, country TEXT, referee TEXT, matches TEXT, draw_pct TEXT, source_scope TEXT, cards_available TEXT, fouls_available TEXT, penalties_available TEXT, research_only TEXT, operational_betting_authority TEXT)")
+        conn.execute("INSERT INTO raw_top5_referee_profiles_research VALUES ('39','Premier League','England','A Taylor','270','25.0','TOP5_9_SEASONS_API_FOOTBALL','false','false','false','true','false')")
+        conn.execute("INSERT INTO raw_top5_referee_profiles_research VALUES ('39','Premier League','England','Shared Ref','10','20.0','TOP5_9_SEASONS_API_FOOTBALL','false','false','false','true','false')")
+        conn.execute("INSERT INTO raw_top5_referee_profiles_research VALUES ('140','La Liga','Spain','Shared Ref','12','25.0','TOP5_9_SEASONS_API_FOOTBALL','false','false','false','true','false')")
+        conn.execute("CREATE TABLE raw_top5_referee_team_splits_research (provider_league_id TEXT, league_name TEXT, country TEXT, referee TEXT, team_id TEXT, team TEXT, matches TEXT, wins TEXT, draws TEXT, losses TEXT, points_per_match TEXT, source_scope TEXT, cards_available TEXT, fouls_available TEXT, penalties_available TEXT, research_only TEXT, operational_betting_authority TEXT)")
+        conn.execute("INSERT INTO raw_top5_referee_team_splits_research VALUES ('39','Premier League','England','A Taylor','42','Arsenal','12','7','3','2','2.0','TOP5_9_SEASONS_API_FOOTBALL','false','false','false','true','false')")
+        conn.execute("INSERT INTO raw_top5_referee_team_splits_research VALUES ('39','Premier League','England','A Taylor','49','Chelsea','10','4','2','4','1.4','TOP5_9_SEASONS_API_FOOTBALL','false','false','false','true','false')")
+        conn.execute("CREATE TABLE raw_stage80_top5_referee_backfill_state (provider_league_id TEXT, season TEXT, status TEXT)")
+        for league_id in ('39','61','78','135','140'):
+            for season in range(2017,2026):
+                conn.execute("INSERT INTO raw_stage80_top5_referee_backfill_state VALUES (?,?,?)",(league_id,str(season),'CAPTURED'))
+        conn.execute("CREATE TABLE raw_top5_referee_fixture_history (fixture_id TEXT, provider_league_id TEXT, referee TEXT)")
+        conn.execute("INSERT INTO raw_top5_referee_fixture_history VALUES ('r1','39','A Taylor')")
+        conn.execute("INSERT INTO raw_top5_referee_fixture_history VALUES ('r2','61','')")
         conn.commit(); conn.close()
 
     def test_fixture_archive_endpoint_is_provider_free(self):
@@ -104,7 +118,7 @@ class Stage80ArchiveReadApiTests(unittest.TestCase):
         self.assertFalse(payload["coverage"]["verified_transfer_history"])
         self.assertTrue(payload["coverage"]["partial_sources_possible"])
 
-    def test_referee_archive_endpoint_returns_profile_and_team_splits(self):
+    def test_referee_archive_endpoint_returns_top5_profile_and_epl_rich_supplement(self):
         with tempfile.TemporaryDirectory() as td:
             db=Path(td)/"pbk.sqlite"
             self.build_db(db)
@@ -112,10 +126,19 @@ class Stage80ArchiveReadApiTests(unittest.TestCase):
                 status,payload=api.dispatch("/v1/archive/referee?referee=A%20Taylor")
         self.assertEqual(status,200)
         self.assertEqual(payload["referee"],"A Taylor")
-        self.assertEqual(payload["profile"]["matches"],"265")
+        self.assertEqual(payload["provider_league_id"],"39")
+        self.assertEqual(payload["profile"]["matches"],"270")
         self.assertEqual(payload["coverage"]["team_split_rows"],2)
-        self.assertEqual(payload["coverage"]["source_scope"],"EPL_ONLY")
-        self.assertTrue(payload["coverage"]["partial_top5_history"])
+        self.assertEqual(payload["coverage"]["source_scope"],"TOP5_9_SEASONS_API_FOOTBALL")
+        self.assertTrue(payload["coverage"]["top5_matrix_complete"])
+        self.assertFalse(payload["coverage"]["partial_top5_history"])
+        self.assertEqual(payload["coverage"]["top5_matrix_captured_league_seasons"],45)
+        self.assertEqual(payload["coverage"]["provider_referee_coverage_pct"],50.0)
+        self.assertTrue(payload["coverage"]["provider_referee_field_partial"])
+        self.assertTrue(payload["coverage"]["epl_rich_profile_available"])
+        self.assertTrue(payload["coverage"]["cards_available"])
+        self.assertTrue(payload["coverage"]["fouls_available"])
+        self.assertEqual(payload["epl_rich_profile"]["matches"],"265")
         self.assertFalse(payload["coverage"]["penalties_available"])
         self.assertFalse(payload["coverage"]["operational_betting_authority"])
         self.assertFalse(payload["provider_polling"])
@@ -127,11 +150,54 @@ class Stage80ArchiveReadApiTests(unittest.TestCase):
             db=Path(td)/"pbk.sqlite"
             self.build_db(db)
             with patch.object(api,"DB",db):
-                status,payload=api.dispatch("/v1/archive/referee?referee=A%20Taylor&team=arsenal")
+                status,payload=api.dispatch("/v1/archive/referee?referee=A%20Taylor&provider_league_id=39&team=arsenal")
         self.assertEqual(status,200)
         self.assertEqual(payload["team_filter"],"arsenal")
         self.assertEqual(len(payload["team_splits"]),1)
         self.assertEqual(payload["team_splits"][0]["team"],"Arsenal")
+
+    def test_referee_archive_team_id_filter_is_exact(self):
+        with tempfile.TemporaryDirectory() as td:
+            db=Path(td)/"pbk.sqlite"
+            self.build_db(db)
+            with patch.object(api,"DB",db):
+                status,payload=api.dispatch("/v1/archive/referee?referee=A%20Taylor&provider_league_id=39&team_id=49")
+        self.assertEqual(status,200)
+        self.assertEqual(payload["team_id_filter"],"49")
+        self.assertEqual(len(payload["team_splits"]),1)
+        self.assertEqual(payload["team_splits"][0]["team"],"Chelsea")
+
+    def test_referee_archive_requires_league_when_name_is_cross_league_ambiguous(self):
+        with tempfile.TemporaryDirectory() as td:
+            db=Path(td)/"pbk.sqlite"
+            self.build_db(db)
+            with patch.object(api,"DB",db):
+                status,payload=api.dispatch("/v1/archive/referee?referee=Shared%20Ref")
+                resolved_status,resolved=api.dispatch("/v1/archive/referee?referee=Shared%20Ref&provider_league_id=140")
+        self.assertEqual(status,409)
+        self.assertEqual(payload["error"],"AMBIGUOUS_REFEREE_LEAGUE")
+        self.assertEqual([x["provider_league_id"] for x in payload["available_leagues"]],["39","140"])
+        self.assertEqual(resolved_status,200)
+        self.assertEqual(resolved["provider_league_id"],"140")
+        self.assertEqual(resolved["profile"]["matches"],"12")
+        self.assertFalse(resolved["coverage"]["epl_rich_profile_available"])
+        self.assertFalse(resolved["coverage"]["cards_available"])
+        self.assertFalse(resolved["coverage"]["fouls_available"])
+
+    def test_referee_archive_falls_back_to_epl_when_top5_tables_are_absent(self):
+        with tempfile.TemporaryDirectory() as td:
+            db=Path(td)/"pbk.sqlite"
+            self.build_db(db)
+            conn=sqlite3.connect(db)
+            for table in ('raw_top5_referee_profiles_research','raw_top5_referee_team_splits_research','raw_stage80_top5_referee_backfill_state','raw_top5_referee_fixture_history'):
+                conn.execute(f'DROP TABLE {table}')
+            conn.commit(); conn.close()
+            with patch.object(api,"DB",db):
+                status,payload=api.dispatch("/v1/archive/referee?referee=A%20Taylor")
+        self.assertEqual(status,200)
+        self.assertEqual(payload["coverage"]["source_scope"],"EPL_ONLY")
+        self.assertTrue(payload["coverage"]["partial_top5_history"])
+        self.assertEqual(payload["profile"]["matches"],"265")
 
     def test_referee_archive_missing_and_unknown_are_explicit(self):
         with tempfile.TemporaryDirectory() as td:
