@@ -1,0 +1,52 @@
+{
+  "version": "PBK_VALUE_ENGINE_V2",
+  "authority": "GOVERNED_ANALYTIC",
+  "scope": "PROBABILITY_ENGINE_EXACT_SELECTIONS",
+  "purpose": "Classify and rank descriptive value only for exact selections carrying an official independently validated PBK probability from Probability Engine.",
+  "input": "ops/probability_engine_latest.json",
+  "output": "ops/value_engine_latest.json",
+  "official_probability_status": "VALIDATED_CANONICAL_CONTEXT",
+  "required_current_market_status": "NO_VIG_VALID_EXHAUSTIVE",
+  "calculation_contract": {
+    "module": "scripts/pbk_calculation_contract.py",
+    "version": "PBK_CALC_V1",
+    "classification_source_of_truth": true,
+    "execution_edge_is_informational_only": true
+  },
+  "ranking": {
+    "official_only": true,
+    "eligible_classes": ["STRONG_VALUE", "WATCH_VALUE"],
+    "class_priority": [
+      "STRONG_VALUE",
+      "WATCH_VALUE",
+      "MARKET_DISAGREEMENT",
+      "HIGH_PROB_LOW_VALUE",
+      "NO_VALUE_THRESHOLD",
+      "NO_EXECUTABLE_PRICE",
+      "NO_VALID_CURRENT_MARKET_PROBABILITY",
+      "INVALID_OFFICIAL_PROBABILITY"
+    ],
+    "sort_within_class": ["ev_desc", "edge_desc", "p_pbk_desc"],
+    "best_official_value_per_fixture": true
+  },
+  "research_probability_policy": {
+    "generic_1x2_forward_candidate_visible": true,
+    "generic_1x2_official_value_authorized": false,
+    "generic_1x2_official_ranking_authorized": false,
+    "status": "RESEARCH_ONLY_NOT_VALUE_AUTHORIZED"
+  },
+  "guardrails": {
+    "no_value_without_official_p_pbk": true,
+    "no_cross_market_probability_transfer": true,
+    "no_cross_line_probability_transfer": true,
+    "no_cross_selection_probability_transfer": true,
+    "no_signal_creation": true,
+    "no_stage_watch_creation": true,
+    "no_stake_changes": true,
+    "no_canonical_promotion": true,
+    "no_r1_r2_r3_changes": true,
+    "no_forward_journal_mutation": true,
+    "no_ui_changes": true,
+    "api_calls": 0
+  }
+}
