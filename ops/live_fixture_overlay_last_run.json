@@ -1,14 +1,17 @@
 {
   "provider_calls": 0,
-  "candidate_fixtures": 0,
+  "candidate_fixtures": 1,
   "updated_fixtures": 0,
   "batch_size": 20,
-  "skipped_fixtures": 0,
-  "skipped_no_candidates": true,
-  "budget_exhausted": false,
-  "observed_at_utc": "2026-09-18T15:35:15Z",
-  "warnings": [],
-  "status": "OK",
+  "skipped_fixtures": 1,
+  "skipped_no_candidates": false,
+  "budget_exhausted": true,
+  "observed_at_utc": "2026-09-18T16:02:06Z",
+  "warnings": [
+    "Stage71 API budget exhausted; retry next run",
+    "skipped 1 candidate fixtures due to provider budget"
+  ],
+  "status": "ATTENTION",
   "api_day_calls": 408,
   "provider_polling": true
 }
