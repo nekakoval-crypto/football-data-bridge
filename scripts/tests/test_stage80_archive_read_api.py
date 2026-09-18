@@ -34,6 +34,9 @@ class Stage80ArchiveReadApiTests(unittest.TestCase):
         conn.execute("INSERT INTO raw_player_stats_snapshots VALUES ('100','2026-09-18T10:05:00Z','1','11','Player One')")
         conn.execute("CREATE TABLE raw_historical_players (player_id TEXT, latest_observed_name TEXT)")
         conn.execute("INSERT INTO raw_historical_players VALUES ('11','Player One')")
+        conn.execute("INSERT INTO raw_historical_players VALUES ('12','Player Two')")
+        conn.execute("CREATE TABLE raw_historical_transfer_events (transfer_event_id TEXT, pbk_player_id TEXT, transfermarkt_player_id TEXT, transfer_date TEXT, transfer_fee TEXT)")
+        conn.execute("INSERT INTO raw_historical_transfer_events VALUES ('evt-1','11','900','2024-07-01','')")
         conn.execute("CREATE TABLE raw_team_roster_history (player_id TEXT, captured_at_utc TEXT, team_id TEXT, team_name TEXT)")
         conn.execute("INSERT INTO raw_team_roster_history VALUES ('11','2026-09-17T10:00:00Z','1','Alpha')")
         conn.execute("CREATE TABLE raw_team_membership_intervals (player_id TEXT, first_seen_at_utc TEXT, team_id TEXT, interval_status TEXT)")
@@ -69,7 +72,22 @@ class Stage80ArchiveReadApiTests(unittest.TestCase):
         self.assertEqual(payload["coverage"]["membership_intervals"],1)
         self.assertEqual(payload["coverage"]["match_stat_rows"],1)
         self.assertEqual(payload["coverage"]["grade_rows"],1)
+        self.assertEqual(payload["coverage"]["transfer_rows"],1)
+        self.assertTrue(payload["coverage"]["verified_transfer_history"])
+        self.assertEqual(payload["historical_transfers"][0]["transfermarkt_player_id"],"900")
         self.assertFalse(payload["provider_polling"])
+
+    def test_player_archive_reports_explicit_empty_transfer_history(self):
+        with tempfile.TemporaryDirectory() as td:
+            db=Path(td)/"pbk.sqlite"
+            self.build_db(db)
+            with patch.object(api,"DB",db):
+                status,payload=api.dispatch("/v1/archive/player?player_id=12")
+        self.assertEqual(status,200)
+        self.assertEqual(payload["historical_transfers"],[])
+        self.assertEqual(payload["coverage"]["transfer_rows"],0)
+        self.assertFalse(payload["coverage"]["verified_transfer_history"])
+        self.assertTrue(payload["coverage"]["partial_sources_possible"])
 
     def test_missing_id_is_rejected(self):
         with tempfile.TemporaryDirectory() as td:
