@@ -55,6 +55,7 @@ class Stage80PlayerProfileCaptureTests(unittest.TestCase):
         existing = [{
             "team_id":"10","season":"2026","player_id":"1",
             "captured_at_utc":"2026-09-18T10:00:00Z",
+            "source": p.TEAM_SOURCE,
         }]
         rows = p.candidate_teams(
             rosters, existing, "2026", [], 8,
@@ -62,6 +63,26 @@ class Stage80PlayerProfileCaptureTests(unittest.TestCase):
             refresh_days=7,
         )
         self.assertEqual(rows, [])
+
+    def test_residual_profile_does_not_refresh_whole_team_ttl(self):
+        rosters = [
+            {"team_id":"10","team_name":"Alpha","player_id":"1"},
+            {"team_id":"10","team_name":"Alpha","player_id":"2"},
+        ]
+        existing = [{
+            "team_id":"10","season":"2026","player_id":"1",
+            "captured_at_utc":"2026-09-18T10:00:00Z",
+            "source": p.RESIDUAL_SOURCE,
+        }]
+        rows = p.candidate_teams(
+            rosters, existing, "2026", [], 8,
+            now=datetime(2026,9,18,18,tzinfo=timezone.utc),
+            refresh_days=7,
+        )
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["team_id"], "10")
+        self.assertEqual(rows[0]["missing_roster_players"], 1)
+        self.assertEqual(rows[0]["last_profile_capture_at_utc"], "")
 
     def test_expired_team_capture_becomes_refresh_candidate(self):
         rosters = [
@@ -71,6 +92,7 @@ class Stage80PlayerProfileCaptureTests(unittest.TestCase):
         existing = [{
             "team_id":"10","season":"2026","player_id":"1",
             "captured_at_utc":"2026-09-01T10:00:00Z",
+            "source": p.TEAM_SOURCE,
         }]
         rows = p.candidate_teams(
             rosters, existing, "2026", [], 8,
