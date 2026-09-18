@@ -1,0 +1,116 @@
+name: Stage 80 Player Profile Enrichment
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 */6 * * *'
+  pull_request:
+    paths:
+      - 'scripts/stage80_player_profile_capture.py'
+      - 'scripts/tests/test_stage80_player_profile_capture.py'
+      - '.github/workflows/stage80-player-profile-enrichment.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/stage80_player_profile_capture.py'
+      - 'scripts/tests/test_stage80_player_profile_capture.py'
+      - '.github/workflows/stage80-player-profile-enrichment.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage71-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile profile collector
+        run: python -m py_compile scripts/stage80_player_profile_capture.py
+      - name: Provider-free profile collector tests
+        run: python -m unittest scripts.tests.test_stage80_player_profile_capture -v
+      - name: Provider isolation
+        shell: bash
+        run: |
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/stage80_player_profile_capture.py; then
+            echo 'Player profile enrichment must reach API-Football only through the shared broker/backend.' >&2
+            exit 1
+          fi
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated player-profile outputs are forbidden in the feature PR.' >&2
+            exit 1
+          fi
+
+  capture:
+    needs: validate
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+      PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+      PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+      PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+      PBK_RAW_ARCHIVE_S3_PREFIX: api-football-raw
+      PBK_RAW_ARCHIVE_S3_REGION: auto
+      OPS_DIR: ops
+      API_FOOTBALL_SEASON: '2026'
+      STAGE71_MAX_DAILY_API_CALLS: '7000'
+      STAGE80_PROFILE_MAX_API_CALLS: '24'
+      STAGE80_PROFILE_MAX_TEAMS: '8'
+      STAGE80_PROFILE_MAX_PAGES_PER_TEAM: '4'
+      STAGE80_PROFILE_CURRENT_ROUND_CALLS_PER_RUN: '60'
+      STAGE80_PROFILE_STANDINGS_RESERVE_CALLS: '32'
+      STAGE80_PROFILE_SAFETY_RESERVE_CALLS: '100'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install raw archive S3 client
+        run: python -m pip install --disable-pip-version-check boto3
+      - name: Capture bounded current-team player profiles
+        run: python scripts/stage80_player_profile_capture.py
+      - name: Show profile telemetry
+        run: cat ops/stage80_player_profile_last_run.json
+      - name: Publish player profile evidence safely
+        shell: bash
+        run: |
+          git config user.name 'stage80-profile-bot'
+          git config user.email 'stage80-profile-bot@users.noreply.github.com'
+          git add ops/stage80_player_profile_last_run.json ops/stage71_observation_state.json
+          if [ -f ops/player_profile_evidence.csv ]; then git add ops/player_profile_evidence.csv; fi
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 player profile enrichment update'
+          git restore --worktree -- .
+          python scripts/publish_operational_commit.py
+      - name: Upload profile telemetry
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage80-player-profile-enrichment
+          path: |
+            ops/stage80_player_profile_last_run.json
+            ops/player_profile_evidence.csv
+          if-no-files-found: warn
+          retention-days: 30
