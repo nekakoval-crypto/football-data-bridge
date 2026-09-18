@@ -48,6 +48,18 @@ The normalized row includes:
 
 Missing columns remain empty. PBK does not zero-fill unavailable historical metrics.
 
+## Referee coverage
+
+The workflow measures referee coverage from the exact 45-file source matrix and materializes an explicit `football_data_epl_referee_matches.csv` slice.
+
+For the current 2017/18–2025/26 source package:
+
+- Premier League (`E0`): **3420 / 3420** matches have `Referee`;
+- Bundesliga, Serie A, La Liga and Ligue 1 source CSVs do not expose the `Referee` column in this matrix;
+- total Top-5 referee coverage is therefore **3420 / 16111 = 21.23%**.
+
+PBK labels this historical referee slice **EPL_ONLY**. It must never be described as complete Top-5 referee history, and missing referee data for the other leagues is UNKNOWN rather than inferred.
+
 ## Separation from forward evidence
 
 This dataset is explicitly:

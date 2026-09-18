@@ -6,6 +6,7 @@ from pathlib import Path
 from scripts.stage80_football_data_history import (
     normalize_directory,
     parse_date,
+    referee_coverage,
     read_source_text,
     source_specs,
 )
@@ -84,6 +85,17 @@ class Stage80FootballDataHistoryTests(unittest.TestCase):
         self.assertEqual(invalid,0)
         self.assertEqual(sum(1 for x in sources if x["present"]),1)
         self.assertEqual(sum(1 for x in sources if not x["present"]),1)
+
+    def test_referee_coverage_is_explicit_and_league_scoped(self):
+        rows=[
+            {"league_code":"E0","referee":"A. Ref"},
+            {"league_code":"E0","referee":"B. Ref"},
+            {"league_code":"F1","referee":""},
+        ]
+        coverage=referee_coverage(rows)
+        self.assertEqual(coverage["referee_rows"],2)
+        self.assertEqual(coverage["referee_coverage_pct"],66.67)
+        self.assertEqual(coverage["referee_rows_by_league"],{"E0":2})
 
     def test_config_scope_is_45_files(self):
         config=json.loads(Path("config/stage80_football_data_top5_9seasons.json").read_text(encoding="utf-8"))
