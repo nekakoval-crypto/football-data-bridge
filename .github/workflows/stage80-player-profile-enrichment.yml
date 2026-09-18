@@ -78,6 +78,8 @@ jobs:
       STAGE80_PROFILE_MAX_TEAMS: '96'
       STAGE80_PROFILE_MAX_PAGES_PER_TEAM: '4'
       STAGE80_PROFILE_REFRESH_DAYS: '7'
+      STAGE80_PROFILE_MAX_RESIDUAL_PLAYERS: '400'
+      STAGE80_PROFILE_RESIDUAL_RETRY_DAYS: '7'
       STAGE80_PROFILE_CURRENT_ROUND_CALLS_PER_RUN: '60'
       STAGE80_PROFILE_STANDINGS_RESERVE_CALLS: '32'
       STAGE80_PROFILE_SAFETY_RESERVE_CALLS: '100'
@@ -101,6 +103,7 @@ jobs:
           git config user.email 'stage80-profile-bot@users.noreply.github.com'
           git add ops/stage80_player_profile_last_run.json ops/stage71_observation_state.json
           if [ -f ops/player_profile_evidence.csv ]; then git add ops/player_profile_evidence.csv; fi
+          if [ -f ops/player_profile_residual_state.csv ]; then git add ops/player_profile_residual_state.csv; fi
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'Stage 80 player profile enrichment update'
           git restore --worktree -- .
@@ -113,5 +116,6 @@ jobs:
           path: |
             ops/stage80_player_profile_last_run.json
             ops/player_profile_evidence.csv
+            ops/player_profile_residual_state.csv
           if-no-files-found: warn
           retention-days: 30
