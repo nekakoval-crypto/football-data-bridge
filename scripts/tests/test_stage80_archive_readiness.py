@@ -164,6 +164,52 @@ class Stage80ArchiveReadinessTests(unittest.TestCase):
         self.assertNotIn("RAW_ARCHIVE_STORAGE_NEEDS_ATTENTION", report["gaps"])
 
 
+    def test_verified_transfer_gap_closes_only_with_valid_durable_evidence(self):
+        self.write_csv(
+            "historical_transfer_events.csv",
+            [
+                "transfer_event_id", "pbk_player_id", "transfermarkt_player_id",
+                "transfer_date", "mapping_method", "mapping_confidence",
+            ],
+            [{
+                "transfer_event_id": "evt-1",
+                "pbk_player_id": "11",
+                "transfermarkt_player_id": "900",
+                "transfer_date": "2024-07-01",
+                "mapping_method": "EXACT_NAME_CURRENT_CLUB",
+                "mapping_confidence": "HIGH",
+            }],
+        )
+        report = s80.build_report(self.ops, archive_dir="")
+        transfer = report["transfer_history"]
+        self.assertTrue(transfer["present"])
+        self.assertEqual(transfer["valid_rows"], 1)
+        self.assertEqual(transfer["unique_pbk_players"], 1)
+        self.assertEqual(transfer["unique_transfermarkt_players"], 1)
+        self.assertNotIn("VERIFIED_TRANSFER_EVENTS_NOT_YET_INGESTED", report["gaps"])
+
+    def test_invalid_transfer_dataset_keeps_verified_transfer_gap(self):
+        self.write_csv(
+            "historical_transfer_events.csv",
+            [
+                "transfer_event_id", "pbk_player_id", "transfermarkt_player_id",
+                "transfer_date", "mapping_method", "mapping_confidence",
+            ],
+            [{
+                "transfer_event_id": "",
+                "pbk_player_id": "11",
+                "transfermarkt_player_id": "900",
+                "transfer_date": "2024-07-01",
+                "mapping_method": "EXACT_NAME_UNIQUE",
+                "mapping_confidence": "MEDIUM",
+            }],
+        )
+        report = s80.build_report(self.ops, archive_dir="")
+        self.assertEqual(report["transfer_history"]["valid_rows"], 0)
+        self.assertEqual(report["transfer_history"]["invalid_identity_rows"], 1)
+        self.assertIn("VERIFIED_TRANSFER_EVENTS_NOT_YET_INGESTED", report["gaps"])
+        self.assertIn("TRANSFER_HISTORY_INVALID_IDENTITY_ROWS", report["gaps"])
+
     def test_readiness_never_mutates_strategy_contracts(self):
         report = s80.build_report(self.ops, archive_dir="")
         self.assertFalse(report["creates_signal"])
