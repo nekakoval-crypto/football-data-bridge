@@ -30,27 +30,29 @@ class Stage80TransferEntityMappingTests(unittest.TestCase):
         self.assertEqual(rows[0]["match_method"],"EXACT_NAME_CURRENT_CLUB")
         self.assertIn("100",auto)
 
-    def test_full_profile_name_dob_and_same_club_can_auto_high(self):
+    def test_profile_short_full_name_normalized_dob_and_legal_club_can_auto_high(self):
         pbk=[{
-            "player_id":"5","latest_observed_name":"M. Akanji",
-            "latest_roster_team_names":"Inter",
+            "player_id":"5","latest_observed_name":"C. Archer",
+            "latest_roster_team_names":"Bologna",
         }]
         profiles=[{
-            "player_id":"5","player_name":"M. Akanji",
-            "firstname":"Manuel","lastname":"Akanji",
-            "birth_date":"1995-07-19","team_name":"Inter",
+            "player_id":"5","player_name":"C. Archer",
+            "firstname":"Cameron Desmond","lastname":"Archer",
+            "birth_date":"2001-12-09","team_name":"Bologna",
         }]
         tm=[{
-            "player_id":"100","name":"Manuel Akanji","date_of_birth":"1995-07-19",
-            "current_club_id":"46","current_club_name":"Inter",
+            "player_id":"100","name":"Cameron Archer",
+            "date_of_birth":"2001-12-09 00:00:00",
+            "current_club_id":"1025",
+            "current_club_name":"Bologna Football Club 1909",
         }]
         rows,auto=build_mapping(pbk,tm,player_profile_rows=profiles)
         self.assertEqual(rows[0]["match_status"],"AUTO_MATCH")
         self.assertEqual(rows[0]["match_method"],AUTO_METHOD_PROFILE)
         self.assertEqual(rows[0]["match_confidence"],"HIGH")
-        self.assertEqual(rows[0]["pbk_evidence_name"],"Manuel Akanji")
-        self.assertEqual(rows[0]["pbk_evidence_birth_date"],"1995-07-19")
-        self.assertEqual(rows[0]["transfermarkt_date_of_birth"],"1995-07-19")
+        self.assertEqual(rows[0]["pbk_evidence_name"],"Cameron Archer")
+        self.assertEqual(rows[0]["pbk_evidence_birth_date"],"2001-12-09")
+        self.assertEqual(rows[0]["transfermarkt_date_of_birth"],"2001-12-09")
         self.assertIn("100",auto)
 
     def test_profile_dob_mismatch_never_auto_maps(self):
@@ -63,7 +65,7 @@ class Stage80TransferEntityMappingTests(unittest.TestCase):
             "birth_date":"1995-07-19","team_name":"Inter",
         }]
         tm=[{
-            "player_id":"100","name":"Manuel Akanji","date_of_birth":"1995-07-18",
+            "player_id":"100","name":"Manuel Akanji","date_of_birth":"1995-07-18 00:00:00",
             "current_club_id":"46","current_club_name":"Inter",
         }]
         rows,auto=build_mapping(pbk,tm,player_profile_rows=profiles)
