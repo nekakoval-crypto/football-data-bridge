@@ -319,33 +319,164 @@ def archive_referee_payload(conn,q):
     referee=(qfirst(q,'referee') or '').strip()
     if not referee:
         return 400,{'api_version':API_VERSION,'error':'MISSING_REFEREE','read_only':True,'provider_polling':False}
+    requested_league=(qfirst(q,'provider_league_id') or '').strip()
     team=(qfirst(q,'team') or '').strip()
+    team_id=(qfirst(q,'team_id') or '').strip()
     limit=as_int(qfirst(q,'limit'),100,1,MAX_LIMIT)
-    profiles=archive_rows(conn,'raw_epl_referee_profiles_research','referee',referee,1)
-    splits=archive_rows(conn,'raw_epl_referee_team_splits_research','referee',referee,limit,['team'])
+
+    top_profiles=archive_rows(conn,'raw_top5_referee_profiles_research','referee',referee,MAX_LIMIT,['provider_league_id'])
+    top_splits=archive_rows(conn,'raw_top5_referee_team_splits_research','referee',referee,MAX_LIMIT,['provider_league_id','team'])
+
+    available={}
+    for row in top_profiles+top_splits:
+        league_id=str(row.get('provider_league_id') or '').strip()
+        if not league_id:continue
+        current=available.setdefault(league_id,{
+            'provider_league_id':league_id,
+            'league_name':row.get('league_name') or None,
+            'country':row.get('country') or None,
+            'matches':None,
+        })
+        if row in top_profiles and row.get('matches') not in (None,''):
+            current['matches']=row.get('matches')
+
+    if requested_league:
+        resolved_league=requested_league
+    elif len(available)==1:
+        resolved_league=next(iter(available))
+    elif len(available)>1:
+        return 409,{
+            'api_version':API_VERSION,
+            'error':'AMBIGUOUS_REFEREE_LEAGUE',
+            'referee':referee,
+            'available_leagues':[available[key] for key in sorted(available,key=lambda value:(int(value) if str(value).isdigit() else 10**9,str(value)))],
+            'required_parameter':'provider_league_id',
+            'read_only':True,
+            'provider_polling':False,
+        }
+    else:
+        resolved_league=None
+
+    if resolved_league:
+        top_profiles=[row for row in top_profiles if str(row.get('provider_league_id') or '').strip()==resolved_league]
+        top_splits=[row for row in top_splits if str(row.get('provider_league_id') or '').strip()==resolved_league]
+
+    if team_id:
+        top_splits=[row for row in top_splits if str(row.get('team_id') or '').strip()==team_id]
     if team:
-        splits=[row for row in splits if str(row.get('team') or '').strip().casefold()==team.casefold()]
-    if not profiles and not splits:
-        return 404,{'api_version':API_VERSION,'error':'ARCHIVE_REFEREE_NOT_FOUND','referee':referee,'read_only':True,'provider_polling':False}
-    profile=profiles[0] if profiles else None
+        top_splits=[row for row in top_splits if str(row.get('team') or '').strip().casefold()==team.casefold()]
+    top_splits=top_splits[:limit]
+
+    top_profile=top_profiles[0] if top_profiles else None
+    top_found=bool(top_profile or top_splits)
+
+    epl_profile=None
+    epl_splits=[]
+    if resolved_league in (None,'39') or not top_found:
+        epl_profiles=archive_rows(conn,'raw_epl_referee_profiles_research','referee',referee,1)
+        epl_splits=archive_rows(conn,'raw_epl_referee_team_splits_research','referee',referee,MAX_LIMIT,['team'])
+        if team:
+            epl_splits=[row for row in epl_splits if str(row.get('team') or '').strip().casefold()==team.casefold()]
+        epl_splits=epl_splits[:limit]
+        epl_profile=epl_profiles[0] if epl_profiles else None
+
+    if not top_found and not epl_profile and not epl_splits:
+        payload={'api_version':API_VERSION,'error':'ARCHIVE_REFEREE_NOT_FOUND','referee':referee,'read_only':True,'provider_polling':False}
+        if requested_league:payload['provider_league_id']=requested_league
+        if available:payload['available_provider_league_ids']=sorted(available)
+        return 404,payload
+
+    if top_found:
+        total_cells=captured_cells=0
+        if table_exists(conn,'raw_stage80_top5_referee_backfill_state'):
+            total_cells=conn.execute('SELECT COUNT(*) FROM raw_stage80_top5_referee_backfill_state').fetchone()[0]
+            captured_cells=conn.execute("SELECT COUNT(*) FROM raw_stage80_top5_referee_backfill_state WHERE UPPER(COALESCE(status,''))='CAPTURED'").fetchone()[0]
+        matrix_complete=(total_cells==45 and captured_cells==45)
+
+        fixture_rows=referee_rows=0
+        if table_exists(conn,'raw_top5_referee_fixture_history'):
+            fixture_rows=conn.execute('SELECT COUNT(*) FROM raw_top5_referee_fixture_history').fetchone()[0]
+            referee_rows=conn.execute("SELECT COUNT(*) FROM raw_top5_referee_fixture_history WHERE TRIM(COALESCE(referee,''))<>''").fetchone()[0]
+        referee_coverage_pct=round(100.0*referee_rows/fixture_rows,2) if fixture_rows else None
+        field_partial=bool(referee_coverage_pct is not None and referee_coverage_pct<100.0)
+
+        limitations=['PENALTIES_UNAVAILABLE_IN_REFEREE_RESEARCH_SOURCES','DESCRIPTIVE_ASSOCIATION_NOT_CAUSAL_BIAS']
+        if not matrix_complete:limitations.insert(0,'REFEREE_HISTORY_TOP5_BACKFILL_INCOMPLETE')
+        if field_partial:limitations.insert(0,'REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL')
+        if not epl_profile:limitations.append('CARDS_FOULS_UNAVAILABLE_IN_TOP5_FIXTURE_SOURCE')
+
+        return 200,{
+            'api_version':API_VERSION,
+            'referee':referee,
+            'provider_league_id':resolved_league,
+            'league_name':top_profile.get('league_name') if top_profile else None,
+            'country':top_profile.get('country') if top_profile else None,
+            'team_filter':team or None,
+            'team_id_filter':team_id or None,
+            'profile':top_profile,
+            'team_splits':top_splits,
+            'epl_rich_profile':epl_profile,
+            'epl_rich_team_splits':epl_splits,
+            'coverage':{
+                'profile_available':bool(top_profile),
+                'team_split_rows':len(top_splits),
+                'source_scope':'TOP5_9_SEASONS_API_FOOTBALL',
+                'source_matches':top_profile.get('matches') if top_profile else None,
+                'top5_matrix_expected_league_seasons':45,
+                'top5_matrix_captured_league_seasons':captured_cells,
+                'top5_matrix_complete':matrix_complete,
+                'partial_top5_history':not matrix_complete,
+                'provider_fixture_rows':fixture_rows,
+                'provider_referee_rows':referee_rows,
+                'provider_referee_coverage_pct':referee_coverage_pct,
+                'provider_referee_field_partial':field_partial,
+                'epl_rich_profile_available':bool(epl_profile),
+                'cards_available':bool(epl_profile),
+                'fouls_available':bool(epl_profile),
+                'penalties_available':False,
+                'research_only':True,
+                'operational_betting_authority':False,
+                'limitations':limitations,
+            },
+            'source_policy':'PBK-owned persisted research archive only',
+            'read_only':True,
+            'provider_polling':False,
+            'creates_signal':False,
+            'probability_mutation':False,
+            'eligibility_mutation':False,
+            'stake_changes':False,
+            'forward_journal_mutation':False,
+        }
+
     return 200,{
         'api_version':API_VERSION,
         'referee':referee,
+        'provider_league_id':'39',
+        'league_name':'Premier League',
+        'country':'England',
         'team_filter':team or None,
-        'profile':profile,
-        'team_splits':splits,
+        'team_id_filter':team_id or None,
+        'profile':epl_profile,
+        'team_splits':epl_splits,
+        'epl_rich_profile':epl_profile,
+        'epl_rich_team_splits':epl_splits,
         'coverage':{
-            'profile_available':bool(profile),
-            'team_split_rows':len(splits),
+            'profile_available':bool(epl_profile),
+            'team_split_rows':len(epl_splits),
             'source_scope':'EPL_ONLY',
-            'source_matches':profile.get('matches') if profile else None,
-            'penalties_available':False,
+            'source_matches':epl_profile.get('matches') if epl_profile else None,
+            'top5_matrix_complete':False,
             'partial_top5_history':True,
+            'provider_referee_field_partial':True,
+            'epl_rich_profile_available':bool(epl_profile),
+            'cards_available':bool(epl_profile),
+            'fouls_available':bool(epl_profile),
+            'penalties_available':False,
             'research_only':True,
             'operational_betting_authority':False,
             'limitations':[
-                'REFEREE_HISTORY_TOP5_PARTIAL_EPL_ONLY',
-                'PENALTIES_UNAVAILABLE_IN_SOURCE',
+                'REFEREE_HISTORY_TOP5_BACKFILL_NOT_AVAILABLE_IN_DATABASE',
+                'PENALTIES_UNAVAILABLE_IN_REFEREE_RESEARCH_SOURCES',
                 'DESCRIPTIVE_ASSOCIATION_NOT_CAUSAL_BIAS',
             ],
         },
