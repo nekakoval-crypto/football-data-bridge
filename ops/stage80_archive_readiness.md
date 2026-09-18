@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-18T17:52:03Z
+Обновлено UTC: 2026-09-18T17:52:53Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -21,8 +21,8 @@
 - Player profile evidence: 240 rows / 238 players / 8 teams; current-roster coverage 7.53%; identity-ready 226 players (7.22%).
 - Roster history: 96 команд / 96 team-snapshots / 2949 строк.
 - Membership intervals: 2949 (open 2949, closed-by-observed-absence 0).
-- Verified PBK↔Transfermarkt identities: 212 rows / 212 PBK players; invalid 0.
-- Verified historical transfers: 1474 rows / 184 PBK players; dates 2001-07-01 → 2026-07-01; invalid 0.
+- Verified PBK↔Transfermarkt identities: 310 rows / 310 PBK players; invalid 0.
+- Verified historical transfers: 2318 rows / 276 PBK players; dates 2001-07-01 → 2026-07-01; invalid 0.
 - Match context: 6 fixtures; official XI 1; injury evidence 2.
 
 ## Raw provider archive
