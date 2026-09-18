@@ -315,6 +315,51 @@ def archive_player_payload(conn,q):
     }
 
 
+def archive_referee_payload(conn,q):
+    referee=(qfirst(q,'referee') or '').strip()
+    if not referee:
+        return 400,{'api_version':API_VERSION,'error':'MISSING_REFEREE','read_only':True,'provider_polling':False}
+    team=(qfirst(q,'team') or '').strip()
+    limit=as_int(qfirst(q,'limit'),100,1,MAX_LIMIT)
+    profiles=archive_rows(conn,'raw_epl_referee_profiles_research','referee',referee,1)
+    splits=archive_rows(conn,'raw_epl_referee_team_splits_research','referee',referee,limit,['team'])
+    if team:
+        splits=[row for row in splits if str(row.get('team') or '').strip().casefold()==team.casefold()]
+    if not profiles and not splits:
+        return 404,{'api_version':API_VERSION,'error':'ARCHIVE_REFEREE_NOT_FOUND','referee':referee,'read_only':True,'provider_polling':False}
+    profile=profiles[0] if profiles else None
+    return 200,{
+        'api_version':API_VERSION,
+        'referee':referee,
+        'team_filter':team or None,
+        'profile':profile,
+        'team_splits':splits,
+        'coverage':{
+            'profile_available':bool(profile),
+            'team_split_rows':len(splits),
+            'source_scope':'EPL_ONLY',
+            'source_matches':profile.get('matches') if profile else None,
+            'penalties_available':False,
+            'partial_top5_history':True,
+            'research_only':True,
+            'operational_betting_authority':False,
+            'limitations':[
+                'REFEREE_HISTORY_TOP5_PARTIAL_EPL_ONLY',
+                'PENALTIES_UNAVAILABLE_IN_SOURCE',
+                'DESCRIPTIVE_ASSOCIATION_NOT_CAUSAL_BIAS',
+            ],
+        },
+        'source_policy':'PBK-owned persisted research archive only',
+        'read_only':True,
+        'provider_polling':False,
+        'creates_signal':False,
+        'probability_mutation':False,
+        'eligibility_mutation':False,
+        'stake_changes':False,
+        'forward_journal_mutation':False,
+    }
+
+
 def config_doc(path,fallback):
     try:return json.loads(path.read_text(encoding='utf-8'))
     except Exception:return fallback
@@ -346,6 +391,7 @@ def dispatch(path_with_query):
         if path=='/v1/motivation':return motivation_payload(conn,q)
         if path=='/v1/archive/fixture':return archive_fixture_payload(conn,q)
         if path=='/v1/archive/player':return archive_player_payload(conn,q)
+        if path=='/v1/archive/referee':return archive_referee_payload(conn,q)
         if path=='/v1/match-card':return __import__('match_card_v2').build_match_card(conn,qfirst(q,'fixture_id'))
         if path=='/v1/competitions':return 200,query_table(conn,'competitions',q,{'country':'country','league':'league','group':'group'},default_order=['country','league'])
         if path=='/v1/signals/canonical':return 200,query_table(conn,'canonical_signals',q,{'strategy':'rule','status':'status','team':'away_team'},['paper_user_execution_odds','market_execution_odds','trigger_selected_odds'],['kickoff_utc','forward_id'])
