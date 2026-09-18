@@ -242,6 +242,22 @@ def normalize_directory(config,download_dir):
     return all_rows,sources,total_invalid
 
 
+def referee_coverage(rows):
+    by_league={}
+    referee_rows=0
+    for row in rows:
+        if str(row.get("referee") or "").strip():
+            referee_rows+=1
+            league=str(row.get("league_code") or "").strip()
+            by_league[league]=by_league.get(league,0)+1
+    total=len(rows)
+    return {
+        "referee_rows":referee_rows,
+        "referee_coverage_pct":round((100.0*referee_rows/total),2) if total else 0.0,
+        "referee_rows_by_league":dict(sorted(by_league.items())),
+    }
+
+
 def write_csv(path,rows):
     path=Path(path); path.parent.mkdir(parents=True,exist_ok=True)
     tmp=path.with_suffix(path.suffix+".tmp")
@@ -263,6 +279,7 @@ def run(config_path,download_dir,out_csv,meta_out,fetch=False):
     for row in rows:
         by_season[row["season_label"]]=by_season.get(row["season_label"],0)+1
         by_league[row["league_code"]]=by_league.get(row["league_code"],0)+1
+    referee=referee_coverage(rows)
     meta={
         "version":VERSION,
         "generated_at_utc":iso_now(),
@@ -274,6 +291,8 @@ def run(config_path,download_dir,out_csv,meta_out,fetch=False):
         "invalid_source_rows":invalid,
         "rows_by_season":dict(sorted(by_season.items())),
         "rows_by_league":dict(sorted(by_league.items())),
+        **referee,
+        "referee_scope_note":"Football-Data Referee is source-dependent; current 9-season Top-5 matrix is empirically EPL-only.",
         "sources":sources,
         "download_manifest":download_manifest,
         "historical_backfill_only":True,
