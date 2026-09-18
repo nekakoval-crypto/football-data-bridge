@@ -202,6 +202,110 @@ def motivation_payload(conn,q):
         return 500,{'api_version':API_VERSION,'error':'INVALID_MOTIVATION_PROJECTION','fixture_id':fixture_id,'read_only':True,'provider_polling':False}
     payload['api_version']=API_VERSION;payload['read_only']=True;payload['provider_polling']=False;return 200,payload
 
+
+def archive_rows(conn, table, key, value, limit=500, order_candidates=None):
+    if not table_exists(conn, table):
+        return []
+    cols=set(columns(conn,table))
+    if key not in cols:
+        return []
+    order=''
+    valid=[col for col in (order_candidates or []) if col in cols]
+    if valid:
+        order=' ORDER BY '+', '.join(f'"{col}" ASC' for col in valid)
+    rows=conn.execute(
+        f'SELECT * FROM "{table}" WHERE CAST("{key}" AS TEXT)=?'+order+' LIMIT ?',
+        (str(value), max(1,min(int(limit),MAX_LIMIT))),
+    ).fetchall()
+    return [dict(row) for row in rows]
+
+
+def archive_fixture_payload(conn,q):
+    fixture_id=qfirst(q,'fixture_id')
+    if not fixture_id:
+        return 400,{'api_version':API_VERSION,'error':'MISSING_FIXTURE_ID','read_only':True,'provider_polling':False}
+    limit=as_int(qfirst(q,'limit'),200,1,MAX_LIMIT)
+    fixture=archive_rows(conn,'raw_historical_fixtures','fixture_id',fixture_id,1)
+    history=archive_rows(conn,'raw_fixture_history_snapshots','fixture_id',fixture_id,limit,['observed_at_utc'])
+    lineups=archive_rows(conn,'raw_lineup_snapshots','fixture_id',fixture_id,limit,['captured_at_utc','team_id'])
+    injuries=archive_rows(conn,'raw_injury_snapshots','fixture_id',fixture_id,limit,['captured_at_utc','team_id','player_id'])
+    events=archive_rows(conn,'raw_match_event_snapshots','fixture_id',fixture_id,limit,['elapsed','extra','event_id'])
+    team_stats=archive_rows(conn,'raw_team_match_statistics','fixture_id',fixture_id,limit,['team_id'])
+    player_stats=archive_rows(conn,'raw_player_stats_snapshots','fixture_id',fixture_id,limit,['team_id','player_id'])
+    found=bool(fixture or history or lineups or injuries or events or team_stats or player_stats)
+    if not found:
+        return 404,{'api_version':API_VERSION,'error':'ARCHIVE_FIXTURE_NOT_FOUND','fixture_id':str(fixture_id),'read_only':True,'provider_polling':False}
+    return 200,{
+        'api_version':API_VERSION,
+        'fixture_id':str(fixture_id),
+        'fixture':fixture[0] if fixture else None,
+        'fixture_observations':history,
+        'lineups':lineups,
+        'injuries':injuries,
+        'events':events,
+        'team_statistics':team_stats,
+        'player_statistics':player_stats,
+        'coverage':{
+            'historical_fixture':bool(fixture),
+            'fixture_observations':len(history),
+            'lineup_rows':len(lineups),
+            'injury_rows':len(injuries),
+            'event_rows':len(events),
+            'team_stat_rows':len(team_stats),
+            'player_stat_rows':len(player_stats),
+            'partial_sources_possible':True,
+        },
+        'source_policy':'PBK-owned persisted archive/read models only',
+        'read_only':True,
+        'provider_polling':False,
+        'creates_signal':False,
+        'probability_mutation':False,
+        'eligibility_mutation':False,
+        'stake_changes':False,
+        'forward_journal_mutation':False,
+    }
+
+
+def archive_player_payload(conn,q):
+    player_id=qfirst(q,'player_id')
+    if not player_id:
+        return 400,{'api_version':API_VERSION,'error':'MISSING_PLAYER_ID','read_only':True,'provider_polling':False}
+    limit=as_int(qfirst(q,'limit'),200,1,MAX_LIMIT)
+    player=archive_rows(conn,'raw_historical_players','player_id',player_id,1)
+    roster=archive_rows(conn,'raw_team_roster_history','player_id',player_id,limit,['captured_at_utc','team_id'])
+    memberships=archive_rows(conn,'raw_team_membership_intervals','player_id',player_id,limit,['first_seen_at_utc','team_id'])
+    stats=archive_rows(conn,'raw_player_stats_snapshots','player_id',player_id,limit,['observed_at_utc','fixture_id'])
+    grades=archive_rows(conn,'raw_player_grade_snapshots','player_id',player_id,limit,['observed_at_utc','fixture_id'])
+    found=bool(player or roster or memberships or stats or grades)
+    if not found:
+        return 404,{'api_version':API_VERSION,'error':'ARCHIVE_PLAYER_NOT_FOUND','player_id':str(player_id),'read_only':True,'provider_polling':False}
+    return 200,{
+        'api_version':API_VERSION,
+        'player_id':str(player_id),
+        'player':player[0] if player else None,
+        'roster_history':roster,
+        'membership_intervals':memberships,
+        'match_statistics':stats,
+        'research_grades':grades,
+        'coverage':{
+            'historical_player':bool(player),
+            'roster_rows':len(roster),
+            'membership_intervals':len(memberships),
+            'match_stat_rows':len(stats),
+            'grade_rows':len(grades),
+            'partial_sources_possible':True,
+        },
+        'source_policy':'PBK-owned persisted archive/read models only',
+        'read_only':True,
+        'provider_polling':False,
+        'creates_signal':False,
+        'probability_mutation':False,
+        'eligibility_mutation':False,
+        'stake_changes':False,
+        'forward_journal_mutation':False,
+    }
+
+
 def config_doc(path,fallback):
     try:return json.loads(path.read_text(encoding='utf-8'))
     except Exception:return fallback
@@ -231,6 +335,8 @@ def dispatch(path_with_query):
         if path=='/v1/rounds/current':return 200,current_rounds_payload(conn)
         if path=='/v1/standings':return standings_payload(conn,q)
         if path=='/v1/motivation':return motivation_payload(conn,q)
+        if path=='/v1/archive/fixture':return archive_fixture_payload(conn,q)
+        if path=='/v1/archive/player':return archive_player_payload(conn,q)
         if path=='/v1/match-card':return __import__('match_card_v2').build_match_card(conn,qfirst(q,'fixture_id'))
         if path=='/v1/competitions':return 200,query_table(conn,'competitions',q,{'country':'country','league':'league','group':'group'},default_order=['country','league'])
         if path=='/v1/signals/canonical':return 200,query_table(conn,'canonical_signals',q,{'strategy':'rule','status':'status','team':'away_team'},['paper_user_execution_odds','market_execution_odds','trigger_selected_odds'],['kickoff_utc','forward_id'])
