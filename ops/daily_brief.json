@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-18T22:02:46Z",
+  "generated_at_utc": "2026-09-18T23:02:44Z",
   "status": "OK",
   "active_signals": 4,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-18T21:41:51Z",
+        "captured_at_utc": "2026-09-18T22:42:04Z",
         "best_odds": "1.58",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.5",
@@ -156,11 +156,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-18T21:41:51Z",
+        "captured_at_utc": "2026-09-18T22:42:04Z",
         "best_odds": "2.07",
         "best_bookmaker": "1xBet",
         "bet365_odds": "2.0",
-        "api_odds_update_utc": "2026-09-18T17:15:17+00:00",
+        "api_odds_update_utc": "2026-09-18T21:24:20+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -281,7 +281,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-18T21:41:51Z",
+        "captured_at_utc": "2026-09-18T22:42:04Z",
         "best_odds": "1.84",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.75",
@@ -408,7 +408,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-18T21:41:51Z",
+        "captured_at_utc": "2026-09-18T22:42:04Z",
         "best_odds": "1.56",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.48",
@@ -593,7 +593,7 @@
     "observed_closes": 10,
     "close_qualified_total": 3,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-18T21:46:58Z",
+    "latest_run_utc": "2026-09-18T22:21:33Z",
     "warnings": [],
     "crossings": [
       {
@@ -687,7 +687,7 @@
     "observed_closes": 62,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-18T20:15:45Z",
+    "latest_run_utc": "2026-09-18T22:15:18Z",
     "warnings": [],
     "crossings": [
       {
@@ -849,7 +849,7 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-18T21:53:23Z",
+    "generated_at_utc": "2026-09-18T22:53:35Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
@@ -988,7 +988,7 @@
       "canonical_forward": "unchanged"
     },
     "warnings": [
-      "fixture 1552765: API-Football /fixtures: {'rateLimit': 'Too many requests. You have exceeded the limit of requests per minute of your subscription.'}"
+      "fixture 1557416: API-Football /fixtures: {'rateLimit': 'Too many requests. You have exceeded the limit of requests per minute of your subscription.'}"
     ]
   },
   "display_policy": {
