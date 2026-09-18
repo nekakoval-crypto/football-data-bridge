@@ -1,17 +1,17 @@
 {
-  "run_at_utc": "2026-09-17T22:45:03Z",
+  "run_at_utc": "2026-09-18T00:50:36Z",
   "status": "OK",
   "mode": "RESEARCH_SETTLEMENT_ONLY",
-  "pending_market_rows": 16,
-  "pending_unique_fixtures": 1,
-  "fixture_api_calls": 1,
-  "new_settlement_rows": 0,
-  "total_settlement_rows": 2239,
+  "pending_market_rows": 32,
+  "pending_unique_fixtures": 2,
+  "fixture_api_calls": 2,
+  "new_settlement_rows": 16,
+  "total_settlement_rows": 2255,
   "settlement_rows_by_family": {
-    "TEAM_TOTAL": 1265,
-    "DOUBLE_CHANCE": 137,
-    "EUROPEAN_HANDICAP": 716,
-    "DRAW_NO_BET": 121
+    "TEAM_TOTAL": 1274,
+    "DOUBLE_CHANCE": 138,
+    "EUROPEAN_HANDICAP": 721,
+    "DRAW_NO_BET": 122
   },
   "non_ft_or_review_fixtures": [
     {
@@ -21,5 +21,5 @@
     }
   ],
   "signals_created": 0,
-  "api_calls": 1
+  "api_calls": 2
 }
