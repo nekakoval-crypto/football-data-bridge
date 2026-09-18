@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-18T17:02:38Z",
+  "generated_at_utc": "2026-09-18T18:03:15Z",
   "status": "OK",
   "active_signals": 4,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-18T16:43:29Z",
+        "captured_at_utc": "2026-09-18T17:40:57Z",
         "best_odds": "1.58",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.5",
@@ -156,11 +156,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-18T16:43:29Z",
+        "captured_at_utc": "2026-09-18T17:40:57Z",
         "best_odds": "2.07",
         "best_bookmaker": "1xBet",
         "bet365_odds": "2.0",
-        "api_odds_update_utc": "2026-09-18T13:05:26+00:00",
+        "api_odds_update_utc": "2026-09-18T17:15:17+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -281,11 +281,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-18T16:43:29Z",
+        "captured_at_utc": "2026-09-18T17:40:57Z",
         "best_odds": "1.84",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.75",
-        "api_odds_update_utc": "2026-09-18T13:05:26+00:00",
+        "api_odds_update_utc": "2026-09-18T17:15:17+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -408,11 +408,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-18T16:43:29Z",
+        "captured_at_utc": "2026-09-18T17:40:57Z",
         "best_odds": "1.56",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.48",
-        "api_odds_update_utc": "2026-09-18T13:05:26+00:00",
+        "api_odds_update_utc": "2026-09-18T17:15:17+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -527,7 +527,7 @@
     "observed_closes": 10,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-18T15:54:41Z",
+    "latest_run_utc": "2026-09-18T17:53:26Z",
     "warnings": [],
     "crossings": [
       {
@@ -605,7 +605,7 @@
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-18T16:47:52Z",
+    "latest_run_utc": "2026-09-18T17:47:04Z",
     "warnings": [],
     "crossings": [
       {
@@ -876,7 +876,7 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-18T16:53:20Z",
+    "generated_at_utc": "2026-09-18T17:53:25Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
