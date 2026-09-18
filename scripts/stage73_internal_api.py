@@ -276,7 +276,8 @@ def archive_player_payload(conn,q):
     memberships=archive_rows(conn,'raw_team_membership_intervals','player_id',player_id,limit,['first_seen_at_utc','team_id'])
     stats=archive_rows(conn,'raw_player_stats_snapshots','player_id',player_id,limit,['observed_at_utc','fixture_id'])
     grades=archive_rows(conn,'raw_player_grade_snapshots','player_id',player_id,limit,['observed_at_utc','fixture_id'])
-    found=bool(player or roster or memberships or stats or grades)
+    transfers=archive_rows(conn,'raw_historical_transfer_events','pbk_player_id',player_id,limit,['transfer_date','transfer_event_id'])
+    found=bool(player or roster or memberships or stats or grades or transfers)
     if not found:
         return 404,{'api_version':API_VERSION,'error':'ARCHIVE_PLAYER_NOT_FOUND','player_id':str(player_id),'read_only':True,'provider_polling':False}
     return 200,{
@@ -287,12 +288,15 @@ def archive_player_payload(conn,q):
         'membership_intervals':memberships,
         'match_statistics':stats,
         'research_grades':grades,
+        'historical_transfers':transfers,
         'coverage':{
             'historical_player':bool(player),
             'roster_rows':len(roster),
             'membership_intervals':len(memberships),
             'match_stat_rows':len(stats),
             'grade_rows':len(grades),
+            'transfer_rows':len(transfers),
+            'verified_transfer_history':bool(transfers),
             'partial_sources_possible':True,
         },
         'source_policy':'PBK-owned persisted archive/read models only',
