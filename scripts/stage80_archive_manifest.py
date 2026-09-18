@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V12_PLAYER_PROFILE_EVIDENCE"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V13_RESIDUAL_PLAYER_PROFILE"
 
 DATASETS = [
     {
@@ -106,8 +106,19 @@ DATASETS = [
         "identity_key": ["team_id", "season", "player_id"],
         "observed_time_fields": ["captured_at_utc"],
         "effective_time_fields": ["season"],
-        "source": "Stage80 /players?team&season via shared API-Football broker",
-        "limitations": "Identity enrichment only; current-roster coverage is partial while the bounded collector fills teams. Missing profile fields remain UNKNOWN. No betting/model authority.",
+        "source": "Stage80 /players?team&season plus residual /players?id&season via shared API-Football broker; residual team context comes from current PBK roster",
+        "limitations": "Identity enrichment only. Residual calls are limited to current-roster player IDs still missing after team capture. Missing profile fields remain UNKNOWN. No betting/model authority.",
+    },
+    {
+        "dataset_id": "player_profile_residual_state",
+        "path": "player_profile_residual_state.csv",
+        "role": "OPERATIONAL_RETRY_LEDGER",
+        "lifecycle": "BOUNDED_PLAYER_PROFILE_RETRY_STATE",
+        "identity_key": ["season", "player_id"],
+        "observed_time_fields": ["last_attempt_at_utc"],
+        "effective_time_fields": ["season"],
+        "source": "Stage80 residual /players?id&season capture state",
+        "limitations": "Operational retry ledger only. EMPTY responses are retried after a bounded TTL; transient ERROR rows remain retryable. Never betting/model authority.",
     },
     {
         "dataset_id": "player_grade_snapshots",
