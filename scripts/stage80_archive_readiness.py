@@ -31,6 +31,7 @@ SOURCES = {
     "team_stats": "team_match_statistics.csv",
     "stage81_backlog": "stage81_team_stats_backlog.csv",
     "current_rosters": "team_rosters.csv",
+    "player_profiles": "player_profile_evidence.csv",
     "roster_history": "team_roster_history.csv",
     "membership_intervals": "team_membership_intervals.csv",
     "transfer_identity": "pbk_transfermarkt_player_identity.csv",
@@ -342,6 +343,7 @@ def build_report(ops=OPS, archive_dir=None):
         })
 
     current_rosters = data["current_rosters"] or []
+    player_profiles = data["player_profiles"] or []
     history = data["roster_history"] or []
     intervals = data["membership_intervals"] or []
     transfer_identity = data["transfer_identity"] or []
@@ -360,6 +362,42 @@ def build_report(ops=OPS, archive_dir=None):
         for row in history
         if sval(row, "team_id") and sval(row, "captured_at_utc")
     }
+    current_roster_player_ids = {
+        sval(row, "player_id")
+        for row in current_rosters
+        if sval(row, "player_id")
+    }
+    player_profile_valid = [
+        row for row in player_profiles
+        if sval(row, "team_id")
+        and sval(row, "season")
+        and sval(row, "player_id")
+        and sval(row, "captured_at_utc")
+        and sval(row, "source") == "api-football:/players?team&season"
+    ]
+    player_profile_invalid = len(player_profiles) - len(player_profile_valid)
+    player_profile_identity_ready = [
+        row for row in player_profile_valid
+        if sval(row, "birth_date")
+        and (sval(row, "firstname") or sval(row, "player_name"))
+        and (sval(row, "lastname") or sval(row, "player_name"))
+    ]
+    player_profile_ids = {
+        sval(row, "player_id")
+        for row in player_profile_valid
+        if sval(row, "player_id")
+    }
+    player_profile_identity_ready_ids = {
+        sval(row, "player_id")
+        for row in player_profile_identity_ready
+        if sval(row, "player_id")
+    }
+    player_profile_team_ids = {
+        sval(row, "team_id")
+        for row in player_profile_valid
+        if sval(row, "team_id")
+    }
+
     transfer_identity_valid = [
         row for row in transfer_identity
         if sval(row, "pbk_player_id")
@@ -558,6 +596,12 @@ def build_report(ops=OPS, archive_dir=None):
     elif raw_archive["status"] != "OK":
         gaps.append("RAW_ARCHIVE_STORAGE_NEEDS_ATTENTION")
     gaps.append("MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY")
+    if data["player_profiles"] is None or not player_profile_valid:
+        gaps.append("PLAYER_PROFILE_EVIDENCE_NOT_MATERIALIZED")
+    elif current_roster_player_ids and len(current_roster_player_ids & player_profile_ids) < len(current_roster_player_ids):
+        gaps.append("PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE")
+    if player_profile_invalid:
+        gaps.append("PLAYER_PROFILE_INVALID_ROWS")
     if data["transfer_identity"] is None or not transfer_identity_valid:
         gaps.append("VERIFIED_TRANSFER_IDENTITY_NOT_MATERIALIZED")
     if transfer_identity_invalid:
@@ -717,6 +761,25 @@ def build_report(ops=OPS, archive_dir=None):
             "open_latest_intervals": sum(1 for row in intervals if sval(row, "interval_status") == "OPEN_LATEST"),
             "closed_by_observed_absence_intervals": sum(1 for row in intervals if sval(row, "interval_status") == "CLOSED_BY_OBSERVED_ABSENCE"),
         },
+        "player_profiles": {
+            "present": data["player_profiles"] is not None,
+            "rows": len(player_profiles),
+            "valid_rows": len(player_profile_valid),
+            "identity_ready_rows": len(player_profile_identity_ready),
+            "invalid_rows": player_profile_invalid,
+            "unique_players": len(player_profile_ids),
+            "identity_ready_unique_players": len(player_profile_identity_ready_ids),
+            "unique_teams": len(player_profile_team_ids),
+            "current_roster_player_coverage_pct": pct(
+                len(current_roster_player_ids & player_profile_ids),
+                len(current_roster_player_ids),
+            ),
+            "identity_ready_current_roster_coverage_pct": pct(
+                len(current_roster_player_ids & player_profile_identity_ready_ids),
+                len(current_roster_player_ids),
+            ),
+            "evidence_note": "Bounded /players?team&season profile evidence for identity enrichment. Full-name+DOB+club may support conservative cross-provider identity mapping; this never grants betting/model authority.",
+        },
         "transfer_identity": {
             "present": data["transfer_identity"] is not None,
             "rows": len(transfer_identity),
@@ -780,6 +843,7 @@ def render_markdown(report):
     b81 = report["stage81_backlog"]
     ts = report["team_statistics"]
     r = report["rosters"]
+    profiles = report["player_profiles"]
     p = report["players"]
     advanced = report["advanced_metrics"]
     c = report["context"]
@@ -817,6 +881,7 @@ def render_markdown(report):
         f"- Player stat rows: {p['player_stat_rows']}; уникальных игроков: {p['unique_players_with_stats']}.",
         f"- Player Grade rows: {p['player_grade_rows']}; уникальных игроков: {p['unique_players_with_grades']}.",
         f"- Current roster: {r['current_roster_teams']} команд / {r['current_roster_rows']} игроковых строк.",
+        f"- Player profile evidence: {profiles['valid_rows']} rows / {profiles['unique_players']} players / {profiles['unique_teams']} teams; current-roster coverage {profiles['current_roster_player_coverage_pct'] if profiles['current_roster_player_coverage_pct'] is not None else '—'}%; identity-ready {profiles['identity_ready_unique_players']} players ({profiles['identity_ready_current_roster_coverage_pct'] if profiles['identity_ready_current_roster_coverage_pct'] is not None else '—'}%).",
         f"- Roster history: {r['history_teams']} команд / {r['history_team_snapshots']} team-snapshots / {r['history_rows']} строк.",
         f"- Membership intervals: {r['membership_intervals']} (open {r['open_latest_intervals']}, closed-by-observed-absence {r['closed_by_observed_absence_intervals']}).",
         f"- Verified PBK↔Transfermarkt identities: {identities['valid_rows']} rows / {identities['unique_pbk_players']} PBK players; invalid {identities['invalid_rows']}.",
@@ -857,6 +922,8 @@ def main():
         "team_stats_complete_fixtures": report["team_statistics"]["complete_fixture_count"],
         "roster_history_rows": report["rosters"]["history_rows"],
         "player_stats_fixtures": report["fixtures"]["player_stats_fixture_count_all_snapshots"],
+        "player_profile_identity_ready_players": report["player_profiles"]["identity_ready_unique_players"],
+        "player_profile_roster_coverage_pct": report["player_profiles"]["current_roster_player_coverage_pct"],
         "raw_archive_status": report["raw_provider_archive"]["status"],
         "verified_transfer_identity_rows": report["transfer_identity"]["valid_rows"],
         "verified_transfer_rows": report["transfer_history"]["valid_rows"],
