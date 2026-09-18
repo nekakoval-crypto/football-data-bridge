@@ -232,6 +232,139 @@ class Stage80ArchiveReadinessTests(unittest.TestCase):
         self.assertNotIn("PLAYER_XG_XA_PBK_IDENTITY_MAPPING_NOT_MATERIALIZED", report["gaps"])
         self.assertNotIn("PLAYER_XG_XA_NO_HIGH_CONFIDENCE_PBK_MAPPING", report["gaps"])
 
+    def test_external_stage91_meta_plus_valid_mapped_outputs_is_attested(self):
+        (self.ops / "stage91_statsbomb_player_xg_xa_last_run.json").write_text(
+            json.dumps({
+                "version": "PBK_STAGE91_STATSBOMB_PLAYER_XG_XA_V1",
+                "status": "OK",
+                "player_match_rows": 72880,
+                "unique_statsbomb_players": 7787,
+                "source": "StatsBomb Open Data",
+                "source_revision": "abc123",
+                "raw_data_committed_to_pbk": False,
+                "research_only": True,
+                "operational_betting_authority": False,
+                "provider_calls": 0,
+            }),
+            encoding="utf-8",
+        )
+        self.write_csv(
+            "statsbomb_pbk_player_mapping_candidates.csv",
+            [
+                "statsbomb_player_id", "pbk_player_id", "match_status",
+                "match_method", "match_confidence",
+                "authoritative_for_player_xg_xa",
+            ],
+            [{
+                "statsbomb_player_id": "10",
+                "pbk_player_id": "11",
+                "match_status": "AUTO_MATCH",
+                "match_method": "EXACT_FULL_NAME_VIA_VERIFIED_TRANSFER",
+                "match_confidence": "HIGH",
+                "authoritative_for_player_xg_xa": "true",
+            }],
+        )
+        self.write_csv(
+            "pbk_player_xg_xa_research.csv",
+            [
+                "pbk_player_id", "statsbomb_player_id", "statsbomb_match_id",
+                "statsbomb_record_id", "source_event_sha256", "mapping_method",
+                "mapping_confidence", "research_only",
+                "operational_betting_authority", "xg_total", "xa",
+            ],
+            [{
+                "pbk_player_id": "11",
+                "statsbomb_player_id": "10",
+                "statsbomb_match_id": "100",
+                "statsbomb_record_id": "r1",
+                "source_event_sha256": "abc",
+                "mapping_method": "EXACT_FULL_NAME_VIA_VERIFIED_TRANSFER",
+                "mapping_confidence": "HIGH",
+                "research_only": "true",
+                "operational_betting_authority": "false",
+                "xg_total": "0.5",
+                "xa": "0.2",
+            }],
+        )
+        report = s80.build_report(self.ops, archive_dir="")
+        advanced = report["advanced_metrics"]
+        self.assertEqual(
+            advanced["player_xg_xa_source_status"],
+            "RESEARCH_SOURCE_EXTERNAL_LOCAL_ATTESTED_MAPPED_TO_PBK",
+        )
+        self.assertFalse(advanced["player_xg_xa_source_payload_in_repository"])
+        self.assertTrue(advanced["player_xg_xa_stage91_meta_valid"])
+        self.assertEqual(advanced["player_xg_xa_stage91_attested_rows"], 72880)
+        self.assertEqual(advanced["player_xg_xa_stage91_attested_unique_players"], 7787)
+        self.assertEqual(advanced["player_xg_xa_stage91_source_revision"], "abc123")
+        self.assertEqual(
+            advanced["player_xg_xa_pbk_identity_mapping"],
+            "AUTO_HIGH_MATERIALIZED",
+        )
+        self.assertNotIn("PLAYER_XG_XA_RESEARCH_SOURCE_NOT_MATERIALIZED", report["gaps"])
+        self.assertNotIn("PLAYER_XG_XA_NO_HIGH_CONFIDENCE_PBK_MAPPING", report["gaps"])
+
+    def test_external_stage91_invalid_meta_does_not_fake_materialization(self):
+        (self.ops / "stage91_statsbomb_player_xg_xa_last_run.json").write_text(
+            json.dumps({
+                "version": "PBK_STAGE91_STATSBOMB_PLAYER_XG_XA_V1",
+                "status": "OK",
+                "player_match_rows": 72880,
+                "unique_statsbomb_players": 7787,
+                "source": "StatsBomb Open Data",
+                "source_revision": "",
+                "raw_data_committed_to_pbk": False,
+                "research_only": True,
+                "operational_betting_authority": False,
+                "provider_calls": 0,
+            }),
+            encoding="utf-8",
+        )
+        self.write_csv(
+            "statsbomb_pbk_player_mapping_candidates.csv",
+            [
+                "statsbomb_player_id", "pbk_player_id", "match_status",
+                "match_method", "match_confidence",
+                "authoritative_for_player_xg_xa",
+            ],
+            [{
+                "statsbomb_player_id": "10",
+                "pbk_player_id": "11",
+                "match_status": "AUTO_MATCH",
+                "match_method": "EXACT_FULL_NAME_VIA_VERIFIED_TRANSFER",
+                "match_confidence": "HIGH",
+                "authoritative_for_player_xg_xa": "true",
+            }],
+        )
+        self.write_csv(
+            "pbk_player_xg_xa_research.csv",
+            [
+                "pbk_player_id", "statsbomb_player_id", "statsbomb_match_id",
+                "statsbomb_record_id", "source_event_sha256", "mapping_method",
+                "mapping_confidence", "research_only",
+                "operational_betting_authority",
+            ],
+            [{
+                "pbk_player_id": "11",
+                "statsbomb_player_id": "10",
+                "statsbomb_match_id": "100",
+                "statsbomb_record_id": "r1",
+                "source_event_sha256": "abc",
+                "mapping_method": "EXACT_FULL_NAME_VIA_VERIFIED_TRANSFER",
+                "mapping_confidence": "HIGH",
+                "research_only": "true",
+                "operational_betting_authority": "false",
+            }],
+        )
+        report = s80.build_report(self.ops, archive_dir="")
+        advanced = report["advanced_metrics"]
+        self.assertEqual(
+            advanced["player_xg_xa_source_status"],
+            "RESEARCH_ADAPTER_READY_NOT_MATERIALIZED",
+        )
+        self.assertFalse(advanced["player_xg_xa_stage91_meta_valid"])
+        self.assertIn("PLAYER_XG_XA_RESEARCH_SOURCE_NOT_MATERIALIZED", report["gaps"])
+
     def test_review_only_stage92_mapping_does_not_close_identity_gap(self):
         self.write_csv(
             "statsbomb_player_xg_xa.csv",
