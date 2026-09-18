@@ -198,7 +198,7 @@ def aggregate_team_splits(rows):
                 if not pair: continue
                 rec[f"{metric}_observed_matches"]+=1
                 own,opp=(pair[0],pair[1]) if side=="H" else (pair[1],pair[0])
-                if metric=="goals":
+                if metric=="goal":
                     rec["goals_for"]+=own; rec["goals_against"]+=opp
                 elif metric=="yellow":
                     rec["yellows_for"]+=own; rec["yellows_against"]+=opp
