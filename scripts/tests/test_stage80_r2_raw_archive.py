@@ -167,6 +167,9 @@ class Stage80R2RawArchiveTests(unittest.TestCase):
         self.assertEqual(stats["archive_backend"], "S3")
         self.assertEqual(stats["archive_observations"], 1)
         self.assertEqual(stats["archive_errors"], 0)
+        self.assertIn("/observations/", stats["archive_last_observation_path"])
+        self.assertIn("/blobs/sha256/", stats["archive_last_blob_path"])
+        self.assertTrue(stats["archive_last_payload_sha256"])
 
 
 if __name__ == "__main__":
