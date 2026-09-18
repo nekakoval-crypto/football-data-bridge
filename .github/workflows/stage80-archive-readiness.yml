@@ -30,6 +30,8 @@ on:
   push:
     paths:
       - 'scripts/stage80_archive_readiness.py'
+      - 'ops/stage80_raw_archive_storage_last_run.json'
+      - 'ops/stage80_raw_archive_provider_probe_last_run.json'
       - 'scripts/stage80_archive_manifest.py'
       - 'scripts/stage80_historical_fixture_catalog.py'
       - 'scripts/stage80_historical_player_catalog.py'
