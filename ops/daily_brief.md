@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-18T08:03:00Z
+Generated UTC: 2026-09-18T09:02:55Z
 Active canonical signals: 4
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -25,7 +25,7 @@ Active canonical signals: 4
 - Trigger Bet365: П1 4.0 / Х 3.3 / П2 1.91 (immutable)
 - Market-best observed: 2.06 @ 1xBet | Bet365 now: 1.91
 - Current user-executable: 2.0 @ Marathonbet
-- Paper user-execution (frozen): WAITING_EXECUTABLE_PRICE
+- Paper user-execution (frozen): 2.0 @ Marathonbet [2026-09-18T06:48:35Z]
 - Referee / venue: TBD | Stadio Via del Mare, Lecce
 - Previous: home Serie A vs Monza (672.0h rest); away Serie A vs Napoli (669.0h rest)
 - Next: home Serie A vs Udinese (165.5h after); away Serie A vs Inter (147.0h after)
@@ -40,7 +40,7 @@ Active canonical signals: 4
 - Trigger Bet365: П1 4.5 / Х 3.6 / П2 1.75 (immutable)
 - Market-best observed: 1.84 @ 1xBet | Bet365 now: 1.75
 - Current user-executable: 1.79 @ Marathonbet
-- Paper user-execution (frozen): WAITING_EXECUTABLE_PRICE
+- Paper user-execution (frozen): 1.79 @ Marathonbet [2026-09-18T06:48:35Z]
 - Referee / venue: TBD | TBD, Reggio Emilia
 - Previous: home Serie A vs Juventus (669.2h rest); away UEFA Europa League vs Benfica (597.0h rest)
 - Next: home Serie A vs Frosinone (122.8h after); away UEFA Europa League vs Red Bull Salzburg (96.8h after)
@@ -55,7 +55,7 @@ Active canonical signals: 4
 - Trigger Bet365: П1 5.75 / Х 3.7 / П2 1.6 (immutable)
 - Market-best observed: 1.6 @ Bet365 | Bet365 now: 1.6
 - Current user-executable: 1.53 @ Marathonbet
-- Paper user-execution (frozen): WAITING_EXECUTABLE_PRICE
+- Paper user-execution (frozen): 1.53 @ Marathonbet [2026-09-18T06:48:35Z]
 - Referee / venue: TBD | Unipol Domus, Cagliari
 - Previous: home Serie A vs Atalanta (696.0h rest); away UEFA Europa League vs NEC Nijmegen (575.8h rest)
 - Next: home Serie A vs Monza (189.8h after); away UEFA Europa League vs Celta Vigo (96.2h after)
@@ -114,7 +114,7 @@ Active canonical signals: 4
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 105
-- Активные движения ≥3 п.п.: всего 11 | ОЗ — Да 7 | ОЗ — Нет 4
+- Активные движения ≥3 п.п.: всего 12 | ОЗ — Да 8 | ОЗ — Нет 4
 - Зафиксировано observed close: 57
 - Исполнимый букмекер для наблюдения: Marathonbet
 
@@ -130,6 +130,7 @@ Active canonical signals: 4
 - WATCH | Bundesliga | FC Schalke 04 — SV Elversberg | ОЗ — Да | движение P(ОЗ — Да) +7.36 п.п. | Marathonbet 1.44 | 4272.4 мин до матча
 - WATCH | Ligue 1 | Marseille — Paris Saint Germain | ОЗ — Нет | движение P(ОЗ — Да) -3.66 п.п. | Marathonbet 2.39 | 4228.1 мин до матча
 - WATCH | Bundesliga | Werder Bremen — FC Augsburg | ОЗ — Да | движение P(ОЗ — Да) +4.28 п.п. | Marathonbet 1.36 | 2354.6 мин до матча
+- WATCH | Serie A | Monza — Sassuolo | ОЗ — Да | движение P(ОЗ — Да) +4.23 п.п. | Marathonbet 1.56 | 628.1 мин до матча
 
 ---
 
@@ -137,14 +138,14 @@ Active canonical signals: 4
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 33 | settled 13 | pending 20
+- Crossings: 34 | settled 13 | pending 21
 - Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: -4.100u | ROI -31.538% | W-L 6-7
 - Close: observed 13 | stayed qualified 11 | reverted 2 | persistence 84.615%
 - Close-qualified ROI: -33.727% | Reverted ROI: -19.5%
 
 ## By WATCH family
-- Big-5 ОЗ market movement — ОЗ — Да: crossings 17, settled 10, ROI -52.6%, close persistence 80.0%
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 18, settled 10, ROI -52.6%, close persistence 80.0%
 - Big-5 ОЗ market movement — ОЗ — Нет: crossings 5, settled 1, ROI 81.0%, close persistence 100.0%
 - АПЛ favorite steam: crossings 5, settled 0, ROI N/A, close persistence N/A
 - Бундеслига ТБ(2.5) steam: crossings 6, settled 2, ROI 17.5%, close persistence 100.0%

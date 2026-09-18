@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-18T08:03:00Z",
+  "generated_at_utc": "2026-09-18T09:02:55Z",
   "status": "OK",
   "active_signals": 4,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-18T07:44:20Z",
+        "captured_at_utc": "2026-09-18T08:45:02Z",
         "best_odds": "1.58",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.5",
@@ -156,7 +156,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-18T07:44:20Z",
+        "captured_at_utc": "2026-09-18T08:45:02Z",
         "best_odds": "2.06",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.91",
@@ -169,11 +169,11 @@
         "bookmaker": "Marathonbet"
       },
       "paper_user_execution": {
-        "status": "WAITING_EXECUTABLE_PRICE",
-        "odds": "",
-        "bookmaker": "",
-        "captured_at_utc": "",
-        "execution_type": "",
+        "status": "FROZEN",
+        "odds": "2.0",
+        "bookmaker": "Marathonbet",
+        "captured_at_utc": "2026-09-18T06:48:35Z",
+        "execution_type": "PAPER_FIRST_OBSERVED_ALLOWLISTED_PRICE",
         "note": "standardized paper execution; not proof of a real placed bet"
       },
       "league_state": {
@@ -281,7 +281,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-18T07:44:20Z",
+        "captured_at_utc": "2026-09-18T08:45:02Z",
         "best_odds": "1.84",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.75",
@@ -294,11 +294,11 @@
         "bookmaker": "Marathonbet"
       },
       "paper_user_execution": {
-        "status": "WAITING_EXECUTABLE_PRICE",
-        "odds": "",
-        "bookmaker": "",
-        "captured_at_utc": "",
-        "execution_type": "",
+        "status": "FROZEN",
+        "odds": "1.79",
+        "bookmaker": "Marathonbet",
+        "captured_at_utc": "2026-09-18T06:48:35Z",
+        "execution_type": "PAPER_FIRST_OBSERVED_ALLOWLISTED_PRICE",
         "note": "standardized paper execution; not proof of a real placed bet"
       },
       "league_state": {
@@ -408,7 +408,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-18T07:44:20Z",
+        "captured_at_utc": "2026-09-18T08:45:02Z",
         "best_odds": "1.6",
         "best_bookmaker": "Bet365",
         "bet365_odds": "1.6",
@@ -421,11 +421,11 @@
         "bookmaker": "Marathonbet"
       },
       "paper_user_execution": {
-        "status": "WAITING_EXECUTABLE_PRICE",
-        "odds": "",
-        "bookmaker": "",
-        "captured_at_utc": "",
-        "execution_type": "",
+        "status": "FROZEN",
+        "odds": "1.53",
+        "bookmaker": "Marathonbet",
+        "captured_at_utc": "2026-09-18T06:48:35Z",
+        "execution_type": "PAPER_FIRST_OBSERVED_ALLOWLISTED_PRICE",
         "note": "standardized paper execution; not proof of a real placed bet"
       },
       "league_state": {
@@ -527,7 +527,7 @@
     "observed_closes": 10,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-18T07:54:16Z",
+    "latest_run_utc": "2026-09-18T08:54:49Z",
     "warnings": [],
     "crossings": [
       {
@@ -605,7 +605,7 @@
     "observed_closes": 9,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-18T07:22:54Z",
+    "latest_run_utc": "2026-09-18T08:24:06Z",
     "warnings": [],
     "crossings": [
       {
@@ -683,14 +683,14 @@
     "historical_edge_reason": "Canonical 10-year dataset has no historical BTTS first/close odds",
     "canonical_forward_changed": false,
     "tracked_openers": 105,
-    "active_crossings_total": 11,
-    "active_yes_crossings": 7,
+    "active_crossings_total": 12,
+    "active_yes_crossings": 8,
     "active_no_crossings": 4,
-    "total_crossings": 22,
+    "total_crossings": 23,
     "observed_closes": 57,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-18T06:20:36Z",
+    "latest_run_utc": "2026-09-18T08:16:55Z",
     "warnings": [],
     "crossings": [
       {
@@ -824,20 +824,32 @@
         "minutes_to_kickoff": "2354.6",
         "user_selected_odds": "1.36",
         "note": "research watch only; not a bet signal"
+      },
+      {
+        "fixture_id": "1550133",
+        "league": "Serie A",
+        "home_team": "Monza",
+        "away_team": "Sassuolo",
+        "selection": "ОЗ — Да",
+        "movement_yes_pp": "0.04233857",
+        "crossed_at_utc": "2026-09-18T08:16:55Z",
+        "minutes_to_kickoff": "628.1",
+        "user_selected_odds": "1.56",
+        "note": "research watch only; not a bet signal"
       }
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-18T07:55:55Z",
+    "generated_at_utc": "2026-09-18T08:54:46Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
-      "crossings": 33,
-      "pending": 20,
+      "crossings": 34,
+      "pending": 21,
       "settled": 13,
       "void": 0,
       "review": 0,
-      "user_price_rows": 33,
+      "user_price_rows": 34,
       "user_execution_coverage_pct": 100.0,
       "user_settled_rows": 13,
       "wins": 6,
@@ -858,12 +870,12 @@
     },
     "by_family": {
       "Big-5 ОЗ market movement — ОЗ — Да": {
-        "crossings": 17,
-        "pending": 7,
+        "crossings": 18,
+        "pending": 8,
         "settled": 10,
         "void": 0,
         "review": 0,
-        "user_price_rows": 17,
+        "user_price_rows": 18,
         "user_execution_coverage_pct": 100.0,
         "user_settled_rows": 10,
         "wins": 3,
