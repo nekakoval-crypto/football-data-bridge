@@ -118,6 +118,36 @@ class Stage80ArchiveManifestTests(unittest.TestCase):
         self.assertEqual(mapped["identity_key_text"], "pbk_player_id+statsbomb_record_id")
         self.assertEqual(mapped["effective_time_fields_text"], "match_date")
 
+    def test_player_profile_manifest_contract(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            self.write_csv(
+                tmp,
+                "player_profile_evidence.csv",
+                [
+                    "team_id", "season", "player_id", "captured_at_utc",
+                    "firstname", "lastname", "birth_date", "source",
+                ],
+                [{
+                    "team_id": "10",
+                    "season": "2026",
+                    "player_id": "11",
+                    "captured_at_utc": "2026-09-18T17:34:38Z",
+                    "firstname": "Manuel",
+                    "lastname": "Akanji",
+                    "birth_date": "1995-07-19",
+                    "source": "api-football:/players?team&season",
+                }],
+            )
+            report = manifest.build_manifest(Path(tmp), raw_archive_dir="")
+        profile = next(
+            x for x in report["datasets"]
+            if x["dataset_id"] == "player_profile_evidence"
+        )
+        self.assertEqual(profile["contract_status"], "OK")
+        self.assertEqual(profile["identity_key_text"], "team_id+season+player_id")
+        self.assertEqual(profile["effective_time_fields_text"], "season")
+        self.assertEqual(profile["role"], "IDENTITY_ENRICHMENT_EVIDENCE")
+
     def test_transfer_identity_manifest_contract(self):
         with tempfile.TemporaryDirectory() as tmp:
             self.write_csv(
