@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V5_MATCH_EVENTS"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V6_RAW_S3"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -78,7 +78,7 @@ def is_true(value):
     return str(value or "").strip().lower() in TRUE_VALUES
 
 
-def raw_archive_inventory(archive_dir=None):
+def raw_archive_inventory(archive_dir=None, ops=OPS):
     configured = archive_dir is not None and str(archive_dir).strip() != ""
     if not configured:
         raw = os.getenv("API_FOOTBALL_ARCHIVE_DIR", "").strip()
@@ -87,9 +87,44 @@ def raw_archive_inventory(archive_dir=None):
     else:
         archive_dir = Path(archive_dir)
 
+    verify_path = Path(ops) / "stage80_raw_archive_storage_last_run.json"
+    verify = None
+    if verify_path.exists():
+        try:
+            verify = json.loads(verify_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError, TypeError):
+            verify = {"status": "INVALID_TELEMETRY", "durable": False}
+
+    if not configured and verify and verify.get("backend") == "S3":
+        ready = (
+            verify.get("status") == "READY"
+            and bool(verify.get("readback_match"))
+            and bool(verify.get("durable"))
+        )
+        return {
+            "configured": True,
+            "backend": "S3",
+            "status": "OK" if ready else "ATTENTION",
+            "storage_verification_status": verify.get("status"),
+            "storage_verified_at_utc": verify.get("run_at_utc"),
+            "storage_readback_match": bool(verify.get("readback_match")),
+            "bucket": verify.get("bucket"),
+            "prefix": verify.get("prefix"),
+            "manifest_observations": None,
+            "unique_payloads": None,
+            "unique_paths": None,
+            "manifest_invalid_lines": None,
+            "manifest_payload_bytes": None,
+            "inventory_note": "Remote S3/R2 object counts are intentionally not fetched by this provider-free readiness stage.",
+        }
+
     result = {
         "configured": configured,
+        "backend": "LOCAL" if configured else None,
         "status": "STORAGE_NOT_CONFIGURED" if not configured else "CONFIGURED_EMPTY_OR_MISSING",
+        "storage_verification_status": None,
+        "storage_verified_at_utc": None,
+        "storage_readback_match": None,
         "manifest_observations": None if not configured else 0,
         "unique_payloads": None if not configured else 0,
         "unique_paths": None if not configured else 0,
@@ -314,7 +349,7 @@ def build_report(ops=OPS, archive_dir=None):
     event_backlog_ids = {sval(row, "fixture_id") for row in match_event_backlog if sval(row, "fixture_id")}
     event_backlog_pending = {sval(row, "fixture_id") for row in match_event_backlog if sval(row, "fixture_id") and sval(row, "backlog_status").upper() == "PENDING"}
     event_backlog_captured = {sval(row, "fixture_id") for row in match_event_backlog if sval(row, "fixture_id") and sval(row, "backlog_status").upper() == "CAPTURED"}
-    raw_archive = raw_archive_inventory(archive_dir)
+    raw_archive = raw_archive_inventory(archive_dir, ops=ops)
     roster_history_rows = len(history)
     player_stats_fixture_count = len(stat_fixture_ids)
 
@@ -554,7 +589,9 @@ def render_markdown(report):
         "",
         "## Raw provider archive",
         f"- Storage configured: {raw['configured']}.",
+        f"- Backend: {raw.get('backend') or '—'}.",
         f"- Status: {raw['status']}.",
+        f"- Durable readback verified: {raw.get('storage_readback_match') if raw.get('storage_readback_match') is not None else '—'}; verified at {raw.get('storage_verified_at_utc') or '—'}.",
         f"- Observations: {raw['manifest_observations'] if raw['manifest_observations'] is not None else '—'}; unique payloads: {raw['unique_payloads'] if raw['unique_payloads'] is not None else '—'}.",
         "",
         "## Незакрытые пробелы",
