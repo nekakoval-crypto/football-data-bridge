@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_READINESS_V3_TEAM_STATS",
-  "generated_at_utc": "2026-09-18T06:47:42Z",
+  "version": "PBK_STAGE80_ARCHIVE_READINESS_V5_MATCH_EVENTS",
+  "generated_at_utc": "2026-09-18T12:47:38Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -12,12 +12,12 @@
     "fixture_history": {
       "file": "fixture_history_snapshots.csv",
       "present": true,
-      "rows": 764
+      "rows": 1022
     },
     "historical_fixtures": {
       "file": "historical_fixtures.csv",
       "present": true,
-      "rows": 168
+      "rows": 178
     },
     "player_stats": {
       "file": "player_stats_snapshots.csv",
@@ -37,7 +37,7 @@
     "team_stats": {
       "file": "team_match_statistics.csv",
       "present": true,
-      "rows": 2
+      "rows": 14
     },
     "stage81_backlog": {
       "file": "stage81_team_stats_backlog.csv",
@@ -62,12 +62,32 @@
     "match_context": {
       "file": "match_context_snapshots.csv",
       "present": true,
-      "rows": 8
+      "rows": 11
+    },
+    "lineup_archive": {
+      "file": "lineup_snapshots.csv",
+      "present": true,
+      "rows": 6
+    },
+    "injury_archive": {
+      "file": "injury_snapshots.csv",
+      "present": true,
+      "rows": 51
+    },
+    "match_events": {
+      "file": "match_event_snapshots.csv",
+      "present": false,
+      "rows": null
+    },
+    "match_event_backlog": {
+      "file": "stage80_match_event_backlog.csv",
+      "present": false,
+      "rows": null
     }
   },
   "fixtures": {
     "current_inventory": 129,
-    "finished_in_current_inventory": 8,
+    "finished_in_current_inventory": 1,
     "player_stats_fixture_count_all_snapshots": 5,
     "player_grade_fixture_count_all_snapshots": 5,
     "finished_current_inventory_with_player_stats": 0,
@@ -78,30 +98,24 @@
         "finished_fixtures_in_current_inventory": 1,
         "finished_fixtures_with_player_stats": 0,
         "player_stats_coverage_pct": 0.0
-      },
-      {
-        "league": "La Liga",
-        "finished_fixtures_in_current_inventory": 7,
-        "finished_fixtures_with_player_stats": 0,
-        "player_stats_coverage_pct": 0.0
       }
     ]
   },
   "fixture_history": {
     "present": true,
-    "rows": 764,
-    "valid_observations": 764,
-    "unique_fixtures": 168,
-    "observation_runs": 6,
+    "rows": 1022,
+    "valid_observations": 1022,
+    "unique_fixtures": 178,
+    "observation_runs": 8,
     "finished_fixtures_observed": 44,
     "invalid_identity_rows": 0,
     "evidence_note": "Counts represent only Stage71 current-round observations persisted after the fixture-history archive was enabled; they are not a pre-PBK historical backfill claim."
   },
   "historical_fixture_catalog": {
     "present": true,
-    "rows": 168,
-    "valid_rows": 168,
-    "unique_fixtures": 168,
+    "rows": 178,
+    "valid_rows": 178,
+    "unique_fixtures": 178,
     "terminal_fixtures": 44,
     "rescheduled_fixtures": 0,
     "invalid_identity_rows": 0,
@@ -111,8 +125,8 @@
     "orphan_catalog_fixtures": 0,
     "missing_terminal_evidence": 0,
     "orphan_terminal_evidence": 0,
-    "observation_count_total": 764,
-    "expected_history_observations": 764,
+    "observation_count_total": 1022,
+    "expected_history_observations": 1022,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
   },
@@ -128,17 +142,17 @@
   "stage81_backlog": {
     "present": true,
     "total_fixtures": 8,
-    "pending_fixtures": 7,
-    "captured_fixtures": 1,
+    "pending_fixtures": 1,
+    "captured_fixtures": 7,
     "captured_without_complete_ledger": 0,
     "oldest_pending_first_queued_at_utc": "2026-09-17T10:41:55Z",
     "evidence_note": "Pending means PBK observed a terminal fixture but has not yet persisted complete HOME+AWAY /fixtures/statistics evidence."
   },
   "team_statistics": {
-    "rows": 2,
-    "complete_fixture_count": 1,
-    "finished_current_inventory_with_team_stats": 1,
-    "finished_current_inventory_team_stats_coverage_pct": 12.5,
+    "rows": 14,
+    "complete_fixture_count": 7,
+    "finished_current_inventory_with_team_stats": 0,
+    "finished_current_inventory_team_stats_coverage_pct": 0.0,
     "evidence_note": "Complete means HOME and AWAY team rows exist; individual missing provider metrics remain UNKNOWN."
   },
   "players": {
@@ -158,11 +172,26 @@
     "closed_by_observed_absence_intervals": 0
   },
   "context": {
-    "snapshot_rows": 8,
-    "unique_fixtures": 3,
+    "snapshot_rows": 11,
+    "unique_fixtures": 6,
     "fixtures_with_official_lineup_snapshot": 1,
     "fixtures_with_injury_evidence": 2,
     "coverage_note": "Stage55 context is canonical-signal scoped; these counts are not full 16-league archive coverage."
+  },
+  "match_events": {
+    "event_rows": 0,
+    "event_fixtures": 0,
+    "backlog_total_fixtures": 0,
+    "backlog_pending_fixtures": 0,
+    "backlog_captured_fixtures": 0,
+    "evidence_note": "Append-only normalized provider match events captured only after PBK observed a terminal fixture; empty provider responses remain retryable."
+  },
+  "normalized_context_archives": {
+    "lineup_rows": 6,
+    "lineup_fixtures": 2,
+    "injury_rows": 51,
+    "injury_fixtures": 2,
+    "evidence_note": "Provider-free normalized append-only projections from already-persisted PBK context/rotation evidence; coverage remains limited by upstream capture scope."
   },
   "raw_provider_archive": {
     "configured": false,
@@ -178,6 +207,8 @@
     "PLAYER_STATS_BACKLOG_PENDING",
     "PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
+    "MATCH_EVENT_ARCHIVE_WAITING_FIRST_CAPTURE",
+    "MATCH_EVENT_BACKLOG_WAITING_FIRST_OPERATIONAL_RUN",
     "RAW_ARCHIVE_DURABLE_STORAGE_NOT_CONFIGURED",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
     "VERIFIED_TRANSFER_EVENTS_NOT_YET_INGESTED",

@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V4_TEAM_STATS",
-  "generated_at_utc": "2026-09-18T06:47:41Z",
+  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V6_MATCH_EVENTS",
+  "generated_at_utc": "2026-09-18T12:47:38Z",
   "status": "OK",
   "datasets": [
     {
@@ -65,7 +65,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 764,
+      "row_count": 1022,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -111,7 +111,7 @@
       "source": "Stage80 normalized projection from fixture_history_snapshots",
       "limitations": "Rebuildable convenience layer; fixture_history_snapshots remains historical evidence source-of-truth.",
       "present": true,
-      "row_count": 168,
+      "row_count": 178,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -248,7 +248,7 @@
       "source": "Stage81 /fixtures/statistics via shared API-Football broker",
       "limitations": "Only observed finished fixtures captured under protected provider budget; missing provider metrics remain UNKNOWN and are never zero-filled.",
       "present": true,
-      "row_count": 2,
+      "row_count": 14,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -564,6 +564,144 @@
       "effective_time_fields_text": ""
     },
     {
+      "dataset_id": "lineup_snapshots",
+      "path": "lineup_snapshots.csv",
+      "role": "HISTORICAL_EVIDENCE",
+      "lifecycle": "APPEND_ONLY_FIRST_OBSERVATION_WINS",
+      "identity_key": [
+        "fixture_id",
+        "captured_at_utc",
+        "team_id",
+        "source_dataset"
+      ],
+      "observed_time_fields": [
+        "captured_at_utc"
+      ],
+      "effective_time_fields": [
+        "kickoff_utc"
+      ],
+      "source": "Stage80 normalized from already-persisted Stage55 context + rotation snapshots",
+      "limitations": "Only official lineup observations already captured by PBK; expected XI is not archived as official evidence.",
+      "present": true,
+      "row_count": 6,
+      "columns": [
+        "fixture_id",
+        "captured_at_utc",
+        "kickoff_utc",
+        "team_id",
+        "team_name",
+        "side",
+        "formation",
+        "coach",
+        "starting_xi_json",
+        "starting_xi_count",
+        "source_dataset",
+        "source_snapshot_type",
+        "official_lineup",
+        "archive_version"
+      ],
+      "missing_required_fields": [],
+      "contract_status": "OK",
+      "identity_key_text": "fixture_id+captured_at_utc+team_id+source_dataset",
+      "observed_time_fields_text": "captured_at_utc",
+      "effective_time_fields_text": "kickoff_utc"
+    },
+    {
+      "dataset_id": "injury_snapshots",
+      "path": "injury_snapshots.csv",
+      "role": "HISTORICAL_EVIDENCE",
+      "lifecycle": "APPEND_ONLY_FIRST_OBSERVATION_WINS",
+      "identity_key": [
+        "fixture_id",
+        "captured_at_utc",
+        "team_id",
+        "player_id",
+        "availability_type",
+        "reason",
+        "source_dataset"
+      ],
+      "observed_time_fields": [
+        "captured_at_utc"
+      ],
+      "effective_time_fields": [
+        "kickoff_utc"
+      ],
+      "source": "Stage80 normalized from already-persisted Stage55 injury evidence",
+      "limitations": "Provider availability labels/reasons are archived as observed facts; absence from a later snapshot is not inferred as recovery.",
+      "present": true,
+      "row_count": 51,
+      "columns": [
+        "fixture_id",
+        "captured_at_utc",
+        "kickoff_utc",
+        "team_id",
+        "team_name",
+        "player_id",
+        "player_name",
+        "availability_type",
+        "reason",
+        "source_dataset",
+        "source_snapshot_type",
+        "archive_version"
+      ],
+      "missing_required_fields": [],
+      "contract_status": "OK",
+      "identity_key_text": "fixture_id+captured_at_utc+team_id+player_id+availability_type+reason+source_dataset",
+      "observed_time_fields_text": "captured_at_utc",
+      "effective_time_fields_text": "kickoff_utc"
+    },
+    {
+      "dataset_id": "stage80_match_event_backlog",
+      "path": "stage80_match_event_backlog.csv",
+      "role": "DURABLE_WORK_QUEUE",
+      "lifecycle": "DURABLE_STATE_MACHINE",
+      "identity_key": [
+        "fixture_id"
+      ],
+      "observed_time_fields": [
+        "first_queued_at_utc",
+        "last_seen_at_utc"
+      ],
+      "effective_time_fields": [
+        "kickoff_utc"
+      ],
+      "source": "Stage71 terminal observation + Stage80 event capture reconciliation",
+      "limitations": "Queue evidence is not event evidence; CAPTURED requires at least one normalized provider event row.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "fixture_id",
+      "observed_time_fields_text": "first_queued_at_utc,last_seen_at_utc",
+      "effective_time_fields_text": "kickoff_utc"
+    },
+    {
+      "dataset_id": "match_event_snapshots",
+      "path": "match_event_snapshots.csv",
+      "role": "HISTORICAL_EVIDENCE",
+      "lifecycle": "APPEND_ONLY_FIRST_OBSERVATION_WINS",
+      "identity_key": [
+        "event_id"
+      ],
+      "observed_time_fields": [
+        "observed_at_utc"
+      ],
+      "effective_time_fields": [
+        "kickoff_utc"
+      ],
+      "source": "Stage80 /fixtures/events via shared API-Football broker",
+      "limitations": "Only terminal fixtures captured under protected provider budget; empty provider responses remain retryable and are not converted to fake no-event evidence.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "event_id",
+      "observed_time_fields_text": "observed_at_utc",
+      "effective_time_fields_text": "kickoff_utc"
+    },
+    {
       "dataset_id": "match_context_snapshots",
       "path": "match_context_snapshots.csv",
       "role": "HISTORICAL_EVIDENCE",
@@ -581,7 +719,7 @@
       "source": "Stage55 timestamped context via shared broker",
       "limitations": "Canonical-forward scope only; not complete 16-league context coverage.",
       "present": true,
-      "row_count": 8,
+      "row_count": 11,
       "columns": [
         "forward_id",
         "rule",
@@ -664,7 +802,7 @@
       "source": "Stage55/56 latest projection from context snapshots",
       "limitations": "Convenience read model; historical evidence remains match_context_snapshots.",
       "present": true,
-      "row_count": 3,
+      "row_count": 6,
       "columns": [
         "forward_id",
         "rule",
@@ -755,9 +893,9 @@
     }
   ],
   "summary": {
-    "declared_datasets": 15,
-    "materialized_csv_datasets": 14,
-    "pending_materializations_or_storage": 1,
+    "declared_datasets": 19,
+    "materialized_csv_datasets": 16,
+    "pending_materializations_or_storage": 3,
     "contract_attention": 0
   },
   "provider_calls": 0,

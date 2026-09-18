@@ -1,0 +1,23 @@
+{
+  "version": "PBK_STAGE80_LINEUP_INJURY_ARCHIVE_V1",
+  "run_at_utc": "2026-09-18T12:47:38Z",
+  "status": "OK",
+  "provider_calls": 0,
+  "source_context_rows": 11,
+  "source_rotation_rows": 2,
+  "lineup_rows_before": 0,
+  "lineup_rows_after": 6,
+  "lineup_rows_added": 6,
+  "injury_rows_before": 0,
+  "injury_rows_after": 51,
+  "injury_rows_added": 51,
+  "lineup_identity": "fixture_id+captured_at_utc+team_id+source_dataset",
+  "injury_identity": "fixture_id+captured_at_utc+team_id+(player_id|player_name)+availability_type+reason+source_dataset",
+  "append_only_first_observation_wins": true,
+  "research_only": true,
+  "creates_signal": false,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "stake_changes": false,
+  "forward_journal_mutation": false
+}
