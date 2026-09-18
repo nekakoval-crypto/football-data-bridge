@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-18T18:36:25Z",
+  "generated_at_utc": "2026-09-18T18:41:32Z",
   "research_id": "PBK_GENERIC_1X2_PROBABILITY_V1_FORWARD",
   "model_version": "PBK_GENERIC_1X2_PROBABILITY_V1",
   "status": "PER_LEAGUE_FORWARD_REVIEW",
@@ -135,7 +135,7 @@
     },
     "Bundesliga": {
       "status": "COLLECTING",
-      "prematch_frozen": 10,
+      "prematch_frozen": 11,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -207,7 +207,7 @@
     },
     "Austrian Bundesliga": {
       "status": "COLLECTING",
-      "prematch_frozen": 10,
+      "prematch_frozen": 11,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -315,7 +315,7 @@
     },
     "A Lyga": {
       "status": "COLLECTING",
-      "prematch_frozen": 0,
+      "prematch_frozen": 4,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -351,7 +351,7 @@
     },
     "Virsliga": {
       "status": "COLLECTING",
-      "prematch_frozen": 0,
+      "prematch_frozen": 1,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -387,7 +387,7 @@
     },
     "Eredivisie": {
       "status": "COLLECTING",
-      "prematch_frozen": 10,
+      "prematch_frozen": 11,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -567,7 +567,7 @@
     },
     "Scottish Premiership": {
       "status": "COLLECTING",
-      "prematch_frozen": 6,
+      "prematch_frozen": 10,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -607,7 +607,7 @@
   },
   "pooled_big5_diagnostic": {
     "status": "DIAGNOSTIC_ONLY",
-    "prematch_frozen": 54,
+    "prematch_frozen": 55,
     "settled_rows": 2,
     "forward_outcomes": {
       "H": 1,
@@ -660,7 +660,7 @@
   },
   "pooled_all16_diagnostic": {
     "status": "DIAGNOSTIC_ONLY",
-    "prematch_frozen": 130,
+    "prematch_frozen": 142,
     "settled_rows": 2,
     "forward_outcomes": {
       "H": 1,
@@ -712,7 +712,7 @@
     "purpose": "ALL_16_POOLED_DIAGNOSTIC_ONLY_NOT_AN_OFFICIAL_FORWARD_VERDICT"
   },
   "all_leagues_totals": {
-    "prematch_frozen": 130,
+    "prematch_frozen": 142,
     "settled_rows": 2
   },
   "policy": {
