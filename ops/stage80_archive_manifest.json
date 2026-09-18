@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V9_STATSBOMB_XG_XA",
-  "generated_at_utc": "2026-09-18T15:24:27Z",
+  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V10_STATSBOMB_PBK_MAPPING",
+  "generated_at_utc": "2026-09-18T15:36:25Z",
   "status": "OK",
   "datasets": [
     {
@@ -65,7 +65,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 1280,
+      "row_count": 1538,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -423,6 +423,51 @@
       "missing_required_fields": [],
       "contract_status": "PENDING_MATERIALIZATION",
       "identity_key_text": "record_id",
+      "observed_time_fields_text": "",
+      "effective_time_fields_text": "match_date"
+    },
+    {
+      "dataset_id": "statsbomb_pbk_player_mapping_candidates",
+      "path": "statsbomb_pbk_player_mapping_candidates.csv",
+      "role": "RESEARCH_IDENTITY_MAPPING",
+      "lifecycle": "DETERMINISTIC_PROJECTION",
+      "identity_key": [
+        "statsbomb_player_id"
+      ],
+      "observed_time_fields": [],
+      "effective_time_fields": [],
+      "source": "Stage92 conservative StatsBomb → verified Transfermarkt → PBK player bridge",
+      "limitations": "Only AUTO_MATCH/HIGH exact full-name matches through the verified Transfermarkt bridge are authoritative for mapped research. Initial+surname matches remain REVIEW only.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "statsbomb_player_id",
+      "observed_time_fields_text": "",
+      "effective_time_fields_text": ""
+    },
+    {
+      "dataset_id": "pbk_player_xg_xa_research",
+      "path": "pbk_player_xg_xa_research.csv",
+      "role": "RESEARCH_ENRICHMENT",
+      "lifecycle": "DETERMINISTIC_MAPPED_PROJECTION",
+      "identity_key": [
+        "pbk_player_id",
+        "statsbomb_record_id"
+      ],
+      "observed_time_fields": [],
+      "effective_time_fields": [
+        "match_date"
+      ],
+      "source": "Stage92 AUTO_MATCH/HIGH projection from Stage91 StatsBomb player xG/xA",
+      "limitations": "Research-only advanced metrics. xG is StatsBomb source metric; xA is derived xG Assisted. No betting/model authority is granted.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "pbk_player_id+statsbomb_record_id",
       "observed_time_fields_text": "",
       "effective_time_fields_text": "match_date"
     },
@@ -1017,9 +1062,9 @@
     }
   ],
   "summary": {
-    "declared_datasets": 21,
+    "declared_datasets": 23,
     "materialized_csv_datasets": 19,
-    "pending_materializations_or_storage": 1,
+    "pending_materializations_or_storage": 3,
     "contract_attention": 0
   },
   "provider_calls": 0,
