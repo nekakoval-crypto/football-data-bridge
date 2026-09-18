@@ -175,7 +175,7 @@ jobs:
           retention-days: 90
 
   publish:
-    name: Publish durable referee research outputs
+    name: Publish durable Football-Data research outputs
     needs: build
     if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
     permissions:
@@ -189,37 +189,69 @@ jobs:
         with:
           name: football-data-top5-9seasons
           path: normalized
-      - name: Verify compact referee outputs
+      - name: Verify durable research outputs
         run: |
           python - <<'PY'
-          import csv, json
-          meta=json.load(open('normalized/stage80_referee_research_meta.json',encoding='utf-8'))
-          assert meta['status']=='OK', meta
-          assert meta['source_scope']=='EPL_ONLY', meta
-          assert meta['source_rows']==3420, meta
-          assert meta['unique_referees']==47, meta
-          assert meta['referee_team_pairs']==897, meta
-          assert meta['provider_calls']==0, meta
-          assert meta['research_only'] is True, meta
-          assert meta['operational_betting_authority'] is False, meta
+          import csv, json, os
+          referee_meta=json.load(open('normalized/stage80_referee_research_meta.json',encoding='utf-8'))
+          assert referee_meta['status']=='OK', referee_meta
+          assert referee_meta['source_scope']=='EPL_ONLY', referee_meta
+          assert referee_meta['source_rows']==3420, referee_meta
+          assert referee_meta['unique_referees']==47, referee_meta
+          assert referee_meta['referee_team_pairs']==897, referee_meta
+          assert referee_meta['provider_calls']==0, referee_meta
+          assert referee_meta['research_only'] is True, referee_meta
+          assert referee_meta['operational_betting_authority'] is False, referee_meta
           with open('normalized/football_data_epl_referee_profiles.csv',encoding='utf-8-sig',newline='') as f:
               profiles=list(csv.DictReader(f))
           with open('normalized/football_data_epl_referee_team_splits.csv',encoding='utf-8-sig',newline='') as f:
               splits=list(csv.DictReader(f))
           assert len(profiles)==47, len(profiles)
           assert len(splits)==897, len(splits)
+
+          context_meta=json.load(open('normalized/stage80_football_data_prematch_context_meta.json',encoding='utf-8'))
+          assert context_meta['status']=='OK', context_meta
+          assert context_meta['source_rows']==16111, context_meta
+          assert context_meta['output_rows']==16111, context_meta
+          assert context_meta['unique_historical_match_ids']==16111, context_meta
+          assert context_meta['league_codes']==['D1','E0','F1','I1','SP1'], context_meta
+          assert len(context_meta['season_labels'])==9, context_meta
+          assert context_meta['invalid_date_rows']==0, context_meta
+          assert context_meta['duplicate_historical_match_ids']==0, context_meta
+          assert context_meta['invalid_result_rows']==0, context_meta
+          assert context_meta['same_day_results_excluded'] is True, context_meta
+          assert context_meta['no_lookahead'] is True, context_meta
+          assert context_meta['provider_calls']==0, context_meta
+          assert context_meta['research_only'] is True, context_meta
+          assert context_meta['operational_betting_authority'] is False, context_meta
+          with open('normalized/football_data_top5_prematch_context.csv',encoding='utf-8-sig',newline='') as f:
+              rows=list(csv.DictReader(f))
+          assert len(rows)==16111, len(rows)
+          assert len({r['historical_match_id'] for r in rows})==16111
+          assert len({(r['league_code'],r['season_label']) for r in rows})==45
+          assert all(r['no_lookahead']=='true' for r in rows)
+          assert all(r['same_day_results_excluded']=='true' for r in rows)
+          assert all(r['research_only']=='true' for r in rows)
+          assert all(r['operational_betting_authority']=='false' for r in rows)
+          size=os.path.getsize('normalized/football_data_top5_prematch_context.csv')
+          assert size < 90_000_000, size
+          print({'prematch_rows':len(rows),'league_seasons':45,'bytes':size})
           PY
-      - name: Publish compact referee research safely
+      - name: Publish durable Football-Data research safely
         shell: bash
         run: |
           cp normalized/football_data_epl_referee_profiles.csv ops/epl_referee_profiles_research.csv
           cp normalized/football_data_epl_referee_team_splits.csv ops/epl_referee_team_splits_research.csv
           cp normalized/stage80_referee_research_meta.json ops/stage80_referee_research_last_run.json
-          git config user.name 'stage80-referee-bot'
-          git config user.email 'stage80-referee-bot@users.noreply.github.com'
+          cp normalized/football_data_top5_prematch_context.csv ops/top5_prematch_context_research.csv
+          cp normalized/stage80_football_data_prematch_context_meta.json ops/stage80_prematch_context_last_run.json
+          git config user.name 'stage80-football-data-bot'
+          git config user.email 'stage80-football-data-bot@users.noreply.github.com'
           git add ops/epl_referee_profiles_research.csv
           git add ops/epl_referee_team_splits_research.csv
           git add ops/stage80_referee_research_last_run.json
+          git add ops/top5_prematch_context_research.csv
+          git add ops/stage80_prematch_context_last_run.json
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Stage 80 EPL referee research archive update'
+          git commit -m 'Stage 80 Football-Data research archive update'
           python scripts/publish_operational_commit.py

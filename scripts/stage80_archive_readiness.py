@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V17_TOP5_REFEREE_BACKFILL"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V18_PREMATCH_CONTEXT"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -50,6 +50,7 @@ SOURCES = {
     "top5_referee_profiles": "top5_referee_profiles_research.csv",
     "top5_referee_team_splits": "top5_referee_team_splits_research.csv",
     "top5_referee_state": "stage80_top5_referee_backfill_state.csv",
+    "prematch_context": "top5_prematch_context_research.csv",
 }
 FINAL_PROVIDER_CODES = {"FT", "AET", "PEN"}
 FINAL_NORMALIZED = {"finished", "ft", "aet", "pen"}
@@ -206,6 +207,7 @@ def build_report(ops=OPS, archive_dir=None):
     stage91_meta = read_json(Path(ops) / "stage91_statsbomb_player_xg_xa_last_run.json")
     referee_meta = read_json(Path(ops) / "stage80_referee_research_last_run.json")
     top5_referee_meta = read_json(Path(ops) / "stage80_top5_referee_backfill_last_run.json")
+    prematch_context_meta = read_json(Path(ops) / "stage80_prematch_context_last_run.json")
     source_presence = {
         name: {
             "file": filename,
@@ -380,6 +382,7 @@ def build_report(ops=OPS, archive_dir=None):
     top5_referee_profiles = data["top5_referee_profiles"] or []
     top5_referee_team_splits = data["top5_referee_team_splits"] or []
     top5_referee_state = data["top5_referee_state"] or []
+    prematch_context = data["prematch_context"] or []
 
     history_snapshots = {
         (sval(row, "team_id"), sval(row, "captured_at_utc"))
@@ -676,6 +679,64 @@ def build_report(ops=OPS, archive_dir=None):
     top5_referee_coverage_pct = pct(
         top5_referee_rows_with_referee, len(top5_referee_fixture_valid)
     )
+
+    expected_prematch_leagues = {"D1", "E0", "F1", "I1", "SP1"}
+    prematch_context_valid = [
+        row for row in prematch_context
+        if sval(row, "historical_match_id")
+        and sval(row, "league_code") in expected_prematch_leagues
+        and sval(row, "season_label")
+        and sval(row, "date_iso")
+        and sval(row, "home_team")
+        and sval(row, "away_team")
+        and is_true(row.get("same_day_results_excluded"))
+        and is_true(row.get("no_lookahead"))
+        and is_true(row.get("historical_backfill_only"))
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+        and not is_true(row.get("probability_mutation"))
+        and not is_true(row.get("eligibility_mutation"))
+        and not is_true(row.get("stake_changes"))
+        and not is_true(row.get("forward_journal_mutation"))
+    ]
+    prematch_context_invalid = len(prematch_context) - len(prematch_context_valid)
+    prematch_context_ids = {
+        sval(row, "historical_match_id")
+        for row in prematch_context_valid
+        if sval(row, "historical_match_id")
+    }
+    prematch_context_duplicate_ids = len(prematch_context_valid) - len(prematch_context_ids)
+    prematch_context_league_seasons = {
+        (sval(row, "league_code"), sval(row, "season_label"))
+        for row in prematch_context_valid
+        if sval(row, "league_code") and sval(row, "season_label")
+    }
+    prematch_context_meta_valid = bool(
+        prematch_context_meta
+        and not prematch_context_meta.get("_invalid_json")
+        and prematch_context_meta.get("version") == "PBK_STAGE80_FOOTBALL_DATA_PREMATCH_CONTEXT_V1"
+        and prematch_context_meta.get("status") == "OK"
+        and int(prematch_context_meta.get("source_rows") or 0) == 16111
+        and int(prematch_context_meta.get("output_rows") or 0) == 16111
+        and int(prematch_context_meta.get("unique_historical_match_ids") or 0) == 16111
+        and set(prematch_context_meta.get("league_codes") or []) == expected_prematch_leagues
+        and len(prematch_context_meta.get("season_labels") or []) == 9
+        and int(prematch_context_meta.get("invalid_date_rows") or 0) == 0
+        and int(prematch_context_meta.get("duplicate_historical_match_ids") or 0) == 0
+        and int(prematch_context_meta.get("invalid_result_rows") or 0) == 0
+        and prematch_context_meta.get("same_day_results_excluded") is True
+        and prematch_context_meta.get("no_lookahead") is True
+        and int(prematch_context_meta.get("provider_calls") or 0) == 0
+        and prematch_context_meta.get("historical_backfill_only") is True
+        and prematch_context_meta.get("research_only") is True
+        and prematch_context_meta.get("operational_betting_authority") is False
+        and prematch_context_meta.get("creates_signal") is False
+        and prematch_context_meta.get("probability_mutation") is False
+        and prematch_context_meta.get("eligibility_mutation") is False
+        and prematch_context_meta.get("stake_changes") is False
+        and prematch_context_meta.get("forward_journal_mutation") is False
+    )
     raw_archive = raw_archive_inventory(archive_dir, ops=ops)
     roster_history_rows = len(history)
     player_stats_fixture_count = len(stat_fixture_ids)
@@ -757,6 +818,17 @@ def build_report(ops=OPS, archive_dir=None):
         and top5_referee_coverage_pct < 100.0
     ):
         gaps.append("REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL")
+    if data["prematch_context"] is None or prematch_context_meta is None:
+        gaps.append("PREMATCH_CONTEXT_TOP5_NOT_MATERIALIZED")
+    elif (
+        not prematch_context_meta_valid
+        or prematch_context_invalid
+        or prematch_context_duplicate_ids
+        or len(prematch_context_valid) != 16111
+        or len(prematch_context_ids) != 16111
+        or len(prematch_context_league_seasons) != 45
+    ):
+        gaps.append("PREMATCH_CONTEXT_TOP5_INVALID_OR_INCOMPLETE")
     if data["lineup_archive"] is None:
         gaps.append("LINEUP_ARCHIVE_WAITING_FIRST_BUILD")
     if data["injury_archive"] is None:
@@ -1038,6 +1110,28 @@ def build_report(ops=OPS, archive_dir=None):
             "operational_betting_authority": False,
             "evidence_note": "Resumable API-Football league+season fixture backfill for Top-5 seasons 2017/18-2025/26. Referee is provider text with no stable referee ID; missing referee values remain UNKNOWN.",
         },
+        "prematch_context_research": {
+            "present": data["prematch_context"] is not None,
+            "meta_present": prematch_context_meta is not None,
+            "meta_valid": prematch_context_meta_valid,
+            "rows": len(prematch_context),
+            "valid_rows": len(prematch_context_valid),
+            "invalid_rows": prematch_context_invalid,
+            "unique_historical_match_ids": len(prematch_context_ids),
+            "duplicate_historical_match_ids": prematch_context_duplicate_ids,
+            "league_seasons": len(prematch_context_league_seasons),
+            "expected_league_seasons": 45,
+            "rows_with_kickoff_time": int(prematch_context_meta.get("rows_with_kickoff_time") or 0) if prematch_context_meta_valid else None,
+            "rows_with_both_rest": int(prematch_context_meta.get("rows_with_both_rest") or 0) if prematch_context_meta_valid else None,
+            "rows_with_both_pre_match_rank": int(prematch_context_meta.get("rows_with_both_pre_match_rank") or 0) if prematch_context_meta_valid else None,
+            "rows_with_both_full_last5": int(prematch_context_meta.get("rows_with_both_full_last5") or 0) if prematch_context_meta_valid else None,
+            "rows_with_both_full_last10": int(prematch_context_meta.get("rows_with_both_full_last10") or 0) if prematch_context_meta_valid else None,
+            "same_day_results_excluded": bool(prematch_context_meta.get("same_day_results_excluded")) if prematch_context_meta_valid else None,
+            "no_lookahead": bool(prematch_context_meta.get("no_lookahead")) if prematch_context_meta_valid else None,
+            "provider_calls": int(prematch_context_meta.get("provider_calls") or 0) if prematch_context_meta_valid else None,
+            "operational_betting_authority": False,
+            "evidence_note": "Deterministic Football-Data Top-5 2017/18-2025/26 pre-match research projection. Features use strictly earlier calendar dates within league-season; same-day results are excluded and the layer has no probability/EV/eligibility/stake/Forward authority.",
+        },
         "normalized_context_archives": {
             "lineup_rows": len(lineup_archive),
             "lineup_fixtures": len(lineup_archive_fixture_ids),
@@ -1075,6 +1169,7 @@ def render_markdown(report):
     norm = report["normalized_context_archives"]
     referee = report["referee_research"]
     referee_top5 = report["referee_top5_backfill"]
+    prematch = report["prematch_context_research"]
     raw = report["raw_provider_archive"]
     coverage = f["finished_current_inventory_player_stats_coverage_pct"]
     coverage_text = "—" if coverage is None else f"{coverage:.2f}%"
@@ -1112,6 +1207,7 @@ def render_markdown(report):
         f"- Verified historical transfers: {transfers['valid_rows']} rows / {transfers['unique_pbk_players']} PBK players; dates {transfers['earliest_transfer_date'] or '—'} → {transfers['latest_transfer_date'] or '—'}; invalid {transfers['invalid_identity_rows']}.",
         f"- EPL referee research: {referee['unique_referees']} referees / {referee['valid_team_split_rows']} referee×team pairs / {referee['source_matches'] if referee['source_matches'] is not None else '—'} source matches; scope EPL_ONLY; penalties unavailable.",
         f"- Top-5 API-Football referee backfill: {referee_top5['captured_league_seasons']} / {referee_top5['expected_league_seasons']} league-seasons; {referee_top5['valid_fixture_rows']} fixture rows; referee coverage {referee_top5['referee_coverage_pct'] if referee_top5['referee_coverage_pct'] is not None else '—'}%; profiles {referee_top5['valid_profile_rows']}; referee×team pairs {referee_top5['valid_team_split_rows']}.",
+        f"- Top-5 pre-match research context: {prematch['valid_rows']} valid rows / {prematch['unique_historical_match_ids']} unique matches / {prematch['league_seasons']} of {prematch['expected_league_seasons']} league-seasons; no-lookahead {prematch['no_lookahead']}.",
         f"- Match context: {c['unique_fixtures']} fixtures; official XI {c['fixtures_with_official_lineup_snapshot']}; injury evidence {c['fixtures_with_injury_evidence']}.",
         "",
         "## Raw provider archive",
@@ -1160,6 +1256,9 @@ def main():
         "top5_referee_backfill_league_seasons": report["referee_top5_backfill"]["captured_league_seasons"],
         "top5_referee_backfill_fixture_rows": report["referee_top5_backfill"]["valid_fixture_rows"],
         "top5_referee_backfill_coverage_pct": report["referee_top5_backfill"]["referee_coverage_pct"],
+        "prematch_context_rows": report["prematch_context_research"]["valid_rows"],
+        "prematch_context_league_seasons": report["prematch_context_research"]["league_seasons"],
+        "prematch_context_no_lookahead": report["prematch_context_research"]["no_lookahead"],
     }, ensure_ascii=False))
 
 

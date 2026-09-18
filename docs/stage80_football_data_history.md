@@ -1,6 +1,6 @@
 # Stage80 — Football-Data.co.uk Top-5 nine-season historical source
 
-Status: **HISTORICAL BACKFILL SOURCE — ARTIFACT ONLY**
+Status: **HISTORICAL BACKFILL SOURCE + DURABLE RESEARCH PROJECTION**
 
 PBK needs a separate historical-research layer that must never be confused with forward validation. This slice builds a reproducible 9-season Top-5 archive package from Football-Data.co.uk.
 
@@ -30,10 +30,20 @@ The source matrix is therefore exactly **45 league-season CSV files**.
 
 ## Output
 
-The workflow publishes two 90-day artifacts:
+The workflow publishes two 90-day build artifacts:
 
 - `football-data-top5-9seasons-source` — original downloaded CSVs;
-- `football-data-top5-9seasons` — normalized combined CSV, metadata, and source checksums.
+- `football-data-top5-9seasons` — normalized combined CSV, metadata, source checksums, referee research and pre-match context research.
+
+On successful `main` builds it also persists compact/rebuildable research outputs into `ops/`:
+
+- `ops/epl_referee_profiles_research.csv`;
+- `ops/epl_referee_team_splits_research.csv`;
+- `ops/stage80_referee_research_last_run.json`;
+- `ops/top5_prematch_context_research.csv`;
+- `ops/stage80_prematch_context_last_run.json`.
+
+The durable pre-match projection is registered in the Stage80 archive manifest and readiness telemetry. It remains research-only and does not become operational betting authority by being persisted.
 
 The normalized row includes:
 
@@ -73,7 +83,7 @@ The Football-Data matrix used here does not provide a penalty field, so penalty 
 
 ## Historical pre-match context research
 
-The normalized 16,111-match Top-5 matrix also produces `football_data_top5_prematch_context.csv`.
+The normalized 16,111-match Top-5 matrix also produces `football_data_top5_prematch_context.csv`; after a successful `main` build the verified projection is persisted as `ops/top5_prematch_context_research.csv` with `ops/stage80_prematch_context_last_run.json`.
 
 For each match this projection records only information available from **strictly earlier calendar dates** in the same league-season:
 
