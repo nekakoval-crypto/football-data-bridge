@@ -14,7 +14,7 @@ mapping pipeline.
 A transfer row is eligible only when the player mapping is:
 
 - `match_status = AUTO_MATCH`;
-- `match_method` is either `EXACT_NAME_CURRENT_CLUB` or `EXACT_STATS_NAME_CURRENT_CLUB`;
+- `match_method` is one of `EXACT_NAME_CURRENT_CLUB`, `EXACT_PROFILE_NAME_DOB_CURRENT_CLUB`, or `EXACT_STATS_NAME_CURRENT_CLUB`;
 - `match_confidence = HIGH`.
 
 REVIEW, ambiguous, initial+surname and other non-authoritative candidates are never
