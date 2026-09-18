@@ -31,12 +31,16 @@ on:
       - 'scripts/tests/test_stage80_archive_read_api.py'
       - 'docs/stage80_transfer_history_archive.md'
   workflow_dispatch:
+  workflow_run:
+    workflows: ['Stage 80 Player Profile Enrichment']
+    types: [completed]
 
 permissions:
   contents: write
 
 jobs:
   fetch:
+    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -80,6 +84,7 @@ jobs:
           python scripts/stage80_transfer_entity_mapping.py \
             --pbk ops/historical_players.csv \
             --player-stats ops/player_stats_snapshots.csv \
+            --player-profiles ops/player_profile_evidence.csv \
             --players core/players.csv.gz \
             --transfers core/transfers.csv.gz \
             --identity-out mapping/pbk_transfermarkt_player_identity.csv \
@@ -144,7 +149,7 @@ jobs:
           retention-days: 30
 
       - name: Publish durable transfer history safely
-        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        if: ${{ (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') || (github.event_name != 'pull_request' && github.ref == 'refs/heads/main') }}
         shell: bash
         run: |
           git config user.name 'stage80-bot'
