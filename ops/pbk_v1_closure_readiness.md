@@ -1,6 +1,6 @@
 # PBK v1 Closure Readiness
 
-- Run: `2026-09-18T17:47:13Z`
+- Run: `2026-09-18T18:49:02Z`
 - Status: **WAITING**
 - Ready for manual PBK v1 close: **false**
 - Profitability threshold: **not used for technical v1 closure**
