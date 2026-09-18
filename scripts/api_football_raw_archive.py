@@ -1,13 +1,18 @@
 """Content-addressed raw API-Football response archive for PBK Stage80.
 
-The archive receives already-successful provider responses from the shared broker.
-It never performs network I/O. Payload blobs are canonical JSON compressed with
-GZip and addressed by SHA-256; an append-only JSONL manifest records observation
-provenance without API keys or HTTP headers.
+Successful real provider responses are copied into durable evidence storage.
+Two backends are supported:
 
-Persistence is intentionally storage-configurable. Set API_FOOTBALL_ARCHIVE_DIR
-to a durable mounted/off-site-backed location. Without that variable the archive
-is disabled rather than pretending a temporary CI filesystem is durable.
+1. Local/mounted storage via API_FOOTBALL_ARCHIVE_DIR.
+2. S3-compatible object storage (Cloudflare R2 in production) via:
+   PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID
+   PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY
+   PBK_RAW_ARCHIVE_S3_ENDPOINT
+   PBK_RAW_ARCHIVE_S3_BUCKET
+
+The archive never performs API-Football network I/O itself. It receives an
+already-successful provider payload from the shared broker. Provider API keys and
+HTTP headers are never persisted.
 """
 from __future__ import annotations
 
@@ -15,17 +20,50 @@ import gzip
 import hashlib
 import json
 import os
+import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from threading import Lock
 
-ARCHIVE_VERSION = "PBK_STAGE80_RAW_API_ARCHIVE_V1"
+ARCHIVE_VERSION = "PBK_STAGE80_RAW_API_ARCHIVE_V2_S3"
 _LOCK = Lock()
+
+S3_ENV = {
+    "access_key_id": "PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID",
+    "secret_access_key": "PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY",
+    "endpoint": "PBK_RAW_ARCHIVE_S3_ENDPOINT",
+    "bucket": "PBK_RAW_ARCHIVE_S3_BUCKET",
+}
 
 
 def archive_root_from_env():
     raw = os.getenv("API_FOOTBALL_ARCHIVE_DIR", "").strip()
     return Path(raw) if raw else None
+
+
+def s3_config_from_env():
+    values = {key: os.getenv(env, "").strip() for key, env in S3_ENV.items()}
+    if not any(values.values()):
+        return None
+    missing = [S3_ENV[key] for key, value in values.items() if not value]
+    if missing:
+        raise RuntimeError("Incomplete raw archive S3 configuration: " + ", ".join(missing))
+    return {
+        **values,
+        "prefix": os.getenv("PBK_RAW_ARCHIVE_S3_PREFIX", "api-football-raw").strip().strip("/") or "api-football-raw",
+        "region": os.getenv("PBK_RAW_ARCHIVE_S3_REGION", "auto").strip() or "auto",
+    }
+
+
+def archive_enabled_from_env():
+    if archive_root_from_env() is not None:
+        return True
+    try:
+        return s3_config_from_env() is not None
+    except RuntimeError:
+        # Partial configuration is considered enabled so the broker exposes
+        # archive_errors instead of silently pretending archival is disabled.
+        return True
 
 
 def canonical_payload_bytes(payload):
@@ -49,30 +87,12 @@ def observation_id(request_key, fetched_at_utc, payload_hash):
     return hashlib.sha256(raw).hexdigest()
 
 
-def _atomic_write(path, data):
-    path.parent.mkdir(parents=True, exist_ok=True)
-    temp = path.with_name(path.name + ".tmp")
-    temp.write_bytes(data)
-    os.replace(temp, path)
-
-
-def archive_response(*, root, request_key, path, normalized_params, payload, fetched_at):
-    """Persist one successful real-provider observation.
-
-    The same payload may be observed repeatedly. Its blob is deduplicated by hash,
-    while each provider observation receives its own manifest record because the
-    fact that PBK observed the same data at a later time can itself be important.
-    """
-    root = Path(root)
+def _record(*, request_key, path, normalized_params, payload, fetched_at):
     raw = canonical_payload_bytes(payload)
     digest = hashlib.sha256(raw).hexdigest()
     fetched_at_utc = utc_iso(fetched_at)
     obs_id = observation_id(request_key, fetched_at_utc, digest)
-    relative_blob = Path("blobs") / digest[:2] / f"{digest}.json.gz"
-    blob_path = root / relative_blob
-    manifest_path = root / "manifest.jsonl"
-
-    record = {
+    return raw, {
         "archive_version": ARCHIVE_VERSION,
         "observation_id": obs_id,
         "provider": "api-football",
@@ -83,8 +103,23 @@ def archive_response(*, root, request_key, path, normalized_params, payload, fet
         "fetched_at_utc": fetched_at_utc,
         "payload_sha256": digest,
         "payload_bytes": len(raw),
-        "blob_path": relative_blob.as_posix(),
     }
+
+
+def _atomic_write(path, data):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temp = path.with_name(path.name + ".tmp")
+    temp.write_bytes(data)
+    os.replace(temp, path)
+
+
+def _archive_local(*, root, raw, record):
+    root = Path(root)
+    digest = record["payload_sha256"]
+    relative_blob = Path("blobs") / digest[:2] / f"{digest}.json.gz"
+    blob_path = root / relative_blob
+    manifest_path = root / "manifest.jsonl"
+    record = {**record, "blob_path": relative_blob.as_posix(), "storage_backend": "LOCAL"}
 
     with _LOCK:
         root.mkdir(parents=True, exist_ok=True)
@@ -93,11 +128,9 @@ def archive_response(*, root, request_key, path, normalized_params, payload, fet
             _atomic_write(blob_path, gzip.compress(raw, compresslevel=6, mtime=0))
             blob_created = True
 
-        # Observation IDs are deterministic. Avoid a duplicate manifest row if a
-        # caller retries archive persistence for the exact same successful fetch.
         duplicate_observation = False
         if manifest_path.exists():
-            needle = f'"observation_id":"{obs_id}"'
+            needle = f'"observation_id":"{record["observation_id"]}"'
             with manifest_path.open(encoding="utf-8") as stream:
                 duplicate_observation = any(needle in line.replace(" ", "") for line in stream)
         if not duplicate_observation:
@@ -108,9 +141,156 @@ def archive_response(*, root, request_key, path, normalized_params, payload, fet
                 os.fsync(stream.fileno())
 
     return {
-        "observation_id": obs_id,
+        "backend": "LOCAL",
+        "observation_id": record["observation_id"],
         "payload_sha256": digest,
         "blob_path": relative_blob.as_posix(),
         "blob_created": blob_created,
         "manifest_appended": not duplicate_observation,
+    }
+
+
+def _s3_client(config):
+    try:
+        import boto3
+    except ImportError as exc:
+        raise RuntimeError("boto3 is required for S3/R2 raw archive storage") from exc
+    return boto3.client(
+        "s3",
+        endpoint_url=config["endpoint"],
+        aws_access_key_id=config["access_key_id"],
+        aws_secret_access_key=config["secret_access_key"],
+        region_name=config["region"],
+    )
+
+
+def _not_found(exc):
+    response = getattr(exc, "response", {}) or {}
+    code = str((response.get("Error") or {}).get("Code") or "")
+    status = int((response.get("ResponseMetadata") or {}).get("HTTPStatusCode") or 0)
+    return code in {"404", "NoSuchKey", "NotFound"} or status == 404
+
+
+def _exists(client, bucket, key):
+    try:
+        client.head_object(Bucket=bucket, Key=key)
+        return True
+    except Exception as exc:
+        if _not_found(exc):
+            return False
+        raise
+
+
+def _archive_s3(*, config, raw, record, client=None):
+    client = client or _s3_client(config)
+    prefix = config["prefix"]
+    digest = record["payload_sha256"]
+    date = record["fetched_at_utc"][:10].replace("-", "/")
+    blob_key = f"{prefix}/blobs/sha256/{digest[:2]}/{digest}.json.gz"
+    observation_key = f"{prefix}/observations/{date}/{record['observation_id']}.json"
+    record = {
+        **record,
+        "storage_backend": "S3",
+        "bucket": config["bucket"],
+        "blob_key": blob_key,
+        "observation_key": observation_key,
+    }
+
+    blob_created = False
+    if not _exists(client, config["bucket"], blob_key):
+        client.put_object(
+            Bucket=config["bucket"],
+            Key=blob_key,
+            Body=gzip.compress(raw, compresslevel=6, mtime=0),
+            ContentType="application/gzip",
+            Metadata={"payload-sha256": digest, "archive-version": ARCHIVE_VERSION},
+        )
+        blob_created = True
+
+    observation_created = False
+    if not _exists(client, config["bucket"], observation_key):
+        body = json.dumps(record, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+        client.put_object(
+            Bucket=config["bucket"],
+            Key=observation_key,
+            Body=body,
+            ContentType="application/json",
+            Metadata={"observation-id": record["observation_id"], "payload-sha256": digest},
+        )
+        observation_created = True
+
+    return {
+        "backend": "S3",
+        "bucket": config["bucket"],
+        "observation_id": record["observation_id"],
+        "payload_sha256": digest,
+        "blob_path": blob_key,
+        "observation_path": observation_key,
+        "blob_created": blob_created,
+        "manifest_appended": observation_created,
+    }
+
+
+def archive_response(*, root=None, request_key, path, normalized_params, payload, fetched_at, s3_client=None):
+    """Persist one successful real-provider observation.
+
+    Local storage keeps one append-only JSONL manifest. S3/R2 stores one immutable
+    observation JSON object per observation, which avoids unsafe append semantics
+    on object storage while preserving an append-only evidence model.
+    """
+    raw, record = _record(
+        request_key=request_key,
+        path=path,
+        normalized_params=normalized_params,
+        payload=payload,
+        fetched_at=fetched_at,
+    )
+    if root is not None:
+        return _archive_local(root=root, raw=raw, record=record)
+    config = s3_config_from_env()
+    if config is None:
+        raise RuntimeError("Raw archive storage is not configured")
+    return _archive_s3(config=config, raw=raw, record=record, client=s3_client)
+
+
+def verify_s3_storage(*, client=None, keep_object=True):
+    """Write/read/hash-verify one tiny object against the configured S3 backend."""
+    config = s3_config_from_env()
+    if config is None:
+        raise RuntimeError("S3/R2 raw archive storage is not configured")
+    client = client or _s3_client(config)
+    now = datetime.now(timezone.utc).replace(microsecond=0)
+    payload = {
+        "archive_version": ARCHIVE_VERSION,
+        "check": "PBK_RAW_ARCHIVE_STORAGE_READBACK",
+        "created_at_utc": now.isoformat().replace("+00:00", "Z"),
+        "nonce": uuid.uuid4().hex,
+    }
+    body = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    digest = hashlib.sha256(body).hexdigest()
+    key = f"{config['prefix']}/healthchecks/{now:%Y/%m/%d}/{digest}.json"
+    client.put_object(
+        Bucket=config["bucket"],
+        Key=key,
+        Body=body,
+        ContentType="application/json",
+        Metadata={"sha256": digest, "archive-version": ARCHIVE_VERSION},
+    )
+    fetched = client.get_object(Bucket=config["bucket"], Key=key)["Body"].read()
+    readback_digest = hashlib.sha256(fetched).hexdigest()
+    ok = fetched == body and readback_digest == digest
+    if not keep_object:
+        client.delete_object(Bucket=config["bucket"], Key=key)
+    return {
+        "status": "READY" if ok else "HASH_MISMATCH",
+        "backend": "S3",
+        "endpoint": config["endpoint"],
+        "bucket": config["bucket"],
+        "prefix": config["prefix"],
+        "object_key": key,
+        "written_bytes": len(body),
+        "sha256": digest,
+        "readback_sha256": readback_digest,
+        "readback_match": ok,
+        "durable": bool(ok),
     }
