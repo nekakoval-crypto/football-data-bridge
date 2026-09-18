@@ -8,6 +8,7 @@ PBK and Transfermarkt use different player-ID namespaces. This slice introduces 
 
 - PBK `ops/historical_players.csv`
 - PBK `ops/player_stats_snapshots.csv` full-name/team evidence
+- PBK `ops/player_profile_evidence.csv` full-name/date-of-birth/team evidence
 - Transfermarkt `players.csv.gz`
 - Transfermarkt `transfers.csv.gz`
 
@@ -17,7 +18,7 @@ Automatic mapping is deliberately narrow.
 
 ### AUTO_MATCH
 
-Two conservative HIGH-confidence methods are allowed.
+Three conservative HIGH-confidence methods are allowed.
 
 #### Catalog name + current club
 
@@ -26,6 +27,22 @@ Two conservative HIGH-confidence methods are allowed.
 3. exactly one Transfermarkt candidate satisfies the pair.
 
 Method: `EXACT_NAME_CURRENT_CLUB`
+
+#### Player-profile full name + date of birth + current club
+
+When the PBK catalog name is abbreviated, Stage80 first prefers the richer
+API-Football `player_profile_evidence.csv` identity evidence.
+
+AUTO_MATCH is allowed only when:
+
+1. API-Football provides a non-abbreviated full name from `firstname + lastname`;
+2. that full name exactly matches Transfermarkt after the existing conservative normalization;
+3. API-Football birth date exactly equals Transfermarkt `date_of_birth`;
+4. API-Football profile team matches Transfermarkt current club;
+5. the full-name+club+DOB evidence belongs to exactly one PBK player ID;
+6. exactly one Transfermarkt player satisfies all three facts.
+
+Method: `EXACT_PROFILE_NAME_DOB_CURRENT_CLUB`
 
 #### Match-stat full name + same club
 
@@ -40,7 +57,7 @@ When the PBK catalog name is abbreviated, Stage80 may use API-Football
 
 Method: `EXACT_STATS_NAME_CURRENT_CLUB`
 
-Both methods use confidence `HIGH`.
+All three methods use confidence `HIGH`.
 
 If two PBK identities claim the same Transfermarkt player under an automatic method,
 the collision is demoted to REVIEW/LOW instead of silently overwriting one mapping.
@@ -53,7 +70,7 @@ These are never auto-promoted:
 - initial + surname + current-club match;
 - ambiguous exact-name matches.
 
-No edit distance, fuzzy text score, nationality inference, date-of-birth inference or manual-looking guess is used for automatic mapping.
+No edit distance, fuzzy text score, nationality inference, inferred date of birth, or manual-looking guess is used for automatic mapping. The profile method requires an explicit exact DOB from both sources.
 
 ## Outputs
 
