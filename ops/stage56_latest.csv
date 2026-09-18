@@ -1,5 +1,5 @@
 ﻿forward_id,rule,api_fixture_id,home_team,away_team,kickoff_utc,weather_snapshot_type,weather_captured_at_utc,temperature_c,precipitation_probability_pct,precipitation_mm,wind_speed_10m_kmh,wind_gusts_10m_kmh,visibility_m,weather_code,rotation_captured_at_utc,home_retained_starters,away_retained_starters,home_changed_starters,away_changed_starters,home_retained_pct,away_retained_pct,rotation_verified,context_only
 R1|I1|1550131,R1,1550131,Frosinone,Como,2026-09-20T13:00:00Z,BASELINE,2026-09-11T10:18:25Z,27.3,15,0.0,10.3,28.8,41920.0,1,,,,,,,,NO,YES
-R1|I1|1550143,R1,1550143,Lecce,Bologna,,,,,,,,,,,,,,,,,,NO,YES
-R1|I1|1550145,R1,1550145,Sassuolo,AC Milan,,,,,,,,,,,,,,,,,,NO,YES
-R1|I1|1550138,R1,1550138,Cagliari,Juventus,,,,,,,,,,,,,,,,,,NO,YES
+R1|I1|1550143,R1,1550143,Lecce,Bologna,2026-10-11T13:00:00Z,BASELINE,2026-09-18T07:31:54Z,22.4,4,0.0,0.5,3.6,24140.0,3,,,,,,,,NO,YES
+R1|I1|1550145,R1,1550145,Sassuolo,AC Milan,2026-10-11T16:00:00Z,BASELINE,2026-09-18T07:31:54Z,18.9,,0.0,3.9,5.4,24140.0,2,,,,,,,,NO,YES
+R1|I1|1550138,R1,1550138,Cagliari,Juventus,2026-10-11T18:45:00Z,BASELINE,2026-09-18T07:31:54Z,21.4,27,0.0,4.2,7.6,24140.0,3,,,,,,,,NO,YES
