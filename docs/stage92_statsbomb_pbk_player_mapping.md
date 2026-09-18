@@ -14,8 +14,11 @@ names such as `M. Akanji` or `A. Hakimi`, while StatsBomb commonly exposes
 full names. An abbreviated-name match is not strong enough evidence to attach
 advanced metrics automatically.
 
-Stage80 already has a stronger identity bridge for a subset of players:
-verified historical transfer rows preserve:
+Stage80 publishes a dedicated durable identity bridge:
+
+`ops/pbk_transfermarkt_player_identity.csv`
+
+It preserves:
 
 - PBK player ID;
 - PBK observed name;
@@ -24,7 +27,10 @@ verified historical transfer rows preserve:
 - `EXACT_NAME_CURRENT_CLUB` or `EXACT_STATS_NAME_CURRENT_CLUB`;
 - `HIGH` mapping confidence.
 
-Stage92 reuses only that already-verified bridge.
+Stage92 prefers this dedicated identity dataset. It falls back to verified
+historical transfer rows only for backward compatibility. This means a safe
+AUTO/HIGH PBK↔Transfermarkt identity remains usable even when the player has no
+recorded transfer-event rows.
 
 ## AUTO_MATCH / HIGH rule
 
@@ -137,7 +143,7 @@ These rows are historical research enrichment only.
 
 ## Readiness states
 
-Stage80 V11 distinguishes:
+Stage80 V12 distinguishes:
 
 - Stage91 not materialized;
 - Stage91 materialized but Stage92 not materialized;
