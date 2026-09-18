@@ -141,6 +141,29 @@ class Stage80ArchiveReadinessTests(unittest.TestCase):
         self.assertEqual(raw["manifest_observations"], 1)
         self.assertEqual(raw["manifest_invalid_lines"], 1)
 
+    def test_verified_s3_storage_telemetry_closes_durable_storage_gap(self):
+        (self.ops / "stage80_raw_archive_storage_last_run.json").write_text(
+            json.dumps({
+                "backend": "S3",
+                "status": "READY",
+                "run_at_utc": "2026-09-18T12:30:00Z",
+                "readback_match": True,
+                "durable": True,
+                "bucket": "pbk-api-football-raw",
+                "prefix": "api-football-raw",
+            }),
+            encoding="utf-8",
+        )
+        report = s80.build_report(self.ops, archive_dir="")
+        raw = report["raw_provider_archive"]
+        self.assertTrue(raw["configured"])
+        self.assertEqual(raw["backend"], "S3")
+        self.assertEqual(raw["status"], "OK")
+        self.assertTrue(raw["storage_readback_match"])
+        self.assertNotIn("RAW_ARCHIVE_DURABLE_STORAGE_NOT_CONFIGURED", report["gaps"])
+        self.assertNotIn("RAW_ARCHIVE_STORAGE_NEEDS_ATTENTION", report["gaps"])
+
+
     def test_readiness_never_mutates_strategy_contracts(self):
         report = s80.build_report(self.ops, archive_dir="")
         self.assertFalse(report["creates_signal"])
