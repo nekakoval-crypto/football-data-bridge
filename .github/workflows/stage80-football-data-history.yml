@@ -51,13 +51,37 @@ jobs:
           assert p['expected_source_files']==45, p
           assert p['present_source_files']==45, p
           assert p['missing_source_files']==0, p
-          assert p['normalized_matches']>10000, p
+          assert p['normalized_matches']==16111, p
+          assert p['referee_rows']==3420, p
+          assert p['referee_rows_by_league']=={'E0':3420}, p
+          assert p['referee_coverage_pct']==21.23, p
           assert p['forward_validation_input'] is False, p
           print({
             'normalized_matches':p['normalized_matches'],
             'rows_by_season':p['rows_by_season'],
             'rows_by_league':p['rows_by_league'],
+            'referee_rows':p['referee_rows'],
+            'referee_coverage_pct':p['referee_coverage_pct'],
+            'referee_rows_by_league':p['referee_rows_by_league'],
           })
+          PY
+      - name: Build explicit EPL referee historical slice
+        run: |
+          python - <<'PY'
+          import csv
+          source='normalized/football_data_top5_9season_matches.csv'
+          target='normalized/football_data_epl_referee_matches.csv'
+          with open(source,encoding='utf-8-sig',newline='') as src:
+              reader=csv.DictReader(src)
+              fields=list(reader.fieldnames or [])
+              rows=[row for row in reader if (row.get('referee') or '').strip()]
+          assert len(rows)==3420, len(rows)
+          assert {row.get('league_code') for row in rows}=={'E0'}
+          with open(target,'w',encoding='utf-8-sig',newline='') as dst:
+              writer=csv.DictWriter(dst,fieldnames=fields)
+              writer.writeheader()
+              writer.writerows(rows)
+          print({'referee_rows':len(rows),'scope':'EPL_ONLY'})
           PY
       - name: Source checksums
         run: sha256sum source/*.csv | sort > normalized/SHA256SUMS.source.txt
