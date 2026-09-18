@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-18T14:02:59Z
+Generated UTC: 2026-09-18T15:02:28Z
 Active canonical signals: 4
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -114,12 +114,11 @@ Active canonical signals: 4
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 105
-- Активные движения ≥3 п.п.: всего 12 | ОЗ — Да 8 | ОЗ — Нет 4
+- Активные движения ≥3 п.п.: всего 16 | ОЗ — Да 11 | ОЗ — Нет 5
 - Зафиксировано observed close: 57
 - Исполнимый букмекер для наблюдения: Marathonbet
 
 ## Текущие ОЗ-watch
-- WATCH | Premier League | Brentford — Chelsea | ОЗ — Да | движение P(ОЗ — Да) +3.66 п.п. | Marathonbet 1.41 | 4243.5 мин до матча
 - WATCH | Serie A | Udinese — Cagliari | ОЗ — Да | движение P(ОЗ — Да) +3.33 п.п. | Marathonbet 1.85 | 4242.8 мин до матча
 - WATCH | Premier League | Everton — Ipswich | ОЗ — Да | движение P(ОЗ — Да) +3.70 п.п. | Marathonbet 1.67 | 4302.8 мин до матча
 - WATCH | La Liga | Athletic Club — Alaves | ОЗ — Нет | движение P(ОЗ — Да) -4.00 п.п. | Marathonbet 1.78 | 4317.8 мин до матча
@@ -131,6 +130,10 @@ Active canonical signals: 4
 - WATCH | Ligue 1 | Marseille — Paris Saint Germain | ОЗ — Нет | движение P(ОЗ — Да) -3.66 п.п. | Marathonbet 2.39 | 4228.1 мин до матча
 - WATCH | Bundesliga | Werder Bremen — FC Augsburg | ОЗ — Да | движение P(ОЗ — Да) +4.28 п.п. | Marathonbet 1.36 | 2354.6 мин до матча
 - WATCH | Serie A | Monza — Sassuolo | ОЗ — Да | движение P(ОЗ — Да) +4.23 п.п. | Marathonbet 1.56 | 628.1 мин до матча
+- WATCH | Serie A | Fiorentina — Napoli | ОЗ — Да | движение P(ОЗ — Да) +3.70 п.п. | Marathonbet 1.67 | 2653.6 мин до матча
+- WATCH | Ligue 1 | Angers — Estac Troyes | ОЗ — Да | движение P(ОЗ — Да) +3.33 п.п. | Marathonbet 1.75 | 1708.6 мин до матча
+- WATCH | Ligue 1 | Monaco — Lens | ОЗ — Нет | движение P(ОЗ — Да) -3.66 п.п. | Marathonbet 2.32 | 268.6 мин до матча
+- WATCH | La Liga | Celta Vigo — Racing Santander | ОЗ — Да | движение P(ОЗ — Да) +3.20 п.п. | Marathonbet 1.59 | 1573.6 мин до матча
 
 ---
 
@@ -138,14 +141,14 @@ Active canonical signals: 4
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 34 | settled 13 | pending 21
+- Crossings: 38 | settled 13 | pending 25
 - Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: -4.100u | ROI -31.538% | W-L 6-7
 - Close: observed 13 | stayed qualified 11 | reverted 2 | persistence 84.615%
 - Close-qualified ROI: -33.727% | Reverted ROI: -19.5%
 
 ## By WATCH family
-- Big-5 ОЗ market movement — ОЗ — Да: crossings 18, settled 10, ROI -52.6%, close persistence 80.0%
-- Big-5 ОЗ market movement — ОЗ — Нет: crossings 5, settled 1, ROI 81.0%, close persistence 100.0%
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 21, settled 10, ROI -52.6%, close persistence 80.0%
+- Big-5 ОЗ market movement — ОЗ — Нет: crossings 6, settled 1, ROI 81.0%, close persistence 100.0%
 - АПЛ favorite steam: crossings 5, settled 0, ROI N/A, close persistence N/A
 - Бундеслига ТБ(2.5) steam: crossings 6, settled 2, ROI 17.5%, close persistence 100.0%
