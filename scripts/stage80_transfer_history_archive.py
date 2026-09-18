@@ -20,7 +20,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 VERSION = "PBK_STAGE80_TRANSFER_HISTORY_ARCHIVE_V2_STATS_NAME"
-SAFE_METHODS = {"EXACT_NAME_CURRENT_CLUB", "EXACT_STATS_NAME_CURRENT_CLUB"}
+SAFE_METHODS = {"EXACT_NAME_CURRENT_CLUB", "EXACT_PROFILE_NAME_DOB_CURRENT_CLUB", "EXACT_STATS_NAME_CURRENT_CLUB"}
 SAFE_CONFIDENCE = "HIGH"
 SAFE_STATUS = "AUTO_MATCH"
 
@@ -313,7 +313,7 @@ def run(mapped_path, mapping_path, metadata_path, existing_path, out_path, meta_
         "existing_rows": len(existing_rows),
         "archive_rows": len(merged),
         **merge_meta,
-        "mapping_policy": "AUTO_MATCH+HIGH with EXACT_NAME_CURRENT_CLUB or EXACT_STATS_NAME_CURRENT_CLUB",
+        "mapping_policy": "AUTO_MATCH+HIGH with EXACT_NAME_CURRENT_CLUB, EXACT_PROFILE_NAME_DOB_CURRENT_CLUB or EXACT_STATS_NAME_CURRENT_CLUB",
         "provider_calls": 0,
         "research_only": True,
         "creates_signal": False,
