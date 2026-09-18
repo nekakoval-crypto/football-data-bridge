@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-18T02:26:09Z",
+  "run_at_utc": "2026-09-18T04:24:42Z",
   "status": "OK",
   "provider_endpoint": "/players/squads",
   "provider_calls": 8,
-  "daily_api_calls": 22,
+  "daily_api_calls": 30,
   "protected_calls": {
     "live": 15,
     "current_round": 96,
@@ -16,48 +16,48 @@
   "candidate_teams": 8,
   "captured_teams": [
     {
-      "team_id": "168",
-      "team_name": "Bayer Leverkusen",
-      "players": 33
+      "team_id": "496",
+      "team_name": "Juventus",
+      "players": 35
     },
     {
-      "team_id": "173",
-      "team_name": "RB Leipzig",
-      "players": 30
-    },
-    {
-      "team_id": "79",
-      "team_name": "Lille",
-      "players": 31
-    },
-    {
-      "team_id": "84",
-      "team_name": "Nice",
+      "team_id": "499",
+      "team_name": "Atalanta",
       "players": 32
     },
     {
-      "team_id": "1660",
-      "team_name": "SV Elversberg",
-      "players": 24
+      "team_id": "167",
+      "team_name": "1899 Hoffenheim",
+      "players": 34
     },
     {
-      "team_id": "174",
-      "team_name": "FC Schalke 04",
-      "players": 29
+      "team_id": "185",
+      "team_name": "SC Paderborn 07",
+      "players": 31
     },
     {
-      "team_id": "33",
-      "team_name": "Manchester United",
-      "players": 33
+      "team_id": "489",
+      "team_name": "AC Milan",
+      "players": 31
     },
     {
-      "team_id": "36",
-      "team_name": "Fulham",
-      "players": 28
+      "team_id": "81",
+      "team_name": "Marseille",
+      "players": 27
+    },
+    {
+      "team_id": "85",
+      "team_name": "Paris Saint Germain",
+      "players": 27
+    },
+    {
+      "team_id": "867",
+      "team_name": "Lecce",
+      "players": 39
     }
   ],
   "deferred_teams": 0,
-  "total_roster_rows": 2470,
+  "total_roster_rows": 2726,
   "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
