@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V16_EPL_REFEREE_RESEARCH",
-  "generated_at_utc": "2026-09-18T20:40:49Z",
+  "generated_at_utc": "2026-09-18T20:44:45Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -116,13 +116,13 @@
     },
     "referee_profiles": {
       "file": "epl_referee_profiles_research.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 47
     },
     "referee_team_splits": {
       "file": "epl_referee_team_splits_research.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 897
     }
   },
   "fixtures": {
@@ -337,19 +337,19 @@
     "evidence_note": "Append-only normalized provider match events captured only after PBK observed a terminal fixture; empty provider responses remain retryable."
   },
   "referee_research": {
-    "profiles_present": false,
-    "team_splits_present": false,
-    "meta_present": false,
-    "meta_valid": false,
-    "profile_rows": 0,
-    "valid_profile_rows": 0,
+    "profiles_present": true,
+    "team_splits_present": true,
+    "meta_present": true,
+    "meta_valid": true,
+    "profile_rows": 47,
+    "valid_profile_rows": 47,
     "invalid_profile_rows": 0,
-    "unique_referees": 0,
-    "team_split_rows": 0,
-    "valid_team_split_rows": 0,
+    "unique_referees": 47,
+    "team_split_rows": 897,
+    "valid_team_split_rows": 897,
     "invalid_team_split_rows": 0,
-    "unique_teams": 0,
-    "source_matches": null,
+    "unique_teams": 32,
+    "source_matches": 3420,
     "source_scope": "EPL_ONLY",
     "penalties_available": false,
     "operational_betting_authority": false,
@@ -383,7 +383,6 @@
     "PLAYER_STATS_BACKLOG_PENDING",
     "PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
-    "REFEREE_RESEARCH_NOT_MATERIALIZED",
     "REFEREE_HISTORY_TOP5_PARTIAL_EPL_ONLY",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
     "PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE",
