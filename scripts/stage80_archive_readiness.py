@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V18_PREMATCH_CONTEXT"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V19_PREMATCH_FACTOR_RESEARCH"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -51,6 +51,8 @@ SOURCES = {
     "top5_referee_team_splits": "top5_referee_team_splits_research.csv",
     "top5_referee_state": "stage80_top5_referee_backfill_state.csv",
     "prematch_context": "top5_prematch_context_research.csv",
+    "prematch_factor_research": "top5_prematch_factor_research.csv",
+    "prematch_factor_stability": "top5_prematch_factor_stability_research.csv",
 }
 FINAL_PROVIDER_CODES = {"FT", "AET", "PEN"}
 FINAL_NORMALIZED = {"finished", "ft", "aet", "pen"}
@@ -208,6 +210,7 @@ def build_report(ops=OPS, archive_dir=None):
     referee_meta = read_json(Path(ops) / "stage80_referee_research_last_run.json")
     top5_referee_meta = read_json(Path(ops) / "stage80_top5_referee_backfill_last_run.json")
     prematch_context_meta = read_json(Path(ops) / "stage80_prematch_context_last_run.json")
+    prematch_factor_meta = read_json(Path(ops) / "stage80_prematch_factor_research_last_run.json")
     source_presence = {
         name: {
             "file": filename,
@@ -383,6 +386,8 @@ def build_report(ops=OPS, archive_dir=None):
     top5_referee_team_splits = data["top5_referee_team_splits"] or []
     top5_referee_state = data["top5_referee_state"] or []
     prematch_context = data["prematch_context"] or []
+    prematch_factor_research = data["prematch_factor_research"] or []
+    prematch_factor_stability = data["prematch_factor_stability"] or []
 
     history_snapshots = {
         (sval(row, "team_id"), sval(row, "captured_at_utc"))
@@ -737,6 +742,61 @@ def build_report(ops=OPS, archive_dir=None):
         and prematch_context_meta.get("stake_changes") is False
         and prematch_context_meta.get("forward_journal_mutation") is False
     )
+    expected_factor_names = [
+        "WEEKDAY","KICKOFF_LOCAL","SHORT_REST","REST_ADVANTAGE",
+        "CONGESTION_7D_DIFF","TABLE_RANK_DIFF","FORM5_PPG_DIFF","VENUE_FORM5_PPG_DIFF",
+    ]
+    prematch_factor_valid = [
+        row for row in prematch_factor_research
+        if sval(row, "factor") in expected_factor_names
+        and sval(row, "bucket")
+        and sval(row, "scope_type") in {"ALL","LEAGUE","SEASON","LEAGUE_SEASON"}
+        and sval(row, "scope_value")
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+        and not is_true(row.get("probability_mutation"))
+        and not is_true(row.get("eligibility_mutation"))
+        and not is_true(row.get("stake_changes"))
+        and not is_true(row.get("forward_journal_mutation"))
+    ]
+    prematch_factor_stability_valid = [
+        row for row in prematch_factor_stability
+        if sval(row, "factor") in expected_factor_names
+        and sval(row, "bucket")
+        and sval(row, "scope_type") in {"ALL","LEAGUE"}
+        and sval(row, "scope_value")
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+    ]
+    prematch_factor_invalid = len(prematch_factor_research) - len(prematch_factor_valid)
+    prematch_factor_stability_invalid = len(prematch_factor_stability) - len(prematch_factor_stability_valid)
+    prematch_factor_meta_valid = bool(
+        prematch_factor_meta
+        and not prematch_factor_meta.get("_invalid_json")
+        and prematch_factor_meta.get("version") == "PBK_STAGE80_PREMATCH_FACTOR_RESEARCH_V1"
+        and prematch_factor_meta.get("status") == "OK"
+        and int(prematch_factor_meta.get("source_rows") or 0) == 16111
+        and int(prematch_factor_meta.get("context_rows") or 0) == 16111
+        and int(prematch_factor_meta.get("joined_rows") or 0) == 16111
+        and int(prematch_factor_meta.get("invalid_context_governance_rows") or 0) == 0
+        and int(prematch_factor_meta.get("source_without_context") or 0) == 0
+        and int(prematch_factor_meta.get("context_without_source") or 0) == 0
+        and list(prematch_factor_meta.get("factor_names") or []) == expected_factor_names
+        and int(prematch_factor_meta.get("factor_profile_rows") or 0) == len(prematch_factor_valid)
+        and int(prematch_factor_meta.get("season_stability_rows") or 0) == len(prematch_factor_stability_valid)
+        and int(prematch_factor_meta.get("closing_1x2_matches") or 0) > 0
+        and int(prematch_factor_meta.get("closing_total25_matches") or 0) > 0
+        and int(prematch_factor_meta.get("provider_calls") or 0) == 0
+        and prematch_factor_meta.get("research_only") is True
+        and prematch_factor_meta.get("operational_betting_authority") is False
+        and prematch_factor_meta.get("creates_signal") is False
+        and prematch_factor_meta.get("probability_mutation") is False
+        and prematch_factor_meta.get("eligibility_mutation") is False
+        and prematch_factor_meta.get("stake_changes") is False
+        and prematch_factor_meta.get("forward_journal_mutation") is False
+    )
     raw_archive = raw_archive_inventory(archive_dir, ops=ops)
     roster_history_rows = len(history)
     player_stats_fixture_count = len(stat_fixture_ids)
@@ -829,6 +889,20 @@ def build_report(ops=OPS, archive_dir=None):
         or len(prematch_context_league_seasons) != 45
     ):
         gaps.append("PREMATCH_CONTEXT_TOP5_INVALID_OR_INCOMPLETE")
+    if (
+        data["prematch_factor_research"] is None
+        or data["prematch_factor_stability"] is None
+        or prematch_factor_meta is None
+    ):
+        gaps.append("PREMATCH_FACTOR_RESEARCH_NOT_MATERIALIZED")
+    elif (
+        not prematch_factor_meta_valid
+        or prematch_factor_invalid
+        or prematch_factor_stability_invalid
+        or not prematch_factor_valid
+        or not prematch_factor_stability_valid
+    ):
+        gaps.append("PREMATCH_FACTOR_RESEARCH_INVALID_OR_INCOMPLETE")
     if data["lineup_archive"] is None:
         gaps.append("LINEUP_ARCHIVE_WAITING_FIRST_BUILD")
     if data["injury_archive"] is None:
@@ -1132,6 +1206,24 @@ def build_report(ops=OPS, archive_dir=None):
             "operational_betting_authority": False,
             "evidence_note": "Deterministic Football-Data Top-5 2017/18-2025/26 pre-match research projection. Features use strictly earlier calendar dates within league-season; same-day results are excluded and the layer has no probability/EV/eligibility/stake/Forward authority.",
         },
+        "prematch_factor_research": {
+            "profiles_present": data["prematch_factor_research"] is not None,
+            "stability_present": data["prematch_factor_stability"] is not None,
+            "meta_present": prematch_factor_meta is not None,
+            "meta_valid": prematch_factor_meta_valid,
+            "profile_rows": len(prematch_factor_research),
+            "valid_profile_rows": len(prematch_factor_valid),
+            "invalid_profile_rows": prematch_factor_invalid,
+            "stability_rows": len(prematch_factor_stability),
+            "valid_stability_rows": len(prematch_factor_stability_valid),
+            "invalid_stability_rows": prematch_factor_stability_invalid,
+            "factor_names": expected_factor_names,
+            "closing_1x2_matches": int(prematch_factor_meta.get("closing_1x2_matches") or 0) if prematch_factor_meta_valid else None,
+            "closing_total25_matches": int(prematch_factor_meta.get("closing_total25_matches") or 0) if prematch_factor_meta_valid else None,
+            "market_probability_semantics": "Historical closing-market no-vig only; never PBK probability.",
+            "operational_betting_authority": False,
+            "evidence_note": "Descriptive factor buckets and season-stability counts from no-lookahead prematch context joined to historical outcomes/closing markets. Observed ROI/calibration is research evidence only and does not promote a factor into a model.",
+        },
         "normalized_context_archives": {
             "lineup_rows": len(lineup_archive),
             "lineup_fixtures": len(lineup_archive_fixture_ids),
@@ -1170,6 +1262,7 @@ def render_markdown(report):
     referee = report["referee_research"]
     referee_top5 = report["referee_top5_backfill"]
     prematch = report["prematch_context_research"]
+    prematch_factor = report["prematch_factor_research"]
     raw = report["raw_provider_archive"]
     coverage = f["finished_current_inventory_player_stats_coverage_pct"]
     coverage_text = "—" if coverage is None else f"{coverage:.2f}%"
@@ -1208,6 +1301,7 @@ def render_markdown(report):
         f"- EPL referee research: {referee['unique_referees']} referees / {referee['valid_team_split_rows']} referee×team pairs / {referee['source_matches'] if referee['source_matches'] is not None else '—'} source matches; scope EPL_ONLY; penalties unavailable.",
         f"- Top-5 API-Football referee backfill: {referee_top5['captured_league_seasons']} / {referee_top5['expected_league_seasons']} league-seasons; {referee_top5['valid_fixture_rows']} fixture rows; referee coverage {referee_top5['referee_coverage_pct'] if referee_top5['referee_coverage_pct'] is not None else '—'}%; profiles {referee_top5['valid_profile_rows']}; referee×team pairs {referee_top5['valid_team_split_rows']}.",
         f"- Top-5 pre-match research context: {prematch['valid_rows']} valid rows / {prematch['unique_historical_match_ids']} unique matches / {prematch['league_seasons']} of {prematch['expected_league_seasons']} league-seasons; no-lookahead {prematch['no_lookahead']}.",
+        f"- Pre-match factor research: {prematch_factor['valid_profile_rows']} profile rows / {prematch_factor['valid_stability_rows']} stability rows; closing 1X2 matches {prematch_factor['closing_1x2_matches'] if prematch_factor['closing_1x2_matches'] is not None else '—'}; closing O/U2.5 matches {prematch_factor['closing_total25_matches'] if prematch_factor['closing_total25_matches'] is not None else '—'}.",
         f"- Match context: {c['unique_fixtures']} fixtures; official XI {c['fixtures_with_official_lineup_snapshot']}; injury evidence {c['fixtures_with_injury_evidence']}.",
         "",
         "## Raw provider archive",
@@ -1259,6 +1353,8 @@ def main():
         "prematch_context_rows": report["prematch_context_research"]["valid_rows"],
         "prematch_context_league_seasons": report["prematch_context_research"]["league_seasons"],
         "prematch_context_no_lookahead": report["prematch_context_research"]["no_lookahead"],
+        "prematch_factor_profile_rows": report["prematch_factor_research"]["valid_profile_rows"],
+        "prematch_factor_stability_rows": report["prematch_factor_research"]["valid_stability_rows"],
     }, ensure_ascii=False))
 
 
