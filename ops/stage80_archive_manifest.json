@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V6_MATCH_EVENTS",
-  "generated_at_utc": "2026-09-18T12:54:54Z",
+  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V7_RAW_S3",
+  "generated_at_utc": "2026-09-18T13:08:52Z",
   "status": "OK",
   "datasets": [
     {
@@ -916,7 +916,7 @@
     },
     {
       "dataset_id": "raw_api_football_payloads",
-      "path": "EXTERNAL_ENV:API_FOOTBALL_ARCHIVE_DIR",
+      "path": "EXTERNAL_DURABLE_STORAGE",
       "role": "RAW_PROVIDER_ARCHIVE",
       "lifecycle": "CONTENT_ADDRESSED_APPEND_ONLY",
       "identity_key": [
@@ -930,18 +930,20 @@
       "effective_time_fields": [],
       "effective_time_fields_text": "",
       "source": "API-Football broker successful real responses",
-      "limitations": "Physical durable storage is separate from Git; cache hits do not create false provider observations.",
-      "present": false,
+      "limitations": "Physical durable storage is separate from Git; cache hits do not create false provider observations. S3/R2 readiness requires write/readback/hash verification telemetry.",
+      "present": true,
       "row_count": null,
       "columns": [],
       "missing_required_fields": [],
-      "contract_status": "PENDING_DURABLE_STORAGE"
+      "storage_backend": "S3",
+      "storage_verified_at_utc": "2026-09-18T13:04:32Z",
+      "contract_status": "CONFIGURED"
     }
   ],
   "summary": {
     "declared_datasets": 19,
     "materialized_csv_datasets": 18,
-    "pending_materializations_or_storage": 1,
+    "pending_materializations_or_storage": 0,
     "contract_attention": 0
   },
   "provider_calls": 0,

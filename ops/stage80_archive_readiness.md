@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-18T12:54:54Z
+Обновлено UTC: 2026-09-18T13:08:52Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -21,8 +21,10 @@
 - Match context: 6 fixtures; official XI 1; injury evidence 2.
 
 ## Raw provider archive
-- Storage configured: False.
-- Status: STORAGE_NOT_CONFIGURED.
+- Storage configured: True.
+- Backend: S3.
+- Status: OK.
+- Durable readback verified: True; verified at 2026-09-18T13:04:32Z.
 - Observations: —; unique payloads: —.
 
 ## Незакрытые пробелы
@@ -30,7 +32,6 @@
 - PLAYER_STATS_BACKLOG_PENDING
 - PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE
 - TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE
-- RAW_ARCHIVE_DURABLE_STORAGE_NOT_CONFIGURED
 - MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY
 - VERIFIED_TRANSFER_EVENTS_NOT_YET_INGESTED
 - XG_XA_REQUIRE_VERIFIED_SOURCE

@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_READINESS_V5_MATCH_EVENTS",
-  "generated_at_utc": "2026-09-18T12:54:54Z",
+  "version": "PBK_STAGE80_ARCHIVE_READINESS_V6_RAW_S3",
+  "generated_at_utc": "2026-09-18T13:08:52Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -194,20 +194,26 @@
     "evidence_note": "Provider-free normalized append-only projections from already-persisted PBK context/rotation evidence; coverage remains limited by upstream capture scope."
   },
   "raw_provider_archive": {
-    "configured": false,
-    "status": "STORAGE_NOT_CONFIGURED",
+    "configured": true,
+    "backend": "S3",
+    "status": "OK",
+    "storage_verification_status": "READY",
+    "storage_verified_at_utc": "2026-09-18T13:04:32Z",
+    "storage_readback_match": true,
+    "bucket": "pbk-api-football-raw",
+    "prefix": "api-football-raw",
     "manifest_observations": null,
     "unique_payloads": null,
     "unique_paths": null,
     "manifest_invalid_lines": null,
-    "manifest_payload_bytes": null
+    "manifest_payload_bytes": null,
+    "inventory_note": "Remote S3/R2 object counts are intentionally not fetched by this provider-free readiness stage."
   },
   "gaps": [
     "TEAM_STATS_BACKLOG_PENDING",
     "PLAYER_STATS_BACKLOG_PENDING",
     "PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
-    "RAW_ARCHIVE_DURABLE_STORAGE_NOT_CONFIGURED",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
     "VERIFIED_TRANSFER_EVENTS_NOT_YET_INGESTED",
     "XG_XA_REQUIRE_VERIFIED_SOURCE"
