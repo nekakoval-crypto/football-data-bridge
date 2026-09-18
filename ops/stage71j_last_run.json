@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-18T00:42:51Z",
+  "run_at_utc": "2026-09-18T06:43:26Z",
   "status": "OK",
   "mode": "SHARED_PREFETCHED_PROSPECTIVE_CAPTURE",
   "prefetched_fixture_ids": 160,
@@ -18,7 +18,7 @@
   "market_presence_count": 183,
   "market_presence_api_calls_added": 0,
   "generic_1x2_forward_capture": {
-    "run_at_utc": "2026-09-18T00:43:37Z",
+    "run_at_utc": "2026-09-18T06:44:15Z",
     "status": "OK",
     "mode": "STAGE71J_ZERO_EXTRA_CALL_PROSPECTIVE_CAPTURE",
     "source": "API-Football /odds Bet365 Match Winner",
@@ -34,8 +34,8 @@
       "complete_candidate_rows": 126
     },
     "candidate_rows": 126,
-    "observations_added": 8,
-    "observations_rejected": 118,
+    "observations_added": 0,
+    "observations_rejected": 126,
     "prematch_frozen": 130,
     "settled_rows": 2,
     "rejections": [
@@ -172,6 +172,10 @@
         "reason": "already_frozen"
       },
       {
+        "fixture_id": "1552180",
+        "reason": "already_frozen"
+      },
+      {
         "fixture_id": "1552765",
         "reason": "already_frozen"
       },
@@ -205,6 +209,10 @@
       },
       {
         "fixture_id": "1552773",
+        "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1552775",
         "reason": "already_frozen"
       },
       {
@@ -368,6 +376,22 @@
         "reason": "already_frozen"
       },
       {
+        "fixture_id": "1561936",
+        "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1561937",
+        "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1561938",
+        "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1561941",
+        "reason": "already_frozen"
+      },
+      {
         "fixture_id": "1570393",
         "reason": "already_frozen"
       },
@@ -397,6 +421,10 @@
       },
       {
         "fixture_id": "1570400",
+        "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1570401",
         "reason": "already_frozen"
       },
       {
@@ -437,6 +465,10 @@
       },
       {
         "fixture_id": "1575175",
+        "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1575176",
         "reason": "already_frozen"
       },
       {
@@ -529,9 +561,9 @@
       "status": "OK",
       "fixtures_scanned": 160,
       "logical_odds_calls": 129,
-      "new_openers": 9,
+      "new_openers": 1,
       "new_snapshots": 1101,
-      "new_closes": 9,
+      "new_closes": 0,
       "warnings": 0
     },
     {
@@ -539,9 +571,9 @@
       "status": "OK",
       "fixtures_scanned": 160,
       "logical_odds_calls": 129,
-      "new_openers": 1,
+      "new_openers": 0,
       "new_snapshots": 119,
-      "new_closes": 1,
+      "new_closes": 0,
       "warnings": 0
     },
     {
@@ -549,9 +581,9 @@
       "status": "OK",
       "fixtures_scanned": 160,
       "logical_odds_calls": 129,
-      "new_openers": 9,
+      "new_openers": 0,
       "new_snapshots": 598,
-      "new_closes": 5,
+      "new_closes": 0,
       "warnings": 0
     },
     {
@@ -559,9 +591,9 @@
       "status": "OK",
       "fixtures_scanned": 160,
       "logical_odds_calls": 129,
-      "new_openers": 1,
+      "new_openers": 0,
       "new_snapshots": 111,
-      "new_closes": 1,
+      "new_closes": 0,
       "warnings": 0
     }
   ],
