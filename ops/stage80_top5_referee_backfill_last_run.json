@@ -1,0 +1,59 @@
+{
+  "version": "PBK_STAGE80_API_FOOTBALL_TOP5_REFEREE_BACKFILL_V1",
+  "run_at_utc": "2026-09-18T21:19:00Z",
+  "status": "OK",
+  "expected_queries": 45,
+  "captured_queries": 45,
+  "pending_or_error_queries": 0,
+  "archive_rows": 16239,
+  "referee_rows": 16148,
+  "referee_coverage_pct": 99.44,
+  "by_league": {
+    "39": {
+      "league_name": "Premier League",
+      "rows": 3420,
+      "referee_rows": 3420,
+      "referee_coverage_pct": 100.0
+    },
+    "78": {
+      "league_name": "Bundesliga",
+      "rows": 2770,
+      "referee_rows": 2769,
+      "referee_coverage_pct": 99.96
+    },
+    "135": {
+      "league_name": "Serie A",
+      "rows": 3421,
+      "referee_rows": 3421,
+      "referee_coverage_pct": 100.0
+    },
+    "140": {
+      "league_name": "La Liga",
+      "rows": 3420,
+      "referee_rows": 3420,
+      "referee_coverage_pct": 100.0
+    },
+    "61": {
+      "league_name": "Ligue 1",
+      "rows": 3208,
+      "referee_rows": 3118,
+      "referee_coverage_pct": 97.19
+    }
+  },
+  "profile_rows": 453,
+  "team_split_rows": 7689,
+  "provider_budget_calls": 45,
+  "real_api_calls": 45,
+  "daily_api_calls_before": 1291,
+  "daily_api_calls_after": 1336,
+  "protected_calls": 512,
+  "warnings": [],
+  "historical_backfill_only": true,
+  "research_only": true,
+  "operational_betting_authority": false,
+  "creates_signal": false,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "stake_changes": false,
+  "forward_journal_mutation": false
+}
