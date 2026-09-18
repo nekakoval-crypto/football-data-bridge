@@ -1,11 +1,16 @@
 import json
 import sqlite3
+import sys
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-import scripts.stage73_internal_api as api
+SCRIPTS = Path(__file__).resolve().parents[1]
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
+
+import stage73_internal_api as api
 
 
 class Stage80ArchiveReadApiTests(unittest.TestCase):
