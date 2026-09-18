@@ -25,10 +25,12 @@ class Stage80FootballDataHistoryTests(unittest.TestCase):
         }
         text=(
             "Div,Date,Time,HomeTeam,AwayTeam,FTHG,FTAG,FTR,HTHG,HTAG,HTR,"
-            "HS,AS,HST,AST,HF,AF,HC,AC,HY,AY,HR,AR,B365H,B365D,B365A,"
-            "AvgH,AvgD,AvgA,B365>2.5,B365<2.5,Avg>2.5,Avg<2.5,AHh,B365AHH,B365AHA\n"
-            "E0,18/09/2025,20:00,Alpha,Beta,2,1,H,1,0,H,12,8,5,3,9,11,6,4,2,3,0,0,"
-            "1.80,3.60,4.50,1.79,3.58,4.42,1.95,1.85,1.93,1.87,-0.5,1.90,2.00\n"
+            "Referee,HS,AS,HST,AST,HF,AF,HC,AC,HY,AY,HR,AR,B365H,B365D,B365A,"
+            "AvgH,AvgD,AvgA,B365>2.5,B365<2.5,Avg>2.5,Avg<2.5,AHh,B365AHH,B365AHA,"
+            "B365CH,B365CD,B365CA,AvgCH,AvgCD,AvgCA,B365C>2.5,B365C<2.5,AvgC>2.5,AvgC<2.5,AHCh,B365CAHH,B365CAHA,AvgCAHH,AvgCAHA\n"
+            "E0,18/09/2025,20:00,Alpha,Beta,2,1,H,1,0,H,J. Ref,12,8,5,3,9,11,6,4,2,3,0,0,"
+            "1.80,3.60,4.50,1.79,3.58,4.42,1.95,1.85,1.93,1.87,-0.5,1.90,2.00,"
+            "1.75,3.70,4.80,1.76,3.66,4.72,1.88,1.92,1.89,1.91,-0.75,1.95,1.95,1.94,1.96\n"
         )
         rows,invalid,columns=read_source_text(text,spec)
         self.assertEqual(invalid,0)
@@ -40,6 +42,12 @@ class Stage80FootballDataHistoryTests(unittest.TestCase):
         self.assertEqual(row["home_corners"],"6")
         self.assertEqual(row["b365_home"],"1.80")
         self.assertEqual(row["asian_handicap_line"],"-0.5")
+        self.assertEqual(row["referee"],"J. Ref")
+        self.assertEqual(row["b365_close_home"],"1.75")
+        self.assertEqual(row["avg_close_away"],"4.72")
+        self.assertEqual(row["b365_close_over_25"],"1.88")
+        self.assertEqual(row["asian_handicap_close_line"],"-0.75")
+        self.assertEqual(row["avg_close_ah_away"],"1.96")
         self.assertEqual(row["historical_backfill_only"],"true")
         self.assertEqual(row["probability_mutation"],"false")
         self.assertIn("B365H",columns)
