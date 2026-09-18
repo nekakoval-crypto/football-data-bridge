@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V16_EPL_REFEREE_RESEARCH"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V17_TOP5_REFEREE_BACKFILL"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -46,6 +46,10 @@ SOURCES = {
     "player_xg_xa_mapped": "pbk_player_xg_xa_research.csv",
     "referee_profiles": "epl_referee_profiles_research.csv",
     "referee_team_splits": "epl_referee_team_splits_research.csv",
+    "top5_referee_fixtures": "top5_referee_fixture_history.csv",
+    "top5_referee_profiles": "top5_referee_profiles_research.csv",
+    "top5_referee_team_splits": "top5_referee_team_splits_research.csv",
+    "top5_referee_state": "stage80_top5_referee_backfill_state.csv",
 }
 FINAL_PROVIDER_CODES = {"FT", "AET", "PEN"}
 FINAL_NORMALIZED = {"finished", "ft", "aet", "pen"}
@@ -201,6 +205,7 @@ def build_report(ops=OPS, archive_dir=None):
     data = {name: read_csv(Path(ops) / filename) for name, filename in SOURCES.items()}
     stage91_meta = read_json(Path(ops) / "stage91_statsbomb_player_xg_xa_last_run.json")
     referee_meta = read_json(Path(ops) / "stage80_referee_research_last_run.json")
+    top5_referee_meta = read_json(Path(ops) / "stage80_top5_referee_backfill_last_run.json")
     source_presence = {
         name: {
             "file": filename,
@@ -371,6 +376,10 @@ def build_report(ops=OPS, archive_dir=None):
     match_event_backlog = data["match_event_backlog"] or []
     referee_profiles = data["referee_profiles"] or []
     referee_team_splits = data["referee_team_splits"] or []
+    top5_referee_fixtures = data["top5_referee_fixtures"] or []
+    top5_referee_profiles = data["top5_referee_profiles"] or []
+    top5_referee_team_splits = data["top5_referee_team_splits"] or []
+    top5_referee_state = data["top5_referee_state"] or []
 
     history_snapshots = {
         (sval(row, "team_id"), sval(row, "captured_at_utc"))
@@ -611,6 +620,62 @@ def build_report(ops=OPS, archive_dir=None):
         and referee_meta.get("operational_betting_authority") is False
         and int(referee_meta.get("provider_calls") or 0) == 0
     )
+    top5_referee_fixture_valid = [
+        row for row in top5_referee_fixtures
+        if sval(row, "fixture_id")
+        and sval(row, "provider_league_id")
+        and sval(row, "season")
+        and sval(row, "home_team_id")
+        and sval(row, "away_team_id")
+        and is_true(row.get("historical_backfill_only"))
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+    ]
+    top5_referee_profile_valid = [
+        row for row in top5_referee_profiles
+        if sval(row, "provider_league_id")
+        and sval(row, "referee")
+        and sval(row, "source_scope") == "TOP5_9_SEASONS_API_FOOTBALL"
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+    ]
+    top5_referee_team_split_valid = [
+        row for row in top5_referee_team_splits
+        if sval(row, "provider_league_id")
+        and sval(row, "referee")
+        and sval(row, "team_id")
+        and sval(row, "source_scope") == "TOP5_9_SEASONS_API_FOOTBALL"
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+    ]
+    top5_referee_fixture_invalid = len(top5_referee_fixtures) - len(top5_referee_fixture_valid)
+    top5_referee_profile_invalid = len(top5_referee_profiles) - len(top5_referee_profile_valid)
+    top5_referee_team_split_invalid = len(top5_referee_team_splits) - len(top5_referee_team_split_valid)
+    top5_referee_state_captured = [
+        row for row in top5_referee_state
+        if sval(row, "provider_league_id")
+        and sval(row, "season")
+        and sval(row, "status").upper() == "CAPTURED"
+    ]
+    top5_referee_meta_valid = bool(
+        top5_referee_meta
+        and top5_referee_meta.get("status") == "OK"
+        and int(top5_referee_meta.get("expected_queries") or 0) == 45
+        and int(top5_referee_meta.get("captured_queries") or 0) == 45
+        and int(top5_referee_meta.get("pending_or_error_queries") or 0) == 0
+        and int(top5_referee_meta.get("archive_rows") or 0) == len(top5_referee_fixture_valid)
+        and int(top5_referee_meta.get("profile_rows") or 0) == len(top5_referee_profile_valid)
+        and int(top5_referee_meta.get("team_split_rows") or 0) == len(top5_referee_team_split_valid)
+        and len(top5_referee_state_captured) == 45
+        and top5_referee_meta.get("research_only") is True
+        and top5_referee_meta.get("operational_betting_authority") is False
+    )
+    top5_referee_rows_with_referee = sum(
+        bool(sval(row, "referee")) for row in top5_referee_fixture_valid
+    )
+    top5_referee_coverage_pct = pct(
+        top5_referee_rows_with_referee, len(top5_referee_fixture_valid)
+    )
     raw_archive = raw_archive_inventory(archive_dir, ops=ops)
     roster_history_rows = len(history)
     player_stats_fixture_count = len(stat_fixture_ids)
@@ -670,7 +735,28 @@ def build_report(ops=OPS, archive_dir=None):
         gaps.append("REFEREE_RESEARCH_NOT_MATERIALIZED")
     elif not referee_meta_valid or referee_profile_invalid or referee_team_split_invalid:
         gaps.append("REFEREE_RESEARCH_INVALID")
-    gaps.append("REFEREE_HISTORY_TOP5_PARTIAL_EPL_ONLY")
+    if (
+        data["top5_referee_fixtures"] is None
+        or data["top5_referee_profiles"] is None
+        or data["top5_referee_team_splits"] is None
+        or data["top5_referee_state"] is None
+        or top5_referee_meta is None
+    ):
+        gaps.append("REFEREE_HISTORY_TOP5_BACKFILL_NOT_MATERIALIZED")
+        gaps.append("REFEREE_HISTORY_TOP5_PARTIAL_EPL_ONLY")
+    elif (
+        top5_referee_fixture_invalid
+        or top5_referee_profile_invalid
+        or top5_referee_team_split_invalid
+        or not top5_referee_meta_valid
+    ):
+        gaps.append("REFEREE_HISTORY_TOP5_BACKFILL_INVALID_OR_INCOMPLETE")
+        gaps.append("REFEREE_HISTORY_TOP5_PARTIAL_EPL_ONLY")
+    elif (
+        top5_referee_coverage_pct is not None
+        and top5_referee_coverage_pct < 100.0
+    ):
+        gaps.append("REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL")
     if data["lineup_archive"] is None:
         gaps.append("LINEUP_ARCHIVE_WAITING_FIRST_BUILD")
     if data["injury_archive"] is None:
@@ -927,6 +1013,31 @@ def build_report(ops=OPS, archive_dir=None):
             "operational_betting_authority": False,
             "evidence_note": "Derived from the Football-Data EPL-only 2017/18-2025/26 referee slice. Descriptive historical aggregates only; missing Top-5 leagues remain UNKNOWN and no observed split is treated as referee bias or causation.",
         },
+        "referee_top5_backfill": {
+            "fixture_archive_present": data["top5_referee_fixtures"] is not None,
+            "profiles_present": data["top5_referee_profiles"] is not None,
+            "team_splits_present": data["top5_referee_team_splits"] is not None,
+            "state_present": data["top5_referee_state"] is not None,
+            "meta_present": top5_referee_meta is not None,
+            "meta_valid": top5_referee_meta_valid,
+            "fixture_rows": len(top5_referee_fixtures),
+            "valid_fixture_rows": len(top5_referee_fixture_valid),
+            "invalid_fixture_rows": top5_referee_fixture_invalid,
+            "rows_with_referee": top5_referee_rows_with_referee,
+            "referee_coverage_pct": top5_referee_coverage_pct,
+            "profile_rows": len(top5_referee_profiles),
+            "valid_profile_rows": len(top5_referee_profile_valid),
+            "team_split_rows": len(top5_referee_team_splits),
+            "valid_team_split_rows": len(top5_referee_team_split_valid),
+            "captured_league_seasons": len(top5_referee_state_captured),
+            "expected_league_seasons": 45,
+            "source_scope": "TOP5_9_SEASONS_API_FOOTBALL",
+            "cards_available": False,
+            "fouls_available": False,
+            "penalties_available": False,
+            "operational_betting_authority": False,
+            "evidence_note": "Resumable API-Football league+season fixture backfill for Top-5 seasons 2017/18-2025/26. Referee is provider text with no stable referee ID; missing referee values remain UNKNOWN.",
+        },
         "normalized_context_archives": {
             "lineup_rows": len(lineup_archive),
             "lineup_fixtures": len(lineup_archive_fixture_ids),
@@ -963,6 +1074,7 @@ def render_markdown(report):
     events = report["match_events"]
     norm = report["normalized_context_archives"]
     referee = report["referee_research"]
+    referee_top5 = report["referee_top5_backfill"]
     raw = report["raw_provider_archive"]
     coverage = f["finished_current_inventory_player_stats_coverage_pct"]
     coverage_text = "—" if coverage is None else f"{coverage:.2f}%"
@@ -999,6 +1111,7 @@ def render_markdown(report):
         f"- Verified PBK↔Transfermarkt identities: {identities['valid_rows']} rows / {identities['unique_pbk_players']} PBK players; invalid {identities['invalid_rows']}.",
         f"- Verified historical transfers: {transfers['valid_rows']} rows / {transfers['unique_pbk_players']} PBK players; dates {transfers['earliest_transfer_date'] or '—'} → {transfers['latest_transfer_date'] or '—'}; invalid {transfers['invalid_identity_rows']}.",
         f"- EPL referee research: {referee['unique_referees']} referees / {referee['valid_team_split_rows']} referee×team pairs / {referee['source_matches'] if referee['source_matches'] is not None else '—'} source matches; scope EPL_ONLY; penalties unavailable.",
+        f"- Top-5 API-Football referee backfill: {referee_top5['captured_league_seasons']} / {referee_top5['expected_league_seasons']} league-seasons; {referee_top5['valid_fixture_rows']} fixture rows; referee coverage {referee_top5['referee_coverage_pct'] if referee_top5['referee_coverage_pct'] is not None else '—'}%; profiles {referee_top5['valid_profile_rows']}; referee×team pairs {referee_top5['valid_team_split_rows']}.",
         f"- Match context: {c['unique_fixtures']} fixtures; official XI {c['fixtures_with_official_lineup_snapshot']}; injury evidence {c['fixtures_with_injury_evidence']}.",
         "",
         "## Raw provider archive",
@@ -1044,6 +1157,9 @@ def main():
         "player_xg_xa_source_status": report["advanced_metrics"]["player_xg_xa_source_status"],
         "referee_research_unique_referees": report["referee_research"]["unique_referees"],
         "referee_research_team_pairs": report["referee_research"]["valid_team_split_rows"],
+        "top5_referee_backfill_league_seasons": report["referee_top5_backfill"]["captured_league_seasons"],
+        "top5_referee_backfill_fixture_rows": report["referee_top5_backfill"]["valid_fixture_rows"],
+        "top5_referee_backfill_coverage_pct": report["referee_top5_backfill"]["referee_coverage_pct"],
     }, ensure_ascii=False))
 
 
