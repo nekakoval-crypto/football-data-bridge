@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V20_PREMATCH_WALKFORWARD",
-  "generated_at_utc": "2026-09-18T21:58:54Z",
+  "generated_at_utc": "2026-09-18T22:00:37Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -161,13 +161,13 @@
     },
     "prematch_walkforward": {
       "file": "top5_prematch_factor_walkforward_research.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 7685
     },
     "prematch_walkforward_summary": {
       "file": "top5_prematch_factor_walkforward_summary_research.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 1145
     }
   },
   "fixtures": {
@@ -505,18 +505,24 @@
     "evidence_note": "Descriptive factor buckets and season-stability counts from no-lookahead prematch context joined to historical outcomes/closing markets. Observed ROI/calibration is research evidence only and does not promote a factor into a model."
   },
   "prematch_factor_walkforward": {
-    "folds_present": false,
-    "summary_present": false,
-    "meta_present": false,
-    "meta_valid": false,
-    "fold_rows": 0,
-    "valid_fold_rows": 0,
+    "folds_present": true,
+    "summary_present": true,
+    "meta_present": true,
+    "meta_valid": true,
+    "fold_rows": 7685,
+    "valid_fold_rows": 7685,
     "invalid_fold_rows": 0,
-    "summary_rows": 0,
-    "valid_summary_rows": 0,
+    "summary_rows": 1145,
+    "valid_summary_rows": 1145,
     "invalid_summary_rows": 0,
-    "sample_threshold_pass_folds": null,
-    "targets": [],
+    "sample_threshold_pass_folds": 4455,
+    "targets": [
+      "HOME",
+      "DRAW",
+      "AWAY",
+      "OVER25",
+      "UNDER25"
+    ],
     "min_prior_seasons": 2,
     "min_train_market_matches": 100,
     "min_test_market_matches": 30,
@@ -554,7 +560,6 @@
     "PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL",
-    "PREMATCH_FACTOR_WALKFORWARD_NOT_MATERIALIZED",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
     "PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE",
     "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE"
