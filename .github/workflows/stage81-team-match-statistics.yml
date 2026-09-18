@@ -10,6 +10,10 @@ on:
     paths:
       - 'scripts/stage81_team_match_statistics_capture.py'
       - 'scripts/stage71_current_round_capture.py'
+      - 'scripts/stage80_fixture_history_archive.py'
+      - 'scripts/stage80_historical_fixture_catalog.py'
+      - 'scripts/tests/test_stage80_fixture_history_archive.py'
+      - 'scripts/tests/test_stage80_historical_fixture_catalog.py'
       - 'scripts/tests/test_stage71_current_round_read_model.py'
       - 'scripts/stage80_archive_manifest.py'
       - 'scripts/stage80_archive_readiness.py'
@@ -20,6 +24,10 @@ on:
     paths:
       - 'scripts/stage81_team_match_statistics_capture.py'
       - 'scripts/stage71_current_round_capture.py'
+      - 'scripts/stage80_fixture_history_archive.py'
+      - 'scripts/stage80_historical_fixture_catalog.py'
+      - 'scripts/tests/test_stage80_fixture_history_archive.py'
+      - 'scripts/tests/test_stage80_historical_fixture_catalog.py'
       - 'scripts/tests/test_stage71_current_round_read_model.py'
       - 'scripts/stage80_archive_manifest.py'
       - 'scripts/stage80_archive_readiness.py'
@@ -50,6 +58,10 @@ jobs:
         run: |
           python -m py_compile scripts/stage81_team_match_statistics_capture.py
           python -m py_compile scripts/stage71_current_round_capture.py
+          python -m py_compile scripts/stage80_fixture_history_archive.py
+          python -m py_compile scripts/stage80_historical_fixture_catalog.py
+          python -m py_compile scripts/tests/test_stage80_fixture_history_archive.py
+          python -m py_compile scripts/tests/test_stage80_historical_fixture_catalog.py
           python -m py_compile scripts/tests/test_stage71_current_round_read_model.py
           python -m py_compile scripts/stage80_archive_manifest.py
           python -m py_compile scripts/stage80_archive_readiness.py
@@ -60,12 +72,14 @@ jobs:
         run: |
           python -m unittest scripts.tests.test_stage81_team_match_statistics_capture -v
           python -m unittest scripts.tests.test_stage71_current_round_read_model -v
+          python -m unittest scripts.tests.test_stage80_fixture_history_archive -v
+          python -m unittest scripts.tests.test_stage80_historical_fixture_catalog -v
           python -m unittest scripts.tests.test_stage80_stage81_team_stats_readiness -v
 
       - name: Provider isolation
         shell: bash
         run: |
-          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/stage81_team_match_statistics_capture.py scripts/stage71_current_round_capture.py; then
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/stage81_team_match_statistics_capture.py scripts/stage71_current_round_capture.py scripts/stage80_fixture_history_archive.py scripts/stage80_historical_fixture_catalog.py; then
             echo 'Stage81/current-round refresh must reach API-Football only through the shared broker/backend.' >&2
             exit 1
           fi
@@ -119,6 +133,11 @@ jobs:
       - name: Refresh provider-defined current rounds
         run: python scripts/stage71_current_round_capture.py
 
+      - name: Archive refreshed current-round fixture observations
+        run: |
+          python scripts/stage80_fixture_history_archive.py
+          python scripts/stage80_historical_fixture_catalog.py
+
       - name: Capture finished-fixture team statistics
         run: python scripts/stage81_team_match_statistics_capture.py
 
@@ -140,6 +159,22 @@ jobs:
 
           if [ -f ops/current_round_last_run.json ]; then
             git add ops/current_round_last_run.json
+          fi
+
+          if [ -f ops/fixture_history_snapshots.csv ]; then
+            git add ops/fixture_history_snapshots.csv
+          fi
+
+          if [ -f ops/stage80_fixture_history_last_run.json ]; then
+            git add ops/stage80_fixture_history_last_run.json
+          fi
+
+          if [ -f ops/historical_fixtures.csv ]; then
+            git add ops/historical_fixtures.csv
+          fi
+
+          if [ -f ops/stage80_fixture_catalog_last_run.json ]; then
+            git add ops/stage80_fixture_catalog_last_run.json
           fi
 
           if [ -f ops/stage81_team_stats_backlog.csv ]; then
