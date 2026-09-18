@@ -24,7 +24,7 @@ from typing import Any
 VERSION = "PBK_STAGE92_STATSBOMB_PBK_PLAYER_MAPPING_V1"
 AUTO_METHOD = "EXACT_FULL_NAME_VIA_VERIFIED_TRANSFER"
 REVIEW_METHOD = "INITIAL_SURNAME_PBK_CANDIDATE"
-TRANSFER_METHOD = "EXACT_NAME_CURRENT_CLUB"
+TRANSFER_METHODS = {"EXACT_NAME_CURRENT_CLUB", "EXACT_STATS_NAME_CURRENT_CLUB"}
 TRANSFER_CONFIDENCE = "HIGH"
 
 MAPPING_FIELDS = [
@@ -137,7 +137,7 @@ def verified_transfer_bridge(
     grouped: dict[str, dict[tuple[str, str], dict[str, str]]] = defaultdict(dict)
     for row in transfer_rows:
         if (
-            sval(row.get("mapping_method")) != TRANSFER_METHOD
+            sval(row.get("mapping_method")) not in TRANSFER_METHODS
             or sval(row.get("mapping_confidence")) != TRANSFER_CONFIDENCE
         ):
             continue
