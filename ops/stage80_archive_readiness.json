@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_READINESS_V19_PREMATCH_FACTOR_RESEARCH",
-  "generated_at_utc": "2026-09-18T21:54:42Z",
+  "version": "PBK_STAGE80_ARCHIVE_READINESS_V20_PREMATCH_WALKFORWARD",
+  "generated_at_utc": "2026-09-18T21:58:54Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -158,6 +158,16 @@
       "file": "top5_prematch_factor_stability_research.csv",
       "present": true,
       "rows": 237
+    },
+    "prematch_walkforward": {
+      "file": "top5_prematch_factor_walkforward_research.csv",
+      "present": false,
+      "rows": null
+    },
+    "prematch_walkforward_summary": {
+      "file": "top5_prematch_factor_walkforward_summary_research.csv",
+      "present": false,
+      "rows": null
     }
   },
   "fixtures": {
@@ -494,6 +504,27 @@
     "operational_betting_authority": false,
     "evidence_note": "Descriptive factor buckets and season-stability counts from no-lookahead prematch context joined to historical outcomes/closing markets. Observed ROI/calibration is research evidence only and does not promote a factor into a model."
   },
+  "prematch_factor_walkforward": {
+    "folds_present": false,
+    "summary_present": false,
+    "meta_present": false,
+    "meta_valid": false,
+    "fold_rows": 0,
+    "valid_fold_rows": 0,
+    "invalid_fold_rows": 0,
+    "summary_rows": 0,
+    "valid_summary_rows": 0,
+    "invalid_summary_rows": 0,
+    "sample_threshold_pass_folds": null,
+    "targets": [],
+    "min_prior_seasons": 2,
+    "min_train_market_matches": 100,
+    "min_test_market_matches": 30,
+    "market_probability_semantics": "Historical closing-market no-vig benchmark only; never PBK probability.",
+    "operational_betting_authority": false,
+    "promotes_factor": false,
+    "evidence_note": "Walk-forward research uses only strictly earlier seasons to evaluate each later test season. Sample-qualified sign persistence is descriptive validation evidence only."
+  },
   "normalized_context_archives": {
     "lineup_rows": 6,
     "lineup_fixtures": 2,
@@ -523,6 +554,7 @@
     "PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL",
+    "PREMATCH_FACTOR_WALKFORWARD_NOT_MATERIALIZED",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
     "PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE",
     "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE"
