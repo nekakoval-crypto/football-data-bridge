@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V15_TOP5_REFEREE_BACKFILL",
-  "generated_at_utc": "2026-09-18T21:32:40Z",
+  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V16_PREMATCH_CONTEXT",
+  "generated_at_utc": "2026-09-18T21:45:30Z",
   "status": "OK",
   "datasets": [
     {
@@ -814,6 +814,30 @@
       "effective_time_fields_text": "season"
     },
     {
+      "dataset_id": "top5_prematch_context_research",
+      "path": "top5_prematch_context_research.csv",
+      "role": "RESEARCH_ENRICHMENT",
+      "lifecycle": "DETERMINISTIC_NO_LOOKAHEAD_PROJECTION",
+      "identity_key": [
+        "historical_match_id"
+      ],
+      "observed_time_fields": [],
+      "effective_time_fields": [
+        "date_iso",
+        "time_local"
+      ],
+      "source": "Stage80 Football-Data Top-5 9-season no-lookahead pre-match context projection",
+      "limitations": "Historical research only. Every row uses strictly earlier calendar dates within league-season; same-day results are excluded. No probability, EV/value, eligibility, stake or Forward authority.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "historical_match_id",
+      "observed_time_fields_text": "",
+      "effective_time_fields_text": "date_iso,time_local"
+    },
+    {
       "dataset_id": "statsbomb_player_xg_xa",
       "path": "statsbomb_player_xg_xa.csv",
       "role": "RESEARCH_ENRICHMENT",
@@ -1564,9 +1588,9 @@
     }
   ],
   "summary": {
-    "declared_datasets": 32,
+    "declared_datasets": 33,
     "materialized_csv_datasets": 30,
-    "pending_materializations_or_storage": 1,
+    "pending_materializations_or_storage": 2,
     "contract_attention": 0
   },
   "provider_calls": 0,
