@@ -1,13 +1,13 @@
 {
-  "generated_at_utc": "2026-09-18T07:52:33Z",
+  "generated_at_utc": "2026-09-18T08:53:49Z",
   "status": "OK",
   "scope": "clean prospective canonical forward only",
   "overall": {
-    "rows": 3,
-    "pending_rows": 1,
+    "rows": 6,
+    "pending_rows": 4,
     "settled_rows": 2,
     "void_rows": 0,
-    "frozen_user_execution_rows": 3,
+    "frozen_user_execution_rows": 6,
     "user_execution_coverage_pct": 100.0,
     "settled_with_user_execution": 2,
     "wins": 1,
@@ -24,11 +24,11 @@
   },
   "by_rule": {
     "R1": {
-      "rows": 3,
-      "pending_rows": 1,
+      "rows": 6,
+      "pending_rows": 4,
       "settled_rows": 2,
       "void_rows": 0,
-      "frozen_user_execution_rows": 3,
+      "frozen_user_execution_rows": 6,
       "user_execution_coverage_pct": 100.0,
       "settled_with_user_execution": 2,
       "wins": 1,
