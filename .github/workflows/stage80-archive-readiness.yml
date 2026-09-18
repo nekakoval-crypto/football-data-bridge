@@ -82,7 +82,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: stage71-${{ github.ref }}
+  group: stage80-archive-readiness-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
