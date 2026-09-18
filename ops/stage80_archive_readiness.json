@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V16_EPL_REFEREE_RESEARCH",
-  "generated_at_utc": "2026-09-18T20:51:54Z",
+  "generated_at_utc": "2026-09-18T20:53:38Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -22,17 +22,17 @@
     "player_stats": {
       "file": "player_stats_snapshots.csv",
       "present": true,
-      "rows": 1306
+      "rows": 1634
     },
     "player_grades": {
       "file": "player_grade_snapshots.csv",
       "present": true,
-      "rows": 1306
+      "rows": 1634
     },
     "stage77_backlog": {
       "file": "stage77_player_stats_backlog.csv",
       "present": true,
-      "rows": 44
+      "rows": 52
     },
     "team_stats": {
       "file": "team_match_statistics.csv",
@@ -128,10 +128,10 @@
   "fixtures": {
     "current_inventory": 129,
     "finished_in_current_inventory": 9,
-    "player_stats_fixture_count_all_snapshots": 30,
-    "player_grade_fixture_count_all_snapshots": 30,
-    "finished_current_inventory_with_player_stats": 0,
-    "finished_current_inventory_player_stats_coverage_pct": 0.0,
+    "player_stats_fixture_count_all_snapshots": 38,
+    "player_grade_fixture_count_all_snapshots": 38,
+    "finished_current_inventory_with_player_stats": 8,
+    "finished_current_inventory_player_stats_coverage_pct": 88.89,
     "per_league": [
       {
         "league": "A Lyga",
@@ -142,38 +142,38 @@
       {
         "league": "Bundesliga",
         "finished_fixtures_in_current_inventory": 2,
-        "finished_fixtures_with_player_stats": 0,
-        "player_stats_coverage_pct": 0.0
+        "finished_fixtures_with_player_stats": 2,
+        "player_stats_coverage_pct": 100.0
       },
       {
         "league": "Ekstraklasa",
         "finished_fixtures_in_current_inventory": 2,
-        "finished_fixtures_with_player_stats": 0,
-        "player_stats_coverage_pct": 0.0
+        "finished_fixtures_with_player_stats": 2,
+        "player_stats_coverage_pct": 100.0
       },
       {
         "league": "Eliteserien",
         "finished_fixtures_in_current_inventory": 1,
-        "finished_fixtures_with_player_stats": 0,
-        "player_stats_coverage_pct": 0.0
+        "finished_fixtures_with_player_stats": 1,
+        "player_stats_coverage_pct": 100.0
       },
       {
         "league": "Eredivisie",
         "finished_fixtures_in_current_inventory": 1,
-        "finished_fixtures_with_player_stats": 0,
-        "player_stats_coverage_pct": 0.0
+        "finished_fixtures_with_player_stats": 1,
+        "player_stats_coverage_pct": 100.0
       },
       {
         "league": "Superliga",
         "finished_fixtures_in_current_inventory": 1,
-        "finished_fixtures_with_player_stats": 0,
-        "player_stats_coverage_pct": 0.0
+        "finished_fixtures_with_player_stats": 1,
+        "player_stats_coverage_pct": 100.0
       },
       {
         "league": "Süper Lig",
         "finished_fixtures_in_current_inventory": 1,
-        "finished_fixtures_with_player_stats": 0,
-        "player_stats_coverage_pct": 0.0
+        "finished_fixtures_with_player_stats": 1,
+        "player_stats_coverage_pct": 100.0
       }
     ]
   },
@@ -208,9 +208,9 @@
   },
   "stage77_backlog": {
     "present": true,
-    "total_fixtures": 44,
+    "total_fixtures": 52,
     "pending_fixtures": 14,
-    "captured_fixtures": 30,
+    "captured_fixtures": 38,
     "captured_without_complete_ledgers": 0,
     "oldest_pending_first_queued_at_utc": "2026-09-15T16:55:09Z",
     "evidence_note": "A pending backlog fixture is an observed terminal fixture awaiting player stats/Player Grade; it is not a provider-availability or completeness claim."
@@ -266,10 +266,10 @@
     "player_xg_xa_evidence_note": "Stage91 provides StatsBomb research metrics. The large Stage91 source payload may remain external/local when an OK Stage91 meta attestation plus valid Stage92 AUTO/HIGH mapped rows are persisted; this never implies the source CSV is stored in Git. Stage92 maps only exact full names through the verified Transfermarkt→PBK bridge; abbreviated-name candidates remain REVIEW and never enter mapped research. Mapped xG/xA remains research-only and non-operational."
   },
   "players": {
-    "player_stat_rows": 1306,
-    "unique_players_with_stats": 1303,
-    "player_grade_rows": 1306,
-    "unique_players_with_grades": 1303
+    "player_stat_rows": 1634,
+    "unique_players_with_stats": 1546,
+    "player_grade_rows": 1634,
+    "unique_players_with_grades": 1546
   },
   "rosters": {
     "current_roster_rows": 2951,

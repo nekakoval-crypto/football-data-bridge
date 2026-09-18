@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V14_EPL_REFEREE_RESEARCH",
-  "generated_at_utc": "2026-09-18T20:51:54Z",
+  "generated_at_utc": "2026-09-18T20:53:38Z",
   "status": "OK",
   "datasets": [
     {
@@ -166,7 +166,7 @@
       "source": "Stage71 terminal observation + Stage77 reconciliation",
       "limitations": "Queue evidence is not player-stat evidence; CAPTURED requires both stats and grade ledgers.",
       "present": true,
-      "row_count": 44,
+      "row_count": 52,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -317,7 +317,7 @@
       "source": "Stage77 /fixtures/players via shared broker",
       "limitations": "Only fixtures successfully captured under protected provider budget.",
       "present": true,
-      "row_count": 1306,
+      "row_count": 1634,
       "columns": [
         "fixture_id",
         "team_id",
@@ -458,7 +458,7 @@
       "source": "Stage77/78 derived from captured player stats",
       "limitations": "Research-derived grade; not raw provider fact and not canonical authority.",
       "present": true,
-      "row_count": 1306,
+      "row_count": 1634,
       "columns": [
         "fixture_id",
         "team_id",
@@ -761,7 +761,7 @@
       "source": "Stage80 normalized projection from team_roster_history + player_stats_snapshots",
       "limitations": "Observed player directory only; does not infer current team, exact transfer dates, xG or xA.",
       "present": true,
-      "row_count": 4096,
+      "row_count": 4154,
       "columns": [
         "player_id",
         "latest_observed_name",
