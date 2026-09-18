@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V13_RESIDUAL_PLAYER_PROFILE",
-  "generated_at_utc": "2026-09-18T20:29:04Z",
+  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V14_EPL_REFEREE_RESEARCH",
+  "generated_at_utc": "2026-09-18T20:40:08Z",
   "status": "OK",
   "datasets": [
     {
@@ -488,6 +488,55 @@
       "identity_key_text": "fixture_id+team_id+player_id",
       "observed_time_fields_text": "observed_at_utc",
       "effective_time_fields_text": "kickoff_utc"
+    },
+    {
+      "dataset_id": "epl_referee_profiles_research",
+      "path": "epl_referee_profiles_research.csv",
+      "role": "RESEARCH_ENRICHMENT",
+      "lifecycle": "DETERMINISTIC_PROJECTION",
+      "identity_key": [
+        "referee"
+      ],
+      "observed_time_fields": [],
+      "effective_time_fields": [
+        "first_date",
+        "last_date"
+      ],
+      "source": "Stage80 Football-Data EPL referee research projection",
+      "limitations": "EPL_ONLY 2017/18-2025/26 descriptive aggregates. No causal/bias authority; penalties unavailable; other Top-5 leagues remain UNKNOWN.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "referee",
+      "observed_time_fields_text": "",
+      "effective_time_fields_text": "first_date,last_date"
+    },
+    {
+      "dataset_id": "epl_referee_team_splits_research",
+      "path": "epl_referee_team_splits_research.csv",
+      "role": "RESEARCH_ENRICHMENT",
+      "lifecycle": "DETERMINISTIC_PROJECTION",
+      "identity_key": [
+        "referee",
+        "team"
+      ],
+      "observed_time_fields": [],
+      "effective_time_fields": [
+        "first_date",
+        "last_date"
+      ],
+      "source": "Stage80 Football-Data EPL referee×team research projection",
+      "limitations": "EPL_ONLY historical association rows. Small samples remain visible; no observed split is treated as referee bias or betting authority.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "referee+team",
+      "observed_time_fields_text": "",
+      "effective_time_fields_text": "first_date,last_date"
     },
     {
       "dataset_id": "statsbomb_player_xg_xa",
@@ -1240,9 +1289,9 @@
     }
   ],
   "summary": {
-    "declared_datasets": 26,
+    "declared_datasets": 28,
     "materialized_csv_datasets": 24,
-    "pending_materializations_or_storage": 1,
+    "pending_materializations_or_storage": 3,
     "contract_attention": 0
   },
   "provider_calls": 0,
