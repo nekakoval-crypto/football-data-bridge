@@ -73,6 +73,12 @@ jobs:
     timeout-minutes: 20
     env:
       API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+      PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+      PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+      PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+      PBK_RAW_ARCHIVE_S3_PREFIX: api-football-raw
+      PBK_RAW_ARCHIVE_S3_REGION: auto
       OPS_DIR: ops
       STAGE80_EVENT_MAX_API_CALLS: '8'
       STAGE80_EVENT_MAX_FIXTURES_PER_RUN: '8'
@@ -82,7 +88,6 @@ jobs:
       STAGE80_EVENT_TEAM_STATS_RESERVE_CALLS: '12'
       STAGE80_EVENT_SAFETY_RESERVE_CALLS: '8'
       STAGE80_EVENT_CURRENT_ROUND_CALLS_PER_RUN: '32'
-      API_FOOTBALL_ARCHIVE_DIR: ''
 
     steps:
       - uses: actions/checkout@v4
@@ -91,6 +96,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install raw archive S3 client
+        run: python -m pip install --disable-pip-version-check boto3
+
       - name: Capture terminal-fixture match events
         run: python scripts/stage80_match_event_capture.py
       - name: Refresh Stage80 manifest and readiness

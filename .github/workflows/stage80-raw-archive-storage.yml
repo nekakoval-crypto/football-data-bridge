@@ -1,0 +1,82 @@
+name: Stage 80 Raw API Archive Storage Verify
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/api_football_raw_archive.py'
+      - 'scripts/api_football_broker.py'
+      - 'scripts/stage80_raw_archive_storage_verify.py'
+      - 'scripts/tests/test_stage80_r2_raw_archive.py'
+      - '.github/workflows/stage80-raw-archive-storage.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/api_football_raw_archive.py'
+      - 'scripts/api_football_broker.py'
+      - 'scripts/stage80_raw_archive_storage_verify.py'
+      - 'scripts/tests/test_stage80_r2_raw_archive.py'
+      - '.github/workflows/stage80-raw-archive-storage.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Unit test raw archive backends
+        run: |
+          python -m py_compile scripts/api_football_raw_archive.py
+          python -m py_compile scripts/api_football_broker.py
+          python -m py_compile scripts/stage80_raw_archive_storage_verify.py
+          python -m unittest scripts.tests.test_api_football_raw_archive -v
+          python -m unittest scripts.tests.test_stage80_r2_raw_archive -v
+
+  verify-storage:
+    needs: validate
+    permissions:
+      contents: write
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPS_DIR: ops
+      PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+      PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+      PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+      PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+      PBK_RAW_ARCHIVE_S3_PREFIX: api-football-raw
+      PBK_RAW_ARCHIVE_S3_REGION: auto
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install S3 client
+        run: python -m pip install --disable-pip-version-check boto3
+      - name: Verify durable storage write/readback/hash
+        run: python scripts/stage80_raw_archive_storage_verify.py
+      - name: Publish verified storage telemetry
+        if: success()
+        shell: bash
+        run: |
+          git config user.name 'stage80-bot'
+          git config user.email 'stage80-bot@users.noreply.github.com'
+          git add ops/stage80_raw_archive_storage_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 raw archive storage verification update'
+          python scripts/publish_operational_commit.py
+
+      - name: Upload verification telemetry
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage80-raw-archive-storage-verify
+          path: ops/stage80_raw_archive_storage_last_run.json
+          if-no-files-found: error
+          retention-days: 30

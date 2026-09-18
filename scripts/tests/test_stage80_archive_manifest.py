@@ -49,8 +49,22 @@ class Stage80ArchiveManifestTests(unittest.TestCase):
             report = manifest.build_manifest(Path(tmp), raw_archive_dir="/secret/server/archive")
         raw = next(x for x in report["datasets"] if x["dataset_id"] == "raw_api_football_payloads")
         self.assertTrue(raw["present"])
-        self.assertEqual(raw["path"], "EXTERNAL_ENV:API_FOOTBALL_ARCHIVE_DIR")
+        self.assertEqual(raw["path"], "EXTERNAL_DURABLE_STORAGE")
         self.assertNotIn("/secret/server/archive", str(report))
+
+    def test_verified_s3_storage_is_manifest_configured(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "stage80_raw_archive_storage_last_run.json").write_text(
+                '{"backend":"S3","status":"READY","readback_match":true,"durable":true,"run_at_utc":"2026-09-18T12:30:00Z"}',
+                encoding="utf-8",
+            )
+            report = manifest.build_manifest(root, raw_archive_dir="")
+        raw = next(x for x in report["datasets"] if x["dataset_id"] == "raw_api_football_payloads")
+        self.assertTrue(raw["present"])
+        self.assertEqual(raw["storage_backend"], "S3")
+        self.assertEqual(raw["contract_status"], "CONFIGURED")
+
 
     def test_write_outputs_round_trip(self):
         with tempfile.TemporaryDirectory() as tmp:

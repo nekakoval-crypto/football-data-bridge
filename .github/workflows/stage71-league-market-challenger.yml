@@ -74,6 +74,12 @@ jobs:
     timeout-minutes: 30
     env:
       API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+      PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+      PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+      PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+      PBK_RAW_ARCHIVE_S3_PREFIX: api-football-raw
+      PBK_RAW_ARCHIVE_S3_REGION: auto
       API_FOOTBALL_SEASON: '2026'
       OPS_DIR: 'ops'
       STAGE71_NEXT_PER_LEAGUE: '5'
@@ -90,6 +96,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install raw archive S3 client
+        run: python -m pip install --disable-pip-version-check boto3
+
 
       - name: Capture provider-defined current rounds
         run: python scripts/stage71_current_round_capture.py
