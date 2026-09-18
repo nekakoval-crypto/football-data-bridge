@@ -1,25 +1,64 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-17T22:22:41Z",
-  "status": "ATTENTION",
+  "run_at_utc": "2026-09-18T00:30:48Z",
+  "status": "OK",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 0,
-  "daily_api_calls": 136,
+  "provider_calls": 8,
+  "daily_api_calls": 8,
   "protected_calls": {
-    "live": 3,
-    "current_round": 32,
+    "live": 15,
+    "current_round": 96,
     "standings": 16,
     "safety": 8,
-    "total": 59
+    "total": 135
   },
   "roster_ttl_days": 7,
   "candidate_teams": 8,
-  "captured_teams": [],
-  "deferred_teams": 8,
-  "total_roster_rows": 1975,
-  "warnings": [
-    "Stage71 protected API reserve reached; Challenger deferred"
+  "captured_teams": [
+    {
+      "team_id": "495",
+      "team_name": "Genoa",
+      "players": 39
+    },
+    {
+      "team_id": "50",
+      "team_name": "Manchester City",
+      "players": 25
+    },
+    {
+      "team_id": "512",
+      "team_name": "Frosinone",
+      "players": 30
+    },
+    {
+      "team_id": "52",
+      "team_name": "Crystal Palace",
+      "players": 31
+    },
+    {
+      "team_id": "523",
+      "team_name": "Parma",
+      "players": 31
+    },
+    {
+      "team_id": "63",
+      "team_name": "Leeds",
+      "players": 31
+    },
+    {
+      "team_id": "746",
+      "team_name": "Sunderland",
+      "players": 38
+    },
+    {
+      "team_id": "895",
+      "team_name": "Como",
+      "players": 30
+    }
   ],
+  "deferred_teams": 0,
+  "total_roster_rows": 2230,
+  "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
