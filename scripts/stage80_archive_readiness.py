@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V15_RESIDUAL_PLAYER_PROFILE"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V16_EPL_REFEREE_RESEARCH"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -44,6 +44,8 @@ SOURCES = {
     "player_xg_xa_research": "statsbomb_player_xg_xa.csv",
     "player_xg_xa_mapping": "statsbomb_pbk_player_mapping_candidates.csv",
     "player_xg_xa_mapped": "pbk_player_xg_xa_research.csv",
+    "referee_profiles": "epl_referee_profiles_research.csv",
+    "referee_team_splits": "epl_referee_team_splits_research.csv",
 }
 FINAL_PROVIDER_CODES = {"FT", "AET", "PEN"}
 FINAL_NORMALIZED = {"finished", "ft", "aet", "pen"}
@@ -198,6 +200,7 @@ def raw_archive_inventory(archive_dir=None, ops=OPS):
 def build_report(ops=OPS, archive_dir=None):
     data = {name: read_csv(Path(ops) / filename) for name, filename in SOURCES.items()}
     stage91_meta = read_json(Path(ops) / "stage91_statsbomb_player_xg_xa_last_run.json")
+    referee_meta = read_json(Path(ops) / "stage80_referee_research_last_run.json")
     source_presence = {
         name: {
             "file": filename,
@@ -366,6 +369,8 @@ def build_report(ops=OPS, archive_dir=None):
     injury_archive = data["injury_archive"] or []
     match_events = data["match_events"] or []
     match_event_backlog = data["match_event_backlog"] or []
+    referee_profiles = data["referee_profiles"] or []
+    referee_team_splits = data["referee_team_splits"] or []
 
     history_snapshots = {
         (sval(row, "team_id"), sval(row, "captured_at_utc"))
@@ -578,6 +583,34 @@ def build_report(ops=OPS, archive_dir=None):
     event_backlog_ids = {sval(row, "fixture_id") for row in match_event_backlog if sval(row, "fixture_id")}
     event_backlog_pending = {sval(row, "fixture_id") for row in match_event_backlog if sval(row, "fixture_id") and sval(row, "backlog_status").upper() == "PENDING"}
     event_backlog_captured = {sval(row, "fixture_id") for row in match_event_backlog if sval(row, "fixture_id") and sval(row, "backlog_status").upper() == "CAPTURED"}
+    referee_profile_valid = [
+        row for row in referee_profiles
+        if sval(row, "referee")
+        and sval(row, "source_scope") == "EPL_ONLY"
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+    ]
+    referee_team_split_valid = [
+        row for row in referee_team_splits
+        if sval(row, "referee")
+        and sval(row, "team")
+        and sval(row, "source_scope") == "EPL_ONLY"
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+    ]
+    referee_profile_invalid = len(referee_profiles) - len(referee_profile_valid)
+    referee_team_split_invalid = len(referee_team_splits) - len(referee_team_split_valid)
+    referee_meta_valid = bool(
+        referee_meta
+        and referee_meta.get("status") == "OK"
+        and referee_meta.get("source_scope") == "EPL_ONLY"
+        and int(referee_meta.get("source_rows") or 0) == 3420
+        and int(referee_meta.get("unique_referees") or 0) == len(referee_profile_valid)
+        and int(referee_meta.get("referee_team_pairs") or 0) == len(referee_team_split_valid)
+        and referee_meta.get("research_only") is True
+        and referee_meta.get("operational_betting_authority") is False
+        and int(referee_meta.get("provider_calls") or 0) == 0
+    )
     raw_archive = raw_archive_inventory(archive_dir, ops=ops)
     roster_history_rows = len(history)
     player_stats_fixture_count = len(stat_fixture_ids)
@@ -633,6 +666,11 @@ def build_report(ops=OPS, archive_dir=None):
         gaps.append("MATCH_EVENT_BACKLOG_WAITING_FIRST_OPERATIONAL_RUN")
     elif event_backlog_pending:
         gaps.append("MATCH_EVENT_BACKLOG_PENDING")
+    if data["referee_profiles"] is None or data["referee_team_splits"] is None or referee_meta is None:
+        gaps.append("REFEREE_RESEARCH_NOT_MATERIALIZED")
+    elif not referee_meta_valid or referee_profile_invalid or referee_team_split_invalid:
+        gaps.append("REFEREE_RESEARCH_INVALID")
+    gaps.append("REFEREE_HISTORY_TOP5_PARTIAL_EPL_ONLY")
     if data["lineup_archive"] is None:
         gaps.append("LINEUP_ARCHIVE_WAITING_FIRST_BUILD")
     if data["injury_archive"] is None:
@@ -870,6 +908,25 @@ def build_report(ops=OPS, archive_dir=None):
             "backlog_captured_fixtures": len(event_backlog_captured),
             "evidence_note": "Append-only normalized provider match events captured only after PBK observed a terminal fixture; empty provider responses remain retryable.",
         },
+        "referee_research": {
+            "profiles_present": data["referee_profiles"] is not None,
+            "team_splits_present": data["referee_team_splits"] is not None,
+            "meta_present": referee_meta is not None,
+            "meta_valid": referee_meta_valid,
+            "profile_rows": len(referee_profiles),
+            "valid_profile_rows": len(referee_profile_valid),
+            "invalid_profile_rows": referee_profile_invalid,
+            "unique_referees": len({sval(row, "referee") for row in referee_profile_valid}),
+            "team_split_rows": len(referee_team_splits),
+            "valid_team_split_rows": len(referee_team_split_valid),
+            "invalid_team_split_rows": referee_team_split_invalid,
+            "unique_teams": len({sval(row, "team") for row in referee_team_split_valid}),
+            "source_matches": int(referee_meta.get("source_rows") or 0) if referee_meta_valid else None,
+            "source_scope": "EPL_ONLY",
+            "penalties_available": False,
+            "operational_betting_authority": False,
+            "evidence_note": "Derived from the Football-Data EPL-only 2017/18-2025/26 referee slice. Descriptive historical aggregates only; missing Top-5 leagues remain UNKNOWN and no observed split is treated as referee bias or causation.",
+        },
         "normalized_context_archives": {
             "lineup_rows": len(lineup_archive),
             "lineup_fixtures": len(lineup_archive_fixture_ids),
@@ -905,6 +962,7 @@ def render_markdown(report):
     transfers = report["transfer_history"]
     events = report["match_events"]
     norm = report["normalized_context_archives"]
+    referee = report["referee_research"]
     raw = report["raw_provider_archive"]
     coverage = f["finished_current_inventory_player_stats_coverage_pct"]
     coverage_text = "—" if coverage is None else f"{coverage:.2f}%"
@@ -940,6 +998,7 @@ def render_markdown(report):
         f"- Membership intervals: {r['membership_intervals']} (open {r['open_latest_intervals']}, closed-by-observed-absence {r['closed_by_observed_absence_intervals']}).",
         f"- Verified PBK↔Transfermarkt identities: {identities['valid_rows']} rows / {identities['unique_pbk_players']} PBK players; invalid {identities['invalid_rows']}.",
         f"- Verified historical transfers: {transfers['valid_rows']} rows / {transfers['unique_pbk_players']} PBK players; dates {transfers['earliest_transfer_date'] or '—'} → {transfers['latest_transfer_date'] or '—'}; invalid {transfers['invalid_identity_rows']}.",
+        f"- EPL referee research: {referee['unique_referees']} referees / {referee['valid_team_split_rows']} referee×team pairs / {referee['source_matches'] if referee['source_matches'] is not None else '—'} source matches; scope EPL_ONLY; penalties unavailable.",
         f"- Match context: {c['unique_fixtures']} fixtures; official XI {c['fixtures_with_official_lineup_snapshot']}; injury evidence {c['fixtures_with_injury_evidence']}.",
         "",
         "## Raw provider archive",
@@ -983,6 +1042,8 @@ def main():
         "verified_transfer_rows": report["transfer_history"]["valid_rows"],
         "team_xg_complete_fixtures": report["advanced_metrics"]["team_xg_complete_fixture_count"],
         "player_xg_xa_source_status": report["advanced_metrics"]["player_xg_xa_source_status"],
+        "referee_research_unique_referees": report["referee_research"]["unique_referees"],
+        "referee_research_team_pairs": report["referee_research"]["valid_team_split_rows"],
     }, ensure_ascii=False))
 
 

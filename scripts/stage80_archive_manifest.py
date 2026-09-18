@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V13_RESIDUAL_PLAYER_PROFILE"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V14_EPL_REFEREE_RESEARCH"
 
 DATASETS = [
     {
@@ -130,6 +130,28 @@ DATASETS = [
         "effective_time_fields": ["kickoff_utc"],
         "source": "Stage77/78 derived from captured player stats",
         "limitations": "Research-derived grade; not raw provider fact and not canonical authority.",
+    },
+    {
+        "dataset_id": "epl_referee_profiles_research",
+        "path": "epl_referee_profiles_research.csv",
+        "role": "RESEARCH_ENRICHMENT",
+        "lifecycle": "DETERMINISTIC_PROJECTION",
+        "identity_key": ["referee"],
+        "observed_time_fields": [],
+        "effective_time_fields": ["first_date", "last_date"],
+        "source": "Stage80 Football-Data EPL referee research projection",
+        "limitations": "EPL_ONLY 2017/18-2025/26 descriptive aggregates. No causal/bias authority; penalties unavailable; other Top-5 leagues remain UNKNOWN.",
+    },
+    {
+        "dataset_id": "epl_referee_team_splits_research",
+        "path": "epl_referee_team_splits_research.csv",
+        "role": "RESEARCH_ENRICHMENT",
+        "lifecycle": "DETERMINISTIC_PROJECTION",
+        "identity_key": ["referee", "team"],
+        "observed_time_fields": [],
+        "effective_time_fields": ["first_date", "last_date"],
+        "source": "Stage80 Football-Data EPL referee×team research projection",
+        "limitations": "EPL_ONLY historical association rows. Small samples remain visible; no observed split is treated as referee bias or betting authority.",
     },
     {
         "dataset_id": "statsbomb_player_xg_xa",

@@ -30,6 +30,7 @@ on:
       - 'config/pbk_statsbomb_open_data.json'
       - 'docs/stage91_statsbomb_player_xg_xa.md'
       - 'scripts/tests/test_stage80_archive_readiness.py'
+      - 'scripts/tests/test_stage80_referee_research_readiness.py'
       - 'scripts/tests/test_stage80_stage77_backlog_readiness.py'
       - 'scripts/tests/test_stage80_fixture_history_readiness.py'
       - 'scripts/tests/test_stage80_archive_manifest.py'
@@ -38,6 +39,7 @@ on:
       - 'scripts/tests/test_stage80_historical_player_catalog.py'
       - 'scripts/tests/test_stage80_lineup_injury_archive.py'
       - 'scripts/tests/test_stage80_transfer_history_archive.py'
+      - 'scripts/tests/test_stage80_referee_research_readiness.py'
       - 'docs/stage80_historical_archive.md'
       - 'docs/stage80_fixture_history.md'
       - 'docs/stage80_archive_manifest.md'
@@ -61,6 +63,9 @@ on:
       - 'ops/statsbomb_pbk_player_mapping_candidates.csv'
       - 'ops/pbk_player_xg_xa_research.csv'
       - 'ops/stage92_statsbomb_pbk_player_mapping_last_run.json'
+      - 'ops/epl_referee_profiles_research.csv'
+      - 'ops/epl_referee_team_splits_research.csv'
+      - 'ops/stage80_referee_research_last_run.json'
       - 'scripts/stage80_archive_manifest.py'
       - 'scripts/stage80_historical_fixture_catalog.py'
       - 'scripts/stage80_historical_player_catalog.py'
@@ -128,6 +133,7 @@ jobs:
       - name: Provider-free Stage80 tests
         run: |
           python -m unittest scripts.tests.test_stage80_archive_readiness -v
+          python -m unittest scripts.tests.test_stage80_referee_research_readiness -v
           python -m unittest scripts.tests.test_stage80_stage77_backlog_readiness -v
           python -m unittest scripts.tests.test_stage80_fixture_history_readiness -v
           python -m unittest scripts.tests.test_stage80_archive_manifest -v
