@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-18T20:08:38Z",
+  "generated_at_utc": "2026-09-18T21:07:52Z",
   "status": "OK",
   "cards": [
     {
@@ -3737,9 +3737,9 @@
       "away_team": "Union Berlin",
       "kickoff_utc": "2026-09-18T18:30:00Z",
       "selection": "ОЗ — Нет",
-      "latest_event": "WATCH_CROSSING",
-      "latest_status": "WATCH_ONLY",
-      "event_count": 1,
+      "latest_event": "WATCH_SETTLEMENT",
+      "latest_status": "SETTLED",
+      "event_count": 3,
       "timeline": [
         {
           "entity_id": "BTTS_NO|1575167",
@@ -3757,6 +3757,40 @@
           "bookmaker": "Marathonbet",
           "odds": "1.89",
           "details": "movement_pp=-0.03333333"
+        },
+        {
+          "entity_id": "BTTS_NO|1575167",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage63",
+          "api_fixture_id": "1575167",
+          "league": "Bundesliga",
+          "home_team": "Bayern München",
+          "away_team": "Union Berlin",
+          "kickoff_utc": "2026-09-18T18:30:00Z",
+          "event_time_utc": "2026-09-18T18:17:57Z",
+          "event_type": "WATCH_CLOSE",
+          "status": "QUALIFIED_AT_CLOSE",
+          "selection": "ОЗ — Нет",
+          "bookmaker": "Marathonbet",
+          "odds": "1.93",
+          "details": "close_qualified=YES"
+        },
+        {
+          "entity_id": "BTTS_NO|1575167",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage63",
+          "api_fixture_id": "1575167",
+          "league": "Bundesliga",
+          "home_team": "Bayern München",
+          "away_team": "Union Berlin",
+          "kickoff_utc": "2026-09-18T18:30:00Z",
+          "event_time_utc": "2026-09-18T20:30:00Z",
+          "event_type": "WATCH_SETTLEMENT",
+          "status": "SETTLED",
+          "selection": "ОЗ — Нет",
+          "bookmaker": "Marathonbet",
+          "odds": "1.89",
+          "details": "result=W profit_u=0.890"
         }
       ]
     },
@@ -3770,9 +3804,9 @@
       "away_team": "Union Berlin",
       "kickoff_utc": "2026-09-18T18:30:00Z",
       "selection": "ТБ(2.5)",
-      "latest_event": "WATCH_CLOSE",
-      "latest_status": "QUALIFIED_AT_CLOSE",
-      "event_count": 2,
+      "latest_event": "WATCH_SETTLEMENT",
+      "latest_status": "SETTLED",
+      "event_count": 3,
       "timeline": [
         {
           "entity_id": "ST62-O1-1575167",
@@ -3807,6 +3841,23 @@
           "bookmaker": "Marathonbet",
           "odds": "1.05",
           "details": "close_qualified=YES"
+        },
+        {
+          "entity_id": "ST62-O1-1575167",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage62",
+          "api_fixture_id": "1575167",
+          "league": "Bundesliga",
+          "home_team": "Bayern München",
+          "away_team": "Union Berlin",
+          "kickoff_utc": "2026-09-18T18:30:00Z",
+          "event_time_utc": "2026-09-18T20:30:00Z",
+          "event_type": "WATCH_SETTLEMENT",
+          "status": "SETTLED",
+          "selection": "ТБ(2.5)",
+          "bookmaker": "Marathonbet",
+          "odds": "1.07",
+          "details": "result=W profit_u=0.070"
         }
       ]
     },
@@ -3820,9 +3871,9 @@
       "away_team": "Lens",
       "kickoff_utc": "2026-09-18T18:45:00Z",
       "selection": "ОЗ — Нет",
-      "latest_event": "WATCH_CROSSING",
-      "latest_status": "WATCH_ONLY",
-      "event_count": 1,
+      "latest_event": "WATCH_SETTLEMENT",
+      "latest_status": "SETTLED",
+      "event_count": 3,
       "timeline": [
         {
           "entity_id": "BTTS_NO|1552769",
@@ -3840,6 +3891,40 @@
           "bookmaker": "Marathonbet",
           "odds": "2.32",
           "details": "movement_pp=-0.03662455"
+        },
+        {
+          "entity_id": "BTTS_NO|1552769",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage63",
+          "api_fixture_id": "1552769",
+          "league": "Ligue 1",
+          "home_team": "Monaco",
+          "away_team": "Lens",
+          "kickoff_utc": "2026-09-18T18:45:00Z",
+          "event_time_utc": "2026-09-18T18:17:57Z",
+          "event_type": "WATCH_CLOSE",
+          "status": "QUALIFIED_AT_CLOSE",
+          "selection": "ОЗ — Нет",
+          "bookmaker": "Marathonbet",
+          "odds": "2.39",
+          "details": "close_qualified=YES"
+        },
+        {
+          "entity_id": "BTTS_NO|1552769",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage63",
+          "api_fixture_id": "1552769",
+          "league": "Ligue 1",
+          "home_team": "Monaco",
+          "away_team": "Lens",
+          "kickoff_utc": "2026-09-18T18:45:00Z",
+          "event_time_utc": "2026-09-18T20:46:27Z",
+          "event_type": "WATCH_SETTLEMENT",
+          "status": "SETTLED",
+          "selection": "ОЗ — Нет",
+          "bookmaker": "Marathonbet",
+          "odds": "2.32",
+          "details": "result=L profit_u=-1.000"
         }
       ]
     },
@@ -3853,9 +3938,9 @@
       "away_team": "Sassuolo",
       "kickoff_utc": "2026-09-18T18:45:00Z",
       "selection": "ОЗ — Да",
-      "latest_event": "WATCH_CROSSING",
-      "latest_status": "WATCH_ONLY",
-      "event_count": 1,
+      "latest_event": "WATCH_SETTLEMENT",
+      "latest_status": "SETTLED",
+      "event_count": 3,
       "timeline": [
         {
           "entity_id": "BTTS_YES|1550133",
@@ -3873,6 +3958,40 @@
           "bookmaker": "Marathonbet",
           "odds": "1.56",
           "details": "movement_pp=0.04233857"
+        },
+        {
+          "entity_id": "BTTS_YES|1550133",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage63",
+          "api_fixture_id": "1550133",
+          "league": "Serie A",
+          "home_team": "Monza",
+          "away_team": "Sassuolo",
+          "kickoff_utc": "2026-09-18T18:45:00Z",
+          "event_time_utc": "2026-09-18T18:17:57Z",
+          "event_type": "WATCH_CLOSE",
+          "status": "QUALIFIED_AT_CLOSE",
+          "selection": "ОЗ — Да",
+          "bookmaker": "Marathonbet",
+          "odds": "1.56",
+          "details": "close_qualified=YES"
+        },
+        {
+          "entity_id": "BTTS_YES|1550133",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage63",
+          "api_fixture_id": "1550133",
+          "league": "Serie A",
+          "home_team": "Monza",
+          "away_team": "Sassuolo",
+          "kickoff_utc": "2026-09-18T18:45:00Z",
+          "event_time_utc": "2026-09-18T20:46:27Z",
+          "event_type": "WATCH_SETTLEMENT",
+          "status": "SETTLED",
+          "selection": "ОЗ — Да",
+          "bookmaker": "Marathonbet",
+          "odds": "1.56",
+          "details": "result=W profit_u=0.560"
         }
       ]
     },
@@ -3886,9 +4005,9 @@
       "away_team": "Chelsea",
       "kickoff_utc": "2026-09-18T19:00:00Z",
       "selection": "ОЗ — Да",
-      "latest_event": "WATCH_CROSSING",
-      "latest_status": "WATCH_ONLY",
-      "event_count": 1,
+      "latest_event": "WATCH_SETTLEMENT",
+      "latest_status": "SETTLED",
+      "event_count": 3,
       "timeline": [
         {
           "entity_id": "BTTS_YES|1557408",
@@ -3906,6 +4025,40 @@
           "bookmaker": "Marathonbet",
           "odds": "1.41",
           "details": "movement_pp=0.03662455"
+        },
+        {
+          "entity_id": "BTTS_YES|1557408",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage63",
+          "api_fixture_id": "1557408",
+          "league": "Premier League",
+          "home_team": "Brentford",
+          "away_team": "Chelsea",
+          "kickoff_utc": "2026-09-18T19:00:00Z",
+          "event_time_utc": "2026-09-18T18:17:57Z",
+          "event_type": "WATCH_CLOSE",
+          "status": "QUALIFIED_AT_CLOSE",
+          "selection": "ОЗ — Да",
+          "bookmaker": "Marathonbet",
+          "odds": "1.41",
+          "details": "close_qualified=YES"
+        },
+        {
+          "entity_id": "BTTS_YES|1557408",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage63",
+          "api_fixture_id": "1557408",
+          "league": "Premier League",
+          "home_team": "Brentford",
+          "away_team": "Chelsea",
+          "kickoff_utc": "2026-09-18T19:00:00Z",
+          "event_time_utc": "2026-09-18T21:05:20Z",
+          "event_type": "WATCH_SETTLEMENT",
+          "status": "SETTLED",
+          "selection": "ОЗ — Да",
+          "bookmaker": "Marathonbet",
+          "odds": "1.41",
+          "details": "result=L profit_u=-1.000"
         }
       ]
     },
@@ -3919,9 +4072,9 @@
       "away_team": "Chelsea",
       "kickoff_utc": "2026-09-18T19:00:00Z",
       "selection": "П2",
-      "latest_event": "WATCH_CLOSE",
-      "latest_status": "REVERTED_AT_CLOSE",
-      "event_count": 2,
+      "latest_event": "WATCH_SETTLEMENT",
+      "latest_status": "SETTLED",
+      "event_count": 3,
       "timeline": [
         {
           "entity_id": "M1PL|1557408",
@@ -3956,6 +4109,23 @@
           "bookmaker": "Marathonbet",
           "odds": "2.62",
           "details": "close_qualified=NO"
+        },
+        {
+          "entity_id": "M1PL|1557408",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage61",
+          "api_fixture_id": "1557408",
+          "league": "Premier League",
+          "home_team": "Brentford",
+          "away_team": "Chelsea",
+          "kickoff_utc": "2026-09-18T19:00:00Z",
+          "event_time_utc": "2026-09-18T21:05:20Z",
+          "event_type": "WATCH_SETTLEMENT",
+          "status": "SETTLED",
+          "selection": "П2",
+          "bookmaker": "Marathonbet",
+          "odds": "2.27",
+          "details": "result=L profit_u=-1.000"
         }
       ]
     },
@@ -4499,7 +4669,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 186,
+      "event_count": 187,
       "timeline": [
         {
           "entity_id": "R1|I1|1550131",
@@ -7662,6 +7832,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550131",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550131",
+          "league": "Serie A",
+          "home_team": "Frosinone",
+          "away_team": "Como",
+          "kickoff_utc": "2026-09-20T13:00:00Z",
+          "event_time_utc": "2026-09-18T20:43:12Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     },
@@ -7842,7 +8029,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 18,
+      "event_count": 19,
       "timeline": [
         {
           "entity_id": "R1|I1|1550143",
@@ -8149,6 +8336,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550143",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550143",
+          "league": "Serie A",
+          "home_team": "Lecce",
+          "away_team": "Bologna",
+          "kickoff_utc": "2026-10-11T13:00:00Z",
+          "event_time_utc": "2026-09-18T20:43:12Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     },
@@ -8164,7 +8368,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 18,
+      "event_count": 19,
       "timeline": [
         {
           "entity_id": "R1|I1|1550145",
@@ -8471,6 +8675,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550145",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550145",
+          "league": "Serie A",
+          "home_team": "Sassuolo",
+          "away_team": "AC Milan",
+          "kickoff_utc": "2026-10-11T16:00:00Z",
+          "event_time_utc": "2026-09-18T20:43:12Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     },
@@ -8486,7 +8707,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 18,
+      "event_count": 19,
       "timeline": [
         {
           "entity_id": "R1|I1|1550138",
@@ -8793,6 +9014,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550138",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550138",
+          "league": "Serie A",
+          "home_team": "Cagliari",
+          "away_team": "Juventus",
+          "kickoff_utc": "2026-10-11T18:45:00Z",
+          "event_time_utc": "2026-09-18T20:43:12Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     }
@@ -8801,7 +9039,7 @@
     "cards": 46,
     "canonical_cards": 6,
     "watch_cards": 40,
-    "events": 474
+    "events": 488
   },
   "policy": {
     "read_only": true,
