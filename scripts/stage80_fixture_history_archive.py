@@ -27,6 +27,7 @@ HISTORY_FIELDS = [
     "fixture_id", "provider_league_id", "league_name", "country",
     "country_flag_url", "league_logo_url", "season", "round", "kickoff_utc",
     "home_team", "home_team_logo_url", "away_team", "away_team_logo_url",
+    "referee", "venue_name", "venue_city",
     "status", "source_status", "score_home", "score_away", "observed_at_utc",
     "archive_version",
 ]
@@ -80,6 +81,9 @@ def normalize(row):
         "home_team_logo_url": row.get("home_team_logo_url"),
         "away_team": row.get("away_team"),
         "away_team_logo_url": row.get("away_team_logo_url"),
+        "referee": row.get("referee"),
+        "venue_name": row.get("venue_name"),
+        "venue_city": row.get("venue_city"),
         "status": row.get("status"),
         "source_status": row.get("source_status"),
         "score_home": row.get("score_home"),
