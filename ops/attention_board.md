@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 18.09.2026 09:00 (Europe/Berlin)
+Обновлено: 18.09.2026 10:00 (Europe/Berlin)
 Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -306,7 +306,7 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
   - ИТБ/ИТМ 1 (7.5) · ИТБ: 13 | ИТМ: 1.04 @ Bet365
   - ИТБ/ИТМ 1 (8.5) · ИТБ: 23 | ИТМ: 1.01 @ Bet365
   - Тотал 2.5 · ТБ(2.5): 1.11 | ТМ(2.5): 6.5 @ Bet365
-  - Тотал 2.5 · ТБ(2.5): 1.07 | ТМ(2.5): 6.2 @ Marathonbet
+  - Тотал 2.5 · ТБ(2.5): 1.05 | ТМ(2.5): 6.9 @ Marathonbet
   - Ф(0) — нет данных
 
 - **Wisla Krakow — Slask Wroclaw** | Ekstraklasa | 18.09 18:30 UTC
@@ -323,6 +323,7 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
   - Европейская фора хозяев (-2) · П1: 4.65 | Х: 4.75 | П2: 1.41 @ Marathonbet
   - Европейская фора хозяев (-3) · П1: 11 | Х: 8 | П2: 1.17 @ Bet365
   - Европейская фора хозяев (-3) · П1: 8.8 | Х: 7.3 | П2: 1.12 @ Marathonbet
+  - 1X2 · П1: 1.6 | Х: 3.8 | П2: 4.75 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.4 | ИТМ: 2.75 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.38 | ИТМ: 2.76 @ Marathonbet
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 3 | ИТМ: 1.36 @ Bet365
@@ -338,7 +339,6 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 6 | ИТМ: 1.12 @ Bet365
   - ИТБ/ИТМ 1 (4.5) · ИТБ: 15 | ИТМ: 1.03 @ Bet365
   - ИТБ/ИТМ 1 (5.5) · ИТБ: 29 | ИТМ: 1.01 @ Bet365
-  - 1X2 — нет данных
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
 
@@ -455,6 +455,7 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
   - Европейская фора хозяев (-2) · П1: 6.5 | Х: 5.5 | П2: 1.33 @ Bet365
   - Европейская фора хозяев (-2) · П1: 6.25 | Х: 5.6 | П2: 1.3 @ Marathonbet
   - Европейская фора хозяев (-3) · П1: 17 | Х: 10 | П2: 1.11 @ Bet365
+  - 1X2 · П1: 1.83 | Х: 3.5 | П2: 4.5 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.44 | ИТМ: 2.62 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.44 | ИТМ: 2.58 @ Marathonbet
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 3.25 | ИТМ: 1.33 @ Bet365
@@ -470,7 +471,6 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 9 | ИТМ: 1.07 @ Bet365
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 8.1 | ИТМ: 1.04 @ Marathonbet
   - ИТБ/ИТМ 1 (4.5) · ИТБ: 21 | ИТМ: 1.01 @ Bet365
-  - 1X2 — нет данных
   - Тотал 2.5 — нет данных
 
 - **Brentford — Chelsea** | Premier League | 18.09 19:00 UTC
@@ -2825,7 +2825,7 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
   - Европейская фора хозяев (-2) · П1: 15 | Х: 9 | П2: 1.12 @ Bet365
   - Европейская фора хозяев (-2) · П1: 6.5 | Х: 4.95 | П2: 1.1 @ Marathonbet
   - 1X2 · П1: 3.1 | Х: 3.8 | П2: 2.15 @ Bet365
-  - 1X2 · П1: 3.12 | Х: 3.82 | П2: 2.17 @ Marathonbet
+  - 1X2 · П1: 3.12 | Х: 3.84 | П2: 2.16 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.14 | ИТМ: 5.5 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.67 | ИТМ: 2.1 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.7 | ИТМ: 2.15 @ Marathonbet
@@ -4142,7 +4142,7 @@ Canonical: 1 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 3
+- System Health: **WARN** | critical 0 | warnings 2
 - Логическая canonical экспозиция: **1.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 24 | data required 3
