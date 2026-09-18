@@ -70,7 +70,7 @@ The operational workflow is deliberately low priority.
 Current limits:
 
 - shared daily API ceiling: 7000;
-- maximum profile provider calls per run: 384;
+- maximum profile provider calls per run: 400;
 - maximum team candidates per run: 96;
 - maximum pages per team: 4;
 - maximum residual player-ID candidates per run: 400;
