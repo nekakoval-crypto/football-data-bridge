@@ -149,8 +149,6 @@ jobs:
           git config user.name 'stage80-bot'
           git config user.email 'stage80-bot@users.noreply.github.com'
           git add ops/historical_transfer_events.csv ops/stage80_transfer_history_last_run.json
-          git add ops/stage80_archive_manifest.json ops/stage80_archive_manifest.csv
-          git add ops/stage80_archive_readiness.json ops/stage80_archive_readiness.md
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'Stage 80 transfer history archive update'
           git restore --worktree -- .
