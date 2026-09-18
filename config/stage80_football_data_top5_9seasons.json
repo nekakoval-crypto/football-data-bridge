@@ -1,0 +1,22 @@
+{
+  "version": "PBK_STAGE80_FOOTBALL_DATA_TOP5_9SEASONS_V1",
+  "source_base": "https://www.football-data.co.uk/mmz4281",
+  "seasons": [
+    {"code": "1718", "label": "2017/2018"},
+    {"code": "1819", "label": "2018/2019"},
+    {"code": "1920", "label": "2019/2020"},
+    {"code": "2021", "label": "2020/2021"},
+    {"code": "2122", "label": "2021/2022"},
+    {"code": "2223", "label": "2022/2023"},
+    {"code": "2324", "label": "2023/2024"},
+    {"code": "2425", "label": "2024/2025"},
+    {"code": "2526", "label": "2025/2026"}
+  ],
+  "leagues": [
+    {"code": "E0", "country": "England", "league_name": "Premier League"},
+    {"code": "D1", "country": "Germany", "league_name": "Bundesliga"},
+    {"code": "I1", "country": "Italy", "league_name": "Serie A"},
+    {"code": "SP1", "country": "Spain", "league_name": "La Liga"},
+    {"code": "F1", "country": "France", "league_name": "Ligue 1"}
+  ]
+}
