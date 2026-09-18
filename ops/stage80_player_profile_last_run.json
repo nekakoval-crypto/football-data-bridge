@@ -1,0 +1,73 @@
+{
+  "version": "PBK_STAGE80_PLAYER_PROFILE_ENRICHMENT_V1",
+  "run_at_utc": "2026-09-18T17:34:38Z",
+  "status": "OK",
+  "season": "2026",
+  "provider_endpoint": "/players?team&season",
+  "provider_calls": 16,
+  "daily_api_calls": 488,
+  "protected_calls": {
+    "live": 11,
+    "current_round": 60,
+    "standings": 32,
+    "safety": 100,
+    "total": 203
+  },
+  "candidate_teams": 8,
+  "completed_teams": [
+    {
+      "team_id": "867",
+      "team_name": "Lecce",
+      "profile_rows": 31
+    },
+    {
+      "team_id": "495",
+      "team_name": "Genoa",
+      "profile_rows": 32
+    },
+    {
+      "team_id": "746",
+      "team_name": "Sunderland",
+      "profile_rows": 31
+    },
+    {
+      "team_id": "182",
+      "team_name": "Union Berlin",
+      "profile_rows": 24
+    },
+    {
+      "team_id": "64",
+      "team_name": "Hull City",
+      "profile_rows": 32
+    },
+    {
+      "team_id": "108",
+      "team_name": "Auxerre",
+      "profile_rows": 26
+    },
+    {
+      "team_id": "500",
+      "team_name": "Bologna",
+      "profile_rows": 29
+    },
+    {
+      "team_id": "496",
+      "team_name": "Juventus",
+      "profile_rows": 35
+    }
+  ],
+  "deferred_teams": 0,
+  "profile_rows": 240,
+  "unique_profile_players": 238,
+  "current_roster_players": 2949,
+  "current_roster_player_coverage_pct": 7.53,
+  "warnings": [],
+  "provider_polling_frontend": false,
+  "research_only": true,
+  "identity_enrichment_only": true,
+  "creates_signal": false,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "stake_changes": false,
+  "forward_journal_mutation": false
+}
