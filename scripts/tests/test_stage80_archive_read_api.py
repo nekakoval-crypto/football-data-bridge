@@ -45,6 +45,11 @@ class Stage80ArchiveReadApiTests(unittest.TestCase):
         conn.execute("INSERT INTO raw_team_membership_intervals VALUES ('11','2026-09-17T10:00:00Z','1','OPEN_LATEST')")
         conn.execute("CREATE TABLE raw_player_grade_snapshots (player_id TEXT, observed_at_utc TEXT, fixture_id TEXT, overall_grade TEXT)")
         conn.execute("INSERT INTO raw_player_grade_snapshots VALUES ('11','2026-09-18T10:05:00Z','100','7.1')")
+        conn.execute("CREATE TABLE raw_epl_referee_profiles_research (referee TEXT, matches TEXT, draw_pct TEXT, total_yellows_per_observed_match TEXT, source_scope TEXT, penalties_available TEXT, research_only TEXT, operational_betting_authority TEXT)")
+        conn.execute("INSERT INTO raw_epl_referee_profiles_research VALUES ('A Taylor','265','24.91','3.551','EPL_ONLY','false','true','false')")
+        conn.execute("CREATE TABLE raw_epl_referee_team_splits_research (referee TEXT, team TEXT, matches TEXT, wins TEXT, draws TEXT, losses TEXT, points_per_match TEXT, source_scope TEXT, penalties_available TEXT, research_only TEXT, operational_betting_authority TEXT)")
+        conn.execute("INSERT INTO raw_epl_referee_team_splits_research VALUES ('A Taylor','Arsenal','12','7','3','2','2.0','EPL_ONLY','false','true','false')")
+        conn.execute("INSERT INTO raw_epl_referee_team_splits_research VALUES ('A Taylor','Chelsea','10','4','2','4','1.4','EPL_ONLY','false','true','false')")
         conn.commit(); conn.close()
 
     def test_fixture_archive_endpoint_is_provider_free(self):
@@ -98,6 +103,47 @@ class Stage80ArchiveReadApiTests(unittest.TestCase):
         self.assertEqual(payload["coverage"]["transfer_rows"],0)
         self.assertFalse(payload["coverage"]["verified_transfer_history"])
         self.assertTrue(payload["coverage"]["partial_sources_possible"])
+
+    def test_referee_archive_endpoint_returns_profile_and_team_splits(self):
+        with tempfile.TemporaryDirectory() as td:
+            db=Path(td)/"pbk.sqlite"
+            self.build_db(db)
+            with patch.object(api,"DB",db):
+                status,payload=api.dispatch("/v1/archive/referee?referee=A%20Taylor")
+        self.assertEqual(status,200)
+        self.assertEqual(payload["referee"],"A Taylor")
+        self.assertEqual(payload["profile"]["matches"],"265")
+        self.assertEqual(payload["coverage"]["team_split_rows"],2)
+        self.assertEqual(payload["coverage"]["source_scope"],"EPL_ONLY")
+        self.assertTrue(payload["coverage"]["partial_top5_history"])
+        self.assertFalse(payload["coverage"]["penalties_available"])
+        self.assertFalse(payload["coverage"]["operational_betting_authority"])
+        self.assertFalse(payload["provider_polling"])
+        self.assertFalse(payload["creates_signal"])
+        self.assertFalse(payload["probability_mutation"])
+
+    def test_referee_archive_team_filter_is_case_insensitive(self):
+        with tempfile.TemporaryDirectory() as td:
+            db=Path(td)/"pbk.sqlite"
+            self.build_db(db)
+            with patch.object(api,"DB",db):
+                status,payload=api.dispatch("/v1/archive/referee?referee=A%20Taylor&team=arsenal")
+        self.assertEqual(status,200)
+        self.assertEqual(payload["team_filter"],"arsenal")
+        self.assertEqual(len(payload["team_splits"]),1)
+        self.assertEqual(payload["team_splits"][0]["team"],"Arsenal")
+
+    def test_referee_archive_missing_and_unknown_are_explicit(self):
+        with tempfile.TemporaryDirectory() as td:
+            db=Path(td)/"pbk.sqlite"
+            self.build_db(db)
+            with patch.object(api,"DB",db):
+                missing_status,missing=api.dispatch("/v1/archive/referee")
+                unknown_status,unknown=api.dispatch("/v1/archive/referee?referee=Unknown")
+        self.assertEqual(missing_status,400)
+        self.assertEqual(missing["error"],"MISSING_REFEREE")
+        self.assertEqual(unknown_status,404)
+        self.assertEqual(unknown["error"],"ARCHIVE_REFEREE_NOT_FOUND")
 
     def test_missing_id_is_rejected(self):
         with tempfile.TemporaryDirectory() as td:
