@@ -82,6 +82,7 @@ jobs:
             --player-stats ops/player_stats_snapshots.csv \
             --players core/players.csv.gz \
             --transfers core/transfers.csv.gz \
+            --identity-out mapping/pbk_transfermarkt_player_identity.csv \
             --mapping-out mapping/pbk_transfermarkt_player_mapping_candidates.csv \
             --transfers-out mapping/pbk_transfer_history_exact_mapped.csv \
             --meta-out mapping/stage80_transfer_mapping_meta.json
@@ -148,6 +149,8 @@ jobs:
         run: |
           git config user.name 'stage80-bot'
           git config user.email 'stage80-bot@users.noreply.github.com'
+          cp mapping/pbk_transfermarkt_player_identity.csv ops/pbk_transfermarkt_player_identity.csv
+          git add ops/pbk_transfermarkt_player_identity.csv
           git add ops/historical_transfer_events.csv ops/stage80_transfer_history_last_run.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'Stage 80 transfer history archive update'

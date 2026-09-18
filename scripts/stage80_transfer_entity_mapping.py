@@ -36,6 +36,10 @@ MAPPING_FIELDS = [
     "transfermarkt_current_club_name","match_method","match_status","match_confidence",
     "name_key","team_key","candidate_count","mapping_version",
 ]
+IDENTITY_FIELDS = [
+    "pbk_player_id","pbk_player_name","transfermarkt_player_id","transfermarkt_player_name",
+    "mapping_method","mapping_confidence","match_status","source","mapping_version",
+]
 TRANSFER_FIELDS = [
     "pbk_player_id","transfermarkt_player_id","player_name","transfer_date","transfer_season",
     "from_club_id","from_club_name","to_club_id","to_club_name","transfer_fee",
@@ -332,6 +336,40 @@ def build_mapping(pbk_rows, tm_players, player_stat_rows=None):
     return rows, auto
 
 
+def build_identity_map(mapping_rows):
+    rows = []
+    seen = set()
+    for row in mapping_rows:
+        pbk_id = sval(row, "pbk_player_id")
+        tm_id = sval(row, "transfermarkt_player_id")
+        method = sval(row, "match_method")
+        if (
+            sval(row, "match_status") != "AUTO_MATCH"
+            or sval(row, "match_confidence") != "HIGH"
+            or method not in SAFE_AUTO_METHODS
+            or not pbk_id
+            or not tm_id
+        ):
+            continue
+        key = (pbk_id, tm_id)
+        if key in seen:
+            continue
+        seen.add(key)
+        rows.append({
+            "pbk_player_id": pbk_id,
+            "pbk_player_name": sval(row, "pbk_player_name"),
+            "transfermarkt_player_id": tm_id,
+            "transfermarkt_player_name": sval(row, "transfermarkt_player_name"),
+            "mapping_method": method,
+            "mapping_confidence": "HIGH",
+            "match_status": "AUTO_MATCH",
+            "source": "stage80_transfer_entity_mapping",
+            "mapping_version": VERSION,
+        })
+    rows.sort(key=lambda r: (r["pbk_player_id"], r["transfermarkt_player_id"]))
+    return rows
+
+
 def build_transfer_history(transfers, auto_mapping):
     output = []
     for row in transfers:
@@ -374,6 +412,7 @@ def run(
     transfers_out,
     meta_out,
     player_stats_path=None,
+    identity_out=None,
 ):
     pbk = open_csv(pbk_path)
     players = open_csv(players_path)
@@ -381,9 +420,12 @@ def run(
     player_stats = open_csv(player_stats_path) if player_stats_path else []
 
     mapping, auto = build_mapping(pbk, players, player_stats)
+    identities = build_identity_map(mapping)
     history = build_transfer_history(transfers, auto)
     write_csv(mapping_out, MAPPING_FIELDS, mapping)
     write_csv(transfers_out, TRANSFER_FIELDS, history)
+    if identity_out:
+        write_csv(identity_out, IDENTITY_FIELDS, identities)
 
     statuses = defaultdict(int)
     methods = defaultdict(int)
@@ -403,6 +445,7 @@ def run(
         "transfer_source_rows": len(transfers),
         "mapping_candidate_rows": len(mapping),
         "auto_mapped_players": len(auto),
+        "verified_identity_rows": len(identities),
         "auto_mapped_by_method": dict(sorted(auto_methods.items())),
         "normalized_transfer_rows": len(history),
         "mapping_status_rows": dict(sorted(statuses.items())),
@@ -440,6 +483,7 @@ def main():
     p.add_argument("--players", required=True)
     p.add_argument("--transfers", required=True)
     p.add_argument("--player-stats", default="")
+    p.add_argument("--identity-out", default="")
     p.add_argument("--mapping-out", required=True)
     p.add_argument("--transfers-out", required=True)
     p.add_argument("--meta-out", required=True)
@@ -453,6 +497,7 @@ def main():
         a.transfers_out,
         a.meta_out,
         player_stats_path=a.player_stats or None,
+        identity_out=a.identity_out or None,
     ), ensure_ascii=False))
 
 

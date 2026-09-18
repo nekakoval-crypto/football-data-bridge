@@ -23,6 +23,7 @@ on:
       - 'scripts/tests/test_stage92_statsbomb_pbk_player_mapping.py'
       - 'ops/statsbomb_player_xg_xa.csv'
       - 'ops/historical_transfer_events.csv'
+      - 'ops/pbk_transfermarkt_player_identity.csv'
       - 'ops/historical_players.csv'
       - 'scripts/stage80_archive_manifest.py'
       - 'scripts/stage80_archive_readiness.py'

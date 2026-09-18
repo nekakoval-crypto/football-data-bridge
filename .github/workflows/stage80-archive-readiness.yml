@@ -46,6 +46,7 @@ on:
       - 'scripts/stage80_archive_readiness.py'
       - 'ops/stage80_raw_archive_storage_last_run.json'
       - 'ops/stage80_raw_archive_provider_probe_last_run.json'
+      - 'ops/pbk_transfermarkt_player_identity.csv'
       - 'ops/historical_transfer_events.csv'
       - 'ops/stage80_transfer_history_last_run.json'
       - 'ops/statsbomb_player_xg_xa.csv'

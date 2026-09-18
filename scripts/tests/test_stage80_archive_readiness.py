@@ -419,6 +419,29 @@ class Stage80ArchiveReadinessTests(unittest.TestCase):
         self.assertNotIn("RAW_ARCHIVE_STORAGE_NEEDS_ATTENTION", report["gaps"])
 
 
+    def test_verified_transfer_identity_is_reported_independently_of_transfer_events(self):
+        self.write_csv(
+            "pbk_transfermarkt_player_identity.csv",
+            [
+                "pbk_player_id", "transfermarkt_player_id",
+                "mapping_method", "mapping_confidence", "match_status",
+            ],
+            [{
+                "pbk_player_id": "11",
+                "transfermarkt_player_id": "900",
+                "mapping_method": "EXACT_STATS_NAME_CURRENT_CLUB",
+                "mapping_confidence": "HIGH",
+                "match_status": "AUTO_MATCH",
+            }],
+        )
+        report = s80.build_report(self.ops, archive_dir="")
+        identity = report["transfer_identity"]
+        self.assertTrue(identity["present"])
+        self.assertEqual(identity["valid_rows"], 1)
+        self.assertEqual(identity["unique_pbk_players"], 1)
+        self.assertNotIn("VERIFIED_TRANSFER_IDENTITY_NOT_MATERIALIZED", report["gaps"])
+        self.assertIn("VERIFIED_TRANSFER_EVENTS_NOT_YET_INGESTED", report["gaps"])
+
     def test_verified_transfer_gap_closes_only_with_valid_durable_evidence(self):
         self.write_csv(
             "historical_transfer_events.csv",

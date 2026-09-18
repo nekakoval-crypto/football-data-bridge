@@ -64,10 +64,20 @@ The Transfermarkt fetch workflow publishes a separate 30-day artifact:
 containing:
 
 - `pbk_transfermarkt_player_mapping_candidates.csv`
+- `pbk_transfermarkt_player_identity.csv`
 - `pbk_transfer_history_exact_mapped.csv`
 - `stage80_transfer_mapping_meta.json`
 
-The normalized transfer-history file contains only rows belonging to `AUTO_MATCH` players.
+The workflow also publishes the durable identity projection to:
+
+`ops/pbk_transfermarkt_player_identity.csv`
+
+This file contains every AUTO_MATCH/HIGH PBK↔Transfermarkt identity even when the
+player has no row in Transfermarkt's transfer-event table. Transfer history and
+identity are therefore separate concerns.
+
+The normalized transfer-history file contains only rows belonging to
+`AUTO_MATCH` players that also have transfer-event evidence.
 
 ## Governance
 
