@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_READINESS_V12_TRANSFER_IDENTITY_BRIDGE",
-  "generated_at_utc": "2026-09-18T17:24:12Z",
+  "version": "PBK_STAGE80_ARCHIVE_READINESS_V13_PROFILE_DOB_IDENTITY_BRIDGE",
+  "generated_at_utc": "2026-09-18T17:52:03Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -12,7 +12,7 @@
     "fixture_history": {
       "file": "fixture_history_snapshots.csv",
       "present": true,
-      "rows": 1667
+      "rows": 1796
     },
     "historical_fixtures": {
       "file": "historical_fixtures.csv",
@@ -48,6 +48,11 @@
       "file": "team_rosters.csv",
       "present": true,
       "rows": 2951
+    },
+    "player_profiles": {
+      "file": "player_profile_evidence.csv",
+      "present": true,
+      "rows": 240
     },
     "roster_history": {
       "file": "team_roster_history.csv",
@@ -128,10 +133,10 @@
   },
   "fixture_history": {
     "present": true,
-    "rows": 1667,
-    "valid_observations": 1667,
+    "rows": 1796,
+    "valid_observations": 1796,
     "unique_fixtures": 178,
-    "observation_runs": 13,
+    "observation_runs": 14,
     "finished_fixtures_observed": 44,
     "invalid_identity_rows": 0,
     "evidence_note": "Counts represent only Stage71 current-round observations persisted after the fixture-history archive was enabled; they are not a pre-PBK historical backfill claim."
@@ -142,7 +147,7 @@
     "valid_rows": 178,
     "unique_fixtures": 178,
     "terminal_fixtures": 44,
-    "rescheduled_fixtures": 0,
+    "rescheduled_fixtures": 1,
     "invalid_identity_rows": 0,
     "duplicate_fixture_ids": 0,
     "history_fixture_coverage_pct": 100.0,
@@ -150,8 +155,8 @@
     "orphan_catalog_fixtures": 0,
     "missing_terminal_evidence": 0,
     "orphan_terminal_evidence": 0,
-    "observation_count_total": 1667,
-    "expected_history_observations": 1667,
+    "observation_count_total": 1796,
+    "expected_history_observations": 1796,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
   },
@@ -224,6 +229,19 @@
     "open_latest_intervals": 2949,
     "closed_by_observed_absence_intervals": 0
   },
+  "player_profiles": {
+    "present": true,
+    "rows": 240,
+    "valid_rows": 240,
+    "identity_ready_rows": 228,
+    "invalid_rows": 0,
+    "unique_players": 238,
+    "identity_ready_unique_players": 226,
+    "unique_teams": 8,
+    "current_roster_player_coverage_pct": 7.53,
+    "identity_ready_current_roster_coverage_pct": 7.22,
+    "evidence_note": "Bounded /players?team&season profile evidence for identity enrichment. Full-name+DOB+club may support conservative cross-provider identity mapping; this never grants betting/model authority."
+  },
   "transfer_identity": {
     "present": true,
     "rows": 212,
@@ -233,6 +251,7 @@
     "unique_transfermarkt_players": 212,
     "approved_methods": [
       "EXACT_NAME_CURRENT_CLUB",
+      "EXACT_PROFILE_NAME_DOB_CURRENT_CLUB",
       "EXACT_STATS_NAME_CURRENT_CLUB"
     ],
     "evidence_note": "Durable identity bridge independent of whether a player has any transfer-event rows; HIGH/AUTO only and research/enrichment authority only."
@@ -292,6 +311,7 @@
     "PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
+    "PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE",
     "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE",
     "PLAYER_XG_XA_RESEARCH_SOURCE_NOT_MATERIALIZED"
   ],

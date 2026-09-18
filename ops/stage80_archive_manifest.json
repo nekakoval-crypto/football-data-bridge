@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V11_TRANSFER_IDENTITY",
-  "generated_at_utc": "2026-09-18T17:24:12Z",
+  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V12_PLAYER_PROFILE_EVIDENCE",
+  "generated_at_utc": "2026-09-18T17:52:03Z",
   "status": "OK",
   "datasets": [
     {
@@ -65,7 +65,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 1667,
+      "row_count": 1796,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -354,6 +354,51 @@
       "effective_time_fields_text": "kickoff_utc"
     },
     {
+      "dataset_id": "player_profile_evidence",
+      "path": "player_profile_evidence.csv",
+      "role": "IDENTITY_ENRICHMENT_EVIDENCE",
+      "lifecycle": "BOUNDED_CURRENT_TEAM_PROFILE_PROJECTION",
+      "identity_key": [
+        "team_id",
+        "season",
+        "player_id"
+      ],
+      "observed_time_fields": [
+        "captured_at_utc"
+      ],
+      "effective_time_fields": [
+        "season"
+      ],
+      "source": "Stage80 /players?team&season via shared API-Football broker",
+      "limitations": "Identity enrichment only; current-roster coverage is partial while the bounded collector fills teams. Missing profile fields remain UNKNOWN. No betting/model authority.",
+      "present": true,
+      "row_count": 240,
+      "columns": [
+        "team_id",
+        "team_name",
+        "season",
+        "player_id",
+        "player_name",
+        "firstname",
+        "lastname",
+        "birth_date",
+        "birth_place",
+        "birth_country",
+        "nationality",
+        "height",
+        "weight",
+        "injured",
+        "photo_url",
+        "captured_at_utc",
+        "source"
+      ],
+      "missing_required_fields": [],
+      "contract_status": "OK",
+      "identity_key_text": "team_id+season+player_id",
+      "observed_time_fields_text": "captured_at_utc",
+      "effective_time_fields_text": "season"
+    },
+    {
       "dataset_id": "player_grade_snapshots",
       "path": "player_grade_snapshots.csv",
       "role": "DERIVED_RESEARCH",
@@ -529,7 +574,7 @@
       "observed_time_fields": [],
       "effective_time_fields": [],
       "source": "Stage80 conservative PBK ↔ Transfermarkt AUTO_MATCH/HIGH identity projection",
-      "limitations": "Identity bridge only. Approved methods are exact name+club or exact non-abbreviated API-Football stats name+same club; no fuzzy authority and no betting/model authority.",
+      "limitations": "Identity bridge only. Approved methods include exact catalog name+club, exact API-Football profile full-name+DOB+club, or exact non-abbreviated match-stat name+club; no fuzzy authority and no betting/model authority.",
       "present": true,
       "row_count": 212,
       "columns": [
@@ -1094,8 +1139,8 @@
     }
   ],
   "summary": {
-    "declared_datasets": 24,
-    "materialized_csv_datasets": 20,
+    "declared_datasets": 25,
+    "materialized_csv_datasets": 21,
     "pending_materializations_or_storage": 3,
     "contract_attention": 0
   },
