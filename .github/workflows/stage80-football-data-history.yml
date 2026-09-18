@@ -6,7 +6,9 @@ on:
     paths:
       - 'config/stage80_football_data_top5_9seasons.json'
       - 'scripts/stage80_football_data_history.py'
+      - 'scripts/stage80_referee_research.py'
       - 'scripts/tests/test_stage80_football_data_history.py'
+      - 'scripts/tests/test_stage80_referee_research.py'
       - 'docs/stage80_football_data_history.md'
       - '.github/workflows/stage80-football-data-history.yml'
   push:
@@ -14,7 +16,9 @@ on:
     paths:
       - 'config/stage80_football_data_top5_9seasons.json'
       - 'scripts/stage80_football_data_history.py'
+      - 'scripts/stage80_referee_research.py'
       - 'scripts/tests/test_stage80_football_data_history.py'
+      - 'scripts/tests/test_stage80_referee_research.py'
       - 'docs/stage80_football_data_history.md'
       - '.github/workflows/stage80-football-data-history.yml'
 
@@ -32,8 +36,8 @@ jobs:
           python-version: '3.12'
       - name: Compile and unit test
         run: |
-          python -m py_compile scripts/stage80_football_data_history.py
-          python -m unittest scripts.tests.test_stage80_football_data_history -v
+          python -m py_compile scripts/stage80_football_data_history.py scripts/stage80_referee_research.py
+          python -m unittest scripts.tests.test_stage80_football_data_history scripts.tests.test_stage80_referee_research -v
       - name: Download and normalize previous 9 completed Top5 seasons
         run: |
           mkdir -p source normalized
@@ -82,6 +86,36 @@ jobs:
               writer.writeheader()
               writer.writerows(rows)
           print({'referee_rows':len(rows),'scope':'EPL_ONLY'})
+          PY
+      - name: Build EPL referee research projections
+        run: |
+          python scripts/stage80_referee_research.py \
+            --source normalized/football_data_epl_referee_matches.csv \
+            --profiles-out normalized/football_data_epl_referee_profiles.csv \
+            --team-splits-out normalized/football_data_epl_referee_team_splits.csv \
+            --meta-out normalized/stage80_referee_research_meta.json
+      - name: Verify EPL referee research projections
+        run: |
+          python - <<'PY'
+          import csv, json
+          meta=json.load(open('normalized/stage80_referee_research_meta.json',encoding='utf-8'))
+          assert meta['status']=='OK', meta
+          assert meta['source_scope']=='EPL_ONLY', meta
+          assert meta['source_rows']==3420, meta
+          assert meta['profile_match_sum']==3420, meta
+          assert meta['team_split_match_sum']==6840, meta
+          assert meta['unique_referees']>0, meta
+          assert meta['referee_team_pairs']>meta['unique_referees'], meta
+          assert meta['penalties_available'] is False, meta
+          assert meta['research_only'] is True, meta
+          assert meta['operational_betting_authority'] is False, meta
+          with open('normalized/football_data_epl_referee_profiles.csv',encoding='utf-8-sig',newline='') as f:
+              profiles=list(csv.DictReader(f))
+          with open('normalized/football_data_epl_referee_team_splits.csv',encoding='utf-8-sig',newline='') as f:
+              team_splits=list(csv.DictReader(f))
+          assert sum(int(r['matches']) for r in profiles)==3420
+          assert sum(int(r['matches']) for r in team_splits)==6840
+          print(meta)
           PY
       - name: Source checksums
         run: sha256sum source/*.csv | sort > normalized/SHA256SUMS.source.txt

@@ -60,6 +60,17 @@ For the current 2017/18–2025/26 source package:
 
 PBK labels this historical referee slice **EPL_ONLY**. It must never be described as complete Top-5 referee history, and missing referee data for the other leagues is UNKNOWN rather than inferred.
 
+### Referee research projections
+
+From the EPL-only slice the workflow also derives two research-only CSVs:
+
+- `football_data_epl_referee_profiles.csv` — one row per referee with match count, season span, home/draw/away result rates, goals, yellow/red cards and fouls where observed;
+- `football_data_epl_referee_team_splits.csv` — one row per referee+team pair with the team's observed W/D/L, points, goals, cards and fouls under that referee.
+
+These are descriptive historical aggregates only. PBK does **not** label an observed split as referee bias or causation. Small samples must remain visibly small, missing metrics stay UNKNOWN, and no minimum-sample rule is converted into betting authority here.
+
+The Football-Data matrix used here does not provide a penalty field, so penalty counts are explicitly marked unavailable rather than inferred from goals, cards, events or other proxies.
+
 ## Separation from forward evidence
 
 This dataset is explicitly:
