@@ -10,20 +10,17 @@ from __future__ import annotations
 import csv
 import json
 import os
+import sys
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
-try:
-    from scripts import stage71_observation_audit as audit
-    from scripts.api_football_broker import (
-        ApiFootballBrokerError, get_broker, api_get,
-    )
-except ImportError:
-    import stage71_observation_audit as audit
-    from api_football_broker import (
-        ApiFootballBrokerError, get_broker, api_get,
-    )
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+import stage71_observation_audit as audit
+from api_football_broker import ApiFootballBrokerError, get_broker, api_get
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 CONFIG = Path("config/stage80_api_football_top5_referee_9seasons.json")
