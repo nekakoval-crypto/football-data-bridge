@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-18T13:02:35Z
+Generated UTC: 2026-09-18T14:02:59Z
 Active canonical signals: 4
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -23,8 +23,8 @@ Active canonical signals: 4
 ## R1 | Lecce — Bologna
 - Kickoff UTC: 2026-10-11T13:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.0 / Х 3.3 / П2 1.91 (immutable)
-- Market-best observed: 2.06 @ 1xBet | Bet365 now: 1.91
-- Current user-executable: 2.0 @ Marathonbet
+- Market-best observed: 2.07 @ 1xBet | Bet365 now: 2.0
+- Current user-executable: 2.01 @ Marathonbet
 - Paper user-execution (frozen): 2.0 @ Marathonbet [2026-09-18T06:48:35Z]
 - Referee / venue: TBD | Stadio Via del Mare, Lecce
 - Previous: home Serie A vs Monza (672.0h rest); away Serie A vs Napoli (669.0h rest)
@@ -53,8 +53,8 @@ Active canonical signals: 4
 ## R1 | Cagliari — Juventus
 - Kickoff UTC: 2026-10-11T18:45:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 5.75 / Х 3.7 / П2 1.6 (immutable)
-- Market-best observed: 1.6 @ Bet365 | Bet365 now: 1.6
-- Current user-executable: 1.53 @ Marathonbet
+- Market-best observed: 1.56 @ 1xBet | Bet365 now: 1.48
+- Current user-executable: 1.51 @ Marathonbet
 - Paper user-execution (frozen): 1.53 @ Marathonbet [2026-09-18T06:48:35Z]
 - Referee / venue: TBD | Unipol Domus, Cagliari
 - Previous: home Serie A vs Atalanta (696.0h rest); away UEFA Europa League vs NEC Nijmegen (575.8h rest)
