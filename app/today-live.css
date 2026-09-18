@@ -38,3 +38,22 @@
   .page-layout .topbar,.page-layout .tabs,.content-layout,.page-layout:has(#view-today.active) .content-layout,.page-layout footer{width:100%;margin:0;display:block}
   .today-live-sidebar{position:static;margin-bottom:16px}.page-layout:has(#view-today.active) .today-live-sidebar{display:block}
 }
+
+/* Stage99 — compact Style/Matchup state */
+.today-live-style-matchup{
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
+  margin-top:4px;
+}
+.today-live-style-matchup span{
+  display:inline-flex;
+  border:1px solid #293745;
+  border-radius:999px;
+  padding:2px 5px;
+  color:var(--muted);
+  background:#111922;
+  font-size:8px;
+  line-height:1.2;
+}
+

@@ -1,13 +1,13 @@
-const CACHE='pbk-shell-v14';
+﻿const CACHE='pbk-shell-v15';
 const SHELL=['/','/index.html','/app.css','/filters.css','/install.css','/runtime.css','/push.css','/probability.css','/app.js','/match-card.js','/match-card-core.js','/formations.js','/manual-lineup.js','/match-card.css','/markets.js','/filters.js','/install.js','/runtime.js','/push.js','/probability.js','/value-radar.js','/value-radar.css','/challengers.js','/challengers.css','/today-live.js','/today-live.css','/icon.svg','/manifest.webmanifest'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)));self.skipWaiting()});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});
 self.addEventListener('message',e=>{if(e.data?.type==='SKIP_WAITING')self.skipWaiting()});
 self.addEventListener('push',e=>{
-  let d={title:'ПБК',body:'Новое событие',url:'/#notifications',severity:'medium'};
+  let d={title:'РџР‘Рљ',body:'РќРѕРІРѕРµ СЃРѕР±С‹С‚РёРµ',url:'/#notifications',severity:'medium'};
   try{if(e.data)d={...d,...e.data.json()}}catch{try{d.body=e.data?.text()||d.body}catch{}}
   const opts={body:d.body||'',icon:'/icon.svg',badge:'/icon.svg',tag:d.id||undefined,renotify:true,data:{url:d.url||'/#notifications',fixture_id:d.fixture_id||''},requireInteraction:d.severity==='high'};
-  e.waitUntil(self.registration.showNotification(d.title||'ПБК',opts));
+  e.waitUntil(self.registration.showNotification(d.title||'РџР‘Рљ',opts));
 });
 self.addEventListener('notificationclick',e=>{
   e.notification.close();const target=e.notification.data?.url||'/#notifications';

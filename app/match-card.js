@@ -1,4 +1,4 @@
-import {renderPitch, selectedTeam, positions} from './formations.js';
+﻿import {renderPitch, selectedTeam, positions} from './formations.js';
 import {renderManualConfigurator,initManualLineupConfigurator} from './manual-lineup.js';
 import { renderMatchCard as renderCoreMatchCard } from './match-card-core.js';
 export * from './match-card-core.js';
@@ -8,6 +8,80 @@ const list=value=>Array.isArray(value)?value:[];
 const badge=(text,tone='neutral')=>`<span class="match-card-v2-badge ${tone}">${esc(text)}</span>`;
 const empty=text=>`<div class="match-card-v2-empty">${esc(text)}</div>`;
 const section=(title,body,className='')=>`<section class="match-card-v2-section ${className}"><div class="match-card-v2-section-title">${esc(title)}</div>${body}</section>`;
+
+
+const STYLE_STATUS_RU={
+  DATA_WAITING:'\u0414\u0430\u043d\u043d\u044b\u0435 \u043d\u0430\u043a\u0430\u043f\u043b\u0438\u0432\u0430\u044e\u0442\u0441\u044f',
+  READY_FOR_VALIDATION:'\u0413\u043e\u0442\u043e\u0432\u043e \u043a forward-\u0432\u0430\u043b\u0438\u0434\u0430\u0446\u0438\u0438',
+  VALIDATION_EVIDENCE_AVAILABLE:'\u0415\u0441\u0442\u044c validation evidence',
+  INSUFFICIENT_DATA:'\u041d\u0435\u0434\u043e\u0441\u0442\u0430\u0442\u043e\u0447\u043d\u043e \u0434\u0430\u043d\u043d\u044b\u0445',
+  NO_LABELED_SAMPLES:'\u041d\u0435\u0442 forward-label',
+};
+
+const MATCHUP_STATUS_RU={
+  DATA_WAITING:'\u0414\u0430\u043d\u043d\u044b\u0435 \u043d\u0430\u043a\u0430\u043f\u043b\u0438\u0432\u0430\u044e\u0442\u0441\u044f',
+  DATA_BLOCKED:'DATA BLOCKED',
+  VALIDATION_POLICY_PENDING:'\u041e\u0436\u0438\u0434\u0430\u0435\u0442 validation policy',
+  EVIDENCE_AVAILABLE_NOT_AUTHORIZED:'Evidence \u0435\u0441\u0442\u044c \u00b7 \u0432\u044b\u0432\u043e\u0434 \u043d\u0435 \u0440\u0430\u0437\u0440\u0435\u0448\u0451\u043d',
+};
+
+function researchTone(status){
+  const value=String(status||'').toUpperCase();
+  if(value==='VALIDATION_EVIDENCE_AVAILABLE')return 'good';
+  if(value.includes('BLOCKED')||value.includes('INSUFFICIENT'))return 'warn';
+  return 'neutral';
+}
+
+function styleMatchup(payload={}){
+  const sm=payload.style_matchup||{};
+  const style=sm.style_validation||{};
+  const matchup=sm.matchup_validation||{};
+
+  const styleStatus=String(style.status||'DATA_WAITING');
+  const matchupStatus=String(matchup.status||'DATA_WAITING');
+
+  const ready=list(style.ready_dimensions);
+  const evidence=list(style.validation_evidence_dimensions);
+
+  const styleDims=evidence.length
+    ? `<div class="match-card-v2-reasons">${evidence.map(x=>badge(x,'good')).join('')}</div>`
+    : ready.length
+      ? `<div class="match-card-v2-reasons">${ready.map(x=>badge(x)).join('')}</div>`
+      : '<small>\u0412\u0430\u043b\u0438\u0434\u0438\u0440\u0443\u0435\u043c\u044b\u0435 style dimensions \u043f\u043e\u043a\u0430 \u043d\u0435 \u043d\u0430\u043a\u043e\u043f\u043b\u0435\u043d\u044b.</small>';
+
+  const matched=Number(matchup.components_with_required_evidence||0);
+  const total=Number(matchup.total_components||0);
+
+  return section(
+    'Team Style / Matchup',
+    `<div class="match-card-v2-research-label">RESEARCH / FORWARD VALIDATION</div>
+     <div class="match-card-v2-two">
+       <div class="match-card-v2-team-context">
+         <span>TEAM STYLE</span>
+         <strong>${esc(STYLE_STATUS_RU[styleStatus]||styleStatus)}</strong>
+         <div>${badge(styleStatus,researchTone(styleStatus))}</div>
+         ${styleDims}
+       </div>
+       <div class="match-card-v2-team-context">
+         <span>STYLE vs STYLE</span>
+         <strong>${esc(MATCHUP_STATUS_RU[matchupStatus]||matchupStatus)}</strong>
+         <div>${badge(matchupStatus,researchTone(matchupStatus))}</div>
+         <small>\u041a\u043e\u043c\u043f\u043e\u043d\u0435\u043d\u0442\u044b \u0441 \u0442\u0440\u0435\u0431\u0443\u0435\u043c\u044b\u043c evidence: ${esc(matched)}/${esc(total)}</small>
+       </div>
+     </div>
+     <div class="match-card-v2-trust">
+       ${sm.no_lookahead!==false?badge('no-lookahead','good'):badge('cutoff \u043d\u0435 \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0451\u043d','warn')}
+       ${badge('provider-free')}
+       ${badge('research only','warn')}
+     </div>
+     <div class="match-card-v2-note">
+       Matchup Grade, \u043e\u0431\u0449\u0438\u0439 edge \u0438 \u043f\u043e\u0431\u0435\u0434\u0438\u0442\u0435\u043b\u044c \u043d\u0435 \u0432\u044b\u0447\u0438\u0441\u043b\u044f\u044e\u0442\u0441\u044f.
+       \u042d\u0442\u043e\u0442 \u0431\u043b\u043e\u043a \u043d\u0435 \u0441\u043e\u0437\u0434\u0430\u0451\u0442 \u0432\u0435\u0440\u043e\u044f\u0442\u043d\u043e\u0441\u0442\u044c \u041f\u0411\u041a, value, \u0441\u0438\u0433\u043d\u0430\u043b, eligibility \u0438\u043b\u0438 \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u0435 \u0441\u0442\u0430\u0432\u043a\u0438.
+       UNKNOWN \u043d\u0435 \u043f\u0440\u0435\u0432\u0440\u0430\u0449\u0430\u0435\u0442\u0441\u044f \u0432 \u043d\u043e\u043b\u044c.
+     </div>`,
+    'research style-matchup'
+  );
+}
 
 function playerName(item){
   if(typeof item==='string')return item;
@@ -70,7 +144,7 @@ function manualScenario(payload={}){
 
 export function renderMatchCard(payload={}){
   const base=renderCoreMatchCard(payload);
-  const addition=`${lineupContext(payload)}${playerGrade(payload)}${lineupSurprise(payload)}${manualScenario(payload)}`;
+  const addition=`${styleMatchup(payload)}${lineupContext(payload)}${playerGrade(payload)}${lineupSurprise(payload)}${manualScenario(payload)}`;
   const end=base.lastIndexOf('</div>');
   const html=end>=0?`${base.slice(0,end)}${addition}${base.slice(end)}`:`${base}${addition}`;
   if(typeof document!=='undefined'&&typeof queueMicrotask==='function')queueMicrotask(()=>initManualLineupConfigurator(payload,document));

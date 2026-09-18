@@ -4,3 +4,9 @@
 
 .lineup-context .match-card-v2-lineup small{display:block;overflow-wrap:anywhere}.formation-box{position:absolute;left:25%;width:50%;height:12%;border:1px solid #93c9ad;pointer-events:none}.formation-box.top{top:0;border-top:0}.formation-box.bottom{bottom:0;border-bottom:0}.formation-box:after{content:"";position:absolute;left:25%;width:50%;height:40%;border:1px solid #93c9ad}.formation-box.top:after{top:0;border-top:0}.formation-box.bottom:after{bottom:0;border-bottom:0}
 @media(max-width:420px){.match-card-v2-matchup{grid-template-columns:minmax(0,1fr) minmax(82px,1.4fr) minmax(0,1fr)}.match-card-v2-score{overflow-wrap:anywhere;font-size:22px}}
+
+/* Stage99 — Team Style / Matchup research UI */
+.style-matchup .match-card-v2-trust{margin-top:10px}
+.style-matchup .match-card-v2-team-context strong{line-height:1.35}
+.style-matchup .match-card-v2-reasons{margin-top:9px}
+
