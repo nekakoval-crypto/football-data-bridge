@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V8_TRANSFER_HISTORY",
-  "generated_at_utc": "2026-09-18T13:44:59Z",
+  "generated_at_utc": "2026-09-18T14:52:58Z",
   "status": "OK",
   "datasets": [
     {
@@ -65,7 +65,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 1151,
+      "row_count": 1280,
       "columns": [
         "fixture_id",
         "provider_league_id",
