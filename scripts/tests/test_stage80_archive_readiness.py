@@ -61,6 +61,58 @@ class Stage80ArchiveReadinessTests(unittest.TestCase):
         self.assertEqual(report["fixtures"]["per_league"][0]["player_stats_coverage_pct"], 50.0)
         self.assertIn("PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE", report["gaps"])
 
+    def test_team_xg_verified_partial_coverage_is_reported_separately(self):
+        self.write_csv(
+            "team_match_statistics.csv",
+            ["fixture_id", "team_id", "side", "expected_goals"],
+            [
+                {"fixture_id": "1", "team_id": "10", "side": "HOME", "expected_goals": "1.25"},
+                {"fixture_id": "1", "team_id": "11", "side": "AWAY", "expected_goals": "0.80"},
+                {"fixture_id": "2", "team_id": "20", "side": "HOME", "expected_goals": ""},
+                {"fixture_id": "2", "team_id": "21", "side": "AWAY", "expected_goals": ""},
+            ],
+        )
+        report = s80.build_report(self.ops, archive_dir="")
+        advanced = report["advanced_metrics"]
+        self.assertEqual(advanced["team_xg_rows"], 2)
+        self.assertEqual(advanced["team_xg_complete_fixture_count"], 1)
+        self.assertEqual(advanced["team_stats_complete_fixture_count"], 2)
+        self.assertEqual(advanced["team_xg_captured_fixture_coverage_pct"], 50.0)
+        self.assertNotIn("TEAM_XG_NO_VERIFIED_OBSERVATIONS", report["gaps"])
+        self.assertIn("TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE", report["gaps"])
+        self.assertIn("PLAYER_XG_XA_REQUIRE_VERIFIED_SOURCE", report["gaps"])
+        self.assertNotIn("XG_XA_REQUIRE_VERIFIED_SOURCE", report["gaps"])
+
+    def test_team_xg_full_captured_coverage_closes_team_gap_only(self):
+        self.write_csv(
+            "team_match_statistics.csv",
+            ["fixture_id", "team_id", "side", "expected_goals"],
+            [
+                {"fixture_id": "1", "team_id": "10", "side": "HOME", "expected_goals": "0"},
+                {"fixture_id": "1", "team_id": "11", "side": "AWAY", "expected_goals": "2.10"},
+            ],
+        )
+        report = s80.build_report(self.ops, archive_dir="")
+        self.assertEqual(report["advanced_metrics"]["team_xg_complete_fixture_count"], 1)
+        self.assertEqual(report["advanced_metrics"]["team_xg_captured_fixture_coverage_pct"], 100.0)
+        self.assertNotIn("TEAM_XG_NO_VERIFIED_OBSERVATIONS", report["gaps"])
+        self.assertNotIn("TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE", report["gaps"])
+        self.assertIn("PLAYER_XG_XA_REQUIRE_VERIFIED_SOURCE", report["gaps"])
+
+    def test_missing_team_xg_keeps_team_and_player_source_gaps_explicit(self):
+        self.write_csv(
+            "team_match_statistics.csv",
+            ["fixture_id", "team_id", "side", "expected_goals"],
+            [
+                {"fixture_id": "1", "team_id": "10", "side": "HOME", "expected_goals": ""},
+                {"fixture_id": "1", "team_id": "11", "side": "AWAY", "expected_goals": ""},
+            ],
+        )
+        report = s80.build_report(self.ops, archive_dir="")
+        self.assertEqual(report["advanced_metrics"]["team_xg_rows"], 0)
+        self.assertIn("TEAM_XG_NO_VERIFIED_OBSERVATIONS", report["gaps"])
+        self.assertIn("PLAYER_XG_XA_REQUIRE_VERIFIED_SOURCE", report["gaps"])
+
     def test_roster_history_and_membership_counts_are_reported(self):
         self.write_csv(
             "team_rosters.csv",
