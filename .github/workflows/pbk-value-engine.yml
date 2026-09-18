@@ -1,0 +1,66 @@
+name: PBK Value Engine v2
+
+on:
+  pull_request:
+    paths:
+      - 'config/pbk_value_engine.json'
+      - 'scripts/pbk_value_engine.py'
+      - 'scripts/pbk_calculation_contract.py'
+      - 'scripts/pbk_probability_engine.py'
+      - 'scripts/stage75_value_radar.py'
+      - 'scripts/tests/test_pbk_value_engine.py'
+      - 'scripts/tests/test_pbk_probability_engine.py'
+      - 'scripts/tests/test_value_radar.py'
+      - 'docs/pbk_value_engine.md'
+      - '.github/workflows/pbk-value-engine.yml'
+      - '.github/workflows/stage75-probability-value.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'config/pbk_value_engine.json'
+      - 'scripts/pbk_value_engine.py'
+      - 'scripts/pbk_calculation_contract.py'
+      - 'scripts/pbk_probability_engine.py'
+      - 'scripts/stage75_value_radar.py'
+      - 'scripts/tests/test_pbk_value_engine.py'
+      - 'scripts/tests/test_pbk_probability_engine.py'
+      - 'scripts/tests/test_value_radar.py'
+      - 'docs/pbk_value_engine.md'
+      - '.github/workflows/pbk-value-engine.yml'
+      - '.github/workflows/stage75-probability-value.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  value-engine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile governed probability/value layers
+        run: |
+          python -m py_compile scripts/pbk_calculation_contract.py
+          python -m py_compile scripts/pbk_probability_engine.py
+          python -m py_compile scripts/pbk_value_engine.py
+          python -m py_compile scripts/stage75_value_radar.py
+      - name: Run Value Engine guardrails
+        run: python -m unittest scripts.tests.test_pbk_value_engine -v
+      - name: Run Probability Engine regression
+        run: python -m unittest scripts.tests.test_pbk_probability_engine -v
+      - name: Run existing Value Radar regression
+        run: python -m unittest scripts.tests.test_value_radar -v
+      - name: Assert provider isolation
+        shell: bash
+        run: |
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' \
+            scripts/pbk_calculation_contract.py \
+            scripts/pbk_probability_engine.py \
+            scripts/pbk_value_engine.py; then
+            echo 'Probability/Value engines must remain provider-free.' >&2
+            exit 1
+          fi

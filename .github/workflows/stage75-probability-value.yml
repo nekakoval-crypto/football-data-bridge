@@ -9,10 +9,12 @@ on:
       - 'scripts/stage75_probability_value.py'
       - 'scripts/stage75_value_radar.py'
       - 'scripts/pbk_probability_engine.py'
+      - 'scripts/pbk_value_engine.py'
       - 'scripts/pbk_calculation_contract.py'
       - 'scripts/pbk_forward_journal.py'
       - 'config/pbk_probability_models.json'
       - 'config/pbk_probability_engine.json'
+      - 'config/pbk_value_engine.json'
       - 'config/pbk_market_probability_readiness.json'
       - 'research/stage75_probability_value_policy_2026-09-11.md'
       - 'research/stage75_probability_value_test_report_2026-09-11.md'
@@ -37,16 +39,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Build prospective probability ledger, exact-market Probability Engine and immutable Forward journal
+      - name: Build probability ledger, Probability Engine, Value Engine v2 and immutable Forward journal
         run: |
           python scripts/stage75_probability_value.py
           python scripts/pbk_probability_engine.py
+          python scripts/pbk_value_engine.py
           python scripts/pbk_forward_journal.py
-      - name: Show probability, Probability Engine and Forward journal summary
+      - name: Show probability, Probability Engine, Value Engine and Forward journal summary
         run: |
           cat ops/stage75_last_run.json
           cat ops/probability_rankings.json
           cat ops/probability_engine_latest.json
+          cat ops/value_engine_latest.json
           cat ops/pbk_forward_journal_last_run.json
       - name: Commit Stage75 outputs safely
         run: |
@@ -56,6 +60,7 @@ jobs:
           git reset --hard origin/main
           python scripts/stage75_probability_value.py
           python scripts/pbk_probability_engine.py
+          python scripts/pbk_value_engine.py
           python scripts/pbk_forward_journal.py
           git add \
             ops/stage75_probability_predictions.csv \
@@ -63,6 +68,7 @@ jobs:
             ops/probability_rankings.json \
             ops/probability_performance.json \
             ops/probability_engine_latest.json \
+            ops/value_engine_latest.json \
             ops/stage75_last_run.json \
             ops/stage75_value_radar.jsonl \
             ops/value_radar_current.json \
@@ -81,6 +87,7 @@ jobs:
             ops/probability_rankings.json
             ops/probability_performance.json
             ops/probability_engine_latest.json
+            ops/value_engine_latest.json
             ops/stage75_last_run.json
             ops/stage75_value_radar.jsonl
             ops/value_radar_current.json
