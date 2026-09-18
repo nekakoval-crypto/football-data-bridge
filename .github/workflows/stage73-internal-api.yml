@@ -11,6 +11,7 @@ on:
       - 'scripts/tests/test_challenger_observations_api.py'
       - 'scripts/tests/test_stage80_archive_read_api.py'
       - 'ops/historical_transfer_events.csv'
+      - 'ops/pbk_player_xg_xa_research.csv'
       - 'config/pbk_strategy_filter.json'
       - 'config/pbk_market_scope.json'
       - '.github/workflows/stage73-internal-api.yml'

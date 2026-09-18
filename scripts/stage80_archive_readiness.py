@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V9_STATSBOMB_PLAYER_XG_XA"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V10_STATSBOMB_PBK_MAPPING"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -40,6 +40,8 @@ SOURCES = {
     "match_events": "match_event_snapshots.csv",
     "match_event_backlog": "stage80_match_event_backlog.csv",
     "player_xg_xa_research": "statsbomb_player_xg_xa.csv",
+    "player_xg_xa_mapping": "statsbomb_pbk_player_mapping_candidates.csv",
+    "player_xg_xa_mapped": "pbk_player_xg_xa_research.csv",
 }
 FINAL_PROVIDER_CODES = {"FT", "AET", "PEN"}
 FINAL_NORMALIZED = {"finished", "ft", "aet", "pen"}
@@ -343,6 +345,8 @@ def build_report(ops=OPS, archive_dir=None):
     intervals = data["membership_intervals"] or []
     transfers = data["transfer_history"] or []
     player_xg_xa = data["player_xg_xa_research"] or []
+    player_xg_xa_mapping = data["player_xg_xa_mapping"] or []
+    player_xg_xa_mapped = data["player_xg_xa_mapped"] or []
     contexts = data["match_context"] or []
     lineup_archive = data["lineup_archive"] or []
     injury_archive = data["injury_archive"] or []
@@ -392,12 +396,58 @@ def build_report(ops=OPS, archive_dir=None):
         for row in player_xg_xa_valid
         if sval(row, "statsbomb_player_id")
     }
+    player_xg_xa_auto_mapping = [
+        row for row in player_xg_xa_mapping
+        if sval(row, "statsbomb_player_id")
+        and sval(row, "pbk_player_id")
+        and sval(row, "match_status") == "AUTO_MATCH"
+        and sval(row, "match_method") == "EXACT_FULL_NAME_VIA_VERIFIED_TRANSFER"
+        and sval(row, "match_confidence") == "HIGH"
+        and is_true(row.get("authoritative_for_player_xg_xa"))
+    ]
+    player_xg_xa_review_mapping = [
+        row for row in player_xg_xa_mapping
+        if sval(row, "match_status") == "REVIEW"
+    ]
+    player_xg_xa_mapped_valid = [
+        row for row in player_xg_xa_mapped
+        if sval(row, "pbk_player_id")
+        and sval(row, "statsbomb_player_id")
+        and sval(row, "statsbomb_match_id")
+        and sval(row, "statsbomb_record_id")
+        and sval(row, "source_event_sha256")
+        and sval(row, "mapping_method") == "EXACT_FULL_NAME_VIA_VERIFIED_TRANSFER"
+        and sval(row, "mapping_confidence") == "HIGH"
+        and is_true(row.get("research_only"))
+        and sval(row, "operational_betting_authority").lower() in {"false", "0", "no", "n"}
+    ]
+    player_xg_xa_mapped_invalid = len(player_xg_xa_mapped) - len(player_xg_xa_mapped_valid)
+    player_xg_xa_mapped_players = {
+        sval(row, "pbk_player_id")
+        for row in player_xg_xa_mapped_valid
+        if sval(row, "pbk_player_id")
+    }
+    player_xg_xa_mapped_matches = {
+        sval(row, "statsbomb_match_id")
+        for row in player_xg_xa_mapped_valid
+        if sval(row, "statsbomb_match_id")
+    }
+
     if data["player_xg_xa_research"] is None:
         player_xg_xa_source_status = "RESEARCH_ADAPTER_READY_NOT_MATERIALIZED"
+        player_xg_xa_mapping_status = "WAITING_FOR_STAGE91_SOURCE"
     elif not player_xg_xa_valid:
         player_xg_xa_source_status = "RESEARCH_SOURCE_EMPTY_OR_INVALID"
+        player_xg_xa_mapping_status = "BLOCKED_INVALID_STAGE91_SOURCE"
+    elif data["player_xg_xa_mapping"] is None or data["player_xg_xa_mapped"] is None:
+        player_xg_xa_source_status = "RESEARCH_SOURCE_MATERIALIZED_MAPPING_NOT_MATERIALIZED"
+        player_xg_xa_mapping_status = "STAGE92_NOT_MATERIALIZED"
+    elif not player_xg_xa_auto_mapping or not player_xg_xa_mapped_valid:
+        player_xg_xa_source_status = "RESEARCH_SOURCE_MATERIALIZED_NO_HIGH_CONFIDENCE_MAPPING"
+        player_xg_xa_mapping_status = "NO_AUTO_HIGH_MAPPING"
     else:
-        player_xg_xa_source_status = "RESEARCH_ONLY_MATERIALIZED_NOT_OPERATIONAL"
+        player_xg_xa_source_status = "RESEARCH_MAPPED_TO_PBK_RESEARCH_ONLY"
+        player_xg_xa_mapping_status = "AUTO_HIGH_MATERIALIZED"
 
     context_fixture_ids = {sval(row, "api_fixture_id") for row in contexts if sval(row, "api_fixture_id")}
     lineup_fixture_ids = {
@@ -501,10 +551,14 @@ def build_report(ops=OPS, archive_dir=None):
         gaps.append("PLAYER_XG_XA_RESEARCH_SOURCE_NOT_MATERIALIZED")
     elif not player_xg_xa_valid:
         gaps.append("PLAYER_XG_XA_RESEARCH_SOURCE_INVALID")
-    else:
-        gaps.append("PLAYER_XG_XA_PBK_IDENTITY_MAPPING_NOT_IMPLEMENTED")
+    elif data["player_xg_xa_mapping"] is None or data["player_xg_xa_mapped"] is None:
+        gaps.append("PLAYER_XG_XA_PBK_IDENTITY_MAPPING_NOT_MATERIALIZED")
+    elif not player_xg_xa_auto_mapping or not player_xg_xa_mapped_valid:
+        gaps.append("PLAYER_XG_XA_NO_HIGH_CONFIDENCE_PBK_MAPPING")
     if player_xg_xa_invalid:
         gaps.append("PLAYER_XG_XA_RESEARCH_SOURCE_INVALID_ROWS")
+    if player_xg_xa_mapped_invalid:
+        gaps.append("PLAYER_XG_XA_MAPPED_RESEARCH_INVALID_ROWS")
 
     if roster_history_rows == 0 and player_stats_fixture_count == 0:
         status = "BOOTSTRAPPING"
@@ -611,8 +665,15 @@ def build_report(ops=OPS, archive_dir=None):
             "player_xa_method": "Derived by joining pass event id to shot.key_pass_id and assigning the created shot xG",
             "player_xg_xa_attribution_required": True,
             "player_xg_xa_operational_authority": False,
-            "player_xg_xa_pbk_identity_mapping": "NOT_IMPLEMENTED",
-            "player_xg_xa_evidence_note": "Stage91 is a research-only StatsBomb identity projection. Raw StatsBomb events are not committed to PBK. Materialized rows do not become API-Football/PBK player authority until a separate conservative identity mapping is implemented.",
+            "player_xg_xa_pbk_identity_mapping": player_xg_xa_mapping_status,
+            "player_xg_xa_mapping_rows": len(player_xg_xa_mapping),
+            "player_xg_xa_auto_high_mappings": len(player_xg_xa_auto_mapping),
+            "player_xg_xa_review_mappings": len(player_xg_xa_review_mapping),
+            "player_xg_xa_mapped_research_rows": len(player_xg_xa_mapped_valid),
+            "player_xg_xa_mapped_research_invalid_rows": player_xg_xa_mapped_invalid,
+            "player_xg_xa_mapped_pbk_players": len(player_xg_xa_mapped_players),
+            "player_xg_xa_mapped_matches": len(player_xg_xa_mapped_matches),
+            "player_xg_xa_evidence_note": "Stage91 provides StatsBomb research metrics. Stage92 maps only exact full names through the verified Transfermarkt→PBK bridge; abbreviated-name candidates remain REVIEW and never enter mapped research. Mapped xG/xA remains research-only and non-operational.",
         },
         "players": {
             "player_stat_rows": len(stats),

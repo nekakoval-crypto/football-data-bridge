@@ -81,14 +81,15 @@ No raw StatsBomb event payload is copied into the PBK repository.
 Stage91 intentionally remains in the StatsBomb namespace.
 
 It does **not** infer that a StatsBomb player ID equals an API-Football/PBK player
-ID. A separate conservative entity-mapping stage is required before these
-metrics can appear in a PBK player passport.
+ID.
 
-Until then the correct readiness gap is:
+Stage92 provides the separate conservative identity bridge. It permits
+AUTO_MATCH/HIGH only when a StatsBomb full name exactly resolves through an
+already verified Stage80 Transfermarkt→PBK mapping. Initial+surname candidates
+remain REVIEW only.
 
-`PLAYER_XG_XA_PBK_IDENTITY_MAPPING_NOT_IMPLEMENTED`
-
-when research rows exist.
+Only Stage92 AUTO_MATCH/HIGH rows may appear in the PBK-mapped research dataset
+and archive-player read API.
 
 ## Readiness states
 

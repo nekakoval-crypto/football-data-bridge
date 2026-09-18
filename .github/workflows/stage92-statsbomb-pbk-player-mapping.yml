@@ -1,0 +1,108 @@
+name: Stage 92 StatsBomb PBK Player Mapping
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/stage92_statsbomb_pbk_player_mapping.py'
+      - 'scripts/tests/test_stage92_statsbomb_pbk_player_mapping.py'
+      - 'scripts/stage80_archive_manifest.py'
+      - 'scripts/stage80_archive_readiness.py'
+      - 'scripts/stage73_internal_api.py'
+      - 'scripts/tests/test_stage80_archive_manifest.py'
+      - 'scripts/tests/test_stage80_archive_readiness.py'
+      - 'scripts/tests/test_stage80_archive_read_api.py'
+      - 'docs/stage92_statsbomb_pbk_player_mapping.md'
+      - '.github/workflows/stage92-statsbomb-pbk-player-mapping.yml'
+      - '.github/workflows/stage72-unified-data-layer.yml'
+      - '.github/workflows/stage73-internal-api.yml'
+      - '.github/workflows/stage80-archive-readiness.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/stage92_statsbomb_pbk_player_mapping.py'
+      - 'scripts/tests/test_stage92_statsbomb_pbk_player_mapping.py'
+      - 'ops/statsbomb_player_xg_xa.csv'
+      - 'ops/historical_transfer_events.csv'
+      - 'ops/historical_players.csv'
+      - 'scripts/stage80_archive_manifest.py'
+      - 'scripts/stage80_archive_readiness.py'
+      - 'scripts/stage73_internal_api.py'
+      - 'docs/stage92_statsbomb_pbk_player_mapping.md'
+      - '.github/workflows/stage92-statsbomb-pbk-player-mapping.yml'
+      - '.github/workflows/stage72-unified-data-layer.yml'
+      - '.github/workflows/stage73-internal-api.yml'
+      - '.github/workflows/stage80-archive-readiness.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stage92-statsbomb-pbk-player-mapping
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile Stage92 and connected read layers
+        run: |
+          python -m py_compile scripts/stage92_statsbomb_pbk_player_mapping.py
+          python -m py_compile scripts/stage80_archive_manifest.py
+          python -m py_compile scripts/stage80_archive_readiness.py
+          python -m py_compile scripts/stage73_internal_api.py
+      - name: Test conservative Stage92 mapping
+        run: python -m unittest scripts.tests.test_stage92_statsbomb_pbk_player_mapping -v
+      - name: Test archive governance and API integration
+        run: |
+          python -m unittest scripts.tests.test_stage80_archive_manifest -v
+          python -m unittest scripts.tests.test_stage80_archive_readiness -v
+          python -m unittest scripts.tests.test_stage80_archive_read_api -v
+      - name: Assert provider isolation
+        shell: bash
+        run: |
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|raw\.githubusercontent'             scripts/stage92_statsbomb_pbk_player_mapping.py; then
+            echo 'Stage92 must remain provider-free.' >&2
+            exit 1
+          fi
+
+  materialize:
+    needs: validate
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build Stage92 only when Stage91 source rows exist
+        shell: bash
+        run: |
+          if [ ! -f ops/statsbomb_player_xg_xa.csv ] || [ "$(wc -l < ops/statsbomb_player_xg_xa.csv)" -le 1 ]; then
+            echo 'Stage91 materialization not present; Stage92 remains waiting.'
+            exit 0
+          fi
+          python scripts/stage92_statsbomb_pbk_player_mapping.py             --source ops/statsbomb_player_xg_xa.csv             --transfers ops/historical_transfer_events.csv             --historical-players ops/historical_players.csv             --mapping-out ops/statsbomb_pbk_player_mapping_candidates.csv             --mapped-out ops/pbk_player_xg_xa_research.csv             --meta-out ops/stage92_statsbomb_pbk_player_mapping_last_run.json
+      - name: Publish Stage92 outputs safely
+        shell: bash
+        run: |
+          if [ ! -f ops/stage92_statsbomb_pbk_player_mapping_last_run.json ]; then
+            exit 0
+          fi
+          git config user.name 'stage92-bot'
+          git config user.email 'stage92-bot@users.noreply.github.com'
+          git add             ops/statsbomb_pbk_player_mapping_candidates.csv             ops/pbk_player_xg_xa_research.csv             ops/stage92_statsbomb_pbk_player_mapping_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 92 StatsBomb PBK player mapping update'
+          git restore --worktree -- .
+          python scripts/publish_operational_commit.py

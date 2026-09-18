@@ -85,6 +85,39 @@ class Stage80ArchiveManifestTests(unittest.TestCase):
         self.assertEqual(item["effective_time_fields_text"], "match_date")
         self.assertEqual(item["role"], "RESEARCH_ENRICHMENT")
 
+    def test_stage92_mapping_and_mapped_xg_xa_manifest_contracts(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            self.write_csv(
+                tmp,
+                "statsbomb_pbk_player_mapping_candidates.csv",
+                ["statsbomb_player_id", "match_status", "pbk_player_id"],
+                [{
+                    "statsbomb_player_id": "10",
+                    "match_status": "AUTO_MATCH",
+                    "pbk_player_id": "11",
+                }],
+            )
+            self.write_csv(
+                tmp,
+                "pbk_player_xg_xa_research.csv",
+                ["pbk_player_id", "statsbomb_record_id", "match_date", "xg_total", "xa"],
+                [{
+                    "pbk_player_id": "11",
+                    "statsbomb_record_id": "r1",
+                    "match_date": "2024-06-18",
+                    "xg_total": "0.5",
+                    "xa": "0.2",
+                }],
+            )
+            report = manifest.build_manifest(Path(tmp), raw_archive_dir="")
+        mapping = next(x for x in report["datasets"] if x["dataset_id"] == "statsbomb_pbk_player_mapping_candidates")
+        mapped = next(x for x in report["datasets"] if x["dataset_id"] == "pbk_player_xg_xa_research")
+        self.assertEqual(mapping["contract_status"], "OK")
+        self.assertEqual(mapping["identity_key_text"], "statsbomb_player_id")
+        self.assertEqual(mapped["contract_status"], "OK")
+        self.assertEqual(mapped["identity_key_text"], "pbk_player_id+statsbomb_record_id")
+        self.assertEqual(mapped["effective_time_fields_text"], "match_date")
+
     def test_raw_archive_does_not_expose_real_storage_path(self):
         with tempfile.TemporaryDirectory() as tmp:
             report = manifest.build_manifest(Path(tmp), raw_archive_dir="/secret/server/archive")
