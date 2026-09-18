@@ -11,7 +11,6 @@ on:
       - 'scripts/stage80_historical_fixture_catalog.py'
       - 'scripts/stage80_historical_player_catalog.py'
       - 'scripts/stage80_lineup_injury_archive.py'
-      - 'scripts/tests/test_stage80_lineup_injury_archive.py'
       - 'scripts/tests/test_stage80_archive_readiness.py'
       - 'scripts/tests/test_stage80_stage77_backlog_readiness.py'
       - 'scripts/tests/test_stage80_fixture_history_readiness.py'
