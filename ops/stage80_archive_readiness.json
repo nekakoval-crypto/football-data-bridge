@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V14_EXTERNAL_STAGE91_ATTESTATION",
-  "generated_at_utc": "2026-09-18T18:08:22Z",
+  "generated_at_utc": "2026-09-18T18:12:26Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -106,13 +106,13 @@
     },
     "player_xg_xa_mapping": {
       "file": "statsbomb_pbk_player_mapping_candidates.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 7787
     },
     "player_xg_xa_mapped": {
       "file": "pbk_player_xg_xa_research.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 290
     }
   },
   "fixtures": {
@@ -194,13 +194,13 @@
     "finished_current_inventory_with_team_xg": 0,
     "finished_current_inventory_team_xg_coverage_pct": 0.0,
     "team_xg_evidence_note": "Verified provider field when present; API-Football may return it as missing for some competitions or fixtures and PBK preserves missing as UNKNOWN.",
-    "player_xg_xa_source_status": "RESEARCH_ADAPTER_READY_NOT_MATERIALIZED",
+    "player_xg_xa_source_status": "RESEARCH_SOURCE_EXTERNAL_LOCAL_ATTESTED_MAPPED_TO_PBK",
     "player_xg_xa_source_payload_in_repository": false,
-    "player_xg_xa_stage91_meta_present": false,
-    "player_xg_xa_stage91_meta_valid": false,
-    "player_xg_xa_stage91_attested_rows": 0,
-    "player_xg_xa_stage91_attested_unique_players": 0,
-    "player_xg_xa_stage91_source_revision": "",
+    "player_xg_xa_stage91_meta_present": true,
+    "player_xg_xa_stage91_meta_valid": true,
+    "player_xg_xa_stage91_attested_rows": 72880,
+    "player_xg_xa_stage91_attested_unique_players": 7787,
+    "player_xg_xa_stage91_source_revision": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
     "player_xg_xa_research_rows": 0,
     "player_xg_xa_research_invalid_rows": 0,
     "player_xg_xa_research_matches": 0,
@@ -209,14 +209,14 @@
     "player_xa_method": "Derived by joining pass event id to shot.key_pass_id and assigning the created shot xG",
     "player_xg_xa_attribution_required": true,
     "player_xg_xa_operational_authority": false,
-    "player_xg_xa_pbk_identity_mapping": "WAITING_FOR_STAGE91_SOURCE",
-    "player_xg_xa_mapping_rows": 0,
-    "player_xg_xa_auto_high_mappings": 0,
-    "player_xg_xa_review_mappings": 0,
-    "player_xg_xa_mapped_research_rows": 0,
+    "player_xg_xa_pbk_identity_mapping": "AUTO_HIGH_MATERIALIZED",
+    "player_xg_xa_mapping_rows": 7787,
+    "player_xg_xa_auto_high_mappings": 28,
+    "player_xg_xa_review_mappings": 767,
+    "player_xg_xa_mapped_research_rows": 290,
     "player_xg_xa_mapped_research_invalid_rows": 0,
-    "player_xg_xa_mapped_pbk_players": 0,
-    "player_xg_xa_mapped_matches": 0,
+    "player_xg_xa_mapped_pbk_players": 28,
+    "player_xg_xa_mapped_matches": 266,
     "player_xg_xa_evidence_note": "Stage91 provides StatsBomb research metrics. The large Stage91 source payload may remain external/local when an OK Stage91 meta attestation plus valid Stage92 AUTO/HIGH mapped rows are persisted; this never implies the source CSV is stored in Git. Stage92 maps only exact full names through the verified Transfermarkt→PBK bridge; abbreviated-name candidates remain REVIEW and never enter mapped research. Mapped xG/xA remains research-only and non-operational."
   },
   "players": {
@@ -318,8 +318,7 @@
     "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
     "PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE",
-    "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE",
-    "PLAYER_XG_XA_RESEARCH_SOURCE_NOT_MATERIALIZED"
+    "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE"
   ],
   "creates_signal": false,
   "probability_mutation": false,
