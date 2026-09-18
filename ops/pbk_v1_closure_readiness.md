@@ -1,6 +1,6 @@
 # PBK v1 Closure Readiness
 
-- Run: `2026-09-18T08:49:49Z`
+- Run: `2026-09-18T09:11:14Z`
 - Status: **WAITING**
 - Ready for manual PBK v1 close: **false**
 - Profitability threshold: **not used for technical v1 closure**
@@ -18,7 +18,7 @@
 
 - ✅ `REQUIRED_V1_MODULES` — all PBK v1 closure modules are present
 - ✅ `FRONTEND_PROVIDER_ISOLATION` — frontend has no direct provider/legacy match endpoint
-- ✅ `PWA_API_NETWORK_ONLY` — PWA shell is v13 and API traffic remains network-only/no-store
+- ✅ `PWA_API_NETWORK_ONLY` — PWA shell is v15 and API traffic remains network-only/no-store
 - ✅ `STAGE72_SCHEMA_BASELINE` — Stage72 schema is at or above the PBK v1 baseline
 - ✅ `CORE_API_ROUTES` — Today/LIVE, Match Card and motivation API routes are present
 - ✅ `CANONICAL_OPERATIONAL_PUBLISHER` — critical operational workflows use the canonical safe publisher
