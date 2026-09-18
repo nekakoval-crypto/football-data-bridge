@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-18T08:19:20Z",
+  "run_at_utc": "2026-09-18T09:18:09Z",
   "status": "OK",
   "api_version": "v1",
   "db_path": "build/pbk_unified.sqlite",
@@ -20,7 +20,7 @@
       "path": "/v1/signals/canonical",
       "http_status": 200,
       "passed": true,
-      "count": 3
+      "count": 6
     },
     {
       "path": "/v1/signals/challengers",
@@ -32,7 +32,7 @@
       "path": "/v1/signals/watch",
       "http_status": 200,
       "passed": true,
-      "count": 33
+      "count": 34
     },
     {
       "path": "/v1/markets/team-totals/openers?limit=1",
@@ -68,7 +68,7 @@
       "path": "/v1/lifecycle",
       "http_status": 200,
       "passed": true,
-      "count": 414
+      "count": 422
     },
     {
       "path": "/v1/attention",
