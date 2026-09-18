@@ -117,4 +117,16 @@ jobs:
           fi
 
           git commit -m 'Team Style operational materialization update'
+
+          echo '--- Remaining worktree changes after operational commit ---'
+          git status --short
+
+          # Stage72 may touch additional tracked operational files that are not
+          # part of this Team Style publication set. They must not block the
+          # safe rebase/push helper or leak into this operational commit.
+          git restore --worktree -- .
+
+          echo '--- Worktree after cleanup ---'
+          git status --short
+
           python scripts/publish_operational_commit.py
