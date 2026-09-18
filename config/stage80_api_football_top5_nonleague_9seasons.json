@@ -1,0 +1,157 @@
+{
+  "version": "PBK_STAGE80_API_FOOTBALL_TOP5_NONLEAGUE_9SEASONS_V1",
+  "scope": "Top-5 club non-league schedule research; completed seasons 2017/18-2025/26; UEFA Conference from 2021/22",
+  "competitions": [
+    {
+      "provider_league_id": 2,
+      "competition_name": "UEFA Champions League",
+      "competition_type": "UEFA",
+      "seasons": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ]
+    },
+    {
+      "provider_league_id": 3,
+      "competition_name": "UEFA Europa League",
+      "competition_type": "UEFA",
+      "seasons": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ]
+    },
+    {
+      "provider_league_id": 848,
+      "competition_name": "UEFA Conference League",
+      "competition_type": "UEFA",
+      "seasons": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ]
+    },
+    {
+      "provider_league_id": 45,
+      "competition_name": "FA Cup",
+      "competition_type": "DOMESTIC_CUP",
+      "country": "England",
+      "seasons": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ]
+    },
+    {
+      "provider_league_id": 48,
+      "competition_name": "League Cup",
+      "competition_type": "DOMESTIC_CUP",
+      "country": "England",
+      "seasons": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ]
+    },
+    {
+      "provider_league_id": 81,
+      "competition_name": "DFB Pokal",
+      "competition_type": "DOMESTIC_CUP",
+      "country": "Germany",
+      "seasons": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ]
+    },
+    {
+      "provider_league_id": 137,
+      "competition_name": "Coppa Italia",
+      "competition_type": "DOMESTIC_CUP",
+      "country": "Italy",
+      "seasons": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ]
+    },
+    {
+      "provider_league_id": 143,
+      "competition_name": "Copa del Rey",
+      "competition_type": "DOMESTIC_CUP",
+      "country": "Spain",
+      "seasons": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ]
+    },
+    {
+      "provider_league_id": 66,
+      "competition_name": "Coupe de France",
+      "competition_type": "DOMESTIC_CUP",
+      "country": "France",
+      "seasons": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ]
+    }
+  ],
+  "expected_queries": 77,
+  "endpoint": "/fixtures",
+  "query_shape": "league+season",
+  "relevant_fixture_policy": "Persist only fixtures where at least one provider team_id belongs to a Top-5 domestic-league team in the same provider season, using top5_referee_fixture_history.csv as the authoritative team-id roster.",
+  "congestion_policy": "V1 derives only strictly-prior non-league fixtures and previous-7d/14d counts; future scheduled fixtures are intentionally excluded from no-lookahead research."
+}
