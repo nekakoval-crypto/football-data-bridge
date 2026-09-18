@@ -1,0 +1,90 @@
+name: Stage 80 ClubElo Archive
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '27 5 * * *'
+  pull_request:
+    paths:
+      - 'scripts/stage80_clubelo_archive.py'
+      - 'scripts/tests/test_stage80_clubelo_archive.py'
+      - 'scripts/stage80_archive_manifest.py'
+      - 'scripts/stage80_archive_readiness.py'
+      - 'docs/stage80_clubelo_archive.md'
+      - '.github/workflows/stage80-clubelo-archive.yml'
+  push:
+    paths:
+      - 'scripts/stage80_clubelo_archive.py'
+      - 'scripts/tests/test_stage80_clubelo_archive.py'
+      - 'scripts/stage80_archive_manifest.py'
+      - 'scripts/stage80_archive_readiness.py'
+      - 'docs/stage80_clubelo_archive.md'
+      - '.github/workflows/stage80-clubelo-archive.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage71-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and unit test
+        run: |
+          python -m py_compile scripts/stage80_clubelo_archive.py
+          python -m unittest scripts.tests.test_stage80_clubelo_archive -v
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated ClubElo archive files are forbidden in the feature PR.' >&2
+            exit 1
+          fi
+
+  capture:
+    needs: validate
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPS_DIR: ops
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Capture ClubElo daily snapshot
+        run: python scripts/stage80_clubelo_archive.py
+      - name: Refresh Stage80 manifest and readiness
+        run: |
+          python scripts/stage80_archive_manifest.py
+          python scripts/stage80_archive_readiness.py
+      - name: Publish ClubElo archive safely
+        shell: bash
+        run: |
+          git config user.name 'stage80-bot'
+          git config user.email 'stage80-bot@users.noreply.github.com'
+          git add ops/clubelo_daily_snapshots.csv ops/stage80_clubelo_last_run.json
+          git add ops/stage80_archive_manifest.json ops/stage80_archive_manifest.csv
+          git add ops/stage80_archive_readiness.json ops/stage80_archive_readiness.md
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 ClubElo archive update'
+          git restore --worktree -- .
+          python scripts/publish_operational_commit.py
