@@ -1,7 +1,7 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-18T06:03:08Z
-Active canonical signals: 1
+Generated UTC: 2026-09-18T07:03:17Z
+Active canonical signals: 4
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
 
@@ -19,6 +19,51 @@ Active canonical signals: 1
 - Rotation: WAITING_OFFICIAL_XI
 - International: BEFORE FIFA window; to start 11.0h; player-level UNVERIFIED
 - Flags: AWAY_PREV_UEFA_OR_CUP, WITHIN_7D_BEFORE_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
+
+## R1 | Lecce — Bologna
+- Kickoff UTC: 2026-10-11T13:00:00Z | Ставка: П2 | Stake: 1.000u
+- Trigger Bet365: П1 4.0 / Х 3.3 / П2 1.91 (immutable)
+- Market-best observed: 2.06 @ 1xBet | Bet365 now: 1.91
+- Current user-executable: 2.0 @ Marathonbet
+- Paper user-execution (frozen): WAITING_EXECUTABLE_PRICE
+- Referee / venue: TBD | TBD, TBD
+- Previous: home  vs  (h rest); away  vs  (h rest)
+- Next: home  vs  (h after); away  vs  (h after)
+- Injuries: NOT_QUERIED_YET
+- Weather [pending]: °C, precip %, wind  km/h, gusts  km/h
+- Rotation: WAITING_OFFICIAL_XI
+- International: AFTER FIFA window; to start h; player-level UNVERIFIED
+- Flags: WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
+
+## R1 | Sassuolo — AC Milan
+- Kickoff UTC: 2026-10-11T16:00:00Z | Ставка: П2 | Stake: 1.000u
+- Trigger Bet365: П1 4.5 / Х 3.6 / П2 1.75 (immutable)
+- Market-best observed: 1.84 @ 1xBet | Bet365 now: 1.75
+- Current user-executable: 1.79 @ Marathonbet
+- Paper user-execution (frozen): WAITING_EXECUTABLE_PRICE
+- Referee / venue: TBD | TBD, TBD
+- Previous: home  vs  (h rest); away  vs  (h rest)
+- Next: home  vs  (h after); away  vs  (h after)
+- Injuries: NOT_QUERIED_YET
+- Weather [pending]: °C, precip %, wind  km/h, gusts  km/h
+- Rotation: WAITING_OFFICIAL_XI
+- International: AFTER FIFA window; to start h; player-level UNVERIFIED
+- Flags: WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
+
+## R1 | Cagliari — Juventus
+- Kickoff UTC: 2026-10-11T18:45:00Z | Ставка: П2 | Stake: 1.000u
+- Trigger Bet365: П1 5.75 / Х 3.7 / П2 1.6 (immutable)
+- Market-best observed: 1.6 @ Bet365 | Bet365 now: 1.6
+- Current user-executable: 1.53 @ Marathonbet
+- Paper user-execution (frozen): WAITING_EXECUTABLE_PRICE
+- Referee / venue: TBD | TBD, TBD
+- Previous: home  vs  (h rest); away  vs  (h rest)
+- Next: home  vs  (h after); away  vs  (h after)
+- Injuries: NOT_QUERIED_YET
+- Weather [pending]: °C, precip %, wind  km/h, gusts  km/h
+- Rotation: WAITING_OFFICIAL_XI
+- International: AFTER FIFA window; to start h; player-level UNVERIFIED
+- Flags: WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
 
 ---
 
