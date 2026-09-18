@@ -17,7 +17,7 @@ import csv
 import json
 import os
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import stage53_daily_screener as s53
@@ -95,9 +95,23 @@ def roster_teams(rosters):
     return grouped
 
 
-def candidate_teams(rosters, existing, season, fixtures, limit):
+def parse_iso_utc(value):
+    text = str(value or "").strip()
+    if not text:
+        return None
+    try:
+        parsed = datetime.fromisoformat(text.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc)
+
+
+def candidate_teams(rosters, existing, season, fixtures, limit, *, now, refresh_days):
     teams = roster_teams(rosters)
     covered = {}
+    latest_capture = {}
     for row in existing:
         if str(row.get("season") or "").strip() != str(season):
             continue
@@ -105,6 +119,9 @@ def candidate_teams(rosters, existing, season, fixtures, limit):
         pid = str(row.get("player_id") or "").strip()
         if tid and pid:
             covered.setdefault(tid, set()).add(pid)
+        captured = parse_iso_utc(row.get("captured_at_utc"))
+        if tid and captured and (tid not in latest_capture or captured > latest_capture[tid]):
+            latest_capture[tid] = captured
 
     league_by_team = {}
     for row in fixtures:
@@ -116,9 +133,13 @@ def candidate_teams(rosters, existing, season, fixtures, limit):
 
     big5 = {"39","61","78","135","140"}
     pending = []
+    refresh_cutoff = now - timedelta(days=max(0, int(refresh_days)))
     for tid, item in teams.items():
         missing = item["player_ids"] - covered.get(tid, set())
         if not missing:
+            continue
+        last_capture = latest_capture.get(tid)
+        if last_capture is not None and last_capture > refresh_cutoff:
             continue
         pending.append({
             "team_id": tid,
@@ -126,6 +147,7 @@ def candidate_teams(rosters, existing, season, fixtures, limit):
             "missing_roster_players": len(missing),
             "roster_players": len(item["player_ids"]),
             "league_id": league_by_team.get(tid, ""),
+            "last_profile_capture_at_utc": iso(last_capture) if last_capture else "",
         })
     pending.sort(key=lambda x: (
         0 if x["league_id"] in big5 else 1,
@@ -273,6 +295,7 @@ def main():
     max_teams = int(os.getenv("STAGE80_PROFILE_MAX_TEAMS","8"))
     max_pages = int(os.getenv("STAGE80_PROFILE_MAX_PAGES_PER_TEAM","4"))
     daily_limit = int(os.getenv("STAGE71_MAX_DAILY_API_CALLS","7000"))
+    refresh_days = int(os.getenv("STAGE80_PROFILE_REFRESH_DAYS","7"))
 
     state = audit.read(SHARED_STATE)
     reserve = protected_calls(now)
@@ -286,7 +309,15 @@ def main():
         checkpoint=lambda value: audit.save(SHARED_STATE, value),
     )
 
-    candidates = candidate_teams(rosters, existing, season, fixtures, max_teams)
+    candidates = candidate_teams(
+        rosters,
+        existing,
+        season,
+        fixtures,
+        max_teams,
+        now=now,
+        refresh_days=refresh_days,
+    )
     incoming = []
     completed = []
     warnings = []
@@ -324,6 +355,7 @@ def main():
         "status": "ATTENTION" if warnings else ("WAITING" if deferred else "OK"),
         "season": season,
         "provider_endpoint": "/players?team&season",
+        "refresh_days": refresh_days,
         "provider_calls": budget.calls,
         "daily_api_calls": int(state.get("api_day_calls") or 0),
         "protected_calls": reserve,

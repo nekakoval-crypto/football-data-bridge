@@ -60,6 +60,14 @@ Partial pagination does not create partial team evidence.
 
 Big-5 teams are prioritized when current-round league context is available.
 
+A successful team+season profile capture is treated as fresh for 7 days. During
+that TTL the collector does not re-query the team merely because some roster IDs
+were absent from the provider's `/players?team&season` response. This prevents
+scheduled runs from repeatedly spending API budget on the same team when the
+residual roster IDs are stale, transferred, or otherwise outside that endpoint's
+current season response. After the TTL expires, the team becomes eligible for a
+controlled refresh.
+
 ## Identity-ready evidence
 
 A profile row can support the stronger Transfermarkt bridge only when it provides:
