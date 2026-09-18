@@ -62,7 +62,7 @@ It reports, without inventing missing data:
 - current roster, append-only roster-history and observed-membership counts;
 - existing Stage55 official-XI / injury evidence with an explicit warning that Stage55 context is canonical-signal scoped, not full 16-league coverage;
 - raw-provider archive storage/manifest state when a persistent archive directory is actually mounted;
-- named gaps such as first Stage77 backlog operational run pending, player-stat backlog pending, first roster-history capture pending, partial player-stat coverage, durable raw storage not configured, transfer evidence missing and xG/xA source missing.
+- named gaps such as first Stage77 backlog operational run pending, player-stat backlog pending, first roster-history capture pending, partial player-stat coverage, durable raw storage not configured, transfer evidence missing, partial team-xG coverage and missing verified player xG/xA source.
 
 The readiness board never calls API-Football and never creates signals or mutates probability, EV, eligibility, stake or Forward. Missing source files remain explicit missing sources; a missing denominator is shown as unknown rather than fake 0% coverage.
 
@@ -94,7 +94,7 @@ This is still an archive foundation, not the complete football warehouse. The fo
 3. append-only fixture / lineup / event / injury / transfer archive and normalized warehouse projections;
 4. broader historical backfill by league/season under API-budget controls;
 5. stable archive read APIs / UI over the growing warehouse;
-6. xG/xA/event-level data only where a verified source actually provides it — PBK never fabricates missing metrics.
+6. broader xG/xA/event-level coverage only where a verified source actually provides it. API-Football `/fixtures/statistics` already supplies team-level `expected_goals` for some fixtures and PBK archives that provider fact; player-level xG/xA still requires a separately verified source. PBK never fabricates missing metrics.
 
 ## Relationship to existing stages
 
