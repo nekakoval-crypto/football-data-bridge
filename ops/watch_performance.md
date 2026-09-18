@@ -1,11 +1,11 @@
 # PBK WATCH Performance
 
-Generated UTC: 2026-09-18T08:06:07Z
+Generated UTC: 2026-09-18T08:21:49Z
 Scope: только prospective WATCH; это не реальные ставки и не canonical R1/R2/R3.
 
 ## Overall
-- Crossing events: 33 | pending 20 | settled 13 | void 0 | review 0
-- Marathonbet price coverage at crossing: 100.0% (33/33)
+- Crossing events: 34 | pending 21 | settled 13 | void 0 | review 0
+- Marathonbet price coverage at crossing: 100.0% (34/34)
 - First-crossing paper P&L: -4.100u | ROI -31.538% | W-L 6-7
 - Close observed: 13 | stayed qualified 11 | reverted 2 | persistence 84.615%
 - Close-qualified subset: settled 11 | P&L -3.710u | ROI -33.727%
@@ -13,7 +13,7 @@ Scope: только prospective WATCH; это не реальные ставки
 - Observed max drawdown: 6.65u
 
 ## Big-5 ОЗ market movement — ОЗ — Да
-- Crossings: 17 | pending 7 | settled 10
+- Crossings: 18 | pending 8 | settled 10
 - Marathonbet coverage: 100.0%
 - First-crossing P&L: -5.260u | ROI -52.6% | W-L 3-7
 - Close persistence: 80.0% (8/10)
