@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE81_TEAM_MATCH_STATISTICS_V1",
-  "run_at_utc": "2026-09-18T00:32:43Z",
-  "status": "OK",
+  "run_at_utc": "2026-09-18T06:31:34Z",
+  "status": "ATTENTION",
   "provider_endpoint": "/fixtures/statistics",
-  "provider_calls": 2,
-  "daily_api_calls": 10,
+  "provider_calls": 0,
+  "daily_api_calls": 42,
   "protected_calls": {
     "live": 15,
     "current_round": 96,
@@ -15,13 +15,11 @@
     "live_forecast_status": "OPEN"
   },
   "candidate_fixtures": 2,
-  "captured_fixtures": 1,
-  "captured_fixture_ids": [
-    "1570392"
-  ],
-  "deferred_fixtures": 0,
-  "attempted_fixtures": 2,
-  "no_data_attempts": 1,
+  "captured_fixtures": 0,
+  "captured_fixture_ids": [],
+  "deferred_fixtures": 2,
+  "attempted_fixtures": 0,
+  "no_data_attempts": 0,
   "error_attempts": 0,
   "backlog_terminal_seen_this_run": 8,
   "backlog_new_this_run": 0,
@@ -30,7 +28,7 @@
   "backlog_captured": 1,
   "backlog_persists_across_round_rotation": true,
   "fair_retry_order": true,
-  "new_team_stat_rows": 2,
+  "new_team_stat_rows": 0,
   "total_team_stat_rows": 2,
   "raw_archive_requested_via_shared_broker": true,
   "raw_archive_durable_only_when_configured": true,
@@ -40,5 +38,7 @@
   "eligibility_mutation": false,
   "stake_changes": false,
   "forward_journal_mutation": false,
-  "warnings": []
+  "warnings": [
+    "Stage71 protected API reserve reached; Challenger deferred"
+  ]
 }
