@@ -135,6 +135,30 @@ class Stage77Tests(unittest.TestCase):
         self.assertEqual(result['standings'], 16)
         self.assertEqual(result['safety'], 8)
 
+    def test_no_data_retry_uses_exponential_cooldown(self):
+        row = fixture('200')
+        row.update({
+            'attempt_count': '2',
+            'last_attempt_result': 'NO_DATA',
+            'last_attempt_at_utc': '2026-09-15T05:00:00Z',
+        })
+        self.assertEqual(stage77.retry_cooldown_hours(row), 12.0)
+        blocked = stage77.candidate_fixtures([row], set(), NOW, 10)
+        self.assertEqual(blocked, [])
+        later = datetime(2026, 9, 15, 17, 1, tzinfo=timezone.utc)
+        ready = stage77.candidate_fixtures([row], set(), later, 10)
+        self.assertEqual([x['fixture_id'] for x in ready], ['200'])
+
+    def test_error_retry_uses_shorter_cooldown(self):
+        row = fixture('201')
+        row.update({
+            'attempt_count': '2',
+            'last_attempt_result': 'ERROR',
+            'last_attempt_at_utc': '2026-09-15T10:30:00Z',
+        })
+        self.assertEqual(stage77.retry_cooldown_hours(row), 2.0)
+        self.assertEqual(stage77.candidate_fixtures([row], set(), NOW, 10), [])
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -403,6 +403,30 @@ class Stage81Tests(unittest.TestCase):
             0,
         )
 
+    def test_no_data_retry_uses_exponential_cooldown(self):
+        row = {
+            **fixture("300"),
+            "backlog_status": "PENDING",
+            "attempt_count": "2",
+            "last_attempt_result": "NO_DATA",
+            "last_attempt_at_utc": "2026-09-17T05:00:00Z",
+        }
+        self.assertEqual(s81.retry_cooldown_hours(row), 12.0)
+        self.assertEqual(s81.candidate_fixtures([row], set(), NOW, 10), [])
+        later = datetime(2026, 9, 17, 17, 1, tzinfo=timezone.utc)
+        ready = s81.candidate_fixtures([row], set(), later, 10)
+        self.assertEqual([x["fixture_id"] for x in ready], ["300"])
+
+    def test_no_data_cooldown_is_bounded(self):
+        row = {
+            **fixture("301"),
+            "backlog_status": "PENDING",
+            "attempt_count": "99",
+            "last_attempt_result": "NO_DATA",
+            "last_attempt_at_utc": "2026-09-17T10:00:00Z",
+        }
+        self.assertEqual(s81.retry_cooldown_hours(row), 72.0)
+
 
 if __name__ == "__main__":
     unittest.main()

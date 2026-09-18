@@ -136,7 +136,8 @@ class Stage77BacklogTests(unittest.TestCase):
             {"fixture_id": "100", "attempted_at_utc": "2026-09-15T10:00:00Z", "result": "NO_DATA"},
             {"fixture_id": "200", "attempted_at_utc": "2026-09-15T11:00:00Z", "result": "NO_DATA"},
         ])
-        candidates = stage77.candidate_fixtures(rows, set(), NOW, 2)
+        later = datetime(2026, 9, 15, 18, 0, tzinfo=timezone.utc)
+        candidates = stage77.candidate_fixtures(rows, set(), later, 2)
         self.assertEqual([row["fixture_id"] for row in candidates], ["100", "200"])
 
     def test_record_attempts_increments_existing_count(self):
