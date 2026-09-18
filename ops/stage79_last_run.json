@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-18T00:30:48Z",
+  "run_at_utc": "2026-09-18T02:26:09Z",
   "status": "OK",
   "provider_endpoint": "/players/squads",
   "provider_calls": 8,
-  "daily_api_calls": 8,
+  "daily_api_calls": 22,
   "protected_calls": {
     "live": 15,
     "current_round": 96,
@@ -16,48 +16,48 @@
   "candidate_teams": 8,
   "captured_teams": [
     {
-      "team_id": "495",
-      "team_name": "Genoa",
-      "players": 39
+      "team_id": "168",
+      "team_name": "Bayer Leverkusen",
+      "players": 33
     },
     {
-      "team_id": "50",
-      "team_name": "Manchester City",
-      "players": 25
-    },
-    {
-      "team_id": "512",
-      "team_name": "Frosinone",
+      "team_id": "173",
+      "team_name": "RB Leipzig",
       "players": 30
     },
     {
-      "team_id": "52",
-      "team_name": "Crystal Palace",
+      "team_id": "79",
+      "team_name": "Lille",
       "players": 31
     },
     {
-      "team_id": "523",
-      "team_name": "Parma",
-      "players": 31
+      "team_id": "84",
+      "team_name": "Nice",
+      "players": 32
     },
     {
-      "team_id": "63",
-      "team_name": "Leeds",
-      "players": 31
+      "team_id": "1660",
+      "team_name": "SV Elversberg",
+      "players": 24
     },
     {
-      "team_id": "746",
-      "team_name": "Sunderland",
-      "players": 38
+      "team_id": "174",
+      "team_name": "FC Schalke 04",
+      "players": 29
     },
     {
-      "team_id": "895",
-      "team_name": "Como",
-      "players": 30
+      "team_id": "33",
+      "team_name": "Manchester United",
+      "players": 33
+    },
+    {
+      "team_id": "36",
+      "team_name": "Fulham",
+      "players": 28
     }
   ],
   "deferred_teams": 0,
-  "total_roster_rows": 2230,
+  "total_roster_rows": 2470,
   "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
