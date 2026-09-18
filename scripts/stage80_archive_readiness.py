@@ -379,7 +379,7 @@ def build_report(ops=OPS, archive_dir=None):
         and sval(row, "xg_source_field") == "shot.statsbomb_xg"
         and sval(row, "xa_derivation_method") == "JOIN_PASS_EVENT_ID_TO_SHOT_KEY_PASS_ID_THEN_ASSIGN_SHOT_XG"
         and is_true(row.get("research_only"))
-        and not is_true(row.get("operational_betting_authority"))
+        and sval(row, "operational_betting_authority").lower() in {"false", "0", "no", "n"}
     ]
     player_xg_xa_invalid = len(player_xg_xa) - len(player_xg_xa_valid)
     player_xg_xa_matches = {
