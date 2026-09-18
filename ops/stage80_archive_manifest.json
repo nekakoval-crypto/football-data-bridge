@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V13_RESIDUAL_PLAYER_PROFILE",
-  "generated_at_utc": "2026-09-18T20:04:37Z",
+  "generated_at_utc": "2026-09-18T20:29:04Z",
   "status": "OK",
   "datasets": [
     {
@@ -35,6 +35,9 @@
         "home_team_logo_url",
         "away_team",
         "away_team_logo_url",
+        "referee",
+        "venue_name",
+        "venue_city",
         "status",
         "source_status",
         "score_home",
@@ -65,7 +68,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 1796,
+      "row_count": 1925,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -80,6 +83,9 @@
         "home_team_logo_url",
         "away_team",
         "away_team_logo_url",
+        "referee",
+        "venue_name",
+        "venue_city",
         "status",
         "source_status",
         "score_home",
@@ -204,7 +210,7 @@
       "source": "Stage71 terminal observation + Stage81 reconciliation",
       "limitations": "Queue evidence is not team-stat evidence; CAPTURED requires both HOME and AWAY team-stat ledger rows.",
       "present": true,
-      "row_count": 8,
+      "row_count": 16,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -248,7 +254,7 @@
       "source": "Stage81 /fixtures/statistics via shared API-Football broker",
       "limitations": "Only observed finished fixtures captured under protected provider budget; missing provider metrics remain UNKNOWN and are never zero-filled.",
       "present": true,
-      "row_count": 14,
+      "row_count": 30,
       "columns": [
         "fixture_id",
         "provider_league_id",

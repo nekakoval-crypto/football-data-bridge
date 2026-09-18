@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V15_RESIDUAL_PLAYER_PROFILE",
-  "generated_at_utc": "2026-09-18T20:04:37Z",
+  "generated_at_utc": "2026-09-18T20:29:04Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -12,7 +12,7 @@
     "fixture_history": {
       "file": "fixture_history_snapshots.csv",
       "present": true,
-      "rows": 1796
+      "rows": 1925
     },
     "historical_fixtures": {
       "file": "historical_fixtures.csv",
@@ -37,12 +37,12 @@
     "team_stats": {
       "file": "team_match_statistics.csv",
       "present": true,
-      "rows": 14
+      "rows": 30
     },
     "stage81_backlog": {
       "file": "stage81_team_stats_backlog.csv",
       "present": true,
-      "rows": 8
+      "rows": 16
     },
     "current_rosters": {
       "file": "team_rosters.csv",
@@ -117,7 +117,7 @@
   },
   "fixtures": {
     "current_inventory": 129,
-    "finished_in_current_inventory": 1,
+    "finished_in_current_inventory": 9,
     "player_stats_fixture_count_all_snapshots": 30,
     "player_grade_fixture_count_all_snapshots": 30,
     "finished_current_inventory_with_player_stats": 0,
@@ -128,16 +128,52 @@
         "finished_fixtures_in_current_inventory": 1,
         "finished_fixtures_with_player_stats": 0,
         "player_stats_coverage_pct": 0.0
+      },
+      {
+        "league": "Bundesliga",
+        "finished_fixtures_in_current_inventory": 2,
+        "finished_fixtures_with_player_stats": 0,
+        "player_stats_coverage_pct": 0.0
+      },
+      {
+        "league": "Ekstraklasa",
+        "finished_fixtures_in_current_inventory": 2,
+        "finished_fixtures_with_player_stats": 0,
+        "player_stats_coverage_pct": 0.0
+      },
+      {
+        "league": "Eliteserien",
+        "finished_fixtures_in_current_inventory": 1,
+        "finished_fixtures_with_player_stats": 0,
+        "player_stats_coverage_pct": 0.0
+      },
+      {
+        "league": "Eredivisie",
+        "finished_fixtures_in_current_inventory": 1,
+        "finished_fixtures_with_player_stats": 0,
+        "player_stats_coverage_pct": 0.0
+      },
+      {
+        "league": "Superliga",
+        "finished_fixtures_in_current_inventory": 1,
+        "finished_fixtures_with_player_stats": 0,
+        "player_stats_coverage_pct": 0.0
+      },
+      {
+        "league": "Süper Lig",
+        "finished_fixtures_in_current_inventory": 1,
+        "finished_fixtures_with_player_stats": 0,
+        "player_stats_coverage_pct": 0.0
       }
     ]
   },
   "fixture_history": {
     "present": true,
-    "rows": 1796,
-    "valid_observations": 1796,
+    "rows": 1925,
+    "valid_observations": 1925,
     "unique_fixtures": 178,
-    "observation_runs": 14,
-    "finished_fixtures_observed": 44,
+    "observation_runs": 15,
+    "finished_fixtures_observed": 52,
     "invalid_identity_rows": 0,
     "evidence_note": "Counts represent only Stage71 current-round observations persisted after the fixture-history archive was enabled; they are not a pre-PBK historical backfill claim."
   },
@@ -146,7 +182,7 @@
     "rows": 178,
     "valid_rows": 178,
     "unique_fixtures": 178,
-    "terminal_fixtures": 44,
+    "terminal_fixtures": 52,
     "rescheduled_fixtures": 1,
     "invalid_identity_rows": 0,
     "duplicate_fixture_ids": 0,
@@ -155,8 +191,8 @@
     "orphan_catalog_fixtures": 0,
     "missing_terminal_evidence": 0,
     "orphan_terminal_evidence": 0,
-    "observation_count_total": 1796,
-    "expected_history_observations": 1796,
+    "observation_count_total": 1925,
+    "expected_history_observations": 1925,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
   },
@@ -171,28 +207,28 @@
   },
   "stage81_backlog": {
     "present": true,
-    "total_fixtures": 8,
+    "total_fixtures": 16,
     "pending_fixtures": 1,
-    "captured_fixtures": 7,
+    "captured_fixtures": 15,
     "captured_without_complete_ledger": 0,
     "oldest_pending_first_queued_at_utc": "2026-09-17T10:41:55Z",
     "evidence_note": "Pending means PBK observed a terminal fixture but has not yet persisted complete HOME+AWAY /fixtures/statistics evidence."
   },
   "team_statistics": {
-    "rows": 14,
-    "complete_fixture_count": 7,
-    "finished_current_inventory_with_team_stats": 0,
-    "finished_current_inventory_team_stats_coverage_pct": 0.0,
+    "rows": 30,
+    "complete_fixture_count": 15,
+    "finished_current_inventory_with_team_stats": 8,
+    "finished_current_inventory_team_stats_coverage_pct": 88.89,
     "evidence_note": "Complete means HOME and AWAY team rows exist; individual missing provider metrics remain UNKNOWN."
   },
   "advanced_metrics": {
     "team_xg_source": "API-Football /fixtures/statistics expected_goals",
-    "team_xg_rows": 8,
-    "team_xg_complete_fixture_count": 4,
-    "team_stats_complete_fixture_count": 7,
-    "team_xg_captured_fixture_coverage_pct": 57.14,
-    "finished_current_inventory_with_team_xg": 0,
-    "finished_current_inventory_team_xg_coverage_pct": 0.0,
+    "team_xg_rows": 10,
+    "team_xg_complete_fixture_count": 5,
+    "team_stats_complete_fixture_count": 15,
+    "team_xg_captured_fixture_coverage_pct": 33.33,
+    "finished_current_inventory_with_team_xg": 1,
+    "finished_current_inventory_team_xg_coverage_pct": 11.11,
     "team_xg_evidence_note": "Verified provider field when present; API-Football may return it as missing for some competitions or fixtures and PBK preserves missing as UNKNOWN.",
     "player_xg_xa_source_status": "RESEARCH_SOURCE_EXTERNAL_LOCAL_ATTESTED_MAPPED_TO_PBK",
     "player_xg_xa_source_payload_in_repository": false,
