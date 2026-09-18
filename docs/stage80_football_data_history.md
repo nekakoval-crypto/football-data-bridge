@@ -105,6 +105,36 @@ This is deliberately conservative: when historical kickoff ordering is missing o
 
 The projection is research/backfill only. It does not become a validated probability feature or current operational signal merely because it exists.
 
+## Prematch factor research
+
+Stage80 also joins the no-lookahead pre-match context back to the historical Football-Data result/market matrix and builds two deterministic research outputs:
+
+- `top5_prematch_factor_research.csv` — factor/bucket aggregates at ALL, league, season and league-season scopes;
+- `top5_prematch_factor_stability_research.csv` — season-level stability counts for ALL and league scopes.
+
+Initial factors:
+
+- weekday: Monday / Thursday / weekend / other weekday;
+- source-local kickoff band;
+- short rest (<=3 days);
+- rest-day advantage;
+- previous-7-day congestion difference;
+- pre-match table-rank difference;
+- rolling last-5 all-venue PPG difference;
+- rolling home-only vs away-only last-5 PPG difference.
+
+Each profile keeps ordinary historical outcome rates, average goals, O2.5 and BTTS plus closing-market diagnostics where available. Closing 1X2 and O/U 2.5 use `AvgC*` fields first and Bet365 closing fields as fallback. Opening prices are never mixed with closing prices inside the same observation.
+
+The research layer may report flat-bet historical ROI and observed-vs-no-vig calibration. These are **descriptive research diagnostics**, not PBK probabilities and not validated betting signals. Market no-vig probability remains the market's implied baseline only.
+
+Season-stability rows count how many seasons had an observed metric and how many had a positive historical sign. They deliberately do not rank factors, select a winner, or grant model authority. Promotion of any factor into a PBK model requires a later separate validation/walk-forward stage.
+
+On successful `main` builds the verified outputs are persisted as:
+
+- `ops/top5_prematch_factor_research.csv`;
+- `ops/top5_prematch_factor_stability_research.csv`;
+- `ops/stage80_prematch_factor_research_last_run.json`.
+
 ## Separation from forward evidence
 
 This dataset is explicitly:

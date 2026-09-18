@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V16_PREMATCH_CONTEXT"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V17_PREMATCH_FACTOR_RESEARCH"
 
 DATASETS = [
     {
@@ -207,6 +207,28 @@ DATASETS = [
         "effective_time_fields": ["date_iso", "time_local"],
         "source": "Stage80 Football-Data Top-5 9-season no-lookahead pre-match context projection",
         "limitations": "Historical research only. Every row uses strictly earlier calendar dates within league-season; same-day results are excluded. No probability, EV/value, eligibility, stake or Forward authority.",
+    },
+    {
+        "dataset_id": "top5_prematch_factor_research",
+        "path": "top5_prematch_factor_research.csv",
+        "role": "RESEARCH_ANALYSIS",
+        "lifecycle": "DETERMINISTIC_AGGREGATE_PROJECTION",
+        "identity_key": ["factor", "bucket", "scope_type", "scope_value"],
+        "observed_time_fields": [],
+        "effective_time_fields": [],
+        "source": "Stage80 descriptive factor research from Football-Data results/closing markets joined to no-lookahead prematch context",
+        "limitations": "Exploratory historical aggregates only. Closing market no-vig is not PBK probability; ROI/calibration observations do not create betting authority.",
+    },
+    {
+        "dataset_id": "top5_prematch_factor_stability_research",
+        "path": "top5_prematch_factor_stability_research.csv",
+        "role": "RESEARCH_ANALYSIS",
+        "lifecycle": "DETERMINISTIC_SEASON_STABILITY_PROJECTION",
+        "identity_key": ["factor", "bucket", "scope_type", "scope_value"],
+        "observed_time_fields": [],
+        "effective_time_fields": [],
+        "source": "Stage80 season-stability projection from Top-5 prematch factor research",
+        "limitations": "Counts season-level sign/stability observations only; no factor is selected, ranked, promoted, or granted model authority here.",
     },
     {
         "dataset_id": "statsbomb_player_xg_xa",

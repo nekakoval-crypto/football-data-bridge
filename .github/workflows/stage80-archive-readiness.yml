@@ -14,6 +14,9 @@ on:
       - 'scripts/tests/test_stage80_top5_referee_backfill.py'
       - 'scripts/tests/test_stage80_top5_referee_backfill_readiness.py'
       - 'scripts/tests/test_stage80_prematch_context_readiness.py'
+      - 'scripts/stage80_prematch_factor_research.py'
+      - 'scripts/tests/test_stage80_prematch_factor_research.py'
+      - 'scripts/tests/test_stage80_prematch_factor_readiness.py'
       - 'config/stage80_api_football_top5_referee_9seasons.json'
       - '.github/workflows/stage80-top5-referee-backfill.yml'
       - '.gitignore'
@@ -26,6 +29,9 @@ on:
       - 'ops/stage80_top5_referee_backfill_last_run.json'
       - 'ops/top5_prematch_context_research.csv'
       - 'ops/stage80_prematch_context_last_run.json'
+      - 'ops/top5_prematch_factor_research.csv'
+      - 'ops/top5_prematch_factor_stability_research.csv'
+      - 'ops/stage80_prematch_factor_research_last_run.json'
       - 'scripts/stage80_top5_referee_backfill.py'
       - 'scripts/tests/test_stage80_top5_referee_backfill.py'
       - 'scripts/tests/test_stage80_top5_referee_backfill_readiness.py'
@@ -86,6 +92,9 @@ on:
       - 'ops/stage80_referee_research_last_run.json'
       - 'ops/top5_prematch_context_research.csv'
       - 'ops/stage80_prematch_context_last_run.json'
+      - 'ops/top5_prematch_factor_research.csv'
+      - 'ops/top5_prematch_factor_stability_research.csv'
+      - 'ops/stage80_prematch_factor_research_last_run.json'
       - 'scripts/stage80_archive_manifest.py'
       - 'scripts/stage80_historical_fixture_catalog.py'
       - 'scripts/stage80_historical_player_catalog.py'
@@ -145,6 +154,7 @@ jobs:
           python -m py_compile scripts/stage80_archive_readiness.py
           python -m py_compile scripts/stage80_top5_referee_backfill.py
           python -m py_compile scripts/stage80_archive_manifest.py
+          python -m py_compile scripts/stage80_prematch_factor_research.py
           python -m py_compile scripts/stage80_historical_fixture_catalog.py
           python -m py_compile scripts/stage80_historical_player_catalog.py
           python -m py_compile scripts/stage80_lineup_injury_archive.py
@@ -158,6 +168,8 @@ jobs:
           python -m unittest scripts.tests.test_stage80_top5_referee_backfill -v
           python -m unittest scripts.tests.test_stage80_top5_referee_backfill_readiness -v
           python -m unittest scripts.tests.test_stage80_prematch_context_readiness -v
+          python -m unittest scripts.tests.test_stage80_prematch_factor_research -v
+          python -m unittest scripts.tests.test_stage80_prematch_factor_readiness -v
           python -m unittest scripts.tests.test_stage80_stage77_backlog_readiness -v
           python -m unittest scripts.tests.test_stage80_fixture_history_readiness -v
           python -m unittest scripts.tests.test_stage80_archive_manifest -v
@@ -178,7 +190,7 @@ jobs:
       - name: Assert provider isolation
         shell: bash
         run: |
-          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports|raw\.githubusercontent' scripts/stage80_archive_readiness.py scripts/stage80_archive_manifest.py scripts/stage80_historical_fixture_catalog.py scripts/stage80_historical_player_catalog.py scripts/stage80_lineup_injury_archive.py scripts/stage80_transfer_history_archive.py scripts/stage91_statsbomb_player_xg_xa.py scripts/stage92_statsbomb_pbk_player_mapping.py; then
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports|raw\.githubusercontent' scripts/stage80_archive_readiness.py scripts/stage80_archive_manifest.py scripts/stage80_prematch_factor_research.py scripts/stage80_historical_fixture_catalog.py scripts/stage80_historical_player_catalog.py scripts/stage80_lineup_injury_archive.py scripts/stage80_transfer_history_archive.py scripts/stage91_statsbomb_player_xg_xa.py scripts/stage92_statsbomb_pbk_player_mapping.py; then
             echo 'Stage80 archive governance/projections must remain provider-free.' >&2
             exit 1
           fi
