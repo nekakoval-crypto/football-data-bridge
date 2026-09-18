@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V8_TEAM_XG"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V9_STATSBOMB_PLAYER_XG_XA"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -39,6 +39,7 @@ SOURCES = {
     "injury_archive": "injury_snapshots.csv",
     "match_events": "match_event_snapshots.csv",
     "match_event_backlog": "stage80_match_event_backlog.csv",
+    "player_xg_xa_research": "statsbomb_player_xg_xa.csv",
 }
 FINAL_PROVIDER_CODES = {"FT", "AET", "PEN"}
 FINAL_NORMALIZED = {"finished", "ft", "aet", "pen"}
@@ -341,6 +342,7 @@ def build_report(ops=OPS, archive_dir=None):
     history = data["roster_history"] or []
     intervals = data["membership_intervals"] or []
     transfers = data["transfer_history"] or []
+    player_xg_xa = data["player_xg_xa_research"] or []
     contexts = data["match_context"] or []
     lineup_archive = data["lineup_archive"] or []
     injury_archive = data["injury_archive"] or []
@@ -365,6 +367,37 @@ def build_report(ops=OPS, archive_dir=None):
     transfer_dates = sorted(sval(row, "transfer_date") for row in transfer_valid if sval(row, "transfer_date"))
     transfer_pbk_players = {sval(row, "pbk_player_id") for row in transfer_valid if sval(row, "pbk_player_id")}
     transfer_tm_players = {sval(row, "transfermarkt_player_id") for row in transfer_valid if sval(row, "transfermarkt_player_id")}
+
+    player_xg_xa_valid = [
+        row for row in player_xg_xa
+        if sval(row, "record_id")
+        and sval(row, "statsbomb_match_id")
+        and sval(row, "statsbomb_player_id")
+        and sval(row, "statsbomb_team_id")
+        and sval(row, "source_event_sha256")
+        and sval(row, "source") == "StatsBomb Open Data"
+        and sval(row, "xg_source_field") == "shot.statsbomb_xg"
+        and sval(row, "xa_derivation_method") == "JOIN_PASS_EVENT_ID_TO_SHOT_KEY_PASS_ID_THEN_ASSIGN_SHOT_XG"
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+    ]
+    player_xg_xa_invalid = len(player_xg_xa) - len(player_xg_xa_valid)
+    player_xg_xa_matches = {
+        sval(row, "statsbomb_match_id")
+        for row in player_xg_xa_valid
+        if sval(row, "statsbomb_match_id")
+    }
+    player_xg_xa_players = {
+        sval(row, "statsbomb_player_id")
+        for row in player_xg_xa_valid
+        if sval(row, "statsbomb_player_id")
+    }
+    if data["player_xg_xa_research"] is None:
+        player_xg_xa_source_status = "RESEARCH_ADAPTER_READY_NOT_MATERIALIZED"
+    elif not player_xg_xa_valid:
+        player_xg_xa_source_status = "RESEARCH_SOURCE_EMPTY_OR_INVALID"
+    else:
+        player_xg_xa_source_status = "RESEARCH_ONLY_MATERIALIZED_NOT_OPERATIONAL"
 
     context_fixture_ids = {sval(row, "api_fixture_id") for row in contexts if sval(row, "api_fixture_id")}
     lineup_fixture_ids = {
@@ -464,7 +497,14 @@ def build_report(ops=OPS, archive_dir=None):
         or len(team_xg_complete_fixture_ids) < len(team_stats_fixture_ids)
     ):
         gaps.append("TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE")
-    gaps.append("PLAYER_XG_XA_REQUIRE_VERIFIED_SOURCE")
+    if data["player_xg_xa_research"] is None:
+        gaps.append("PLAYER_XG_XA_RESEARCH_SOURCE_NOT_MATERIALIZED")
+    elif not player_xg_xa_valid:
+        gaps.append("PLAYER_XG_XA_RESEARCH_SOURCE_INVALID")
+    else:
+        gaps.append("PLAYER_XG_XA_PBK_IDENTITY_MAPPING_NOT_IMPLEMENTED")
+    if player_xg_xa_invalid:
+        gaps.append("PLAYER_XG_XA_RESEARCH_SOURCE_INVALID_ROWS")
 
     if roster_history_rows == 0 and player_stats_fixture_count == 0:
         status = "BOOTSTRAPPING"
@@ -562,8 +602,17 @@ def build_report(ops=OPS, archive_dir=None):
                 len(finished_ids),
             ),
             "team_xg_evidence_note": "Verified provider field when present; API-Football may return it as missing for some competitions or fixtures and PBK preserves missing as UNKNOWN.",
-            "player_xg_xa_source_status": "MISSING_VERIFIED_SOURCE",
-            "player_xg_xa_evidence_note": "API-Football /fixtures/players does not supply player xG/xA in the PBK capture contract; PBK does not derive or fabricate these fields.",
+            "player_xg_xa_source_status": player_xg_xa_source_status,
+            "player_xg_xa_research_rows": len(player_xg_xa_valid),
+            "player_xg_xa_research_invalid_rows": player_xg_xa_invalid,
+            "player_xg_xa_research_matches": len(player_xg_xa_matches),
+            "player_xg_xa_research_unique_players": len(player_xg_xa_players),
+            "player_xg_source": "StatsBomb Open Data shot.statsbomb_xg when Stage91 is materialized",
+            "player_xa_method": "Derived by joining pass event id to shot.key_pass_id and assigning the created shot xG",
+            "player_xg_xa_attribution_required": True,
+            "player_xg_xa_operational_authority": False,
+            "player_xg_xa_pbk_identity_mapping": "NOT_IMPLEMENTED",
+            "player_xg_xa_evidence_note": "Stage91 is a research-only StatsBomb identity projection. Raw StatsBomb events are not committed to PBK. Materialized rows do not become API-Football/PBK player authority until a separate conservative identity mapping is implemented.",
         },
         "players": {
             "player_stat_rows": len(stats),
