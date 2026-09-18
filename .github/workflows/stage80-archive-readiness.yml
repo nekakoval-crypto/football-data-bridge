@@ -12,6 +12,7 @@ on:
       - 'scripts/stage80_historical_fixture_catalog.py'
       - 'scripts/stage80_historical_player_catalog.py'
       - 'scripts/stage80_lineup_injury_archive.py'
+      - 'scripts/stage80_transfer_history_archive.py'
       - 'scripts/tests/test_stage80_archive_readiness.py'
       - 'scripts/tests/test_stage80_stage77_backlog_readiness.py'
       - 'scripts/tests/test_stage80_fixture_history_readiness.py'
@@ -20,12 +21,14 @@ on:
       - 'scripts/tests/test_stage80_historical_fixture_catalog_readiness.py'
       - 'scripts/tests/test_stage80_historical_player_catalog.py'
       - 'scripts/tests/test_stage80_lineup_injury_archive.py'
+      - 'scripts/tests/test_stage80_transfer_history_archive.py'
       - 'docs/stage80_historical_archive.md'
       - 'docs/stage80_fixture_history.md'
       - 'docs/stage80_archive_manifest.md'
       - 'docs/stage80_historical_fixture_catalog.md'
       - 'docs/stage80_historical_player_catalog.md'
       - 'docs/stage80_lineup_injury_archive.md'
+      - 'docs/stage80_transfer_history_archive.md'
       - '.github/workflows/stage80-archive-readiness.yml'
   push:
     paths:
@@ -36,7 +39,9 @@ on:
       - 'scripts/stage80_historical_fixture_catalog.py'
       - 'scripts/stage80_historical_player_catalog.py'
       - 'scripts/stage80_lineup_injury_archive.py'
+      - 'scripts/stage80_transfer_history_archive.py'
       - 'scripts/tests/test_stage80_lineup_injury_archive.py'
+      - 'scripts/tests/test_stage80_transfer_history_archive.py'
       - 'scripts/tests/test_stage80_archive_readiness.py'
       - 'scripts/tests/test_stage80_stage77_backlog_readiness.py'
       - 'scripts/tests/test_stage80_fixture_history_readiness.py'
@@ -50,6 +55,7 @@ on:
       - 'docs/stage80_historical_fixture_catalog.md'
       - 'docs/stage80_historical_player_catalog.md'
       - 'docs/stage80_lineup_injury_archive.md'
+      - 'docs/stage80_transfer_history_archive.md'
       - '.github/workflows/stage80-archive-readiness.yml'
 
 permissions:
@@ -78,6 +84,7 @@ jobs:
           python -m py_compile scripts/stage80_historical_fixture_catalog.py
           python -m py_compile scripts/stage80_historical_player_catalog.py
           python -m py_compile scripts/stage80_lineup_injury_archive.py
+          python -m py_compile scripts/stage80_transfer_history_archive.py
       - name: Provider-free Stage80 tests
         run: |
           python -m unittest scripts.tests.test_stage80_archive_readiness -v
@@ -88,6 +95,7 @@ jobs:
           python -m unittest scripts.tests.test_stage80_historical_fixture_catalog_readiness -v
           python -m unittest scripts.tests.test_stage80_historical_player_catalog -v
           python -m unittest scripts.tests.test_stage80_lineup_injury_archive -v
+          python -m unittest scripts.tests.test_stage80_transfer_history_archive -v
       - name: Real-repo catalogs, manifest and readiness smoke
         run: |
           python scripts/stage80_historical_fixture_catalog.py
@@ -98,7 +106,7 @@ jobs:
       - name: Assert provider isolation
         shell: bash
         run: |
-          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/stage80_archive_readiness.py scripts/stage80_archive_manifest.py scripts/stage80_historical_fixture_catalog.py scripts/stage80_historical_player_catalog.py scripts/stage80_lineup_injury_archive.py; then
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/stage80_archive_readiness.py scripts/stage80_archive_manifest.py scripts/stage80_historical_fixture_catalog.py scripts/stage80_historical_player_catalog.py scripts/stage80_lineup_injury_archive.py scripts/stage80_transfer_history_archive.py; then
             echo 'Stage80 archive governance/projections must remain provider-free.' >&2
             exit 1
           fi

@@ -9,12 +9,31 @@ on:
       - 'scripts/tests/test_stage80_transfer_source_audit.py'
       - 'scripts/stage80_transfer_entity_mapping.py'
       - 'scripts/tests/test_stage80_transfer_entity_mapping.py'
+      - 'scripts/stage80_transfer_history_archive.py'
+      - 'scripts/tests/test_stage80_transfer_history_archive.py'
+      - 'scripts/stage80_archive_manifest.py'
+      - 'scripts/stage80_archive_readiness.py'
+      - 'scripts/stage73_internal_api.py'
+      - 'scripts/tests/test_stage80_archive_read_api.py'
+      - 'docs/stage80_transfer_history_archive.md'
   pull_request:
     paths:
       - '.github/workflows/fetch-transfermarkt-csv.yml'
       - 'scripts/stage80_transfer_source_audit.py'
       - 'scripts/tests/test_stage80_transfer_source_audit.py'
+      - 'scripts/stage80_transfer_entity_mapping.py'
+      - 'scripts/tests/test_stage80_transfer_entity_mapping.py'
+      - 'scripts/stage80_transfer_history_archive.py'
+      - 'scripts/tests/test_stage80_transfer_history_archive.py'
+      - 'scripts/stage80_archive_manifest.py'
+      - 'scripts/stage80_archive_readiness.py'
+      - 'scripts/stage73_internal_api.py'
+      - 'scripts/tests/test_stage80_archive_read_api.py'
+      - 'docs/stage80_transfer_history_archive.md'
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   fetch:
@@ -22,13 +41,20 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Unit test transfer source audit and entity mapping
+      - name: Unit test transfer source, mapping and durable archive
         run: |
+          python -m py_compile scripts/stage80_transfer_history_archive.py scripts/stage80_archive_manifest.py scripts/stage80_archive_readiness.py scripts/stage73_internal_api.py
           python -m unittest scripts.tests.test_stage80_transfer_source_audit -v
           python -m unittest scripts.tests.test_stage80_transfer_entity_mapping -v
+          python -m unittest scripts.tests.test_stage80_transfer_history_archive -v
+          python -m unittest scripts.tests.test_stage80_archive_manifest -v
+          python -m unittest scripts.tests.test_stage80_archive_readiness -v
+          python -m unittest scripts.tests.test_stage80_archive_read_api -v
       - name: Download Transfermarkt CSV.GZ tables
         shell: bash
         run: |
@@ -58,6 +84,30 @@ jobs:
             --mapping-out mapping/pbk_transfermarkt_player_mapping_candidates.csv \
             --transfers-out mapping/pbk_transfer_history_exact_mapped.csv \
             --meta-out mapping/stage80_transfer_mapping_meta.json
+
+      - name: Build durable PBK transfer history
+        run: |
+          python scripts/stage80_transfer_history_archive.py \
+            --mapped mapping/pbk_transfer_history_exact_mapped.csv \
+            --mapping mapping/pbk_transfermarkt_player_mapping_candidates.csv \
+            --metadata dataset-metadata.json \
+            --existing ops/historical_transfer_events.csv \
+            --out ops/historical_transfer_events.csv \
+            --meta-out ops/stage80_transfer_history_last_run.json
+          python scripts/stage80_archive_manifest.py
+          python scripts/stage80_archive_readiness.py
+
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated transfer archive files are forbidden in the feature PR.' >&2
+            exit 1
+          fi
 
       - name: Upload transfer mapping artifacts
         uses: actions/upload-artifact@v4
@@ -90,3 +140,17 @@ jobs:
           name: transfermarkt-checksums
           path: SHA256SUMS.txt
           retention-days: 30
+
+      - name: Publish durable transfer history safely
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          git config user.name 'stage80-bot'
+          git config user.email 'stage80-bot@users.noreply.github.com'
+          git add ops/historical_transfer_events.csv ops/stage80_transfer_history_last_run.json
+          git add ops/stage80_archive_manifest.json ops/stage80_archive_manifest.csv
+          git add ops/stage80_archive_readiness.json ops/stage80_archive_readiness.md
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 transfer history archive update'
+          git restore --worktree -- .
+          python scripts/publish_operational_commit.py

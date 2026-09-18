@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V7_RAW_S3"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V8_TRANSFER_HISTORY"
 
 DATASETS = [
     {
@@ -119,6 +119,17 @@ DATASETS = [
         "effective_time_fields": [],
         "source": "Stage80 normalized projection from team_roster_history + player_stats_snapshots",
         "limitations": "Observed player directory only; does not infer current team, exact transfer dates, xG or xA.",
+    },
+    {
+        "dataset_id": "historical_transfer_events",
+        "path": "historical_transfer_events.csv",
+        "role": "HISTORICAL_ENRICHMENT",
+        "lifecycle": "APPEND_ONLY_FIRST_OBSERVATION_WINS",
+        "identity_key": ["transfer_event_id"],
+        "observed_time_fields": ["ingested_at_utc"],
+        "effective_time_fields": ["transfer_date"],
+        "source": "Stage80 durable projection from conservative PBK ↔ Transfermarkt AUTO_MATCH/HIGH mapping",
+        "limitations": "Historical enrichment only; Transfermarkt IDs remain separate from API-Football IDs and source snapshot age prevents current-squad authority.",
     },
     {
         "dataset_id": "team_rosters",

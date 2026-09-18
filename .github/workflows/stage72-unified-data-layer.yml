@@ -8,6 +8,7 @@ on:
     branches: [main]
     paths:
       - 'scripts/stage72_build_data_layer.py'
+      - 'ops/historical_transfer_events.csv'
       - 'scripts/formation_research.py'
       - 'config/pbk_strategy_filter.json'
       - '.github/workflows/stage72-unified-data-layer.yml'
