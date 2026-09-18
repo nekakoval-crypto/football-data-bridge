@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 
 from scripts.stage80_transfer_entity_mapping import (
+    AUTO_METHOD_PROFILE,
     AUTO_METHOD_STATS,
     build_identity_map,
     build_mapping,
@@ -28,6 +29,80 @@ class Stage80TransferEntityMappingTests(unittest.TestCase):
         self.assertEqual(rows[0]["match_status"],"AUTO_MATCH")
         self.assertEqual(rows[0]["match_method"],"EXACT_NAME_CURRENT_CLUB")
         self.assertIn("100",auto)
+
+    def test_full_profile_name_dob_and_same_club_can_auto_high(self):
+        pbk=[{
+            "player_id":"5","latest_observed_name":"M. Akanji",
+            "latest_roster_team_names":"Inter",
+        }]
+        profiles=[{
+            "player_id":"5","player_name":"M. Akanji",
+            "firstname":"Manuel","lastname":"Akanji",
+            "birth_date":"1995-07-19","team_name":"Inter",
+        }]
+        tm=[{
+            "player_id":"100","name":"Manuel Akanji","date_of_birth":"1995-07-19",
+            "current_club_id":"46","current_club_name":"Inter",
+        }]
+        rows,auto=build_mapping(pbk,tm,player_profile_rows=profiles)
+        self.assertEqual(rows[0]["match_status"],"AUTO_MATCH")
+        self.assertEqual(rows[0]["match_method"],AUTO_METHOD_PROFILE)
+        self.assertEqual(rows[0]["match_confidence"],"HIGH")
+        self.assertEqual(rows[0]["pbk_evidence_name"],"Manuel Akanji")
+        self.assertEqual(rows[0]["pbk_evidence_birth_date"],"1995-07-19")
+        self.assertEqual(rows[0]["transfermarkt_date_of_birth"],"1995-07-19")
+        self.assertIn("100",auto)
+
+    def test_profile_dob_mismatch_never_auto_maps(self):
+        pbk=[{
+            "player_id":"5","latest_observed_name":"M. Akanji",
+            "latest_roster_team_names":"Inter",
+        }]
+        profiles=[{
+            "player_id":"5","firstname":"Manuel","lastname":"Akanji",
+            "birth_date":"1995-07-19","team_name":"Inter",
+        }]
+        tm=[{
+            "player_id":"100","name":"Manuel Akanji","date_of_birth":"1995-07-18",
+            "current_club_id":"46","current_club_name":"Inter",
+        }]
+        rows,auto=build_mapping(pbk,tm,player_profile_rows=profiles)
+        self.assertNotEqual(rows[0]["match_status"],"AUTO_MATCH")
+        self.assertEqual(auto,{})
+
+    def test_profile_without_birth_date_never_creates_profile_auto(self):
+        pbk=[{
+            "player_id":"5","latest_observed_name":"M. Akanji",
+            "latest_roster_team_names":"Inter",
+        }]
+        profiles=[{
+            "player_id":"5","firstname":"Manuel","lastname":"Akanji",
+            "birth_date":"","team_name":"Inter",
+        }]
+        tm=[{
+            "player_id":"100","name":"Manuel Akanji","date_of_birth":"1995-07-19",
+            "current_club_id":"46","current_club_name":"Inter",
+        }]
+        rows,auto=build_mapping(pbk,tm,player_profile_rows=profiles)
+        self.assertEqual(rows[0]["match_status"],"REVIEW")
+        self.assertEqual(auto,{})
+
+    def test_profile_identity_shared_by_multiple_pbk_ids_never_auto_maps(self):
+        pbk=[
+            {"player_id":"1","latest_observed_name":"M. Akanji","latest_roster_team_names":"Inter"},
+            {"player_id":"2","latest_observed_name":"M. Akanji","latest_roster_team_names":"Inter"},
+        ]
+        profiles=[
+            {"player_id":"1","firstname":"Manuel","lastname":"Akanji","birth_date":"1995-07-19","team_name":"Inter"},
+            {"player_id":"2","firstname":"Manuel","lastname":"Akanji","birth_date":"1995-07-19","team_name":"Inter"},
+        ]
+        tm=[{
+            "player_id":"100","name":"Manuel Akanji","date_of_birth":"1995-07-19",
+            "current_club_id":"46","current_club_name":"Inter",
+        }]
+        rows,auto=build_mapping(pbk,tm,player_profile_rows=profiles)
+        self.assertTrue(all(r["match_status"]!="AUTO_MATCH" for r in rows))
+        self.assertEqual(auto,{})
 
     def test_full_player_stats_name_and_same_club_can_auto_high(self):
         pbk=[{
