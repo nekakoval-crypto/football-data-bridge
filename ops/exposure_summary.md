@@ -1,6 +1,6 @@
 # PBK Exposure & Conflict Map
 
-Обновлено UTC: 2026-09-18T03:08:52Z
+Обновлено UTC: 2026-09-18T05:08:33Z
 Активные rule-строки: 1 | логических экспозиций: 1
 Raw stake: 1.000u | логическая экспозиция: 1.000u | убрано дублей: 0.000u
 Canonical conflicts: 0 | WATCH overlaps: 1
