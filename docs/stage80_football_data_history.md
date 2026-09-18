@@ -71,6 +71,30 @@ These are descriptive historical aggregates only. PBK does **not** label an obse
 
 The Football-Data matrix used here does not provide a penalty field, so penalty counts are explicitly marked unavailable rather than inferred from goals, cards, events or other proxies.
 
+## Historical pre-match context research
+
+The normalized 16,111-match Top-5 matrix also produces `football_data_top5_prematch_context.csv`.
+
+For each match this projection records only information available from **strictly earlier calendar dates** in the same league-season:
+
+- weekday and source-local kickoff time where available;
+- Monday / Thursday / weekend flags;
+- team rest days;
+- number of prior matches in the previous 7 and 14 days;
+- short-rest flags;
+- pre-match played, points, goals for/against, goal difference and points-per-game;
+- conservative pre-match table rank;
+- rolling all-venue form over the previous 5 and 10 matches;
+- rolling home-only form for the home team and away-only form for the away team.
+
+### No-lookahead rule
+
+Matches on the same calendar date are projected as one group. PBK calculates all pre-match rows for that date **before** applying any result from that date to team state.
+
+This is deliberately conservative: when historical kickoff ordering is missing or uncertain, an earlier match on the same day is not allowed to leak its result into a later row.
+
+The projection is research/backfill only. It does not become a validated probability feature or current operational signal merely because it exists.
+
 ## Separation from forward evidence
 
 This dataset is explicitly:
