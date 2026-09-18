@@ -1,6 +1,6 @@
 # PBK v1 Production Acceptance
 
-Overall: **✅ PASS**
+Overall: **❌ FAIL**
 
 Provider/network calls by this gate: **0**.
 
@@ -17,10 +17,10 @@ Status: **✅ PASS**
 
 ## Roadmap 5 — Standings/Motivation
 
-Status: **✅ PASS**
+Status: **❌ FAIL**
 
 - ✅ `STANDINGS_PROVIDER_SNAPSHOT` — real provider standings snapshot exists
-- ✅ `STANDINGS_NO_LOOKAHEAD_EVIDENCE` — provider standings evidence is tied to a pre-kickoff cutoff
+- ❌ `STANDINGS_NO_LOOKAHEAD_EVIDENCE` — standings snapshots exist but no snapshot can be tied to a <=90m pre-kickoff fixture
 - ✅ `STAGE72_STANDINGS_INGESTION` — Stage72 ingested real standings without leakage
 - ✅ `MOTIVATION_READ_MODEL` — at least one real no-lookahead motivation projection is available
 
@@ -32,4 +32,4 @@ Status: **✅ PASS**
 
 ## Next
 
-- Production acceptance is complete; PBK v1 may proceed to final closure bookkeeping.
+- Wait for a <=75m pre-kickoff standings capture and downstream Stage72 motivation rebuild.

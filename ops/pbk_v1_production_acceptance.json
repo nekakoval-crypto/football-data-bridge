@@ -1,7 +1,7 @@
 {
   "version": "PBK_V1_PRODUCTION_ACCEPTANCE_V1",
-  "status": "PASS",
-  "ready_to_close": true,
+  "status": "FAIL",
+  "ready_to_close": false,
   "provider_calls": 0,
   "network_calls": 0,
   "items": {
@@ -80,7 +80,7 @@
       "latched": true
     },
     "5_standings_motivation": {
-      "status": "PASS",
+      "status": "FAIL",
       "checks": [
         {
           "code": "STANDINGS_PROVIDER_SNAPSHOT",
@@ -94,10 +94,10 @@
         },
         {
           "code": "STANDINGS_NO_LOOKAHEAD_EVIDENCE",
-          "status": "PASS",
-          "message": "provider standings evidence is tied to a pre-kickoff cutoff",
+          "status": "FAIL",
+          "message": "standings snapshots exist but no snapshot can be tied to a <=90m pre-kickoff fixture",
           "evidence": {
-            "prematch_snapshots": 2
+            "prematch_snapshots": 0
           }
         },
         {
@@ -116,7 +116,7 @@
           "message": "at least one real no-lookahead motivation projection is available",
           "evidence": {
             "rows": 129,
-            "available_no_lookahead_rows": 9
+            "available_no_lookahead_rows": 10
           }
         }
       ]
@@ -132,7 +132,7 @@
         "evidence": {
           "health_status": "WARN",
           "critical_issues": 0,
-          "warnings": 3
+          "warnings": 2
         }
       },
       {
@@ -158,8 +158,8 @@
     ]
   },
   "next_actions": [
-    "Production acceptance is complete; PBK v1 may proceed to final closure bookkeeping."
+    "Wait for a <=75m pre-kickoff standings capture and downstream Stage72 motivation rebuild."
   ],
-  "evaluated_at_utc": "2026-09-18T04:33:47Z",
-  "state_fingerprint": "d3d94251e5f94529689182b7464ce457002df9a7a7c44d4da20f6ff5f8b28110"
+  "evaluated_at_utc": "2026-09-18T07:33:23Z",
+  "state_fingerprint": "368649e849a7782e1d303380feed8576735f57ec12c0fed4965cc4905a9404d2"
 }
