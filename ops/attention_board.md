@@ -1,7 +1,7 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 18.09.2026 21:00 (Europe/Berlin)
-Canonical: 4 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
+Обновлено: 18.09.2026 22:00 (Europe/Berlin)
+Canonical: 4 | active WATCH crossings: 21 | RED: 0 | ORANGE: 21
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
 
@@ -13,6 +13,7 @@ Canonical: 4 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
 - **Udinese — Cagliari** | Stage63 | ОЗ — Да | 19.09 15:00 | prospective движение ОЗ ≥3 п.п. | 1.85 @ Marathonbet
 - **Eintracht Frankfurt — SC Freiburg** | Stage62 | ТБ(2.5) | 19.09 15:30 | первый +3 п.п. steam ТБ(2.5) | 1.42 @ Marathonbet
 - **Werder Bremen — FC Augsburg** | Stage62 | ТБ(2.5) | 19.09 15:30 | первый +3 п.п. steam ТБ(2.5) | 1.41 @ Marathonbet
+- **Borussia Mönchengladbach — FSV Mainz 05** | Stage62 | ТБ(2.5) | 19.09 15:30 | первый +3 п.п. steam ТБ(2.5) | 1.47 @ Marathonbet
 - **Werder Bremen — FC Augsburg** | Stage63 | ОЗ — Да | 19.09 15:30 | prospective движение ОЗ ≥3 п.п. | 1.36 @ Marathonbet
 - **Brighton — Arsenal** | Stage61 | П2 | 19.09 16:00 | первый +3 п.п. steam фаворита | 1.75 @ Marathonbet
 - **Everton — Ipswich** | Stage63 | ОЗ — Да | 19.09 16:00 | prospective движение ОЗ ≥3 п.п. | 1.67 @ Marathonbet
@@ -41,6 +42,7 @@ Canonical: 4 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
 - **Stage63 | Udinese — Cagliari** | ОЗ — Да | 19.09 15:00 | 1.85 @ Marathonbet
 - **Stage62 | Eintracht Frankfurt — SC Freiburg** | ТБ(2.5) | 19.09 15:30 | 1.42 @ Marathonbet
 - **Stage62 | Werder Bremen — FC Augsburg** | ТБ(2.5) | 19.09 15:30 | 1.41 @ Marathonbet
+- **Stage62 | Borussia Mönchengladbach — FSV Mainz 05** | ТБ(2.5) | 19.09 15:30 | 1.47 @ Marathonbet
 - **Stage63 | Werder Bremen — FC Augsburg** | ОЗ — Да | 19.09 15:30 | 1.36 @ Marathonbet
 - **Stage61 | Brighton — Arsenal** | П2 | 19.09 16:00 | 1.75 @ Marathonbet
 - **Stage63 | Everton — Ipswich** | ОЗ — Да | 19.09 16:00 | 1.67 @ Marathonbet
@@ -110,8 +112,8 @@ Canonical: 4 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
   - Европейская фора хозяев (-2) · П1: 8 | Х: 6 | П2: 1.28 @ Bet365
   - Европейская фора хозяев (-2) · П1: 6.7 | Х: 5.65 | П2: 1.25 @ Marathonbet
   - Европейская фора хозяев (-3) · П1: 19 | Х: 12 | П2: 1.08 @ Bet365
-  - 1X2 · П1: 2 | Х: 3.5 | П2: 3.7 @ Bet365
-  - 1X2 · П1: 2.02 | Х: 3.62 | П2: 3.68 @ Marathonbet
+  - 1X2 · П1: 2 | Х: 3.5 | П2: 3.6 @ Bet365
+  - 1X2 · П1: 2.03 | Х: 3.6 | П2: 3.66 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.36 | ИТМ: 3 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.35 | ИТМ: 2.94 @ Marathonbet
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 2.75 | ИТМ: 1.4 @ Bet365
@@ -409,8 +411,8 @@ Canonical: 4 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 13 | ИТМ: 1.04 @ Bet365
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 10.75 | ИТМ: 1.01 @ Marathonbet
   - ИТБ/ИТМ 1 (4.5) · ИТБ: 29 | ИТМ: 1.01 @ Bet365
-  - Тотал 2.5 · ТБ(2.5): 1.53 | ТМ(2.5): 2.5 @ Bet365
-  - Тотал 2.5 · ТБ(2.5): 1.48 | ТМ(2.5): 2.43 @ Marathonbet
+  - Тотал 2.5 · ТБ(2.5): 1.5 | ТМ(2.5): 2.62 @ Bet365
+  - Тотал 2.5 · ТБ(2.5): 1.47 | ТМ(2.5): 2.46 @ Marathonbet
 
 - **OH Leuven — RAAL La Louvière** | Belgian Pro League | 19.09 14:00 UTC
   - Ф(0) · Ф1(0): 1.5 | Ф2(0): 2.5 @ Bet365
@@ -1233,7 +1235,7 @@ Canonical: 4 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
   - Европейская фора хозяев (-3) · П1: 11 | Х: 7.5 | П2: 1.17 @ Bet365
   - Европейская фора хозяев (-3) · П1: 6 | Х: 4.8 | П2: 1.12 @ Marathonbet
   - 1X2 · П1: 1.57 | Х: 4 | П2: 5.75 @ Bet365
-  - 1X2 · П1: 1.58 | Х: 4.2 | П2: 5.8 @ Marathonbet
+  - 1X2 · П1: 1.61 | Х: 4.1 | П2: 5.6 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.53 | ИТМ: 2.38 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.54 | ИТМ: 2.32 @ Marathonbet
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 3.75 | ИТМ: 1.25 @ Bet365
@@ -2394,8 +2396,8 @@ Canonical: 4 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
   - Европейская фора хозяев (-1) · П1: 5.8 | Х: 5 | П2: 1.37 @ Marathonbet
   - Европейская фора хозяев (-2) · П1: 15 | Х: 9 | П2: 1.12 @ Bet365
   - Европейская фора хозяев (-2) · П1: 6.5 | Х: 4.95 | П2: 1.1 @ Marathonbet
-  - 1X2 · П1: 3.2 | Х: 3.8 | П2: 2.1 @ Bet365
-  - 1X2 · П1: 3.22 | Х: 3.8 | П2: 2.13 @ Marathonbet
+  - 1X2 · П1: 3.1 | Х: 3.8 | П2: 2.15 @ Bet365
+  - 1X2 · П1: 3.14 | Х: 3.8 | П2: 2.17 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.12 | ИТМ: 6 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.67 | ИТМ: 2.1 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.7 | ИТМ: 2.15 @ Marathonbet
@@ -3715,7 +3717,7 @@ Canonical: 4 | active WATCH crossings: 20 | RED: 0 | ORANGE: 20
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 1
+- System Health: **HEALTHY** | critical 0 | warnings 0
 - Логическая canonical экспозиция: **4.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 24 | data required 3
