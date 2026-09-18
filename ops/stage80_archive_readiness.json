@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V16_EPL_REFEREE_RESEARCH",
-  "generated_at_utc": "2026-09-18T20:44:45Z",
+  "generated_at_utc": "2026-09-18T20:51:21Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -92,12 +92,12 @@
     "match_events": {
       "file": "match_event_snapshots.csv",
       "present": true,
-      "rows": 16
+      "rows": 160
     },
     "match_event_backlog": {
       "file": "stage80_match_event_backlog.csv",
       "present": true,
-      "rows": 1
+      "rows": 9
     },
     "player_xg_xa_research": {
       "file": "statsbomb_player_xg_xa.csv",
@@ -329,11 +329,11 @@
     "coverage_note": "Stage55 context is canonical-signal scoped; these counts are not full 16-league archive coverage."
   },
   "match_events": {
-    "event_rows": 16,
-    "event_fixtures": 1,
-    "backlog_total_fixtures": 1,
+    "event_rows": 160,
+    "event_fixtures": 9,
+    "backlog_total_fixtures": 9,
     "backlog_pending_fixtures": 0,
-    "backlog_captured_fixtures": 1,
+    "backlog_captured_fixtures": 9,
     "evidence_note": "Append-only normalized provider match events captured only after PBK observed a terminal fixture; empty provider responses remain retryable."
   },
   "referee_research": {
