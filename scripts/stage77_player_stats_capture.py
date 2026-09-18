@@ -22,7 +22,7 @@ from __future__ import annotations
 import csv
 import json
 import os
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import stage53_daily_screener as s53
@@ -230,6 +230,31 @@ def record_attempts(rows, attempts):
     return [by_fixture[str(row.get("fixture_id") or "").strip()] for row in rows]
 
 
+def retry_cooldown_hours(row):
+    """Return bounded cooldown after an unsuccessful provider attempt."""
+    result = str(row.get("last_attempt_result") or "").strip().upper()
+    attempts = attempt_count(row)
+    if attempts <= 0:
+        return 0.0
+    if result == "NO_DATA":
+        base = float(os.getenv("STAGE77_NO_DATA_RETRY_BASE_HOURS", "6"))
+        cap = float(os.getenv("STAGE77_NO_DATA_RETRY_MAX_HOURS", "72"))
+    elif result == "ERROR":
+        base = float(os.getenv("STAGE77_ERROR_RETRY_BASE_HOURS", "1"))
+        cap = float(os.getenv("STAGE77_ERROR_RETRY_MAX_HOURS", "12"))
+    else:
+        return 0.0
+    return max(0.0, min(cap, base * (2 ** max(0, attempts - 1))))
+
+
+def retry_ready(row, now):
+    last_attempt = parse_utc(row.get("last_attempt_at_utc"))
+    if last_attempt is None:
+        return True
+    cooldown = retry_cooldown_hours(row)
+    return cooldown <= 0 or now >= last_attempt + timedelta(hours=cooldown)
+
+
 def candidate_fixtures(fixtures, captured, now, limit):
     candidates = []
     for row in fixtures:
@@ -240,6 +265,8 @@ def candidate_fixtures(fixtures, captured, now, limit):
         if not fixture_id or fixture_id in captured or not kickoff or kickoff > now:
             continue
         if raw_status not in TERMINAL and normalized != "FINISHED":
+            continue
+        if not retry_ready(row, now):
             continue
         candidates.append(row)
 
