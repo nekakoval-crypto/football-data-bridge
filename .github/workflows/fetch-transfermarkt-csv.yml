@@ -18,22 +18,25 @@ jobs:
           set -euxo pipefail
           BASE='https://pub-e682421888d945d684bcae8890b0ec20.r2.dev/data'
           mkdir -p core heavy
-          for f in competitions.csv.gz clubs.csv.gz games.csv.gz players.csv.gz player_valuations.csv.gz; do
+          for f in competitions.csv.gz clubs.csv.gz games.csv.gz players.csv.gz player_valuations.csv.gz transfers.csv.gz; do
             curl -fL --retry 5 --retry-delay 3 "$BASE/$f" -o "core/$f"
           done
           for f in appearances.csv.gz game_lineups.csv.gz game_events.csv.gz club_games.csv.gz; do
             curl -fL --retry 5 --retry-delay 3 "$BASE/$f" -o "heavy/$f"
           done
-          ls -lh core heavy
-          sha256sum core/* heavy/* | tee SHA256SUMS.txt
+          curl -fL --retry 5 --retry-delay 3 "$BASE/dataset-metadata.json" -o dataset-metadata.json
+          ls -lh core heavy dataset-metadata.json
+          sha256sum core/* heavy/* dataset-metadata.json | tee SHA256SUMS.txt
 
       - name: Upload core tables
         uses: actions/upload-artifact@v4
         with:
           name: transfermarkt-core-csv
-          path: core/
+          path: |
+            core/
+            dataset-metadata.json
           compression-level: 0
-          retention-days: 7
+          retention-days: 30
 
       - name: Upload heavy tables
         uses: actions/upload-artifact@v4
@@ -41,11 +44,11 @@ jobs:
           name: transfermarkt-heavy-csv
           path: heavy/
           compression-level: 0
-          retention-days: 7
+          retention-days: 30
 
       - name: Upload checksums
         uses: actions/upload-artifact@v4
         with:
           name: transfermarkt-checksums
           path: SHA256SUMS.txt
-          retention-days: 7
+          retention-days: 30
