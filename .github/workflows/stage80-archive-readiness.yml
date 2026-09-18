@@ -43,6 +43,8 @@ on:
       - 'scripts/stage80_archive_readiness.py'
       - 'ops/stage80_raw_archive_storage_last_run.json'
       - 'ops/stage80_raw_archive_provider_probe_last_run.json'
+      - 'ops/historical_transfer_events.csv'
+      - 'ops/stage80_transfer_history_last_run.json'
       - 'ops/statsbomb_player_xg_xa.csv'
       - 'ops/statsbomb_pbk_player_mapping_candidates.csv'
       - 'ops/pbk_player_xg_xa_research.csv'
