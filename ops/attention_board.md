@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 18.09.2026 13:00 (Europe/Berlin)
+Обновлено: 18.09.2026 14:00 (Europe/Berlin)
 Canonical: 4 | active WATCH crossings: 21 | RED: 0 | ORANGE: 21
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -1616,7 +1616,7 @@ Canonical: 4 | active WATCH crossings: 21 | RED: 0 | ORANGE: 21
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 6.3 | ИТМ: 1.08 @ Marathonbet
   - ИТБ/ИТМ 1 (4.5) · ИТБ: 19 | ИТМ: 1.02 @ Bet365
   - Тотал 2.5 · ТБ(2.5): 1.4 | ТМ(2.5): 3 @ Bet365
-  - Тотал 2.5 · ТБ(2.5): 1.36 | ТМ(2.5): 2.83 @ Marathonbet
+  - Тотал 2.5 · ТБ(2.5): 1.38 | ТМ(2.5): 2.85 @ Marathonbet
   - 1X2 — нет данных
 
 - **Celta Vigo — Racing Santander** | La Liga | 19.09 16:30 UTC
