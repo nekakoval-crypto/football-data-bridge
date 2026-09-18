@@ -372,7 +372,7 @@ def archive_referee_payload(conn,q):
 
     epl_profile=None
     epl_splits=[]
-    if resolved_league in (None,'39') or not top_found:
+    if resolved_league in (None,'39'):
         epl_profiles=archive_rows(conn,'raw_epl_referee_profiles_research','referee',referee,1)
         epl_splits=archive_rows(conn,'raw_epl_referee_team_splits_research','referee',referee,MAX_LIMIT,['team'])
         if team:
