@@ -1,0 +1,66 @@
+name: Stage 91 StatsBomb Player xG xA Research
+
+on:
+  pull_request:
+    paths:
+      - 'config/pbk_statsbomb_open_data.json'
+      - 'scripts/stage91_statsbomb_player_xg_xa.py'
+      - 'scripts/tests/test_stage91_statsbomb_player_xg_xa.py'
+      - 'scripts/stage80_archive_manifest.py'
+      - 'scripts/stage80_archive_readiness.py'
+      - 'scripts/tests/test_stage80_archive_manifest.py'
+      - 'scripts/tests/test_stage80_archive_readiness.py'
+      - 'docs/stage91_statsbomb_player_xg_xa.md'
+      - '.github/workflows/stage91-statsbomb-player-xg-xa.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'config/pbk_statsbomb_open_data.json'
+      - 'scripts/stage91_statsbomb_player_xg_xa.py'
+      - 'scripts/tests/test_stage91_statsbomb_player_xg_xa.py'
+      - 'scripts/stage80_archive_manifest.py'
+      - 'scripts/stage80_archive_readiness.py'
+      - 'scripts/tests/test_stage80_archive_manifest.py'
+      - 'scripts/tests/test_stage80_archive_readiness.py'
+      - 'docs/stage91_statsbomb_player_xg_xa.md'
+      - '.github/workflows/stage91-statsbomb-player-xg-xa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile Stage91 and archive governance
+        run: |
+          python -m py_compile scripts/stage91_statsbomb_player_xg_xa.py
+          python -m py_compile scripts/stage80_archive_manifest.py
+          python -m py_compile scripts/stage80_archive_readiness.py
+      - name: Test StatsBomb xG xA projection
+        run: python -m unittest scripts.tests.test_stage91_statsbomb_player_xg_xa -v
+      - name: Test Stage80 manifest and readiness integration
+        run: |
+          python -m unittest scripts.tests.test_stage80_archive_manifest -v
+          python -m unittest scripts.tests.test_stage80_archive_readiness -v
+      - name: Assert provider and download isolation
+        shell: bash
+        run: |
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|raw\.githubusercontent|github\.com/.*/open-data.*(clone|archive)' \
+            scripts/stage91_statsbomb_player_xg_xa.py; then
+            echo 'Stage91 must consume only a local StatsBomb Open Data checkout.' >&2
+            exit 1
+          fi
+      - name: Assert no raw StatsBomb fixtures are committed by this change
+        shell: bash
+        run: |
+          if find . -type f \( -path '*/statsbomb*/events/*.json' -o -path '*/open-data/data/events/*.json' \) | grep -q .; then
+            echo 'Raw StatsBomb event JSON must not be committed to PBK.' >&2
+            exit 1
+          fi
