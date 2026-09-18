@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-18T14:52:58Z
+Обновлено UTC: 2026-09-18T15:22:07Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -14,7 +14,7 @@
 - Stage81 durable backlog: pending 1; captured 7; total 8.
 - Team match statistics: 7 complete fixtures / 14 team rows; current finished coverage 0.00%.
 - Team xG: 4 complete fixtures / 8 team rows; captured-team-stat coverage 57.14%.
-- Player xG/xA source: MISSING_VERIFIED_SOURCE.
+- Player xG/xA source: RESEARCH_ADAPTER_READY_NOT_MATERIALIZED.
 - Player stat rows: 215; уникальных игроков: 215.
 - Player Grade rows: 215; уникальных игроков: 215.
 - Current roster: 96 команд / 2951 игроковых строк.
@@ -37,6 +37,6 @@
 - TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE
 - MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY
 - TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE
-- PLAYER_XG_XA_REQUIRE_VERIFIED_SOURCE
+- PLAYER_XG_XA_RESEARCH_SOURCE_NOT_MATERIALIZED
 
 Readiness — telemetry only. Этот отчёт не создаёт ставки, не меняет probability/EV, eligibility, stake или Forward journal.

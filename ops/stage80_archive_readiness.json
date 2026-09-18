@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_READINESS_V8_TEAM_XG",
-  "generated_at_utc": "2026-09-18T14:52:58Z",
+  "version": "PBK_STAGE80_ARCHIVE_READINESS_V9_STATSBOMB_PLAYER_XG_XA",
+  "generated_at_utc": "2026-09-18T15:22:07Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -88,6 +88,11 @@
       "file": "stage80_match_event_backlog.csv",
       "present": true,
       "rows": 1
+    },
+    "player_xg_xa_research": {
+      "file": "statsbomb_player_xg_xa.csv",
+      "present": false,
+      "rows": null
     }
   },
   "fixtures": {
@@ -169,8 +174,17 @@
     "finished_current_inventory_with_team_xg": 0,
     "finished_current_inventory_team_xg_coverage_pct": 0.0,
     "team_xg_evidence_note": "Verified provider field when present; API-Football may return it as missing for some competitions or fixtures and PBK preserves missing as UNKNOWN.",
-    "player_xg_xa_source_status": "MISSING_VERIFIED_SOURCE",
-    "player_xg_xa_evidence_note": "API-Football /fixtures/players does not supply player xG/xA in the PBK capture contract; PBK does not derive or fabricate these fields."
+    "player_xg_xa_source_status": "RESEARCH_ADAPTER_READY_NOT_MATERIALIZED",
+    "player_xg_xa_research_rows": 0,
+    "player_xg_xa_research_invalid_rows": 0,
+    "player_xg_xa_research_matches": 0,
+    "player_xg_xa_research_unique_players": 0,
+    "player_xg_source": "StatsBomb Open Data shot.statsbomb_xg when Stage91 is materialized",
+    "player_xa_method": "Derived by joining pass event id to shot.key_pass_id and assigning the created shot xG",
+    "player_xg_xa_attribution_required": true,
+    "player_xg_xa_operational_authority": false,
+    "player_xg_xa_pbk_identity_mapping": "NOT_IMPLEMENTED",
+    "player_xg_xa_evidence_note": "Stage91 is a research-only StatsBomb identity projection. Raw StatsBomb events are not committed to PBK. Materialized rows do not become API-Football/PBK player authority until a separate conservative identity mapping is implemented."
   },
   "players": {
     "player_stat_rows": 215,
@@ -244,7 +258,7 @@
     "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
     "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE",
-    "PLAYER_XG_XA_REQUIRE_VERIFIED_SOURCE"
+    "PLAYER_XG_XA_RESEARCH_SOURCE_NOT_MATERIALIZED"
   ],
   "creates_signal": false,
   "probability_mutation": false,

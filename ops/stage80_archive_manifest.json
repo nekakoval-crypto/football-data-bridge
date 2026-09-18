@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V8_TRANSFER_HISTORY",
-  "generated_at_utc": "2026-09-18T14:52:58Z",
+  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V9_STATSBOMB_XG_XA",
+  "generated_at_utc": "2026-09-18T15:22:07Z",
   "status": "OK",
   "datasets": [
     {
@@ -402,6 +402,29 @@
       "identity_key_text": "fixture_id+team_id+player_id",
       "observed_time_fields_text": "observed_at_utc",
       "effective_time_fields_text": "kickoff_utc"
+    },
+    {
+      "dataset_id": "statsbomb_player_xg_xa",
+      "path": "statsbomb_player_xg_xa.csv",
+      "role": "RESEARCH_ENRICHMENT",
+      "lifecycle": "DERIVED_EXTERNAL_OPEN_DATA_PROJECTION",
+      "identity_key": [
+        "record_id"
+      ],
+      "observed_time_fields": [],
+      "effective_time_fields": [
+        "match_date"
+      ],
+      "source": "Stage91 derived from local StatsBomb Open Data event files",
+      "limitations": "StatsBomb identity namespace only. xG is shot.statsbomb_xg; xA is derived by joining pass event id to shot.key_pass_id and assigning the shot xG. Research-only; attribution required; no PBK/API-Football identity mapping or betting authority.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "record_id",
+      "observed_time_fields_text": "",
+      "effective_time_fields_text": "match_date"
     },
     {
       "dataset_id": "historical_players",
@@ -994,9 +1017,9 @@
     }
   ],
   "summary": {
-    "declared_datasets": 20,
+    "declared_datasets": 21,
     "materialized_csv_datasets": 19,
-    "pending_materializations_or_storage": 0,
+    "pending_materializations_or_storage": 1,
     "contract_attention": 0
   },
   "provider_calls": 0,
