@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_READINESS_V13_PROFILE_DOB_IDENTITY_BRIDGE",
-  "generated_at_utc": "2026-09-18T17:52:53Z",
+  "version": "PBK_STAGE80_ARCHIVE_READINESS_V14_EXTERNAL_STAGE91_ATTESTATION",
+  "generated_at_utc": "2026-09-18T18:06:59Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -195,6 +195,12 @@
     "finished_current_inventory_team_xg_coverage_pct": 0.0,
     "team_xg_evidence_note": "Verified provider field when present; API-Football may return it as missing for some competitions or fixtures and PBK preserves missing as UNKNOWN.",
     "player_xg_xa_source_status": "RESEARCH_ADAPTER_READY_NOT_MATERIALIZED",
+    "player_xg_xa_source_payload_in_repository": false,
+    "player_xg_xa_stage91_meta_present": false,
+    "player_xg_xa_stage91_meta_valid": false,
+    "player_xg_xa_stage91_attested_rows": 0,
+    "player_xg_xa_stage91_attested_unique_players": 0,
+    "player_xg_xa_stage91_source_revision": "",
     "player_xg_xa_research_rows": 0,
     "player_xg_xa_research_invalid_rows": 0,
     "player_xg_xa_research_matches": 0,
@@ -211,7 +217,7 @@
     "player_xg_xa_mapped_research_invalid_rows": 0,
     "player_xg_xa_mapped_pbk_players": 0,
     "player_xg_xa_mapped_matches": 0,
-    "player_xg_xa_evidence_note": "Stage91 provides StatsBomb research metrics. Stage92 maps only exact full names through the verified Transfermarkt→PBK bridge; abbreviated-name candidates remain REVIEW and never enter mapped research. Mapped xG/xA remains research-only and non-operational."
+    "player_xg_xa_evidence_note": "Stage91 provides StatsBomb research metrics. The large Stage91 source payload may remain external/local when an OK Stage91 meta attestation plus valid Stage92 AUTO/HIGH mapped rows are persisted; this never implies the source CSV is stored in Git. Stage92 maps only exact full names through the verified Transfermarkt→PBK bridge; abbreviated-name candidates remain REVIEW and never enter mapped research. Mapped xG/xA remains research-only and non-operational."
   },
   "players": {
     "player_stat_rows": 215,
