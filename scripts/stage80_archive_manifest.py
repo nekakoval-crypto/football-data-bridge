@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V4_TEAM_STATS"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V5_LINEUP_INJURY"
 
 DATASETS = [
     {
@@ -152,6 +152,28 @@ DATASETS = [
         "effective_time_fields": [],
         "source": "Stage80 derived from team_roster_history",
         "limitations": "Observed presence intervals are not verified transfer events.",
+    },
+    {
+        "dataset_id": "lineup_snapshots",
+        "path": "lineup_snapshots.csv",
+        "role": "HISTORICAL_EVIDENCE",
+        "lifecycle": "APPEND_ONLY_FIRST_OBSERVATION_WINS",
+        "identity_key": ["fixture_id", "captured_at_utc", "team_id", "source_dataset"],
+        "observed_time_fields": ["captured_at_utc"],
+        "effective_time_fields": ["kickoff_utc"],
+        "source": "Stage80 normalized from already-persisted Stage55 context + rotation snapshots",
+        "limitations": "Only official lineup observations already captured by PBK; expected XI is not archived as official evidence.",
+    },
+    {
+        "dataset_id": "injury_snapshots",
+        "path": "injury_snapshots.csv",
+        "role": "HISTORICAL_EVIDENCE",
+        "lifecycle": "APPEND_ONLY_FIRST_OBSERVATION_WINS",
+        "identity_key": ["fixture_id", "captured_at_utc", "team_id", "player_id", "availability_type", "reason", "source_dataset"],
+        "observed_time_fields": ["captured_at_utc"],
+        "effective_time_fields": ["kickoff_utc"],
+        "source": "Stage80 normalized from already-persisted Stage55 injury evidence",
+        "limitations": "Provider availability labels/reasons are archived as observed facts; absence from a later snapshot is not inferred as recovery.",
     },
     {
         "dataset_id": "match_context_snapshots",
