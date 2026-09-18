@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-18T20:03:51Z",
+  "generated_at_utc": "2026-09-18T21:03:52Z",
   "status": "OK",
   "policy_locked_at": "2026-09-11",
   "families": {
@@ -35,20 +35,20 @@
         "crossings": 7,
         "user_price_rows": 7,
         "execution_coverage_pct": 100.0,
-        "settled_executable": 2,
-        "roi_pct": 17.5,
+        "settled_executable": 3,
+        "roi_pct": 14.0,
         "first_half_n": 1,
         "first_half_roi_pct": 26.0,
-        "second_half_n": 1,
-        "second_half_roi_pct": 9.0,
-        "close_observed_settled": 2,
+        "second_half_n": 2,
+        "second_half_roi_pct": 8.0,
+        "close_observed_settled": 3,
         "close_observed_coverage_pct": 100.0,
-        "close_qualified_settled": 2,
-        "close_qualified_roi_pct": 17.5
+        "close_qualified_settled": 3,
+        "close_qualified_roi_pct": 14.0
       },
       "blocking_reasons": [
-        "settled 2/60",
-        "close-qualified subset 2/20"
+        "settled 3/60",
+        "close-qualified subset 3/20"
       ]
     },
     "Stage63": {
@@ -57,16 +57,16 @@
         "crossings": 28,
         "user_price_rows": 28,
         "execution_coverage_pct": 100.0,
-        "settled_executable": 11,
-        "roi_pct": -40.455,
-        "first_half_n": 5,
-        "first_half_roi_pct": -70.2,
-        "second_half_n": 6,
-        "second_half_roi_pct": -15.667,
-        "close_observed_settled": 11,
+        "settled_executable": 14,
+        "roi_pct": -28.571,
+        "first_half_n": 7,
+        "first_half_roi_pct": -78.714,
+        "second_half_n": 7,
+        "second_half_roi_pct": 21.571,
+        "close_observed_settled": 14,
         "close_observed_coverage_pct": 100.0,
-        "close_qualified_settled": 9,
-        "close_qualified_roi_pct": -45.111
+        "close_qualified_settled": 12,
+        "close_qualified_roi_pct": -30.083
       },
       "blocking_reasons": [
         "No historical BTTS first/close dataset; any finding needs a new preregistration and fresh holdout."
