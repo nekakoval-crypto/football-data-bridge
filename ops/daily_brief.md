@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-18T19:03:27Z
+Generated UTC: 2026-09-18T20:02:53Z
 Active canonical signals: 4
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -73,12 +73,11 @@ Active canonical signals: 4
 
 - Scope: АПЛ: движение фаворита П1/П2 (+3 pp no-vig from frozen Bet365 opener).
 - Frozen openers tracked: 20
-- Active +3 pp crossings: 5
-- Observed closes: 10 | Close-qualified M1 watches: 0
+- Active +3 pp crossings: 4
+- Observed closes: 11 | Close-qualified M1 watches: 0
 - Executable bookmaker being observed: Marathonbet
 
 ## Current crossings
-- WATCH | Brentford — Chelsea | фаворит на opener A | move +5.03 pp | Bet365 2.2 | Marathonbet 2.27 | 4292.4 min to kickoff
 - WATCH | Tottenham — Aston Villa | фаворит на opener H | move +6.19 pp | Bet365 1.95 | Marathonbet 2.02 | 4295.2 min to kickoff
 - WATCH | Brighton — Arsenal | фаворит на opener A | move +3.19 pp | Bet365 1.7 | Marathonbet 1.75 | 4290.1 min to kickoff
 - WATCH | Nottingham Forest — Coventry | фаворит на opener H | move +4.65 pp | Bet365 1.62 | Marathonbet 1.66 | 4262.6 min to kickoff
@@ -92,7 +91,7 @@ Active canonical signals: 4
 
 - Scope: Бундеслига: ТБ(2.5) — движение рынка (+3 pp no-vig from frozen Bet365 O/U 2.5 opener).
 - Frozen O/U openers tracked: 18
-- Active +3 pp crossings ТБ(2.5): 3
+- Active +3 pp crossings ТБ(2.5): 4
 - Observed closes: 10 | Close-qualified O1 watches: 3
 - Executable bookmaker being observed: Marathonbet
 
@@ -100,6 +99,7 @@ Active canonical signals: 4
 - WATCH | Eintracht Frankfurt — SC Freiburg | Over move +3.60 pp | Bet365 O2.5 1.44 | Marathonbet O2.5 1.42 | 4297.8 min to kickoff
 - WATCH | Werder Bremen — FC Augsburg | Over move +3.60 pp | Bet365 O2.5 1.44 | Marathonbet O2.5 1.41 | 4297.8 min to kickoff
 - WATCH | FC Schalke 04 — SV Elversberg | Over move +6.96 pp | Bet365 O2.5 1.44 | Marathonbet O2.5 1.48 | 4265.8 min to kickoff
+- WATCH | Borussia Mönchengladbach — FSV Mainz 05 | Over move +3.34 pp | Bet365 O2.5 1.5 | Marathonbet O2.5 1.47 | 1088.9 min to kickoff
 
 ## Recent close-qualified O/U watches
 - RB Leipzig — Hamburger SV | move +6.37 pp | B365 close O2.5 1.28 | Marathonbet close O2.5 1.26
@@ -141,14 +141,14 @@ Active canonical signals: 4
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 39 | settled 13 | pending 26
+- Crossings: 40 | settled 13 | pending 27
 - Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: -4.100u | ROI -31.538% | W-L 6-7
-- Close: observed 14 | stayed qualified 12 | reverted 2 | persistence 85.714%
+- Close: observed 15 | stayed qualified 12 | reverted 3 | persistence 80.0%
 - Close-qualified ROI: -33.727% | Reverted ROI: -19.5%
 
 ## By WATCH family
 - Big-5 ОЗ market movement — ОЗ — Да: crossings 22, settled 10, ROI -52.6%, close persistence 80.0%
 - Big-5 ОЗ market movement — ОЗ — Нет: crossings 6, settled 1, ROI 81.0%, close persistence 100.0%
-- АПЛ favorite steam: crossings 5, settled 0, ROI N/A, close persistence N/A
-- Бундеслига ТБ(2.5) steam: crossings 6, settled 2, ROI 17.5%, close persistence 100.0%
+- АПЛ favorite steam: crossings 5, settled 0, ROI N/A, close persistence 0.0%
+- Бундеслига ТБ(2.5) steam: crossings 7, settled 2, ROI 17.5%, close persistence 100.0%
