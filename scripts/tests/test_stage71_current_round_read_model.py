@@ -36,7 +36,11 @@ class CurrentRoundTests(unittest.TestCase):
             teams['home']['logo'] = 'https://home-logo'
             teams['away']['logo'] = 'https://away-logo'
         return {
-            'fixture': {'id': fid, 'date': date, 'status': {'short': status}},
+            'fixture': {
+                'id': fid, 'date': date, 'status': {'short': status},
+                'referee': 'A. Referee',
+                'venue': {'name': 'Test Stadium', 'city': 'London'},
+            },
             'league': league,
             'teams': teams,
             'goals': {'home': goals[0], 'away': goals[1]},
@@ -55,6 +59,9 @@ class CurrentRoundTests(unittest.TestCase):
         self.assertEqual(rows[0]['league_logo_url'], 'https://logo')
         self.assertEqual(rows[0]['home_team_logo_url'], 'https://home-logo')
         self.assertEqual(rows[0]['away_team_logo_url'], 'https://away-logo')
+        self.assertEqual(rows[0]['referee'], 'A. Referee')
+        self.assertEqual(rows[0]['venue_name'], 'Test Stadium')
+        self.assertEqual(rows[0]['venue_city'], 'London')
         self.assertEqual(rows[0]['status'], 'finished')
         self.assertEqual(rows[0]['score_home'], 2)
         self.assertTrue(all(call[2]['force_refresh'] for call in calls))

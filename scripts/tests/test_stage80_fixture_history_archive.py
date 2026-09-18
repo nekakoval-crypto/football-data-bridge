@@ -18,6 +18,9 @@ def fixture(fid="100", observed="2026-09-15T15:17:00Z", status="scheduled", sour
         "kickoff_utc": "2026-09-18T19:00:00Z",
         "home_team": "Alpha",
         "away_team": "Beta",
+        "referee": "A. Referee",
+        "venue_name": "Test Stadium",
+        "venue_city": "London",
         "status": status,
         "source_status": source,
         "score_home": "",
@@ -67,6 +70,9 @@ class Stage80FixtureHistoryArchiveTests(unittest.TestCase):
             loaded = archive.read_csv(path)
             self.assertEqual(len(loaded), 1)
             self.assertEqual(loaded[0]["fixture_id"], "100")
+            self.assertEqual(loaded[0]["referee"], "A. Referee")
+            self.assertEqual(loaded[0]["venue_name"], "Test Stadium")
+            self.assertEqual(loaded[0]["venue_city"], "London")
             self.assertEqual(loaded[0]["archive_version"], archive.ARCHIVE_VERSION)
             self.assertFalse(path.with_suffix(".csv.tmp").exists())
 
