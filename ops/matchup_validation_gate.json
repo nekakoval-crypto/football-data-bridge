@@ -1,0 +1,92 @@
+{
+  "component_weights_authorized": false,
+  "components": {
+    "AERIAL_VS_AERIAL_DEFENCE": {
+      "acting_dimension": "AERIAL_ATTACK",
+      "acting_validation_evidence_available": false,
+      "component_weight_authorized": false,
+      "matchup_effect_claim_authorized": false,
+      "opponent_dimension": "AERIAL_DEFENCE",
+      "opponent_validation_evidence_available": false,
+      "status": "DATA_BLOCKED"
+    },
+    "CENTRAL_PROGRESSION_VS_CENTRAL_COMPACTNESS": {
+      "acting_dimension": "CENTRAL_PROGRESSION",
+      "acting_validation_evidence_available": false,
+      "component_weight_authorized": false,
+      "matchup_effect_claim_authorized": false,
+      "opponent_dimension": "CENTRAL_COMPACTNESS",
+      "opponent_validation_evidence_available": false,
+      "status": "DATA_BLOCKED"
+    },
+    "LOW_BLOCK_BREAKING_VS_LOW_BLOCK_DEFENCE": {
+      "acting_dimension": "LOW_BLOCK_BREAKING",
+      "acting_validation_evidence_available": false,
+      "component_weight_authorized": false,
+      "matchup_effect_claim_authorized": false,
+      "opponent_dimension": "LOW_BLOCK_DEFENCE",
+      "opponent_validation_evidence_available": false,
+      "status": "DATA_BLOCKED"
+    },
+    "PRESS_VS_BUILDUP": {
+      "acting_dimension": "PRESS_INTENSITY",
+      "acting_validation_evidence_available": false,
+      "component_weight_authorized": false,
+      "matchup_effect_claim_authorized": false,
+      "opponent_dimension": "BUILDUP_RESISTANCE",
+      "opponent_validation_evidence_available": false,
+      "status": "DATA_BLOCKED"
+    },
+    "SET_PIECE_VS_SET_PIECE_DEFENCE": {
+      "acting_dimension": "SET_PIECE_ATTACK",
+      "acting_validation_evidence_available": false,
+      "component_weight_authorized": false,
+      "matchup_effect_claim_authorized": false,
+      "opponent_dimension": "SET_PIECE_DEFENCE",
+      "opponent_validation_evidence_available": false,
+      "status": "DATA_BLOCKED"
+    },
+    "TRANSITION_VS_TRANSITION_DEFENCE": {
+      "acting_dimension": "TRANSITION_ATTACK",
+      "acting_validation_evidence_available": false,
+      "component_weight_authorized": false,
+      "matchup_effect_claim_authorized": false,
+      "opponent_dimension": "TRANSITION_DEFENCE",
+      "opponent_validation_evidence_available": false,
+      "status": "DATA_BLOCKED"
+    },
+    "WIDTH_VS_WIDE_DEFENCE": {
+      "acting_dimension": "WIDTH_ATTACK",
+      "acting_validation_evidence_available": false,
+      "component_weight_authorized": false,
+      "matchup_effect_claim_authorized": false,
+      "opponent_dimension": "WIDE_DEFENCE",
+      "opponent_validation_evidence_available": false,
+      "status": "DATA_BLOCKED"
+    }
+  },
+  "components_with_required_evidence": 0,
+  "creates_signal": false,
+  "eligibility_mutation": false,
+  "forward_journal_mutation": false,
+  "matchup_grade_authorized": false,
+  "missing_evidence_policy": "UNKNOWN_NOT_ZERO",
+  "no_lookahead": true,
+  "overall_edge_authorized": false,
+  "passport_context_allowed": true,
+  "probability_mutation": false,
+  "provider_calls_added": 0,
+  "r1_r2_r3_mutation": false,
+  "research_only": true,
+  "run_at_utc": "2026-09-18T10:31:39Z",
+  "source_version": "PBK_STAGE94_STYLE_DIMENSION_VALIDATION_STATISTICS_V1",
+  "stake_changes": false,
+  "status": "DATA_BLOCKED",
+  "total_components": 7,
+  "ui_decision_mutation": false,
+  "validated_matchup_claim_allowed": false,
+  "validated_style_dimensions_available": [],
+  "validation_threshold_policy_defined": false,
+  "version": "PBK_STAGE95_MATCHUP_VALIDATION_GATE_V1",
+  "winner_claim_authorized": false
+}

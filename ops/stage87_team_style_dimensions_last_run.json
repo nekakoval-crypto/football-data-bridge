@@ -1,0 +1,26 @@
+{
+  "aggregation_performed": false,
+  "api_changes": false,
+  "arbitrary_weights_used": false,
+  "creates_signal": false,
+  "dimension_rows": 54,
+  "eligibility_mutation": false,
+  "forward_journal_mutation": false,
+  "insufficient_normalized_components": 54,
+  "probability_mutation": false,
+  "provider_calls_added": 0,
+  "r1_r2_r3_mutation": false,
+  "ready_for_validation": 0,
+  "research_only": true,
+  "run_at_utc": "2026-09-18T10:31:39Z",
+  "source_rows": 414,
+  "stake_changes": false,
+  "status": "BUILT_DIMENSION_EVIDENCE",
+  "supported_dimensions": [
+    "ATTACK_VOLUME",
+    "DEFENSIVE_RESISTANCE",
+    "POSSESSION_CONTROL"
+  ],
+  "ui_changes": false,
+  "version": "PBK_STAGE87_NORMALIZED_STYLE_DIMENSION_EVIDENCE_V1"
+}

@@ -1,0 +1,32 @@
+{
+  "version": "PBK_STAGE82_TEAM_STYLE_OPERATIONAL_BRIDGE_V1",
+  "status": "READY",
+  "source": "ops/team_match_statistics.csv",
+  "source_rows": 2,
+  "complete_fixture_pairs": 1,
+  "fixture_exclusions": {
+    "missing_fixture_id": 0,
+    "unknown_side": 0,
+    "duplicate_side": 0,
+    "incomplete_fixture_pair": 0
+  },
+  "validation": {
+    "missing_team_id": 0,
+    "invalid_kickoff": 0,
+    "invalid_observed_at": 0,
+    "normalized_rejected": 0
+  },
+  "evidence_rows_built": 2,
+  "rows_added": 2,
+  "duplicates_skipped": 0,
+  "ledger_rows_known": 2,
+  "provider_calls_added": 0,
+  "missing_policy": "UNKNOWN_NOT_ZERO",
+  "research_only": true,
+  "creates_signal": false,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "stake_changes": false,
+  "forward_journal_mutation": false,
+  "ui_changes": false
+}
