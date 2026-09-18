@@ -1,14 +1,14 @@
 {
-  "run_at_utc": "2026-09-18T15:31:50.955448Z",
+  "run_at_utc": "2026-09-18T23:29:55.979057Z",
   "status": "ATTENTION",
   "counts": {
-    "expected": 40,
-    "scanned": 40,
-    "captured": 54,
-    "missed_or_at_risk": 2,
-    "pending": 12,
+    "expected": 52,
+    "scanned": 52,
+    "captured": 55,
+    "missed_or_at_risk": 1,
+    "pending": 13,
     "stale": 0,
-    "rescheduled": 139,
+    "rescheduled": 140,
     "cancelled": 19,
     "settled": 42,
     "duplicates": 0
@@ -17,10 +17,6 @@
     {
       "fixture_id": "1570385",
       "reason": "kickoff_passed_without_trigger; qualification_unknown"
-    },
-    {
-      "fixture_id": "1515925",
-      "reason": "complete_Bet365_odds_unavailable"
     }
   ],
   "stale_ids": [],
@@ -34,8 +30,8 @@
     },
     {
       "league": "La Liga",
-      "expected": 3,
-      "scanned": 3,
+      "expected": 4,
+      "scanned": 4,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -48,8 +44,8 @@
     },
     {
       "league": "Ligue 1",
-      "expected": 2,
-      "scanned": 2,
+      "expected": 5,
+      "scanned": 5,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -62,8 +58,8 @@
     },
     {
       "league": "Belgian Pro League",
-      "expected": 2,
-      "scanned": 2,
+      "expected": 4,
+      "scanned": 4,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -76,8 +72,8 @@
     },
     {
       "league": "A Lyga",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 2,
+      "scanned": 2,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -90,8 +86,8 @@
     },
     {
       "league": "Eredivisie",
-      "expected": 2,
-      "scanned": 2,
+      "expected": 4,
+      "scanned": 4,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -104,29 +100,29 @@
     },
     {
       "league": "Ekstraklasa",
-      "expected": 4,
-      "scanned": 4,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
-    },
-    {
-      "league": "Primeira Liga",
-      "expected": 2,
-      "scanned": 2,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
-    },
-    {
-      "league": "Super Lig",
       "expected": 3,
       "scanned": 3,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
-      "league": "Scottish Premiership",
+      "league": "Primeira Liga",
       "expected": 4,
       "scanned": 4,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "Super Lig",
+      "expected": 4,
+      "scanned": 4,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "Scottish Premiership",
+      "expected": 5,
+      "scanned": 5,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     }
@@ -144,6 +140,6 @@
   "legacy_max_schedule_gap_hours": 18,
   "schedule_gap_hours": 8,
   "r2_freeze_hours": 12,
-  "api_calls": 50,
-  "api_day_calls": 408
+  "api_calls": 33,
+  "api_day_calls": 1507
 }
