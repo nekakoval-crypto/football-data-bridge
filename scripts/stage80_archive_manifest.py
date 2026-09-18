@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V6_MATCH_EVENTS"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V7_RAW_S3"
 
 DATASETS = [
     {
@@ -266,10 +266,25 @@ def build_manifest(ops: Path = OPS, raw_archive_dir: str | None = None) -> dict:
         attention += runtime["contract_status"] == "ATTENTION"
         pending += runtime["contract_status"] == "PENDING_MATERIALIZATION"
 
-    configured = bool((raw_archive_dir if raw_archive_dir is not None else os.getenv("API_FOOTBALL_ARCHIVE_DIR", "")).strip())
+    local_configured = bool((raw_archive_dir if raw_archive_dir is not None else os.getenv("API_FOOTBALL_ARCHIVE_DIR", "")).strip())
+    verify_path = Path(ops) / "stage80_raw_archive_storage_last_run.json"
+    s3_verified = False
+    verify = {}
+    if verify_path.exists():
+        try:
+            verify = json.loads(verify_path.read_text(encoding="utf-8"))
+            s3_verified = (
+                verify.get("backend") == "S3"
+                and verify.get("status") == "READY"
+                and bool(verify.get("readback_match"))
+                and bool(verify.get("durable"))
+            )
+        except (OSError, json.JSONDecodeError, TypeError):
+            verify = {}
+    configured = local_configured or s3_verified
     entries.append({
         "dataset_id": "raw_api_football_payloads",
-        "path": "EXTERNAL_ENV:API_FOOTBALL_ARCHIVE_DIR",
+        "path": "EXTERNAL_DURABLE_STORAGE",
         "role": "RAW_PROVIDER_ARCHIVE",
         "lifecycle": "CONTENT_ADDRESSED_APPEND_ONLY",
         "identity_key": ["payload_sha256"],
@@ -279,11 +294,13 @@ def build_manifest(ops: Path = OPS, raw_archive_dir: str | None = None) -> dict:
         "effective_time_fields": [],
         "effective_time_fields_text": "",
         "source": "API-Football broker successful real responses",
-        "limitations": "Physical durable storage is separate from Git; cache hits do not create false provider observations.",
+        "limitations": "Physical durable storage is separate from Git; cache hits do not create false provider observations. S3/R2 readiness requires write/readback/hash verification telemetry.",
         "present": configured,
         "row_count": None,
         "columns": [],
         "missing_required_fields": [],
+        "storage_backend": "LOCAL" if local_configured else ("S3" if s3_verified else None),
+        "storage_verified_at_utc": verify.get("run_at_utc") if s3_verified else None,
         "contract_status": "CONFIGURED" if configured else "PENDING_DURABLE_STORAGE",
     })
     if not configured:
