@@ -10,6 +10,8 @@ on:
   pull_request:
     paths:
       - 'scripts/stage80_archive_readiness.py'
+      - '.gitignore'
+      - '.gitignore'
       - 'ops/stage80_raw_archive_storage_last_run.json'
       - 'scripts/stage80_archive_manifest.py'
       - 'scripts/stage80_historical_fixture_catalog.py'
@@ -55,6 +57,7 @@ on:
       - 'ops/historical_transfer_events.csv'
       - 'ops/stage80_transfer_history_last_run.json'
       - 'ops/statsbomb_player_xg_xa.csv'
+      - 'ops/stage91_statsbomb_player_xg_xa_last_run.json'
       - 'ops/statsbomb_pbk_player_mapping_candidates.csv'
       - 'ops/pbk_player_xg_xa_research.csv'
       - 'ops/stage92_statsbomb_pbk_player_mapping_last_run.json'
