@@ -7,6 +7,7 @@ from pathlib import Path
 
 from scripts.stage80_transfer_entity_mapping import (
     AUTO_METHOD_STATS,
+    build_identity_map,
     build_mapping,
     build_transfer_history,
     run,
@@ -136,6 +137,34 @@ class Stage80TransferEntityMappingTests(unittest.TestCase):
         self.assertTrue(all(r["match_status"]=="REVIEW" for r in rows))
         self.assertEqual(auto,{})
 
+    def test_identity_map_preserves_auto_high_even_without_transfer_rows(self):
+        mapping_rows = [{
+            "pbk_player_id": "5",
+            "pbk_player_name": "M. Akanji",
+            "transfermarkt_player_id": "100",
+            "transfermarkt_player_name": "Manuel Akanji",
+            "match_method": AUTO_METHOD_STATS,
+            "match_status": "AUTO_MATCH",
+            "match_confidence": "HIGH",
+        }]
+        identities = build_identity_map(mapping_rows)
+        self.assertEqual(len(identities), 1)
+        self.assertEqual(identities[0]["pbk_player_id"], "5")
+        self.assertEqual(identities[0]["transfermarkt_player_name"], "Manuel Akanji")
+        self.assertEqual(identities[0]["mapping_method"], AUTO_METHOD_STATS)
+
+    def test_review_mapping_never_enters_identity_map(self):
+        mapping_rows = [{
+            "pbk_player_id": "5",
+            "pbk_player_name": "M. Akanji",
+            "transfermarkt_player_id": "100",
+            "transfermarkt_player_name": "Manuel Akanji",
+            "match_method": "INITIAL_SURNAME_CURRENT_CLUB",
+            "match_status": "REVIEW",
+            "match_confidence": "MEDIUM",
+        }]
+        self.assertEqual(build_identity_map(mapping_rows), [])
+
     def test_transfer_history_uses_auto_mapping_only(self):
         transfers=[
             {"player_id":"100","player_name":"Harry Kane","transfer_date":"2023-08-12",
@@ -192,11 +221,14 @@ class Stage80TransferEntityMappingTests(unittest.TestCase):
                 pbk,players,transfers,
                 root/"mapping.csv",root/"history.csv",root/"meta.json",
                 player_stats_path=stats,
+                identity_out=root/"identity.csv",
             )
             self.assertEqual(meta["auto_mapped_players"],1)
+            self.assertEqual(meta["verified_identity_rows"],1)
             self.assertEqual(meta["auto_mapped_by_method"][AUTO_METHOD_STATS],1)
             self.assertEqual(meta["normalized_transfer_rows"],1)
             self.assertTrue((root/"mapping.csv").exists())
+            self.assertTrue((root/"identity.csv").exists())
 
 
 if __name__=="__main__":
