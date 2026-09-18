@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_READINESS_V6_RAW_S3",
-  "generated_at_utc": "2026-09-18T13:08:52Z",
+  "version": "PBK_STAGE80_ARCHIVE_READINESS_V7_TRANSFER_HISTORY",
+  "generated_at_utc": "2026-09-18T13:29:33Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -12,7 +12,7 @@
     "fixture_history": {
       "file": "fixture_history_snapshots.csv",
       "present": true,
-      "rows": 1022
+      "rows": 1151
     },
     "historical_fixtures": {
       "file": "historical_fixtures.csv",
@@ -59,6 +59,11 @@
       "present": true,
       "rows": 2949
     },
+    "transfer_history": {
+      "file": "historical_transfer_events.csv",
+      "present": true,
+      "rows": 715
+    },
     "match_context": {
       "file": "match_context_snapshots.csv",
       "present": true,
@@ -103,10 +108,10 @@
   },
   "fixture_history": {
     "present": true,
-    "rows": 1022,
-    "valid_observations": 1022,
+    "rows": 1151,
+    "valid_observations": 1151,
     "unique_fixtures": 178,
-    "observation_runs": 8,
+    "observation_runs": 9,
     "finished_fixtures_observed": 44,
     "invalid_identity_rows": 0,
     "evidence_note": "Counts represent only Stage71 current-round observations persisted after the fixture-history archive was enabled; they are not a pre-PBK historical backfill claim."
@@ -125,8 +130,8 @@
     "orphan_catalog_fixtures": 0,
     "missing_terminal_evidence": 0,
     "orphan_terminal_evidence": 0,
-    "observation_count_total": 1022,
-    "expected_history_observations": 1022,
+    "observation_count_total": 1151,
+    "expected_history_observations": 1151,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
   },
@@ -170,6 +175,17 @@
     "membership_intervals": 2949,
     "open_latest_intervals": 2949,
     "closed_by_observed_absence_intervals": 0
+  },
+  "transfer_history": {
+    "present": true,
+    "rows": 715,
+    "valid_rows": 715,
+    "invalid_identity_rows": 0,
+    "unique_pbk_players": 103,
+    "unique_transfermarkt_players": 103,
+    "earliest_transfer_date": "2001-07-01",
+    "latest_transfer_date": "2026-07-01",
+    "evidence_note": "Only durable HIGH-confidence EXACT_NAME_CURRENT_CLUB mapped Transfermarkt events count as verified historical transfer enrichment; this is not current squad authority."
   },
   "context": {
     "snapshot_rows": 11,
@@ -215,7 +231,6 @@
     "PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
-    "VERIFIED_TRANSFER_EVENTS_NOT_YET_INGESTED",
     "XG_XA_REQUIRE_VERIFIED_SOURCE"
   ],
   "creates_signal": false,

@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V7_RAW_S3",
-  "generated_at_utc": "2026-09-18T13:08:52Z",
+  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V8_TRANSFER_HISTORY",
+  "generated_at_utc": "2026-09-18T13:29:33Z",
   "status": "OK",
   "datasets": [
     {
@@ -65,7 +65,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 1022,
+      "row_count": 1151,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -448,6 +448,59 @@
       "identity_key_text": "player_id",
       "observed_time_fields_text": "first_seen_at_utc,last_seen_at_utc",
       "effective_time_fields_text": ""
+    },
+    {
+      "dataset_id": "historical_transfer_events",
+      "path": "historical_transfer_events.csv",
+      "role": "HISTORICAL_ENRICHMENT",
+      "lifecycle": "APPEND_ONLY_FIRST_OBSERVATION_WINS",
+      "identity_key": [
+        "transfer_event_id"
+      ],
+      "observed_time_fields": [
+        "ingested_at_utc"
+      ],
+      "effective_time_fields": [
+        "transfer_date"
+      ],
+      "source": "Stage80 durable projection from conservative PBK ↔ Transfermarkt AUTO_MATCH/HIGH mapping",
+      "limitations": "Historical enrichment only; Transfermarkt IDs remain separate from API-Football IDs and source snapshot age prevents current-squad authority.",
+      "present": true,
+      "row_count": 715,
+      "columns": [
+        "transfer_event_id",
+        "pbk_player_id",
+        "pbk_player_name",
+        "transfermarkt_player_id",
+        "transfermarkt_player_name",
+        "transfer_date",
+        "transfer_season",
+        "from_club_id",
+        "from_club_name",
+        "to_club_id",
+        "to_club_name",
+        "transfer_fee",
+        "market_value_in_eur",
+        "mapping_method",
+        "mapping_confidence",
+        "source",
+        "source_snapshot",
+        "source_metadata_sha256",
+        "ingested_at_utc",
+        "archive_version",
+        "research_only",
+        "creates_signal",
+        "probability_mutation",
+        "eligibility_mutation",
+        "stake_changes",
+        "forward_journal_mutation",
+        "current_operational_authority"
+      ],
+      "missing_required_fields": [],
+      "contract_status": "OK",
+      "identity_key_text": "transfer_event_id",
+      "observed_time_fields_text": "ingested_at_utc",
+      "effective_time_fields_text": "transfer_date"
     },
     {
       "dataset_id": "team_rosters",
@@ -941,8 +994,8 @@
     }
   ],
   "summary": {
-    "declared_datasets": 19,
-    "materialized_csv_datasets": 18,
+    "declared_datasets": 20,
+    "materialized_csv_datasets": 19,
     "pending_materializations_or_storage": 0,
     "contract_attention": 0
   },
