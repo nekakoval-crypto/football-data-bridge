@@ -170,7 +170,7 @@ def aggregate_team_splits(rows):
         referee=text(row.get("referee")); home=text(row.get("home_team")); away=text(row.get("away_team"))
         result=text(row.get("ft_result")); season=text(row.get("season_label")); date=text(row.get("date_iso"))
         metrics={
-            "goals":_metric_pair(row,"ft_home_goals","ft_away_goals"),
+            "goal":_metric_pair(row,"ft_home_goals","ft_away_goals"),
             "yellow":_metric_pair(row,"home_yellows","away_yellows"),
             "red":_metric_pair(row,"home_reds","away_reds"),
             "foul":_metric_pair(row,"home_fouls","away_fouls"),
