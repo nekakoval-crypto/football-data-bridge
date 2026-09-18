@@ -107,8 +107,16 @@ REVIEW and UNMATCHED players are physically excluded from this dataset.
 
 ## Automation
 
-When `ops/statsbomb_player_xg_xa.csv` exists with Stage91 research rows, the
-Stage92 workflow builds and safely publishes:
+When a repository-resident `ops/statsbomb_player_xg_xa.csv` exists with Stage91
+research rows, the Stage92 workflow can rebuild automatically.
+
+For a local/external Stage91 payload, PBK intentionally does **not** commit that
+large CSV. The operator runs Stage92 locally and persists only the small audit,
+mapped research and Stage91/Stage92 telemetry outputs. Stage80 V14 validates
+those outputs against the Stage91 meta attestation and reports the source payload
+as external/local rather than falsely claiming it lives in Git.
+
+The Stage92 workflow builds and safely publishes:
 
 - `ops/statsbomb_pbk_player_mapping_candidates.csv`;
 - `ops/pbk_player_xg_xa_research.csv`;
@@ -143,7 +151,7 @@ These rows are historical research enrichment only.
 
 ## Readiness states
 
-Stage80 V13 distinguishes:
+Stage80 V14 distinguishes:
 
 - Stage91 not materialized;
 - Stage91 materialized but Stage92 not materialized;
