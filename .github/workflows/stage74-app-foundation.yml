@@ -95,7 +95,7 @@ jobs:
           grep -q 'today-live.css' app/sw.js
           grep -q 'match-card.js' app/sw.js
           grep -q 'match-card.css' app/sw.js
-          grep -q "pbk-shell-v14" app/sw.js
+          grep -q "pbk-shell-v15" app/sw.js
           grep -q "beforeinstallprompt" app/install.js
           grep -q "addEventListener('push'" app/sw.js
           grep -q 'probability.js' app/sw.js

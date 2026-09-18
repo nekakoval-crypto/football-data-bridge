@@ -19,7 +19,7 @@ class ClosureReadinessTests(unittest.TestCase):
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text('# placeholder\n', encoding='utf-8')
         (self.root/'app/sw.js').write_text(
-            "const CACHE='pbk-shell-v14';\nif(u.pathname.startsWith('/api/')) fetch(e.request,{cache:'no-store'});\n",
+            "const CACHE='pbk-shell-v15';\nif(u.pathname.startsWith('/api/')) fetch(e.request,{cache:'no-store'});\n",
             encoding='utf-8')
         (self.root/'scripts/stage72_build_data_layer.py').write_text("SCHEMA_VERSION='14'\n", encoding='utf-8')
         (self.root/'scripts/stage73_internal_api.py').write_text(
