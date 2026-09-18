@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V9_STATSBOMB_XG_XA"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V10_STATSBOMB_PBK_MAPPING"
 
 DATASETS = [
     {
@@ -119,6 +119,28 @@ DATASETS = [
         "effective_time_fields": ["match_date"],
         "source": "Stage91 derived from local StatsBomb Open Data event files",
         "limitations": "StatsBomb identity namespace only. xG is shot.statsbomb_xg; xA is derived by joining pass event id to shot.key_pass_id and assigning the shot xG. Research-only; attribution required; no PBK/API-Football identity mapping or betting authority.",
+    },
+    {
+        "dataset_id": "statsbomb_pbk_player_mapping_candidates",
+        "path": "statsbomb_pbk_player_mapping_candidates.csv",
+        "role": "RESEARCH_IDENTITY_MAPPING",
+        "lifecycle": "DETERMINISTIC_PROJECTION",
+        "identity_key": ["statsbomb_player_id"],
+        "observed_time_fields": [],
+        "effective_time_fields": [],
+        "source": "Stage92 conservative StatsBomb → verified Transfermarkt → PBK player bridge",
+        "limitations": "Only AUTO_MATCH/HIGH exact full-name matches through the verified Transfermarkt bridge are authoritative for mapped research. Initial+surname matches remain REVIEW only.",
+    },
+    {
+        "dataset_id": "pbk_player_xg_xa_research",
+        "path": "pbk_player_xg_xa_research.csv",
+        "role": "RESEARCH_ENRICHMENT",
+        "lifecycle": "DETERMINISTIC_MAPPED_PROJECTION",
+        "identity_key": ["pbk_player_id", "statsbomb_record_id"],
+        "observed_time_fields": [],
+        "effective_time_fields": ["match_date"],
+        "source": "Stage92 AUTO_MATCH/HIGH projection from Stage91 StatsBomb player xG/xA",
+        "limitations": "Research-only advanced metrics. xG is StatsBomb source metric; xA is derived xG Assisted. No betting/model authority is granted.",
     },
     {
         "dataset_id": "historical_players",
