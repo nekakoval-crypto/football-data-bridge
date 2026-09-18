@@ -282,7 +282,7 @@ def build_mapping(pbk_rows, tm_players, player_stat_rows=None, player_profile_ro
                 evidence_source = "API_FOOTBALL_PLAYERS_TEAM_SEASON_PROFILE"
             else:
                 stats_matches = {}
-                    for alias in stats_aliases.get(pbk_id, []):
+                for alias in stats_aliases.get(pbk_id, []):
                     key = (alias["name_key"], alias["team_key"])
                     if stats_ownership.get(key) != {pbk_id}:
                         continue
@@ -336,7 +336,6 @@ def build_mapping(pbk_rows, tm_players, player_stat_rows=None, player_profile_ro
                         method = "NO_SAFE_CANDIDATE"
                         status = "UNMAPPED"
                         confidence = "NONE"
-
         if not candidates:
             rows.append({
                 "pbk_player_id": pbk_id,
