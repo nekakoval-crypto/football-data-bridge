@@ -14,7 +14,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from threading import Lock
 
-from api_football_raw_archive import archive_response, archive_root_from_env
+from api_football_raw_archive import archive_enabled_from_env, archive_response, archive_root_from_env
 
 API_BASE = "https://v3.football.api-sports.io"
 
@@ -93,6 +93,7 @@ class ApiFootballBroker:
         self.transport = transport or self._transport
         self.cache_path = Path(cache_path) if cache_path else _default_cache_path()
         self.archive_dir = Path(archive_dir) if archive_dir is not None else archive_root_from_env()
+        self.archive_enabled = self.archive_dir is not None or archive_enabled_from_env()
         self.max_real_calls = (
             int(max_real_calls) if max_real_calls is not None
             else self._env_limit()
@@ -109,6 +110,7 @@ class ApiFootballBroker:
             "budget_rejections": 0, "real_calls_by_path": {},
             "archive_observations": 0, "archive_blob_dedup_hits": 0,
             "archive_manifest_dedup_hits": 0, "archive_errors": 0,
+            "archive_backend": None,
         }
         self._rate_limit = {}
 
@@ -162,7 +164,7 @@ class ApiFootballBroker:
             conn.close()
 
     def _archive_success(self, key, path, params, payload, fetched):
-        if self.archive_dir is None:
+        if not self.archive_enabled:
             return
         try:
             result = archive_response(
@@ -173,6 +175,7 @@ class ApiFootballBroker:
                 payload=payload,
                 fetched_at=fetched,
             )
+            self._stats["archive_backend"] = result.get("backend")
             if result.get("manifest_appended"):
                 self._stats["archive_observations"] += 1
             else:
@@ -311,7 +314,7 @@ class ApiFootballBroker:
     def stats(self):
         out = json.loads(json.dumps(self._stats))
         out["rate_limit"] = dict(self._rate_limit)
-        out["archive_enabled"] = self.archive_dir is not None
+        out["archive_enabled"] = self.archive_enabled
         return out
 
 
