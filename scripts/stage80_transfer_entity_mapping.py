@@ -97,6 +97,54 @@ def team_alias_key(value):
     return aliases.get(key, key)
 
 
+def profile_club_key(value):
+    """Conservative club key for DOB-backed profile identity only.
+
+    Removes common legal/organizational club tokens and founding-year suffixes.
+    This is not fuzzy similarity and is never used without exact name+DOB.
+    """
+    parts = normalize_text(value).split()
+    stop = {
+        "fc", "cf", "afc", "ac", "sc", "cfc",
+        "football", "club", "calcio", "us", "aj",
+    }
+    filtered = [part for part in parts if part not in stop]
+    if filtered and filtered[0] == "1":
+        filtered = filtered[1:]
+    if filtered and re.fullmatch(r"(?:18|19|20)\d{2}", filtered[-1]):
+        filtered = filtered[:-1]
+    return " ".join(filtered)
+
+
+def date_key(value):
+    text = str(value or "").strip()
+    match = re.match(r"^(\d{4}-\d{2}-\d{2})", text)
+    return match.group(1) if match else ""
+
+
+def profile_name_variants(row):
+    first = sval(row, "firstname")
+    last = sval(row, "lastname")
+    display = sval(row, "player_name")
+    candidates = []
+    if first and last:
+        candidates.append(f"{first} {last}")
+        first_token = first.split()[0] if first.split() else ""
+        if first_token:
+            candidates.append(f"{first_token} {last}")
+    if display and is_non_abbreviated_name(display):
+        candidates.append(display)
+
+    result = []
+    seen = set()
+    for name in candidates:
+        key = normalize_text(name)
+        if key and key not in seen and is_non_abbreviated_name(name):
+            seen.add(key)
+            result.append(name)
+    return result
+
+
 def initial_surname_key(name):
     key = normalize_text(name)
     parts = key.split()
@@ -157,31 +205,24 @@ def build_profile_aliases(player_profile_rows):
     ownership = defaultdict(set)
     for row in player_profile_rows or []:
         pbk_id = sval(row, "player_id")
-        first = sval(row, "firstname")
-        last = sval(row, "lastname")
-        display = sval(row, "player_name")
-        name = " ".join(part for part in (first, last) if part).strip() or display
         team = sval(row, "team_name")
-        birth_date = sval(row, "birth_date")
-        if (
-            not pbk_id or not name or not team or not birth_date
-            or not is_non_abbreviated_name(name)
-        ):
+        birth_date = date_key(sval(row, "birth_date"))
+        tk = profile_club_key(team)
+        variants = profile_name_variants(row)
+        if not pbk_id or not team or not birth_date or not tk or not variants:
             continue
-        nk = normalize_text(name)
-        tk = team_alias_key(team)
-        if not nk or not tk:
-            continue
-        key = (nk, tk, birth_date)
-        ownership[key].add(pbk_id)
-        aliases[pbk_id][key] = {
-            "name": name,
-            "team_name": team,
-            "birth_date": birth_date,
-            "name_key": nk,
-            "team_key": tk,
-            "source": "API_FOOTBALL_PLAYERS_TEAM_SEASON_PROFILE",
-        }
+        for name in variants:
+            nk = normalize_text(name)
+            key = (nk, tk, birth_date)
+            ownership[key].add(pbk_id)
+            aliases[pbk_id][key] = {
+                "name": name,
+                "team_name": team,
+                "birth_date": birth_date,
+                "name_key": nk,
+                "team_key": tk,
+                "source": "API_FOOTBALL_PLAYERS_TEAM_SEASON_PROFILE",
+            }
     return {
         pbk_id: list(items.values())
         for pbk_id, items in aliases.items()
@@ -204,7 +245,7 @@ def build_tm_indexes(tm_players):
             "name": name,
             "current_club_id": sval(tm, "current_club_id"),
             "current_club_name": club,
-            "date_of_birth": sval(tm, "date_of_birth"),
+            "date_of_birth": date_key(sval(tm, "date_of_birth")),
         }
         by_exact[normalize_text(name)].append(record)
         ik = initial_surname_key(name)
@@ -257,7 +298,7 @@ def build_mapping(pbk_rows, tm_players, player_stat_rows=None, player_profile_ro
                 tm_exact = by_exact.get(alias["name_key"], [])
                 tm_team = [
                     x for x in tm_exact
-                    if team_alias_key(x["current_club_name"]) == alias["team_key"]
+                    if profile_club_key(x["current_club_name"]) == alias["team_key"]
                     and x.get("date_of_birth") == alias["birth_date"]
                 ]
                 if len(tm_team) == 1:
