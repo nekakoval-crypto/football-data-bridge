@@ -284,6 +284,49 @@ class Stage80ArchiveManifestTests(unittest.TestCase):
         self.assertEqual(stability["contract_status"], "OK")
         self.assertEqual(stability["role"], "RESEARCH_VALIDATION")
 
+    def test_pbk14_congestion_walkforward_manifest_contracts(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            self.write_csv(
+                tmp,
+                "pbk14_congestion_market_walkforward_research.csv",
+                ["factor","bucket","scope_type","scope_value","target","test_season"],
+                [{
+                    "factor":"UEFA_72H_SIDE","bucket":"HOME_ONLY",
+                    "scope_type":"ALL","scope_value":"ALL",
+                    "target":"HOME","test_season":"2024",
+                }],
+            )
+            self.write_csv(
+                tmp,
+                "pbk14_congestion_market_walkforward_summary_research.csv",
+                ["factor","bucket","scope_type","scope_value","target","first_test_season","last_test_season"],
+                [{
+                    "factor":"UEFA_72H_SIDE","bucket":"HOME_ONLY",
+                    "scope_type":"ALL","scope_value":"ALL",
+                    "target":"HOME","first_test_season":"2019","last_test_season":"2025",
+                }],
+            )
+            report=manifest.build_manifest(Path(tmp),raw_archive_dir="")
+        folds=next(
+            x for x in report["datasets"]
+            if x["dataset_id"]=="pbk14_congestion_market_walkforward_research"
+        )
+        summary=next(
+            x for x in report["datasets"]
+            if x["dataset_id"]=="pbk14_congestion_market_walkforward_summary_research"
+        )
+        self.assertEqual(folds["contract_status"],"OK")
+        self.assertEqual(
+            folds["identity_key_text"],
+            "factor+bucket+scope_type+scope_value+target+test_season",
+        )
+        self.assertEqual(folds["effective_time_fields_text"],"test_season")
+        self.assertEqual(summary["contract_status"],"OK")
+        self.assertEqual(
+            summary["effective_time_fields_text"],
+            "first_test_season,last_test_season",
+        )
+
     def test_raw_archive_does_not_expose_real_storage_path(self):
         with tempfile.TemporaryDirectory() as tmp:
             report = manifest.build_manifest(Path(tmp), raw_archive_dir="/secret/server/archive")
