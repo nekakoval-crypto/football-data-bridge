@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V18_PREMATCH_WALKFORWARD",
-  "generated_at_utc": "2026-09-19T00:35:02Z",
+  "generated_at_utc": "2026-09-19T00:41:24Z",
   "status": "OK",
   "datasets": [
     {
@@ -378,7 +378,7 @@
       "source": "Stage80 /players?team&season plus residual /players?id&season via shared API-Football broker; residual team context comes from current PBK roster",
       "limitations": "Identity enrichment only. Residual calls are limited to current-roster player IDs still missing after team capture. Missing profile fields remain UNKNOWN. No betting/model authority.",
       "present": true,
-      "row_count": 2745,
+      "row_count": 2989,
       "columns": [
         "team_id",
         "team_name",
@@ -422,7 +422,7 @@
       "source": "Stage80 residual /players?id&season capture state",
       "limitations": "Operational retry ledger only. EMPTY responses are retried after a bounded TTL; transient ERROR rows remain retryable. Never betting/model authority.",
       "present": true,
-      "row_count": 516,
+      "row_count": 562,
       "columns": [
         "season",
         "player_id",
@@ -1339,7 +1339,7 @@
       "source": "Stage80 conservative PBK ↔ Transfermarkt AUTO_MATCH/HIGH identity projection",
       "limitations": "Identity bridge only. Approved methods include exact catalog name+club, exact API-Football profile full-name+DOB+club, or exact non-abbreviated match-stat name+club; no fuzzy authority and no betting/model authority.",
       "present": true,
-      "row_count": 1056,
+      "row_count": 1094,
       "columns": [
         "pbk_player_id",
         "pbk_player_name",
@@ -1376,7 +1376,7 @@
       "source": "Stage80 durable projection from conservative PBK ↔ Transfermarkt AUTO_MATCH/HIGH mapping",
       "limitations": "Historical enrichment only; Transfermarkt IDs remain separate from API-Football IDs and source snapshot age prevents current-squad authority.",
       "present": true,
-      "row_count": 7714,
+      "row_count": 7833,
       "columns": [
         "transfer_event_id",
         "pbk_player_id",
