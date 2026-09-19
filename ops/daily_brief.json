@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-19T12:03:02Z",
+  "generated_at_utc": "2026-09-19T14:02:59Z",
   "status": "OK",
   "active_signals": 4,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-19T11:41:49Z",
+        "captured_at_utc": "2026-09-19T13:42:07Z",
         "best_odds": "1.55",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.5",
@@ -155,11 +155,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-19T11:41:49Z",
+        "captured_at_utc": "2026-09-19T13:42:07Z",
         "best_odds": "2.07",
         "best_bookmaker": "1xBet",
         "bet365_odds": "2.0",
-        "api_odds_update_utc": "2026-09-19T09:25:20+00:00",
+        "api_odds_update_utc": "2026-09-19T13:22:28+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -280,11 +280,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-19T11:41:49Z",
+        "captured_at_utc": "2026-09-19T13:42:07Z",
         "best_odds": "1.84",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.75",
-        "api_odds_update_utc": "2026-09-19T09:25:20+00:00",
+        "api_odds_update_utc": "2026-09-19T13:22:28+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -407,11 +407,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-19T11:41:49Z",
+        "captured_at_utc": "2026-09-19T13:42:07Z",
         "best_odds": "1.56",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.48",
-        "api_odds_update_utc": "2026-09-19T09:25:20+00:00",
+        "api_odds_update_utc": "2026-09-19T13:22:28+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -521,26 +521,14 @@
     "definition": "same opening favorite remains favorite; no-vig probability +3pp by observed close",
     "canonical_forward_changed": false,
     "tracked_openers": 20,
-    "active_crossings": 4,
+    "active_crossings": 3,
     "total_crossings": 5,
-    "observed_closes": 11,
-    "close_qualified_total": 0,
+    "observed_closes": 12,
+    "close_qualified_total": 1,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-19T11:26:28Z",
+    "latest_run_utc": "2026-09-19T13:53:15Z",
     "warnings": [],
     "crossings": [
-      {
-        "fixture_id": "1557416",
-        "home_team": "Tottenham",
-        "away_team": "Aston Villa",
-        "opening_favorite": "H",
-        "movement_pp": "0.06188079",
-        "crossed_at_utc": "2026-09-16T11:54:49Z",
-        "minutes_to_kickoff": "4295.2",
-        "bet365_cross_odds": "1.95",
-        "user_cross_odds": "2.02",
-        "note": "WATCH only; not a canonical bet"
-      },
       {
         "fixture_id": "1557409",
         "home_team": "Brighton",
@@ -578,7 +566,17 @@
         "note": "WATCH only; not a canonical bet"
       }
     ],
-    "recent_close_qualified": [],
+    "recent_close_qualified": [
+      {
+        "fixture_id": "1557416",
+        "home_team": "Tottenham",
+        "away_team": "Aston Villa",
+        "movement_pp": "0.07019744",
+        "close_gap_minutes": "3.5",
+        "bet365_close_favorite_odds": "1.91",
+        "user_close_favorite_odds": "1.98"
+      }
+    ],
     "display_market": "П1/П2 — движение коэффициента фаворита"
   },
   "ou_steam_watch": {
@@ -587,36 +585,14 @@
     "definition": "Bet365 no-vig P(Over 2.5) rises by >=3pp from frozen opener to observed close",
     "canonical_forward_changed": false,
     "tracked_openers": 18,
-    "active_crossings": 4,
+    "active_crossings": 1,
     "total_crossings": 7,
-    "observed_closes": 10,
-    "close_qualified_total": 3,
+    "observed_closes": 14,
+    "close_qualified_total": 6,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-19T11:46:47Z",
+    "latest_run_utc": "2026-09-19T13:47:05Z",
     "warnings": [],
     "crossings": [
-      {
-        "fixture_id": "1575170",
-        "home_team": "Eintracht Frankfurt",
-        "away_team": "SC Freiburg",
-        "movement_pp": "0.03597719",
-        "crossed_at_utc": "2026-09-16T13:52:13Z",
-        "minutes_to_kickoff": "4297.8",
-        "bet365_over25": "1.44",
-        "user_over25": "1.42",
-        "note": "WATCH only; not a canonical bet"
-      },
-      {
-        "fixture_id": "1575172",
-        "home_team": "Werder Bremen",
-        "away_team": "FC Augsburg",
-        "movement_pp": "0.03597719",
-        "crossed_at_utc": "2026-09-16T13:52:13Z",
-        "minutes_to_kickoff": "4297.8",
-        "bet365_over25": "1.44",
-        "user_over25": "1.41",
-        "note": "WATCH only; not a canonical bet"
-      },
       {
         "fixture_id": "1575173",
         "home_team": "FC Schalke 04",
@@ -627,29 +603,9 @@
         "bet365_over25": "1.44",
         "user_over25": "1.48",
         "note": "WATCH only; not a canonical bet"
-      },
-      {
-        "fixture_id": "1575174",
-        "home_team": "Borussia Mönchengladbach",
-        "away_team": "FSV Mainz 05",
-        "movement_pp": "0.03339068",
-        "crossed_at_utc": "2026-09-18T19:21:04Z",
-        "minutes_to_kickoff": "1088.9",
-        "bet365_over25": "1.5",
-        "user_over25": "1.47",
-        "note": "WATCH only; not a canonical bet"
       }
     ],
     "recent_close_qualified": [
-      {
-        "fixture_id": "1575159",
-        "home_team": "RB Leipzig",
-        "away_team": "Hamburger SV",
-        "movement_pp": "0.06370866",
-        "close_gap_minutes": "8.7",
-        "bet365_close_over25": "1.28",
-        "user_close_over25": "1.26"
-      },
       {
         "fixture_id": "1575166",
         "home_team": "SV Elversberg",
@@ -667,6 +623,33 @@
         "close_gap_minutes": "5.4",
         "bet365_close_over25": "1.08",
         "user_close_over25": "1.05"
+      },
+      {
+        "fixture_id": "1575170",
+        "home_team": "Eintracht Frankfurt",
+        "away_team": "SC Freiburg",
+        "movement_pp": "0.03597719",
+        "close_gap_minutes": "39.0",
+        "bet365_close_over25": "1.44",
+        "user_close_over25": "1.48"
+      },
+      {
+        "fixture_id": "1575172",
+        "home_team": "Werder Bremen",
+        "away_team": "FC Augsburg",
+        "movement_pp": "0.06147079",
+        "close_gap_minutes": "39.0",
+        "bet365_close_over25": "1.4",
+        "user_close_over25": "1.4"
+      },
+      {
+        "fixture_id": "1575174",
+        "home_team": "Borussia Mönchengladbach",
+        "away_team": "FSV Mainz 05",
+        "movement_pp": "0.05379293",
+        "close_gap_minutes": "39.0",
+        "bet365_close_over25": "1.44",
+        "user_close_over25": "1.44"
       }
     ],
     "display_selection": "ТБ(2.5)"
@@ -679,16 +662,28 @@
     "historical_edge_reason": "Canonical 10-year dataset has no historical BTTS first/close odds",
     "canonical_forward_changed": false,
     "tracked_openers": 105,
-    "active_crossings_total": 17,
-    "active_yes_crossings": 14,
+    "active_crossings_total": 16,
+    "active_yes_crossings": 13,
     "active_no_crossings": 3,
     "total_crossings": 32,
-    "observed_closes": 62,
+    "observed_closes": 64,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-19T10:15:06Z",
+    "latest_run_utc": "2026-09-19T12:19:44Z",
     "warnings": [],
     "crossings": [
+      {
+        "fixture_id": "1557410",
+        "league": "Premier League",
+        "home_team": "Everton",
+        "away_team": "Ipswich",
+        "selection": "ОЗ — Да",
+        "movement_yes_pp": "0.03702918",
+        "crossed_at_utc": "2026-09-16T14:17:14Z",
+        "minutes_to_kickoff": "4302.8",
+        "user_selected_odds": "1.67",
+        "note": "research watch only; not a bet signal"
+      },
       {
         "fixture_id": "1570393",
         "league": "La Liga",
@@ -822,18 +817,6 @@
         "note": "research watch only; not a bet signal"
       },
       {
-        "fixture_id": "1557416",
-        "league": "Premier League",
-        "home_team": "Tottenham",
-        "away_team": "Aston Villa",
-        "selection": "ОЗ — Да",
-        "movement_yes_pp": "0.04258290",
-        "crossed_at_utc": "2026-09-19T00:21:44Z",
-        "minutes_to_kickoff": "668.3",
-        "user_selected_odds": "1.62",
-        "note": "research watch only; not a bet signal"
-      },
-      {
         "fixture_id": "1570400",
         "league": "La Liga",
         "home_team": "Sevilla",
@@ -872,29 +855,29 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-19T11:53:14Z",
+    "generated_at_utc": "2026-09-19T13:53:13Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
       "crossings": 44,
-      "pending": 25,
-      "settled": 19,
+      "pending": 23,
+      "settled": 21,
       "void": 0,
       "review": 0,
       "user_price_rows": 44,
       "user_execution_coverage_pct": 100.0,
-      "user_settled_rows": 19,
-      "wins": 9,
-      "losses": 10,
-      "user_profit_u": -5.58,
-      "user_roi_pct": -29.368,
-      "close_observed": 19,
-      "close_qualified": 16,
+      "user_settled_rows": 21,
+      "wins": 10,
+      "losses": 11,
+      "user_profit_u": -5.96,
+      "user_roi_pct": -28.381,
+      "close_observed": 24,
+      "close_qualified": 21,
       "reverted_at_close": 3,
-      "close_persistence_pct": 84.211,
-      "close_qualified_settled": 16,
-      "close_qualified_profit_u": -4.19,
-      "close_qualified_roi_pct": -26.187,
+      "close_persistence_pct": 87.5,
+      "close_qualified_settled": 18,
+      "close_qualified_profit_u": -4.57,
+      "close_qualified_roi_pct": -25.389,
       "reverted_settled": 3,
       "reverted_profit_u": -1.39,
       "reverted_roi_pct": -46.333,
@@ -903,24 +886,24 @@
     "by_family": {
       "Big-5 ОЗ market movement — ОЗ — Да": {
         "crossings": 26,
-        "pending": 14,
-        "settled": 12,
+        "pending": 13,
+        "settled": 13,
         "void": 0,
         "review": 0,
         "user_price_rows": 26,
         "user_execution_coverage_pct": 100.0,
-        "user_settled_rows": 12,
-        "wins": 4,
+        "user_settled_rows": 13,
+        "wins": 5,
         "losses": 8,
-        "user_profit_u": -5.7,
-        "user_roi_pct": -47.5,
-        "close_observed": 12,
-        "close_qualified": 10,
+        "user_profit_u": -5.08,
+        "user_roi_pct": -39.077,
+        "close_observed": 13,
+        "close_qualified": 11,
         "reverted_at_close": 2,
-        "close_persistence_pct": 83.333,
-        "close_qualified_settled": 10,
-        "close_qualified_profit_u": -5.31,
-        "close_qualified_roi_pct": -53.1,
+        "close_persistence_pct": 84.615,
+        "close_qualified_settled": 11,
+        "close_qualified_profit_u": -4.69,
+        "close_qualified_roi_pct": -42.636,
         "reverted_settled": 2,
         "reverted_profit_u": -0.39,
         "reverted_roi_pct": -19.5,
@@ -953,28 +936,28 @@
       },
       "АПЛ favorite steam": {
         "crossings": 5,
-        "pending": 4,
-        "settled": 1,
+        "pending": 3,
+        "settled": 2,
         "void": 0,
         "review": 0,
         "user_price_rows": 5,
         "user_execution_coverage_pct": 100.0,
-        "user_settled_rows": 1,
+        "user_settled_rows": 2,
         "wins": 0,
-        "losses": 1,
-        "user_profit_u": -1.0,
+        "losses": 2,
+        "user_profit_u": -2.0,
         "user_roi_pct": -100.0,
-        "close_observed": 1,
-        "close_qualified": 0,
+        "close_observed": 2,
+        "close_qualified": 1,
         "reverted_at_close": 1,
-        "close_persistence_pct": 0.0,
-        "close_qualified_settled": 0,
-        "close_qualified_profit_u": 0,
-        "close_qualified_roi_pct": null,
+        "close_persistence_pct": 50.0,
+        "close_qualified_settled": 1,
+        "close_qualified_profit_u": -1.0,
+        "close_qualified_roi_pct": -100.0,
         "reverted_settled": 1,
         "reverted_profit_u": -1.0,
         "reverted_roi_pct": -100.0,
-        "observed_max_drawdown_u": 1.0
+        "observed_max_drawdown_u": 2.0
       },
       "Бундеслига ТБ(2.5) steam": {
         "crossings": 7,
@@ -989,8 +972,8 @@
         "losses": 0,
         "user_profit_u": 0.42,
         "user_roi_pct": 14.0,
-        "close_observed": 3,
-        "close_qualified": 3,
+        "close_observed": 6,
+        "close_qualified": 6,
         "reverted_at_close": 0,
         "close_persistence_pct": 100.0,
         "close_qualified_settled": 3,
