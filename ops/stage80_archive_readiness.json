@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V27_PBK14_INTERNATIONAL_WINDOW_MARKET_JOIN",
-  "generated_at_utc": "2026-09-19T09:54:24Z",
+  "generated_at_utc": "2026-09-19T09:56:54Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -201,8 +201,8 @@
     },
     "pbk14_international_window_market_join": {
       "file": "pbk14_international_window_market_join_research.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 37327
     },
     "pbk14_congestion_market_join": {
       "file": "pbk14_congestion_market_join_research.csv",
@@ -621,22 +621,22 @@
     "evidence_note": "Conservative historical identity bridge only. AUTO/HIGH can be joined downstream; REVIEW/UNMAPPED are excluded. Lithuania and Latvia have no Football-Data market source in this contour."
   },
   "pbk14_international_window_market_join": {
-    "present": false,
-    "meta_present": false,
-    "meta_valid": false,
-    "rows": 0,
-    "valid_rows": 0,
+    "present": true,
+    "meta_present": true,
+    "meta_valid": true,
+    "rows": 37327,
+    "valid_rows": 37327,
     "invalid_rows": 0,
     "duplicate_historical_match_ids": 0,
     "duplicate_api_fixture_ids": 0,
-    "closing_1x2_matches": null,
-    "closing_total25_matches": null,
-    "within_72h_before_rows": null,
-    "within_96h_before_rows": null,
-    "within_72h_after_rows": null,
-    "within_96h_after_rows": null,
-    "either_first_domestic_after_window_rows": null,
-    "player_level_international_status": null,
+    "closing_1x2_matches": 30879,
+    "closing_total25_matches": 22738,
+    "within_72h_before_rows": 3595,
+    "within_96h_before_rows": 3617,
+    "within_72h_after_rows": 424,
+    "within_96h_after_rows": 2003,
+    "either_first_domestic_after_window_rows": 4781,
+    "player_level_international_status": "UNVERIFIED",
     "market_probability_semantics": "Historical closing odds are market benchmarks only; no PBK probability is created by this join.",
     "operational_betting_authority": false,
     "evidence_note": "AUTO/HIGH historical market rows joined to calendar-level international-window context. Calendar proximity never proves player duty; player call-up/travel/appearance remains UNVERIFIED."
@@ -798,7 +798,6 @@
     "PBK16_COMPETITION_PROVIDER_SEASONS_PARTIAL",
     "PBK14_HISTORICAL_MARKET_BRIDGE_PARTIAL_MAPPING",
     "PBK16_HISTORICAL_MARKET_SOURCE_LIMITED_TO_14_LEAGUES",
-    "PBK14_INTERNATIONAL_WINDOW_MARKET_JOIN_NOT_MATERIALIZED",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
     "PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE",
     "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE"
