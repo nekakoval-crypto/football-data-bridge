@@ -1,0 +1,45 @@
+{
+  "version": "PBK_STAGE80_PBK16_ALL_COMPETITION_BACKFILL_V1",
+  "run_at_utc": "2026-09-19T08:02:05Z",
+  "status": "ATTENTION",
+  "locked_national_leagues": 16,
+  "resolved_competitions": 38,
+  "resolved_competitions_by_role": {
+    "DOMESTIC_LEAGUE": 16,
+    "DOMESTIC_CUP": 19,
+    "UEFA": 3
+  },
+  "required_unresolved_competitions": 1,
+  "optional_unresolved_competitions": 0,
+  "requested_fixture_cells": 332,
+  "captured_fixture_cells": 313,
+  "unavailable_provider_season_cells": 19,
+  "pending_fixture_cells": 0,
+  "error_fixture_cells": 0,
+  "archive_rows": 68852,
+  "archive_rows_by_role": {
+    "DOMESTIC_LEAGUE": 40989,
+    "DOMESTIC_CUP": 20829,
+    "UEFA": 7034
+  },
+  "domestic_anchor_rows": 40989,
+  "domestic_anchor_league_ids": 16,
+  "congestion_rows": 40989,
+  "invalid_domestic_anchor_rows": 0,
+  "provider_budget_calls": 332,
+  "real_api_calls": 332,
+  "daily_api_calls_before": 390,
+  "daily_api_calls_after": 722,
+  "protected_calls": 512,
+  "warnings": [
+    "discovery:Turkey: cup alias resolution failed for Turkish Cup; matches=0"
+  ],
+  "historical_backfill_only": true,
+  "research_only": true,
+  "operational_betting_authority": false,
+  "creates_signal": false,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "stake_changes": false,
+  "forward_journal_mutation": false
+}
