@@ -7,7 +7,7 @@ Input:
 Output:
   one deterministic context row per PBK16 domestic-league fixture.
 
-This V1 is calendar-level evidence only. It never infers a player's national-team
+This V2 is calendar-level evidence only. All window-derived fields in a row are gated to the same nearest-window reference. It never infers a player's national-team
 call-up, travel, appearance, minutes or return time from nationality or club.
 
 Final tournaments are excluded from the fixed-window contour. Player-level
@@ -24,14 +24,14 @@ from collections import defaultdict
 from datetime import datetime, time, timezone
 from pathlib import Path
 
-VERSION="PBK_STAGE80_PBK16_INTERNATIONAL_WINDOW_CONTEXT_V1"
+VERSION="PBK_STAGE80_PBK16_INTERNATIONAL_WINDOW_CONTEXT_V2"
 CONFIG_VERSION="PBK_STAGE80_UEFA_RELEVANT_FIFA_WINDOWS_2017_2025_V1"
 
 FIELDS=[
     "domestic_fixture_id","provider_league_id","league_name","country","season",
     "round","kickoff_utc","status","home_team_id","home_team","away_team_id","away_team",
     "nearest_window_id","window_start_utc","window_end_utc","window_max_matches",
-    "window_notes","window_relation",
+    "window_notes","window_relation","window_reference_contract",
     "hours_to_window_start","hours_since_window_end",
     "within_72h_before_window","within_96h_before_window","within_7d_before_window",
     "within_72h_after_window","within_96h_after_window","within_7d_after_window",
@@ -219,7 +219,12 @@ def project(archive_rows,cfg,windows):
         away_count=""
         home_first=False
         away_first=False
-        if prev is not None:
+        reference_ok=(
+            relation=="AFTER"
+            and prev is not None
+            and prev["window_id"]==near["window_id"]
+        )
+        if reference_ok:
             season=sval(row,"season")
             home_count=count_since_window_before_fixture(
                 idx,season,sval(row,"home_team_id"),prev["end"],kickoff,sval(row,"fixture_id")
@@ -251,6 +256,7 @@ def project(archive_rows,cfg,windows):
             "window_max_matches":near["max_matches"],
             "window_notes":near["notes"],
             "window_relation":relation,
+            "window_reference_contract":"NEAREST_WINDOW_RELATION_GATED_V2",
             "hours_to_window_start":"" if before_hours is None else round(before_hours,3),
             "hours_since_window_end":"" if after_hours is None else round(after_hours,3),
             "within_72h_before_window":bool_text(before_hours is not None and 0<=before_hours<=72),
@@ -261,10 +267,10 @@ def project(archive_rows,cfg,windows):
             "within_7d_after_window":bool_text(after_hours is not None and 0<=after_hours<=168),
             "home_domestic_matches_since_window_end_before_fixture":home_count,
             "away_domestic_matches_since_window_end_before_fixture":away_count,
-            "home_first_domestic_league_match_after_window":bool_text(prev is not None and home_first),
-            "away_first_domestic_league_match_after_window":bool_text(prev is not None and away_first),
-            "both_first_domestic_league_match_after_window":bool_text(prev is not None and home_first and away_first),
-            "either_first_domestic_league_match_after_window":bool_text(prev is not None and (home_first or away_first)),
+            "home_first_domestic_league_match_after_window":bool_text(reference_ok and home_first),
+            "away_first_domestic_league_match_after_window":bool_text(reference_ok and away_first),
+            "both_first_domestic_league_match_after_window":bool_text(reference_ok and home_first and away_first),
+            "either_first_domestic_league_match_after_window":bool_text(reference_ok and (home_first or away_first)),
             "player_level_international_status":"UNVERIFIED",
             "player_level_reason":"Calendar proximity is not evidence of player call-up, travel, appearance, minutes, or return timing",
             "final_tournaments_included":"false",
@@ -305,6 +311,7 @@ def build_meta(archive_rows,domestic,rows,invalid,cfg,windows):
             and invalid==0
             and len(league_ids)==16
             and duplicate_fixture_ids==0
+            and all(r.get("window_reference_contract")=="NEAREST_WINDOW_RELATION_GATED_V2" for r in rows)
         ) else "ATTENTION",
         "source_archive_rows":len(archive_rows),
         "source_domestic_rows":len(domestic),
@@ -316,6 +323,7 @@ def build_meta(archive_rows,domestic,rows,invalid,cfg,windows):
         "calendar_version":cfg["version"],
         "calendar_windows":len(windows),
         "calendar_sources":len(cfg.get("sources") or []),
+        "window_reference_contract":"NEAREST_WINDOW_RELATION_GATED_V2",
         "window_fixture_counts":dict(sorted(window_counts.items())),
         "inside_window_rows":sum(r["window_relation"]=="INSIDE" for r in rows),
         "within_72h_before_rows":sum(r["within_72h_before_window"]=="true" for r in rows),
