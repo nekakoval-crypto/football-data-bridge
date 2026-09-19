@@ -16,8 +16,6 @@ on:
       - 'scripts/stage80_international_duty_source_allowlist.py'
       - 'scripts/tests/test_stage80_international_duty_source_allowlist.py'
       - '.github/workflows/stage80-international-duty-source-allowlist.yml'
-      - 'ops/international_duty_provider_candidates.csv'
-      - 'ops/stage80_international_duty_provider_catalog_last_run.json'
 
 permissions:
   contents: read
