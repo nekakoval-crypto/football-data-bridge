@@ -39,7 +39,11 @@ jobs:
       - name: Compile and provider-free tests
         run: |
           python -m py_compile scripts/stage80_pbk16_international_window_context.py
+          python -m py_compile scripts/stage80_archive_manifest.py
+          python -m py_compile scripts/stage80_archive_readiness.py
           python -m unittest scripts.tests.test_stage80_pbk16_international_window_context -v
+          python -m unittest scripts.tests.test_stage80_pbk16_international_window_manifest -v
+          python -m unittest scripts.tests.test_stage80_pbk16_international_window_readiness -v
       - name: Feature diff hygiene
         if: github.event_name == 'pull_request'
         shell: bash
