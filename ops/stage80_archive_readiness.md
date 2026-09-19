@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-19T08:15:22Z
+Обновлено UTC: 2026-09-19T08:16:53Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -29,8 +29,8 @@
 - Pre-match factor research: 2247 profile rows / 237 stability rows; closing 1X2 matches 12459; closing O/U2.5 matches 12459.
 - Pre-match walk-forward research: 7685 folds / 1145 summaries; sample-qualified folds 4455; promotes factor False.
 - Match context: 6 fixtures; official XI 1; injury evidence 3.
-- PBK16 all-competition history: catalog 39 valid rows; required unresolved 1; fixture archive 68852 valid rows; domestic anchors 16 / 16 leagues; captured cells 313, provider-unavailable cells 19, pending 0, errors 0.
-- PBK16 cup/UEFA congestion: 40989 valid rows / 40989 domestic fixtures; no-lookahead True; future schedule used False; prior UEFA <=72h 3210, prior cup <=72h 1356.
+- PBK16 all-competition history: catalog 39 valid rows; required unresolved 0; fixture archive 70375 valid rows; domestic anchors 16 / 16 leagues; captured cells 322, provider-unavailable cells 19, pending 0, errors 0.
+- PBK16 cup/UEFA congestion: 40989 valid rows / 40989 domestic fixtures; no-lookahead True; future schedule used False; prior UEFA <=72h 3210, prior cup <=72h 1436.
 
 ## Raw provider archive
 - Storage configured: True.
@@ -45,7 +45,6 @@
 - PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE
 - TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE
 - REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL
-- PBK16_COMPETITION_DISCOVERY_REQUIRED_UNRESOLVED
 - PBK16_COMPETITION_PROVIDER_SEASONS_PARTIAL
 - MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY
 - PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE

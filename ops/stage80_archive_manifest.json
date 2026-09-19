@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V19_PBK16_COMPETITION_CONGESTION",
-  "generated_at_utc": "2026-09-19T08:15:21Z",
+  "generated_at_utc": "2026-09-19T08:16:51Z",
   "status": "OK",
   "datasets": [
     {
@@ -1933,7 +1933,7 @@
       "source": "Stage80 API-Football PBK16 domestic league/cup + UEFA fixture backfill",
       "limitations": "Previous nine completed seasons only. Selected national cups/league cups + UEFA club competitions; provider-unavailable seasons remain missing rather than fabricated. Research only.",
       "present": true,
-      "row_count": 68852,
+      "row_count": 70375,
       "columns": [
         "fixture_id",
         "competition_role",
@@ -1991,7 +1991,7 @@
       "source": "Stage80 PBK16 all-competition historical backfill state",
       "limitations": "Resume/coverage state only. UNAVAILABLE_PROVIDER_SEASON is explicit terminal provider coverage evidence, not a synthetic empty season.",
       "present": true,
-      "row_count": 332,
+      "row_count": 341,
       "columns": [
         "competition_role",
         "country",
