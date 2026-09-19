@@ -1,6 +1,6 @@
 {
   "version": "PBK_V1_CLOSURE_READINESS_V1",
-  "run_at_utc": "2026-09-19T17:47:47Z",
+  "run_at_utc": "2026-09-19T18:48:41Z",
   "status": "WAITING",
   "ready_for_manual_close": false,
   "hard_failure": false,
@@ -47,8 +47,8 @@
           "status": "OK",
           "scope": "prospective research WATCH crossings only",
           "crossings": 45,
-          "settled": 30,
-          "roi_pct": -20.433,
+          "settled": 33,
+          "roi_pct": -23.152,
           "canonical_forward": "unchanged",
           "historical_backfill": "forbidden",
           "profitability_required_for_closure": false
