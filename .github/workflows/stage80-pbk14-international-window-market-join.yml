@@ -10,6 +10,7 @@ on:
       - 'scripts/stage80_archive_manifest.py'
       - 'scripts/stage80_archive_readiness.py'
       - 'scripts/tests/test_stage80_pbk14_international_window_market_readiness.py'
+      - 'scripts/tests/test_stage80_pbk14_international_window_market_manifest.py'
       - '.github/workflows/stage80-archive-readiness.yml'
   push:
     branches: [main]
@@ -42,6 +43,7 @@ jobs:
           python -m py_compile scripts/stage80_archive_manifest.py
           python -m py_compile scripts/stage80_archive_readiness.py
           python -m unittest scripts.tests.test_stage80_pbk14_international_window_market_join -v
+          python -m unittest scripts.tests.test_stage80_pbk14_international_window_market_manifest -v
           python -m unittest scripts.tests.test_stage80_pbk14_international_window_market_readiness -v
       - name: Feature diff hygiene
         if: github.event_name == 'pull_request'
