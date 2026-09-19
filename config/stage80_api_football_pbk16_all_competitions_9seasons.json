@@ -1,0 +1,71 @@
+{
+  "version": "PBK_STAGE80_API_FOOTBALL_PBK16_ALL_COMPETITIONS_9SEASONS_V1",
+  "scope": "PBK locked 16 national leagues plus selected domestic cups and UEFA club competitions; previous 9 completed seasons 2017-2025; research only",
+  "historical_seasons": [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
+  "league_catalog_path": "ops/stage71_league_catalog.csv",
+  "required_league_count": 16,
+  "include_super_cups": false,
+  "uefa_competitions": [
+    {
+      "slot": "UEFA_CHAMPIONS_LEAGUE",
+      "provider_league_id": 2,
+      "canonical_name": "UEFA Champions League",
+      "provider_name_aliases": ["UEFA Champions League"],
+      "seasons": [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
+      "required": true
+    },
+    {
+      "slot": "UEFA_EUROPA_LEAGUE",
+      "provider_league_id": 3,
+      "canonical_name": "UEFA Europa League",
+      "provider_name_aliases": ["UEFA Europa League"],
+      "seasons": [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
+      "required": true
+    },
+    {
+      "slot": "UEFA_CONFERENCE_LEAGUE",
+      "provider_league_id": 848,
+      "canonical_name": "UEFA Conference League",
+      "provider_name_aliases": ["UEFA Europa Conference League", "UEFA Conference League"],
+      "seasons": [2021, 2022, 2023, 2024, 2025],
+      "required": true
+    }
+  ],
+  "domestic_cup_slots": [
+    {"country":"England","slot":"NATIONAL_CUP","canonical_name":"FA Cup","provider_name_aliases":["FA Cup"],"required":true},
+    {"country":"England","slot":"LEAGUE_CUP","canonical_name":"League Cup","provider_name_aliases":["League Cup","EFL Cup"],"required":true},
+    {"country":"Spain","slot":"NATIONAL_CUP","canonical_name":"Copa del Rey","provider_name_aliases":["Copa del Rey"],"required":true},
+    {"country":"Italy","slot":"NATIONAL_CUP","canonical_name":"Coppa Italia","provider_name_aliases":["Coppa Italia"],"required":true},
+    {"country":"Germany","slot":"NATIONAL_CUP","canonical_name":"DFB Pokal","provider_name_aliases":["DFB Pokal"],"required":true},
+    {"country":"France","slot":"NATIONAL_CUP","canonical_name":"Coupe de France","provider_name_aliases":["Coupe de France"],"required":true},
+    {"country":"France","slot":"LEAGUE_CUP","canonical_name":"Coupe de la Ligue","provider_name_aliases":["Coupe de la Ligue"],"seasons":[2017,2018,2019],"required":false},
+    {"country":"Austria","slot":"NATIONAL_CUP","canonical_name":"Austrian Cup","provider_name_aliases":["Cup","Austrian Cup","ÖFB Cup"],"required":true},
+    {"country":"Belgium","slot":"NATIONAL_CUP","canonical_name":"Belgian Cup","provider_name_aliases":["Cup","Belgian Cup","Croky Cup"],"required":true},
+    {"country":"Denmark","slot":"NATIONAL_CUP","canonical_name":"DBU Pokalen","provider_name_aliases":["DBU Pokalen"],"required":true},
+    {"country":"Lithuania","slot":"NATIONAL_CUP","canonical_name":"Lithuanian Cup","provider_name_aliases":["Cup","Lithuanian Cup"],"required":true},
+    {"country":"Latvia","slot":"NATIONAL_CUP","canonical_name":"Latvian Cup","provider_name_aliases":["Cup","Latvian Cup"],"required":true},
+    {"country":"Netherlands","slot":"NATIONAL_CUP","canonical_name":"KNVB Beker","provider_name_aliases":["KNVB Beker"],"required":true},
+    {"country":"Norway","slot":"NATIONAL_CUP","canonical_name":"NM Cupen","provider_name_aliases":["NM Cupen"],"required":true},
+    {"country":"Poland","slot":"NATIONAL_CUP","canonical_name":"Polish Cup","provider_name_aliases":["Cup","Polish Cup"],"required":true},
+    {"country":"Portugal","slot":"NATIONAL_CUP","canonical_name":"Taça de Portugal","provider_name_aliases":["Taça de Portugal","Taca de Portugal"],"required":true},
+    {"country":"Portugal","slot":"LEAGUE_CUP","canonical_name":"Taça da Liga","provider_name_aliases":["Taça da Liga","Taca da Liga"],"required":true},
+    {"country":"Turkey","slot":"NATIONAL_CUP","canonical_name":"Turkish Cup","provider_name_aliases":["Cup","Turkish Cup"],"required":true},
+    {"country":"Scotland","slot":"NATIONAL_CUP","canonical_name":"FA Cup","provider_name_aliases":["FA Cup"],"required":true},
+    {"country":"Scotland","slot":"LEAGUE_CUP","canonical_name":"League Cup","provider_name_aliases":["League Cup"],"required":true}
+  ],
+  "discovery_endpoint": "/leagues",
+  "fixture_endpoint": "/fixtures",
+  "query_shape": "league+season",
+  "fixture_archive_policy": "Persist all fixtures returned for the resolved PBK16 domestic leagues, configured domestic cups and UEFA club competitions. Filtering to PBK16 clubs happens only in the deterministic congestion projection via provider team_id, so lower-division cup opponents are retained as evidence.",
+  "congestion_policy": "Derive only strictly-prior played non-league fixtures (FT/AET/PEN) for each PBK16 domestic-league fixture. Future scheduled fixtures are intentionally excluded from this no-lookahead research layer.",
+  "governance": {
+    "historical_backfill_only": true,
+    "research_only": true,
+    "operational_betting_authority": false,
+    "creates_signal": false,
+    "probability_mutation": false,
+    "eligibility_mutation": false,
+    "stake_changes": false,
+    "forward_journal_mutation": false
+  }
+}
