@@ -1,16 +1,15 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 19.09.2026 10:00 (Europe/Berlin)
-Canonical: 4 | active WATCH crossings: 24 | RED: 0 | ORANGE: 24
+Обновлено: 19.09.2026 11:00 (Europe/Berlin)
+Canonical: 4 | active WATCH crossings: 24 | RED: 2 | ORANGE: 22
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
 
 ## 🔴 Срочно
-- Сейчас срочных матчей нет.
+- **Tottenham — Aston Villa** | Stage61 | П1 | 19.09 13:30 | первый +3 п.п. steam фаворита
+- **Tottenham — Aston Villa** | Stage63 | ОЗ — Да | 19.09 13:30 | prospective движение ОЗ ≥3 п.п.
 
 ## 🟠 Ближайшие 24 часа / активные WATCH
-- **Tottenham — Aston Villa** | Stage61 | П1 | 19.09 13:30 | первый +3 п.п. steam фаворита | 2.02 @ Marathonbet
-- **Tottenham — Aston Villa** | Stage63 | ОЗ — Да | 19.09 13:30 | prospective движение ОЗ ≥3 п.п. | 1.62 @ Marathonbet
 - **Udinese — Cagliari** | Stage63 | ОЗ — Да | 19.09 15:00 | prospective движение ОЗ ≥3 п.п. | 1.85 @ Marathonbet
 - **Eintracht Frankfurt — SC Freiburg** | Stage62 | ТБ(2.5) | 19.09 15:30 | первый +3 п.п. steam ТБ(2.5) | 1.42 @ Marathonbet
 - **Werder Bremen — FC Augsburg** | Stage62 | ТБ(2.5) | 19.09 15:30 | первый +3 п.п. steam ТБ(2.5) | 1.41 @ Marathonbet
