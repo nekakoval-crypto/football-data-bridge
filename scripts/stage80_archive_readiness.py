@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V24_PBK14_CONGESTION_MARKET_RESEARCH"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V25_PBK14_CONGESTION_MARKET_WALKFORWARD"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -63,6 +63,8 @@ SOURCES = {
     "pbk14_congestion_market_join": "pbk14_congestion_market_join_research.csv",
     "pbk14_congestion_market_profiles": "pbk14_congestion_market_factor_research.csv",
     "pbk14_congestion_market_stability": "pbk14_congestion_market_factor_stability_research.csv",
+    "pbk14_congestion_market_walkforward": "pbk14_congestion_market_walkforward_research.csv",
+    "pbk14_congestion_market_walkforward_summary": "pbk14_congestion_market_walkforward_summary_research.csv",
 }
 FINAL_PROVIDER_CODES = {"FT", "AET", "PEN"}
 FINAL_NORMALIZED = {"finished", "ft", "aet", "pen"}
@@ -228,6 +230,7 @@ def build_report(ops=OPS, archive_dir=None):
     pbk14_market_bridge_meta = read_json(Path(ops) / "stage80_pbk14_fixture_bridge_last_run.json")
     pbk14_congestion_join_meta = read_json(Path(ops) / "stage80_pbk14_congestion_market_join_last_run.json")
     pbk14_congestion_research_meta = read_json(Path(ops) / "stage80_pbk14_congestion_market_research_last_run.json")
+    pbk14_congestion_walkforward_meta = read_json(Path(ops) / "stage80_pbk14_congestion_market_walkforward_last_run.json")
     source_presence = {
         name: {
             "file": filename,
@@ -1244,6 +1247,95 @@ def build_report(ops=OPS, archive_dir=None):
         and pbk14_congestion_research_meta.get("forward_journal_mutation") is False
     )
 
+    pbk14_congestion_walkforward = data["pbk14_congestion_market_walkforward"] or []
+    pbk14_congestion_walkforward_summary = data["pbk14_congestion_market_walkforward_summary"] or []
+
+    pbk14_congestion_walkforward_valid = [
+        row for row in pbk14_congestion_walkforward
+        if sval(row, "factor") in expected_congestion_factors
+        and sval(row, "bucket")
+        and sval(row, "scope_type") in {"ALL","LEAGUE"}
+        and sval(row, "scope_value")
+        and sval(row, "target") in {"HOME","DRAW","AWAY","OVER25","UNDER25"}
+        and sval(row, "test_season")
+        and fnum(row.get("train_seasons")) is not None
+        and fnum(row.get("train_market_matches")) is not None
+        and fnum(row.get("test_market_matches")) is not None
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+        and not is_true(row.get("promotes_factor"))
+        and not is_true(row.get("probability_mutation"))
+        and not is_true(row.get("eligibility_mutation"))
+        and not is_true(row.get("stake_changes"))
+        and not is_true(row.get("forward_journal_mutation"))
+    ]
+    pbk14_congestion_walkforward_invalid = (
+        len(pbk14_congestion_walkforward) - len(pbk14_congestion_walkforward_valid)
+    )
+    pbk14_congestion_walkforward_temporal_invalid = sum(
+        1 for row in pbk14_congestion_walkforward_valid
+        if (
+            fnum(row.get("train_last_season")) is None
+            or fnum(row.get("test_season")) is None
+            or int(float(row["train_last_season"])) >= int(float(row["test_season"]))
+        )
+    )
+
+    pbk14_congestion_walkforward_summary_valid = [
+        row for row in pbk14_congestion_walkforward_summary
+        if sval(row, "factor") in expected_congestion_factors
+        and sval(row, "bucket")
+        and sval(row, "scope_type") in {"ALL","LEAGUE"}
+        and sval(row, "scope_value")
+        and sval(row, "target") in {"HOME","DRAW","AWAY","OVER25","UNDER25"}
+        and fnum(row.get("folds")) is not None
+        and fnum(row.get("sample_threshold_pass_folds")) is not None
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+        and not is_true(row.get("promotes_factor"))
+        and not is_true(row.get("probability_mutation"))
+        and not is_true(row.get("eligibility_mutation"))
+        and not is_true(row.get("stake_changes"))
+        and not is_true(row.get("forward_journal_mutation"))
+    ]
+    pbk14_congestion_walkforward_summary_invalid = (
+        len(pbk14_congestion_walkforward_summary)
+        - len(pbk14_congestion_walkforward_summary_valid)
+    )
+
+    pbk14_congestion_walkforward_meta_valid = bool(
+        pbk14_congestion_walkforward_meta
+        and not pbk14_congestion_walkforward_meta.get("_invalid_json")
+        and pbk14_congestion_walkforward_meta.get("version") == "PBK_STAGE80_PBK14_CONGESTION_MARKET_WALKFORWARD_V1"
+        and pbk14_congestion_walkforward_meta.get("status") == "OK"
+        and int(pbk14_congestion_walkforward_meta.get("source_rows") or 0) == len(pbk14_congestion_join_valid)
+        and int(pbk14_congestion_walkforward_meta.get("valid_research_rows") or 0) == len(pbk14_congestion_join_valid)
+        and int(pbk14_congestion_walkforward_meta.get("invalid_governance_or_result_rows") or 0) == 0
+        and len(pbk14_congestion_walkforward_meta.get("season_starts") or []) == 9
+        and set(pbk14_congestion_walkforward_meta.get("factor_names") or []) == expected_congestion_factors
+        and set(pbk14_congestion_walkforward_meta.get("targets") or []) == {"HOME","DRAW","AWAY","OVER25","UNDER25"}
+        and int(pbk14_congestion_walkforward_meta.get("fold_rows") or 0) == len(pbk14_congestion_walkforward_valid)
+        and int(pbk14_congestion_walkforward_meta.get("summary_rows") or 0) == len(pbk14_congestion_walkforward_summary_valid)
+        and int(pbk14_congestion_walkforward_meta.get("sample_threshold_pass_folds") or 0) > 0
+        and int(pbk14_congestion_walkforward_meta.get("min_prior_seasons") or 0) == 2
+        and int(pbk14_congestion_walkforward_meta.get("min_train_market_matches") or 0) == 100
+        and int(pbk14_congestion_walkforward_meta.get("min_test_market_matches") or 0) == 30
+        and pbk14_congestion_walkforward_meta.get("strictly_prior_fixture_evidence_only") is True
+        and pbk14_congestion_walkforward_meta.get("future_schedule_used") is False
+        and pbk14_congestion_walkforward_meta.get("no_lookahead") is True
+        and int(pbk14_congestion_walkforward_meta.get("provider_calls") or 0) == 0
+        and pbk14_congestion_walkforward_meta.get("research_only") is True
+        and pbk14_congestion_walkforward_meta.get("operational_betting_authority") is False
+        and pbk14_congestion_walkforward_meta.get("creates_signal") is False
+        and pbk14_congestion_walkforward_meta.get("promotes_factor") is False
+        and pbk14_congestion_walkforward_meta.get("probability_mutation") is False
+        and pbk14_congestion_walkforward_meta.get("eligibility_mutation") is False
+        and pbk14_congestion_walkforward_meta.get("stake_changes") is False
+        and pbk14_congestion_walkforward_meta.get("forward_journal_mutation") is False
+    )
+
     raw_archive = raw_archive_inventory(archive_dir, ops=ops)
     roster_history_rows = len(history)
     player_stats_fixture_count = len(stat_fixture_ids)
@@ -1443,6 +1535,21 @@ def build_report(ops=OPS, archive_dir=None):
         or not pbk14_congestion_research_meta_valid
     ):
         gaps.append("PBK14_CONGESTION_MARKET_RESEARCH_INVALID")
+    if (
+        data["pbk14_congestion_market_walkforward"] is None
+        or data["pbk14_congestion_market_walkforward_summary"] is None
+        or pbk14_congestion_walkforward_meta is None
+    ):
+        gaps.append("PBK14_CONGESTION_MARKET_WALKFORWARD_NOT_MATERIALIZED")
+    elif (
+        pbk14_congestion_walkforward_invalid
+        or pbk14_congestion_walkforward_summary_invalid
+        or pbk14_congestion_walkforward_temporal_invalid
+        or not pbk14_congestion_walkforward_valid
+        or not pbk14_congestion_walkforward_summary_valid
+        or not pbk14_congestion_walkforward_meta_valid
+    ):
+        gaps.append("PBK14_CONGESTION_MARKET_WALKFORWARD_INVALID")
     if data["lineup_archive"] is None:
         gaps.append("LINEUP_ARCHIVE_WAITING_FIRST_BUILD")
     if data["injury_archive"] is None:
@@ -1838,6 +1945,27 @@ def build_report(ops=OPS, archive_dir=None):
             "promotes_factor": False,
             "evidence_note": "Descriptive competition-load research over strict AUTO/HIGH PBK14 historical market joins. No factor is promoted here; walk-forward is a separate validation step.",
         },
+        "pbk14_congestion_market_walkforward": {
+            "folds_present": data["pbk14_congestion_market_walkforward"] is not None,
+            "summary_present": data["pbk14_congestion_market_walkforward_summary"] is not None,
+            "meta_present": pbk14_congestion_walkforward_meta is not None,
+            "meta_valid": pbk14_congestion_walkforward_meta_valid,
+            "fold_rows": len(pbk14_congestion_walkforward),
+            "valid_fold_rows": len(pbk14_congestion_walkforward_valid),
+            "invalid_fold_rows": pbk14_congestion_walkforward_invalid,
+            "temporal_invalid_rows": pbk14_congestion_walkforward_temporal_invalid,
+            "summary_rows": len(pbk14_congestion_walkforward_summary),
+            "valid_summary_rows": len(pbk14_congestion_walkforward_summary_valid),
+            "invalid_summary_rows": pbk14_congestion_walkforward_summary_invalid,
+            "sample_threshold_pass_folds": int(pbk14_congestion_walkforward_meta.get("sample_threshold_pass_folds") or 0) if pbk14_congestion_walkforward_meta_valid else None,
+            "min_prior_seasons": 2,
+            "min_train_market_matches": 100,
+            "min_test_market_matches": 30,
+            "market_probability_semantics": "Historical closing-market no-vig benchmark only; never PBK probability.",
+            "operational_betting_authority": False,
+            "promotes_factor": False,
+            "evidence_note": "Each test season is evaluated using only earlier seasons. Persistence remains research evidence and cannot promote a congestion factor.",
+        },
         "pbk16_competition_history": {
             "catalog_present": data["pbk16_competition_catalog"] is not None,
             "fixture_archive_present": data["pbk16_competition_fixtures"] is not None,
@@ -1929,6 +2057,7 @@ def render_markdown(report):
     prematch_walkforward = report["prematch_factor_walkforward"]
     pbk14_market = report["pbk14_historical_market_bridge"]
     pbk14_congestion_market = report["pbk14_congestion_market_research"]
+    pbk14_congestion_wf = report["pbk14_congestion_market_walkforward"]
     pbk16_history = report["pbk16_competition_history"]
     pbk16_congestion = report["pbk16_competition_congestion"]
     raw = report["raw_provider_archive"]
@@ -1974,6 +2103,7 @@ def render_markdown(report):
         f"- Match context: {c['unique_fixtures']} fixtures; official XI {c['fixtures_with_official_lineup_snapshot']}; injury evidence {c['fixtures_with_injury_evidence']}.",
         f"- PBK14 historical market bridge: {pbk14_market['mapped_auto_high']} AUTO/HIGH of {pbk14_market['valid_rows']} valid source rows; AUTO {pbk14_market['mapped_auto']}, HIGH {pbk14_market['mapped_high']}, REVIEW {pbk14_market['review']}, UNMAPPED {pbk14_market['unmapped']}; fuzzy matching {pbk14_market['fuzzy_string_matching_used']}; source coverage 14 / 16 locked leagues.",
         f"- PBK14 congestion × market research: join {pbk14_congestion_market['valid_join_rows']} rows; descriptive profiles {pbk14_congestion_market['valid_profile_rows']}; stability rows {pbk14_congestion_market['valid_stability_rows']}; closing 1X2 {pbk14_congestion_market['closing_1x2_matches'] if pbk14_congestion_market['closing_1x2_matches'] is not None else '—'}; closing O/U2.5 {pbk14_congestion_market['closing_total25_matches'] if pbk14_congestion_market['closing_total25_matches'] is not None else '—'}; promotes factor {pbk14_congestion_market['promotes_factor']}.",
+        f"- PBK14 congestion walk-forward: {pbk14_congestion_wf['valid_fold_rows']} valid folds / {pbk14_congestion_wf['valid_summary_rows']} summaries; qualified folds {pbk14_congestion_wf['sample_threshold_pass_folds'] if pbk14_congestion_wf['sample_threshold_pass_folds'] is not None else '—'}; temporal invalid {pbk14_congestion_wf['temporal_invalid_rows']}; promotes factor {pbk14_congestion_wf['promotes_factor']}.",
         f"- PBK16 all-competition history: catalog {pbk16_history['valid_catalog_rows']} valid rows; required unresolved {pbk16_history['required_unresolved_competitions']}; fixture archive {pbk16_history['valid_fixture_rows']} valid rows; domestic anchors {pbk16_history['domestic_anchor_league_ids']} / 16 leagues; captured cells {pbk16_history['captured_fixture_cells']}, provider-unavailable cells {pbk16_history['unavailable_provider_season_cells']}, pending {pbk16_history['pending_fixture_cells']}, errors {pbk16_history['error_fixture_cells']}.",
         f"- PBK16 cup/UEFA congestion: {pbk16_congestion['valid_rows']} valid rows / {pbk16_congestion['unique_domestic_fixture_ids']} domestic fixtures; no-lookahead {pbk16_congestion['no_lookahead']}; future schedule used {pbk16_congestion['future_schedule_used']}; prior UEFA <=72h {pbk16_congestion['rows_either_prev_uefa_72h'] if pbk16_congestion['rows_either_prev_uefa_72h'] is not None else '—'}, prior cup <=72h {pbk16_congestion['rows_either_prev_cup_72h'] if pbk16_congestion['rows_either_prev_cup_72h'] is not None else '—'}.",
         "",
@@ -2035,6 +2165,9 @@ def main():
         "pbk14_congestion_market_join_rows": report["pbk14_congestion_market_research"]["valid_join_rows"],
         "pbk14_congestion_market_profile_rows": report["pbk14_congestion_market_research"]["valid_profile_rows"],
         "pbk14_congestion_market_stability_rows": report["pbk14_congestion_market_research"]["valid_stability_rows"],
+        "pbk14_congestion_walkforward_fold_rows": report["pbk14_congestion_market_walkforward"]["valid_fold_rows"],
+        "pbk14_congestion_walkforward_summary_rows": report["pbk14_congestion_market_walkforward"]["valid_summary_rows"],
+        "pbk14_congestion_walkforward_qualified_folds": report["pbk14_congestion_market_walkforward"]["sample_threshold_pass_folds"],
         "pbk14_market_bridge_mapped_auto_high": report["pbk14_historical_market_bridge"]["mapped_auto_high"],
         "pbk14_market_bridge_review": report["pbk14_historical_market_bridge"]["review"],
         "pbk14_market_bridge_unmapped": report["pbk14_historical_market_bridge"]["unmapped"],
