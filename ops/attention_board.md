@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 19.09.2026 09:00 (Europe/Berlin)
+Обновлено: 19.09.2026 10:00 (Europe/Berlin)
 Canonical: 4 | active WATCH crossings: 24 | RED: 0 | ORANGE: 24
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -35,7 +35,7 @@ Canonical: 4 | active WATCH crossings: 24 | RED: 0 | ORANGE: 24
 - **Marseille — Paris Saint Germain** | Stage63 | ОЗ — Нет | 20.09 20:45 | prospective движение ОЗ ≥3 п.п. | 2.39 @ Marathonbet
 
 ## 🔵 Активные R1/R2/R3
-- **R1 | Frosinone — Como** | П2 | 20.09 15:00 | 1.65 @ Marathonbet | гости после еврокубка/кубка
+- **R1 | Frosinone — Como** | П2 | 20.09 15:00 | 1.65 @ Marathonbet | контекст без срочных флагов
 - **R1 | Lecce — Bologna** | П2 | 11.10 15:00 | 2.0 @ Marathonbet | контекст без срочных флагов
 - **R1 | Sassuolo — AC Milan** | П2 | 11.10 18:00 | 1.79 @ Marathonbet | гости после еврокубка/кубка; у гостей следующий матч еврокубок/кубок
 - **R1 | Cagliari — Juventus** | П2 | 11.10 20:45 | 1.53 @ Marathonbet | гости после еврокубка/кубка; у гостей следующий матч еврокубок/кубок
@@ -370,7 +370,7 @@ Canonical: 4 | active WATCH crossings: 24 | RED: 0 | ORANGE: 24
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 6.25 | ИТМ: 1.08 @ Marathonbet
   - ИТБ/ИТМ 1 (4.5) · ИТБ: 21 | ИТМ: 1.01 @ Bet365
   - Тотал 2.5 · ТБ(2.5): 1.44 | ТМ(2.5): 2.75 @ Bet365
-  - Тотал 2.5 · ТБ(2.5): 1.4 | ТМ(2.5): 2.68 @ Marathonbet
+  - Тотал 2.5 · ТБ(2.5): 1.48 | ТМ(2.5): 2.43 @ Marathonbet
 
 - **Hamburger SV — 1. FC Köln** | Bundesliga | 19.09 13:30 UTC
   - ОЗ · ОЗ Да: 1.5 | ОЗ Нет: 2.5 @ Bet365
@@ -408,7 +408,7 @@ Canonical: 4 | active WATCH crossings: 24 | RED: 0 | ORANGE: 24
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 9.2 | ИТМ: 1.02 @ Marathonbet
   - ИТБ/ИТМ 1 (4.5) · ИТБ: 26 | ИТМ: 1.01 @ Bet365
   - Тотал 2.5 · ТБ(2.5): 1.57 | ТМ(2.5): 2.38 @ Bet365
-  - Тотал 2.5 · ТБ(2.5): 1.6 | ТМ(2.5): 2.38 @ Marathonbet
+  - Тотал 2.5 · ТБ(2.5): 1.62 | ТМ(2.5): 2.34 @ Marathonbet
 
 - **Werder Bremen — FC Augsburg** | Bundesliga | 19.09 13:30 UTC
   - ОЗ · ОЗ Да: 1.36 | ОЗ Нет: 3 @ Bet365
@@ -480,7 +480,7 @@ Canonical: 4 | active WATCH crossings: 24 | RED: 0 | ORANGE: 24
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 10.75 | ИТМ: 1.01 @ Marathonbet
   - ИТБ/ИТМ 1 (4.5) · ИТБ: 29 | ИТМ: 1.01 @ Bet365
   - Тотал 2.5 · ТБ(2.5): 1.5 | ТМ(2.5): 2.62 @ Bet365
-  - Тотал 2.5 · ТБ(2.5): 1.47 | ТМ(2.5): 2.46 @ Marathonbet
+  - Тотал 2.5 · ТБ(2.5): 1.43 | ТМ(2.5): 2.58 @ Marathonbet
 
 - **OH Leuven — RAAL La Louvière** | Belgian Pro League | 19.09 14:00 UTC
   - Ф(0) · Ф1(0): 1.5 | Ф2(0): 2.5 @ Bet365
@@ -1272,7 +1272,7 @@ Canonical: 4 | active WATCH crossings: 24 | RED: 0 | ORANGE: 24
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 6.4 | ИТМ: 1.08 @ Marathonbet
   - ИТБ/ИТМ 1 (4.5) · ИТБ: 19 | ИТМ: 1.02 @ Bet365
   - Тотал 2.5 · ТБ(2.5): 1.4 | ТМ(2.5): 3 @ Bet365
-  - Тотал 2.5 · ТБ(2.5): 1.37 | ТМ(2.5): 2.89 @ Marathonbet
+  - Тотал 2.5 · ТБ(2.5): 1.36 | ТМ(2.5): 2.94 @ Marathonbet
 
 - **Celta Vigo — Racing Santander** | La Liga | 19.09 16:30 UTC
   - ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Bet365
@@ -3844,7 +3844,7 @@ Canonical: 4 | active WATCH crossings: 24 | RED: 0 | ORANGE: 24
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 1
+- System Health: **HEALTHY** | critical 0 | warnings 0
 - Логическая canonical экспозиция: **4.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 24 | data required 3
