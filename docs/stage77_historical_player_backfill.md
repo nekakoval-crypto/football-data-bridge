@@ -42,10 +42,16 @@ Possible attempt results:
 - `NO_DATA`
 - `ERROR`
 
-`NO_DATA` is terminal for V1 because the fixture is historical and repeatedly
+`NO_DATA` remains terminal for the exact historical fixture because repeatedly
 polling the same empty provider endpoint would waste quota.
 
-`ERROR` remains retryable.
+V2 also applies an adaptive competition-season guard: when a competition-season
+has at least 8 `NO_DATA` observations and zero `CAPTURED` observations, the
+remaining fixtures in that cell are suppressed from provider calls. The guard
+is updated during the same run, so an empty cell cannot consume the whole batch.
+
+`ERROR` remains retryable unless the surrounding competition-season is already
+suppressed by the empty-cell guard.
 
 Fixtures already present in both normalized player-stat and Player Grade ledgers
 are excluded even when no explicit historical state row exists.
@@ -58,9 +64,9 @@ V1 processes:
 2. UEFA;
 3. cups / other historical competitions;
 
-and within each group starts with the newest season.
-
-The priority improves useful Form-3/Form-5/Form-10 coverage quickly while the
+Within each group, competition-seasons with proven `CAPTURED` data are served
+before unknown cells, then the newest season is preferred. This builds useful
+Form-3/Form-5/Form-10 depth before spending quota on unsupported cells while the
 full PBK16 archive remains the eventual denominator.
 
 ## API budget
@@ -68,9 +74,13 @@ full PBK16 archive remains the eventual denominator.
 Historical collection uses the existing shared Stage71 budget and protected
 reserve.
 
-The scheduled workflow currently permits at most 240 provider calls per run.
+The scheduled workflow currently permits at most 240 logical calls per run.
 The shared daily limit remains 7000 and LIVE/current-round/standings/safety
 reserve remains protected.
+
+Provider quota is a separate fail-closed boundary. If API-Football returns
+HTTP 429 or an explicit daily/request-limit error, the batch stops immediately
+after the first such error instead of burning the rest of the batch as retries.
 
 ## Raw archive
 

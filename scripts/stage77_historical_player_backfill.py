@@ -37,7 +37,7 @@ STATE = OPS / "stage77_historical_player_backfill_state.csv"
 META = OPS / "stage77_historical_player_backfill_last_run.json"
 SHARED_STATE = OPS / "stage71_observation_state.json"
 
-VERSION = "PBK_STAGE77_HISTORICAL_PLAYER_BACKFILL_V1"
+VERSION = "PBK_STAGE77_HISTORICAL_PLAYER_BACKFILL_V2"
 TERMINAL = {"FT", "AET", "PEN", "FINISHED"}
 
 STATE_FIELDS = [
@@ -170,8 +170,57 @@ def season_number(row):
         return -1
 
 
-def candidate_rows(history, captured, state):
+def competition_season_key(row):
+    return (
+        sval(row, "provider_competition_id"),
+        sval(row, "season"),
+    )
+
+
+def cell_observation_counts(state):
+    counts = {}
+
+    for row in state.values():
+        key = competition_season_key(row)
+
+        if not key[0] or not key[1]:
+            continue
+
+        bucket = counts.setdefault(
+            key,
+            {"CAPTURED": 0, "NO_DATA": 0, "ERROR": 0},
+        )
+
+        result = sval(row, "last_attempt_result").upper()
+
+        if result in bucket:
+            bucket[result] += 1
+
+    return counts
+
+
+def cell_is_provider_empty(counts, key, threshold):
+    bucket = counts.get(key) or {}
+
+    return (
+        int(bucket.get("CAPTURED") or 0) == 0
+        and int(bucket.get("NO_DATA") or 0) >= threshold
+    )
+
+
+def cell_evidence_priority(row, counts):
+    bucket = counts.get(competition_season_key(row)) or {}
+
+    if int(bucket.get("CAPTURED") or 0) > 0:
+        return 0
+
+    return 1
+
+
+def candidate_rows(history, captured, state,
+                   no_data_cell_threshold=8):
     candidates = []
+    counts = cell_observation_counts(state)
 
     for fixture_id, row in history.items():
 
@@ -182,9 +231,15 @@ def candidate_rows(history, captured, state):
         result = sval(old, "last_attempt_result").upper()
 
         # Historical DATA already appears in normalized ledgers.
-        # EMPTY historical evidence is final until an explicit future
-        # policy chooses to reopen it.
+        # Exact EMPTY evidence remains final for that fixture.
         if result in {"CAPTURED", "NO_DATA"}:
+            continue
+
+        if cell_is_provider_empty(
+            counts,
+            competition_season_key(row),
+            no_data_cell_threshold,
+        ):
             continue
 
         candidates.append(dict(row))
@@ -192,6 +247,7 @@ def candidate_rows(history, captured, state):
     candidates.sort(
         key=lambda row: (
             role_priority(row),
+            cell_evidence_priority(row, counts),
             -season_number(row),
             sval(row, "kickoff_utc"),
             sval(row, "country"),
@@ -201,6 +257,20 @@ def candidate_rows(history, captured, state):
     )
 
     return candidates
+
+
+def is_provider_quota_error(exc):
+    text = str(exc).lower()
+
+    return any(
+        marker in text
+        for marker in (
+            "request limit for the day",
+            "http 429",
+            "too many requests",
+            "rate limit",
+        )
+    )
 
 
 def state_row_from_fixture(fixture, previous=None):
@@ -250,7 +320,8 @@ def apply_attempt(state, fixture, *, result, attempted_at,
 
 
 def run_capture(candidates, existing_stats, existing_grades,
-                state, get, now, limit):
+                state, get, now, limit,
+                no_data_cell_threshold=8):
 
     stats = list(existing_stats)
     grades = list(existing_grades)
@@ -263,9 +334,27 @@ def run_capture(candidates, existing_stats, existing_grades,
     no_data = 0
     errors = 0
     deferred = 0
+    suppressed = 0
+    quota_exhausted = False
+    quota_error = ""
     warnings = []
 
-    for index, fixture in enumerate(candidates[:limit]):
+    counts = cell_observation_counts(state)
+
+    for index, fixture in enumerate(candidates):
+
+        if attempted >= limit:
+            break
+
+        key = competition_season_key(fixture)
+
+        if cell_is_provider_empty(
+            counts,
+            key,
+            no_data_cell_threshold,
+        ):
+            suppressed += 1
+            continue
 
         fixture_id = sval(fixture, "fixture_id")
         attempted_at = iso(now)
@@ -279,7 +368,13 @@ def run_capture(candidates, existing_stats, existing_grades,
             )
 
         except audit.ProtectedBudgetError as exc:
-            deferred = len(candidates[:limit]) - index
+            deferred = max(
+                0,
+                min(
+                    limit - attempted,
+                    len(candidates) - index,
+                ),
+            )
             warnings.append(str(exc))
             break
 
@@ -293,13 +388,36 @@ def run_capture(candidates, existing_stats, existing_grades,
             attempted += 1
             errors += 1
 
+            error_text = f"{type(exc).__name__}: {exc}"
+
             apply_attempt(
                 state,
                 fixture,
                 result="ERROR",
                 attempted_at=attempted_at,
-                error=f"{type(exc).__name__}: {exc}",
+                error=error_text,
             )
+
+            counts.setdefault(
+                key,
+                {"CAPTURED": 0, "NO_DATA": 0, "ERROR": 0},
+            )["ERROR"] += 1
+
+            if is_provider_quota_error(exc):
+                quota_exhausted = True
+                quota_error = error_text
+                deferred = max(
+                    0,
+                    min(
+                        limit - attempted,
+                        len(candidates) - index - 1,
+                    ),
+                )
+                warnings.append(
+                    "Provider quota exhausted; batch stopped "
+                    "after first quota error."
+                )
+                break
 
             continue
 
@@ -313,8 +431,14 @@ def run_capture(candidates, existing_stats, existing_grades,
             observed,
         )
 
+        bucket = counts.setdefault(
+            key,
+            {"CAPTURED": 0, "NO_DATA": 0, "ERROR": 0},
+        )
+
         if not stat_rows:
             no_data += 1
+            bucket["NO_DATA"] += 1
 
             apply_attempt(
                 state,
@@ -327,6 +451,7 @@ def run_capture(candidates, existing_stats, existing_grades,
             continue
 
         captured += 1
+        bucket["CAPTURED"] += 1
         new_stats.extend(stat_rows)
         new_grades.extend(grade_rows)
 
@@ -351,6 +476,9 @@ def run_capture(candidates, existing_stats, existing_grades,
         "no_data_fixtures": no_data,
         "error_fixtures": errors,
         "deferred_fixtures": deferred,
+        "suppressed_empty_cell_fixtures": suppressed,
+        "provider_quota_exhausted": quota_exhausted,
+        "provider_quota_error": quota_error,
         "warnings": warnings,
     }
 
@@ -371,10 +499,18 @@ def main():
         existing_grades,
     )
 
+    no_data_cell_threshold = int(
+        os.getenv(
+            "STAGE77_HISTORICAL_NO_DATA_CELL_THRESHOLD",
+            "8",
+        )
+    )
+
     candidates = candidate_rows(
         history,
         captured_before,
         state,
+        no_data_cell_threshold,
     )
 
     shared_state = audit.read(SHARED_STATE)
@@ -415,6 +551,7 @@ def main():
         budget,
         now,
         max_calls,
+        no_data_cell_threshold,
     )
 
     captured_after = completed_fixture_ids(
@@ -478,6 +615,7 @@ def main():
             history,
             captured_after,
             state,
+            no_data_cell_threshold,
         )
     )
 
@@ -515,6 +653,16 @@ def main():
         "deferred_fixtures": result[
             "deferred_fixtures"
         ],
+        "suppressed_empty_cell_fixtures": result[
+            "suppressed_empty_cell_fixtures"
+        ],
+        "provider_quota_exhausted": result[
+            "provider_quota_exhausted"
+        ],
+        "provider_quota_error": result[
+            "provider_quota_error"
+        ],
+        "no_data_cell_threshold": no_data_cell_threshold,
         "new_stats_rows": result["new_stats_rows"],
         "new_grade_rows": result["new_grade_rows"],
         "total_stats_rows": len(result["stats"]),
@@ -530,7 +678,9 @@ def main():
         "historical_no_data_is_terminal": True,
         "priority_policy": (
             "DOMESTIC_LEAGUE_THEN_UEFA_THEN_CUPS;"
-            "NEWEST_SEASON_FIRST"
+            "PRODUCTIVE_CELL_FIRST;"
+            "NEWEST_SEASON_FIRST;"
+            "EMPTY_CELL_SUPPRESSION"
         ),
         "warnings": result["warnings"],
         "historical_backfill_only": True,
