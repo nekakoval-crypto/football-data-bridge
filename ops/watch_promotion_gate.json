@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-19T18:04:53Z",
+  "generated_at_utc": "2026-09-19T19:03:09Z",
   "status": "OK",
   "policy_locked_at": "2026-09-11",
   "families": {
@@ -9,23 +9,23 @@
         "crossings": 5,
         "user_price_rows": 5,
         "execution_coverage_pct": 100.0,
-        "settled_executable": 3,
+        "settled_executable": 4,
         "roi_pct": -100.0,
-        "first_half_n": 1,
+        "first_half_n": 2,
         "first_half_roi_pct": -100.0,
         "second_half_n": 2,
         "second_half_roi_pct": -100.0,
-        "close_observed_settled": 3,
+        "close_observed_settled": 4,
         "close_observed_coverage_pct": 100.0,
-        "close_qualified_settled": 1,
+        "close_qualified_settled": 2,
         "close_qualified_roi_pct": -100.0
       },
       "blocking_reasons": [
-        "settled 3/60",
+        "settled 4/60",
         "ROI -100.0 not >0",
         "first-half ROI -100.0 not >0",
         "second-half ROI -100.0 not >0",
-        "close-qualified subset 1/20"
+        "close-qualified subset 2/20"
       ]
     },
     "Stage62": {
@@ -56,16 +56,16 @@
         "crossings": 33,
         "user_price_rows": 33,
         "execution_coverage_pct": 100.0,
-        "settled_executable": 21,
-        "roi_pct": -23.095,
-        "first_half_n": 10,
-        "first_half_roi_pct": -50.9,
-        "second_half_n": 11,
-        "second_half_roi_pct": 2.182,
-        "close_observed_settled": 21,
-        "close_observed_coverage_pct": 100.0,
-        "close_qualified_settled": 17,
-        "close_qualified_roi_pct": -32.941
+        "settled_executable": 23,
+        "roi_pct": -23.304,
+        "first_half_n": 11,
+        "first_half_roi_pct": -40.455,
+        "second_half_n": 12,
+        "second_half_roi_pct": -7.583,
+        "close_observed_settled": 22,
+        "close_observed_coverage_pct": 95.652,
+        "close_qualified_settled": 18,
+        "close_qualified_roi_pct": -28.389
       },
       "blocking_reasons": [
         "No historical BTTS first/close dataset; any finding needs a new preregistration and fresh holdout."
