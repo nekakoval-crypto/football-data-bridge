@@ -433,30 +433,110 @@ def retry_ready(row, now):
     return cooldown <= 0 or now >= last + timedelta(hours=cooldown)
 
 
-def candidate_rows(backlog, now, limit):
-    candidates = [
+def capture_cell_key(row):
+    return (
+        sval(row, "provider_league_id"),
+        sval(row, "season"),
+        sval(row, "capture_endpoint"),
+    )
+
+
+def observed_cell_yield(backlog):
+    stats = {}
+    for row in backlog:
+        key = capture_cell_key(row)
+        item = stats.setdefault(key, {"attempted": 0, "captured": 0})
+        if attempt_count(row) > 0:
+            item["attempted"] += 1
+            if sval(row, "backlog_status") == "CAPTURED":
+                item["captured"] += 1
+    for item in stats.values():
+        attempted = item["attempted"]
+        captured = item["captured"]
+        item["yield_rate"] = captured / attempted if attempted else None
+        if captured > 0:
+            item["class"] = "PROVEN_POSITIVE"
+        elif attempted >= 3:
+            item["class"] = "LOW_YIELD"
+        else:
+            item["class"] = "UNPROVEN"
+    return stats
+
+
+def candidate_rows(backlog, now, limit, lineup_exploration=0):
+    eligible = [
         row for row in backlog
         if sval(row, "backlog_status") != "CAPTURED"
         and retry_ready(row, now)
     ]
+    cell_stats = observed_cell_yield(backlog)
+    class_rank = {"PROVEN_POSITIVE": 0, "UNPROVEN": 1, "LOW_YIELD": 2}
 
     def key(row):
         last = parse_dt(row.get("last_attempt_at_utc"))
+        kickoff = parse_dt(row.get("kickoff_utc"))
+        recent_first = -(kickoff.timestamp()) if kickoff is not None else float("inf")
         try:
             priority = int(sval(row, "capture_priority") or "99")
         except ValueError:
             priority = 99
-        kickoff = parse_dt(row.get("kickoff_utc"))
-        recent_first = -(kickoff.timestamp()) if kickoff is not None else float("inf")
-        if last is None:
-            # Within each evidence tier, try the freshest untouched historical
-            # fixtures first; older provider coverage is sampled only later.
-            return (priority, 0, recent_first, 0.0, sval(row, "fixture_id"))
-        # Retries remain fair: oldest eligible retry first, then freshest fixture.
-        return (priority, 1, last.timestamp(), recent_first, sval(row, "fixture_id"))
 
-    candidates.sort(key=key)
-    return candidates[: max(0, int(limit))]
+        cell = cell_stats.get(
+            capture_cell_key(row),
+            {"attempted": 0, "captured": 0, "yield_rate": None, "class": "UNPROVEN"},
+        )
+        bucket = class_rank[cell["class"]]
+        observed_yield = cell["yield_rate"] if cell["yield_rate"] is not None else -1.0
+        if last is None:
+            retry_rank = 0
+            retry_time = 0.0
+        else:
+            retry_rank = 1
+            retry_time = last.timestamp()
+        return (
+            bucket,
+            priority,
+            -observed_yield,
+            retry_rank,
+            retry_time,
+            recent_first,
+            sval(row, "fixture_id"),
+        )
+
+    eligible.sort(key=key)
+    limit = max(0, int(limit))
+    lineup_exploration = max(0, min(int(lineup_exploration), limit))
+
+    # Reserve a small deterministic exploration slice for historical lineups so
+    # DIRECT_MINUTES coverage cannot starve the squad-only contour forever.
+    lineup_pool = [
+        row for row in eligible if sval(row, "capture_endpoint") == "/fixtures/lineups"
+    ]
+    lineup_pool.sort(key=key)
+    selected = lineup_pool[:lineup_exploration]
+    selected_ids = {sval(row, "fixture_id") for row in selected}
+
+    remaining = [row for row in eligible if sval(row, "fixture_id") not in selected_ids]
+    remaining.sort(key=key)
+    selected.extend(remaining[: max(0, limit - len(selected))])
+    return selected[:limit]
+
+
+def cell_yield_summary(backlog):
+    stats = observed_cell_yield(backlog)
+    classes = Counter(item["class"] for item in stats.values())
+    by_endpoint = {}
+    for key, item in stats.items():
+        endpoint = key[2]
+        bucket = by_endpoint.setdefault(endpoint, Counter())
+        bucket[item["class"]] += 1
+    return {
+        "cell_class_counts": dict(sorted(classes.items())),
+        "cell_class_counts_by_endpoint": {
+            endpoint: dict(sorted(counts.items()))
+            for endpoint, counts in sorted(by_endpoint.items())
+        },
+    }
 
 
 def validate_backlog_meta(meta, backlog):
@@ -518,7 +598,13 @@ def run(
     )
 
     calls_before = int(shared.get("api_day_calls") or 0)
-    candidates = candidate_rows(backlog, now, max_calls)
+    lineup_exploration_calls = min(
+        max_calls,
+        max(0, int(os.getenv("STAGE80_INTL_DUTY_LINEUP_EXPLORATION_CALLS", "0"))),
+    )
+    candidates = candidate_rows(
+        backlog, now, max_calls, lineup_exploration=lineup_exploration_calls
+    )
     evidence = existing_evidence
     warnings = []
     attempts = []
@@ -602,6 +688,10 @@ def run(
 
     broker_stats = get_broker().stats() if get is api_get else {}
     attempted_results = Counter(item["result"] for item in attempts)
+    candidate_endpoint_counts = Counter(
+        sval(row, "capture_endpoint") for row in candidates
+    )
+    yield_summary = cell_yield_summary(backlog)
 
     captured_fixture_ids = {
         sval(row, "fixture_id")
@@ -622,7 +712,11 @@ def run(
         "pending_or_retry_fixtures": len(backlog) - len(captured_fixture_ids),
         "evidence_rows": len(evidence),
         "existing_evidence_semantics_rewritten_rows": semantics_rewritten_rows,
-        "candidate_order": "TIER_THEN_NEVER_ATTEMPTED_RECENT_FIRST_THEN_OLDEST_RETRY",
+        "candidate_order": "LINEUP_EXPLORATION_THEN_CELL_YIELD_CLASS_THEN_TIER_THEN_RECENCY",
+        "candidate_policy": "PROVEN_POSITIVE_THEN_UNPROVEN_THEN_LOW_YIELD",
+        "lineup_exploration_calls_requested": lineup_exploration_calls,
+        "candidate_endpoint_counts": dict(sorted(candidate_endpoint_counts.items())),
+        "observed_cell_yield": yield_summary,
         "player_stats_starter_inference_allowed": False,
         "player_stats_substitute_listing_inference_allowed": False,
         "unique_evidence_keys": len(set(evidence_ids)),
