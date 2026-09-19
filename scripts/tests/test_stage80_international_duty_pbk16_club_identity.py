@@ -64,7 +64,7 @@ class Pbk16ClubIdentityTests(unittest.TestCase):
 
     def test_non_pbk16_league_is_excluded_from_catalog(self):
         rows=c.build(temporal("Man City"),leagues(),fixture(league="999"))
-        self.assertEqual(rows[0]["pbk16_club_identity_status"],"OUTSIDE_PBK16_OR_UNMAPPED")
+        self.assertEqual(rows[0]["pbk16_club_identity_status"],"NO_SAVED_PBK16_TEAM_IDENTITY")
 
     def test_ambiguous_same_key_fails_closed(self):
         fx=fixture()
