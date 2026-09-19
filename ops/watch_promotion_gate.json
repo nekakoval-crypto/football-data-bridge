@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-19T13:03:31Z",
+  "generated_at_utc": "2026-09-19T14:03:55Z",
   "status": "OK",
   "policy_locked_at": "2026-09-11",
   "families": {
@@ -9,23 +9,23 @@
         "crossings": 5,
         "user_price_rows": 5,
         "execution_coverage_pct": 100.0,
-        "settled_executable": 1,
+        "settled_executable": 2,
         "roi_pct": -100.0,
-        "first_half_n": 0,
-        "first_half_roi_pct": null,
+        "first_half_n": 1,
+        "first_half_roi_pct": -100.0,
         "second_half_n": 1,
         "second_half_roi_pct": -100.0,
-        "close_observed_settled": 1,
+        "close_observed_settled": 2,
         "close_observed_coverage_pct": 100.0,
-        "close_qualified_settled": 0,
-        "close_qualified_roi_pct": null
+        "close_qualified_settled": 1,
+        "close_qualified_roi_pct": -100.0
       },
       "blocking_reasons": [
-        "settled 1/60",
+        "settled 2/60",
         "ROI -100.0 not >0",
-        "first-half ROI None not >0",
+        "first-half ROI -100.0 not >0",
         "second-half ROI -100.0 not >0",
-        "close-qualified subset 0/20"
+        "close-qualified subset 1/20"
       ]
     },
     "Stage62": {
@@ -56,16 +56,16 @@
         "crossings": 32,
         "user_price_rows": 32,
         "execution_coverage_pct": 100.0,
-        "settled_executable": 15,
-        "roi_pct": -33.333,
-        "first_half_n": 7,
-        "first_half_roi_pct": -78.714,
+        "settled_executable": 16,
+        "roi_pct": -27.375,
+        "first_half_n": 8,
+        "first_half_roi_pct": -81.375,
         "second_half_n": 8,
-        "second_half_roi_pct": 6.375,
-        "close_observed_settled": 15,
+        "second_half_roi_pct": 26.625,
+        "close_observed_settled": 16,
         "close_observed_coverage_pct": 100.0,
-        "close_qualified_settled": 13,
-        "close_qualified_roi_pct": -35.462
+        "close_qualified_settled": 14,
+        "close_qualified_roi_pct": -28.5
       },
       "blocking_reasons": [
         "No historical BTTS first/close dataset; any finding needs a new preregistration and fresh holdout."
