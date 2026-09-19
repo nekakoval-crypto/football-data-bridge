@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_READINESS_V31_TOP5_HISTORICAL_MOTIVATION",
-  "generated_at_utc": "2026-09-19T11:27:44Z",
+  "version": "PBK_STAGE80_ARCHIVE_READINESS_V32_TOP5_MOTIVATION_MARKET_RESEARCH",
+  "generated_at_utc": "2026-09-19T11:28:42Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -153,6 +153,16 @@
       "file": "top5_historical_motivation_research.csv",
       "present": true,
       "rows": 16111
+    },
+    "motivation_market_profiles": {
+      "file": "top5_motivation_market_factor_research.csv",
+      "present": false,
+      "rows": null
+    },
+    "motivation_market_stability": {
+      "file": "top5_motivation_market_factor_stability_research.csv",
+      "present": false,
+      "rows": null
     },
     "prematch_factor_research": {
       "file": "top5_prematch_factor_research.csv",
@@ -584,6 +594,37 @@
     "operational_betting_authority": false,
     "evidence_note": "Deterministic Top-5 historical title/relegation/remaining-match context. Europe is UNKNOWN_BY_DESIGN, tied safety boundaries remain ambiguous, and no generic MUST_WIN or unmotivated label is created."
   },
+  "top5_motivation_market_research": {
+    "profiles_present": false,
+    "stability_present": false,
+    "meta_present": false,
+    "meta_valid": false,
+    "profile_rows": 0,
+    "valid_profile_rows": 0,
+    "invalid_profile_rows": 0,
+    "stability_rows": 0,
+    "valid_stability_rows": 0,
+    "invalid_stability_rows": 0,
+    "factor_names": [
+      "PRESSURE_ASYMMETRY",
+      "HIGH_PRESSURE_SIDE",
+      "MEDIUM_HIGH_PRESSURE_SIDE",
+      "LATE_TITLE_NEAR_3_SIDE",
+      "LATE_TITLE_NEAR_6_SIDE",
+      "LATE_SURVIVAL_DANGER_SIDE",
+      "LATE_SURVIVAL_WITHIN_3_SIDE",
+      "LATE_SURVIVAL_WITHIN_6_SIDE",
+      "DRAW_TITLE_PATH_SIDE",
+      "DRAW_SAFE_PATH_SIDE"
+    ],
+    "closing_1x2_matches": null,
+    "closing_total25_matches": null,
+    "europe_status": null,
+    "market_probability_semantics": "Historical closing-market no-vig benchmark only; never PBK probability.",
+    "operational_betting_authority": false,
+    "promotes_factor": false,
+    "evidence_note": "Descriptive Top-5 title/survival motivation research only. Europe remains UNKNOWN_BY_DESIGN and generic MUST_WIN/unmotivated labels are forbidden."
+  },
   "prematch_factor_research": {
     "profiles_present": true,
     "stability_present": true,
@@ -903,6 +944,7 @@
     "PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL",
+    "TOP5_MOTIVATION_MARKET_RESEARCH_NOT_MATERIALIZED",
     "PBK16_COMPETITION_PROVIDER_SEASONS_PARTIAL",
     "PBK14_HISTORICAL_MARKET_BRIDGE_PARTIAL_MAPPING",
     "PBK16_HISTORICAL_MARKET_SOURCE_LIMITED_TO_14_LEAGUES",

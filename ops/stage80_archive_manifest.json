@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V27_TOP5_HISTORICAL_MOTIVATION",
-  "generated_at_utc": "2026-09-19T11:27:38Z",
+  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V28_TOP5_MOTIVATION_MARKET_RESEARCH",
+  "generated_at_utc": "2026-09-19T11:28:36Z",
   "status": "OK",
   "datasets": [
     {
@@ -999,6 +999,54 @@
       "identity_key_text": "historical_match_id",
       "observed_time_fields_text": "",
       "effective_time_fields_text": "date_iso"
+    },
+    {
+      "dataset_id": "top5_motivation_market_factor_research",
+      "path": "top5_motivation_market_factor_research.csv",
+      "role": "RESEARCH_ANALYSIS",
+      "lifecycle": "DETERMINISTIC_AGGREGATE_PROJECTION",
+      "identity_key": [
+        "factor",
+        "bucket",
+        "scope_type",
+        "scope_value"
+      ],
+      "observed_time_fields": [],
+      "effective_time_fields": [],
+      "source": "Stage80 descriptive Top-5 motivation research over historical outcomes and closing markets",
+      "limitations": "Calendar/table-derived title and survival context only. Europe remains UNKNOWN_BY_DESIGN. Closing-market no-vig is not PBK probability; no factor ranking, promotion or betting/model authority.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "factor+bucket+scope_type+scope_value",
+      "observed_time_fields_text": "",
+      "effective_time_fields_text": ""
+    },
+    {
+      "dataset_id": "top5_motivation_market_factor_stability_research",
+      "path": "top5_motivation_market_factor_stability_research.csv",
+      "role": "RESEARCH_VALIDATION",
+      "lifecycle": "DETERMINISTIC_SEASON_STABILITY_PROJECTION",
+      "identity_key": [
+        "factor",
+        "bucket",
+        "scope_type",
+        "scope_value"
+      ],
+      "observed_time_fields": [],
+      "effective_time_fields": [],
+      "source": "Stage80 season-stability projection for Top-5 historical motivation market research",
+      "limitations": "Descriptive season stability only. No generic MUST_WIN or unmotivated label, no factor promotion, and no probability/eligibility/stake/Forward authority.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "factor+bucket+scope_type+scope_value",
+      "observed_time_fields_text": "",
+      "effective_time_fields_text": ""
     },
     {
       "dataset_id": "top5_prematch_factor_research",
@@ -3045,9 +3093,9 @@
     }
   ],
   "summary": {
-    "declared_datasets": 54,
+    "declared_datasets": 56,
     "materialized_csv_datasets": 52,
-    "pending_materializations_or_storage": 1,
+    "pending_materializations_or_storage": 3,
     "contract_attention": 0
   },
   "provider_calls": 0,
