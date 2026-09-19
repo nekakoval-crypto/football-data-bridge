@@ -1,0 +1,1364 @@
+{
+  "version": "PBK_STAGE80_PBK14_FIXTURE_BRIDGE_V1",
+  "generated_at_utc": "2026-09-19T08:36:20Z",
+  "source_rows": 37674,
+  "mapped_auto": 18940,
+  "mapped_high": 17890,
+  "mapped_auto_high": 36830,
+  "review": 16,
+  "unmapped": 828,
+  "mapped_pct": 97.76,
+  "unique_mapped_api_fixture_ids": 36830,
+  "duplicate_mapped_api_fixture_ids": 0,
+  "league_season_scopes": [
+    {
+      "league_code": "AUT",
+      "season_start": 2017,
+      "source_rows": 182,
+      "provider_rows": 180,
+      "mapped_auto": 12,
+      "mapped_high": 132,
+      "review": 0,
+      "unmapped": 38
+    },
+    {
+      "league_code": "AUT",
+      "season_start": 2018,
+      "source_rows": 195,
+      "provider_rows": 195,
+      "mapped_auto": 18,
+      "mapped_high": 177,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "AUT",
+      "season_start": 2019,
+      "source_rows": 195,
+      "provider_rows": 195,
+      "mapped_auto": 8,
+      "mapped_high": 187,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "AUT",
+      "season_start": 2020,
+      "source_rows": 197,
+      "provider_rows": 197,
+      "mapped_auto": 18,
+      "mapped_high": 177,
+      "review": 0,
+      "unmapped": 2
+    },
+    {
+      "league_code": "AUT",
+      "season_start": 2021,
+      "source_rows": 195,
+      "provider_rows": 195,
+      "mapped_auto": 18,
+      "mapped_high": 177,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "AUT",
+      "season_start": 2022,
+      "source_rows": 195,
+      "provider_rows": 195,
+      "mapped_auto": 16,
+      "mapped_high": 179,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "AUT",
+      "season_start": 2023,
+      "source_rows": 195,
+      "provider_rows": 195,
+      "mapped_auto": 9,
+      "mapped_high": 186,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "AUT",
+      "season_start": 2024,
+      "source_rows": 192,
+      "provider_rows": 195,
+      "mapped_auto": 18,
+      "mapped_high": 174,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "AUT",
+      "season_start": 2025,
+      "source_rows": 192,
+      "provider_rows": 195,
+      "mapped_auto": 28,
+      "mapped_high": 164,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "B1",
+      "season_start": 2017,
+      "source_rows": 240,
+      "provider_rows": 270,
+      "mapped_auto": 72,
+      "mapped_high": 168,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "B1",
+      "season_start": 2018,
+      "source_rows": 240,
+      "provider_rows": 270,
+      "mapped_auto": 90,
+      "mapped_high": 150,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "B1",
+      "season_start": 2019,
+      "source_rows": 232,
+      "provider_rows": 232,
+      "mapped_auto": 69,
+      "mapped_high": 163,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "B1",
+      "season_start": 2020,
+      "source_rows": 306,
+      "provider_rows": 332,
+      "mapped_auto": 90,
+      "mapped_high": 216,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "B1",
+      "season_start": 2021,
+      "source_rows": 306,
+      "provider_rows": 332,
+      "mapped_auto": 90,
+      "mapped_high": 216,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "B1",
+      "season_start": 2022,
+      "source_rows": 306,
+      "provider_rows": 328,
+      "mapped_auto": 72,
+      "mapped_high": 168,
+      "review": 0,
+      "unmapped": 66
+    },
+    {
+      "league_code": "B1",
+      "season_start": 2023,
+      "source_rows": 312,
+      "provider_rows": 315,
+      "mapped_auto": 73,
+      "mapped_high": 239,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "B1",
+      "season_start": 2024,
+      "source_rows": 312,
+      "provider_rows": 315,
+      "mapped_auto": 115,
+      "mapped_high": 196,
+      "review": 1,
+      "unmapped": 0
+    },
+    {
+      "league_code": "B1",
+      "season_start": 2025,
+      "source_rows": 311,
+      "provider_rows": 321,
+      "mapped_auto": 89,
+      "mapped_high": 222,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "D1",
+      "season_start": 2017,
+      "source_rows": 306,
+      "provider_rows": 306,
+      "mapped_auto": 6,
+      "mapped_high": 300,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "D1",
+      "season_start": 2018,
+      "source_rows": 306,
+      "provider_rows": 308,
+      "mapped_auto": 12,
+      "mapped_high": 294,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "D1",
+      "season_start": 2019,
+      "source_rows": 306,
+      "provider_rows": 308,
+      "mapped_auto": 20,
+      "mapped_high": 286,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "D1",
+      "season_start": 2020,
+      "source_rows": 306,
+      "provider_rows": 308,
+      "mapped_auto": 12,
+      "mapped_high": 294,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "D1",
+      "season_start": 2021,
+      "source_rows": 306,
+      "provider_rows": 308,
+      "mapped_auto": 6,
+      "mapped_high": 300,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "D1",
+      "season_start": 2022,
+      "source_rows": 306,
+      "provider_rows": 308,
+      "mapped_auto": 12,
+      "mapped_high": 294,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "D1",
+      "season_start": 2023,
+      "source_rows": 306,
+      "provider_rows": 308,
+      "mapped_auto": 12,
+      "mapped_high": 294,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "D1",
+      "season_start": 2024,
+      "source_rows": 306,
+      "provider_rows": 308,
+      "mapped_auto": 12,
+      "mapped_high": 260,
+      "review": 0,
+      "unmapped": 34
+    },
+    {
+      "league_code": "D1",
+      "season_start": 2025,
+      "source_rows": 306,
+      "provider_rows": 308,
+      "mapped_auto": 6,
+      "mapped_high": 300,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "DNK",
+      "season_start": 2017,
+      "source_rows": 255,
+      "provider_rows": 243,
+      "mapped_auto": 121,
+      "mapped_high": 90,
+      "review": 4,
+      "unmapped": 40
+    },
+    {
+      "league_code": "DNK",
+      "season_start": 2018,
+      "source_rows": 251,
+      "provider_rows": 243,
+      "mapped_auto": 121,
+      "mapped_high": 60,
+      "review": 2,
+      "unmapped": 68
+    },
+    {
+      "league_code": "DNK",
+      "season_start": 2019,
+      "source_rows": 243,
+      "provider_rows": 243,
+      "mapped_auto": 145,
+      "mapped_high": 98,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "DNK",
+      "season_start": 2020,
+      "source_rows": 193,
+      "provider_rows": 193,
+      "mapped_auto": 104,
+      "mapped_high": 88,
+      "review": 1,
+      "unmapped": 0
+    },
+    {
+      "league_code": "DNK",
+      "season_start": 2021,
+      "source_rows": 193,
+      "provider_rows": 193,
+      "mapped_auto": 130,
+      "mapped_high": 62,
+      "review": 1,
+      "unmapped": 0
+    },
+    {
+      "league_code": "DNK",
+      "season_start": 2022,
+      "source_rows": 193,
+      "provider_rows": 193,
+      "mapped_auto": 104,
+      "mapped_high": 89,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "DNK",
+      "season_start": 2023,
+      "source_rows": 193,
+      "provider_rows": 193,
+      "mapped_auto": 105,
+      "mapped_high": 88,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "DNK",
+      "season_start": 2024,
+      "source_rows": 192,
+      "provider_rows": 193,
+      "mapped_auto": 132,
+      "mapped_high": 60,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "DNK",
+      "season_start": 2025,
+      "source_rows": 192,
+      "provider_rows": 193,
+      "mapped_auto": 104,
+      "mapped_high": 88,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "E0",
+      "season_start": 2017,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 272,
+      "mapped_high": 108,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "E0",
+      "season_start": 2018,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 306,
+      "mapped_high": 74,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "E0",
+      "season_start": 2019,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 272,
+      "mapped_high": 108,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "E0",
+      "season_start": 2020,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 272,
+      "mapped_high": 108,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "E0",
+      "season_start": 2021,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 306,
+      "mapped_high": 74,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "E0",
+      "season_start": 2022,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 272,
+      "mapped_high": 108,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "E0",
+      "season_start": 2023,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 240,
+      "mapped_high": 140,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "E0",
+      "season_start": 2024,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 272,
+      "mapped_high": 108,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "E0",
+      "season_start": 2025,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 272,
+      "mapped_high": 108,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "F1",
+      "season_start": 2017,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 272,
+      "mapped_high": 108,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "F1",
+      "season_start": 2018,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 306,
+      "mapped_high": 74,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "F1",
+      "season_start": 2019,
+      "source_rows": 279,
+      "provider_rows": 279,
+      "mapped_auto": 200,
+      "mapped_high": 79,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "F1",
+      "season_start": 2020,
+      "source_rows": 380,
+      "provider_rows": 382,
+      "mapped_auto": 272,
+      "mapped_high": 108,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "F1",
+      "season_start": 2021,
+      "source_rows": 380,
+      "provider_rows": 382,
+      "mapped_auto": 210,
+      "mapped_high": 170,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "F1",
+      "season_start": 2022,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 240,
+      "mapped_high": 140,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "F1",
+      "season_start": 2023,
+      "source_rows": 306,
+      "provider_rows": 308,
+      "mapped_auto": 210,
+      "mapped_high": 96,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "F1",
+      "season_start": 2024,
+      "source_rows": 306,
+      "provider_rows": 308,
+      "mapped_auto": 210,
+      "mapped_high": 96,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "F1",
+      "season_start": 2025,
+      "source_rows": 306,
+      "provider_rows": 307,
+      "mapped_auto": 239,
+      "mapped_high": 66,
+      "review": 1,
+      "unmapped": 0
+    },
+    {
+      "league_code": "I1",
+      "season_start": 2017,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 272,
+      "mapped_high": 108,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "I1",
+      "season_start": 2018,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 306,
+      "mapped_high": 74,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "I1",
+      "season_start": 2019,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 272,
+      "mapped_high": 108,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "I1",
+      "season_start": 2020,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 272,
+      "mapped_high": 34,
+      "review": 0,
+      "unmapped": 74
+    },
+    {
+      "league_code": "I1",
+      "season_start": 2021,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 272,
+      "mapped_high": 108,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "I1",
+      "season_start": 2022,
+      "source_rows": 380,
+      "provider_rows": 381,
+      "mapped_auto": 272,
+      "mapped_high": 108,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "I1",
+      "season_start": 2023,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 272,
+      "mapped_high": 108,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "I1",
+      "season_start": 2024,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 272,
+      "mapped_high": 108,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "I1",
+      "season_start": 2025,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 272,
+      "mapped_high": 108,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "N1",
+      "season_start": 2017,
+      "source_rows": 306,
+      "provider_rows": 312,
+      "mapped_auto": 240,
+      "mapped_high": 66,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "N1",
+      "season_start": 2018,
+      "source_rows": 306,
+      "provider_rows": 312,
+      "mapped_auto": 156,
+      "mapped_high": 150,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "N1",
+      "season_start": 2019,
+      "source_rows": 232,
+      "provider_rows": 232,
+      "mapped_auto": 136,
+      "mapped_high": 96,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "N1",
+      "season_start": 2020,
+      "source_rows": 306,
+      "provider_rows": 315,
+      "mapped_auto": 182,
+      "mapped_high": 124,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "N1",
+      "season_start": 2021,
+      "source_rows": 306,
+      "provider_rows": 324,
+      "mapped_auto": 210,
+      "mapped_high": 96,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "N1",
+      "season_start": 2022,
+      "source_rows": 306,
+      "provider_rows": 324,
+      "mapped_auto": 181,
+      "mapped_high": 124,
+      "review": 1,
+      "unmapped": 0
+    },
+    {
+      "league_code": "N1",
+      "season_start": 2023,
+      "source_rows": 306,
+      "provider_rows": 321,
+      "mapped_auto": 156,
+      "mapped_high": 150,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "N1",
+      "season_start": 2024,
+      "source_rows": 306,
+      "provider_rows": 321,
+      "mapped_auto": 182,
+      "mapped_high": 124,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "N1",
+      "season_start": 2025,
+      "source_rows": 306,
+      "provider_rows": 309,
+      "mapped_auto": 181,
+      "mapped_high": 124,
+      "review": 1,
+      "unmapped": 0
+    },
+    {
+      "league_code": "NOR",
+      "season_start": 2017,
+      "source_rows": 242,
+      "provider_rows": 240,
+      "mapped_auto": 156,
+      "mapped_high": 84,
+      "review": 0,
+      "unmapped": 2
+    },
+    {
+      "league_code": "NOR",
+      "season_start": 2018,
+      "source_rows": 241,
+      "provider_rows": 240,
+      "mapped_auto": 156,
+      "mapped_high": 84,
+      "review": 0,
+      "unmapped": 1
+    },
+    {
+      "league_code": "NOR",
+      "season_start": 2019,
+      "source_rows": 242,
+      "provider_rows": 240,
+      "mapped_auto": 156,
+      "mapped_high": 84,
+      "review": 0,
+      "unmapped": 2
+    },
+    {
+      "league_code": "NOR",
+      "season_start": 2020,
+      "source_rows": 240,
+      "provider_rows": 241,
+      "mapped_auto": 156,
+      "mapped_high": 84,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "NOR",
+      "season_start": 2021,
+      "source_rows": 241,
+      "provider_rows": 241,
+      "mapped_auto": 156,
+      "mapped_high": 84,
+      "review": 1,
+      "unmapped": 0
+    },
+    {
+      "league_code": "NOR",
+      "season_start": 2022,
+      "source_rows": 242,
+      "provider_rows": 242,
+      "mapped_auto": 158,
+      "mapped_high": 84,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "NOR",
+      "season_start": 2023,
+      "source_rows": 242,
+      "provider_rows": 242,
+      "mapped_auto": 174,
+      "mapped_high": 56,
+      "review": 0,
+      "unmapped": 12
+    },
+    {
+      "league_code": "NOR",
+      "season_start": 2024,
+      "source_rows": 242,
+      "provider_rows": 242,
+      "mapped_auto": 134,
+      "mapped_high": 108,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "NOR",
+      "season_start": 2025,
+      "source_rows": 240,
+      "provider_rows": 241,
+      "mapped_auto": 156,
+      "mapped_high": 54,
+      "review": 0,
+      "unmapped": 30
+    },
+    {
+      "league_code": "P1",
+      "season_start": 2017,
+      "source_rows": 306,
+      "provider_rows": 306,
+      "mapped_auto": 156,
+      "mapped_high": 150,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "P1",
+      "season_start": 2018,
+      "source_rows": 306,
+      "provider_rows": 306,
+      "mapped_auto": 156,
+      "mapped_high": 150,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "P1",
+      "season_start": 2019,
+      "source_rows": 306,
+      "provider_rows": 306,
+      "mapped_auto": 156,
+      "mapped_high": 150,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "P1",
+      "season_start": 2020,
+      "source_rows": 306,
+      "provider_rows": 308,
+      "mapped_auto": 182,
+      "mapped_high": 124,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "P1",
+      "season_start": 2021,
+      "source_rows": 306,
+      "provider_rows": 308,
+      "mapped_auto": 182,
+      "mapped_high": 124,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "P1",
+      "season_start": 2022,
+      "source_rows": 306,
+      "provider_rows": 308,
+      "mapped_auto": 182,
+      "mapped_high": 124,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "P1",
+      "season_start": 2023,
+      "source_rows": 306,
+      "provider_rows": 308,
+      "mapped_auto": 182,
+      "mapped_high": 124,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "P1",
+      "season_start": 2024,
+      "source_rows": 306,
+      "provider_rows": 308,
+      "mapped_auto": 182,
+      "mapped_high": 124,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "P1",
+      "season_start": 2025,
+      "source_rows": 306,
+      "provider_rows": 308,
+      "mapped_auto": 182,
+      "mapped_high": 124,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "POL",
+      "season_start": 2017,
+      "source_rows": 296,
+      "provider_rows": 0,
+      "mapped_auto": 0,
+      "mapped_high": 0,
+      "review": 0,
+      "unmapped": 296
+    },
+    {
+      "league_code": "POL",
+      "season_start": 2018,
+      "source_rows": 296,
+      "provider_rows": 296,
+      "mapped_auto": 110,
+      "mapped_high": 186,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "POL",
+      "season_start": 2019,
+      "source_rows": 296,
+      "provider_rows": 296,
+      "mapped_auto": 90,
+      "mapped_high": 206,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "POL",
+      "season_start": 2020,
+      "source_rows": 240,
+      "provider_rows": 240,
+      "mapped_auto": 90,
+      "mapped_high": 150,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "POL",
+      "season_start": 2021,
+      "source_rows": 306,
+      "provider_rows": 306,
+      "mapped_auto": 90,
+      "mapped_high": 216,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "POL",
+      "season_start": 2022,
+      "source_rows": 306,
+      "provider_rows": 306,
+      "mapped_auto": 115,
+      "mapped_high": 165,
+      "review": 1,
+      "unmapped": 25
+    },
+    {
+      "league_code": "POL",
+      "season_start": 2023,
+      "source_rows": 306,
+      "provider_rows": 306,
+      "mapped_auto": 110,
+      "mapped_high": 196,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "POL",
+      "season_start": 2024,
+      "source_rows": 306,
+      "provider_rows": 306,
+      "mapped_auto": 132,
+      "mapped_high": 174,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "POL",
+      "season_start": 2025,
+      "source_rows": 306,
+      "provider_rows": 306,
+      "mapped_auto": 132,
+      "mapped_high": 174,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "SC0",
+      "season_start": 2017,
+      "source_rows": 228,
+      "provider_rows": 228,
+      "mapped_auto": 155,
+      "mapped_high": 73,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "SC0",
+      "season_start": 2018,
+      "source_rows": 228,
+      "provider_rows": 228,
+      "mapped_auto": 154,
+      "mapped_high": 73,
+      "review": 1,
+      "unmapped": 0
+    },
+    {
+      "league_code": "SC0",
+      "season_start": 2019,
+      "source_rows": 179,
+      "provider_rows": 179,
+      "mapped_auto": 122,
+      "mapped_high": 57,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "SC0",
+      "season_start": 2020,
+      "source_rows": 228,
+      "provider_rows": 234,
+      "mapped_auto": 156,
+      "mapped_high": 72,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "SC0",
+      "season_start": 2021,
+      "source_rows": 228,
+      "provider_rows": 234,
+      "mapped_auto": 156,
+      "mapped_high": 72,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "SC0",
+      "season_start": 2022,
+      "source_rows": 228,
+      "provider_rows": 234,
+      "mapped_auto": 155,
+      "mapped_high": 73,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "SC0",
+      "season_start": 2023,
+      "source_rows": 228,
+      "provider_rows": 234,
+      "mapped_auto": 190,
+      "mapped_high": 38,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "SC0",
+      "season_start": 2024,
+      "source_rows": 228,
+      "provider_rows": 234,
+      "mapped_auto": 155,
+      "mapped_high": 73,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "SC0",
+      "season_start": 2025,
+      "source_rows": 228,
+      "provider_rows": 234,
+      "mapped_auto": 155,
+      "mapped_high": 73,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "SP1",
+      "season_start": 2017,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 156,
+      "mapped_high": 224,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "SP1",
+      "season_start": 2018,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 156,
+      "mapped_high": 224,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "SP1",
+      "season_start": 2019,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 156,
+      "mapped_high": 224,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "SP1",
+      "season_start": 2020,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 182,
+      "mapped_high": 198,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "SP1",
+      "season_start": 2021,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 132,
+      "mapped_high": 248,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "SP1",
+      "season_start": 2022,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 156,
+      "mapped_high": 224,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "SP1",
+      "season_start": 2023,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 156,
+      "mapped_high": 224,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "SP1",
+      "season_start": 2024,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 156,
+      "mapped_high": 224,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "SP1",
+      "season_start": 2025,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 156,
+      "mapped_high": 224,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "T1",
+      "season_start": 2017,
+      "source_rows": 306,
+      "provider_rows": 306,
+      "mapped_auto": 132,
+      "mapped_high": 174,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "T1",
+      "season_start": 2018,
+      "source_rows": 306,
+      "provider_rows": 306,
+      "mapped_auto": 156,
+      "mapped_high": 84,
+      "review": 0,
+      "unmapped": 66
+    },
+    {
+      "league_code": "T1",
+      "season_start": 2019,
+      "source_rows": 306,
+      "provider_rows": 306,
+      "mapped_auto": 156,
+      "mapped_high": 150,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "T1",
+      "season_start": 2020,
+      "source_rows": 420,
+      "provider_rows": 420,
+      "mapped_auto": 182,
+      "mapped_high": 238,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "T1",
+      "season_start": 2021,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 182,
+      "mapped_high": 198,
+      "review": 0,
+      "unmapped": 0
+    },
+    {
+      "league_code": "T1",
+      "season_start": 2022,
+      "source_rows": 342,
+      "provider_rows": 341,
+      "mapped_auto": 182,
+      "mapped_high": 124,
+      "review": 0,
+      "unmapped": 36
+    },
+    {
+      "league_code": "T1",
+      "season_start": 2023,
+      "source_rows": 380,
+      "provider_rows": 380,
+      "mapped_auto": 209,
+      "mapped_high": 170,
+      "review": 1,
+      "unmapped": 0
+    },
+    {
+      "league_code": "T1",
+      "season_start": 2024,
+      "source_rows": 342,
+      "provider_rows": 342,
+      "mapped_auto": 156,
+      "mapped_high": 150,
+      "review": 0,
+      "unmapped": 36
+    },
+    {
+      "league_code": "T1",
+      "season_start": 2025,
+      "source_rows": 306,
+      "provider_rows": 306,
+      "mapped_auto": 132,
+      "mapped_high": 174,
+      "review": 0,
+      "unmapped": 0
+    }
+  ],
+  "mapping_by_league": {
+    "AUT": {
+      "AUTO": 145,
+      "HIGH": 1553,
+      "UNMAPPED": 40
+    },
+    "B1": {
+      "AUTO": 760,
+      "HIGH": 1738,
+      "REVIEW": 1,
+      "UNMAPPED": 66
+    },
+    "D1": {
+      "AUTO": 98,
+      "HIGH": 2622,
+      "UNMAPPED": 34
+    },
+    "DNK": {
+      "AUTO": 1066,
+      "HIGH": 723,
+      "REVIEW": 8,
+      "UNMAPPED": 108
+    },
+    "E0": {
+      "AUTO": 2484,
+      "HIGH": 936
+    },
+    "F1": {
+      "AUTO": 2159,
+      "HIGH": 937,
+      "REVIEW": 1
+    },
+    "I1": {
+      "AUTO": 2482,
+      "HIGH": 864,
+      "UNMAPPED": 74
+    },
+    "N1": {
+      "AUTO": 1624,
+      "HIGH": 1054,
+      "REVIEW": 2
+    },
+    "NOR": {
+      "AUTO": 1402,
+      "HIGH": 722,
+      "REVIEW": 1,
+      "UNMAPPED": 47
+    },
+    "P1": {
+      "AUTO": 1560,
+      "HIGH": 1194
+    },
+    "POL": {
+      "AUTO": 869,
+      "HIGH": 1467,
+      "REVIEW": 1,
+      "UNMAPPED": 321
+    },
+    "SC0": {
+      "AUTO": 1398,
+      "HIGH": 604,
+      "REVIEW": 1
+    },
+    "SP1": {
+      "AUTO": 1406,
+      "HIGH": 2014
+    },
+    "T1": {
+      "AUTO": 1487,
+      "HIGH": 1462,
+      "REVIEW": 1,
+      "UNMAPPED": 138
+    }
+  },
+  "mapping_policy": {
+    "fuzzy_string_matching_used": false,
+    "auto": "unique conservative canonical-name mapping + exact date/teams/final score",
+    "high": "unique schedule+score team fingerprint + exact date/teams/final score",
+    "review_unmapped_excluded": true,
+    "final_score_identity_only": true
+  },
+  "historical_backfill_only": true,
+  "research_only": true,
+  "operational_betting_authority": false,
+  "creates_signal": false,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "stake_changes": false,
+  "forward_journal_mutation": false
+}
