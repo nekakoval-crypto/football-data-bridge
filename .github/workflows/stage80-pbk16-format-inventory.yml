@@ -1,0 +1,132 @@
+name: Stage 80 PBK16 Format Inventory
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/stage80_pbk16_format_inventory.py'
+      - 'scripts/tests/test_stage80_pbk16_format_inventory.py'
+      - '.github/workflows/stage80-pbk16-format-inventory.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/stage80_pbk16_format_inventory.py'
+      - 'scripts/tests/test_stage80_pbk16_format_inventory.py'
+      - '.github/workflows/stage80-pbk16-format-inventory.yml'
+      - 'ops/stage80_pbk16_competition_backfill_state.csv'
+      - 'ops/pbk16_all_competition_fixture_history.csv'
+
+concurrency:
+  group: stage80-pbk16-format-inventory-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and provider-free tests
+        run: |
+          python -m py_compile scripts/stage80_pbk16_format_inventory.py
+          python -m unittest scripts.tests.test_stage80_pbk16_format_inventory -v
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated PBK16 format-inventory outputs are forbidden in the feature PR.' >&2
+            exit 1
+          fi
+
+  build:
+    needs: validate
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build PBK16 format inventory
+        run: |
+          mkdir -p research
+          python scripts/stage80_pbk16_format_inventory.py \
+            --state ops/stage80_pbk16_competition_backfill_state.csv \
+            --archive ops/pbk16_all_competition_fixture_history.csv \
+            --out-csv research/pbk16_domestic_league_format_inventory.csv \
+            --meta-out research/stage80_pbk16_format_inventory_meta.json
+      - name: Verify PBK16 format inventory
+        run: |
+          python - <<'PY'
+          import csv, json
+          meta=json.load(open('research/stage80_pbk16_format_inventory_meta.json',encoding='utf-8'))
+          assert meta['version']=='PBK_STAGE80_PBK16_FORMAT_INVENTORY_V1', meta
+          assert meta['status']=='OK', meta
+          assert meta['locked_leagues']==16, meta
+          assert meta['historical_seasons']==9, meta
+          assert meta['expected_cells']==144, meta
+          assert meta['output_cells']==144, meta
+          assert meta['domestic_archive_rows']==40989, meta
+          assert meta['duplicate_fixture_ids']==0, meta
+          assert meta['provider_calls']==0, meta
+          assert meta['exact_motivation_contract_verified_cells']==0, meta
+          assert meta['research_only'] is True, meta
+          assert meta['operational_betting_authority'] is False, meta
+          assert meta['creates_signal'] is False, meta
+          with open('research/pbk16_domestic_league_format_inventory.csv',encoding='utf-8-sig',newline='') as f:
+              rows=list(csv.DictReader(f))
+          assert len(rows)==144
+          assert len({(r['country'],r['season']) for r in rows})==144
+          assert {r['exact_motivation_contract_status'] for r in rows}=={'UNVERIFIED'}
+          assert {r['inventory_only'] for r in rows}=={'true'}
+          assert {r['operational_betting_authority'] for r in rows}=={'false'}
+          print({
+              'cells':meta['output_cells'],
+              'captured':meta['captured_cells'],
+              'unavailable':meta['unavailable_provider_season_cells'],
+              'structure_class_counts':meta['structure_class_counts'],
+              'phase_countries':meta['countries_with_phase_markers'],
+              'single_table_candidates':meta['naive_single_table_candidate_cells'],
+          })
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pbk16-format-inventory
+          path: research/
+          retention-days: 90
+
+  publish:
+    needs: build
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: pbk16-format-inventory
+          path: research
+      - name: Publish PBK16 format inventory
+        shell: bash
+        run: |
+          cp research/pbk16_domestic_league_format_inventory.csv ops/pbk16_domestic_league_format_inventory.csv
+          cp research/stage80_pbk16_format_inventory_meta.json ops/stage80_pbk16_format_inventory_last_run.json
+          git config user.name 'stage80-pbk16-format-inventory-bot'
+          git config user.email 'stage80-pbk16-format-inventory-bot@users.noreply.github.com'
+          git add ops/pbk16_domestic_league_format_inventory.csv
+          git add ops/stage80_pbk16_format_inventory_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 PBK16 format inventory update'
+          python scripts/publish_operational_commit.py
