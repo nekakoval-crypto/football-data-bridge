@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V18_PREMATCH_WALKFORWARD",
-  "generated_at_utc": "2026-09-19T03:28:39Z",
+  "generated_at_utc": "2026-09-19T04:28:25Z",
   "status": "OK",
   "datasets": [
     {
@@ -68,7 +68,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 2957,
+      "row_count": 3086,
       "columns": [
         "fixture_id",
         "provider_league_id",
