@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V27_PBK14_INTERNATIONAL_WINDOW_MARKET_JOIN"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V28_INTERNATIONAL_WINDOW_REFERENCE_V2"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -1038,6 +1038,7 @@ def build_report(ops=OPS, archive_dir=None):
         and sval(row, "kickoff_utc")
         and sval(row, "home_team_id")
         and sval(row, "away_team_id")
+        and sval(row, "window_reference_contract") == "NEAREST_WINDOW_RELATION_GATED_V2"
         and sval(row, "player_level_international_status") == "UNVERIFIED"
         and sval(row, "final_tournaments_included") == "false"
         and sval(row, "non_uefa_only_windows_included") == "false"
@@ -1064,7 +1065,7 @@ def build_report(ops=OPS, archive_dir=None):
     pbk16_international_meta_valid = bool(
         pbk16_international_meta
         and not pbk16_international_meta.get("_invalid_json")
-        and pbk16_international_meta.get("version") == "PBK_STAGE80_PBK16_INTERNATIONAL_WINDOW_CONTEXT_V1"
+        and pbk16_international_meta.get("version") == "PBK_STAGE80_PBK16_INTERNATIONAL_WINDOW_CONTEXT_V2"
         and pbk16_international_meta.get("status") == "OK"
         and int(pbk16_international_meta.get("source_domestic_rows") or 0) == len(pbk16_domestic_fixture_rows)
         and int(pbk16_international_meta.get("output_rows") or 0) == len(pbk16_international_valid)
@@ -1074,6 +1075,7 @@ def build_report(ops=OPS, archive_dir=None):
         and int(pbk16_international_meta.get("domestic_anchor_league_ids") or 0) == 16
         and int(pbk16_international_meta.get("calendar_windows") or 0) == 39
         and int(pbk16_international_meta.get("calendar_sources") or 0) == 5
+        and pbk16_international_meta.get("window_reference_contract") == "NEAREST_WINDOW_RELATION_GATED_V2"
         and pbk16_international_meta.get("player_level_international_status") == "UNVERIFIED"
         and pbk16_international_meta.get("player_level_callup_inference") is False
         and pbk16_international_meta.get("player_level_travel_inference") is False
@@ -2208,6 +2210,7 @@ def build_report(ops=OPS, archive_dir=None):
             "duplicate_domestic_fixture_ids": pbk16_international_duplicate_ids,
             "calendar_windows": int(pbk16_international_meta.get("calendar_windows") or 0) if pbk16_international_meta_valid else None,
             "calendar_sources": int(pbk16_international_meta.get("calendar_sources") or 0) if pbk16_international_meta_valid else None,
+            "window_reference_contract": pbk16_international_meta.get("window_reference_contract") if pbk16_international_meta_valid else None,
             "within_72h_before_rows": int(pbk16_international_meta.get("within_72h_before_rows") or 0) if pbk16_international_meta_valid else None,
             "within_96h_before_rows": int(pbk16_international_meta.get("within_96h_before_rows") or 0) if pbk16_international_meta_valid else None,
             "within_72h_after_rows": int(pbk16_international_meta.get("within_72h_after_rows") or 0) if pbk16_international_meta_valid else None,
