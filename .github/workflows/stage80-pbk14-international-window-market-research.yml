@@ -1,0 +1,160 @@
+name: Stage 80 PBK14 International Window Market Research
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['Stage 80 PBK14 International Window Market Join']
+    types: [completed]
+  pull_request:
+    paths:
+      - 'scripts/stage80_pbk14_international_window_market_research.py'
+      - 'scripts/tests/test_stage80_pbk14_international_window_market_research.py'
+      - '.github/workflows/stage80-pbk14-international-window-market-research.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/stage80_pbk14_international_window_market_research.py'
+      - 'scripts/tests/test_stage80_pbk14_international_window_market_research.py'
+      - '.github/workflows/stage80-pbk14-international-window-market-research.yml'
+      - 'ops/pbk14_international_window_market_join_research.csv'
+      - 'ops/stage80_pbk14_international_window_market_join_last_run.json'
+      - 'ops/pbk14_international_window_market_factor_research.csv'
+      - 'ops/pbk14_international_window_market_factor_stability_research.csv'
+      - 'ops/stage80_pbk14_international_window_market_research_last_run.json'
+
+concurrency:
+  group: stage80-pbk14-international-window-market-research-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and provider-free tests
+        run: |
+          python -m py_compile scripts/stage80_pbk14_international_window_market_research.py
+          python -m unittest scripts.tests.test_stage80_pbk14_international_window_market_research -v
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated international-window research outputs are forbidden in the feature PR.' >&2
+            exit 1
+          fi
+
+  build:
+    needs: validate
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build descriptive international-window market research
+        run: |
+          mkdir -p research
+          python scripts/stage80_pbk14_international_window_market_research.py \
+            --source ops/pbk14_international_window_market_join_research.csv \
+            --out-csv research/pbk14_international_window_market_factor_research.csv \
+            --stability-out research/pbk14_international_window_market_factor_stability_research.csv \
+            --meta-out research/stage80_pbk14_international_window_market_research_meta.json
+      - name: Verify research governance and coverage
+        run: |
+          python - <<'PY'
+          import csv, json
+          join=json.load(open('ops/stage80_pbk14_international_window_market_join_last_run.json',encoding='utf-8'))
+          meta=json.load(open('research/stage80_pbk14_international_window_market_research_meta.json',encoding='utf-8'))
+          assert meta['source_rows']==join['joined_rows'], (meta,join)
+          assert meta['valid_research_rows']==join['joined_rows'], (meta,join)
+          assert meta['invalid_governance_or_result_rows']==0, meta
+          assert set(meta['factor_names'])=={
+              'WINDOW_RELATION','BEFORE_WINDOW_BAND','AFTER_WINDOW_BAND',
+              'FIRST_DOMESTIC_AFTER_WINDOW_SIDE','WINDOW_MAX_MATCHES',
+          }, meta
+          assert meta['closing_1x2_matches']==join['closing_1x2_matches'], (meta,join)
+          assert meta['closing_total25_matches']==join['closing_total25_matches'], (meta,join)
+          assert meta['window_reference_contract']=='NEAREST_WINDOW_RELATION_GATED_V2', meta
+          assert meta['player_level_international_status']=='UNVERIFIED', meta
+          assert meta['player_callup_inferred'] is False, meta
+          assert meta['player_travel_inferred'] is False, meta
+          assert meta['player_appearance_inferred'] is False, meta
+          assert meta['market_novig_is_pbk_probability'] is False, meta
+          assert meta['calendar_level_only'] is True, meta
+          assert meta['no_match_result_dependency'] is True, meta
+          assert meta['no_lookahead'] is True, meta
+          assert meta['provider_calls']==0, meta
+          assert meta['research_only'] is True, meta
+          assert meta['operational_betting_authority'] is False, meta
+          assert meta['creates_signal'] is False, meta
+          assert meta['promotes_factor'] is False, meta
+          assert meta['probability_mutation'] is False, meta
+          assert meta['eligibility_mutation'] is False, meta
+          assert meta['stake_changes'] is False, meta
+          assert meta['forward_journal_mutation'] is False, meta
+          with open('research/pbk14_international_window_market_factor_research.csv',encoding='utf-8-sig',newline='') as f:
+              profiles=list(csv.DictReader(f))
+          with open('research/pbk14_international_window_market_factor_stability_research.csv',encoding='utf-8-sig',newline='') as f:
+              stability=list(csv.DictReader(f))
+          assert profiles, meta
+          assert stability, meta
+          assert all(x['promotes_factor']=='false' for x in profiles), 'profile promotion leak'
+          assert all(x['operational_betting_authority']=='false' for x in profiles), 'profile authority leak'
+          assert all(x['promotes_factor']=='false' for x in stability), 'stability promotion leak'
+          print({
+            'source_rows':meta['source_rows'],
+            'profiles':meta['factor_profile_rows'],
+            'stability':meta['stability_rows'],
+            'closing_1x2':meta['closing_1x2_matches'],
+            'closing_total25':meta['closing_total25_matches'],
+          })
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pbk14-international-window-market-research
+          path: research/
+          retention-days: 90
+
+  publish:
+    needs: build
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+      - uses: actions/download-artifact@v4
+        with:
+          name: pbk14-international-window-market-research
+          path: research
+      - name: Publish descriptive research
+        shell: bash
+        run: |
+          cp research/pbk14_international_window_market_factor_research.csv ops/pbk14_international_window_market_factor_research.csv
+          cp research/pbk14_international_window_market_factor_stability_research.csv ops/pbk14_international_window_market_factor_stability_research.csv
+          cp research/stage80_pbk14_international_window_market_research_meta.json ops/stage80_pbk14_international_window_market_research_last_run.json
+          git config user.name 'stage80-pbk14-international-window-research-bot'
+          git config user.email 'stage80-pbk14-international-window-research-bot@users.noreply.github.com'
+          git add ops/pbk14_international_window_market_factor_research.csv
+          git add ops/pbk14_international_window_market_factor_stability_research.csv
+          git add ops/stage80_pbk14_international_window_market_research_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 PBK14 international-window market research update'
+          python scripts/publish_operational_commit.py
