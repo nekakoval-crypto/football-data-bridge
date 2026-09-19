@@ -1,16 +1,16 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-19T06:28:20Z",
+  "run_at_utc": "2026-09-19T08:25:18Z",
   "status": "ATTENTION",
   "provider_endpoint": "/players/squads",
   "provider_calls": 0,
-  "daily_api_calls": 270,
+  "daily_api_calls": 750,
   "protected_calls": {
     "live": 40,
-    "current_round": 96,
+    "current_round": 64,
     "standings": 16,
     "safety": 8,
-    "total": 160
+    "total": 128
   },
   "roster_ttl_days": 7,
   "candidate_teams": 8,
