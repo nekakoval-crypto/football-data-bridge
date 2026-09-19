@@ -24,11 +24,6 @@ import re
 from datetime import datetime, timezone
 from pathlib import Path
 
-try:
-    from api_football_broker import ApiFootballBroker
-except ImportError:  # pragma: no cover
-    from scripts.api_football_broker import ApiFootballBroker
-
 VERSION="PBK_STAGE80_INTERNATIONAL_DUTY_PROVIDER_CATALOG_V1"
 DEFAULT_START=2017
 DEFAULT_END=2026
@@ -213,7 +208,12 @@ def normalize_payload(payload,start_year=DEFAULT_START,end_year=DEFAULT_END):
 
 
 def run(out_csv,meta_out,start_year=DEFAULT_START,end_year=DEFAULT_END,broker=None):
-    broker=broker or ApiFootballBroker(max_real_calls=1,default_ttl_seconds=24*3600)
+    if broker is None:
+        # Lazy import keeps provider-free unit tests independent from the
+        # broker's script-style import path. Real execution is via
+        # `python scripts/...py`, where the shared broker imports normally.
+        from api_football_broker import ApiFootballBroker
+        broker=ApiFootballBroker(max_real_calls=1,default_ttl_seconds=24*3600)
     payload=broker.get("/leagues",{},ttl_seconds=24*3600,force_refresh=True)
     rows,diag=normalize_payload(payload,start_year,end_year)
     stats=broker.stats()
