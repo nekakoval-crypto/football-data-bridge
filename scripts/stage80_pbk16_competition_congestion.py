@@ -171,7 +171,7 @@ def compact_name(value):
 
 
 def encode_seasons(values):
-    return "|".join(str(int(x)) for x in sorted({int(v) for v in values for x in [v]}))
+    return "|".join(str(x) for x in sorted({int(v) for v in values}))
 
 
 def decode_seasons(value):
