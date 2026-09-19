@@ -1,7 +1,7 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 19.09.2026 04:00 (Europe/Berlin)
-Canonical: 4 | active WATCH crossings: 23 | RED: 0 | ORANGE: 23
+Обновлено: 19.09.2026 05:00 (Europe/Berlin)
+Canonical: 4 | active WATCH crossings: 24 | RED: 0 | ORANGE: 24
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
 
@@ -24,6 +24,7 @@ Canonical: 4 | active WATCH crossings: 23 | RED: 0 | ORANGE: 23
 - **Celta Vigo — Racing Santander** | Stage63 | ОЗ — Да | 19.09 18:30 | prospective движение ОЗ ≥3 п.п. | 1.59 @ Marathonbet
 - **Angers — Estac Troyes** | Stage63 | ОЗ — Да | 19.09 20:45 | prospective движение ОЗ ≥3 п.п. | 1.75 @ Marathonbet
 - **Toulouse — Le Havre** | Stage63 | ОЗ — Да | 19.09 20:45 | prospective движение ОЗ ≥3 п.п. | 1.66 @ Marathonbet
+- **Le Mans — Lorient** | Stage63 | ОЗ — Да | 19.09 20:45 | prospective движение ОЗ ≥3 п.п. | 1.59 @ Marathonbet
 - **Sevilla — Barcelona** | Stage63 | ОЗ — Нет | 19.09 21:00 | prospective движение ОЗ ≥3 п.п. | 2.0 @ Marathonbet
 - **Sevilla — Barcelona** | Stage63 | ОЗ — Да | 19.09 21:00 | prospective движение ОЗ ≥3 п.п. | 1.61 @ Marathonbet
 - **Fiorentina — Napoli** | Stage63 | ОЗ — Да | 20.09 12:30 | prospective движение ОЗ ≥3 п.п. | 1.67 @ Marathonbet
@@ -55,6 +56,7 @@ Canonical: 4 | active WATCH crossings: 23 | RED: 0 | ORANGE: 23
 - **Stage63 | Celta Vigo — Racing Santander** | ОЗ — Да | 19.09 18:30 | 1.59 @ Marathonbet
 - **Stage63 | Angers — Estac Troyes** | ОЗ — Да | 19.09 20:45 | 1.75 @ Marathonbet
 - **Stage63 | Toulouse — Le Havre** | ОЗ — Да | 19.09 20:45 | 1.66 @ Marathonbet
+- **Stage63 | Le Mans — Lorient** | ОЗ — Да | 19.09 20:45 | 1.59 @ Marathonbet
 - **Stage63 | Sevilla — Barcelona** | ОЗ — Нет | 19.09 21:00 | 2.0 @ Marathonbet
 - **Stage63 | Sevilla — Barcelona** | ОЗ — Да | 19.09 21:00 | 1.61 @ Marathonbet
 - **Stage63 | Fiorentina — Napoli** | ОЗ — Да | 20.09 12:30 | 1.67 @ Marathonbet
@@ -1696,7 +1698,7 @@ Canonical: 4 | active WATCH crossings: 23 | RED: 0 | ORANGE: 23
   - Тотал 2.5 — нет данных
 
 - **Le Mans — Lorient** | Ligue 1 | 19.09 18:45 UTC
-  - ОЗ · ОЗ Да: 1.62 | ОЗ Нет: 2.2 @ Bet365
+  - ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Bet365
   - ОЗ · ОЗ Да: 1.59 | ОЗ Нет: 2.21 @ Marathonbet
   - Ф(0) · Ф1(0): 1.98 | Ф2(0): 1.88 @ Bet365
   - Ф(0) · Ф1(0): 1.95 | Ф2(0): 1.87 @ Marathonbet
@@ -3702,7 +3704,7 @@ Canonical: 4 | active WATCH crossings: 23 | RED: 0 | ORANGE: 23
 
 - **AC Milan — Lecce** | Serie A | 20.09 18:45 UTC
   - ОЗ · ОЗ Да: 2.2 | ОЗ Нет: 1.62 @ Bet365
-  - ОЗ · ОЗ Да: 2.16 | ОЗ Нет: 1.62 @ Marathonbet
+  - ОЗ · ОЗ Да: 2.17 | ОЗ Нет: 1.61 @ Marathonbet
   - Ф(0) · Ф1(0): 1.1 | Ф2(0): 6.8 @ Bet365
   - Ф(0) · Ф1(0): 1.04 | Ф2(0): 7.3 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.05 | Х2: 3.75 | 12: 1.14 @ Bet365
