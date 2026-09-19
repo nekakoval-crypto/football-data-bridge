@@ -1200,6 +1200,172 @@ def build_report(ops=OPS, archive_dir=None):
         and pbk16_congestion_meta.get("forward_journal_mutation") is False
     )
 
+    pbk16_phase_valid = [
+        row for row in pbk16_phase
+        if sval(row, "fixture_id")
+        and sval(row, "provider_league_id")
+        and sval(row, "country")
+        and sval(row, "season")
+        and sval(row, "phase_role") in {"TABLE_PHASE","POST_TABLE_PLAYOFF"}
+        and sval(row, "phase_family")
+        and sval(row, "table_result_policy") in {
+            "PLAYED_RESULT_USABLE","NOT_PLAYED_EXCLUDE",
+            "AWARDED_RESULT_REQUIRES_RULE_EVIDENCE",
+            "NOT_FOR_LEAGUE_TABLE_RECONSTRUCTION",
+        }
+        and is_true(row.get("no_lookahead"))
+        and is_true(row.get("historical_backfill_only"))
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+        and not is_true(row.get("probability_mutation"))
+        and not is_true(row.get("eligibility_mutation"))
+        and not is_true(row.get("stake_changes"))
+        and not is_true(row.get("forward_journal_mutation"))
+    ]
+    pbk16_phase_invalid = len(pbk16_phase) - len(pbk16_phase_valid)
+    pbk16_phase_ids = {sval(row,"fixture_id") for row in pbk16_phase_valid}
+    pbk16_phase_duplicate_ids = len(pbk16_phase_valid) - len(pbk16_phase_ids)
+    pbk16_phase_meta_valid = bool(
+        pbk16_phase_meta
+        and not pbk16_phase_meta.get("_invalid_json")
+        and pbk16_phase_meta.get("version") == "PBK_STAGE80_PBK16_DOMESTIC_PHASE_AUDIT_V1"
+        and pbk16_phase_meta.get("status") == "OK"
+        and int(pbk16_phase_meta.get("domestic_rows") or 0) == 40989
+        and int(pbk16_phase_meta.get("unique_domestic_fixture_ids") or 0) == 40989
+        and int(pbk16_phase_meta.get("captured_league_season_cells") or 0) == 143
+        and int(pbk16_phase_meta.get("requested_league_season_cells") or 0) == 144
+        and (pbk16_phase_meta.get("phase_role_counts") or {}) == {
+            "POST_TABLE_PLAYOFF":258,"TABLE_PHASE":40731
+        }
+        and int(pbk16_phase_meta.get("unknown_phase_rows") or 0) == 0
+        and int(pbk16_phase_meta.get("unsupported_table_status_rows") or 0) == 0
+        and int(pbk16_phase_meta.get("table_phase_rows_requiring_season_format_contract") or 0) == 1747
+        and pbk16_phase_meta.get("points_transform_applied") is False
+        and pbk16_phase_meta.get("standings_reconstructed") is False
+        and pbk16_phase_meta.get("no_lookahead") is True
+        and int(pbk16_phase_meta.get("provider_calls") or 0) == 0
+        and pbk16_phase_meta.get("research_only") is True
+        and pbk16_phase_meta.get("operational_betting_authority") is False
+    )
+
+    pbk16_format_valid = [
+        row for row in pbk16_format_inventory
+        if sval(row,"country")
+        and sval(row,"season")
+        and sval(row,"structure_class") in {
+            "BALANCED_SINGLE_TABLE_CANDIDATE",
+            "NEAR_BALANCED_SINGLE_TABLE_CANDIDATE",
+            "PHASED_OR_SPLIT_CANDIDATE",
+            "UNBALANCED_OR_EXCEPTION_CANDIDATE",
+            "UNAVAILABLE_PROVIDER_SEASON",
+            "AVAILABLE_BUT_ARCHIVE_EMPTY",
+        }
+        and sval(row,"exact_motivation_contract_status") == "UNVERIFIED"
+        and is_true(row.get("inventory_only"))
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+    ]
+    pbk16_format_invalid = len(pbk16_format_inventory) - len(pbk16_format_valid)
+    pbk16_format_cells = {
+        (sval(row,"country"),sval(row,"season")) for row in pbk16_format_valid
+    }
+    pbk16_format_duplicate_cells = len(pbk16_format_valid) - len(pbk16_format_cells)
+    pbk16_format_meta_valid = bool(
+        pbk16_format_meta
+        and not pbk16_format_meta.get("_invalid_json")
+        and pbk16_format_meta.get("version") == "PBK_STAGE80_PBK16_FORMAT_INVENTORY_V1"
+        and pbk16_format_meta.get("status") == "OK"
+        and int(pbk16_format_meta.get("locked_leagues") or 0) == 16
+        and int(pbk16_format_meta.get("historical_seasons") or 0) == 9
+        and int(pbk16_format_meta.get("expected_cells") or 0) == 144
+        and int(pbk16_format_meta.get("output_cells") or 0) == 144
+        and int(pbk16_format_meta.get("captured_cells") or 0) == 143
+        and int(pbk16_format_meta.get("unavailable_provider_season_cells") or 0) == 1
+        and int(pbk16_format_meta.get("domestic_archive_rows") or 0) == 40989
+        and int(pbk16_format_meta.get("duplicate_fixture_ids") or 0) == 0
+        and int(pbk16_format_meta.get("exact_motivation_contract_verified_cells") or 0) == 0
+        and int(pbk16_format_meta.get("provider_calls") or 0) == 0
+        and pbk16_format_meta.get("research_only") is True
+        and pbk16_format_meta.get("operational_betting_authority") is False
+    )
+
+    allowed_pbk16_table_statuses = {
+        "VALID_REGULAR_RESULTS_DERIVED",
+        "VALID_PREMATCH_AWARDED_RESULT_WILL_TAINT",
+        "VALID_PREMATCH_NOT_PLAYED_NO_STATE_MUTATION",
+        "BLOCKED_PRIOR_AWARDED_RESULT_UNRESOLVED",
+        "BLOCKED_TABLE_PHASE_REQUIRES_SEASON_FORMAT_CONTRACT",
+        "BLOCKED_AFTER_UNMODELED_TABLE_PHASE",
+        "POST_TABLE_PLAYOFF_EXCLUDED_FROM_TABLE",
+    }
+    pbk16_table_valid = [
+        row for row in pbk16_table
+        if sval(row,"domestic_fixture_id")
+        and sval(row,"provider_league_id")
+        and sval(row,"country")
+        and sval(row,"season")
+        and sval(row,"phase_role") in {"TABLE_PHASE","POST_TABLE_PLAYOFF"}
+        and sval(row,"context_status") in allowed_pbk16_table_statuses
+        and sval(row,"phase_audit_contract") == "PBK16_2017_2025_PROVIDER_ROUND_LABELS_V1"
+        and sval(row,"rank_tiebreak_contract") == "POINTS_GD_GF_TEAMNAME_RESEARCH_APPROX_V1"
+        and sval(row,"official_table_equivalence") == "false"
+        and sval(row,"exact_title_relegation_motivation_allowed") == "false"
+        and sval(row,"europe_status") == "UNKNOWN_BY_DESIGN"
+        and is_true(row.get("same_day_results_excluded"))
+        and is_true(row.get("no_lookahead"))
+        and is_true(row.get("historical_backfill_only"))
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+        and not is_true(row.get("probability_mutation"))
+        and not is_true(row.get("eligibility_mutation"))
+        and not is_true(row.get("stake_changes"))
+        and not is_true(row.get("forward_journal_mutation"))
+    ]
+    pbk16_table_invalid = len(pbk16_table) - len(pbk16_table_valid)
+    pbk16_table_ids = {
+        sval(row,"domestic_fixture_id") for row in pbk16_table_valid
+    }
+    pbk16_table_duplicate_ids = len(pbk16_table_valid) - len(pbk16_table_ids)
+    pbk16_table_meta_valid = bool(
+        pbk16_table_meta
+        and not pbk16_table_meta.get("_invalid_json")
+        and pbk16_table_meta.get("version") == "PBK_STAGE80_PBK16_HISTORICAL_TABLE_CONTEXT_V2"
+        and pbk16_table_meta.get("status") == "OK"
+        and int(pbk16_table_meta.get("source_domestic_rows") or 0) == 40989
+        and int(pbk16_table_meta.get("output_rows") or 0) == 40989
+        and int(pbk16_table_meta.get("unique_domestic_fixture_ids") or 0) == 40989
+        and int(pbk16_table_meta.get("duplicate_domestic_fixture_ids") or 0) == 0
+        and int(pbk16_table_meta.get("audit_rows") or 0) == 40989
+        and int(pbk16_table_meta.get("audit_unique_fixture_ids") or 0) == 40989
+        and int(pbk16_table_meta.get("audit_duplicate_fixture_ids") or 0) == 0
+        and int(pbk16_table_meta.get("audit_invalid_rows") or 0) == 0
+        and int(pbk16_table_meta.get("source_without_phase_audit") or 0) == 0
+        and int(pbk16_table_meta.get("phase_audit_without_source") or 0) == 0
+        and int(pbk16_table_meta.get("domestic_league_ids") or 0) == 16
+        and int(pbk16_table_meta.get("countries") or 0) == 16
+        and int(pbk16_table_meta.get("captured_league_season_cells") or 0) == 143
+        and (pbk16_table_meta.get("phase_role_counts") or {}) == {
+            "POST_TABLE_PLAYOFF":258,"TABLE_PHASE":40731
+        }
+        and int(pbk16_table_meta.get("safe_regular_prematch_rows") or 0) > 0
+        and int(pbk16_table_meta.get("safe_regular_rows_with_full_table") or 0) > 0
+        and int(pbk16_table_meta.get("blocked_table_phase_rows") or 0) >= 1747
+        and int(pbk16_table_meta.get("post_table_playoff_rows") or 0) == 258
+        and pbk16_table_meta.get("phase_audit_contract") == "PBK16_2017_2025_PROVIDER_ROUND_LABELS_V1"
+        and pbk16_table_meta.get("rank_tiebreak_contract") == "POINTS_GD_GF_TEAMNAME_RESEARCH_APPROX_V1"
+        and pbk16_table_meta.get("official_table_equivalence") is False
+        and pbk16_table_meta.get("exact_title_relegation_motivation_allowed") is False
+        and pbk16_table_meta.get("europe_status") == "UNKNOWN_BY_DESIGN"
+        and pbk16_table_meta.get("same_day_results_excluded") is True
+        and pbk16_table_meta.get("no_lookahead") is True
+        and int(pbk16_table_meta.get("provider_calls") or 0) == 0
+        and pbk16_table_meta.get("research_only") is True
+        and pbk16_table_meta.get("operational_betting_authority") is False
+    )
+
     pbk16_international = data["pbk16_international_window_context"] or []
     pbk16_international_valid = [
         row for row in pbk16_international
