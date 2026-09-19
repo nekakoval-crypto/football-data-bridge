@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V31_TOP5_HISTORICAL_MOTIVATION"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V32_TOP5_MOTIVATION_MARKET_RESEARCH"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -52,6 +52,8 @@ SOURCES = {
     "top5_referee_state": "stage80_top5_referee_backfill_state.csv",
     "prematch_context": "top5_prematch_context_research.csv",
     "historical_motivation": "top5_historical_motivation_research.csv",
+    "motivation_market_profiles": "top5_motivation_market_factor_research.csv",
+    "motivation_market_stability": "top5_motivation_market_factor_stability_research.csv",
     "prematch_factor_research": "top5_prematch_factor_research.csv",
     "prematch_factor_stability": "top5_prematch_factor_stability_research.csv",
     "prematch_walkforward": "top5_prematch_factor_walkforward_research.csv",
@@ -230,6 +232,7 @@ def build_report(ops=OPS, archive_dir=None):
     top5_referee_meta = read_json(Path(ops) / "stage80_top5_referee_backfill_last_run.json")
     prematch_context_meta = read_json(Path(ops) / "stage80_prematch_context_last_run.json")
     historical_motivation_meta = read_json(Path(ops) / "stage80_top5_historical_motivation_last_run.json")
+    motivation_market_meta = read_json(Path(ops) / "stage80_top5_motivation_market_research_last_run.json")
     prematch_factor_meta = read_json(Path(ops) / "stage80_prematch_factor_research_last_run.json")
     prematch_walkforward_meta = read_json(Path(ops) / "stage80_prematch_factor_walkforward_last_run.json")
     pbk16_competition_meta = read_json(Path(ops) / "stage80_pbk16_competition_backfill_last_run.json")
@@ -419,6 +422,8 @@ def build_report(ops=OPS, archive_dir=None):
     top5_referee_state = data["top5_referee_state"] or []
     prematch_context = data["prematch_context"] or []
     historical_motivation = data["historical_motivation"] or []
+    motivation_market_profiles = data["motivation_market_profiles"] or []
+    motivation_market_stability = data["motivation_market_stability"] or []
     prematch_factor_research = data["prematch_factor_research"] or []
     prematch_factor_stability = data["prematch_factor_stability"] or []
     prematch_walkforward = data["prematch_walkforward"] or []
@@ -851,6 +856,78 @@ def build_report(ops=OPS, archive_dir=None):
         and historical_motivation_meta.get("eligibility_mutation") is False
         and historical_motivation_meta.get("stake_changes") is False
         and historical_motivation_meta.get("forward_journal_mutation") is False
+    )
+
+    expected_motivation_market_factors = [
+        "PRESSURE_ASYMMETRY","HIGH_PRESSURE_SIDE","MEDIUM_HIGH_PRESSURE_SIDE",
+        "LATE_TITLE_NEAR_3_SIDE","LATE_TITLE_NEAR_6_SIDE",
+        "LATE_SURVIVAL_DANGER_SIDE","LATE_SURVIVAL_WITHIN_3_SIDE",
+        "LATE_SURVIVAL_WITHIN_6_SIDE","DRAW_TITLE_PATH_SIDE","DRAW_SAFE_PATH_SIDE",
+    ]
+    motivation_market_profiles_valid = [
+        row for row in motivation_market_profiles
+        if sval(row, "factor") in expected_motivation_market_factors
+        and sval(row, "bucket")
+        and sval(row, "scope_type") in {"ALL","LEAGUE","SEASON","LEAGUE_SEASON"}
+        and sval(row, "scope_value")
+        and fnum(row.get("matches")) is not None
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+        and not is_true(row.get("probability_mutation"))
+        and not is_true(row.get("eligibility_mutation"))
+        and not is_true(row.get("stake_changes"))
+        and not is_true(row.get("forward_journal_mutation"))
+    ]
+    motivation_market_profiles_invalid = (
+        len(motivation_market_profiles) - len(motivation_market_profiles_valid)
+    )
+    motivation_market_stability_valid = [
+        row for row in motivation_market_stability
+        if sval(row, "factor") in expected_motivation_market_factors
+        and sval(row, "bucket")
+        and sval(row, "scope_type") in {"ALL","LEAGUE"}
+        and sval(row, "scope_value")
+        and fnum(row.get("seasons_with_matches")) is not None
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+    ]
+    motivation_market_stability_invalid = (
+        len(motivation_market_stability) - len(motivation_market_stability_valid)
+    )
+    motivation_market_meta_valid = bool(
+        motivation_market_meta
+        and not motivation_market_meta.get("_invalid_json")
+        and motivation_market_meta.get("version") == "PBK_STAGE80_TOP5_MOTIVATION_MARKET_RESEARCH_V1"
+        and motivation_market_meta.get("status") == "OK"
+        and int(motivation_market_meta.get("source_rows") or 0) == 16111
+        and int(motivation_market_meta.get("context_rows") or 0) == 16111
+        and int(motivation_market_meta.get("source_unique_ids") or 0) == 16111
+        and int(motivation_market_meta.get("context_unique_ids") or 0) == 16111
+        and int(motivation_market_meta.get("joined_rows") or 0) == 16111
+        and int(motivation_market_meta.get("invalid_context_governance_rows") or 0) == 0
+        and int(motivation_market_meta.get("source_without_context") or 0) == 0
+        and int(motivation_market_meta.get("context_without_source") or 0) == 0
+        and list(motivation_market_meta.get("factor_names") or []) == expected_motivation_market_factors
+        and int(motivation_market_meta.get("factor_profile_rows") or 0) == len(motivation_market_profiles_valid)
+        and int(motivation_market_meta.get("season_stability_rows") or 0) == len(motivation_market_stability_valid)
+        and int(motivation_market_meta.get("closing_1x2_matches") or 0) > 0
+        and int(motivation_market_meta.get("closing_total25_matches") or 0) > 0
+        and motivation_market_meta.get("motivation_contract") == "TOP5_HISTORICAL_MOTIVATION_V1_NO_LOOKAHEAD"
+        and motivation_market_meta.get("rank_tiebreak_contract") == "POINTS_GD_GF_TEAMNAME_RESEARCH_APPROX_V1"
+        and motivation_market_meta.get("europe_status") == "UNKNOWN_BY_DESIGN"
+        and motivation_market_meta.get("generic_must_win_created") is False
+        and motivation_market_meta.get("unmotivated_label_created") is False
+        and int(motivation_market_meta.get("provider_calls") or 0) == 0
+        and motivation_market_meta.get("research_only") is True
+        and motivation_market_meta.get("operational_betting_authority") is False
+        and motivation_market_meta.get("creates_signal") is False
+        and motivation_market_meta.get("promotes_factor") is False
+        and motivation_market_meta.get("probability_mutation") is False
+        and motivation_market_meta.get("eligibility_mutation") is False
+        and motivation_market_meta.get("stake_changes") is False
+        and motivation_market_meta.get("forward_journal_mutation") is False
     )
 
     expected_factor_names = [
@@ -1841,6 +1918,20 @@ def build_report(ops=OPS, archive_dir=None):
     ):
         gaps.append("TOP5_HISTORICAL_MOTIVATION_INVALID_OR_INCOMPLETE")
     if (
+        data["motivation_market_profiles"] is None
+        or data["motivation_market_stability"] is None
+        or motivation_market_meta is None
+    ):
+        gaps.append("TOP5_MOTIVATION_MARKET_RESEARCH_NOT_MATERIALIZED")
+    elif (
+        not motivation_market_meta_valid
+        or motivation_market_profiles_invalid
+        or motivation_market_stability_invalid
+        or not motivation_market_profiles_valid
+        or not motivation_market_stability_valid
+    ):
+        gaps.append("TOP5_MOTIVATION_MARKET_RESEARCH_INVALID_OR_INCOMPLETE")
+    if (
         data["prematch_factor_research"] is None
         or data["prematch_factor_stability"] is None
         or prematch_factor_meta is None
@@ -2337,6 +2428,26 @@ def build_report(ops=OPS, archive_dir=None):
             "operational_betting_authority": False,
             "evidence_note": "Deterministic Top-5 historical title/relegation/remaining-match context. Europe is UNKNOWN_BY_DESIGN, tied safety boundaries remain ambiguous, and no generic MUST_WIN or unmotivated label is created.",
         },
+        "top5_motivation_market_research": {
+            "profiles_present": data["motivation_market_profiles"] is not None,
+            "stability_present": data["motivation_market_stability"] is not None,
+            "meta_present": motivation_market_meta is not None,
+            "meta_valid": motivation_market_meta_valid,
+            "profile_rows": len(motivation_market_profiles),
+            "valid_profile_rows": len(motivation_market_profiles_valid),
+            "invalid_profile_rows": motivation_market_profiles_invalid,
+            "stability_rows": len(motivation_market_stability),
+            "valid_stability_rows": len(motivation_market_stability_valid),
+            "invalid_stability_rows": motivation_market_stability_invalid,
+            "factor_names": expected_motivation_market_factors,
+            "closing_1x2_matches": int(motivation_market_meta.get("closing_1x2_matches") or 0) if motivation_market_meta_valid else None,
+            "closing_total25_matches": int(motivation_market_meta.get("closing_total25_matches") or 0) if motivation_market_meta_valid else None,
+            "europe_status": motivation_market_meta.get("europe_status") if motivation_market_meta_valid else None,
+            "market_probability_semantics": "Historical closing-market no-vig benchmark only; never PBK probability.",
+            "operational_betting_authority": False,
+            "promotes_factor": False,
+            "evidence_note": "Descriptive Top-5 title/survival motivation research only. Europe remains UNKNOWN_BY_DESIGN and generic MUST_WIN/unmotivated labels are forbidden.",
+        },
         "prematch_factor_research": {
             "profiles_present": data["prematch_factor_research"] is not None,
             "stability_present": data["prematch_factor_stability"] is not None,
@@ -2631,6 +2742,7 @@ def render_markdown(report):
     referee_top5 = report["referee_top5_backfill"]
     prematch = report["prematch_context_research"]
     motivation = report["top5_historical_motivation_research"]
+    motivation_market = report["top5_motivation_market_research"]
     prematch_factor = report["prematch_factor_research"]
     prematch_walkforward = report["prematch_factor_walkforward"]
     pbk14_market = report["pbk14_historical_market_bridge"]
@@ -2680,6 +2792,7 @@ def render_markdown(report):
         f"- Top-5 API-Football referee backfill: {referee_top5['captured_league_seasons']} / {referee_top5['expected_league_seasons']} league-seasons; {referee_top5['valid_fixture_rows']} fixture rows; referee coverage {referee_top5['referee_coverage_pct'] if referee_top5['referee_coverage_pct'] is not None else '—'}%; profiles {referee_top5['valid_profile_rows']}; referee×team pairs {referee_top5['valid_team_split_rows']}.",
         f"- Top-5 pre-match research context: {prematch['valid_rows']} valid rows / {prematch['unique_historical_match_ids']} unique matches / {prematch['league_seasons']} of {prematch['expected_league_seasons']} league-seasons; no-lookahead {prematch['no_lookahead']}.",
         f"- Top-5 historical motivation context: {motivation['valid_rows']} valid rows / {motivation['unique_historical_match_ids']} unique matches / {motivation['league_seasons']} of {motivation['expected_league_seasons']} league-seasons; full-table rows {motivation['rows_with_full_table']}; boundary-tie rows {motivation['rows_with_boundary_points_tie']}; Europe {motivation['europe_status'] or '—'}; no-lookahead {motivation['no_lookahead']}.",
+        f"- Top-5 motivation × market research: {motivation_market['valid_profile_rows']} profiles / {motivation_market['valid_stability_rows']} stability rows; closing 1X2 {motivation_market['closing_1x2_matches'] if motivation_market['closing_1x2_matches'] is not None else '—'}; closing O/U2.5 {motivation_market['closing_total25_matches'] if motivation_market['closing_total25_matches'] is not None else '—'}; promotes factor {motivation_market['promotes_factor']}.",
         f"- Pre-match factor research: {prematch_factor['valid_profile_rows']} profile rows / {prematch_factor['valid_stability_rows']} stability rows; closing 1X2 matches {prematch_factor['closing_1x2_matches'] if prematch_factor['closing_1x2_matches'] is not None else '—'}; closing O/U2.5 matches {prematch_factor['closing_total25_matches'] if prematch_factor['closing_total25_matches'] is not None else '—'}.",
         f"- Pre-match walk-forward research: {prematch_walkforward['valid_fold_rows']} folds / {prematch_walkforward['valid_summary_rows']} summaries; sample-qualified folds {prematch_walkforward['sample_threshold_pass_folds'] if prematch_walkforward['sample_threshold_pass_folds'] is not None else '—'}; promotes factor {prematch_walkforward['promotes_factor']}.",
         f"- Match context: {c['unique_fixtures']} fixtures; official XI {c['fixtures_with_official_lineup_snapshot']}; injury evidence {c['fixtures_with_injury_evidence']}.",
@@ -2744,6 +2857,8 @@ def main():
         "historical_motivation_rows": report["top5_historical_motivation_research"]["valid_rows"],
         "historical_motivation_full_table_rows": report["top5_historical_motivation_research"]["rows_with_full_table"],
         "historical_motivation_boundary_tie_rows": report["top5_historical_motivation_research"]["rows_with_boundary_points_tie"],
+        "motivation_market_profile_rows": report["top5_motivation_market_research"]["valid_profile_rows"],
+        "motivation_market_stability_rows": report["top5_motivation_market_research"]["valid_stability_rows"],
         "prematch_factor_profile_rows": report["prematch_factor_research"]["valid_profile_rows"],
         "prematch_factor_stability_rows": report["prematch_factor_research"]["valid_stability_rows"],
         "prematch_walkforward_fold_rows": report["prematch_factor_walkforward"]["valid_fold_rows"],
