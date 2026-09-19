@@ -2172,6 +2172,36 @@ def build_report(ops=OPS, archive_dir=None):
         }
     ):
         gaps.append("PBK16_COMPETITION_CONGESTION_INVALID")
+    if data["pbk16_domestic_phase_audit"] is None or pbk16_phase_meta is None:
+        gaps.append("PBK16_DOMESTIC_PHASE_AUDIT_NOT_MATERIALIZED")
+    elif (
+        pbk16_phase_invalid
+        or pbk16_phase_duplicate_ids
+        or not pbk16_phase_meta_valid
+        or len(pbk16_phase_valid) != len(pbk16_domestic_fixture_rows)
+        or pbk16_phase_ids != {sval(row,"fixture_id") for row in pbk16_domestic_fixture_rows}
+    ):
+        gaps.append("PBK16_DOMESTIC_PHASE_AUDIT_INVALID")
+    if data["pbk16_format_inventory"] is None or pbk16_format_meta is None:
+        gaps.append("PBK16_FORMAT_INVENTORY_NOT_MATERIALIZED")
+    elif (
+        pbk16_format_invalid
+        or pbk16_format_duplicate_cells
+        or not pbk16_format_meta_valid
+        or len(pbk16_format_valid) != 144
+        or len(pbk16_format_cells) != 144
+    ):
+        gaps.append("PBK16_FORMAT_INVENTORY_INVALID")
+    if data["pbk16_historical_table_context"] is None or pbk16_table_meta is None:
+        gaps.append("PBK16_HISTORICAL_TABLE_CONTEXT_NOT_MATERIALIZED")
+    elif (
+        pbk16_table_invalid
+        or pbk16_table_duplicate_ids
+        or not pbk16_table_meta_valid
+        or len(pbk16_table_valid) != len(pbk16_domestic_fixture_rows)
+        or pbk16_table_ids != {sval(row,"fixture_id") for row in pbk16_domestic_fixture_rows}
+    ):
+        gaps.append("PBK16_HISTORICAL_TABLE_CONTEXT_INVALID")
     if data["pbk16_international_window_context"] is None or pbk16_international_meta is None:
         gaps.append("PBK16_INTERNATIONAL_WINDOW_CONTEXT_NOT_MATERIALIZED")
     elif (
