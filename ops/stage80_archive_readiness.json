@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_READINESS_V23_PBK14_NEAR_COMPLETE_BRIDGE",
-  "generated_at_utc": "2026-09-19T08:54:08Z",
+  "version": "PBK_STAGE80_ARCHIVE_READINESS_V24_PBK14_CONGESTION_MARKET_RESEARCH",
+  "generated_at_utc": "2026-09-19T09:13:11Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -193,6 +193,21 @@
       "file": "pbk14_football_data_fixture_bridge.csv",
       "present": true,
       "rows": 37674
+    },
+    "pbk14_congestion_market_join": {
+      "file": "pbk14_congestion_market_join_research.csv",
+      "present": true,
+      "rows": 37327
+    },
+    "pbk14_congestion_market_profiles": {
+      "file": "pbk14_congestion_market_factor_research.csv",
+      "present": false,
+      "rows": null
+    },
+    "pbk14_congestion_market_stability": {
+      "file": "pbk14_congestion_market_factor_stability_research.csv",
+      "present": false,
+      "rows": null
     }
   },
   "fixtures": {
@@ -585,6 +600,42 @@
     "operational_betting_authority": false,
     "evidence_note": "Conservative historical identity bridge only. AUTO/HIGH can be joined downstream; REVIEW/UNMAPPED are excluded. Lithuania and Latvia have no Football-Data market source in this contour."
   },
+  "pbk14_congestion_market_research": {
+    "join_present": true,
+    "join_meta_present": true,
+    "join_meta_valid": true,
+    "join_rows": 37327,
+    "valid_join_rows": 37327,
+    "invalid_join_rows": 0,
+    "duplicate_historical_match_ids": 0,
+    "duplicate_api_fixture_ids": 0,
+    "profile_present": false,
+    "stability_present": false,
+    "research_meta_present": false,
+    "research_meta_valid": false,
+    "profile_rows": 0,
+    "valid_profile_rows": 0,
+    "invalid_profile_rows": 0,
+    "stability_rows": 0,
+    "valid_stability_rows": 0,
+    "invalid_stability_rows": 0,
+    "closing_1x2_matches": null,
+    "closing_total25_matches": null,
+    "factor_names": [
+      "DOMESTIC_CUP_72H_SIDE",
+      "DOMESTIC_CUP_96H_SIDE",
+      "NONLEAGUE_72H_SIDE",
+      "NONLEAGUE_96H_SIDE",
+      "PREV_NONLEAGUE_THURSDAY_SIDE",
+      "THURSDAY_TO_WEEKEND_SIDE",
+      "UEFA_72H_SIDE",
+      "UEFA_96H_SIDE"
+    ],
+    "market_probability_semantics": "Historical closing-market no-vig benchmark only; never PBK probability.",
+    "operational_betting_authority": false,
+    "promotes_factor": false,
+    "evidence_note": "Descriptive competition-load research over strict AUTO/HIGH PBK14 historical market joins. No factor is promoted here; walk-forward is a separate validation step."
+  },
   "pbk16_competition_history": {
     "catalog_present": true,
     "fixture_archive_present": true,
@@ -664,6 +715,7 @@
     "PBK16_COMPETITION_PROVIDER_SEASONS_PARTIAL",
     "PBK14_HISTORICAL_MARKET_BRIDGE_PARTIAL_MAPPING",
     "PBK16_HISTORICAL_MARKET_SOURCE_LIMITED_TO_14_LEAGUES",
+    "PBK14_CONGESTION_MARKET_RESEARCH_NOT_MATERIALIZED",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
     "PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE",
     "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE"
