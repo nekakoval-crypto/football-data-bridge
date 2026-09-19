@@ -196,5 +196,28 @@ class Stage80TransferHistoryArchiveTests(unittest.TestCase):
             self.assertFalse(second["current_operational_authority"])
 
 
+    def test_international_name_profile_dob_mapping_is_safe_for_archive(self):
+        mapping=[{
+            "pbk_player_id":"1100","pbk_player_name":"Erling Haaland",
+            "transfermarkt_player_id":"418560","transfermarkt_player_name":"Erling Haaland",
+            "match_method":"EXACT_INTERNATIONAL_NAME_PROFILE_DOB",
+            "match_status":"AUTO_MATCH","match_confidence":"HIGH",
+        }]
+        mapped=[{
+            "pbk_player_id":"1100","transfermarkt_player_id":"418560",
+            "player_name":"Erling Haaland","transfer_date":"2022-07-01",
+            "transfer_season":"22/23","from_club_id":"27","from_club_name":"Dortmund",
+            "to_club_id":"281","to_club_name":"Manchester City",
+            "mapping_method":"EXACT_INTERNATIONAL_NAME_PROFILE_DOB",
+            "mapping_confidence":"HIGH",
+        }]
+        rows,rejected,invalid=normalize_mapped_rows(mapped,mapping)
+        self.assertEqual(len(rows),1)
+        self.assertEqual(rejected,0)
+        self.assertEqual(invalid,0)
+        self.assertEqual(rows[0]["mapping_method"],"EXACT_INTERNATIONAL_NAME_PROFILE_DOB")
+
+
+
 if __name__ == "__main__":
     unittest.main()
