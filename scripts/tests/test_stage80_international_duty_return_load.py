@@ -110,6 +110,41 @@ class ReturnLoadTests(unittest.TestCase):
         self.assertEqual(len(rows),1)
         self.assertEqual(audit["mapped_rows_return_beyond_14d_horizon"],0)
 
+    def test_multiple_international_events_same_window_same_return_aggregate_once(self):
+        evidence=[
+            ev("99","2025-11-15T19:45:00Z",minutes="45"),
+            ev("100","2025-11-18T19:45:00Z",minutes="90"),
+        ]
+        clubs=[club("99"),club("100")]
+        rows,audit=r.build(
+            evidence,clubs,[domestic("200","2025-11-22T15:00:00Z")]
+        )
+        self.assertEqual(len(rows),1)
+        row=rows[0]
+        self.assertEqual(row["international_fixture_id"],"100")
+        self.assertEqual(row["window_first_international_kickoff_utc"],"2025-11-15T19:45:00Z")
+        self.assertEqual(row["window_last_international_kickoff_utc"],"2025-11-18T19:45:00Z")
+        self.assertEqual(row["window_evidence_event_rows_aggregated"],"2")
+        self.assertEqual(row["window_confirmed_appearances_through_event"],"2")
+        self.assertEqual(row["window_confirmed_minutes_through_event"],"135")
+        self.assertEqual(audit["event_rows_before_window_return_aggregation"],2)
+        self.assertEqual(audit["window_return_rows_after_aggregation"],1)
+
+    def test_same_player_window_different_historical_clubs_do_not_collapse(self):
+        evidence=[
+            ev("99","2025-11-15T19:45:00Z",minutes="45"),
+            ev("100","2025-11-18T19:45:00Z",minutes="90"),
+        ]
+        c1=club("99",team="50")
+        c2=club("100",team="51")
+        archive=[
+            domestic("200","2025-11-22T15:00:00Z",home="50",away="60"),
+            domestic("201","2025-11-22T16:00:00Z",home="51",away="61"),
+        ]
+        rows,_=r.build(evidence,[c1,c2],archive)
+        self.assertEqual(len(rows),2)
+        self.assertEqual({x["pbk16_team_id"] for x in rows},{"50","51"})
+
     def test_return_thresholds(self):
         rows,_=r.build(
             [ev(kickoff="2025-11-18T12:00:00Z")],[club()],
