@@ -5,6 +5,14 @@ on:
   workflow_run:
     workflows: ['Stage 80 International Duty Player Evidence Capture']
     types: [completed]
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/stage80-international-duty-unified-convergence.yml'
+      - 'scripts/stage80_international_duty_player_identity_join.py'
+      - 'scripts/stage80_international_duty_player_temporal_club.py'
+      - 'scripts/stage80_international_duty_pbk16_club_identity.py'
+      - 'scripts/stage80_international_duty_return_load.py'
   pull_request:
     paths:
       - '.github/workflows/stage80-international-duty-unified-convergence.yml'
@@ -57,7 +65,7 @@ jobs:
 
   converge:
     needs: validate
-    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
     permissions:
       contents: write
     runs-on: ubuntu-latest
