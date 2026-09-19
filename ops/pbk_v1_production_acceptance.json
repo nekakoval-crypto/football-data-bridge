@@ -130,9 +130,9 @@
         "status": "PASS",
         "message": "no CRITICAL system-health issues",
         "evidence": {
-          "health_status": "HEALTHY",
+          "health_status": "WARN",
           "critical_issues": 0,
-          "warnings": 0
+          "warnings": 2
         }
       },
       {
@@ -160,6 +160,6 @@
   "next_actions": [
     "Wait for a <=75m pre-kickoff standings capture and downstream Stage72 motivation rebuild."
   ],
-  "evaluated_at_utc": "2026-09-19T01:33:23Z",
-  "state_fingerprint": "c1de5b94bb76d4fb1d9c23e33b2ffc83c224af25fda5479290ff3a1837e56d8a"
+  "evaluated_at_utc": "2026-09-19T04:33:26Z",
+  "state_fingerprint": "368649e849a7782e1d303380feed8576735f57ec12c0fed4965cc4905a9404d2"
 }
