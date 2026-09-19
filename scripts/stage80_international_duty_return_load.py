@@ -16,7 +16,7 @@ import csv
 import json
 import os
 from collections import Counter, defaultdict
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
@@ -34,6 +34,7 @@ EVIDENCE_VERSION = "PBK_STAGE80_INTERNATIONAL_DUTY_PLAYER_EVIDENCE_CAPTURE_V2_ST
 CLUB_VERSION = "PBK_STAGE80_INTERNATIONAL_DUTY_PBK16_CLUB_IDENTITY_V1_EXACT_ALIAS_UNIQUE"
 ARCHIVE_VERSION = "PBK_STAGE80_PBK16_ALL_COMPETITION_BACKFILL_V1"
 FINAL = {"FT", "AET", "PEN"}
+MAX_RETURN_HORIZON_HOURS = 14 * 24
 
 FIELDS = [
     "international_fixture_id","international_kickoff_utc","window_id",
@@ -148,11 +149,15 @@ def build_domestic_team_index(archive_rows):
     return by_team, invalid
 
 
-def next_played_domestic(team_rows, after_dt):
+def next_played_domestic(team_rows, after_dt, max_horizon_hours=MAX_RETURN_HORIZON_HOURS):
+    horizon = after_dt + timedelta(hours=max_horizon_hours)
     for kickoff, row in team_rows:
-        if kickoff > after_dt:
-            return kickoff, row
-    return None, None
+        if kickoff <= after_dt:
+            continue
+        if kickoff > horizon:
+            return None, None, "OUTSIDE_RETURN_HORIZON"
+        return kickoff, row, "FOUND"
+    return None, None, "NO_LATER_FIXTURE"
 
 
 def build(evidence_rows, club_rows, archive_rows):
@@ -175,6 +180,7 @@ def build(evidence_rows, club_rows, archive_rows):
     output = []
     missing_evidence = 0
     missing_return = 0
+    return_beyond_horizon = 0
 
     for club in club_rows:
         if sval(club, "pbk16_club_identity_status") != "PBK16_EXACT_ALIAS_UNIQUE":
@@ -190,9 +196,12 @@ def build(evidence_rows, club_rows, archive_rows):
             missing_evidence += 1
             continue
 
-        return_dt, fixture = next_played_domestic(domestic.get(team_id, []), intl_dt)
+        return_dt, fixture, return_status = next_played_domestic(domestic.get(team_id, []), intl_dt)
         if fixture is None:
-            missing_return += 1
+            if return_status == "OUTSIDE_RETURN_HORIZON":
+                return_beyond_horizon += 1
+            else:
+                missing_return += 1
             continue
 
         through = [
@@ -278,6 +287,7 @@ def build(evidence_rows, club_rows, archive_rows):
         "invalid_domestic_archive_rows": invalid_domestic,
         "mapped_rows_missing_direct_evidence": missing_evidence,
         "mapped_rows_without_later_played_domestic_fixture": missing_return,
+        "mapped_rows_return_beyond_14d_horizon": return_beyond_horizon,
     }
 
 
@@ -365,6 +375,8 @@ def run(evidence_path=EVIDENCE, evidence_meta_path=EVIDENCE_META,
         **audit,
         "direct_evidence_only": True,
         "played_domestic_return_fixture_only": True,
+        "max_return_horizon_hours": MAX_RETURN_HORIZON_HOURS,
+        "return_horizon_fail_closed": True,
         "nationality_used_as_duty_evidence": False,
         "formal_callup_inferred": False,
         "travel_inferred": False,
