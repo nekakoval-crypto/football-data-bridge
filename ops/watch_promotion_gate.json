@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-19T16:03:45Z",
+  "generated_at_utc": "2026-09-19T17:03:25Z",
   "status": "OK",
   "policy_locked_at": "2026-09-11",
   "families": {
@@ -9,19 +9,19 @@
         "crossings": 5,
         "user_price_rows": 5,
         "execution_coverage_pct": 100.0,
-        "settled_executable": 2,
+        "settled_executable": 3,
         "roi_pct": -100.0,
         "first_half_n": 1,
         "first_half_roi_pct": -100.0,
-        "second_half_n": 1,
+        "second_half_n": 2,
         "second_half_roi_pct": -100.0,
-        "close_observed_settled": 2,
+        "close_observed_settled": 3,
         "close_observed_coverage_pct": 100.0,
         "close_qualified_settled": 1,
         "close_qualified_roi_pct": -100.0
       },
       "blocking_reasons": [
-        "settled 2/60",
+        "settled 3/60",
         "ROI -100.0 not >0",
         "first-half ROI -100.0 not >0",
         "second-half ROI -100.0 not >0",
@@ -56,16 +56,16 @@
         "crossings": 33,
         "user_price_rows": 33,
         "execution_coverage_pct": 100.0,
-        "settled_executable": 19,
-        "roi_pct": -24.368,
-        "first_half_n": 9,
-        "first_half_roi_pct": -65.556,
-        "second_half_n": 10,
-        "second_half_roi_pct": 12.7,
-        "close_observed_settled": 19,
+        "settled_executable": 21,
+        "roi_pct": -23.095,
+        "first_half_n": 10,
+        "first_half_roi_pct": -50.9,
+        "second_half_n": 11,
+        "second_half_roi_pct": 2.182,
+        "close_observed_settled": 21,
         "close_observed_coverage_pct": 100.0,
-        "close_qualified_settled": 16,
-        "close_qualified_roi_pct": -28.75
+        "close_qualified_settled": 17,
+        "close_qualified_roi_pct": -32.941
       },
       "blocking_reasons": [
         "No historical BTTS first/close dataset; any finding needs a new preregistration and fresh holdout."
