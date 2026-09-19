@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V20_PREMATCH_WALKFORWARD",
-  "generated_at_utc": "2026-09-19T04:53:01Z",
+  "generated_at_utc": "2026-09-19T05:27:09Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -12,7 +12,7 @@
     "fixture_history": {
       "file": "fixture_history_snapshots.csv",
       "present": true,
-      "rows": 3086
+      "rows": 3215
     },
     "historical_fixtures": {
       "file": "historical_fixtures.csv",
@@ -254,10 +254,10 @@
   },
   "fixture_history": {
     "present": true,
-    "rows": 3086,
-    "valid_observations": 3086,
+    "rows": 3215,
+    "valid_observations": 3215,
     "unique_fixtures": 178,
-    "observation_runs": 24,
+    "observation_runs": 25,
     "finished_fixtures_observed": 57,
     "invalid_identity_rows": 0,
     "evidence_note": "Counts represent only Stage71 current-round observations persisted after the fixture-history archive was enabled; they are not a pre-PBK historical backfill claim."
@@ -276,8 +276,8 @@
     "orphan_catalog_fixtures": 0,
     "missing_terminal_evidence": 0,
     "orphan_terminal_evidence": 0,
-    "observation_count_total": 3086,
-    "expected_history_observations": 3086,
+    "observation_count_total": 3215,
+    "expected_history_observations": 3215,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
   },
