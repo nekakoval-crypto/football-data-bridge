@@ -9,6 +9,7 @@ on:
     paths:
       - 'scripts/stage80_pbk14_international_window_market_research.py'
       - 'scripts/tests/test_stage80_pbk14_international_window_market_research.py'
+      - 'scripts/tests/test_stage80_pbk14_international_window_market_research_manifest.py'
       - '.github/workflows/stage80-pbk14-international-window-market-research.yml'
       - 'scripts/stage80_archive_manifest.py'
       - 'scripts/stage80_archive_readiness.py'
