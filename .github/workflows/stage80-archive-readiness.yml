@@ -3,13 +3,23 @@ name: Stage 80 Archive Readiness
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ['fetch-transfermarkt-csv', 'Stage 77 Player Stats Capture', 'Stage 81 Team Match Statistics Capture', 'Stage 80 Football-Data Top5 History', 'Stage 80 Top5 Referee Backfill', 'Stage 80 PBK16 Competition Congestion']
+    workflows: ['fetch-transfermarkt-csv', 'Stage 77 Player Stats Capture', 'Stage 81 Team Match Statistics Capture', 'Stage 80 Football-Data Top5 History', 'Stage 80 Top5 Referee Backfill', 'Stage 80 PBK16 Competition Congestion', 'Stage 80 PBK14 Historical Market Bridge']
     types: [completed]
   schedule:
     - cron: '37 */6 * * *'
   pull_request:
     paths:
       - 'scripts/stage80_archive_readiness.py'
+      - 'config/stage80_football_data_pbk14_9seasons.json'
+      - 'scripts/stage80_football_data_pbk14_history.py'
+      - 'scripts/stage80_pbk14_fixture_bridge.py'
+      - 'scripts/tests/test_stage80_pbk14_market_bridge.py'
+      - 'scripts/tests/test_stage80_pbk14_market_bridge_readiness.py'
+      - 'docs/stage80_pbk14_market_bridge.md'
+      - '.github/workflows/stage80-pbk14-market-bridge.yml'
+      - 'ops/stage80_football_data_pbk14_history_last_run.json'
+      - 'ops/pbk14_football_data_fixture_bridge.csv'
+      - 'ops/stage80_pbk14_fixture_bridge_last_run.json'
       - 'scripts/stage80_pbk16_competition_congestion.py'
       - 'scripts/tests/test_stage80_pbk16_competition_congestion.py'
       - 'scripts/tests/test_stage80_pbk16_competition_readiness.py'
@@ -92,6 +102,16 @@ on:
   push:
     paths:
       - 'scripts/stage80_archive_readiness.py'
+      - 'config/stage80_football_data_pbk14_9seasons.json'
+      - 'scripts/stage80_football_data_pbk14_history.py'
+      - 'scripts/stage80_pbk14_fixture_bridge.py'
+      - 'scripts/tests/test_stage80_pbk14_market_bridge.py'
+      - 'scripts/tests/test_stage80_pbk14_market_bridge_readiness.py'
+      - 'docs/stage80_pbk14_market_bridge.md'
+      - '.github/workflows/stage80-pbk14-market-bridge.yml'
+      - 'ops/stage80_football_data_pbk14_history_last_run.json'
+      - 'ops/pbk14_football_data_fixture_bridge.csv'
+      - 'ops/stage80_pbk14_fixture_bridge_last_run.json'
       - 'scripts/stage80_pbk16_competition_congestion.py'
       - 'scripts/tests/test_stage80_pbk16_competition_congestion.py'
       - 'scripts/tests/test_stage80_pbk16_competition_readiness.py'
@@ -183,6 +203,8 @@ jobs:
       - name: Compile Stage80 archive governance and projections
         run: |
           python -m py_compile scripts/stage80_archive_readiness.py
+          python -m py_compile scripts/stage80_football_data_pbk14_history.py
+          python -m py_compile scripts/stage80_pbk14_fixture_bridge.py
           python -m py_compile scripts/stage80_pbk16_competition_congestion.py
           python -m py_compile scripts/stage80_top5_referee_backfill.py
           python -m py_compile scripts/stage80_archive_manifest.py
@@ -197,6 +219,8 @@ jobs:
       - name: Provider-free Stage80 tests
         run: |
           python -m unittest scripts.tests.test_stage80_archive_readiness -v
+          python -m unittest scripts.tests.test_stage80_pbk14_market_bridge -v
+          python -m unittest scripts.tests.test_stage80_pbk14_market_bridge_readiness -v
           python -m unittest scripts.tests.test_stage80_pbk16_competition_congestion -v
           python -m unittest scripts.tests.test_stage80_pbk16_competition_readiness -v
           python -m unittest scripts.tests.test_stage80_referee_research_readiness -v
