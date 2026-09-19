@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V19_PBK16_COMPETITION_CONGESTION"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V20_PBK14_MARKET_BRIDGE"
 
 DATASETS = [
     {
@@ -460,6 +460,17 @@ DATASETS = [
         "effective_time_fields": ["kickoff_utc"],
         "source": "Stage80 deterministic PBK16 domestic-fixture projection over captured domestic cup/UEFA history",
         "limitations": "Strictly prior played non-league fixtures only; future schedule intentionally excluded. No probability, EV/value, eligibility, stake or Forward authority.",
+    },
+    {
+        "dataset_id": "pbk14_football_data_fixture_bridge",
+        "path": "pbk14_football_data_fixture_bridge.csv",
+        "role": "RESEARCH_IDENTITY_MAPPING",
+        "lifecycle": "DETERMINISTIC_CONSERVATIVE_IDENTITY_BRIDGE",
+        "identity_key": ["historical_match_id"],
+        "observed_time_fields": [],
+        "effective_time_fields": ["date_iso"],
+        "source": "Stage80 Football-Data PBK14 historical market rows bridged to API-Football PBK16 domestic fixtures",
+        "limitations": "AUTO/HIGH only are eligible downstream. No fuzzy string matching; REVIEW/UNMAPPED remain excluded. Final scores are used only as historical identity evidence. Lithuania/Latvia have no Football-Data historical market source in this contour. No betting/model authority.",
     },
 ]
 
