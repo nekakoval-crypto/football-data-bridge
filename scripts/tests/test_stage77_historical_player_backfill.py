@@ -253,42 +253,17 @@ class HistoricalPlayerBackfillTests(unittest.TestCase):
             )
             for i in range(1, 6)
         ]
-        productive = self.fixture(
+        second_cell = self.fixture(
             "100",
             comp="Eliteserien",
             country="Norway",
             comp_id="103",
         )
-        candidates = empty + [productive]
+        candidates = empty + [second_cell]
+        calls = []
 
         def fake_get(path, params, **kwargs):
-            fixture = params["fixture"]
-
-            if fixture == "100":
-                return {
-                    "response": [
-                        {
-                            "team": {"id": 1, "name": "A"},
-                            "players": [
-                                {
-                                    "player": {
-                                        "id": 10,
-                                        "name": "P",
-                                    },
-                                    "statistics": [
-                                        {
-                                            "games": {
-                                                "minutes": 90,
-                                                "position": "M",
-                                            }
-                                        }
-                                    ],
-                                }
-                            ],
-                        }
-                    ]
-                }
-
+            calls.append(params["fixture"])
             return {"response": []}
 
         result = h.run_capture(
@@ -307,12 +282,14 @@ class HistoricalPlayerBackfillTests(unittest.TestCase):
             no_data_cell_threshold=2,
         )
 
-        self.assertEqual(result["no_data_fixtures"], 2)
-        self.assertGreaterEqual(
+        self.assertEqual(calls, ["1", "2", "100"])
+        self.assertEqual(result["attempted_fixtures"], 3)
+        self.assertEqual(result["no_data_fixtures"], 3)
+        self.assertEqual(
             result["suppressed_empty_cell_fixtures"],
             3,
         )
-        self.assertEqual(result["captured_fixtures"], 1)
+
 
 if __name__ == "__main__":
     unittest.main()
