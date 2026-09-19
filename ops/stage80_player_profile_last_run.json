@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_PLAYER_PROFILE_ENRICHMENT_V2_RESIDUAL_ID",
-  "run_at_utc": "2026-09-18T19:20:56Z",
+  "run_at_utc": "2026-09-19T00:37:54Z",
   "status": "OK",
   "season": "2026",
   "provider_endpoints": [
@@ -9,31 +9,72 @@
   ],
   "refresh_days": 7,
   "residual_retry_days": 7,
-  "provider_calls": 132,
-  "team_provider_calls": 0,
-  "residual_provider_calls": 132,
-  "daily_api_calls": 1196,
+  "provider_calls": 62,
+  "team_provider_calls": 16,
+  "residual_provider_calls": 46,
+  "daily_api_calls": 102,
   "protected_calls": {
-    "live": 8,
-    "current_round": 60,
+    "live": 40,
+    "current_round": 180,
     "standings": 32,
     "safety": 100,
-    "total": 200
+    "total": 352
   },
-  "candidate_teams": 0,
-  "completed_teams": [],
+  "candidate_teams": 8,
+  "completed_teams": [
+    {
+      "team_id": "541",
+      "team_name": "Real Madrid",
+      "profile_rows": 29
+    },
+    {
+      "team_id": "797",
+      "team_name": "Elche",
+      "profile_rows": 28
+    },
+    {
+      "team_id": "548",
+      "team_name": "Real Sociedad",
+      "profile_rows": 29
+    },
+    {
+      "team_id": "532",
+      "team_name": "Valencia",
+      "profile_rows": 32
+    },
+    {
+      "team_id": "538",
+      "team_name": "Celta Vigo",
+      "profile_rows": 28
+    },
+    {
+      "team_id": "728",
+      "team_name": "Rayo Vallecano",
+      "profile_rows": 31
+    },
+    {
+      "team_id": "540",
+      "team_name": "Espanyol",
+      "profile_rows": 26
+    },
+    {
+      "team_id": "542",
+      "team_name": "Alaves",
+      "profile_rows": 28
+    }
+  ],
   "deferred_teams": 0,
-  "residual_candidate_players": 132,
-  "residual_captured_players": 16,
-  "residual_empty_players": 116,
+  "residual_candidate_players": 46,
+  "residual_captured_players": 13,
+  "residual_empty_players": 33,
   "residual_error_players": 0,
   "residual_deferred_players": 0,
   "residual_ambiguous_current_roster_player_ids": 0,
-  "residual_suppressed_recent_attempts": 322,
-  "profile_rows": 2745,
-  "unique_profile_players": 2670,
-  "current_roster_players": 2949,
-  "current_roster_player_coverage_pct": 85.15,
+  "residual_suppressed_recent_attempts": 438,
+  "profile_rows": 2989,
+  "unique_profile_players": 2910,
+  "current_roster_players": 3211,
+  "current_roster_player_coverage_pct": 85.33,
   "warnings": [],
   "provider_polling_frontend": false,
   "research_only": true,
