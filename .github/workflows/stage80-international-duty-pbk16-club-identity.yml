@@ -6,6 +6,7 @@ on:
       - 'scripts/stage80_international_duty_pbk16_club_identity.py'
       - 'scripts/tests/test_stage80_international_duty_pbk16_club_identity.py'
       - 'ops/team_match_statistics.csv'
+      - 'ops/team_rosters.csv'
       - '.github/workflows/stage80-international-duty-pbk16-club-identity.yml'
   push:
     branches: [main]
