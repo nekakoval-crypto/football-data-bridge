@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V22_PBK14_MARKET_BRIDGE",
-  "generated_at_utc": "2026-09-19T08:34:29Z",
+  "generated_at_utc": "2026-09-19T08:37:19Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -191,8 +191,8 @@
     },
     "pbk14_market_bridge": {
       "file": "pbk14_football_data_fixture_bridge.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 37674
     }
   },
   "fixtures": {
@@ -557,21 +557,21 @@
     "evidence_note": "Walk-forward research uses only strictly earlier seasons to evaluate each later test season. Sample-qualified sign persistence is descriptive validation evidence only."
   },
   "pbk14_historical_market_bridge": {
-    "present": false,
-    "source_meta_present": false,
-    "source_meta_valid": false,
-    "bridge_meta_present": false,
-    "bridge_meta_valid": false,
-    "rows": 0,
-    "valid_rows": 0,
+    "present": true,
+    "source_meta_present": true,
+    "source_meta_valid": true,
+    "bridge_meta_present": true,
+    "bridge_meta_valid": true,
+    "rows": 37674,
+    "valid_rows": 37674,
     "invalid_rows": 0,
-    "unique_historical_match_ids": 0,
+    "unique_historical_match_ids": 37674,
     "duplicate_historical_match_ids": 0,
-    "mapped_auto": 0,
-    "mapped_high": 0,
-    "mapped_auto_high": 0,
-    "review": 0,
-    "unmapped": 0,
+    "mapped_auto": 18940,
+    "mapped_high": 17890,
+    "mapped_auto_high": 36830,
+    "review": 16,
+    "unmapped": 828,
     "duplicate_mapped_api_fixture_ids": 0,
     "supported_leagues": 14,
     "unsupported_locked_pbk_leagues": 2,
@@ -662,7 +662,8 @@
     "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL",
     "PBK16_COMPETITION_PROVIDER_SEASONS_PARTIAL",
-    "PBK14_HISTORICAL_MARKET_BRIDGE_NOT_MATERIALIZED",
+    "PBK14_HISTORICAL_MARKET_BRIDGE_PARTIAL_MAPPING",
+    "PBK16_HISTORICAL_MARKET_SOURCE_LIMITED_TO_14_LEAGUES",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
     "PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE",
     "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE"
