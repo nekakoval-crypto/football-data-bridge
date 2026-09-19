@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 19.09.2026 06:00 (Europe/Berlin)
+Обновлено: 19.09.2026 07:00 (Europe/Berlin)
 Canonical: 4 | active WATCH crossings: 24 | RED: 0 | ORANGE: 24
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -274,7 +274,7 @@ Canonical: 4 | active WATCH crossings: 24 | RED: 0 | ORANGE: 24
   - Тотал 2.5 — нет данных
 
 - **Udinese — Cagliari** | Serie A | 19.09 13:00 UTC
-  - ОЗ · ОЗ Да: 1.91 | ОЗ Нет: 1.91 @ Bet365
+  - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
   - ОЗ · ОЗ Да: 1.79 | ОЗ Нет: 1.92 @ Marathonbet
   - Ф(0) · Ф1(0): 1.58 | Ф2(0): 2.35 @ Bet365
   - Ф(0) · Ф1(0): 1.58 | Ф2(0): 2.39 @ Marathonbet
@@ -1666,7 +1666,7 @@ Canonical: 4 | active WATCH crossings: 24 | RED: 0 | ORANGE: 24
   - ОЗ — нет данных
 
 - **Angers — Estac Troyes** | Ligue 1 | 19.09 18:45 UTC
-  - ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 2 @ Bet365
+  - ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.05 @ Bet365
   - ОЗ · ОЗ Да: 1.72 | ОЗ Нет: 2 @ Marathonbet
   - Ф(0) · Ф1(0): 1.55 | Ф2(0): 2.38 @ Bet365
   - Ф(0) · Ф1(0): 1.59 | Ф2(0): 2.39 @ Marathonbet
@@ -1699,7 +1699,7 @@ Canonical: 4 | active WATCH crossings: 24 | RED: 0 | ORANGE: 24
 
 - **Le Mans — Lorient** | Ligue 1 | 19.09 18:45 UTC
   - ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Bet365
-  - ОЗ · ОЗ Да: 1.59 | ОЗ Нет: 2.21 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.6 | ОЗ Нет: 2.19 @ Marathonbet
   - Ф(0) · Ф1(0): 1.98 | Ф2(0): 1.88 @ Bet365
   - Ф(0) · Ф1(0): 1.95 | Ф2(0): 1.87 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.44 | Х2: 1.44 | 12: 1.33 @ Bet365
@@ -3704,7 +3704,7 @@ Canonical: 4 | active WATCH crossings: 24 | RED: 0 | ORANGE: 24
 
 - **AC Milan — Lecce** | Serie A | 20.09 18:45 UTC
   - ОЗ · ОЗ Да: 2.2 | ОЗ Нет: 1.62 @ Bet365
-  - ОЗ · ОЗ Да: 2.17 | ОЗ Нет: 1.61 @ Marathonbet
+  - ОЗ · ОЗ Да: 2.16 | ОЗ Нет: 1.62 @ Marathonbet
   - Ф(0) · Ф1(0): 1.1 | Ф2(0): 6.8 @ Bet365
   - Ф(0) · Ф1(0): 1.04 | Ф2(0): 7.3 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.05 | Х2: 3.75 | 12: 1.14 @ Bet365
@@ -3805,7 +3805,7 @@ Canonical: 4 | active WATCH crossings: 24 | RED: 0 | ORANGE: 24
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **HEALTHY** | critical 0 | warnings 0
+- System Health: **WARN** | critical 0 | warnings 2
 - Логическая canonical экспозиция: **4.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 24 | data required 3
