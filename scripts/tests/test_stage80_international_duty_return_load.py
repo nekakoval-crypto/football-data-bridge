@@ -94,6 +94,22 @@ class ReturnLoadTests(unittest.TestCase):
         self.assertEqual(rows,[])
         self.assertEqual(audit["mapped_rows_without_later_played_domestic_fixture"],1)
 
+    def test_return_beyond_14_days_fails_closed(self):
+        rows,audit=r.build(
+            [ev(kickoff="2025-11-01T12:00:00Z")],[club()],
+            [domestic("200","2025-11-16T12:00:01Z")],
+        )
+        self.assertEqual(rows,[])
+        self.assertEqual(audit["mapped_rows_return_beyond_14d_horizon"],1)
+
+    def test_return_at_14_day_boundary_is_allowed(self):
+        rows,audit=r.build(
+            [ev(kickoff="2025-11-01T12:00:00Z")],[club()],
+            [domestic("200","2025-11-15T12:00:00Z")],
+        )
+        self.assertEqual(len(rows),1)
+        self.assertEqual(audit["mapped_rows_return_beyond_14d_horizon"],0)
+
     def test_return_thresholds(self):
         rows,_=r.build(
             [ev(kickoff="2025-11-18T12:00:00Z")],[club()],
