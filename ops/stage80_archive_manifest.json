@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V18_PREMATCH_WALKFORWARD",
-  "generated_at_utc": "2026-09-19T06:53:27Z",
+  "generated_at_utc": "2026-09-19T07:27:10Z",
   "status": "OK",
   "datasets": [
     {
@@ -68,7 +68,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 3344,
+      "row_count": 3473,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -1592,7 +1592,7 @@
       "source": "Stage80 normalized from already-persisted Stage55 injury evidence",
       "limitations": "Provider availability labels/reasons are archived as observed facts; absence from a later snapshot is not inferred as recovery.",
       "present": true,
-      "row_count": 51,
+      "row_count": 53,
       "columns": [
         "fixture_id",
         "captured_at_utc",
@@ -1728,7 +1728,7 @@
       "source": "Stage55 timestamped context via shared broker",
       "limitations": "Canonical-forward scope only; not complete 16-league context coverage.",
       "present": true,
-      "row_count": 11,
+      "row_count": 12,
       "columns": [
         "forward_id",
         "rule",

@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V20_PREMATCH_WALKFORWARD",
-  "generated_at_utc": "2026-09-19T06:53:28Z",
+  "generated_at_utc": "2026-09-19T07:27:11Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -12,7 +12,7 @@
     "fixture_history": {
       "file": "fixture_history_snapshots.csv",
       "present": true,
-      "rows": 3344
+      "rows": 3473
     },
     "historical_fixtures": {
       "file": "historical_fixtures.csv",
@@ -77,7 +77,7 @@
     "match_context": {
       "file": "match_context_snapshots.csv",
       "present": true,
-      "rows": 11
+      "rows": 12
     },
     "lineup_archive": {
       "file": "lineup_snapshots.csv",
@@ -87,7 +87,7 @@
     "injury_archive": {
       "file": "injury_snapshots.csv",
       "present": true,
-      "rows": 51
+      "rows": 53
     },
     "match_events": {
       "file": "match_event_snapshots.csv",
@@ -254,10 +254,10 @@
   },
   "fixture_history": {
     "present": true,
-    "rows": 3344,
-    "valid_observations": 3344,
+    "rows": 3473,
+    "valid_observations": 3473,
     "unique_fixtures": 178,
-    "observation_runs": 26,
+    "observation_runs": 27,
     "finished_fixtures_observed": 57,
     "invalid_identity_rows": 0,
     "evidence_note": "Counts represent only Stage71 current-round observations persisted after the fixture-history archive was enabled; they are not a pre-PBK historical backfill claim."
@@ -276,8 +276,8 @@
     "orphan_catalog_fixtures": 0,
     "missing_terminal_evidence": 0,
     "orphan_terminal_evidence": 0,
-    "observation_count_total": 3344,
-    "expected_history_observations": 3344,
+    "observation_count_total": 3473,
+    "expected_history_observations": 3473,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
   },
@@ -397,10 +397,10 @@
     "evidence_note": "Durable transfer events count only when linked by an approved HIGH-confidence exact-name+club identity method; this is historical enrichment, not current squad authority."
   },
   "context": {
-    "snapshot_rows": 11,
+    "snapshot_rows": 12,
     "unique_fixtures": 6,
     "fixtures_with_official_lineup_snapshot": 1,
-    "fixtures_with_injury_evidence": 2,
+    "fixtures_with_injury_evidence": 3,
     "coverage_note": "Stage55 context is canonical-signal scoped; these counts are not full 16-league archive coverage."
   },
   "match_events": {
@@ -534,8 +534,8 @@
   "normalized_context_archives": {
     "lineup_rows": 6,
     "lineup_fixtures": 2,
-    "injury_rows": 51,
-    "injury_fixtures": 2,
+    "injury_rows": 53,
+    "injury_fixtures": 3,
     "evidence_note": "Provider-free normalized append-only projections from already-persisted PBK context/rotation evidence; coverage remains limited by upstream capture scope."
   },
   "raw_provider_archive": {
