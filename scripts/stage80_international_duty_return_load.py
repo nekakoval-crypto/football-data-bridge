@@ -29,7 +29,7 @@ ARCHIVE_META = OPS / "stage80_pbk16_competition_backfill_last_run.json"
 OUTPUT = OPS / "international_duty_player_return_load.csv"
 META = OPS / "stage80_international_duty_return_load_last_run.json"
 
-VERSION = "PBK_STAGE80_INTERNATIONAL_DUTY_RETURN_LOAD_V1_DIRECT_EVIDENCE"
+VERSION = "PBK_STAGE80_INTERNATIONAL_DUTY_RETURN_LOAD_V2_WINDOW_RETURN_AGGREGATED"
 EVIDENCE_VERSION = "PBK_STAGE80_INTERNATIONAL_DUTY_PLAYER_EVIDENCE_CAPTURE_V2_STRICT_ROLE_SEMANTICS"
 CLUB_VERSION = "PBK_STAGE80_INTERNATIONAL_DUTY_PBK16_CLUB_IDENTITY_V1_EXACT_ALIAS_UNIQUE"
 ARCHIVE_VERSION = "PBK_STAGE80_PBK16_ALL_COMPETITION_BACKFILL_V1"
@@ -38,6 +38,8 @@ MAX_RETURN_HORIZON_HOURS = 14 * 24
 
 FIELDS = [
     "international_fixture_id","international_kickoff_utc","window_id",
+    "window_first_international_kickoff_utc","window_last_international_kickoff_utc",
+    "window_evidence_event_rows_aggregated",
     "national_team_id","national_team_name","player_id","player_name",
     "pbk16_team_id","pbk16_team_name","pbk16_provider_league_id",
     "appearance_confirmed","minutes_confirmed","confirmed_minutes",
@@ -275,19 +277,48 @@ def build(evidence_rows, club_rows, archive_rows):
             "forward_journal_mutation": "false",
         })
 
-    output.sort(key=lambda r: (
+    # One research row per player x international window x historical club return.
+    # If multiple national-team events in the same window resolve to the same
+    # domestic return fixture, keep the latest event as the anchor. Its
+    # cumulative "through event" counters already include earlier direct
+    # evidence in that window, so no return fixture is double-weighted.
+    grouped_return = defaultdict(list)
+    for row in output:
+        grouped_return[(
+            row["player_id"],
+            row["window_id"],
+            row["pbk16_team_id"],
+            row["next_domestic_fixture_id"],
+        )].append(row)
+
+    aggregated = []
+    for _, group in grouped_return.items():
+        group.sort(key=lambda r: (
+            parse_dt(r["international_kickoff_utc"]),
+            r["international_fixture_id"],
+        ))
+        latest = dict(group[-1])
+        latest["window_first_international_kickoff_utc"] = group[0]["international_kickoff_utc"]
+        latest["window_last_international_kickoff_utc"] = group[-1]["international_kickoff_utc"]
+        latest["window_evidence_event_rows_aggregated"] = str(len(group))
+        aggregated.append(latest)
+
+    aggregated.sort(key=lambda r: (
         r["next_domestic_kickoff_utc"],
         r["next_domestic_fixture_id"],
         r["pbk16_team_id"],
         r["player_id"],
         r["international_fixture_id"],
     ))
+    output = aggregated
     return output, {
         "invalid_evidence_rows": invalid_evidence,
         "invalid_domestic_archive_rows": invalid_domestic,
         "mapped_rows_missing_direct_evidence": missing_evidence,
         "mapped_rows_without_later_played_domestic_fixture": missing_return,
         "mapped_rows_return_beyond_14d_horizon": return_beyond_horizon,
+        "event_rows_before_window_return_aggregation": sum(len(v) for v in grouped_return.values()),
+        "window_return_rows_after_aggregation": len(output),
     }
 
 
@@ -360,6 +391,7 @@ def run(evidence_path=EVIDENCE, evidence_meta_path=EVIDENCE_META,
         "version": VERSION,
         "generated_at_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
         "status": "OK" if rows and not duplicate_rows and not invalid_output else "ATTENTION",
+        "aggregation_contract": "ONE_PLAYER_X_WINDOW_X_PBK16_TEAM_X_RETURN_FIXTURE_LATEST_DIRECT_EVENT",
         "direct_evidence_rows": len(evidence_rows),
         "direct_evidence_collection_status": evidence_meta.get("status"),
         "direct_evidence_collection_complete": evidence_meta.get("status") == "COMPLETE",
@@ -374,6 +406,8 @@ def run(evidence_path=EVIDENCE, evidence_meta_path=EVIDENCE_META,
         "feature_counts": dict(sorted(counts.items())),
         **audit,
         "direct_evidence_only": True,
+        "window_return_aggregated": True,
+        "latest_direct_event_is_return_anchor": True,
         "played_domestic_return_fixture_only": True,
         "max_return_horizon_hours": MAX_RETURN_HORIZON_HOURS,
         "return_horizon_fail_closed": True,
@@ -390,7 +424,7 @@ def run(evidence_path=EVIDENCE, evidence_meta_path=EVIDENCE_META,
         "eligibility_mutation": False,
         "stake_changes": False,
         "forward_journal_mutation": False,
-        "next_stage": "After durable coverage review, join return-load features to historical market anchors for descriptive research.",
+        "next_stage": "Scale direct evidence coverage, then join one-row-per-player-window-return features to historical market anchors for descriptive research.",
     }
     write_csv(output_path, rows)
     write_json(meta_path, meta)

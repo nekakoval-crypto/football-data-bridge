@@ -70,7 +70,10 @@ jobs:
           python - <<'PY'
           import csv,json
           m=json.load(open('ops/stage80_international_duty_return_load_last_run.json',encoding='utf-8'))
-          assert m['version']=='PBK_STAGE80_INTERNATIONAL_DUTY_RETURN_LOAD_V1_DIRECT_EVIDENCE'
+          assert m['version']=='PBK_STAGE80_INTERNATIONAL_DUTY_RETURN_LOAD_V2_WINDOW_RETURN_AGGREGATED'
+          assert m['aggregation_contract']=='ONE_PLAYER_X_WINDOW_X_PBK16_TEAM_X_RETURN_FIXTURE_LATEST_DIRECT_EVENT'
+          assert m['window_return_aggregated'] is True
+          assert m['latest_direct_event_is_return_anchor'] is True
           assert m['status']=='OK'
           assert m['output_rows']>0
           assert m['duplicate_output_rows']==0
