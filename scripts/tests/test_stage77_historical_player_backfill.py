@@ -18,12 +18,14 @@ class HistoricalPlayerBackfillTests(unittest.TestCase):
         season="2025",
         role="DOMESTIC_LEAGUE",
         comp="Premier League",
+        country="England",
+        comp_id="39",
     ):
         return {
             "fixture_id": str(fixture_id),
             "competition_role": role,
-            "country": "England",
-            "provider_competition_id": "39",
+            "country": country,
+            "provider_competition_id": comp_id,
             "competition_name": comp,
             "season": season,
             "round": "1",
@@ -140,6 +142,152 @@ class HistoricalPlayerBackfillTests(unittest.TestCase):
         self.assertEqual(
             state["7"]["player_rows"],
             "40",
+        )
+
+
+    def test_empty_competition_season_is_suppressed_after_threshold(self):
+        history = {
+            str(i): self.fixture(
+                str(i),
+                comp="Virsliga",
+                country="Latvia",
+                comp_id="365",
+            )
+            for i in range(1, 11)
+        }
+
+        state = {
+            str(i): {
+                **history[str(i)],
+                "attempt_count": "1",
+                "last_attempt_result": "NO_DATA",
+            }
+            for i in range(1, 9)
+        }
+
+        rows = h.candidate_rows(
+            history,
+            captured=set(),
+            state=state,
+            no_data_cell_threshold=8,
+        )
+
+        self.assertEqual(rows, [])
+
+    def test_productive_cell_is_not_suppressed_by_no_data(self):
+        history = {
+            "1": self.fixture("1"),
+            "2": self.fixture("2"),
+            "3": self.fixture("3"),
+        }
+
+        state = {
+            "1": {
+                **history["1"],
+                "attempt_count": "1",
+                "last_attempt_result": "CAPTURED",
+            },
+            "2": {
+                **history["2"],
+                "attempt_count": "1",
+                "last_attempt_result": "NO_DATA",
+            },
+        }
+
+        rows = h.candidate_rows(
+            history,
+            captured={"1"},
+            state=state,
+            no_data_cell_threshold=1,
+        )
+
+        self.assertEqual(
+            [row["fixture_id"] for row in rows],
+            ["3"],
+        )
+
+    def test_provider_quota_error_stops_batch_immediately(self):
+        candidates = [
+            self.fixture("1"),
+            self.fixture("2"),
+            self.fixture("3"),
+        ]
+
+        calls = []
+
+        def fake_get(path, params, **kwargs):
+            calls.append(params["fixture"])
+            raise h.ApiFootballBrokerError(
+                "API-Football HTTP 429 for /fixtures/players"
+            )
+
+        result = h.run_capture(
+            candidates,
+            existing_stats=[],
+            existing_grades=[],
+            state={},
+            get=fake_get,
+            now=h.datetime(
+                2026,
+                9,
+                20,
+                tzinfo=h.timezone.utc,
+            ),
+            limit=3,
+            no_data_cell_threshold=8,
+        )
+
+        self.assertEqual(calls, ["1"])
+        self.assertEqual(result["attempted_fixtures"], 1)
+        self.assertEqual(result["error_fixtures"], 1)
+        self.assertTrue(result["provider_quota_exhausted"])
+        self.assertEqual(result["deferred_fixtures"], 2)
+
+    def test_runtime_empty_cell_stops_sampling_and_moves_on(self):
+        empty = [
+            self.fixture(
+                str(i),
+                comp="Virsliga",
+                country="Latvia",
+                comp_id="365",
+            )
+            for i in range(1, 6)
+        ]
+        second_cell = self.fixture(
+            "100",
+            comp="Eliteserien",
+            country="Norway",
+            comp_id="103",
+        )
+        candidates = empty + [second_cell]
+        calls = []
+
+        def fake_get(path, params, **kwargs):
+            calls.append(params["fixture"])
+            return {"response": []}
+
+        result = h.run_capture(
+            candidates,
+            existing_stats=[],
+            existing_grades=[],
+            state={},
+            get=fake_get,
+            now=h.datetime(
+                2026,
+                9,
+                20,
+                tzinfo=h.timezone.utc,
+            ),
+            limit=4,
+            no_data_cell_threshold=2,
+        )
+
+        self.assertEqual(calls, ["1", "2", "100"])
+        self.assertEqual(result["attempted_fixtures"], 3)
+        self.assertEqual(result["no_data_fixtures"], 3)
+        self.assertEqual(
+            result["suppressed_empty_cell_fixtures"],
+            3,
         )
 
 
