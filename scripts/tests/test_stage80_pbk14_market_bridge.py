@@ -102,6 +102,45 @@ class PBK14BridgeTests(unittest.TestCase):
         self.assertEqual({r["away_team_map_status"] for r in rows},{"HIGH"})
         self.assertEqual({r["mapping_status"] for r in rows},{"HIGH"})
         self.assertTrue(all(r["api_away_team_id"]=="999" for r in rows))
+        self.assertEqual({r["away_team_map_method"] for r in rows},{"SCHEDULE_SCORE_FINGERPRINT"})
+        self.assertTrue(all(r["fuzzy_string_matching_used"]=="false" for r in rows))
+
+    def test_full_fingerprint_allows_disjoint_source_aliases_for_same_provider_team(self):
+        src=[]
+        api=[]
+        for i in range(1,11):
+            day=f"2024-09-{i:02d}"
+            alias="Alias One" if i<=5 else "Alias Two"
+            opp=f"Opponent {i}"
+            src.append(self.source(f"a{i}",day,opp,alias,0,1))
+            api.append(self.api(300+i,day,100+i,opp,999,"Provider Club",0,1))
+        rows=b.map_scope(src,api,"E0",39,2024)
+        self.assertEqual({r["mapping_status"] for r in rows},{"HIGH"})
+        self.assertEqual({r["api_away_team_id"] for r in rows},{"999"})
+        self.assertEqual(
+            {r["away_team_map_method"] for r in rows},
+            {"SCHEDULE_SCORE_FINGERPRINT"},
+        )
+        self.assertEqual(len({r["api_fixture_id"] for r in rows}),10)
+
+    def test_near_complete_fingerprint_is_high_but_discrepant_fixture_stays_review(self):
+        src=[]
+        api=[]
+        for i in range(1,22):
+            day=f"2024-10-{i:02d}"
+            opp=f"Opponent {i}"
+            src.append(self.source(f"n{i}",day,opp,"Source Club",0,1))
+            provider_away=2 if i==21 else 1
+            api.append(self.api(400+i,day,200+i,opp,888,"Provider Club",0,provider_away))
+        rows=b.map_scope(src,api,"E0",39,2024)
+        self.assertEqual(sum(r["mapping_status"]=="HIGH" for r in rows),20)
+        self.assertEqual(sum(r["mapping_status"]=="REVIEW" for r in rows),1)
+        self.assertEqual(
+            {r["away_team_map_method"] for r in rows},
+            {"NEAR_COMPLETE_SCHEDULE_SCORE_FINGERPRINT"},
+        )
+        review=next(r for r in rows if r["mapping_status"]=="REVIEW")
+        self.assertEqual(review["mapping_reason"],"DATE_TEAMS_MATCH_BUT_SCORE_MISMATCH")
         self.assertTrue(all(r["fuzzy_string_matching_used"]=="false" for r in rows))
 
     def test_score_mismatch_never_auto_maps(self):
