@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V26_PBK16_INTERNATIONAL_WINDOW_CONTEXT",
-  "generated_at_utc": "2026-09-19T09:43:24Z",
+  "generated_at_utc": "2026-09-19T09:44:11Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -191,8 +191,8 @@
     },
     "pbk16_international_window_context": {
       "file": "pbk16_international_window_context_research.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 40989
     },
     "pbk14_market_bridge": {
       "file": "pbk14_football_data_fixture_bridge.csv",
@@ -720,23 +720,23 @@
     "evidence_note": "One deterministic row per captured PBK16 domestic fixture; only strictly prior played cup/UEFA evidence can contribute. Future scheduled fixtures are excluded."
   },
   "pbk16_international_window_context": {
-    "present": false,
-    "meta_present": false,
-    "meta_valid": false,
-    "rows": 0,
-    "valid_rows": 0,
+    "present": true,
+    "meta_present": true,
+    "meta_valid": true,
+    "rows": 40989,
+    "valid_rows": 40989,
     "invalid_rows": 0,
-    "unique_domestic_fixture_ids": 0,
+    "unique_domestic_fixture_ids": 40989,
     "duplicate_domestic_fixture_ids": 0,
-    "calendar_windows": null,
-    "calendar_sources": null,
-    "within_72h_before_rows": null,
-    "within_96h_before_rows": null,
-    "within_72h_after_rows": null,
-    "within_96h_after_rows": null,
-    "either_first_domestic_after_window_rows": null,
-    "player_level_international_status": null,
-    "no_lookahead": null,
+    "calendar_windows": 39,
+    "calendar_sources": 5,
+    "within_72h_before_rows": 3956,
+    "within_96h_before_rows": 3998,
+    "within_72h_after_rows": 518,
+    "within_96h_after_rows": 2247,
+    "either_first_domestic_after_window_rows": 5281,
+    "player_level_international_status": "UNVERIFIED",
+    "no_lookahead": true,
     "operational_betting_authority": false,
     "evidence_note": "Calendar-level international-window proximity only. It does not infer any player call-up, travel, appearance, minutes or return timing; those remain UNVERIFIED without direct historical evidence."
   },
@@ -770,7 +770,6 @@
     "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL",
     "PBK16_COMPETITION_PROVIDER_SEASONS_PARTIAL",
-    "PBK16_INTERNATIONAL_WINDOW_CONTEXT_NOT_MATERIALIZED",
     "PBK14_HISTORICAL_MARKET_BRIDGE_PARTIAL_MAPPING",
     "PBK16_HISTORICAL_MARKET_SOURCE_LIMITED_TO_14_LEAGUES",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
