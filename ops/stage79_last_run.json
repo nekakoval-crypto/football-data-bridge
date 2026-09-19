@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-19T00:30:46Z",
-  "status": "OK",
+  "run_at_utc": "2026-09-19T02:23:49Z",
+  "status": "ATTENTION",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 8,
-  "daily_api_calls": 8,
+  "provider_calls": 0,
+  "daily_api_calls": 139,
   "protected_calls": {
     "live": 40,
     "current_round": 96,
@@ -14,51 +14,12 @@
   },
   "roster_ttl_days": 7,
   "candidate_teams": 8,
-  "captured_teams": [
-    {
-      "team_id": "728",
-      "team_name": "Rayo Vallecano",
-      "players": 33
-    },
-    {
-      "team_id": "542",
-      "team_name": "Alaves",
-      "players": 25
-    },
-    {
-      "team_id": "538",
-      "team_name": "Celta Vigo",
-      "players": 33
-    },
-    {
-      "team_id": "541",
-      "team_name": "Real Madrid",
-      "players": 38
-    },
-    {
-      "team_id": "532",
-      "team_name": "Valencia",
-      "players": 34
-    },
-    {
-      "team_id": "548",
-      "team_name": "Real Sociedad",
-      "players": 34
-    },
-    {
-      "team_id": "540",
-      "team_name": "Espanyol",
-      "players": 29
-    },
-    {
-      "team_id": "797",
-      "team_name": "Elche",
-      "players": 37
-    }
-  ],
-  "deferred_teams": 0,
+  "captured_teams": [],
+  "deferred_teams": 8,
   "total_roster_rows": 3214,
-  "warnings": [],
+  "warnings": [
+    "Stage71 protected API reserve reached; Challenger deferred"
+  ],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
