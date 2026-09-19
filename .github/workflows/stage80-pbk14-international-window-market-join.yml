@@ -2,6 +2,9 @@ name: Stage 80 PBK14 International Window Market Join
 
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows: ['Stage 80 PBK16 International Window Context']
+    types: [completed]
   pull_request:
     paths:
       - 'scripts/stage80_pbk14_international_window_market_join.py'
@@ -59,7 +62,7 @@ jobs:
 
   build:
     needs: validate
-    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -159,7 +162,7 @@ jobs:
 
   publish:
     needs: build
-    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') }}
     permissions:
       contents: write
     runs-on: ubuntu-latest
