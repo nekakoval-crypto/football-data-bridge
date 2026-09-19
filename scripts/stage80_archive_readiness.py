@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V30_PBK14_INTERNATIONAL_WINDOW_MARKET_WALKFORWARD"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V31_TOP5_HISTORICAL_MOTIVATION"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -51,6 +51,7 @@ SOURCES = {
     "top5_referee_team_splits": "top5_referee_team_splits_research.csv",
     "top5_referee_state": "stage80_top5_referee_backfill_state.csv",
     "prematch_context": "top5_prematch_context_research.csv",
+    "historical_motivation": "top5_historical_motivation_research.csv",
     "prematch_factor_research": "top5_prematch_factor_research.csv",
     "prematch_factor_stability": "top5_prematch_factor_stability_research.csv",
     "prematch_walkforward": "top5_prematch_factor_walkforward_research.csv",
@@ -228,6 +229,7 @@ def build_report(ops=OPS, archive_dir=None):
     referee_meta = read_json(Path(ops) / "stage80_referee_research_last_run.json")
     top5_referee_meta = read_json(Path(ops) / "stage80_top5_referee_backfill_last_run.json")
     prematch_context_meta = read_json(Path(ops) / "stage80_prematch_context_last_run.json")
+    historical_motivation_meta = read_json(Path(ops) / "stage80_top5_historical_motivation_last_run.json")
     prematch_factor_meta = read_json(Path(ops) / "stage80_prematch_factor_research_last_run.json")
     prematch_walkforward_meta = read_json(Path(ops) / "stage80_prematch_factor_walkforward_last_run.json")
     pbk16_competition_meta = read_json(Path(ops) / "stage80_pbk16_competition_backfill_last_run.json")
@@ -416,6 +418,7 @@ def build_report(ops=OPS, archive_dir=None):
     top5_referee_team_splits = data["top5_referee_team_splits"] or []
     top5_referee_state = data["top5_referee_state"] or []
     prematch_context = data["prematch_context"] or []
+    historical_motivation = data["historical_motivation"] or []
     prematch_factor_research = data["prematch_factor_research"] or []
     prematch_factor_stability = data["prematch_factor_stability"] or []
     prematch_walkforward = data["prematch_walkforward"] or []
@@ -774,6 +777,82 @@ def build_report(ops=OPS, archive_dir=None):
         and prematch_context_meta.get("stake_changes") is False
         and prematch_context_meta.get("forward_journal_mutation") is False
     )
+    historical_motivation_valid = [
+        row for row in historical_motivation
+        if sval(row, "historical_match_id")
+        and sval(row, "league_code") in expected_prematch_leagues
+        and sval(row, "season_label")
+        and sval(row, "date_iso")
+        and sval(row, "home_team")
+        and sval(row, "away_team")
+        and sval(row, "format_status") == "VERIFIED_RULE_CONTRACT"
+        and sval(row, "europe_status") == "UNKNOWN_BY_DESIGN"
+        and sval(row, "rank_tiebreak_contract") == "POINTS_GD_GF_TEAMNAME_RESEARCH_APPROX_V1"
+        and is_true(row.get("same_day_results_excluded"))
+        and is_true(row.get("no_lookahead"))
+        and is_true(row.get("historical_backfill_only"))
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+        and not is_true(row.get("probability_mutation"))
+        and not is_true(row.get("eligibility_mutation"))
+        and not is_true(row.get("stake_changes"))
+        and not is_true(row.get("forward_journal_mutation"))
+    ]
+    historical_motivation_invalid = len(historical_motivation) - len(historical_motivation_valid)
+    historical_motivation_ids = {
+        sval(row, "historical_match_id")
+        for row in historical_motivation_valid
+        if sval(row, "historical_match_id")
+    }
+    historical_motivation_duplicate_ids = len(historical_motivation_valid) - len(historical_motivation_ids)
+    historical_motivation_league_seasons = {
+        (sval(row, "league_code"), sval(row, "season_label"))
+        for row in historical_motivation_valid
+        if sval(row, "league_code") and sval(row, "season_label")
+    }
+    historical_motivation_full_table_rows = sum(
+        is_true(row.get("full_table_available"))
+        for row in historical_motivation_valid
+    )
+    historical_motivation_boundary_tie_rows = sum(
+        is_true(row.get("boundary_tie_ambiguous"))
+        for row in historical_motivation_valid
+    )
+    historical_motivation_meta_valid = bool(
+        historical_motivation_meta
+        and not historical_motivation_meta.get("_invalid_json")
+        and historical_motivation_meta.get("version") == "PBK_STAGE80_TOP5_HISTORICAL_MOTIVATION_CONTEXT_V1"
+        and historical_motivation_meta.get("status") == "OK"
+        and int(historical_motivation_meta.get("source_rows") or 0) == 16111
+        and int(historical_motivation_meta.get("output_rows") or 0) == 16111
+        and int(historical_motivation_meta.get("unique_historical_match_ids") or 0) == 16111
+        and set(historical_motivation_meta.get("league_codes") or []) == expected_prematch_leagues
+        and len(historical_motivation_meta.get("season_labels") or []) == 9
+        and int(historical_motivation_meta.get("league_season_cells") or 0) == 45
+        and int(historical_motivation_meta.get("invalid_date_rows") or 0) == 0
+        and int(historical_motivation_meta.get("duplicate_historical_match_ids") or 0) == 0
+        and int(historical_motivation_meta.get("invalid_result_rows") or 0) == 0
+        and int(historical_motivation_meta.get("rows_with_full_table") or 0) == historical_motivation_full_table_rows
+        and int(historical_motivation_meta.get("rows_with_both_title_status") or 0) == historical_motivation_full_table_rows
+        and int(historical_motivation_meta.get("rows_with_both_relegation_status") or 0) == historical_motivation_full_table_rows
+        and int(historical_motivation_meta.get("rows_with_boundary_points_tie") or 0) == historical_motivation_boundary_tie_rows
+        and historical_motivation_meta.get("format_contract") == "TOP5_45_SEASON_CELLS_V1"
+        and historical_motivation_meta.get("rank_tiebreak_contract") == "POINTS_GD_GF_TEAMNAME_RESEARCH_APPROX_V1"
+        and historical_motivation_meta.get("europe_status") == "UNKNOWN_BY_DESIGN"
+        and historical_motivation_meta.get("same_day_results_excluded") is True
+        and historical_motivation_meta.get("no_lookahead") is True
+        and int(historical_motivation_meta.get("provider_calls") or 0) == 0
+        and historical_motivation_meta.get("historical_backfill_only") is True
+        and historical_motivation_meta.get("research_only") is True
+        and historical_motivation_meta.get("operational_betting_authority") is False
+        and historical_motivation_meta.get("creates_signal") is False
+        and historical_motivation_meta.get("probability_mutation") is False
+        and historical_motivation_meta.get("eligibility_mutation") is False
+        and historical_motivation_meta.get("stake_changes") is False
+        and historical_motivation_meta.get("forward_journal_mutation") is False
+    )
+
     expected_factor_names = [
         "WEEKDAY","KICKOFF_LOCAL","SHORT_REST","REST_ADVANTAGE",
         "CONGESTION_7D_DIFF","TABLE_RANK_DIFF","FORM5_PPG_DIFF","VENUE_FORM5_PPG_DIFF",
@@ -1750,6 +1829,17 @@ def build_report(ops=OPS, archive_dir=None):
         or len(prematch_context_league_seasons) != 45
     ):
         gaps.append("PREMATCH_CONTEXT_TOP5_INVALID_OR_INCOMPLETE")
+    if data["historical_motivation"] is None or historical_motivation_meta is None:
+        gaps.append("TOP5_HISTORICAL_MOTIVATION_NOT_MATERIALIZED")
+    elif (
+        not historical_motivation_meta_valid
+        or historical_motivation_invalid
+        or historical_motivation_duplicate_ids
+        or len(historical_motivation_valid) != 16111
+        or len(historical_motivation_ids) != 16111
+        or len(historical_motivation_league_seasons) != 45
+    ):
+        gaps.append("TOP5_HISTORICAL_MOTIVATION_INVALID_OR_INCOMPLETE")
     if (
         data["prematch_factor_research"] is None
         or data["prematch_factor_stability"] is None
@@ -2224,6 +2314,28 @@ def build_report(ops=OPS, archive_dir=None):
             "provider_calls": int(prematch_context_meta.get("provider_calls") or 0) if prematch_context_meta_valid else None,
             "operational_betting_authority": False,
             "evidence_note": "Deterministic Football-Data Top-5 2017/18-2025/26 pre-match research projection. Features use strictly earlier calendar dates within league-season; same-day results are excluded and the layer has no probability/EV/eligibility/stake/Forward authority.",
+        },
+        "top5_historical_motivation_research": {
+            "present": data["historical_motivation"] is not None,
+            "meta_present": historical_motivation_meta is not None,
+            "meta_valid": historical_motivation_meta_valid,
+            "rows": len(historical_motivation),
+            "valid_rows": len(historical_motivation_valid),
+            "invalid_rows": historical_motivation_invalid,
+            "unique_historical_match_ids": len(historical_motivation_ids),
+            "duplicate_historical_match_ids": historical_motivation_duplicate_ids,
+            "league_seasons": len(historical_motivation_league_seasons),
+            "expected_league_seasons": 45,
+            "rows_with_full_table": historical_motivation_full_table_rows,
+            "rows_with_boundary_points_tie": historical_motivation_boundary_tie_rows,
+            "format_contract": historical_motivation_meta.get("format_contract") if historical_motivation_meta_valid else None,
+            "rank_tiebreak_contract": historical_motivation_meta.get("rank_tiebreak_contract") if historical_motivation_meta_valid else None,
+            "europe_status": historical_motivation_meta.get("europe_status") if historical_motivation_meta_valid else None,
+            "same_day_results_excluded": bool(historical_motivation_meta.get("same_day_results_excluded")) if historical_motivation_meta_valid else None,
+            "no_lookahead": bool(historical_motivation_meta.get("no_lookahead")) if historical_motivation_meta_valid else None,
+            "provider_calls": int(historical_motivation_meta.get("provider_calls") or 0) if historical_motivation_meta_valid else None,
+            "operational_betting_authority": False,
+            "evidence_note": "Deterministic Top-5 historical title/relegation/remaining-match context. Europe is UNKNOWN_BY_DESIGN, tied safety boundaries remain ambiguous, and no generic MUST_WIN or unmotivated label is created.",
         },
         "prematch_factor_research": {
             "profiles_present": data["prematch_factor_research"] is not None,
