@@ -15,8 +15,6 @@ on:
     paths:
       - 'scripts/stage80_international_duty_return_load.py'
       - 'scripts/tests/test_stage80_international_duty_return_load.py'
-      - 'ops/international_duty_player_evidence.csv'
-      - 'ops/international_duty_player_pbk16_club_identity.csv'
       - 'ops/pbk16_all_competition_fixture_history.csv'
       - '.github/workflows/stage80-international-duty-return-load.yml'
 

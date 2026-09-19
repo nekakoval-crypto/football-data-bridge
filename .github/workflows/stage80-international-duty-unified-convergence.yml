@@ -3,7 +3,7 @@ name: Stage 80 International Duty Unified Convergence
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ['Stage 80 International Duty Player Evidence Capture']
+    workflows: ['Stage 80 International Duty Return Load']
     types: [completed]
   push:
     branches: [main]
