@@ -105,3 +105,44 @@ This is still an archive foundation, not the complete football warehouse. The fo
 - Stage80 preserves historical roster observations, derives conservative observed membership intervals, adds the storage-neutral raw-response archive hook to the shared provider broker, and continuously measures archive completeness/gaps including the Stage77 durable queue.
 
 This numbering reflects the repository's actual merged state: Stage77–79 already exist and are not renumbered retroactively.
+
+
+## PBK16 all-competition historical congestion layer
+
+Stage80 now has a dedicated research contour for the **locked 16-league PBK universe**, not only the Big-5.
+
+Scope is derived from the canonical Stage71 league catalog and therefore remains bounded to:
+England, Spain, Italy, Germany, France, Austria, Belgium, Denmark, Lithuania, Latvia, Netherlands, Norway, Poland, Portugal, Turkey and Scotland.
+
+The layer has two evidence parts:
+
+1. **Historical domestic anchors**
+   - previous nine completed seasons (2017 through 2025);
+   - the provider competition ID for every locked national league comes from the existing PBK league catalog;
+   - this produces a provider-ID domestic fixture timeline for all 16 leagues.
+
+2. **Historical non-league load**
+   - UEFA Champions League, Europa League and Conference League;
+   - configured national cups and relevant league cups for locked PBK countries;
+   - super cups are intentionally excluded;
+   - cup competition IDs are discovered through API-Football `/leagues` and must match a country-scoped configured alias. They are not guessed or silently substituted.
+
+Durable outputs:
+- `stage80_pbk16_competition_catalog.csv` — provider discovery/season-availability evidence;
+- `pbk16_all_competition_fixture_history.csv` — selected domestic-league/cup/UEFA fixture history;
+- `stage80_pbk16_competition_backfill_state.csv` — resumable competition-season state;
+- `pbk16_competition_congestion_research.csv` — deterministic one-row-per-domestic-fixture congestion projection.
+
+Provider coverage is fail-closed:
+- a provider-declared unavailable requested season is stored as `UNAVAILABLE_PROVIDER_SEASON`;
+- unresolved required competitions remain explicit readiness gaps;
+- a declared available competition-season returning zero fixtures is an error;
+- paginated responses are not silently truncated: V1 rejects `paging.total > 1` until explicit paging support exists.
+
+Congestion V1 is deliberately **strictly historical / no-lookahead**:
+- only already played FT/AET/PEN non-league fixtures strictly before domestic kickoff are eligible;
+- future scheduled UEFA/cup fixtures are not used;
+- postponed/cancelled/non-final fixtures do not count as prior match load;
+- the projection records previous non-league fixture identity/type/time/result, Thursday flag, 7/14-day counts, UEFA/cup counts and 72/96-hour load windows.
+
+This layer is **research only**. It cannot create or rewrite PBK probability, EV/value, R1/R2/R3 eligibility, stake, WATCH state, promotion status or Forward journal entries. A later study may join this evidence to historical market data, but that requires a separate conservative identity bridge and separate validation.

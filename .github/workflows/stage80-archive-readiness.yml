@@ -3,13 +3,24 @@ name: Stage 80 Archive Readiness
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ['fetch-transfermarkt-csv', 'Stage 77 Player Stats Capture', 'Stage 81 Team Match Statistics Capture', 'Stage 80 Football-Data Top5 History', 'Stage 80 Top5 Referee Backfill']
+    workflows: ['fetch-transfermarkt-csv', 'Stage 77 Player Stats Capture', 'Stage 81 Team Match Statistics Capture', 'Stage 80 Football-Data Top5 History', 'Stage 80 Top5 Referee Backfill', 'Stage 80 PBK16 Competition Congestion']
     types: [completed]
   schedule:
     - cron: '37 */6 * * *'
   pull_request:
     paths:
       - 'scripts/stage80_archive_readiness.py'
+      - 'scripts/stage80_pbk16_competition_congestion.py'
+      - 'scripts/tests/test_stage80_pbk16_competition_congestion.py'
+      - 'scripts/tests/test_stage80_pbk16_competition_readiness.py'
+      - 'config/stage80_api_football_pbk16_all_competitions_9seasons.json'
+      - '.github/workflows/stage80-pbk16-competition-congestion.yml'
+      - 'ops/stage80_pbk16_competition_catalog.csv'
+      - 'ops/pbk16_all_competition_fixture_history.csv'
+      - 'ops/stage80_pbk16_competition_backfill_state.csv'
+      - 'ops/stage80_pbk16_competition_backfill_last_run.json'
+      - 'ops/pbk16_competition_congestion_research.csv'
+      - 'ops/stage80_pbk16_competition_congestion_last_run.json'
       - 'scripts/stage80_top5_referee_backfill.py'
       - 'scripts/tests/test_stage80_top5_referee_backfill.py'
       - 'scripts/tests/test_stage80_top5_referee_backfill_readiness.py'
@@ -81,6 +92,17 @@ on:
   push:
     paths:
       - 'scripts/stage80_archive_readiness.py'
+      - 'scripts/stage80_pbk16_competition_congestion.py'
+      - 'scripts/tests/test_stage80_pbk16_competition_congestion.py'
+      - 'scripts/tests/test_stage80_pbk16_competition_readiness.py'
+      - 'config/stage80_api_football_pbk16_all_competitions_9seasons.json'
+      - '.github/workflows/stage80-pbk16-competition-congestion.yml'
+      - 'ops/stage80_pbk16_competition_catalog.csv'
+      - 'ops/pbk16_all_competition_fixture_history.csv'
+      - 'ops/stage80_pbk16_competition_backfill_state.csv'
+      - 'ops/stage80_pbk16_competition_backfill_last_run.json'
+      - 'ops/pbk16_competition_congestion_research.csv'
+      - 'ops/stage80_pbk16_competition_congestion_last_run.json'
       - 'ops/stage80_raw_archive_storage_last_run.json'
       - 'ops/stage80_raw_archive_provider_probe_last_run.json'
       - 'ops/player_profile_evidence.csv'
@@ -161,6 +183,7 @@ jobs:
       - name: Compile Stage80 archive governance and projections
         run: |
           python -m py_compile scripts/stage80_archive_readiness.py
+          python -m py_compile scripts/stage80_pbk16_competition_congestion.py
           python -m py_compile scripts/stage80_top5_referee_backfill.py
           python -m py_compile scripts/stage80_archive_manifest.py
           python -m py_compile scripts/stage80_prematch_factor_research.py
@@ -174,6 +197,8 @@ jobs:
       - name: Provider-free Stage80 tests
         run: |
           python -m unittest scripts.tests.test_stage80_archive_readiness -v
+          python -m unittest scripts.tests.test_stage80_pbk16_competition_congestion -v
+          python -m unittest scripts.tests.test_stage80_pbk16_competition_readiness -v
           python -m unittest scripts.tests.test_stage80_referee_research_readiness -v
           python -m unittest scripts.tests.test_stage80_top5_referee_backfill -v
           python -m unittest scripts.tests.test_stage80_top5_referee_backfill_readiness -v

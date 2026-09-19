@@ -1,0 +1,95 @@
+name: Stage 80 PBK16 Competition Congestion
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'config/stage80_api_football_pbk16_all_competitions_9seasons.json'
+      - 'scripts/stage80_pbk16_competition_congestion.py'
+      - 'scripts/tests/test_stage80_pbk16_competition_congestion.py'
+      - '.github/workflows/stage80-pbk16-competition-congestion.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'config/stage80_api_football_pbk16_all_competitions_9seasons.json'
+      - 'scripts/stage80_pbk16_competition_congestion.py'
+      - 'scripts/tests/test_stage80_pbk16_competition_congestion.py'
+      - '.github/workflows/stage80-pbk16-competition-congestion.yml'
+
+concurrency:
+  group: stage80-pbk16-competition-congestion-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and provider-free tests
+        run: |
+          python -m py_compile scripts/stage80_pbk16_competition_congestion.py
+          python -m unittest scripts.tests.test_stage80_pbk16_competition_congestion -v
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated PBK16 competition outputs are forbidden in the feature PR.' >&2
+            exit 1
+          fi
+
+  capture:
+    needs: validate
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+      PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+      PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+      PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+      PBK_RAW_ARCHIVE_S3_PREFIX: api-football-raw
+      PBK_RAW_ARCHIVE_S3_REGION: auto
+      OPS_DIR: ops
+      STAGE71_MAX_DAILY_API_CALLS: '7000'
+      STAGE80_PBK16_COMPETITION_MAX_API_CALLS: '512'
+      STAGE80_PBK16_COMPETITION_PROTECTED_CALLS: '512'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install raw archive S3 client
+        run: python -m pip install --disable-pip-version-check boto3
+      - name: Run resumable PBK16 competition backfill
+        run: python scripts/stage80_pbk16_competition_congestion.py
+      - name: Publish PBK16 competition archive safely
+        shell: bash
+        run: |
+          git config user.name 'stage80-competition-bot'
+          git config user.email 'stage80-competition-bot@users.noreply.github.com'
+          git add ops/stage80_pbk16_competition_catalog.csv
+          git add ops/pbk16_all_competition_fixture_history.csv
+          git add ops/stage80_pbk16_competition_backfill_state.csv
+          git add ops/stage80_pbk16_competition_backfill_last_run.json
+          git add ops/pbk16_competition_congestion_research.csv
+          git add ops/stage80_pbk16_competition_congestion_last_run.json
+          git add ops/stage71_observation_state.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m 'Stage 80 PBK16 competition archive update'
+          python scripts/publish_operational_commit.py

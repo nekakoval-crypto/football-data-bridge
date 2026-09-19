@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V18_PREMATCH_WALKFORWARD"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V19_PBK16_COMPETITION_CONGESTION"
 
 DATASETS = [
     {
@@ -416,6 +416,50 @@ DATASETS = [
         "effective_time_fields": ["current_kickoff_utc"],
         "source": "Stage55/56 latest projection from context snapshots",
         "limitations": "Convenience read model; historical evidence remains match_context_snapshots.",
+    },
+    {
+        "dataset_id": "stage80_pbk16_competition_catalog",
+        "path": "stage80_pbk16_competition_catalog.csv",
+        "role": "PROVIDER_DISCOVERY_CATALOG",
+        "lifecycle": "DETERMINISTIC_PROVIDER_DISCOVERY_SNAPSHOT",
+        "identity_key": ["competition_role", "country", "slot"],
+        "observed_time_fields": [],
+        "effective_time_fields": ["requested_seasons"],
+        "source": "Stage80 API-Football /leagues discovery constrained by locked PBK16 national scope and configured cup slots",
+        "limitations": "Research/backfill discovery contract only. Provider-unavailable seasons remain explicit; super cups are excluded; no betting/model authority.",
+    },
+    {
+        "dataset_id": "pbk16_all_competition_fixture_history",
+        "path": "pbk16_all_competition_fixture_history.csv",
+        "role": "HISTORICAL_ENRICHMENT",
+        "lifecycle": "RESUMABLE_PROVIDER_BACKFILL",
+        "identity_key": ["fixture_id"],
+        "observed_time_fields": ["captured_at_utc"],
+        "effective_time_fields": ["kickoff_utc"],
+        "source": "Stage80 API-Football PBK16 domestic league/cup + UEFA fixture backfill",
+        "limitations": "Previous nine completed seasons only. Selected national cups/league cups + UEFA club competitions; provider-unavailable seasons remain missing rather than fabricated. Research only.",
+    },
+    {
+        "dataset_id": "stage80_pbk16_competition_backfill_state",
+        "path": "stage80_pbk16_competition_backfill_state.csv",
+        "role": "OPERATIONAL_RETRY_LEDGER",
+        "lifecycle": "DURABLE_COMPETITION_SEASON_STATE",
+        "identity_key": ["provider_competition_id", "season"],
+        "observed_time_fields": ["last_attempt_at_utc"],
+        "effective_time_fields": ["season"],
+        "source": "Stage80 PBK16 all-competition historical backfill state",
+        "limitations": "Resume/coverage state only. UNAVAILABLE_PROVIDER_SEASON is explicit terminal provider coverage evidence, not a synthetic empty season.",
+    },
+    {
+        "dataset_id": "pbk16_competition_congestion_research",
+        "path": "pbk16_competition_congestion_research.csv",
+        "role": "RESEARCH_ENRICHMENT",
+        "lifecycle": "DETERMINISTIC_NO_LOOKAHEAD_PROJECTION",
+        "identity_key": ["domestic_fixture_id"],
+        "observed_time_fields": [],
+        "effective_time_fields": ["kickoff_utc"],
+        "source": "Stage80 deterministic PBK16 domestic-fixture projection over captured domestic cup/UEFA history",
+        "limitations": "Strictly prior played non-league fixtures only; future schedule intentionally excluded. No probability, EV/value, eligibility, stake or Forward authority.",
     },
 ]
 
