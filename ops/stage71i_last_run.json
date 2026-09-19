@@ -1,55 +1,25 @@
 {
-  "run_at_utc": "2026-09-19T18:47:57Z",
+  "run_at_utc": "2026-09-19T20:45:30Z",
   "status": "OK",
   "mode": "RESEARCH_SETTLEMENT_ONLY",
-  "pending_market_rows": 703,
-  "pending_unique_fixtures": 43,
-  "fixture_api_calls": 43,
-  "new_settlement_rows": 588,
-  "total_settlement_rows": 3123,
+  "pending_market_rows": 115,
+  "pending_unique_fixtures": 7,
+  "fixture_api_calls": 7,
+  "new_settlement_rows": 99,
+  "total_settlement_rows": 3222,
   "settlement_rows_by_family": {
-    "TEAM_TOTAL": 1769,
-    "DOUBLE_CHANCE": 191,
-    "EUROPEAN_HANDICAP": 990,
-    "DRAW_NO_BET": 173
+    "TEAM_TOTAL": 1826,
+    "DOUBLE_CHANCE": 197,
+    "EUROPEAN_HANDICAP": 1020,
+    "DRAW_NO_BET": 179
   },
   "non_ft_or_review_fixtures": [
-    {
-      "fixture_id": "1552174",
-      "status": "1H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1553177",
-      "status": "1H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1561931",
-      "status": "2H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
     {
       "fixture_id": "1570389",
       "status": "PST",
       "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1575500",
-      "status": "2H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1584413",
-      "status": "2H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1584420",
-      "status": "2H",
-      "detail": "Not auto-settled; FT regulation score required"
     }
   ],
   "signals_created": 0,
-  "api_calls": 43
+  "api_calls": 7
 }
