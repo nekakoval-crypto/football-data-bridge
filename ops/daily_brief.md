@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-19T16:02:48Z
+Generated UTC: 2026-09-19T17:02:39Z
 Active canonical signals: 4
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -73,16 +73,16 @@ Active canonical signals: 4
 
 - Scope: АПЛ: движение фаворита П1/П2 (+3 pp no-vig from frozen Bet365 opener).
 - Frozen openers tracked: 20
-- Active +3 pp crossings: 2
-- Observed closes: 15 | Close-qualified M1 watches: 1
+- Active +3 pp crossings: 1
+- Observed closes: 16 | Close-qualified M1 watches: 2
 - Executable bookmaker being observed: Marathonbet
 
 ## Current crossings
-- WATCH | Nottingham Forest — Coventry | фаворит на opener H | move +4.65 pp | Bet365 1.62 | Marathonbet 1.66 | 4262.6 min to kickoff
 - WATCH | Leeds — Crystal Palace | фаворит на opener H | move +8.75 pp | Bet365 1.8 | Marathonbet 1.8 | 4290.1 min to kickoff
 
 ## Recent close-qualified watches
 - Tottenham — Aston Villa | move +7.02 pp | B365 close 1.91 | Marathonbet close 1.98
+- Nottingham Forest — Coventry | move +4.77 pp | B365 close 1.62 | Marathonbet close 1.64
 
 ---
 
@@ -114,13 +114,11 @@ Active canonical signals: 4
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 105
-- Активные движения ≥3 п.п.: всего 13 | ОЗ — Да 9 | ОЗ — Нет 4
-- Зафиксировано observed close: 73
+- Активные движения ≥3 п.п.: всего 11 | ОЗ — Да 8 | ОЗ — Нет 3
+- Зафиксировано observed close: 76
 - Исполнимый букмекер для наблюдения: Marathonbet
 
 ## Текущие ОЗ-watch
-- WATCH | La Liga | Athletic Club — Alaves | ОЗ — Нет | движение P(ОЗ — Да) -4.00 п.п. | Marathonbet 1.78 | 4317.8 мин до матча
-- WATCH | Serie A | AS Roma — Inter | ОЗ — Да | движение P(ОЗ — Да) +3.28 п.п. | Marathonbet 1.49 | 4303.4 мин до матча
 - WATCH | La Liga | Sevilla — Barcelona | ОЗ — Нет | движение P(ОЗ — Да) -3.33 п.п. | Marathonbet 2.0 | 3883.9 мин до матча
 - WATCH | Serie A | Frosinone — Como | ОЗ — Да | движение P(ОЗ — Да) +3.20 п.п. | Marathonbet 1.57 | 4242.6 мин до матча
 - WATCH | Bundesliga | FC Schalke 04 — SV Elversberg | ОЗ — Да | движение P(ОЗ — Да) +7.36 п.п. | Marathonbet 1.44 | 4272.4 мин до матча
@@ -139,14 +137,14 @@ Active canonical signals: 4
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 45 | settled 27 | pending 18
+- Crossings: 45 | settled 30 | pending 15
 - Marathonbet coverage at crossing: 100.0%
-- First-crossing P&L: -4.910u | ROI -18.185% | W-L 15-12
-- Close: observed 29 | stayed qualified 24 | reverted 5 | persistence 82.759%
-- Close-qualified ROI: -16.87% | Reverted ROI: -25.75%
+- First-crossing P&L: -6.130u | ROI -20.433% | W-L 16-14
+- Close: observed 31 | stayed qualified 25 | reverted 6 | persistence 80.645%
+- Close-qualified ROI: -20.333% | Reverted ROI: -20.833%
 
 ## By WATCH family
-- Big-5 ОЗ market movement — ОЗ — Да: crossings 26, settled 16, ROI -33.312%, close persistence 82.353%
-- Big-5 ОЗ market movement — ОЗ — Нет: crossings 7, settled 3, ROI 23.333%, close persistence 100.0%
-- АПЛ favorite steam: crossings 5, settled 2, ROI -100.0%, close persistence 33.333%
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 26, settled 17, ROI -37.235%, close persistence 83.333%
+- Big-5 ОЗ market movement — ОЗ — Нет: crossings 7, settled 4, ROI 37.0%, close persistence 75.0%
+- АПЛ favorite steam: crossings 5, settled 3, ROI -100.0%, close persistence 33.333%
 - Бундеслига ТБ(2.5) steam: crossings 7, settled 6, ROI 28.667%, close persistence 100.0%
