@@ -24,6 +24,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -52,8 +54,9 @@ jobs:
         if: github.event_name == 'pull_request'
         shell: bash
         run: |
-          git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
-          changed="$(git diff --name-only origin/main...HEAD)"
+          base_sha="${{ github.event.pull_request.base.sha }}"
+          head_sha="${{ github.event.pull_request.head.sha }}"
+          changed="$(git diff --name-only "$base_sha...$head_sha")"
           printf '%s\n' "$changed"
 
           if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
