@@ -1,8 +1,8 @@
 # PBK Signal Lifecycle
 
-Обновлено UTC: 2026-09-19T14:08:03Z
+Обновлено UTC: 2026-09-19T15:07:44Z
 
-Cards: 50 | canonical 6 | WATCH 44 | events 569
+Cards: 51 | canonical 6 | WATCH 45 | events 580
 
 ## WATCH | Stage63 | Venezia — Fiorentina
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-11T18:45:00Z
@@ -177,18 +177,22 @@ Cards: 50 | canonical 6 | WATCH 44 | events 569
 
 ## WATCH | Stage63 | Udinese — Cagliari
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-19T13:00:00Z
-- Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
+- Последнее событие: WATCH_SETTLEMENT | статус: SETTLED | событий: 3
   - 2026-09-16T14:17:14Z — WATCH_CROSSING — Marathonbet | 1.85 | movement_pp=0.03333333
+  - 2026-09-19T12:19:44Z — WATCH_CLOSE — Marathonbet | 1.79 | close_qualified=YES
+  - 2026-09-19T14:53:30Z — WATCH_SETTLEMENT — Marathonbet | 1.85 | result=L profit_u=-1.000
 
 ## WATCH | Stage63 | Werder Bremen — FC Augsburg
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-19T13:30:00Z
-- Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
+- Последнее событие: WATCH_CLOSE | статус: REVERTED_AT_CLOSE | событий: 2
   - 2026-09-17T22:15:24Z — WATCH_CROSSING — Marathonbet | 1.36 | movement_pp=0.04275319
+  - 2026-09-19T12:19:44Z — WATCH_CLOSE — Marathonbet | 1.39 | close_qualified=NO
 
 ## WATCH | Stage63 | Borussia Mönchengladbach — FSV Mainz 05
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-19T13:30:00Z
-- Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
+- Последнее событие: WATCH_CLOSE | статус: QUALIFIED_AT_CLOSE | событий: 2
   - 2026-09-19T10:15:06Z — WATCH_CROSSING — Marathonbet | 1.39 | movement_pp=0.03765060
+  - 2026-09-19T12:19:44Z — WATCH_CLOSE — Marathonbet | 1.41 | close_qualified=YES
 
 ## WATCH | Stage62 | Eintracht Frankfurt — SC Freiburg
 - Ставка/рынок: ТБ(2.5) | kickoff: 2026-09-19T13:30:00Z
@@ -210,13 +214,15 @@ Cards: 50 | canonical 6 | WATCH 44 | events 569
 
 ## WATCH | Stage63 | Everton — Ipswich
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-19T14:00:00Z
-- Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
+- Последнее событие: WATCH_CLOSE | статус: QUALIFIED_AT_CLOSE | событий: 2
   - 2026-09-16T14:17:14Z — WATCH_CROSSING — Marathonbet | 1.67 | movement_pp=0.03702918
+  - 2026-09-19T12:19:44Z — WATCH_CLOSE — Marathonbet | 1.67 | close_qualified=YES
 
 ## WATCH | Stage61 | Brighton — Arsenal
 - Ставка/рынок: П2 | kickoff: 2026-09-19T14:00:00Z
-- Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
+- Последнее событие: WATCH_CLOSE | статус: REVERTED_AT_CLOSE | событий: 2
   - 2026-09-16T14:29:51Z — WATCH_CROSSING — Marathonbet | 1.75 | movement_pp=0.03186014
+  - 2026-09-19T13:53:15Z — WATCH_CLOSE — Marathonbet | 1.73 | close_qualified=NO
 
 ## WATCH | Stage63 | Athletic Club — Alaves
 - Ставка/рынок: ОЗ — Нет | kickoff: 2026-09-19T14:15:00Z
@@ -270,8 +276,7 @@ Cards: 50 | canonical 6 | WATCH 44 | events 569
 
 ## CANONICAL | R1 | Frosinone — Como
 - Ставка/рынок: П2 | kickoff: 2026-09-20T13:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 206
-  - 2026-09-19T07:16:40Z — WEATHER_SNAPSHOT — temp=29.7C precip=0%
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 207
   - 2026-09-19T07:42:39Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-19T08:43:40Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-19T09:42:35Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -279,6 +284,7 @@ Cards: 50 | canonical 6 | WATCH 44 | events 569
   - 2026-09-19T11:41:49Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-19T12:46:17Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-19T13:42:07Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-19T14:42:09Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
 
 ## WATCH | Stage63 | Frosinone — Como
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-20T13:00:00Z
@@ -300,6 +306,11 @@ Cards: 50 | canonical 6 | WATCH 44 | events 569
 - Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
   - 2026-09-17T16:24:13Z — WATCH_CROSSING — Marathonbet | 1.48 | movement_pp=0.06958989
 
+## WATCH | Stage63 | Juventus — Atalanta
+- Ставка/рынок: ОЗ — Нет | kickoff: 2026-09-20T16:00:00Z
+- Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
+  - 2026-09-19T14:14:58Z — WATCH_CROSSING — Marathonbet | 1.89 | movement_pp=-0.03333333
+
 ## WATCH | Stage63 | Marseille — Paris Saint Germain
 - Ставка/рынок: ОЗ — Нет | kickoff: 2026-09-20T18:45:00Z
 - Последнее событие: WATCH_CROSSING | статус: WATCH_ONLY | событий: 1
@@ -307,8 +318,7 @@ Cards: 50 | canonical 6 | WATCH 44 | events 569
 
 ## CANONICAL | R1 | Lecce — Bologna
 - Ставка/рынок: П2 | kickoff: 2026-10-11T13:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 36
-  - 2026-09-19T06:46:38Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 37
   - 2026-09-19T07:42:39Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-19T08:43:40Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-19T09:42:35Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -316,11 +326,11 @@ Cards: 50 | canonical 6 | WATCH 44 | events 569
   - 2026-09-19T11:41:49Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-19T12:46:17Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-19T13:42:07Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-19T14:42:09Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
 
 ## CANONICAL | R1 | Sassuolo — AC Milan
 - Ставка/рынок: П2 | kickoff: 2026-10-11T16:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 36
-  - 2026-09-19T06:46:38Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 37
   - 2026-09-19T07:42:39Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-19T08:43:40Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-19T09:42:35Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -328,11 +338,11 @@ Cards: 50 | canonical 6 | WATCH 44 | events 569
   - 2026-09-19T11:41:49Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-19T12:46:17Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-19T13:42:07Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-19T14:42:09Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
 
 ## CANONICAL | R1 | Cagliari — Juventus
 - Ставка/рынок: П2 | kickoff: 2026-10-11T18:45:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 36
-  - 2026-09-19T06:46:38Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 37
   - 2026-09-19T07:42:39Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-19T08:43:40Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-19T09:42:35Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -340,3 +350,4 @@ Cards: 50 | canonical 6 | WATCH 44 | events 569
   - 2026-09-19T11:41:49Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-19T12:46:17Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-19T13:42:07Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-19T14:42:09Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
