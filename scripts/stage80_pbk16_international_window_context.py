@@ -292,17 +292,25 @@ def project(archive_rows,cfg,windows):
 
 def build_meta(archive_rows,domestic,rows,invalid,cfg,windows):
     league_ids={sval(r,"provider_league_id") for r in rows if sval(r,"provider_league_id")}
+    fixture_ids={sval(r,"domestic_fixture_id") for r in rows if sval(r,"domestic_fixture_id")}
+    duplicate_fixture_ids=len(rows)-len(fixture_ids)
     window_counts=defaultdict(int)
     for row in rows:
         window_counts[row["nearest_window_id"]]+=1
     return {
         "version":VERSION,
         "generated_at_utc":iso_now(),
-        "status":"OK" if len(rows)==len(domestic) and invalid==0 and len(league_ids)==16 else "ATTENTION",
+        "status":"OK" if (
+            len(rows)==len(domestic)
+            and invalid==0
+            and len(league_ids)==16
+            and duplicate_fixture_ids==0
+        ) else "ATTENTION",
         "source_archive_rows":len(archive_rows),
         "source_domestic_rows":len(domestic),
         "output_rows":len(rows),
-        "unique_domestic_fixture_ids":len({r["domestic_fixture_id"] for r in rows}),
+        "unique_domestic_fixture_ids":len(fixture_ids),
+        "duplicate_domestic_fixture_ids":duplicate_fixture_ids,
         "invalid_domestic_rows":invalid,
         "domestic_anchor_league_ids":len(league_ids),
         "calendar_version":cfg["version"],
