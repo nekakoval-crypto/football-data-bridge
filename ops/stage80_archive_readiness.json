@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V21_PBK16_COMPETITION_CONGESTION",
-  "generated_at_utc": "2026-09-19T07:52:33Z",
+  "generated_at_utc": "2026-09-19T08:02:47Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -171,23 +171,23 @@
     },
     "pbk16_competition_catalog": {
       "file": "stage80_pbk16_competition_catalog.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 39
     },
     "pbk16_competition_fixtures": {
       "file": "pbk16_all_competition_fixture_history.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 68852
     },
     "pbk16_competition_state": {
       "file": "stage80_pbk16_competition_backfill_state.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 332
     },
     "pbk16_competition_congestion": {
       "file": "pbk16_competition_congestion_research.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 40989
     }
   },
   "fixtures": {
@@ -552,49 +552,49 @@
     "evidence_note": "Walk-forward research uses only strictly earlier seasons to evaluate each later test season. Sample-qualified sign persistence is descriptive validation evidence only."
   },
   "pbk16_competition_history": {
-    "catalog_present": false,
-    "fixture_archive_present": false,
-    "state_present": false,
-    "meta_present": false,
-    "meta_valid": false,
-    "catalog_rows": 0,
-    "valid_catalog_rows": 0,
+    "catalog_present": true,
+    "fixture_archive_present": true,
+    "state_present": true,
+    "meta_present": true,
+    "meta_valid": true,
+    "catalog_rows": 39,
+    "valid_catalog_rows": 39,
     "invalid_catalog_rows": 0,
-    "required_unresolved_competitions": 0,
+    "required_unresolved_competitions": 1,
     "optional_unresolved_competitions": 0,
-    "resolved_domestic_league_catalog_ids": 0,
-    "fixture_rows": 0,
-    "valid_fixture_rows": 0,
+    "resolved_domestic_league_catalog_ids": 16,
+    "fixture_rows": 68852,
+    "valid_fixture_rows": 68852,
     "invalid_fixture_rows": 0,
     "duplicate_fixture_ids": 0,
-    "domestic_anchor_rows": 0,
-    "domestic_anchor_league_ids": 0,
-    "state_rows": 0,
-    "valid_state_rows": 0,
+    "domestic_anchor_rows": 40989,
+    "domestic_anchor_league_ids": 16,
+    "state_rows": 332,
+    "valid_state_rows": 332,
     "invalid_state_rows": 0,
-    "captured_fixture_cells": 0,
-    "unavailable_provider_season_cells": 0,
+    "captured_fixture_cells": 313,
+    "unavailable_provider_season_cells": 19,
     "pending_fixture_cells": 0,
     "error_fixture_cells": 0,
     "operational_betting_authority": false,
     "evidence_note": "Historical PBK16 domestic-league/cup + UEFA provider archive. Provider-unavailable seasons and unresolved required competitions remain explicit gaps; no betting/model authority."
   },
   "pbk16_competition_congestion": {
-    "present": false,
-    "meta_present": false,
-    "meta_valid": false,
-    "rows": 0,
-    "valid_rows": 0,
+    "present": true,
+    "meta_present": true,
+    "meta_valid": true,
+    "rows": 40989,
+    "valid_rows": 40989,
     "invalid_rows": 0,
-    "unique_domestic_fixture_ids": 0,
+    "unique_domestic_fixture_ids": 40989,
     "duplicate_domestic_fixture_ids": 0,
-    "strictly_prior_fixture_evidence_only": null,
-    "future_schedule_used": null,
-    "no_lookahead": null,
-    "rows_either_prev_nonleague_72h": null,
-    "rows_either_prev_uefa_72h": null,
-    "rows_either_prev_cup_72h": null,
-    "rows_either_previous_nonleague_was_thursday": null,
+    "strictly_prior_fixture_evidence_only": true,
+    "future_schedule_used": false,
+    "no_lookahead": true,
+    "rows_either_prev_nonleague_72h": 4562,
+    "rows_either_prev_uefa_72h": 3210,
+    "rows_either_prev_cup_72h": 1356,
+    "rows_either_previous_nonleague_was_thursday": 13754,
     "operational_betting_authority": false,
     "evidence_note": "One deterministic row per captured PBK16 domestic fixture; only strictly prior played cup/UEFA evidence can contribute. Future scheduled fixtures are excluded."
   },
@@ -627,8 +627,8 @@
     "PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL",
-    "PBK16_COMPETITION_HISTORY_NOT_MATERIALIZED",
-    "PBK16_COMPETITION_CONGESTION_NOT_MATERIALIZED",
+    "PBK16_COMPETITION_DISCOVERY_REQUIRED_UNRESOLVED",
+    "PBK16_COMPETITION_PROVIDER_SEASONS_PARTIAL",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
     "PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE",
     "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE"
