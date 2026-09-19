@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-19T15:03:36Z",
+  "generated_at_utc": "2026-09-19T16:03:45Z",
   "status": "OK",
   "policy_locked_at": "2026-09-11",
   "families": {
@@ -34,20 +34,20 @@
         "crossings": 7,
         "user_price_rows": 7,
         "execution_coverage_pct": 100.0,
-        "settled_executable": 3,
-        "roi_pct": 14.0,
-        "first_half_n": 1,
-        "first_half_roi_pct": 26.0,
-        "second_half_n": 2,
-        "second_half_roi_pct": 8.0,
-        "close_observed_settled": 3,
+        "settled_executable": 6,
+        "roi_pct": 28.667,
+        "first_half_n": 3,
+        "first_half_roi_pct": 14.0,
+        "second_half_n": 3,
+        "second_half_roi_pct": 43.333,
+        "close_observed_settled": 6,
         "close_observed_coverage_pct": 100.0,
-        "close_qualified_settled": 3,
-        "close_qualified_roi_pct": 14.0
+        "close_qualified_settled": 6,
+        "close_qualified_roi_pct": 28.667
       },
       "blocking_reasons": [
-        "settled 3/60",
-        "close-qualified subset 3/20"
+        "settled 6/60",
+        "close-qualified subset 6/20"
       ]
     },
     "Stage63": {
@@ -56,16 +56,16 @@
         "crossings": 33,
         "user_price_rows": 33,
         "execution_coverage_pct": 100.0,
-        "settled_executable": 17,
-        "roi_pct": -31.647,
-        "first_half_n": 8,
-        "first_half_roi_pct": -81.375,
-        "second_half_n": 9,
-        "second_half_roi_pct": 12.556,
-        "close_observed_settled": 17,
+        "settled_executable": 19,
+        "roi_pct": -24.368,
+        "first_half_n": 9,
+        "first_half_roi_pct": -65.556,
+        "second_half_n": 10,
+        "second_half_roi_pct": 12.7,
+        "close_observed_settled": 19,
         "close_observed_coverage_pct": 100.0,
-        "close_qualified_settled": 15,
-        "close_qualified_roi_pct": -33.267
+        "close_qualified_settled": 16,
+        "close_qualified_roi_pct": -28.75
       },
       "blocking_reasons": [
         "No historical BTTS first/close dataset; any finding needs a new preregistration and fresh holdout."
