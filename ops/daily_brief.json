@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-19T06:03:20Z",
+  "generated_at_utc": "2026-09-19T08:03:09Z",
   "status": "OK",
   "active_signals": 4,
   "policy": {
@@ -30,11 +30,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-19T05:42:27Z",
+        "captured_at_utc": "2026-09-19T07:42:39Z",
         "best_odds": "1.55",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.5",
-        "api_odds_update_utc": "2026-09-19T01:28:35+00:00",
+        "api_odds_update_utc": "2026-09-19T05:27:19+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -61,22 +61,22 @@
         "away_last5_ppg": "2.33"
       },
       "calendar": {
-        "snapshot_type": "BASELINE",
-        "captured_at_utc": "2026-09-11T10:09:18Z",
-        "referee": "",
+        "snapshot_type": "T24",
+        "captured_at_utc": "2026-09-19T07:14:50Z",
+        "referee": "D. Chiffi",
         "venue": "Stadio Benito Stirpe",
         "city": "Frosinone",
         "home_prev": {
           "competition": "Serie A",
-          "opponent": "Venezia",
-          "date_utc": "2026-09-06T13:00:00Z",
-          "rest_hours": "336.0"
+          "opponent": "Genoa",
+          "date_utc": "2026-09-12T13:00:00Z",
+          "rest_hours": "192.0"
         },
         "away_prev": {
-          "competition": "UEFA Champions League",
-          "opponent": "RB Leipzig",
-          "date_utc": "2026-09-10T19:00:00Z",
-          "rest_hours": "234.0"
+          "competition": "Serie A",
+          "opponent": "Parma",
+          "date_utc": "2026-09-14T16:30:00Z",
+          "rest_hours": "140.5"
         },
         "home_next": {
           "competition": "Serie A",
@@ -92,20 +92,20 @@
         }
       },
       "injuries": {
-        "status": "NOT_QUERIED_YET",
-        "total": "",
-        "home": "",
-        "away": ""
+        "status": "QUERIED",
+        "total": "4",
+        "home": "2",
+        "away": "2"
       },
       "weather": {
-        "snapshot_type": "BASELINE",
-        "captured_at_utc": "2026-09-11T10:18:25Z",
-        "temperature_c": "27.3",
-        "precipitation_probability_pct": "15",
+        "snapshot_type": "T24",
+        "captured_at_utc": "2026-09-19T07:16:40Z",
+        "temperature_c": "29.7",
+        "precipitation_probability_pct": "0",
         "precipitation_mm": "0.0",
-        "wind_speed_kmh": "10.3",
-        "wind_gusts_kmh": "28.8",
-        "visibility_m": "41920.0",
+        "wind_speed_kmh": "3.6",
+        "wind_gusts_kmh": "8.6",
+        "visibility_m": "45000.0",
         "weather_code": "1",
         "role": "context-only"
       },
@@ -130,7 +130,6 @@
         "player_level_reason": "Nationality is not evidence of call-up, travel, or appearance"
       },
       "flags": [
-        "AWAY_PREV_UEFA_OR_CUP",
         "WITHIN_7D_BEFORE_FIFA_WINDOW",
         "OFFICIAL_ROTATION_PENDING"
       ],
@@ -156,11 +155,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-19T05:42:27Z",
+        "captured_at_utc": "2026-09-19T07:42:39Z",
         "best_odds": "2.07",
         "best_bookmaker": "1xBet",
         "bet365_odds": "2.0",
-        "api_odds_update_utc": "2026-09-19T03:47:17+00:00",
+        "api_odds_update_utc": "2026-09-19T05:27:19+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -281,7 +280,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-19T05:42:27Z",
+        "captured_at_utc": "2026-09-19T07:42:39Z",
         "best_odds": "1.84",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.75",
@@ -408,7 +407,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-19T05:42:27Z",
+        "captured_at_utc": "2026-09-19T07:42:39Z",
         "best_odds": "1.56",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.48",
@@ -527,7 +526,7 @@
     "observed_closes": 11,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-19T05:53:02Z",
+    "latest_run_utc": "2026-09-19T06:55:24Z",
     "warnings": [],
     "crossings": [
       {
@@ -593,7 +592,7 @@
     "observed_closes": 10,
     "close_qualified_total": 3,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-19T05:47:05Z",
+    "latest_run_utc": "2026-09-19T07:21:10Z",
     "warnings": [],
     "crossings": [
       {
@@ -687,7 +686,7 @@
     "observed_closes": 62,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-19T04:15:50Z",
+    "latest_run_utc": "2026-09-19T06:19:25Z",
     "warnings": [],
     "crossings": [
       {
@@ -873,7 +872,7 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-19T05:53:42Z",
+    "generated_at_utc": "2026-09-19T07:53:21Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {

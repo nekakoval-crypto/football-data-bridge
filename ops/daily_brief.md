@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-19T06:03:20Z
+Generated UTC: 2026-09-19T08:03:09Z
 Active canonical signals: 4
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -11,14 +11,14 @@ Active canonical signals: 4
 - Market-best observed: 1.55 @ 1xBet | Bet365 now: 1.5
 - Current user-executable: 1.5 @ Marathonbet
 - Paper user-execution (frozen): 1.65 @ Marathonbet [2026-09-11T10:32:01Z]
-- Referee / venue: TBD | Stadio Benito Stirpe, Frosinone
-- Previous: home Serie A vs Venezia (336.0h rest); away UEFA Champions League vs RB Leipzig (234.0h rest)
+- Referee / venue: D. Chiffi | Stadio Benito Stirpe, Frosinone
+- Previous: home Serie A vs Genoa (192.0h rest); away Serie A vs Parma (140.5h rest)
 - Next: home Serie A vs Napoli (485.8h after); away Serie A vs AS Roma (501.5h after)
-- Injuries: NOT_QUERIED_YET
-- Weather [BASELINE]: 27.3°C, precip 15%, wind 10.3 km/h, gusts 28.8 km/h
+- Injuries: QUERIED
+- Weather [T24]: 29.7°C, precip 0%, wind 3.6 km/h, gusts 8.6 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: BEFORE FIFA window; to start 11.0h; player-level UNVERIFIED
-- Flags: AWAY_PREV_UEFA_OR_CUP, WITHIN_7D_BEFORE_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
+- Flags: WITHIN_7D_BEFORE_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
 
 ## R1 | Lecce — Bologna
 - Kickoff UTC: 2026-10-11T13:00:00Z | Ставка: П2 | Stake: 1.000u
