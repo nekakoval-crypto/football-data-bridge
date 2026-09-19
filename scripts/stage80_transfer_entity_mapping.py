@@ -24,11 +24,12 @@ import unicodedata
 from collections import defaultdict
 from pathlib import Path
 
-VERSION = "PBK_STAGE80_TRANSFER_ENTITY_MAPPING_V3_PROFILE_NAME_DOB"
+VERSION = "PBK_STAGE80_TRANSFER_ENTITY_MAPPING_V4_INTERNATIONAL_NAME_PROFILE_DOB"
 AUTO_METHOD_CATALOG = "EXACT_NAME_CURRENT_CLUB"
 AUTO_METHOD_PROFILE = "EXACT_PROFILE_NAME_DOB_CURRENT_CLUB"
 AUTO_METHOD_STATS = "EXACT_STATS_NAME_CURRENT_CLUB"
-SAFE_AUTO_METHODS = {AUTO_METHOD_CATALOG, AUTO_METHOD_PROFILE, AUTO_METHOD_STATS}
+AUTO_METHOD_INTERNATIONAL_PROFILE = "EXACT_INTERNATIONAL_NAME_PROFILE_DOB"
+SAFE_AUTO_METHODS = {AUTO_METHOD_CATALOG, AUTO_METHOD_PROFILE, AUTO_METHOD_STATS, AUTO_METHOD_INTERNATIONAL_PROFILE}
 
 MAPPING_FIELDS = [
     "pbk_player_id","pbk_player_name","pbk_latest_team_names",
@@ -229,6 +230,49 @@ def build_profile_aliases(player_profile_rows):
     }, ownership
 
 
+
+def build_international_profile_aliases(international_rows, player_profile_rows):
+    """Direct national-team full name + independently captured profile DOB.
+
+    Club is intentionally not part of this identity method: club-at-date belongs
+    to the later temporal transfer-history layer. Ambiguous names, DOB conflicts,
+    abbreviated names, and shared identity claims fail closed.
+    """
+    profile_dobs = defaultdict(set)
+    for row in player_profile_rows or []:
+        pbk_id = sval(row, "player_id")
+        birth_date = date_key(sval(row, "birth_date"))
+        if pbk_id and birth_date:
+            profile_dobs[pbk_id].add(birth_date)
+
+    names = defaultdict(dict)
+    for row in international_rows or []:
+        pbk_id = sval(row, "player_id")
+        name = sval(row, "player_name")
+        if not pbk_id or not name or not is_non_abbreviated_name(name):
+            continue
+        nk = normalize_text(name)
+        if nk:
+            names[pbk_id][nk] = name
+
+    aliases = {}
+    ownership = defaultdict(set)
+    for pbk_id, name_map in names.items():
+        dobs = profile_dobs.get(pbk_id, set())
+        if len(name_map) != 1 or len(dobs) != 1:
+            continue
+        nk, name = next(iter(name_map.items()))
+        birth_date = next(iter(dobs))
+        key = (nk, birth_date)
+        ownership[key].add(pbk_id)
+        aliases[pbk_id] = {
+            "name": name,
+            "name_key": nk,
+            "birth_date": birth_date,
+            "source": "API_FOOTBALL_NATIONAL_TEAM_DIRECT_NAME+PLAYER_PROFILE_DOB",
+        }
+    return aliases, ownership
+
 def build_tm_indexes(tm_players):
     by_exact = defaultdict(list)
     by_initial_team = defaultdict(list)
@@ -255,10 +299,13 @@ def build_tm_indexes(tm_players):
     return by_exact, by_initial_team
 
 
-def build_mapping(pbk_rows, tm_players, player_stat_rows=None, player_profile_rows=None):
+def build_mapping(pbk_rows, tm_players, player_stat_rows=None, player_profile_rows=None, international_rows=None):
     by_exact, by_initial_team = build_tm_indexes(tm_players)
     profile_aliases, profile_ownership = build_profile_aliases(player_profile_rows or [])
     stats_aliases, stats_ownership = build_stats_aliases(player_stat_rows or [])
+    international_aliases, international_ownership = build_international_profile_aliases(
+        international_rows or [], player_profile_rows or []
+    )
 
     rows = []
     provisional_auto_claims = defaultdict(set)
@@ -421,6 +468,52 @@ def build_mapping(pbk_rows, tm_players, player_stat_rows=None, player_profile_ro
             if status == "AUTO_MATCH" and method in SAFE_AUTO_METHODS:
                 provisional_auto_claims[candidate["player_id"]].add(pbk_id)
 
+    # International-duty recovery is an additive identity path. It never
+    # upgrades the global REVIEW-only methods; it emits a separate AUTO/HIGH
+    # row only for unique exact direct-name + exact profile-DOB evidence.
+    existing_auto_pbk_ids = {
+        sval(row, "pbk_player_id")
+        for row in rows
+        if sval(row, "match_status") == "AUTO_MATCH"
+        and sval(row, "match_confidence") == "HIGH"
+        and sval(row, "match_method") in SAFE_AUTO_METHODS
+    }
+    for pbk_id, alias in sorted(international_aliases.items()):
+        if pbk_id in existing_auto_pbk_ids:
+            continue
+        key = (alias["name_key"], alias["birth_date"])
+        if international_ownership.get(key) != {pbk_id}:
+            continue
+        tm_matches = [
+            candidate for candidate in by_exact.get(alias["name_key"], [])
+            if candidate.get("date_of_birth") == alias["birth_date"]
+        ]
+        if len(tm_matches) != 1:
+            continue
+        candidate = tm_matches[0]
+        rows.append({
+            "pbk_player_id": pbk_id,
+            "pbk_player_name": alias["name"],
+            "pbk_latest_team_names": "",
+            "pbk_evidence_name": alias["name"],
+            "pbk_evidence_team_name": "",
+            "pbk_evidence_birth_date": alias["birth_date"],
+            "pbk_evidence_source": alias["source"],
+            "transfermarkt_player_id": candidate["player_id"],
+            "transfermarkt_player_name": candidate["name"],
+            "transfermarkt_current_club_id": candidate["current_club_id"],
+            "transfermarkt_current_club_name": candidate["current_club_name"],
+            "transfermarkt_date_of_birth": candidate.get("date_of_birth", ""),
+            "match_method": AUTO_METHOD_INTERNATIONAL_PROFILE,
+            "match_status": "AUTO_MATCH",
+            "match_confidence": "HIGH",
+            "name_key": alias["name_key"],
+            "team_key": "",
+            "candidate_count": "1",
+            "mapping_version": VERSION,
+        })
+        provisional_auto_claims[candidate["player_id"]].add(pbk_id)
+
     collisions = {
         tm_id for tm_id, pbk_ids in provisional_auto_claims.items()
         if len(pbk_ids) != 1
@@ -531,6 +624,7 @@ def run(
     meta_out,
     player_stats_path=None,
     player_profiles_path=None,
+    international_evidence_path=None,
     identity_out=None,
 ):
     pbk = open_csv(pbk_path)
@@ -538,8 +632,9 @@ def run(
     transfers = open_csv(transfers_path)
     player_stats = open_csv(player_stats_path) if player_stats_path else []
     player_profiles = open_csv(player_profiles_path) if player_profiles_path else []
+    international_rows = open_csv(international_evidence_path) if international_evidence_path else []
 
-    mapping, auto = build_mapping(pbk, players, player_stats, player_profiles)
+    mapping, auto = build_mapping(pbk, players, player_stats, player_profiles, international_rows)
     identities = build_identity_map(mapping)
     history = build_transfer_history(transfers, auto)
     write_csv(mapping_out, MAPPING_FIELDS, mapping)
@@ -562,6 +657,7 @@ def run(
         "pbk_players": len(pbk),
         "player_stat_rows": len(player_stats),
         "player_profile_rows": len(player_profiles),
+        "international_evidence_rows": len(international_rows),
         "transfermarkt_players": len(players),
         "transfer_source_rows": len(transfers),
         "mapping_candidate_rows": len(mapping),
@@ -571,7 +667,7 @@ def run(
         "normalized_transfer_rows": len(history),
         "mapping_status_rows": dict(sorted(statuses.items())),
         "mapping_method_rows": dict(sorted(methods.items())),
-        "auto_match_policy": "EXACT_NAME_CURRENT_CLUB_OR_EXACT_PROFILE_NAME_DOB_CURRENT_CLUB_OR_EXACT_STATS_NAME_CURRENT_CLUB_UNIQUE_ONLY",
+        "auto_match_policy": "EXACT_NAME_CURRENT_CLUB_OR_EXACT_PROFILE_NAME_DOB_CURRENT_CLUB_OR_EXACT_STATS_NAME_CURRENT_CLUB_OR_EXACT_DIRECT_INTERNATIONAL_NAME_PLUS_PROFILE_DOB_UNIQUE_ONLY",
         "review_only_methods": [
             "EXACT_NAME_UNIQUE",
             "INITIAL_SURNAME_CURRENT_CLUB",
@@ -610,6 +706,7 @@ def main():
     p.add_argument("--transfers", required=True)
     p.add_argument("--player-stats", default="")
     p.add_argument("--player-profiles", default="")
+    p.add_argument("--international-evidence", default="")
     p.add_argument("--identity-out", default="")
     p.add_argument("--mapping-out", required=True)
     p.add_argument("--transfers-out", required=True)
@@ -625,6 +722,7 @@ def main():
         a.meta_out,
         player_stats_path=a.player_stats or None,
         player_profiles_path=a.player_profiles or None,
+        international_evidence_path=a.international_evidence or None,
         identity_out=a.identity_out or None,
     ), ensure_ascii=False))
 
