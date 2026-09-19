@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V22_PBK14_CONGESTION_MARKET_WALKFORWARD"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V23_PBK16_INTERNATIONAL_WINDOW_CONTEXT"
 
 DATASETS = [
     {
@@ -460,6 +460,17 @@ DATASETS = [
         "effective_time_fields": ["kickoff_utc"],
         "source": "Stage80 deterministic PBK16 domestic-fixture projection over captured domestic cup/UEFA history",
         "limitations": "Strictly prior played non-league fixtures only; future schedule intentionally excluded. No probability, EV/value, eligibility, stake or Forward authority.",
+    },
+    {
+        "dataset_id": "pbk16_international_window_context_research",
+        "path": "pbk16_international_window_context_research.csv",
+        "role": "RESEARCH_ENRICHMENT",
+        "lifecycle": "DETERMINISTIC_CALENDAR_CONTEXT_PROJECTION",
+        "identity_key": ["domestic_fixture_id"],
+        "observed_time_fields": [],
+        "effective_time_fields": ["kickoff_utc"],
+        "source": "Stage80 PBK16 domestic fixture history joined to fixed UEFA-relevant FIFA/UEFA international-window calendar",
+        "limitations": "Calendar-level proximity only. Does not infer player call-up, travel, appearance, minutes or return timing. Final tournaments and non-UEFA-only windows are excluded. No probability, EV/value, eligibility, stake or Forward authority.",
     },
     {
         "dataset_id": "pbk14_football_data_fixture_bridge",
