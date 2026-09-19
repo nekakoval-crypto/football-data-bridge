@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-19T16:43:34Z",
+  "generated_at_utc": "2026-09-19T16:44:37Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -67,12 +67,12 @@
     "transfer_identity": {
       "file": "pbk_transfermarkt_player_identity.csv",
       "present": true,
-      "rows": 1096
+      "rows": 1355
     },
     "transfer_history": {
       "file": "historical_transfer_events.csv",
       "present": true,
-      "rows": 7838
+      "rows": 9969
     },
     "match_context": {
       "file": "match_context_snapshots.csv",
@@ -501,9 +501,9 @@
   },
   "transfer_identity": {
     "present": true,
-    "rows": 1096,
+    "rows": 1355,
     "valid_rows": 1096,
-    "invalid_rows": 0,
+    "invalid_rows": 259,
     "unique_pbk_players": 1096,
     "unique_transfermarkt_players": 1096,
     "approved_methods": [
@@ -515,9 +515,9 @@
   },
   "transfer_history": {
     "present": true,
-    "rows": 7838,
+    "rows": 9969,
     "valid_rows": 7838,
-    "invalid_identity_rows": 0,
+    "invalid_identity_rows": 2131,
     "unique_pbk_players": 1005,
     "unique_transfermarkt_players": 1005,
     "earliest_transfer_date": "1998-07-01",
@@ -1034,6 +1034,8 @@
     "PBK16_HISTORICAL_MARKET_SOURCE_LIMITED_TO_14_LEAGUES",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
     "PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE",
+    "TRANSFER_IDENTITY_INVALID_ROWS",
+    "TRANSFER_HISTORY_INVALID_IDENTITY_ROWS",
     "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE"
   ],
   "creates_signal": false,
