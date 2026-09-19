@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V26_PBK16_INTERNATIONAL_WINDOW_CONTEXT"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V27_PBK14_INTERNATIONAL_WINDOW_MARKET_JOIN"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -61,6 +61,7 @@ SOURCES = {
     "pbk16_competition_congestion": "pbk16_competition_congestion_research.csv",
     "pbk16_international_window_context": "pbk16_international_window_context_research.csv",
     "pbk14_market_bridge": "pbk14_football_data_fixture_bridge.csv",
+    "pbk14_international_window_market_join": "pbk14_international_window_market_join_research.csv",
     "pbk14_congestion_market_join": "pbk14_congestion_market_join_research.csv",
     "pbk14_congestion_market_profiles": "pbk14_congestion_market_factor_research.csv",
     "pbk14_congestion_market_stability": "pbk14_congestion_market_factor_stability_research.csv",
@@ -230,6 +231,7 @@ def build_report(ops=OPS, archive_dir=None):
     pbk16_international_meta = read_json(Path(ops) / "stage80_pbk16_international_window_context_last_run.json")
     pbk14_market_source_meta = read_json(Path(ops) / "stage80_football_data_pbk14_history_last_run.json")
     pbk14_market_bridge_meta = read_json(Path(ops) / "stage80_pbk14_fixture_bridge_last_run.json")
+    pbk14_international_join_meta = read_json(Path(ops) / "stage80_pbk14_international_window_market_join_last_run.json")
     pbk14_congestion_join_meta = read_json(Path(ops) / "stage80_pbk14_congestion_market_join_last_run.json")
     pbk14_congestion_research_meta = read_json(Path(ops) / "stage80_pbk14_congestion_market_research_last_run.json")
     pbk14_congestion_walkforward_meta = read_json(Path(ops) / "stage80_pbk14_congestion_market_walkforward_last_run.json")
@@ -1197,6 +1199,76 @@ def build_report(ops=OPS, archive_dir=None):
         and pbk14_market_bridge_meta.get("forward_journal_mutation") is False
     )
 
+    pbk14_international_join = data["pbk14_international_window_market_join"] or []
+    pbk14_international_join_valid = [
+        row for row in pbk14_international_join
+        if sval(row, "historical_match_id")
+        and sval(row, "api_fixture_id")
+        and sval(row, "mapping_status") in {"AUTO","HIGH"}
+        and sval(row, "fuzzy_string_matching_used") == "false"
+        and is_true(row.get("one_to_one_verified"))
+        and sval(row, "player_level_international_status") == "UNVERIFIED"
+        and sval(row, "final_tournaments_included") == "false"
+        and sval(row, "non_uefa_only_windows_included") == "false"
+        and is_true(row.get("calendar_level_only"))
+        and is_true(row.get("as_known_calendar_reference"))
+        and is_true(row.get("no_match_result_dependency"))
+        and is_true(row.get("no_lookahead"))
+        and sval(row, "context_provider_calls") == "0"
+        and is_true(row.get("historical_backfill_only"))
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+        and not is_true(row.get("probability_mutation"))
+        and not is_true(row.get("eligibility_mutation"))
+        and not is_true(row.get("stake_changes"))
+        and not is_true(row.get("forward_journal_mutation"))
+    ]
+    pbk14_international_join_invalid = len(pbk14_international_join) - len(pbk14_international_join_valid)
+    pbk14_international_join_hist_ids = {
+        sval(row, "historical_match_id") for row in pbk14_international_join_valid
+    }
+    pbk14_international_join_api_ids = {
+        sval(row, "api_fixture_id") for row in pbk14_international_join_valid
+    }
+    pbk14_international_join_duplicate_hist_ids = (
+        len(pbk14_international_join_valid) - len(pbk14_international_join_hist_ids)
+    )
+    pbk14_international_join_duplicate_api_ids = (
+        len(pbk14_international_join_valid) - len(pbk14_international_join_api_ids)
+    )
+    pbk14_international_join_meta_valid = bool(
+        pbk14_international_join_meta
+        and not pbk14_international_join_meta.get("_invalid_json")
+        and pbk14_international_join_meta.get("version") == "PBK_STAGE80_PBK14_INTERNATIONAL_WINDOW_MARKET_JOIN_V1"
+        and int(pbk14_international_join_meta.get("joined_rows") or 0) == len(pbk14_international_join_valid)
+        and int(pbk14_international_join_meta.get("missing_market_rows") or 0) == 0
+        and int(pbk14_international_join_meta.get("missing_context_rows") or 0) == 0
+        and int(pbk14_international_join_meta.get("bridge_eligible_duplicate_historical_ids") or 0) == 0
+        and int(pbk14_international_join_meta.get("bridge_eligible_duplicate_api_fixture_ids") or 0) == 0
+        and int(pbk14_international_join_meta.get("context_invalid_rows") or 0) == 0
+        and int(pbk14_international_join_meta.get("context_duplicate_fixture_ids") or 0) == 0
+        and float(pbk14_international_join_meta.get("join_coverage_pct") or 0) == 100.0
+        and pbk14_international_join_meta.get("player_level_international_status") == "UNVERIFIED"
+        and pbk14_international_join_meta.get("player_callup_inferred") is False
+        and pbk14_international_join_meta.get("player_travel_inferred") is False
+        and pbk14_international_join_meta.get("player_appearance_inferred") is False
+        and pbk14_international_join_meta.get("review_unmapped_excluded") is True
+        and pbk14_international_join_meta.get("fuzzy_string_matching_used") is False
+        and pbk14_international_join_meta.get("calendar_level_only") is True
+        and pbk14_international_join_meta.get("as_known_calendar_reference") is True
+        and pbk14_international_join_meta.get("no_match_result_dependency") is True
+        and pbk14_international_join_meta.get("no_lookahead") is True
+        and int(pbk14_international_join_meta.get("provider_calls") or 0) == 0
+        and pbk14_international_join_meta.get("research_only") is True
+        and pbk14_international_join_meta.get("operational_betting_authority") is False
+        and pbk14_international_join_meta.get("creates_signal") is False
+        and pbk14_international_join_meta.get("probability_mutation") is False
+        and pbk14_international_join_meta.get("eligibility_mutation") is False
+        and pbk14_international_join_meta.get("stake_changes") is False
+        and pbk14_international_join_meta.get("forward_journal_mutation") is False
+    )
+
     pbk14_congestion_join = data["pbk14_congestion_market_join"] or []
     pbk14_congestion_profiles = data["pbk14_congestion_market_profiles"] or []
     pbk14_congestion_stability = data["pbk14_congestion_market_stability"] or []
@@ -1592,6 +1664,15 @@ def build_report(ops=OPS, archive_dir=None):
         if pbk14_market_bridge_counts["REVIEW"] or pbk14_market_bridge_counts["UNMAPPED"]:
             gaps.append("PBK14_HISTORICAL_MARKET_BRIDGE_PARTIAL_MAPPING")
         gaps.append("PBK16_HISTORICAL_MARKET_SOURCE_LIMITED_TO_14_LEAGUES")
+    if data["pbk14_international_window_market_join"] is None or pbk14_international_join_meta is None:
+        gaps.append("PBK14_INTERNATIONAL_WINDOW_MARKET_JOIN_NOT_MATERIALIZED")
+    elif (
+        pbk14_international_join_invalid
+        or pbk14_international_join_duplicate_hist_ids
+        or pbk14_international_join_duplicate_api_ids
+        or not pbk14_international_join_meta_valid
+    ):
+        gaps.append("PBK14_INTERNATIONAL_WINDOW_MARKET_JOIN_INVALID")
     if data["pbk14_congestion_market_join"] is None or pbk14_congestion_join_meta is None:
         gaps.append("PBK14_CONGESTION_MARKET_JOIN_NOT_MATERIALIZED")
     elif (
@@ -1998,6 +2079,27 @@ def build_report(ops=OPS, archive_dir=None):
             "operational_betting_authority": False,
             "evidence_note": "Conservative historical identity bridge only. AUTO/HIGH can be joined downstream; REVIEW/UNMAPPED are excluded. Lithuania and Latvia have no Football-Data market source in this contour.",
         },
+        "pbk14_international_window_market_join": {
+            "present": data["pbk14_international_window_market_join"] is not None,
+            "meta_present": pbk14_international_join_meta is not None,
+            "meta_valid": pbk14_international_join_meta_valid,
+            "rows": len(pbk14_international_join),
+            "valid_rows": len(pbk14_international_join_valid),
+            "invalid_rows": pbk14_international_join_invalid,
+            "duplicate_historical_match_ids": pbk14_international_join_duplicate_hist_ids,
+            "duplicate_api_fixture_ids": pbk14_international_join_duplicate_api_ids,
+            "closing_1x2_matches": int(pbk14_international_join_meta.get("closing_1x2_matches") or 0) if pbk14_international_join_meta_valid else None,
+            "closing_total25_matches": int(pbk14_international_join_meta.get("closing_total25_matches") or 0) if pbk14_international_join_meta_valid else None,
+            "within_72h_before_rows": int(pbk14_international_join_meta.get("within_72h_before_rows") or 0) if pbk14_international_join_meta_valid else None,
+            "within_96h_before_rows": int(pbk14_international_join_meta.get("within_96h_before_rows") or 0) if pbk14_international_join_meta_valid else None,
+            "within_72h_after_rows": int(pbk14_international_join_meta.get("within_72h_after_rows") or 0) if pbk14_international_join_meta_valid else None,
+            "within_96h_after_rows": int(pbk14_international_join_meta.get("within_96h_after_rows") or 0) if pbk14_international_join_meta_valid else None,
+            "either_first_domestic_after_window_rows": int(pbk14_international_join_meta.get("either_first_domestic_after_window_rows") or 0) if pbk14_international_join_meta_valid else None,
+            "player_level_international_status": pbk14_international_join_meta.get("player_level_international_status") if pbk14_international_join_meta_valid else None,
+            "market_probability_semantics": "Historical closing odds are market benchmarks only; no PBK probability is created by this join.",
+            "operational_betting_authority": False,
+            "evidence_note": "AUTO/HIGH historical market rows joined to calendar-level international-window context. Calendar proximity never proves player duty; player call-up/travel/appearance remains UNVERIFIED.",
+        },
         "pbk14_congestion_market_research": {
             "join_present": data["pbk14_congestion_market_join"] is not None,
             "join_meta_present": pbk14_congestion_join_meta is not None,
@@ -2157,6 +2259,7 @@ def render_markdown(report):
     prematch_factor = report["prematch_factor_research"]
     prematch_walkforward = report["prematch_factor_walkforward"]
     pbk14_market = report["pbk14_historical_market_bridge"]
+    pbk14_international_market = report["pbk14_international_window_market_join"]
     pbk14_congestion_market = report["pbk14_congestion_market_research"]
     pbk14_congestion_wf = report["pbk14_congestion_market_walkforward"]
     pbk16_history = report["pbk16_competition_history"]
@@ -2204,6 +2307,7 @@ def render_markdown(report):
         f"- Pre-match walk-forward research: {prematch_walkforward['valid_fold_rows']} folds / {prematch_walkforward['valid_summary_rows']} summaries; sample-qualified folds {prematch_walkforward['sample_threshold_pass_folds'] if prematch_walkforward['sample_threshold_pass_folds'] is not None else '—'}; promotes factor {prematch_walkforward['promotes_factor']}.",
         f"- Match context: {c['unique_fixtures']} fixtures; official XI {c['fixtures_with_official_lineup_snapshot']}; injury evidence {c['fixtures_with_injury_evidence']}.",
         f"- PBK14 historical market bridge: {pbk14_market['mapped_auto_high']} AUTO/HIGH of {pbk14_market['valid_rows']} valid source rows; AUTO {pbk14_market['mapped_auto']}, HIGH {pbk14_market['mapped_high']}, REVIEW {pbk14_market['review']}, UNMAPPED {pbk14_market['unmapped']}; fuzzy matching {pbk14_market['fuzzy_string_matching_used']}; source coverage 14 / 16 locked leagues.",
+        f"- PBK14 international-window × market join: {pbk14_international_market['valid_rows']} valid rows; closing 1X2 {pbk14_international_market['closing_1x2_matches'] if pbk14_international_market['closing_1x2_matches'] is not None else '—'}; closing O/U2.5 {pbk14_international_market['closing_total25_matches'] if pbk14_international_market['closing_total25_matches'] is not None else '—'}; <=72h before {pbk14_international_market['within_72h_before_rows'] if pbk14_international_market['within_72h_before_rows'] is not None else '—'}; <=72h after {pbk14_international_market['within_72h_after_rows'] if pbk14_international_market['within_72h_after_rows'] is not None else '—'}; player-level {pbk14_international_market['player_level_international_status'] or '—'}.",
         f"- PBK14 congestion × market research: join {pbk14_congestion_market['valid_join_rows']} rows; descriptive profiles {pbk14_congestion_market['valid_profile_rows']}; stability rows {pbk14_congestion_market['valid_stability_rows']}; closing 1X2 {pbk14_congestion_market['closing_1x2_matches'] if pbk14_congestion_market['closing_1x2_matches'] is not None else '—'}; closing O/U2.5 {pbk14_congestion_market['closing_total25_matches'] if pbk14_congestion_market['closing_total25_matches'] is not None else '—'}; promotes factor {pbk14_congestion_market['promotes_factor']}.",
         f"- PBK14 congestion walk-forward: {pbk14_congestion_wf['valid_fold_rows']} valid folds / {pbk14_congestion_wf['valid_summary_rows']} summaries; qualified folds {pbk14_congestion_wf['sample_threshold_pass_folds'] if pbk14_congestion_wf['sample_threshold_pass_folds'] is not None else '—'}; temporal invalid {pbk14_congestion_wf['temporal_invalid_rows']}; promotes factor {pbk14_congestion_wf['promotes_factor']}.",
         f"- PBK16 all-competition history: catalog {pbk16_history['valid_catalog_rows']} valid rows; required unresolved {pbk16_history['required_unresolved_competitions']}; fixture archive {pbk16_history['valid_fixture_rows']} valid rows; domestic anchors {pbk16_history['domestic_anchor_league_ids']} / 16 leagues; captured cells {pbk16_history['captured_fixture_cells']}, provider-unavailable cells {pbk16_history['unavailable_provider_season_cells']}, pending {pbk16_history['pending_fixture_cells']}, errors {pbk16_history['error_fixture_cells']}.",
@@ -2272,6 +2376,7 @@ def main():
         "pbk14_congestion_walkforward_summary_rows": report["pbk14_congestion_market_walkforward"]["valid_summary_rows"],
         "pbk14_congestion_walkforward_qualified_folds": report["pbk14_congestion_market_walkforward"]["sample_threshold_pass_folds"],
         "pbk14_market_bridge_mapped_auto_high": report["pbk14_historical_market_bridge"]["mapped_auto_high"],
+        "pbk14_international_window_market_join_rows": report["pbk14_international_window_market_join"]["valid_rows"],
         "pbk14_market_bridge_review": report["pbk14_historical_market_bridge"]["review"],
         "pbk14_market_bridge_unmapped": report["pbk14_historical_market_bridge"]["unmapped"],
         "pbk16_competition_fixture_rows": report["pbk16_competition_history"]["valid_fixture_rows"],
