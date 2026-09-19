@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V23_PBK16_INTERNATIONAL_WINDOW_CONTEXT",
-  "generated_at_utc": "2026-09-19T09:44:54Z",
+  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V24_PBK14_INTERNATIONAL_WINDOW_MARKET_JOIN",
+  "generated_at_utc": "2026-09-19T09:53:36Z",
   "status": "OK",
   "datasets": [
     {
@@ -2237,6 +2237,29 @@
       "effective_time_fields_text": "date_iso"
     },
     {
+      "dataset_id": "pbk14_international_window_market_join_research",
+      "path": "pbk14_international_window_market_join_research.csv",
+      "role": "RESEARCH_JOIN",
+      "lifecycle": "DETERMINISTIC_CALENDAR_CONTEXT_JOIN",
+      "identity_key": [
+        "historical_match_id"
+      ],
+      "observed_time_fields": [],
+      "effective_time_fields": [
+        "date_iso"
+      ],
+      "source": "Stage80 AUTO/HIGH PBK14 historical-market identities joined by API fixture_id to PBK16 international-window calendar context",
+      "limitations": "REVIEW/UNMAPPED excluded. Calendar proximity is not player-duty evidence: call-up, travel, appearance, minutes and return timing remain UNVERIFIED. No betting/model authority.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "historical_match_id",
+      "observed_time_fields_text": "",
+      "effective_time_fields_text": "date_iso"
+    },
+    {
       "dataset_id": "pbk14_congestion_market_join_research",
       "path": "pbk14_congestion_market_join_research.csv",
       "role": "RESEARCH_JOIN",
@@ -2614,9 +2637,9 @@
     }
   ],
   "summary": {
-    "declared_datasets": 48,
+    "declared_datasets": 49,
     "materialized_csv_datasets": 46,
-    "pending_materializations_or_storage": 1,
+    "pending_materializations_or_storage": 2,
     "contract_attention": 0
   },
   "provider_calls": 0,
