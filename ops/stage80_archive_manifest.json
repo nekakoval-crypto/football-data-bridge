@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-19T22:26:43Z",
+  "generated_at_utc": "2026-09-19T22:50:17Z",
   "status": "OK",
   "datasets": [
     {
@@ -1841,7 +1841,7 @@
       "source": "Stage71 terminal observation + Stage80 event capture reconciliation",
       "limitations": "Queue evidence is not event evidence; CAPTURED requires at least one normalized provider event row.",
       "present": true,
-      "row_count": 60,
+      "row_count": 69,
       "columns": [
         "fixture_id",
         "provider_league_id",
