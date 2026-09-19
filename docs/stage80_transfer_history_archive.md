@@ -14,7 +14,7 @@ mapping pipeline.
 A transfer row is eligible only when the player mapping is:
 
 - `match_status = AUTO_MATCH`;
-- `match_method` is one of `EXACT_NAME_CURRENT_CLUB`, `EXACT_PROFILE_NAME_DOB_CURRENT_CLUB`, or `EXACT_STATS_NAME_CURRENT_CLUB`;
+- `match_method` is one of `EXACT_NAME_CURRENT_CLUB`, `EXACT_PROFILE_NAME_DOB_CURRENT_CLUB`, `EXACT_STATS_NAME_CURRENT_CLUB`, or `EXACT_INTERNATIONAL_NAME_PROFILE_DOB`;
 - `match_confidence = HIGH`.
 
 REVIEW, ambiguous, initial+surname and other non-authoritative candidates are never
@@ -89,7 +89,12 @@ verified transfer history receives an explicit empty list and
 ## Readiness semantics
 
 Stage80 readiness removes
-`VERIFIED_TRANSFER_EVENTS_NOT_YET_INGESTED` only when at least one valid durable HIGH-confidence transfer row from one of the approved exact-name+club methods is present.
+`VERIFIED_TRANSFER_EVENTS_NOT_YET_INGESTED` only when at least one valid durable HIGH-confidence transfer row from an explicitly approved exact identity method is present.
 
 A missing or entirely invalid dataset keeps that gap explicit. Invalid rows are
 reported separately and never count as verified coverage.
+
+
+## International-duty exact-name + DOB recovery
+
+`EXACT_INTERNATIONAL_NAME_PROFILE_DOB` is an approved HIGH-confidence identity method when the international full name and API-Football profile DOB resolve uniquely to one Transfermarkt player. It does not require current-club agreement because historical club attribution is performed later from the bounded transfer chain. This method remains exact-only and does not authorize fuzzy matching.

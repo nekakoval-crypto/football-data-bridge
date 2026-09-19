@@ -196,6 +196,29 @@ class Stage80TransferHistoryArchiveTests(unittest.TestCase):
             self.assertFalse(second["current_operational_authority"])
 
 
+    def test_run_metadata_describes_all_safe_identity_methods(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            mapped = root / "mapped.csv"
+            mapping = root / "mapping.csv"
+            metadata = root / "dataset-metadata.json"
+            out = root / "historical_transfer_events.csv"
+            meta = root / "last_run.json"
+
+            mapped_row = self.mapped_row(mapping_method="EXACT_INTERNATIONAL_NAME_PROFILE_DOB")
+            mapping_row = self.mapping_row(method="EXACT_INTERNATIONAL_NAME_PROFILE_DOB")
+            self.write_csv(mapped, list(mapped_row.keys()), [mapped_row])
+            self.write_csv(mapping, list(mapping_row.keys()), [mapping_row])
+            metadata.write_text(json.dumps({"snapshot_date":"2026-07-06"}), encoding="utf-8")
+
+            result = run(mapped, mapping, metadata, None, out, meta)
+
+            self.assertEqual(
+                result["version"],
+                "PBK_STAGE80_TRANSFER_HISTORY_ARCHIVE_V4_INTERNATIONAL_NAME_PROFILE_DOB",
+            )
+            self.assertIn("EXACT_INTERNATIONAL_NAME_PROFILE_DOB", result["mapping_policy"])
+
     def test_international_name_profile_dob_mapping_is_safe_for_archive(self):
         mapping=[{
             "pbk_player_id":"1100","pbk_player_name":"Erling Haaland",
