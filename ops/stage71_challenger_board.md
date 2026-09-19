@@ -1,6 +1,6 @@
 # PBK Stage71 — League & Market Challenger Board
 
-Обновлено UTC: 2026-09-18T23:29:56Z
+Обновлено UTC: 2026-09-19T07:29:27Z
 Текущие лидеры R1/R2: Serie A / Serie A
 
 > Captured → executable → settled — это исследовательский прогресс. Он не меняет canonical eligibility и не создаёт автоматический promotion.
@@ -31,21 +31,21 @@
 | Лига | Статус | Captured | Executable | Settled | Mbet cov. | ROI | 1H ROI | 2H ROI | До 60 | До 120 |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | Premier League | MONITORING_REJECTED_CURRENT_RULE | 0 | 0 | 0 | — | — | — | — | 60 | 120 |
-| La Liga | MONITORING | 1 | 1 | 1 | 100.0 | 23.00 | — | 23.00 | 59 | 119 |
+| La Liga | MONITORING | 2 | 2 | 1 | 100.0 | 23.00 | — | 23.00 | 59 | 119 |
 | Serie A 🏆 | ACTIVE | 0 | 0 | 0 | — | — | — | — | 60 | 120 |
 | Bundesliga | MONITORING_REJECTED_CURRENT_RULE | 0 | 0 | 0 | — | — | — | — | 60 | 120 |
 | Ligue 1 | MONITORING_REJECTED_CURRENT_RULE | 0 | 0 | 0 | — | — | — | — | 60 | 120 |
 | Austrian Bundesliga | MONITORING | 2 | 2 | 2 | 100.0 | -17.00 | -100.00 | 66.00 | 58 | 118 |
 | Belgian Pro League | MONITORING | 1 | 1 | 1 | 100.0 | 78.00 | — | 78.00 | 59 | 119 |
-| Danish Superliga | MONITORING | 1 | 1 | 1 | 100.0 | -100.00 | — | -100.00 | 59 | 119 |
-| A Lyga | MONITORING | 1 | 1 | 1 | 100.0 | 54.00 | — | 54.00 | 59 | 119 |
+| Danish Superliga | MONITORING | 2 | 2 | 1 | 100.0 | -100.00 | — | -100.00 | 59 | 119 |
+| A Lyga | MONITORING | 2 | 2 | 1 | 100.0 | 54.00 | — | 54.00 | 59 | 119 |
 | Virsliga | MONITORING | 2 | 2 | 2 | 100.0 | -37.50 | -100.00 | 25.00 | 58 | 118 |
 | Eredivisie | MONITORING | 2 | 2 | 2 | 100.0 | -30.50 | -100.00 | 39.00 | 58 | 118 |
-| Eliteserien | MONITORING | 2 | 2 | 2 | 100.0 | -18.50 | 63.00 | -100.00 | 58 | 118 |
+| Eliteserien | MONITORING | 3 | 3 | 2 | 100.0 | -18.50 | 63.00 | -100.00 | 58 | 118 |
 | Ekstraklasa | DATA_REQUIRED | 0 | 0 | 0 | — | — | — | — | 60 | 120 |
 | Primeira Liga | MONITORING | 2 | 2 | 2 | 100.0 | -38.50 | 23.00 | -100.00 | 58 | 118 |
 | Super Lig | DATA_REQUIRED | 0 | 0 | 0 | — | — | — | — | 60 | 120 |
-| Scottish Premiership | MONITORING | 1 | 1 | 1 | 100.0 | -100.00 | — | -100.00 | 59 | 119 |
+| Scottish Premiership | MONITORING | 2 | 2 | 1 | 100.0 | -100.00 | — | -100.00 | 59 | 119 |
 
 ## Locked gates
 - Historical challenger → REVIEW_ELIGIBLE: минимум 60 settled executable + Marathonbet coverage >=90% + положительный ROI целиком и в обеих хронологических половинах.
