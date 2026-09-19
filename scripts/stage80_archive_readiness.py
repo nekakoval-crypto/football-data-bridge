@@ -1209,6 +1209,7 @@ def build_report(ops=OPS, archive_dir=None):
         and sval(row, "mapping_status") in {"AUTO","HIGH"}
         and sval(row, "fuzzy_string_matching_used") == "false"
         and is_true(row.get("one_to_one_verified"))
+        and sval(row, "window_reference_contract") == "NEAREST_WINDOW_RELATION_GATED_V2"
         and sval(row, "player_level_international_status") == "UNVERIFIED"
         and sval(row, "final_tournaments_included") == "false"
         and sval(row, "non_uefa_only_windows_included") == "false"
@@ -1242,7 +1243,7 @@ def build_report(ops=OPS, archive_dir=None):
     pbk14_international_join_meta_valid = bool(
         pbk14_international_join_meta
         and not pbk14_international_join_meta.get("_invalid_json")
-        and pbk14_international_join_meta.get("version") == "PBK_STAGE80_PBK14_INTERNATIONAL_WINDOW_MARKET_JOIN_V1"
+        and pbk14_international_join_meta.get("version") == "PBK_STAGE80_PBK14_INTERNATIONAL_WINDOW_MARKET_JOIN_V2"
         and int(pbk14_international_join_meta.get("joined_rows") or 0) == len(pbk14_international_join_valid)
         and int(pbk14_international_join_meta.get("missing_market_rows") or 0) == 0
         and int(pbk14_international_join_meta.get("missing_context_rows") or 0) == 0
@@ -1251,6 +1252,7 @@ def build_report(ops=OPS, archive_dir=None):
         and int(pbk14_international_join_meta.get("context_invalid_rows") or 0) == 0
         and int(pbk14_international_join_meta.get("context_duplicate_fixture_ids") or 0) == 0
         and float(pbk14_international_join_meta.get("join_coverage_pct") or 0) == 100.0
+        and pbk14_international_join_meta.get("window_reference_contract") == "NEAREST_WINDOW_RELATION_GATED_V2"
         and pbk14_international_join_meta.get("player_level_international_status") == "UNVERIFIED"
         and pbk14_international_join_meta.get("player_callup_inferred") is False
         and pbk14_international_join_meta.get("player_travel_inferred") is False
