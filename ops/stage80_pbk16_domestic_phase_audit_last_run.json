@@ -1,0 +1,83 @@
+{
+  "version": "PBK_STAGE80_PBK16_DOMESTIC_PHASE_AUDIT_V1",
+  "generated_at_utc": "2026-09-19T11:37:53Z",
+  "status": "OK",
+  "source_rows": 70375,
+  "domestic_rows": 40989,
+  "unique_domestic_fixture_ids": 40989,
+  "countries": [
+    "Austria",
+    "Belgium",
+    "Denmark",
+    "England",
+    "France",
+    "Germany",
+    "Italy",
+    "Latvia",
+    "Lithuania",
+    "Netherlands",
+    "Norway",
+    "Poland",
+    "Portugal",
+    "Scotland",
+    "Spain",
+    "Turkey"
+  ],
+  "provider_league_ids": [
+    "39",
+    "61",
+    "78",
+    "88",
+    "94",
+    "103",
+    "106",
+    "119",
+    "135",
+    "140",
+    "144",
+    "179",
+    "203",
+    "218",
+    "362",
+    "365"
+  ],
+  "captured_league_season_cells": 143,
+  "requested_league_season_cells": 144,
+  "captured_state_cells": 143,
+  "provider_unavailable_state_cells": 1,
+  "provider_unavailable_cells": [
+    {
+      "country": "Poland",
+      "season": "2017"
+    }
+  ],
+  "pending_state_cells": 0,
+  "error_state_cells": 0,
+  "phase_role_counts": {
+    "POST_TABLE_PLAYOFF": 280,
+    "TABLE_PHASE": 40709
+  },
+  "table_result_policy_counts": {
+    "AWARDED_RESULT_REQUIRES_RULE_EVIDENCE": 5,
+    "NOT_FOR_LEAGUE_TABLE_RECONSTRUCTION": 280,
+    "NOT_PLAYED_EXCLUDE": 629,
+    "PLAYED_RESULT_USABLE": 40075
+  },
+  "unknown_phase_rows": 0,
+  "unsupported_table_status_rows": 0,
+  "table_phase_rows_requiring_season_format_contract": 1725,
+  "future_table_reconstruction_usable_rows": 40075,
+  "phase_contract_scope": "PBK16_2017_2025_PROVIDER_ROUND_LABELS_V1",
+  "points_transform_applied": false,
+  "standings_reconstructed": false,
+  "no_lookahead": true,
+  "provider_calls": 0,
+  "historical_backfill_only": true,
+  "research_only": true,
+  "operational_betting_authority": false,
+  "creates_signal": false,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "stake_changes": false,
+  "forward_journal_mutation": false
+}
