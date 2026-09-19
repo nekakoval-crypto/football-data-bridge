@@ -2886,6 +2886,58 @@ def build_report(ops=OPS, archive_dir=None):
             "operational_betting_authority": False,
             "evidence_note": "One deterministic row per captured PBK16 domestic fixture; only strictly prior played cup/UEFA evidence can contribute. Future scheduled fixtures are excluded.",
         },
+        "pbk16_domestic_phase_audit": {
+            "present": data["pbk16_domestic_phase_audit"] is not None,
+            "meta_present": pbk16_phase_meta is not None,
+            "meta_valid": pbk16_phase_meta_valid,
+            "rows": len(pbk16_phase),
+            "valid_rows": len(pbk16_phase_valid),
+            "invalid_rows": pbk16_phase_invalid,
+            "unique_fixture_ids": len(pbk16_phase_ids),
+            "duplicate_fixture_ids": pbk16_phase_duplicate_ids,
+            "table_phase_rows": int((pbk16_phase_meta.get("phase_role_counts") or {}).get("TABLE_PHASE") or 0) if pbk16_phase_meta_valid else None,
+            "post_table_playoff_rows": int((pbk16_phase_meta.get("phase_role_counts") or {}).get("POST_TABLE_PLAYOFF") or 0) if pbk16_phase_meta_valid else None,
+            "table_phase_rows_requiring_season_format_contract": int(pbk16_phase_meta.get("table_phase_rows_requiring_season_format_contract") or 0) if pbk16_phase_meta_valid else None,
+            "unknown_phase_rows": int(pbk16_phase_meta.get("unknown_phase_rows") or 0) if pbk16_phase_meta_valid else None,
+            "operational_betting_authority": False,
+            "evidence_note": "Country/season-aware provider phase classification. No standings reconstruction or points transform is applied here.",
+        },
+        "pbk16_format_inventory": {
+            "present": data["pbk16_format_inventory"] is not None,
+            "meta_present": pbk16_format_meta is not None,
+            "meta_valid": pbk16_format_meta_valid,
+            "rows": len(pbk16_format_inventory),
+            "valid_rows": len(pbk16_format_valid),
+            "invalid_rows": pbk16_format_invalid,
+            "league_season_cells": len(pbk16_format_cells),
+            "duplicate_cells": pbk16_format_duplicate_cells,
+            "captured_cells": int(pbk16_format_meta.get("captured_cells") or 0) if pbk16_format_meta_valid else None,
+            "provider_unavailable_cells": int(pbk16_format_meta.get("unavailable_provider_season_cells") or 0) if pbk16_format_meta_valid else None,
+            "naive_single_table_candidate_cells": int(pbk16_format_meta.get("naive_single_table_candidate_cells") or 0) if pbk16_format_meta_valid else None,
+            "exact_motivation_contract_verified_cells": int(pbk16_format_meta.get("exact_motivation_contract_verified_cells") or 0) if pbk16_format_meta_valid else None,
+            "operational_betting_authority": False,
+            "evidence_note": "Structural inventory for all 16 leagues × 2017-2025. Exact season motivation rules remain UNVERIFIED until explicit contracts are added.",
+        },
+        "pbk16_historical_table_context": {
+            "present": data["pbk16_historical_table_context"] is not None,
+            "meta_present": pbk16_table_meta is not None,
+            "meta_valid": pbk16_table_meta_valid,
+            "rows": len(pbk16_table),
+            "valid_rows": len(pbk16_table_valid),
+            "invalid_rows": pbk16_table_invalid,
+            "unique_fixture_ids": len(pbk16_table_ids),
+            "duplicate_fixture_ids": pbk16_table_duplicate_ids,
+            "safe_regular_prematch_rows": int(pbk16_table_meta.get("safe_regular_prematch_rows") or 0) if pbk16_table_meta_valid else None,
+            "safe_regular_rows_with_full_table": int(pbk16_table_meta.get("safe_regular_rows_with_full_table") or 0) if pbk16_table_meta_valid else None,
+            "blocked_table_phase_rows": int(pbk16_table_meta.get("blocked_table_phase_rows") or 0) if pbk16_table_meta_valid else None,
+            "post_table_playoff_rows": int(pbk16_table_meta.get("post_table_playoff_rows") or 0) if pbk16_table_meta_valid else None,
+            "blocked_prior_awarded_result_rows": int(pbk16_table_meta.get("blocked_prior_awarded_result_rows") or 0) if pbk16_table_meta_valid else None,
+            "official_table_equivalence": False,
+            "exact_title_relegation_motivation_allowed": False,
+            "europe_status": pbk16_table_meta.get("europe_status") if pbk16_table_meta_valid else None,
+            "operational_betting_authority": False,
+            "evidence_note": "PBK16 V2 safe regular pre-match table context. Split/table phases require season contracts; post-table playoffs are excluded; unresolved awarded results fail closed.",
+        },
         "pbk16_international_window_context": {
             "present": data["pbk16_international_window_context"] is not None,
             "meta_present": pbk16_international_meta is not None,
@@ -2957,6 +3009,9 @@ def render_markdown(report):
     pbk14_congestion_wf = report["pbk14_congestion_market_walkforward"]
     pbk16_history = report["pbk16_competition_history"]
     pbk16_congestion = report["pbk16_competition_congestion"]
+    pbk16_phase = report["pbk16_domestic_phase_audit"]
+    pbk16_format = report["pbk16_format_inventory"]
+    pbk16_table = report["pbk16_historical_table_context"]
     pbk16_international = report["pbk16_international_window_context"]
     raw = report["raw_provider_archive"]
     coverage = f["finished_current_inventory_player_stats_coverage_pct"]
@@ -3008,6 +3063,9 @@ def render_markdown(report):
         f"- PBK14 congestion walk-forward: {pbk14_congestion_wf['valid_fold_rows']} valid folds / {pbk14_congestion_wf['valid_summary_rows']} summaries; qualified folds {pbk14_congestion_wf['sample_threshold_pass_folds'] if pbk14_congestion_wf['sample_threshold_pass_folds'] is not None else '—'}; temporal invalid {pbk14_congestion_wf['temporal_invalid_rows']}; promotes factor {pbk14_congestion_wf['promotes_factor']}.",
         f"- PBK16 all-competition history: catalog {pbk16_history['valid_catalog_rows']} valid rows; required unresolved {pbk16_history['required_unresolved_competitions']}; fixture archive {pbk16_history['valid_fixture_rows']} valid rows; domestic anchors {pbk16_history['domestic_anchor_league_ids']} / 16 leagues; captured cells {pbk16_history['captured_fixture_cells']}, provider-unavailable cells {pbk16_history['unavailable_provider_season_cells']}, pending {pbk16_history['pending_fixture_cells']}, errors {pbk16_history['error_fixture_cells']}.",
         f"- PBK16 cup/UEFA congestion: {pbk16_congestion['valid_rows']} valid rows / {pbk16_congestion['unique_domestic_fixture_ids']} domestic fixtures; no-lookahead {pbk16_congestion['no_lookahead']}; future schedule used {pbk16_congestion['future_schedule_used']}; prior UEFA <=72h {pbk16_congestion['rows_either_prev_uefa_72h'] if pbk16_congestion['rows_either_prev_uefa_72h'] is not None else '—'}, prior cup <=72h {pbk16_congestion['rows_either_prev_cup_72h'] if pbk16_congestion['rows_either_prev_cup_72h'] is not None else '—'}.",
+        f"- PBK16 domestic phase audit: {pbk16_phase['valid_rows']} valid rows; table-phase {pbk16_phase['table_phase_rows'] if pbk16_phase['table_phase_rows'] is not None else '—'}; post-table playoffs {pbk16_phase['post_table_playoff_rows'] if pbk16_phase['post_table_playoff_rows'] is not None else '—'}; split/table rows needing season contract {pbk16_phase['table_phase_rows_requiring_season_format_contract'] if pbk16_phase['table_phase_rows_requiring_season_format_contract'] is not None else '—'}.",
+        f"- PBK16 format inventory: {pbk16_format['valid_rows']} / 144 cells; captured {pbk16_format['captured_cells'] if pbk16_format['captured_cells'] is not None else '—'}; provider unavailable {pbk16_format['provider_unavailable_cells'] if pbk16_format['provider_unavailable_cells'] is not None else '—'}; exact motivation contracts verified {pbk16_format['exact_motivation_contract_verified_cells'] if pbk16_format['exact_motivation_contract_verified_cells'] is not None else '—'}.",
+        f"- PBK16 historical table context V2: {pbk16_table['valid_rows']} valid rows; safe regular prematch {pbk16_table['safe_regular_prematch_rows'] if pbk16_table['safe_regular_prematch_rows'] is not None else '—'}; full-table {pbk16_table['safe_regular_rows_with_full_table'] if pbk16_table['safe_regular_rows_with_full_table'] is not None else '—'}; blocked split/table {pbk16_table['blocked_table_phase_rows'] if pbk16_table['blocked_table_phase_rows'] is not None else '—'}; post-table {pbk16_table['post_table_playoff_rows'] if pbk16_table['post_table_playoff_rows'] is not None else '—'}; awarded-taint {pbk16_table['blocked_prior_awarded_result_rows'] if pbk16_table['blocked_prior_awarded_result_rows'] is not None else '—'}.",
         f"- PBK16 international windows: {pbk16_international['valid_rows']} valid rows / {pbk16_international['unique_domestic_fixture_ids']} domestic fixtures; calendar windows {pbk16_international['calendar_windows'] if pbk16_international['calendar_windows'] is not None else '—'}; <=72h before {pbk16_international['within_72h_before_rows'] if pbk16_international['within_72h_before_rows'] is not None else '—'}, <=72h after {pbk16_international['within_72h_after_rows'] if pbk16_international['within_72h_after_rows'] is not None else '—'}; player-level {pbk16_international['player_level_international_status'] or '—'}; no-lookahead {pbk16_international['no_lookahead']}.",
         "",
         "## Raw provider archive",
@@ -3084,6 +3142,11 @@ def main():
         "pbk16_competition_domestic_anchor_leagues": report["pbk16_competition_history"]["domestic_anchor_league_ids"],
         "pbk16_competition_required_unresolved": report["pbk16_competition_history"]["required_unresolved_competitions"],
         "pbk16_competition_congestion_rows": report["pbk16_competition_congestion"]["valid_rows"],
+        "pbk16_phase_audit_rows": report["pbk16_domestic_phase_audit"]["valid_rows"],
+        "pbk16_format_inventory_cells": report["pbk16_format_inventory"]["league_season_cells"],
+        "pbk16_table_context_rows": report["pbk16_historical_table_context"]["valid_rows"],
+        "pbk16_table_context_safe_regular_rows": report["pbk16_historical_table_context"]["safe_regular_prematch_rows"],
+        "pbk16_table_context_full_table_rows": report["pbk16_historical_table_context"]["safe_regular_rows_with_full_table"],
     }, ensure_ascii=False))
 
 
