@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V25_PBK14_INTERNATIONAL_WINDOW_MARKET_RESEARCH"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V26_PBK14_INTERNATIONAL_WINDOW_MARKET_WALKFORWARD"
 
 DATASETS = [
     {
@@ -515,6 +515,28 @@ DATASETS = [
         "effective_time_fields": [],
         "source": "Stage80 season-by-season stability projection for PBK14 international-window market research",
         "limitations": "Calendar-level descriptive stability only. Does not infer player call-up/travel/appearance, rank/select/promote factors or create probability/eligibility/stake/Forward authority.",
+    },
+    {
+        "dataset_id": "pbk14_international_window_market_walkforward_research",
+        "path": "pbk14_international_window_market_walkforward_research.csv",
+        "role": "RESEARCH_VALIDATION",
+        "lifecycle": "STRICT_PRIOR_SEASON_WALKFORWARD",
+        "identity_key": ["factor", "bucket", "scope_type", "scope_value", "target", "test_season"],
+        "observed_time_fields": [],
+        "effective_time_fields": ["test_season"],
+        "source": "Stage80 strict prior-season walk-forward over PBK14 international-window historical closing markets",
+        "limitations": "Each test season uses only earlier seasons. Calendar-level only; player duty remains UNVERIFIED. Market no-vig is benchmark only. Folds never promote factors or create model authority.",
+    },
+    {
+        "dataset_id": "pbk14_international_window_market_walkforward_summary_research",
+        "path": "pbk14_international_window_market_walkforward_summary_research.csv",
+        "role": "RESEARCH_VALIDATION",
+        "lifecycle": "DETERMINISTIC_WALKFORWARD_SUMMARY",
+        "identity_key": ["factor", "bucket", "scope_type", "scope_value", "target"],
+        "observed_time_fields": [],
+        "effective_time_fields": ["first_test_season", "last_test_season"],
+        "source": "Stage80 summary of strict prior-season PBK14 international-window walk-forward folds",
+        "limitations": "Persistence summary only. Does not infer player call-up/travel/appearance and cannot rank, promote, mutate probability/eligibility, stake or Forward state.",
     },
     {
         "dataset_id": "pbk14_congestion_market_join_research",
