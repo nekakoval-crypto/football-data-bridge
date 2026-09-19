@@ -1,28 +1,28 @@
 {
   "version": "PBK_STAGE80_INTERNATIONAL_DUTY_FIXTURE_BACKFILL_V1",
-  "generated_at_utc": "2026-09-19T14:29:23Z",
+  "generated_at_utc": "2026-09-19T14:31:42Z",
   "status": "COLLECTING",
   "allowlist_rows": 80,
   "state_rows": 80,
-  "captured_cells": 20,
-  "pending_cells": 60,
+  "captured_cells": 40,
+  "pending_cells": 40,
   "error_cells": 0,
   "attempted_cells_this_run": 20,
-  "fixture_archive_rows": 3770,
-  "unique_fixture_ids": 3770,
+  "fixture_archive_rows": 6598,
+  "unique_fixture_ids": 6598,
   "duplicate_fixture_ids": 0,
   "invalid_archive_rows": 0,
-  "finished_fixture_rows": 3521,
-  "fixture_rows_player_evidence_eligible": 3770,
-  "fixture_rows_direct_minutes_tier": 3770,
+  "finished_fixture_rows": 6281,
+  "fixture_rows_player_evidence_eligible": 6598,
+  "fixture_rows_direct_minutes_tier": 6598,
   "fixture_rows_direct_matchday_squad_tier": 0,
   "tier_state_counts": {
     "DIRECT_MATCHDAY_SQUAD": {
       "PENDING": 32
     },
     "DIRECT_MINUTES": {
-      "CAPTURED": 20,
-      "PENDING": 26
+      "CAPTURED": 40,
+      "PENDING": 6
     },
     "FIXTURE_ONLY": {
       "PENDING": 2
@@ -30,8 +30,8 @@
   },
   "provider_budget_calls": 20,
   "real_api_calls": 20,
-  "daily_api_calls_before": 925,
-  "daily_api_calls_after": 945,
+  "daily_api_calls_before": 945,
+  "daily_api_calls_after": 965,
   "protected_calls": 512,
   "warnings": [],
   "raw_archive_enabled": true,
