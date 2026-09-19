@@ -3,7 +3,7 @@ name: Stage 80 Archive Readiness
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ['fetch-transfermarkt-csv', 'Stage 77 Player Stats Capture', 'Stage 81 Team Match Statistics Capture', 'Stage 80 Football-Data Top5 History', 'Stage 80 Top5 Referee Backfill', 'Stage 80 PBK16 Competition Congestion', 'Stage 80 PBK16 International Window Context', 'Stage 80 PBK14 International Window Market Join', 'Stage 80 PBK14 International Window Market Research', 'Stage 80 PBK14 International Window Market Walkforward', 'Stage 80 PBK14 Historical Market Bridge', 'Stage 80 PBK14 Congestion Market Join', 'Stage 80 PBK14 Congestion Market Research', 'Stage 80 PBK14 Congestion Market Walkforward']
+    workflows: ['fetch-transfermarkt-csv', 'Stage 77 Player Stats Capture', 'Stage 81 Team Match Statistics Capture', 'Stage 80 Football-Data Top5 History', 'Stage 80 Top5 Referee Backfill', 'Stage 80 PBK16 Competition Congestion', 'Stage 80 PBK16 Domestic Phase Audit', 'Stage 80 PBK16 Format Inventory', 'Stage 80 PBK16 Historical Table Context', 'Stage 80 PBK16 International Window Context', 'Stage 80 PBK14 International Window Market Join', 'Stage 80 PBK14 International Window Market Research', 'Stage 80 PBK14 International Window Market Walkforward', 'Stage 80 PBK14 Historical Market Bridge', 'Stage 80 PBK14 Congestion Market Join', 'Stage 80 PBK14 Congestion Market Research', 'Stage 80 PBK14 Congestion Market Walkforward']
     types: [completed]
   schedule:
     - cron: '37 */6 * * *'
@@ -11,6 +11,22 @@ on:
     paths:
       - 'scripts/stage80_archive_readiness.py'
       - 'config/stage80_fifa_uefa_windows_2017_2025.json'
+      - 'scripts/stage80_pbk16_domestic_phase_audit.py'
+      - 'scripts/tests/test_stage80_pbk16_domestic_phase_audit.py'
+      - '.github/workflows/stage80-pbk16-domestic-phase-audit.yml'
+      - 'ops/pbk16_domestic_phase_audit.csv'
+      - 'ops/stage80_pbk16_domestic_phase_audit_last_run.json'
+      - 'scripts/stage80_pbk16_format_inventory.py'
+      - 'scripts/tests/test_stage80_pbk16_format_inventory.py'
+      - '.github/workflows/stage80-pbk16-format-inventory.yml'
+      - 'ops/pbk16_domestic_league_format_inventory.csv'
+      - 'ops/stage80_pbk16_format_inventory_last_run.json'
+      - 'scripts/stage80_pbk16_historical_table_context.py'
+      - 'scripts/tests/test_stage80_pbk16_historical_table_context.py'
+      - 'scripts/tests/test_stage80_pbk16_standings_foundation_readiness.py'
+      - '.github/workflows/stage80-pbk16-historical-table-context.yml'
+      - 'ops/pbk16_historical_table_context_research.csv'
+      - 'ops/stage80_pbk16_historical_table_context_last_run.json'
       - 'scripts/stage80_pbk16_international_window_context.py'
       - 'scripts/tests/test_stage80_pbk16_international_window_context.py'
       - 'scripts/tests/test_stage80_pbk16_international_window_manifest.py'
@@ -164,6 +180,22 @@ on:
     paths:
       - 'scripts/stage80_archive_readiness.py'
       - 'config/stage80_fifa_uefa_windows_2017_2025.json'
+      - 'scripts/stage80_pbk16_domestic_phase_audit.py'
+      - 'scripts/tests/test_stage80_pbk16_domestic_phase_audit.py'
+      - '.github/workflows/stage80-pbk16-domestic-phase-audit.yml'
+      - 'ops/pbk16_domestic_phase_audit.csv'
+      - 'ops/stage80_pbk16_domestic_phase_audit_last_run.json'
+      - 'scripts/stage80_pbk16_format_inventory.py'
+      - 'scripts/tests/test_stage80_pbk16_format_inventory.py'
+      - '.github/workflows/stage80-pbk16-format-inventory.yml'
+      - 'ops/pbk16_domestic_league_format_inventory.csv'
+      - 'ops/stage80_pbk16_format_inventory_last_run.json'
+      - 'scripts/stage80_pbk16_historical_table_context.py'
+      - 'scripts/tests/test_stage80_pbk16_historical_table_context.py'
+      - 'scripts/tests/test_stage80_pbk16_standings_foundation_readiness.py'
+      - '.github/workflows/stage80-pbk16-historical-table-context.yml'
+      - 'ops/pbk16_historical_table_context_research.csv'
+      - 'ops/stage80_pbk16_historical_table_context_last_run.json'
       - 'scripts/stage80_pbk16_international_window_context.py'
       - 'scripts/tests/test_stage80_pbk16_international_window_context.py'
       - 'scripts/tests/test_stage80_pbk16_international_window_manifest.py'
@@ -333,6 +365,9 @@ jobs:
           python -m py_compile scripts/stage80_football_data_pbk14_history.py
           python -m py_compile scripts/stage80_pbk14_fixture_bridge.py
           python -m py_compile scripts/stage80_pbk16_competition_congestion.py
+          python -m py_compile scripts/stage80_pbk16_domestic_phase_audit.py
+          python -m py_compile scripts/stage80_pbk16_format_inventory.py
+          python -m py_compile scripts/stage80_pbk16_historical_table_context.py
           python -m py_compile scripts/stage80_pbk16_international_window_context.py
           python -m py_compile scripts/stage80_top5_referee_backfill.py
           python -m py_compile scripts/stage80_archive_manifest.py
@@ -356,6 +391,10 @@ jobs:
           python -m unittest scripts.tests.test_stage80_pbk14_market_bridge_readiness -v
           python -m unittest scripts.tests.test_stage80_pbk16_competition_congestion -v
           python -m unittest scripts.tests.test_stage80_pbk16_competition_readiness -v
+          python -m unittest scripts.tests.test_stage80_pbk16_domestic_phase_audit -v
+          python -m unittest scripts.tests.test_stage80_pbk16_format_inventory -v
+          python -m unittest scripts.tests.test_stage80_pbk16_historical_table_context -v
+          python -m unittest scripts.tests.test_stage80_pbk16_standings_foundation_readiness -v
           python -m unittest scripts.tests.test_stage80_pbk16_international_window_context -v
           python -m unittest scripts.tests.test_stage80_pbk16_international_window_manifest -v
           python -m unittest scripts.tests.test_stage80_pbk16_international_window_readiness -v
@@ -399,7 +438,7 @@ jobs:
       - name: Assert provider isolation
         shell: bash
         run: |
-          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports|raw\.githubusercontent' scripts/stage80_archive_readiness.py scripts/stage80_archive_manifest.py scripts/stage80_pbk16_international_window_context.py scripts/stage80_pbk14_international_window_market_join.py scripts/stage80_pbk14_international_window_market_research.py scripts/stage80_pbk14_international_window_market_walkforward.py scripts/stage80_top5_historical_motivation.py scripts/stage80_top5_motivation_market_research.py scripts/stage80_prematch_factor_research.py scripts/stage80_prematch_factor_walkforward.py scripts/stage80_historical_fixture_catalog.py scripts/stage80_historical_player_catalog.py scripts/stage80_lineup_injury_archive.py scripts/stage80_transfer_history_archive.py scripts/stage91_statsbomb_player_xg_xa.py scripts/stage92_statsbomb_pbk_player_mapping.py; then
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports|raw\.githubusercontent' scripts/stage80_archive_readiness.py scripts/stage80_archive_manifest.py scripts/stage80_pbk16_domestic_phase_audit.py scripts/stage80_pbk16_format_inventory.py scripts/stage80_pbk16_historical_table_context.py scripts/stage80_pbk16_international_window_context.py scripts/stage80_pbk14_international_window_market_join.py scripts/stage80_pbk14_international_window_market_research.py scripts/stage80_pbk14_international_window_market_walkforward.py scripts/stage80_top5_historical_motivation.py scripts/stage80_top5_motivation_market_research.py scripts/stage80_prematch_factor_research.py scripts/stage80_prematch_factor_walkforward.py scripts/stage80_historical_fixture_catalog.py scripts/stage80_historical_player_catalog.py scripts/stage80_lineup_injury_archive.py scripts/stage80_transfer_history_archive.py scripts/stage91_statsbomb_player_xg_xa.py scripts/stage92_statsbomb_pbk_player_mapping.py; then
             echo 'Stage80 archive governance/projections must remain provider-free.' >&2
             exit 1
           fi

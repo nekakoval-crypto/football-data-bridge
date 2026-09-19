@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V28_TOP5_MOTIVATION_MARKET_RESEARCH"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION"
 
 DATASETS = [
     {
@@ -493,6 +493,39 @@ DATASETS = [
         "effective_time_fields": ["kickoff_utc"],
         "source": "Stage80 deterministic PBK16 domestic-fixture projection over captured domestic cup/UEFA history",
         "limitations": "Strictly prior played non-league fixtures only; future schedule intentionally excluded. No probability, EV/value, eligibility, stake or Forward authority.",
+    },
+    {
+        "dataset_id": "pbk16_domestic_phase_audit",
+        "path": "pbk16_domestic_phase_audit.csv",
+        "role": "RESEARCH_GOVERNANCE",
+        "lifecycle": "DETERMINISTIC_PHASE_CLASSIFICATION",
+        "identity_key": ["fixture_id"],
+        "observed_time_fields": [],
+        "effective_time_fields": ["kickoff_utc"],
+        "source": "Stage80 provider-free PBK16 domestic phase audit over captured competition history",
+        "limitations": "Classifies TABLE_PHASE vs POST_TABLE_PLAYOFF and result policy only. Does not reconstruct standings or apply split-point transforms. No betting/model authority.",
+    },
+    {
+        "dataset_id": "pbk16_domestic_league_format_inventory",
+        "path": "pbk16_domestic_league_format_inventory.csv",
+        "role": "RESEARCH_GOVERNANCE",
+        "lifecycle": "DETERMINISTIC_LEAGUE_SEASON_FORMAT_INVENTORY",
+        "identity_key": ["country", "season"],
+        "observed_time_fields": [],
+        "effective_time_fields": ["season"],
+        "source": "Stage80 provider-free structural inventory over 16 PBK domestic leagues × 2017-2025 seasons",
+        "limitations": "Structural inventory only. A balanced shape does not verify official title/relegation rules; exact motivation contract remains UNVERIFIED.",
+    },
+    {
+        "dataset_id": "pbk16_historical_table_context_research",
+        "path": "pbk16_historical_table_context_research.csv",
+        "role": "RESEARCH_ENRICHMENT",
+        "lifecycle": "DETERMINISTIC_NO_LOOKAHEAD_TABLE_PROJECTION",
+        "identity_key": ["domestic_fixture_id"],
+        "observed_time_fields": [],
+        "effective_time_fields": ["kickoff_utc"],
+        "source": "Stage80 PBK16 pre-match table reconstruction driven by the durable domestic phase audit",
+        "limitations": "V2 reconstructs only safe regular table state. Split/table phases require explicit season-format contracts; post-table playoffs are excluded; unresolved awarded results taint later context. Research rank is not official-table equivalence. Europe remains UNKNOWN_BY_DESIGN.",
     },
     {
         "dataset_id": "pbk16_international_window_context_research",
