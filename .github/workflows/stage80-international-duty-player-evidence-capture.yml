@@ -1,0 +1,176 @@
+name: Stage 80 International Duty Player Evidence Capture
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['Stage 80 International Duty Player Evidence Backlog']
+    types: [completed]
+  pull_request:
+    paths:
+      - 'scripts/stage80_international_duty_player_evidence_capture.py'
+      - 'scripts/tests/test_stage80_international_duty_player_evidence_capture.py'
+      - '.github/workflows/stage80-international-duty-player-evidence-capture.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/stage80_international_duty_player_evidence_capture.py'
+      - 'scripts/tests/test_stage80_international_duty_player_evidence_capture.py'
+      - '.github/workflows/stage80-international-duty-player-evidence-capture.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage80-international-duty-player-evidence-capture-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and provider-free tests
+        run: |
+          python -m py_compile scripts/stage80_international_duty_player_evidence_capture.py
+          python -m unittest scripts.tests.test_stage80_international_duty_player_evidence_capture -v
+      - name: Provider isolation
+        shell: bash
+        run: |
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/stage80_international_duty_player_evidence_capture.py; then
+            echo 'International-duty player evidence must reach API-Football only through the shared broker.' >&2
+            exit 1
+          fi
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated player-evidence outputs are forbidden in the feature PR.' >&2
+            exit 1
+          fi
+
+  capture:
+    needs: validate
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+      PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+      PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+      PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+      PBK_RAW_ARCHIVE_S3_PREFIX: api-football-raw
+      PBK_RAW_ARCHIVE_S3_REGION: auto
+      OPS_DIR: ops
+      STAGE71_MAX_DAILY_API_CALLS: '7000'
+      STAGE80_INTL_DUTY_PLAYER_EVIDENCE_MAX_API_CALLS: '10'
+      STAGE80_INTL_DUTY_PLAYER_EVIDENCE_PROTECTED_CALLS: '512'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install raw archive S3 client
+        run: python -m pip install --disable-pip-version-check boto3
+      - name: Capture direct international player evidence
+        run: python scripts/stage80_international_duty_player_evidence_capture.py
+      - name: Verify direct-evidence governance
+        run: |
+          python - <<'PY'
+          import csv, json
+          meta=json.load(open('ops/stage80_international_duty_player_evidence_capture_last_run.json',encoding='utf-8'))
+          assert meta['version']=='PBK_STAGE80_INTERNATIONAL_DUTY_PLAYER_EVIDENCE_CAPTURE_V1', meta
+          assert meta['status'] in {'COLLECTING','OK'}, meta
+          assert meta['backlog_rows']>0, meta
+          assert 0 <= meta['provider_budget_calls'] <= 10, meta
+          assert 0 <= meta['attempted_fixtures_this_run'] <= 10, meta
+          assert meta['captured_fixtures_total'] <= meta['backlog_rows'], meta
+          assert meta['pending_or_retry_fixtures'] == meta['backlog_rows'] - meta['captured_fixtures_total'], meta
+          assert meta['evidence_rows']==meta['unique_evidence_keys'], meta
+          assert meta['duplicate_evidence_rows']==0, meta
+          assert meta['invalid_evidence_rows']==0, meta
+          assert meta['formal_callup_rows_confirmed']==0, meta
+          assert meta['travel_rows_derived']==0, meta
+          assert meta['nationality_inference_allowed'] is False, meta
+          assert meta['travel_inference_allowed'] is False, meta
+          assert meta['formal_callup_separately_verified'] is False, meta
+          assert meta['lineup_listing_implies_appearance'] is False, meta
+          assert meta['research_only'] is True, meta
+          assert meta['operational_betting_authority'] is False, meta
+          assert meta['creates_signal'] is False, meta
+          assert meta['probability_mutation'] is False, meta
+          assert meta['eligibility_mutation'] is False, meta
+          assert meta['stake_changes'] is False, meta
+          assert meta['forward_journal_mutation'] is False, meta
+          if meta.get('raw_archive_enabled'):
+              assert meta.get('raw_archive_errors') in (0, None), meta
+
+          with open('ops/international_duty_player_evidence_backlog.csv',encoding='utf-8-sig',newline='') as f:
+              backlog=list(csv.DictReader(f))
+          assert len(backlog)==meta['backlog_rows']
+          assert len({r['fixture_id'] for r in backlog})==len(backlog)
+          assert all(r['formal_callup_status'] if 'formal_callup_status' in r else True for r in [])
+          captured={r['fixture_id'] for r in backlog if r['backlog_status']=='CAPTURED'}
+          assert len(captured)==meta['captured_fixtures_total']
+
+          with open('ops/international_duty_player_evidence.csv',encoding='utf-8-sig',newline='') as f:
+              evidence=list(csv.DictReader(f))
+          assert len(evidence)==meta['evidence_rows']
+          assert len({(r['fixture_id'],r['national_team_id'],r['player_id']) for r in evidence})==len(evidence)
+          assert all(r['matchday_squad_confirmed']=='true' for r in evidence)
+          assert all(r['formal_callup_status']=='NOT_SEPARATELY_VERIFIED' for r in evidence)
+          assert all(r['travel_status']=='NOT_DERIVED' for r in evidence)
+          assert all(r['nationality_inference_allowed']=='false' for r in evidence)
+          assert all(r['travel_inference_allowed']=='false' for r in evidence)
+          assert all(r['operational_betting_authority']=='false' for r in evidence)
+          assert all(r['creates_signal']=='false' for r in evidence)
+
+          print({
+              'status':meta['status'],
+              'calls':meta['provider_budget_calls'],
+              'attempts':meta['attempt_result_counts'],
+              'captured_fixtures':meta['captured_fixtures_total'],
+              'evidence_rows':meta['evidence_rows'],
+              'players':meta['evidence_player_count'],
+              'appearances':meta['appearance_confirmed_rows'],
+              'minutes_rows':meta['minutes_confirmed_rows'],
+              'warnings':len(meta['warnings']),
+          })
+          PY
+      - name: Publish direct player evidence safely
+        shell: bash
+        run: |
+          git config user.name 'stage80-international-duty-bot'
+          git config user.email 'stage80-international-duty-bot@users.noreply.github.com'
+          git add ops/international_duty_player_evidence_backlog.csv
+          git add ops/international_duty_player_evidence.csv
+          git add ops/stage80_international_duty_player_evidence_capture_last_run.json
+          git add ops/stage71_observation_state.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 international-duty direct player evidence update'
+          python scripts/publish_operational_commit.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: international-duty-player-evidence-capture
+          path: |
+            ops/international_duty_player_evidence_backlog.csv
+            ops/international_duty_player_evidence.csv
+            ops/stage80_international_duty_player_evidence_capture_last_run.json
+          if-no-files-found: error
+          retention-days: 90
