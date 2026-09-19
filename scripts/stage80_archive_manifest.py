@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V26_PBK14_INTERNATIONAL_WINDOW_MARKET_WALKFORWARD"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V27_TOP5_HISTORICAL_MOTIVATION"
 
 DATASETS = [
     {
@@ -207,6 +207,17 @@ DATASETS = [
         "effective_time_fields": ["date_iso", "time_local"],
         "source": "Stage80 Football-Data Top-5 9-season no-lookahead pre-match context projection",
         "limitations": "Historical research only. Every row uses strictly earlier calendar dates within league-season; same-day results are excluded. No probability, EV/value, eligibility, stake or Forward authority.",
+    },
+    {
+        "dataset_id": "top5_historical_motivation_research",
+        "path": "top5_historical_motivation_research.csv",
+        "role": "RESEARCH_ENRICHMENT",
+        "lifecycle": "DETERMINISTIC_NO_LOOKAHEAD_PROJECTION",
+        "identity_key": ["historical_match_id"],
+        "observed_time_fields": [],
+        "effective_time_fields": ["date_iso"],
+        "source": "Stage80 Top-5 historical standings/motivation projection over the 9-season Football-Data archive",
+        "limitations": "Title/relegation/remaining-match context only. Same-day results excluded. Europe remains UNKNOWN_BY_DESIGN; rank tiebreak is an explicit research approximation and boundary ties remain ambiguous. No generic MUST_WIN or unmotivated label; no betting/model authority.",
     },
     {
         "dataset_id": "top5_prematch_factor_research",
