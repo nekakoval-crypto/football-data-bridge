@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-19T11:29:38Z
+Обновлено UTC: 2026-09-19T11:30:39Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -27,7 +27,7 @@
 - Top-5 API-Football referee backfill: 45 / 45 league-seasons; 16239 fixture rows; referee coverage 99.44%; profiles 453; referee×team pairs 7689.
 - Top-5 pre-match research context: 16111 valid rows / 16111 unique matches / 45 of 45 league-seasons; no-lookahead True.
 - Top-5 historical motivation context: 16111 valid rows / 16111 unique matches / 45 of 45 league-seasons; full-table rows 15631; boundary-tie rows 4434; Europe UNKNOWN_BY_DESIGN; no-lookahead True.
-- Top-5 motivation × market research: 0 profiles / 0 stability rows; closing 1X2 —; closing O/U2.5 —; promotes factor False.
+- Top-5 motivation × market research: 2719 profiles / 288 stability rows; closing 1X2 12459; closing O/U2.5 12459; promotes factor False.
 - Pre-match factor research: 2247 profile rows / 237 stability rows; closing 1X2 matches 12459; closing O/U2.5 matches 12459.
 - Pre-match walk-forward research: 7685 folds / 1145 summaries; sample-qualified folds 4455; promotes factor False.
 - Match context: 6 fixtures; official XI 1; injury evidence 3.
@@ -53,7 +53,6 @@
 - PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE
 - TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE
 - REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL
-- TOP5_MOTIVATION_MARKET_RESEARCH_NOT_MATERIALIZED
 - PBK16_COMPETITION_PROVIDER_SEASONS_PARTIAL
 - PBK14_HISTORICAL_MARKET_BRIDGE_PARTIAL_MAPPING
 - PBK16_HISTORICAL_MARKET_SOURCE_LIMITED_TO_14_LEAGUES
