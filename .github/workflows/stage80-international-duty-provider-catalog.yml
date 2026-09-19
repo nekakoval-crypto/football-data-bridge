@@ -1,0 +1,143 @@
+name: Stage 80 International Duty Provider Catalog
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/stage80_international_duty_provider_catalog.py'
+      - 'scripts/tests/test_stage80_international_duty_provider_catalog.py'
+      - '.github/workflows/stage80-international-duty-provider-catalog.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/stage80_international_duty_provider_catalog.py'
+      - 'scripts/tests/test_stage80_international_duty_provider_catalog.py'
+      - '.github/workflows/stage80-international-duty-provider-catalog.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage80-international-duty-provider-catalog-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and provider-free tests
+        run: |
+          python -m py_compile scripts/stage80_international_duty_provider_catalog.py
+          python -m unittest scripts.tests.test_stage80_international_duty_provider_catalog -v
+      - name: Provider isolation
+        shell: bash
+        run: |
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/stage80_international_duty_provider_catalog.py; then
+            echo 'International-duty catalog must reach API-Football only through the shared broker.' >&2
+            exit 1
+          fi
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated international-duty catalog outputs are forbidden in the feature PR.' >&2
+            exit 1
+          fi
+
+  capture:
+    needs: validate
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+      PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+      PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+      PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+      PBK_RAW_ARCHIVE_S3_PREFIX: api-football-raw
+      PBK_RAW_ARCHIVE_S3_REGION: auto
+      API_FOOTBALL_MAX_REAL_CALLS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install raw-archive backend
+        run: python -m pip install --disable-pip-version-check boto3
+      - name: Capture provider competition-season coverage
+        run: |
+          python scripts/stage80_international_duty_provider_catalog.py \
+            --out-csv ops/international_duty_provider_candidates.csv \
+            --meta-out ops/stage80_international_duty_provider_catalog_last_run.json \
+            --start-year 2017 \
+            --end-year 2026
+      - name: Verify evidence boundary
+        run: |
+          python - <<'PY'
+          import csv, json
+          meta=json.load(open('ops/stage80_international_duty_provider_catalog_last_run.json',encoding='utf-8'))
+          assert meta['version']=='PBK_STAGE80_INTERNATIONAL_DUTY_PROVIDER_CATALOG_V1', meta
+          assert meta['status']=='OK', meta
+          assert meta['provider_endpoint']=='/leagues', meta
+          assert meta['provider_calls']==1, meta
+          assert meta['candidate_competitions']>0, meta
+          assert meta['candidate_season_rows']>0, meta
+          assert meta['selection_status']=='CANDIDATE_REVIEW', meta
+          assert meta['historical_callup_evidence_possible'] is False, meta
+          assert meta['nationality_inference_allowed'] is False, meta
+          assert meta['archive_enabled'] is True, meta
+          assert meta['archive_errors']==0, meta
+          assert meta['research_only'] is True, meta
+          assert meta['operational_betting_authority'] is False, meta
+          assert meta['creates_signal'] is False, meta
+          with open('ops/international_duty_provider_candidates.csv',encoding='utf-8-sig',newline='') as f:
+              rows=list(csv.DictReader(f))
+          assert len(rows)==meta['candidate_season_rows']
+          assert rows
+          assert {r['selection_status'] for r in rows}=={'CANDIDATE_REVIEW'}
+          assert {r['historical_callup_evidence_possible'] for r in rows}=={'false'}
+          assert {r['nationality_inference_allowed'] for r in rows}=={'false'}
+          assert {r['operational_betting_authority'] for r in rows}=={'false'}
+          print({
+              'candidate_competitions':meta['candidate_competitions'],
+              'candidate_season_rows':meta['candidate_season_rows'],
+              'direct_minutes_rows':meta['season_rows_with_direct_minutes_evidence_possible'],
+              'matchday_rows':meta['season_rows_with_direct_matchday_squad_evidence_possible'],
+              'families':meta['candidate_families'],
+              'archive_backend':meta['archive_backend'],
+          })
+          PY
+      - name: Publish provider catalog safely
+        shell: bash
+        run: |
+          git config user.name 'stage80-international-duty-bot'
+          git config user.email 'stage80-international-duty-bot@users.noreply.github.com'
+          git add ops/international_duty_provider_candidates.csv
+          git add ops/stage80_international_duty_provider_catalog_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 international-duty provider catalog update'
+          python scripts/publish_operational_commit.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: international-duty-provider-catalog
+          path: |
+            ops/international_duty_provider_candidates.csv
+            ops/stage80_international_duty_provider_catalog_last_run.json
+          if-no-files-found: error
+          retention-days: 90
