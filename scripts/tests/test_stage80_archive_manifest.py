@@ -229,6 +229,61 @@ class Stage80ArchiveManifestTests(unittest.TestCase):
         self.assertEqual(bridge["effective_time_fields_text"], "date_iso")
         self.assertEqual(bridge["role"], "RESEARCH_IDENTITY_MAPPING")
 
+    def test_pbk14_congestion_market_manifest_contracts(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            self.write_csv(
+                tmp,
+                "pbk14_congestion_market_join_research.csv",
+                ["historical_match_id", "date_iso", "api_fixture_id"],
+                [{
+                    "historical_match_id": "hist-1",
+                    "date_iso": "2024-08-10",
+                    "api_fixture_id": "9001",
+                }],
+            )
+            self.write_csv(
+                tmp,
+                "pbk14_congestion_market_factor_research.csv",
+                ["factor", "bucket", "scope_type", "scope_value"],
+                [{
+                    "factor": "UEFA_72H_SIDE",
+                    "bucket": "HOME_ONLY",
+                    "scope_type": "ALL",
+                    "scope_value": "ALL",
+                }],
+            )
+            self.write_csv(
+                tmp,
+                "pbk14_congestion_market_factor_stability_research.csv",
+                ["factor", "bucket", "scope_type", "scope_value"],
+                [{
+                    "factor": "UEFA_72H_SIDE",
+                    "bucket": "HOME_ONLY",
+                    "scope_type": "ALL",
+                    "scope_value": "ALL",
+                }],
+            )
+            report = manifest.build_manifest(Path(tmp), raw_archive_dir="")
+        join = next(
+            x for x in report["datasets"]
+            if x["dataset_id"] == "pbk14_congestion_market_join_research"
+        )
+        profiles = next(
+            x for x in report["datasets"]
+            if x["dataset_id"] == "pbk14_congestion_market_factor_research"
+        )
+        stability = next(
+            x for x in report["datasets"]
+            if x["dataset_id"] == "pbk14_congestion_market_factor_stability_research"
+        )
+        self.assertEqual(join["contract_status"], "OK")
+        self.assertEqual(join["identity_key_text"], "historical_match_id")
+        self.assertEqual(join["effective_time_fields_text"], "date_iso")
+        self.assertEqual(profiles["contract_status"], "OK")
+        self.assertEqual(profiles["identity_key_text"], "factor+bucket+scope_type+scope_value")
+        self.assertEqual(stability["contract_status"], "OK")
+        self.assertEqual(stability["role"], "RESEARCH_VALIDATION")
+
     def test_raw_archive_does_not_expose_real_storage_path(self):
         with tempfile.TemporaryDirectory() as tmp:
             report = manifest.build_manifest(Path(tmp), raw_archive_dir="/secret/server/archive")

@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V20_PBK14_MARKET_BRIDGE"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V21_PBK14_CONGESTION_MARKET_RESEARCH"
 
 DATASETS = [
     {
@@ -471,6 +471,39 @@ DATASETS = [
         "effective_time_fields": ["date_iso"],
         "source": "Stage80 Football-Data PBK14 historical market rows bridged to API-Football PBK16 domestic fixtures",
         "limitations": "AUTO/HIGH only are eligible downstream. No fuzzy string matching; REVIEW/UNMAPPED remain excluded. Final scores are used only as historical identity evidence. Lithuania/Latvia have no Football-Data historical market source in this contour. No betting/model authority.",
+    },
+    {
+        "dataset_id": "pbk14_congestion_market_join_research",
+        "path": "pbk14_congestion_market_join_research.csv",
+        "role": "RESEARCH_JOIN",
+        "lifecycle": "DETERMINISTIC_NO_LOOKAHEAD_JOIN",
+        "identity_key": ["historical_match_id"],
+        "observed_time_fields": [],
+        "effective_time_fields": ["date_iso"],
+        "source": "Stage80 AUTO/HIGH PBK14 historical-market identities joined by API fixture_id to PBK16 competition congestion",
+        "limitations": "REVIEW/UNMAPPED excluded. Strictly prior competition evidence only; future schedule excluded. No betting/model authority.",
+    },
+    {
+        "dataset_id": "pbk14_congestion_market_factor_research",
+        "path": "pbk14_congestion_market_factor_research.csv",
+        "role": "RESEARCH_ANALYSIS",
+        "lifecycle": "DETERMINISTIC_AGGREGATE_PROJECTION",
+        "identity_key": ["factor", "bucket", "scope_type", "scope_value"],
+        "observed_time_fields": [],
+        "effective_time_fields": [],
+        "source": "Stage80 descriptive competition-congestion research over PBK14 historical closing markets",
+        "limitations": "Exploratory aggregates only. Market no-vig is not PBK probability; ROI/calibration do not create authority or promote factors.",
+    },
+    {
+        "dataset_id": "pbk14_congestion_market_factor_stability_research",
+        "path": "pbk14_congestion_market_factor_stability_research.csv",
+        "role": "RESEARCH_VALIDATION",
+        "lifecycle": "DETERMINISTIC_SEASON_STABILITY_PROJECTION",
+        "identity_key": ["factor", "bucket", "scope_type", "scope_value"],
+        "observed_time_fields": [],
+        "effective_time_fields": [],
+        "source": "Stage80 season-by-season stability projection for PBK14 competition-congestion market research",
+        "limitations": "Descriptive stability only. Does not rank/select/promote factors and has no probability/eligibility/stake/Forward authority.",
     },
 ]
 
