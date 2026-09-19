@@ -198,8 +198,10 @@ def late_phase(row,side):
 
 
 def title_near(row,side,limit):
-    if not full_table(row) or not late_phase(row,side):
+    if not full_table(row):
         return None
+    if not late_phase(row,side):
+        return False
     status=sval(row,f"{side}_title_status")
     gap=inum(row.get(f"{side}_title_gap_points"))
     if status not in {"POINTS_LEADER","JOINT_POINTS_LEADER","ALIVE_BY_MAX_POINTS"}:
@@ -208,8 +210,10 @@ def title_near(row,side,limit):
 
 
 def survival_danger(row,side):
-    if not full_table(row) or not late_phase(row,side):
+    if not full_table(row):
         return None
+    if not late_phase(row,side):
+        return False
     return sval(row,f"{side}_relegation_position_status") in {
         "IN_DIRECT_RELEGATION_ZONE",
         "IN_RELEGATION_PLAYOFF_POSITION",
@@ -218,8 +222,10 @@ def survival_danger(row,side):
 
 
 def survival_near(row,side,limit):
-    if not full_table(row) or not late_phase(row,side):
+    if not full_table(row):
         return None
+    if not late_phase(row,side):
+        return False
     position=sval(row,f"{side}_relegation_position_status")
     if position in {
         "IN_DIRECT_RELEGATION_ZONE",
