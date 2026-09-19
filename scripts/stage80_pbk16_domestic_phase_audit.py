@@ -85,7 +85,11 @@ def table_phase(country,season,round_name):
     if country=="Austria":
         if phase=="Regular Season": return "TABLE_PHASE","REGULAR"
         if phase in {"Championship Round","Championship Group"}: return "TABLE_PHASE","CHAMPIONSHIP_SPLIT"
-        if phase in {"Relegation Round","Relegation Group"}: return "TABLE_PHASE","RELEGATION_SPLIT"
+        if phase=="Relegation Round":
+            if season==2020 and rd=="Relegation Round":
+                return "POST_TABLE_PLAYOFF","RELEGATION_PLAYOFF"
+            return "TABLE_PHASE","RELEGATION_SPLIT"
+        if phase=="Relegation Group": return "TABLE_PHASE","RELEGATION_SPLIT"
         if "Play-offs" in phase or phase in {"Semi-finals","Final"}: return "POST_TABLE_PLAYOFF","QUALIFICATION_PLAYOFF"
 
     if country=="Belgium":
@@ -93,7 +97,10 @@ def table_phase(country,season,round_name):
         if phase in {"Play-offs I","Championship Round","Championship Group"}: return "TABLE_PHASE","CHAMPIONSHIP_SPLIT"
         if phase in {"Conference League Play-off Group","Conference League Group"}: return "TABLE_PHASE","EUROPE_SPLIT"
         if phase=="Relegation Group": return "TABLE_PHASE","RELEGATION_SPLIT"
-        if phase=="Relegation Round": return "POST_TABLE_PLAYOFF","RELEGATION_PLAYOFF"
+        if phase=="Relegation Round":
+            if season in {2023,2024} and re.fullmatch(r"Relegation Round - [1-6]",rd):
+                return "TABLE_PHASE","RELEGATION_SPLIT"
+            return "POST_TABLE_PLAYOFF","RELEGATION_PLAYOFF"
         if phase in {"Conference League Play-offs - Final","Quarter-finals","Semi-finals","Final"}: return "POST_TABLE_PLAYOFF","QUALIFICATION_PLAYOFF"
 
     if country=="Denmark":
@@ -212,10 +219,10 @@ def run(source,state_path,out_csv,meta_out):
         and len(league_ids)==16
         and len(countries)==16
         and len(cells)==143
-        and role_counts.get("TABLE_PHASE",0)==40709
-        and role_counts.get("POST_TABLE_PLAYOFF",0)==280
+        and role_counts.get("TABLE_PHASE",0)==40731
+        and role_counts.get("POST_TABLE_PLAYOFF",0)==258
         and unknown==0
-        and policy_counts.get("PLAYED_RESULT_USABLE",0)==40075
+        and policy_counts.get("PLAYED_RESULT_USABLE",0)==40097
         and policy_counts.get("NOT_PLAYED_EXCLUDE",0)==629
         and policy_counts.get("AWARDED_RESULT_REQUIRES_RULE_EVIDENCE",0)==5
         and unsupported==0

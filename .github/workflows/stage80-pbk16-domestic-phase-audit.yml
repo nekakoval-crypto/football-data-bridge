@@ -82,10 +82,10 @@ jobs:
           assert meta['provider_unavailable_cells']==[{'country':'Poland','season':'2017'}], meta
           assert meta['pending_state_cells']==0, meta
           assert meta['error_state_cells']==0, meta
-          assert meta['phase_role_counts']=={'POST_TABLE_PLAYOFF':280,'TABLE_PHASE':40709}, meta
+          assert meta['phase_role_counts']=={'POST_TABLE_PLAYOFF':258,'TABLE_PHASE':40731}, meta
           assert meta['unknown_phase_rows']==0, meta
           assert meta['unsupported_table_status_rows']==0, meta
-          assert meta['table_result_policy_counts']['PLAYED_RESULT_USABLE']==40075, meta
+          assert meta['table_result_policy_counts']['PLAYED_RESULT_USABLE']==40097, meta
           assert meta['table_result_policy_counts']['NOT_PLAYED_EXCLUDE']==629, meta
           assert meta['table_result_policy_counts']['AWARDED_RESULT_REQUIRES_RULE_EVIDENCE']==5, meta
           assert meta['points_transform_applied'] is False, meta

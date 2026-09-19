@@ -53,6 +53,28 @@ class PBK16DomesticPhaseAuditTests(unittest.TestCase):
                 self.assertEqual(role,"TABLE_PHASE")
                 self.assertNotEqual(family,"REGULAR")
 
+    def test_austria_2020_mixed_relegation_label_is_disambiguated(self):
+        self.assertEqual(
+            s.table_phase("Austria",2020,"Relegation Round - 10")[0],
+            "TABLE_PHASE",
+        )
+        self.assertEqual(
+            s.table_phase("Austria",2020,"Relegation Round")[0],
+            "POST_TABLE_PLAYOFF",
+        )
+
+    def test_belgium_2023_2024_mixed_relegation_label_is_disambiguated(self):
+        for season in (2023,2024):
+            with self.subTest(season=season):
+                self.assertEqual(
+                    s.table_phase("Belgium",season,"Relegation Round - 6")[0],
+                    "TABLE_PHASE",
+                )
+                self.assertEqual(
+                    s.table_phase("Belgium",season,"Relegation Round")[0],
+                    "POST_TABLE_PLAYOFF",
+                )
+
     def test_scotland_2022_mixed_relegation_label_is_disambiguated(self):
         self.assertEqual(
             s.table_phase("Scotland",2022,"Relegation Round - 3")[0],
