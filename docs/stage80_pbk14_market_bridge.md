@@ -31,7 +31,7 @@ The bridge never performs silent fuzzy string matching.
 Team identity evidence:
 
 - `AUTO`: unique conservative canonical-name equality inside the same league-season;
-- `HIGH`: unique schedule+score fingerprint identity. The fingerprint consists of historical `(calendar date, H/A side, goals for, goals against)` observations and requires at least five source matches.
+- `HIGH`: unique schedule+score fingerprint identity. Full-subset evidence requires at least five source matches. A second near-complete path is allowed only for teams with at least 20 source matches when the best provider candidate explains at least 88% of the source fingerprint, at least 80% of its own provider fingerprint, has at least 20 exact date/side/score intersections, and beats the second candidate by both a large absolute and ratio margin. Team names do not participate in either HIGH method.
 
 Fixture identity additionally requires:
 
@@ -43,6 +43,8 @@ Fixture identity additionally requires:
 - a unique provider fixture.
 
 Final scores are used only for historical identity resolution. They are never exposed as prematch features and do not give the bridge operational betting authority.
+
+Multiple source-name variants may resolve to the same provider team when their schedule evidence is disjoint. This does not relax fixture identity: mapped fixtures still must be one-to-one, and any provider-fixture reuse is demoted to `REVIEW`.
 
 Only `AUTO` and `HIGH` rows are eligible for later historical research joins. `REVIEW` and `UNMAPPED` are fail-closed.
 

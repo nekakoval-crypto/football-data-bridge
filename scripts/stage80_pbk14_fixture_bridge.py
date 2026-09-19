@@ -5,10 +5,16 @@ No fuzzy string matching is used.
 
 Team identity evidence, in order:
 1. AUTO: exact conservative canonical team name within league-season.
-2. HIGH: unique full source schedule fingerprint contained in one provider team
-   fingerprint. Fingerprints use (date, home/away side, goals-for, goals-against)
-   and require at least five source matches. Final scores are used ONLY for
-   historical identity resolution, never as a prematch feature.
+2. HIGH/full: unique source schedule+score fingerprint contained in one provider
+   team fingerprint. Multiple source-name variants may resolve to the same
+   provider team when their fixture evidence is disjoint; final fixture identity
+   remains one-to-one.
+3. HIGH/near-complete: unique near-complete schedule+score fingerprint with
+   strict coverage and separation thresholds. This exists for source/provider
+   corrections where one or a few historical rows differ.
+
+Fingerprints use (date, home/away side, goals-for, goals-against). Final scores
+are used ONLY for historical identity resolution, never as a prematch feature.
 
 Fixture identity then requires:
 - same provider league;
@@ -32,14 +38,21 @@ from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
-VERSION="PBK_STAGE80_PBK14_FIXTURE_BRIDGE_V1"
+VERSION="PBK_STAGE80_PBK14_FIXTURE_BRIDGE_V2_NEAR_COMPLETE"
 FINAL={"FT","AET","PEN"}
+FULL_FINGERPRINT_MIN_MATCHES=5
+NEAR_COMPLETE_MIN_MATCHES=20
+NEAR_COMPLETE_MIN_INTERSECTION=20
+NEAR_COMPLETE_MIN_SOURCE_RATIO=0.88
+NEAR_COMPLETE_MIN_PROVIDER_RATIO=0.80
+NEAR_COMPLETE_MIN_INTERSECTION_MARGIN=15
+NEAR_COMPLETE_MIN_SOURCE_RATIO_MARGIN=0.60
 FIELDS=[
     "historical_match_id","league_code","provider_league_id","season_start","date_iso",
     "source_home_team","source_away_team","source_home_goals","source_away_goals",
     "api_fixture_id","api_kickoff_utc","api_home_team_id","api_home_team",
     "api_away_team_id","api_away_team","api_home_goals","api_away_goals",
-    "home_team_map_status","away_team_map_status","mapping_status","mapping_reason",
+    "home_team_map_status","home_team_map_method","away_team_map_status","away_team_map_method","mapping_status","mapping_reason",
     "exact_date_required","final_score_identity_evidence","fuzzy_string_matching_used",
     "one_to_one_verified","historical_backfill_only","research_only",
     "operational_betting_authority","creates_signal","probability_mutation",
@@ -177,12 +190,10 @@ def team_maps(src,api):
         provider_by_canon[canonical_name(provider_by_id[tid])].append(tid)
 
     mapped={}
-    used_provider=set()
     for name in source_names:
         hits=provider_by_canon.get(canonical_name(name),[])
         if len(hits)==1:
             mapped[name]=(hits[0],"AUTO","CANONICAL_EXACT")
-            used_provider.add(hits[0])
 
     source_fp=defaultdict(set)
     for row in src:
@@ -198,22 +209,63 @@ def team_maps(src,api):
         if h and he: provider_fp[h].add(he)
         if a and ae: provider_fp[a].add(ae)
 
+    # Exact schedule+score subset. A provider team may legitimately receive more
+    # than one source-name alias in the same season, provided fixture evidence is
+    # disjoint. map_scope() is the final one-to-one fixture gate.
     unresolved=[name for name in source_names if name not in mapped]
     for name in unresolved:
         fp=source_fp.get(name,set())
-        if len(fp)<5:
+        if len(fp)<FULL_FINGERPRINT_MIN_MATCHES:
             continue
-        candidates=[]
-        for tid in provider_ids:
-            if tid in used_provider:
-                continue
-            pfp=provider_fp.get(tid,set())
-            if fp and fp.issubset(pfp):
-                candidates.append(tid)
+        candidates=[
+            tid for tid in provider_ids
+            if fp and fp.issubset(provider_fp.get(tid,set()))
+        ]
         if len(candidates)==1:
-            tid=candidates[0]
-            mapped[name]=(tid,"HIGH","SCHEDULE_SCORE_FINGERPRINT")
-            used_provider.add(tid)
+            mapped[name]=(candidates[0],"HIGH","SCHEDULE_SCORE_FINGERPRINT")
+
+    # Near-complete fingerprint for one/few source-provider corrections. Names
+    # do not participate. A candidate must explain almost the entire source
+    # fingerprint and dominate the second-best provider team by a wide margin.
+    unresolved=[name for name in source_names if name not in mapped]
+    for name in unresolved:
+        fp=source_fp.get(name,set())
+        if len(fp)<NEAR_COMPLETE_MIN_MATCHES:
+            continue
+        scored=[]
+        for tid in provider_ids:
+            pfp=provider_fp.get(tid,set())
+            if not pfp:
+                continue
+            intersection=len(fp & pfp)
+            scored.append({
+                "tid":tid,
+                "intersection":intersection,
+                "source_ratio":intersection/len(fp),
+                "provider_ratio":intersection/len(pfp),
+            })
+        scored.sort(
+            key=lambda x:(x["intersection"],x["source_ratio"],x["provider_ratio"]),
+            reverse=True,
+        )
+        if not scored:
+            continue
+        top=scored[0]
+        second=scored[1] if len(scored)>1 else {
+            "intersection":0,"source_ratio":0.0,"provider_ratio":0.0
+        }
+        if (
+            top["intersection"]>=NEAR_COMPLETE_MIN_INTERSECTION
+            and top["source_ratio"]>=NEAR_COMPLETE_MIN_SOURCE_RATIO
+            and top["provider_ratio"]>=NEAR_COMPLETE_MIN_PROVIDER_RATIO
+            and top["intersection"]-second["intersection"]>=NEAR_COMPLETE_MIN_INTERSECTION_MARGIN
+            and top["source_ratio"]-second["source_ratio"]>=NEAR_COMPLETE_MIN_SOURCE_RATIO_MARGIN
+        ):
+            mapped[name]=(
+                top["tid"],
+                "HIGH",
+                "NEAR_COMPLETE_SCHEDULE_SCORE_FINGERPRINT",
+            )
 
     return mapped,provider_by_id
 
@@ -252,7 +304,9 @@ def map_scope(src,api,league_code,provider_id,season_start):
             "api_home_goals":"",
             "api_away_goals":"",
             "home_team_map_status":hmap[1] if hmap else "UNMAPPED",
+            "home_team_map_method":hmap[2] if hmap else "",
             "away_team_map_status":amap[1] if amap else "UNMAPPED",
+            "away_team_map_method":amap[2] if amap else "",
             "mapping_status":"UNMAPPED",
             "mapping_reason":"TEAM_IDENTITY_INCOMPLETE",
             "exact_date_required":"true",
@@ -373,7 +427,16 @@ def build_meta(rows,scopes):
         "mapping_policy":{
             "fuzzy_string_matching_used":False,
             "auto":"unique conservative canonical-name mapping + exact date/teams/final score",
-            "high":"unique schedule+score team fingerprint + exact date/teams/final score",
+            "high":"unique full or near-complete schedule+score team fingerprint + exact date/teams/final score",
+            "source_aliases_may_share_provider_team_if_fixture_evidence_is_disjoint":True,
+            "near_complete_thresholds":{
+                "min_source_matches":NEAR_COMPLETE_MIN_MATCHES,
+                "min_intersection":NEAR_COMPLETE_MIN_INTERSECTION,
+                "min_source_ratio":NEAR_COMPLETE_MIN_SOURCE_RATIO,
+                "min_provider_ratio":NEAR_COMPLETE_MIN_PROVIDER_RATIO,
+                "min_intersection_margin":NEAR_COMPLETE_MIN_INTERSECTION_MARGIN,
+                "min_source_ratio_margin":NEAR_COMPLETE_MIN_SOURCE_RATIO_MARGIN,
+            },
             "review_unmapped_excluded":True,
             "final_score_identity_only":True,
         },

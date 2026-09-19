@@ -47,7 +47,9 @@ class PBK14MarketBridgeReadinessTests(unittest.TestCase):
             "api_home_goals":"2" if status in {"AUTO","HIGH"} else "",
             "api_away_goals":"1" if status in {"AUTO","HIGH"} else "",
             "home_team_map_status":"AUTO",
+            "home_team_map_method":"CANONICAL_EXACT",
             "away_team_map_status":"AUTO",
+            "away_team_map_method":"CANONICAL_EXACT",
             "mapping_status":status,
             "mapping_reason":"EXACT_DATE_TEAMS_SCORE_UNIQUE" if status in {"AUTO","HIGH"} else "TEAM_IDENTITY_INCOMPLETE",
             "exact_date_required":"true",
@@ -95,7 +97,7 @@ class PBK14MarketBridgeReadinessTests(unittest.TestCase):
         self.write_json(
             "stage80_pbk14_fixture_bridge_last_run.json",
             {
-                "version":"PBK_STAGE80_PBK14_FIXTURE_BRIDGE_V1",
+                "version":"PBK_STAGE80_PBK14_FIXTURE_BRIDGE_V2_NEAR_COMPLETE",
                 "source_rows":1,
                 "mapped_auto":counts["AUTO"],
                 "mapped_high":counts["HIGH"],
@@ -107,6 +109,8 @@ class PBK14MarketBridgeReadinessTests(unittest.TestCase):
                     "fuzzy_string_matching_used":False,
                     "review_unmapped_excluded":True,
                     "final_score_identity_only":True,
+                    "source_aliases_may_share_provider_team_if_fixture_evidence_is_disjoint":True,
+                    "near_complete_thresholds":{"min_source_ratio":0.88},
                 },
                 "historical_backfill_only":True,
                 "research_only":True,
