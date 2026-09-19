@@ -2,6 +2,9 @@ name: Stage 80 PBK16 Historical Table Context
 
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows: ['Stage 80 PBK16 Domestic Phase Audit']
+    types: [completed]
   pull_request:
     paths:
       - 'scripts/stage80_pbk16_historical_table_context.py'
@@ -14,6 +17,8 @@ on:
       - 'scripts/tests/test_stage80_pbk16_historical_table_context.py'
       - '.github/workflows/stage80-pbk16-historical-table-context.yml'
       - 'ops/pbk16_all_competition_fixture_history.csv'
+      - 'ops/pbk16_domestic_phase_audit.csv'
+      - 'ops/stage80_pbk16_domestic_phase_audit_last_run.json'
 
 concurrency:
   group: stage80-pbk16-historical-table-context-${{ github.ref }}
@@ -21,6 +26,7 @@ concurrency:
 
 jobs:
   validate:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -47,11 +53,13 @@ jobs:
 
   build:
     needs: validate
-    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -60,6 +68,7 @@ jobs:
           mkdir -p research
           python scripts/stage80_pbk16_historical_table_context.py \
             --source ops/pbk16_all_competition_fixture_history.csv \
+            --phase-audit ops/pbk16_domestic_phase_audit.csv \
             --out-csv research/pbk16_historical_table_context_research.csv \
             --meta-out research/stage80_pbk16_historical_table_context_meta.json
       - name: Verify PBK16 historical table context
@@ -67,7 +76,7 @@ jobs:
           python - <<'PY'
           import csv, json
           meta=json.load(open('research/stage80_pbk16_historical_table_context_meta.json',encoding='utf-8'))
-          assert meta['version']=='PBK_STAGE80_PBK16_HISTORICAL_TABLE_CONTEXT_V1', meta
+          assert meta['version']=='PBK_STAGE80_PBK16_HISTORICAL_TABLE_CONTEXT_V2', meta
           assert meta['status']=='OK', meta
           assert meta['source_domestic_rows']==40989, meta
           assert meta['output_rows']==40989, meta
@@ -77,10 +86,18 @@ jobs:
           assert meta['domestic_league_ids']==16, meta
           assert meta['countries']==16, meta
           assert meta['captured_league_season_cells']==143, meta
-          assert meta['regular_core_rows']>0, meta
-          assert meta['blocked_nonregular_phase_rows']>0, meta
-          assert meta['regular_rows_with_full_table']>0, meta
-          assert meta['phase_detection_contract']=='ROUND_LABEL_NONREGULAR_MARKERS_V1', meta
+          assert meta['audit_rows']==40989, meta
+          assert meta['audit_unique_fixture_ids']==40989, meta
+          assert meta['audit_duplicate_fixture_ids']==0, meta
+          assert meta['audit_invalid_rows']==0, meta
+          assert meta['source_without_phase_audit']==0, meta
+          assert meta['phase_audit_without_source']==0, meta
+          assert meta['phase_role_counts']=={'POST_TABLE_PLAYOFF':258,'TABLE_PHASE':40731}, meta
+          assert meta['safe_regular_prematch_rows']>0, meta
+          assert meta['safe_regular_rows_with_full_table']>0, meta
+          assert meta['blocked_table_phase_rows']>=1747, meta
+          assert meta['post_table_playoff_rows']==258, meta
+          assert meta['phase_audit_contract']=='PBK16_2017_2025_PROVIDER_ROUND_LABELS_V1', meta
           assert meta['rank_tiebreak_contract']=='POINTS_GD_GF_TEAMNAME_RESEARCH_APPROX_V1', meta
           assert meta['official_table_equivalence'] is False, meta
           assert meta['exact_title_relegation_motivation_allowed'] is False, meta
@@ -96,16 +113,19 @@ jobs:
           assert len({r['domestic_fixture_id'] for r in rows})==40989
           assert {r['operational_betting_authority'] for r in rows}=={'false'}
           assert {r['exact_title_relegation_motivation_allowed'] for r in rows}=={'false'}
-          blocked=[r for r in rows if r['context_status']=='BLOCKED_NONREGULAR_PHASE_UNMODELED']
-          regular=[r for r in rows if r['context_status']=='VALID_REGULAR_RESULTS_DERIVED']
-          assert len(blocked)==meta['blocked_nonregular_phase_rows']
-          assert len(regular)==meta['regular_core_rows']
-          assert all(not r['home_rank_pre'] and not r['away_rank_pre'] for r in blocked)
+          blocked=[r for r in rows if r['context_status'].startswith('BLOCKED_')]
+          post=[r for r in rows if r['context_status']=='POST_TABLE_PLAYOFF_EXCLUDED_FROM_TABLE']
+          safe=[r for r in rows if r['context_status'].startswith('VALID_')]
+          assert len(post)==258
+          assert all(not r['home_rank_pre'] and not r['away_rank_pre'] for r in blocked+post)
+          assert all(r['phase_audit_contract']=='PBK16_2017_2025_PROVIDER_ROUND_LABELS_V1' for r in rows)
           print({
               'rows':meta['output_rows'],
-              'regular_core':meta['regular_core_rows'],
-              'blocked_nonregular':meta['blocked_nonregular_phase_rows'],
-              'regular_full_table':meta['regular_rows_with_full_table'],
+              'safe_regular':meta['safe_regular_prematch_rows'],
+              'blocked_table_phase':meta['blocked_table_phase_rows'],
+              'post_table':meta['post_table_playoff_rows'],
+              'blocked_after_awarded':meta['blocked_prior_awarded_result_rows'],
+              'regular_full_table':meta['safe_regular_rows_with_full_table'],
           })
           PY
       - uses: actions/upload-artifact@v4
@@ -116,7 +136,7 @@ jobs:
 
   publish:
     needs: build
-    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') }}
     permissions:
       contents: write
     runs-on: ubuntu-latest
