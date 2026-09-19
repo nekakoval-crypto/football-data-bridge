@@ -1,0 +1,122 @@
+name: Stage 80 PBK16 Domestic Phase Audit
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/stage80_pbk16_domestic_phase_audit.py'
+      - 'scripts/tests/test_stage80_pbk16_domestic_phase_audit.py'
+      - '.github/workflows/stage80-pbk16-domestic-phase-audit.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/stage80_pbk16_domestic_phase_audit.py'
+      - 'scripts/tests/test_stage80_pbk16_domestic_phase_audit.py'
+      - '.github/workflows/stage80-pbk16-domestic-phase-audit.yml'
+  workflow_run:
+    workflows: ['Stage 80 PBK16 Competition Congestion']
+    types: [completed]
+
+concurrency:
+  group: stage80-pbk16-domestic-phase-audit-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and provider-free tests
+        run: |
+          python -m py_compile scripts/stage80_pbk16_domestic_phase_audit.py
+          python -m unittest scripts.tests.test_stage80_pbk16_domestic_phase_audit -v
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated PBK16 phase-audit outputs are forbidden in the feature PR.' >&2
+            exit 1
+          fi
+
+  build:
+    needs: validate
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event_name == 'workflow_run' }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build PBK16 domestic phase audit
+        run: |
+          python scripts/stage80_pbk16_domestic_phase_audit.py
+      - name: Verify PBK16 phase contract
+        run: |
+          python - <<'PY'
+          import csv, json
+          meta=json.load(open('ops/stage80_pbk16_domestic_phase_audit_last_run.json',encoding='utf-8'))
+          assert meta['status']=='OK', meta
+          assert meta['domestic_rows']==40989, meta
+          assert meta['unique_domestic_fixture_ids']==40989, meta
+          assert len(meta['countries'])==16, meta
+          assert len(meta['provider_league_ids'])==16, meta
+          assert meta['captured_league_season_cells']==143, meta
+          assert meta['requested_league_season_cells']==144, meta
+          assert meta['captured_state_cells']==143, meta
+          assert meta['provider_unavailable_state_cells']==1, meta
+          assert meta['provider_unavailable_cells']==[{'country':'Poland','season':'2017'}], meta
+          assert meta['pending_state_cells']==0, meta
+          assert meta['error_state_cells']==0, meta
+          assert meta['phase_role_counts']=={'POST_TABLE_PLAYOFF':280,'TABLE_PHASE':40709}, meta
+          assert meta['unknown_phase_rows']==0, meta
+          assert meta['unsupported_table_status_rows']==0, meta
+          assert meta['table_result_policy_counts']['PLAYED_RESULT_USABLE']==40075, meta
+          assert meta['table_result_policy_counts']['NOT_PLAYED_EXCLUDE']==629, meta
+          assert meta['table_result_policy_counts']['AWARDED_RESULT_REQUIRES_RULE_EVIDENCE']==5, meta
+          assert meta['points_transform_applied'] is False, meta
+          assert meta['standings_reconstructed'] is False, meta
+          assert meta['provider_calls']==0, meta
+          assert meta['research_only'] is True, meta
+          assert meta['operational_betting_authority'] is False, meta
+          with open('ops/pbk16_domestic_phase_audit.csv',encoding='utf-8-sig',newline='') as f:
+              rows=list(csv.DictReader(f))
+          assert len(rows)==40989
+          assert len({r['fixture_id'] for r in rows})==40989
+          assert not [r for r in rows if r['phase_role']=='UNKNOWN']
+          assert all(r['research_only']=='true' for r in rows)
+          assert all(r['operational_betting_authority']=='false' for r in rows)
+          print({
+            'rows':len(rows),
+            'table':meta['phase_role_counts']['TABLE_PHASE'],
+            'post_table':meta['phase_role_counts']['POST_TABLE_PLAYOFF'],
+            'usable':meta['future_table_reconstruction_usable_rows'],
+            'needs_format_contract':meta['table_phase_rows_requiring_season_format_contract'],
+          })
+          PY
+      - name: Publish PBK16 phase audit safely
+        shell: bash
+        run: |
+          git config user.name 'stage80-phase-audit-bot'
+          git config user.email 'stage80-phase-audit-bot@users.noreply.github.com'
+          git add ops/pbk16_domestic_phase_audit.csv
+          git add ops/stage80_pbk16_domestic_phase_audit_last_run.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m 'Stage 80 PBK16 domestic phase audit update'
+          python scripts/publish_operational_commit.py
