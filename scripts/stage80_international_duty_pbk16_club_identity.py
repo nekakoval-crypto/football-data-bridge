@@ -23,6 +23,7 @@ OPS = Path(os.getenv("OPS_DIR", "ops"))
 TEMPORAL = OPS / "international_duty_player_temporal_club.csv"
 LEAGUES = OPS / "stage71_league_catalog.csv"
 FIXTURES = OPS / "current_round_fixtures.csv"
+TEAM_STATS = OPS / "team_match_statistics.csv"
 OUTPUT = OPS / "international_duty_player_pbk16_club_identity.csv"
 META = OPS / "stage80_international_duty_pbk16_club_identity_last_run.json"
 
@@ -112,7 +113,7 @@ def team_id_from_logo(url):
     return match.group(1) if match else ""
 
 
-def build_pbk16_catalog(league_rows, fixture_rows):
+def build_pbk16_catalog(league_rows, fixture_rows, team_stat_rows=None):
     pbk_leagues = {
         sval(row, "api_league_id")
         for row in league_rows
@@ -134,11 +135,25 @@ def build_pbk16_catalog(league_rows, fixture_rows):
                 "team_name": name,
                 "provider_league_id": league_id,
             }
+    for row in team_stat_rows or []:
+        league_id = sval(row, "provider_league_id")
+        if league_id not in pbk_leagues:
+            continue
+        name = sval(row, "team_name")
+        team_id = sval(row, "team_id")
+        key = identity_key(name)
+        if not name or not team_id or not key:
+            continue
+        by_key[key][team_id] = {
+            "team_id": team_id,
+            "team_name": name,
+            "provider_league_id": league_id,
+        }
     return by_key
 
 
-def build(temporal_rows, league_rows, fixture_rows):
-    catalog = build_pbk16_catalog(league_rows, fixture_rows)
+def build(temporal_rows, league_rows, fixture_rows, team_stat_rows=None):
+    catalog = build_pbk16_catalog(league_rows, fixture_rows, team_stat_rows or [])
     output = []
     for row in temporal_rows:
         if sval(row, "temporal_club_status") != "BOUNDED_CHAIN_CONFIRMED":
@@ -186,11 +201,12 @@ def build(temporal_rows, league_rows, fixture_rows):
 
 
 def run(temporal_path=TEMPORAL, league_path=LEAGUES, fixture_path=FIXTURES,
-        output_path=OUTPUT, meta_path=META):
+        team_stats_path=TEAM_STATS, output_path=OUTPUT, meta_path=META):
     temporal = read_csv(temporal_path)
     leagues = read_csv(league_path)
     fixtures = read_csv(fixture_path)
-    rows = build(temporal, leagues, fixtures)
+    team_stats = read_csv(team_stats_path)
+    rows = build(temporal, leagues, fixtures, team_stats)
     keys = [(sval(r, "fixture_id"), sval(r, "player_id")) for r in rows]
     duplicate_rows = len(keys) - len(set(keys))
     counts = Counter(sval(r, "pbk16_club_identity_status") for r in rows)
@@ -212,6 +228,8 @@ def run(temporal_path=TEMPORAL, league_path=LEAGUES, fixture_path=FIXTURES,
         "generated_at_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
         "status": "OK" if rows and not duplicate_rows and not invalid else "ATTENTION",
         "bounded_input_rows": len(rows),
+        "pbk16_catalog_fixture_rows": len(fixtures),
+        "pbk16_catalog_team_stat_rows": len(team_stats),
         "output_rows": len(rows),
         "mapped_pbk16_rows": mapped,
         "mapped_pbk16_players": len({
