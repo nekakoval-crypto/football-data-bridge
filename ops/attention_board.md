@@ -1,16 +1,16 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 19.09.2026 11:00 (Europe/Berlin)
-Canonical: 4 | active WATCH crossings: 24 | RED: 2 | ORANGE: 22
+Обновлено: 19.09.2026 12:00 (Europe/Berlin)
+Canonical: 4 | active WATCH crossings: 24 | RED: 3 | ORANGE: 21
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
 
 ## 🔴 Срочно
 - **Tottenham — Aston Villa** | Stage61 | П1 | 19.09 13:30 | первый +3 п.п. steam фаворита
 - **Tottenham — Aston Villa** | Stage63 | ОЗ — Да | 19.09 13:30 | prospective движение ОЗ ≥3 п.п.
+- **Udinese — Cagliari** | Stage63 | ОЗ — Да | 19.09 15:00 | prospective движение ОЗ ≥3 п.п.
 
 ## 🟠 Ближайшие 24 часа / активные WATCH
-- **Udinese — Cagliari** | Stage63 | ОЗ — Да | 19.09 15:00 | prospective движение ОЗ ≥3 п.п. | 1.85 @ Marathonbet
 - **Eintracht Frankfurt — SC Freiburg** | Stage62 | ТБ(2.5) | 19.09 15:30 | первый +3 п.п. steam ТБ(2.5) | 1.42 @ Marathonbet
 - **Werder Bremen — FC Augsburg** | Stage62 | ТБ(2.5) | 19.09 15:30 | первый +3 п.п. steam ТБ(2.5) | 1.41 @ Marathonbet
 - **Borussia Mönchengladbach — FSV Mainz 05** | Stage62 | ТБ(2.5) | 19.09 15:30 | первый +3 п.п. steam ТБ(2.5) | 1.47 @ Marathonbet
@@ -157,8 +157,8 @@ Canonical: 4 | active WATCH crossings: 24 | RED: 2 | ORANGE: 22
   - Европейская фора хозяев (-2) · П1: 8 | Х: 6 | П2: 1.25 @ Bet365
   - Европейская фора хозяев (-2) · П1: 6.55 | Х: 5.65 | П2: 1.25 @ Marathonbet
   - Европейская фора хозяев (-3) · П1: 19 | Х: 12 | П2: 1.08 @ Bet365
-  - 1X2 · П1: 2 | Х: 3.5 | П2: 3.6 @ Bet365
-  - 1X2 · П1: 2.03 | Х: 3.6 | П2: 3.66 @ Marathonbet
+  - 1X2 · П1: 1.91 | Х: 3.6 | П2: 3.9 @ Bet365
+  - 1X2 · П1: 1.95 | Х: 3.66 | П2: 3.88 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.33 | ИТМ: 3.25 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.33 | ИТМ: 3.04 @ Marathonbet
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 2.62 | ИТМ: 1.44 @ Bet365
@@ -563,8 +563,8 @@ Canonical: 4 | active WATCH crossings: 24 | RED: 2 | ORANGE: 22
   - Европейская фора хозяев (-1) · П1: 13 | Х: 7 | П2: 1.17 @ Bet365
   - Европейская фора хозяев (-1) · П1: 9.2 | Х: 6.05 | П2: 1.22 @ Marathonbet
   - Европейская фора хозяев (-2) · П1: 29 | Х: 15 | П2: 1.04 @ Bet365
-  - 1X2 · П1: 5 | Х: 3.9 | П2: 1.67 @ Bet365
-  - 1X2 · П1: 4.75 | Х: 4.15 | П2: 1.73 @ Marathonbet
+  - 1X2 · П1: 4.75 | Х: 3.9 | П2: 1.7 @ Bet365
+  - 1X2 · П1: 4.75 | Х: 4.05 | П2: 1.74 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.12 | ИТМ: 6 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.67 | ИТМ: 2.1 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.72 | ИТМ: 2.14 @ Marathonbet
@@ -597,8 +597,8 @@ Canonical: 4 | active WATCH crossings: 24 | RED: 2 | ORANGE: 22
   - Европейская фора хозяев (-2) · П1: 6 | Х: 5 | П2: 1.36 @ Bet365
   - Европейская фора хозяев (-2) · П1: 5.6 | Х: 5.15 | П2: 1.35 @ Marathonbet
   - Европейская фора хозяев (-3) · П1: 15 | Х: 9 | П2: 1.12 @ Bet365
-  - 1X2 · П1: 1.75 | Х: 3.8 | П2: 4.33 @ Bet365
-  - 1X2 · П1: 1.81 | Х: 3.85 | П2: 4.33 @ Marathonbet
+  - 1X2 · П1: 1.8 | Х: 3.75 | П2: 4.2 @ Bet365
+  - 1X2 · П1: 1.81 | Х: 3.84 | П2: 4.33 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.44 | ИТМ: 2.62 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.39 | ИТМ: 2.77 @ Marathonbet
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 3.25 | ИТМ: 1.33 @ Bet365
@@ -631,7 +631,7 @@ Canonical: 4 | active WATCH crossings: 24 | RED: 2 | ORANGE: 22
   - Европейская фора хозяев (-3) · П1: 11 | Х: 7.5 | П2: 1.17 @ Bet365
   - Европейская фора хозяев (-3) · П1: 8.2 | Х: 7 | П2: 1.16 @ Marathonbet
   - 1X2 · П1: 1.6 | Х: 4.33 | П2: 5 @ Bet365
-  - 1X2 · П1: 1.59 | Х: 4.4 | П2: 5.35 @ Marathonbet
+  - 1X2 · П1: 1.61 | Х: 4.35 | П2: 5.2 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.44 | ИТМ: 2.62 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.44 | ИТМ: 2.59 @ Marathonbet
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 3.25 | ИТМ: 1.33 @ Bet365
@@ -1322,8 +1322,8 @@ Canonical: 4 | active WATCH crossings: 24 | RED: 2 | ORANGE: 22
   - Европейская фора хозяев (-2) · П1: 5.25 | Х: 5 | П2: 1.42 @ Marathonbet
   - Европейская фора хозяев (-3) · П1: 13 | Х: 8 | П2: 1.14 @ Bet365
   - Европейская фора хозяев (-3) · П1: 6.45 | Х: 4.95 | П2: 1.1 @ Marathonbet
-  - 1X2 · П1: 1.62 | Х: 3.9 | П2: 5.25 @ Bet365
-  - 1X2 · П1: 1.65 | Х: 4 | П2: 5.35 @ Marathonbet
+  - 1X2 · П1: 1.62 | Х: 3.9 | П2: 5.5 @ Bet365
+  - 1X2 · П1: 1.64 | Х: 4.05 | П2: 5.35 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.57 | ИТМ: 2.25 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.49 | ИТМ: 2.44 @ Marathonbet
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 3.75 | ИТМ: 1.25 @ Bet365
@@ -2524,7 +2524,7 @@ Canonical: 4 | active WATCH crossings: 24 | RED: 2 | ORANGE: 22
   - Европейская фора хозяев (-2) · П1: 15 | Х: 9 | П2: 1.12 @ Bet365
   - Европейская фора хозяев (-2) · П1: 6.5 | Х: 4.95 | П2: 1.1 @ Marathonbet
   - 1X2 · П1: 3.1 | Х: 3.8 | П2: 2.15 @ Bet365
-  - 1X2 · П1: 3.14 | Х: 3.8 | П2: 2.17 @ Marathonbet
+  - 1X2 · П1: 3.18 | Х: 3.8 | П2: 2.15 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.14 | ИТМ: 5.5 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.73 | ИТМ: 2 @ Bet365
   - ИТБ/ИТМ 2 (1.5) · ИТБ: 1.73 | ИТМ: 2.11 @ Marathonbet
@@ -3843,7 +3843,7 @@ Canonical: 4 | active WATCH crossings: 24 | RED: 2 | ORANGE: 22
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **HEALTHY** | critical 0 | warnings 0
+- System Health: **WARN** | critical 0 | warnings 1
 - Логическая canonical экспозиция: **4.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 24 | data required 3
