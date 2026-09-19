@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V27_TOP5_HISTORICAL_MOTIVATION"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V28_TOP5_MOTIVATION_MARKET_RESEARCH"
 
 DATASETS = [
     {
@@ -218,6 +218,28 @@ DATASETS = [
         "effective_time_fields": ["date_iso"],
         "source": "Stage80 Top-5 historical standings/motivation projection over the 9-season Football-Data archive",
         "limitations": "Title/relegation/remaining-match context only. Same-day results excluded. Europe remains UNKNOWN_BY_DESIGN; rank tiebreak is an explicit research approximation and boundary ties remain ambiguous. No generic MUST_WIN or unmotivated label; no betting/model authority.",
+    },
+    {
+        "dataset_id": "top5_motivation_market_factor_research",
+        "path": "top5_motivation_market_factor_research.csv",
+        "role": "RESEARCH_ANALYSIS",
+        "lifecycle": "DETERMINISTIC_AGGREGATE_PROJECTION",
+        "identity_key": ["factor", "bucket", "scope_type", "scope_value"],
+        "observed_time_fields": [],
+        "effective_time_fields": [],
+        "source": "Stage80 descriptive Top-5 motivation research over historical outcomes and closing markets",
+        "limitations": "Calendar/table-derived title and survival context only. Europe remains UNKNOWN_BY_DESIGN. Closing-market no-vig is not PBK probability; no factor ranking, promotion or betting/model authority.",
+    },
+    {
+        "dataset_id": "top5_motivation_market_factor_stability_research",
+        "path": "top5_motivation_market_factor_stability_research.csv",
+        "role": "RESEARCH_VALIDATION",
+        "lifecycle": "DETERMINISTIC_SEASON_STABILITY_PROJECTION",
+        "identity_key": ["factor", "bucket", "scope_type", "scope_value"],
+        "observed_time_fields": [],
+        "effective_time_fields": [],
+        "source": "Stage80 season-stability projection for Top-5 historical motivation market research",
+        "limitations": "Descriptive season stability only. No generic MUST_WIN or unmotivated label, no factor promotion, and no probability/eligibility/stake/Forward authority.",
     },
     {
         "dataset_id": "top5_prematch_factor_research",
