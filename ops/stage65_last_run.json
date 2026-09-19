@@ -1,13 +1,20 @@
 {
-  "run_at_utc": "2026-09-19T21:43:36Z",
+  "run_at_utc": "2026-09-19T21:53:19Z",
   "status": "OK",
   "new_watch_rows": 0,
   "newly_settled_rows": 0,
-  "fixture_api_calls": 6,
+  "fixture_api_calls": 0,
   "total_crossings": 45,
   "settled": 38,
   "pending": 7,
   "user_execution_coverage_pct": 100.0,
   "user_roi_pct": -20.474,
-  "warnings": []
+  "warnings": [
+    "fixture 1550130: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "fixture 1550131: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "fixture 1550132: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "fixture 1552773: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "fixture 1557412: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "fixture 1575173: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}"
+  ]
 }
