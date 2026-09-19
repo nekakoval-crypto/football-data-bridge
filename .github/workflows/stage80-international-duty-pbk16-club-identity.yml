@@ -1,6 +1,10 @@
 name: Stage 80 International Duty PBK16 Club Identity
 
 on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['Stage 80 International Duty Temporal Club']
+    types: [completed]
   pull_request:
     paths:
       - 'scripts/stage80_international_duty_pbk16_club_identity.py'
@@ -14,13 +18,13 @@ on:
       - 'scripts/stage80_international_duty_pbk16_club_identity.py'
       - 'scripts/tests/test_stage80_international_duty_pbk16_club_identity.py'
       - '.github/workflows/stage80-international-duty-pbk16-club-identity.yml'
-  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
   test:
+    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -35,7 +39,7 @@ jobs:
         run: |
           ! grep -Eq 'requests|httpx|urllib|api_get|curl' scripts/stage80_international_duty_pbk16_club_identity.py
       - name: Materialize on main
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
         run: |
           python scripts/stage80_international_duty_pbk16_club_identity.py
           git config user.name 'stage80-bot'

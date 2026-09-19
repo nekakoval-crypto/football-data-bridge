@@ -3,18 +3,20 @@ name: Stage 80 International Duty Player Identity Join
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ['Stage 80 International Duty Player Evidence Capture']
+    workflows: ['Stage 80 International Duty Player Evidence Capture', 'Fetch Transfermarkt CSV']
     types: [completed]
   pull_request:
     paths:
       - 'scripts/stage80_international_duty_player_identity_join.py'
       - 'scripts/tests/test_stage80_international_duty_player_identity_join.py'
+      - 'ops/pbk_transfermarkt_player_identity.csv'
       - '.github/workflows/stage80-international-duty-player-identity-join.yml'
   push:
     branches: [main]
     paths:
       - 'scripts/stage80_international_duty_player_identity_join.py'
       - 'scripts/tests/test_stage80_international_duty_player_identity_join.py'
+      - 'ops/pbk_transfermarkt_player_identity.csv'
       - '.github/workflows/stage80-international-duty-player-identity-join.yml'
 
 permissions:
