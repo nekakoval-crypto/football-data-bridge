@@ -206,6 +206,29 @@ class Stage80ArchiveManifestTests(unittest.TestCase):
         )
         self.assertEqual(identity["role"], "VERIFIED_IDENTITY_BRIDGE")
 
+    def test_pbk14_market_bridge_manifest_contract(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            self.write_csv(
+                tmp,
+                "pbk14_football_data_fixture_bridge.csv",
+                ["historical_match_id", "date_iso", "mapping_status", "api_fixture_id"],
+                [{
+                    "historical_match_id": "hist-1",
+                    "date_iso": "2024-08-10",
+                    "mapping_status": "AUTO",
+                    "api_fixture_id": "9001",
+                }],
+            )
+            report = manifest.build_manifest(Path(tmp), raw_archive_dir="")
+        bridge = next(
+            x for x in report["datasets"]
+            if x["dataset_id"] == "pbk14_football_data_fixture_bridge"
+        )
+        self.assertEqual(bridge["contract_status"], "OK")
+        self.assertEqual(bridge["identity_key_text"], "historical_match_id")
+        self.assertEqual(bridge["effective_time_fields_text"], "date_iso")
+        self.assertEqual(bridge["role"], "RESEARCH_IDENTITY_MAPPING")
+
     def test_raw_archive_does_not_expose_real_storage_path(self):
         with tempfile.TemporaryDirectory() as tmp:
             report = manifest.build_manifest(Path(tmp), raw_archive_dir="/secret/server/archive")
