@@ -1,13 +1,13 @@
 # PBK WATCH Performance
 
-Generated UTC: 2026-09-19T14:19:11Z
+Generated UTC: 2026-09-19T14:28:41Z
 Scope: только prospective WATCH; это не реальные ставки и не canonical R1/R2/R3.
 
 ## Overall
 - Crossing events: 45 | pending 24 | settled 21 | void 0 | review 0
 - Marathonbet price coverage at crossing: 100.0% (45/45)
 - First-crossing paper P&L: -5.960u | ROI -28.381% | W-L 10-11
-- Close observed: 28 | stayed qualified 24 | reverted 4 | persistence 85.714%
+- Close observed: 29 | stayed qualified 24 | reverted 5 | persistence 82.759%
 - Close-qualified subset: settled 18 | P&L -4.570u | ROI -25.389%
 - Reverted subset: settled 3 | P&L -1.390u | ROI -46.333%
 - Observed max drawdown: 6.65u
@@ -30,7 +30,7 @@ Scope: только prospective WATCH; это не реальные ставки
 - Crossings: 5 | pending 3 | settled 2
 - Marathonbet coverage: 100.0%
 - First-crossing P&L: -2.000u | ROI -100.0% | W-L 0-2
-- Close persistence: 50.0% (1/2)
+- Close persistence: 33.333% (1/3)
 - Close-qualified ROI: -100.0% | Reverted ROI: -100.0%
 
 ## Бундеслига ТБ(2.5) steam
