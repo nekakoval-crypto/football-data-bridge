@@ -1,0 +1,111 @@
+name: Stage 80 International Duty Return Load
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['Stage 80 International Duty PBK16 Club Identity']
+    types: [completed]
+  pull_request:
+    paths:
+      - 'scripts/stage80_international_duty_return_load.py'
+      - 'scripts/tests/test_stage80_international_duty_return_load.py'
+      - '.github/workflows/stage80-international-duty-return-load.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/stage80_international_duty_return_load.py'
+      - 'scripts/tests/test_stage80_international_duty_return_load.py'
+      - 'ops/international_duty_player_evidence.csv'
+      - 'ops/international_duty_player_pbk16_club_identity.csv'
+      - 'ops/pbk16_all_competition_fixture_history.csv'
+      - '.github/workflows/stage80-international-duty-return-load.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage80-international-duty-return-load-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Compile and provider-free tests
+        run: |
+          python -m py_compile scripts/stage80_international_duty_return_load.py
+          python -m unittest scripts.tests.test_stage80_international_duty_return_load -v
+      - name: Provider isolation
+        run: |
+          if grep -nE 'urllib\\.|requests\\.|api-sports\\.io|ApiFootballBroker|api_get|curl' scripts/stage80_international_duty_return_load.py; then exit 1; fi
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\\n' "$changed"
+          if printf '%s\\n' "$changed" | grep -Eq '^ops/'; then exit 1; fi
+
+  materialize:
+    needs: validate
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0, ref: main}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Build international-duty return/load projection
+        run: python scripts/stage80_international_duty_return_load.py
+      - name: Verify research-only governance
+        run: |
+          python - <<'PY'
+          import csv,json
+          m=json.load(open('ops/stage80_international_duty_return_load_last_run.json',encoding='utf-8'))
+          assert m['version']=='PBK_STAGE80_INTERNATIONAL_DUTY_RETURN_LOAD_V1_DIRECT_EVIDENCE'
+          assert m['status']=='OK'
+          assert m['output_rows']>0
+          assert m['duplicate_output_rows']==0
+          assert m['invalid_output_rows']==0
+          assert m['direct_evidence_only'] is True
+          assert m['played_domestic_return_fixture_only'] is True
+          assert m['nationality_used_as_duty_evidence'] is False
+          assert m['formal_callup_inferred'] is False
+          assert m['travel_inferred'] is False
+          assert m['current_club_used'] is False
+          assert m['fuzzy_matching_used'] is False
+          assert m['provider_calls']==0
+          assert m['research_only'] is True
+          assert m['operational_betting_authority'] is False
+          assert m['creates_signal'] is False
+          assert m['probability_mutation'] is False
+          assert m['eligibility_mutation'] is False
+          assert m['stake_changes'] is False
+          assert m['forward_journal_mutation'] is False
+          with open('ops/international_duty_player_return_load.csv',encoding='utf-8-sig',newline='') as f:
+              rows=list(csv.DictReader(f))
+          assert len(rows)==m['output_rows']
+          assert len({(r['international_fixture_id'],r['player_id'],r['next_domestic_fixture_id']) for r in rows})==len(rows)
+          assert all(r['formal_callup_inferred']=='false' for r in rows)
+          assert all(r['travel_inferred']=='false' for r in rows)
+          assert all(r['current_club_used']=='false' for r in rows)
+          assert all(r['fuzzy_matching_used']=='false' for r in rows)
+          assert all(r['provider_calls']=='0' for r in rows)
+          print({'mapped_input':m['mapped_pbk16_input_rows'],'output_rows':m['output_rows'],'players':m['unique_players'],'return_fixtures':m['unique_return_domestic_fixtures'],'features':m['feature_counts'],'evidence_complete':m['direct_evidence_collection_complete']})
+          PY
+      - name: Publish return/load projection
+        run: |
+          git config user.name 'stage80-international-duty-bot'
+          git config user.email 'stage80-international-duty-bot@users.noreply.github.com'
+          git add ops/international_duty_player_return_load.csv ops/stage80_international_duty_return_load_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 international-duty return load update'
+          python scripts/publish_operational_commit.py
