@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-19T10:03:10Z",
+  "generated_at_utc": "2026-09-19T11:02:33Z",
   "status": "OK",
   "active_signals": 4,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-19T09:42:35Z",
+        "captured_at_utc": "2026-09-19T10:42:25Z",
         "best_odds": "1.55",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.5",
@@ -155,11 +155,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-19T09:42:35Z",
+        "captured_at_utc": "2026-09-19T10:42:25Z",
         "best_odds": "2.07",
         "best_bookmaker": "1xBet",
         "bet365_odds": "2.0",
-        "api_odds_update_utc": "2026-09-19T05:27:19+00:00",
+        "api_odds_update_utc": "2026-09-19T09:25:20+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -280,7 +280,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-19T09:42:35Z",
+        "captured_at_utc": "2026-09-19T10:42:25Z",
         "best_odds": "1.84",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.75",
@@ -407,7 +407,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-19T09:42:35Z",
+        "captured_at_utc": "2026-09-19T10:42:25Z",
         "best_odds": "1.56",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.48",
@@ -526,7 +526,7 @@
     "observed_closes": 11,
     "close_qualified_total": 0,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-19T09:27:21Z",
+    "latest_run_utc": "2026-09-19T10:53:10Z",
     "warnings": [],
     "crossings": [
       {
@@ -592,7 +592,7 @@
     "observed_closes": 10,
     "close_qualified_total": 3,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-19T07:21:10Z",
+    "latest_run_utc": "2026-09-19T10:21:36Z",
     "warnings": [],
     "crossings": [
       {
@@ -679,28 +679,16 @@
     "historical_edge_reason": "Canonical 10-year dataset has no historical BTTS first/close odds",
     "canonical_forward_changed": false,
     "tracked_openers": 105,
-    "active_crossings_total": 16,
-    "active_yes_crossings": 13,
+    "active_crossings_total": 17,
+    "active_yes_crossings": 14,
     "active_no_crossings": 3,
-    "total_crossings": 31,
+    "total_crossings": 32,
     "observed_closes": 62,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-19T06:19:25Z",
+    "latest_run_utc": "2026-09-19T10:15:06Z",
     "warnings": [],
     "crossings": [
-      {
-        "fixture_id": "1557410",
-        "league": "Premier League",
-        "home_team": "Everton",
-        "away_team": "Ipswich",
-        "selection": "ОЗ — Да",
-        "movement_yes_pp": "0.03702918",
-        "crossed_at_utc": "2026-09-16T14:17:14Z",
-        "minutes_to_kickoff": "4302.8",
-        "user_selected_odds": "1.67",
-        "note": "research watch only; not a bet signal"
-      },
       {
         "fixture_id": "1570393",
         "league": "La Liga",
@@ -868,20 +856,32 @@
         "minutes_to_kickoff": "989.7",
         "user_selected_odds": "1.59",
         "note": "research watch only; not a bet signal"
+      },
+      {
+        "fixture_id": "1575174",
+        "league": "Bundesliga",
+        "home_team": "Borussia Mönchengladbach",
+        "away_team": "FSV Mainz 05",
+        "selection": "ОЗ — Да",
+        "movement_yes_pp": "0.03765060",
+        "crossed_at_utc": "2026-09-19T10:15:06Z",
+        "minutes_to_kickoff": "194.9",
+        "user_selected_odds": "1.39",
+        "note": "research watch only; not a bet signal"
       }
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-19T09:53:01Z",
+    "generated_at_utc": "2026-09-19T10:53:08Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
-      "crossings": 43,
-      "pending": 24,
+      "crossings": 44,
+      "pending": 25,
       "settled": 19,
       "void": 0,
       "review": 0,
-      "user_price_rows": 43,
+      "user_price_rows": 44,
       "user_execution_coverage_pct": 100.0,
       "user_settled_rows": 19,
       "wins": 9,
@@ -902,12 +902,12 @@
     },
     "by_family": {
       "Big-5 ОЗ market movement — ОЗ — Да": {
-        "crossings": 25,
-        "pending": 13,
+        "crossings": 26,
+        "pending": 14,
         "settled": 12,
         "void": 0,
         "review": 0,
-        "user_price_rows": 25,
+        "user_price_rows": 26,
         "user_execution_coverage_pct": 100.0,
         "user_settled_rows": 12,
         "wins": 4,
