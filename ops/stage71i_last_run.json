@@ -1,11 +1,11 @@
 {
-  "run_at_utc": "2026-09-19T20:45:30Z",
+  "run_at_utc": "2026-09-19T22:45:27Z",
   "status": "OK",
   "mode": "RESEARCH_SETTLEMENT_ONLY",
-  "pending_market_rows": 115,
-  "pending_unique_fixtures": 7,
-  "fixture_api_calls": 7,
-  "new_settlement_rows": 99,
+  "pending_market_rows": 16,
+  "pending_unique_fixtures": 1,
+  "fixture_api_calls": 0,
+  "new_settlement_rows": 0,
   "total_settlement_rows": 3222,
   "settlement_rows_by_family": {
     "TEAM_TOTAL": 1826,
@@ -16,10 +16,10 @@
   "non_ft_or_review_fixtures": [
     {
       "fixture_id": "1570389",
-      "status": "PST",
-      "detail": "Not auto-settled; FT regulation score required"
+      "status": "API_ERROR",
+      "detail": "API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}"
     }
   ],
   "signals_created": 0,
-  "api_calls": 7
+  "api_calls": 0
 }
