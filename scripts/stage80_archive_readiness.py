@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V20_PREMATCH_WALKFORWARD"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V21_PBK16_COMPETITION_CONGESTION"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -55,6 +55,10 @@ SOURCES = {
     "prematch_factor_stability": "top5_prematch_factor_stability_research.csv",
     "prematch_walkforward": "top5_prematch_factor_walkforward_research.csv",
     "prematch_walkforward_summary": "top5_prematch_factor_walkforward_summary_research.csv",
+    "pbk16_competition_catalog": "stage80_pbk16_competition_catalog.csv",
+    "pbk16_competition_fixtures": "pbk16_all_competition_fixture_history.csv",
+    "pbk16_competition_state": "stage80_pbk16_competition_backfill_state.csv",
+    "pbk16_competition_congestion": "pbk16_competition_congestion_research.csv",
 }
 FINAL_PROVIDER_CODES = {"FT", "AET", "PEN"}
 FINAL_NORMALIZED = {"finished", "ft", "aet", "pen"}
@@ -214,6 +218,8 @@ def build_report(ops=OPS, archive_dir=None):
     prematch_context_meta = read_json(Path(ops) / "stage80_prematch_context_last_run.json")
     prematch_factor_meta = read_json(Path(ops) / "stage80_prematch_factor_research_last_run.json")
     prematch_walkforward_meta = read_json(Path(ops) / "stage80_prematch_factor_walkforward_last_run.json")
+    pbk16_competition_meta = read_json(Path(ops) / "stage80_pbk16_competition_backfill_last_run.json")
+    pbk16_congestion_meta = read_json(Path(ops) / "stage80_pbk16_competition_congestion_last_run.json")
     source_presence = {
         name: {
             "file": filename,
@@ -867,6 +873,147 @@ def build_report(ops=OPS, archive_dir=None):
         and prematch_walkforward_meta.get("stake_changes") is False
         and prematch_walkforward_meta.get("forward_journal_mutation") is False
     )
+    pbk16_catalog = data["pbk16_competition_catalog"] or []
+    pbk16_fixtures = data["pbk16_competition_fixtures"] or []
+    pbk16_state = data["pbk16_competition_state"] or []
+    pbk16_congestion = data["pbk16_competition_congestion"] or []
+
+    pbk16_catalog_valid = [
+        row for row in pbk16_catalog
+        if sval(row, "competition_role") in {"DOMESTIC_LEAGUE", "DOMESTIC_CUP", "UEFA"}
+        and sval(row, "country")
+        and sval(row, "slot")
+        and sval(row, "canonical_name")
+        and sval(row, "requested_seasons")
+        and sval(row, "required") in {"true", "false"}
+        and sval(row, "discovery_status") in {"RESOLVED", "UNRESOLVED"}
+        and (
+            sval(row, "discovery_status") != "RESOLVED"
+            or (sval(row, "provider_league_id") and sval(row, "provider_name"))
+        )
+    ]
+    pbk16_catalog_invalid = len(pbk16_catalog) - len(pbk16_catalog_valid)
+    pbk16_required_unresolved = [
+        row for row in pbk16_catalog_valid
+        if sval(row, "required") == "true"
+        and sval(row, "discovery_status") != "RESOLVED"
+    ]
+    pbk16_optional_unresolved = [
+        row for row in pbk16_catalog_valid
+        if sval(row, "required") != "true"
+        and sval(row, "discovery_status") != "RESOLVED"
+    ]
+    pbk16_resolved_domestic_league_catalog = {
+        sval(row, "provider_league_id")
+        for row in pbk16_catalog_valid
+        if sval(row, "competition_role") == "DOMESTIC_LEAGUE"
+        and sval(row, "discovery_status") == "RESOLVED"
+        and sval(row, "provider_league_id")
+    }
+
+    pbk16_fixture_valid = [
+        row for row in pbk16_fixtures
+        if sval(row, "fixture_id")
+        and sval(row, "competition_role") in {"DOMESTIC_LEAGUE", "DOMESTIC_CUP", "UEFA"}
+        and sval(row, "provider_competition_id")
+        and sval(row, "season")
+        and sval(row, "kickoff_utc")
+        and sval(row, "home_team_id")
+        and sval(row, "away_team_id")
+        and is_true(row.get("historical_backfill_only"))
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+        and not is_true(row.get("probability_mutation"))
+        and not is_true(row.get("eligibility_mutation"))
+        and not is_true(row.get("stake_changes"))
+        and not is_true(row.get("forward_journal_mutation"))
+    ]
+    pbk16_fixture_invalid = len(pbk16_fixtures) - len(pbk16_fixture_valid)
+    pbk16_fixture_ids = {sval(row, "fixture_id") for row in pbk16_fixture_valid}
+    pbk16_fixture_duplicate_ids = len(pbk16_fixture_valid) - len(pbk16_fixture_ids)
+    pbk16_domestic_fixture_rows = [
+        row for row in pbk16_fixture_valid
+        if sval(row, "competition_role") == "DOMESTIC_LEAGUE"
+    ]
+    pbk16_domestic_anchor_league_ids = {
+        sval(row, "provider_competition_id")
+        for row in pbk16_domestic_fixture_rows
+        if sval(row, "provider_competition_id")
+    }
+
+    pbk16_state_valid = [
+        row for row in pbk16_state
+        if sval(row, "provider_competition_id")
+        and sval(row, "season")
+        and sval(row, "competition_role") in {"DOMESTIC_LEAGUE", "DOMESTIC_CUP", "UEFA"}
+        and sval(row, "status") in {"PENDING", "ERROR", "CAPTURED", "UNAVAILABLE_PROVIDER_SEASON"}
+        and sval(row, "provider_season_available") in {"true", "false"}
+    ]
+    pbk16_state_invalid = len(pbk16_state) - len(pbk16_state_valid)
+    pbk16_state_captured = sum(sval(row, "status") == "CAPTURED" for row in pbk16_state_valid)
+    pbk16_state_unavailable = sum(sval(row, "status") == "UNAVAILABLE_PROVIDER_SEASON" for row in pbk16_state_valid)
+    pbk16_state_pending = sum(sval(row, "status") == "PENDING" for row in pbk16_state_valid)
+    pbk16_state_errors = sum(sval(row, "status") == "ERROR" for row in pbk16_state_valid)
+
+    pbk16_congestion_valid = [
+        row for row in pbk16_congestion
+        if sval(row, "domestic_fixture_id")
+        and sval(row, "provider_league_id")
+        and sval(row, "season")
+        and sval(row, "kickoff_utc")
+        and sval(row, "home_team_id")
+        and sval(row, "away_team_id")
+        and is_true(row.get("strictly_prior_fixture_evidence_only"))
+        and not is_true(row.get("future_schedule_used"))
+        and is_true(row.get("no_lookahead"))
+        and is_true(row.get("historical_backfill_only"))
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+        and not is_true(row.get("probability_mutation"))
+        and not is_true(row.get("eligibility_mutation"))
+        and not is_true(row.get("stake_changes"))
+        and not is_true(row.get("forward_journal_mutation"))
+    ]
+    pbk16_congestion_invalid = len(pbk16_congestion) - len(pbk16_congestion_valid)
+    pbk16_congestion_ids = {
+        sval(row, "domestic_fixture_id") for row in pbk16_congestion_valid
+    }
+    pbk16_congestion_duplicate_ids = len(pbk16_congestion_valid) - len(pbk16_congestion_ids)
+
+    pbk16_competition_meta_valid = bool(
+        pbk16_competition_meta
+        and not pbk16_competition_meta.get("_invalid_json")
+        and pbk16_competition_meta.get("version") == "PBK_STAGE80_PBK16_ALL_COMPETITION_BACKFILL_V1"
+        and int(pbk16_competition_meta.get("locked_national_leagues") or 0) == 16
+        and pbk16_competition_meta.get("historical_backfill_only") is True
+        and pbk16_competition_meta.get("research_only") is True
+        and pbk16_competition_meta.get("operational_betting_authority") is False
+        and pbk16_competition_meta.get("creates_signal") is False
+        and pbk16_competition_meta.get("probability_mutation") is False
+        and pbk16_competition_meta.get("eligibility_mutation") is False
+        and pbk16_competition_meta.get("stake_changes") is False
+        and pbk16_competition_meta.get("forward_journal_mutation") is False
+    )
+    pbk16_congestion_meta_valid = bool(
+        pbk16_congestion_meta
+        and not pbk16_congestion_meta.get("_invalid_json")
+        and pbk16_congestion_meta.get("version") == "PBK_STAGE80_PBK16_COMPETITION_CONGESTION_V1"
+        and pbk16_congestion_meta.get("strictly_prior_fixture_evidence_only") is True
+        and pbk16_congestion_meta.get("future_schedule_used") is False
+        and pbk16_congestion_meta.get("no_lookahead") is True
+        and int(pbk16_congestion_meta.get("projection_provider_calls") or 0) == 0
+        and pbk16_congestion_meta.get("historical_backfill_only") is True
+        and pbk16_congestion_meta.get("research_only") is True
+        and pbk16_congestion_meta.get("operational_betting_authority") is False
+        and pbk16_congestion_meta.get("creates_signal") is False
+        and pbk16_congestion_meta.get("probability_mutation") is False
+        and pbk16_congestion_meta.get("eligibility_mutation") is False
+        and pbk16_congestion_meta.get("stake_changes") is False
+        and pbk16_congestion_meta.get("forward_journal_mutation") is False
+    )
+
     raw_archive = raw_archive_inventory(archive_dir, ops=ops)
     roster_history_rows = len(history)
     player_stats_fixture_count = len(stat_fixture_ids)
@@ -987,6 +1134,44 @@ def build_report(ops=OPS, archive_dir=None):
         or not prematch_walkforward_summary_valid
     ):
         gaps.append("PREMATCH_FACTOR_WALKFORWARD_INVALID_OR_INCOMPLETE")
+    if (
+        data["pbk16_competition_catalog"] is None
+        or data["pbk16_competition_fixtures"] is None
+        or data["pbk16_competition_state"] is None
+        or pbk16_competition_meta is None
+    ):
+        gaps.append("PBK16_COMPETITION_HISTORY_NOT_MATERIALIZED")
+    else:
+        if (
+            pbk16_catalog_invalid
+            or pbk16_fixture_invalid
+            or pbk16_fixture_duplicate_ids
+            or pbk16_state_invalid
+            or not pbk16_competition_meta_valid
+        ):
+            gaps.append("PBK16_COMPETITION_HISTORY_INVALID")
+        if pbk16_required_unresolved:
+            gaps.append("PBK16_COMPETITION_DISCOVERY_REQUIRED_UNRESOLVED")
+        if pbk16_state_unavailable:
+            gaps.append("PBK16_COMPETITION_PROVIDER_SEASONS_PARTIAL")
+        if pbk16_state_pending:
+            gaps.append("PBK16_COMPETITION_BACKFILL_PENDING")
+        if pbk16_state_errors:
+            gaps.append("PBK16_COMPETITION_BACKFILL_ERRORS")
+        if len(pbk16_resolved_domestic_league_catalog) < 16 or len(pbk16_domestic_anchor_league_ids) < 16:
+            gaps.append("PBK16_DOMESTIC_ANCHOR_LEAGUE_COVERAGE_PARTIAL")
+    if data["pbk16_competition_congestion"] is None or pbk16_congestion_meta is None:
+        gaps.append("PBK16_COMPETITION_CONGESTION_NOT_MATERIALIZED")
+    elif (
+        pbk16_congestion_invalid
+        or pbk16_congestion_duplicate_ids
+        or not pbk16_congestion_meta_valid
+        or len(pbk16_congestion_valid) != len(pbk16_domestic_fixture_rows)
+        or pbk16_congestion_ids != {
+            sval(row, "fixture_id") for row in pbk16_domestic_fixture_rows
+        }
+    ):
+        gaps.append("PBK16_COMPETITION_CONGESTION_INVALID")
     if data["lineup_archive"] is None:
         gaps.append("LINEUP_ARCHIVE_WAITING_FIRST_BUILD")
     if data["injury_archive"] is None:
@@ -1329,6 +1514,55 @@ def build_report(ops=OPS, archive_dir=None):
             "promotes_factor": False,
             "evidence_note": "Walk-forward research uses only strictly earlier seasons to evaluate each later test season. Sample-qualified sign persistence is descriptive validation evidence only.",
         },
+        "pbk16_competition_history": {
+            "catalog_present": data["pbk16_competition_catalog"] is not None,
+            "fixture_archive_present": data["pbk16_competition_fixtures"] is not None,
+            "state_present": data["pbk16_competition_state"] is not None,
+            "meta_present": pbk16_competition_meta is not None,
+            "meta_valid": pbk16_competition_meta_valid,
+            "catalog_rows": len(pbk16_catalog),
+            "valid_catalog_rows": len(pbk16_catalog_valid),
+            "invalid_catalog_rows": pbk16_catalog_invalid,
+            "required_unresolved_competitions": len(pbk16_required_unresolved),
+            "optional_unresolved_competitions": len(pbk16_optional_unresolved),
+            "resolved_domestic_league_catalog_ids": len(pbk16_resolved_domestic_league_catalog),
+            "fixture_rows": len(pbk16_fixtures),
+            "valid_fixture_rows": len(pbk16_fixture_valid),
+            "invalid_fixture_rows": pbk16_fixture_invalid,
+            "duplicate_fixture_ids": pbk16_fixture_duplicate_ids,
+            "domestic_anchor_rows": len(pbk16_domestic_fixture_rows),
+            "domestic_anchor_league_ids": len(pbk16_domestic_anchor_league_ids),
+            "state_rows": len(pbk16_state),
+            "valid_state_rows": len(pbk16_state_valid),
+            "invalid_state_rows": pbk16_state_invalid,
+            "captured_fixture_cells": pbk16_state_captured,
+            "unavailable_provider_season_cells": pbk16_state_unavailable,
+            "pending_fixture_cells": pbk16_state_pending,
+            "error_fixture_cells": pbk16_state_errors,
+            "operational_betting_authority": False,
+            "evidence_note": "Historical PBK16 domestic-league/cup + UEFA provider archive. Provider-unavailable seasons and unresolved required competitions remain explicit gaps; no betting/model authority.",
+        },
+        "pbk16_competition_congestion": {
+            "present": data["pbk16_competition_congestion"] is not None,
+            "meta_present": pbk16_congestion_meta is not None,
+            "meta_valid": pbk16_congestion_meta_valid,
+            "rows": len(pbk16_congestion),
+            "valid_rows": len(pbk16_congestion_valid),
+            "invalid_rows": pbk16_congestion_invalid,
+            "unique_domestic_fixture_ids": len(pbk16_congestion_ids),
+            "duplicate_domestic_fixture_ids": pbk16_congestion_duplicate_ids,
+            "strictly_prior_fixture_evidence_only": bool(
+                pbk16_congestion_meta.get("strictly_prior_fixture_evidence_only")
+            ) if pbk16_congestion_meta_valid else None,
+            "future_schedule_used": pbk16_congestion_meta.get("future_schedule_used") if pbk16_congestion_meta_valid else None,
+            "no_lookahead": pbk16_congestion_meta.get("no_lookahead") if pbk16_congestion_meta_valid else None,
+            "rows_either_prev_nonleague_72h": int(pbk16_congestion_meta.get("rows_either_prev_nonleague_72h") or 0) if pbk16_congestion_meta_valid else None,
+            "rows_either_prev_uefa_72h": int(pbk16_congestion_meta.get("rows_either_prev_uefa_72h") or 0) if pbk16_congestion_meta_valid else None,
+            "rows_either_prev_cup_72h": int(pbk16_congestion_meta.get("rows_either_prev_cup_72h") or 0) if pbk16_congestion_meta_valid else None,
+            "rows_either_previous_nonleague_was_thursday": int(pbk16_congestion_meta.get("rows_either_previous_nonleague_was_thursday") or 0) if pbk16_congestion_meta_valid else None,
+            "operational_betting_authority": False,
+            "evidence_note": "One deterministic row per captured PBK16 domestic fixture; only strictly prior played cup/UEFA evidence can contribute. Future scheduled fixtures are excluded.",
+        },
         "normalized_context_archives": {
             "lineup_rows": len(lineup_archive),
             "lineup_fixtures": len(lineup_archive_fixture_ids),
@@ -1369,6 +1603,8 @@ def render_markdown(report):
     prematch = report["prematch_context_research"]
     prematch_factor = report["prematch_factor_research"]
     prematch_walkforward = report["prematch_factor_walkforward"]
+    pbk16_history = report["pbk16_competition_history"]
+    pbk16_congestion = report["pbk16_competition_congestion"]
     raw = report["raw_provider_archive"]
     coverage = f["finished_current_inventory_player_stats_coverage_pct"]
     coverage_text = "—" if coverage is None else f"{coverage:.2f}%"
@@ -1410,6 +1646,8 @@ def render_markdown(report):
         f"- Pre-match factor research: {prematch_factor['valid_profile_rows']} profile rows / {prematch_factor['valid_stability_rows']} stability rows; closing 1X2 matches {prematch_factor['closing_1x2_matches'] if prematch_factor['closing_1x2_matches'] is not None else '—'}; closing O/U2.5 matches {prematch_factor['closing_total25_matches'] if prematch_factor['closing_total25_matches'] is not None else '—'}.",
         f"- Pre-match walk-forward research: {prematch_walkforward['valid_fold_rows']} folds / {prematch_walkforward['valid_summary_rows']} summaries; sample-qualified folds {prematch_walkforward['sample_threshold_pass_folds'] if prematch_walkforward['sample_threshold_pass_folds'] is not None else '—'}; promotes factor {prematch_walkforward['promotes_factor']}.",
         f"- Match context: {c['unique_fixtures']} fixtures; official XI {c['fixtures_with_official_lineup_snapshot']}; injury evidence {c['fixtures_with_injury_evidence']}.",
+        f"- PBK16 all-competition history: catalog {pbk16_history['valid_catalog_rows']} valid rows; required unresolved {pbk16_history['required_unresolved_competitions']}; fixture archive {pbk16_history['valid_fixture_rows']} valid rows; domestic anchors {pbk16_history['domestic_anchor_league_ids']} / 16 leagues; captured cells {pbk16_history['captured_fixture_cells']}, provider-unavailable cells {pbk16_history['unavailable_provider_season_cells']}, pending {pbk16_history['pending_fixture_cells']}, errors {pbk16_history['error_fixture_cells']}.",
+        f"- PBK16 cup/UEFA congestion: {pbk16_congestion['valid_rows']} valid rows / {pbk16_congestion['unique_domestic_fixture_ids']} domestic fixtures; no-lookahead {pbk16_congestion['no_lookahead']}; future schedule used {pbk16_congestion['future_schedule_used']}; prior UEFA <=72h {pbk16_congestion['rows_either_prev_uefa_72h'] if pbk16_congestion['rows_either_prev_uefa_72h'] is not None else '—'}, prior cup <=72h {pbk16_congestion['rows_either_prev_cup_72h'] if pbk16_congestion['rows_either_prev_cup_72h'] is not None else '—'}.",
         "",
         "## Raw provider archive",
         f"- Storage configured: {raw['configured']}.",
@@ -1465,6 +1703,10 @@ def main():
         "prematch_walkforward_fold_rows": report["prematch_factor_walkforward"]["valid_fold_rows"],
         "prematch_walkforward_summary_rows": report["prematch_factor_walkforward"]["valid_summary_rows"],
         "prematch_walkforward_sample_qualified_folds": report["prematch_factor_walkforward"]["sample_threshold_pass_folds"],
+        "pbk16_competition_fixture_rows": report["pbk16_competition_history"]["valid_fixture_rows"],
+        "pbk16_competition_domestic_anchor_leagues": report["pbk16_competition_history"]["domestic_anchor_league_ids"],
+        "pbk16_competition_required_unresolved": report["pbk16_competition_history"]["required_unresolved_competitions"],
+        "pbk16_competition_congestion_rows": report["pbk16_competition_congestion"]["valid_rows"],
     }, ensure_ascii=False))
 
 
