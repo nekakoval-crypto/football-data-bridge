@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V21_PBK14_CONGESTION_MARKET_RESEARCH",
-  "generated_at_utc": "2026-09-19T09:14:31Z",
+  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V22_PBK14_CONGESTION_MARKET_WALKFORWARD",
+  "generated_at_utc": "2026-09-19T09:19:40Z",
   "status": "OK",
   "datasets": [
     {
@@ -2392,6 +2392,62 @@
       "effective_time_fields_text": ""
     },
     {
+      "dataset_id": "pbk14_congestion_market_walkforward_research",
+      "path": "pbk14_congestion_market_walkforward_research.csv",
+      "role": "RESEARCH_VALIDATION",
+      "lifecycle": "STRICT_PRIOR_SEASON_WALKFORWARD",
+      "identity_key": [
+        "factor",
+        "bucket",
+        "scope_type",
+        "scope_value",
+        "target",
+        "test_season"
+      ],
+      "observed_time_fields": [],
+      "effective_time_fields": [
+        "test_season"
+      ],
+      "source": "Stage80 strict prior-season walk-forward over PBK14 competition-congestion historical closing markets",
+      "limitations": "Each test season uses only earlier seasons. Market no-vig is benchmark only. Folds never promote factors or create model authority.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "factor+bucket+scope_type+scope_value+target+test_season",
+      "observed_time_fields_text": "",
+      "effective_time_fields_text": "test_season"
+    },
+    {
+      "dataset_id": "pbk14_congestion_market_walkforward_summary_research",
+      "path": "pbk14_congestion_market_walkforward_summary_research.csv",
+      "role": "RESEARCH_VALIDATION",
+      "lifecycle": "DETERMINISTIC_WALKFORWARD_SUMMARY",
+      "identity_key": [
+        "factor",
+        "bucket",
+        "scope_type",
+        "scope_value",
+        "target"
+      ],
+      "observed_time_fields": [],
+      "effective_time_fields": [
+        "first_test_season",
+        "last_test_season"
+      ],
+      "source": "Stage80 summary of strict prior-season PBK14 competition-congestion walk-forward folds",
+      "limitations": "Persistence summary only. No ranking, promotion, probability mutation, eligibility, stake or Forward authority.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "factor+bucket+scope_type+scope_value+target",
+      "observed_time_fields_text": "",
+      "effective_time_fields_text": "first_test_season,last_test_season"
+    },
+    {
       "dataset_id": "raw_api_football_payloads",
       "path": "EXTERNAL_DURABLE_STORAGE",
       "role": "RAW_PROVIDER_ARCHIVE",
@@ -2418,9 +2474,9 @@
     }
   ],
   "summary": {
-    "declared_datasets": 45,
+    "declared_datasets": 47,
     "materialized_csv_datasets": 43,
-    "pending_materializations_or_storage": 1,
+    "pending_materializations_or_storage": 3,
     "contract_attention": 0
   },
   "provider_calls": 0,

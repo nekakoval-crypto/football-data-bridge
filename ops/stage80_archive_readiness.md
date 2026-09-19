@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-19T09:14:35Z
+Обновлено UTC: 2026-09-19T09:19:43Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -31,6 +31,7 @@
 - Match context: 6 fixtures; official XI 1; injury evidence 3.
 - PBK14 historical market bridge: 37327 AUTO/HIGH of 37674 valid source rows; AUTO 18940, HIGH 18387, REVIEW 32, UNMAPPED 315; fuzzy matching False; source coverage 14 / 16 locked leagues.
 - PBK14 congestion × market research: join 37327 rows; descriptive profiles 4698; stability rows 494; closing 1X2 30879; closing O/U2.5 22738; promotes factor False.
+- PBK14 congestion walk-forward: 0 valid folds / 0 summaries; qualified folds —; temporal invalid 0; promotes factor False.
 - PBK16 all-competition history: catalog 39 valid rows; required unresolved 0; fixture archive 70375 valid rows; domestic anchors 16 / 16 leagues; captured cells 322, provider-unavailable cells 19, pending 0, errors 0.
 - PBK16 cup/UEFA congestion: 40989 valid rows / 40989 domestic fixtures; no-lookahead True; future schedule used False; prior UEFA <=72h 3210, prior cup <=72h 1436.
 
@@ -50,6 +51,7 @@
 - PBK16_COMPETITION_PROVIDER_SEASONS_PARTIAL
 - PBK14_HISTORICAL_MARKET_BRIDGE_PARTIAL_MAPPING
 - PBK16_HISTORICAL_MARKET_SOURCE_LIMITED_TO_14_LEAGUES
+- PBK14_CONGESTION_MARKET_WALKFORWARD_NOT_MATERIALIZED
 - MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY
 - PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE
 - TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE
