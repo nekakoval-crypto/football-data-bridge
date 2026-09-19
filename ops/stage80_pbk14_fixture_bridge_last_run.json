@@ -1,14 +1,14 @@
 {
-  "version": "PBK_STAGE80_PBK14_FIXTURE_BRIDGE_V1",
-  "generated_at_utc": "2026-09-19T08:36:20Z",
+  "version": "PBK_STAGE80_PBK14_FIXTURE_BRIDGE_V2_NEAR_COMPLETE",
+  "generated_at_utc": "2026-09-19T08:48:57Z",
   "source_rows": 37674,
   "mapped_auto": 18940,
-  "mapped_high": 17890,
-  "mapped_auto_high": 36830,
-  "review": 16,
-  "unmapped": 828,
-  "mapped_pct": 97.76,
-  "unique_mapped_api_fixture_ids": 36830,
+  "mapped_high": 18387,
+  "mapped_auto_high": 37327,
+  "review": 32,
+  "unmapped": 315,
+  "mapped_pct": 99.079,
+  "unique_mapped_api_fixture_ids": 37327,
   "duplicate_mapped_api_fixture_ids": 0,
   "league_season_scopes": [
     {
@@ -17,9 +17,9 @@
       "source_rows": 182,
       "provider_rows": 180,
       "mapped_auto": 12,
-      "mapped_high": 132,
+      "mapped_high": 168,
       "review": 0,
-      "unmapped": 38
+      "unmapped": 2
     },
     {
       "league_code": "AUT",
@@ -157,9 +157,9 @@
       "source_rows": 306,
       "provider_rows": 328,
       "mapped_auto": 72,
-      "mapped_high": 168,
-      "review": 0,
-      "unmapped": 66
+      "mapped_high": 232,
+      "review": 2,
+      "unmapped": 0
     },
     {
       "league_code": "B1",
@@ -267,9 +267,9 @@
       "source_rows": 306,
       "provider_rows": 308,
       "mapped_auto": 12,
-      "mapped_high": 260,
-      "review": 0,
-      "unmapped": 34
+      "mapped_high": 293,
+      "review": 1,
+      "unmapped": 0
     },
     {
       "league_code": "D1",
@@ -287,9 +287,9 @@
       "source_rows": 255,
       "provider_rows": 243,
       "mapped_auto": 121,
-      "mapped_high": 90,
-      "review": 4,
-      "unmapped": 40
+      "mapped_high": 122,
+      "review": 8,
+      "unmapped": 4
     },
     {
       "league_code": "DNK",
@@ -297,9 +297,9 @@
       "source_rows": 251,
       "provider_rows": 243,
       "mapped_auto": 121,
-      "mapped_high": 60,
-      "review": 2,
-      "unmapped": 68
+      "mapped_high": 122,
+      "review": 4,
+      "unmapped": 4
     },
     {
       "league_code": "DNK",
@@ -587,9 +587,9 @@
       "source_rows": 380,
       "provider_rows": 380,
       "mapped_auto": 272,
-      "mapped_high": 34,
-      "review": 0,
-      "unmapped": 74
+      "mapped_high": 107,
+      "review": 1,
+      "unmapped": 0
     },
     {
       "league_code": "I1",
@@ -797,9 +797,9 @@
       "source_rows": 242,
       "provider_rows": 242,
       "mapped_auto": 174,
-      "mapped_high": 56,
+      "mapped_high": 66,
       "review": 0,
-      "unmapped": 12
+      "unmapped": 2
     },
     {
       "league_code": "NOR",
@@ -817,9 +817,9 @@
       "source_rows": 240,
       "provider_rows": 241,
       "mapped_auto": 156,
-      "mapped_high": 54,
-      "review": 0,
-      "unmapped": 30
+      "mapped_high": 83,
+      "review": 1,
+      "unmapped": 0
     },
     {
       "league_code": "P1",
@@ -967,9 +967,9 @@
       "source_rows": 306,
       "provider_rows": 306,
       "mapped_auto": 115,
-      "mapped_high": 165,
+      "mapped_high": 190,
       "review": 1,
-      "unmapped": 25
+      "unmapped": 0
     },
     {
       "league_code": "POL",
@@ -1197,9 +1197,9 @@
       "source_rows": 306,
       "provider_rows": 306,
       "mapped_auto": 156,
-      "mapped_high": 84,
-      "review": 0,
-      "unmapped": 66
+      "mapped_high": 148,
+      "review": 2,
+      "unmapped": 0
     },
     {
       "league_code": "T1",
@@ -1237,9 +1237,9 @@
       "source_rows": 342,
       "provider_rows": 341,
       "mapped_auto": 182,
-      "mapped_high": 124,
-      "review": 0,
-      "unmapped": 36
+      "mapped_high": 158,
+      "review": 2,
+      "unmapped": 0
     },
     {
       "league_code": "T1",
@@ -1257,9 +1257,9 @@
       "source_rows": 342,
       "provider_rows": 342,
       "mapped_auto": 156,
-      "mapped_high": 150,
-      "review": 0,
-      "unmapped": 36
+      "mapped_high": 185,
+      "review": 1,
+      "unmapped": 0
     },
     {
       "league_code": "T1",
@@ -1275,25 +1275,24 @@
   "mapping_by_league": {
     "AUT": {
       "AUTO": 145,
-      "HIGH": 1553,
-      "UNMAPPED": 40
+      "HIGH": 1589,
+      "UNMAPPED": 4
     },
     "B1": {
       "AUTO": 760,
-      "HIGH": 1738,
-      "REVIEW": 1,
-      "UNMAPPED": 66
+      "HIGH": 1802,
+      "REVIEW": 3
     },
     "D1": {
       "AUTO": 98,
-      "HIGH": 2622,
-      "UNMAPPED": 34
+      "HIGH": 2655,
+      "REVIEW": 1
     },
     "DNK": {
       "AUTO": 1066,
-      "HIGH": 723,
-      "REVIEW": 8,
-      "UNMAPPED": 108
+      "HIGH": 817,
+      "REVIEW": 14,
+      "UNMAPPED": 8
     },
     "E0": {
       "AUTO": 2484,
@@ -1306,8 +1305,8 @@
     },
     "I1": {
       "AUTO": 2482,
-      "HIGH": 864,
-      "UNMAPPED": 74
+      "HIGH": 937,
+      "REVIEW": 1
     },
     "N1": {
       "AUTO": 1624,
@@ -1316,9 +1315,9 @@
     },
     "NOR": {
       "AUTO": 1402,
-      "HIGH": 722,
-      "REVIEW": 1,
-      "UNMAPPED": 47
+      "HIGH": 761,
+      "REVIEW": 2,
+      "UNMAPPED": 7
     },
     "P1": {
       "AUTO": 1560,
@@ -1326,9 +1325,9 @@
     },
     "POL": {
       "AUTO": 869,
-      "HIGH": 1467,
+      "HIGH": 1492,
       "REVIEW": 1,
-      "UNMAPPED": 321
+      "UNMAPPED": 296
     },
     "SC0": {
       "AUTO": 1398,
@@ -1341,15 +1340,23 @@
     },
     "T1": {
       "AUTO": 1487,
-      "HIGH": 1462,
-      "REVIEW": 1,
-      "UNMAPPED": 138
+      "HIGH": 1595,
+      "REVIEW": 6
     }
   },
   "mapping_policy": {
     "fuzzy_string_matching_used": false,
     "auto": "unique conservative canonical-name mapping + exact date/teams/final score",
-    "high": "unique schedule+score team fingerprint + exact date/teams/final score",
+    "high": "unique full or near-complete schedule+score team fingerprint + exact date/teams/final score",
+    "source_aliases_may_share_provider_team_if_fixture_evidence_is_disjoint": true,
+    "near_complete_thresholds": {
+      "min_source_matches": 20,
+      "min_intersection": 20,
+      "min_source_ratio": 0.88,
+      "min_provider_ratio": 0.8,
+      "min_intersection_margin": 15,
+      "min_source_ratio_margin": 0.6
+    },
     "review_unmapped_excluded": true,
     "final_score_identity_only": true
   },
