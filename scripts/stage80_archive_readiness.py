@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V25_PBK14_CONGESTION_MARKET_WALKFORWARD"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V26_PBK16_INTERNATIONAL_WINDOW_CONTEXT"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -59,6 +59,7 @@ SOURCES = {
     "pbk16_competition_fixtures": "pbk16_all_competition_fixture_history.csv",
     "pbk16_competition_state": "stage80_pbk16_competition_backfill_state.csv",
     "pbk16_competition_congestion": "pbk16_competition_congestion_research.csv",
+    "pbk16_international_window_context": "pbk16_international_window_context_research.csv",
     "pbk14_market_bridge": "pbk14_football_data_fixture_bridge.csv",
     "pbk14_congestion_market_join": "pbk14_congestion_market_join_research.csv",
     "pbk14_congestion_market_profiles": "pbk14_congestion_market_factor_research.csv",
@@ -226,6 +227,7 @@ def build_report(ops=OPS, archive_dir=None):
     prematch_walkforward_meta = read_json(Path(ops) / "stage80_prematch_factor_walkforward_last_run.json")
     pbk16_competition_meta = read_json(Path(ops) / "stage80_pbk16_competition_backfill_last_run.json")
     pbk16_congestion_meta = read_json(Path(ops) / "stage80_pbk16_competition_congestion_last_run.json")
+    pbk16_international_meta = read_json(Path(ops) / "stage80_pbk16_international_window_context_last_run.json")
     pbk14_market_source_meta = read_json(Path(ops) / "stage80_football_data_pbk14_history_last_run.json")
     pbk14_market_bridge_meta = read_json(Path(ops) / "stage80_pbk14_fixture_bridge_last_run.json")
     pbk14_congestion_join_meta = read_json(Path(ops) / "stage80_pbk14_congestion_market_join_last_run.json")
@@ -1025,6 +1027,72 @@ def build_report(ops=OPS, archive_dir=None):
         and pbk16_congestion_meta.get("forward_journal_mutation") is False
     )
 
+    pbk16_international = data["pbk16_international_window_context"] or []
+    pbk16_international_valid = [
+        row for row in pbk16_international
+        if sval(row, "domestic_fixture_id")
+        and sval(row, "provider_league_id")
+        and sval(row, "season")
+        and sval(row, "kickoff_utc")
+        and sval(row, "home_team_id")
+        and sval(row, "away_team_id")
+        and sval(row, "player_level_international_status") == "UNVERIFIED"
+        and sval(row, "final_tournaments_included") == "false"
+        and sval(row, "non_uefa_only_windows_included") == "false"
+        and is_true(row.get("calendar_level_only"))
+        and is_true(row.get("as_known_calendar_reference"))
+        and is_true(row.get("no_match_result_dependency"))
+        and is_true(row.get("no_lookahead"))
+        and is_true(row.get("historical_backfill_only"))
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+        and not is_true(row.get("probability_mutation"))
+        and not is_true(row.get("eligibility_mutation"))
+        and not is_true(row.get("stake_changes"))
+        and not is_true(row.get("forward_journal_mutation"))
+    ]
+    pbk16_international_invalid = len(pbk16_international) - len(pbk16_international_valid)
+    pbk16_international_ids = {
+        sval(row, "domestic_fixture_id") for row in pbk16_international_valid
+    }
+    pbk16_international_duplicate_ids = (
+        len(pbk16_international_valid) - len(pbk16_international_ids)
+    )
+    pbk16_international_meta_valid = bool(
+        pbk16_international_meta
+        and not pbk16_international_meta.get("_invalid_json")
+        and pbk16_international_meta.get("version") == "PBK_STAGE80_PBK16_INTERNATIONAL_WINDOW_CONTEXT_V1"
+        and pbk16_international_meta.get("status") == "OK"
+        and int(pbk16_international_meta.get("source_domestic_rows") or 0) == len(pbk16_domestic_fixture_rows)
+        and int(pbk16_international_meta.get("output_rows") or 0) == len(pbk16_international_valid)
+        and int(pbk16_international_meta.get("unique_domestic_fixture_ids") or 0) == len(pbk16_international_ids)
+        and int(pbk16_international_meta.get("duplicate_domestic_fixture_ids") or 0) == 0
+        and int(pbk16_international_meta.get("invalid_domestic_rows") or 0) == 0
+        and int(pbk16_international_meta.get("domestic_anchor_league_ids") or 0) == 16
+        and int(pbk16_international_meta.get("calendar_windows") or 0) == 39
+        and int(pbk16_international_meta.get("calendar_sources") or 0) == 5
+        and pbk16_international_meta.get("player_level_international_status") == "UNVERIFIED"
+        and pbk16_international_meta.get("player_level_callup_inference") is False
+        and pbk16_international_meta.get("player_level_travel_inference") is False
+        and pbk16_international_meta.get("player_level_appearance_inference") is False
+        and pbk16_international_meta.get("final_tournaments_included") is False
+        and pbk16_international_meta.get("non_uefa_only_windows_included") is False
+        and pbk16_international_meta.get("calendar_level_only") is True
+        and pbk16_international_meta.get("as_known_calendar_reference") is True
+        and pbk16_international_meta.get("no_match_result_dependency") is True
+        and pbk16_international_meta.get("no_lookahead") is True
+        and int(pbk16_international_meta.get("provider_calls") or 0) == 0
+        and pbk16_international_meta.get("historical_backfill_only") is True
+        and pbk16_international_meta.get("research_only") is True
+        and pbk16_international_meta.get("operational_betting_authority") is False
+        and pbk16_international_meta.get("creates_signal") is False
+        and pbk16_international_meta.get("probability_mutation") is False
+        and pbk16_international_meta.get("eligibility_mutation") is False
+        and pbk16_international_meta.get("stake_changes") is False
+        and pbk16_international_meta.get("forward_journal_mutation") is False
+    )
+
     pbk14_market_bridge = data["pbk14_market_bridge"] or []
     expected_pbk14_codes = {"E0","SP1","I1","D1","F1","SC0","N1","B1","P1","T1","AUT","DNK","NOR","POL"}
     pbk14_market_bridge_valid = [
@@ -1494,6 +1562,18 @@ def build_report(ops=OPS, archive_dir=None):
         }
     ):
         gaps.append("PBK16_COMPETITION_CONGESTION_INVALID")
+    if data["pbk16_international_window_context"] is None or pbk16_international_meta is None:
+        gaps.append("PBK16_INTERNATIONAL_WINDOW_CONTEXT_NOT_MATERIALIZED")
+    elif (
+        pbk16_international_invalid
+        or pbk16_international_duplicate_ids
+        or not pbk16_international_meta_valid
+        or len(pbk16_international_valid) != len(pbk16_domestic_fixture_rows)
+        or pbk16_international_ids != {
+            sval(row, "fixture_id") for row in pbk16_domestic_fixture_rows
+        }
+    ):
+        gaps.append("PBK16_INTERNATIONAL_WINDOW_CONTEXT_INVALID")
     if (
         data["pbk14_market_bridge"] is None
         or pbk14_market_source_meta is None
@@ -2015,6 +2095,27 @@ def build_report(ops=OPS, archive_dir=None):
             "operational_betting_authority": False,
             "evidence_note": "One deterministic row per captured PBK16 domestic fixture; only strictly prior played cup/UEFA evidence can contribute. Future scheduled fixtures are excluded.",
         },
+        "pbk16_international_window_context": {
+            "present": data["pbk16_international_window_context"] is not None,
+            "meta_present": pbk16_international_meta is not None,
+            "meta_valid": pbk16_international_meta_valid,
+            "rows": len(pbk16_international),
+            "valid_rows": len(pbk16_international_valid),
+            "invalid_rows": pbk16_international_invalid,
+            "unique_domestic_fixture_ids": len(pbk16_international_ids),
+            "duplicate_domestic_fixture_ids": pbk16_international_duplicate_ids,
+            "calendar_windows": int(pbk16_international_meta.get("calendar_windows") or 0) if pbk16_international_meta_valid else None,
+            "calendar_sources": int(pbk16_international_meta.get("calendar_sources") or 0) if pbk16_international_meta_valid else None,
+            "within_72h_before_rows": int(pbk16_international_meta.get("within_72h_before_rows") or 0) if pbk16_international_meta_valid else None,
+            "within_96h_before_rows": int(pbk16_international_meta.get("within_96h_before_rows") or 0) if pbk16_international_meta_valid else None,
+            "within_72h_after_rows": int(pbk16_international_meta.get("within_72h_after_rows") or 0) if pbk16_international_meta_valid else None,
+            "within_96h_after_rows": int(pbk16_international_meta.get("within_96h_after_rows") or 0) if pbk16_international_meta_valid else None,
+            "either_first_domestic_after_window_rows": int(pbk16_international_meta.get("either_first_domestic_after_window_rows") or 0) if pbk16_international_meta_valid else None,
+            "player_level_international_status": pbk16_international_meta.get("player_level_international_status") if pbk16_international_meta_valid else None,
+            "no_lookahead": pbk16_international_meta.get("no_lookahead") if pbk16_international_meta_valid else None,
+            "operational_betting_authority": False,
+            "evidence_note": "Calendar-level international-window proximity only. It does not infer any player call-up, travel, appearance, minutes or return timing; those remain UNVERIFIED without direct historical evidence.",
+        },
         "normalized_context_archives": {
             "lineup_rows": len(lineup_archive),
             "lineup_fixtures": len(lineup_archive_fixture_ids),
@@ -2060,6 +2161,7 @@ def render_markdown(report):
     pbk14_congestion_wf = report["pbk14_congestion_market_walkforward"]
     pbk16_history = report["pbk16_competition_history"]
     pbk16_congestion = report["pbk16_competition_congestion"]
+    pbk16_international = report["pbk16_international_window_context"]
     raw = report["raw_provider_archive"]
     coverage = f["finished_current_inventory_player_stats_coverage_pct"]
     coverage_text = "—" if coverage is None else f"{coverage:.2f}%"
@@ -2106,6 +2208,7 @@ def render_markdown(report):
         f"- PBK14 congestion walk-forward: {pbk14_congestion_wf['valid_fold_rows']} valid folds / {pbk14_congestion_wf['valid_summary_rows']} summaries; qualified folds {pbk14_congestion_wf['sample_threshold_pass_folds'] if pbk14_congestion_wf['sample_threshold_pass_folds'] is not None else '—'}; temporal invalid {pbk14_congestion_wf['temporal_invalid_rows']}; promotes factor {pbk14_congestion_wf['promotes_factor']}.",
         f"- PBK16 all-competition history: catalog {pbk16_history['valid_catalog_rows']} valid rows; required unresolved {pbk16_history['required_unresolved_competitions']}; fixture archive {pbk16_history['valid_fixture_rows']} valid rows; domestic anchors {pbk16_history['domestic_anchor_league_ids']} / 16 leagues; captured cells {pbk16_history['captured_fixture_cells']}, provider-unavailable cells {pbk16_history['unavailable_provider_season_cells']}, pending {pbk16_history['pending_fixture_cells']}, errors {pbk16_history['error_fixture_cells']}.",
         f"- PBK16 cup/UEFA congestion: {pbk16_congestion['valid_rows']} valid rows / {pbk16_congestion['unique_domestic_fixture_ids']} domestic fixtures; no-lookahead {pbk16_congestion['no_lookahead']}; future schedule used {pbk16_congestion['future_schedule_used']}; prior UEFA <=72h {pbk16_congestion['rows_either_prev_uefa_72h'] if pbk16_congestion['rows_either_prev_uefa_72h'] is not None else '—'}, prior cup <=72h {pbk16_congestion['rows_either_prev_cup_72h'] if pbk16_congestion['rows_either_prev_cup_72h'] is not None else '—'}.",
+        f"- PBK16 international windows: {pbk16_international['valid_rows']} valid rows / {pbk16_international['unique_domestic_fixture_ids']} domestic fixtures; calendar windows {pbk16_international['calendar_windows'] if pbk16_international['calendar_windows'] is not None else '—'}; <=72h before {pbk16_international['within_72h_before_rows'] if pbk16_international['within_72h_before_rows'] is not None else '—'}, <=72h after {pbk16_international['within_72h_after_rows'] if pbk16_international['within_72h_after_rows'] is not None else '—'}; player-level {pbk16_international['player_level_international_status'] or '—'}; no-lookahead {pbk16_international['no_lookahead']}.",
         "",
         "## Raw provider archive",
         f"- Storage configured: {raw['configured']}.",
