@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V29_PBK14_INTERNATIONAL_WINDOW_MARKET_RESEARCH",
-  "generated_at_utc": "2026-09-19T10:44:05Z",
+  "generated_at_utc": "2026-09-19T10:44:53Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -206,13 +206,13 @@
     },
     "pbk14_international_window_market_profiles": {
       "file": "pbk14_international_window_market_factor_research.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 2686
     },
     "pbk14_international_window_market_stability": {
       "file": "pbk14_international_window_market_factor_stability_research.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 313
     },
     "pbk14_congestion_market_join": {
       "file": "pbk14_congestion_market_join_research.csv",
@@ -659,18 +659,18 @@
     "join_rows": 37327,
     "valid_join_rows": 37327,
     "invalid_join_rows": 0,
-    "profile_present": false,
-    "stability_present": false,
-    "research_meta_present": false,
-    "research_meta_valid": false,
-    "profile_rows": 0,
-    "valid_profile_rows": 0,
+    "profile_present": true,
+    "stability_present": true,
+    "research_meta_present": true,
+    "research_meta_valid": true,
+    "profile_rows": 2686,
+    "valid_profile_rows": 2686,
     "invalid_profile_rows": 0,
-    "stability_rows": 0,
-    "valid_stability_rows": 0,
+    "stability_rows": 313,
+    "valid_stability_rows": 313,
     "invalid_stability_rows": 0,
-    "closing_1x2_matches": null,
-    "closing_total25_matches": null,
+    "closing_1x2_matches": 30879,
+    "closing_total25_matches": 22738,
     "factor_names": [
       "FIRST_DOMESTIC_AFTER_SIDE",
       "INTL_AFTER_72H",
@@ -846,7 +846,6 @@
     "PBK16_COMPETITION_PROVIDER_SEASONS_PARTIAL",
     "PBK14_HISTORICAL_MARKET_BRIDGE_PARTIAL_MAPPING",
     "PBK16_HISTORICAL_MARKET_SOURCE_LIMITED_TO_14_LEAGUES",
-    "PBK14_INTERNATIONAL_WINDOW_MARKET_RESEARCH_NOT_MATERIALIZED",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
     "PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE",
     "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE"
