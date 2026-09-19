@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-19T08:09:06Z",
+  "generated_at_utc": "2026-09-19T09:07:58Z",
   "status": "OK",
   "cards": [
     {
@@ -4768,7 +4768,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 200,
+      "event_count": 201,
       "timeline": [
         {
           "entity_id": "R1|I1|1550131",
@@ -8169,6 +8169,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550131",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550131",
+          "league": "Serie A",
+          "home_team": "Frosinone",
+          "away_team": "Como",
+          "kickoff_utc": "2026-09-20T13:00:00Z",
+          "event_time_utc": "2026-09-19T08:43:40Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     },
@@ -8349,7 +8366,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 30,
+      "event_count": 31,
       "timeline": [
         {
           "entity_id": "R1|I1|1550143",
@@ -8860,6 +8877,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550143",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550143",
+          "league": "Serie A",
+          "home_team": "Lecce",
+          "away_team": "Bologna",
+          "kickoff_utc": "2026-10-11T13:00:00Z",
+          "event_time_utc": "2026-09-19T08:43:40Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     },
@@ -8875,7 +8909,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 30,
+      "event_count": 31,
       "timeline": [
         {
           "entity_id": "R1|I1|1550145",
@@ -9386,6 +9420,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550145",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550145",
+          "league": "Serie A",
+          "home_team": "Sassuolo",
+          "away_team": "AC Milan",
+          "kickoff_utc": "2026-10-11T16:00:00Z",
+          "event_time_utc": "2026-09-19T08:43:40Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     },
@@ -9401,7 +9452,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 30,
+      "event_count": 31,
       "timeline": [
         {
           "entity_id": "R1|I1|1550138",
@@ -9912,6 +9963,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550138",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550138",
+          "league": "Serie A",
+          "home_team": "Cagliari",
+          "away_team": "Juventus",
+          "kickoff_utc": "2026-10-11T18:45:00Z",
+          "event_time_utc": "2026-09-19T08:43:40Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     }
@@ -9920,7 +9988,7 @@
     "cards": 49,
     "canonical_cards": 6,
     "watch_cards": 43,
-    "events": 537
+    "events": 541
   },
   "policy": {
     "read_only": true,
