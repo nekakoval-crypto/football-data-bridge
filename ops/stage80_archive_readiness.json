@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_READINESS_V32_TOP5_MOTIVATION_MARKET_RESEARCH",
-  "generated_at_utc": "2026-09-19T12:28:02Z",
+  "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
+  "generated_at_utc": "2026-09-19T12:29:03Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -201,6 +201,21 @@
     },
     "pbk16_competition_congestion": {
       "file": "pbk16_competition_congestion_research.csv",
+      "present": true,
+      "rows": 40989
+    },
+    "pbk16_domestic_phase_audit": {
+      "file": "pbk16_domestic_phase_audit.csv",
+      "present": true,
+      "rows": 40989
+    },
+    "pbk16_format_inventory": {
+      "file": "pbk16_domestic_league_format_inventory.csv",
+      "present": true,
+      "rows": 144
+    },
+    "pbk16_historical_table_context": {
+      "file": "pbk16_historical_table_context_research.csv",
       "present": true,
       "rows": 40989
     },
@@ -892,6 +907,58 @@
     "rows_either_previous_nonleague_was_thursday": 14144,
     "operational_betting_authority": false,
     "evidence_note": "One deterministic row per captured PBK16 domestic fixture; only strictly prior played cup/UEFA evidence can contribute. Future scheduled fixtures are excluded."
+  },
+  "pbk16_domestic_phase_audit": {
+    "present": true,
+    "meta_present": true,
+    "meta_valid": true,
+    "rows": 40989,
+    "valid_rows": 40989,
+    "invalid_rows": 0,
+    "unique_fixture_ids": 40989,
+    "duplicate_fixture_ids": 0,
+    "table_phase_rows": 40731,
+    "post_table_playoff_rows": 258,
+    "table_phase_rows_requiring_season_format_contract": 1747,
+    "unknown_phase_rows": 0,
+    "operational_betting_authority": false,
+    "evidence_note": "Country/season-aware provider phase classification. No standings reconstruction or points transform is applied here."
+  },
+  "pbk16_format_inventory": {
+    "present": true,
+    "meta_present": true,
+    "meta_valid": true,
+    "rows": 144,
+    "valid_rows": 144,
+    "invalid_rows": 0,
+    "league_season_cells": 144,
+    "duplicate_cells": 0,
+    "captured_cells": 143,
+    "provider_unavailable_cells": 1,
+    "naive_single_table_candidate_cells": 67,
+    "exact_motivation_contract_verified_cells": 0,
+    "operational_betting_authority": false,
+    "evidence_note": "Structural inventory for all 16 leagues × 2017-2025. Exact season motivation rules remain UNVERIFIED until explicit contracts are added."
+  },
+  "pbk16_historical_table_context": {
+    "present": true,
+    "meta_present": true,
+    "meta_valid": true,
+    "rows": 40989,
+    "valid_rows": 40989,
+    "invalid_rows": 0,
+    "unique_fixture_ids": 40989,
+    "duplicate_fixture_ids": 0,
+    "safe_regular_prematch_rows": 38744,
+    "safe_regular_rows_with_full_table": 37400,
+    "blocked_table_phase_rows": 1747,
+    "post_table_playoff_rows": 258,
+    "blocked_prior_awarded_result_rows": 240,
+    "official_table_equivalence": false,
+    "exact_title_relegation_motivation_allowed": false,
+    "europe_status": "UNKNOWN_BY_DESIGN",
+    "operational_betting_authority": false,
+    "evidence_note": "PBK16 V2 safe regular pre-match table context. Split/table phases require season contracts; post-table playoffs are excluded; unresolved awarded results fail closed."
   },
   "pbk16_international_window_context": {
     "present": true,
