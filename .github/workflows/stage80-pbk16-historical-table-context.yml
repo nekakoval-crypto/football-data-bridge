@@ -1,0 +1,142 @@
+name: Stage 80 PBK16 Historical Table Context
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/stage80_pbk16_historical_table_context.py'
+      - 'scripts/tests/test_stage80_pbk16_historical_table_context.py'
+      - '.github/workflows/stage80-pbk16-historical-table-context.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/stage80_pbk16_historical_table_context.py'
+      - 'scripts/tests/test_stage80_pbk16_historical_table_context.py'
+      - '.github/workflows/stage80-pbk16-historical-table-context.yml'
+      - 'ops/pbk16_all_competition_fixture_history.csv'
+
+concurrency:
+  group: stage80-pbk16-historical-table-context-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and provider-free tests
+        run: |
+          python -m py_compile scripts/stage80_pbk16_historical_table_context.py
+          python -m unittest scripts.tests.test_stage80_pbk16_historical_table_context -v
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated PBK16 table-context outputs are forbidden in the feature PR.' >&2
+            exit 1
+          fi
+
+  build:
+    needs: validate
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build PBK16 historical table context
+        run: |
+          mkdir -p research
+          python scripts/stage80_pbk16_historical_table_context.py \
+            --source ops/pbk16_all_competition_fixture_history.csv \
+            --out-csv research/pbk16_historical_table_context_research.csv \
+            --meta-out research/stage80_pbk16_historical_table_context_meta.json
+      - name: Verify PBK16 historical table context
+        run: |
+          python - <<'PY'
+          import csv, json
+          meta=json.load(open('research/stage80_pbk16_historical_table_context_meta.json',encoding='utf-8'))
+          assert meta['version']=='PBK_STAGE80_PBK16_HISTORICAL_TABLE_CONTEXT_V1', meta
+          assert meta['status']=='OK', meta
+          assert meta['source_domestic_rows']==40989, meta
+          assert meta['output_rows']==40989, meta
+          assert meta['unique_domestic_fixture_ids']==40989, meta
+          assert meta['duplicate_domestic_fixture_ids']==0, meta
+          assert meta['invalid_kickoff_rows']==0, meta
+          assert meta['domestic_league_ids']==16, meta
+          assert meta['countries']==16, meta
+          assert meta['captured_league_season_cells']==143, meta
+          assert meta['regular_core_rows']>0, meta
+          assert meta['blocked_nonregular_phase_rows']>0, meta
+          assert meta['regular_rows_with_full_table']>0, meta
+          assert meta['phase_detection_contract']=='ROUND_LABEL_NONREGULAR_MARKERS_V1', meta
+          assert meta['rank_tiebreak_contract']=='POINTS_GD_GF_TEAMNAME_RESEARCH_APPROX_V1', meta
+          assert meta['official_table_equivalence'] is False, meta
+          assert meta['exact_title_relegation_motivation_allowed'] is False, meta
+          assert meta['europe_status']=='UNKNOWN_BY_DESIGN', meta
+          assert meta['same_day_results_excluded'] is True, meta
+          assert meta['no_lookahead'] is True, meta
+          assert meta['provider_calls']==0, meta
+          assert meta['research_only'] is True, meta
+          assert meta['operational_betting_authority'] is False, meta
+          with open('research/pbk16_historical_table_context_research.csv',encoding='utf-8-sig',newline='') as f:
+              rows=list(csv.DictReader(f))
+          assert len(rows)==40989
+          assert len({r['domestic_fixture_id'] for r in rows})==40989
+          assert {r['operational_betting_authority'] for r in rows}=={'false'}
+          assert {r['exact_title_relegation_motivation_allowed'] for r in rows}=={'false'}
+          blocked=[r for r in rows if r['context_status']=='BLOCKED_NONREGULAR_PHASE_UNMODELED']
+          regular=[r for r in rows if r['context_status']=='VALID_REGULAR_RESULTS_DERIVED']
+          assert len(blocked)==meta['blocked_nonregular_phase_rows']
+          assert len(regular)==meta['regular_core_rows']
+          assert all(not r['home_rank_pre'] and not r['away_rank_pre'] for r in blocked)
+          print({
+              'rows':meta['output_rows'],
+              'regular_core':meta['regular_core_rows'],
+              'blocked_nonregular':meta['blocked_nonregular_phase_rows'],
+              'regular_full_table':meta['regular_rows_with_full_table'],
+          })
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pbk16-historical-table-context
+          path: research/
+          retention-days: 90
+
+  publish:
+    needs: build
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: pbk16-historical-table-context
+          path: research
+      - name: Publish PBK16 historical table context
+        shell: bash
+        run: |
+          cp research/pbk16_historical_table_context_research.csv ops/pbk16_historical_table_context_research.csv
+          cp research/stage80_pbk16_historical_table_context_meta.json ops/stage80_pbk16_historical_table_context_last_run.json
+          git config user.name 'stage80-pbk16-table-context-bot'
+          git config user.email 'stage80-pbk16-table-context-bot@users.noreply.github.com'
+          git add ops/pbk16_historical_table_context_research.csv
+          git add ops/stage80_pbk16_historical_table_context_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 PBK16 historical table context update'
+          python scripts/publish_operational_commit.py
