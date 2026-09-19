@@ -2630,6 +2630,7 @@ def render_markdown(report):
     referee = report["referee_research"]
     referee_top5 = report["referee_top5_backfill"]
     prematch = report["prematch_context_research"]
+    motivation = report["top5_historical_motivation_research"]
     prematch_factor = report["prematch_factor_research"]
     prematch_walkforward = report["prematch_factor_walkforward"]
     pbk14_market = report["pbk14_historical_market_bridge"]
@@ -2678,6 +2679,7 @@ def render_markdown(report):
         f"- EPL referee research: {referee['unique_referees']} referees / {referee['valid_team_split_rows']} referee×team pairs / {referee['source_matches'] if referee['source_matches'] is not None else '—'} source matches; scope EPL_ONLY; penalties unavailable.",
         f"- Top-5 API-Football referee backfill: {referee_top5['captured_league_seasons']} / {referee_top5['expected_league_seasons']} league-seasons; {referee_top5['valid_fixture_rows']} fixture rows; referee coverage {referee_top5['referee_coverage_pct'] if referee_top5['referee_coverage_pct'] is not None else '—'}%; profiles {referee_top5['valid_profile_rows']}; referee×team pairs {referee_top5['valid_team_split_rows']}.",
         f"- Top-5 pre-match research context: {prematch['valid_rows']} valid rows / {prematch['unique_historical_match_ids']} unique matches / {prematch['league_seasons']} of {prematch['expected_league_seasons']} league-seasons; no-lookahead {prematch['no_lookahead']}.",
+        f"- Top-5 historical motivation context: {motivation['valid_rows']} valid rows / {motivation['unique_historical_match_ids']} unique matches / {motivation['league_seasons']} of {motivation['expected_league_seasons']} league-seasons; full-table rows {motivation['rows_with_full_table']}; boundary-tie rows {motivation['rows_with_boundary_points_tie']}; Europe {motivation['europe_status'] or '—'}; no-lookahead {motivation['no_lookahead']}.",
         f"- Pre-match factor research: {prematch_factor['valid_profile_rows']} profile rows / {prematch_factor['valid_stability_rows']} stability rows; closing 1X2 matches {prematch_factor['closing_1x2_matches'] if prematch_factor['closing_1x2_matches'] is not None else '—'}; closing O/U2.5 matches {prematch_factor['closing_total25_matches'] if prematch_factor['closing_total25_matches'] is not None else '—'}.",
         f"- Pre-match walk-forward research: {prematch_walkforward['valid_fold_rows']} folds / {prematch_walkforward['valid_summary_rows']} summaries; sample-qualified folds {prematch_walkforward['sample_threshold_pass_folds'] if prematch_walkforward['sample_threshold_pass_folds'] is not None else '—'}; promotes factor {prematch_walkforward['promotes_factor']}.",
         f"- Match context: {c['unique_fixtures']} fixtures; official XI {c['fixtures_with_official_lineup_snapshot']}; injury evidence {c['fixtures_with_injury_evidence']}.",
@@ -2739,6 +2741,9 @@ def main():
         "prematch_context_rows": report["prematch_context_research"]["valid_rows"],
         "prematch_context_league_seasons": report["prematch_context_research"]["league_seasons"],
         "prematch_context_no_lookahead": report["prematch_context_research"]["no_lookahead"],
+        "historical_motivation_rows": report["top5_historical_motivation_research"]["valid_rows"],
+        "historical_motivation_full_table_rows": report["top5_historical_motivation_research"]["rows_with_full_table"],
+        "historical_motivation_boundary_tie_rows": report["top5_historical_motivation_research"]["rows_with_boundary_points_tie"],
         "prematch_factor_profile_rows": report["prematch_factor_research"]["valid_profile_rows"],
         "prematch_factor_stability_rows": report["prematch_factor_research"]["valid_stability_rows"],
         "prematch_walkforward_fold_rows": report["prematch_factor_walkforward"]["valid_fold_rows"],
