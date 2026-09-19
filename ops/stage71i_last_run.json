@@ -1,10 +1,10 @@
 {
-  "run_at_utc": "2026-09-19T10:45:57Z",
+  "run_at_utc": "2026-09-19T12:49:34Z",
   "status": "OK",
   "mode": "RESEARCH_SETTLEMENT_ONLY",
-  "pending_market_rows": 16,
-  "pending_unique_fixtures": 1,
-  "fixture_api_calls": 1,
+  "pending_market_rows": 78,
+  "pending_unique_fixtures": 5,
+  "fixture_api_calls": 5,
   "new_settlement_rows": 0,
   "total_settlement_rows": 2473,
   "settlement_rows_by_family": {
@@ -15,11 +15,31 @@
   },
   "non_ft_or_review_fixtures": [
     {
+      "fixture_id": "1515925",
+      "status": "2H",
+      "detail": "Not auto-settled; FT regulation score required"
+    },
+    {
+      "fixture_id": "1547635",
+      "status": "2H",
+      "detail": "Not auto-settled; FT regulation score required"
+    },
+    {
+      "fixture_id": "1557416",
+      "status": "2H",
+      "detail": "Not auto-settled; FT regulation score required"
+    },
+    {
       "fixture_id": "1570389",
       "status": "PST",
+      "detail": "Not auto-settled; FT regulation score required"
+    },
+    {
+      "fixture_id": "1570399",
+      "status": "HT",
       "detail": "Not auto-settled; FT regulation score required"
     }
   ],
   "signals_created": 0,
-  "api_calls": 1
+  "api_calls": 5
 }
