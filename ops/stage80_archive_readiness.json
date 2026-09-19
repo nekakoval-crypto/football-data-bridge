@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V30_PBK14_INTERNATIONAL_WINDOW_MARKET_WALKFORWARD",
-  "generated_at_utc": "2026-09-19T10:55:36Z",
+  "generated_at_utc": "2026-09-19T10:56:31Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -216,13 +216,13 @@
     },
     "pbk14_international_window_market_walkforward": {
       "file": "pbk14_international_window_market_walkforward_research.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 8830
     },
     "pbk14_international_window_market_walkforward_summary": {
       "file": "pbk14_international_window_market_walkforward_summary_research.csv",
-      "present": false,
-      "rows": null
+      "present": true,
+      "rows": 1345
     },
     "pbk14_congestion_market_join": {
       "file": "pbk14_congestion_market_join_research.csv",
@@ -699,18 +699,18 @@
     "evidence_note": "Calendar-level international-window descriptive research only; player call-up/travel/appearance remains UNVERIFIED."
   },
   "pbk14_international_window_market_walkforward": {
-    "folds_present": false,
-    "summary_present": false,
-    "meta_present": false,
-    "meta_valid": false,
-    "fold_rows": 0,
-    "valid_fold_rows": 0,
+    "folds_present": true,
+    "summary_present": true,
+    "meta_present": true,
+    "meta_valid": true,
+    "fold_rows": 8830,
+    "valid_fold_rows": 8830,
     "invalid_fold_rows": 0,
     "temporal_invalid_rows": 0,
-    "summary_rows": 0,
-    "valid_summary_rows": 0,
+    "summary_rows": 1345,
+    "valid_summary_rows": 1345,
     "invalid_summary_rows": 0,
-    "sample_threshold_pass_folds": null,
+    "sample_threshold_pass_folds": 4928,
     "min_prior_seasons": 2,
     "min_train_market_matches": 100,
     "min_test_market_matches": 30,
@@ -879,7 +879,6 @@
     "PBK16_COMPETITION_PROVIDER_SEASONS_PARTIAL",
     "PBK14_HISTORICAL_MARKET_BRIDGE_PARTIAL_MAPPING",
     "PBK16_HISTORICAL_MARKET_SOURCE_LIMITED_TO_14_LEAGUES",
-    "PBK14_INTERNATIONAL_WINDOW_MARKET_WALKFORWARD_NOT_MATERIALIZED",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
     "PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE",
     "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE"
