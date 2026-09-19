@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-19T12:42:34Z",
+  "run_at_utc": "2026-09-19T18:40:24Z",
   "status": "OK",
   "mode": "STAGE71J_ZERO_EXTRA_CALL_PROSPECTIVE_CAPTURE",
   "source": "API-Football /odds Bet365 Match Winner",
@@ -11,25 +11,17 @@
   "extraction": {
     "fixture_metadata": 160,
     "unfiltered_odds_payloads": 160,
-    "missing_complete_bet365_match_winner": 32,
-    "complete_candidate_rows": 128
+    "missing_complete_bet365_match_winner": 48,
+    "complete_candidate_rows": 112
   },
-  "candidate_rows": 128,
-  "observations_added": 2,
-  "observations_rejected": 126,
-  "prematch_frozen": 149,
+  "candidate_rows": 112,
+  "observations_added": 26,
+  "observations_rejected": 86,
+  "prematch_frozen": 175,
   "settled_rows": 2,
   "rejections": [
     {
       "fixture_id": "1494764",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1494765",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1494766",
       "reason": "already_frozen"
     },
     {
@@ -49,15 +41,7 @@
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1515926",
-      "reason": "already_frozen"
-    },
-    {
       "fixture_id": "1547590",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1547636",
       "reason": "already_frozen"
     },
     {
@@ -73,10 +57,6 @@
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1549025",
-      "reason": "already_frozen"
-    },
-    {
       "fixture_id": "1549026",
       "reason": "already_frozen"
     },
@@ -86,14 +66,6 @@
     },
     {
       "fixture_id": "1550127",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1550128",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1550129",
       "reason": "already_frozen"
     },
     {
@@ -113,27 +85,11 @@
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1550135",
-      "reason": "already_frozen"
-    },
-    {
       "fixture_id": "1550136",
       "reason": "already_frozen"
     },
     {
       "fixture_id": "1550140",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1552171",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1552172",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1552174",
       "reason": "already_frozen"
     },
     {
@@ -185,10 +141,6 @@
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1552771",
-      "reason": "already_frozen"
-    },
-    {
       "fixture_id": "1552772",
       "reason": "already_frozen"
     },
@@ -205,23 +157,11 @@
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1553173",
-      "reason": "already_frozen"
-    },
-    {
       "fixture_id": "1553174",
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1553175",
-      "reason": "already_frozen"
-    },
-    {
       "fixture_id": "1553176",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1553177",
       "reason": "already_frozen"
     },
     {
@@ -230,26 +170,6 @@
     },
     {
       "fixture_id": "1553181",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1556664",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1556665",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1556666",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1556667",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1556668",
       "reason": "already_frozen"
     },
     {
@@ -277,14 +197,6 @@
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1557409",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1557410",
-      "reason": "already_frozen"
-    },
-    {
       "fixture_id": "1557411",
       "reason": "already_frozen"
     },
@@ -297,23 +209,11 @@
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1557414",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1557415",
-      "reason": "already_frozen"
-    },
-    {
       "fixture_id": "1557417",
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1558636",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1558637",
+      "fixture_id": "1557419",
       "reason": "already_frozen"
     },
     {
@@ -338,14 +238,6 @@
     },
     {
       "fixture_id": "1558643",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1561930",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1561931",
       "reason": "already_frozen"
     },
     {
@@ -381,15 +273,7 @@
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1570393",
-      "reason": "already_frozen"
-    },
-    {
       "fixture_id": "1570394",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1570395",
       "reason": "already_frozen"
     },
     {
@@ -417,7 +301,7 @@
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1575168",
+      "fixture_id": "1570410",
       "reason": "already_frozen"
     },
     {
@@ -425,23 +309,7 @@
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1575170",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1575171",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1575172",
-      "reason": "already_frozen"
-    },
-    {
       "fixture_id": "1575173",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1575174",
       "reason": "already_frozen"
     },
     {
@@ -457,10 +325,6 @@
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1575500",
-      "reason": "already_frozen"
-    },
-    {
       "fixture_id": "1575501",
       "reason": "already_frozen"
     },
@@ -470,14 +334,6 @@
     },
     {
       "fixture_id": "1575503",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1575504",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1575505",
       "reason": "already_frozen"
     },
     {
@@ -497,14 +353,6 @@
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1584413",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1584414",
-      "reason": "already_frozen"
-    },
-    {
       "fixture_id": "1584415",
       "reason": "already_frozen"
     },
@@ -514,14 +362,6 @@
     },
     {
       "fixture_id": "1584417",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1584419",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1584420",
       "reason": "already_frozen"
     }
   ],
