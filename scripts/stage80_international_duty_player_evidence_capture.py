@@ -41,7 +41,7 @@ EVIDENCE = OPS / "international_duty_player_evidence.csv"
 META = OPS / "stage80_international_duty_player_evidence_capture_last_run.json"
 SHARED_STATE = OPS / "stage71_observation_state.json"
 
-VERSION = "PBK_STAGE80_INTERNATIONAL_DUTY_PLAYER_EVIDENCE_CAPTURE_V1"
+VERSION = "PBK_STAGE80_INTERNATIONAL_DUTY_PLAYER_EVIDENCE_CAPTURE_V2_STRICT_ROLE_SEMANTICS"
 
 EVIDENCE_FIELDS = [
     "fixture_id","provider_league_id","competition_name","candidate_family",
@@ -220,18 +220,19 @@ def normalize_player_stats(payload, backlog_row, captured_at):
             captain = games.get("captain")
             appearance = minutes is not None and minutes > 0
             minutes_confirmed = minutes is not None and minutes >= 0
-            starter = appearance and substitute is False
-            sub_listed = substitute is True
+            # /fixtures/players directly proves minutes/appearance, but the
+            # provider's games.substitute=False is NOT treated as official XI
+            # evidence. Starter/substitute listing belongs to /fixtures/lineups.
+            # A direct substitute=True plus positive minutes can still prove a
+            # substitute appearance without proving the historical lineup list.
             sub_appearance = appearance and substitute is True
 
-            if starter:
-                role = "STARTER_APPEARANCE"
-            elif sub_appearance:
-                role = "SUBSTITUTE_APPEARANCE"
-            elif sub_listed:
-                role = "SUBSTITUTE_LISTED_NO_CONFIRMED_MINUTES"
+            if sub_appearance:
+                role = "SUBSTITUTE_APPEARANCE_PROVIDER_FLAG"
+            elif appearance:
+                role = "APPEARANCE_ROLE_UNVERIFIED"
             else:
-                role = "PLAYER_STATS_LISTED"
+                role = "PLAYER_STATS_LISTED_NO_APPEARANCE"
 
             row = common_evidence(
                 backlog_row, team_id, team_name, player_id,
@@ -250,8 +251,8 @@ def normalize_player_stats(payload, backlog_row, captured_at):
                 "matchday_squad_confirmed": "true",
                 "appearance_confirmed": "true" if appearance else "false",
                 "minutes_confirmed": "true" if minutes_confirmed else "false",
-                "starter_listed_confirmed": "true" if starter else "false",
-                "substitute_listed_confirmed": "true" if sub_listed else "false",
+                "starter_listed_confirmed": "false",
+                "substitute_listed_confirmed": "false",
                 "substitute_appearance_confirmed": "true" if sub_appearance else "false",
                 "source": "API-Football /fixtures/players",
             })
@@ -336,6 +337,43 @@ def normalize_payload(payload, backlog_row, captured_at):
     raise ValueError(f"unsupported capture endpoint: {endpoint}")
 
 
+def sanitize_existing_evidence(rows):
+    """Rewrite persisted V1 /fixtures/players rows to strict V2 role semantics.
+
+    Minutes and appearance are retained/recomputed from direct numeric minutes.
+    Official starter/substitute LISTING remains false unless it came from the
+    lineup endpoint. A provider substitute=True plus positive minutes may prove
+    substitute appearance, but substitute=False never proves a starter.
+    """
+    out = []
+    rewritten = 0
+    for original in rows:
+        row = dict(original)
+        if sval(row, "capture_endpoint") == "/fixtures/players":
+            minutes = as_int(row.get("minutes"))
+            appearance = minutes is not None and minutes > 0
+            substitute = sval(row, "provider_substitute_flag").lower() == "true"
+            sub_appearance = appearance and substitute
+            desired = {
+                "appearance_confirmed": "true" if appearance else "false",
+                "minutes_confirmed": "true" if minutes is not None and minutes >= 0 else "false",
+                "starter_listed_confirmed": "false",
+                "substitute_listed_confirmed": "false",
+                "substitute_appearance_confirmed": "true" if sub_appearance else "false",
+                "lineup_role": (
+                    "SUBSTITUTE_APPEARANCE_PROVIDER_FLAG"
+                    if sub_appearance else
+                    ("APPEARANCE_ROLE_UNVERIFIED" if appearance
+                     else "PLAYER_STATS_LISTED_NO_APPEARANCE")
+                ),
+            }
+            if any(sval(row, key) != value for key, value in desired.items()):
+                rewritten += 1
+                row.update(desired)
+        out.append(row)
+    return out, rewritten
+
+
 def merge_evidence(existing, incoming):
     merged = {
         evidence_key(row): dict(row)
@@ -408,13 +446,14 @@ def candidate_rows(backlog, now, limit):
             priority = int(sval(row, "capture_priority") or "99")
         except ValueError:
             priority = 99
-        return (
-            priority,
-            0 if last is None else 1,
-            last or datetime.min.replace(tzinfo=timezone.utc),
-            sval(row, "kickoff_utc"),
-            sval(row, "fixture_id"),
-        )
+        kickoff = parse_dt(row.get("kickoff_utc"))
+        recent_first = -(kickoff.timestamp()) if kickoff is not None else float("inf")
+        if last is None:
+            # Within each evidence tier, try the freshest untouched historical
+            # fixtures first; older provider coverage is sampled only later.
+            return (priority, 0, recent_first, 0.0, sval(row, "fixture_id"))
+        # Retries remain fair: oldest eligible retry first, then freshest fixture.
+        return (priority, 1, last.timestamp(), recent_first, sval(row, "fixture_id"))
 
     candidates.sort(key=key)
     return candidates[: max(0, int(limit))]
@@ -465,7 +504,8 @@ def run(
     if not validate_backlog_meta(backlog_meta, backlog):
         raise ValueError("player-evidence backlog/meta contract is not ready")
 
-    existing_evidence = read_csv(evidence_path)
+    existing_evidence_raw = read_csv(evidence_path)
+    existing_evidence, semantics_rewritten_rows = sanitize_existing_evidence(existing_evidence_raw)
     shared = audit.read(Path(shared_state_path))
     budget = audit.Budget(
         get,
@@ -581,6 +621,10 @@ def run(
         "captured_fixtures_total": len(captured_fixture_ids),
         "pending_or_retry_fixtures": len(backlog) - len(captured_fixture_ids),
         "evidence_rows": len(evidence),
+        "existing_evidence_semantics_rewritten_rows": semantics_rewritten_rows,
+        "candidate_order": "TIER_THEN_NEVER_ATTEMPTED_RECENT_FIRST_THEN_OLDEST_RETRY",
+        "player_stats_starter_inference_allowed": False,
+        "player_stats_substitute_listing_inference_allowed": False,
         "unique_evidence_keys": len(set(evidence_ids)),
         "duplicate_evidence_rows": duplicate_evidence_rows,
         "invalid_evidence_rows": invalid_evidence_rows,
@@ -624,6 +668,7 @@ def run(
         "travel_inference_allowed": False,
         "formal_callup_separately_verified": False,
         "lineup_listing_implies_appearance": False,
+        "player_stats_substitute_true_can_confirm_substitute_appearance": True,
         "research_only": True,
         "operational_betting_authority": False,
         "creates_signal": False,
