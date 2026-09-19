@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-19T10:33:43Z
+Обновлено UTC: 2026-09-19T10:34:27Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -35,7 +35,7 @@
 - PBK14 congestion walk-forward: 16095 valid folds / 2445 summaries; qualified folds 5470; temporal invalid 0; promotes factor False.
 - PBK16 all-competition history: catalog 39 valid rows; required unresolved 0; fixture archive 70375 valid rows; domestic anchors 16 / 16 leagues; captured cells 322, provider-unavailable cells 19, pending 0, errors 0.
 - PBK16 cup/UEFA congestion: 40989 valid rows / 40989 domestic fixtures; no-lookahead True; future schedule used False; prior UEFA <=72h 3210, prior cup <=72h 1436.
-- PBK16 international windows: 0 valid rows / 0 domestic fixtures; calendar windows —; <=72h before —, <=72h after —; player-level —; no-lookahead None.
+- PBK16 international windows: 40989 valid rows / 40989 domestic fixtures; calendar windows 39; <=72h before 3956, <=72h after 518; player-level UNVERIFIED; no-lookahead True.
 
 ## Raw provider archive
 - Storage configured: True.
@@ -51,7 +51,6 @@
 - TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE
 - REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL
 - PBK16_COMPETITION_PROVIDER_SEASONS_PARTIAL
-- PBK16_INTERNATIONAL_WINDOW_CONTEXT_INVALID
 - PBK14_HISTORICAL_MARKET_BRIDGE_PARTIAL_MAPPING
 - PBK16_HISTORICAL_MARKET_SOURCE_LIMITED_TO_14_LEAGUES
 - PBK14_INTERNATIONAL_WINDOW_MARKET_JOIN_INVALID

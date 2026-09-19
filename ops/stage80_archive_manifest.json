@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V24_PBK14_INTERNATIONAL_WINDOW_MARKET_JOIN",
-  "generated_at_utc": "2026-09-19T10:33:38Z",
+  "generated_at_utc": "2026-09-19T10:34:23Z",
   "status": "OK",
   "datasets": [
     {
@@ -2137,6 +2137,7 @@
         "window_max_matches",
         "window_notes",
         "window_relation",
+        "window_reference_contract",
         "hours_to_window_start",
         "hours_since_window_end",
         "within_72h_before_window",
