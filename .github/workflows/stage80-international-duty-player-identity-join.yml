@@ -16,6 +16,7 @@ on:
     paths:
       - 'scripts/stage80_international_duty_player_identity_join.py'
       - 'scripts/tests/test_stage80_international_duty_player_identity_join.py'
+      - 'ops/pbk_transfermarkt_player_identity.csv'
       - '.github/workflows/stage80-international-duty-player-identity-join.yml'
 
 permissions:
