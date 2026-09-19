@@ -1,0 +1,143 @@
+name: Stage 77 Historical Player Backfill
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '27 */4 * * *'
+  pull_request:
+    paths:
+      - 'scripts/stage77_historical_player_backfill.py'
+      - 'scripts/tests/test_stage77_historical_player_backfill.py'
+      - '.github/workflows/stage77-historical-player-backfill.yml'
+      - 'docs/stage77_historical_player_backfill.md'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage71-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile historical player backfill
+        run: |
+          python -m py_compile \
+            scripts/stage77_historical_player_backfill.py
+
+      - name: Historical backfill tests
+        run: |
+          python -m unittest \
+            scripts.tests.test_stage77_historical_player_backfill \
+            -v
+
+      - name: Shared Stage77 regression tests
+        run: |
+          python -m unittest \
+            scripts.tests.test_stage77_player_stats_capture \
+            scripts.tests.test_stage77_player_stats_backlog \
+            scripts.tests.test_player_grade_context \
+            -v
+
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          base_sha="${{ github.event.pull_request.base.sha }}"
+          head_sha="${{ github.event.pull_request.head.sha }}"
+          changed="$(git diff --name-only "$base_sha...$head_sha")"
+          printf '%s\n' "$changed"
+
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated ops files are forbidden in feature PR.'
+            exit 1
+          fi
+
+  backfill:
+    needs: validate
+
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      (
+        github.event_name == 'schedule' ||
+        github.event_name == 'workflow_dispatch'
+      )
+
+    permissions:
+      contents: write
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+
+      PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+      PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+      PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+      PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+      PBK_RAW_ARCHIVE_S3_PREFIX: api-football-raw
+      PBK_RAW_ARCHIVE_S3_REGION: auto
+
+      OPS_DIR: ops
+
+      STAGE77_HISTORICAL_MAX_API_CALLS: '240'
+      STAGE71_MAX_DAILY_API_CALLS: '7000'
+
+      STAGE77_STANDINGS_RESERVE_CALLS: '16'
+      STAGE77_SAFETY_RESERVE_CALLS: '8'
+      STAGE77_CURRENT_ROUND_CALLS_PER_RUN: '32'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install raw archive S3 client
+        run: |
+          python -m pip install \
+            --disable-pip-version-check \
+            boto3
+
+      - name: Historical player backfill
+        run: |
+          python scripts/stage77_historical_player_backfill.py
+
+      - name: Publish historical player archive outputs
+        shell: bash
+        run: |
+          git config user.name 'stage77-history-bot'
+          git config user.email 'stage77-history-bot@users.noreply.github.com'
+
+          git add \
+            ops/stage77_historical_player_backfill_state.csv \
+            ops/stage77_historical_player_backfill_last_run.json \
+            ops/stage71_observation_state.json
+
+          if [ -f ops/player_stats_snapshots.csv ]; then
+            git add ops/player_stats_snapshots.csv
+          fi
+
+          if [ -f ops/player_grade_snapshots.csv ]; then
+            git add ops/player_grade_snapshots.csv
+          fi
+
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+
+          git commit -m 'Stage 77 historical player backfill update'
+          python scripts/publish_operational_commit.py
