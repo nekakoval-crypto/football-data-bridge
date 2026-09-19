@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V28_INTERNATIONAL_WINDOW_REFERENCE_V2"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V29_PBK14_INTERNATIONAL_WINDOW_MARKET_RESEARCH"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -62,6 +62,8 @@ SOURCES = {
     "pbk16_international_window_context": "pbk16_international_window_context_research.csv",
     "pbk14_market_bridge": "pbk14_football_data_fixture_bridge.csv",
     "pbk14_international_window_market_join": "pbk14_international_window_market_join_research.csv",
+    "pbk14_international_window_market_profiles": "pbk14_international_window_market_factor_research.csv",
+    "pbk14_international_window_market_stability": "pbk14_international_window_market_factor_stability_research.csv",
     "pbk14_congestion_market_join": "pbk14_congestion_market_join_research.csv",
     "pbk14_congestion_market_profiles": "pbk14_congestion_market_factor_research.csv",
     "pbk14_congestion_market_stability": "pbk14_congestion_market_factor_stability_research.csv",
@@ -232,6 +234,7 @@ def build_report(ops=OPS, archive_dir=None):
     pbk14_market_source_meta = read_json(Path(ops) / "stage80_football_data_pbk14_history_last_run.json")
     pbk14_market_bridge_meta = read_json(Path(ops) / "stage80_pbk14_fixture_bridge_last_run.json")
     pbk14_international_join_meta = read_json(Path(ops) / "stage80_pbk14_international_window_market_join_last_run.json")
+    pbk14_international_research_meta = read_json(Path(ops) / "stage80_pbk14_international_window_market_research_last_run.json")
     pbk14_congestion_join_meta = read_json(Path(ops) / "stage80_pbk14_congestion_market_join_last_run.json")
     pbk14_congestion_research_meta = read_json(Path(ops) / "stage80_pbk14_congestion_market_research_last_run.json")
     pbk14_congestion_walkforward_meta = read_json(Path(ops) / "stage80_pbk14_congestion_market_walkforward_last_run.json")
@@ -1273,6 +1276,84 @@ def build_report(ops=OPS, archive_dir=None):
         and pbk14_international_join_meta.get("forward_journal_mutation") is False
     )
 
+    pbk14_international_profiles = data["pbk14_international_window_market_profiles"] or []
+    pbk14_international_stability = data["pbk14_international_window_market_stability"] or []
+    expected_international_factors = {
+        "INTL_BEFORE_72H","INTL_BEFORE_96H","INTL_BEFORE_7D",
+        "INTL_AFTER_72H","INTL_AFTER_96H","INTL_AFTER_7D",
+        "FIRST_DOMESTIC_AFTER_SIDE","WINDOW_RELATION","WINDOW_MAX_MATCHES",
+    }
+
+    pbk14_international_profiles_valid = [
+        row for row in pbk14_international_profiles
+        if sval(row, "factor") in expected_international_factors
+        and sval(row, "bucket")
+        and sval(row, "scope_type") in {"ALL","LEAGUE","SEASON","LEAGUE_SEASON"}
+        and sval(row, "scope_value")
+        and fnum(row.get("matches")) is not None
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+        and not is_true(row.get("promotes_factor"))
+        and not is_true(row.get("probability_mutation"))
+        and not is_true(row.get("eligibility_mutation"))
+        and not is_true(row.get("stake_changes"))
+        and not is_true(row.get("forward_journal_mutation"))
+    ]
+    pbk14_international_profiles_invalid = (
+        len(pbk14_international_profiles) - len(pbk14_international_profiles_valid)
+    )
+
+    pbk14_international_stability_valid = [
+        row for row in pbk14_international_stability
+        if sval(row, "factor") in expected_international_factors
+        and sval(row, "bucket")
+        and sval(row, "scope_type") in {"ALL","LEAGUE"}
+        and sval(row, "scope_value")
+        and fnum(row.get("seasons_with_matches")) is not None
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+        and not is_true(row.get("promotes_factor"))
+    ]
+    pbk14_international_stability_invalid = (
+        len(pbk14_international_stability) - len(pbk14_international_stability_valid)
+    )
+
+    pbk14_international_research_meta_valid = bool(
+        pbk14_international_research_meta
+        and not pbk14_international_research_meta.get("_invalid_json")
+        and pbk14_international_research_meta.get("version") == "PBK_STAGE80_PBK14_INTERNATIONAL_WINDOW_MARKET_RESEARCH_V1"
+        and int(pbk14_international_research_meta.get("source_rows") or 0) == len(pbk14_international_join_valid)
+        and int(pbk14_international_research_meta.get("valid_research_rows") or 0) == len(pbk14_international_join_valid)
+        and int(pbk14_international_research_meta.get("invalid_governance_or_result_rows") or 0) == 0
+        and set(pbk14_international_research_meta.get("factor_names") or []) == expected_international_factors
+        and int(pbk14_international_research_meta.get("factor_profile_rows") or 0) == len(pbk14_international_profiles_valid)
+        and int(pbk14_international_research_meta.get("stability_rows") or 0) == len(pbk14_international_stability_valid)
+        and pbk14_international_research_meta.get("window_reference_contract") == "NEAREST_WINDOW_RELATION_GATED_V2"
+        and pbk14_international_research_meta.get("player_level_international_status") == "UNVERIFIED"
+        and pbk14_international_research_meta.get("player_callup_inferred") is False
+        and pbk14_international_research_meta.get("player_travel_inferred") is False
+        and pbk14_international_research_meta.get("player_appearance_inferred") is False
+        and pbk14_international_research_meta.get("final_tournaments_included") is False
+        and pbk14_international_research_meta.get("non_uefa_only_windows_included") is False
+        and pbk14_international_research_meta.get("calendar_level_only") is True
+        and pbk14_international_research_meta.get("as_known_calendar_reference") is True
+        and pbk14_international_research_meta.get("no_match_result_dependency") is True
+        and pbk14_international_research_meta.get("market_novig_is_pbk_probability") is False
+        and pbk14_international_research_meta.get("no_lookahead") is True
+        and int(pbk14_international_research_meta.get("provider_calls") or 0) == 0
+        and pbk14_international_research_meta.get("historical_backfill_only") is True
+        and pbk14_international_research_meta.get("research_only") is True
+        and pbk14_international_research_meta.get("operational_betting_authority") is False
+        and pbk14_international_research_meta.get("creates_signal") is False
+        and pbk14_international_research_meta.get("promotes_factor") is False
+        and pbk14_international_research_meta.get("probability_mutation") is False
+        and pbk14_international_research_meta.get("eligibility_mutation") is False
+        and pbk14_international_research_meta.get("stake_changes") is False
+        and pbk14_international_research_meta.get("forward_journal_mutation") is False
+    )
+
     pbk14_congestion_join = data["pbk14_congestion_market_join"] or []
     pbk14_congestion_profiles = data["pbk14_congestion_market_profiles"] or []
     pbk14_congestion_stability = data["pbk14_congestion_market_stability"] or []
@@ -1677,6 +1758,20 @@ def build_report(ops=OPS, archive_dir=None):
         or not pbk14_international_join_meta_valid
     ):
         gaps.append("PBK14_INTERNATIONAL_WINDOW_MARKET_JOIN_INVALID")
+    if (
+        data["pbk14_international_window_market_profiles"] is None
+        or data["pbk14_international_window_market_stability"] is None
+        or pbk14_international_research_meta is None
+    ):
+        gaps.append("PBK14_INTERNATIONAL_WINDOW_MARKET_RESEARCH_NOT_MATERIALIZED")
+    elif (
+        pbk14_international_profiles_invalid
+        or pbk14_international_stability_invalid
+        or not pbk14_international_profiles_valid
+        or not pbk14_international_stability_valid
+        or not pbk14_international_research_meta_valid
+    ):
+        gaps.append("PBK14_INTERNATIONAL_WINDOW_MARKET_RESEARCH_INVALID")
     if data["pbk14_congestion_market_join"] is None or pbk14_congestion_join_meta is None:
         gaps.append("PBK14_CONGESTION_MARKET_JOIN_NOT_MATERIALIZED")
     elif (
@@ -2104,6 +2199,32 @@ def build_report(ops=OPS, archive_dir=None):
             "market_probability_semantics": "Historical closing odds are market benchmarks only; no PBK probability is created by this join.",
             "operational_betting_authority": False,
             "evidence_note": "AUTO/HIGH historical market rows joined to calendar-level international-window context. Calendar proximity never proves player duty; player call-up/travel/appearance remains UNVERIFIED.",
+        },
+        "pbk14_international_window_market_research": {
+            "join_present": data["pbk14_international_window_market_join"] is not None,
+            "join_meta_present": pbk14_international_join_meta is not None,
+            "join_meta_valid": pbk14_international_join_meta_valid,
+            "join_rows": len(pbk14_international_join),
+            "valid_join_rows": len(pbk14_international_join_valid),
+            "invalid_join_rows": pbk14_international_join_invalid,
+            "profile_present": data["pbk14_international_window_market_profiles"] is not None,
+            "stability_present": data["pbk14_international_window_market_stability"] is not None,
+            "research_meta_present": pbk14_international_research_meta is not None,
+            "research_meta_valid": pbk14_international_research_meta_valid,
+            "profile_rows": len(pbk14_international_profiles),
+            "valid_profile_rows": len(pbk14_international_profiles_valid),
+            "invalid_profile_rows": pbk14_international_profiles_invalid,
+            "stability_rows": len(pbk14_international_stability),
+            "valid_stability_rows": len(pbk14_international_stability_valid),
+            "invalid_stability_rows": pbk14_international_stability_invalid,
+            "closing_1x2_matches": int(pbk14_international_research_meta.get("closing_1x2_matches") or 0) if pbk14_international_research_meta_valid else None,
+            "closing_total25_matches": int(pbk14_international_research_meta.get("closing_total25_matches") or 0) if pbk14_international_research_meta_valid else None,
+            "factor_names": sorted(expected_international_factors),
+            "window_reference_contract": "NEAREST_WINDOW_RELATION_GATED_V2",
+            "player_level_international_status": "UNVERIFIED",
+            "market_probability_semantics": "Historical closing-market no-vig benchmark only; never PBK probability.",
+            "operational_betting_authority": False,
+            "evidence_note": "Calendar-level international-window descriptive research only; player call-up/travel/appearance remains UNVERIFIED.",
         },
         "pbk14_congestion_market_research": {
             "join_present": data["pbk14_congestion_market_join"] is not None,
