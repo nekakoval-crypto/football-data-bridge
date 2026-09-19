@@ -24,7 +24,10 @@ import re
 from datetime import datetime, timezone
 from pathlib import Path
 
-from api_football_broker import ApiFootballBroker
+try:
+    from api_football_broker import ApiFootballBroker
+except ImportError:  # pragma: no cover
+    from scripts.api_football_broker import ApiFootballBroker
 
 VERSION="PBK_STAGE80_INTERNATIONAL_DUTY_PROVIDER_CATALOG_V1"
 DEFAULT_START=2017
