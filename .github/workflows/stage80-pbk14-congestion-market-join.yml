@@ -1,0 +1,145 @@
+name: Stage 80 PBK14 Congestion Market Join
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/stage80_pbk14_congestion_market_join.py'
+      - 'scripts/tests/test_stage80_pbk14_congestion_market_join.py'
+      - '.github/workflows/stage80-pbk14-congestion-market-join.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/stage80_pbk14_congestion_market_join.py'
+      - 'scripts/tests/test_stage80_pbk14_congestion_market_join.py'
+      - '.github/workflows/stage80-pbk14-congestion-market-join.yml'
+      - 'ops/pbk14_football_data_fixture_bridge.csv'
+      - 'ops/stage80_pbk14_fixture_bridge_last_run.json'
+      - 'ops/pbk16_competition_congestion_research.csv'
+      - 'ops/stage80_pbk16_competition_congestion_last_run.json'
+
+concurrency:
+  group: stage80-pbk14-congestion-market-join-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and provider-free tests
+        run: |
+          python -m py_compile scripts/stage80_pbk14_congestion_market_join.py
+          python -m unittest scripts.tests.test_stage80_pbk14_congestion_market_join -v
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated join outputs are forbidden in the feature PR.' >&2
+            exit 1
+          fi
+
+  build:
+    needs: validate
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Rebuild PBK14 Football-Data market matrix
+        run: |
+          mkdir -p source normalized
+          python scripts/stage80_football_data_pbk14_history.py             --config config/stage80_football_data_pbk14_9seasons.json             --download-dir source             --out-csv normalized/football_data_pbk14_9season_matches.csv             --meta-out normalized/stage80_football_data_pbk14_history_meta.json             --fetch
+      - name: Build strict AUTO/HIGH congestion-market join
+        run: |
+          python scripts/stage80_pbk14_congestion_market_join.py             --markets normalized/football_data_pbk14_9season_matches.csv             --bridge ops/pbk14_football_data_fixture_bridge.csv             --congestion ops/pbk16_competition_congestion_research.csv             --out-csv normalized/pbk14_congestion_market_join_research.csv             --meta-out normalized/stage80_pbk14_congestion_market_join_meta.json
+      - name: Verify join integrity and governance
+        run: |
+          python - <<'PY'
+          import json
+          source=json.load(open('normalized/stage80_football_data_pbk14_history_meta.json',encoding='utf-8'))
+          bridge=json.load(open('ops/stage80_pbk14_fixture_bridge_last_run.json',encoding='utf-8'))
+          join=json.load(open('normalized/stage80_pbk14_congestion_market_join_meta.json',encoding='utf-8'))
+          assert source['present_source_files']==94, source
+          assert source['missing_source_files']==0, source
+          assert source['normalized_matches']==join['market_rows'], (source,join)
+          assert join['bridge_eligible_rows']==bridge['mapped_auto_high'], (bridge,join)
+          assert join['bridge_eligible_unique_historical_ids']==join['bridge_eligible_rows'], join
+          assert join['bridge_eligible_duplicate_historical_ids']==0, join
+          assert join['bridge_eligible_duplicate_api_fixture_ids']==0, join
+          assert join['congestion_duplicate_fixture_ids']==0, join
+          assert join['missing_market_rows']==0, join
+          assert join['missing_congestion_rows']==0, join
+          assert join['joined_rows']==join['bridge_eligible_rows'], join
+          assert join['join_coverage_pct']==100.0, join
+          assert join['closing_1x2_matches']>30000, join
+          assert join['closing_total25_matches']>22000, join
+          assert join['review_unmapped_excluded'] is True, join
+          assert join['fuzzy_string_matching_used'] is False, join
+          assert join['strictly_prior_fixture_evidence_only'] is True, join
+          assert join['future_schedule_used'] is False, join
+          assert join['no_lookahead'] is True, join
+          assert join['provider_calls']==0, join
+          assert join['research_only'] is True, join
+          assert join['operational_betting_authority'] is False, join
+          assert join['creates_signal'] is False, join
+          assert join['probability_mutation'] is False, join
+          assert join['eligibility_mutation'] is False, join
+          assert join['stake_changes'] is False, join
+          assert join['forward_journal_mutation'] is False, join
+          print({
+            'joined_rows':join['joined_rows'],
+            'join_coverage_pct':join['join_coverage_pct'],
+            'closing_1x2_matches':join['closing_1x2_matches'],
+            'closing_total25_matches':join['closing_total25_matches'],
+            'uefa_72h':join['rows_either_prev_uefa_72h'],
+            'cup_72h':join['rows_either_prev_cup_72h'],
+            'previous_thursday':join['rows_previous_nonleague_thursday'],
+          })
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pbk14-congestion-market-join
+          path: |
+            normalized/pbk14_congestion_market_join_research.csv
+            normalized/stage80_pbk14_congestion_market_join_meta.json
+          retention-days: 90
+
+  publish:
+    needs: build
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: pbk14-congestion-market-join
+          path: normalized
+      - name: Publish durable research join
+        shell: bash
+        run: |
+          cp normalized/pbk14_congestion_market_join_research.csv ops/pbk14_congestion_market_join_research.csv
+          cp normalized/stage80_pbk14_congestion_market_join_meta.json ops/stage80_pbk14_congestion_market_join_last_run.json
+          git config user.name 'stage80-pbk14-congestion-market-bot'
+          git config user.email 'stage80-pbk14-congestion-market-bot@users.noreply.github.com'
+          git add ops/pbk14_congestion_market_join_research.csv
+          git add ops/stage80_pbk14_congestion_market_join_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 PBK14 congestion market join update'
+          python scripts/publish_operational_commit.py
