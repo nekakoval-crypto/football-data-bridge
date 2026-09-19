@@ -1,11 +1,11 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-19T07:27:11Z
+Обновлено UTC: 2026-09-19T07:51:28Z
 Статус: **COLLECTING**
 
 ## Покрытие
 - Fixtures в текущем inventory: 129 (finished: 14).
-- Fixture history: 178 unique fixtures / 3473 observations / 27 observation runs (finished observed: 57).
+- Fixture history: 178 unique fixtures / 3602 observations / 28 observation runs (finished observed: 57).
 - Historical fixture catalog: 178 fixtures (terminal 57, rescheduled 1), history coverage 100.00%; missing 0, orphan 0.
 - Finished fixtures с player stats: 13 / 14 (92.86%).
 - Stage77 durable backlog: pending 14; captured 43; total 57.
@@ -29,6 +29,8 @@
 - Pre-match factor research: 2247 profile rows / 237 stability rows; closing 1X2 matches 12459; closing O/U2.5 matches 12459.
 - Pre-match walk-forward research: 7685 folds / 1145 summaries; sample-qualified folds 4455; promotes factor False.
 - Match context: 6 fixtures; official XI 1; injury evidence 3.
+- PBK16 all-competition history: catalog 0 valid rows; required unresolved 0; fixture archive 0 valid rows; domestic anchors 0 / 16 leagues; captured cells 0, provider-unavailable cells 0, pending 0, errors 0.
+- PBK16 cup/UEFA congestion: 0 valid rows / 0 domestic fixtures; no-lookahead None; future schedule used None; prior UEFA <=72h —, prior cup <=72h —.
 
 ## Raw provider archive
 - Storage configured: True.
@@ -43,6 +45,8 @@
 - PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE
 - TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE
 - REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL
+- PBK16_COMPETITION_HISTORY_NOT_MATERIALIZED
+- PBK16_COMPETITION_CONGESTION_NOT_MATERIALIZED
 - MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY
 - PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE
 - TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE
