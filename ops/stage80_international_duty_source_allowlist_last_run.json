@@ -1,0 +1,36 @@
+{
+  "version": "PBK_STAGE80_INTERNATIONAL_DUTY_SOURCE_ALLOWLIST_V1",
+  "generated_at_utc": "2026-09-19T12:37:10Z",
+  "status": "OK",
+  "source_candidate_rows": 92,
+  "source_candidate_competitions_with_inrange_seasons": 30,
+  "selection_audit_rows": 30,
+  "allowed_competitions": 25,
+  "rejected_competitions": 5,
+  "allowlisted_competition_season_rows": 80,
+  "decision_counts": {
+    "ALLOW": 25,
+    "REJECT": 5
+  },
+  "evidence_tier_counts": {
+    "DIRECT_MATCHDAY_SQUAD": 32,
+    "DIRECT_MINUTES": 46,
+    "FIXTURE_ONLY": 2
+  },
+  "allowlisted_matchday_evidence_season_rows": 78,
+  "allowlisted_minutes_evidence_season_rows": 46,
+  "allowlisted_fixture_only_season_rows": 2,
+  "unknown_provider_competition_ids": [],
+  "name_mismatch_provider_competition_ids": [],
+  "historical_callup_evidence_possible": false,
+  "nationality_inference_allowed": false,
+  "provider_calls": 0,
+  "research_only": true,
+  "operational_betting_authority": false,
+  "creates_signal": false,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "stake_changes": false,
+  "forward_journal_mutation": false,
+  "next_stage": "Build durable national-team fixture backfill state from the 80 allowlisted competition-season rows; prioritize DIRECT_MINUTES then DIRECT_MATCHDAY_SQUAD."
+}
