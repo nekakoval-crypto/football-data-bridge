@@ -1,0 +1,54 @@
+{
+  "version": "PBK_STAGE80_INTERNATIONAL_DUTY_FIXTURE_BACKFILL_V1",
+  "generated_at_utc": "2026-09-19T14:29:23Z",
+  "status": "COLLECTING",
+  "allowlist_rows": 80,
+  "state_rows": 80,
+  "captured_cells": 20,
+  "pending_cells": 60,
+  "error_cells": 0,
+  "attempted_cells_this_run": 20,
+  "fixture_archive_rows": 3770,
+  "unique_fixture_ids": 3770,
+  "duplicate_fixture_ids": 0,
+  "invalid_archive_rows": 0,
+  "finished_fixture_rows": 3521,
+  "fixture_rows_player_evidence_eligible": 3770,
+  "fixture_rows_direct_minutes_tier": 3770,
+  "fixture_rows_direct_matchday_squad_tier": 0,
+  "tier_state_counts": {
+    "DIRECT_MATCHDAY_SQUAD": {
+      "PENDING": 32
+    },
+    "DIRECT_MINUTES": {
+      "CAPTURED": 20,
+      "PENDING": 26
+    },
+    "FIXTURE_ONLY": {
+      "PENDING": 2
+    }
+  },
+  "provider_budget_calls": 20,
+  "real_api_calls": 20,
+  "daily_api_calls_before": 925,
+  "daily_api_calls_after": 945,
+  "protected_calls": 512,
+  "warnings": [],
+  "raw_archive_enabled": true,
+  "raw_archive_backend": "S3",
+  "raw_archive_observations": 20,
+  "raw_archive_errors": 0,
+  "historical_callup_evidence_possible": false,
+  "nationality_inference_allowed": false,
+  "player_appearance_or_minutes_inferred": false,
+  "provider_fixture_history_only": true,
+  "historical_backfill_only": true,
+  "research_only": true,
+  "operational_betting_authority": false,
+  "creates_signal": false,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "stake_changes": false,
+  "forward_journal_mutation": false,
+  "next_stage": "Build a direct player-evidence backlog from finished captured fixtures whose allowlist tier is DIRECT_MINUTES or DIRECT_MATCHDAY_SQUAD."
+}
