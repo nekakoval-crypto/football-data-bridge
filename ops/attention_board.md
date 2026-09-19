@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 19.09.2026 22:00 (Europe/Berlin)
+Обновлено: 19.09.2026 23:00 (Europe/Berlin)
 Canonical: 4 | active WATCH crossings: 7 | RED: 0 | ORANGE: 8
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -658,7 +658,7 @@ Canonical: 4 | active WATCH crossings: 7 | RED: 0 | ORANGE: 8
 
 - **Leeds — Crystal Palace** | Premier League | 20.09 13:00 UTC
   - ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.05 @ Bet365
-  - ОЗ · ОЗ Да: 1.67 | ОЗ Нет: 2.08 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.66 | ОЗ Нет: 2.09 @ Marathonbet
   - Ф(0) · Ф1(0): 1.27 | Ф2(0): 3.55 @ Bet365
   - Ф(0) · Ф1(0): 1.28 | Ф2(0): 3.34 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.18 | Х2: 2.1 | 12: 1.22 @ Bet365
@@ -672,7 +672,7 @@ Canonical: 4 | active WATCH crossings: 7 | RED: 0 | ORANGE: 8
   - Европейская фора хозяев (-2) · П1: 5.35 | Х: 5.1 | П2: 1.38 @ Marathonbet
   - Европейская фора хозяев (-3) · П1: 13 | Х: 8.5 | П2: 1.14 @ Bet365
   - Европейская фора хозяев (-3) · П1: 6.35 | Х: 5 | П2: 1.1 @ Marathonbet
-  - 1X2 · П1: 1.7 | Х: 3.9 | П2: 4.75 @ Bet365
+  - 1X2 · П1: 1.73 | Х: 3.9 | П2: 4.75 @ Bet365
   - 1X2 · П1: 1.74 | Х: 3.9 | П2: 4.75 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.44 | ИТМ: 2.62 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.43 | ИТМ: 2.62 @ Marathonbet
@@ -693,7 +693,7 @@ Canonical: 4 | active WATCH crossings: 7 | RED: 0 | ORANGE: 8
 
 - **Manchester City — Sunderland** | Premier League | 20.09 13:00 UTC
   - ОЗ · ОЗ Да: 1.95 | ОЗ Нет: 1.8 @ Bet365
-  - ОЗ · ОЗ Да: 1.92 | ОЗ Нет: 1.79 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.89 | ОЗ Нет: 1.81 @ Marathonbet
   - Ф(0) · Ф1(0): 1.1 | Ф2(0): 6.8 @ Bet365
   - Ф(0) · Ф1(0): 1.08 | Ф2(0): 6.45 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.07 | Х2: 3.5 | 12: 1.14 @ Bet365
@@ -726,7 +726,7 @@ Canonical: 4 | active WATCH crossings: 7 | RED: 0 | ORANGE: 8
 
 - **Frosinone — Como** | Serie A | 20.09 13:00 UTC
   - ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Bet365
-  - ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.56 | ОЗ Нет: 2.27 @ Marathonbet
   - Ф(0) · Ф1(0): 4.5 | Ф2(0): 1.19 @ Bet365
   - Ф(0) · Ф1(0): 4.55 | Ф2(0): 1.16 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 2.5 | Х2: 1.12 | 12: 1.18 @ Bet365
@@ -760,8 +760,8 @@ Canonical: 4 | active WATCH crossings: 7 | RED: 0 | ORANGE: 8
   - Тотал 2.5 — нет данных
 
 - **Parma — Genoa** | Serie A | 20.09 13:00 UTC
-  - ОЗ · ОЗ Да: 2 | ОЗ Нет: 1.75 @ Bet365
-  - ОЗ · ОЗ Да: 1.99 | ОЗ Нет: 1.73 @ Marathonbet
+  - ОЗ · ОЗ Да: 2.05 | ОЗ Нет: 1.7 @ Bet365
+  - ОЗ · ОЗ Да: 2 | ОЗ Нет: 1.72 @ Marathonbet
   - Ф(0) · Ф1(0): 2.15 | Ф2(0): 1.68 @ Bet365
   - Ф(0) · Ф1(0): 2.14 | Ф2(0): 1.71 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.53 | Х2: 1.36 | 12: 1.36 @ Bet365
@@ -1537,7 +1537,7 @@ Canonical: 4 | active WATCH crossings: 7 | RED: 0 | ORANGE: 8
   - Тотал 2.5 — нет данных
 
 - **Villarreal — Levante** | La Liga | 20.09 16:30 UTC
-  - ОЗ · ОЗ Да: 1.62 | ОЗ Нет: 2.2 @ Bet365
+  - ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Bet365
   - ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Marathonbet
   - Ф(0) · Ф1(0): 1.2 | Ф2(0): 4.4 @ Bet365
   - Ф(0) · Ф1(0): 1.16 | Ф2(0): 4.6 @ Marathonbet
@@ -1836,7 +1836,7 @@ Canonical: 4 | active WATCH crossings: 7 | RED: 0 | ORANGE: 8
 
 - **Marseille — Paris Saint Germain** | Ligue 1 | 20.09 18:45 UTC
   - ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Bet365
-  - ОЗ · ОЗ Да: 1.54 | ОЗ Нет: 2.32 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.55 | ОЗ Нет: 2.29 @ Marathonbet
   - Ф(0) · Ф1(0): 5.9 | Ф2(0): 1.13 @ Bet365
   - Ф(0) · Ф1(0): 5.9 | Ф2(0): 1.1 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 3 | Х2: 1.1 | 12: 1.17 @ Bet365
@@ -1971,7 +1971,7 @@ Canonical: 4 | active WATCH crossings: 7 | RED: 0 | ORANGE: 8
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **HEALTHY** | critical 0 | warnings 0
+- System Health: **WARN** | critical 0 | warnings 1
 - Логическая canonical экспозиция: **4.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 24 | data required 3
