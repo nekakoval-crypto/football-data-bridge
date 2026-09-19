@@ -42,6 +42,16 @@ class Pbk16ClubIdentityTests(unittest.TestCase):
     def test_non_bounded_rows_are_excluded(self):
         self.assertEqual(c.build(temporal("Man City","UNBOUNDED_INTERVAL"),leagues(),fixture()),[])
 
+    def test_team_stats_extend_pbk16_catalog_without_provider_call(self):
+        stats=[{
+            "provider_league_id":"39",
+            "team_id":"39",
+            "team_name":"Wolverhampton",
+        }]
+        rows=c.build(temporal("Wolves"),leagues(),[],stats)
+        self.assertEqual(rows[0]["pbk16_club_identity_status"],"PBK16_EXACT_ALIAS_UNIQUE")
+        self.assertEqual(rows[0]["pbk16_team_id"],"39")
+
     def test_non_pbk16_league_is_excluded_from_catalog(self):
         rows=c.build(temporal("Man City"),leagues(),fixture(league="999"))
         self.assertEqual(rows[0]["pbk16_club_identity_status"],"OUTSIDE_PBK16_OR_UNMAPPED")
