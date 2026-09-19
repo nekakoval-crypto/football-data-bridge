@@ -1,6 +1,6 @@
 # Stage77 Historical Player Backfill
 
-Status: **IMPLEMENTED HISTORICAL ARCHIVE COLLECTOR ? RESEARCH ONLY**
+Status: **IMPLEMENTED HISTORICAL ARCHIVE COLLECTOR - RESEARCH ONLY**
 
 Purpose:
 
@@ -10,14 +10,14 @@ persisted PBK16 historical fixture archive.
 Pipeline:
 
 `PBK16 fixture archive`
-? `historical candidate selection`
-? `shared API-Football broker`
-? `durable R2 raw archive`
-? `player_stats_snapshots.csv`
-? `player_grade_snapshots.csv`
-? `Stage78 research`
-? `Stage72 SQLite`
-? `Stage73 archive API`
+-> `historical candidate selection`
+-> `shared API-Football broker`
+-> `durable R2 raw archive`
+-> `player_stats_snapshots.csv`
+-> `player_grade_snapshots.csv`
+-> `Stage78 research`
+-> `Stage72 SQLite`
+-> `Stage73 archive API`
 
 ## Source denominator
 
