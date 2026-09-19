@@ -1,25 +1,21 @@
 {
-  "run_at_utc": "2026-09-19T19:01:24Z",
-  "status": "BUDGET_DEFERRED",
+  "run_at_utc": "2026-09-19T19:31:14Z",
+  "status": "OK",
   "tracked_leagues": 16,
-  "candidate_leagues": 1,
+  "candidate_leagues": 0,
   "provider_calls": 0,
   "snapshots_appended": 0,
   "rows_appended": 0,
-  "skipped_no_upcoming_fixture": 0,
+  "skipped_no_upcoming_fixture": 1,
   "skipped_adequate_snapshot": 0,
   "skipped_no_data_backoff": 0,
-  "budget_deferred_leagues": [
-    "94"
-  ],
-  "api_day_calls_before": 2591,
-  "api_day_calls_after": 2591,
-  "reserved_live_calls": 12,
+  "budget_deferred_leagues": [],
+  "api_day_calls_before": 2635,
+  "api_day_calls_after": 2635,
+  "reserved_live_calls": 10,
   "reserved_current_round_calls": 32,
   "safety_margin_calls": 10,
   "standings_available_calls": 0,
-  "warnings": [
-    "Stage71 protected API reserve reached; Challenger deferred"
-  ],
+  "warnings": [],
   "provider_polling": true
 }
