@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V32_TOP5_MOTIVATION_MARKET_RESEARCH"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -62,6 +62,9 @@ SOURCES = {
     "pbk16_competition_fixtures": "pbk16_all_competition_fixture_history.csv",
     "pbk16_competition_state": "stage80_pbk16_competition_backfill_state.csv",
     "pbk16_competition_congestion": "pbk16_competition_congestion_research.csv",
+    "pbk16_domestic_phase_audit": "pbk16_domestic_phase_audit.csv",
+    "pbk16_format_inventory": "pbk16_domestic_league_format_inventory.csv",
+    "pbk16_historical_table_context": "pbk16_historical_table_context_research.csv",
     "pbk16_international_window_context": "pbk16_international_window_context_research.csv",
     "pbk14_market_bridge": "pbk14_football_data_fixture_bridge.csv",
     "pbk14_international_window_market_join": "pbk14_international_window_market_join_research.csv",
@@ -237,6 +240,9 @@ def build_report(ops=OPS, archive_dir=None):
     prematch_walkforward_meta = read_json(Path(ops) / "stage80_prematch_factor_walkforward_last_run.json")
     pbk16_competition_meta = read_json(Path(ops) / "stage80_pbk16_competition_backfill_last_run.json")
     pbk16_congestion_meta = read_json(Path(ops) / "stage80_pbk16_competition_congestion_last_run.json")
+    pbk16_phase_meta = read_json(Path(ops) / "stage80_pbk16_domestic_phase_audit_last_run.json")
+    pbk16_format_meta = read_json(Path(ops) / "stage80_pbk16_format_inventory_last_run.json")
+    pbk16_table_meta = read_json(Path(ops) / "stage80_pbk16_historical_table_context_last_run.json")
     pbk16_international_meta = read_json(Path(ops) / "stage80_pbk16_international_window_context_last_run.json")
     pbk14_market_source_meta = read_json(Path(ops) / "stage80_football_data_pbk14_history_last_run.json")
     pbk14_market_bridge_meta = read_json(Path(ops) / "stage80_pbk14_fixture_bridge_last_run.json")
@@ -1054,6 +1060,9 @@ def build_report(ops=OPS, archive_dir=None):
     pbk16_fixtures = data["pbk16_competition_fixtures"] or []
     pbk16_state = data["pbk16_competition_state"] or []
     pbk16_congestion = data["pbk16_competition_congestion"] or []
+    pbk16_phase = data["pbk16_domestic_phase_audit"] or []
+    pbk16_format_inventory = data["pbk16_format_inventory"] or []
+    pbk16_table = data["pbk16_historical_table_context"] or []
 
     pbk16_catalog_valid = [
         row for row in pbk16_catalog
