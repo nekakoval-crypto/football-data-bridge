@@ -328,23 +328,44 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Build provider-free Stage80 archive layers
-        run: |
-          python scripts/stage80_historical_fixture_catalog.py
-          python scripts/stage80_historical_player_catalog.py
-          python scripts/stage80_lineup_injury_archive.py
-          python scripts/stage80_archive_manifest.py
-          python scripts/stage80_archive_readiness.py
-      - name: Publish Stage80 outputs safely
+      - name: Build and publish latest-main Stage80 outputs safely
         shell: bash
         run: |
+          set -euo pipefail
           git config user.name 'stage80-bot'
           git config user.email 'stage80-bot@users.noreply.github.com'
-          git add ops/historical_fixtures.csv ops/stage80_fixture_catalog_last_run.json
-          git add ops/historical_players.csv ops/stage80_player_catalog_last_run.json
-          git add ops/lineup_snapshots.csv ops/injury_snapshots.csv ops/stage80_lineup_injury_archive_last_run.json
-          git add ops/stage80_archive_manifest.json ops/stage80_archive_manifest.csv
-          git add ops/stage80_archive_readiness.json ops/stage80_archive_readiness.md
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Stage 80 archive layers update'
-          python scripts/publish_operational_commit.py
+
+          for attempt in 1 2 3 4; do
+            echo "Stage80 readiness publish attempt ${attempt}/4"
+
+            git rebase --abort >/dev/null 2>&1 || true
+            git fetch origin main
+            git reset --hard origin/main
+
+            python scripts/stage80_historical_fixture_catalog.py
+            python scripts/stage80_historical_player_catalog.py
+            python scripts/stage80_lineup_injury_archive.py
+            python scripts/stage80_archive_manifest.py
+            python scripts/stage80_archive_readiness.py
+
+            git add ops/historical_fixtures.csv ops/stage80_fixture_catalog_last_run.json
+            git add ops/historical_players.csv ops/stage80_player_catalog_last_run.json
+            git add ops/lineup_snapshots.csv ops/injury_snapshots.csv ops/stage80_lineup_injury_archive_last_run.json
+            git add ops/stage80_archive_manifest.json ops/stage80_archive_manifest.csv
+            git add ops/stage80_archive_readiness.json ops/stage80_archive_readiness.md
+
+            if git diff --cached --quiet; then
+              echo "Stage80 readiness already current on latest main."
+              exit 0
+            fi
+
+            git commit -m 'Stage 80 archive layers update'
+            if python scripts/publish_operational_commit.py; then
+              exit 0
+            fi
+
+            echo "Operational publish raced with another main update; rebuilding from latest main."
+          done
+
+          echo "Stage80 readiness publish could not converge after 4 attempts." >&2
+          exit 1
