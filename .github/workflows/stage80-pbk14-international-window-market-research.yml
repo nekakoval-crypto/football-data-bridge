@@ -40,7 +40,11 @@ jobs:
       - name: Compile and provider-free tests
         run: |
           python -m py_compile scripts/stage80_pbk14_international_window_market_research.py
+          python -m py_compile scripts/stage80_archive_manifest.py
+          python -m py_compile scripts/stage80_archive_readiness.py
           python -m unittest scripts.tests.test_stage80_pbk14_international_window_market_research -v
+          python -m unittest scripts.tests.test_stage80_pbk14_international_window_market_research_manifest -v
+          python -m unittest scripts.tests.test_stage80_pbk14_international_window_market_research_readiness -v
       - name: Feature diff hygiene
         if: github.event_name == 'pull_request'
         shell: bash
