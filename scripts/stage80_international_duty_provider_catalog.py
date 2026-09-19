@@ -31,10 +31,10 @@ DEFAULT_START=2017
 DEFAULT_END=2026
 
 POSITIVE_PATTERNS=[
-    ("WORLD_CUP",r"\bworld cup\b"),
     ("WORLD_CUP_QUALIFICATION",r"world cup.*qualif|qualif.*world cup|\bwc qualification\b"),
-    ("EURO_CHAMPIONSHIP",r"euro championship|european championship"),
+    ("WORLD_CUP",r"\bworld cup\b"),
     ("EURO_QUALIFICATION",r"euro.*qualif|qualif.*euro|european championship.*qualif"),
+    ("EURO_CHAMPIONSHIP",r"euro championship|european championship"),
     ("NATIONS_LEAGUE",r"nations league"),
     ("COPA_AMERICA",r"copa am[eé]rica"),
     ("AFRICA_CUP_OF_NATIONS",r"africa cup of nations"),
