@@ -29,7 +29,7 @@ from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
-VERSION = "PBK_STAGE80_PBK14_INTERNATIONAL_WINDOW_MARKET_JOIN_V1"
+VERSION = "PBK_STAGE80_PBK14_INTERNATIONAL_WINDOW_MARKET_JOIN_V2"
 ELIGIBLE = {"AUTO", "HIGH"}
 
 MARKET_FIELDS = [
@@ -45,6 +45,7 @@ MARKET_FIELDS = [
 INTERNATIONAL_FIELDS = [
     "nearest_window_id", "window_start_utc", "window_end_utc",
     "window_max_matches", "window_notes", "window_relation",
+    "window_reference_contract",
     "hours_to_window_start", "hours_since_window_end",
     "within_72h_before_window", "within_96h_before_window",
     "within_7d_before_window", "within_72h_after_window",
@@ -148,6 +149,7 @@ def valid_bridge_row(row):
 def valid_context_row(row):
     return (
         sval(row, "domestic_fixture_id")
+        and sval(row, "window_reference_contract") == "NEAREST_WINDOW_RELATION_GATED_V2"
         and sval(row, "player_level_international_status") == "UNVERIFIED"
         and is_false(row.get("final_tournaments_included"))
         and is_false(row.get("non_uefa_only_windows_included"))
@@ -317,6 +319,7 @@ def build_meta(rows, diag):
         "either_first_domestic_after_window_rows": sum(
             is_true(r.get("either_first_domestic_league_match_after_window")) for r in rows
         ),
+        "window_reference_contract": "NEAREST_WINDOW_RELATION_GATED_V2",
         "player_level_international_status": "UNVERIFIED",
         "player_callup_inferred": False,
         "player_travel_inferred": False,

@@ -56,6 +56,7 @@ def context(fid="100"):
         "window_max_matches": "2",
         "window_notes": "UEFA-relevant international window",
         "window_relation": "AFTER",
+        "window_reference_contract": "NEAREST_WINDOW_RELATION_GATED_V2",
         "hours_to_window_start": "",
         "hours_since_window_end": "62.0",
         "within_72h_before_window": "false",
@@ -105,6 +106,7 @@ class PBK14InternationalWindowMarketJoinTests(unittest.TestCase):
         self.assertEqual(row["mapping_status"], "AUTO")
         self.assertEqual(row["nearest_window_id"], "2024_SEP")
         self.assertEqual(row["window_relation"], "AFTER")
+        self.assertEqual(row["window_reference_contract"], "NEAREST_WINDOW_RELATION_GATED_V2")
         self.assertEqual(row["within_72h_after_window"], "true")
         self.assertEqual(row["home_first_domestic_league_match_after_window"], "true")
         self.assertEqual(row["player_level_international_status"], "UNVERIFIED")
@@ -113,6 +115,15 @@ class PBK14InternationalWindowMarketJoinTests(unittest.TestCase):
         self.assertEqual(row["no_lookahead"], "true")
         self.assertEqual(row["fuzzy_string_matching_used"], "false")
         self.assertEqual(row["operational_betting_authority"], "false")
+
+
+    def test_v1_context_without_reference_contract_is_fail_closed(self):
+        c = context()
+        c.pop("window_reference_contract")
+        rows, diag = j.project([market()], [bridge()], [c])
+        self.assertEqual(rows, [])
+        self.assertEqual(diag["context_valid_rows"], 0)
+        self.assertEqual(diag["context_invalid_rows"], 1)
 
     def test_review_and_unmapped_never_enter_join(self):
         rows, diag = j.project(
@@ -170,6 +181,7 @@ class PBK14InternationalWindowMarketJoinTests(unittest.TestCase):
         self.assertEqual(meta["closing_total25_matches"], 1)
         self.assertEqual(meta["within_72h_after_rows"], 1)
         self.assertEqual(meta["either_first_domestic_after_window_rows"], 1)
+        self.assertEqual(meta["window_reference_contract"], "NEAREST_WINDOW_RELATION_GATED_V2")
         self.assertEqual(meta["player_level_international_status"], "UNVERIFIED")
         self.assertFalse(meta["player_callup_inferred"])
         self.assertFalse(meta["player_travel_inferred"])

@@ -57,6 +57,7 @@ class PBK16InternationalWindowReadinessTests(unittest.TestCase):
                 "kickoff_utc": "2025-09-12T15:00:00Z",
                 "home_team_id": str(3000 + i * 2),
                 "away_team_id": str(3001 + i * 2),
+                "window_reference_contract": "NEAREST_WINDOW_RELATION_GATED_V2",
                 "player_level_international_status": "UNVERIFIED",
                 "final_tournaments_included": "false",
                 "non_uefa_only_windows_included": "false",
@@ -89,7 +90,7 @@ class PBK16InternationalWindowReadinessTests(unittest.TestCase):
         self.write_json(
             "stage80_pbk16_international_window_context_last_run.json",
             {
-                "version": "PBK_STAGE80_PBK16_INTERNATIONAL_WINDOW_CONTEXT_V1",
+                "version": "PBK_STAGE80_PBK16_INTERNATIONAL_WINDOW_CONTEXT_V2",
                 "status": "OK",
                 "source_domestic_rows": 16,
                 "output_rows": 16,
@@ -99,6 +100,7 @@ class PBK16InternationalWindowReadinessTests(unittest.TestCase):
                 "domestic_anchor_league_ids": 16,
                 "calendar_windows": 39,
                 "calendar_sources": 5,
+                "window_reference_contract": "NEAREST_WINDOW_RELATION_GATED_V2",
                 "within_72h_before_rows": 2,
                 "within_96h_before_rows": 3,
                 "within_72h_after_rows": 4,
@@ -135,6 +137,7 @@ class PBK16InternationalWindowReadinessTests(unittest.TestCase):
         self.assertEqual(layer["invalid_rows"], 0)
         self.assertEqual(layer["duplicate_domestic_fixture_ids"], 0)
         self.assertEqual(layer["calendar_windows"], 39)
+        self.assertEqual(layer["window_reference_contract"], "NEAREST_WINDOW_RELATION_GATED_V2")
         self.assertEqual(layer["player_level_international_status"], "UNVERIFIED")
         self.assertFalse(layer["operational_betting_authority"])
         self.assertNotIn(

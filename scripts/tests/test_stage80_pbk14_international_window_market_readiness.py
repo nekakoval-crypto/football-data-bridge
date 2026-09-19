@@ -38,6 +38,7 @@ class PBK14InternationalWindowMarketReadinessTests(unittest.TestCase):
             "api_kickoff_utc": "2024-09-14T14:00:00+00:00",
             "league_code": "E0",
             "date_iso": "2024-09-14",
+            "window_reference_contract": "NEAREST_WINDOW_RELATION_GATED_V2",
             "player_level_international_status": player_status,
             "final_tournaments_included": "false",
             "non_uefa_only_windows_included": "false",
@@ -65,7 +66,7 @@ class PBK14InternationalWindowMarketReadinessTests(unittest.TestCase):
         self.write_json(
             "stage80_pbk14_international_window_market_join_last_run.json",
             {
-                "version": "PBK_STAGE80_PBK14_INTERNATIONAL_WINDOW_MARKET_JOIN_V1",
+                "version": "PBK_STAGE80_PBK14_INTERNATIONAL_WINDOW_MARKET_JOIN_V2",
                 "joined_rows": 1,
                 "missing_market_rows": 0,
                 "missing_context_rows": 0,
@@ -74,6 +75,7 @@ class PBK14InternationalWindowMarketReadinessTests(unittest.TestCase):
                 "context_invalid_rows": 0,
                 "context_duplicate_fixture_ids": 0,
                 "join_coverage_pct": 100.0,
+                "window_reference_contract": "NEAREST_WINDOW_RELATION_GATED_V2",
                 "closing_1x2_matches": 1,
                 "closing_total25_matches": 1,
                 "within_72h_before_rows": 0,
@@ -111,6 +113,7 @@ class PBK14InternationalWindowMarketReadinessTests(unittest.TestCase):
         self.assertEqual(layer["invalid_rows"], 0)
         self.assertEqual(layer["duplicate_historical_match_ids"], 0)
         self.assertEqual(layer["duplicate_api_fixture_ids"], 0)
+        self.assertEqual(layer["window_reference_contract"], "NEAREST_WINDOW_RELATION_GATED_V2")
         self.assertEqual(layer["player_level_international_status"], "UNVERIFIED")
         self.assertFalse(layer["operational_betting_authority"])
         self.assertNotIn(

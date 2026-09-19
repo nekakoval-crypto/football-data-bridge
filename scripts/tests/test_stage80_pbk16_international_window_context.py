@@ -82,10 +82,12 @@ class PBK16InternationalWindowContextTests(unittest.TestCase):
             domestic("101", "2025-09-12T12:00:00+00:00", "10", "30"),
             # Close before the October 2025 window.
             domestic("102", "2025-10-03T12:00:00+00:00", "40", "50"),
+            # Inside the October 2025 window; first-after flags must not reuse September.
+            domestic("103", "2025-10-10T12:00:00+00:00", "60", "70"),
         ]
         domestic_rows, projected, invalid = s.project(rows, cfg, windows)
         self.assertEqual(invalid, 0)
-        self.assertEqual(len(domestic_rows), 3)
+        self.assertEqual(len(domestic_rows), 4)
 
         by_id = {row["domestic_fixture_id"]: row for row in projected}
         first = by_id["100"]
@@ -110,8 +112,22 @@ class PBK16InternationalWindowContextTests(unittest.TestCase):
         self.assertEqual(before["within_72h_before_window"], "true")
         self.assertEqual(before["within_96h_before_window"], "true")
         self.assertEqual(before["within_7d_before_window"], "true")
+        self.assertEqual(before["home_domestic_matches_since_window_end_before_fixture"], "")
+        self.assertEqual(before["away_domestic_matches_since_window_end_before_fixture"], "")
+        self.assertEqual(before["home_first_domestic_league_match_after_window"], "false")
+        self.assertEqual(before["away_first_domestic_league_match_after_window"], "false")
+
+        inside = by_id["103"]
+        self.assertEqual(inside["nearest_window_id"], "2025_OCT")
+        self.assertEqual(inside["window_relation"], "INSIDE")
+        self.assertEqual(inside["within_72h_before_window"], "false")
+        self.assertEqual(inside["within_72h_after_window"], "false")
+        self.assertEqual(inside["home_domestic_matches_since_window_end_before_fixture"], "")
+        self.assertEqual(inside["away_domestic_matches_since_window_end_before_fixture"], "")
+        self.assertEqual(inside["either_first_domestic_league_match_after_window"], "false")
 
         for row in projected:
+            self.assertEqual(row["window_reference_contract"], "NEAREST_WINDOW_RELATION_GATED_V2")
             self.assertEqual(row["player_level_international_status"], "UNVERIFIED")
             self.assertEqual(row["final_tournaments_included"], "false")
             self.assertEqual(row["non_uefa_only_windows_included"], "false")

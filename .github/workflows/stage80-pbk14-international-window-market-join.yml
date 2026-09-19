@@ -95,12 +95,16 @@ jobs:
           assert source['present_source_files']==94, source
           assert source['missing_source_files']==0, source
           assert source['normalized_matches']==join['market_rows'], (source,join)
+          assert context['version']=='PBK_STAGE80_PBK16_INTERNATIONAL_WINDOW_CONTEXT_V2', context
           assert context['status']=='OK', context
+          assert context['window_reference_contract']=='NEAREST_WINDOW_RELATION_GATED_V2', context
           assert context['output_rows']==40989, context
           assert context['unique_domestic_fixture_ids']==40989, context
           assert context['duplicate_domestic_fixture_ids']==0, context
           assert context['player_level_international_status']=='UNVERIFIED', context
           assert context['no_lookahead'] is True, context
+          assert join['version']=='PBK_STAGE80_PBK14_INTERNATIONAL_WINDOW_MARKET_JOIN_V2', join
+          assert join['window_reference_contract']=='NEAREST_WINDOW_RELATION_GATED_V2', join
           assert join['bridge_eligible_rows']==bridge['mapped_auto_high'], (bridge,join)
           assert join['bridge_eligible_rows']>=37327, join
           assert join['bridge_eligible_unique_historical_ids']==join['bridge_eligible_rows'], join
