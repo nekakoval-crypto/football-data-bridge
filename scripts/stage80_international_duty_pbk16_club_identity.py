@@ -24,6 +24,7 @@ TEMPORAL = OPS / "international_duty_player_temporal_club.csv"
 LEAGUES = OPS / "stage71_league_catalog.csv"
 FIXTURES = OPS / "current_round_fixtures.csv"
 TEAM_STATS = OPS / "team_match_statistics.csv"
+TEAM_ROSTERS = OPS / "team_rosters.csv"
 OUTPUT = OPS / "international_duty_player_pbk16_club_identity.csv"
 META = OPS / "stage80_international_duty_pbk16_club_identity_last_run.json"
 
@@ -93,8 +94,14 @@ def write_json(path, payload):
     tmp.replace(path)
 
 
+SPECIAL_TRANSLITERATION = str.maketrans({
+    "Ł":"L","ł":"l","Ø":"O","ø":"o","Đ":"D","đ":"d",
+    "Þ":"Th","þ":"th","Æ":"Ae","æ":"ae","Œ":"Oe","œ":"oe",
+})
+
 def normalize_text(value):
-    text = unicodedata.normalize("NFKD", str(value or ""))
+    text = str(value or "").translate(SPECIAL_TRANSLITERATION)
+    text = unicodedata.normalize("NFKD", text)
     text = "".join(ch for ch in text if not unicodedata.combining(ch))
     text = text.casefold().replace("&", " and ")
     text = re.sub(r"[^a-z0-9]+", " ", text)
@@ -113,7 +120,7 @@ def team_id_from_logo(url):
     return match.group(1) if match else ""
 
 
-def build_pbk16_catalog(league_rows, fixture_rows, team_stat_rows=None):
+def build_pbk16_catalog(league_rows, fixture_rows, team_stat_rows=None, team_roster_rows=None):
     pbk_leagues = {
         sval(row, "api_league_id")
         for row in league_rows
@@ -149,11 +156,29 @@ def build_pbk16_catalog(league_rows, fixture_rows, team_stat_rows=None):
             "team_name": name,
             "provider_league_id": league_id,
         }
+    # team_rosters is a saved PBK16 entity namespace. It is used only to
+    # translate team id/name, never to infer a player's historical club.
+    for row in team_roster_rows or []:
+        name = sval(row, "team_name")
+        team_id = sval(row, "team_id")
+        key = identity_key(name)
+        if not name or not team_id or not key:
+            continue
+        existing_leagues = {
+            item.get("provider_league_id", "")
+            for item in by_key.get(key, {}).values()
+            if item.get("provider_league_id")
+        }
+        by_key[key][team_id] = {
+            "team_id": team_id,
+            "team_name": name,
+            "provider_league_id": next(iter(existing_leagues)) if len(existing_leagues) == 1 else "",
+        }
     return by_key
 
 
-def build(temporal_rows, league_rows, fixture_rows, team_stat_rows=None):
-    catalog = build_pbk16_catalog(league_rows, fixture_rows, team_stat_rows or [])
+def build(temporal_rows, league_rows, fixture_rows, team_stat_rows=None, team_roster_rows=None):
+    catalog = build_pbk16_catalog(league_rows, fixture_rows, team_stat_rows or [], team_roster_rows or [])
     output = []
     for row in temporal_rows:
         if sval(row, "temporal_club_status") != "BOUNDED_CHAIN_CONFIRMED":
@@ -201,12 +226,14 @@ def build(temporal_rows, league_rows, fixture_rows, team_stat_rows=None):
 
 
 def run(temporal_path=TEMPORAL, league_path=LEAGUES, fixture_path=FIXTURES,
-        team_stats_path=TEAM_STATS, output_path=OUTPUT, meta_path=META):
+        team_stats_path=TEAM_STATS, team_rosters_path=TEAM_ROSTERS,
+        output_path=OUTPUT, meta_path=META):
     temporal = read_csv(temporal_path)
     leagues = read_csv(league_path)
     fixtures = read_csv(fixture_path)
     team_stats = read_csv(team_stats_path)
-    rows = build(temporal, leagues, fixtures, team_stats)
+    team_rosters = read_csv(team_rosters_path)
+    rows = build(temporal, leagues, fixtures, team_stats, team_rosters)
     keys = [(sval(r, "fixture_id"), sval(r, "player_id")) for r in rows]
     duplicate_rows = len(keys) - len(set(keys))
     counts = Counter(sval(r, "pbk16_club_identity_status") for r in rows)
@@ -230,6 +257,7 @@ def run(temporal_path=TEMPORAL, league_path=LEAGUES, fixture_path=FIXTURES,
         "bounded_input_rows": len(rows),
         "pbk16_catalog_fixture_rows": len(fixtures),
         "pbk16_catalog_team_stat_rows": len(team_stats),
+        "pbk16_catalog_team_roster_rows": len(team_rosters),
         "output_rows": len(rows),
         "mapped_pbk16_rows": mapped,
         "mapped_pbk16_players": len({
