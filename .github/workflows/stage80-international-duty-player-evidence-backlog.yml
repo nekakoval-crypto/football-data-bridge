@@ -1,0 +1,152 @@
+name: Stage 80 International Duty Player Evidence Backlog
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['Stage 80 International Duty Fixture Backfill']
+    types: [completed]
+  pull_request:
+    paths:
+      - 'config/stage80_fifa_uefa_windows_2017_2025.json'
+      - 'scripts/stage80_international_duty_player_evidence_backlog.py'
+      - 'scripts/tests/test_stage80_international_duty_player_evidence_backlog.py'
+      - '.github/workflows/stage80-international-duty-player-evidence-backlog.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'config/stage80_fifa_uefa_windows_2017_2025.json'
+      - 'scripts/stage80_international_duty_player_evidence_backlog.py'
+      - 'scripts/tests/test_stage80_international_duty_player_evidence_backlog.py'
+      - '.github/workflows/stage80-international-duty-player-evidence-backlog.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage80-international-duty-player-evidence-backlog-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and provider-free tests
+        run: |
+          python -m py_compile scripts/stage80_international_duty_player_evidence_backlog.py
+          python -m unittest scripts.tests.test_stage80_international_duty_player_evidence_backlog -v
+      - name: Provider isolation
+        shell: bash
+        run: |
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports|ApiFootballBroker|api_get' scripts/stage80_international_duty_player_evidence_backlog.py; then
+            echo 'Player-evidence backlog must remain fully provider-free.' >&2
+            exit 1
+          fi
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated player-evidence backlog outputs are forbidden in the feature PR.' >&2
+            exit 1
+          fi
+
+  materialize:
+    needs: validate
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPS_DIR: ops
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build fixed-window player-evidence backlog
+        run: python scripts/stage80_international_duty_player_evidence_backlog.py
+      - name: Verify backlog governance
+        run: |
+          python - <<'PY'
+          import csv, json
+          meta=json.load(open('ops/stage80_international_duty_player_evidence_backlog_last_run.json',encoding='utf-8'))
+          assert meta['version']=='PBK_STAGE80_INTERNATIONAL_DUTY_PLAYER_EVIDENCE_BACKLOG_V1', meta
+          assert meta['status']=='OK', meta
+          assert meta['source_fixture_rows']>0, meta
+          assert meta['source_finished_rows']>0, meta
+          assert meta['source_finished_player_evidence_eligible_rows']>0, meta
+          assert meta['backlog_rows']>0, meta
+          assert meta['backlog_rows'] < meta['source_finished_player_evidence_eligible_rows'], meta
+          assert meta['configured_windows']==39, meta
+          assert 0 < meta['backlog_window_count'] <= 39, meta
+          assert meta['duplicate_source_fixture_ids']==0, meta
+          assert meta['duplicate_backlog_fixture_ids']==0, meta
+          assert meta['invalid_source_rows']==0, meta
+          assert meta['invalid_backlog_rows']==0, meta
+          assert meta['evidence_tier_counts']['DIRECT_MINUTES']>0, meta
+          assert meta['evidence_tier_counts']['DIRECT_MATCHDAY_SQUAD']>0, meta
+          assert meta['capture_endpoint_counts']['/fixtures/players']>0, meta
+          assert meta['capture_endpoint_counts']['/fixtures/lineups']>0, meta
+          assert meta['final_tournaments_included'] is False, meta
+          assert meta['outside_fixed_window_fixtures_queued'] is False, meta
+          assert meta['callup_inference_allowed'] is False, meta
+          assert meta['nationality_inference_allowed'] is False, meta
+          assert meta['travel_inference_allowed'] is False, meta
+          assert meta['appearance_inference_allowed'] is False, meta
+          assert meta['player_minutes_claimed_before_capture'] is False, meta
+          assert meta['provider_calls']==0, meta
+          assert meta['research_only'] is True, meta
+          assert meta['operational_betting_authority'] is False, meta
+          assert meta['creates_signal'] is False, meta
+
+          with open('ops/international_duty_player_evidence_backlog.csv',encoding='utf-8-sig',newline='') as f:
+              rows=list(csv.DictReader(f))
+          assert len(rows)==meta['backlog_rows']
+          assert len({r['fixture_id'] for r in rows})==len(rows)
+          assert {r['capture_endpoint'] for r in rows}=={'/fixtures/players','/fixtures/lineups'}
+          assert all(r['window_id'] for r in rows)
+          assert all(r['source_status'] in {'FT','AET','PEN'} for r in rows)
+          assert all(r['callup_inference_allowed']=='false' for r in rows)
+          assert all(r['appearance_inference_allowed']=='false' for r in rows)
+          assert all(r['operational_betting_authority']=='false' for r in rows)
+          print({
+              'backlog_rows':meta['backlog_rows'],
+              'direct_minutes':meta['evidence_tier_counts']['DIRECT_MINUTES'],
+              'matchday_squad':meta['evidence_tier_counts']['DIRECT_MATCHDAY_SQUAD'],
+              'outside_window_not_queued':meta['outside_window_finished_player_evidence_eligible_rows'],
+              'windows_used':meta['backlog_window_count'],
+          })
+          PY
+      - name: Publish player-evidence backlog safely
+        shell: bash
+        run: |
+          git config user.name 'stage80-international-duty-bot'
+          git config user.email 'stage80-international-duty-bot@users.noreply.github.com'
+          git add ops/international_duty_player_evidence_backlog.csv
+          git add ops/stage80_international_duty_player_evidence_backlog_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 international-duty player-evidence backlog update'
+          python scripts/publish_operational_commit.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: international-duty-player-evidence-backlog
+          path: |
+            ops/international_duty_player_evidence_backlog.csv
+            ops/stage80_international_duty_player_evidence_backlog_last_run.json
+          if-no-files-found: error
+          retention-days: 90
