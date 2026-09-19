@@ -94,7 +94,7 @@ jobs:
           python - <<'PY'
           import csv, json
           meta=json.load(open('ops/stage80_international_duty_player_evidence_capture_last_run.json',encoding='utf-8'))
-          assert meta['version']=='PBK_STAGE80_INTERNATIONAL_DUTY_PLAYER_EVIDENCE_CAPTURE_V1', meta
+          assert meta['version']=='PBK_STAGE80_INTERNATIONAL_DUTY_PLAYER_EVIDENCE_CAPTURE_V2_STRICT_ROLE_SEMANTICS', meta
           assert meta['status'] in {'COLLECTING','OK'}, meta
           assert meta['backlog_rows']>0, meta
           assert 0 <= meta['provider_budget_calls'] <= 10, meta
@@ -110,6 +110,9 @@ jobs:
           assert meta['travel_inference_allowed'] is False, meta
           assert meta['formal_callup_separately_verified'] is False, meta
           assert meta['lineup_listing_implies_appearance'] is False, meta
+          assert meta['player_stats_starter_inference_allowed'] is False, meta
+          assert meta['player_stats_substitute_listing_inference_allowed'] is False, meta
+          assert meta['candidate_order']=='TIER_THEN_NEVER_ATTEMPTED_RECENT_FIRST_THEN_OLDEST_RETRY', meta
           assert meta['research_only'] is True, meta
           assert meta['operational_betting_authority'] is False, meta
           assert meta['creates_signal'] is False, meta
@@ -139,6 +142,17 @@ jobs:
           assert all(r['travel_inference_allowed']=='false' for r in evidence)
           assert all(r['operational_betting_authority']=='false' for r in evidence)
           assert all(r['creates_signal']=='false' for r in evidence)
+          player_stats=[r for r in evidence if r['capture_endpoint']=='/fixtures/players']
+          assert all(r['starter_listed_confirmed']=='false' for r in player_stats)
+          assert all(r['substitute_listed_confirmed']=='false' for r in player_stats)
+          assert all(
+              r['lineup_role'] in {
+                  'APPEARANCE_ROLE_UNVERIFIED',
+                  'SUBSTITUTE_APPEARANCE_PROVIDER_FLAG',
+                  'PLAYER_STATS_LISTED_NO_APPEARANCE',
+              }
+              for r in player_stats
+          )
 
           print({
               'status':meta['status'],
