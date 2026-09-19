@@ -34,6 +34,16 @@ class Pbk16ClubIdentityTests(unittest.TestCase):
         rows=c.build(temporal("Widzew Lodz"),leagues(),fixture("Widzew Łódź","6962"))
         self.assertEqual(rows[0]["pbk16_team_id"],"6962")
 
+    def test_special_latin_letters_normalize_safely(self):
+        self.assertEqual(c.identity_key("Widzew Łódź"), c.identity_key("Widzew Lodz"))
+        self.assertEqual(c.identity_key("Strømsgodset"), c.identity_key("Stromsgodset"))
+
+    def test_team_rosters_extend_entity_namespace_only(self):
+        rosters=[{"team_id":"6962","team_name":"Widzew Łódź"}]
+        rows=c.build(temporal("Widzew Lodz"),leagues(),[],[],rosters)
+        self.assertEqual(rows[0]["pbk16_club_identity_status"],"PBK16_EXACT_ALIAS_UNIQUE")
+        self.assertEqual(rows[0]["pbk16_team_id"],"6962")
+
     def test_outside_pbk16_fails_closed(self):
         rows=c.build(temporal("Colo-Colo"),leagues(),fixture())
         self.assertEqual(rows[0]["pbk16_club_identity_status"],"OUTSIDE_PBK16_OR_UNMAPPED")
