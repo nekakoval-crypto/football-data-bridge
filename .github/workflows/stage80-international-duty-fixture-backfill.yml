@@ -1,0 +1,161 @@
+name: Stage 80 International Duty Fixture Backfill
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['Stage 80 International Duty Source Allowlist']
+    types: [completed]
+  pull_request:
+    paths:
+      - 'scripts/stage80_international_duty_fixture_backfill.py'
+      - 'scripts/tests/test_stage80_international_duty_fixture_backfill.py'
+      - '.github/workflows/stage80-international-duty-fixture-backfill.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/stage80_international_duty_fixture_backfill.py'
+      - 'scripts/tests/test_stage80_international_duty_fixture_backfill.py'
+      - '.github/workflows/stage80-international-duty-fixture-backfill.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage80-international-duty-fixture-backfill-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and provider-free tests
+        run: |
+          python -m py_compile scripts/stage80_international_duty_fixture_backfill.py
+          python -m unittest scripts.tests.test_stage80_international_duty_fixture_backfill -v
+      - name: Provider isolation
+        shell: bash
+        run: |
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/stage80_international_duty_fixture_backfill.py; then
+            echo 'International-duty fixture backfill must reach API-Football only through the shared broker.' >&2
+            exit 1
+          fi
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated international-duty fixture outputs are forbidden in the feature PR.' >&2
+            exit 1
+          fi
+
+  capture:
+    needs: validate
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+      PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+      PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+      PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+      PBK_RAW_ARCHIVE_S3_PREFIX: api-football-raw
+      PBK_RAW_ARCHIVE_S3_REGION: auto
+      OPS_DIR: ops
+      STAGE71_MAX_DAILY_API_CALLS: '7000'
+      STAGE80_INTL_DUTY_FIXTURE_MAX_API_CALLS: '20'
+      STAGE80_INTL_DUTY_FIXTURE_PROTECTED_CALLS: '512'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install raw archive S3 client
+        run: python -m pip install --disable-pip-version-check boto3
+      - name: Run resumable international-duty fixture backfill
+        run: python scripts/stage80_international_duty_fixture_backfill.py
+      - name: Verify fixture archive governance
+        run: |
+          python - <<'PY'
+          import csv, json
+          meta=json.load(open('ops/stage80_international_duty_fixture_backfill_last_run.json',encoding='utf-8'))
+          assert meta['version']=='PBK_STAGE80_INTERNATIONAL_DUTY_FIXTURE_BACKFILL_V1', meta
+          assert meta['allowlist_rows']==80, meta
+          assert meta['state_rows']==80, meta
+          assert 0 <= meta['provider_budget_calls'] <= 20, meta
+          assert meta['captured_cells'] + meta['pending_cells'] + meta['error_cells'] == 80, meta
+          assert meta['fixture_archive_rows']==meta['unique_fixture_ids'], meta
+          assert meta['duplicate_fixture_ids']==0, meta
+          assert meta['invalid_archive_rows']==0, meta
+          assert meta['historical_callup_evidence_possible'] is False, meta
+          assert meta['nationality_inference_allowed'] is False, meta
+          assert meta['player_appearance_or_minutes_inferred'] is False, meta
+          assert meta['provider_fixture_history_only'] is True, meta
+          assert meta['historical_backfill_only'] is True, meta
+          assert meta['research_only'] is True, meta
+          assert meta['operational_betting_authority'] is False, meta
+          assert meta['creates_signal'] is False, meta
+          assert meta['probability_mutation'] is False, meta
+          assert meta['eligibility_mutation'] is False, meta
+          assert meta['stake_changes'] is False, meta
+          assert meta['forward_journal_mutation'] is False, meta
+
+          with open('ops/stage80_international_duty_fixture_backfill_state.csv',encoding='utf-8-sig',newline='') as f:
+              state=list(csv.DictReader(f))
+          with open('ops/international_team_fixture_history.csv',encoding='utf-8-sig',newline='') as f:
+              fixtures=list(csv.DictReader(f))
+          assert len(state)==80
+          assert len({(r['provider_league_id'],r['season']) for r in state})==80
+          assert len(fixtures)==meta['fixture_archive_rows']
+          assert len({r['fixture_id'] for r in fixtures})==len(fixtures)
+          assert all(r['historical_callup_evidence_possible']=='false' for r in fixtures)
+          assert all(r['nationality_inference_allowed']=='false' for r in fixtures)
+          assert all(r['operational_betting_authority']=='false' for r in fixtures)
+          print({
+              'status':meta['status'],
+              'captured_cells':meta['captured_cells'],
+              'pending_cells':meta['pending_cells'],
+              'error_cells':meta['error_cells'],
+              'calls_this_run':meta['provider_budget_calls'],
+              'fixtures':meta['fixture_archive_rows'],
+              'finished':meta['finished_fixture_rows'],
+              'player_evidence_eligible_fixtures':meta['fixture_rows_player_evidence_eligible'],
+          })
+          PY
+      - name: Publish international-duty fixture archive safely
+        shell: bash
+        run: |
+          git config user.name 'stage80-international-duty-bot'
+          git config user.email 'stage80-international-duty-bot@users.noreply.github.com'
+          git add ops/international_team_fixture_history.csv
+          git add ops/stage80_international_duty_fixture_backfill_state.csv
+          git add ops/stage80_international_duty_fixture_backfill_last_run.json
+          git add ops/stage71_observation_state.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 international-duty fixture backfill update'
+          python scripts/publish_operational_commit.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: international-duty-fixture-backfill
+          path: |
+            ops/international_team_fixture_history.csv
+            ops/stage80_international_duty_fixture_backfill_state.csv
+            ops/stage80_international_duty_fixture_backfill_last_run.json
+          if-no-files-found: error
+          retention-days: 90
