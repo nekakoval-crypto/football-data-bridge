@@ -38,7 +38,7 @@ class PBK14InternationalWindowMarketResearchManifestTests(unittest.TestCase):
         stability=by_id["pbk14_international_window_market_factor_stability_research"]
         self.assertEqual(profile["contract_status"],"OK")
         self.assertEqual(profile["role"],"RESEARCH_ANALYSIS")
-        self.assertEqual(profile["identity_key_text"],"factor|bucket|scope_type|scope_value")
+        self.assertEqual(profile["identity_key_text"],"factor+bucket+scope_type+scope_value")
         self.assertIn("player duty remains UNVERIFIED",profile["limitations"])
         self.assertEqual(stability["contract_status"],"OK")
         self.assertEqual(stability["role"],"RESEARCH_VALIDATION")
