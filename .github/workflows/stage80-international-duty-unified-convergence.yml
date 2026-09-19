@@ -1,0 +1,148 @@
+name: Stage 80 International Duty Unified Convergence
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['Stage 80 International Duty Player Evidence Capture']
+    types: [completed]
+  pull_request:
+    paths:
+      - '.github/workflows/stage80-international-duty-unified-convergence.yml'
+      - 'scripts/stage80_international_duty_player_identity_join.py'
+      - 'scripts/stage80_international_duty_player_temporal_club.py'
+      - 'scripts/stage80_international_duty_pbk16_club_identity.py'
+      - 'scripts/stage80_international_duty_return_load.py'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage80-international-duty-unified-convergence
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Compile convergence scripts
+        run: |
+          python -m py_compile scripts/stage80_international_duty_player_identity_join.py
+          python -m py_compile scripts/stage80_international_duty_player_temporal_club.py
+          python -m py_compile scripts/stage80_international_duty_pbk16_club_identity.py
+          python -m py_compile scripts/stage80_international_duty_return_load.py
+      - name: Provider isolation
+        run: |
+          for f in \
+            scripts/stage80_international_duty_player_identity_join.py \
+            scripts/stage80_international_duty_player_temporal_club.py \
+            scripts/stage80_international_duty_pbk16_club_identity.py \
+            scripts/stage80_international_duty_return_load.py; do
+            if grep -nE 'urllib\.|requests\.|api-sports\.io|ApiFootballBroker|api_get|curl' "$f"; then
+              echo "provider traffic detected in $f"
+              exit 1
+            fi
+          done
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then exit 1; fi
+
+  converge:
+    needs: validate
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Rebuild exact player identity join
+        run: python scripts/stage80_international_duty_player_identity_join.py
+      - name: Rebuild bounded historical club-at-date
+        run: python scripts/stage80_international_duty_player_temporal_club.py
+      - name: Rebuild PBK16 club identity
+        run: python scripts/stage80_international_duty_pbk16_club_identity.py
+      - name: Rebuild window-return load V2
+        run: python scripts/stage80_international_duty_return_load.py
+      - name: Verify convergence contracts
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          ops=Path('ops')
+          identity=json.loads((ops/'stage80_international_duty_player_identity_join_last_run.json').read_text(encoding='utf-8'))
+          temporal=json.loads((ops/'stage80_international_duty_player_temporal_club_last_run.json').read_text(encoding='utf-8'))
+          club=json.loads((ops/'stage80_international_duty_pbk16_club_identity_last_run.json').read_text(encoding='utf-8'))
+          ret=json.loads((ops/'stage80_international_duty_return_load_last_run.json').read_text(encoding='utf-8'))
+
+          assert identity['status']=='OK'
+          assert temporal['status']=='OK'
+          assert club['status']=='OK'
+          assert ret['status']=='OK'
+          assert identity['evidence_rows']==temporal['evidence_rows']
+          assert temporal['bounded_chain_confirmed_rows']==club['bounded_input_rows']
+          assert club['mapped_pbk16_rows']==ret['mapped_pbk16_input_rows']
+          assert ret['direct_evidence_rows']==identity['evidence_rows']
+          assert identity['duplicate_output_players']==0
+          assert temporal['duplicate_fixture_player_rows']==0
+          assert club['duplicate_fixture_player_rows']==0
+          assert ret['duplicate_output_rows']==0
+          assert identity['invalid_output_rows']==0
+          assert temporal['invalid_output_rows']==0
+          assert club['invalid_output_rows']==0
+          assert ret['invalid_output_rows']==0
+          assert identity['fuzzy_matching_used'] is False
+          assert temporal['current_club_substituted'] is False
+          assert temporal['fuzzy_club_matching_used'] is False
+          assert club['current_player_club_used_for_identity'] is False
+          assert club['fuzzy_matching_used'] is False
+          assert ret['current_club_used'] is False
+          assert ret['fuzzy_matching_used'] is False
+          assert ret['travel_inferred'] is False
+          assert ret['formal_callup_inferred'] is False
+          assert ret['provider_calls']==0
+          assert ret['version']=='PBK_STAGE80_INTERNATIONAL_DUTY_RETURN_LOAD_V2_WINDOW_RETURN_AGGREGATED'
+          assert ret['window_return_aggregated'] is True
+          assert ret['return_horizon_fail_closed'] is True
+          print({
+            'evidence_rows': identity['evidence_rows'],
+            'international_players': identity['international_evidence_players'],
+            'safe_transfer_identity_players': identity['international_players_with_safe_transfer_identity'],
+            'bounded_rows': temporal['bounded_chain_confirmed_rows'],
+            'pbk16_mapped_rows': club['mapped_pbk16_rows'],
+            'return_load_rows': ret['output_rows'],
+          })
+          PY
+      - name: Publish converged Stage80 outputs atomically
+        run: |
+          git config user.name 'stage80-international-duty-bot'
+          git config user.email 'stage80-international-duty-bot@users.noreply.github.com'
+          git add \
+            ops/international_duty_player_identity_join.csv \
+            ops/stage80_international_duty_player_identity_join_last_run.json \
+            ops/international_duty_player_temporal_club.csv \
+            ops/stage80_international_duty_player_temporal_club_last_run.json \
+            ops/international_duty_player_pbk16_club_identity.csv \
+            ops/stage80_international_duty_pbk16_club_identity_last_run.json \
+            ops/international_duty_player_return_load.csv \
+            ops/stage80_international_duty_return_load_last_run.json
+          if git diff --cached --quiet; then
+            echo 'No convergence changes to publish.'
+            exit 0
+          fi
+          git commit -m 'Stage 80 international-duty unified convergence update'
+          python scripts/publish_operational_commit.py
