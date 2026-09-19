@@ -1,0 +1,172 @@
+name: Stage 80 PBK14 Historical Market Bridge
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'config/stage80_football_data_pbk14_9seasons.json'
+      - 'scripts/stage80_football_data_pbk14_history.py'
+      - 'scripts/stage80_pbk14_fixture_bridge.py'
+      - 'scripts/tests/test_stage80_pbk14_market_bridge.py'
+      - 'docs/stage80_pbk14_market_bridge.md'
+      - '.github/workflows/stage80-pbk14-market-bridge.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'config/stage80_football_data_pbk14_9seasons.json'
+      - 'scripts/stage80_football_data_pbk14_history.py'
+      - 'scripts/stage80_pbk14_fixture_bridge.py'
+      - 'scripts/tests/test_stage80_pbk14_market_bridge.py'
+      - 'docs/stage80_pbk14_market_bridge.md'
+      - '.github/workflows/stage80-pbk14-market-bridge.yml'
+
+concurrency:
+  group: stage80-pbk14-market-bridge-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and provider-free tests
+        run: |
+          python -m py_compile scripts/stage80_football_data_pbk14_history.py scripts/stage80_pbk14_fixture_bridge.py
+          python -m unittest scripts.tests.test_stage80_pbk14_market_bridge -v
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated historical market outputs are forbidden in the feature PR.' >&2
+            exit 1
+          fi
+
+  build:
+    needs: validate
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download and normalize PBK14 Football-Data history
+        run: |
+          mkdir -p source normalized
+          python scripts/stage80_football_data_pbk14_history.py             --config config/stage80_football_data_pbk14_9seasons.json             --download-dir source             --out-csv normalized/football_data_pbk14_9season_matches.csv             --meta-out normalized/stage80_football_data_pbk14_history_meta.json             --fetch
+      - name: Verify PBK14 source coverage and governance
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open('normalized/stage80_football_data_pbk14_history_meta.json',encoding='utf-8'))
+          assert p['expected_source_files']==94, p
+          assert p['present_source_files']==94, p
+          assert p['missing_source_files']==0, p
+          assert p['supported_leagues']==14, p
+          assert len(p['unsupported_pbk_leagues'])==2, p
+          assert {x['country'] for x in p['unsupported_pbk_leagues']}=={'Lithuania','Latvia'}, p
+          assert p['normalized_matches']>25000, p
+          assert len(p['rows_by_league'])==14, p
+          assert not p['missing_supported_league_codes'], p
+          assert p['closing_1x2_matches']>0, p
+          assert p['historical_backfill_only'] is True, p
+          assert p['research_only'] is True, p
+          assert p['operational_betting_authority'] is False, p
+          assert p['creates_signal'] is False, p
+          print({
+            'matches':p['normalized_matches'],
+            'rows_by_league':p['rows_by_league'],
+            'league_season_cells_present':p['league_season_cells_present'],
+            'missing_league_season_cells':p['missing_league_season_cells'],
+            'closing_1x2_matches':p['closing_1x2_matches'],
+            'closing_total25_matches':p['closing_total25_matches'],
+          })
+          PY
+      - name: Build conservative provider identity bridge
+        run: |
+          python scripts/stage80_pbk14_fixture_bridge.py             --source normalized/football_data_pbk14_9season_matches.csv             --api-archive ops/pbk16_all_competition_fixture_history.csv             --config config/stage80_football_data_pbk14_9seasons.json             --out-csv normalized/pbk14_football_data_fixture_bridge.csv             --meta-out normalized/stage80_pbk14_fixture_bridge_meta.json
+      - name: Verify bridge governance and one-to-one integrity
+        run: |
+          python - <<'PY'
+          import csv, json
+          p=json.load(open('normalized/stage80_pbk14_fixture_bridge_meta.json',encoding='utf-8'))
+          assert p['source_rows']>25000, p
+          assert p['mapped_auto_high']>0, p
+          assert p['duplicate_mapped_api_fixture_ids']==0, p
+          assert p['mapping_policy']['fuzzy_string_matching_used'] is False, p
+          assert p['mapping_policy']['review_unmapped_excluded'] is True, p
+          assert p['mapping_policy']['final_score_identity_only'] is True, p
+          assert p['research_only'] is True, p
+          assert p['operational_betting_authority'] is False, p
+          assert p['creates_signal'] is False, p
+          with open('normalized/pbk14_football_data_fixture_bridge.csv',encoding='utf-8-sig',newline='') as f:
+              rows=list(csv.DictReader(f))
+          assert len(rows)==p['source_rows'], (len(rows),p)
+          eligible=[r for r in rows if r['mapping_status'] in {'AUTO','HIGH'}]
+          assert len(eligible)==p['mapped_auto_high'], p
+          assert all(r['fuzzy_string_matching_used']=='false' for r in rows)
+          assert all(r['one_to_one_verified']=='true' for r in eligible)
+          assert len({r['api_fixture_id'] for r in eligible})==len(eligible)
+          print({
+            'source_rows':p['source_rows'],
+            'AUTO':p['mapped_auto'],
+            'HIGH':p['mapped_high'],
+            'REVIEW':p['review'],
+            'UNMAPPED':p['unmapped'],
+            'mapped_pct':p['mapped_pct'],
+            'by_league':p['mapping_by_league'],
+          })
+          PY
+      - name: Source checksums
+        run: sha256sum source/*.csv | sort > normalized/SHA256SUMS.source.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: football-data-pbk14-market-bridge
+          path: normalized/
+          retention-days: 90
+      - uses: actions/upload-artifact@v4
+        with:
+          name: football-data-pbk14-source
+          path: source/
+          retention-days: 30
+
+  publish:
+    needs: build
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: football-data-pbk14-market-bridge
+          path: normalized
+      - name: Publish derived research only
+        shell: bash
+        run: |
+          cp normalized/stage80_football_data_pbk14_history_meta.json ops/stage80_football_data_pbk14_history_last_run.json
+          cp normalized/pbk14_football_data_fixture_bridge.csv ops/pbk14_football_data_fixture_bridge.csv
+          cp normalized/stage80_pbk14_fixture_bridge_meta.json ops/stage80_pbk14_fixture_bridge_last_run.json
+          git config user.name 'stage80-pbk14-market-bot'
+          git config user.email 'stage80-pbk14-market-bot@users.noreply.github.com'
+          git add ops/stage80_football_data_pbk14_history_last_run.json
+          git add ops/pbk14_football_data_fixture_bridge.csv
+          git add ops/stage80_pbk14_fixture_bridge_last_run.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m 'Stage 80 PBK14 historical market bridge update'
+          python scripts/publish_operational_commit.py
