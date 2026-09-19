@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V19_PBK16_COMPETITION_CONGESTION",
-  "generated_at_utc": "2026-09-19T08:16:51Z",
+  "generated_at_utc": "2026-09-19T08:29:26Z",
   "status": "OK",
   "datasets": [
     {
@@ -68,7 +68,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 3602,
+      "row_count": 3731,
       "columns": [
         "fixture_id",
         "provider_league_id",
