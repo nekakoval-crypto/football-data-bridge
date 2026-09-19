@@ -130,24 +130,27 @@ class InternationalDutyPlayerEvidenceCaptureTests(unittest.TestCase):
         self.assertEqual(starter["minutes"], 90)
         self.assertEqual(starter["appearance_confirmed"], "true")
         self.assertEqual(starter["minutes_confirmed"], "true")
-        self.assertEqual(starter["starter_listed_confirmed"], "true")
+        self.assertEqual(starter["starter_listed_confirmed"], "false")
+        self.assertEqual(starter["substitute_listed_confirmed"], "false")
         self.assertEqual(starter["substitute_appearance_confirmed"], "false")
-        self.assertEqual(starter["lineup_role"], "STARTER_APPEARANCE")
+        self.assertEqual(starter["lineup_role"], "APPEARANCE_ROLE_UNVERIFIED")
 
         sub = by["1002"]
         self.assertEqual(sub["minutes"], 30)
         self.assertEqual(sub["appearance_confirmed"], "true")
-        self.assertEqual(sub["substitute_listed_confirmed"], "true")
+        self.assertEqual(sub["substitute_listed_confirmed"], "false")
+        self.assertEqual(sub["starter_listed_confirmed"], "false")
         self.assertEqual(sub["substitute_appearance_confirmed"], "true")
-        self.assertEqual(sub["lineup_role"], "SUBSTITUTE_APPEARANCE")
+        self.assertEqual(sub["lineup_role"], "SUBSTITUTE_APPEARANCE_PROVIDER_FLAG")
 
         unused = by["1003"]
         self.assertEqual(unused["minutes"], 0)
         self.assertEqual(unused["minutes_confirmed"], "true")
         self.assertEqual(unused["appearance_confirmed"], "false")
-        self.assertEqual(unused["substitute_listed_confirmed"], "true")
+        self.assertEqual(unused["substitute_listed_confirmed"], "false")
+        self.assertEqual(unused["starter_listed_confirmed"], "false")
         self.assertEqual(unused["substitute_appearance_confirmed"], "false")
-        self.assertEqual(unused["lineup_role"], "SUBSTITUTE_LISTED_NO_CONFIRMED_MINUTES")
+        self.assertEqual(unused["lineup_role"], "PLAYER_STATS_LISTED_NO_APPEARANCE")
 
         self.assertTrue(all(r["formal_callup_status"] == "NOT_SEPARATELY_VERIFIED" for r in rows))
         self.assertTrue(all(r["travel_status"] == "NOT_DERIVED" for r in rows))
@@ -202,18 +205,54 @@ class InternationalDutyPlayerEvidenceCaptureTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             c.merge_evidence([base], [conflict])
 
-    def test_candidate_priority_and_retry_cooldown(self):
+    def test_candidate_priority_recent_first_and_retry_cooldown(self):
         now = datetime(2026, 9, 19, 15, 0, tzinfo=timezone.utc)
-        minute = backlog_row("1")
+        older = backlog_row("1")
+        older["kickoff_utc"] = "2023-09-05T18:45:00Z"
+        newest = backlog_row("4")
+        newest["kickoff_utc"] = "2025-09-09T18:45:00Z"
+        middle = backlog_row("5")
+        middle["kickoff_utc"] = "2024-09-05T18:45:00Z"
         lineup = backlog_row("2", "/fixtures/lineups", "DIRECT_MATCHDAY_SQUAD")
+        lineup["kickoff_utc"] = "2025-09-09T20:45:00Z"
         recent_no_data = backlog_row("3")
+        recent_no_data["kickoff_utc"] = "2025-09-08T18:45:00Z"
         recent_no_data["backlog_status"] = "NO_DATA"
         recent_no_data["attempt_count"] = "1"
         recent_no_data["last_attempt_at_utc"] = "2026-09-19T14:00:00Z"
         recent_no_data["last_attempt_result"] = "NO_DATA"
 
-        selected = c.candidate_rows([lineup, recent_no_data, minute], now, 10)
-        self.assertEqual([r["fixture_id"] for r in selected], ["1", "2"])
+        selected = c.candidate_rows(
+            [older, lineup, recent_no_data, newest, middle], now, 10
+        )
+        self.assertEqual(
+            [r["fixture_id"] for r in selected],
+            ["4", "5", "1", "2"],
+        )
+
+    def test_sanitize_existing_v1_player_rows_removes_false_starter_claim(self):
+        old = c.normalize_player_stats(
+            players_payload(), backlog_row(), "2026-09-19T15:00:00Z"
+        )
+        # Simulate the durable V1 semantics that existed before the fix.
+        old[0]["starter_listed_confirmed"] = "true"
+        old[0]["lineup_role"] = "STARTER_APPEARANCE"
+        old[1]["substitute_listed_confirmed"] = "true"
+        old[1]["lineup_role"] = "SUBSTITUTE_APPEARANCE"
+        sanitized, rewritten = c.sanitize_existing_evidence(old)
+        by = {r["player_id"]: r for r in sanitized}
+
+        self.assertGreaterEqual(rewritten, 2)
+        self.assertEqual(by["1001"]["starter_listed_confirmed"], "false")
+        self.assertEqual(by["1001"]["substitute_listed_confirmed"], "false")
+        self.assertEqual(by["1001"]["lineup_role"], "APPEARANCE_ROLE_UNVERIFIED")
+        self.assertEqual(by["1002"]["starter_listed_confirmed"], "false")
+        self.assertEqual(by["1002"]["substitute_listed_confirmed"], "false")
+        self.assertEqual(
+            by["1002"]["lineup_role"],
+            "SUBSTITUTE_APPEARANCE_PROVIDER_FLAG",
+        )
+        self.assertEqual(by["1003"]["appearance_confirmed"], "false")
 
     def test_run_captures_players_and_lineups_with_two_calls(self):
         with tempfile.TemporaryDirectory() as td:
@@ -277,6 +316,12 @@ class InternationalDutyPlayerEvidenceCaptureTests(unittest.TestCase):
             self.assertEqual(meta["travel_rows_derived"], 0)
             self.assertFalse(meta["formal_callup_separately_verified"])
             self.assertFalse(meta["lineup_listing_implies_appearance"])
+            self.assertFalse(meta["player_stats_starter_inference_allowed"])
+            self.assertFalse(meta["player_stats_substitute_listing_inference_allowed"])
+            self.assertEqual(
+                meta["candidate_order"],
+                "TIER_THEN_NEVER_ATTEMPTED_RECENT_FIRST_THEN_OLDEST_RETRY",
+            )
             self.assertEqual([x[0] for x in calls], ["/fixtures/players", "/fixtures/lineups"])
 
             saved_backlog = c.read_csv(backlog_path)
