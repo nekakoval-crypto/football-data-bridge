@@ -1,0 +1,160 @@
+name: Stage 80 International Duty Source Allowlist
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['Stage 80 International Duty Provider Catalog']
+    types: [completed]
+  pull_request:
+    paths:
+      - 'scripts/stage80_international_duty_source_allowlist.py'
+      - 'scripts/tests/test_stage80_international_duty_source_allowlist.py'
+      - '.github/workflows/stage80-international-duty-source-allowlist.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/stage80_international_duty_source_allowlist.py'
+      - 'scripts/tests/test_stage80_international_duty_source_allowlist.py'
+      - '.github/workflows/stage80-international-duty-source-allowlist.yml'
+      - 'ops/international_duty_provider_candidates.csv'
+      - 'ops/stage80_international_duty_provider_catalog_last_run.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage80-international-duty-source-allowlist-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and provider-free tests
+        run: |
+          python -m py_compile scripts/stage80_international_duty_source_allowlist.py
+          python -m unittest scripts.tests.test_stage80_international_duty_source_allowlist -v
+      - name: Provider isolation
+        shell: bash
+        run: |
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports|ApiFootballBroker' scripts/stage80_international_duty_source_allowlist.py; then
+            echo 'Source allowlist must remain fully provider-free.' >&2
+            exit 1
+          fi
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated international-duty allowlist outputs are forbidden in the feature PR.' >&2
+            exit 1
+          fi
+
+  build:
+    needs: validate
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build explicit international-duty source allowlist
+        run: |
+          mkdir -p research
+          python scripts/stage80_international_duty_source_allowlist.py \
+            --source ops/international_duty_provider_candidates.csv \
+            --allow-out research/international_duty_source_allowlist.csv \
+            --audit-out research/international_duty_source_selection_audit.csv \
+            --meta-out research/stage80_international_duty_source_allowlist_meta.json
+      - name: Verify source-selection contract
+        run: |
+          python - <<'PY'
+          import csv, json
+          meta=json.load(open('research/stage80_international_duty_source_allowlist_meta.json',encoding='utf-8'))
+          assert meta['version']=='PBK_STAGE80_INTERNATIONAL_DUTY_SOURCE_ALLOWLIST_V1', meta
+          assert meta['status']=='OK', meta
+          assert meta['source_candidate_rows']==92, meta
+          assert meta['source_candidate_competitions_with_inrange_seasons']==30, meta
+          assert meta['selection_audit_rows']==30, meta
+          assert meta['allowed_competitions']==25, meta
+          assert meta['rejected_competitions']==5, meta
+          assert meta['allowlisted_competition_season_rows']==80, meta
+          assert meta['decision_counts']=={'ALLOW':25,'REJECT':5}, meta
+          assert meta['allowlisted_minutes_evidence_season_rows']==46, meta
+          assert meta['allowlisted_matchday_evidence_season_rows']==78, meta
+          assert meta['allowlisted_fixture_only_season_rows']==2, meta
+          assert meta['unknown_provider_competition_ids']==[], meta
+          assert meta['name_mismatch_provider_competition_ids']==[], meta
+          assert meta['historical_callup_evidence_possible'] is False, meta
+          assert meta['nationality_inference_allowed'] is False, meta
+          assert meta['provider_calls']==0, meta
+          assert meta['research_only'] is True, meta
+          assert meta['operational_betting_authority'] is False, meta
+          with open('research/international_duty_source_allowlist.csv',encoding='utf-8-sig',newline='') as f:
+              rows=list(csv.DictReader(f))
+          with open('research/international_duty_source_selection_audit.csv',encoding='utf-8-sig',newline='') as f:
+              audit=list(csv.DictReader(f))
+          assert len(rows)==80
+          assert len(audit)==30
+          assert len({r['provider_league_id'] for r in rows})==25
+          assert {r['pbk_source_selection_status'] for r in rows}=={'EXPLICIT_ALLOWLIST'}
+          assert {r['historical_callup_evidence_possible'] for r in rows}=={'false'}
+          assert {r['nationality_inference_allowed'] for r in rows}=={'false'}
+          assert {r['operational_betting_authority'] for r in rows}=={'false'}
+          print({
+              'sources':meta['allowed_competitions'],
+              'season_rows':meta['allowlisted_competition_season_rows'],
+              'minutes_rows':meta['allowlisted_minutes_evidence_season_rows'],
+              'matchday_rows':meta['allowlisted_matchday_evidence_season_rows'],
+              'fixture_only':meta['allowlisted_fixture_only_season_rows'],
+          })
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: international-duty-source-allowlist
+          path: research/
+          retention-days: 90
+
+  publish:
+    needs: build
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+      - uses: actions/download-artifact@v4
+        with:
+          name: international-duty-source-allowlist
+          path: research
+      - name: Publish source allowlist safely
+        shell: bash
+        run: |
+          cp research/international_duty_source_allowlist.csv ops/international_duty_source_allowlist.csv
+          cp research/international_duty_source_selection_audit.csv ops/international_duty_source_selection_audit.csv
+          cp research/stage80_international_duty_source_allowlist_meta.json ops/stage80_international_duty_source_allowlist_last_run.json
+          git config user.name 'stage80-international-duty-bot'
+          git config user.email 'stage80-international-duty-bot@users.noreply.github.com'
+          git add ops/international_duty_source_allowlist.csv
+          git add ops/international_duty_source_selection_audit.csv
+          git add ops/stage80_international_duty_source_allowlist_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 international-duty source allowlist update'
+          python scripts/publish_operational_commit.py
