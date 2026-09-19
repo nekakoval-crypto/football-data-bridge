@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V25_PBK14_INTERNATIONAL_WINDOW_MARKET_RESEARCH",
-  "generated_at_utc": "2026-09-19T10:50:52Z",
+  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V26_PBK14_INTERNATIONAL_WINDOW_MARKET_WALKFORWARD",
+  "generated_at_utc": "2026-09-19T10:55:31Z",
   "status": "OK",
   "datasets": [
     {
@@ -2460,6 +2460,62 @@
       "effective_time_fields_text": ""
     },
     {
+      "dataset_id": "pbk14_international_window_market_walkforward_research",
+      "path": "pbk14_international_window_market_walkforward_research.csv",
+      "role": "RESEARCH_VALIDATION",
+      "lifecycle": "STRICT_PRIOR_SEASON_WALKFORWARD",
+      "identity_key": [
+        "factor",
+        "bucket",
+        "scope_type",
+        "scope_value",
+        "target",
+        "test_season"
+      ],
+      "observed_time_fields": [],
+      "effective_time_fields": [
+        "test_season"
+      ],
+      "source": "Stage80 strict prior-season walk-forward over PBK14 international-window historical closing markets",
+      "limitations": "Each test season uses only earlier seasons. Calendar-level only; player duty remains UNVERIFIED. Market no-vig is benchmark only. Folds never promote factors or create model authority.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "factor+bucket+scope_type+scope_value+target+test_season",
+      "observed_time_fields_text": "",
+      "effective_time_fields_text": "test_season"
+    },
+    {
+      "dataset_id": "pbk14_international_window_market_walkforward_summary_research",
+      "path": "pbk14_international_window_market_walkforward_summary_research.csv",
+      "role": "RESEARCH_VALIDATION",
+      "lifecycle": "DETERMINISTIC_WALKFORWARD_SUMMARY",
+      "identity_key": [
+        "factor",
+        "bucket",
+        "scope_type",
+        "scope_value",
+        "target"
+      ],
+      "observed_time_fields": [],
+      "effective_time_fields": [
+        "first_test_season",
+        "last_test_season"
+      ],
+      "source": "Stage80 summary of strict prior-season PBK14 international-window walk-forward folds",
+      "limitations": "Persistence summary only. Does not infer player call-up/travel/appearance and cannot rank, promote, mutate probability/eligibility, stake or Forward state.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "factor+bucket+scope_type+scope_value+target",
+      "observed_time_fields_text": "",
+      "effective_time_fields_text": "first_test_season,last_test_season"
+    },
+    {
       "dataset_id": "pbk14_congestion_market_join_research",
       "path": "pbk14_congestion_market_join_research.csv",
       "role": "RESEARCH_JOIN",
@@ -2837,9 +2893,9 @@
     }
   ],
   "summary": {
-    "declared_datasets": 51,
+    "declared_datasets": 53,
     "materialized_csv_datasets": 49,
-    "pending_materializations_or_storage": 1,
+    "pending_materializations_or_storage": 3,
     "contract_attention": 0
   },
   "provider_calls": 0,

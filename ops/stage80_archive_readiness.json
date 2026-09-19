@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_READINESS_V29_PBK14_INTERNATIONAL_WINDOW_MARKET_RESEARCH",
-  "generated_at_utc": "2026-09-19T10:50:55Z",
+  "version": "PBK_STAGE80_ARCHIVE_READINESS_V30_PBK14_INTERNATIONAL_WINDOW_MARKET_WALKFORWARD",
+  "generated_at_utc": "2026-09-19T10:55:36Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -213,6 +213,16 @@
       "file": "pbk14_international_window_market_factor_stability_research.csv",
       "present": true,
       "rows": 313
+    },
+    "pbk14_international_window_market_walkforward": {
+      "file": "pbk14_international_window_market_walkforward_research.csv",
+      "present": false,
+      "rows": null
+    },
+    "pbk14_international_window_market_walkforward_summary": {
+      "file": "pbk14_international_window_market_walkforward_summary_research.csv",
+      "present": false,
+      "rows": null
     },
     "pbk14_congestion_market_join": {
       "file": "pbk14_congestion_market_join_research.csv",
@@ -688,6 +698,29 @@
     "operational_betting_authority": false,
     "evidence_note": "Calendar-level international-window descriptive research only; player call-up/travel/appearance remains UNVERIFIED."
   },
+  "pbk14_international_window_market_walkforward": {
+    "folds_present": false,
+    "summary_present": false,
+    "meta_present": false,
+    "meta_valid": false,
+    "fold_rows": 0,
+    "valid_fold_rows": 0,
+    "invalid_fold_rows": 0,
+    "temporal_invalid_rows": 0,
+    "summary_rows": 0,
+    "valid_summary_rows": 0,
+    "invalid_summary_rows": 0,
+    "sample_threshold_pass_folds": null,
+    "min_prior_seasons": 2,
+    "min_train_market_matches": 100,
+    "min_test_market_matches": 30,
+    "window_reference_contract": "NEAREST_WINDOW_RELATION_GATED_V2",
+    "player_level_international_status": "UNVERIFIED",
+    "market_probability_semantics": "Historical closing-market no-vig benchmark only; never PBK probability.",
+    "operational_betting_authority": false,
+    "promotes_factor": false,
+    "evidence_note": "Each test season is evaluated using only earlier seasons. Player duty remains UNVERIFIED and persistence cannot promote an international-window factor."
+  },
   "pbk14_congestion_market_research": {
     "join_present": true,
     "join_meta_present": true,
@@ -846,6 +879,7 @@
     "PBK16_COMPETITION_PROVIDER_SEASONS_PARTIAL",
     "PBK14_HISTORICAL_MARKET_BRIDGE_PARTIAL_MAPPING",
     "PBK16_HISTORICAL_MARKET_SOURCE_LIMITED_TO_14_LEAGUES",
+    "PBK14_INTERNATIONAL_WINDOW_MARKET_WALKFORWARD_NOT_MATERIALIZED",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
     "PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE",
     "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE"
