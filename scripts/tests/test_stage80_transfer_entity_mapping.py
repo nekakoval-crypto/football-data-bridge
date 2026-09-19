@@ -8,6 +8,7 @@ from pathlib import Path
 from scripts.stage80_transfer_entity_mapping import (
     AUTO_METHOD_PROFILE,
     AUTO_METHOD_STATS,
+    AUTO_METHOD_INTERNATIONAL_PROFILE,
     build_identity_map,
     build_mapping,
     build_transfer_history,
@@ -306,6 +307,77 @@ class Stage80TransferEntityMappingTests(unittest.TestCase):
             self.assertEqual(meta["normalized_transfer_rows"],1)
             self.assertTrue((root/"mapping.csv").exists())
             self.assertTrue((root/"identity.csv").exists())
+
+
+    def test_direct_international_name_plus_profile_dob_can_auto_without_current_club(self):
+        pbk=[{
+            "player_id":"1100","latest_observed_name":"E. Haaland",
+            "latest_roster_team_names":"Manchester City",
+        }]
+        profiles=[{
+            "player_id":"1100","player_name":"E. Haaland","firstname":"Erling","lastname":"Haaland",
+            "birth_date":"2000-07-21","team_name":"Old Club",
+        }]
+        international=[{
+            "player_id":"1100","player_name":"Erling Haaland",
+        }]
+        tm=[{
+            "player_id":"418560","name":"Erling Haaland","date_of_birth":"2000-07-21",
+            "current_club_id":"281","current_club_name":"Manchester City",
+        }]
+        rows,auto=build_mapping(
+            pbk,tm,player_profile_rows=profiles,international_rows=international
+        )
+        recovered=[r for r in rows if r["match_method"]==AUTO_METHOD_INTERNATIONAL_PROFILE]
+        self.assertEqual(len(recovered),1)
+        self.assertEqual(recovered[0]["match_status"],"AUTO_MATCH")
+        self.assertEqual(recovered[0]["match_confidence"],"HIGH")
+        self.assertEqual(recovered[0]["pbk_evidence_birth_date"],"2000-07-21")
+        self.assertEqual(auto["418560"]["pbk_player_id"],"1100")
+
+    def test_international_profile_dob_mismatch_never_auto(self):
+        pbk=[{
+            "player_id":"1100","latest_observed_name":"E. Haaland",
+            "latest_roster_team_names":"Manchester City",
+        }]
+        profiles=[{
+            "player_id":"1100","firstname":"Erling","lastname":"Haaland",
+            "birth_date":"2000-07-20","team_name":"Old Club",
+        }]
+        international=[{"player_id":"1100","player_name":"Erling Haaland"}]
+        tm=[{
+            "player_id":"418560","name":"Erling Haaland","date_of_birth":"2000-07-21",
+            "current_club_name":"Manchester City",
+        }]
+        rows,auto=build_mapping(
+            pbk,tm,player_profile_rows=profiles,international_rows=international
+        )
+        self.assertFalse(any(r["match_method"]==AUTO_METHOD_INTERNATIONAL_PROFILE for r in rows))
+        self.assertEqual(auto,{})
+
+    def test_shared_international_name_and_dob_never_auto(self):
+        pbk=[
+            {"player_id":"1","latest_observed_name":"E. Haaland","latest_roster_team_names":""},
+            {"player_id":"2","latest_observed_name":"E. Haaland","latest_roster_team_names":""},
+        ]
+        profiles=[
+            {"player_id":"1","firstname":"Erling","lastname":"Haaland","birth_date":"2000-07-21","team_name":"A"},
+            {"player_id":"2","firstname":"Erling","lastname":"Haaland","birth_date":"2000-07-21","team_name":"B"},
+        ]
+        international=[
+            {"player_id":"1","player_name":"Erling Haaland"},
+            {"player_id":"2","player_name":"Erling Haaland"},
+        ]
+        tm=[{
+            "player_id":"418560","name":"Erling Haaland","date_of_birth":"2000-07-21",
+            "current_club_name":"Manchester City",
+        }]
+        rows,auto=build_mapping(
+            pbk,tm,player_profile_rows=profiles,international_rows=international
+        )
+        self.assertFalse(any(r["match_method"]==AUTO_METHOD_INTERNATIONAL_PROFILE for r in rows))
+        self.assertEqual(auto,{})
+
 
 
 if __name__=="__main__":
