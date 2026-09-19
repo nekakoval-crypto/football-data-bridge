@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_READINESS_V28_INTERNATIONAL_WINDOW_REFERENCE_V2",
-  "generated_at_utc": "2026-09-19T10:40:18Z",
+  "version": "PBK_STAGE80_ARCHIVE_READINESS_V29_PBK14_INTERNATIONAL_WINDOW_MARKET_RESEARCH",
+  "generated_at_utc": "2026-09-19T10:44:05Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -203,6 +203,16 @@
       "file": "pbk14_international_window_market_join_research.csv",
       "present": true,
       "rows": 37327
+    },
+    "pbk14_international_window_market_profiles": {
+      "file": "pbk14_international_window_market_factor_research.csv",
+      "present": false,
+      "rows": null
+    },
+    "pbk14_international_window_market_stability": {
+      "file": "pbk14_international_window_market_factor_stability_research.csv",
+      "present": false,
+      "rows": null
     },
     "pbk14_congestion_market_join": {
       "file": "pbk14_congestion_market_join_research.csv",
@@ -642,6 +652,42 @@
     "operational_betting_authority": false,
     "evidence_note": "AUTO/HIGH historical market rows joined to calendar-level international-window context. Calendar proximity never proves player duty; player call-up/travel/appearance remains UNVERIFIED."
   },
+  "pbk14_international_window_market_research": {
+    "join_present": true,
+    "join_meta_present": true,
+    "join_meta_valid": true,
+    "join_rows": 37327,
+    "valid_join_rows": 37327,
+    "invalid_join_rows": 0,
+    "profile_present": false,
+    "stability_present": false,
+    "research_meta_present": false,
+    "research_meta_valid": false,
+    "profile_rows": 0,
+    "valid_profile_rows": 0,
+    "invalid_profile_rows": 0,
+    "stability_rows": 0,
+    "valid_stability_rows": 0,
+    "invalid_stability_rows": 0,
+    "closing_1x2_matches": null,
+    "closing_total25_matches": null,
+    "factor_names": [
+      "FIRST_DOMESTIC_AFTER_SIDE",
+      "INTL_AFTER_72H",
+      "INTL_AFTER_7D",
+      "INTL_AFTER_96H",
+      "INTL_BEFORE_72H",
+      "INTL_BEFORE_7D",
+      "INTL_BEFORE_96H",
+      "WINDOW_MAX_MATCHES",
+      "WINDOW_RELATION"
+    ],
+    "window_reference_contract": "NEAREST_WINDOW_RELATION_GATED_V2",
+    "player_level_international_status": "UNVERIFIED",
+    "market_probability_semantics": "Historical closing-market no-vig benchmark only; never PBK probability.",
+    "operational_betting_authority": false,
+    "evidence_note": "Calendar-level international-window descriptive research only; player call-up/travel/appearance remains UNVERIFIED."
+  },
   "pbk14_congestion_market_research": {
     "join_present": true,
     "join_meta_present": true,
@@ -800,6 +846,7 @@
     "PBK16_COMPETITION_PROVIDER_SEASONS_PARTIAL",
     "PBK14_HISTORICAL_MARKET_BRIDGE_PARTIAL_MAPPING",
     "PBK16_HISTORICAL_MARKET_SOURCE_LIMITED_TO_14_LEAGUES",
+    "PBK14_INTERNATIONAL_WINDOW_MARKET_RESEARCH_NOT_MATERIALIZED",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
     "PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE",
     "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE"

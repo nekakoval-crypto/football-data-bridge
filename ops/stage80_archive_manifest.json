@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V24_PBK14_INTERNATIONAL_WINDOW_MARKET_JOIN",
-  "generated_at_utc": "2026-09-19T10:40:14Z",
+  "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V25_PBK14_INTERNATIONAL_WINDOW_MARKET_RESEARCH",
+  "generated_at_utc": "2026-09-19T10:44:00Z",
   "status": "OK",
   "datasets": [
     {
@@ -2333,6 +2333,54 @@
       "effective_time_fields_text": "date_iso"
     },
     {
+      "dataset_id": "pbk14_international_window_market_factor_research",
+      "path": "pbk14_international_window_market_factor_research.csv",
+      "role": "RESEARCH_ANALYSIS",
+      "lifecycle": "DETERMINISTIC_AGGREGATE_PROJECTION",
+      "identity_key": [
+        "factor",
+        "bucket",
+        "scope_type",
+        "scope_value"
+      ],
+      "observed_time_fields": [],
+      "effective_time_fields": [],
+      "source": "Stage80 descriptive international-window research over PBK14 historical closing markets",
+      "limitations": "Calendar-level exploratory aggregates only. Market no-vig is not PBK probability; player duty remains UNVERIFIED; no factor ranking, promotion or betting/model authority.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "factor+bucket+scope_type+scope_value",
+      "observed_time_fields_text": "",
+      "effective_time_fields_text": ""
+    },
+    {
+      "dataset_id": "pbk14_international_window_market_factor_stability_research",
+      "path": "pbk14_international_window_market_factor_stability_research.csv",
+      "role": "RESEARCH_VALIDATION",
+      "lifecycle": "DETERMINISTIC_SEASON_STABILITY_PROJECTION",
+      "identity_key": [
+        "factor",
+        "bucket",
+        "scope_type",
+        "scope_value"
+      ],
+      "observed_time_fields": [],
+      "effective_time_fields": [],
+      "source": "Stage80 season-by-season stability projection for PBK14 international-window market research",
+      "limitations": "Calendar-level descriptive stability only. Does not infer player call-up/travel/appearance, rank/select/promote factors or create probability/eligibility/stake/Forward authority.",
+      "present": false,
+      "row_count": null,
+      "columns": [],
+      "missing_required_fields": [],
+      "contract_status": "PENDING_MATERIALIZATION",
+      "identity_key_text": "factor+bucket+scope_type+scope_value",
+      "observed_time_fields_text": "",
+      "effective_time_fields_text": ""
+    },
+    {
       "dataset_id": "pbk14_congestion_market_join_research",
       "path": "pbk14_congestion_market_join_research.csv",
       "role": "RESEARCH_JOIN",
@@ -2710,9 +2758,9 @@
     }
   ],
   "summary": {
-    "declared_datasets": 49,
+    "declared_datasets": 51,
     "materialized_csv_datasets": 47,
-    "pending_materializations_or_storage": 1,
+    "pending_materializations_or_storage": 3,
     "contract_attention": 0
   },
   "provider_calls": 0,
