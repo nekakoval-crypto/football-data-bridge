@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V18_PREMATCH_WALKFORWARD",
-  "generated_at_utc": "2026-09-18T23:27:39Z",
+  "generated_at_utc": "2026-09-19T00:35:02Z",
   "status": "OK",
   "datasets": [
     {
@@ -68,7 +68,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 2312,
+      "row_count": 2570,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -166,7 +166,7 @@
       "source": "Stage71 terminal observation + Stage77 reconciliation",
       "limitations": "Queue evidence is not player-stat evidence; CAPTURED requires both stats and grade ledgers.",
       "present": true,
-      "row_count": 52,
+      "row_count": 57,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -1295,7 +1295,7 @@
       "source": "Stage80 normalized projection from team_roster_history + player_stats_snapshots",
       "limitations": "Observed player directory only; does not infer current team, exact transfer dates, xG or xA.",
       "present": true,
-      "row_count": 4154,
+      "row_count": 4236,
       "columns": [
         "player_id",
         "latest_observed_name",
@@ -1428,7 +1428,7 @@
       "source": "Stage79 /players/squads via shared broker",
       "limitations": "Latest roster only; use team_roster_history for historical membership evidence.",
       "present": true,
-      "row_count": 2951,
+      "row_count": 3214,
       "columns": [
         "team_id",
         "team_name",
@@ -1464,7 +1464,7 @@
       "source": "Stage80 archive of already-captured Stage79 roster snapshots",
       "limitations": "Observed squad membership, not an exact transfer-date claim.",
       "present": true,
-      "row_count": 2949,
+      "row_count": 3212,
       "columns": [
         "team_id",
         "team_name",
@@ -1500,7 +1500,7 @@
       "source": "Stage80 derived from team_roster_history",
       "limitations": "Observed presence intervals are not verified transfer events.",
       "present": true,
-      "row_count": 2949,
+      "row_count": 3212,
       "columns": [
         "interval_id",
         "team_id",

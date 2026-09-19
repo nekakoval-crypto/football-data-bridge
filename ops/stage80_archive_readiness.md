@@ -1,14 +1,14 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-18T23:27:39Z
+Обновлено UTC: 2026-09-19T00:35:03Z
 Статус: **COLLECTING**
 
 ## Покрытие
 - Fixtures в текущем inventory: 129 (finished: 14).
-- Fixture history: 178 unique fixtures / 2312 observations / 18 observation runs (finished observed: 57).
+- Fixture history: 178 unique fixtures / 2570 observations / 20 observation runs (finished observed: 57).
 - Historical fixture catalog: 178 fixtures (terminal 57, rescheduled 1), history coverage 100.00%; missing 0, orphan 0.
 - Finished fixtures с player stats: 8 / 14 (57.14%).
-- Stage77 durable backlog: pending 14; captured 38; total 52.
+- Stage77 durable backlog: pending 19; captured 38; total 57.
 - Normalized lineup archive: 6 rows / 2 fixtures; injury archive: 51 rows / 2 fixtures.
 - Match event archive: 239 rows / 14 fixtures; backlog pending 0 / total 14.
 - Stage81 durable backlog: pending 1; captured 20; total 21.
@@ -17,10 +17,10 @@
 - Player xG/xA source: RESEARCH_SOURCE_EXTERNAL_LOCAL_ATTESTED_MAPPED_TO_PBK.
 - Player stat rows: 1634; уникальных игроков: 1546.
 - Player Grade rows: 1634; уникальных игроков: 1546.
-- Current roster: 96 команд / 2951 игроковых строк.
-- Player profile evidence: 2745 rows (2667 team-source + 78 residual-ID) / 2670 players / 96 teams; current-roster coverage 85.15%; identity-ready 2489 players (79.82%).
-- Roster history: 96 команд / 96 team-snapshots / 2949 строк.
-- Membership intervals: 2949 (open 2949, closed-by-observed-absence 0).
+- Current roster: 104 команд / 3214 игроковых строк.
+- Player profile evidence: 2745 rows (2667 team-source + 78 residual-ID) / 2670 players / 96 teams; current-roster coverage 78.26%; identity-ready 2489 players (73.37%).
+- Roster history: 104 команд / 104 team-snapshots / 3212 строк.
+- Membership intervals: 3212 (open 3212, closed-by-observed-absence 0).
 - Verified PBK↔Transfermarkt identities: 1056 rows / 1056 PBK players; invalid 0.
 - Verified historical transfers: 7714 rows / 983 PBK players; dates 1998-07-01 → 2027-06-30; invalid 0.
 - EPL referee research: 47 referees / 897 referee×team pairs / 3420 source matches; scope EPL_ONLY; penalties unavailable.
