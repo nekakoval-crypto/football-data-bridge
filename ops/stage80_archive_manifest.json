@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V18_PREMATCH_WALKFORWARD",
-  "generated_at_utc": "2026-09-19T00:53:55Z",
+  "generated_at_utc": "2026-09-19T00:55:37Z",
   "status": "OK",
   "datasets": [
     {
@@ -317,7 +317,7 @@
       "source": "Stage77 /fixtures/players via shared broker",
       "limitations": "Only fixtures successfully captured under protected provider budget.",
       "present": true,
-      "row_count": 1634,
+      "row_count": 1848,
       "columns": [
         "fixture_id",
         "team_id",
@@ -458,7 +458,7 @@
       "source": "Stage77/78 derived from captured player stats",
       "limitations": "Research-derived grade; not raw provider fact and not canonical authority.",
       "present": true,
-      "row_count": 1634,
+      "row_count": 1848,
       "columns": [
         "fixture_id",
         "team_id",
@@ -1295,7 +1295,7 @@
       "source": "Stage80 normalized projection from team_roster_history + player_stats_snapshots",
       "limitations": "Observed player directory only; does not infer current team, exact transfer dates, xG or xA.",
       "present": true,
-      "row_count": 4236,
+      "row_count": 4281,
       "columns": [
         "player_id",
         "latest_observed_name",
