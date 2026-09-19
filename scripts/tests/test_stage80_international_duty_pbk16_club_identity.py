@@ -44,9 +44,9 @@ class Pbk16ClubIdentityTests(unittest.TestCase):
         self.assertEqual(rows[0]["pbk16_club_identity_status"],"PBK16_EXACT_ALIAS_UNIQUE")
         self.assertEqual(rows[0]["pbk16_team_id"],"6962")
 
-    def test_outside_pbk16_fails_closed(self):
+    def test_missing_saved_pbk16_identity_fails_closed(self):
         rows=c.build(temporal("Colo-Colo"),leagues(),fixture())
-        self.assertEqual(rows[0]["pbk16_club_identity_status"],"OUTSIDE_PBK16_OR_UNMAPPED")
+        self.assertEqual(rows[0]["pbk16_club_identity_status"],"NO_SAVED_PBK16_TEAM_IDENTITY")
         self.assertEqual(rows[0]["pbk16_team_id"],"")
 
     def test_non_bounded_rows_are_excluded(self):
@@ -64,7 +64,7 @@ class Pbk16ClubIdentityTests(unittest.TestCase):
 
     def test_non_pbk16_league_is_excluded_from_catalog(self):
         rows=c.build(temporal("Man City"),leagues(),fixture(league="999"))
-        self.assertEqual(rows[0]["pbk16_club_identity_status"],"OUTSIDE_PBK16_OR_UNMAPPED")
+        self.assertEqual(rows[0]["pbk16_club_identity_status"],"NO_SAVED_PBK16_TEAM_IDENTITY")
 
     def test_ambiguous_same_key_fails_closed(self):
         fx=fixture()

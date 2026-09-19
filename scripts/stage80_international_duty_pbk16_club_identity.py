@@ -2,11 +2,13 @@
 """Stage80 — conservative Transfermarkt club -> PBK16 API-Football team identity.
 
 Consumes only bounded temporal-club rows. PBK16 scope is derived from the
-saved Stage71 league catalog plus saved current-round fixtures. No provider
+saved Stage71 league catalog plus saved PBK team-entity sources. No provider
 calls, no player-current-club inference, no fuzzy similarity.
 
 A club is mapped only when a deterministic normalized/exact alias key resolves
-to exactly one API-Football team inside PBK16. Everything else fails closed.
+to exactly one saved API-Football team identity in the PBK16 namespace. Absence
+from the saved namespace does NOT prove that the club was outside PBK16 at the
+historical fixture date; such rows fail closed as NO_SAVED_PBK16_TEAM_IDENTITY.
 """
 from __future__ import annotations
 
@@ -28,7 +30,7 @@ TEAM_ROSTERS = OPS / "team_rosters.csv"
 OUTPUT = OPS / "international_duty_player_pbk16_club_identity.csv"
 META = OPS / "stage80_international_duty_pbk16_club_identity_last_run.json"
 
-VERSION = "PBK_STAGE80_INTERNATIONAL_DUTY_PBK16_CLUB_IDENTITY_V1_EXACT_ALIAS_UNIQUE"
+VERSION = "PBK_STAGE80_INTERNATIONAL_DUTY_PBK16_CLUB_IDENTITY_V2_FAIL_CLOSED_NAMESPACE"
 
 FIELDS = [
     "fixture_id","kickoff_utc","player_id","player_name",
@@ -196,8 +198,8 @@ def build(temporal_rows, league_rows, fixture_rows, team_stat_rows=None, team_ro
             method = "FAIL_CLOSED_AMBIGUOUS"
         else:
             candidate = {}
-            status = "OUTSIDE_PBK16_OR_UNMAPPED"
-            method = "NO_PBK16_CANDIDATE"
+            status = "NO_SAVED_PBK16_TEAM_IDENTITY"
+            method = "NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE"
         output.append({
             "fixture_id": sval(row, "fixture_id"),
             "kickoff_utc": sval(row, "kickoff_utc"),
@@ -269,6 +271,7 @@ def run(temporal_path=TEMPORAL, league_path=LEAGUES, fixture_path=FIXTURES,
         "duplicate_fixture_player_rows": duplicate_rows,
         "invalid_output_rows": invalid,
         "exact_or_explicit_alias_only": True,
+        "absence_does_not_prove_outside_pbk16": True,
         "fuzzy_matching_used": False,
         "current_player_club_used_for_identity": False,
         "provider_calls": 0,
