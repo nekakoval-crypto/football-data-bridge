@@ -1,7 +1,8 @@
 {
-  "version": "PBK_STAGE80_INTERNATIONAL_DUTY_RETURN_LOAD_V1_DIRECT_EVIDENCE",
-  "generated_at_utc": "2026-09-19T17:24:15Z",
+  "version": "PBK_STAGE80_INTERNATIONAL_DUTY_RETURN_LOAD_V2_WINDOW_RETURN_AGGREGATED",
+  "generated_at_utc": "2026-09-19T17:28:50Z",
   "status": "OK",
+  "aggregation_contract": "ONE_PLAYER_X_WINDOW_X_PBK16_TEAM_X_RETURN_FIXTURE_LATEST_DIRECT_EVENT",
   "direct_evidence_rows": 1474,
   "direct_evidence_collection_status": "COLLECTING",
   "direct_evidence_collection_complete": false,
@@ -25,7 +26,11 @@
   "mapped_rows_missing_direct_evidence": 0,
   "mapped_rows_without_later_played_domestic_fixture": 0,
   "mapped_rows_return_beyond_14d_horizon": 1,
+  "event_rows_before_window_return_aggregation": 44,
+  "window_return_rows_after_aggregation": 44,
   "direct_evidence_only": true,
+  "window_return_aggregated": true,
+  "latest_direct_event_is_return_anchor": true,
   "played_domestic_return_fixture_only": true,
   "max_return_horizon_hours": 336,
   "return_horizon_fail_closed": true,
@@ -42,5 +47,5 @@
   "eligibility_mutation": false,
   "stake_changes": false,
   "forward_journal_mutation": false,
-  "next_stage": "After durable coverage review, join return-load features to historical market anchors for descriptive research."
+  "next_stage": "Scale direct evidence coverage, then join one-row-per-player-window-return features to historical market anchors for descriptive research."
 }
