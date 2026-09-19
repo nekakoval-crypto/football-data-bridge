@@ -79,7 +79,7 @@ jobs:
           python - <<'PY'
           import csv, json
           meta=json.load(open('research/stage80_pbk16_international_window_context_meta.json',encoding='utf-8'))
-          assert meta['version']=='PBK_STAGE80_PBK16_INTERNATIONAL_WINDOW_CONTEXT_V1', meta
+          assert meta['version']=='PBK_STAGE80_PBK16_INTERNATIONAL_WINDOW_CONTEXT_V2', meta
           assert meta['status']=='OK', meta
           assert meta['source_domestic_rows']==40989, meta
           assert meta['output_rows']==40989, meta
@@ -89,6 +89,7 @@ jobs:
           assert meta['domestic_anchor_league_ids']==16, meta
           assert meta['calendar_windows']==39, meta
           assert meta['calendar_sources']==5, meta
+          assert meta['window_reference_contract']=='NEAREST_WINDOW_RELATION_GATED_V2', meta
           assert meta['player_level_international_status']=='UNVERIFIED', meta
           assert meta['player_level_callup_inference'] is False, meta
           assert meta['player_level_travel_inference'] is False, meta
@@ -112,6 +113,7 @@ jobs:
               rows=list(csv.DictReader(f))
           assert len(rows)==40989, len(rows)
           assert len({r['domestic_fixture_id'] for r in rows})==40989
+          assert {r['window_reference_contract'] for r in rows}=={'NEAREST_WINDOW_RELATION_GATED_V2'}
           assert {r['player_level_international_status'] for r in rows}=={'UNVERIFIED'}
           assert {r['calendar_level_only'] for r in rows}=={'true'}
           assert {r['no_lookahead'] for r in rows}=={'true'}
