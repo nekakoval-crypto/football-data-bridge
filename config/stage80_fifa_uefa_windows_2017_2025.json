@@ -1,0 +1,93 @@
+{
+  "version": "PBK_STAGE80_UEFA_RELEVANT_FIFA_WINDOWS_2017_2025_V1",
+  "scope": "UEFA-relevant men's fixed international A-match windows affecting European club calendars; final tournaments excluded; research only",
+  "window_policy": {
+    "uefa_relevant_only": true,
+    "final_tournaments_excluded": true,
+    "non_uefa_only_windows_excluded": true,
+    "player_callup_inference": false,
+    "travel_inference": false,
+    "appearance_inference": false
+  },
+  "sources": [
+    {
+      "label": "UEFA-ECA 2015 MoU Annex 2 / FIFA calendar 2014-2018",
+      "url": "https://editorial.uefa.com/resources/021f-0f842a58d6c7-f78c47e0e884-1000/memorandum_of_understanding_uefa_eca_-_2015.pdf"
+    },
+    {
+      "label": "UEFA-ECA 2019 MoU Annex 2 / FIFA Circular 1653 calendar 2018-2024",
+      "url": "https://de.uefa.com/MultimediaFiles/Download/uefaorg/General/02/59/95/37/2599537_DOWNLOAD.pdf"
+    },
+    {
+      "label": "FIFA COVID-19 calendar changes 2020",
+      "url": "https://inside.fifa.com/organisation/fifa-council/media-releases/further-changes-to-the-international-match-calendars-due-to-the-covid-19-pandemi"
+    },
+    {
+      "label": "UEFA 2021 triple-header windows",
+      "url": "https://www.uefa.com/news-media/news/0261-107376966207-6a2ea096698b-1000/"
+    },
+    {
+      "label": "UEFA-ECA 2023 MoU / FIFA men's calendar 2023-2030",
+      "url": "https://editorial.uefa.com/resources/0286-193a153f3660-f29fc244130b-1000/uefa-eca_mou_2024-30_signed_6_september_2023_.pdf"
+    }
+  ],
+  "windows": [
+    {"window_id":"2017_MAR","start_date":"2017-03-20","end_date":"2017-03-28","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2017_JUN","start_date":"2017-06-05","end_date":"2017-06-13","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2017_SEP","start_date":"2017-08-28","end_date":"2017-09-05","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2017_OCT","start_date":"2017-10-02","end_date":"2017-10-10","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2017_NOV","start_date":"2017-11-06","end_date":"2017-11-14","max_matches":2,"notes":"FIFA fixed international A-match window"},
+
+    {"window_id":"2018_MAR","start_date":"2018-03-19","end_date":"2018-03-27","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2018_SEP","start_date":"2018-09-03","end_date":"2018-09-11","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2018_OCT","start_date":"2018-10-08","end_date":"2018-10-16","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2018_NOV","start_date":"2018-11-12","end_date":"2018-11-20","max_matches":2,"notes":"FIFA fixed international A-match window"},
+
+    {"window_id":"2019_MAR","start_date":"2019-03-18","end_date":"2019-03-26","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2019_JUN","start_date":"2019-06-03","end_date":"2019-06-11","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2019_SEP","start_date":"2019-09-02","end_date":"2019-09-10","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2019_OCT","start_date":"2019-10-07","end_date":"2019-10-15","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2019_NOV","start_date":"2019-11-11","end_date":"2019-11-19","max_matches":2,"notes":"FIFA fixed international A-match window"},
+
+    {"window_id":"2020_SEP","start_date":"2020-08-31","end_date":"2020-09-08","max_matches":2,"notes":"UEFA window retained during COVID-19 revisions"},
+    {"window_id":"2020_OCT","start_date":"2020-10-05","end_date":"2020-10-14","max_matches":3,"notes":"UEFA window extended to three match dates during COVID-19 revisions"},
+    {"window_id":"2020_NOV","start_date":"2020-11-09","end_date":"2020-11-18","max_matches":3,"notes":"UEFA window extended to three match dates during COVID-19 revisions"},
+
+    {"window_id":"2021_MAR","start_date":"2021-03-22","end_date":"2021-03-31","max_matches":3,"notes":"UEFA triple-header window"},
+    {"window_id":"2021_JUN","start_date":"2021-05-31","end_date":"2021-06-08","max_matches":2,"notes":"UEFA and CONMEBOL fixed window; EURO preparation friendlies"},
+    {"window_id":"2021_SEP","start_date":"2021-08-30","end_date":"2021-09-08","max_matches":3,"notes":"UEFA triple-header window"},
+    {"window_id":"2021_OCT","start_date":"2021-10-04","end_date":"2021-10-12","max_matches":2,"notes":"UEFA fixed international A-match window"},
+    {"window_id":"2021_NOV","start_date":"2021-11-08","end_date":"2021-11-16","max_matches":2,"notes":"FIFA fixed international A-match window"},
+
+    {"window_id":"2022_MAR","start_date":"2022-03-21","end_date":"2022-03-29","max_matches":2,"notes":"UEFA fixed international A-match window"},
+    {"window_id":"2022_JUN","start_date":"2022-05-30","end_date":"2022-06-14","max_matches":4,"notes":"Extended fixed international A-match window"},
+    {"window_id":"2022_SEP","start_date":"2022-09-19","end_date":"2022-09-27","max_matches":2,"notes":"FIFA fixed international A-match window"},
+
+    {"window_id":"2023_MAR","start_date":"2023-03-20","end_date":"2023-03-28","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2023_JUN","start_date":"2023-06-12","end_date":"2023-06-20","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2023_SEP","start_date":"2023-09-04","end_date":"2023-09-12","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2023_OCT","start_date":"2023-10-09","end_date":"2023-10-17","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2023_NOV","start_date":"2023-11-13","end_date":"2023-11-21","max_matches":2,"notes":"FIFA fixed international A-match window"},
+
+    {"window_id":"2024_MAR","start_date":"2024-03-18","end_date":"2024-03-26","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2024_SEP","start_date":"2024-09-02","end_date":"2024-09-10","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2024_OCT","start_date":"2024-10-07","end_date":"2024-10-15","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2024_NOV","start_date":"2024-11-11","end_date":"2024-11-19","max_matches":2,"notes":"FIFA fixed international A-match window"},
+
+    {"window_id":"2025_MAR","start_date":"2025-03-17","end_date":"2025-03-25","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2025_JUN","start_date":"2025-06-02","end_date":"2025-06-10","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2025_SEP","start_date":"2025-09-01","end_date":"2025-09-09","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2025_OCT","start_date":"2025-10-06","end_date":"2025-10-14","max_matches":2,"notes":"FIFA fixed international A-match window"},
+    {"window_id":"2025_NOV","start_date":"2025-11-10","end_date":"2025-11-18","max_matches":2,"notes":"FIFA fixed international A-match window"}
+  ],
+  "governance": {
+    "historical_backfill_only": true,
+    "research_only": true,
+    "operational_betting_authority": false,
+    "creates_signal": false,
+    "probability_mutation": false,
+    "eligibility_mutation": false,
+    "stake_changes": false,
+    "forward_journal_mutation": false
+  }
+}

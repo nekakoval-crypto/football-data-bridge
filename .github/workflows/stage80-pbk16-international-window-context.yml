@@ -1,0 +1,158 @@
+name: Stage 80 PBK16 International Window Context
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'config/stage80_fifa_uefa_windows_2017_2025.json'
+      - 'scripts/stage80_pbk16_international_window_context.py'
+      - 'scripts/tests/test_stage80_pbk16_international_window_context.py'
+      - 'scripts/stage80_archive_manifest.py'
+      - 'scripts/stage80_archive_readiness.py'
+      - 'scripts/tests/test_stage80_pbk16_international_window_manifest.py'
+      - 'scripts/tests/test_stage80_pbk16_international_window_readiness.py'
+      - '.github/workflows/stage80-pbk16-international-window-context.yml'
+      - '.github/workflows/stage80-archive-readiness.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'config/stage80_fifa_uefa_windows_2017_2025.json'
+      - 'scripts/stage80_pbk16_international_window_context.py'
+      - 'scripts/tests/test_stage80_pbk16_international_window_context.py'
+      - '.github/workflows/stage80-pbk16-international-window-context.yml'
+      - 'ops/pbk16_all_competition_fixture_history.csv'
+
+concurrency:
+  group: stage80-pbk16-international-window-context-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and provider-free tests
+        run: |
+          python -m py_compile scripts/stage80_pbk16_international_window_context.py
+          python -m py_compile scripts/stage80_archive_manifest.py
+          python -m py_compile scripts/stage80_archive_readiness.py
+          python -m unittest scripts.tests.test_stage80_pbk16_international_window_context -v
+          python -m unittest scripts.tests.test_stage80_pbk16_international_window_manifest -v
+          python -m unittest scripts.tests.test_stage80_pbk16_international_window_readiness -v
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated international-window outputs are forbidden in the feature PR.' >&2
+            exit 1
+          fi
+
+  build:
+    needs: validate
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build PBK16 international-window context
+        run: |
+          mkdir -p research
+          python scripts/stage80_pbk16_international_window_context.py \
+            --source ops/pbk16_all_competition_fixture_history.csv \
+            --config config/stage80_fifa_uefa_windows_2017_2025.json \
+            --out-csv research/pbk16_international_window_context_research.csv \
+            --meta-out research/stage80_pbk16_international_window_context_meta.json
+      - name: Verify durable research gate
+        run: |
+          python - <<'PY'
+          import csv, json
+          meta=json.load(open('research/stage80_pbk16_international_window_context_meta.json',encoding='utf-8'))
+          assert meta['version']=='PBK_STAGE80_PBK16_INTERNATIONAL_WINDOW_CONTEXT_V1', meta
+          assert meta['status']=='OK', meta
+          assert meta['source_domestic_rows']==40989, meta
+          assert meta['output_rows']==40989, meta
+          assert meta['unique_domestic_fixture_ids']==40989, meta
+          assert meta['duplicate_domestic_fixture_ids']==0, meta
+          assert meta['invalid_domestic_rows']==0, meta
+          assert meta['domestic_anchor_league_ids']==16, meta
+          assert meta['calendar_windows']==39, meta
+          assert meta['calendar_sources']==5, meta
+          assert meta['player_level_international_status']=='UNVERIFIED', meta
+          assert meta['player_level_callup_inference'] is False, meta
+          assert meta['player_level_travel_inference'] is False, meta
+          assert meta['player_level_appearance_inference'] is False, meta
+          assert meta['final_tournaments_included'] is False, meta
+          assert meta['non_uefa_only_windows_included'] is False, meta
+          assert meta['calendar_level_only'] is True, meta
+          assert meta['as_known_calendar_reference'] is True, meta
+          assert meta['no_match_result_dependency'] is True, meta
+          assert meta['no_lookahead'] is True, meta
+          assert meta['provider_calls']==0, meta
+          assert meta['historical_backfill_only'] is True, meta
+          assert meta['research_only'] is True, meta
+          assert meta['operational_betting_authority'] is False, meta
+          assert meta['creates_signal'] is False, meta
+          assert meta['probability_mutation'] is False, meta
+          assert meta['eligibility_mutation'] is False, meta
+          assert meta['stake_changes'] is False, meta
+          assert meta['forward_journal_mutation'] is False, meta
+          with open('research/pbk16_international_window_context_research.csv',encoding='utf-8-sig',newline='') as f:
+              rows=list(csv.DictReader(f))
+          assert len(rows)==40989, len(rows)
+          assert len({r['domestic_fixture_id'] for r in rows})==40989
+          assert {r['player_level_international_status'] for r in rows}=={'UNVERIFIED'}
+          assert {r['calendar_level_only'] for r in rows}=={'true'}
+          assert {r['no_lookahead'] for r in rows}=={'true'}
+          assert {r['operational_betting_authority'] for r in rows}=={'false'}
+          assert {r['creates_signal'] for r in rows}=={'false'}
+          print({
+              'rows':meta['output_rows'],
+              'within_72h_before':meta['within_72h_before_rows'],
+              'within_72h_after':meta['within_72h_after_rows'],
+              'either_first_after':meta['either_first_domestic_after_window_rows'],
+          })
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pbk16-international-window-context
+          path: research/
+          retention-days: 90
+
+  publish:
+    needs: build
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: pbk16-international-window-context
+          path: research
+      - name: Publish international-window context
+        shell: bash
+        run: |
+          cp research/pbk16_international_window_context_research.csv ops/pbk16_international_window_context_research.csv
+          cp research/stage80_pbk16_international_window_context_meta.json ops/stage80_pbk16_international_window_context_last_run.json
+          git config user.name 'stage80-pbk16-international-window-bot'
+          git config user.email 'stage80-pbk16-international-window-bot@users.noreply.github.com'
+          git add ops/pbk16_international_window_context_research.csv
+          git add ops/stage80_pbk16_international_window_context_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 PBK16 international-window context update'
+          python scripts/publish_operational_commit.py
