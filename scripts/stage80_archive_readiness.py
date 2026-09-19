@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V29_PBK14_INTERNATIONAL_WINDOW_MARKET_RESEARCH"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V30_PBK14_INTERNATIONAL_WINDOW_MARKET_WALKFORWARD"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -64,6 +64,8 @@ SOURCES = {
     "pbk14_international_window_market_join": "pbk14_international_window_market_join_research.csv",
     "pbk14_international_window_market_profiles": "pbk14_international_window_market_factor_research.csv",
     "pbk14_international_window_market_stability": "pbk14_international_window_market_factor_stability_research.csv",
+    "pbk14_international_window_market_walkforward": "pbk14_international_window_market_walkforward_research.csv",
+    "pbk14_international_window_market_walkforward_summary": "pbk14_international_window_market_walkforward_summary_research.csv",
     "pbk14_congestion_market_join": "pbk14_congestion_market_join_research.csv",
     "pbk14_congestion_market_profiles": "pbk14_congestion_market_factor_research.csv",
     "pbk14_congestion_market_stability": "pbk14_congestion_market_factor_stability_research.csv",
@@ -235,6 +237,7 @@ def build_report(ops=OPS, archive_dir=None):
     pbk14_market_bridge_meta = read_json(Path(ops) / "stage80_pbk14_fixture_bridge_last_run.json")
     pbk14_international_join_meta = read_json(Path(ops) / "stage80_pbk14_international_window_market_join_last_run.json")
     pbk14_international_research_meta = read_json(Path(ops) / "stage80_pbk14_international_window_market_research_last_run.json")
+    pbk14_international_walkforward_meta = read_json(Path(ops) / "stage80_pbk14_international_window_market_walkforward_last_run.json")
     pbk14_congestion_join_meta = read_json(Path(ops) / "stage80_pbk14_congestion_market_join_last_run.json")
     pbk14_congestion_research_meta = read_json(Path(ops) / "stage80_pbk14_congestion_market_research_last_run.json")
     pbk14_congestion_walkforward_meta = read_json(Path(ops) / "stage80_pbk14_congestion_market_walkforward_last_run.json")
@@ -1354,6 +1357,100 @@ def build_report(ops=OPS, archive_dir=None):
         and pbk14_international_research_meta.get("forward_journal_mutation") is False
     )
 
+    pbk14_international_walkforward = data["pbk14_international_window_market_walkforward"] or []
+    pbk14_international_walkforward_summary = data["pbk14_international_window_market_walkforward_summary"] or []
+
+    pbk14_international_walkforward_valid = [
+        row for row in pbk14_international_walkforward
+        if sval(row, "factor") in expected_international_factors
+        and sval(row, "bucket")
+        and sval(row, "scope_type") in {"ALL","LEAGUE"}
+        and sval(row, "scope_value")
+        and sval(row, "target") in {"HOME","DRAW","AWAY","OVER25","UNDER25"}
+        and fnum(row.get("test_season")) is not None
+        and fnum(row.get("train_last_season")) is not None
+        and fnum(row.get("train_seasons")) is not None
+        and fnum(row.get("train_market_matches")) is not None
+        and fnum(row.get("test_market_matches")) is not None
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+        and not is_true(row.get("promotes_factor"))
+        and not is_true(row.get("probability_mutation"))
+        and not is_true(row.get("eligibility_mutation"))
+        and not is_true(row.get("stake_changes"))
+        and not is_true(row.get("forward_journal_mutation"))
+    ]
+    pbk14_international_walkforward_invalid = (
+        len(pbk14_international_walkforward) - len(pbk14_international_walkforward_valid)
+    )
+    pbk14_international_walkforward_temporal_invalid = sum(
+        1 for row in pbk14_international_walkforward_valid
+        if int(float(row["train_last_season"])) >= int(float(row["test_season"]))
+    )
+
+    pbk14_international_walkforward_summary_valid = [
+        row for row in pbk14_international_walkforward_summary
+        if sval(row, "factor") in expected_international_factors
+        and sval(row, "bucket")
+        and sval(row, "scope_type") in {"ALL","LEAGUE"}
+        and sval(row, "scope_value")
+        and sval(row, "target") in {"HOME","DRAW","AWAY","OVER25","UNDER25"}
+        and fnum(row.get("folds")) is not None
+        and fnum(row.get("sample_threshold_pass_folds")) is not None
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+        and not is_true(row.get("promotes_factor"))
+        and not is_true(row.get("probability_mutation"))
+        and not is_true(row.get("eligibility_mutation"))
+        and not is_true(row.get("stake_changes"))
+        and not is_true(row.get("forward_journal_mutation"))
+    ]
+    pbk14_international_walkforward_summary_invalid = (
+        len(pbk14_international_walkforward_summary)
+        - len(pbk14_international_walkforward_summary_valid)
+    )
+
+    pbk14_international_walkforward_meta_valid = bool(
+        pbk14_international_walkforward_meta
+        and not pbk14_international_walkforward_meta.get("_invalid_json")
+        and pbk14_international_walkforward_meta.get("version") == "PBK_STAGE80_PBK14_INTERNATIONAL_WINDOW_MARKET_WALKFORWARD_V1"
+        and pbk14_international_walkforward_meta.get("status") == "OK"
+        and int(pbk14_international_walkforward_meta.get("source_rows") or 0) == len(pbk14_international_join_valid)
+        and int(pbk14_international_walkforward_meta.get("valid_research_rows") or 0) == len(pbk14_international_join_valid)
+        and int(pbk14_international_walkforward_meta.get("invalid_governance_or_result_rows") or 0) == 0
+        and len(pbk14_international_walkforward_meta.get("season_starts") or []) == 9
+        and set(pbk14_international_walkforward_meta.get("factor_names") or []) == expected_international_factors
+        and set(pbk14_international_walkforward_meta.get("targets") or []) == {"HOME","DRAW","AWAY","OVER25","UNDER25"}
+        and int(pbk14_international_walkforward_meta.get("fold_rows") or 0) == len(pbk14_international_walkforward_valid)
+        and int(pbk14_international_walkforward_meta.get("summary_rows") or 0) == len(pbk14_international_walkforward_summary_valid)
+        and int(pbk14_international_walkforward_meta.get("sample_threshold_pass_folds") or 0) > 0
+        and int(pbk14_international_walkforward_meta.get("min_prior_seasons") or 0) == 2
+        and int(pbk14_international_walkforward_meta.get("min_train_market_matches") or 0) == 100
+        and int(pbk14_international_walkforward_meta.get("min_test_market_matches") or 0) == 30
+        and pbk14_international_walkforward_meta.get("window_reference_contract") == "NEAREST_WINDOW_RELATION_GATED_V2"
+        and pbk14_international_walkforward_meta.get("player_level_international_status") == "UNVERIFIED"
+        and pbk14_international_walkforward_meta.get("player_callup_inferred") is False
+        and pbk14_international_walkforward_meta.get("player_travel_inferred") is False
+        and pbk14_international_walkforward_meta.get("player_appearance_inferred") is False
+        and pbk14_international_walkforward_meta.get("final_tournaments_included") is False
+        and pbk14_international_walkforward_meta.get("non_uefa_only_windows_included") is False
+        and pbk14_international_walkforward_meta.get("calendar_level_only") is True
+        and pbk14_international_walkforward_meta.get("as_known_calendar_reference") is True
+        and pbk14_international_walkforward_meta.get("no_match_result_dependency") is True
+        and pbk14_international_walkforward_meta.get("no_lookahead") is True
+        and int(pbk14_international_walkforward_meta.get("provider_calls") or 0) == 0
+        and pbk14_international_walkforward_meta.get("research_only") is True
+        and pbk14_international_walkforward_meta.get("operational_betting_authority") is False
+        and pbk14_international_walkforward_meta.get("creates_signal") is False
+        and pbk14_international_walkforward_meta.get("promotes_factor") is False
+        and pbk14_international_walkforward_meta.get("probability_mutation") is False
+        and pbk14_international_walkforward_meta.get("eligibility_mutation") is False
+        and pbk14_international_walkforward_meta.get("stake_changes") is False
+        and pbk14_international_walkforward_meta.get("forward_journal_mutation") is False
+    )
+
     pbk14_congestion_join = data["pbk14_congestion_market_join"] or []
     pbk14_congestion_profiles = data["pbk14_congestion_market_profiles"] or []
     pbk14_congestion_stability = data["pbk14_congestion_market_stability"] or []
@@ -1772,6 +1869,21 @@ def build_report(ops=OPS, archive_dir=None):
         or not pbk14_international_research_meta_valid
     ):
         gaps.append("PBK14_INTERNATIONAL_WINDOW_MARKET_RESEARCH_INVALID")
+    if (
+        data["pbk14_international_window_market_walkforward"] is None
+        or data["pbk14_international_window_market_walkforward_summary"] is None
+        or pbk14_international_walkforward_meta is None
+    ):
+        gaps.append("PBK14_INTERNATIONAL_WINDOW_MARKET_WALKFORWARD_NOT_MATERIALIZED")
+    elif (
+        pbk14_international_walkforward_invalid
+        or pbk14_international_walkforward_summary_invalid
+        or pbk14_international_walkforward_temporal_invalid
+        or not pbk14_international_walkforward_valid
+        or not pbk14_international_walkforward_summary_valid
+        or not pbk14_international_walkforward_meta_valid
+    ):
+        gaps.append("PBK14_INTERNATIONAL_WINDOW_MARKET_WALKFORWARD_INVALID")
     if data["pbk14_congestion_market_join"] is None or pbk14_congestion_join_meta is None:
         gaps.append("PBK14_CONGESTION_MARKET_JOIN_NOT_MATERIALIZED")
     elif (
@@ -2225,6 +2337,29 @@ def build_report(ops=OPS, archive_dir=None):
             "market_probability_semantics": "Historical closing-market no-vig benchmark only; never PBK probability.",
             "operational_betting_authority": False,
             "evidence_note": "Calendar-level international-window descriptive research only; player call-up/travel/appearance remains UNVERIFIED.",
+        },
+        "pbk14_international_window_market_walkforward": {
+            "folds_present": data["pbk14_international_window_market_walkforward"] is not None,
+            "summary_present": data["pbk14_international_window_market_walkforward_summary"] is not None,
+            "meta_present": pbk14_international_walkforward_meta is not None,
+            "meta_valid": pbk14_international_walkforward_meta_valid,
+            "fold_rows": len(pbk14_international_walkforward),
+            "valid_fold_rows": len(pbk14_international_walkforward_valid),
+            "invalid_fold_rows": pbk14_international_walkforward_invalid,
+            "temporal_invalid_rows": pbk14_international_walkforward_temporal_invalid,
+            "summary_rows": len(pbk14_international_walkforward_summary),
+            "valid_summary_rows": len(pbk14_international_walkforward_summary_valid),
+            "invalid_summary_rows": pbk14_international_walkforward_summary_invalid,
+            "sample_threshold_pass_folds": int(pbk14_international_walkforward_meta.get("sample_threshold_pass_folds") or 0) if pbk14_international_walkforward_meta_valid else None,
+            "min_prior_seasons": 2,
+            "min_train_market_matches": 100,
+            "min_test_market_matches": 30,
+            "window_reference_contract": "NEAREST_WINDOW_RELATION_GATED_V2",
+            "player_level_international_status": "UNVERIFIED",
+            "market_probability_semantics": "Historical closing-market no-vig benchmark only; never PBK probability.",
+            "operational_betting_authority": False,
+            "promotes_factor": False,
+            "evidence_note": "Each test season is evaluated using only earlier seasons. Player duty remains UNVERIFIED and persistence cannot promote an international-window factor.",
         },
         "pbk14_congestion_market_research": {
             "join_present": data["pbk14_congestion_market_join"] is not None,
