@@ -39,12 +39,15 @@ ROSTERS = OPS / "team_rosters.csv"
 FIXTURES = OPS / "current_round_fixtures.csv"
 OUT = OPS / "player_profile_evidence.csv"
 RESIDUAL_STATE = OPS / "player_profile_residual_state.csv"
+INTERNATIONAL_EVIDENCE = OPS / "international_duty_player_evidence.csv"
+INTERNATIONAL_STATE = OPS / "player_profile_international_residual_state.csv"
 META = OPS / "stage80_player_profile_last_run.json"
 SHARED_STATE = OPS / "stage71_observation_state.json"
 
 TEAM_ID_RE = re.compile(r"/teams/(\d+)")
 TEAM_SOURCE = "api-football:/players?team&season"
 RESIDUAL_SOURCE = "api-football:/players?id&season+current_roster"
+INTERNATIONAL_SOURCE = "api-football:/players?id&season+international_evidence"
 
 FIELDS = [
     "team_id","team_name","season","player_id","player_name","firstname","lastname",
@@ -272,6 +275,111 @@ def residual_candidates(
     }
 
 
+def international_profile_candidates(
+    international_rows,
+    existing,
+    international_state,
+    limit,
+    *,
+    now,
+    retry_days,
+):
+    """Select direct international player IDs still missing a profile DOB.
+
+    Candidate seasons come only from direct international evidence. For each
+    player, try the latest not-recently-terminal evidence season first; if that
+    season was EMPTY/NO_DOB recently, the next older evidence season may be
+    tried without inventing club context.
+    """
+    dob_ids = {
+        str(row.get("player_id") or "").strip()
+        for row in existing
+        if str(row.get("player_id") or "").strip()
+        and str(row.get("birth_date") or "").strip()
+    }
+    latest_state = {}
+    for row in international_state or []:
+        season = str(row.get("season") or "").strip()
+        pid = str(row.get("player_id") or "").strip()
+        attempted = parse_iso_utc(row.get("last_attempt_at_utc"))
+        if not season or not pid or attempted is None:
+            continue
+        key = (season, pid)
+        previous = latest_state.get(key)
+        if previous is None or attempted > previous[0]:
+            latest_state[key] = (attempted, row)
+
+    by_player = defaultdict(list)
+    for row in international_rows or []:
+        pid = str(row.get("player_id") or "").strip()
+        season = str(row.get("season") or "").strip()
+        kickoff = parse_iso_utc(row.get("kickoff_utc"))
+        if not pid or not season or pid in dob_ids:
+            continue
+        by_player[pid].append({
+            "player_id": pid,
+            "season": season,
+            "kickoff": kickoff,
+            "player_name": str(row.get("player_name") or "").strip(),
+        })
+
+    retry_cutoff = now - timedelta(days=max(0, int(retry_days)))
+    pending = []
+    suppressed_pairs = 0
+    exhausted_players = 0
+    for pid, rows in by_player.items():
+        rows.sort(
+            key=lambda item: (
+                item["kickoff"] or datetime.min.replace(tzinfo=timezone.utc),
+                item["season"],
+            ),
+            reverse=True,
+        )
+        seen_seasons = set()
+        chosen = None
+        for item in rows:
+            season = item["season"]
+            if season in seen_seasons:
+                continue
+            seen_seasons.add(season)
+            latest = latest_state.get((season, pid))
+            if latest is not None:
+                attempted, state_row = latest
+                status = str(state_row.get("status") or "").upper()
+                if status in {"EMPTY", "NO_DOB", "CAPTURED_DOB"} and attempted > retry_cutoff:
+                    suppressed_pairs += 1
+                    continue
+            chosen = {
+                "player_id": pid,
+                "team_id": "",
+                "team_name": "",
+                "season": season,
+                "player_name": item["player_name"],
+                "latest_evidence_kickoff_utc": (
+                    iso(item["kickoff"]) if item["kickoff"] else ""
+                ),
+            }
+            break
+        if chosen is None:
+            exhausted_players += 1
+            continue
+        pending.append(chosen)
+
+    pending.sort(
+        key=lambda item: (
+            parse_iso_utc(item["latest_evidence_kickoff_utc"])
+            or datetime.min.replace(tzinfo=timezone.utc),
+            item["player_id"],
+        ),
+        reverse=True,
+    )
+    return pending[:max(0, int(limit))], {
+        "players_already_with_profile_dob": len(dob_ids),
+        "suppressed_recent_player_seasons": suppressed_pairs,
+        "players_without_retryable_evidence_season": exhausted_players,
+    }
+
+
 class PageBudget:
     def __init__(self, get, state, now, *, max_calls, daily_limit, protected_calls, checkpoint):
         self.get = get
@@ -405,7 +513,7 @@ def capture_team(team, season, get_page, max_pages, captured_at):
     return [dedup[key] for key in sorted(dedup)]
 
 
-def capture_residual_player(candidate, season, get_page, captured_at):
+def capture_residual_player(candidate, season, get_page, captured_at, source=RESIDUAL_SOURCE):
     payload = get_page(
         "/players",
         {"id": candidate["player_id"], "season": season},
@@ -418,7 +526,7 @@ def capture_residual_player(candidate, season, get_page, captured_at):
         player = item.get("player") or {}
         if str(player.get("id") or "").strip() != str(candidate["player_id"]):
             continue
-        row = profile_row(player, candidate, season, captured_at, RESIDUAL_SOURCE)
+        row = profile_row(player, candidate, season, captured_at, source)
         return [row] if row else []
     return []
 
@@ -455,7 +563,7 @@ def merge_rows(existing, incoming):
     merged = {
         (str(r.get("team_id") or ""), str(r.get("season") or ""), str(r.get("player_id") or "")): dict(r)
         for r in existing
-        if r.get("team_id") and r.get("season") and r.get("player_id")
+        if r.get("season") and r.get("player_id")
     }
     for row in incoming:
         key = (row["team_id"], row["season"], row["player_id"])
@@ -469,15 +577,19 @@ def main():
     fixtures = read_csv(FIXTURES)
     existing = read_csv(OUT)
     residual_state = read_csv(RESIDUAL_STATE)
+    international_rows = read_csv(INTERNATIONAL_EVIDENCE)
+    international_state = read_csv(INTERNATIONAL_STATE)
 
     season = os.getenv("API_FOOTBALL_SEASON","").strip() or season_from_fixtures(fixtures, now.year)
     max_calls = int(os.getenv("STAGE80_PROFILE_MAX_API_CALLS","24"))
     max_teams = int(os.getenv("STAGE80_PROFILE_MAX_TEAMS","8"))
     max_pages = int(os.getenv("STAGE80_PROFILE_MAX_PAGES_PER_TEAM","4"))
     max_residual_players = int(os.getenv("STAGE80_PROFILE_MAX_RESIDUAL_PLAYERS","0"))
+    max_international_players = int(os.getenv("STAGE80_PROFILE_MAX_INTERNATIONAL_PLAYERS","0"))
     daily_limit = int(os.getenv("STAGE71_MAX_DAILY_API_CALLS","7000"))
     refresh_days = int(os.getenv("STAGE80_PROFILE_REFRESH_DAYS","7"))
     residual_retry_days = int(os.getenv("STAGE80_PROFILE_RESIDUAL_RETRY_DAYS","7"))
+    international_retry_days = int(os.getenv("STAGE80_PROFILE_INTERNATIONAL_RETRY_DAYS","30"))
 
     state = audit.read(SHARED_STATE)
     reserve = protected_calls(now)
@@ -596,10 +708,86 @@ def main():
                 )
 
     merged = merge_rows(merged, residual_incoming)
+
+    international_list, international_diag = international_profile_candidates(
+        international_rows,
+        merged,
+        international_state,
+        max_international_players,
+        now=now,
+        retry_days=international_retry_days,
+    )
+    international_captured_dob = 0
+    international_no_dob = 0
+    international_empty = 0
+    international_errors = 0
+    international_deferred = 0
+    international_incoming = []
+
+    if deferred_teams == 0 and residual_deferred == 0:
+        for index, candidate in enumerate(international_list):
+            attempted_at = iso(now)
+            candidate_season = candidate["season"]
+            try:
+                rows = capture_residual_player(
+                    candidate,
+                    candidate_season,
+                    budget,
+                    attempted_at,
+                    source=INTERNATIONAL_SOURCE,
+                )
+            except audit.ProtectedBudgetError as exc:
+                international_deferred = len(international_list) - index
+                warnings.append(str(exc))
+                break
+            except (ApiFootballBrokerError, RuntimeError, ValueError, TypeError, KeyError) as exc:
+                international_errors += 1
+                international_state = update_residual_state(
+                    international_state,
+                    candidate_season,
+                    candidate,
+                    "ERROR",
+                    attempted_at,
+                    str(exc),
+                )
+                warnings.append(
+                    f"international profile {candidate['player_id']} "
+                    f"season {candidate_season}: {exc}"
+                )
+                continue
+
+            if rows:
+                international_incoming.extend(rows)
+                has_dob = any(str(row.get("birth_date") or "").strip() for row in rows)
+                status = "CAPTURED_DOB" if has_dob else "NO_DOB"
+                if has_dob:
+                    international_captured_dob += 1
+                else:
+                    international_no_dob += 1
+                international_state = update_residual_state(
+                    international_state,
+                    candidate_season,
+                    candidate,
+                    status,
+                    attempted_at,
+                )
+            else:
+                international_empty += 1
+                international_state = update_residual_state(
+                    international_state,
+                    candidate_season,
+                    candidate,
+                    "EMPTY",
+                    attempted_at,
+                )
+
+    merged = merge_rows(merged, international_incoming)
     if merged or OUT.exists():
         write_csv(OUT, merged)
     if residual_state or RESIDUAL_STATE.exists():
         write_rows(RESIDUAL_STATE, RESIDUAL_FIELDS, residual_state)
+    if international_state or INTERNATIONAL_STATE.exists():
+        write_rows(INTERNATIONAL_STATE, RESIDUAL_FIELDS, international_state)
 
     audit.save(SHARED_STATE, state)
 
@@ -607,7 +795,7 @@ def main():
     profile_ids = {str(r.get("player_id") or "").strip() for r in merged if r.get("player_id")}
 
     meta = {
-        "version": "PBK_STAGE80_PLAYER_PROFILE_ENRICHMENT_V2_RESIDUAL_ID",
+        "version": "PBK_STAGE80_PLAYER_PROFILE_ENRICHMENT_V3_INTERNATIONAL_RESIDUAL_DOB",
         "run_at_utc": iso(now),
         "status": "ATTENTION" if warnings else (
             "WAITING" if deferred_teams or residual_deferred else "OK"
@@ -619,6 +807,7 @@ def main():
         ],
         "refresh_days": refresh_days,
         "residual_retry_days": residual_retry_days,
+        "international_retry_days": international_retry_days,
         "provider_calls": budget.calls,
         "team_provider_calls": team_provider_calls,
         "residual_provider_calls": budget.calls - team_provider_calls,
@@ -637,6 +826,22 @@ def main():
         ],
         "residual_suppressed_recent_attempts": residual_diag[
             "suppressed_recent_residual_attempts"
+        ],
+        "international_evidence_rows": len(international_rows),
+        "international_candidate_players": len(international_list),
+        "international_captured_dob_players": international_captured_dob,
+        "international_no_dob_players": international_no_dob,
+        "international_empty_players": international_empty,
+        "international_error_players": international_errors,
+        "international_deferred_players": international_deferred,
+        "international_players_already_with_profile_dob": international_diag[
+            "players_already_with_profile_dob"
+        ],
+        "international_suppressed_recent_player_seasons": international_diag[
+            "suppressed_recent_player_seasons"
+        ],
+        "international_players_without_retryable_evidence_season": international_diag[
+            "players_without_retryable_evidence_season"
         ],
         "profile_rows": len(merged),
         "unique_profile_players": len(profile_ids),
