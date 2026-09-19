@@ -103,6 +103,11 @@ on:
       - 'ops/stage80_top5_referee_backfill_last_run.json'
       - 'ops/top5_prematch_context_research.csv'
       - 'ops/stage80_prematch_context_last_run.json'
+      - 'scripts/stage80_top5_historical_motivation.py'
+      - 'scripts/standings_format_registry.py'
+      - 'scripts/tests/test_stage80_top5_historical_motivation_readiness.py'
+      - 'ops/top5_historical_motivation_research.csv'
+      - 'ops/stage80_top5_historical_motivation_last_run.json'
       - 'ops/top5_prematch_factor_research.csv'
       - 'ops/top5_prematch_factor_stability_research.csv'
       - 'ops/stage80_prematch_factor_research_last_run.json'
@@ -240,6 +245,11 @@ on:
       - 'ops/stage80_referee_research_last_run.json'
       - 'ops/top5_prematch_context_research.csv'
       - 'ops/stage80_prematch_context_last_run.json'
+      - 'scripts/stage80_top5_historical_motivation.py'
+      - 'scripts/standings_format_registry.py'
+      - 'scripts/tests/test_stage80_top5_historical_motivation_readiness.py'
+      - 'ops/top5_historical_motivation_research.csv'
+      - 'ops/stage80_top5_historical_motivation_last_run.json'
       - 'ops/top5_prematch_factor_research.csv'
       - 'ops/top5_prematch_factor_stability_research.csv'
       - 'ops/stage80_prematch_factor_research_last_run.json'
@@ -350,6 +360,7 @@ jobs:
           python -m unittest scripts.tests.test_stage80_top5_referee_backfill -v
           python -m unittest scripts.tests.test_stage80_top5_referee_backfill_readiness -v
           python -m unittest scripts.tests.test_stage80_prematch_context_readiness -v
+          python -m unittest scripts.tests.test_stage80_top5_historical_motivation_readiness -v
           python -m unittest scripts.tests.test_stage80_prematch_factor_research -v
           python -m unittest scripts.tests.test_stage80_prematch_factor_readiness -v
           python -m unittest scripts.tests.test_stage80_prematch_factor_walkforward -v
@@ -374,7 +385,7 @@ jobs:
       - name: Assert provider isolation
         shell: bash
         run: |
-          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports|raw\.githubusercontent' scripts/stage80_archive_readiness.py scripts/stage80_archive_manifest.py scripts/stage80_pbk16_international_window_context.py scripts/stage80_pbk14_international_window_market_join.py scripts/stage80_pbk14_international_window_market_research.py scripts/stage80_pbk14_international_window_market_walkforward.py scripts/stage80_prematch_factor_research.py scripts/stage80_prematch_factor_walkforward.py scripts/stage80_historical_fixture_catalog.py scripts/stage80_historical_player_catalog.py scripts/stage80_lineup_injury_archive.py scripts/stage80_transfer_history_archive.py scripts/stage91_statsbomb_player_xg_xa.py scripts/stage92_statsbomb_pbk_player_mapping.py; then
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports|raw\.githubusercontent' scripts/stage80_archive_readiness.py scripts/stage80_archive_manifest.py scripts/stage80_pbk16_international_window_context.py scripts/stage80_pbk14_international_window_market_join.py scripts/stage80_pbk14_international_window_market_research.py scripts/stage80_pbk14_international_window_market_walkforward.py scripts/stage80_top5_historical_motivation.py scripts/stage80_prematch_factor_research.py scripts/stage80_prematch_factor_walkforward.py scripts/stage80_historical_fixture_catalog.py scripts/stage80_historical_player_catalog.py scripts/stage80_lineup_injury_archive.py scripts/stage80_transfer_history_archive.py scripts/stage91_statsbomb_player_xg_xa.py scripts/stage92_statsbomb_pbk_player_mapping.py; then
             echo 'Stage80 archive governance/projections must remain provider-free.' >&2
             exit 1
           fi
