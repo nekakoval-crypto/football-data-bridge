@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_READINESS_V25_PBK14_CONGESTION_MARKET_WALKFORWARD",
-  "generated_at_utc": "2026-09-19T09:26:20Z",
+  "version": "PBK_STAGE80_ARCHIVE_READINESS_V26_PBK16_INTERNATIONAL_WINDOW_CONTEXT",
+  "generated_at_utc": "2026-09-19T09:43:24Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -188,6 +188,11 @@
       "file": "pbk16_competition_congestion_research.csv",
       "present": true,
       "rows": 40989
+    },
+    "pbk16_international_window_context": {
+      "file": "pbk16_international_window_context_research.csv",
+      "present": false,
+      "rows": null
     },
     "pbk14_market_bridge": {
       "file": "pbk14_football_data_fixture_bridge.csv",
@@ -714,6 +719,27 @@
     "operational_betting_authority": false,
     "evidence_note": "One deterministic row per captured PBK16 domestic fixture; only strictly prior played cup/UEFA evidence can contribute. Future scheduled fixtures are excluded."
   },
+  "pbk16_international_window_context": {
+    "present": false,
+    "meta_present": false,
+    "meta_valid": false,
+    "rows": 0,
+    "valid_rows": 0,
+    "invalid_rows": 0,
+    "unique_domestic_fixture_ids": 0,
+    "duplicate_domestic_fixture_ids": 0,
+    "calendar_windows": null,
+    "calendar_sources": null,
+    "within_72h_before_rows": null,
+    "within_96h_before_rows": null,
+    "within_72h_after_rows": null,
+    "within_96h_after_rows": null,
+    "either_first_domestic_after_window_rows": null,
+    "player_level_international_status": null,
+    "no_lookahead": null,
+    "operational_betting_authority": false,
+    "evidence_note": "Calendar-level international-window proximity only. It does not infer any player call-up, travel, appearance, minutes or return timing; those remain UNVERIFIED without direct historical evidence."
+  },
   "normalized_context_archives": {
     "lineup_rows": 6,
     "lineup_fixtures": 2,
@@ -744,6 +770,7 @@
     "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL",
     "PBK16_COMPETITION_PROVIDER_SEASONS_PARTIAL",
+    "PBK16_INTERNATIONAL_WINDOW_CONTEXT_NOT_MATERIALIZED",
     "PBK14_HISTORICAL_MARKET_BRIDGE_PARTIAL_MAPPING",
     "PBK16_HISTORICAL_MARKET_SOURCE_LIMITED_TO_14_LEAGUES",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
