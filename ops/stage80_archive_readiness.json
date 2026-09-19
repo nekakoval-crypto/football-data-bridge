@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_ARCHIVE_READINESS_V30_PBK14_INTERNATIONAL_WINDOW_MARKET_WALKFORWARD",
-  "generated_at_utc": "2026-09-19T11:14:40Z",
+  "version": "PBK_STAGE80_ARCHIVE_READINESS_V31_TOP5_HISTORICAL_MOTIVATION",
+  "generated_at_utc": "2026-09-19T11:19:18Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -146,6 +146,11 @@
     },
     "prematch_context": {
       "file": "top5_prematch_context_research.csv",
+      "present": true,
+      "rows": 16111
+    },
+    "historical_motivation": {
+      "file": "top5_historical_motivation_research.csv",
       "present": true,
       "rows": 16111
     },
@@ -556,6 +561,28 @@
     "provider_calls": 0,
     "operational_betting_authority": false,
     "evidence_note": "Deterministic Football-Data Top-5 2017/18-2025/26 pre-match research projection. Features use strictly earlier calendar dates within league-season; same-day results are excluded and the layer has no probability/EV/eligibility/stake/Forward authority."
+  },
+  "top5_historical_motivation_research": {
+    "present": true,
+    "meta_present": true,
+    "meta_valid": true,
+    "rows": 16111,
+    "valid_rows": 16111,
+    "invalid_rows": 0,
+    "unique_historical_match_ids": 16111,
+    "duplicate_historical_match_ids": 0,
+    "league_seasons": 45,
+    "expected_league_seasons": 45,
+    "rows_with_full_table": 15631,
+    "rows_with_boundary_points_tie": 4434,
+    "format_contract": "TOP5_45_SEASON_CELLS_V1",
+    "rank_tiebreak_contract": "POINTS_GD_GF_TEAMNAME_RESEARCH_APPROX_V1",
+    "europe_status": "UNKNOWN_BY_DESIGN",
+    "same_day_results_excluded": true,
+    "no_lookahead": true,
+    "provider_calls": 0,
+    "operational_betting_authority": false,
+    "evidence_note": "Deterministic Top-5 historical title/relegation/remaining-match context. Europe is UNKNOWN_BY_DESIGN, tied safety boundaries remain ambiguous, and no generic MUST_WIN or unmotivated label is created."
   },
   "prematch_factor_research": {
     "profiles_present": true,
