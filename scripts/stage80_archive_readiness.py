@@ -2092,6 +2092,7 @@ def build_report(ops=OPS, archive_dir=None):
             "invalid_rows": pbk14_international_join_invalid,
             "duplicate_historical_match_ids": pbk14_international_join_duplicate_hist_ids,
             "duplicate_api_fixture_ids": pbk14_international_join_duplicate_api_ids,
+            "window_reference_contract": pbk14_international_join_meta.get("window_reference_contract") if pbk14_international_join_meta_valid else None,
             "closing_1x2_matches": int(pbk14_international_join_meta.get("closing_1x2_matches") or 0) if pbk14_international_join_meta_valid else None,
             "closing_total25_matches": int(pbk14_international_join_meta.get("closing_total25_matches") or 0) if pbk14_international_join_meta_valid else None,
             "within_72h_before_rows": int(pbk14_international_join_meta.get("within_72h_before_rows") or 0) if pbk14_international_join_meta_valid else None,
