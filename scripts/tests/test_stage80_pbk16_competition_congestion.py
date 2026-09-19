@@ -70,6 +70,11 @@ class PBK16CompetitionCongestionTests(unittest.TestCase):
         self.assertFalse(cfg["include_super_cups"])
         self.assertEqual(len(cfg["uefa_competitions"]), 3)
         self.assertEqual(len(cfg["domestic_cup_slots"]), 20)
+        turkey = next(
+            row for row in cfg["domestic_cup_slots"]
+            if row["country"] == "Turkey" and row["slot"] == "NATIONAL_CUP"
+        )
+        self.assertIn("Türkiye Kupası", turkey["provider_name_aliases"])
         self.assertEqual(
             {(row["country"], row["slot"]) for row in cfg["domestic_cup_slots"] if row["country"] == "Portugal"},
             {("Portugal", "NATIONAL_CUP"), ("Portugal", "LEAGUE_CUP")},
