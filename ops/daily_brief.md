@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-19T17:02:39Z
+Generated UTC: 2026-09-19T18:03:13Z
 Active canonical signals: 4
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -93,7 +93,7 @@ Active canonical signals: 4
 - Scope: Бундеслига: ТБ(2.5) — движение рынка (+3 pp no-vig from frozen Bet365 O/U 2.5 opener).
 - Frozen O/U openers tracked: 18
 - Active +3 pp crossings ТБ(2.5): 1
-- Observed closes: 14 | Close-qualified O1 watches: 6
+- Observed closes: 15 | Close-qualified O1 watches: 6
 - Executable bookmaker being observed: Marathonbet
 
 ## Current O/U crossings
@@ -140,11 +140,11 @@ Active canonical signals: 4
 - Crossings: 45 | settled 30 | pending 15
 - Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: -6.130u | ROI -20.433% | W-L 16-14
-- Close: observed 31 | stayed qualified 25 | reverted 6 | persistence 80.645%
+- Close: observed 32 | stayed qualified 26 | reverted 6 | persistence 81.25%
 - Close-qualified ROI: -20.333% | Reverted ROI: -20.833%
 
 ## By WATCH family
 - Big-5 ОЗ market movement — ОЗ — Да: crossings 26, settled 17, ROI -37.235%, close persistence 83.333%
 - Big-5 ОЗ market movement — ОЗ — Нет: crossings 7, settled 4, ROI 37.0%, close persistence 75.0%
-- АПЛ favorite steam: crossings 5, settled 3, ROI -100.0%, close persistence 33.333%
+- АПЛ favorite steam: crossings 5, settled 3, ROI -100.0%, close persistence 50.0%
 - Бундеслига ТБ(2.5) steam: crossings 7, settled 6, ROI 28.667%, close persistence 100.0%
