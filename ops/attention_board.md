@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 19.09.2026 03:00 (Europe/Berlin)
+Обновлено: 19.09.2026 04:00 (Europe/Berlin)
 Canonical: 4 | active WATCH crossings: 23 | RED: 0 | ORANGE: 23
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -2550,7 +2550,7 @@ Canonical: 4 | active WATCH crossings: 23 | RED: 0 | ORANGE: 23
   - Европейская фора хозяев (-3) · П1: 5.65 | Х: 5.65 | П2: 1.33 @ Marathonbet
   - Европейская фора хозяев (-4) · П1: 13 | Х: 9 | П2: 1.12 @ Bet365
   - Европейская фора хозяев (-4) · П1: 6.1 | Х: 5.2 | П2: 1.1 @ Marathonbet
-  - 1X2 · П1: 1.3 | Х: 5.5 | П2: 9 @ Bet365
+  - 1X2 · П1: 1.28 | Х: 5.75 | П2: 9.5 @ Bet365
   - 1X2 · П1: 1.29 | Х: 5.8 | П2: 10.5 @ Marathonbet
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.8 | ИТМ: 1.91 @ Bet365
   - ИТБ/ИТМ 2 (0.5) · ИТБ: 1.8 | ИТМ: 1.9 @ Marathonbet
@@ -3803,7 +3803,7 @@ Canonical: 4 | active WATCH crossings: 23 | RED: 0 | ORANGE: 23
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 1
+- System Health: **HEALTHY** | critical 0 | warnings 0
 - Логическая canonical экспозиция: **4.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 24 | data required 3
