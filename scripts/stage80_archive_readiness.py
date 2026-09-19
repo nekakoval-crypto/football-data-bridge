@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V22_PBK14_MARKET_BRIDGE"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V23_PBK14_NEAR_COMPLETE_BRIDGE"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -1043,6 +1043,18 @@ def build_report(ops=OPS, archive_dir=None):
             or (
                 sval(row, "api_fixture_id")
                 and is_true(row.get("one_to_one_verified"))
+                and sval(row, "home_team_map_status") in {"AUTO","HIGH"}
+                and sval(row, "away_team_map_status") in {"AUTO","HIGH"}
+                and sval(row, "home_team_map_method") in {
+                    "CANONICAL_EXACT",
+                    "SCHEDULE_SCORE_FINGERPRINT",
+                    "NEAR_COMPLETE_SCHEDULE_SCORE_FINGERPRINT",
+                }
+                and sval(row, "away_team_map_method") in {
+                    "CANONICAL_EXACT",
+                    "SCHEDULE_SCORE_FINGERPRINT",
+                    "NEAR_COMPLETE_SCHEDULE_SCORE_FINGERPRINT",
+                }
             )
         )
     ]
@@ -1087,7 +1099,7 @@ def build_report(ops=OPS, archive_dir=None):
     pbk14_market_bridge_meta_valid = bool(
         pbk14_market_bridge_meta
         and not pbk14_market_bridge_meta.get("_invalid_json")
-        and pbk14_market_bridge_meta.get("version") == "PBK_STAGE80_PBK14_FIXTURE_BRIDGE_V1"
+        and pbk14_market_bridge_meta.get("version") == "PBK_STAGE80_PBK14_FIXTURE_BRIDGE_V2_NEAR_COMPLETE"
         and int(pbk14_market_bridge_meta.get("source_rows") or 0) == len(pbk14_market_bridge)
         and int(pbk14_market_bridge_meta.get("mapped_auto") or 0) == pbk14_market_bridge_counts["AUTO"]
         and int(pbk14_market_bridge_meta.get("mapped_high") or 0) == pbk14_market_bridge_counts["HIGH"]
@@ -1097,6 +1109,8 @@ def build_report(ops=OPS, archive_dir=None):
         and (pbk14_market_bridge_meta.get("mapping_policy") or {}).get("fuzzy_string_matching_used") is False
         and (pbk14_market_bridge_meta.get("mapping_policy") or {}).get("review_unmapped_excluded") is True
         and (pbk14_market_bridge_meta.get("mapping_policy") or {}).get("final_score_identity_only") is True
+        and (pbk14_market_bridge_meta.get("mapping_policy") or {}).get("source_aliases_may_share_provider_team_if_fixture_evidence_is_disjoint") is True
+        and float(((pbk14_market_bridge_meta.get("mapping_policy") or {}).get("near_complete_thresholds") or {}).get("min_source_ratio") or 0) >= 0.88
         and pbk14_market_bridge_meta.get("historical_backfill_only") is True
         and pbk14_market_bridge_meta.get("research_only") is True
         and pbk14_market_bridge_meta.get("operational_betting_authority") is False
