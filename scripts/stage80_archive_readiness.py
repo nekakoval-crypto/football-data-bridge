@@ -19,7 +19,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
 OUT_MD = OPS / "stage80_archive_readiness.md"
-VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V21_PBK16_COMPETITION_CONGESTION"
+VERSION = "PBK_STAGE80_ARCHIVE_READINESS_V22_PBK14_MARKET_BRIDGE"
 
 SOURCES = {
     "fixtures": "current_round_fixtures.csv",
@@ -59,6 +59,7 @@ SOURCES = {
     "pbk16_competition_fixtures": "pbk16_all_competition_fixture_history.csv",
     "pbk16_competition_state": "stage80_pbk16_competition_backfill_state.csv",
     "pbk16_competition_congestion": "pbk16_competition_congestion_research.csv",
+    "pbk14_market_bridge": "pbk14_football_data_fixture_bridge.csv",
 }
 FINAL_PROVIDER_CODES = {"FT", "AET", "PEN"}
 FINAL_NORMALIZED = {"finished", "ft", "aet", "pen"}
@@ -220,6 +221,8 @@ def build_report(ops=OPS, archive_dir=None):
     prematch_walkforward_meta = read_json(Path(ops) / "stage80_prematch_factor_walkforward_last_run.json")
     pbk16_competition_meta = read_json(Path(ops) / "stage80_pbk16_competition_backfill_last_run.json")
     pbk16_congestion_meta = read_json(Path(ops) / "stage80_pbk16_competition_congestion_last_run.json")
+    pbk14_market_source_meta = read_json(Path(ops) / "stage80_football_data_pbk14_history_last_run.json")
+    pbk14_market_bridge_meta = read_json(Path(ops) / "stage80_pbk14_fixture_bridge_last_run.json")
     source_presence = {
         name: {
             "file": filename,
@@ -1014,6 +1017,96 @@ def build_report(ops=OPS, archive_dir=None):
         and pbk16_congestion_meta.get("forward_journal_mutation") is False
     )
 
+    pbk14_market_bridge = data["pbk14_market_bridge"] or []
+    expected_pbk14_codes = {"E0","SP1","I1","D1","F1","SC0","N1","B1","P1","T1","AUT","DNK","NOR","POL"}
+    pbk14_market_bridge_valid = [
+        row for row in pbk14_market_bridge
+        if sval(row, "historical_match_id")
+        and sval(row, "league_code") in expected_pbk14_codes
+        and sval(row, "provider_league_id")
+        and sval(row, "season_start")
+        and sval(row, "date_iso")
+        and sval(row, "source_home_team")
+        and sval(row, "source_away_team")
+        and sval(row, "mapping_status") in {"AUTO","HIGH","REVIEW","UNMAPPED"}
+        and sval(row, "fuzzy_string_matching_used") == "false"
+        and is_true(row.get("historical_backfill_only"))
+        and is_true(row.get("research_only"))
+        and not is_true(row.get("operational_betting_authority"))
+        and not is_true(row.get("creates_signal"))
+        and not is_true(row.get("probability_mutation"))
+        and not is_true(row.get("eligibility_mutation"))
+        and not is_true(row.get("stake_changes"))
+        and not is_true(row.get("forward_journal_mutation"))
+        and (
+            sval(row, "mapping_status") not in {"AUTO","HIGH"}
+            or (
+                sval(row, "api_fixture_id")
+                and is_true(row.get("one_to_one_verified"))
+            )
+        )
+    ]
+    pbk14_market_bridge_invalid = len(pbk14_market_bridge) - len(pbk14_market_bridge_valid)
+    pbk14_market_bridge_ids = {
+        sval(row, "historical_match_id") for row in pbk14_market_bridge_valid
+    }
+    pbk14_market_bridge_duplicate_ids = len(pbk14_market_bridge_valid) - len(pbk14_market_bridge_ids)
+    pbk14_market_bridge_mapped = [
+        row for row in pbk14_market_bridge_valid
+        if sval(row, "mapping_status") in {"AUTO","HIGH"}
+    ]
+    pbk14_market_bridge_mapped_fixture_ids = [
+        sval(row, "api_fixture_id") for row in pbk14_market_bridge_mapped
+    ]
+    pbk14_market_bridge_duplicate_api_ids = (
+        len(pbk14_market_bridge_mapped_fixture_ids)
+        - len(set(pbk14_market_bridge_mapped_fixture_ids))
+    )
+    pbk14_market_bridge_counts = {
+        status: sum(sval(row, "mapping_status") == status for row in pbk14_market_bridge_valid)
+        for status in ("AUTO","HIGH","REVIEW","UNMAPPED")
+    }
+    pbk14_market_source_meta_valid = bool(
+        pbk14_market_source_meta
+        and not pbk14_market_source_meta.get("_invalid_json")
+        and pbk14_market_source_meta.get("version") == "PBK_STAGE80_FOOTBALL_DATA_PBK14_HISTORY_V1"
+        and int(pbk14_market_source_meta.get("expected_source_files") or 0) == 94
+        and int(pbk14_market_source_meta.get("present_source_files") or 0) == 94
+        and int(pbk14_market_source_meta.get("missing_source_files") or 0) == 0
+        and int(pbk14_market_source_meta.get("supported_leagues") or 0) == 14
+        and len(pbk14_market_source_meta.get("unsupported_pbk_leagues") or []) == 2
+        and pbk14_market_source_meta.get("historical_backfill_only") is True
+        and pbk14_market_source_meta.get("research_only") is True
+        and pbk14_market_source_meta.get("operational_betting_authority") is False
+        and pbk14_market_source_meta.get("creates_signal") is False
+        and pbk14_market_source_meta.get("probability_mutation") is False
+        and pbk14_market_source_meta.get("eligibility_mutation") is False
+        and pbk14_market_source_meta.get("stake_changes") is False
+        and pbk14_market_source_meta.get("forward_journal_mutation") is False
+    )
+    pbk14_market_bridge_meta_valid = bool(
+        pbk14_market_bridge_meta
+        and not pbk14_market_bridge_meta.get("_invalid_json")
+        and pbk14_market_bridge_meta.get("version") == "PBK_STAGE80_PBK14_FIXTURE_BRIDGE_V1"
+        and int(pbk14_market_bridge_meta.get("source_rows") or 0) == len(pbk14_market_bridge)
+        and int(pbk14_market_bridge_meta.get("mapped_auto") or 0) == pbk14_market_bridge_counts["AUTO"]
+        and int(pbk14_market_bridge_meta.get("mapped_high") or 0) == pbk14_market_bridge_counts["HIGH"]
+        and int(pbk14_market_bridge_meta.get("review") or 0) == pbk14_market_bridge_counts["REVIEW"]
+        and int(pbk14_market_bridge_meta.get("unmapped") or 0) == pbk14_market_bridge_counts["UNMAPPED"]
+        and int(pbk14_market_bridge_meta.get("duplicate_mapped_api_fixture_ids") or 0) == 0
+        and (pbk14_market_bridge_meta.get("mapping_policy") or {}).get("fuzzy_string_matching_used") is False
+        and (pbk14_market_bridge_meta.get("mapping_policy") or {}).get("review_unmapped_excluded") is True
+        and (pbk14_market_bridge_meta.get("mapping_policy") or {}).get("final_score_identity_only") is True
+        and pbk14_market_bridge_meta.get("historical_backfill_only") is True
+        and pbk14_market_bridge_meta.get("research_only") is True
+        and pbk14_market_bridge_meta.get("operational_betting_authority") is False
+        and pbk14_market_bridge_meta.get("creates_signal") is False
+        and pbk14_market_bridge_meta.get("probability_mutation") is False
+        and pbk14_market_bridge_meta.get("eligibility_mutation") is False
+        and pbk14_market_bridge_meta.get("stake_changes") is False
+        and pbk14_market_bridge_meta.get("forward_journal_mutation") is False
+    )
+
     raw_archive = raw_archive_inventory(archive_dir, ops=ops)
     roster_history_rows = len(history)
     player_stats_fixture_count = len(stat_fixture_ids)
@@ -1172,6 +1265,24 @@ def build_report(ops=OPS, archive_dir=None):
         }
     ):
         gaps.append("PBK16_COMPETITION_CONGESTION_INVALID")
+    if (
+        data["pbk14_market_bridge"] is None
+        or pbk14_market_source_meta is None
+        or pbk14_market_bridge_meta is None
+    ):
+        gaps.append("PBK14_HISTORICAL_MARKET_BRIDGE_NOT_MATERIALIZED")
+    else:
+        if (
+            pbk14_market_bridge_invalid
+            or pbk14_market_bridge_duplicate_ids
+            or pbk14_market_bridge_duplicate_api_ids
+            or not pbk14_market_source_meta_valid
+            or not pbk14_market_bridge_meta_valid
+        ):
+            gaps.append("PBK14_HISTORICAL_MARKET_BRIDGE_INVALID")
+        if pbk14_market_bridge_counts["REVIEW"] or pbk14_market_bridge_counts["UNMAPPED"]:
+            gaps.append("PBK14_HISTORICAL_MARKET_BRIDGE_PARTIAL_MAPPING")
+        gaps.append("PBK16_HISTORICAL_MARKET_SOURCE_LIMITED_TO_14_LEAGUES")
     if data["lineup_archive"] is None:
         gaps.append("LINEUP_ARCHIVE_WAITING_FIRST_BUILD")
     if data["injury_archive"] is None:
@@ -1514,6 +1625,32 @@ def build_report(ops=OPS, archive_dir=None):
             "promotes_factor": False,
             "evidence_note": "Walk-forward research uses only strictly earlier seasons to evaluate each later test season. Sample-qualified sign persistence is descriptive validation evidence only.",
         },
+        "pbk14_historical_market_bridge": {
+            "present": data["pbk14_market_bridge"] is not None,
+            "source_meta_present": pbk14_market_source_meta is not None,
+            "source_meta_valid": pbk14_market_source_meta_valid,
+            "bridge_meta_present": pbk14_market_bridge_meta is not None,
+            "bridge_meta_valid": pbk14_market_bridge_meta_valid,
+            "rows": len(pbk14_market_bridge),
+            "valid_rows": len(pbk14_market_bridge_valid),
+            "invalid_rows": pbk14_market_bridge_invalid,
+            "unique_historical_match_ids": len(pbk14_market_bridge_ids),
+            "duplicate_historical_match_ids": pbk14_market_bridge_duplicate_ids,
+            "mapped_auto": pbk14_market_bridge_counts["AUTO"],
+            "mapped_high": pbk14_market_bridge_counts["HIGH"],
+            "mapped_auto_high": len(pbk14_market_bridge_mapped),
+            "review": pbk14_market_bridge_counts["REVIEW"],
+            "unmapped": pbk14_market_bridge_counts["UNMAPPED"],
+            "duplicate_mapped_api_fixture_ids": pbk14_market_bridge_duplicate_api_ids,
+            "supported_leagues": 14,
+            "unsupported_locked_pbk_leagues": 2,
+            "unsupported_countries": ["Latvia","Lithuania"],
+            "fuzzy_string_matching_used": False,
+            "review_unmapped_excluded": True,
+            "final_score_identity_only": True,
+            "operational_betting_authority": False,
+            "evidence_note": "Conservative historical identity bridge only. AUTO/HIGH can be joined downstream; REVIEW/UNMAPPED are excluded. Lithuania and Latvia have no Football-Data market source in this contour.",
+        },
         "pbk16_competition_history": {
             "catalog_present": data["pbk16_competition_catalog"] is not None,
             "fixture_archive_present": data["pbk16_competition_fixtures"] is not None,
@@ -1603,6 +1740,7 @@ def render_markdown(report):
     prematch = report["prematch_context_research"]
     prematch_factor = report["prematch_factor_research"]
     prematch_walkforward = report["prematch_factor_walkforward"]
+    pbk14_market = report["pbk14_historical_market_bridge"]
     pbk16_history = report["pbk16_competition_history"]
     pbk16_congestion = report["pbk16_competition_congestion"]
     raw = report["raw_provider_archive"]
@@ -1646,6 +1784,7 @@ def render_markdown(report):
         f"- Pre-match factor research: {prematch_factor['valid_profile_rows']} profile rows / {prematch_factor['valid_stability_rows']} stability rows; closing 1X2 matches {prematch_factor['closing_1x2_matches'] if prematch_factor['closing_1x2_matches'] is not None else '—'}; closing O/U2.5 matches {prematch_factor['closing_total25_matches'] if prematch_factor['closing_total25_matches'] is not None else '—'}.",
         f"- Pre-match walk-forward research: {prematch_walkforward['valid_fold_rows']} folds / {prematch_walkforward['valid_summary_rows']} summaries; sample-qualified folds {prematch_walkforward['sample_threshold_pass_folds'] if prematch_walkforward['sample_threshold_pass_folds'] is not None else '—'}; promotes factor {prematch_walkforward['promotes_factor']}.",
         f"- Match context: {c['unique_fixtures']} fixtures; official XI {c['fixtures_with_official_lineup_snapshot']}; injury evidence {c['fixtures_with_injury_evidence']}.",
+        f"- PBK14 historical market bridge: {pbk14_market['mapped_auto_high']} AUTO/HIGH of {pbk14_market['valid_rows']} valid source rows; AUTO {pbk14_market['mapped_auto']}, HIGH {pbk14_market['mapped_high']}, REVIEW {pbk14_market['review']}, UNMAPPED {pbk14_market['unmapped']}; fuzzy matching {pbk14_market['fuzzy_string_matching_used']}; source coverage 14 / 16 locked leagues.",
         f"- PBK16 all-competition history: catalog {pbk16_history['valid_catalog_rows']} valid rows; required unresolved {pbk16_history['required_unresolved_competitions']}; fixture archive {pbk16_history['valid_fixture_rows']} valid rows; domestic anchors {pbk16_history['domestic_anchor_league_ids']} / 16 leagues; captured cells {pbk16_history['captured_fixture_cells']}, provider-unavailable cells {pbk16_history['unavailable_provider_season_cells']}, pending {pbk16_history['pending_fixture_cells']}, errors {pbk16_history['error_fixture_cells']}.",
         f"- PBK16 cup/UEFA congestion: {pbk16_congestion['valid_rows']} valid rows / {pbk16_congestion['unique_domestic_fixture_ids']} domestic fixtures; no-lookahead {pbk16_congestion['no_lookahead']}; future schedule used {pbk16_congestion['future_schedule_used']}; prior UEFA <=72h {pbk16_congestion['rows_either_prev_uefa_72h'] if pbk16_congestion['rows_either_prev_uefa_72h'] is not None else '—'}, prior cup <=72h {pbk16_congestion['rows_either_prev_cup_72h'] if pbk16_congestion['rows_either_prev_cup_72h'] is not None else '—'}.",
         "",
@@ -1703,6 +1842,10 @@ def main():
         "prematch_walkforward_fold_rows": report["prematch_factor_walkforward"]["valid_fold_rows"],
         "prematch_walkforward_summary_rows": report["prematch_factor_walkforward"]["valid_summary_rows"],
         "prematch_walkforward_sample_qualified_folds": report["prematch_factor_walkforward"]["sample_threshold_pass_folds"],
+        "pbk14_market_bridge_rows": report["pbk14_historical_market_bridge"]["valid_rows"],
+        "pbk14_market_bridge_mapped_auto_high": report["pbk14_historical_market_bridge"]["mapped_auto_high"],
+        "pbk14_market_bridge_review": report["pbk14_historical_market_bridge"]["review"],
+        "pbk14_market_bridge_unmapped": report["pbk14_historical_market_bridge"]["unmapped"],
         "pbk16_competition_fixture_rows": report["pbk16_competition_history"]["valid_fixture_rows"],
         "pbk16_competition_domestic_anchor_leagues": report["pbk16_competition_history"]["domestic_anchor_league_ids"],
         "pbk16_competition_required_unresolved": report["pbk16_competition_history"]["required_unresolved_competitions"],
