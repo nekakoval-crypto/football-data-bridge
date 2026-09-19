@@ -1,0 +1,37 @@
+{
+  "version": "PBK_STAGE80_FOOTBALL_DATA_PBK14_9SEASONS_V1",
+  "scope": "PBK locked 16-league universe; Football-Data historical market coverage for 14 supported leagues; 2017-2025 season starts; research only",
+  "season_starts": [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
+  "main_source_base": "https://www.football-data.co.uk/mmz4281",
+  "extra_source_base": "https://www.football-data.co.uk/new",
+  "leagues": [
+    {"country":"England","league_name":"Premier League","provider_league_id":39,"source_mode":"SEASON_FILE","source_code":"E0"},
+    {"country":"Spain","league_name":"La Liga","provider_league_id":140,"source_mode":"SEASON_FILE","source_code":"SP1"},
+    {"country":"Italy","league_name":"Serie A","provider_league_id":135,"source_mode":"SEASON_FILE","source_code":"I1"},
+    {"country":"Germany","league_name":"Bundesliga","provider_league_id":78,"source_mode":"SEASON_FILE","source_code":"D1"},
+    {"country":"France","league_name":"Ligue 1","provider_league_id":61,"source_mode":"SEASON_FILE","source_code":"F1"},
+    {"country":"Scotland","league_name":"Scottish Premiership","provider_league_id":179,"source_mode":"SEASON_FILE","source_code":"SC0"},
+    {"country":"Netherlands","league_name":"Eredivisie","provider_league_id":88,"source_mode":"SEASON_FILE","source_code":"N1"},
+    {"country":"Belgium","league_name":"Belgian Pro League","provider_league_id":144,"source_mode":"SEASON_FILE","source_code":"B1"},
+    {"country":"Portugal","league_name":"Primeira Liga","provider_league_id":94,"source_mode":"SEASON_FILE","source_code":"P1"},
+    {"country":"Turkey","league_name":"Super Lig","provider_league_id":203,"source_mode":"SEASON_FILE","source_code":"T1"},
+    {"country":"Austria","league_name":"Austrian Bundesliga","provider_league_id":218,"source_mode":"ALL_SEASONS_FILE","source_code":"AUT"},
+    {"country":"Denmark","league_name":"Danish Superliga","provider_league_id":119,"source_mode":"ALL_SEASONS_FILE","source_code":"DNK"},
+    {"country":"Norway","league_name":"Eliteserien","provider_league_id":103,"source_mode":"ALL_SEASONS_FILE","source_code":"NOR"},
+    {"country":"Poland","league_name":"Ekstraklasa","provider_league_id":106,"source_mode":"ALL_SEASONS_FILE","source_code":"POL"}
+  ],
+  "unsupported_pbk_leagues": [
+    {"country":"Lithuania","league_name":"A Lyga","provider_league_id":362,"reason":"NO_FOOTBALL_DATA_HISTORICAL_MARKET_SOURCE"},
+    {"country":"Latvia","league_name":"Virsliga","provider_league_id":365,"reason":"NO_FOOTBALL_DATA_HISTORICAL_MARKET_SOURCE"}
+  ],
+  "governance": {
+    "historical_backfill_only": true,
+    "research_only": true,
+    "operational_betting_authority": false,
+    "creates_signal": false,
+    "probability_mutation": false,
+    "eligibility_mutation": false,
+    "stake_changes": false,
+    "forward_journal_mutation": false
+  }
+}
