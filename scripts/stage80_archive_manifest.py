@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V24_PBK14_INTERNATIONAL_WINDOW_MARKET_JOIN"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V25_PBK14_INTERNATIONAL_WINDOW_MARKET_RESEARCH"
 
 DATASETS = [
     {
@@ -493,6 +493,28 @@ DATASETS = [
         "effective_time_fields": ["date_iso"],
         "source": "Stage80 AUTO/HIGH PBK14 historical-market identities joined by API fixture_id to PBK16 international-window calendar context",
         "limitations": "REVIEW/UNMAPPED excluded. Calendar proximity is not player-duty evidence: call-up, travel, appearance, minutes and return timing remain UNVERIFIED. No betting/model authority.",
+    },
+    {
+        "dataset_id": "pbk14_international_window_market_factor_research",
+        "path": "pbk14_international_window_market_factor_research.csv",
+        "role": "RESEARCH_ANALYSIS",
+        "lifecycle": "DETERMINISTIC_AGGREGATE_PROJECTION",
+        "identity_key": ["factor", "bucket", "scope_type", "scope_value"],
+        "observed_time_fields": [],
+        "effective_time_fields": [],
+        "source": "Stage80 descriptive international-window research over PBK14 historical closing markets",
+        "limitations": "Calendar-level exploratory aggregates only. Market no-vig is not PBK probability; player duty remains UNVERIFIED; no factor ranking, promotion or betting/model authority.",
+    },
+    {
+        "dataset_id": "pbk14_international_window_market_factor_stability_research",
+        "path": "pbk14_international_window_market_factor_stability_research.csv",
+        "role": "RESEARCH_VALIDATION",
+        "lifecycle": "DETERMINISTIC_SEASON_STABILITY_PROJECTION",
+        "identity_key": ["factor", "bucket", "scope_type", "scope_value"],
+        "observed_time_fields": [],
+        "effective_time_fields": [],
+        "source": "Stage80 season-by-season stability projection for PBK14 international-window market research",
+        "limitations": "Calendar-level descriptive stability only. Does not infer player call-up/travel/appearance, rank/select/promote factors or create probability/eligibility/stake/Forward authority.",
     },
     {
         "dataset_id": "pbk14_congestion_market_join_research",
