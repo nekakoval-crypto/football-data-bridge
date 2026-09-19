@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_INTERNATIONAL_DUTY_PLAYER_EVIDENCE_BACKLOG_V1",
-  "generated_at_utc": "2026-09-19T14:40:21Z",
+  "generated_at_utc": "2026-09-19T20:31:49Z",
   "status": "OK",
   "source_fixture_rows": 10476,
   "source_finished_rows": 9682,
@@ -64,7 +64,9 @@
     "/fixtures/players": 4505
   },
   "backlog_status_counts": {
-    "PENDING": 6185
+    "CAPTURED": 758,
+    "NO_DATA": 572,
+    "PENDING": 4855
   },
   "final_tournaments_included": false,
   "outside_fixed_window_fixtures_queued": false,
