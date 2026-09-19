@@ -18,7 +18,7 @@ from pathlib import Path
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_manifest.json"
 OUT_CSV = OPS / "stage80_archive_manifest.csv"
-VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V23_PBK16_INTERNATIONAL_WINDOW_CONTEXT"
+VERSION = "PBK_STAGE80_ARCHIVE_MANIFEST_V24_PBK14_INTERNATIONAL_WINDOW_MARKET_JOIN"
 
 DATASETS = [
     {
@@ -482,6 +482,17 @@ DATASETS = [
         "effective_time_fields": ["date_iso"],
         "source": "Stage80 Football-Data PBK14 historical market rows bridged to API-Football PBK16 domestic fixtures",
         "limitations": "AUTO/HIGH only are eligible downstream. No fuzzy string matching; REVIEW/UNMAPPED remain excluded. Final scores are used only as historical identity evidence. Lithuania/Latvia have no Football-Data historical market source in this contour. No betting/model authority.",
+    },
+    {
+        "dataset_id": "pbk14_international_window_market_join_research",
+        "path": "pbk14_international_window_market_join_research.csv",
+        "role": "RESEARCH_JOIN",
+        "lifecycle": "DETERMINISTIC_CALENDAR_CONTEXT_JOIN",
+        "identity_key": ["historical_match_id"],
+        "observed_time_fields": [],
+        "effective_time_fields": ["date_iso"],
+        "source": "Stage80 AUTO/HIGH PBK14 historical-market identities joined by API fixture_id to PBK16 international-window calendar context",
+        "limitations": "REVIEW/UNMAPPED excluded. Calendar proximity is not player-duty evidence: call-up, travel, appearance, minutes and return timing remain UNVERIFIED. No betting/model authority.",
     },
     {
         "dataset_id": "pbk14_congestion_market_join_research",
