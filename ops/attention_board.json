@@ -1,53 +1,19 @@
 {
-  "generated_at_utc": "2026-09-19T16:00:47Z",
-  "generated_at_local": "2026-09-19T18:00:47+02:00",
+  "generated_at_utc": "2026-09-19T17:00:33Z",
+  "generated_at_local": "2026-09-19T19:00:33+02:00",
   "timezone": "Europe/Berlin",
   "status": "OK",
   "summary": {
-    "red_attention": 7,
+    "red_attention": 5,
     "orange_attention": 8,
     "blue_canonical": 3,
     "active_canonical": 4,
-    "active_watch_crossings": 14,
+    "active_watch_crossings": 12,
     "nearest_monitored_rows": 9,
     "recent_results": 2,
-    "market_cards": 83
+    "market_cards": 73
   },
   "red": [
-    {
-      "type": "WATCH",
-      "stage": "Stage61",
-      "priority": "RED",
-      "league": "АПЛ",
-      "fixture_id": "1557415",
-      "kickoff_utc": "2026-09-19T16:30:00Z",
-      "kickoff_local": "19.09 18:30",
-      "hours_to_kickoff": 0.49,
-      "home_team": "Nottingham Forest",
-      "away_team": "Coventry",
-      "selection": "П1",
-      "movement_pp": "0.04647972",
-      "user_book": "Marathonbet",
-      "user_odds": "1.66",
-      "reason": "первый +3 п.п. steam фаворита"
-    },
-    {
-      "type": "WATCH",
-      "stage": "Stage63",
-      "priority": "RED",
-      "league": "La Liga",
-      "fixture_id": "1570395",
-      "kickoff_utc": "2026-09-19T16:30:00Z",
-      "kickoff_local": "19.09 18:30",
-      "hours_to_kickoff": 0.49,
-      "home_team": "Celta Vigo",
-      "away_team": "Racing Santander",
-      "selection": "ОЗ — Да",
-      "movement_pp": "0.03197606",
-      "user_book": "Marathonbet",
-      "user_odds": "1.59",
-      "reason": "prospective движение ОЗ ≥3 п.п."
-    },
     {
       "type": "WATCH",
       "stage": "Stage63",
@@ -56,7 +22,7 @@
       "fixture_id": "1552765",
       "kickoff_utc": "2026-09-19T18:45:00Z",
       "kickoff_local": "19.09 20:45",
-      "hours_to_kickoff": 2.74,
+      "hours_to_kickoff": 1.74,
       "home_team": "Angers",
       "away_team": "Estac Troyes",
       "selection": "ОЗ — Да",
@@ -73,7 +39,7 @@
       "fixture_id": "1552772",
       "kickoff_utc": "2026-09-19T18:45:00Z",
       "kickoff_local": "19.09 20:45",
-      "hours_to_kickoff": 2.74,
+      "hours_to_kickoff": 1.74,
       "home_team": "Toulouse",
       "away_team": "Le Havre",
       "selection": "ОЗ — Да",
@@ -90,7 +56,7 @@
       "fixture_id": "1552767",
       "kickoff_utc": "2026-09-19T18:45:00Z",
       "kickoff_local": "19.09 20:45",
-      "hours_to_kickoff": 2.74,
+      "hours_to_kickoff": 1.74,
       "home_team": "Le Mans",
       "away_team": "Lorient",
       "selection": "ОЗ — Да",
@@ -107,7 +73,7 @@
       "fixture_id": "1570400",
       "kickoff_utc": "2026-09-19T19:00:00Z",
       "kickoff_local": "19.09 21:00",
-      "hours_to_kickoff": 2.99,
+      "hours_to_kickoff": 1.99,
       "home_team": "Sevilla",
       "away_team": "Barcelona",
       "selection": "ОЗ — Нет",
@@ -124,7 +90,7 @@
       "fixture_id": "1570400",
       "kickoff_utc": "2026-09-19T19:00:00Z",
       "kickoff_local": "19.09 21:00",
-      "hours_to_kickoff": 2.99,
+      "hours_to_kickoff": 1.99,
       "home_team": "Sevilla",
       "away_team": "Barcelona",
       "selection": "ОЗ — Да",
@@ -145,7 +111,7 @@
       "fixture_id": "1550131",
       "kickoff_utc": "2026-09-20T13:00:00Z",
       "kickoff_local": "20.09 15:00",
-      "hours_to_kickoff": 20.99,
+      "hours_to_kickoff": 19.99,
       "home_team": "Frosinone",
       "away_team": "Como",
       "selection": "П2",
@@ -163,7 +129,7 @@
       "fixture_id": "1550130",
       "kickoff_utc": "2026-09-20T10:30:00Z",
       "kickoff_local": "20.09 12:30",
-      "hours_to_kickoff": 18.49,
+      "hours_to_kickoff": 17.49,
       "home_team": "Fiorentina",
       "away_team": "Napoli",
       "selection": "ОЗ — Да",
@@ -180,7 +146,7 @@
       "fixture_id": "1557412",
       "kickoff_utc": "2026-09-20T13:00:00Z",
       "kickoff_local": "20.09 15:00",
-      "hours_to_kickoff": 20.99,
+      "hours_to_kickoff": 19.99,
       "home_team": "Leeds",
       "away_team": "Crystal Palace",
       "selection": "П1",
@@ -197,7 +163,7 @@
       "fixture_id": "1550131",
       "kickoff_utc": "2026-09-20T13:00:00Z",
       "kickoff_local": "20.09 15:00",
-      "hours_to_kickoff": 20.99,
+      "hours_to_kickoff": 19.99,
       "home_team": "Frosinone",
       "away_team": "Como",
       "selection": "ОЗ — Да",
@@ -214,7 +180,7 @@
       "fixture_id": "1575173",
       "kickoff_utc": "2026-09-20T15:30:00Z",
       "kickoff_local": "20.09 17:30",
-      "hours_to_kickoff": 23.49,
+      "hours_to_kickoff": 22.49,
       "home_team": "FC Schalke 04",
       "away_team": "SV Elversberg",
       "selection": "ТБ(2.5)",
@@ -231,7 +197,7 @@
       "fixture_id": "1575173",
       "kickoff_utc": "2026-09-20T15:30:00Z",
       "kickoff_local": "20.09 17:30",
-      "hours_to_kickoff": 23.49,
+      "hours_to_kickoff": 22.49,
       "home_team": "FC Schalke 04",
       "away_team": "SV Elversberg",
       "selection": "ОЗ — Да",
@@ -248,7 +214,7 @@
       "fixture_id": "1550132",
       "kickoff_utc": "2026-09-20T16:00:00Z",
       "kickoff_local": "20.09 18:00",
-      "hours_to_kickoff": 23.99,
+      "hours_to_kickoff": 22.99,
       "home_team": "Juventus",
       "away_team": "Atalanta",
       "selection": "ОЗ — Нет",
@@ -265,7 +231,7 @@
       "fixture_id": "1552773",
       "kickoff_utc": "2026-09-20T18:45:00Z",
       "kickoff_local": "20.09 20:45",
-      "hours_to_kickoff": 26.74,
+      "hours_to_kickoff": 25.74,
       "home_team": "Marseille",
       "away_team": "Paris Saint Germain",
       "selection": "ОЗ — Нет",
@@ -286,7 +252,7 @@
       "fixture_id": "1550131",
       "kickoff_utc": "2026-09-20T13:00:00Z",
       "kickoff_local": "20.09 15:00",
-      "hours_to_kickoff": 20.99,
+      "hours_to_kickoff": 19.99,
       "home_team": "Frosinone",
       "away_team": "Como",
       "selection": "П2",
@@ -306,7 +272,7 @@
       "fixture_id": "1550143",
       "kickoff_utc": "2026-10-11T13:00:00Z",
       "kickoff_local": "11.10 15:00",
-      "hours_to_kickoff": 524.99,
+      "hours_to_kickoff": 523.99,
       "home_team": "Lecce",
       "away_team": "Bologna",
       "selection": "П2",
@@ -326,7 +292,7 @@
       "fixture_id": "1550145",
       "kickoff_utc": "2026-10-11T16:00:00Z",
       "kickoff_local": "11.10 18:00",
-      "hours_to_kickoff": 527.99,
+      "hours_to_kickoff": 526.99,
       "home_team": "Sassuolo",
       "away_team": "AC Milan",
       "selection": "П2",
@@ -346,7 +312,7 @@
       "fixture_id": "1550138",
       "kickoff_utc": "2026-10-11T18:45:00Z",
       "kickoff_local": "11.10 20:45",
-      "hours_to_kickoff": 530.74,
+      "hours_to_kickoff": 529.74,
       "home_team": "Cagliari",
       "away_team": "Juventus",
       "selection": "П2",
@@ -360,47 +326,13 @@
   "watch": [
     {
       "type": "WATCH",
-      "stage": "Stage61",
-      "priority": "RED",
-      "league": "АПЛ",
-      "fixture_id": "1557415",
-      "kickoff_utc": "2026-09-19T16:30:00Z",
-      "kickoff_local": "19.09 18:30",
-      "hours_to_kickoff": 0.49,
-      "home_team": "Nottingham Forest",
-      "away_team": "Coventry",
-      "selection": "П1",
-      "movement_pp": "0.04647972",
-      "user_book": "Marathonbet",
-      "user_odds": "1.66",
-      "reason": "первый +3 п.п. steam фаворита"
-    },
-    {
-      "type": "WATCH",
-      "stage": "Stage63",
-      "priority": "RED",
-      "league": "La Liga",
-      "fixture_id": "1570395",
-      "kickoff_utc": "2026-09-19T16:30:00Z",
-      "kickoff_local": "19.09 18:30",
-      "hours_to_kickoff": 0.49,
-      "home_team": "Celta Vigo",
-      "away_team": "Racing Santander",
-      "selection": "ОЗ — Да",
-      "movement_pp": "0.03197606",
-      "user_book": "Marathonbet",
-      "user_odds": "1.59",
-      "reason": "prospective движение ОЗ ≥3 п.п."
-    },
-    {
-      "type": "WATCH",
       "stage": "Stage63",
       "priority": "RED",
       "league": "Ligue 1",
       "fixture_id": "1552765",
       "kickoff_utc": "2026-09-19T18:45:00Z",
       "kickoff_local": "19.09 20:45",
-      "hours_to_kickoff": 2.74,
+      "hours_to_kickoff": 1.74,
       "home_team": "Angers",
       "away_team": "Estac Troyes",
       "selection": "ОЗ — Да",
@@ -417,7 +349,7 @@
       "fixture_id": "1552772",
       "kickoff_utc": "2026-09-19T18:45:00Z",
       "kickoff_local": "19.09 20:45",
-      "hours_to_kickoff": 2.74,
+      "hours_to_kickoff": 1.74,
       "home_team": "Toulouse",
       "away_team": "Le Havre",
       "selection": "ОЗ — Да",
@@ -434,7 +366,7 @@
       "fixture_id": "1552767",
       "kickoff_utc": "2026-09-19T18:45:00Z",
       "kickoff_local": "19.09 20:45",
-      "hours_to_kickoff": 2.74,
+      "hours_to_kickoff": 1.74,
       "home_team": "Le Mans",
       "away_team": "Lorient",
       "selection": "ОЗ — Да",
@@ -451,7 +383,7 @@
       "fixture_id": "1570400",
       "kickoff_utc": "2026-09-19T19:00:00Z",
       "kickoff_local": "19.09 21:00",
-      "hours_to_kickoff": 2.99,
+      "hours_to_kickoff": 1.99,
       "home_team": "Sevilla",
       "away_team": "Barcelona",
       "selection": "ОЗ — Нет",
@@ -468,7 +400,7 @@
       "fixture_id": "1570400",
       "kickoff_utc": "2026-09-19T19:00:00Z",
       "kickoff_local": "19.09 21:00",
-      "hours_to_kickoff": 2.99,
+      "hours_to_kickoff": 1.99,
       "home_team": "Sevilla",
       "away_team": "Barcelona",
       "selection": "ОЗ — Да",
@@ -485,7 +417,7 @@
       "fixture_id": "1550130",
       "kickoff_utc": "2026-09-20T10:30:00Z",
       "kickoff_local": "20.09 12:30",
-      "hours_to_kickoff": 18.49,
+      "hours_to_kickoff": 17.49,
       "home_team": "Fiorentina",
       "away_team": "Napoli",
       "selection": "ОЗ — Да",
@@ -502,7 +434,7 @@
       "fixture_id": "1557412",
       "kickoff_utc": "2026-09-20T13:00:00Z",
       "kickoff_local": "20.09 15:00",
-      "hours_to_kickoff": 20.99,
+      "hours_to_kickoff": 19.99,
       "home_team": "Leeds",
       "away_team": "Crystal Palace",
       "selection": "П1",
@@ -519,7 +451,7 @@
       "fixture_id": "1550131",
       "kickoff_utc": "2026-09-20T13:00:00Z",
       "kickoff_local": "20.09 15:00",
-      "hours_to_kickoff": 20.99,
+      "hours_to_kickoff": 19.99,
       "home_team": "Frosinone",
       "away_team": "Como",
       "selection": "ОЗ — Да",
@@ -536,7 +468,7 @@
       "fixture_id": "1575173",
       "kickoff_utc": "2026-09-20T15:30:00Z",
       "kickoff_local": "20.09 17:30",
-      "hours_to_kickoff": 23.49,
+      "hours_to_kickoff": 22.49,
       "home_team": "FC Schalke 04",
       "away_team": "SV Elversberg",
       "selection": "ТБ(2.5)",
@@ -553,7 +485,7 @@
       "fixture_id": "1575173",
       "kickoff_utc": "2026-09-20T15:30:00Z",
       "kickoff_local": "20.09 17:30",
-      "hours_to_kickoff": 23.49,
+      "hours_to_kickoff": 22.49,
       "home_team": "FC Schalke 04",
       "away_team": "SV Elversberg",
       "selection": "ОЗ — Да",
@@ -570,7 +502,7 @@
       "fixture_id": "1550132",
       "kickoff_utc": "2026-09-20T16:00:00Z",
       "kickoff_local": "20.09 18:00",
-      "hours_to_kickoff": 23.99,
+      "hours_to_kickoff": 22.99,
       "home_team": "Juventus",
       "away_team": "Atalanta",
       "selection": "ОЗ — Нет",
@@ -587,7 +519,7 @@
       "fixture_id": "1552773",
       "kickoff_utc": "2026-09-20T18:45:00Z",
       "kickoff_local": "20.09 20:45",
-      "hours_to_kickoff": 26.74,
+      "hours_to_kickoff": 25.74,
       "home_team": "Marseille",
       "away_team": "Paris Saint Germain",
       "selection": "ОЗ — Нет",
@@ -600,45 +532,15 @@
   "nearest_monitored": [
     {
       "type": "MONITOR",
-      "stage": "Stage61",
-      "priority": "GRAY",
-      "league": "АПЛ",
-      "fixture_id": "1557415",
-      "kickoff_utc": "2026-09-19T16:30:00Z",
-      "kickoff_local": "19.09 18:30",
-      "hours_to_kickoff": 0.49,
-      "home_team": "Nottingham Forest",
-      "away_team": "Coventry",
-      "market": "П1/П2 steam",
-      "opener": "Bet365 1.75/3.7/4.5",
-      "status": "наблюдение; crossing пока не зафиксирован"
-    },
-    {
-      "type": "MONITOR",
-      "stage": "Stage62",
-      "priority": "GRAY",
-      "league": "Бундеслига",
-      "fixture_id": "1575168",
-      "kickoff_utc": "2026-09-19T16:30:00Z",
-      "kickoff_local": "19.09 18:30",
-      "hours_to_kickoff": 0.49,
-      "home_team": "VfB Stuttgart",
-      "away_team": "Borussia Dortmund",
-      "market": "ТБ(2.5) steam",
-      "opener": "Bet365 ТБ 1.36 / ТМ 3.2",
-      "status": "наблюдение; crossing пока не зафиксирован"
-    },
-    {
-      "type": "MONITOR",
       "stage": "Stage63",
       "priority": "GRAY",
-      "league": "Premier League",
-      "fixture_id": "1557415",
-      "kickoff_utc": "2026-09-19T16:30:00Z",
-      "kickoff_local": "19.09 18:30",
-      "hours_to_kickoff": 0.49,
-      "home_team": "Nottingham Forest",
-      "away_team": "Coventry",
+      "league": "Serie A",
+      "fixture_id": "1550136",
+      "kickoff_utc": "2026-09-19T18:45:00Z",
+      "kickoff_local": "19.09 20:45",
+      "hours_to_kickoff": 1.74,
+      "home_team": "Venezia",
+      "away_team": "Lazio",
       "market": "ОЗ — Да / ОЗ — Нет",
       "opener": "Bet365 Да 1.7 / Нет 2.05",
       "status": "наблюдение; crossing пока не зафиксирован"
@@ -647,28 +549,28 @@
       "type": "MONITOR",
       "stage": "Stage63",
       "priority": "GRAY",
-      "league": "Bundesliga",
-      "fixture_id": "1575168",
-      "kickoff_utc": "2026-09-19T16:30:00Z",
-      "kickoff_local": "19.09 18:30",
-      "hours_to_kickoff": 0.49,
-      "home_team": "VfB Stuttgart",
-      "away_team": "Borussia Dortmund",
+      "league": "Ligue 1",
+      "fixture_id": "1552765",
+      "kickoff_utc": "2026-09-19T18:45:00Z",
+      "kickoff_local": "19.09 20:45",
+      "hours_to_kickoff": 1.74,
+      "home_team": "Angers",
+      "away_team": "Estac Troyes",
       "market": "ОЗ — Да / ОЗ — Нет",
-      "opener": "Bet365 Да 1.33 / Нет 3.25",
+      "opener": "Bet365 Да 1.91 / Нет 1.91",
       "status": "наблюдение; crossing пока не зафиксирован"
     },
     {
       "type": "MONITOR",
       "stage": "Stage63",
       "priority": "GRAY",
-      "league": "La Liga",
-      "fixture_id": "1570395",
-      "kickoff_utc": "2026-09-19T16:30:00Z",
-      "kickoff_local": "19.09 18:30",
-      "hours_to_kickoff": 0.49,
-      "home_team": "Celta Vigo",
-      "away_team": "Racing Santander",
+      "league": "Ligue 1",
+      "fixture_id": "1552767",
+      "kickoff_utc": "2026-09-19T18:45:00Z",
+      "kickoff_local": "19.09 20:45",
+      "hours_to_kickoff": 1.74,
+      "home_team": "Le Mans",
+      "away_team": "Lorient",
       "market": "ОЗ — Да / ОЗ — Нет",
       "opener": "Bet365 Да 1.67 / Нет 2.1",
       "status": "наблюдение; crossing пока не зафиксирован"
@@ -681,7 +583,7 @@
       "fixture_id": "1557407",
       "kickoff_utc": "2026-09-20T13:00:00Z",
       "kickoff_local": "20.09 15:00",
-      "hours_to_kickoff": 20.99,
+      "hours_to_kickoff": 19.99,
       "home_team": "Bournemouth",
       "away_team": "Liverpool",
       "market": "П1/П2 steam",
@@ -696,11 +598,26 @@
       "fixture_id": "1557412",
       "kickoff_utc": "2026-09-20T13:00:00Z",
       "kickoff_local": "20.09 15:00",
-      "hours_to_kickoff": 20.99,
+      "hours_to_kickoff": 19.99,
       "home_team": "Leeds",
       "away_team": "Crystal Palace",
       "market": "П1/П2 steam",
       "opener": "Bet365 2.1/3.4/3.25",
+      "status": "наблюдение; crossing пока не зафиксирован"
+    },
+    {
+      "type": "MONITOR",
+      "stage": "Stage61",
+      "priority": "GRAY",
+      "league": "АПЛ",
+      "fixture_id": "1557413",
+      "kickoff_utc": "2026-09-20T13:00:00Z",
+      "kickoff_local": "20.09 15:00",
+      "hours_to_kickoff": 19.99,
+      "home_team": "Manchester City",
+      "away_team": "Sunderland",
+      "market": "П1/П2 steam",
+      "opener": "Bet365 1.25/5.25/10.0",
       "status": "наблюдение; crossing пока не зафиксирован"
     },
     {
@@ -711,7 +628,7 @@
       "fixture_id": "1575169",
       "kickoff_utc": "2026-09-20T13:30:00Z",
       "kickoff_local": "20.09 15:30",
-      "hours_to_kickoff": 21.49,
+      "hours_to_kickoff": 20.49,
       "home_team": "Bayer Leverkusen",
       "away_team": "RB Leipzig",
       "market": "ТБ(2.5) steam",
@@ -726,11 +643,26 @@
       "fixture_id": "1575173",
       "kickoff_utc": "2026-09-20T15:30:00Z",
       "kickoff_local": "20.09 17:30",
-      "hours_to_kickoff": 23.49,
+      "hours_to_kickoff": 22.49,
       "home_team": "FC Schalke 04",
       "away_team": "SV Elversberg",
       "market": "ТБ(2.5) steam",
       "opener": "Bet365 ТБ 1.62 / ТМ 2.3",
+      "status": "наблюдение; crossing пока не зафиксирован"
+    },
+    {
+      "type": "MONITOR",
+      "stage": "Stage62",
+      "priority": "GRAY",
+      "league": "Бундеслига",
+      "fixture_id": "1575175",
+      "kickoff_utc": "2026-09-20T17:30:00Z",
+      "kickoff_local": "20.09 19:30",
+      "hours_to_kickoff": 24.49,
+      "home_team": "SC Paderborn 07",
+      "away_team": "1899 Hoffenheim",
+      "market": "ТБ(2.5) steam",
+      "opener": "Bet365 ТБ 1.44 / ТМ 2.75",
       "status": "наблюдение; crossing пока не зафиксирован"
     }
   ],
@@ -768,2945 +700,6 @@
     "priority_gray": "tracked opener only; no crossing/signal"
   },
   "market_cards": [
-    {
-      "fixture_id": "1558637",
-      "league": "Belgian Pro League",
-      "league_id": "144",
-      "country": "Belgium",
-      "home_team": "Charleroi",
-      "away_team": "Cercle Brugge",
-      "kickoff_utc": "2026-09-19T16:15:00+00:00",
-      "kickoff_local": "19.09 16:15 UTC",
-      "markets": [
-        {
-          "market": "DNB",
-          "text": "Ф(0) · Ф1(0): 1.27 | Ф2(0): 3.55 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71g_dnb_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DNB",
-          "text": "Ф(0) · Ф1(0): 1.23 | Ф2(0): 3.42 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71g_dnb_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 · 1Х: 1.2 | Х2: 1.91 | 12: 1.25 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71e_double_chance_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 · 1Х: 1.16 | Х2: 2.19 | 12: 1.21 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71e_double_chance_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+1) · П1: 1.18 | Х: 7 | П2: 11 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+1) · П1: 1.16 | Х: 4.4 | П2: 6.3 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+2) · П1: 1.05 | Х: 15 | П2: 26 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-1) · П1: 3 | Х: 4 | П2: 2 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-1) · П1: 2.6 | Х: 3.56 | П2: 2.19 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-2) · П1: 5.5 | Х: 5 | П2: 1.44 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-2) · П1: 4.95 | Х: 4.85 | П2: 1.39 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-3) · П1: 13 | Х: 8 | П2: 1.14 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-3) · П1: 6.6 | Х: 5.15 | П2: 1.11 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "MATCH_WINNER",
-          "text": "1X2 · П1: 1.7 | Х: 3.7 | П2: 4.2 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-15T07:33:34Z",
-          "api_update_utc": "2026-09-15T02:30:31+00:00",
-          "source": "stage71_research_trigger_ledger.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (0.5) · ИТБ: 1.44 | ИТМ: 2.62 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (0.5) · ИТБ: 1.43 | ИТМ: 2.58 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (1.5) · ИТБ: 3.25 | ИТМ: 1.33 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (1.5) · ИТБ: 3.18 | ИТМ: 1.3 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (2.5) · ИТБ: 9 | ИТМ: 1.07 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (2.5) · ИТБ: 8.3 | ИТМ: 1.02 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (3.5) · ИТБ: 23 | ИТМ: 1.01 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (0.5) · ИТБ: 1.12 | ИТМ: 6 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (1.5) · ИТБ: 1.62 | ИТМ: 2.2 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (1.5) · ИТБ: 1.61 | ИТМ: 2.16 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (2.5) · ИТБ: 3 | ИТМ: 1.36 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (2.5) · ИТБ: 2.91 | ИТМ: 1.35 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (3.5) · ИТБ: 6.5 | ИТМ: 1.11 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (3.5) · ИТБ: 6 | ИТМ: 1.07 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (4.5) · ИТБ: 15 | ИТМ: 1.03 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:58:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TOTAL",
-          "text": "Тотал 2.5 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "BTTS",
-          "text": "ОЗ — нет данных",
-          "status": "NO_DATA"
-        }
-      ],
-      "fixture_status": "NS",
-      "status": "MARKET_VIEW_ONLY",
-      "creates_signal": false
-    },
-    {
-      "fixture_id": "1547636",
-      "league": "A Lyga",
-      "league_id": "362",
-      "country": "Lithuania",
-      "home_team": "TransINVEST Vilnius",
-      "away_team": "FK Zalgiris Vilnius",
-      "kickoff_utc": "2026-09-19T16:30:00+00:00",
-      "kickoff_local": "19.09 16:30 UTC",
-      "markets": [
-        {
-          "market": "DNB",
-          "text": "Ф(0) · Ф1(0): 2.05 | Ф2(0): 1.75 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71g_dnb_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DNB",
-          "text": "Ф(0) · Ф1(0): 2.03 | Ф2(0): 1.66 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71g_dnb_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 · 1Х: 1.55 | Х2: 1.4 | 12: 1.22 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71e_double_chance_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 · 1Х: 1.51 | Х2: 1.33 | 12: 1.22 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71e_double_chance_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+1) · П1: 1.57 | Х: 4.33 | П2: 4.33 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+1) · П1: 1.51 | Х: 4.1 | П2: 4.1 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+2) · П1: 1.22 | Х: 6 | П2: 9 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+2) · П1: 1.16 | Х: 6.5 | П2: 8.5 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+3) · П1: 1.07 | Х: 13 | П2: 21 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-1) · П1: 5.5 | Х: 4.75 | П2: 1.4 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-1) · П1: 5.45 | Х: 4.55 | П2: 1.33 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-2) · П1: 13 | Х: 8 | П2: 1.14 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "MATCH_WINNER",
-          "text": "1X2 · П1: 2.88 | Х: 3.6 | П2: 2 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-18T15:31:22Z",
-          "api_update_utc": "2026-09-18T12:37:16+00:00",
-          "source": "stage71_research_trigger_ledger.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (0.5) · ИТБ: 1.2 | ИТМ: 4.33 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (1.5) · ИТБ: 2 | ИТМ: 1.73 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (1.5) · ИТБ: 1.92 | ИТМ: 1.76 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (2.5) · ИТБ: 4 | ИТМ: 1.22 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (2.5) · ИТБ: 3.92 | ИТМ: 1.18 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (3.5) · ИТБ: 8 | ИТМ: 1.06 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (4.5) · ИТБ: 13 | ИТМ: 1.01 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (0.5) · ИТБ: 1.28 | ИТМ: 3.5 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (1.5) · ИТБ: 2.25 | ИТМ: 1.57 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (1.5) · ИТБ: 2.18 | ИТМ: 1.58 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (2.5) · ИТБ: 5 | ИТМ: 1.14 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (2.5) · ИТБ: 4.85 | ИТМ: 1.11 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (3.5) · ИТБ: 10 | ИТМ: 1.03 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T08:51:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TOTAL",
-          "text": "Тотал 2.5 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "BTTS",
-          "text": "ОЗ — нет данных",
-          "status": "NO_DATA"
-        }
-      ],
-      "fixture_status": "NS",
-      "status": "MARKET_VIEW_ONLY",
-      "creates_signal": false
-    },
-    {
-      "fixture_id": "1575168",
-      "league": "Bundesliga",
-      "league_id": "78",
-      "country": "Germany",
-      "home_team": "VfB Stuttgart",
-      "away_team": "Borussia Dortmund",
-      "kickoff_utc": "2026-09-19T16:30:00+00:00",
-      "kickoff_local": "19.09 16:30 UTC",
-      "markets": [
-        {
-          "market": "BTTS",
-          "text": "ОЗ · ОЗ Да: 1.33 | ОЗ Нет: 3.25 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:38:16+00:00",
-          "source": "stage63_btts_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "BTTS",
-          "text": "ОЗ · ОЗ Да: 1.32 | ОЗ Нет: 3.1 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:38:16+00:00",
-          "source": "stage63_btts_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DNB",
-          "text": "Ф(0) · Ф1(0): 1.82 | Ф2(0): 2.02 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71g_dnb_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DNB",
-          "text": "Ф(0) · Ф1(0): 1.82 | Ф2(0): 1.99 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71g_dnb_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 · 1Х: 1.44 | Х2: 1.53 | 12: 1.25 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71e_double_chance_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 · 1Х: 1.49 | Х2: 1.58 | 12: 1.3 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71e_double_chance_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+1) · П1: 1.44 | Х: 5 | П2: 4.5 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+1) · П1: 1.49 | Х: 4.8 | П2: 4.6 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+2) · П1: 1.18 | Х: 7.5 | П2: 11 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+2) · П1: 1.15 | Х: 7.3 | П2: 8.3 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-1) · П1: 4.33 | Х: 4.75 | П2: 1.53 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-1) · П1: 4.05 | Х: 4.55 | П2: 1.58 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-2) · П1: 9 | Х: 7 | П2: 1.2 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-2) · П1: 7.2 | Х: 6.7 | П2: 1.19 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-3) · П1: 19 | Х: 13 | П2: 1.07 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "MATCH_WINNER",
-          "text": "1X2 · П1: 2.4 | Х: 3.75 | П2: 2.75 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-18T23:29:35Z",
-          "api_update_utc": "2026-09-18T22:37:22+00:00",
-          "source": "stage71_research_trigger_ledger.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (0.5) · ИТБ: 1.14 | ИТМ: 5.5 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (1.5) · ИТБ: 1.73 | ИТМ: 2 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (1.5) · ИТБ: 1.81 | ИТМ: 2.01 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (2.5) · ИТБ: 3.5 | ИТМ: 1.28 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (2.5) · ИТБ: 3.44 | ИТМ: 1.29 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (3.5) · ИТБ: 8 | ИТМ: 1.08 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (3.5) · ИТБ: 7.1 | ИТМ: 1.06 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (4.5) · ИТБ: 19 | ИТМ: 1.02 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (0.5) · ИТБ: 1.14 | ИТМ: 5.5 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (1.5) · ИТБ: 1.73 | ИТМ: 2 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (1.5) · ИТБ: 1.73 | ИТМ: 2.13 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (2.5) · ИТБ: 3.4 | ИТМ: 1.3 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (2.5) · ИТБ: 3.12 | ИТМ: 1.34 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (3.5) · ИТБ: 8 | ИТМ: 1.08 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (3.5) · ИТБ: 6.35 | ИТМ: 1.08 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (4.5) · ИТБ: 19 | ИТМ: 1.02 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:42:20+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TOTAL",
-          "text": "Тотал 2.5 · ТБ(2.5): 1.36 | ТМ(2.5): 3.2 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T15:47:10Z",
-          "api_update_utc": "2026-09-19T10:38:16+00:00",
-          "source": "stage62_ou_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TOTAL",
-          "text": "Тотал 2.5 · ТБ(2.5): 1.36 | ТМ(2.5): 2.94 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T15:47:10Z",
-          "api_update_utc": "2026-09-19T10:38:16+00:00",
-          "source": "stage62_ou_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        }
-      ],
-      "fixture_status": "NS",
-      "status": "MARKET_VIEW_ONLY",
-      "creates_signal": false
-    },
-    {
-      "fixture_id": "1570395",
-      "league": "La Liga",
-      "league_id": "140",
-      "country": "Spain",
-      "home_team": "Celta Vigo",
-      "away_team": "Racing Santander",
-      "kickoff_utc": "2026-09-19T16:30:00+00:00",
-      "kickoff_local": "19.09 16:30 UTC",
-      "markets": [
-        {
-          "market": "BTTS",
-          "text": "ОЗ · ОЗ Да: 1.67 | ОЗ Нет: 2.1 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:27:20+00:00",
-          "source": "stage63_btts_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "BTTS",
-          "text": "ОЗ · ОЗ Да: 1.65 | ОЗ Нет: 2.11 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:27:20+00:00",
-          "source": "stage63_btts_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DNB",
-          "text": "Ф(0) · Ф1(0): 1.35 | Ф2(0): 3.1 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71g_dnb_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DNB",
-          "text": "Ф(0) · Ф1(0): 1.33 | Ф2(0): 3.04 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71g_dnb_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 · 1Х: 1.22 | Х2: 1.95 | 12: 1.25 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71e_double_chance_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 · 1Х: 1.24 | Х2: 2.03 | 12: 1.28 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71e_double_chance_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+1) · П1: 1.22 | Х: 6.5 | П2: 10 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+1) · П1: 1.24 | Х: 5.9 | П2: 8.7 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+2) · П1: 1.06 | Х: 13 | П2: 23 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-1) · П1: 3 | Х: 4 | П2: 1.91 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-1) · П1: 3.04 | Х: 3.64 | П2: 2.03 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-2) · П1: 6 | Х: 5.5 | П2: 1.36 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-2) · П1: 5.8 | Х: 5.3 | П2: 1.34 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-3) · П1: 15 | Х: 9 | П2: 1.12 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "MATCH_WINNER",
-          "text": "1X2 · П1: 1.8 | Х: 3.8 | П2: 4.2 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-18T15:31:21Z",
-          "api_update_utc": "2026-09-18T13:55:17+00:00",
-          "source": "stage71_research_trigger_ledger.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (0.5) · ИТБ: 1.4 | ИТМ: 2.75 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (0.5) · ИТБ: 1.39 | ИТМ: 2.76 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (1.5) · ИТБ: 3 | ИТМ: 1.36 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (1.5) · ИТБ: 3.04 | ИТМ: 1.37 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (2.5) · ИТБ: 8 | ИТМ: 1.08 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (2.5) · ИТБ: 7.9 | ИТМ: 1.05 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (3.5) · ИТБ: 23 | ИТМ: 1.01 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (0.5) · ИТБ: 1.14 | ИТМ: 5.5 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (1.5) · ИТБ: 1.73 | ИТМ: 2 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (1.5) · ИТБ: 1.76 | ИТМ: 2.06 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (2.5) · ИТБ: 3.4 | ИТМ: 1.3 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (2.5) · ИТБ: 3.26 | ИТМ: 1.31 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (3.5) · ИТБ: 8 | ИТМ: 1.08 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (3.5) · ИТБ: 7 | ИТМ: 1.06 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (4.5) · ИТБ: 19 | ИТМ: 1.02 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:31:18+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TOTAL",
-          "text": "Тотал 2.5 — нет данных",
-          "status": "NO_DATA"
-        }
-      ],
-      "fixture_status": "NS",
-      "status": "MARKET_VIEW_ONLY",
-      "creates_signal": false
-    },
-    {
-      "fixture_id": "1557415",
-      "league": "Premier League",
-      "league_id": "39",
-      "country": "England",
-      "home_team": "Nottingham Forest",
-      "away_team": "Coventry",
-      "kickoff_utc": "2026-09-19T16:30:00+00:00",
-      "kickoff_local": "19.09 16:30 UTC",
-      "markets": [
-        {
-          "market": "BTTS",
-          "text": "ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 2 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage63_btts_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "BTTS",
-          "text": "ОЗ · ОЗ Да: 1.77 | ОЗ Нет: 1.94 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage63_btts_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DNB",
-          "text": "Ф(0) · Ф1(0): 1.23 | Ф2(0): 4 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71g_dnb_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DNB",
-          "text": "Ф(0) · Ф1(0): 1.22 | Ф2(0): 3.82 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71g_dnb_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 · 1Х: 1.14 | Х2: 2.25 | 12: 1.25 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71e_double_chance_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 · 1Х: 1.17 | Х2: 2.32 | 12: 1.26 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71e_double_chance_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+1) · П1: 1.17 | Х: 7.5 | П2: 13 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+1) · П1: 1.17 | Х: 4.1 | П2: 6.05 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+2) · П1: 1.04 | Х: 17 | П2: 34 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-1) · П1: 2.62 | Х: 3.75 | П2: 2.2 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-1) · П1: 2.66 | Х: 3.55 | П2: 2.32 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-2) · П1: 5.5 | Х: 4.75 | П2: 1.44 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-2) · П1: 5.15 | Х: 4.95 | П2: 1.43 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-3) · П1: 13 | Х: 8 | П2: 1.14 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-3) · П1: 6.35 | Х: 4.9 | П2: 1.11 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "MATCH_WINNER",
-          "text": "1X2 · П1: 1.62 | Х: 3.9 | П2: 5.5 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T15:53:23Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage61_market_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "MATCH_WINNER",
-          "text": "1X2 · П1: 1.64 | Х: 4.05 | П2: 5.35 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T15:53:23Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage61_market_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (0.5) · ИТБ: 1.53 | ИТМ: 2.38 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (0.5) · ИТБ: 1.5 | ИТМ: 2.41 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (1.5) · ИТБ: 3.75 | ИТМ: 1.25 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (1.5) · ИТБ: 3.54 | ИТМ: 1.29 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (2.5) · ИТБ: 11 | ИТМ: 1.05 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (2.5) · ИТБ: 9.4 | ИТМ: 1.03 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (3.5) · ИТБ: 29 | ИТМ: 1.01 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-17T18:43:35Z",
-          "api_update_utc": "2026-09-17T00:30:50+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (0.5) · ИТБ: 1.12 | ИТМ: 6 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (1.5) · ИТБ: 1.67 | ИТМ: 2.1 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (1.5) · ИТБ: 1.68 | ИТМ: 2.19 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (2.5) · ИТБ: 3.25 | ИТМ: 1.33 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (2.5) · ИТБ: 3 | ИТМ: 1.36 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (3.5) · ИТБ: 7 | ИТМ: 1.1 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (3.5) · ИТБ: 6.05 | ИТМ: 1.09 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (4.5) · ИТБ: 17 | ИТМ: 1.02 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TOTAL",
-          "text": "Тотал 2.5 — нет данных",
-          "status": "NO_DATA"
-        }
-      ],
-      "fixture_status": "NS",
-      "status": "MARKET_VIEW_ONLY",
-      "creates_signal": false
-    },
-    {
-      "fixture_id": "1552171",
-      "league": "Eredivisie",
-      "league_id": "88",
-      "country": "Netherlands",
-      "home_team": "Sparta Rotterdam",
-      "away_team": "Heerenveen",
-      "kickoff_utc": "2026-09-19T16:45:00+00:00",
-      "kickoff_local": "19.09 16:45 UTC",
-      "markets": [
-        {
-          "market": "DNB",
-          "text": "Ф(0) · Ф1(0): 1.8 | Ф2(0): 2 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71g_dnb_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DNB",
-          "text": "Ф(0) · Ф1(0): 1.76 | Ф2(0): 1.98 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71g_dnb_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 · 1Х: 1.44 | Х2: 1.53 | 12: 1.25 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71e_double_chance_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 · 1Х: 1.44 | Х2: 1.55 | 12: 1.25 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71e_double_chance_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+1) · П1: 1.44 | Х: 5 | П2: 5 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+1) · П1: 1.44 | Х: 4.9 | П2: 4.8 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+2) · П1: 1.17 | Х: 7.5 | П2: 11 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+2) · П1: 1.11 | Х: 5.2 | П2: 6.25 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+3) · П1: 1.05 | Х: 15 | П2: 23 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T06:42:45Z",
-          "api_update_utc": "2026-09-19T03:56:21+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-1) · П1: 4 | Х: 4.75 | П2: 1.57 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-1) · П1: 4.1 | Х: 4.6 | П2: 1.55 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-2) · П1: 10 | Х: 7 | П2: 1.2 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-2) · П1: 8.3 | Х: 7.1 | П2: 1.16 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-3) · П1: 21 | Х: 15 | П2: 1.06 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "MATCH_WINNER",
-          "text": "1X2 · П1: 3.1 | Х: 3.6 | П2: 2.15 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-13T15:28:59Z",
-          "api_update_utc": "2026-09-13T13:17:15+00:00",
-          "source": "stage71_research_trigger_ledger.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (0.5) · ИТБ: 1.18 | ИТМ: 4.5 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (1.5) · ИТБ: 1.91 | ИТМ: 1.8 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (1.5) · ИТБ: 1.79 | ИТМ: 1.93 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (2.5) · ИТБ: 4 | ИТМ: 1.22 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (2.5) · ИТБ: 3.32 | ИТМ: 1.26 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (3.5) · ИТБ: 10 | ИТМ: 1.06 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (3.5) · ИТБ: 7 | ИТМ: 1.04 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (4.5) · ИТБ: 26 | ИТМ: 1.01 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (0.5) · ИТБ: 1.18 | ИТМ: 4.5 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (1.5) · ИТБ: 1.83 | ИТМ: 1.83 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (1.5) · ИТБ: 1.68 | ИТМ: 2.07 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (2.5) · ИТБ: 3.75 | ИТМ: 1.25 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (2.5) · ИТБ: 3.02 | ИТМ: 1.31 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (3.5) · ИТБ: 10 | ИТМ: 1.06 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (3.5) · ИТБ: 6.2 | ИТМ: 1.06 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (4.5) · ИТБ: 23 | ИТМ: 1.01 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:34:17+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TOTAL",
-          "text": "Тотал 2.5 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "BTTS",
-          "text": "ОЗ — нет данных",
-          "status": "NO_DATA"
-        }
-      ],
-      "fixture_status": "NS",
-      "status": "MARKET_VIEW_ONLY",
-      "creates_signal": false
-    },
-    {
-      "fixture_id": "1556666",
-      "league": "Scottish Premiership",
-      "league_id": "179",
-      "country": "Scotland",
-      "home_team": "Kilmarnock",
-      "away_team": "Heart Of Midlothian",
-      "kickoff_utc": "2026-09-19T16:45:00+00:00",
-      "kickoff_local": "19.09 16:45 UTC",
-      "markets": [
-        {
-          "market": "DNB",
-          "text": "Ф(0) · Ф1(0): 3.55 | Ф2(0): 1.27 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71g_dnb_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DNB",
-          "text": "Ф(0) · Ф1(0): 3.34 | Ф2(0): 1.24 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71g_dnb_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 · 1Х: 2.05 | Х2: 1.18 | 12: 1.25 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71e_double_chance_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 · 1Х: 2.12 | Х2: 1.17 | 12: 1.22 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71e_double_chance_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+1) · П1: 2.1 | Х: 4 | П2: 2.75 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+1) · П1: 2.12 | Х: 3.74 | П2: 2.67 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+2) · П1: 1.4 | Х: 5 | П2: 5.5 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+2) · П1: 1.37 | Х: 5.15 | П2: 5.15 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+3) · П1: 1.14 | Х: 8.5 | П2: 13 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+3) · П1: 1.1 | Х: 5.3 | П2: 6.4 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-1) · П1: 11 | Х: 6.5 | П2: 1.2 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-1) · П1: 6.2 | Х: 4.33 | П2: 1.17 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-2) · П1: 26 | Х: 15 | П2: 1.05 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "MATCH_WINNER",
-          "text": "1X2 · П1: 4.75 | Х: 4.1 | П2: 1.65 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-18T15:31:25Z",
-          "api_update_utc": "2026-09-17T00:30:50+00:00",
-          "source": "stage71_research_trigger_ledger.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (0.5) · ИТБ: 1.1 | ИТМ: 7 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (1.5) · ИТБ: 1.53 | ИТМ: 2.38 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (1.5) · ИТБ: 1.56 | ИТМ: 2.26 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (2.5) · ИТБ: 2.62 | ИТМ: 1.44 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (2.5) · ИТБ: 2.75 | ИТМ: 1.39 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (3.5) · ИТБ: 5.5 | ИТМ: 1.14 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (3.5) · ИТБ: 5.35 | ИТМ: 1.09 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (4.5) · ИТБ: 13 | ИТМ: 1.04 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (5.5) · ИТБ: 29 | ИТМ: 1.01 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (0.5) · ИТБ: 1.4 | ИТМ: 2.75 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (0.5) · ИТБ: 1.36 | ИТМ: 2.85 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (1.5) · ИТБ: 2.75 | ИТМ: 1.4 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (1.5) · ИТБ: 2.83 | ИТМ: 1.37 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (2.5) · ИТБ: 8 | ИТМ: 1.08 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (2.5) · ИТБ: 6.8 | ИТМ: 1.05 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (3.5) · ИТБ: 21 | ИТМ: 1.01 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T09:48:14+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TOTAL",
-          "text": "Тотал 2.5 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "BTTS",
-          "text": "ОЗ — нет данных",
-          "status": "NO_DATA"
-        }
-      ],
-      "fixture_status": "NS",
-      "status": "MARKET_VIEW_ONLY",
-      "creates_signal": false
-    },
-    {
-      "fixture_id": "1575500",
-      "league": "Primeira Liga",
-      "league_id": "94",
-      "country": "Portugal",
-      "home_team": "Alverca",
-      "away_team": "Rio Ave",
-      "kickoff_utc": "2026-09-19T17:00:00+00:00",
-      "kickoff_local": "19.09 17:00 UTC",
-      "markets": [
-        {
-          "market": "DNB",
-          "text": "Ф(0) · Ф1(0): 1.42 | Ф2(0): 2.75 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71g_dnb_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DNB",
-          "text": "Ф(0) · Ф1(0): 1.4 | Ф2(0): 2.78 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71g_dnb_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 · 1Х: 1.25 | Х2: 1.8 | 12: 1.28 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71e_double_chance_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 · 1Х: 1.24 | Х2: 1.81 | 12: 1.28 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71e_double_chance_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+1) · П1: 1.25 | Х: 5.5 | П2: 9 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+1) · П1: 1.24 | Х: 5.4 | П2: 8.4 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+2) · П1: 1.07 | Х: 12 | П2: 23 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-1) · П1: 3.5 | Х: 3.75 | П2: 1.83 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-1) · П1: 3.42 | Х: 3.56 | П2: 1.81 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-2) · П1: 8 | Х: 5.5 | П2: 1.28 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-2) · П1: 7.2 | Х: 5.65 | П2: 1.23 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-3) · П1: 19 | Х: 11 | П2: 1.08 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "MATCH_WINNER",
-          "text": "1X2 · П1: 1.85 | Х: 3.5 | П2: 4 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-15T07:33:35Z",
-          "api_update_utc": "2026-09-15T02:30:31+00:00",
-          "source": "stage71_research_trigger_ledger.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (0.5) · ИТБ: 1.44 | ИТМ: 2.62 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (0.5) · ИТБ: 1.42 | ИТМ: 2.62 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (1.5) · ИТБ: 3.25 | ИТМ: 1.33 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (1.5) · ИТБ: 3.08 | ИТМ: 1.32 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (2.5) · ИТБ: 10 | ИТМ: 1.06 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (2.5) · ИТБ: 7.3 | ИТМ: 1.04 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (3.5) · ИТБ: 26 | ИТМ: 1.01 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (0.5) · ИТБ: 1.2 | ИТМ: 4.33 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (0.5) · ИТБ: 1.16 | ИТМ: 4.5 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (1.5) · ИТБ: 2 | ИТМ: 1.73 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (1.5) · ИТБ: 1.95 | ИТМ: 1.77 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (2.5) · ИТБ: 4.33 | ИТМ: 1.2 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (2.5) · ИТБ: 3.85 | ИТМ: 1.2 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (3.5) · ИТБ: 11 | ИТМ: 1.05 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (3.5) · ИТБ: 7.8 | ИТМ: 1.02 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (4.5) · ИТБ: 26 | ИТМ: 1.01 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T06:43:15+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TOTAL",
-          "text": "Тотал 2.5 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "BTTS",
-          "text": "ОЗ — нет данных",
-          "status": "NO_DATA"
-        }
-      ],
-      "fixture_status": "NS",
-      "status": "MARKET_VIEW_ONLY",
-      "creates_signal": false
-    },
-    {
-      "fixture_id": "1584413",
-      "league": "Super Lig",
-      "league_id": "203",
-      "country": "Turkey",
-      "home_team": "Başakşehir",
-      "away_team": "Gençlerbirliği S.K.",
-      "kickoff_utc": "2026-09-19T17:00:00+00:00",
-      "kickoff_local": "19.09 17:00 UTC",
-      "markets": [
-        {
-          "market": "DNB",
-          "text": "Ф(0) · Ф1(0): 1.23 | Ф2(0): 4.1 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71g_dnb_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DNB",
-          "text": "Ф(0) · Ф1(0): 1.2 | Ф2(0): 3.7 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71g_dnb_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 · 1Х: 1.17 | Х2: 2.3 | 12: 1.22 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71e_double_chance_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 · 1Х: 1.14 | Х2: 2.27 | 12: 1.2 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71e_double_chance_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+1) · П1: 1.17 | Х: 7.5 | П2: 13 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+1) · П1: 1.14 | Х: 4.55 | П2: 6.45 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+2) · П1: 1.04 | Х: 17 | П2: 29 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-1) · П1: 2.5 | Х: 3.75 | П2: 2.38 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-1) · П1: 2.5 | Х: 3.64 | П2: 2.27 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-2) · П1: 4.5 | Х: 4.75 | П2: 1.5 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-2) · П1: 4.8 | Х: 4.9 | П2: 1.42 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-3) · П1: 10 | Х: 7.5 | П2: 1.18 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-3) · П1: 6.35 | Х: 5.1 | П2: 1.12 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "MATCH_WINNER",
-          "text": "1X2 · П1: 1.45 | Х: 4.33 | П2: 6.5 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-15T07:33:35Z",
-          "api_update_utc": "2026-09-15T02:30:31+00:00",
-          "source": "stage71_research_trigger_ledger.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (0.5) · ИТБ: 1.5 | ИТМ: 2.5 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (0.5) · ИТБ: 1.42 | ИТМ: 2.61 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (1.5) · ИТБ: 3.5 | ИТМ: 1.28 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (1.5) · ИТБ: 3.18 | ИТМ: 1.3 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (2.5) · ИТБ: 11 | ИТМ: 1.05 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (2.5) · ИТБ: 8.8 | ИТМ: 1.01 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (3.5) · ИТБ: 29 | ИТМ: 1.01 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (0.5) · ИТБ: 1.1 | ИТМ: 7 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (1.5) · ИТБ: 1.53 | ИТМ: 2.38 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (1.5) · ИТБ: 1.55 | ИТМ: 2.28 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (2.5) · ИТБ: 2.62 | ИТМ: 1.44 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (2.5) · ИТБ: 2.74 | ИТМ: 1.39 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (3.5) · ИТБ: 5.5 | ИТМ: 1.14 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (3.5) · ИТБ: 5.7 | ИТМ: 1.08 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (4.5) · ИТБ: 13 | ИТМ: 1.04 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (5.5) · ИТБ: 29 | ИТМ: 1.01 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TOTAL",
-          "text": "Тотал 2.5 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "BTTS",
-          "text": "ОЗ — нет данных",
-          "status": "NO_DATA"
-        }
-      ],
-      "fixture_status": "NS",
-      "status": "MARKET_VIEW_ONLY",
-      "creates_signal": false
-    },
-    {
-      "fixture_id": "1584420",
-      "league": "Super Lig",
-      "league_id": "203",
-      "country": "Turkey",
-      "home_team": "Trabzonspor",
-      "away_team": "Galatasaray",
-      "kickoff_utc": "2026-09-19T17:00:00+00:00",
-      "kickoff_local": "19.09 17:00 UTC",
-      "markets": [
-        {
-          "market": "DNB",
-          "text": "Ф(0) · Ф1(0): 2.15 | Ф2(0): 1.68 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71g_dnb_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DNB",
-          "text": "Ф(0) · Ф1(0): 2.19 | Ф2(0): 1.54 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71g_dnb_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 · 1Х: 1.67 | Х2: 1.4 | 12: 1.28 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71e_double_chance_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 · 1Х: 1.68 | Х2: 1.34 | 12: 1.25 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71e_double_chance_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+1) · П1: 1.67 | Х: 4.5 | П2: 3.75 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+1) · П1: 1.68 | Х: 4.15 | П2: 3.52 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+2) · П1: 1.25 | Х: 6.5 | П2: 8 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+2) · П1: 1.22 | Х: 6.15 | П2: 6.95 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (+3) · П1: 1.08 | Х: 12 | П2: 19 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-1) · П1: 5.5 | Х: 5 | П2: 1.4 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-1) · П1: 5.75 | Х: 5 | П2: 1.34 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора хозяев (-2) · П1: 13 | Х: 8.5 | П2: 1.14 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71f_eh_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "MATCH_WINNER",
-          "text": "1X2 · П1: 2.9 | Х: 3.7 | П2: 2.15 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-15T07:33:35Z",
-          "api_update_utc": "2026-09-15T02:30:31+00:00",
-          "source": "stage71_research_trigger_ledger.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (0.5) · ИТБ: 1.14 | ИТМ: 5.5 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (1.5) · ИТБ: 1.67 | ИТМ: 2.1 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (1.5) · ИТБ: 1.69 | ИТМ: 2.06 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (2.5) · ИТБ: 3.25 | ИТМ: 1.33 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (2.5) · ИТБ: 3.02 | ИТМ: 1.31 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (3.5) · ИТБ: 7 | ИТМ: 1.1 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (3.5) · ИТБ: 5.95 | ИТМ: 1.07 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 2 (4.5) · ИТБ: 19 | ИТМ: 1.02 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (0.5) · ИТБ: 1.2 | ИТМ: 4.33 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (0.5) · ИТБ: 1.18 | ИТМ: 4.1 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (1.5) · ИТБ: 2 | ИТМ: 1.73 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (1.5) · ИТБ: 2.03 | ИТМ: 1.71 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (2.5) · ИТБ: 4.33 | ИТМ: 1.2 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (2.5) · ИТБ: 4.15 | ИТМ: 1.17 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (3.5) · ИТБ: 11 | ИТМ: 1.05 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (3.5) · ИТБ: 7.7 | ИТМ: 1.03 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ 1 (4.5) · ИТБ: 26 | ИТМ: 1.01 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T12:42:35Z",
-          "api_update_utc": "2026-09-19T07:03:21+00:00",
-          "source": "stage71c_team_total_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TOTAL",
-          "text": "Тотал 2.5 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "BTTS",
-          "text": "ОЗ — нет данных",
-          "status": "NO_DATA"
-        }
-      ],
-      "fixture_status": "NS",
-      "status": "MARKET_VIEW_ONLY",
-      "creates_signal": false
-    },
     {
       "fixture_id": "1561931",
       "league": "Austrian Bundesliga",
@@ -5142,7 +2135,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.67 | ОЗ Нет: 2.1 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:33:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -5151,7 +2144,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.64 | ОЗ Нет: 2.12 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:33:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -5432,7 +2425,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.67 | ОЗ Нет: 2.1 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:33:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -5441,7 +2434,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.66 | ОЗ Нет: 2.09 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:33:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -5722,7 +2715,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.44 | ОЗ Нет: 2.62 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:33:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -5731,7 +2724,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.45 | ОЗ Нет: 2.55 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:33:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -6021,7 +3014,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.62 | ОЗ Нет: 2.2 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:33:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -6030,7 +3023,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.63 | ОЗ Нет: 2.14 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:33:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -6320,7 +3313,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.62 | ОЗ Нет: 2.2 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:22:28+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -6329,7 +3322,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.58 | ОЗ Нет: 2.23 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:22:28+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -6919,17 +3912,17 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.62 | ОЗ Нет: 2.2 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:27:20+00:00",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
+          "api_update_utc": "2026-09-19T14:26:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "BTTS",
-          "text": "ОЗ · ОЗ Да: 1.6 | ОЗ Нет: 2.19 @ Marathonbet",
+          "text": "ОЗ · ОЗ Да: 1.61 | ОЗ Нет: 2.17 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:27:20+00:00",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
+          "api_update_utc": "2026-09-19T14:26:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
@@ -8090,7 +5083,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.67 | ОЗ Нет: 2.1 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:22:28+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -8099,7 +5092,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.67 | ОЗ Нет: 2.08 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:22:28+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -9784,8 +6777,8 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 2.25 | ОЗ Нет: 1.57 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:27:20+00:00",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
+          "api_update_utc": "2026-09-19T14:26:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
@@ -9793,8 +6786,8 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 2.23 | ОЗ Нет: 1.58 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:27:20+00:00",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
+          "api_update_utc": "2026-09-19T14:26:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
@@ -11955,7 +8948,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.62 | ОЗ Нет: 2.2 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:33:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -11964,7 +8957,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.6 | ОЗ Нет: 2.19 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:33:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -12236,7 +9229,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.44 | ОЗ Нет: 2.62 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:52:15+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -12245,7 +9238,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.42 | ОЗ Нет: 2.65 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:52:15+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -12362,17 +9355,17 @@
           "market": "MATCH_WINNER",
           "text": "1X2 · П1: 3.1 | Х: 3.8 | П2: 2.15 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T15:53:23Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
+          "captured_at_utc": "2026-09-19T16:53:45Z",
+          "api_update_utc": "2026-09-19T16:15:55+00:00",
           "source": "stage61_market_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "MATCH_WINNER",
-          "text": "1X2 · П1: 3.15 | Х: 3.8 | П2: 2.16 @ Marathonbet",
+          "text": "1X2 · П1: 3.18 | Х: 3.8 | П2: 2.15 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T15:53:23Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
+          "captured_at_utc": "2026-09-19T16:53:45Z",
+          "api_update_utc": "2026-09-19T16:15:55+00:00",
           "source": "stage61_market_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
@@ -12544,7 +9537,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.05 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:52:15+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -12553,7 +9546,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.67 | ОЗ Нет: 2.08 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:52:15+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -12679,7 +9672,7 @@
           "market": "MATCH_WINNER",
           "text": "1X2 · П1: 1.7 | Х: 4 | П2: 4.75 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T15:53:23Z",
+          "captured_at_utc": "2026-09-19T16:53:45Z",
           "api_update_utc": "2026-09-19T13:52:15+00:00",
           "source": "stage61_market_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -12688,7 +9681,7 @@
           "market": "MATCH_WINNER",
           "text": "1X2 · П1: 1.71 | Х: 3.94 | П2: 4.9 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T15:53:23Z",
+          "captured_at_utc": "2026-09-19T16:53:45Z",
           "api_update_utc": "2026-09-19T13:52:15+00:00",
           "source": "stage61_market_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -12852,7 +9845,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.95 | ОЗ Нет: 1.8 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:52:15+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -12861,7 +9854,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.92 | ОЗ Нет: 1.79 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:52:15+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -12958,19 +9951,19 @@
         },
         {
           "market": "MATCH_WINNER",
-          "text": "1X2 · П1: 1.28 | Х: 5.75 | П2: 9.5 @ Bet365",
+          "text": "1X2 · П1: 1.33 | Х: 5.5 | П2: 8.5 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T15:53:23Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
+          "captured_at_utc": "2026-09-19T16:53:45Z",
+          "api_update_utc": "2026-09-19T16:15:55+00:00",
           "source": "stage61_market_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "MATCH_WINNER",
-          "text": "1X2 · П1: 1.31 | Х: 5.8 | П2: 10.5 @ Marathonbet",
+          "text": "1X2 · П1: 1.34 | Х: 5.55 | П2: 9.5 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T15:53:23Z",
-          "api_update_utc": "2026-09-19T09:53:16+00:00",
+          "captured_at_utc": "2026-09-19T16:53:45Z",
+          "api_update_utc": "2026-09-19T16:15:55+00:00",
           "source": "stage61_market_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
@@ -13129,7 +10122,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:22:28+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -13138,7 +10131,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:22:28+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -13433,7 +10426,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 2 | ОЗ Нет: 1.75 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:22:28+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -13442,7 +10435,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.99 | ОЗ Нет: 1.73 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:22:28+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -13760,8 +10753,8 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.33 | ОЗ Нет: 3.25 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:38:16+00:00",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
+          "api_update_utc": "2026-09-19T14:37:14+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
@@ -13769,8 +10762,8 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.33 | ОЗ Нет: 3.04 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:38:16+00:00",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
+          "api_update_utc": "2026-09-19T14:37:14+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
@@ -14048,7 +11041,7 @@
           "market": "TOTAL",
           "text": "Тотал 2.5 · ТБ(2.5): 1.36 | ТМ(2.5): 3.2 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T15:47:10Z",
+          "captured_at_utc": "2026-09-19T16:22:13Z",
           "api_update_utc": "2026-09-19T14:37:14+00:00",
           "source": "stage62_ou_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -14057,7 +11050,7 @@
           "market": "TOTAL",
           "text": "Тотал 2.5 · ТБ(2.5): 1.33 | ТМ(2.5): 3.1 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T15:47:10Z",
+          "captured_at_utc": "2026-09-19T16:22:13Z",
           "api_update_utc": "2026-09-19T14:37:14+00:00",
           "source": "stage62_ou_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -15226,8 +12219,8 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.44 | ОЗ Нет: 2.62 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:27:20+00:00",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
+          "api_update_utc": "2026-09-19T14:26:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
@@ -15235,8 +12228,8 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.41 | ОЗ Нет: 2.69 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:27:20+00:00",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
+          "api_update_utc": "2026-09-19T14:26:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
@@ -17577,7 +14570,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 2 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:33:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -17586,7 +14579,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.72 | ОЗ Нет: 2 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:33:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -17867,17 +14860,17 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.44 | ОЗ Нет: 2.62 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:38:16+00:00",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
+          "api_update_utc": "2026-09-19T14:37:14+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "BTTS",
-          "text": "ОЗ · ОЗ Да: 1.43 | ОЗ Нет: 2.62 @ Marathonbet",
+          "text": "ОЗ · ОЗ Да: 1.44 | ОЗ Нет: 2.58 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:38:16+00:00",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
+          "api_update_utc": "2026-09-19T14:37:14+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
@@ -18146,7 +15139,7 @@
           "market": "TOTAL",
           "text": "Тотал 2.5 · ТБ(2.5): 1.53 | ТМ(2.5): 2.5 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T15:47:10Z",
+          "captured_at_utc": "2026-09-19T16:22:13Z",
           "api_update_utc": "2026-09-19T14:37:14+00:00",
           "source": "stage62_ou_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -18155,7 +15148,7 @@
           "market": "TOTAL",
           "text": "Тотал 2.5 · ТБ(2.5): 1.48 | ТМ(2.5): 2.43 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T15:47:10Z",
+          "captured_at_utc": "2026-09-19T16:22:13Z",
           "api_update_utc": "2026-09-19T14:37:14+00:00",
           "source": "stage62_ou_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -18456,7 +15449,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.5 | ОЗ Нет: 2.5 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:52:15+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -18465,7 +15458,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.49 | ОЗ Нет: 2.44 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:52:15+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -18582,7 +15575,7 @@
           "market": "MATCH_WINNER",
           "text": "1X2 · П1: 3.5 | Х: 3.8 | П2: 2 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T15:53:23Z",
+          "captured_at_utc": "2026-09-19T16:53:45Z",
           "api_update_utc": "2026-09-19T13:52:15+00:00",
           "source": "stage61_market_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -18591,7 +15584,7 @@
           "market": "MATCH_WINNER",
           "text": "1X2 · П1: 3.58 | Х: 3.82 | П2: 2.04 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T15:53:23Z",
+          "captured_at_utc": "2026-09-19T16:53:45Z",
           "api_update_utc": "2026-09-19T13:52:15+00:00",
           "source": "stage61_market_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -19050,7 +16043,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.91 | ОЗ Нет: 1.91 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:22:28+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -19059,7 +16052,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.81 | ОЗ Нет: 1.89 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:22:28+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -19627,8 +16620,8 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.05 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:27:20+00:00",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
+          "api_update_utc": "2026-09-19T14:26:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
@@ -19636,8 +16629,8 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.66 | ОЗ Нет: 2.09 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:27:20+00:00",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
+          "api_update_utc": "2026-09-19T14:26:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
@@ -19913,8 +16906,8 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.62 | ОЗ Нет: 2.2 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:27:20+00:00",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
+          "api_update_utc": "2026-09-19T14:26:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
@@ -19922,8 +16915,8 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:27:20+00:00",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
+          "api_update_utc": "2026-09-19T14:26:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
@@ -21881,17 +18874,17 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.44 | ОЗ Нет: 2.62 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:38:16+00:00",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
+          "api_update_utc": "2026-09-19T14:37:14+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "BTTS",
-          "text": "ОЗ · ОЗ Да: 1.45 | ОЗ Нет: 2.55 @ Marathonbet",
+          "text": "ОЗ · ОЗ Да: 1.46 | ОЗ Нет: 2.52 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:38:16+00:00",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
+          "api_update_utc": "2026-09-19T14:37:14+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
@@ -22169,7 +19162,7 @@
           "market": "TOTAL",
           "text": "Тотал 2.5 · ТБ(2.5): 1.44 | ТМ(2.5): 2.75 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T15:47:10Z",
+          "captured_at_utc": "2026-09-19T16:22:13Z",
           "api_update_utc": "2026-09-19T14:37:14+00:00",
           "source": "stage62_ou_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -22178,7 +19171,7 @@
           "market": "TOTAL",
           "text": "Тотал 2.5 · ТБ(2.5): 1.4 | ТМ(2.5): 2.68 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T15:47:10Z",
+          "captured_at_utc": "2026-09-19T16:22:13Z",
           "api_update_utc": "2026-09-19T14:37:14+00:00",
           "source": "stage62_ou_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -22484,7 +19477,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:33:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -22493,7 +19486,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.54 | ОЗ Нет: 2.32 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:33:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -22788,7 +19781,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 2.2 | ОЗ Нет: 1.62 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:22:28+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -22797,7 +19790,7 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 2.17 | ОЗ Нет: 1.61 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
           "api_update_utc": "2026-09-19T13:22:28+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
@@ -23083,8 +20076,8 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.05 @ Bet365",
           "bookmaker": "Bet365",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:27:20+00:00",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
+          "api_update_utc": "2026-09-19T14:26:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
@@ -23092,8 +20085,8 @@
           "market": "BTTS",
           "text": "ОЗ · ОЗ Да: 1.69 | ОЗ Нет: 2.04 @ Marathonbet",
           "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-09-19T14:14:58Z",
-          "api_update_utc": "2026-09-19T10:27:20+00:00",
+          "captured_at_utc": "2026-09-19T16:15:39Z",
+          "api_update_utc": "2026-09-19T14:26:16+00:00",
           "source": "stage63_btts_snapshots.csv",
           "status": "COLLECTED_SNAPSHOT"
         },
@@ -23621,9 +20614,9 @@
     }
   ],
   "governance": {
-    "system_health": "HEALTHY",
+    "system_health": "WARN",
     "health_critical": 0,
-    "health_warnings": 0,
+    "health_warnings": 1,
     "logical_exposure_u": 4.0,
     "canonical_conflict_fixtures": 0,
     "deduplicated_overlap_u": 0.0,
