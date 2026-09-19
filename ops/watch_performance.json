@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-19T03:19:58Z",
+  "generated_at_utc": "2026-09-19T03:30:29Z",
   "status": "OK",
   "scope": "prospective research WATCH crossings only",
   "overall": {
@@ -137,5 +137,8 @@
     "historical_backfill": "forbidden",
     "canonical_forward": "unchanged"
   },
-  "warnings": []
+  "warnings": [
+    "fixture 1550135: The read operation timed out",
+    "fixture 1552765: The read operation timed out"
+  ]
 }

@@ -1,13 +1,16 @@
 {
-  "run_at_utc": "2026-09-19T03:19:58Z",
+  "run_at_utc": "2026-09-19T03:30:29Z",
   "status": "OK",
   "new_watch_rows": 0,
   "newly_settled_rows": 0,
-  "fixture_api_calls": 20,
+  "fixture_api_calls": 18,
   "total_crossings": 43,
   "settled": 19,
   "pending": 24,
   "user_execution_coverage_pct": 100.0,
   "user_roi_pct": -29.368,
-  "warnings": []
+  "warnings": [
+    "fixture 1550135: The read operation timed out",
+    "fixture 1552765: The read operation timed out"
+  ]
 }
