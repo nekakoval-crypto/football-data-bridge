@@ -23,7 +23,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: stage80-international-duty-player-identity-join-${{ github.ref }}
+  group: stage80-international-duty-operational-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:

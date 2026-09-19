@@ -24,7 +24,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: stage80-international-duty-return-load-${{ github.ref }}
+  group: stage80-international-duty-operational-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:

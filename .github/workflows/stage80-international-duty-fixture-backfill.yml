@@ -21,7 +21,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: stage80-international-duty-fixture-backfill-${{ github.ref }}
+  group: stage80-international-duty-operational-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
