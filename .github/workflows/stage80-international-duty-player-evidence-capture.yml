@@ -64,7 +64,7 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 40
     env:
       API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
       PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
@@ -75,7 +75,7 @@ jobs:
       PBK_RAW_ARCHIVE_S3_REGION: auto
       OPS_DIR: ops
       STAGE71_MAX_DAILY_API_CALLS: '7000'
-      STAGE80_INTL_DUTY_PLAYER_EVIDENCE_MAX_API_CALLS: '50'
+      STAGE80_INTL_DUTY_PLAYER_EVIDENCE_MAX_API_CALLS: '500'
       STAGE80_INTL_DUTY_PLAYER_EVIDENCE_PROTECTED_CALLS: '512'
     steps:
       - uses: actions/checkout@v4
@@ -97,8 +97,8 @@ jobs:
           assert meta['version']=='PBK_STAGE80_INTERNATIONAL_DUTY_PLAYER_EVIDENCE_CAPTURE_V2_STRICT_ROLE_SEMANTICS', meta
           assert meta['status'] in {'COLLECTING','OK'}, meta
           assert meta['backlog_rows']>0, meta
-          assert 0 <= meta['provider_budget_calls'] <= 50, meta
-          assert 0 <= meta['attempted_fixtures_this_run'] <= 50, meta
+          assert 0 <= meta['provider_budget_calls'] <= 500, meta
+          assert 0 <= meta['attempted_fixtures_this_run'] <= 500, meta
           assert meta['captured_fixtures_total'] <= meta['backlog_rows'], meta
           assert meta['pending_or_retry_fixtures'] == meta['backlog_rows'] - meta['captured_fixtures_total'], meta
           assert meta['evidence_rows']==meta['unique_evidence_keys'], meta
