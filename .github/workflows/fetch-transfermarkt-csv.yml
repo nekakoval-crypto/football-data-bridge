@@ -85,6 +85,7 @@ jobs:
             --pbk ops/historical_players.csv \
             --player-stats ops/player_stats_snapshots.csv \
             --player-profiles ops/player_profile_evidence.csv \
+            --international-evidence ops/international_duty_player_evidence.csv \
             --players core/players.csv.gz \
             --transfers core/transfers.csv.gz \
             --identity-out mapping/pbk_transfermarkt_player_identity.csv \
