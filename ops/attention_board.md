@@ -1,18 +1,18 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 20.09.2026 11:00 (Europe/Berlin)
-Canonical: 4 | active WATCH crossings: 8 | RED: 1 | ORANGE: 8
+Обновлено: 20.09.2026 12:00 (Europe/Berlin)
+Canonical: 4 | active WATCH crossings: 8 | RED: 5 | ORANGE: 4
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
 
 ## 🔴 Срочно
+- **Frosinone — Como** | R1 | П2 | 20.09 15:00 | ≤3ч до kickoff
 - **Fiorentina — Napoli** | Stage63 | ОЗ — Да | 20.09 12:30 | prospective движение ОЗ ≥3 п.п.
+- **Leeds — Crystal Palace** | Stage61 | П1 | 20.09 15:00 | первый +3 п.п. steam фаворита
+- **Frosinone — Como** | Stage63 | ОЗ — Да | 20.09 15:00 | prospective движение ОЗ ≥3 п.п.
+- **Manchester City — Sunderland** | Stage63 | ОЗ — Да | 20.09 15:00 | prospective движение ОЗ ≥3 п.п.
 
 ## 🟠 Ближайшие 24 часа / активные WATCH
-- **Frosinone — Como** | R1 | П2 | 20.09 15:00 | ≤24ч до kickoff
-- **Leeds — Crystal Palace** | Stage61 | П1 | 20.09 15:00 | первый +3 п.п. steam фаворита | 1.8 @ Marathonbet
-- **Frosinone — Como** | Stage63 | ОЗ — Да | 20.09 15:00 | prospective движение ОЗ ≥3 п.п. | 1.57 @ Marathonbet
-- **Manchester City — Sunderland** | Stage63 | ОЗ — Да | 20.09 15:00 | prospective движение ОЗ ≥3 п.п. | 1.89 @ Marathonbet
 - **FC Schalke 04 — SV Elversberg** | Stage62 | ТБ(2.5) | 20.09 17:30 | первый +3 п.п. steam ТБ(2.5) | 1.48 @ Marathonbet
 - **FC Schalke 04 — SV Elversberg** | Stage63 | ОЗ — Да | 20.09 17:30 | prospective движение ОЗ ≥3 п.п. | 1.44 @ Marathonbet
 - **Juventus — Atalanta** | Stage63 | ОЗ — Нет | 20.09 18:00 | prospective движение ОЗ ≥3 п.п. | 1.89 @ Marathonbet
@@ -1828,7 +1828,7 @@ Canonical: 4 | active WATCH crossings: 8 | RED: 1 | ORANGE: 8
   - ИТБ/ИТМ 1 (2.5) · ИТБ: 6 | ИТМ: 1.1 @ Marathonbet
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 17 | ИТМ: 1.02 @ Bet365
   - Тотал 2.5 · ТБ(2.5): 1.44 | ТМ(2.5): 2.75 @ Bet365
-  - Тотал 2.5 · ТБ(2.5): 1.4 | ТМ(2.5): 2.68 @ Marathonbet
+  - Тотал 2.5 · ТБ(2.5): 1.39 | ТМ(2.5): 2.72 @ Marathonbet
 
 - **Lech Poznan — Radomiak Radom** | Ekstraklasa | 20.09 18:15 UTC
   - Ф(0) · Ф1(0): 1.1 | Ф2(0): 6.8 @ Bet365
@@ -2001,7 +2001,7 @@ Canonical: 4 | active WATCH crossings: 8 | RED: 1 | ORANGE: 8
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **HEALTHY** | critical 0 | warnings 0
+- System Health: **WARN** | critical 0 | warnings 1
 - Логическая canonical экспозиция: **4.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 25 | data required 2
