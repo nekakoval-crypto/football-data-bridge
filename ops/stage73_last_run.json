@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-20T06:43:32Z",
+  "run_at_utc": "2026-09-20T06:49:25Z",
   "status": "OK",
   "api_version": "v1",
   "db_path": "build/pbk_unified.sqlite",
@@ -38,7 +38,7 @@
       "path": "/v1/markets/team-totals/openers?limit=1",
       "http_status": 200,
       "passed": true,
-      "count": 2485
+      "count": 2487
     },
     {
       "path": "/v1/markets/double-chance/openers?limit=1",
