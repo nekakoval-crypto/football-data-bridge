@@ -1,0 +1,55 @@
+name: Stage 80 Raw Archive Inventory
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/stage80_raw_archive_inventory.py'
+      - 'scripts/tests/test_stage80_raw_archive_inventory.py'
+      - '.github/workflows/stage80-raw-archive-inventory.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and unit test
+        run: |
+          python -m py_compile scripts/stage80_raw_archive_inventory.py
+          python -m unittest scripts.tests.test_stage80_raw_archive_inventory -v
+
+  inventory:
+    needs: validate
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      OPS_DIR: ops
+      PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+      PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+      PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+      PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+      PBK_RAW_ARCHIVE_S3_PREFIX: api-football-raw
+      PBK_RAW_ARCHIVE_S3_REGION: auto
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install S3 client
+        run: python -m pip install --disable-pip-version-check boto3
+      - name: Inventory observation metadata only
+        run: python scripts/stage80_raw_archive_inventory.py
+      - name: Upload inventory telemetry
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage80-raw-archive-inventory
+          path: ops/stage80_raw_archive_inventory_last_run.json
+          if-no-files-found: error
+          retention-days: 30
