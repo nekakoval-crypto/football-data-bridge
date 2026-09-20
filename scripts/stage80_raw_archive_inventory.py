@@ -9,6 +9,7 @@ from __future__ import annotations
 import json
 import os
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -68,32 +69,40 @@ def inventory(client=None) -> dict:
     total = 0
     invalid = 0
 
-    for key in iter_observation_keys(client, cfg["bucket"], cfg["prefix"]):
+    keys = list(iter_observation_keys(client, cfg["bucket"], cfg["prefix"]))
+    max_workers = max(1, int(os.getenv("PBK_RAW_ARCHIVE_INVENTORY_WORKERS", "24")))
+
+    def read_record(key: str):
         try:
             body = client.get_object(Bucket=cfg["bucket"], Key=key)["Body"].read()
-            record = json.loads(body.decode("utf-8"))
+            return json.loads(body.decode("utf-8"))
         except Exception:
-            invalid += 1
-            continue
+            return None
 
-        total += 1
-        path = str(record.get("path") or "")
-        endpoint_counts[path] += 1
-        if path not in TARGET_PATHS:
-            continue
+    with ThreadPoolExecutor(max_workers=max_workers) as pool:
+        for record in pool.map(read_record, keys):
+            if record is None:
+                invalid += 1
+                continue
 
-        target_counts[path] += 1
-        params = params_dict(record.get("normalized_params"))
-        fixture = params.get("fixture")
-        if fixture:
-            target_fixture_ids[path].add(fixture)
+            total += 1
+            path = str(record.get("path") or "")
+            endpoint_counts[path] += 1
+            if path not in TARGET_PATHS:
+                continue
 
-        fetched = str(record.get("fetched_at_utc") or "")
-        if fetched:
-            if target_first_seen[path] is None or fetched < target_first_seen[path]:
-                target_first_seen[path] = fetched
-            if target_last_seen[path] is None or fetched > target_last_seen[path]:
-                target_last_seen[path] = fetched
+            target_counts[path] += 1
+            params = params_dict(record.get("normalized_params"))
+            fixture = params.get("fixture")
+            if fixture:
+                target_fixture_ids[path].add(fixture)
+
+            fetched = str(record.get("fetched_at_utc") or "")
+            if fetched:
+                if target_first_seen[path] is None or fetched < target_first_seen[path]:
+                    target_first_seen[path] = fetched
+                if target_last_seen[path] is None or fetched > target_last_seen[path]:
+                    target_last_seen[path] = fetched
 
     report = {
         "version": VERSION,
@@ -103,6 +112,8 @@ def inventory(client=None) -> dict:
         "bucket": cfg["bucket"],
         "prefix": cfg["prefix"],
         "observation_records": total,
+        "observation_keys_discovered": len(keys),
+        "inventory_workers": max_workers,
         "invalid_observation_records": invalid,
         "endpoint_counts": dict(sorted(endpoint_counts.items())),
         "targets": {
