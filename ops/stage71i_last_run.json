@@ -1,25 +1,65 @@
 {
-  "run_at_utc": "2026-09-20T16:46:32Z",
+  "run_at_utc": "2026-09-20T18:47:21Z",
   "status": "OK",
   "mode": "RESEARCH_SETTLEMENT_ONLY",
-  "pending_market_rows": 16,
-  "pending_unique_fixtures": 1,
-  "fixture_api_calls": 1,
-  "new_settlement_rows": 0,
-  "total_settlement_rows": 3633,
+  "pending_market_rows": 675,
+  "pending_unique_fixtures": 41,
+  "fixture_api_calls": 41,
+  "new_settlement_rows": 528,
+  "total_settlement_rows": 4161,
   "settlement_rows_by_family": {
-    "TEAM_TOTAL": 2062,
-    "DOUBLE_CHANCE": 222,
-    "EUROPEAN_HANDICAP": 1147,
-    "DRAW_NO_BET": 202
+    "TEAM_TOTAL": 2364,
+    "DOUBLE_CHANCE": 254,
+    "EUROPEAN_HANDICAP": 1310,
+    "DRAW_NO_BET": 233
   },
   "non_ft_or_review_fixtures": [
+    {
+      "fixture_id": "1494764",
+      "status": "2H",
+      "detail": "Not auto-settled; FT regulation score required"
+    },
+    {
+      "fixture_id": "1553176",
+      "status": "1H",
+      "detail": "Not auto-settled; FT regulation score required"
+    },
+    {
+      "fixture_id": "1558643",
+      "status": "2H",
+      "detail": "Not auto-settled; FT regulation score required"
+    },
     {
       "fixture_id": "1570389",
       "status": "PST",
       "detail": "Not auto-settled; FT regulation score required"
+    },
+    {
+      "fixture_id": "1575175",
+      "status": "2H",
+      "detail": "Not auto-settled; FT regulation score required"
+    },
+    {
+      "fixture_id": "1575501",
+      "status": "2H",
+      "detail": "Not auto-settled; FT regulation score required"
+    },
+    {
+      "fixture_id": "1575506",
+      "status": "2H",
+      "detail": "Not auto-settled; FT regulation score required"
+    },
+    {
+      "fixture_id": "1584412",
+      "status": "2H",
+      "detail": "Not auto-settled; FT regulation score required"
+    },
+    {
+      "fixture_id": "1584417",
+      "status": "2H",
+      "detail": "Not auto-settled; FT regulation score required"
     }
   ],
   "signals_created": 0,
-  "api_calls": 1
+  "api_calls": 41
 }
