@@ -1,23 +1,23 @@
 # PBK WATCH Performance
 
-Generated UTC: 2026-09-20T14:53:19Z
+Generated UTC: 2026-09-20T15:05:38Z
 Scope: только prospective WATCH; это не реальные ставки и не canonical R1/R2/R3.
 
 ## Overall
-- Crossing events: 48 | pending 7 | settled 41 | void 0 | review 0
+- Crossing events: 48 | pending 5 | settled 43 | void 0 | review 0
 - Marathonbet price coverage at crossing: 100.0% (48/48)
-- First-crossing paper P&L: -7.550u | ROI -18.415% | W-L 22-19
+- First-crossing paper P&L: -7.660u | ROI -17.814% | W-L 23-20
 - Close observed: 43 | stayed qualified 33 | reverted 10 | persistence 76.744%
-- Close-qualified subset: settled 32 | P&L -4.890u | ROI -15.281%
-- Reverted subset: settled 9 | P&L -2.660u | ROI -29.556%
+- Close-qualified subset: settled 33 | P&L -5.890u | ROI -17.848%
+- Reverted subset: settled 10 | P&L -1.770u | ROI -17.7%
 - Observed max drawdown: 9.13u
 
 ## Big-5 ОЗ market movement — ОЗ — Да
-- Crossings: 29 | pending 4 | settled 25
+- Crossings: 29 | pending 2 | settled 27
 - Marathonbet coverage: 100.0%
-- First-crossing P&L: -4.750u | ROI -19.0% | W-L 13-12
+- First-crossing P&L: -4.860u | ROI -18.0% | W-L 14-13
 - Close persistence: 77.778% (21/27)
-- Close-qualified ROI: -21.55% | Reverted ROI: -8.8%
+- Close-qualified ROI: -25.286% | Reverted ROI: 7.5%
 
 ## Big-5 ОЗ market movement — ОЗ — Нет
 - Crossings: 7 | pending 2 | settled 5
