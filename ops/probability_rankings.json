@@ -1,50 +1,10 @@
 {
-  "generated_at_utc": "2026-09-20T19:50:50Z",
+  "generated_at_utc": "2026-09-20T20:51:08Z",
   "status": "OK",
   "model_version": "stage75_v1_2026-09-11",
   "scope": "unique active canonical exposures only",
-  "max_probability": [
-    {
-      "rule": "R1",
-      "api_fixture_id": "1550131",
-      "kickoff_utc": "2026-09-20T13:00:00Z",
-      "home_team": "Frosinone",
-      "away_team": "Como",
-      "selection": "Away",
-      "p_market_no_vig": 0.580061193,
-      "p_pbk": 0.652188225,
-      "p_market_pct": 58.006,
-      "p_pbk_pct": 65.219,
-      "paper_user_odds": 1.65,
-      "paper_user_bookmaker": "Marathonbet",
-      "ev": 0.07611057124999987,
-      "ev_pct": 7.611,
-      "probability_status": "HISTORICALLY_VALIDATED_FORWARD_MONITORING",
-      "probability_rank": 1,
-      "value_rank": 1
-    }
-  ],
-  "best_value": [
-    {
-      "rule": "R1",
-      "api_fixture_id": "1550131",
-      "kickoff_utc": "2026-09-20T13:00:00Z",
-      "home_team": "Frosinone",
-      "away_team": "Como",
-      "selection": "Away",
-      "p_market_no_vig": 0.580061193,
-      "p_pbk": 0.652188225,
-      "p_market_pct": 58.006,
-      "p_pbk_pct": 65.219,
-      "paper_user_odds": 1.65,
-      "paper_user_bookmaker": "Marathonbet",
-      "ev": 0.07611057124999987,
-      "ev_pct": 7.611,
-      "probability_status": "HISTORICALLY_VALIDATED_FORWARD_MONITORING",
-      "probability_rank": 1,
-      "value_rank": 1
-    }
-  ],
+  "max_probability": [],
+  "best_value": [],
   "policy": {
     "watch_excluded": true,
     "stake_changes": false,

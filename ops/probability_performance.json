@@ -1,15 +1,15 @@
 {
-  "generated_at_utc": "2026-09-20T19:50:50Z",
+  "generated_at_utc": "2026-09-20T20:51:08Z",
   "status": "OK",
   "model_version": "stage75_v1_2026-09-11",
-  "settled_predictions": 2,
+  "settled_predictions": 3,
   "by_rule": {
     "R1": {
-      "settled_predictions": 2,
-      "brier_market": 0.2484774365,
-      "brier_pbk": 0.267685772,
-      "logloss_market": 0.6896749205,
-      "logloss_pbk": 0.7294291940000001,
+      "settled_predictions": 3,
+      "brier_market": 0.27780862033333337,
+      "brier_pbk": 0.32024034166666665,
+      "logloss_market": 0.7489987056666667,
+      "logloss_pbk": 0.8383174033333334,
       "forward_review_ready": false
     }
   },
