@@ -1,25 +1,25 @@
 {
-  "run_at_utc": "2026-09-19T22:45:27Z",
+  "run_at_utc": "2026-09-20T00:50:56Z",
   "status": "OK",
   "mode": "RESEARCH_SETTLEMENT_ONLY",
-  "pending_market_rows": 16,
-  "pending_unique_fixtures": 1,
-  "fixture_api_calls": 0,
-  "new_settlement_rows": 0,
-  "total_settlement_rows": 3222,
+  "pending_market_rows": 182,
+  "pending_unique_fixtures": 11,
+  "fixture_api_calls": 11,
+  "new_settlement_rows": 166,
+  "total_settlement_rows": 3388,
   "settlement_rows_by_family": {
-    "TEAM_TOTAL": 1826,
-    "DOUBLE_CHANCE": 197,
-    "EUROPEAN_HANDICAP": 1020,
-    "DRAW_NO_BET": 179
+    "TEAM_TOTAL": 1922,
+    "DOUBLE_CHANCE": 207,
+    "EUROPEAN_HANDICAP": 1071,
+    "DRAW_NO_BET": 188
   },
   "non_ft_or_review_fixtures": [
     {
       "fixture_id": "1570389",
-      "status": "API_ERROR",
-      "detail": "API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}"
+      "status": "PST",
+      "detail": "Not auto-settled; FT regulation score required"
     }
   ],
   "signals_created": 0,
-  "api_calls": 0
+  "api_calls": 11
 }
