@@ -28,18 +28,6 @@ from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
-try:
-    import stage53_daily_screener as s53
-    import stage71_observation_audit as audit
-    import stage77_player_stats_capture as current
-    from api_football_broker import ApiFootballBrokerError
-except ModuleNotFoundError:
-    from scripts import stage53_daily_screener as s53
-    from scripts import stage71_observation_audit as audit
-    from scripts import stage77_player_stats_capture as current
-    from scripts.api_football_broker import ApiFootballBrokerError
-
-
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 SOURCE = OPS / "pbk16_all_competition_fixture_history.csv"
 OUT = OPS / "stage80_historical_lineup_injury_probe.csv"
@@ -278,6 +266,17 @@ def cell_summary(rows):
 
 
 def main():
+    try:
+        import stage53_daily_screener as s53
+        import stage71_observation_audit as audit
+        import stage77_player_stats_capture as current
+        from api_football_broker import ApiFootballBrokerError
+    except ModuleNotFoundError:
+        from scripts import stage53_daily_screener as s53
+        from scripts import stage71_observation_audit as audit
+        from scripts import stage77_player_stats_capture as current
+        from scripts.api_football_broker import ApiFootballBrokerError
+
     now = datetime.now(timezone.utc)
     source_rows = read_csv(SOURCE)
 
