@@ -39,21 +39,21 @@
     },
     {
       "id": "PLAYER_FORM_GRADE",
-      "status": "DATA_BLOCKED",
+      "status": "VALIDATION_PENDING",
       "code_ready": true,
       "production_evidence_required": true,
       "historical_10y_validation_available": false,
-      "reason": "No-lookahead Last/Form-3/Form-5/Form-10/Season profile code exists, but production grade history is not yet sufficient for validation.",
+      "reason": "Provider-free retrospective walk-forward Form-3/Form-5/Form-10 research is now populated with explicit season provenance and zero detected chronology leakage. Current evidence is scope-limited, concentrated in 2025 and six PBK16 domestic leagues, with Norway dominating the sample; predictive contribution is not yet validated.",
       "components": {
         "last": "CODE_READY",
-        "form_3": "CODE_READY",
-        "form_5": "CODE_READY",
-        "form_10": "CODE_READY",
-        "season": "REQUIRES_EXPLICIT_SEASON_LABEL",
-        "trend_3_vs_10": "CODE_READY",
-        "deviation_last_vs_season": "CODE_READY"
+        "form_3": "VALIDATION_PENDING",
+        "form_5": "VALIDATION_PENDING",
+        "form_10": "VALIDATION_PENDING",
+        "season": "VALIDATION_PENDING",
+        "trend_3_vs_10": "VALIDATION_PENDING",
+        "deviation_last_vs_season": "VALIDATION_PENDING"
       },
-      "next_gate": "Populate grade history, preserve season provenance, then validate form windows versus season baseline and future team outcomes without leakage."
+      "next_gate": "Validate Form-3/Form-5/Form-10 versus future team outcomes and market residuals out of sample, report league/season scope explicitly, and expand historical coverage before any PBK16-wide validation claim."
     },
     {
       "id": "XI_QUALITY",
