@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-20T14:03:44Z",
+  "generated_at_utc": "2026-09-20T15:03:34Z",
   "status": "OK",
   "policy_locked_at": "2026-09-11",
   "families": {
@@ -9,23 +9,23 @@
         "crossings": 5,
         "user_price_rows": 5,
         "execution_coverage_pct": 100.0,
-        "settled_executable": 4,
+        "settled_executable": 5,
         "roi_pct": -100.0,
         "first_half_n": 2,
         "first_half_roi_pct": -100.0,
-        "second_half_n": 2,
+        "second_half_n": 3,
         "second_half_roi_pct": -100.0,
-        "close_observed_settled": 4,
+        "close_observed_settled": 5,
         "close_observed_coverage_pct": 100.0,
-        "close_qualified_settled": 2,
+        "close_qualified_settled": 3,
         "close_qualified_roi_pct": -100.0
       },
       "blocking_reasons": [
-        "settled 4/60",
+        "settled 5/60",
         "ROI -100.0 not >0",
         "first-half ROI -100.0 not >0",
         "second-half ROI -100.0 not >0",
-        "close-qualified subset 2/20"
+        "close-qualified subset 3/20"
       ]
     },
     "Stage62": {
@@ -56,16 +56,16 @@
         "crossings": 36,
         "user_price_rows": 36,
         "execution_coverage_pct": 100.0,
-        "settled_executable": 29,
-        "roi_pct": -16.655,
-        "first_half_n": 14,
-        "first_half_roi_pct": -28.571,
+        "settled_executable": 30,
+        "roi_pct": -14.233,
+        "first_half_n": 15,
+        "first_half_roi_pct": -33.333,
         "second_half_n": 15,
-        "second_half_roi_pct": -5.533,
-        "close_observed_settled": 29,
+        "second_half_roi_pct": 4.867,
+        "close_observed_settled": 30,
         "close_observed_coverage_pct": 100.0,
-        "close_qualified_settled": 22,
-        "close_qualified_roi_pct": -18.955
+        "close_qualified_settled": 23,
+        "close_qualified_roi_pct": -15.696
       },
       "blocking_reasons": [
         "No historical BTTS first/close dataset; any finding needs a new preregistration and fresh holdout."
