@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-20T02:29:19Z",
+  "generated_at_utc": "2026-09-20T02:52:32Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -92,7 +92,7 @@
     "match_events": {
       "file": "match_event_snapshots.csv",
       "present": true,
-      "rows": 845
+      "rows": 984
     },
     "match_event_backlog": {
       "file": "stage80_match_event_backlog.csv",
@@ -532,11 +532,11 @@
     "coverage_note": "Stage55 context is canonical-signal scoped; these counts are not full 16-league archive coverage."
   },
   "match_events": {
-    "event_rows": 845,
-    "event_fixtures": 50,
+    "event_rows": 984,
+    "event_fixtures": 58,
     "backlog_total_fixtures": 70,
-    "backlog_pending_fixtures": 20,
-    "backlog_captured_fixtures": 50,
+    "backlog_pending_fixtures": 12,
+    "backlog_captured_fixtures": 58,
     "evidence_note": "Append-only normalized provider match events captured only after PBK observed a terminal fixture; empty provider responses remain retryable."
   },
   "referee_research": {
