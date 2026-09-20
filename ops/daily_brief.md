@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-20T16:03:21Z
+Generated UTC: 2026-09-20T17:02:48Z
 Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -59,7 +59,7 @@ Active canonical signals: 3
 - Scope: АПЛ: движение фаворита П1/П2 (+3 pp no-vig from frozen Bet365 opener).
 - Frozen openers tracked: 20
 - Active +3 pp crossings: 0
-- Observed closes: 19 | Close-qualified M1 watches: 3
+- Observed closes: 20 | Close-qualified M1 watches: 3
 - Executable bookmaker being observed: Marathonbet
 
 - No active +3 pp crossing is currently recorded.
@@ -77,19 +77,18 @@ Active canonical signals: 3
 
 - Scope: Бундеслига: ТБ(2.5) — движение рынка (+3 pp no-vig from frozen Bet365 O/U 2.5 opener).
 - Frozen O/U openers tracked: 18
-- Active +3 pp crossings ТБ(2.5): 1
-- Observed closes: 16 | Close-qualified O1 watches: 6
+- Active +3 pp crossings ТБ(2.5): 0
+- Observed closes: 17 | Close-qualified O1 watches: 7
 - Executable bookmaker being observed: Marathonbet
 
-## Current O/U crossings
-- WATCH | FC Schalke 04 — SV Elversberg | Over move +6.96 pp | Bet365 O2.5 1.44 | Marathonbet O2.5 1.48 | 4265.8 min to kickoff
+- No active +3 pp Over crossing is currently recorded.
 
 ## Recent close-qualified O/U watches
-- SV Elversberg — Bayern München | move +3.23 pp | B365 close O2.5 1.12 | Marathonbet close O2.5 1.1
 - Bayern München — Union Berlin | move +7.07 pp | B365 close O2.5 1.08 | Marathonbet close O2.5 1.05
 - Eintracht Frankfurt — SC Freiburg | move +3.60 pp | B365 close O2.5 1.44 | Marathonbet close O2.5 1.48
 - Werder Bremen — FC Augsburg | move +6.15 pp | B365 close O2.5 1.4 | Marathonbet close O2.5 1.4
 - Borussia Mönchengladbach — FSV Mainz 05 | move +5.38 pp | B365 close O2.5 1.44 | Marathonbet close O2.5 1.44
+- FC Schalke 04 — SV Elversberg | move +3.36 pp | B365 close O2.5 1.53 | Marathonbet close O2.5 1.48
 
 ---
 
@@ -99,14 +98,12 @@ Active canonical signals: 3
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 105
-- Активные движения ≥3 п.п.: всего 4 | ОЗ — Да 2 | ОЗ — Нет 2
-- Зафиксировано observed close: 95
+- Активные движения ≥3 п.п.: всего 2 | ОЗ — Да 1 | ОЗ — Нет 1
+- Зафиксировано observed close: 99
 - Исполнимый букмекер для наблюдения: Marathonbet
 
 ## Текущие ОЗ-watch
-- WATCH | Bundesliga | FC Schalke 04 — SV Elversberg | ОЗ — Да | движение P(ОЗ — Да) +7.36 п.п. | Marathonbet 1.44 | 4272.4 мин до матча
 - WATCH | Ligue 1 | Marseille — Paris Saint Germain | ОЗ — Нет | движение P(ОЗ — Да) -3.66 п.п. | Marathonbet 2.39 | 4228.1 мин до матча
-- WATCH | Serie A | Juventus — Atalanta | ОЗ — Нет | движение P(ОЗ — Да) -3.33 п.п. | Marathonbet 1.89 | 1545.0 мин до матча
 - WATCH | La Liga | Deportivo La Coruna — Real Betis | ОЗ — Да | движение P(ОЗ — Да) +5.59 п.п. | Marathonbet 1.63 | 375.1 мин до матча
 
 ---
@@ -118,11 +115,11 @@ Active canonical signals: 3
 - Crossings: 48 | settled 43 | pending 5
 - Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: -7.660u | ROI -17.814% | W-L 23-20
-- Close: observed 43 | stayed qualified 33 | reverted 10 | persistence 76.744%
+- Close: observed 46 | stayed qualified 36 | reverted 10 | persistence 78.261%
 - Close-qualified ROI: -17.848% | Reverted ROI: -17.7%
 
 ## By WATCH family
-- Big-5 ОЗ market movement — ОЗ — Да: crossings 29, settled 27, ROI -18.0%, close persistence 77.778%
-- Big-5 ОЗ market movement — ОЗ — Нет: crossings 7, settled 5, ROI 9.6%, close persistence 60.0%
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 29, settled 27, ROI -18.0%, close persistence 78.571%
+- Big-5 ОЗ market movement — ОЗ — Нет: crossings 7, settled 5, ROI 9.6%, close persistence 66.667%
 - АПЛ favorite steam: crossings 5, settled 5, ROI -100.0%, close persistence 60.0%
 - Бундеслига ТБ(2.5) steam: crossings 7, settled 6, ROI 28.667%, close persistence 100.0%

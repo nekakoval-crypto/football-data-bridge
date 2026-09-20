@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-20T16:03:21Z",
+  "generated_at_utc": "2026-09-20T17:02:48Z",
   "status": "OK",
   "active_signals": 3,
   "policy": {
@@ -30,11 +30,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-20T15:42:26Z",
+        "captured_at_utc": "2026-09-20T16:43:04Z",
         "best_odds": "2.07",
         "best_bookmaker": "1xBet",
         "bet365_odds": "2.0",
-        "api_odds_update_utc": "2026-09-20T13:04:16+00:00",
+        "api_odds_update_utc": "2026-09-20T16:38:15+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -155,11 +155,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-20T15:42:26Z",
+        "captured_at_utc": "2026-09-20T16:43:04Z",
         "best_odds": "1.84",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.75",
-        "api_odds_update_utc": "2026-09-20T13:04:16+00:00",
+        "api_odds_update_utc": "2026-09-20T16:38:15+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -282,11 +282,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-20T15:42:26Z",
+        "captured_at_utc": "2026-09-20T16:43:04Z",
         "best_odds": "1.62",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.57",
-        "api_odds_update_utc": "2026-09-20T13:04:16+00:00",
+        "api_odds_update_utc": "2026-09-20T16:38:15+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -398,10 +398,10 @@
     "tracked_openers": 20,
     "active_crossings": 0,
     "total_crossings": 5,
-    "observed_closes": 19,
+    "observed_closes": 20,
     "close_qualified_total": 3,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-20T15:27:30Z",
+    "latest_run_utc": "2026-09-20T16:53:32Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -441,36 +441,15 @@
     "definition": "Bet365 no-vig P(Over 2.5) rises by >=3pp from frozen opener to observed close",
     "canonical_forward_changed": false,
     "tracked_openers": 18,
-    "active_crossings": 1,
+    "active_crossings": 0,
     "total_crossings": 7,
-    "observed_closes": 16,
-    "close_qualified_total": 6,
+    "observed_closes": 17,
+    "close_qualified_total": 7,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-20T15:21:35Z",
+    "latest_run_utc": "2026-09-20T16:22:39Z",
     "warnings": [],
-    "crossings": [
-      {
-        "fixture_id": "1575173",
-        "home_team": "FC Schalke 04",
-        "away_team": "SV Elversberg",
-        "movement_pp": "0.06958989",
-        "crossed_at_utc": "2026-09-17T16:24:13Z",
-        "minutes_to_kickoff": "4265.8",
-        "bet365_over25": "1.44",
-        "user_over25": "1.48",
-        "note": "WATCH only; not a canonical bet"
-      }
-    ],
+    "crossings": [],
     "recent_close_qualified": [
-      {
-        "fixture_id": "1575166",
-        "home_team": "SV Elversberg",
-        "away_team": "Bayern München",
-        "movement_pp": "0.03232386",
-        "close_gap_minutes": "8.2",
-        "bet365_close_over25": "1.12",
-        "user_close_over25": "1.1"
-      },
       {
         "fixture_id": "1575167",
         "home_team": "Bayern München",
@@ -506,6 +485,15 @@
         "close_gap_minutes": "39.0",
         "bet365_close_over25": "1.44",
         "user_close_over25": "1.44"
+      },
+      {
+        "fixture_id": "1575173",
+        "home_team": "FC Schalke 04",
+        "away_team": "SV Elversberg",
+        "movement_pp": "0.03361270",
+        "close_gap_minutes": "8.4",
+        "bet365_close_over25": "1.53",
+        "user_close_over25": "1.48"
       }
     ],
     "display_selection": "ТБ(2.5)"
@@ -518,28 +506,16 @@
     "historical_edge_reason": "Canonical 10-year dataset has no historical BTTS first/close odds",
     "canonical_forward_changed": false,
     "tracked_openers": 105,
-    "active_crossings_total": 4,
-    "active_yes_crossings": 2,
-    "active_no_crossings": 2,
+    "active_crossings_total": 2,
+    "active_yes_crossings": 1,
+    "active_no_crossings": 1,
     "total_crossings": 36,
-    "observed_closes": 95,
+    "observed_closes": 99,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-20T14:15:16Z",
+    "latest_run_utc": "2026-09-20T16:15:56Z",
     "warnings": [],
     "crossings": [
-      {
-        "fixture_id": "1575173",
-        "league": "Bundesliga",
-        "home_team": "FC Schalke 04",
-        "away_team": "SV Elversberg",
-        "selection": "ОЗ — Да",
-        "movement_yes_pp": "0.07364536",
-        "crossed_at_utc": "2026-09-17T16:17:35Z",
-        "minutes_to_kickoff": "4272.4",
-        "user_selected_odds": "1.44",
-        "note": "research watch only; not a bet signal"
-      },
       {
         "fixture_id": "1552773",
         "league": "Ligue 1",
@@ -550,18 +526,6 @@
         "crossed_at_utc": "2026-09-17T20:16:57Z",
         "minutes_to_kickoff": "4228.1",
         "user_selected_odds": "2.39",
-        "note": "research watch only; not a bet signal"
-      },
-      {
-        "fixture_id": "1550132",
-        "league": "Serie A",
-        "home_team": "Juventus",
-        "away_team": "Atalanta",
-        "selection": "ОЗ — Нет",
-        "movement_yes_pp": "-0.03333333",
-        "crossed_at_utc": "2026-09-19T14:14:58Z",
-        "minutes_to_kickoff": "1545.0",
-        "user_selected_odds": "1.89",
         "note": "research watch only; not a bet signal"
       },
       {
@@ -579,7 +543,7 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-20T15:53:05Z",
+    "generated_at_utc": "2026-09-20T16:53:34Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
@@ -595,10 +559,10 @@
       "losses": 20,
       "user_profit_u": -7.66,
       "user_roi_pct": -17.814,
-      "close_observed": 43,
-      "close_qualified": 33,
+      "close_observed": 46,
+      "close_qualified": 36,
       "reverted_at_close": 10,
-      "close_persistence_pct": 76.744,
+      "close_persistence_pct": 78.261,
       "close_qualified_settled": 33,
       "close_qualified_profit_u": -5.89,
       "close_qualified_roi_pct": -17.848,
@@ -621,10 +585,10 @@
         "losses": 13,
         "user_profit_u": -4.86,
         "user_roi_pct": -18.0,
-        "close_observed": 27,
-        "close_qualified": 21,
+        "close_observed": 28,
+        "close_qualified": 22,
         "reverted_at_close": 6,
-        "close_persistence_pct": 77.778,
+        "close_persistence_pct": 78.571,
         "close_qualified_settled": 21,
         "close_qualified_profit_u": -5.31,
         "close_qualified_roi_pct": -25.286,
@@ -646,10 +610,10 @@
         "losses": 2,
         "user_profit_u": 0.48,
         "user_roi_pct": 9.6,
-        "close_observed": 5,
-        "close_qualified": 3,
+        "close_observed": 6,
+        "close_qualified": 4,
         "reverted_at_close": 2,
-        "close_persistence_pct": 60.0,
+        "close_persistence_pct": 66.667,
         "close_qualified_settled": 3,
         "close_qualified_profit_u": 0.7,
         "close_qualified_roi_pct": 23.333,
@@ -696,8 +660,8 @@
         "losses": 0,
         "user_profit_u": 1.72,
         "user_roi_pct": 28.667,
-        "close_observed": 6,
-        "close_qualified": 6,
+        "close_observed": 7,
+        "close_qualified": 7,
         "reverted_at_close": 0,
         "close_persistence_pct": 100.0,
         "close_qualified_settled": 6,
