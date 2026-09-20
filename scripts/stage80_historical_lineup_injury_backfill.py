@@ -49,6 +49,7 @@ LINEUPS = OPS / "historical_lineup_snapshots.csv"
 INJURIES = OPS / "historical_injury_snapshots.csv"
 STATE = OPS / "stage80_historical_lineup_injury_backfill_state.csv"
 META = OPS / "stage80_historical_lineup_injury_backfill_last_run.json"
+BUDGET_STATE = OPS / "stage80_historical_lineup_injury_budget_state.json"
 SHARED_STATE = OPS / "stage71_observation_state.json"
 
 VERSION = "PBK_STAGE80_HISTORICAL_LINEUP_INJURY_BACKFILL_V1"
