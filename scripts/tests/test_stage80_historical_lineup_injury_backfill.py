@@ -53,6 +53,22 @@ class HistoricalLineupInjuryBackfillTests(unittest.TestCase):
             ],
         )
 
+    def test_candidate_tasks_are_interleaved_by_fixture(self):
+        history = {
+            "1": self.fixture("1", season="2025"),
+            "2": self.fixture("2", season="2025"),
+        }
+        tasks = h.candidate_tasks(history, state={})
+        self.assertEqual(
+            [(row["fixture_id"], endpoint) for row, endpoint in tasks],
+            [
+                ("1", h.ENDPOINT_LINEUPS),
+                ("1", h.ENDPOINT_INJURIES),
+                ("2", h.ENDPOINT_LINEUPS),
+                ("2", h.ENDPOINT_INJURIES),
+            ],
+        )
+
     def test_terminal_task_is_not_requeued(self):
         fixture = self.fixture("1")
         history = {"1": fixture}
