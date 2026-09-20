@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-20T06:54:07Z",
+  "generated_at_utc": "2026-09-20T07:28:16Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -12,7 +12,7 @@
     "fixture_history": {
       "file": "fixture_history_snapshots.csv",
       "present": true,
-      "rows": 6053
+      "rows": 6182
     },
     "historical_fixtures": {
       "file": "historical_fixtures.csv",
@@ -77,7 +77,7 @@
     "match_context": {
       "file": "match_context_snapshots.csv",
       "present": true,
-      "rows": 12
+      "rows": 13
     },
     "lineup_archive": {
       "file": "lineup_snapshots.csv",
@@ -87,7 +87,7 @@
     "injury_archive": {
       "file": "injury_snapshots.csv",
       "present": true,
-      "rows": 53
+      "rows": 54
     },
     "match_events": {
       "file": "match_event_snapshots.csv",
@@ -382,10 +382,10 @@
   },
   "fixture_history": {
     "present": true,
-    "rows": 6053,
-    "valid_observations": 6053,
+    "rows": 6182,
+    "valid_observations": 6182,
     "unique_fixtures": 178,
-    "observation_runs": 47,
+    "observation_runs": 48,
     "finished_fixtures_observed": 113,
     "invalid_identity_rows": 0,
     "evidence_note": "Counts represent only Stage71 current-round observations persisted after the fixture-history archive was enabled; they are not a pre-PBK historical backfill claim."
@@ -404,8 +404,8 @@
     "orphan_catalog_fixtures": 0,
     "missing_terminal_evidence": 0,
     "orphan_terminal_evidence": 0,
-    "observation_count_total": 6053,
-    "expected_history_observations": 6053,
+    "observation_count_total": 6182,
+    "expected_history_observations": 6182,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
   },
@@ -525,7 +525,7 @@
     "evidence_note": "Durable transfer events count only when linked by an approved HIGH-confidence exact-name+club identity method; this is historical enrichment, not current squad authority."
   },
   "context": {
-    "snapshot_rows": 12,
+    "snapshot_rows": 13,
     "unique_fixtures": 6,
     "fixtures_with_official_lineup_snapshot": 1,
     "fixtures_with_injury_evidence": 3,
@@ -1003,7 +1003,7 @@
   "normalized_context_archives": {
     "lineup_rows": 6,
     "lineup_fixtures": 2,
-    "injury_rows": 53,
+    "injury_rows": 54,
     "injury_fixtures": 3,
     "evidence_note": "Provider-free normalized append-only projections from already-persisted PBK context/rotation evidence; coverage remains limited by upstream capture scope."
   },
