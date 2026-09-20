@@ -1,65 +1,25 @@
 {
-  "run_at_utc": "2026-09-20T18:47:21Z",
+  "run_at_utc": "2026-09-20T20:45:53Z",
   "status": "OK",
   "mode": "RESEARCH_SETTLEMENT_ONLY",
-  "pending_market_rows": 675,
-  "pending_unique_fixtures": 41,
-  "fixture_api_calls": 41,
-  "new_settlement_rows": 528,
-  "total_settlement_rows": 4161,
+  "pending_market_rows": 147,
+  "pending_unique_fixtures": 9,
+  "fixture_api_calls": 9,
+  "new_settlement_rows": 131,
+  "total_settlement_rows": 4292,
   "settlement_rows_by_family": {
-    "TEAM_TOTAL": 2364,
-    "DOUBLE_CHANCE": 254,
-    "EUROPEAN_HANDICAP": 1310,
-    "DRAW_NO_BET": 233
+    "TEAM_TOTAL": 2438,
+    "DOUBLE_CHANCE": 262,
+    "EUROPEAN_HANDICAP": 1351,
+    "DRAW_NO_BET": 241
   },
   "non_ft_or_review_fixtures": [
-    {
-      "fixture_id": "1494764",
-      "status": "2H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1553176",
-      "status": "1H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1558643",
-      "status": "2H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
     {
       "fixture_id": "1570389",
       "status": "PST",
       "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1575175",
-      "status": "2H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1575501",
-      "status": "2H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1575506",
-      "status": "2H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1584412",
-      "status": "2H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1584417",
-      "status": "2H",
-      "detail": "Not auto-settled; FT regulation score required"
     }
   ],
   "signals_created": 0,
-  "api_calls": 41
+  "api_calls": 9
 }
