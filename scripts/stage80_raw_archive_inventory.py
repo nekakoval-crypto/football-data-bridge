@@ -12,7 +12,10 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
-from api_football_raw_archive import s3_config_from_env, _s3_client
+try:
+    from api_football_raw_archive import s3_config_from_env, _s3_client
+except ModuleNotFoundError:
+    from scripts.api_football_raw_archive import s3_config_from_env, _s3_client
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT = OPS / "stage80_raw_archive_inventory_last_run.json"
