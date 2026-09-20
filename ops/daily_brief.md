@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-20T01:02:53Z
+Generated UTC: 2026-09-20T02:02:59Z
 Active canonical signals: 4
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -53,8 +53,8 @@ Active canonical signals: 4
 ## R1 | Cagliari — Juventus
 - Kickoff UTC: 2026-10-11T18:45:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 5.75 / Х 3.7 / П2 1.6 (immutable)
-- Market-best observed: 1.56 @ 1xBet | Bet365 now: 1.48
-- Current user-executable: 1.51 @ Marathonbet
+- Market-best observed: 1.62 @ 1xBet | Bet365 now: 1.57
+- Current user-executable: 1.57 @ Marathonbet
 - Paper user-execution (frozen): 1.53 @ Marathonbet [2026-09-18T06:48:35Z]
 - Referee / venue: TBD | Unipol Domus, Cagliari
 - Previous: home Serie A vs Atalanta (696.0h rest); away UEFA Europa League vs NEC Nijmegen (575.8h rest)
