@@ -1,10 +1,10 @@
 {
-  "run_at_utc": "2026-09-20T01:19:43Z",
+  "run_at_utc": "2026-09-20T01:28:51Z",
   "status": "OK",
   "schema_version": "15",
   "db_path": "build/pbk_unified.sqlite",
-  "db_bytes": 321785856,
-  "db_sha256": "3b1e30842d1c70b0641cb8603393af31a5e1038fdc8a8212887e4c3c7767dc58",
+  "db_bytes": 321961984,
+  "db_sha256": "fa7b41c6fece2df87d92ece9453f742405c45fa8e2cc8e3b7439e89278a322eb",
   "integrity_check": "ok",
   "tables": 162,
   "manifest_sources": 148,
@@ -19,7 +19,7 @@
     "odds_snapshots": 473,
     "screen_matches": 100,
     "match_result_snapshots": 1590,
-    "match_total_snapshots": 1384,
+    "match_total_snapshots": 1387,
     "btts_snapshots": 2855,
     "team_total_openers": 2485,
     "team_total_snapshots": 26286,
@@ -42,7 +42,7 @@
     "current_round_matches": 129,
     "standings_snapshots": 40,
     "fixture_motivation": 129,
-    "formation_research_events": 6195
+    "formation_research_events": 6324
   },
   "missing_stable_sources": [],
   "historical_leakage_violations": 0,
