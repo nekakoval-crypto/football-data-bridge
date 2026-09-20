@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 20.09.2026 10:00 (Europe/Berlin)
+Обновлено: 20.09.2026 11:00 (Europe/Berlin)
 Canonical: 4 | active WATCH crossings: 8 | RED: 1 | ORANGE: 8
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -120,7 +120,7 @@ Canonical: 4 | active WATCH crossings: 8 | RED: 1 | ORANGE: 8
 
 - **Fiorentina — Napoli** | Serie A | 20.09 10:30 UTC
   - ОЗ · ОЗ Да: 1.67 | ОЗ Нет: 2.1 @ Bet365
-  - ОЗ · ОЗ Да: 1.63 | ОЗ Нет: 2.14 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.64 | ОЗ Нет: 2.12 @ Marathonbet
   - Ф(0) · Ф1(0): 2.3 | Ф2(0): 1.6 @ Bet365
   - Ф(0) · Ф1(0): 2.28 | Ф2(0): 1.63 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.67 | Х2: 1.33 | 12: 1.3 @ Bet365
@@ -697,7 +697,7 @@ Canonical: 4 | active WATCH crossings: 8 | RED: 1 | ORANGE: 8
 
 - **Manchester City — Sunderland** | Premier League | 20.09 13:00 UTC
   - ОЗ · ОЗ Да: 1.95 | ОЗ Нет: 1.8 @ Bet365
-  - ОЗ · ОЗ Да: 1.88 | ОЗ Нет: 1.82 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.85 | ОЗ Нет: 1.85 @ Marathonbet
   - Ф(0) · Ф1(0): 1.1 | Ф2(0): 6.8 @ Bet365
   - Ф(0) · Ф1(0): 1.08 | Ф2(0): 6.45 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.08 | Х2: 3.25 | 12: 1.17 @ Bet365
@@ -860,8 +860,8 @@ Canonical: 4 | active WATCH crossings: 8 | RED: 1 | ORANGE: 8
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 5.15 | ИТМ: 1.14 @ Marathonbet
   - ИТБ/ИТМ 1 (4.5) · ИТБ: 13 | ИТМ: 1.04 @ Bet365
   - ИТБ/ИТМ 1 (5.5) · ИТБ: 26 | ИТМ: 1.01 @ Bet365
-  - Тотал 2.5 · ТБ(2.5): 1.36 | ТМ(2.5): 3.2 @ Bet365
-  - Тотал 2.5 · ТБ(2.5): 1.33 | ТМ(2.5): 3.1 @ Marathonbet
+  - Тотал 2.5 · ТБ(2.5): 1.33 | ТМ(2.5): 3.4 @ Bet365
+  - Тотал 2.5 · ТБ(2.5): 1.31 | ТМ(2.5): 3.2 @ Marathonbet
 
 - **FK Trakai — Panevėžys** | A Lyga | 20.09 14:00 UTC
   - 1X2 — нет данных
@@ -1298,7 +1298,7 @@ Canonical: 4 | active WATCH crossings: 8 | RED: 1 | ORANGE: 8
 
 - **Nice — Lille** | Ligue 1 | 20.09 15:15 UTC
   - ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 2 @ Bet365
-  - ОЗ · ОЗ Да: 1.67 | ОЗ Нет: 2.07 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.68 | ОЗ Нет: 2.06 @ Marathonbet
   - Ф(0) · Ф1(0): 2.68 | Ф2(0): 1.45 @ Bet365
   - Ф(0) · Ф1(0): 2.66 | Ф2(0): 1.49 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.8 | Х2: 1.28 | 12: 1.28 @ Bet365
@@ -1361,8 +1361,8 @@ Canonical: 4 | active WATCH crossings: 8 | RED: 1 | ORANGE: 8
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 7 | ИТМ: 1.1 @ Bet365
   - ИТБ/ИТМ 1 (3.5) · ИТБ: 6.75 | ИТМ: 1.06 @ Marathonbet
   - ИТБ/ИТМ 1 (4.5) · ИТБ: 17 | ИТМ: 1.02 @ Bet365
-  - Тотал 2.5 · ТБ(2.5): 1.53 | ТМ(2.5): 2.5 @ Bet365
-  - Тотал 2.5 · ТБ(2.5): 1.48 | ТМ(2.5): 2.43 @ Marathonbet
+  - Тотал 2.5 · ТБ(2.5): 1.5 | ТМ(2.5): 2.62 @ Bet365
+  - Тотал 2.5 · ТБ(2.5): 1.47 | ТМ(2.5): 2.46 @ Marathonbet
 
 - **Jagiellonia — Legia Warszawa** | Ekstraklasa | 20.09 15:30 UTC
   - Ф(0) · Ф1(0): 2.02 | Ф2(0): 1.78 @ Bet365
@@ -1466,7 +1466,7 @@ Canonical: 4 | active WATCH crossings: 8 | RED: 1 | ORANGE: 8
 
 - **Juventus — Atalanta** | Serie A | 20.09 16:00 UTC
   - ОЗ · ОЗ Да: 1.91 | ОЗ Нет: 1.91 @ Bet365
-  - ОЗ · ОЗ Да: 1.81 | ОЗ Нет: 1.89 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.82 | ОЗ Нет: 1.88 @ Marathonbet
   - Ф(0) · Ф1(0): 1.27 | Ф2(0): 3.55 @ Bet365
   - Ф(0) · Ф1(0): 1.26 | Ф2(0): 3.55 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.17 | Х2: 2.1 | 12: 1.25 @ Bet365
@@ -1796,7 +1796,7 @@ Canonical: 4 | active WATCH crossings: 8 | RED: 1 | ORANGE: 8
 
 - **SC Paderborn 07 — 1899 Hoffenheim** | Bundesliga | 20.09 17:30 UTC
   - ОЗ · ОЗ Да: 1.44 | ОЗ Нет: 2.62 @ Bet365
-  - ОЗ · ОЗ Да: 1.46 | ОЗ Нет: 2.52 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.44 | ОЗ Нет: 2.58 @ Marathonbet
   - Ф(0) · Ф1(0): 3.45 | Ф2(0): 1.3 @ Bet365
   - Ф(0) · Ф1(0): 3.3 | Ф2(0): 1.28 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 2.15 | Х2: 1.2 | 12: 1.18 @ Bet365
@@ -2001,7 +2001,7 @@ Canonical: 4 | active WATCH crossings: 8 | RED: 1 | ORANGE: 8
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **WARN** | critical 0 | warnings 1
+- System Health: **HEALTHY** | critical 0 | warnings 0
 - Логическая canonical экспозиция: **4.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 25 | data required 2
