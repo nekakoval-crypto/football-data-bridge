@@ -14,136 +14,6 @@
   "reports": [
     {
       "fixture": {
-        "api_fixture_id": "1550136",
-        "league": "Serie A",
-        "league_id": 135,
-        "kickoff_utc": "2026-09-19T18:45:00+00:00",
-        "home_team": "Venezia",
-        "away_team": "Lazio"
-      },
-      "best_official_value": null,
-      "official_candidates": [],
-      "research_only_candidates": []
-    },
-    {
-      "fixture": {
-        "api_fixture_id": "1552765",
-        "league": "Ligue 1",
-        "league_id": 61,
-        "kickoff_utc": "2026-09-19T18:45:00+00:00",
-        "home_team": "Angers",
-        "away_team": "Estac Troyes"
-      },
-      "best_official_value": null,
-      "official_candidates": [],
-      "research_only_candidates": []
-    },
-    {
-      "fixture": {
-        "api_fixture_id": "1552767",
-        "league": "Ligue 1",
-        "league_id": 61,
-        "kickoff_utc": "2026-09-19T18:45:00+00:00",
-        "home_team": "Le Mans",
-        "away_team": "Lorient"
-      },
-      "best_official_value": null,
-      "official_candidates": [],
-      "research_only_candidates": []
-    },
-    {
-      "fixture": {
-        "api_fixture_id": "1552768",
-        "league": "Ligue 1",
-        "league_id": 61,
-        "kickoff_utc": "2026-09-19T18:45:00+00:00",
-        "home_team": "Lyon",
-        "away_team": "Rennes"
-      },
-      "best_official_value": null,
-      "official_candidates": [],
-      "research_only_candidates": []
-    },
-    {
-      "fixture": {
-        "api_fixture_id": "1552772",
-        "league": "Ligue 1",
-        "league_id": 61,
-        "kickoff_utc": "2026-09-19T18:45:00+00:00",
-        "home_team": "Toulouse",
-        "away_team": "Le Havre"
-      },
-      "best_official_value": null,
-      "official_candidates": [],
-      "research_only_candidates": []
-    },
-    {
-      "fixture": {
-        "api_fixture_id": "1558638",
-        "league": "Jupiler Pro League",
-        "league_id": 144,
-        "kickoff_utc": "2026-09-19T18:45:00+00:00",
-        "home_team": "Anderlecht",
-        "away_team": "Zulte Waregem"
-      },
-      "best_official_value": null,
-      "official_candidates": [],
-      "research_only_candidates": []
-    },
-    {
-      "fixture": {
-        "api_fixture_id": "1558639",
-        "league": "Jupiler Pro League",
-        "league_id": 144,
-        "kickoff_utc": "2026-09-19T18:45:00+00:00",
-        "home_team": "Lommel United",
-        "away_team": "KV Mechelen"
-      },
-      "best_official_value": null,
-      "official_candidates": [],
-      "research_only_candidates": []
-    },
-    {
-      "fixture": {
-        "api_fixture_id": "1552175",
-        "league": "Eredivisie",
-        "league_id": 88,
-        "kickoff_utc": "2026-09-19T19:00:00+00:00",
-        "home_team": "Willem II",
-        "away_team": "Fortuna Sittard"
-      },
-      "best_official_value": null,
-      "official_candidates": [],
-      "research_only_candidates": []
-    },
-    {
-      "fixture": {
-        "api_fixture_id": "1570400",
-        "league": "La Liga",
-        "league_id": 140,
-        "kickoff_utc": "2026-09-19T19:00:00+00:00",
-        "home_team": "Sevilla",
-        "away_team": "Barcelona"
-      },
-      "best_official_value": null,
-      "official_candidates": [],
-      "research_only_candidates": []
-    },
-    {
-      "fixture": {
-        "api_fixture_id": "1575507",
-        "league": "Primeira Liga",
-        "league_id": 94,
-        "kickoff_utc": "2026-09-19T19:30:00+00:00",
-        "home_team": "Sporting CP",
-        "away_team": "Arouca"
-      },
-      "best_official_value": null,
-      "official_candidates": [],
-      "research_only_candidates": []
-    },
-    {
-      "fixture": {
         "api_fixture_id": "1552176",
         "league": "Eredivisie",
         "league_id": 88,
@@ -1705,12 +1575,64 @@
     },
     {
       "fixture": {
+        "api_fixture_id": "1552774",
+        "league": "Ligue 1",
+        "league_id": 61,
+        "kickoff_utc": "2026-10-10T18:45:00+00:00",
+        "home_team": "Stade Brestois 29",
+        "away_team": "Angers"
+      },
+      "best_official_value": null,
+      "official_candidates": [],
+      "research_only_candidates": []
+    },
+    {
+      "fixture": {
+        "api_fixture_id": "1552777",
+        "league": "Ligue 1",
+        "league_id": 61,
+        "kickoff_utc": "2026-10-10T18:45:00+00:00",
+        "home_team": "Lorient",
+        "away_team": "Paris FC"
+      },
+      "best_official_value": null,
+      "official_candidates": [],
+      "research_only_candidates": []
+    },
+    {
+      "fixture": {
+        "api_fixture_id": "1552778",
+        "league": "Ligue 1",
+        "league_id": 61,
+        "kickoff_utc": "2026-10-10T18:45:00+00:00",
+        "home_team": "Monaco",
+        "away_team": "Toulouse"
+      },
+      "best_official_value": null,
+      "official_candidates": [],
+      "research_only_candidates": []
+    },
+    {
+      "fixture": {
         "api_fixture_id": "1552780",
         "league": "Ligue 1",
         "league_id": 61,
         "kickoff_utc": "2026-10-10T18:45:00+00:00",
         "home_team": "Paris Saint Germain",
         "away_team": "Le Mans"
+      },
+      "best_official_value": null,
+      "official_candidates": [],
+      "research_only_candidates": []
+    },
+    {
+      "fixture": {
+        "api_fixture_id": "1558646",
+        "league": "Jupiler Pro League",
+        "league_id": 144,
+        "kickoff_utc": "2026-10-10T18:45:00+00:00",
+        "home_team": "Genk",
+        "away_team": "Kortrijk"
       },
       "best_official_value": null,
       "official_candidates": [],
@@ -1737,6 +1659,45 @@
         "kickoff_utc": "2026-10-10T19:00:00+00:00",
         "home_team": "Ajax",
         "away_team": "NEC Nijmegen"
+      },
+      "best_official_value": null,
+      "official_candidates": [],
+      "research_only_candidates": []
+    },
+    {
+      "fixture": {
+        "api_fixture_id": "1570411",
+        "league": "La Liga",
+        "league_id": 140,
+        "kickoff_utc": "2026-10-10T19:00:00+00:00",
+        "home_team": "Real Madrid",
+        "away_team": "Villarreal"
+      },
+      "best_official_value": null,
+      "official_candidates": [],
+      "research_only_candidates": []
+    },
+    {
+      "fixture": {
+        "api_fixture_id": "1575509",
+        "league": "Primeira Liga",
+        "league_id": 94,
+        "kickoff_utc": "2026-10-10T19:30:00+00:00",
+        "home_team": "Academico Viseu",
+        "away_team": "Estoril"
+      },
+      "best_official_value": null,
+      "official_candidates": [],
+      "research_only_candidates": []
+    },
+    {
+      "fixture": {
+        "api_fixture_id": "1552185",
+        "league": "Eredivisie",
+        "league_id": 88,
+        "kickoff_utc": "2026-10-11T10:15:00+00:00",
+        "home_team": "Utrecht",
+        "away_team": "Willem II"
       },
       "best_official_value": null,
       "official_candidates": [],
@@ -1789,6 +1750,19 @@
         "kickoff_utc": "2026-10-11T11:00:00+00:00",
         "home_team": "Motherwell",
         "away_team": "Celtic"
+      },
+      "best_official_value": null,
+      "official_candidates": [],
+      "research_only_candidates": []
+    },
+    {
+      "fixture": {
+        "api_fixture_id": "1558650",
+        "league": "Jupiler Pro League",
+        "league_id": 144,
+        "kickoff_utc": "2026-10-11T11:30:00+00:00",
+        "home_team": "Standard Liege",
+        "away_team": "Charleroi"
       },
       "best_official_value": null,
       "official_candidates": [],
@@ -1880,6 +1854,32 @@
         "kickoff_utc": "2026-10-11T13:00:00+00:00",
         "home_team": "Rīgas FS",
         "away_team": "FS Jelgava"
+      },
+      "best_official_value": null,
+      "official_candidates": [],
+      "research_only_candidates": []
+    },
+    {
+      "fixture": {
+        "api_fixture_id": "1550142",
+        "league": "Serie A",
+        "league_id": 135,
+        "kickoff_utc": "2026-10-11T13:00:00+00:00",
+        "home_team": "Lazio",
+        "away_team": "Monza"
+      },
+      "best_official_value": null,
+      "official_candidates": [],
+      "research_only_candidates": []
+    },
+    {
+      "fixture": {
+        "api_fixture_id": "1552779",
+        "league": "Ligue 1",
+        "league_id": 61,
+        "kickoff_utc": "2026-10-11T13:00:00+00:00",
+        "home_team": "Nice",
+        "away_team": "Strasbourg"
       },
       "best_official_value": null,
       "official_candidates": [],
