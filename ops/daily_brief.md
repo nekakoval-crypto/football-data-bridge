@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-20T04:02:59Z
+Generated UTC: 2026-09-20T05:02:43Z
 Active canonical signals: 4
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -8,8 +8,8 @@ Active canonical signals: 4
 ## R1 | Frosinone — Como
 - Kickoff UTC: 2026-09-20T13:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 5.25 / Х 3.9 / П2 1.62 (immutable)
-- Market-best observed: 1.55 @ 1xBet | Bet365 now: 1.5
-- Current user-executable: 1.51 @ Marathonbet
+- Market-best observed: 1.55 @ 1xBet | Bet365 now: 1.48
+- Current user-executable: 1.5 @ Marathonbet
 - Paper user-execution (frozen): 1.65 @ Marathonbet [2026-09-11T10:32:01Z]
 - Referee / venue: D. Chiffi | Stadio Benito Stirpe, Frosinone
 - Previous: home Serie A vs Genoa (192.0h rest); away Serie A vs Parma (140.5h rest)
