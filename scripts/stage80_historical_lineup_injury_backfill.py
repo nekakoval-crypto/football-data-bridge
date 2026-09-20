@@ -267,12 +267,12 @@ def candidate_tasks(history, state, injury_no_data_cell_threshold=8):
 
     tasks.sort(
         key=lambda item: (
-            endpoint_priority(item[1]),
             -season_number(item[0]),
             sval(item[0], "country"),
             sval(item[0], "provider_competition_id"),
             sval(item[0], "kickoff_utc"),
             sval(item[0], "fixture_id"),
+            endpoint_priority(item[1]),
         )
     )
     return tasks
@@ -711,17 +711,29 @@ def main():
     )
 
     shared_state = audit.read(SHARED_STATE)
+    historical_budget_state = audit.read(BUDGET_STATE)
     reserve = current.protected_calls(OPS, now)
+
+    api_day = now.date().isoformat()
+    shared_api_day_calls = (
+        int(shared_state.get("api_day_calls") or 0)
+        if shared_state.get("api_day") == api_day
+        else 0
+    )
+    historical_daily_limit = max(
+        0,
+        daily_limit - shared_api_day_calls,
+    )
 
     budget = audit.Budget(
         s53.api_get,
-        shared_state,
+        historical_budget_state,
         now,
         limit=max_calls,
-        daily_limit=daily_limit,
+        daily_limit=historical_daily_limit,
         protected_calls=reserve["total"],
         checkpoint=lambda value: audit.save(
-            SHARED_STATE,
+            BUDGET_STATE,
             value,
         ),
     )
@@ -764,7 +776,7 @@ def main():
         STATE_FIELDS,
         state_rows,
     )
-    audit.save(SHARED_STATE, shared_state)
+    audit.save(BUDGET_STATE, historical_budget_state)
 
     tasks_after = candidate_tasks(
         history,
@@ -804,7 +816,16 @@ def main():
         "attempted_tasks": result["attempted_tasks"],
         "provider_calls": budget.calls,
         "max_provider_calls": max_calls,
-        "daily_api_calls": shared_state.get("api_day_calls", 0),
+        "shared_api_day_calls_at_start": shared_api_day_calls,
+        "historical_api_day_calls": historical_budget_state.get(
+            "api_day_calls",
+            0,
+        ),
+        "estimated_combined_api_day_calls": (
+            shared_api_day_calls
+            + int(historical_budget_state.get("api_day_calls") or 0)
+        ),
+        "historical_daily_limit_after_shared_usage": historical_daily_limit,
         "protected_calls": reserve,
         "captured_lineup_tasks_this_run": result[
             "captured_lineup_tasks"
@@ -845,7 +866,7 @@ def main():
         "warnings": result["warnings"],
         "lineup_policy": (
             "ALL_PBK16_DOMESTIC_TERMINAL_FIXTURES;"
-            "NEWEST_SEASON_FIRST"
+            "NEWEST_SEASON_FIRST;FIXTURE_INTERLEAVED_WITH_INJURIES"
         ),
         "injury_policy": (
             "ADAPTIVE_COMPETITION_SEASON_SUPPRESSION;"
