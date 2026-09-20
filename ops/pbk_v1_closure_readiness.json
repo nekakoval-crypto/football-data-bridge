@@ -1,6 +1,6 @@
 {
   "version": "PBK_V1_CLOSURE_READINESS_V1",
-  "run_at_utc": "2026-09-20T19:46:53Z",
+  "run_at_utc": "2026-09-20T20:47:02Z",
   "status": "WAITING",
   "ready_for_manual_close": false,
   "hard_failure": false,
@@ -32,9 +32,9 @@
           "status": "OK",
           "scope": "clean prospective canonical forward only",
           "rows": 6,
-          "settled_rows": 2,
+          "settled_rows": 3,
           "execution_coverage_pct": 100.0,
-          "roi_pct": -21.0,
+          "roi_pct": -47.333,
           "historical_backfill": "forbidden",
           "profitability_required_for_closure": false
         }
@@ -47,8 +47,8 @@
           "status": "OK",
           "scope": "prospective research WATCH crossings only",
           "crossings": 48,
-          "settled": 47,
-          "roi_pct": -17.319,
+          "settled": 48,
+          "roi_pct": -19.042,
           "canonical_forward": "unchanged",
           "historical_backfill": "forbidden",
           "profitability_required_for_closure": false
