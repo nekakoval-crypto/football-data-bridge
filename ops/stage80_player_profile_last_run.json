@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_PLAYER_PROFILE_ENRICHMENT_V2_RESIDUAL_ID",
-  "run_at_utc": "2026-09-20T00:39:43Z",
+  "run_at_utc": "2026-09-20T06:36:54Z",
   "status": "ATTENTION",
   "season": "2026",
   "provider_endpoints": [
@@ -9,10 +9,10 @@
   ],
   "refresh_days": 7,
   "residual_retry_days": 7,
-  "provider_calls": 96,
-  "team_provider_calls": 14,
-  "residual_provider_calls": 82,
-  "daily_api_calls": 138,
+  "provider_calls": 2,
+  "team_provider_calls": 2,
+  "residual_provider_calls": 0,
+  "daily_api_calls": 611,
   "protected_calls": {
     "live": 41,
     "current_round": 180,
@@ -20,47 +20,16 @@
     "safety": 100,
     "total": 353
   },
-  "candidate_teams": 8,
-  "completed_teams": [
-    {
-      "team_id": "209",
-      "team_name": "Feyenoord",
-      "profile_rows": 29
-    },
-    {
-      "team_id": "247",
-      "team_name": "Celtic",
-      "profile_rows": 32
-    },
-    {
-      "team_id": "257",
-      "team_name": "Rangers",
-      "profile_rows": 31
-    },
-    {
-      "team_id": "207",
-      "team_name": "Utrecht",
-      "profile_rows": 33
-    },
-    {
-      "team_id": "348",
-      "team_name": "Pogon Szczecin",
-      "profile_rows": 32
-    },
-    {
-      "team_id": "349",
-      "team_name": "Piast Gliwice",
-      "profile_rows": 24
-    }
-  ],
+  "candidate_teams": 2,
+  "completed_teams": [],
   "deferred_teams": 0,
-  "residual_candidate_players": 82,
-  "residual_captured_players": 8,
-  "residual_empty_players": 74,
+  "residual_candidate_players": 0,
+  "residual_captured_players": 0,
+  "residual_empty_players": 0,
   "residual_error_players": 0,
   "residual_deferred_players": 0,
   "residual_ambiguous_current_roster_player_ids": 0,
-  "residual_suppressed_recent_attempts": 471,
+  "residual_suppressed_recent_attempts": 545,
   "profile_rows": 3178,
   "unique_profile_players": 3093,
   "current_roster_players": 3449,
