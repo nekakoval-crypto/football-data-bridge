@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-20T17:07:46Z",
+  "generated_at_utc": "2026-09-20T18:09:23Z",
   "status": "OK",
   "cards": [
     {
@@ -9707,9 +9707,9 @@
       "away_team": "SV Elversberg",
       "kickoff_utc": "2026-09-20T15:30:00Z",
       "selection": "ОЗ — Да",
-      "latest_event": "WATCH_CLOSE",
-      "latest_status": "QUALIFIED_AT_CLOSE",
-      "event_count": 2,
+      "latest_event": "WATCH_SETTLEMENT",
+      "latest_status": "SETTLED",
+      "event_count": 3,
       "timeline": [
         {
           "entity_id": "BTTS_YES|1575173",
@@ -9744,6 +9744,23 @@
           "bookmaker": "Marathonbet",
           "odds": "1.46",
           "details": "close_qualified=YES"
+        },
+        {
+          "entity_id": "BTTS_YES|1575173",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage63",
+          "api_fixture_id": "1575173",
+          "league": "Bundesliga",
+          "home_team": "FC Schalke 04",
+          "away_team": "SV Elversberg",
+          "kickoff_utc": "2026-09-20T15:30:00Z",
+          "event_time_utc": "2026-09-20T17:27:42Z",
+          "event_type": "WATCH_SETTLEMENT",
+          "status": "SETTLED",
+          "selection": "ОЗ — Да",
+          "bookmaker": "Marathonbet",
+          "odds": "1.44",
+          "details": "result=L profit_u=-1.000"
         }
       ]
     },
@@ -9757,9 +9774,9 @@
       "away_team": "SV Elversberg",
       "kickoff_utc": "2026-09-20T15:30:00Z",
       "selection": "ТБ(2.5)",
-      "latest_event": "WATCH_CLOSE",
-      "latest_status": "QUALIFIED_AT_CLOSE",
-      "event_count": 2,
+      "latest_event": "WATCH_SETTLEMENT",
+      "latest_status": "SETTLED",
+      "event_count": 3,
       "timeline": [
         {
           "entity_id": "ST62-O1-1575173",
@@ -9794,6 +9811,23 @@
           "bookmaker": "Marathonbet",
           "odds": "1.48",
           "details": "close_qualified=YES"
+        },
+        {
+          "entity_id": "ST62-O1-1575173",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage62",
+          "api_fixture_id": "1575173",
+          "league": "Bundesliga",
+          "home_team": "FC Schalke 04",
+          "away_team": "SV Elversberg",
+          "kickoff_utc": "2026-09-20T15:30:00Z",
+          "event_time_utc": "2026-09-20T17:27:42Z",
+          "event_type": "WATCH_SETTLEMENT",
+          "status": "SETTLED",
+          "selection": "ТБ(2.5)",
+          "bookmaker": "Marathonbet",
+          "odds": "1.48",
+          "details": "result=L profit_u=-1.000"
         }
       ]
     },
@@ -9807,9 +9841,9 @@
       "away_team": "Atalanta",
       "kickoff_utc": "2026-09-20T16:00:00Z",
       "selection": "ОЗ — Нет",
-      "latest_event": "WATCH_CLOSE",
-      "latest_status": "QUALIFIED_AT_CLOSE",
-      "event_count": 2,
+      "latest_event": "WATCH_SETTLEMENT",
+      "latest_status": "SETTLED",
+      "event_count": 3,
       "timeline": [
         {
           "entity_id": "BTTS_NO|1550132",
@@ -9844,6 +9878,23 @@
           "bookmaker": "Marathonbet",
           "odds": "1.89",
           "details": "close_qualified=YES"
+        },
+        {
+          "entity_id": "BTTS_NO|1550132",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage63",
+          "api_fixture_id": "1550132",
+          "league": "Serie A",
+          "home_team": "Juventus",
+          "away_team": "Atalanta",
+          "kickoff_utc": "2026-09-20T16:00:00Z",
+          "event_time_utc": "2026-09-20T18:06:20Z",
+          "event_type": "WATCH_SETTLEMENT",
+          "status": "SETTLED",
+          "selection": "ОЗ — Нет",
+          "bookmaker": "Marathonbet",
+          "odds": "1.89",
+          "details": "result=W profit_u=0.890"
         }
       ]
     },
@@ -9925,7 +9976,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 61,
+      "event_count": 62,
       "timeline": [
         {
           "entity_id": "R1|I1|1550143",
@@ -10963,6 +11014,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550143",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550143",
+          "league": "Serie A",
+          "home_team": "Lecce",
+          "away_team": "Bologna",
+          "kickoff_utc": "2026-10-11T13:00:00Z",
+          "event_time_utc": "2026-09-20T17:41:57Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     },
@@ -10978,7 +11046,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 61,
+      "event_count": 62,
       "timeline": [
         {
           "entity_id": "R1|I1|1550145",
@@ -12016,6 +12084,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550145",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550145",
+          "league": "Serie A",
+          "home_team": "Sassuolo",
+          "away_team": "AC Milan",
+          "kickoff_utc": "2026-10-11T16:00:00Z",
+          "event_time_utc": "2026-09-20T17:41:57Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     },
@@ -12031,7 +12116,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 61,
+      "event_count": 62,
       "timeline": [
         {
           "entity_id": "R1|I1|1550138",
@@ -13069,6 +13154,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550138",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550138",
+          "league": "Serie A",
+          "home_team": "Cagliari",
+          "away_team": "Juventus",
+          "kickoff_utc": "2026-10-11T18:45:00Z",
+          "event_time_utc": "2026-09-20T17:41:57Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     }
@@ -13077,7 +13179,7 @@
     "cards": 54,
     "canonical_cards": 6,
     "watch_cards": 48,
-    "events": 718
+    "events": 724
   },
   "policy": {
     "read_only": true,
