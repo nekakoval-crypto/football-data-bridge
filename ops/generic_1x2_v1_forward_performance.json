@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-20T12:38:04Z",
+  "generated_at_utc": "2026-09-20T12:43:07Z",
   "research_id": "PBK_GENERIC_1X2_PROBABILITY_V1_FORWARD",
   "model_version": "PBK_GENERIC_1X2_PROBABILITY_V1",
   "status": "PER_LEAGUE_FORWARD_REVIEW",
@@ -44,7 +44,7 @@
     },
     "La Liga": {
       "status": "COLLECTING",
-      "prematch_frozen": 19,
+      "prematch_frozen": 20,
       "settled_rows": 2,
       "forward_outcomes": {
         "H": 1,
@@ -99,7 +99,7 @@
     },
     "Serie A": {
       "status": "COLLECTING",
-      "prematch_frozen": 15,
+      "prematch_frozen": 16,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -387,7 +387,7 @@
     },
     "Eredivisie": {
       "status": "COLLECTING",
-      "prematch_frozen": 15,
+      "prematch_frozen": 18,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -567,7 +567,7 @@
     },
     "Scottish Premiership": {
       "status": "COLLECTING",
-      "prematch_frozen": 15,
+      "prematch_frozen": 16,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -607,7 +607,7 @@
   },
   "pooled_big5_diagnostic": {
     "status": "DIAGNOSTIC_ONLY",
-    "prematch_frozen": 82,
+    "prematch_frozen": 84,
     "settled_rows": 2,
     "forward_outcomes": {
       "H": 1,
@@ -660,7 +660,7 @@
   },
   "pooled_all16_diagnostic": {
     "status": "DIAGNOSTIC_ONLY",
-    "prematch_frozen": 183,
+    "prematch_frozen": 189,
     "settled_rows": 2,
     "forward_outcomes": {
       "H": 1,
@@ -712,7 +712,7 @@
     "purpose": "ALL_16_POOLED_DIAGNOSTIC_ONLY_NOT_AN_OFFICIAL_FORWARD_VERDICT"
   },
   "all_leagues_totals": {
-    "prematch_frozen": 183,
+    "prematch_frozen": 189,
     "settled_rows": 2
   },
   "policy": {

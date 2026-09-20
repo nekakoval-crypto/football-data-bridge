@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-20T06:43:28Z",
+  "run_at_utc": "2026-09-20T12:43:07Z",
   "status": "OK",
   "mode": "STAGE71J_ZERO_EXTRA_CALL_PROSPECTIVE_CAPTURE",
   "source": "API-Football /odds Bet365 Match Winner",
@@ -11,13 +11,13 @@
   "extraction": {
     "fixture_metadata": 160,
     "unfiltered_odds_payloads": 160,
-    "missing_complete_bet365_match_winner": 50,
-    "complete_candidate_rows": 110
+    "missing_complete_bet365_match_winner": 59,
+    "complete_candidate_rows": 101
   },
-  "candidate_rows": 110,
-  "observations_added": 0,
-  "observations_rejected": 110,
-  "prematch_frozen": 183,
+  "candidate_rows": 101,
+  "observations_added": 6,
+  "observations_rejected": 95,
+  "prematch_frozen": 189,
   "settled_rows": 2,
   "rejections": [
     {
@@ -33,19 +33,11 @@
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1494770",
-      "reason": "already_frozen"
-    },
-    {
       "fixture_id": "1494771",
       "reason": "already_frozen"
     },
     {
       "fixture_id": "1515924",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1515927",
       "reason": "already_frozen"
     },
     {
@@ -57,19 +49,7 @@
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1547637",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1549022",
-      "reason": "already_frozen"
-    },
-    {
       "fixture_id": "1549023",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1549026",
       "reason": "already_frozen"
     },
     {
@@ -78,10 +58,6 @@
     },
     {
       "fixture_id": "1550127",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1550130",
       "reason": "already_frozen"
     },
     {
@@ -117,19 +93,7 @@
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1552176",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1552177",
-      "reason": "already_frozen"
-    },
-    {
       "fixture_id": "1552178",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1552179",
       "reason": "already_frozen"
     },
     {
@@ -205,15 +169,7 @@
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1553178",
-      "reason": "already_frozen"
-    },
-    {
       "fixture_id": "1553181",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1556669",
       "reason": "already_frozen"
     },
     {
@@ -293,10 +249,6 @@
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1558640",
-      "reason": "already_frozen"
-    },
-    {
       "fixture_id": "1558641",
       "reason": "already_frozen"
     },
@@ -306,14 +258,6 @@
     },
     {
       "fixture_id": "1558643",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1561932",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1561933",
       "reason": "already_frozen"
     },
     {
@@ -350,10 +294,6 @@
     },
     {
       "fixture_id": "1570396",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1570398",
       "reason": "already_frozen"
     },
     {
