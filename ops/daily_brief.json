@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-20T12:03:23Z",
+  "generated_at_utc": "2026-09-20T13:02:21Z",
   "status": "OK",
   "active_signals": 4,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-20T11:42:15Z",
+        "captured_at_utc": "2026-09-20T12:46:24Z",
         "best_odds": "1.57",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.5",
@@ -110,14 +110,14 @@
         "role": "context-only"
       },
       "rotation": {
-        "status": "WAITING_OFFICIAL_XI",
-        "captured_at_utc": "",
-        "home_retained_starters": "",
-        "away_retained_starters": "",
-        "home_changed_starters": "",
-        "away_changed_starters": "",
-        "home_retained_pct": "",
-        "away_retained_pct": ""
+        "status": "VERIFIED",
+        "captured_at_utc": "2026-09-20T12:44:36Z",
+        "home_retained_starters": "10",
+        "away_retained_starters": "6",
+        "home_changed_starters": "1",
+        "away_changed_starters": "5",
+        "home_retained_pct": "90.9",
+        "away_retained_pct": "54.5"
       },
       "international": {
         "fifa_relation": "BEFORE",
@@ -130,8 +130,7 @@
         "player_level_reason": "Nationality is not evidence of call-up, travel, or appearance"
       },
       "flags": [
-        "WITHIN_7D_BEFORE_FIFA_WINDOW",
-        "OFFICIAL_ROTATION_PENDING"
+        "WITHIN_7D_BEFORE_FIFA_WINDOW"
       ],
       "display_selection": "П2"
     },
@@ -155,7 +154,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-20T11:42:15Z",
+        "captured_at_utc": "2026-09-20T12:46:24Z",
         "best_odds": "2.07",
         "best_bookmaker": "1xBet",
         "bet365_odds": "2.0",
@@ -280,7 +279,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-20T11:42:15Z",
+        "captured_at_utc": "2026-09-20T12:46:24Z",
         "best_odds": "1.84",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.75",
@@ -407,7 +406,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-20T11:42:15Z",
+        "captured_at_utc": "2026-09-20T12:46:24Z",
         "best_odds": "1.62",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.57",
@@ -526,7 +525,7 @@
     "observed_closes": 16,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-20T11:53:37Z",
+    "latest_run_utc": "2026-09-20T12:32:38Z",
     "warnings": [],
     "crossings": [
       {
@@ -575,7 +574,7 @@
     "observed_closes": 15,
     "close_qualified_total": 6,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-20T10:21:29Z",
+    "latest_run_utc": "2026-09-20T12:51:16Z",
     "warnings": [],
     "crossings": [
       {
@@ -650,11 +649,11 @@
     "active_crossings_total": 7,
     "active_yes_crossings": 5,
     "active_no_crossings": 2,
-    "total_crossings": 35,
-    "observed_closes": 85,
+    "total_crossings": 36,
+    "observed_closes": 87,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-20T10:14:51Z",
+    "latest_run_utc": "2026-09-20T12:19:32Z",
     "warnings": [],
     "crossings": [
       {
@@ -694,18 +693,6 @@
         "note": "research watch only; not a bet signal"
       },
       {
-        "fixture_id": "1550130",
-        "league": "Serie A",
-        "home_team": "Fiorentina",
-        "away_team": "Napoli",
-        "selection": "ОЗ — Да",
-        "movement_yes_pp": "0.03702918",
-        "crossed_at_utc": "2026-09-18T14:16:25Z",
-        "minutes_to_kickoff": "2653.6",
-        "user_selected_odds": "1.67",
-        "note": "research watch only; not a bet signal"
-      },
-      {
         "fixture_id": "1550132",
         "league": "Serie A",
         "home_team": "Juventus",
@@ -740,33 +727,45 @@
         "minutes_to_kickoff": "375.1",
         "user_selected_odds": "1.63",
         "note": "research watch only; not a bet signal"
+      },
+      {
+        "fixture_id": "1552766",
+        "league": "Ligue 1",
+        "home_team": "Auxerre",
+        "away_team": "Stade Brestois 29",
+        "selection": "ОЗ — Да",
+        "movement_yes_pp": "0.04233857",
+        "crossed_at_utc": "2026-09-20T12:19:32Z",
+        "minutes_to_kickoff": "40.5",
+        "user_selected_odds": "1.56",
+        "note": "research watch only; not a bet signal"
       }
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-20T11:54:12Z",
+    "generated_at_utc": "2026-09-20T12:57:20Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
-      "crossings": 47,
+      "crossings": 48,
       "pending": 9,
-      "settled": 38,
+      "settled": 39,
       "void": 0,
       "review": 0,
-      "user_price_rows": 47,
+      "user_price_rows": 48,
       "user_execution_coverage_pct": 100.0,
-      "user_settled_rows": 38,
-      "wins": 20,
+      "user_settled_rows": 39,
+      "wins": 21,
       "losses": 18,
-      "user_profit_u": -7.78,
-      "user_roi_pct": -20.474,
-      "close_observed": 38,
-      "close_qualified": 29,
+      "user_profit_u": -7.11,
+      "user_roi_pct": -18.231,
+      "close_observed": 39,
+      "close_qualified": 30,
       "reverted_at_close": 9,
-      "close_persistence_pct": 76.316,
-      "close_qualified_settled": 29,
-      "close_qualified_profit_u": -5.12,
-      "close_qualified_roi_pct": -17.655,
+      "close_persistence_pct": 76.923,
+      "close_qualified_settled": 30,
+      "close_qualified_profit_u": -4.45,
+      "close_qualified_roi_pct": -14.833,
       "reverted_settled": 9,
       "reverted_profit_u": -2.66,
       "reverted_roi_pct": -29.556,
@@ -774,25 +773,25 @@
     },
     "by_family": {
       "Big-5 ОЗ market movement — ОЗ — Да": {
-        "crossings": 28,
+        "crossings": 29,
         "pending": 5,
-        "settled": 23,
+        "settled": 24,
         "void": 0,
         "review": 0,
-        "user_price_rows": 28,
+        "user_price_rows": 29,
         "user_execution_coverage_pct": 100.0,
-        "user_settled_rows": 23,
-        "wins": 11,
+        "user_settled_rows": 24,
+        "wins": 12,
         "losses": 12,
-        "user_profit_u": -5.98,
-        "user_roi_pct": -26.0,
-        "close_observed": 23,
-        "close_qualified": 18,
+        "user_profit_u": -5.31,
+        "user_roi_pct": -22.125,
+        "close_observed": 24,
+        "close_qualified": 19,
         "reverted_at_close": 5,
-        "close_persistence_pct": 78.261,
-        "close_qualified_settled": 18,
-        "close_qualified_profit_u": -5.54,
-        "close_qualified_roi_pct": -30.778,
+        "close_persistence_pct": 79.167,
+        "close_qualified_settled": 19,
+        "close_qualified_profit_u": -4.87,
+        "close_qualified_roi_pct": -25.632,
         "reverted_settled": 5,
         "reverted_profit_u": -0.44,
         "reverted_roi_pct": -8.8,

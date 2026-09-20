@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-20T12:03:23Z
+Generated UTC: 2026-09-20T13:02:21Z
 Active canonical signals: 4
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -16,9 +16,9 @@ Active canonical signals: 4
 - Next: home Serie A vs Napoli (485.8h after); away Serie A vs AS Roma (501.5h after)
 - Injuries: QUERIED
 - Weather [T60]: 29.2°C, precip 0%, wind 11.8 km/h, gusts 28.4 km/h
-- Rotation: WAITING_OFFICIAL_XI
+- Rotation: VERIFIED
 - International: BEFORE FIFA window; to start 11.0h; player-level UNVERIFIED
-- Flags: WITHIN_7D_BEFORE_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
+- Flags: WITHIN_7D_BEFORE_FIFA_WINDOW
 
 ## R1 | Lecce — Bologna
 - Kickoff UTC: 2026-10-11T13:00:00Z | Ставка: П2 | Stake: 1.000u
@@ -115,17 +115,17 @@ Active canonical signals: 4
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 105
 - Активные движения ≥3 п.п.: всего 7 | ОЗ — Да 5 | ОЗ — Нет 2
-- Зафиксировано observed close: 85
+- Зафиксировано observed close: 87
 - Исполнимый букмекер для наблюдения: Marathonbet
 
 ## Текущие ОЗ-watch
 - WATCH | Serie A | Frosinone — Como | ОЗ — Да | движение P(ОЗ — Да) +3.20 п.п. | Marathonbet 1.57 | 4242.6 мин до матча
 - WATCH | Bundesliga | FC Schalke 04 — SV Elversberg | ОЗ — Да | движение P(ОЗ — Да) +7.36 п.п. | Marathonbet 1.44 | 4272.4 мин до матча
 - WATCH | Ligue 1 | Marseille — Paris Saint Germain | ОЗ — Нет | движение P(ОЗ — Да) -3.66 п.п. | Marathonbet 2.39 | 4228.1 мин до матча
-- WATCH | Serie A | Fiorentina — Napoli | ОЗ — Да | движение P(ОЗ — Да) +3.70 п.п. | Marathonbet 1.67 | 2653.6 мин до матча
 - WATCH | Serie A | Juventus — Atalanta | ОЗ — Нет | движение P(ОЗ — Да) -3.33 п.п. | Marathonbet 1.89 | 1545.0 мин до матча
 - WATCH | Premier League | Manchester City — Sunderland | ОЗ — Да | движение P(ОЗ — Да) +3.33 п.п. | Marathonbet 1.89 | 756.5 мин до матча
 - WATCH | La Liga | Deportivo La Coruna — Real Betis | ОЗ — Да | движение P(ОЗ — Да) +5.59 п.п. | Marathonbet 1.63 | 375.1 мин до матча
+- WATCH | Ligue 1 | Auxerre — Stade Brestois 29 | ОЗ — Да | движение P(ОЗ — Да) +4.23 п.п. | Marathonbet 1.56 | 40.5 мин до матча
 
 ---
 
@@ -133,14 +133,14 @@ Active canonical signals: 4
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 47 | settled 38 | pending 9
+- Crossings: 48 | settled 39 | pending 9
 - Marathonbet coverage at crossing: 100.0%
-- First-crossing P&L: -7.780u | ROI -20.474% | W-L 20-18
-- Close: observed 38 | stayed qualified 29 | reverted 9 | persistence 76.316%
-- Close-qualified ROI: -17.655% | Reverted ROI: -29.556%
+- First-crossing P&L: -7.110u | ROI -18.231% | W-L 21-18
+- Close: observed 39 | stayed qualified 30 | reverted 9 | persistence 76.923%
+- Close-qualified ROI: -14.833% | Reverted ROI: -29.556%
 
 ## By WATCH family
-- Big-5 ОЗ market movement — ОЗ — Да: crossings 28, settled 23, ROI -26.0%, close persistence 78.261%
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 29, settled 24, ROI -22.125%, close persistence 79.167%
 - Big-5 ОЗ market movement — ОЗ — Нет: crossings 7, settled 5, ROI 9.6%, close persistence 60.0%
 - АПЛ favorite steam: crossings 5, settled 4, ROI -100.0%, close persistence 50.0%
 - Бундеслига ТБ(2.5) steam: crossings 7, settled 6, ROI 28.667%, close persistence 100.0%
