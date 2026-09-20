@@ -1,24 +1,9 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-20T15:02:46Z
-Active canonical signals: 4
+Generated UTC: 2026-09-20T16:03:21Z
+Active canonical signals: 3
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
-
-## R1 | Frosinone — Como
-- Kickoff UTC: 2026-09-20T13:00:00Z | Ставка: П2 | Stake: 1.000u
-- Trigger Bet365: П1 5.25 / Х 3.9 / П2 1.62 (immutable)
-- Market-best observed: 1.57 @ 1xBet | Bet365 now: 1.5
-- Current user-executable: 1.52 @ Marathonbet
-- Paper user-execution (frozen): 1.65 @ Marathonbet [2026-09-11T10:32:01Z]
-- Referee / venue: D. Chiffi | Stadio Benito Stirpe, Frosinone
-- Previous: home Serie A vs Genoa (192.0h rest); away Serie A vs Parma (140.5h rest)
-- Next: home Serie A vs Napoli (485.8h after); away Serie A vs AS Roma (501.5h after)
-- Injuries: QUERIED
-- Weather [T60]: 29.2°C, precip 0%, wind 11.8 km/h, gusts 28.4 km/h
-- Rotation: VERIFIED
-- International: BEFORE FIFA window; to start 11.0h; player-level UNVERIFIED
-- Flags: WITHIN_7D_BEFORE_FIFA_WINDOW
 
 ## R1 | Lecce — Bologna
 - Kickoff UTC: 2026-10-11T13:00:00Z | Ставка: П2 | Stake: 1.000u
@@ -130,14 +115,14 @@ Active canonical signals: 4
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 48 | settled 41 | pending 7
+- Crossings: 48 | settled 43 | pending 5
 - Marathonbet coverage at crossing: 100.0%
-- First-crossing P&L: -7.550u | ROI -18.415% | W-L 22-19
+- First-crossing P&L: -7.660u | ROI -17.814% | W-L 23-20
 - Close: observed 43 | stayed qualified 33 | reverted 10 | persistence 76.744%
-- Close-qualified ROI: -15.281% | Reverted ROI: -29.556%
+- Close-qualified ROI: -17.848% | Reverted ROI: -17.7%
 
 ## By WATCH family
-- Big-5 ОЗ market movement — ОЗ — Да: crossings 29, settled 25, ROI -19.0%, close persistence 77.778%
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 29, settled 27, ROI -18.0%, close persistence 77.778%
 - Big-5 ОЗ market movement — ОЗ — Нет: crossings 7, settled 5, ROI 9.6%, close persistence 60.0%
 - АПЛ favorite steam: crossings 5, settled 5, ROI -100.0%, close persistence 60.0%
 - Бундеслига ТБ(2.5) steam: crossings 7, settled 6, ROI 28.667%, close persistence 100.0%
