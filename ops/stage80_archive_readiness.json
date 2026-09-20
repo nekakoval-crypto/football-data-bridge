@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-20T20:28:27Z",
+  "generated_at_utc": "2026-09-20T20:50:58Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -22,12 +22,12 @@
     "player_stats": {
       "file": "player_stats_snapshots.csv",
       "present": true,
-      "rows": 46259
+      "rows": 56044
     },
     "player_grades": {
       "file": "player_grade_snapshots.csv",
       "present": true,
-      "rows": 46259
+      "rows": 56044
     },
     "stage77_backlog": {
       "file": "stage77_player_stats_backlog.csv",
@@ -92,12 +92,12 @@
     "match_events": {
       "file": "match_event_snapshots.csv",
       "present": true,
-      "rows": 1613
+      "rows": 1742
     },
     "match_event_backlog": {
       "file": "stage80_match_event_backlog.csv",
       "present": true,
-      "rows": 116
+      "rows": 124
     },
     "player_xg_xa_research": {
       "file": "statsbomb_player_xg_xa.csv",
@@ -283,8 +283,8 @@
   "fixtures": {
     "current_inventory": 129,
     "finished_in_current_inventory": 124,
-    "player_stats_fixture_count_all_snapshots": 1141,
-    "player_grade_fixture_count_all_snapshots": 1141,
+    "player_stats_fixture_count_all_snapshots": 1381,
+    "player_grade_fixture_count_all_snapshots": 1381,
     "finished_current_inventory_with_player_stats": 92,
     "finished_current_inventory_player_stats_coverage_pct": 74.19,
     "per_league": [
@@ -469,10 +469,10 @@
     "player_xg_xa_evidence_note": "Stage91 provides StatsBomb research metrics. The large Stage91 source payload may remain external/local when an OK Stage91 meta attestation plus valid Stage92 AUTO/HIGH mapped rows are persisted; this never implies the source CSV is stored in Git. Stage92 maps only exact full names through the verified Transfermarkt→PBK bridge; abbreviated-name candidates remain REVIEW and never enter mapped research. Mapped xG/xA remains research-only and non-operational."
   },
   "players": {
-    "player_stat_rows": 46259,
-    "unique_players_with_stats": 5868,
-    "player_grade_rows": 46259,
-    "unique_players_with_grades": 5868
+    "player_stat_rows": 56044,
+    "unique_players_with_stats": 5931,
+    "player_grade_rows": 56044,
+    "unique_players_with_grades": 5931
   },
   "rosters": {
     "current_roster_rows": 3452,
@@ -532,11 +532,11 @@
     "coverage_note": "Stage55 context is canonical-signal scoped; these counts are not full 16-league archive coverage."
   },
   "match_events": {
-    "event_rows": 1613,
-    "event_fixtures": 97,
-    "backlog_total_fixtures": 116,
+    "event_rows": 1742,
+    "event_fixtures": 105,
+    "backlog_total_fixtures": 124,
     "backlog_pending_fixtures": 19,
-    "backlog_captured_fixtures": 97,
+    "backlog_captured_fixtures": 105,
     "evidence_note": "Append-only normalized provider match events captured only after PBK observed a terminal fixture; empty provider responses remain retryable."
   },
   "referee_research": {
