@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-20T00:32:25Z",
-  "status": "OK",
+  "run_at_utc": "2026-09-20T02:24:32Z",
+  "status": "ATTENTION",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 8,
-  "daily_api_calls": 8,
+  "provider_calls": 0,
+  "daily_api_calls": 192,
   "protected_calls": {
     "live": 41,
     "current_round": 96,
@@ -14,51 +14,12 @@
   },
   "roster_ttl_days": 7,
   "candidate_teams": 8,
-  "captured_teams": [
-    {
-      "team_id": "207",
-      "team_name": "Utrecht",
-      "players": 31
-    },
-    {
-      "team_id": "209",
-      "team_name": "Feyenoord",
-      "players": 33
-    },
-    {
-      "team_id": "348",
-      "team_name": "Pogon Szczecin",
-      "players": 30
-    },
-    {
-      "team_id": "349",
-      "team_name": "Piast Gliwice",
-      "players": 27
-    },
-    {
-      "team_id": "18936",
-      "team_name": "Ogre United",
-      "players": 28
-    },
-    {
-      "team_id": "247",
-      "team_name": "Celtic",
-      "players": 32
-    },
-    {
-      "team_id": "257",
-      "team_name": "Rangers",
-      "players": 32
-    },
-    {
-      "team_id": "4143",
-      "team_name": "Super Nova",
-      "players": 25
-    }
-  ],
-  "deferred_teams": 0,
+  "captured_teams": [],
+  "deferred_teams": 8,
   "total_roster_rows": 3452,
-  "warnings": [],
+  "warnings": [
+    "Stage71 protected API reserve reached; Challenger deferred"
+  ],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
