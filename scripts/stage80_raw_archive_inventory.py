@@ -13,10 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 try:
-    try:
     from api_football_raw_archive import s3_config_from_env, _s3_client
-except ModuleNotFoundError:
-    from scripts.api_football_raw_archive import s3_config_from_env, _s3_client
 except ModuleNotFoundError:
     from scripts.api_football_raw_archive import s3_config_from_env, _s3_client
 
