@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-20T14:39:35Z",
+  "run_at_utc": "2026-09-20T14:48:05Z",
   "status": "OK",
   "api_version": "v1",
   "db_path": "build/pbk_unified.sqlite",
@@ -62,7 +62,7 @@
       "path": "/v1/markets/settlements?limit=1",
       "http_status": 200,
       "passed": true,
-      "count": 3438
+      "count": 3633
     },
     {
       "path": "/v1/lifecycle",
