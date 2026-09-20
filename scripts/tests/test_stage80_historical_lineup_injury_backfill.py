@@ -1,4 +1,5 @@
 import sys
+import time
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
@@ -285,6 +286,36 @@ class HistoricalLineupInjuryBackfillTests(unittest.TestCase):
         self.assertEqual(calls, ["1", "2"])
         self.assertEqual(result["no_data_injury_tasks"], 2)
         self.assertEqual(result["suppressed_injury_tasks"], 2)
+
+
+    def test_provider_timeout_triggers_watchdog(self):
+        tasks = [
+            (self.fixture("1"), h.ENDPOINT_LINEUPS),
+            (self.fixture("2"), h.ENDPOINT_LINEUPS),
+        ]
+
+        def slow_get(path, params, **kwargs):
+            time.sleep(0.2)
+            return {"response": []}
+
+        result = h.run_capture(
+            tasks,
+            existing_lineups=[],
+            existing_injuries=[],
+            state={},
+            get=slow_get,
+            now=datetime(2026, 9, 20, tzinfo=timezone.utc),
+            limit=10,
+            provider_timeout_seconds=0.05,
+            max_consecutive_errors=1,
+            heartbeat_every=1,
+        )
+
+        self.assertEqual(result["attempted_tasks"], 1)
+        self.assertEqual(result["error_lineup_tasks"], 1)
+        self.assertTrue(
+            any("watchdog stopped batch" in x for x in result["warnings"])
+        )
 
 
 if __name__ == "__main__":
