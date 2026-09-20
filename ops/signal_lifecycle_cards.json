@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-20T20:08:02Z",
+  "generated_at_utc": "2026-09-20T21:08:06Z",
   "status": "OK",
   "cards": [
     {
@@ -9927,7 +9927,7 @@
       "selection": "ОЗ — Да",
       "latest_event": "WATCH_SETTLEMENT",
       "latest_status": "SETTLED",
-      "event_count": 2,
+      "event_count": 3,
       "timeline": [
         {
           "entity_id": "BTTS_YES|1570396",
@@ -9945,6 +9945,23 @@
           "bookmaker": "Marathonbet",
           "odds": "1.63",
           "details": "movement_pp=0.05591623"
+        },
+        {
+          "entity_id": "BTTS_YES|1570396",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage63",
+          "api_fixture_id": "1570396",
+          "league": "La Liga",
+          "home_team": "Deportivo La Coruna",
+          "away_team": "Real Betis",
+          "kickoff_utc": "2026-09-20T16:30:00Z",
+          "event_time_utc": "2026-09-20T16:15:56Z",
+          "event_type": "WATCH_CLOSE",
+          "status": "QUALIFIED_AT_CLOSE",
+          "selection": "ОЗ — Да",
+          "bookmaker": "Marathonbet",
+          "odds": "1.6",
+          "details": "close_qualified=YES"
         },
         {
           "entity_id": "BTTS_YES|1570396",
@@ -9975,9 +9992,9 @@
       "away_team": "Paris Saint Germain",
       "kickoff_utc": "2026-09-20T18:45:00Z",
       "selection": "ОЗ — Нет",
-      "latest_event": "WATCH_CROSSING",
-      "latest_status": "WATCH_ONLY",
-      "event_count": 1,
+      "latest_event": "WATCH_SETTLEMENT",
+      "latest_status": "SETTLED",
+      "event_count": 3,
       "timeline": [
         {
           "entity_id": "BTTS_NO|1552773",
@@ -9995,6 +10012,40 @@
           "bookmaker": "Marathonbet",
           "odds": "2.39",
           "details": "movement_pp=-0.03662455"
+        },
+        {
+          "entity_id": "BTTS_NO|1552773",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage63",
+          "api_fixture_id": "1552773",
+          "league": "Ligue 1",
+          "home_team": "Marseille",
+          "away_team": "Paris Saint Germain",
+          "kickoff_utc": "2026-09-20T18:45:00Z",
+          "event_time_utc": "2026-09-20T16:15:56Z",
+          "event_type": "WATCH_CLOSE",
+          "status": "REVERTED_AT_CLOSE",
+          "selection": "ОЗ — Нет",
+          "bookmaker": "Marathonbet",
+          "odds": "2.46",
+          "details": "close_qualified=NO"
+        },
+        {
+          "entity_id": "BTTS_NO|1552773",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage63",
+          "api_fixture_id": "1552773",
+          "league": "Ligue 1",
+          "home_team": "Marseille",
+          "away_team": "Paris Saint Germain",
+          "kickoff_utc": "2026-09-20T18:45:00Z",
+          "event_time_utc": "2026-09-20T20:44:51Z",
+          "event_type": "WATCH_SETTLEMENT",
+          "status": "SETTLED",
+          "selection": "ОЗ — Нет",
+          "bookmaker": "Marathonbet",
+          "odds": "2.39",
+          "details": "result=L profit_u=-1.000"
         }
       ]
     },
@@ -10010,7 +10061,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 64,
+      "event_count": 65,
       "timeline": [
         {
           "entity_id": "R1|I1|1550143",
@@ -11099,6 +11150,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550143",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550143",
+          "league": "Serie A",
+          "home_team": "Lecce",
+          "away_team": "Bologna",
+          "kickoff_utc": "2026-10-11T13:00:00Z",
+          "event_time_utc": "2026-09-20T20:42:40Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     },
@@ -11114,7 +11182,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 64,
+      "event_count": 65,
       "timeline": [
         {
           "entity_id": "R1|I1|1550145",
@@ -12203,6 +12271,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550145",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550145",
+          "league": "Serie A",
+          "home_team": "Sassuolo",
+          "away_team": "AC Milan",
+          "kickoff_utc": "2026-10-11T16:00:00Z",
+          "event_time_utc": "2026-09-20T20:42:40Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     },
@@ -12218,7 +12303,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 64,
+      "event_count": 65,
       "timeline": [
         {
           "entity_id": "R1|I1|1550138",
@@ -13307,6 +13392,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550138",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550138",
+          "league": "Serie A",
+          "home_team": "Cagliari",
+          "away_team": "Juventus",
+          "kickoff_utc": "2026-10-11T18:45:00Z",
+          "event_time_utc": "2026-09-20T20:42:40Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     }
@@ -13315,7 +13417,7 @@
     "cards": 54,
     "canonical_cards": 6,
     "watch_cards": 48,
-    "events": 732
+    "events": 738
   },
   "policy": {
     "read_only": true,
