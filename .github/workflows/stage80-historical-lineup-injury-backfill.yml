@@ -89,7 +89,7 @@ jobs:
           git add ops/historical_injury_snapshots.csv
           git add ops/stage80_historical_lineup_injury_backfill_state.csv
           git add ops/stage80_historical_lineup_injury_backfill_last_run.json
-          git add ops/stage71_observation_state.json
+          git add ops/stage80_historical_lineup_injury_budget_state.json
           if git diff --cached --quiet; then
             exit 0
           fi
@@ -104,5 +104,8 @@ jobs:
           path: |
             ops/stage80_historical_lineup_injury_backfill_last_run.json
             ops/stage80_historical_lineup_injury_backfill_state.csv
+            ops/stage80_historical_lineup_injury_budget_state.json
+            ops/historical_lineup_snapshots.csv
+            ops/historical_injury_snapshots.csv
           if-no-files-found: warn
           retention-days: 30
