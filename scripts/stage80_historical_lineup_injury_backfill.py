@@ -33,6 +33,8 @@ from __future__ import annotations
 import csv
 import json
 import os
+import signal
+import time
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -499,6 +501,44 @@ def is_provider_quota_error(exc):
     )
 
 
+class ProviderCallTimeoutError(TimeoutError):
+    pass
+
+
+def provider_get_with_timeout(
+    get,
+    endpoint,
+    fixture_id,
+    timeout_seconds,
+):
+    kwargs = {
+        "ttl_seconds": 30 * 24 * 3600,
+        "force_refresh": False,
+    }
+    if (
+        timeout_seconds <= 0
+        or os.name == "nt"
+        or not hasattr(signal, "SIGALRM")
+        or not hasattr(signal, "setitimer")
+    ):
+        return get(endpoint, {"fixture": fixture_id}, **kwargs)
+
+    def _timeout_handler(_signum, _frame):
+        raise ProviderCallTimeoutError(
+            f"provider call exceeded {timeout_seconds}s "
+            f"for {endpoint} fixture={fixture_id}"
+        )
+
+    previous = signal.getsignal(signal.SIGALRM)
+    signal.signal(signal.SIGALRM, _timeout_handler)
+    signal.setitimer(signal.ITIMER_REAL, timeout_seconds)
+    try:
+        return get(endpoint, {"fixture": fixture_id}, **kwargs)
+    finally:
+        signal.setitimer(signal.ITIMER_REAL, 0)
+        signal.signal(signal.SIGALRM, previous)
+
+
 def run_capture(
     tasks,
     existing_lineups,
@@ -508,6 +548,11 @@ def run_capture(
     now,
     limit,
     injury_no_data_cell_threshold=8,
+    provider_timeout_seconds=45,
+    heartbeat_every=10,
+    max_consecutive_errors=5,
+    checkpoint_every=25,
+    checkpoint=None,
 ):
     lineup_rows = list(existing_lineups)
     injury_rows = list(existing_injuries)
@@ -522,8 +567,49 @@ def run_capture(
     quota_exhausted = False
     quota_error = ""
     warnings = []
+    consecutive_errors = 0
+    started_monotonic = time.monotonic()
 
     counts = injury_cell_counts(state)
+
+    def emit_heartbeat(event, fixture_id="", endpoint=""):
+        print(
+            json.dumps(
+                {
+                    "event": event,
+                    "attempted_tasks": attempted,
+                    "fixture_id": fixture_id,
+                    "endpoint": endpoint,
+                    "elapsed_seconds": round(
+                        time.monotonic() - started_monotonic,
+                        1,
+                    ),
+                    "captured_lineups": captured[ENDPOINT_LINEUPS],
+                    "captured_injuries": captured[ENDPOINT_INJURIES],
+                    "no_data_lineups": no_data[ENDPOINT_LINEUPS],
+                    "no_data_injuries": no_data[ENDPOINT_INJURIES],
+                    "errors_lineups": errors[ENDPOINT_LINEUPS],
+                    "errors_injuries": errors[ENDPOINT_INJURIES],
+                },
+                ensure_ascii=False,
+            ),
+            flush=True,
+        )
+
+    def checkpoint_progress(force=False):
+        if checkpoint is None:
+            return
+        if not force and (
+            checkpoint_every <= 0
+            or attempted <= 0
+            or attempted % checkpoint_every != 0
+        ):
+            return
+        checkpoint(
+            state,
+            merge_rows(lineup_rows, new_lineups, lineup_identity),
+            merge_rows(injury_rows, new_injuries, injury_identity),
+        )
 
     for fixture, endpoint in tasks:
         if attempted >= limit:
@@ -543,17 +629,33 @@ def run_capture(
         fixture_id = sval(fixture, "fixture_id")
         attempted_at = iso(now)
 
+        print(
+            json.dumps(
+                {
+                    "event": "provider_call_start",
+                    "next_attempt": attempted + 1,
+                    "fixture_id": fixture_id,
+                    "endpoint": endpoint,
+                    "timeout_seconds": provider_timeout_seconds,
+                },
+                ensure_ascii=False,
+            ),
+            flush=True,
+        )
+
         try:
-            payload = get(
+            payload = provider_get_with_timeout(
+                get,
                 endpoint,
-                {"fixture": fixture_id},
-                ttl_seconds=30 * 24 * 3600,
-                force_refresh=False,
+                fixture_id,
+                provider_timeout_seconds,
             )
         except audit.ProtectedBudgetError as exc:
             warnings.append(str(exc))
+            checkpoint_progress(force=True)
             break
         except (
+            ProviderCallTimeoutError,
             ApiFootballBrokerError,
             RuntimeError,
             ValueError,
@@ -571,16 +673,29 @@ def run_capture(
                 attempted_at=attempted_at,
                 error=error_text,
             )
+            consecutive_errors += 1
+            checkpoint_progress()
+            if attempted % max(1, heartbeat_every) == 0:
+                emit_heartbeat("progress", fixture_id, endpoint)
             if is_provider_quota_error(exc):
                 quota_exhausted = True
                 quota_error = error_text
                 warnings.append(
                     "Provider quota exhausted; batch stopped after first quota error."
                 )
+                checkpoint_progress(force=True)
+                break
+            if consecutive_errors >= max_consecutive_errors:
+                warnings.append(
+                    "Provider watchdog stopped batch after "
+                    f"{consecutive_errors} consecutive errors/timeouts."
+                )
+                checkpoint_progress(force=True)
                 break
             continue
 
         attempted += 1
+        consecutive_errors = 0
         retrieved_at = iso(now)
 
         if endpoint == ENDPOINT_LINEUPS:
@@ -613,6 +728,9 @@ def run_capture(
                     {"CAPTURED": 0, "NO_DATA": 0, "ERROR": 0},
                 )
                 bucket["NO_DATA"] += 1
+            checkpoint_progress()
+            if attempted % max(1, heartbeat_every) == 0:
+                emit_heartbeat("progress", fixture_id, endpoint)
             continue
 
         captured[endpoint] += 1
@@ -635,6 +753,12 @@ def run_capture(
             response_rows=response_rows,
             normalized_rows=len(normalized),
         )
+        checkpoint_progress()
+        if attempted % max(1, heartbeat_every) == 0:
+            emit_heartbeat("progress", fixture_id, endpoint)
+
+    checkpoint_progress(force=True)
+    emit_heartbeat("complete")
 
     lineup_rows = merge_rows(
         lineup_rows,
@@ -726,6 +850,19 @@ def main():
         daily_limit - shared_api_day_calls,
     )
 
+    provider_timeout_seconds = int(
+        os.getenv("STAGE80_PROVIDER_CALL_TIMEOUT_SECONDS", "45")
+    )
+    heartbeat_every = int(
+        os.getenv("STAGE80_HEARTBEAT_EVERY_TASKS", "10")
+    )
+    max_consecutive_errors = int(
+        os.getenv("STAGE80_MAX_CONSECUTIVE_PROVIDER_ERRORS", "5")
+    )
+    checkpoint_every = int(
+        os.getenv("STAGE80_CHECKPOINT_EVERY_TASKS", "25")
+    )
+
     budget = audit.Budget(
         s53.api_get,
         historical_budget_state,
@@ -739,6 +876,39 @@ def main():
         ),
     )
 
+    def persist_checkpoint(
+        state_map,
+        lineup_rows_checkpoint,
+        injury_rows_checkpoint,
+    ):
+        write_csv_atomic(
+            LINEUPS,
+            LINEUP_FIELDS,
+            lineup_rows_checkpoint,
+        )
+        write_csv_atomic(
+            INJURIES,
+            INJURY_FIELDS,
+            injury_rows_checkpoint,
+        )
+        state_rows_checkpoint = [
+            state_map[key]
+            for key in sorted(
+                state_map,
+                key=lambda key: (
+                    state_map[key].get("last_attempt_at_utc", ""),
+                    key[0],
+                    key[1],
+                ),
+            )
+        ]
+        write_csv_atomic(
+            STATE,
+            STATE_FIELDS,
+            state_rows_checkpoint,
+        )
+        audit.save(BUDGET_STATE, historical_budget_state)
+
     result = run_capture(
         tasks_before,
         existing_lineups,
@@ -748,6 +918,11 @@ def main():
         now,
         max_calls,
         injury_no_data_cell_threshold,
+        provider_timeout_seconds=provider_timeout_seconds,
+        heartbeat_every=heartbeat_every,
+        max_consecutive_errors=max_consecutive_errors,
+        checkpoint_every=checkpoint_every,
+        checkpoint=persist_checkpoint,
     )
 
     write_csv_atomic(
@@ -817,6 +992,10 @@ def main():
         "attempted_tasks": result["attempted_tasks"],
         "provider_calls": budget.calls,
         "max_provider_calls": max_calls,
+        "provider_timeout_seconds": provider_timeout_seconds,
+        "heartbeat_every_tasks": heartbeat_every,
+        "max_consecutive_provider_errors": max_consecutive_errors,
+        "checkpoint_every_tasks": checkpoint_every,
         "shared_api_day_calls_at_start": shared_api_day_calls,
         "historical_api_day_calls": historical_budget_state.get(
             "api_day_calls",
