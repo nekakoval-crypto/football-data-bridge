@@ -26,34 +26,34 @@ Fixture sample: **160** | API calls: **0**
   - bet 35 `Both Teams To Score - Second Half` — Bet365 68.8% | Marathonbet 65.6%
   - bet 184 `To Score in Both Halves` — Bet365 0.0% | Marathonbet 65.6%
   - bet 185 `First Team to Score (3 way) 1st Half` — Bet365 0.0% | Marathonbet 65.6%
-  - bet 14 `Team To Score First` — Bet365 66.2% | Marathonbet 63.8%
-  - bet 15 `Team To Score Last` — Bet365 66.2% | Marathonbet 63.8%
+  - bet 15 `Team To Score Last` — Bet365 68.8% | Marathonbet 63.8%
+  - bet 14 `Team To Score First` — Bet365 67.5% | Marathonbet 63.8%
 
 ## Угловые
 - Catalog markets: 35 | observed: 23
 - Source status: **API_FOOTBALL_PROSPECTIVE_SOURCE_POSSIBLE**
 - Max coverage: Bet365 36.9% | Marathonbet 33.8%
   - bet 45 `Corners Over Under` — Bet365 36.9% | Marathonbet 33.8%
+  - bet 77 `Total Corners (1st Half)` — Bet365 36.9% | Marathonbet 33.8%
   - bet 85 `Total Corners (3 way)` — Bet365 36.9% | Marathonbet 33.8%
-  - bet 77 `Total Corners (1st Half)` — Bet365 35.0% | Marathonbet 33.8%
   - bet 56 `Corners Asian Handicap` — Bet365 33.8% | Marathonbet 33.8%
   - bet 57 `Home Corners Over/Under` — Bet365 33.8% | Marathonbet 33.8%
 
 ## Карточки / предупреждения
 - Catalog markets: 21 | observed: 14
 - Source status: **LOW_OBSERVED_COVERAGE_REVIEW**
-- Max coverage: Bet365 13.8% | Marathonbet 0.0%
-  - bet 299 `Cards over/under between 0 and 10 m` — Bet365 13.8% | Marathonbet 0.0%
-  - bet 80 `Cards Over/Under` — Bet365 13.1% | Marathonbet 0.0%
-  - bet 81 `Cards Asian Handicap` — Bet365 12.5% | Marathonbet 0.0%
-  - bet 250 `First Card Received (3 way)` — Bet365 11.9% | Marathonbet 0.0%
-  - bet 82 `Home Team Total Cards` — Bet365 11.2% | Marathonbet 0.0%
+- Max coverage: Bet365 14.4% | Marathonbet 0.0%
+  - bet 80 `Cards Over/Under` — Bet365 14.4% | Marathonbet 0.0%
+  - bet 81 `Cards Asian Handicap` — Bet365 14.4% | Marathonbet 0.0%
+  - bet 82 `Home Team Total Cards` — Bet365 14.4% | Marathonbet 0.0%
+  - bet 83 `Away Team Total Cards` — Bet365 14.4% | Marathonbet 0.0%
+  - bet 299 `Cards over/under between 0 and 10 m` — Bet365 14.4% | Marathonbet 0.0%
 
 ## Удары / удары в створ
 - Catalog markets: 21 | observed: 10
 - Source status: **BET365_REFERENCE_PRESENT_USER_BOOK_SOURCE_WEAK**
-- Max coverage: Bet365 40.0% | Marathonbet 0.0%
-  - bet 275 `Away Player Shots On Target Total` — Bet365 40.0% | Marathonbet 0.0%
+- Max coverage: Bet365 40.6% | Marathonbet 0.0%
+  - bet 275 `Away Player Shots On Target Total` — Bet365 40.6% | Marathonbet 0.0%
   - bet 240 `Home Player Shots` — Bet365 40.0% | Marathonbet 0.0%
   - bet 241 `Away Player Shots` — Bet365 40.0% | Marathonbet 0.0%
   - bet 269 `Home Player Shots On Target Total` — Bet365 40.0% | Marathonbet 0.0%
