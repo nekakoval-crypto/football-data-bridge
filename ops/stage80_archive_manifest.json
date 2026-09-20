@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-20T16:29:42Z",
+  "generated_at_utc": "2026-09-20T16:51:41Z",
   "status": "OK",
   "datasets": [
     {
@@ -317,7 +317,7 @@
       "source": "Stage77 /fixtures/players via shared broker",
       "limitations": "Only fixtures successfully captured under protected provider budget.",
       "present": true,
-      "row_count": 35499,
+      "row_count": 45252,
       "columns": [
         "fixture_id",
         "team_id",
@@ -458,7 +458,7 @@
       "source": "Stage77/78 derived from captured player stats",
       "limitations": "Research-derived grade; not raw provider fact and not canonical authority.",
       "present": true,
-      "row_count": 35499,
+      "row_count": 45252,
       "columns": [
         "fixture_id",
         "team_id",
@@ -1841,7 +1841,7 @@
       "source": "Stage71 terminal observation + Stage80 event capture reconciliation",
       "limitations": "Queue evidence is not event evidence; CAPTURED requires at least one normalized provider event row.",
       "present": true,
-      "row_count": 85,
+      "row_count": 100,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -1884,7 +1884,7 @@
       "source": "Stage80 /fixtures/events via shared API-Football broker",
       "limitations": "Only terminal fixtures captured under protected provider budget; empty provider responses remain retryable and are not converted to fake no-event evidence.",
       "present": true,
-      "row_count": 1362,
+      "row_count": 1499,
       "columns": [
         "event_id",
         "fixture_id",
