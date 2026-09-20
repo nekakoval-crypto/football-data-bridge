@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-20T10:03:06Z",
+  "generated_at_utc": "2026-09-20T11:02:46Z",
   "status": "OK",
   "active_signals": 4,
   "policy": {
@@ -30,11 +30,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-20T09:42:33Z",
+        "captured_at_utc": "2026-09-20T10:43:10Z",
         "best_odds": "1.57",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.5",
-        "api_odds_update_utc": "2026-09-20T06:01:30+00:00",
+        "api_odds_update_utc": "2026-09-20T09:09:16+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -155,7 +155,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-20T09:42:33Z",
+        "captured_at_utc": "2026-09-20T10:43:10Z",
         "best_odds": "2.07",
         "best_bookmaker": "1xBet",
         "bet365_odds": "2.0",
@@ -280,7 +280,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-20T09:42:33Z",
+        "captured_at_utc": "2026-09-20T10:43:10Z",
         "best_odds": "1.84",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.75",
@@ -407,7 +407,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-20T09:42:33Z",
+        "captured_at_utc": "2026-09-20T10:43:10Z",
         "best_odds": "1.62",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.57",
@@ -526,7 +526,7 @@
     "observed_closes": 16,
     "close_qualified_total": 2,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-20T06:55:54Z",
+    "latest_run_utc": "2026-09-20T10:27:23Z",
     "warnings": [],
     "crossings": [
       {
@@ -575,7 +575,7 @@
     "observed_closes": 15,
     "close_qualified_total": 6,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-20T09:21:40Z",
+    "latest_run_utc": "2026-09-20T10:21:29Z",
     "warnings": [],
     "crossings": [
       {
@@ -647,14 +647,14 @@
     "historical_edge_reason": "Canonical 10-year dataset has no historical BTTS first/close odds",
     "canonical_forward_changed": false,
     "tracked_openers": 105,
-    "active_crossings_total": 6,
-    "active_yes_crossings": 4,
+    "active_crossings_total": 7,
+    "active_yes_crossings": 5,
     "active_no_crossings": 2,
-    "total_crossings": 34,
+    "total_crossings": 35,
     "observed_closes": 85,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-20T08:16:16Z",
+    "latest_run_utc": "2026-09-20T10:14:51Z",
     "warnings": [],
     "crossings": [
       {
@@ -728,20 +728,32 @@
         "minutes_to_kickoff": "756.5",
         "user_selected_odds": "1.89",
         "note": "research watch only; not a bet signal"
+      },
+      {
+        "fixture_id": "1570396",
+        "league": "La Liga",
+        "home_team": "Deportivo La Coruna",
+        "away_team": "Real Betis",
+        "selection": "ОЗ — Да",
+        "movement_yes_pp": "0.05591623",
+        "crossed_at_utc": "2026-09-20T10:14:51Z",
+        "minutes_to_kickoff": "375.1",
+        "user_selected_odds": "1.63",
+        "note": "research watch only; not a bet signal"
       }
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-20T09:52:59Z",
+    "generated_at_utc": "2026-09-20T10:53:13Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
-      "crossings": 46,
-      "pending": 8,
+      "crossings": 47,
+      "pending": 9,
       "settled": 38,
       "void": 0,
       "review": 0,
-      "user_price_rows": 46,
+      "user_price_rows": 47,
       "user_execution_coverage_pct": 100.0,
       "user_settled_rows": 38,
       "wins": 20,
@@ -762,12 +774,12 @@
     },
     "by_family": {
       "Big-5 ОЗ market movement — ОЗ — Да": {
-        "crossings": 27,
-        "pending": 4,
+        "crossings": 28,
+        "pending": 5,
         "settled": 23,
         "void": 0,
         "review": 0,
-        "user_price_rows": 27,
+        "user_price_rows": 28,
         "user_execution_coverage_pct": 100.0,
         "user_settled_rows": 23,
         "wins": 11,

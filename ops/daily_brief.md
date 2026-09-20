@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-20T10:03:06Z
+Generated UTC: 2026-09-20T11:02:46Z
 Active canonical signals: 4
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -114,7 +114,7 @@ Active canonical signals: 4
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 105
-- Активные движения ≥3 п.п.: всего 6 | ОЗ — Да 4 | ОЗ — Нет 2
+- Активные движения ≥3 п.п.: всего 7 | ОЗ — Да 5 | ОЗ — Нет 2
 - Зафиксировано observed close: 85
 - Исполнимый букмекер для наблюдения: Marathonbet
 
@@ -125,6 +125,7 @@ Active canonical signals: 4
 - WATCH | Serie A | Fiorentina — Napoli | ОЗ — Да | движение P(ОЗ — Да) +3.70 п.п. | Marathonbet 1.67 | 2653.6 мин до матча
 - WATCH | Serie A | Juventus — Atalanta | ОЗ — Нет | движение P(ОЗ — Да) -3.33 п.п. | Marathonbet 1.89 | 1545.0 мин до матча
 - WATCH | Premier League | Manchester City — Sunderland | ОЗ — Да | движение P(ОЗ — Да) +3.33 п.п. | Marathonbet 1.89 | 756.5 мин до матча
+- WATCH | La Liga | Deportivo La Coruna — Real Betis | ОЗ — Да | движение P(ОЗ — Да) +5.59 п.п. | Marathonbet 1.63 | 375.1 мин до матча
 
 ---
 
@@ -132,14 +133,14 @@ Active canonical signals: 4
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 46 | settled 38 | pending 8
+- Crossings: 47 | settled 38 | pending 9
 - Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: -7.780u | ROI -20.474% | W-L 20-18
 - Close: observed 38 | stayed qualified 29 | reverted 9 | persistence 76.316%
 - Close-qualified ROI: -17.655% | Reverted ROI: -29.556%
 
 ## By WATCH family
-- Big-5 ОЗ market movement — ОЗ — Да: crossings 27, settled 23, ROI -26.0%, close persistence 78.261%
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 28, settled 23, ROI -26.0%, close persistence 78.261%
 - Big-5 ОЗ market movement — ОЗ — Нет: crossings 7, settled 5, ROI 9.6%, close persistence 60.0%
 - АПЛ favorite steam: crossings 5, settled 4, ROI -100.0%, close persistence 50.0%
 - Бундеслига ТБ(2.5) steam: crossings 7, settled 6, ROI 28.667%, close persistence 100.0%
