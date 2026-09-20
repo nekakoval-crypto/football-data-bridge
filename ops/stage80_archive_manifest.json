@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-20T12:38:18Z",
+  "generated_at_utc": "2026-09-20T12:46:25Z",
   "status": "OK",
   "datasets": [
     {
@@ -1756,7 +1756,7 @@
       "source": "Stage80 normalized from already-persisted Stage55 context + rotation snapshots",
       "limitations": "Only official lineup observations already captured by PBK; expected XI is not archived as official evidence.",
       "present": true,
-      "row_count": 6,
+      "row_count": 8,
       "columns": [
         "fixture_id",
         "captured_at_utc",

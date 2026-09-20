@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-20T12:38:25Z",
+  "generated_at_utc": "2026-09-20T12:46:32Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -82,7 +82,7 @@
     "lineup_archive": {
       "file": "lineup_snapshots.csv",
       "present": true,
-      "rows": 6
+      "rows": 8
     },
     "injury_archive": {
       "file": "injury_snapshots.csv",
@@ -1001,8 +1001,8 @@
     "evidence_note": "Calendar-level international-window proximity only. It does not infer any player call-up, travel, appearance, minutes or return timing; those remain UNVERIFIED without direct historical evidence."
   },
   "normalized_context_archives": {
-    "lineup_rows": 6,
-    "lineup_fixtures": 2,
+    "lineup_rows": 8,
+    "lineup_fixtures": 3,
     "injury_rows": 54,
     "injury_fixtures": 3,
     "evidence_note": "Provider-free normalized append-only projections from already-persisted PBK context/rotation evidence; coverage remains limited by upstream capture scope."
