@@ -1,0 +1,82 @@
+name: Stage 78 Player Form Walk-Forward
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '37 */4 * * *'
+  pull_request:
+    paths:
+      - 'scripts/stage78_player_form_walk_forward.py'
+      - 'scripts/tests/test_stage78_player_form_walk_forward.py'
+      - '.github/workflows/stage78-player-form-walk-forward.yml'
+      - 'docs/stage78_player_form_walk_forward.md'
+      - 'config/pbk_grade_readiness.json'
+  push:
+    paths:
+      - 'scripts/stage78_player_form_walk_forward.py'
+      - 'scripts/tests/test_stage78_player_form_walk_forward.py'
+      - '.github/workflows/stage78-player-form-walk-forward.yml'
+      - 'docs/stage78_player_form_walk_forward.md'
+      - 'config/pbk_grade_readiness.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage78-form-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Stage78 form walk-forward tests
+        run: python -m unittest scripts.tests.test_stage78_player_form_walk_forward -v
+      - name: Verify provider-free boundary
+        run: |
+          if grep -E 'api_get\(|/fixtures/players|API_FOOTBALL_KEY' scripts/stage78_player_form_walk_forward.py; then
+            echo 'Stage78 player form walk-forward must remain provider-free'
+            exit 1
+          fi
+      - name: Compile
+        run: python -m py_compile scripts/stage78_player_form_walk_forward.py
+
+  research:
+    needs: validate
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPS_DIR: ops
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build retrospective walk-forward dataset
+        run: python scripts/stage78_player_form_walk_forward.py
+      - name: Fail closed on leakage
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('ops/stage78_player_form_walk_forward_last_run.json').read_text(encoding='utf-8'))
+          if int(p.get('leakage_violations') or 0) != 0:
+              raise SystemExit('Stage78 form walk-forward leakage violations detected')
+          if p.get('provider_calls') != 0:
+              raise SystemExit('Stage78 form walk-forward must be provider-free')
+          PY
+      - name: Publish research outputs
+        run: |
+          git config user.name 'stage78-form-bot'
+          git config user.email 'stage78-form-bot@users.noreply.github.com'
+          git add ops/player_form_walk_forward.csv ops/stage78_player_form_walk_forward_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 78 player form walk-forward update'
+          python scripts/publish_operational_commit.py
