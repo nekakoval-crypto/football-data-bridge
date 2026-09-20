@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-20T00:48:24Z
+Обновлено UTC: 2026-09-20T00:55:17Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -10,7 +10,7 @@
 - Finished fixtures с player stats: 55 / 70 (78.57%).
 - Stage77 durable backlog: pending 27; captured 85; total 112.
 - Normalized lineup archive: 6 rows / 2 fixtures; injury archive: 53 rows / 3 fixtures.
-- Match event archive: 699 rows / 42 fixtures; backlog pending 27 / total 69.
+- Match event archive: 845 rows / 50 fixtures; backlog pending 20 / total 70.
 - Stage81 durable backlog: pending 5; captured 72; total 77.
 - Team match statistics: 72 complete fixtures / 144 team rows; current finished coverage 92.86%.
 - Team xG: 14 complete fixtures / 28 team rows; captured-team-stat coverage 19.44%.
