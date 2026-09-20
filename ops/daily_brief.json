@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-20T13:02:21Z",
+  "generated_at_utc": "2026-09-20T14:02:46Z",
   "status": "OK",
   "active_signals": 4,
   "policy": {
@@ -154,11 +154,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-20T12:46:24Z",
+        "captured_at_utc": "2026-09-20T13:42:04Z",
         "best_odds": "2.07",
         "best_bookmaker": "1xBet",
         "bet365_odds": "2.0",
-        "api_odds_update_utc": "2026-09-20T09:09:16+00:00",
+        "api_odds_update_utc": "2026-09-20T13:04:16+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -279,11 +279,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-20T12:46:24Z",
+        "captured_at_utc": "2026-09-20T13:42:04Z",
         "best_odds": "1.84",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.75",
-        "api_odds_update_utc": "2026-09-20T09:09:16+00:00",
+        "api_odds_update_utc": "2026-09-20T13:04:16+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -406,11 +406,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-20T12:46:24Z",
+        "captured_at_utc": "2026-09-20T13:42:04Z",
         "best_odds": "1.62",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.57",
-        "api_odds_update_utc": "2026-09-20T09:09:16+00:00",
+        "api_odds_update_utc": "2026-09-20T13:04:16+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -520,27 +520,14 @@
     "definition": "same opening favorite remains favorite; no-vig probability +3pp by observed close",
     "canonical_forward_changed": false,
     "tracked_openers": 20,
-    "active_crossings": 1,
+    "active_crossings": 0,
     "total_crossings": 5,
-    "observed_closes": 16,
-    "close_qualified_total": 2,
+    "observed_closes": 19,
+    "close_qualified_total": 3,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-20T12:32:38Z",
+    "latest_run_utc": "2026-09-20T13:27:21Z",
     "warnings": [],
-    "crossings": [
-      {
-        "fixture_id": "1557412",
-        "home_team": "Leeds",
-        "away_team": "Crystal Palace",
-        "opening_favorite": "H",
-        "movement_pp": "0.08753678",
-        "crossed_at_utc": "2026-09-17T13:29:51Z",
-        "minutes_to_kickoff": "4290.1",
-        "bet365_cross_odds": "1.8",
-        "user_cross_odds": "1.8",
-        "note": "WATCH only; not a canonical bet"
-      }
-    ],
+    "crossings": [],
     "recent_close_qualified": [
       {
         "fixture_id": "1557416",
@@ -559,6 +546,15 @@
         "close_gap_minutes": "36.6",
         "bet365_close_favorite_odds": "1.62",
         "user_close_favorite_odds": "1.64"
+      },
+      {
+        "fixture_id": "1557412",
+        "home_team": "Leeds",
+        "away_team": "Crystal Palace",
+        "movement_pp": "0.11915065",
+        "close_gap_minutes": "27.4",
+        "bet365_close_favorite_odds": "1.7",
+        "user_close_favorite_odds": "1.7"
       }
     ],
     "display_market": "П1/П2 — движение коэффициента фаворита"
@@ -571,10 +567,10 @@
     "tracked_openers": 18,
     "active_crossings": 1,
     "total_crossings": 7,
-    "observed_closes": 15,
+    "observed_closes": 16,
     "close_qualified_total": 6,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-20T12:51:16Z",
+    "latest_run_utc": "2026-09-20T13:47:59Z",
     "warnings": [],
     "crossings": [
       {
@@ -743,7 +739,7 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-20T12:57:20Z",
+    "generated_at_utc": "2026-09-20T13:54:19Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
@@ -759,10 +755,10 @@
       "losses": 18,
       "user_profit_u": -7.11,
       "user_roi_pct": -18.231,
-      "close_observed": 39,
-      "close_qualified": 30,
+      "close_observed": 40,
+      "close_qualified": 31,
       "reverted_at_close": 9,
-      "close_persistence_pct": 76.923,
+      "close_persistence_pct": 77.5,
       "close_qualified_settled": 30,
       "close_qualified_profit_u": -4.45,
       "close_qualified_roi_pct": -14.833,
@@ -835,10 +831,10 @@
         "losses": 4,
         "user_profit_u": -4.0,
         "user_roi_pct": -100.0,
-        "close_observed": 4,
-        "close_qualified": 2,
+        "close_observed": 5,
+        "close_qualified": 3,
         "reverted_at_close": 2,
-        "close_persistence_pct": 50.0,
+        "close_persistence_pct": 60.0,
         "close_qualified_settled": 2,
         "close_qualified_profit_u": -2.0,
         "close_qualified_roi_pct": -100.0,

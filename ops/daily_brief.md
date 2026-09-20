@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-20T13:02:21Z
+Generated UTC: 2026-09-20T14:02:46Z
 Active canonical signals: 4
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -73,16 +73,16 @@ Active canonical signals: 4
 
 - Scope: АПЛ: движение фаворита П1/П2 (+3 pp no-vig from frozen Bet365 opener).
 - Frozen openers tracked: 20
-- Active +3 pp crossings: 1
-- Observed closes: 16 | Close-qualified M1 watches: 2
+- Active +3 pp crossings: 0
+- Observed closes: 19 | Close-qualified M1 watches: 3
 - Executable bookmaker being observed: Marathonbet
 
-## Current crossings
-- WATCH | Leeds — Crystal Palace | фаворит на opener H | move +8.75 pp | Bet365 1.8 | Marathonbet 1.8 | 4290.1 min to kickoff
+- No active +3 pp crossing is currently recorded.
 
 ## Recent close-qualified watches
 - Tottenham — Aston Villa | move +7.02 pp | B365 close 1.91 | Marathonbet close 1.98
 - Nottingham Forest — Coventry | move +4.77 pp | B365 close 1.62 | Marathonbet close 1.64
+- Leeds — Crystal Palace | move +11.92 pp | B365 close 1.7 | Marathonbet close 1.7
 
 ---
 
@@ -93,7 +93,7 @@ Active canonical signals: 4
 - Scope: Бундеслига: ТБ(2.5) — движение рынка (+3 pp no-vig from frozen Bet365 O/U 2.5 opener).
 - Frozen O/U openers tracked: 18
 - Active +3 pp crossings ТБ(2.5): 1
-- Observed closes: 15 | Close-qualified O1 watches: 6
+- Observed closes: 16 | Close-qualified O1 watches: 6
 - Executable bookmaker being observed: Marathonbet
 
 ## Current O/U crossings
@@ -136,11 +136,11 @@ Active canonical signals: 4
 - Crossings: 48 | settled 39 | pending 9
 - Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: -7.110u | ROI -18.231% | W-L 21-18
-- Close: observed 39 | stayed qualified 30 | reverted 9 | persistence 76.923%
+- Close: observed 40 | stayed qualified 31 | reverted 9 | persistence 77.5%
 - Close-qualified ROI: -14.833% | Reverted ROI: -29.556%
 
 ## By WATCH family
 - Big-5 ОЗ market movement — ОЗ — Да: crossings 29, settled 24, ROI -22.125%, close persistence 79.167%
 - Big-5 ОЗ market movement — ОЗ — Нет: crossings 7, settled 5, ROI 9.6%, close persistence 60.0%
-- АПЛ favorite steam: crossings 5, settled 4, ROI -100.0%, close persistence 50.0%
+- АПЛ favorite steam: crossings 5, settled 4, ROI -100.0%, close persistence 60.0%
 - Бундеслига ТБ(2.5) steam: crossings 7, settled 6, ROI 28.667%, close persistence 100.0%
