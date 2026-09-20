@@ -1,0 +1,23 @@
+{
+  "version": "PBK_STAGE78_PLAYER_FORM_WALK_FORWARD_V1",
+  "grade_rows": 35499,
+  "joined_grade_rows": 31351,
+  "output_rows": 31351,
+  "form3_full_window_rows": 20751,
+  "form5_full_window_rows": 16220,
+  "form10_full_window_rows": 7414,
+  "leakage_violations": 0,
+  "skipped_no_fixture": 4148,
+  "skipped_no_team_side": 0,
+  "provider_calls": 0,
+  "research_only": true,
+  "no_lookahead": true,
+  "retrospective_reconstructed": true,
+  "evidence_time_basis": "PRIOR_TERMINAL_FIXTURE_CHRONOLOGY",
+  "ingestion_observed_at_used_as_cutoff": false,
+  "creates_signal": false,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "stake_changes": false,
+  "forward_journal_mutation": false
+}
