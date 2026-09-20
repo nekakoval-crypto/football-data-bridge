@@ -1,7 +1,7 @@
 {
   "version": "PBK_STAGE80_PLAYER_PROFILE_ENRICHMENT_V2_RESIDUAL_ID",
-  "run_at_utc": "2026-09-19T18:33:29Z",
-  "status": "OK",
+  "run_at_utc": "2026-09-20T00:39:43Z",
+  "status": "ATTENTION",
   "season": "2026",
   "provider_endpoints": [
     "/players?team&season",
@@ -9,32 +9,66 @@
   ],
   "refresh_days": 7,
   "residual_retry_days": 7,
-  "provider_calls": 0,
-  "team_provider_calls": 0,
-  "residual_provider_calls": 0,
-  "daily_api_calls": 1833,
+  "provider_calls": 96,
+  "team_provider_calls": 14,
+  "residual_provider_calls": 82,
+  "daily_api_calls": 138,
   "protected_calls": {
-    "live": 14,
-    "current_round": 60,
+    "live": 41,
+    "current_round": 180,
     "standings": 32,
     "safety": 100,
-    "total": 206
+    "total": 353
   },
-  "candidate_teams": 0,
-  "completed_teams": [],
+  "candidate_teams": 8,
+  "completed_teams": [
+    {
+      "team_id": "209",
+      "team_name": "Feyenoord",
+      "profile_rows": 29
+    },
+    {
+      "team_id": "247",
+      "team_name": "Celtic",
+      "profile_rows": 32
+    },
+    {
+      "team_id": "257",
+      "team_name": "Rangers",
+      "profile_rows": 31
+    },
+    {
+      "team_id": "207",
+      "team_name": "Utrecht",
+      "profile_rows": 33
+    },
+    {
+      "team_id": "348",
+      "team_name": "Pogon Szczecin",
+      "profile_rows": 32
+    },
+    {
+      "team_id": "349",
+      "team_name": "Piast Gliwice",
+      "profile_rows": 24
+    }
+  ],
   "deferred_teams": 0,
-  "residual_candidate_players": 0,
-  "residual_captured_players": 0,
-  "residual_empty_players": 0,
+  "residual_candidate_players": 82,
+  "residual_captured_players": 8,
+  "residual_empty_players": 74,
   "residual_error_players": 0,
   "residual_deferred_players": 0,
   "residual_ambiguous_current_roster_player_ids": 0,
   "residual_suppressed_recent_attempts": 471,
-  "profile_rows": 2989,
-  "unique_profile_players": 2910,
-  "current_roster_players": 3211,
-  "current_roster_player_coverage_pct": 85.33,
-  "warnings": [],
+  "profile_rows": 3178,
+  "unique_profile_players": 3093,
+  "current_roster_players": 3449,
+  "current_roster_player_coverage_pct": 84.2,
+  "warnings": [
+    "18936 Ogre United: provider returned no usable profile rows",
+    "4143 Super Nova: provider returned no usable profile rows"
+  ],
   "provider_polling_frontend": false,
   "research_only": true,
   "identity_enrichment_only": true,
