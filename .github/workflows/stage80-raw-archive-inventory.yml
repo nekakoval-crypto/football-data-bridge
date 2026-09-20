@@ -6,7 +6,7 @@ on:
     paths:
       - 'scripts/stage80_raw_archive_inventory.py'
       - 'scripts/tests/test_stage80_raw_archive_inventory.py'
-      - '.github/workfows/stage80_raw_archive_inventory.yml'
+      - '.github/workflows/stage80-raw-archive-inventory.yml'
 
 permissions:
   contents: read
