@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-20T00:03:50Z
+Generated UTC: 2026-09-20T01:02:53Z
 Active canonical signals: 4
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -9,7 +9,7 @@ Active canonical signals: 4
 - Kickoff UTC: 2026-09-20T13:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 5.25 / Х 3.9 / П2 1.62 (immutable)
 - Market-best observed: 1.55 @ 1xBet | Bet365 now: 1.5
-- Current user-executable: 1.5 @ Marathonbet
+- Current user-executable: 1.51 @ Marathonbet
 - Paper user-execution (frozen): 1.65 @ Marathonbet [2026-09-11T10:32:01Z]
 - Referee / venue: D. Chiffi | Stadio Benito Stirpe, Frosinone
 - Previous: home Serie A vs Genoa (192.0h rest); away Serie A vs Parma (140.5h rest)
@@ -114,7 +114,7 @@ Active canonical signals: 4
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 105
-- Активные движения ≥3 п.п.: всего 5 | ОЗ — Да 3 | ОЗ — Нет 2
+- Активные движения ≥3 п.п.: всего 6 | ОЗ — Да 4 | ОЗ — Нет 2
 - Зафиксировано observed close: 85
 - Исполнимый букмекер для наблюдения: Marathonbet
 
@@ -124,6 +124,7 @@ Active canonical signals: 4
 - WATCH | Ligue 1 | Marseille — Paris Saint Germain | ОЗ — Нет | движение P(ОЗ — Да) -3.66 п.п. | Marathonbet 2.39 | 4228.1 мин до матча
 - WATCH | Serie A | Fiorentina — Napoli | ОЗ — Да | движение P(ОЗ — Да) +3.70 п.п. | Marathonbet 1.67 | 2653.6 мин до матча
 - WATCH | Serie A | Juventus — Atalanta | ОЗ — Нет | движение P(ОЗ — Да) -3.33 п.п. | Marathonbet 1.89 | 1545.0 мин до матча
+- WATCH | Premier League | Manchester City — Sunderland | ОЗ — Да | движение P(ОЗ — Да) +3.33 п.п. | Marathonbet 1.89 | 756.5 мин до матча
 
 ---
 
@@ -131,14 +132,14 @@ Active canonical signals: 4
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 45 | settled 38 | pending 7
+- Crossings: 46 | settled 38 | pending 8
 - Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: -7.780u | ROI -20.474% | W-L 20-18
 - Close: observed 38 | stayed qualified 29 | reverted 9 | persistence 76.316%
 - Close-qualified ROI: -17.655% | Reverted ROI: -29.556%
 
 ## By WATCH family
-- Big-5 ОЗ market movement — ОЗ — Да: crossings 26, settled 23, ROI -26.0%, close persistence 78.261%
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 27, settled 23, ROI -26.0%, close persistence 78.261%
 - Big-5 ОЗ market movement — ОЗ — Нет: crossings 7, settled 5, ROI 9.6%, close persistence 60.0%
 - АПЛ favorite steam: crossings 5, settled 4, ROI -100.0%, close persistence 50.0%
 - Бундеслига ТБ(2.5) steam: crossings 7, settled 6, ROI 28.667%, close persistence 100.0%
