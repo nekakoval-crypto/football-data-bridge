@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 20.09.2026 06:01 (Europe/Berlin)
+Обновлено: 20.09.2026 07:00 (Europe/Berlin)
 Canonical: 4 | active WATCH crossings: 8 | RED: 0 | ORANGE: 9
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -695,8 +695,8 @@ Canonical: 4 | active WATCH crossings: 8 | RED: 0 | ORANGE: 9
   - Тотал 2.5 — нет данных
 
 - **Manchester City — Sunderland** | Premier League | 20.09 13:00 UTC
-  - ОЗ · ОЗ Да: 1.91 | ОЗ Нет: 1.91 @ Bet365
-  - ОЗ · ОЗ Да: 1.89 | ОЗ Нет: 1.81 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.95 | ОЗ Нет: 1.8 @ Bet365
+  - ОЗ · ОЗ Да: 1.88 | ОЗ Нет: 1.82 @ Marathonbet
   - Ф(0) · Ф1(0): 1.1 | Ф2(0): 6.8 @ Bet365
   - Ф(0) · Ф1(0): 1.08 | Ф2(0): 6.45 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.08 | Х2: 3.25 | 12: 1.17 @ Bet365
@@ -1397,7 +1397,7 @@ Canonical: 4 | active WATCH crossings: 8 | RED: 0 | ORANGE: 9
 
 - **Fulham — Manchester United** | Premier League | 20.09 15:30 UTC
   - ОЗ · ОЗ Да: 1.5 | ОЗ Нет: 2.5 @ Bet365
-  - ОЗ · ОЗ Да: 1.49 | ОЗ Нет: 2.44 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.48 | ОЗ Нет: 2.46 @ Marathonbet
   - Ф(0) · Ф1(0): 2.6 | Ф2(0): 1.48 @ Bet365
   - Ф(0) · Ф1(0): 2.59 | Ф2(0): 1.5 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 1.8 | Х2: 1.28 | 12: 1.25 @ Bet365
@@ -1864,7 +1864,7 @@ Canonical: 4 | active WATCH crossings: 8 | RED: 0 | ORANGE: 9
 
 - **Marseille — Paris Saint Germain** | Ligue 1 | 20.09 18:45 UTC
   - ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Bet365
-  - ОЗ · ОЗ Да: 1.55 | ОЗ Нет: 2.29 @ Marathonbet
+  - ОЗ · ОЗ Да: 1.54 | ОЗ Нет: 2.32 @ Marathonbet
   - Ф(0) · Ф1(0): 5.9 | Ф2(0): 1.13 @ Bet365
   - Ф(0) · Ф1(0): 6.05 | Ф2(0): 1.1 @ Marathonbet
   - 1Х/Х2/12 · 1Х: 3 | Х2: 1.1 | 12: 1.17 @ Bet365
@@ -2000,7 +2000,7 @@ Canonical: 4 | active WATCH crossings: 8 | RED: 0 | ORANGE: 9
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **HEALTHY** | critical 0 | warnings 0
+- System Health: **WARN** | critical 0 | warnings 1
 - Логическая canonical экспозиция: **4.0u** | конфликтов матчей 0 | убрано дублей 0.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 24 | data required 3
