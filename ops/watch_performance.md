@@ -1,23 +1,23 @@
 # PBK WATCH Performance
 
-Generated UTC: 2026-09-20T17:18:34Z
+Generated UTC: 2026-09-20T17:27:42Z
 Scope: только prospective WATCH; это не реальные ставки и не canonical R1/R2/R3.
 
 ## Overall
-- Crossing events: 48 | pending 5 | settled 43 | void 0 | review 0
+- Crossing events: 48 | pending 3 | settled 45 | void 0 | review 0
 - Marathonbet price coverage at crossing: 100.0% (48/48)
-- First-crossing paper P&L: -7.660u | ROI -17.814% | W-L 23-20
+- First-crossing paper P&L: -9.660u | ROI -21.467% | W-L 23-22
 - Close observed: 46 | stayed qualified 36 | reverted 10 | persistence 78.261%
-- Close-qualified subset: settled 33 | P&L -5.890u | ROI -17.848%
+- Close-qualified subset: settled 35 | P&L -7.890u | ROI -22.543%
 - Reverted subset: settled 10 | P&L -1.770u | ROI -17.7%
-- Observed max drawdown: 9.13u
+- Observed max drawdown: 10.15u
 
 ## Big-5 ОЗ market movement — ОЗ — Да
-- Crossings: 29 | pending 2 | settled 27
+- Crossings: 29 | pending 1 | settled 28
 - Marathonbet coverage: 100.0%
-- First-crossing P&L: -4.860u | ROI -18.0% | W-L 14-13
+- First-crossing P&L: -5.860u | ROI -20.929% | W-L 14-14
 - Close persistence: 78.571% (22/28)
-- Close-qualified ROI: -25.286% | Reverted ROI: 7.5%
+- Close-qualified ROI: -28.682% | Reverted ROI: 7.5%
 
 ## Big-5 ОЗ market movement — ОЗ — Нет
 - Crossings: 7 | pending 2 | settled 5
@@ -34,8 +34,8 @@ Scope: только prospective WATCH; это не реальные ставки
 - Close-qualified ROI: -100.0% | Reverted ROI: -100.0%
 
 ## Бундеслига ТБ(2.5) steam
-- Crossings: 7 | pending 1 | settled 6
+- Crossings: 7 | pending 0 | settled 7
 - Marathonbet coverage: 100.0%
-- First-crossing P&L: 1.720u | ROI 28.667% | W-L 6-0
+- First-crossing P&L: 0.720u | ROI 10.286% | W-L 6-1
 - Close persistence: 100.0% (7/7)
-- Close-qualified ROI: 28.667% | Reverted ROI: N/A
+- Close-qualified ROI: 10.286% | Reverted ROI: N/A
