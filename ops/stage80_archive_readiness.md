@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-21T21:02:42Z
+Обновлено UTC: 2026-09-21T21:04:08Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -40,7 +40,7 @@
 - PBK16 cup/UEFA congestion: 40989 valid rows / 40989 domestic fixtures; no-lookahead True; future schedule used False; prior UEFA <=72h 3210, prior cup <=72h 1436.
 - PBK16 domestic phase audit: 40989 valid rows; table-phase 40731; post-table playoffs 258; split/table rows needing season contract 1747.
 - PBK16 format inventory: 144 / 144 cells; captured 143; provider unavailable 1; exact motivation contracts verified 0.
-- PBK16 historical table context V2: 40070 valid rows; safe regular prematch —; full-table —; blocked split/table —; post-table —; awarded-taint —.
+- PBK16 historical table context V2: 39590 valid rows; safe regular prematch —; full-table —; blocked split/table —; post-table —; awarded-taint —.
 - PBK16 international windows: 40989 valid rows / 40989 domestic fixtures; calendar windows 39; <=72h before 3956, <=72h after 518; player-level UNVERIFIED; no-lookahead True.
 
 ## Raw provider archive

@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-21T21:02:37Z",
+  "generated_at_utc": "2026-09-21T21:03:59Z",
   "status": "OK",
   "datasets": [
     {
@@ -2480,6 +2480,8 @@
         "away_gd_pre",
         "home_rank_pre",
         "away_rank_pre",
+        "home_split_rounding_advantage",
+        "away_split_rounding_advantage",
         "rank_tiebreak_contract",
         "official_table_equivalence",
         "exact_title_relegation_motivation_allowed",
