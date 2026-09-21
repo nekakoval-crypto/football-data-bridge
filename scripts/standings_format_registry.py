@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Season-scoped verified competition-format facts for standings motivation.
 
-This registry is deliberately conservative.  Only formats verified from official
-competition/federation sources are marked VERIFIED.  Split/phase competitions
-remain UNKNOWN until PBK has a phase-aware format contract.
+This registry is deliberately conservative. Only formats verified from official
+competition/federation sources are marked VERIFIED. Split/phase competitions
+must carry an explicit phase-aware contract; PBK never invents point transforms
+or assumes that a historical split format is identical to the current season.
 """
 from __future__ import annotations
 
@@ -69,17 +70,91 @@ VERIFIED_FORMATS = {
         "reason": "Lithuanian federation A Lyga 2026 schedule runs through round 36.",
         "source": "https://lietuvosfutbolas.lt/varzybos/vyru/a-lyga/",
     },
+    # Austria — 12 clubs, 22-round base phase, then two six-team groups.
+    # From 2026/27 the point-halving transform is explicitly suspended.
+    ("218", "2026"): {
+        "status": "VERIFIED", "total_games": 32,
+        "format_type": "SPLIT_TOP6_BOTTOM6",
+        "regular_phase_games": 22,
+        "post_split_games": 10,
+        "points_transform": "NONE",
+        "phase_aware": True,
+        "reason": (
+            "Official Austria Bundesliga 2026/27 format: 22-round base phase, "
+            "then championship/qualification groups; point halving is suspended."
+        ),
+        "source": "https://www.bundesliga.at/de/news/artikel/alles-wissenswerte-zur-saison-2026-27",
+    },
+    # Belgium — format changed materially in 2026/27: 18 clubs, 34 rounds,
+    # no championship/relegation play-offs in the top division.
+    ("144", "2026"): {
+        "status": "VERIFIED", "total_games": 34,
+        "format_type": "CLASSIC_SINGLE_TABLE",
+        "regular_phase_games": 34,
+        "post_split_games": 0,
+        "points_transform": "NONE",
+        "phase_aware": True,
+        "reason": (
+            "Official Pro League 2026/27 reform: 18 clubs, 34 matchdays, "
+            "no play-offs; bottom two are directly relegated."
+        ),
+        "source": "https://www.proleague.be/nieuws/vanaf-seizoen-26-27-met-18-clubs-in-de-jupiler-pro-league",
+    },
+    # Denmark — 22-round base phase followed by ten rounds in the top-six or
+    # bottom-six phase, for 32 league matches per club.
+    ("119", "2026"): {
+        "status": "VERIFIED", "total_games": 32,
+        "format_type": "SPLIT_TOP6_BOTTOM6",
+        "regular_phase_games": 22,
+        "post_split_games": 10,
+        "points_transform": "NONE",
+        "phase_aware": True,
+        "reason": (
+            "Official 3F Superliga 2026/27 schedule covers a 22-round base phase; "
+            "the final phase is played over ten rounds."
+        ),
+        "source": "https://superliga.dk/nyheder/kamptidspunkter/2026-2027/kampprogrammet-for-grundspillet-2026-27-er-fastlagt",
+    },
+    # Latvia — LFF official 2026 competition calendar runs through round 36.
+    ("365", "2026"): {
+        "status": "VERIFIED", "total_games": 36,
+        "format_type": "CLASSIC_MULTI_ROUND_ROBIN",
+        "regular_phase_games": 36,
+        "post_split_games": 0,
+        "points_transform": "NONE",
+        "phase_aware": True,
+        "reason": "LFF official Virsliga 2026 calendar runs through round 36.",
+        "source": "https://lff.lv/sacensibas/viriesi/virsliga/?p=2026",
+    },
+    # Turkey — TFF official 2026/27 fixture list has 18 clubs and 34 rounds.
+    ("203", "2026"): {
+        "status": "VERIFIED", "total_games": 34,
+        "format_type": "CLASSIC_SINGLE_TABLE",
+        "regular_phase_games": 34,
+        "post_split_games": 0,
+        "points_transform": "NONE",
+        "phase_aware": True,
+        "reason": "TFF official 2026/27 Super Lig fixture list runs through week 34.",
+        "source": "https://www.tff.org/?pageID=198",
+    },
+    # Scotland — 12 clubs, split after round 33, final round 38.
+    ("179", "2026"): {
+        "status": "VERIFIED", "total_games": 38,
+        "format_type": "SPLIT_TOP6_BOTTOM6",
+        "regular_phase_games": 33,
+        "post_split_games": 5,
+        "points_transform": "NONE",
+        "phase_aware": True,
+        "reason": (
+            "SPFL 2026/27 key dates explicitly identify fixture rounds 33 and 38; "
+            "the Premiership split therefore contributes five post-split matches."
+        ),
+        "source": "https://spfl.co.uk/news/key-dates-for-202627",
+    },
 }
 
 
-EXPLICIT_UNKNOWN = {
-    ("218", "2026"): "Austria Bundesliga uses a split/phase format; phase-aware total is not yet verified in PBK.",
-    ("144", "2026"): "Belgian Pro League uses post-regular-season phases; a single safe total is not configured.",
-    ("119", "2026"): "Danish Superliga uses a split/phase format; phase-aware total is not yet verified in PBK.",
-    ("365", "2026"): "Virsliga 2026 total-games fact is not yet verified in the PBK registry.",
-    ("203", "2026"): "Süper Lig 2026/27 exact per-team total is not yet verified in the PBK registry.",
-    ("179", "2026"): "Scottish Premiership uses a split format; phase-aware total is not yet verified in PBK.",
-}
+EXPLICIT_UNKNOWN = {}
 
 
 HISTORICAL_TOP5_SEASONS = (
