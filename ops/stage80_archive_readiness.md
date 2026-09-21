@@ -1,26 +1,26 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-20T23:27:17Z
+Обновлено UTC: 2026-09-21T00:37:32Z
 Статус: **COLLECTING**
 
 ## Покрытие
-- Fixtures в текущем inventory: 129 (finished: 128).
-- Fixture history: 178 unique fixtures / 8504 observations / 66 observation runs (finished observed: 171).
-- Historical fixture catalog: 178 fixtures (terminal 171, rescheduled 1), history coverage 100.00%; missing 0, orphan 0.
-- Finished fixtures с player stats: 115 / 128 (89.84%).
-- Stage77 durable backlog: pending 22; captured 145; total 167.
+- Fixtures в текущем inventory: 128 (finished: 56).
+- Fixture history: 252 unique fixtures / 8761 observations / 68 observation runs (finished observed: 173).
+- Historical fixture catalog: 252 fixtures (terminal 173, rescheduled 1), history coverage 100.00%; missing 0, orphan 0.
+- Finished fixtures с player stats: 52 / 56 (92.86%).
+- Stage77 durable backlog: pending 26; captured 145; total 171.
 - Normalized lineup archive: 8 rows / 3 fixtures; injury archive: 54 rows / 3 fixtures.
 - Match event archive: 1861 rows / 113 fixtures; backlog pending 15 / total 128.
-- Stage81 durable backlog: pending 9; captured 126; total 135.
-- Team match statistics: 126 complete fixtures / 252 team rows; current finished coverage 92.97%.
+- Stage81 durable backlog: pending 11; captured 126; total 137.
+- Team match statistics: 126 complete fixtures / 252 team rows; current finished coverage 96.43%.
 - Team xG: 23 complete fixtures / 46 team rows; captured-team-stat coverage 18.25%.
 - Player xG/xA source: RESEARCH_SOURCE_EXTERNAL_LOCAL_ATTESTED_MAPPED_TO_PBK.
 - Player stat rows: 56999; уникальных игроков: 6538.
 - Player Grade rows: 56999; уникальных игроков: 6538.
-- Current roster: 112 команд / 3452 игроковых строк.
-- Player profile evidence: 3178 rows (3079 team-source + 99 residual-ID) / 3093 players / 111 teams; current-roster coverage 84.2%; identity-ready 2877 players (78.81%).
-- Roster history: 112 команд / 112 team-snapshots / 3450 строк.
-- Membership intervals: 3450 (open 3450, closed-by-observed-absence 0).
+- Current roster: 114 команд / 3516 игроковых строк.
+- Player profile evidence: 3178 rows (3079 team-source + 99 residual-ID) / 3093 players / 111 teams; current-roster coverage 82.72%; identity-ready 2877 players (77.43%).
+- Roster history: 114 команд / 114 team-snapshots / 3514 строк.
+- Membership intervals: 3514 (open 3514, closed-by-observed-absence 0).
 - Verified PBK↔Transfermarkt identities: 2202 rows / 2202 PBK players; invalid 571.
 - Verified historical transfers: 15773 rows / 1986 PBK players; dates 1995-07-01 → 2027-06-30; invalid 4944.
 - EPL referee research: 47 referees / 897 referee×team pairs / 3420 source matches; scope EPL_ONLY; penalties unavailable.

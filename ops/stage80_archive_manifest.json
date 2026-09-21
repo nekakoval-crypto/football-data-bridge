@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-20T23:27:09Z",
+  "generated_at_utc": "2026-09-21T00:37:26Z",
   "status": "OK",
   "datasets": [
     {
@@ -20,7 +20,7 @@
       "source": "Stage71 current-round capture / API-Football broker",
       "limitations": "Rolling inventory; not a historical archive by itself.",
       "present": true,
-      "row_count": 129,
+      "row_count": 128,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -68,7 +68,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 8504,
+      "row_count": 8761,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -117,7 +117,7 @@
       "source": "Stage80 normalized projection from fixture_history_snapshots",
       "limitations": "Rebuildable convenience layer; fixture_history_snapshots remains historical evidence source-of-truth.",
       "present": true,
-      "row_count": 178,
+      "row_count": 252,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -166,7 +166,7 @@
       "source": "Stage71 terminal observation + Stage77 reconciliation",
       "limitations": "Queue evidence is not player-stat evidence; CAPTURED requires both stats and grade ledgers.",
       "present": true,
-      "row_count": 167,
+      "row_count": 171,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -210,7 +210,7 @@
       "source": "Stage71 terminal observation + Stage81 reconciliation",
       "limitations": "Queue evidence is not team-stat evidence; CAPTURED requires both HOME and AWAY team-stat ledger rows.",
       "present": true,
-      "row_count": 135,
+      "row_count": 137,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -1505,7 +1505,7 @@
       "source": "Stage80 normalized projection from team_roster_history + player_stats_snapshots",
       "limitations": "Observed player directory only; does not infer current team, exact transfer dates, xG or xA.",
       "present": true,
-      "row_count": 7692,
+      "row_count": 7754,
       "columns": [
         "player_id",
         "latest_observed_name",
@@ -1638,7 +1638,7 @@
       "source": "Stage79 /players/squads via shared broker",
       "limitations": "Latest roster only; use team_roster_history for historical membership evidence.",
       "present": true,
-      "row_count": 3452,
+      "row_count": 3516,
       "columns": [
         "team_id",
         "team_name",
@@ -1674,7 +1674,7 @@
       "source": "Stage80 archive of already-captured Stage79 roster snapshots",
       "limitations": "Observed squad membership, not an exact transfer-date claim.",
       "present": true,
-      "row_count": 3450,
+      "row_count": 3514,
       "columns": [
         "team_id",
         "team_name",
@@ -1710,7 +1710,7 @@
       "source": "Stage80 derived from team_roster_history",
       "limitations": "Observed presence intervals are not verified transfer events.",
       "present": true,
-      "row_count": 3450,
+      "row_count": 3514,
       "columns": [
         "interval_id",
         "team_id",
