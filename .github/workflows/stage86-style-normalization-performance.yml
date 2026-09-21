@@ -1,0 +1,70 @@
+name: Stage 86 Style Normalization Performance
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/stage86_team_style_operational_normalization.py'
+      - 'scripts/tests/test_stage86_team_style_operational_normalization.py'
+      - '.github/workflows/stage86-style-normalization-performance.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and unit tests
+        run: |
+          python -m py_compile scripts/stage86_team_style_operational_normalization.py
+          python -m unittest scripts.tests.test_stage86_team_style_operational_normalization -v
+      - name: Synthetic performance guard
+        run: |
+          python - <<'PY'
+          import time
+          from scripts.stage86_team_style_operational_normalization import (
+              build_population_index,
+              normalize_row,
+          )
+
+          rows = []
+          for i in range(5000):
+              day = 1 + (i % 20)
+              rows.append({
+                  "version": "PBK_STAGE90_TEAM_STYLE_POPULATION_HISTORY_V1",
+                  "league_id": "39",
+                  "league_name": "Premier League",
+                  "season": "2026",
+                  "team_id": str(i % 200),
+                  "split": "overall",
+                  "window": 5,
+                  "metric": "shots_for",
+                  "metric_status": "KNOWN",
+                  "value": float(i % 25),
+                  "profile_before_utc": f"2026-09-{day:02d}T10:00:00Z",
+                  "observed_at_utc": f"2026-09-{day:02d}T10:00:00Z",
+              })
+
+          started = time.perf_counter()
+          index = build_population_index(rows)
+
+          for row in rows[-500:]:
+              normalize_row(row, index)
+
+          elapsed = time.perf_counter() - started
+          print({
+              "population_rows": len(rows),
+              "targets": 500,
+              "elapsed_seconds": elapsed,
+          })
+
+          if elapsed > 5:
+              raise SystemExit(
+                  "Stage86 synthetic normalization exceeded 5 seconds"
+              )
+          PY
