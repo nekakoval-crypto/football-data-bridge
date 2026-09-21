@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 21.09.2026 19:00 (Europe/Berlin)
+Обновлено: 21.09.2026 20:01 (Europe/Berlin)
 Canonical: 3 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
