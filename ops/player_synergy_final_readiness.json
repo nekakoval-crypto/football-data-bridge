@@ -1,0 +1,34 @@
+{
+  "version": "PBK_PLAYER_SYNERGY_FORWARD_GATE_V1",
+  "status": "VALIDATION_PENDING",
+  "checklist_item_11_data_engineering_foundation": "COMPLETE",
+  "checklist_item_11_predictive_authority": "NOT_AUTHORIZED",
+  "operational_betting_authority": false,
+  "creates_signal": false,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "stake_changes": false,
+  "evidence": {
+    "prematch_frozen_team_fixture_rows": 6,
+    "prematch_rows_with_any_research_combo": 0,
+    "market_adjusted_oos_research_completed": true,
+    "substitution_interaction_dataset_built": true,
+    "pair_promoted": false,
+    "trio_promoted": false,
+    "line_promoted": false
+  },
+  "resolved_engineering_gates": [
+    "PAIR_TRIO_LINE_RESEARCH_DATASETS_BUILT",
+    "STRICTLY_PRIOR_WALK_FORWARD_FEATURES_BUILT",
+    "MARKET_ADJUSTED_OOS_RESEARCH_BUILT",
+    "SUBSTITUTION_INTERACTION_DATASET_BUILT",
+    "GENUINE_PREMATCH_XI_OBSERVATION_FORWARD_PIPELINE_BUILT",
+    "EXPLICIT_FAIL_CLOSED_PROMOTION_GATE_BUILT"
+  ],
+  "hard_blockers_to_predictive_authority": [
+    "PROSPECTIVE_PREMATCH_FORWARD_SAMPLE_TOO_SMALL",
+    "SYNERGY_SPECIALIST_PROBABILITY_MODEL_NOT_VALIDATED",
+    "CALIBRATION_AND_INCREMENTAL_MARKET_VALUE_NOT_DEMONSTRATED"
+  ],
+  "closure_rule": "Checklist item 11 DATA/RESEARCH FOUNDATION may be closed when COMPLETE. Predictive betting authority remains NOT_AUTHORIZED until the prospective prematch sample and specialist model pass validation."
+}

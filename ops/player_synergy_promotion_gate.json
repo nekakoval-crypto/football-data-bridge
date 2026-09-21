@@ -1,0 +1,35 @@
+{
+  "version": "PBK_PLAYER_SYNERGY_FORWARD_GATE_V1",
+  "run_at_utc": "2026-09-21T17:50:48Z",
+  "dimensions": {
+    "PAIR": {
+      "status": "NOT_PROMOTED",
+      "reason": "TRAIN_HOLDOUT_SIGN_UNSTABLE"
+    },
+    "TRIO": {
+      "status": "NOT_PROMOTED",
+      "reason": "TRAIN_HOLDOUT_SIGN_UNSTABLE"
+    },
+    "LINE": {
+      "status": "RESEARCH_CANDIDATE_ONLY",
+      "reason": "SIGN_STABLE_BUT_EFFECT_WEAK_AND_PROSPECTIVE_SAMPLE_REQUIRED"
+    },
+    "ANTI_SYNERGY": {
+      "status": "RESEARCH_CANDIDATE_ONLY",
+      "reason": "DESCRIPTIVE_ASSOCIATION_NOT_CAUSAL"
+    },
+    "SUBSTITUTION": {
+      "status": "POSTMATCH_RESEARCH_ONLY",
+      "reason": "POSTMATCH_FACTUAL_NOT_PREMATCH_FEATURE"
+    }
+  },
+  "promotion_policy": {
+    "requires_genuine_prematch_observation": true,
+    "requires_forward_sample": true,
+    "requires_market_adjusted_oos_specialist_validation": true,
+    "requires_calibration_and_incremental_value": true,
+    "raw_combo_mega_score_forbidden": true,
+    "automatic_promotion_forbidden": true
+  },
+  "operational_betting_authority": false
+}
