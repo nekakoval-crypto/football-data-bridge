@@ -34,7 +34,7 @@ try:
 except ModuleNotFoundError:
     import pbk16_historical_phase_contracts as phase_contracts
 
-VERSION="PBK_STAGE80_PBK16_HISTORICAL_TABLE_CONTEXT_V2"
+VERSION="PBK_STAGE80_PBK16_HISTORICAL_TABLE_CONTEXT_V3"
 RANK_TIEBREAK_CONTRACT="POINTS_GD_GF_TEAMNAME_RESEARCH_APPROX_V1"
 PHASE_AUDIT_CONTRACT="PBK16_2017_2025_PROVIDER_ROUND_LABELS_V1"
 
@@ -51,6 +51,7 @@ FIELDS=[
     "home_ppg_pre","away_ppg_pre","home_gf_pre","away_gf_pre",
     "home_ga_pre","away_ga_pre","home_gd_pre","away_gd_pre",
     "home_rank_pre","away_rank_pre",
+    "home_split_rounding_advantage","away_split_rounding_advantage",
     "rank_tiebreak_contract","official_table_equivalence",
     "exact_title_relegation_motivation_allowed","europe_status",
     "same_day_results_excluded","no_lookahead","historical_backfill_only",
@@ -115,7 +116,10 @@ def parse_dt(v):
 
 
 def empty_state():
-    return {"played":0,"points":0,"gf":0,"ga":0}
+    return {
+        "played":0,"points":0,"gf":0,"ga":0,
+        "split_rounding_advantage":0,
+    }
 
 
 def ranked(states):
@@ -129,8 +133,17 @@ def ranked(states):
             "played":int(state["played"]),
             "points":int(state["points"]),
             "gf":gf,"ga":ga,"gd":gf-ga,
+            "split_rounding_advantage":int(
+                state.get("split_rounding_advantage") or 0
+            ),
         })
-    rows.sort(key=lambda r:(-r["points"],-r["gd"],-r["gf"],r["team"]))
+    rows.sort(key=lambda r:(
+        -r["points"],
+        -r["split_rounding_advantage"],
+        -r["gd"],
+        -r["gf"],
+        r["team"],
+    ))
     for i,row in enumerate(rows,1):
         row["rank"]=i
     return rows
@@ -158,6 +171,14 @@ def apply_played_result(row,states):
 
 def row_for(table,team):
     return next((r for r in table if r["team"]==team),None)
+
+
+def apply_floor_half_transform(states):
+    """Apply Austria's verified historical split transform exactly once."""
+    for state in states.values():
+        points=int(state.get("points") or 0)
+        state["split_rounding_advantage"]=1 if points % 2 else 0
+        state["points"]=points//2
 
 
 def ppg(points,played):
@@ -259,11 +280,13 @@ def safe_status(audit,scope_tainted,format_blocked,contract_status,group_ready):
     if scope_tainted:
         return "BLOCKED_PRIOR_AWARDED_RESULT_UNRESOLVED"
     if requires or family!="REGULAR":
-        if contract_status!=phase_contracts.CARRY:
+        if contract_status not in {phase_contracts.CARRY, phase_contracts.HALVE}:
             return "BLOCKED_TABLE_PHASE_REQUIRES_SEASON_FORMAT_CONTRACT"
         if not group_ready:
             return "BLOCKED_SPLIT_GROUP_UNRESOLVED"
         if policy=="PLAYED_RESULT_USABLE":
+            if contract_status==phase_contracts.HALVE:
+                return "VALID_SPLIT_HALVED_POINTS_DERIVED"
             return "VALID_SPLIT_CARRY_FORWARD_DERIVED"
         if policy=="AWARDED_RESULT_REQUIRES_RULE_EVIDENCE":
             return "VALID_PREMATCH_AWARDED_RESULT_WILL_TAINT"
@@ -323,6 +346,7 @@ def project(source_rows,audit_rows):
     states_by_scope={}
     tainted_by_scope=defaultdict(bool)
     format_blocked_by_scope=defaultdict(bool)
+    halving_applied_by_scope=defaultdict(bool)
     out=[]
     invalid_played_results=0
 
@@ -331,6 +355,18 @@ def project(source_rows,audit_rows):
         scope=(league,season)
         states=states_by_scope.setdefault(scope,{})
         day_rows=sorted(groups[key],key=lambda x:(x[0],x[1]))
+
+        # A season-scoped points transform happens at the phase boundary before
+        # any fixture in the final phase is projected. Apply it once per scope.
+        if not halving_applied_by_scope[scope]:
+            needs_halving=any(
+                arow is not None
+                and phase_contract_for(row,arow).get("status")==phase_contracts.HALVE
+                for dt,idx,row,arow in day_rows
+            )
+            if needs_halving:
+                apply_floor_half_transform(states)
+                halving_applied_by_scope[scope]=True
 
         # Project every fixture before applying any result from this UTC date.
         for dt,idx,row,arow in day_rows:
@@ -375,6 +411,7 @@ def project(source_rows,audit_rows):
             safe=status in {
                 "VALID_REGULAR_RESULTS_DERIVED",
                 "VALID_SPLIT_CARRY_FORWARD_DERIVED",
+                "VALID_SPLIT_HALVED_POINTS_DERIVED",
                 "VALID_PREMATCH_AWARDED_RESULT_WILL_TAINT",
                 "VALID_PREMATCH_NOT_PLAYED_NO_STATE_MUTATION",
             }
@@ -435,6 +472,12 @@ def project(source_rows,audit_rows):
                 "away_gd_pre":v(ar,"gd",0) if safe else "",
                 "home_rank_pre":v(hr,"rank","") if safe else "",
                 "away_rank_pre":v(ar,"rank","") if safe else "",
+                "home_split_rounding_advantage":v(
+                    hr,"split_rounding_advantage",0
+                ) if safe else "",
+                "away_split_rounding_advantage":v(
+                    ar,"split_rounding_advantage",0
+                ) if safe else "",
                 "rank_tiebreak_contract":RANK_TIEBREAK_CONTRACT,
                 "official_table_equivalence":"false",
                 "exact_title_relegation_motivation_allowed":"false",
@@ -464,7 +507,11 @@ def project(source_rows,audit_rows):
             ) if family!="REGULAR" else True
 
             if role=="TABLE_PHASE" and (requires or family!="REGULAR"):
-                if contract.get("status")!=phase_contracts.CARRY or not group_ready:
+                if (
+                    contract.get("status")
+                    not in {phase_contracts.CARRY, phase_contracts.HALVE}
+                    or not group_ready
+                ):
                     format_blocked_by_scope[scope]=True
                     continue
             if role!="TABLE_PHASE" or format_blocked_by_scope[scope]:
@@ -512,6 +559,7 @@ def run(source,phase_audit,out_csv,meta_out):
     safe_statuses={
         "VALID_REGULAR_RESULTS_DERIVED",
         "VALID_SPLIT_CARRY_FORWARD_DERIVED",
+        "VALID_SPLIT_HALVED_POINTS_DERIVED",
         "VALID_PREMATCH_AWARDED_RESULT_WILL_TAINT",
         "VALID_PREMATCH_NOT_PLAYED_NO_STATE_MUTATION",
     }
@@ -561,6 +609,7 @@ def run(source,phase_audit,out_csv,meta_out):
         "safe_regular_rows_with_full_table":full,
         "blocked_table_phase_rows":format_blocked,
         "split_carry_forward_rows":statuses.get("VALID_SPLIT_CARRY_FORWARD_DERIVED",0),
+        "split_halved_points_rows":statuses.get("VALID_SPLIT_HALVED_POINTS_DERIVED",0),
         "post_table_playoff_rows":post_table,
         "blocked_prior_awarded_result_rows":prior_awarded,
         "phase_audit_contract":PHASE_AUDIT_CONTRACT,

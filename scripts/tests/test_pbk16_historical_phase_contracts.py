@@ -7,7 +7,7 @@ class PBK16HistoricalPhaseContractsTests(unittest.TestCase):
     def test_exact_season_scope_never_infers_neighboring_season(self):
         known=c.lookup("Austria","2025","CHAMPIONSHIP_SPLIT")
         future=c.lookup("Austria","2026","CHAMPIONSHIP_SPLIT")
-        self.assertEqual(known["status"],c.TRANSFORM)
+        self.assertEqual(known["status"],c.HALVE)
         self.assertEqual(future["status"],"UNKNOWN")
 
     def test_carry_forward_candidates_are_not_yet_application_authorized(self):
@@ -21,15 +21,22 @@ class PBK16HistoricalPhaseContractsTests(unittest.TestCase):
                 item=c.lookup(*key)
                 self.assertEqual(item["status"],c.CARRY)
                 self.assertEqual(item["points_transform"],"CARRY_FORWARD_UNCHANGED")
-                self.assertFalse(item["application_authorized"])
+                self.assertTrue(item["application_authorized"])
                 self.assertTrue(item["group_aware_reconstruction_required"])
 
-    def test_austria_and_belgium_remain_transform_required(self):
+    def test_austria_halving_is_authorized_but_belgium_remains_blocked(self):
         austria=c.lookup("Austria","2024","RELEGATION_SPLIT")
         belgium=c.lookup("Belgium","2024","EUROPE_SPLIT")
-        self.assertEqual(austria["status"],c.TRANSFORM)
-        self.assertIn("HALVING",austria["points_transform"])
+        self.assertEqual(austria["status"],c.HALVE)
+        self.assertEqual(austria["points_transform"],"FLOOR_HALF_AT_SPLIT")
+        self.assertEqual(austria["half_point_rounding"],"FLOOR")
+        self.assertEqual(
+            austria["rounded_half_tiebreak"],
+            "ROUNDED_DOWN_CLUB_FIRST",
+        )
+        self.assertTrue(austria["application_authorized"])
         self.assertEqual(belgium["status"],c.TRANSFORM)
+        self.assertFalse(belgium["application_authorized"])
         self.assertIn("SEASON_AND_PHASE",belgium["points_transform"])
 
     def test_archive_shape_reconciles_to_known_1747_split_rows(self):
@@ -64,9 +71,10 @@ class PBK16HistoricalPhaseContractsTests(unittest.TestCase):
         self.assertEqual(report["required_nonregular_table_phase_rows"],1747)
         self.assertEqual(report["contract_covered_rows"],1747)
         self.assertEqual(report["carry_forward_candidate_rows"],919)
-        self.assertEqual(report["transform_required_rows"],828)
+        self.assertEqual(report["halving_authorized_rows"],480)
+        self.assertEqual(report["transform_required_rows"],348)
         self.assertEqual(report["unknown_contract_rows"],0)
-        self.assertEqual(report["application_authorized_rows"],0)
+        self.assertEqual(report["application_authorized_rows"],1399)
         self.assertFalse(report["exact_title_relegation_motivation_allowed"])
 
     def test_unknown_contract_fails_closed(self):

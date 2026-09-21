@@ -56,7 +56,7 @@ class PBK16HistoricalTableContextTests(unittest.TestCase):
             fixture(3,"2024-08-03",1,2,0,1),
         ]
         for row in rows:
-            row["country"]="Austria"
+            row["country"]="Belgium"
             row["season"]="2024"
         audits=[
             audit(1),
@@ -135,6 +135,75 @@ class PBK16HistoricalTableContextTests(unittest.TestCase):
             out[0]["context_status"],
             "BLOCKED_SPLIT_GROUP_UNRESOLVED",
         )
+
+
+    def test_austria_halving_applies_before_first_split_fixture(self):
+        rows=[
+            fixture(1,"2024-08-01",1,2,1,0),
+            fixture(2,"2024-08-02",1,2,1,0),
+            fixture(3,"2024-08-03",3,4,1,0),
+            fixture(4,"2024-08-04",1,2,0,1),
+            fixture(5,"2024-09-01",1,2,0,0),
+            fixture(6,"2024-09-01",3,4,0,0),
+            fixture(7,"2024-09-02",1,2,0,0),
+        ]
+        for row in rows:
+            row["country"]="Austria"
+            row["season"]="2024"
+        audits=[
+            audit(1),audit(2),audit(3),audit(4),
+            audit(5,family="CHAMPIONSHIP_SPLIT",requires=True),
+            audit(6,family="RELEGATION_SPLIT",requires=True),
+            audit(7,family="CHAMPIONSHIP_SPLIT",requires=True),
+        ]
+        out,_=t.project(rows,audits)
+        by={r["domestic_fixture_id"]:r for r in out}
+        first_split=by["5"]
+        second_split=by["7"]
+        self.assertEqual(
+            first_split["context_status"],
+            "VALID_SPLIT_HALVED_POINTS_DERIVED",
+        )
+        self.assertEqual(
+            first_split["phase_contract_status"],
+            "HALVE_FLOOR_WITH_ROUNDING_TIEBREAK",
+        )
+        # Team 1 enters the split on 6 points -> 3; Team 2 on 3 -> 1,
+        # with Team 2 carrying the rounded-half advantage flag.
+        self.assertEqual(first_split["home_points_pre"],3)
+        self.assertEqual(first_split["away_points_pre"],1)
+        self.assertEqual(first_split["home_split_rounding_advantage"],0)
+        self.assertEqual(first_split["away_split_rounding_advantage"],1)
+        self.assertEqual(
+            first_split["phase_points_transform"],
+            "FLOOR_HALF_AT_SPLIT",
+        )
+        # The first split draw is applied after projection, so the next fixture
+        # sees 4 and 2 points rather than re-halving the state.
+        self.assertEqual(second_split["home_points_pre"],4)
+        self.assertEqual(second_split["away_points_pre"],2)
+        self.assertEqual(second_split["ranking_scope_teams"],2)
+        self.assertEqual(
+            second_split["phase_group_status"],
+            "CONNECTED_COMPONENT_DERIVED",
+        )
+        self.assertEqual(
+            second_split["exact_title_relegation_motivation_allowed"],
+            "false",
+        )
+
+    def test_austria_rounded_half_flag_precedes_approximate_goal_tiebreak(self):
+        states={
+            "A":{"played":22,"points":21,"gf":10,"ga":20,"split_rounding_advantage":0},
+            "B":{"played":22,"points":20,"gf":30,"ga":10,"split_rounding_advantage":0},
+        }
+        t.apply_floor_half_transform(states)
+        table=t.ranked(states)
+        self.assertEqual(states["A"]["points"],10)
+        self.assertEqual(states["B"]["points"],10)
+        self.assertEqual(states["A"]["split_rounding_advantage"],1)
+        self.assertEqual(states["B"]["split_rounding_advantage"],0)
+        self.assertEqual(table[0]["team"],"A")
 
     def test_post_table_playoff_is_excluded_without_appendix_team_pollution(self):
         rows=[
