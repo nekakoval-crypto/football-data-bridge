@@ -1,1 +1,623 @@
 ﻿team_id,team_name,player_id,player_name,position_group,eligible,status,starts,without_starts,points_with,points_without,goal_diff_with,goal_diff_without,points_delta,goal_diff_delta,shrinkage_weight,importance_score,sample_reason,research_only,creates_signal,probability_mutation,eligibility_mutation,stake_changes
+1025,Wolfsberger AC,152950,T. Ballo,F,false,UNKNOWN,3,30,1,1.267,-0.333,-0.033,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_30,true,false,false,false,false
+1025,Wolfsberger AC,162771,J. Ngankam,F,true,RESEARCH_ESTIMATE,5,28,1.6,1.179,0.4,-0.143,0.421,0.543,0.25,0.114,OK,true,false,false,false,false
+1025,Wolfsberger AC,169339,F. Wohlmuth,M,true,RESEARCH_ESTIMATE,18,15,1.333,1.133,0.056,-0.2,0.2,0.256,0.75,0.163,OK,true,false,false,false,false
+1025,Wolfsberger AC,169349,N. Polster,G,false,UNKNOWN,30,3,1.133,2.333,-0.2,1.333,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_30_WITHOUT_3,true,false,false,false,false
+1025,Wolfsberger AC,25060,D. Baumgartner,D,true,RESEARCH_ESTIMATE,26,7,1.192,1.429,-0.077,0.0,-0.236,-0.077,0.35,-0.066,OK,true,false,false,false,false
+1025,Wolfsberger AC,25163,D. Atanga,F,true,RESEARCH_ESTIMATE,6,27,1.333,1.222,0.333,-0.148,0.111,0.481,0.3,0.067,OK,true,false,false,false,false
+1025,Wolfsberger AC,263055,M. Sulzner,M,true,RESEARCH_ESTIMATE,21,12,1,1.667,-0.333,0.417,-0.667,-0.75,0.6,-0.415,OK,true,false,false,false,false
+1025,Wolfsberger AC,271287,A. Gattermayer,F,true,RESEARCH_ESTIMATE,22,11,1.409,0.909,0.182,-0.545,0.5,0.727,0.55,0.312,OK,true,false,false,false,false
+1025,Wolfsberger AC,362612,T. Gruber,D,false,UNKNOWN,1,32,0,1.281,-1.0,-0.031,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_32,true,false,false,false,false
+1025,Wolfsberger AC,371027,C. Nwaiwu,D,true,RESEARCH_ESTIMATE,12,21,1.75,0.952,0.583,-0.429,0.798,1.012,0.6,0.517,OK,true,false,false,false,false
+1025,Wolfsberger AC,388753,B. Matic,M,true,RESEARCH_ESTIMATE,21,12,0.952,1.75,-0.429,0.583,-0.798,-1.012,0.6,-0.517,OK,true,false,false,false,false
+1025,Wolfsberger AC,410096,E. Kojzek,F,true,RESEARCH_ESTIMATE,9,24,0.222,1.625,-1.444,0.458,-1.403,-1.903,0.45,-0.699,OK,true,false,false,false,false
+1025,Wolfsberger AC,417,A. Schopf,M,true,RESEARCH_ESTIMATE,21,12,1.429,0.917,0.143,-0.417,0.512,0.56,0.6,0.316,OK,true,false,false,false,false
+1025,Wolfsberger AC,435390,C. Diabate,D,true,RESEARCH_ESTIMATE,14,19,1.286,1.211,0.0,-0.105,0.075,0.105,0.7,0.059,OK,true,false,false,false,false
+1025,Wolfsberger AC,45950,D. Zukic,F,false,UNKNOWN,30,3,1.067,3,-0.233,1.667,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_30_WITHOUT_3,true,false,false,false,false
+1025,Wolfsberger AC,460141,E. Agyeman,M,true,RESEARCH_ESTIMATE,9,24,2,0.958,0.667,-0.333,1.042,1.0,0.45,0.463,OK,true,false,false,false,false
+1025,Wolfsberger AC,553518,D. Djuric,,false,UNKNOWN,2,31,0.5,1.29,-1.5,0.032,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_31,true,false,false,false,false
+1025,Wolfsberger AC,575119,E. Kujovic,M,false,UNKNOWN,4,29,0.5,1.345,-1.0,0.069,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_29,true,false,false,false,false
+1025,Wolfsberger AC,7059,L. Gutlbauer,G,false,UNKNOWN,3,30,2.333,1.133,1.333,-0.2,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_30,true,false,false,false,false
+1025,Wolfsberger AC,7506,N. Wimmer,D,false,UNKNOWN,31,2,1.194,2,-0.161,1.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_31_WITHOUT_2,true,false,false,false,false
+1025,Wolfsberger AC,7597,M. Pink,F,true,RESEARCH_ESTIMATE,15,18,1.8,0.778,0.6,-0.611,1.022,1.211,0.75,0.809,OK,true,false,false,false,false
+1025,Wolfsberger AC,7662,R. Renner,M,true,RESEARCH_ESTIMATE,27,6,1.37,0.667,0.111,-0.833,0.704,0.944,0.3,0.233,OK,true,false,false,false,false
+1025,Wolfsberger AC,7690,S. Piesinger,D,true,RESEARCH_ESTIMATE,22,11,1.318,1.091,0.0,-0.182,0.227,0.182,0.55,0.117,OK,true,false,false,false,false
+1025,Wolfsberger AC,90663,D. Avdijaj,M,true,RESEARCH_ESTIMATE,11,22,0.909,1.409,-0.455,0.136,-0.5,-0.591,0.55,-0.29,OK,true,false,false,false,false
+1026,Lask Linz,107151,S. Adeniran,F,true,RESEARCH_ESTIMATE,26,6,2.038,0.833,0.615,-0.333,1.205,0.949,0.3,0.338,OK,true,false,false,false,false
+1026,Lask Linz,15876,K. P. Molgaard Jorgensen,D,false,UNKNOWN,31,1,1.839,1,0.452,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_31_WITHOUT_1,true,false,false,false,false
+1026,Lask Linz,162718,M. Bogarde,M,true,RESEARCH_ESTIMATE,25,7,2.08,0.857,0.8,-0.857,1.223,1.657,0.35,0.474,OK,true,false,false,false,false
+1026,Lask Linz,181786,K. Danek,M,true,RESEARCH_ESTIMATE,15,17,2.2,1.471,0.933,0.0,0.729,0.933,0.75,0.593,OK,true,false,false,false,false
+1026,Lask Linz,1851,V. Berisha,M,true,RESEARCH_ESTIMATE,7,25,1,2.04,-0.571,0.72,-1.04,-1.291,0.35,-0.39,OK,true,false,false,false,false
+1026,Lask Linz,2028,I. Coulibaly,M,true,RESEARCH_ESTIMATE,11,21,1.364,2.048,-0.182,0.762,-0.684,-0.944,0.55,-0.419,OK,true,false,false,false,false
+1026,Lask Linz,263057,L. Jungwirth,G,false,UNKNOWN,32,0,1.812,,0.438,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_32_WITHOUT_0,true,false,false,false,false
+1026,Lask Linz,271327,C. Lang,F,true,RESEARCH_ESTIMATE,6,26,0.667,2.077,-1.333,0.846,-1.41,-2.179,0.3,-0.492,OK,true,false,false,false,false
+1026,Lask Linz,310135,L. Kacavenda,M,true,RESEARCH_ESTIMATE,5,27,0.6,2.037,-1.2,0.741,-1.437,-1.941,0.25,-0.397,OK,true,false,false,false,false
+1026,Lask Linz,348168,A. Smakaj,M,false,UNKNOWN,2,30,0,1.933,-1.5,0.567,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_30,true,false,false,false,false
+1026,Lask Linz,363691,Alemao,D,true,RESEARCH_ESTIMATE,24,8,1.958,1.375,0.625,-0.125,0.583,0.75,0.4,0.253,OK,true,false,false,false,false
+1026,Lask Linz,367672,M. Usor,F,true,RESEARCH_ESTIMATE,27,5,1.778,2,0.333,1.0,-0.222,-0.667,0.25,-0.089,OK,true,false,false,false,false
+1026,Lask Linz,38781,X. Mbuyamba,D,true,RESEARCH_ESTIMATE,6,26,1.333,1.923,0.167,0.5,-0.59,-0.333,0.3,-0.154,OK,true,false,false,false,false
+1026,Lask Linz,417880,E. Michael,D,false,UNKNOWN,2,30,2,1.8,0.5,0.433,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_30,true,false,false,false,false
+1026,Lask Linz,478441,M. Cisse,D,true,RESEARCH_ESTIMATE,26,6,2.077,0.667,0.808,-1.167,1.41,1.974,0.3,0.474,OK,true,false,false,false,false
+1026,Lask Linz,50873,G. Bello,M,true,RESEARCH_ESTIMATE,26,6,1.769,2,0.346,0.833,-0.231,-0.487,0.3,-0.092,OK,true,false,false,false,false
+1026,Lask Linz,7197,A. Andrade,D,false,UNKNOWN,30,2,1.833,1.5,0.433,0.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_30_WITHOUT_2,true,false,false,false,false
+1026,Lask Linz,7394,M. Entrup,F,true,RESEARCH_ESTIMATE,5,27,1.2,1.926,0.0,0.519,-0.726,-0.519,0.25,-0.166,OK,true,false,false,false,false
+1026,Lask Linz,7722,S. Kalajdzic,F,true,RESEARCH_ESTIMATE,15,17,2,1.647,0.867,0.059,0.353,0.808,0.75,0.367,OK,true,false,false,false,false
+1026,Lask Linz,7738,S. Horvath,M,false,UNKNOWN,29,3,1.966,0.333,0.621,-1.333,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_29_WITHOUT_3,true,false,false,false,false
+1026,Lask Linz,7756,F. Flecker,M,false,UNKNOWN,2,30,0.5,1.9,-0.5,0.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_30,true,false,false,false,false
+1028,Ried,106784,M. Grosse,F,true,RESEARCH_ESTIMATE,9,26,1.222,1.423,-0.111,-0.154,-0.201,0.043,0.45,-0.058,OK,true,false,false,false,false
+1028,Ried,115590,P. Pomer,M,true,RESEARCH_ESTIMATE,29,6,1.621,0.167,0.103,-1.333,1.454,1.437,0.3,0.435,OK,true,false,false,false,false
+1028,Ried,24901,O. Steurer,D,false,UNKNOWN,35,0,1.371,,-0.143,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_35_WITHOUT_0,true,false,false,false,false
+1028,Ried,26111,S. Sane,F,false,UNKNOWN,1,34,0,1.412,-2.0,-0.088,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_34,true,false,false,false,false
+1028,Ried,265320,D. Kirnbauer,D,false,UNKNOWN,1,34,0,1.412,-1.0,-0.118,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_34,true,false,false,false,false
+1028,Ried,287438,E. Azkune,F,false,UNKNOWN,1,34,0,1.412,-2.0,-0.088,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_34,true,false,false,false,false
+1028,Ried,316846,A. van Wyk,F,true,RESEARCH_ESTIMATE,24,11,1.375,1.364,-0.167,-0.091,0.011,-0.076,0.55,-0.008,OK,true,false,false,false,false
+1028,Ried,323119,J. Mayer,F,true,RESEARCH_ESTIMATE,23,12,1.348,1.417,-0.087,-0.25,-0.069,0.163,0.6,0.0,OK,true,false,false,false,false
+1028,Ried,338189,N. Bajlicz,M,true,RESEARCH_ESTIMATE,22,13,1.273,1.538,-0.227,0.0,-0.266,-0.227,0.65,-0.165,OK,true,false,false,false,false
+1028,Ried,365016,F. Rossdorfer,D,true,RESEARCH_ESTIMATE,13,22,1.462,1.318,-0.231,-0.091,0.143,-0.14,0.65,0.038,OK,true,false,false,false,false
+1028,Ried,369868,P. Kiedl,F,true,RESEARCH_ESTIMATE,9,26,2,1.154,0.667,-0.423,0.846,1.09,0.45,0.414,OK,true,false,false,false,false
+1028,Ried,408540,K. Mutandwa,F,true,RESEARCH_ESTIMATE,28,7,1.286,1.714,-0.25,0.286,-0.429,-0.536,0.35,-0.161,OK,true,false,false,false,false
+1028,Ried,422754,P. Weissenbacher,D,false,UNKNOWN,1,34,0,1.412,-2.0,-0.088,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_34,true,false,false,false,false
+1028,Ried,431122,E. E. Aisowieren,F,false,UNKNOWN,1,34,0,1.412,-1.0,-0.118,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_34,true,false,false,false,false
+1028,Ried,479209,J. Boguo,F,true,RESEARCH_ESTIMATE,6,29,1,1.448,-0.667,-0.034,-0.448,-0.632,0.3,-0.151,OK,true,false,false,false,false
+1028,Ried,48708,N. Havenaar,D,false,UNKNOWN,33,2,1.364,1.5,-0.121,-0.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_33_WITHOUT_2,true,false,false,false,false
+1028,Ried,567870,J. Nasrawe,M,true,RESEARCH_ESTIMATE,8,27,1.5,1.333,-0.25,-0.111,0.167,-0.139,0.4,0.03,OK,true,false,false,false,false
+1028,Ried,7070,A. Bajic,M,true,RESEARCH_ESTIMATE,30,5,1.5,0.6,0.0,-1.0,0.9,1.0,0.25,0.232,OK,true,false,false,false,false
+1028,Ried,7554,M. Sollbauer,D,false,UNKNOWN,33,2,1.455,0,-0.03,-2.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_33_WITHOUT_2,true,false,false,false,false
+1028,Ried,7567,C. Wernitznig,M,false,UNKNOWN,3,32,0.333,1.469,-1.0,-0.062,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_32,true,false,false,false,false
+1028,Ried,7632,M. Rasner,M,true,RESEARCH_ESTIMATE,8,27,1.375,1.37,0.0,-0.185,0.005,0.185,0.4,0.024,OK,true,false,false,false,false
+1028,Ried,7699,A. Leitner,G,false,UNKNOWN,35,0,1.371,,-0.143,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_35_WITHOUT_0,true,false,false,false,false
+1028,Ried,7703,J. Scherzer,D,false,UNKNOWN,1,34,0,1.412,-2.0,-0.088,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_34,true,false,false,false,false
+1028,Ried,99106,Y. Maart,M,false,UNKNOWN,31,4,1.323,1.75,-0.258,0.75,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_31_WITHOUT_4,true,false,false,false,false
+1072,TSV Hartberg,151837,P. Mijic,F,false,UNKNOWN,3,29,2,1.241,0.333,-0.034,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_29,true,false,false,false,false
+1072,TSV Hartberg,162238,B. Markus,M,false,UNKNOWN,32,0,1.312,,0.0,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_32_WITHOUT_0,true,false,false,false,false
+1072,TSV Hartberg,162561,E. Havel,F,true,RESEARCH_ESTIMATE,27,5,1.333,1.2,0.111,-0.6,0.133,0.711,0.25,0.077,OK,true,false,false,false,false
+1072,TSV Hartberg,169509,P. Komposch,D,false,UNKNOWN,1,31,3,1.258,2.0,-0.065,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_31,true,false,false,false,false
+1072,TSV Hartberg,278992,M. Fillafer,F,true,RESEARCH_ESTIMATE,5,27,0.6,1.444,-0.6,0.111,-0.844,-0.711,0.25,-0.201,OK,true,false,false,false,false
+1072,TSV Hartberg,280429,T. Hulsmann,G,false,UNKNOWN,30,2,1.267,2,-0.033,0.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_30_WITHOUT_2,true,false,false,false,false
+1072,TSV Hartberg,322987,J. Halwachs,M,false,UNKNOWN,1,31,0,1.355,-1.0,0.032,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_31,true,false,false,false,false
+1072,TSV Hartberg,334028,D. Vincze,D,true,RESEARCH_ESTIMATE,23,9,1.478,0.889,0.261,-0.667,0.589,0.928,0.45,0.311,OK,true,false,false,false,false
+1072,TSV Hartberg,340172,L. Pazourek,D,true,RESEARCH_ESTIMATE,11,21,1,1.476,-0.364,0.19,-0.476,-0.554,0.55,-0.275,OK,true,false,false,false,false
+1072,TSV Hartberg,359104,J. Drew,F,true,RESEARCH_ESTIMATE,6,26,1,1.385,-0.167,0.038,-0.385,-0.205,0.3,-0.099,OK,true,false,false,false,false
+1072,TSV Hartberg,371245,F. Wilfinger,D,false,UNKNOWN,31,1,1.258,3,-0.032,1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_31_WITHOUT_1,true,false,false,false,false
+1072,TSV Hartberg,394664,M. Hennig,D,true,RESEARCH_ESTIMATE,22,10,1.227,1.5,0.045,-0.1,-0.273,0.145,0.5,-0.074,OK,true,false,false,false,false
+1072,TSV Hartberg,409040,H. Coulibaly,D,true,RESEARCH_ESTIMATE,14,18,1.214,1.389,-0.286,0.222,-0.175,-0.508,0.7,-0.192,OK,true,false,false,false,false
+1072,TSV Hartberg,414161,K. Schopp,D,true,RESEARCH_ESTIMATE,5,27,0.4,1.481,-0.8,0.148,-1.081,-0.948,0.25,-0.26,OK,true,false,false,false,false
+1072,TSV Hartberg,425348,D. Kovacevic,D,true,RESEARCH_ESTIMATE,14,18,1.857,0.889,0.286,-0.222,0.968,0.508,0.7,0.581,OK,true,false,false,false,false
+1072,TSV Hartberg,477129,M. Hoffmann,F,true,RESEARCH_ESTIMATE,22,10,1.409,1.1,0.045,-0.1,0.309,0.145,0.5,0.13,OK,true,false,false,false,false
+1072,TSV Hartberg,520953,M. Aziz,F,false,UNKNOWN,1,31,1,1.323,0.0,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_31,true,false,false,false,false
+1072,TSV Hartberg,7169,A. Helac,G,false,UNKNOWN,2,30,2,1.267,0.5,-0.033,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_30,true,false,false,false,false
+1072,TSV Hartberg,7260,J. Golles,D,false,UNKNOWN,2,30,0,1.4,-1.0,0.067,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_30,true,false,false,false,false
+1072,TSV Hartberg,7580,L. Spendlhofer,D,true,RESEARCH_ESTIMATE,27,5,1.444,0.6,0.111,-0.6,0.844,0.711,0.25,0.201,OK,true,false,false,false,false
+1072,TSV Hartberg,7608,D. Prokop,F,false,UNKNOWN,3,29,2,1.241,0.0,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_29,true,false,false,false,false
+1072,TSV Hartberg,7749,T. Kainz,M,false,UNKNOWN,28,4,1.321,1.25,0.0,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_28_WITHOUT_4,true,false,false,false,false
+1072,TSV Hartberg,7757,J. Heil,D,true,RESEARCH_ESTIMATE,25,7,1.24,1.571,-0.04,0.143,-0.331,-0.183,0.35,-0.1,OK,true,false,false,false,false
+1072,TSV Hartberg,77623,Y. Diarra,M,true,RESEARCH_ESTIMATE,7,25,1.571,1.24,0.286,-0.08,0.331,0.366,0.35,0.12,OK,true,false,false,false,false
+1072,TSV Hartberg,78321,L. Fridrikas,F,true,RESEARCH_ESTIMATE,10,22,1.2,1.364,-0.2,0.091,-0.164,-0.291,0.5,-0.101,OK,true,false,false,false,false
+1393,Union St. Gilloise,127414,A. Ait El Hadj,M,false,UNKNOWN,12,1,2.417,3,1.583,2.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+1393,Union St. Gilloise,15917,M. Rasmussen,M,true,RESEARCH_ESTIMATE,5,8,3,2.125,1.6,1.625,0.875,-0.025,0.25,0.151,OK,true,false,false,false,false
+1393,Union St. Gilloise,181815,V. Chambaere,G,false,UNKNOWN,3,10,2.333,2.5,2.0,1.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_10,true,false,false,false,false
+1393,Union St. Gilloise,19850,C. Burgess,D,false,UNKNOWN,11,2,2.364,3,1.364,3.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_11_WITHOUT_2,true,false,false,false,false
+1393,Union St. Gilloise,20176,R. Sykes,D,true,RESEARCH_ESTIMATE,6,7,3,2,2.5,0.857,1,1.643,0.3,0.358,OK,true,false,false,false,false
+1393,Union St. Gilloise,203456,O. Niang,F,false,UNKNOWN,12,1,2.583,1,1.75,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+1393,Union St. Gilloise,270201,R. Florucz,F,false,UNKNOWN,9,4,2.444,2.5,1.667,1.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+1393,Union St. Gilloise,271875,L. Patris,M,false,UNKNOWN,1,12,3,2.417,2.0,1.583,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+1393,Union St. Gilloise,290546,F. Leysen,D,false,UNKNOWN,10,3,2.3,3,1.4,2.333,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_10_WITHOUT_3,true,false,false,false,false
+1393,Union St. Gilloise,313353,P. David,F,true,RESEARCH_ESTIMATE,6,7,2.667,2.286,1.333,1.857,0.381,-0.524,0.3,0.033,OK,true,false,false,false,false
+1393,Union St. Gilloise,338735,A. Khalaili,M,false,UNKNOWN,11,2,2.545,2,1.727,1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_11_WITHOUT_2,true,false,false,false,false
+1393,Union St. Gilloise,340574,K. Van De Perre,M,false,UNKNOWN,4,9,1.75,2.778,1.0,1.889,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+1393,Union St. Gilloise,361966,K. Rodriguez,F,false,UNKNOWN,9,4,2.222,3,1.556,1.75,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+1393,Union St. Gilloise,37276,K. Scherpen,G,false,UNKNOWN,10,3,2.5,2.333,1.5,2.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_10_WITHOUT_3,true,false,false,false,false
+1393,Union St. Gilloise,4408,A. Zorgane,M,false,UNKNOWN,11,2,2.545,2,1.727,1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_11_WITHOUT_2,true,false,false,false,false
+1393,Union St. Gilloise,455438,M. Giger,F,false,UNKNOWN,2,11,3,2.364,2.5,1.455,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+1393,Union St. Gilloise,5967,K. Mac Allister,D,false,UNKNOWN,12,1,2.417,3,1.583,2.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+1393,Union St. Gilloise,8641,A. Castro-Montes,D,false,UNKNOWN,2,11,1,2.727,0.0,1.909,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+1393,Union St. Gilloise,8680,C. Vanhoutte,M,true,RESEARCH_ESTIMATE,5,8,2.2,2.625,1.8,1.5,-0.425,0.3,0.25,-0.052,OK,true,false,false,false,false
+1393,Union St. Gilloise,8939,R. Schoofs,M,false,UNKNOWN,2,11,3,2.364,2.0,1.545,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+1394,FC BW Linz,161820,N. Maier,F,true,RESEARCH_ESTIMATE,16,16,1,0.812,-0.062,-0.688,0.188,0.625,0.8,0.255,OK,true,false,false,false,false
+1394,FC BW Linz,169335,M. Moormann,D,true,RESEARCH_ESTIMATE,18,14,0.667,1.214,-0.778,0.143,-0.548,-0.921,0.7,-0.462,OK,true,false,false,false,false
+1394,FC BW Linz,174920,M. Fofana,M,true,RESEARCH_ESTIMATE,7,25,0.429,1.04,-0.857,-0.24,-0.611,-0.617,0.35,-0.214,OK,true,false,false,false,false
+1394,FC BW Linz,176023,S. Seidl,M,false,UNKNOWN,28,4,0.821,1.5,-0.393,-0.25,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_28_WITHOUT_4,true,false,false,false,false
+1394,FC BW Linz,178110,O. Wahling,M,false,UNKNOWN,3,29,0,1,-1.333,-0.276,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_29,true,false,false,false,false
+1394,FC BW Linz,199309,C. Conde,M,false,UNKNOWN,3,29,1,0.897,-0.333,-0.379,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_29,true,false,false,false,false
+1394,FC BW Linz,264435,I. Dahlqvist,M,true,RESEARCH_ESTIMATE,7,25,0.714,0.96,-0.286,-0.4,-0.246,0.114,0.35,-0.048,OK,true,false,false,false,false
+1394,FC BW Linz,26507,N. Mantl,G,true,RESEARCH_ESTIMATE,15,17,1.2,0.647,0.133,-0.824,0.553,0.957,0.75,0.506,OK,true,false,false,false,false
+1394,FC BW Linz,271395,A. Briedl,M,true,RESEARCH_ESTIMATE,25,7,1,0.571,-0.16,-1.143,0.429,0.983,0.35,0.208,OK,true,false,false,false,false
+1394,FC BW Linz,322103,D. Riegler,D,true,RESEARCH_ESTIMATE,5,27,0.8,0.926,-0.6,-0.333,-0.126,-0.267,0.25,-0.042,OK,true,false,false,false,false
+1394,FC BW Linz,341248,J. Knollmuller,F,false,UNKNOWN,1,31,1,0.903,0.0,-0.387,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_31,true,false,false,false,false
+1394,FC BW Linz,344283,E. Bakatukanda,D,true,RESEARCH_ESTIMATE,14,18,0.714,1.056,-0.786,-0.056,-0.341,-0.73,0.7,-0.32,OK,true,false,false,false,false
+1394,FC BW Linz,361410,V. Baier,G,true,RESEARCH_ESTIMATE,17,15,0.647,1.2,-0.824,0.133,-0.553,-0.957,0.75,-0.506,OK,true,false,false,false,false
+1394,FC BW Linz,70339,S. Weissman,F,true,RESEARCH_ESTIMATE,27,5,1.037,0.2,-0.185,-1.4,0.837,1.215,0.25,0.238,OK,true,false,false,false,false
+1394,FC BW Linz,7131,Ronivaldo,F,true,RESEARCH_ESTIMATE,18,14,0.944,0.857,-0.333,-0.429,0.087,0.095,0.7,0.063,OK,true,false,false,false,false
+1394,FC BW Linz,7143,M. Maranda,D,false,UNKNOWN,31,1,0.935,0,-0.355,-1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_31_WITHOUT_1,true,false,false,false,false
+1394,FC BW Linz,7156,S. Pirkl,M,true,RESEARCH_ESTIMATE,24,8,0.792,1.25,-0.5,0.0,-0.458,-0.5,0.4,-0.188,OK,true,false,false,false,false
+1394,FC BW Linz,7198,D. Bumberger,D,true,RESEARCH_ESTIMATE,8,24,1.25,0.792,0.0,-0.5,0.458,0.5,0.4,0.188,OK,true,false,false,false,false
+1394,FC BW Linz,7212,C. Cvetko,M,true,RESEARCH_ESTIMATE,14,18,0.857,0.944,-0.714,-0.111,-0.087,-0.603,0.7,-0.169,OK,true,false,false,false,false
+1394,FC BW Linz,7254,P. Mensah,F,false,UNKNOWN,3,29,0.333,0.966,-1.333,-0.276,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_29,true,false,false,false,false
+1394,FC BW Linz,7281,D. Reiter,M,true,RESEARCH_ESTIMATE,13,19,1.538,0.474,0.154,-0.737,1.065,0.891,0.65,0.658,OK,true,false,false,false,false
+1394,FC BW Linz,7513,A. Pasic,D,true,RESEARCH_ESTIMATE,23,9,0.913,0.889,-0.304,-0.556,0.024,0.251,0.45,0.041,OK,true,false,false,false,false
+1394,FC BW Linz,7534,T. Goiginger,F,true,RESEARCH_ESTIMATE,15,17,0.867,0.941,-0.533,-0.235,-0.075,-0.298,0.75,-0.106,OK,true,false,false,false,false
+1394,FC BW Linz,7673,Anderson,M,true,RESEARCH_ESTIMATE,6,26,0.667,0.962,-0.667,-0.308,-0.295,-0.359,0.3,-0.094,OK,true,false,false,false,false
+1394,FC BW Linz,7706,F. Strauss,D,true,RESEARCH_ESTIMATE,11,21,1.273,0.714,0.182,-0.667,0.558,0.848,0.55,0.355,OK,true,false,false,false,false
+1398,WSG Wattens,162460,B. Bockle,M,false,UNKNOWN,28,4,1.286,1,-0.286,-1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_28_WITHOUT_4,true,false,false,false,false
+1398,WSG Wattens,162538,J. Lawrence,D,false,UNKNOWN,32,0,1.25,,-0.375,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_32_WITHOUT_0,true,false,false,false,false
+1398,WSG Wattens,169323,L. Sulzbacher,M,true,RESEARCH_ESTIMATE,9,23,1.222,1.261,-0.778,-0.217,-0.039,-0.56,0.45,-0.088,OK,true,false,false,false,false
+1398,WSG Wattens,169739,J. Naschberger,M,true,RESEARCH_ESTIMATE,22,10,1.227,1.3,-0.591,0.1,-0.073,-0.691,0.5,-0.129,OK,true,false,false,false,false
+1398,WSG Wattens,202957,M. Boras,D,false,UNKNOWN,30,2,1.333,0,-0.233,-2.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_30_WITHOUT_2,true,false,false,false,false
+1398,WSG Wattens,25080,L. Hinterseer,F,false,UNKNOWN,4,28,1.25,1.25,-0.75,-0.321,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_28,true,false,false,false,false
+1398,WSG Wattens,271448,T. Geris,M,false,UNKNOWN,2,30,1.5,1.233,0.0,-0.4,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_30,true,false,false,false,false
+1398,WSG Wattens,271459,D. Jaunegg,D,false,UNKNOWN,3,29,0,1.379,-2.0,-0.207,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_29,true,false,false,false,false
+1398,WSG Wattens,304319,A. Ola-Adebomi,F,true,RESEARCH_ESTIMATE,16,16,1.188,1.312,-0.375,-0.375,-0.125,0.0,0.8,-0.07,OK,true,false,false,false,false
+1398,WSG Wattens,323132,M. Wels,M,false,UNKNOWN,30,2,1.233,1.5,-0.333,-1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_30_WITHOUT_2,true,false,false,false,false
+1398,WSG Wattens,334329,D. Kubatta,D,true,RESEARCH_ESTIMATE,20,12,1.4,1,-0.25,-0.583,0.4,0.333,0.6,0.228,OK,true,false,false,false,false
+1398,WSG Wattens,56296,N. Baden Frederiksen,F,true,RESEARCH_ESTIMATE,23,9,1.348,1,-0.391,-0.333,0.348,-0.058,0.45,0.102,OK,true,false,false,false,false
+1398,WSG Wattens,7087,D. Gugganig,D,true,RESEARCH_ESTIMATE,11,21,1.091,1.333,-0.545,-0.286,-0.242,-0.26,0.55,-0.136,OK,true,false,false,false,false
+1398,WSG Wattens,71260,Q. Butler,M,true,RESEARCH_ESTIMATE,9,23,1,1.348,-0.333,-0.391,-0.348,0.058,0.45,-0.102,OK,true,false,false,false,false
+1398,WSG Wattens,7134,A. Eckmayr,G,false,UNKNOWN,1,31,1,1.258,0.0,-0.387,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_31,true,false,false,false,false
+1398,WSG Wattens,7160,M. Taferner,M,true,RESEARCH_ESTIMATE,26,6,1.269,1.167,-0.308,-0.667,0.103,0.359,0.3,0.054,OK,true,false,false,false,false
+1398,WSG Wattens,7249,T. Sabitzer,F,true,RESEARCH_ESTIMATE,16,16,1.312,1.188,-0.25,-0.5,0.125,0.25,0.8,0.13,OK,true,false,false,false,false
+1398,WSG Wattens,7315,A. Stejskal,G,false,UNKNOWN,31,1,1.258,1,-0.387,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_31_WITHOUT_1,true,false,false,false,false
+1398,WSG Wattens,7336,T. Anselm,F,true,RESEARCH_ESTIMATE,8,24,1.375,1.208,0.125,-0.542,0.167,0.667,0.4,0.127,OK,true,false,false,false,false
+1398,WSG Wattens,7685,V. Muller,M,false,UNKNOWN,31,1,1.194,3,-0.452,2.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_31_WITHOUT_1,true,false,false,false,false
+260,OH Leuven,148351,L. Lakomy,M,true,RESEARCH_ESTIMATE,8,5,1,0.8,-0.125,-1.4,0.2,1.275,0.25,0.131,OK,true,false,false,false,false
+260,OH Leuven,156618,C. Terho,M,true,RESEARCH_ESTIMATE,6,7,1.167,0.714,-0.5,-0.714,0.452,0.214,0.3,0.114,OK,true,false,false,false,false
+260,OH Leuven,158425,T. Leysen,G,false,UNKNOWN,13,0,0.923,,-0.615,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+260,OH Leuven,187947,W. George,M,false,UNKNOWN,4,9,1.75,0.556,1.0,-1.333,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+260,OH Leuven,19509,T. Verlinden,F,false,UNKNOWN,2,11,0.5,1,-2.5,-0.273,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+260,OH Leuven,199903,T. Akimoto,M,false,UNKNOWN,13,0,0.923,,-0.615,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+260,OH Leuven,2108,W. Balikwisha,F,false,UNKNOWN,2,11,0.5,1,-2.5,-0.273,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+260,OH Leuven,21714,S. Kaba,F,false,UNKNOWN,4,9,1,0.889,0.25,-1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+260,OH Leuven,23975,Y. Maziz,M,true,RESEARCH_ESTIMATE,5,8,0.8,1,-0.8,-0.5,-0.2,-0.3,0.25,-0.057,OK,true,false,false,false,false
+260,OH Leuven,322879,R. Nyakossi,D,false,UNKNOWN,4,9,1,0.889,0.25,-1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+260,OH Leuven,33268,T. Ominami,D,false,UNKNOWN,11,2,0.727,2,-1.091,2.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_11_WITHOUT_2,true,false,false,false,false
+260,OH Leuven,335816,C. Ikwuemesi,F,true,RESEARCH_ESTIMATE,5,8,1,0.875,0.2,-1.125,0.125,1.325,0.25,0.121,OK,true,false,false,false,false
+260,OH Leuven,361358,J. Mijatovic,F,true,RESEARCH_ESTIMATE,7,6,0.857,1,-1.286,0.167,-0.143,-1.452,0.3,-0.161,OK,true,false,false,false,false
+260,OH Leuven,46968,O. Gil,M,false,UNKNOWN,12,1,0.75,3,-0.75,1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+260,OH Leuven,483115,A. K. Traore,F,true,RESEARCH_ESTIMATE,6,7,1.167,0.714,-0.5,-0.714,0.452,0.214,0.3,0.114,OK,true,false,false,false,false
+260,OH Leuven,73,T. Vlietinck,M,false,UNKNOWN,1,12,3,0.75,1.0,-0.75,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+260,OH Leuven,8487,B. Verstraete,M,false,UNKNOWN,4,9,0.25,1.222,-2.0,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+260,OH Leuven,8581,N. Dussenne,D,false,UNKNOWN,9,4,1.222,0.25,0.0,-2.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+260,OH Leuven,8612,E. Pletinckx,M,false,UNKNOWN,13,0,0.923,,-0.615,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+260,OH Leuven,8787,M. Maertens,M,false,UNKNOWN,3,10,0.667,1,-0.333,-0.7,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_10,true,false,false,false,false
+260,OH Leuven,88,S. Schrijvers,M,false,UNKNOWN,11,2,0.727,2,-1.091,2.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_11_WITHOUT_2,true,false,false,false,false
+261,KVC Westerlo,109271,S. Kimura,D,false,UNKNOWN,9,4,1.333,0.75,0.222,-1.25,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+261,KVC Westerlo,1348,R. Neustadter,D,false,UNKNOWN,4,9,0.75,1.333,-1.25,0.222,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+261,KVC Westerlo,161995,T. Van den Keybus,M,true,RESEARCH_ESTIMATE,6,7,1.167,1.143,-0.5,0.0,0.024,-0.5,0.3,-0.04,OK,true,false,false,false,false
+261,KVC Westerlo,162159,T. Rommens,D,false,UNKNOWN,11,2,1.273,0.5,-0.182,-0.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_11_WITHOUT_2,true,false,false,false,false
+261,KVC Westerlo,162513,E. Bayram,D,false,UNKNOWN,13,0,1.154,,-0.231,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+261,KVC Westerlo,2180,S. Sydorchuk,M,false,UNKNOWN,1,12,0,1.25,-3.0,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+261,KVC Westerlo,277175,A. Jungdal,G,false,UNKNOWN,13,0,1.154,,-0.231,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+261,KVC Westerlo,278950,I. Sakamoto,M,false,UNKNOWN,13,0,1.154,,-0.231,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+261,KVC Westerlo,292543,M. Frigan,F,false,UNKNOWN,2,11,1.5,1.091,-0.5,-0.182,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+261,KVC Westerlo,29784,A. Sayyadmanesh,M,true,RESEARCH_ESTIMATE,6,7,1,1.286,-0.167,-0.286,-0.286,0.119,0.3,-0.049,OK,true,false,false,false,false
+261,KVC Westerlo,323942,J. Alcocer,M,false,UNKNOWN,13,0,1.154,,-0.231,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+261,KVC Westerlo,353943,Nacho,F,false,UNKNOWN,11,2,1.091,1.5,-0.182,-0.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_11_WITHOUT_2,true,false,false,false,false
+261,KVC Westerlo,371950,A. Piedfort,M,false,UNKNOWN,9,4,1.333,0.75,0.222,-1.25,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+261,KVC Westerlo,37887,D. Haspolat,M,false,UNKNOWN,13,0,1.154,,-0.231,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+261,KVC Westerlo,392700,L. Mbamba-Muanda,D,false,UNKNOWN,1,12,0,1.25,-1.0,-0.167,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+261,KVC Westerlo,50774,G. Yow,M,true,RESEARCH_ESTIMATE,5,8,1.2,1.125,-0.2,-0.25,0.075,0.05,0.25,0.017,OK,true,false,false,false,false
+261,KVC Westerlo,51144,B. Reynolds,D,false,UNKNOWN,13,0,1.154,,-0.231,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+266,KV Mechelen,100279,F. Hammar,M,false,UNKNOWN,13,0,1.538,,0.154,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+266,KV Mechelen,162562,J. Marsa,D,false,UNKNOWN,9,4,1.667,1.25,0.222,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+266,KV Mechelen,182825,N. Miras,G,true,RESEARCH_ESTIMATE,7,6,1.286,1.833,0.0,0.333,-0.548,-0.333,0.3,-0.145,OK,true,false,false,false,false
+266,KV Mechelen,19532,K. Mrabti,F,true,RESEARCH_ESTIMATE,8,5,1.875,1,0.5,-0.4,0.875,0.9,0.25,0.221,OK,true,false,false,false,false
+266,KV Mechelen,25467,B. Raman,F,false,UNKNOWN,3,10,1.667,1.5,0.333,0.1,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_10,true,false,false,false,false
+266,KV Mechelen,26438,L. Lauberbach,F,false,UNKNOWN,12,1,1.417,3,0.083,1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+266,KV Mechelen,26497,P. Pflucke,M,false,UNKNOWN,4,9,2,1.333,0.5,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+266,KV Mechelen,279924,D. Salifou,M,false,UNKNOWN,1,12,0,1.667,-2.0,0.333,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+266,KV Mechelen,287797,M. van Brederode,M,true,RESEARCH_ESTIMATE,5,8,1.4,1.625,0.0,0.25,-0.225,-0.25,0.25,-0.058,OK,true,false,false,false,false
+266,KV Mechelen,295233,M. Servais,M,true,RESEARCH_ESTIMATE,7,6,1.286,1.833,0.0,0.333,-0.548,-0.333,0.3,-0.145,OK,true,false,false,false,false
+266,KV Mechelen,303362,R. Belghali,D,false,UNKNOWN,3,10,2.333,1.3,0.667,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_10,true,false,false,false,false
+266,KV Mechelen,326183,R. Halhal,D,false,UNKNOWN,13,0,1.538,,0.154,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+266,KV Mechelen,327692,T. Koudou,M,false,UNKNOWN,10,3,1.3,2.333,0.0,0.667,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_10_WITHOUT_3,true,false,false,false,false
+266,KV Mechelen,345357,B. Antonio,F,false,UNKNOWN,1,12,0,1.667,-2.0,0.333,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+266,KV Mechelen,388568,G. Diouf,D,true,RESEARCH_ESTIMATE,7,6,1.143,2,-0.286,0.667,-0.857,-0.952,0.3,-0.266,OK,true,false,false,false,false
+266,KV Mechelen,403253,B. Bafdili,M,false,UNKNOWN,9,4,1.667,1.25,0.222,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+266,KV Mechelen,515985,M. Zekri,M,false,UNKNOWN,9,4,1.778,1,0.444,-0.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+266,KV Mechelen,8741,O. De Wolf,G,true,RESEARCH_ESTIMATE,6,7,1.833,1.286,0.333,0.0,0.548,0.333,0.3,0.145,OK,true,false,false,false,false
+266,KV Mechelen,8939,R. Schoofs,M,true,RESEARCH_ESTIMATE,6,7,1.833,1.286,0.333,0.0,0.548,0.333,0.3,0.145,OK,true,false,false,false,false
+266,KV Mechelen,8946,N. Storm,F,false,UNKNOWN,1,12,1,1.583,0.0,0.167,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+266,KV Mechelen,90956,M. Konate,M,true,RESEARCH_ESTIMATE,8,5,1.5,1.6,0.25,0.0,-0.1,0.25,0.25,0.001,OK,true,false,false,false,false
+266,KV Mechelen,92974,T. St. Jago,D,false,UNKNOWN,1,12,1,1.583,0.0,0.167,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+4256,Grazer AK,106784,M. Grosse,F,false,UNKNOWN,4,28,1,1.179,0.5,-0.179,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_28,true,false,false,false,false
+4256,Grazer AK,116443,J. Meierhofer,G,true,RESEARCH_ESTIMATE,17,15,0.882,1.467,-0.706,0.6,-0.584,-1.306,0.75,-0.6,OK,true,false,false,false,false
+4256,Grazer AK,120495,L. Graf,D,false,UNKNOWN,3,29,0.333,1.241,-2.667,0.172,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_29,true,false,false,false,false
+4256,Grazer AK,140612,M. Olesen,M,true,RESEARCH_ESTIMATE,15,17,1.467,0.882,0.6,-0.706,0.584,1.306,0.75,0.6,OK,true,false,false,false,false
+4256,Grazer AK,181790,T. Schiestl,M,true,RESEARCH_ESTIMATE,6,26,1.5,1.077,0.333,-0.192,0.423,0.526,0.3,0.136,OK,true,false,false,false,false
+4256,Grazer AK,202810,Y. Oberleitner,D,false,UNKNOWN,3,29,0.333,1.241,-0.667,-0.034,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_29,true,false,false,false,false
+4256,Grazer AK,26119,L. Klassen,M,true,RESEARCH_ESTIMATE,15,17,1.467,0.882,0.6,-0.706,0.584,1.306,0.75,0.6,OK,true,false,false,false,false
+4256,Grazer AK,268373,T. Cipot,F,true,RESEARCH_ESTIMATE,10,22,0.6,1.409,-1.2,0.409,-0.809,-1.609,0.5,-0.524,OK,true,false,false,false,false
+4256,Grazer AK,280431,S. Fofana,M,true,RESEARCH_ESTIMATE,12,20,0.75,1.4,-1.083,0.5,-0.65,-1.583,0.6,-0.558,OK,true,false,false,false,false
+4256,Grazer AK,329612,R. Harakate,F,false,UNKNOWN,28,4,1.286,0.25,0.107,-1.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_28_WITHOUT_4,true,false,false,false,false
+4256,Grazer AK,339599,B. Owusu,D,false,UNKNOWN,30,2,1.2,0.5,-0.033,-1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_30_WITHOUT_2,true,false,false,false,false
+4256,Grazer AK,339877,L. Vraa-Jensen,D,true,RESEARCH_ESTIMATE,19,13,0.947,1.462,-0.579,0.615,-0.514,-1.194,0.65,-0.467,OK,true,false,false,false,false
+4256,Grazer AK,348014,Z. Jano,M,true,RESEARCH_ESTIMATE,6,26,1.333,1.115,0.167,-0.154,0.218,0.321,0.3,0.075,OK,true,false,false,false,false
+4256,Grazer AK,348152,M. Bagrationi,M,false,UNKNOWN,1,31,0,1.194,-1.0,-0.065,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_31,true,false,false,false,false
+4256,Grazer AK,426114,A. Hofleitner,F,true,RESEARCH_ESTIMATE,14,18,1.5,0.889,0.286,-0.389,0.611,0.675,0.7,0.441,OK,true,false,false,false,false
+4256,Grazer AK,50760,D. Pines,D,false,UNKNOWN,29,3,1.241,0.333,0.172,-2.667,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_29_WITHOUT_3,true,false,false,false,false
+4256,Grazer AK,6808,J. Italiano,M,true,RESEARCH_ESTIMATE,24,8,1.125,1.25,-0.167,0.125,-0.125,-0.292,0.4,-0.07,OK,true,false,false,false,false
+4256,Grazer AK,7158,M. Satin,M,true,RESEARCH_ESTIMATE,14,18,0.714,1.5,-0.5,0.222,-0.786,-0.722,0.7,-0.537,OK,true,false,false,false,false
+4256,Grazer AK,7176,M. Kreuzriegler,D,true,RESEARCH_ESTIMATE,12,20,1.583,0.9,0.667,-0.55,0.683,1.217,0.6,0.506,OK,true,false,false,false,false
+4256,Grazer AK,7228,F. Stolz,G,true,RESEARCH_ESTIMATE,15,17,1.467,0.882,0.6,-0.706,0.584,1.306,0.75,0.6,OK,true,false,false,false,false
+4256,Grazer AK,7389,T. Schriebl,M,true,RESEARCH_ESTIMATE,18,14,1.611,0.571,0.556,-0.929,1.04,1.484,0.7,0.821,OK,true,false,false,false,false
+4256,Grazer AK,7511,C. Lichtenberger,F,true,RESEARCH_ESTIMATE,13,19,1.538,0.895,0.538,-0.526,0.644,1.065,0.65,0.501,OK,true,false,false,false,false
+4256,Grazer AK,7533,D. Frieser,F,true,RESEARCH_ESTIMATE,11,21,0.636,1.429,-1.0,0.381,-0.792,-1.381,0.55,-0.533,OK,true,false,false,false,false
+4256,Grazer AK,7587,T. Koch,M,true,RESEARCH_ESTIMATE,19,13,0.895,1.538,-0.526,0.538,-0.644,-1.065,0.65,-0.501,OK,true,false,false,false,false
+4256,Grazer AK,78139,D. Maderner,F,true,RESEARCH_ESTIMATE,14,18,0.857,1.389,-0.714,0.389,-0.532,-1.103,0.7,-0.492,OK,true,false,false,false,false
+554,Anderlecht,127417,M. Kana,M,false,UNKNOWN,12,1,1.583,3,0.333,3.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+554,Anderlecht,127418,K. Sardella,D,true,RESEARCH_ESTIMATE,6,7,1.167,2.143,0.0,1.0,-0.976,-1.0,0.3,-0.295,OK,true,false,false,false,false
+554,Anderlecht,129126,A. Bertaccini,M,false,UNKNOWN,2,11,3,1.455,2.0,0.273,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+554,Anderlecht,1429,Y. Verschaeren,M,false,UNKNOWN,3,10,2,1.6,1.0,0.4,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_10,true,false,false,false,false
+554,Anderlecht,175415,M. N'Diaye,D,true,RESEARCH_ESTIMATE,5,8,1.6,1.75,0.4,0.625,-0.15,-0.225,0.25,-0.043,OK,true,false,false,false,false
+554,Anderlecht,2852,L. Augustinsson,D,true,RESEARCH_ESTIMATE,8,5,1.75,1.6,0.625,0.4,0.15,0.225,0.25,0.043,OK,true,false,false,false,false
+554,Anderlecht,2929,T. Hazard,M,false,UNKNOWN,10,3,1.7,1.667,0.6,0.333,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_10_WITHOUT_3,true,false,false,false,false
+554,Anderlecht,294824,N. Saliba,M,true,RESEARCH_ESTIMATE,8,5,1.375,2.2,0.0,1.4,-0.825,-1.4,0.25,-0.249,OK,true,false,false,false,false
+554,Anderlecht,296455,M. Stroeykens,M,false,UNKNOWN,2,11,2,1.636,0.5,0.545,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+554,Anderlecht,311543,N. Angulo,M,false,UNKNOWN,12,1,1.75,1,0.583,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+554,Anderlecht,315615,L. Hey,D,false,UNKNOWN,12,1,1.833,0,0.667,-1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+554,Anderlecht,36111,C. S. Huerta Valera,F,true,RESEARCH_ESTIMATE,6,7,1.5,1.857,0.0,1.0,-0.357,-1.0,0.3,-0.165,OK,true,false,false,false,false
+554,Anderlecht,371839,I. Camara,D,false,UNKNOWN,3,10,1.333,1.8,0.333,0.6,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_10,true,false,false,false,false
+554,Anderlecht,371910,J. Simic,D,false,UNKNOWN,2,11,1.5,1.727,1.0,0.455,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+554,Anderlecht,38745,E. Llansana,M,true,RESEARCH_ESTIMATE,6,7,1.833,1.571,0.833,0.286,0.262,0.548,0.3,0.104,OK,true,false,false,false,false
+554,Anderlecht,398190,M. Cvetkovic,F,false,UNKNOWN,3,10,1.333,1.8,0.333,0.6,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_10,true,false,false,false,false
+554,Anderlecht,400844,T. Degreef,M,false,UNKNOWN,4,9,1.25,1.889,0.25,0.667,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+554,Anderlecht,401367,A. Maamar,D,true,RESEARCH_ESTIMATE,5,8,2.4,1.25,1.4,0.0,1.15,1.4,0.25,0.306,OK,true,false,false,false,false
+554,Anderlecht,453903,N. De Cat,M,false,UNKNOWN,12,1,1.833,0,0.75,-2.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+554,Anderlecht,550,K. Dolberg,F,false,UNKNOWN,1,12,0,1.833,-1.0,0.667,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+554,Anderlecht,6490,L. Vazquez,F,true,RESEARCH_ESTIMATE,8,5,1.875,1.4,0.625,0.4,0.475,0.225,0.25,0.1,OK,true,false,false,false,false
+554,Anderlecht,8469,C. Coosemans,G,false,UNKNOWN,13,0,1.692,,0.538,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+569,Club Brugge KV,161800,C. Tzolis,M,false,UNKNOWN,12,1,2.417,0,0.833,-1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+569,Club Brugge KV,162211,C. Sandra,M,false,UNKNOWN,4,9,3,1.889,1.25,0.444,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+569,Club Brugge KV,162219,R. Onyedika,M,true,RESEARCH_ESTIMATE,5,8,1.6,2.625,0.4,0.875,-1.025,-0.475,0.25,-0.215,OK,true,false,false,false,false
+569,Club Brugge KV,180927,Z. Romero,D,false,UNKNOWN,1,12,0,2.417,-1.0,0.833,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+569,Club Brugge KV,1923,N. Jackers,G,false,UNKNOWN,12,1,2.167,3,0.667,1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+569,Club Brugge KV,271276,R. Vermant,F,true,RESEARCH_ESTIMATE,6,7,2.5,2,0.833,0.571,0.5,0.262,0.3,0.129,OK,true,false,false,false,false
+569,Club Brugge KV,271609,L. Audoor,,false,UNKNOWN,3,10,1.333,2.5,0.0,0.9,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_10,true,false,false,false,false
+569,Club Brugge KV,282,S. Mignolet,G,false,UNKNOWN,1,12,3,2.167,1.0,0.667,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+569,Club Brugge KV,282126,C. Forbs,M,false,UNKNOWN,9,4,2.222,2.25,0.667,0.75,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+569,Club Brugge KV,287923,N. Tresoldi,F,false,UNKNOWN,9,4,2.222,2.25,0.667,0.75,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+569,Club Brugge KV,290213,H. Siquet,D,false,UNKNOWN,2,11,3,2.091,1.5,0.545,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+569,Club Brugge KV,301322,K. Sabbe,D,true,RESEARCH_ESTIMATE,6,7,1.833,2.571,0.5,0.857,-0.738,-0.357,0.3,-0.187,OK,true,false,false,false,false
+569,Club Brugge KV,304984,J. Spileers,D,true,RESEARCH_ESTIMATE,8,5,1.75,3,0.375,1.2,-1.25,-0.825,0.25,-0.281,OK,true,false,false,false,false
+569,Club Brugge KV,314265,B. Meijer,D,true,RESEARCH_ESTIMATE,7,6,2.571,1.833,1.0,0.333,0.738,0.667,0.3,0.215,OK,true,false,false,false,false
+569,Club Brugge KV,342230,A. Stankovic,M,false,UNKNOWN,10,3,2.5,1.333,0.9,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_10_WITHOUT_3,true,false,false,false,false
+569,Club Brugge KV,354027,J. Ordonez,D,true,RESEARCH_ESTIMATE,6,7,3,1.571,1.167,0.286,1.429,0.881,0.3,0.379,OK,true,false,false,false,false
+569,Club Brugge KV,375974,J. Seys,D,false,UNKNOWN,9,4,2.222,2.25,0.556,1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+569,Club Brugge KV,38124,L. Reis,M,false,UNKNOWN,3,10,2,2.3,0.333,0.8,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_10,true,false,false,false,false
+569,Club Brugge KV,386481,M. Diakhon,F,false,UNKNOWN,1,12,0,2.417,-1.0,0.833,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+569,Club Brugge KV,39291,H. Vetlesen,M,false,UNKNOWN,3,10,2,2.3,0.667,0.7,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_10,true,false,false,false,false
+569,Club Brugge KV,69,B. Mechele,D,false,UNKNOWN,13,0,2.231,,0.692,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+569,Club Brugge KV,78,H. Vanaken,M,false,UNKNOWN,13,0,2.231,,0.692,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+571,Red Bull Salzburg,1082,S. Lainer,D,true,RESEARCH_ESTIMATE,23,9,1.565,1.333,0.565,0.222,0.232,0.343,0.45,0.119,OK,true,false,false,false,false
+571,Red Bull Salzburg,115587,M. Kjaergaard,M,true,RESEARCH_ESTIMATE,13,19,1.231,1.684,0.077,0.737,-0.453,-0.66,0.65,-0.335,OK,true,false,false,false,false
+571,Red Bull Salzburg,129072,Y. Vertessen,F,true,RESEARCH_ESTIMATE,18,14,1.389,1.643,0.222,0.786,-0.254,-0.563,0.7,-0.243,OK,true,false,false,false,false
+571,Red Bull Salzburg,162189,M. Bidstrup,M,true,RESEARCH_ESTIMATE,23,9,1.565,1.333,0.522,0.333,0.232,0.188,0.45,0.098,OK,true,false,false,false,false
+571,Red Bull Salzburg,179843,L. Gourna-Douath,M,false,UNKNOWN,2,30,3,1.4,2.0,0.367,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_30,true,false,false,false,false
+571,Red Bull Salzburg,25928,K. Onisiwo,F,true,RESEARCH_ESTIMATE,5,27,0.6,1.667,-0.6,0.667,-1.067,-1.267,0.25,-0.282,OK,true,false,false,false,false
+571,Red Bull Salzburg,280335,F. Kratzig,D,true,RESEARCH_ESTIMATE,24,8,1.292,2.125,0.125,1.5,-0.833,-1.375,0.4,-0.398,OK,true,false,false,false,false
+571,Red Bull Salzburg,286784,D. Redzic,M,false,UNKNOWN,4,28,0,1.714,-1.25,0.714,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_28,true,false,false,false,false
+571,Red Bull Salzburg,288073,S. Kitano,F,true,RESEARCH_ESTIMATE,19,13,1.526,1.462,0.737,0.077,0.065,0.66,0.65,0.158,OK,true,false,false,false,false
+571,Red Bull Salzburg,301763,P. Ratkov,F,true,RESEARCH_ESTIMATE,12,20,2,1.2,1.0,0.15,0.8,0.85,0.6,0.489,OK,true,false,false,false,false
+571,Red Bull Salzburg,302915,M. Diambou,M,true,RESEARCH_ESTIMATE,7,25,1.857,1.4,0.714,0.4,0.457,0.314,0.35,0.145,OK,true,false,false,false,false
+571,Red Bull Salzburg,31047,J. Rasmussen,D,true,RESEARCH_ESTIMATE,15,17,1.867,1.176,0.867,0.118,0.69,0.749,0.75,0.531,OK,true,false,false,false,false
+571,Red Bull Salzburg,327861,T. Drexler,D,true,RESEARCH_ESTIMATE,13,19,1.231,1.684,0.231,0.632,-0.453,-0.401,0.65,-0.284,OK,true,false,false,false,false
+571,Red Bull Salzburg,331865,K. Konate,M,true,RESEARCH_ESTIMATE,11,21,1.364,1.571,0.364,0.524,-0.208,-0.16,0.55,-0.106,OK,true,false,false,false,false
+571,Red Bull Salzburg,349,A. Terzic,D,true,RESEARCH_ESTIMATE,9,23,1.889,1.348,1.0,0.261,0.541,0.739,0.45,0.27,OK,true,false,false,false,false
+571,Red Bull Salzburg,361981,A. Chase,D,false,UNKNOWN,3,29,0.333,1.621,-1.0,0.621,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_29,true,false,false,false,false
+571,Red Bull Salzburg,362564,A. Daghim,M,false,UNKNOWN,1,31,3,1.452,5.0,0.323,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_31,true,false,false,false,false
+571,Red Bull Salzburg,381810,M. K. Yeo,M,true,RESEARCH_ESTIMATE,9,23,1.556,1.478,0.333,0.522,0.077,-0.188,0.45,-0.001,OK,true,false,false,false,false
+571,Red Bull Salzburg,386296,T. Trummer,D,true,RESEARCH_ESTIMATE,7,25,1.714,1.44,0.857,0.36,0.274,0.497,0.35,0.119,OK,true,false,false,false,false
+571,Red Bull Salzburg,394682,O. Lukic,M,false,UNKNOWN,1,31,0,1.548,-1.0,0.516,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_31,true,false,false,false,false
+571,Red Bull Salzburg,395559,K. Alajbegovic,F,true,RESEARCH_ESTIMATE,22,10,1.455,1.6,0.409,0.6,-0.145,-0.191,0.5,-0.079,OK,true,false,false,false,false
+571,Red Bull Salzburg,403326,S. Diabate,M,true,RESEARCH_ESTIMATE,21,11,1.429,1.636,0.571,0.273,-0.208,0.299,0.55,-0.031,OK,true,false,false,false,false
+571,Red Bull Salzburg,409215,J. Gadou,D,true,RESEARCH_ESTIMATE,18,14,1.667,1.286,0.556,0.357,0.381,0.198,0.7,0.228,OK,true,false,false,false,false
+571,Red Bull Salzburg,441271,J. Schuster,D,true,RESEARCH_ESTIMATE,19,13,1.316,1.769,0.316,0.692,-0.453,-0.377,0.65,-0.28,OK,true,false,false,false,false
+571,Red Bull Salzburg,441958,C. Bischoff,F,false,UNKNOWN,4,28,2,1.429,1.0,0.393,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_28,true,false,false,false,false
+571,Red Bull Salzburg,445566,C. Zawieschitzky,G,false,UNKNOWN,1,31,3,1.452,3.0,0.387,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_31,true,false,false,false,false
+571,Red Bull Salzburg,464055,E. Baidoo,M,true,RESEARCH_ESTIMATE,17,15,1.765,1.2,0.588,0.333,0.565,0.255,0.75,0.354,OK,true,false,false,false,false
+571,Red Bull Salzburg,7525,A. Schlager,G,false,UNKNOWN,31,1,1.452,3,0.387,3.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_31_WITHOUT_1,true,false,false,false,false
+5902,RAAL La Louvière,106774,S. Lahssaini,M,false,UNKNOWN,11,2,1.182,2,-0.182,0.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_11_WITHOUT_2,true,false,false,false,false
+5902,RAAL La Louvière,125617,T. Lutonda,D,false,UNKNOWN,11,2,1.545,0,0.182,-1.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_11_WITHOUT_2,true,false,false,false,false
+5902,RAAL La Louvière,128309,S. Sidibe,F,false,UNKNOWN,1,12,0,1.417,-1.0,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+5902,RAAL La Louvière,131659,W. Faye,D,false,UNKNOWN,13,0,1.308,,-0.077,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+5902,RAAL La Louvière,163369,T. Epailly,F,false,UNKNOWN,1,12,0,1.417,-2.0,0.083,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+5902,RAAL La Louvière,174604,M. Pau,M,true,RESEARCH_ESTIMATE,6,7,0.667,1.857,-0.667,0.429,-1.19,-1.095,0.3,-0.348,OK,true,false,false,false,false
+5902,RAAL La Louvière,174853,O. Maes,M,false,UNKNOWN,9,4,1.556,0.75,0.222,-0.75,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+5902,RAAL La Louvière,175120,M. Maisonneuve,D,true,RESEARCH_ESTIMATE,6,7,0.667,1.857,-0.667,0.429,-1.19,-1.095,0.3,-0.348,OK,true,false,false,false,false
+5902,RAAL La Louvière,175414,J. Liongola,M,false,UNKNOWN,13,0,1.308,,-0.077,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+5902,RAAL La Louvière,179402,O. Mendy,F,false,UNKNOWN,9,4,1.778,0.25,0.333,-1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+5902,RAAL La Louvière,180470,S. Gueulette,M,false,UNKNOWN,4,9,1,1.444,-0.5,0.111,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+5902,RAAL La Louvière,274299,Y. Okou,D,true,RESEARCH_ESTIMATE,7,6,1.857,0.667,0.429,-0.667,1.19,1.095,0.3,0.348,OK,true,false,false,false,false
+5902,RAAL La Louvière,281727,J. Ito,M,false,UNKNOWN,9,4,1.778,0.25,0.333,-1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+5902,RAAL La Louvière,31149,M. Belkheir,F,false,UNKNOWN,2,11,0.5,1.455,-1.0,0.091,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+5902,RAAL La Louvière,333136,D. Lamego,D,false,UNKNOWN,13,0,1.308,,-0.077,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+5902,RAAL La Louvière,335057,D. Benavides,M,false,UNKNOWN,2,11,0,1.545,-1.5,0.182,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+5902,RAAL La Louvière,385542,M. Guindo,F,true,RESEARCH_ESTIMATE,5,8,0.8,1.625,-0.4,0.125,-0.825,-0.525,0.25,-0.184,OK,true,false,false,false,false
+5902,RAAL La Louvière,508881,J. Afriyie,F,true,RESEARCH_ESTIMATE,8,5,1.625,0.8,0.25,-0.6,0.825,0.85,0.25,0.208,OK,true,false,false,false,false
+5902,RAAL La Louvière,6102,M. Peano,G,false,UNKNOWN,13,0,1.308,,-0.077,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+600,Zulte Waregem,118343,J. Kiilerich,D,true,RESEARCH_ESTIMATE,8,6,1.75,0.833,0.5,-0.667,0.917,1.167,0.3,0.298,OK,true,false,false,false,false
+600,Zulte Waregem,129687,M. Ake,M,false,UNKNOWN,1,13,1,1.385,0.0,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_13,true,false,false,false,false
+600,Zulte Waregem,157231,B. Nyssen,D,true,RESEARCH_ESTIMATE,6,8,1,1.625,-0.333,0.25,-0.625,-0.583,0.3,-0.184,OK,true,false,false,false,false
+600,Zulte Waregem,161703,S. Gavriel,M,true,RESEARCH_ESTIMATE,7,7,2,0.714,0.714,-0.714,1.286,1.429,0.35,0.465,OK,true,false,false,false,false
+600,Zulte Waregem,162912,A. Tanghe,D,false,UNKNOWN,14,0,1.357,,0.0,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_14_WITHOUT_0,true,false,false,false,false
+600,Zulte Waregem,178328,E. Lofolomo,M,false,UNKNOWN,2,12,1.5,1.333,0.5,-0.083,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_12,true,false,false,false,false
+600,Zulte Waregem,272239,T. Hedl,F,false,UNKNOWN,3,11,1,1.455,-0.667,0.182,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_11,true,false,false,false,false
+600,Zulte Waregem,275367,W. Paugain,M,true,RESEARCH_ESTIMATE,8,6,1.625,1,0.25,-0.333,0.625,0.583,0.3,0.184,OK,true,false,false,false,false
+600,Zulte Waregem,294856,J. Erenbjerg,M,false,UNKNOWN,12,2,1.333,1.5,0.0,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_2,true,false,false,false,false
+600,Zulte Waregem,295971,A. Ementa,F,true,RESEARCH_ESTIMATE,8,6,1.875,0.667,0.625,-0.833,1.208,1.458,0.3,0.385,OK,true,false,false,false,false
+600,Zulte Waregem,337946,L. Willen,D,false,UNKNOWN,3,11,1,1.455,-0.667,0.182,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_11,true,false,false,false,false
+600,Zulte Waregem,354298,T. Nnadi,M,false,UNKNOWN,13,1,1.231,3,-0.154,2.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_1,true,false,false,false,false
+600,Zulte Waregem,358102,T. Claes,M,false,UNKNOWN,14,0,1.357,,0.0,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_14_WITHOUT_0,true,false,false,false,false
+600,Zulte Waregem,3915,S. Ujka,M,false,UNKNOWN,3,11,1,1.455,-0.333,0.091,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_11,true,false,false,false,false
+600,Zulte Waregem,395617,A. Traore,M,false,UNKNOWN,2,12,0.5,1.5,-1.0,0.167,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_12,true,false,false,false,false
+600,Zulte Waregem,447097,Y. Cappelle,D,false,UNKNOWN,14,0,1.357,,0.0,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_14_WITHOUT_0,true,false,false,false,false
+600,Zulte Waregem,490151,J. Opoku,F,false,UNKNOWN,14,0,1.357,,0.0,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_14_WITHOUT_0,true,false,false,false,false
+600,Zulte Waregem,61,B. Gabriel,G,false,UNKNOWN,14,0,1.357,,0.0,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_14_WITHOUT_0,true,false,false,false,false
+600,Zulte Waregem,89,J. Vossen,F,false,UNKNOWN,2,12,0.5,1.5,-1.0,0.167,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_12,true,false,false,false,false
+600,Zulte Waregem,8929,L. Lemoine,D,true,RESEARCH_ESTIMATE,6,8,0.833,1.75,-0.667,0.5,-0.917,-1.167,0.3,-0.298,OK,true,false,false,false,false
+601,Austria Vienna,136154,A. Barry,M,true,RESEARCH_ESTIMATE,27,5,1.593,0.8,-0.037,-0.8,0.793,0.763,0.25,0.196,OK,true,false,false,false,false
+601,Austria Vienna,202894,N. Botic,F,true,RESEARCH_ESTIMATE,6,26,1,1.577,-0.667,-0.038,-0.577,-0.628,0.3,-0.178,OK,true,false,false,false,false
+601,Austria Vienna,224669,Lee Kang-Hee,M,true,RESEARCH_ESTIMATE,17,15,1.412,1.533,-0.118,-0.2,-0.122,0.082,0.75,-0.046,OK,true,false,false,false,false
+601,Austria Vienna,237220,Lee Tae-Seok,M,false,UNKNOWN,29,3,1.586,0.333,0.0,-1.667,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_29_WITHOUT_3,true,false,false,false,false
+601,Austria Vienna,25306,M. Malone,F,false,UNKNOWN,4,28,1,1.536,-0.5,-0.107,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_28,true,false,false,false,false
+601,Austria Vienna,25326,J. Eggestein,F,true,RESEARCH_ESTIMATE,27,5,1.63,0.6,-0.037,-0.8,1.03,0.763,0.25,0.237,OK,true,false,false,false,false
+601,Austria Vienna,25364,S. Sahin-Radlinger,G,false,UNKNOWN,32,0,1.469,,-0.156,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_32_WITHOUT_0,true,false,false,false,false
+601,Austria Vienna,263813,K. Boateng,F,false,UNKNOWN,4,28,0.5,1.607,-1.0,-0.036,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_28,true,false,false,false,false
+601,Austria Vienna,339997,S. Saljic,M,true,RESEARCH_ESTIMATE,14,18,2,1.056,0.429,-0.611,0.944,1.04,0.7,0.681,OK,true,false,false,false,false
+601,Austria Vienna,340172,L. Pazourek,D,false,UNKNOWN,1,31,0,1.516,-1.0,-0.129,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_31,true,false,false,false,false
+601,Austria Vienna,366061,M. Schablas,M,false,UNKNOWN,1,31,0,1.516,-3.0,-0.065,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_31,true,false,false,false,false
+601,Austria Vienna,392589,D. Radonjic,D,true,RESEARCH_ESTIMATE,8,24,2,1.292,0.25,-0.292,0.708,0.542,0.4,0.263,OK,true,false,false,false,false
+601,Austria Vienna,460150,P. Maybach,M,true,RESEARCH_ESTIMATE,15,17,1.4,1.529,-0.2,-0.118,-0.129,-0.082,0.75,-0.086,OK,true,false,false,false,false
+601,Austria Vienna,585991,V. Markovic,M,false,UNKNOWN,4,28,1,1.536,-0.75,-0.071,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_28,true,false,false,false,false
+601,Austria Vienna,7139,J. Handl,D,true,RESEARCH_ESTIMATE,6,26,0.667,1.654,-1.333,0.115,-0.987,-1.449,0.3,-0.338,OK,true,false,false,false,false
+601,Austria Vienna,7353,T. Plavotic,D,true,RESEARCH_ESTIMATE,21,11,1.333,1.727,-0.19,-0.091,-0.394,-0.1,0.55,-0.168,OK,true,false,false,false,false
+601,Austria Vienna,7449,M. Sarkaria,F,true,RESEARCH_ESTIMATE,11,21,1.273,1.571,-0.455,0.0,-0.299,-0.455,0.55,-0.19,OK,true,false,false,false,false
+601,Austria Vienna,7453,D. Fitz,M,false,UNKNOWN,3,29,0.333,1.586,-1.0,-0.069,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_29,true,false,false,false,false
+601,Austria Vienna,7528,R. Ranftl,M,false,UNKNOWN,32,0,1.469,,-0.156,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_32_WITHOUT_0,true,false,false,false,false
+601,Austria Vienna,7531,P. Wiesinger,D,false,UNKNOWN,28,4,1.536,1,-0.143,-0.25,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_28_WITHOUT_4,true,false,false,false,false
+601,Austria Vienna,7681,M. Fischer,M,false,UNKNOWN,32,0,1.469,,-0.156,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_32_WITHOUT_0,true,false,false,false,false
+601,Austria Vienna,968,A. Dragovic,D,false,UNKNOWN,28,4,1.679,0,0.071,-1.75,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_28_WITHOUT_4,true,false,false,false,false
+601,Austria Vienna,993,H. Guenouche,M,false,UNKNOWN,2,30,0.5,1.533,-1.0,-0.1,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_30,true,false,false,false,false
+618,SCR Altach,119831,L. Lukacevic,D,false,UNKNOWN,1,31,0,1.355,-2.0,-0.032,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_31,true,false,false,false,false
+618,SCR Altach,14294,A. Gorgon,M,false,UNKNOWN,1,31,0,1.355,-1.0,-0.065,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_31,true,false,false,false,false
+618,SCR Altach,161087,O. Diawara,F,true,RESEARCH_ESTIMATE,23,9,1.13,1.778,-0.348,0.556,-0.647,-0.903,0.45,-0.326,OK,true,false,false,false,false
+618,SCR Altach,169420,M. Oswald,D,true,RESEARCH_ESTIMATE,6,26,1,1.385,-0.667,0.038,-0.385,-0.705,0.3,-0.144,OK,true,false,false,false,false
+618,SCR Altach,193804,Y. Massombo,F,false,UNKNOWN,29,3,1.207,2.333,-0.207,1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_29_WITHOUT_3,true,false,false,false,false
+618,SCR Altach,19792,M. Bahre,M,false,UNKNOWN,30,2,1.4,0,0.0,-1.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_30_WITHOUT_2,true,false,false,false,false
+618,SCR Altach,202729,S. Mustapha,F,true,RESEARCH_ESTIMATE,15,17,1.4,1.235,0.133,-0.294,0.165,0.427,0.75,0.183,OK,true,false,false,false,false
+618,SCR Altach,211958,R. Rahmani,D,false,UNKNOWN,3,29,1.667,1.276,0.667,-0.172,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_29,true,false,false,false,false
+618,SCR Altach,25146,L. Gugganig,D,false,UNKNOWN,1,31,3,1.258,2.0,-0.161,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_31,true,false,false,false,false
+618,SCR Altach,25612,L. Jager,D,true,RESEARCH_ESTIMATE,23,9,1.348,1.222,-0.13,0.0,0.126,-0.13,0.45,0.022,OK,true,false,false,false,false
+618,SCR Altach,266792,S. Hrstic,F,true,RESEARCH_ESTIMATE,12,20,1.667,1.1,0.167,-0.25,0.567,0.417,0.6,0.313,OK,true,false,false,false,false
+618,SCR Altach,280686,P. Estrada,D,false,UNKNOWN,2,30,0.5,1.367,-0.5,-0.067,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_30,true,false,false,false,false
+618,SCR Altach,381006,F. Milojevic,D,true,RESEARCH_ESTIMATE,20,12,1.25,1.417,-0.2,0.083,-0.167,-0.283,0.6,-0.121,OK,true,false,false,false,false
+618,SCR Altach,412049,M. Ouedraogo,M,false,UNKNOWN,29,3,1.379,0.667,-0.034,-0.667,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_29_WITHOUT_3,true,false,false,false,false
+618,SCR Altach,428786,E. Yalcin,F,false,UNKNOWN,3,29,0.333,1.414,-0.667,-0.034,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_29,true,false,false,false,false
+618,SCR Altach,48473,D. Stojanovic,G,false,UNKNOWN,32,0,1.312,,-0.094,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_32_WITHOUT_0,true,false,false,false,false
+618,SCR Altach,7302,P. Greil,F,false,UNKNOWN,28,4,1.429,0.5,0.107,-1.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_28_WITHOUT_4,true,false,false,false,false
+618,SCR Altach,7441,V. Demaku,M,true,RESEARCH_ESTIMATE,19,13,1.526,1,0.053,-0.308,0.526,0.36,0.65,0.31,OK,true,false,false,false,false
+618,SCR Altach,7615,S. Ingolitsch,M,false,UNKNOWN,29,3,1.31,1.333,-0.103,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_29_WITHOUT_3,true,false,false,false,false
+618,SCR Altach,7677,B. Zech,D,false,UNKNOWN,29,3,1.241,2,-0.207,1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_29_WITHOUT_3,true,false,false,false,false
+618,SCR Altach,7701,P. Koller,D,true,RESEARCH_ESTIMATE,17,15,1.235,1.4,-0.059,-0.133,-0.165,0.075,0.75,-0.07,OK,true,false,false,false,false
+6215,Dender,130838,J. A. Kadiri,F,false,UNKNOWN,1,13,0,0.385,-3.0,-0.923,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_13,true,false,false,false,false
+6215,Dender,131664,M. Sambu,M,false,UNKNOWN,4,10,0.5,0.3,-0.75,-1.2,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_10,true,false,false,false,false
+6215,Dender,134694,K. Cools,D,true,RESEARCH_ESTIMATE,7,7,0.286,0.429,-1.286,-0.857,-0.143,-0.429,0.35,-0.08,OK,true,false,false,false,false
+6215,Dender,137073,D. Toshevski,F,false,UNKNOWN,3,11,0.667,0.273,-0.333,-1.273,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_11,true,false,false,false,false
+6215,Dender,193719,M. Viltard,M,false,UNKNOWN,12,2,0.417,0,-1.0,-1.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_2,true,false,false,false,false
+6215,Dender,20518,G. Dietsch,G,false,UNKNOWN,4,10,0.25,0.4,-1.0,-1.1,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_10,true,false,false,false,false
+6215,Dender,20733,A. Scheidler,F,false,UNKNOWN,4,10,0.5,0.3,-1.0,-1.1,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_10,true,false,false,false,false
+6215,Dender,267723,B. Nsimba,F,false,UNKNOWN,10,4,0.3,0.5,-1.1,-1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_10_WITHOUT_4,true,false,false,false,false
+6215,Dender,287793,L. Marijnissen,D,false,UNKNOWN,14,0,0.357,,-1.071,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_14_WITHOUT_0,true,false,false,false,false
+6215,Dender,298006,N. Mbamba,M,false,UNKNOWN,14,0,0.357,,-1.071,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_14_WITHOUT_0,true,false,false,false,false
+6215,Dender,315025,M. Berte,F,false,UNKNOWN,3,11,0.333,0.364,-1.0,-1.091,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_11,true,false,false,false,false
+6215,Dender,327738,L. De Fougerolles,D,false,UNKNOWN,12,2,0.333,0.5,-1.167,-0.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_2,true,false,false,false,false
+6215,Dender,338230,F. Ferraro,D,false,UNKNOWN,14,0,0.357,,-1.071,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_14_WITHOUT_0,true,false,false,false,false
+6215,Dender,37671,J. Pupe,D,false,UNKNOWN,4,10,0.5,0.3,-1.0,-1.1,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_10,true,false,false,false,false
+6215,Dender,37839,R. Oratmangoen,M,false,UNKNOWN,1,13,0,0.385,-1.0,-1.077,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_13,true,false,false,false,false
+6215,Dender,408221,B. Fredrick,D,false,UNKNOWN,10,4,0.4,0.25,-0.9,-1.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_10_WITHOUT_4,true,false,false,false,false
+6215,Dender,66175,R. Kvet,F,false,UNKNOWN,14,0,0.357,,-1.071,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_14_WITHOUT_0,true,false,false,false,false
+6215,Dender,8569,N. Rodes,D,true,RESEARCH_ESTIMATE,8,6,0.25,0.5,-1.25,-0.833,-0.25,-0.417,0.3,-0.09,OK,true,false,false,false,false
+6215,Dender,87037,B. Goncalves,D,false,UNKNOWN,2,12,0,0.417,-1.0,-1.083,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_12,true,false,false,false,false
+6215,Dender,8924,M. Verrips,G,false,UNKNOWN,10,4,0.4,0.25,-1.1,-1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_10_WITHOUT_4,true,false,false,false,false
+6215,Dender,98855,D. Hrncar,M,false,UNKNOWN,3,11,0.333,0.364,-1.333,-1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_11,true,false,false,false,false
+631,Gent,126974,O. Gandelman,M,false,UNKNOWN,10,3,1.7,1,0.3,-0.667,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_10_WITHOUT_3,true,false,false,false,false
+631,Gent,129867,A. Kadri,F,true,RESEARCH_ESTIMATE,6,7,2.167,1,1.0,-0.714,1.167,1.714,0.3,0.399,OK,true,false,false,false,false
+631,Gent,161935,T. Araujo,M,true,RESEARCH_ESTIMATE,7,6,1,2.167,-0.714,1.0,-1.167,-1.714,0.3,-0.399,OK,true,false,false,false,false
+631,Gent,20144,L. Lopes,M,true,RESEARCH_ESTIMATE,6,7,1.167,1.857,-0.667,0.714,-0.69,-1.381,0.3,-0.269,OK,true,false,false,false,false
+631,Gent,20655,J. Duverne,M,true,RESEARCH_ESTIMATE,6,7,2,1.143,1.0,-0.714,0.857,1.714,0.3,0.334,OK,true,false,false,false,false
+631,Gent,21155,W. Kanga,F,false,UNKNOWN,10,3,1.7,1,0.4,-1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_10_WITHOUT_3,true,false,false,false,false
+631,Gent,266927,A. Ito,M,false,UNKNOWN,13,0,1.538,,0.077,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+631,Gent,269453,H. Essaouabi,D,false,UNKNOWN,2,11,0.5,1.727,-0.5,0.182,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+631,Gent,278018,F. Surdez,F,false,UNKNOWN,4,9,0.75,1.889,-1.75,0.889,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+631,Gent,281376,M. Samoise,D,false,UNKNOWN,11,2,1.818,0,0.455,-2.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_11_WITHOUT_2,true,false,false,false,false
+631,Gent,291024,H. Varela,F,false,UNKNOWN,2,11,1.5,1.545,-0.5,0.182,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+631,Gent,299972,M. Delorge-Knieper,M,false,UNKNOWN,12,1,1.667,0,0.167,-1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+631,Gent,303118,S. Kotto,D,false,UNKNOWN,4,9,1.5,1.556,-0.25,0.222,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+631,Gent,328978,M. Sonko,M,false,UNKNOWN,2,11,2,1.455,2.0,-0.273,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+631,Gent,37639,S. Van Der Heyden,D,false,UNKNOWN,11,2,1.545,1.5,0.182,-0.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_11_WITHOUT_2,true,false,false,false,false
+631,Gent,381830,T. De Vlieger,M,false,UNKNOWN,1,12,0,1.667,-2.0,0.25,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+631,Gent,40809,M. Skoras,F,true,RESEARCH_ESTIMATE,6,7,2,1.143,0.333,-0.143,0.857,0.476,0.3,0.223,OK,true,false,false,false,false
+631,Gent,477549,H. Goore,F,true,RESEARCH_ESTIMATE,6,7,1.167,1.857,-0.5,0.571,-0.69,-1.071,0.3,-0.241,OK,true,false,false,false,false
+631,Gent,60353,M. Paskotsi,D,false,UNKNOWN,10,3,1.4,2,0.1,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_10_WITHOUT_3,true,false,false,false,false
+631,Gent,8716,D. Roef,G,false,UNKNOWN,13,0,1.538,,0.077,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+631,Gent,8920,D. Vanzeir,F,false,UNKNOWN,1,12,0,1.667,-2.0,0.25,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+637,Sturm Graz,1088,A. Vallci,D,true,RESEARCH_ESTIMATE,14,18,1.786,1.722,0.786,0.278,0.063,0.508,0.7,0.138,OK,true,false,false,false,false
+637,Sturm Graz,109740,T. Horvat,M,true,RESEARCH_ESTIMATE,17,15,1.647,1.867,0.235,0.8,-0.22,-0.565,0.75,-0.243,OK,true,false,false,false,false
+637,Sturm Graz,137384,T. Chukwuani,M,true,RESEARCH_ESTIMATE,14,18,1.571,1.889,0.214,0.722,-0.317,-0.508,0.7,-0.262,OK,true,false,false,false,false
+637,Sturm Graz,15843,O. Christensen,G,true,RESEARCH_ESTIMATE,15,17,1.667,1.824,0.267,0.706,-0.157,-0.439,0.75,-0.181,OK,true,false,false,false,false
+637,Sturm Graz,169498,N. Geyrhofer,D,false,UNKNOWN,2,30,1.5,1.767,-0.5,0.567,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_30,true,false,false,false,false
+637,Sturm Graz,19041,J. Gorenc Stankovic,M,false,UNKNOWN,30,2,1.767,1.5,0.5,0.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_30_WITHOUT_2,true,false,false,false,false
+637,Sturm Graz,199931,W. Boving,F,false,UNKNOWN,3,29,2,1.724,1.0,0.448,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_29,true,false,false,false,false
+637,Sturm Graz,216761,S. Jatta,F,true,RESEARCH_ESTIMATE,23,9,1.87,1.444,0.652,0.111,0.425,0.541,0.45,0.207,OK,true,false,false,false,false
+637,Sturm Graz,25306,M. Malone,F,true,RESEARCH_ESTIMATE,18,14,1.333,2.286,0.0,1.143,-0.952,-1.143,0.7,-0.707,OK,true,false,false,false,false
+637,Sturm Graz,268595,M. Johnston,D,false,UNKNOWN,3,29,2,1.724,1.0,0.448,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_29,true,false,false,false,false
+637,Sturm Graz,273295,G. Mamageishvili,M,true,RESEARCH_ESTIMATE,6,26,1.667,1.769,0.5,0.5,-0.103,0.0,0.3,-0.022,OK,true,false,false,false,false
+637,Sturm Graz,280091,T. Oermann,D,true,RESEARCH_ESTIMATE,13,19,1.923,1.632,0.615,0.421,0.291,0.194,0.65,0.17,OK,true,false,false,false,false
+637,Sturm Graz,281989,D. Khudyakov,G,true,RESEARCH_ESTIMATE,8,24,1.75,1.75,0.75,0.417,0.0,0.333,0.4,0.04,OK,true,false,false,false,false
+637,Sturm Graz,297583,J. Mitchell,D,true,RESEARCH_ESTIMATE,15,17,1.867,1.647,0.6,0.412,0.22,0.188,0.75,0.158,OK,true,false,false,false,false
+637,Sturm Graz,328258,M. Bignetti,G,true,RESEARCH_ESTIMATE,9,23,1.889,1.696,0.667,0.435,0.193,0.232,0.45,0.092,OK,true,false,false,false,false
+637,Sturm Graz,335069,R. Fosso,M,true,RESEARCH_ESTIMATE,11,21,1.818,1.714,0.727,0.381,0.104,0.346,0.55,0.097,OK,true,false,false,false,false
+637,Sturm Graz,357424,B. Beganovic,F,false,UNKNOWN,2,30,2,1.733,0.5,0.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_30,true,false,false,false,false
+637,Sturm Graz,372585,L. Grgic,F,true,RESEARCH_ESTIMATE,10,22,1.9,1.682,0.5,0.5,0.218,0.0,0.5,0.076,OK,true,false,false,false,false
+637,Sturm Graz,38763,D. Lavalee,D,true,RESEARCH_ESTIMATE,14,18,1.786,1.722,0.5,0.5,0.063,0.0,0.7,0.031,OK,true,false,false,false,false
+637,Sturm Graz,394955,F. Rozga,M,true,RESEARCH_ESTIMATE,8,24,2.625,1.458,1.25,0.25,1.167,1.0,0.4,0.447,OK,true,false,false,false,false
+637,Sturm Graz,409670,A. Malic,D,true,RESEARCH_ESTIMATE,11,21,1.182,2.048,-0.364,0.952,-0.866,-1.316,0.55,-0.551,OK,true,false,false,false,false
+637,Sturm Graz,427260,A. Kayombo,F,false,UNKNOWN,4,28,1.5,1.786,0.25,0.536,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_28,true,false,false,false,false
+637,Sturm Graz,451425,J. Hodl,M,true,RESEARCH_ESTIMATE,17,15,1.765,1.733,0.588,0.4,0.031,0.188,0.75,0.059,OK,true,false,false,false,false
+637,Sturm Graz,461977,L. Weinhandl,M,false,UNKNOWN,4,28,2.5,1.643,1.5,0.357,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_28,true,false,false,false,false
+637,Sturm Graz,7319,J. Gazibegovic,D,true,RESEARCH_ESTIMATE,8,24,1.875,1.708,0.75,0.417,0.167,0.333,0.4,0.087,OK,true,false,false,false,false
+637,Sturm Graz,7583,S. Hierlander,M,false,UNKNOWN,1,31,0,1.806,-1.0,0.548,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_31,true,false,false,false,false
+637,Sturm Graz,7586,O. Kiteishvili,M,true,RESEARCH_ESTIMATE,22,10,1.773,1.7,0.636,0.2,0.073,0.436,0.5,0.091,OK,true,false,false,false,false
+637,Sturm Graz,7683,E. Karic,M,true,RESEARCH_ESTIMATE,26,6,1.615,2.333,0.385,1.0,-0.718,-0.615,0.3,-0.206,OK,true,false,false,false,false
+637,Sturm Graz,7701,P. Koller,D,true,RESEARCH_ESTIMATE,12,20,1.917,1.65,0.833,0.3,0.267,0.533,0.6,0.208,OK,true,false,false,false,false
+637,Sturm Graz,7719,E. Aiwu,D,true,RESEARCH_ESTIMATE,12,20,1.667,1.8,0.333,0.6,-0.133,-0.267,0.6,-0.104,OK,true,false,false,false,false
+733,Standard Liege,129706,M. Fossey,D,false,UNKNOWN,11,2,1.273,1.5,-0.545,0.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_11_WITHOUT_2,true,false,false,false,false
+733,Standard Liege,138823,H. Lawrence,D,false,UNKNOWN,2,11,0,1.545,-1.0,-0.273,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+733,Standard Liege,15862,C. Nielsen,M,false,UNKNOWN,9,4,1.111,1.75,-0.444,-0.25,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+733,Standard Liege,162592,D. Dierckx,D,true,RESEARCH_ESTIMATE,8,5,1.375,1.2,0.0,-1.0,0.175,1.0,0.25,0.106,OK,true,false,false,false,false
+733,Standard Liege,1715,B. Bolingoli,D,false,UNKNOWN,1,12,0,1.417,-3.0,-0.167,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+733,Standard Liege,194116,R. Said,M,false,UNKNOWN,12,1,1.167,3,-0.583,2.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+733,Standard Liege,198400,I. Hautekiet,D,true,RESEARCH_ESTIMATE,6,7,1,1.571,-1.333,0.429,-0.571,-1.762,0.3,-0.278,OK,true,false,false,false,false
+733,Standard Liege,21084,J. Homawoo,D,false,UNKNOWN,10,3,1.4,1,-0.5,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_10_WITHOUT_3,true,false,false,false,false
+733,Standard Liege,25155,T. Mohr,M,false,UNKNOWN,13,0,1.308,,-0.385,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+733,Standard Liege,30751,I. Karamoko,D,true,RESEARCH_ESTIMATE,5,8,1.4,1.25,0.4,-0.875,0.15,1.275,0.25,0.122,OK,true,false,false,false,false
+733,Standard Liege,313567,A. Calut,D,false,UNKNOWN,4,9,1.75,1.111,0.0,-0.556,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+733,Standard Liege,314509,M. Epolo,G,false,UNKNOWN,13,0,1.308,,-0.385,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+733,Standard Liege,321747,N. Mehssatou Sepulveda,D,false,UNKNOWN,3,10,1,1.4,-1.0,-0.2,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_10,true,false,false,false,false
+733,Standard Liege,342945,A. Abid,F,true,RESEARCH_ESTIMATE,8,5,1.625,0.8,0.25,-1.4,0.825,1.65,0.25,0.268,OK,true,false,false,false,false
+733,Standard Liege,351886,H. Sahabo,M,false,UNKNOWN,4,9,2.25,0.889,0.25,-0.667,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+733,Standard Liege,375986,L. Kuavita,M,false,UNKNOWN,1,12,0,1.417,-4.0,-0.083,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+733,Standard Liege,37892,D. Eckert Ayensa,F,true,RESEARCH_ESTIMATE,7,6,1.429,1.167,-0.143,-0.667,0.262,0.524,0.3,0.102,OK,true,false,false,false,false
+733,Standard Liege,38128,M. El Hankouri,F,false,UNKNOWN,2,11,2,1.182,1.0,-0.636,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+733,Standard Liege,8567,M. Ilaimaharitra,M,false,UNKNOWN,12,1,1.167,3,-0.583,2.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+733,Standard Liege,8793,T. Henry,F,false,UNKNOWN,12,1,1.417,0,-0.167,-3.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+735,St. Truiden,105474,V. Musliu,D,false,UNKNOWN,10,3,1.7,1.333,0.3,-0.333,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_10_WITHOUT_3,true,false,false,false,false
+735,St. Truiden,137403,A. Muja,M,false,UNKNOWN,4,9,1,1.889,-0.75,0.556,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+735,St. Truiden,162482,L. Kokubo,G,false,UNKNOWN,13,0,1.615,,0.154,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+735,St. Truiden,199153,T. Hata,D,false,UNKNOWN,13,0,1.615,,0.154,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+735,St. Truiden,20839,A. Sissako,M,false,UNKNOWN,13,0,1.615,,0.154,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+735,St. Truiden,271875,L. Patris,M,true,RESEARCH_ESTIMATE,6,7,2.333,1,1.167,-0.714,1.333,1.881,0.3,0.449,OK,true,false,false,false,false
+735,St. Truiden,32923,R. Ito,M,false,UNKNOWN,9,4,1.889,1,0.444,-0.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+735,St. Truiden,32954,S. Taniguchi,D,true,RESEARCH_ESTIMATE,7,6,1,2.333,-0.714,1.167,-1.333,-1.881,0.3,-0.449,OK,true,false,false,false,false
+735,St. Truiden,33805,R. Yamamoto,M,false,UNKNOWN,13,0,1.615,,0.154,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+735,St. Truiden,342652,I. Sebaoui,M,false,UNKNOWN,13,0,1.615,,0.154,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+735,St. Truiden,352936,A. Ferrari,F,false,UNKNOWN,10,3,1.8,1,0.4,-0.667,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_10_WITHOUT_3,true,false,false,false,false
+735,St. Truiden,358380,R. Van Helden,D,false,UNKNOWN,13,0,1.615,,0.154,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+735,St. Truiden,375930,K. Goto,F,true,RESEARCH_ESTIMATE,6,7,1.167,2,-0.333,0.571,-0.833,-0.905,0.3,-0.256,OK,true,false,false,false,false
+735,St. Truiden,381316,R. Vanwesemael,D,false,UNKNOWN,12,1,1.5,3,0.083,1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+735,St. Truiden,553727,S. Jukleroed,,false,UNKNOWN,1,12,3,1.5,1.0,0.083,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+736,Charleroi,108064,A. Bernier,M,true,RESEARCH_ESTIMATE,7,6,1,1.333,-0.286,-0.333,-0.333,0.048,0.3,-0.066,OK,true,false,false,false,false
+736,Charleroi,109771,Z. Rogelj,M,false,UNKNOWN,2,11,1,1.182,0.0,-0.364,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+736,Charleroi,129547,M. Nzita,D,false,UNKNOWN,10,3,1.1,1.333,-0.3,-0.333,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_10_WITHOUT_3,true,false,false,false,false
+736,Charleroi,161810,L. Blum,D,false,UNKNOWN,1,12,3,1,1.0,-0.417,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+736,Charleroi,162767,A. Colassin,F,false,UNKNOWN,2,11,0.5,1.273,-0.5,-0.273,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+736,Charleroi,174663,J. Gaudin,D,false,UNKNOWN,2,11,1.5,1.091,-0.5,-0.273,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+736,Charleroi,180466,A. Descotte,F,false,UNKNOWN,1,12,0,1.25,-1.0,-0.25,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+736,Charleroi,19059,I. Mbenza,F,false,UNKNOWN,2,11,1,1.182,0.0,-0.364,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+736,Charleroi,20733,A. Scheidler,F,false,UNKNOWN,9,4,1.333,0.75,-0.333,-0.25,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+736,Charleroi,263228,P. Guiagon,F,false,UNKNOWN,9,4,1.556,0.25,0.0,-1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+736,Charleroi,264122,N. Stulic,F,false,UNKNOWN,3,10,1,1.2,0.0,-0.4,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_10,true,false,false,false,false
+736,Charleroi,26497,P. Pflucke,M,true,RESEARCH_ESTIMATE,7,6,0.857,1.5,-0.857,0.333,-0.643,-1.19,0.3,-0.242,OK,true,false,false,false,false
+736,Charleroi,276554,C. Keita,D,false,UNKNOWN,12,1,1.167,1,-0.333,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+736,Charleroi,297139,E. Camara,M,false,UNKNOWN,13,0,1.154,,-0.308,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+736,Charleroi,317979,J. Romsaas,M,false,UNKNOWN,10,3,1.3,0.667,-0.3,-0.333,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_10_WITHOUT_3,true,false,false,false,false
+736,Charleroi,324098,M. Delavalee,G,false,UNKNOWN,9,4,1.333,0.75,-0.333,-0.25,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+736,Charleroi,327599,Y. Titraoui,M,false,UNKNOWN,12,1,1.25,0,-0.167,-2.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+736,Charleroi,347652,M. Sow,D,false,UNKNOWN,1,12,1,1.167,0.0,-0.333,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+736,Charleroi,39194,V. Dragsnes,D,false,UNKNOWN,1,12,1,1.167,0.0,-0.333,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+736,Charleroi,412750,A. Boukamir,M,false,UNKNOWN,2,11,0.5,1.273,-1.0,-0.182,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+736,Charleroi,48014,A. Ousou,D,false,UNKNOWN,13,0,1.154,,-0.308,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+736,Charleroi,56374,J. Petris,D,false,UNKNOWN,4,9,1.25,1.111,0.25,-0.556,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+736,Charleroi,620808,M. Delavallee,,false,UNKNOWN,4,9,0.75,1.333,-0.25,-0.333,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+736,Charleroi,87267,K. Van Den Kerkhof,D,true,RESEARCH_ESTIMATE,7,6,0.857,1.5,-0.857,0.333,-0.643,-1.19,0.3,-0.242,OK,true,false,false,false,false
+740,Antwerp,109381,T. Nozawa,G,false,UNKNOWN,4,9,0.25,1.111,-0.75,-0.222,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+740,Antwerp,157987,T. Somers,F,false,UNKNOWN,13,0,0.846,,-0.385,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+740,Antwerp,161989,C. Scott,F,false,UNKNOWN,2,11,0.5,0.909,-0.5,-0.364,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+740,Antwerp,162511,S. Lammens,G,false,UNKNOWN,4,9,1.5,0.556,0.5,-0.778,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+740,Antwerp,183,V. Janssen,F,false,UNKNOWN,13,0,0.846,,-0.385,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+740,Antwerp,267728,M. Balikwisha,M,false,UNKNOWN,4,9,1.5,0.556,0.5,-0.778,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+740,Antwerp,2925,D. Praet,M,true,RESEARCH_ESTIMATE,7,6,1.429,0.167,0.286,-1.167,1.262,1.452,0.3,0.396,OK,true,false,false,false,false
+740,Antwerp,303679,Z. Van Den Bosch,D,false,UNKNOWN,13,0,0.846,,-0.385,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+740,Antwerp,313078,I. Babadi,M,false,UNKNOWN,3,10,0.333,1,-1.0,-0.2,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_10,true,false,false,false,false
+740,Antwerp,3335,K. Kouyate,D,false,UNKNOWN,2,11,0,1,-1.0,-0.273,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+740,Antwerp,342310,R. Bozhinov,D,false,UNKNOWN,10,3,1.1,0,-0.2,-1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_10_WITHOUT_3,true,false,false,false,false
+740,Antwerp,37188,G. Kerk,F,false,UNKNOWN,4,9,1.25,0.667,0.25,-0.667,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+740,Antwerp,37280,G. Bijl,D,false,UNKNOWN,2,11,1.5,0.727,-0.5,-0.364,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+740,Antwerp,381176,M. Al Sahafi,F,true,RESEARCH_ESTIMATE,5,8,0.8,0.875,-0.8,-0.125,-0.075,-0.675,0.25,-0.064,OK,true,false,false,false,false
+740,Antwerp,384473,M. Doumbia,M,true,RESEARCH_ESTIMATE,6,7,1.5,0.286,0.167,-0.857,1.214,1.024,0.3,0.347,OK,true,false,false,false,false
+740,Antwerp,385662,M. Benitez,M,true,RESEARCH_ESTIMATE,6,7,0.167,1.429,-1.167,0.286,-1.262,-1.452,0.3,-0.396,OK,true,false,false,false,false
+740,Antwerp,386284,M. Diawara,M,true,RESEARCH_ESTIMATE,6,7,0.167,1.429,-1.0,0.143,-1.262,-1.143,0.3,-0.368,OK,true,false,false,false,false
+740,Antwerp,404352,Y. Tsunashima,D,false,UNKNOWN,10,3,0.9,0.667,-0.3,-0.667,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_10_WITHOUT_3,true,false,false,false,false
+740,Antwerp,418320,A. Verstraeten,D,true,RESEARCH_ESTIMATE,5,8,0.6,1,-0.6,-0.25,-0.4,-0.35,0.25,-0.096,OK,true,false,false,false,false
+740,Antwerp,449059,Y. Hamdaoui,F,false,UNKNOWN,2,11,0,1,-1.0,-0.273,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+740,Antwerp,485673,F. Adekami,M,true,RESEARCH_ESTIMATE,5,8,0.4,1.125,-0.8,-0.125,-0.725,-0.675,0.25,-0.177,OK,true,false,false,false,false
+740,Antwerp,8472,Y. Thoelen,G,true,RESEARCH_ESTIMATE,5,8,0.8,0.875,-0.8,-0.125,-0.075,-0.675,0.25,-0.064,OK,true,false,false,false,false
+740,Antwerp,8719,D. Foulon,M,false,UNKNOWN,12,1,0.917,0,-0.25,-2.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+741,Cercle Brugge,127416,G. Magnee,M,false,UNKNOWN,11,2,1.091,0,0.182,-2.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_11_WITHOUT_2,true,false,false,false,false
+741,Cercle Brugge,1423,P. Gerkens,M,false,UNKNOWN,13,0,0.923,,-0.154,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+741,Cercle Brugge,163019,E. Utkus,D,false,UNKNOWN,9,4,0.889,1,-0.222,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+741,Cercle Brugge,280695,A. Minda,M,false,UNKNOWN,9,4,1,0.75,0.0,-0.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+741,Cercle Brugge,294722,Nazinho,D,true,RESEARCH_ESTIMATE,8,5,1,0.8,0.0,-0.4,0.2,0.4,0.25,0.065,OK,true,false,false,false,false
+741,Cercle Brugge,327691,I. Diakite,D,false,UNKNOWN,2,11,0,1.091,-2.0,0.182,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+741,Cercle Brugge,334429,O. Diakite,F,true,RESEARCH_ESTIMATE,6,7,0.667,1.143,-0.5,0.143,-0.476,-0.643,0.3,-0.158,OK,true,false,false,false,false
+741,Cercle Brugge,343317,S. Ngoura,F,false,UNKNOWN,12,1,0.917,1,-0.167,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+741,Cercle Brugge,349177,D. Gomis,D,false,UNKNOWN,1,12,0,1,-1.0,-0.083,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+741,Cercle Brugge,352500,L. Agyekum,M,false,UNKNOWN,10,3,1,0.667,-0.1,-0.333,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_10_WITHOUT_3,true,false,false,false,false
+741,Cercle Brugge,355012,C. Ravych,D,false,UNKNOWN,12,1,1,0,-0.083,-1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+741,Cercle Brugge,363479,O. Adewumi,F,false,UNKNOWN,4,9,0.75,1,-0.5,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+741,Cercle Brugge,374361,E. Diop,M,false,UNKNOWN,11,2,1,0.5,0.0,-1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_11_WITHOUT_2,true,false,false,false,false
+741,Cercle Brugge,38714,M. Delanghe,G,false,UNKNOWN,12,1,0.917,1,-0.167,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_12_WITHOUT_1,true,false,false,false,false
+741,Cercle Brugge,409214,I. Diaby,M,false,UNKNOWN,2,11,0.5,1,-1.0,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+741,Cercle Brugge,415077,Erick Nunes,D,false,UNKNOWN,1,12,1,0.917,0.0,-0.167,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+741,Cercle Brugge,467599,E. Kakou,D,true,RESEARCH_ESTIMATE,6,7,1,0.857,0.0,-0.286,0.143,0.286,0.3,0.056,OK,true,false,false,false,false
+741,Cercle Brugge,80367,Warleson,G,false,UNKNOWN,1,12,1,0.917,0.0,-0.167,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+741,Cercle Brugge,8539,H. van der Bruggen,M,false,UNKNOWN,13,0,0.923,,-0.154,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+742,Genk,104795,M. Sadick,D,false,UNKNOWN,13,0,1.462,,0.077,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+742,Genk,1937,B. Heynen,M,false,UNKNOWN,13,0,1.462,,0.077,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+742,Genk,1942,J. Ito,M,true,RESEARCH_ESTIMATE,5,8,1.4,1.5,0.0,0.125,-0.1,-0.125,0.25,-0.027,OK,true,false,false,false,false
+742,Genk,203458,Y. Sor,F,false,UNKNOWN,4,9,2,1.222,0.5,-0.111,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_9,true,false,false,false,false
+742,Genk,21098,J. Kayembe,D,false,UNKNOWN,11,2,1.182,3,-0.091,1.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_11_WITHOUT_2,true,false,false,false,false
+742,Genk,283252,Z. El Ouahdi,M,false,UNKNOWN,9,4,1.222,2,-0.111,0.5,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+742,Genk,287790,N. Sattlberger,D,true,RESEARCH_ESTIMATE,6,7,0.833,2,-0.333,0.429,-1.167,-0.762,0.3,-0.314,OK,true,false,false,false,false
+742,Genk,288078,J. Erabi,F,false,UNKNOWN,3,10,2,1.3,0.333,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_10,true,false,false,false,false
+742,Genk,297581,J. Steuckers,M,false,UNKNOWN,10,3,1.2,2.333,-0.1,0.667,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_10_WITHOUT_3,true,false,false,false,false
+742,Genk,306940,Y. Medina,D,false,UNKNOWN,1,12,3,1.333,1.0,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_12,true,false,false,false,false
+742,Genk,34710,Oh Hyeon-Gyu,F,true,RESEARCH_ESTIMATE,8,5,1.125,2,-0.125,0.4,-0.875,-0.525,0.25,-0.192,OK,true,false,false,false,false
+742,Genk,377009,M. Smets,D,false,UNKNOWN,13,0,1.462,,0.077,,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_13_WITHOUT_0,true,false,false,false,false
+742,Genk,380647,N. Adedeji-Sternberg,M,true,RESEARCH_ESTIMATE,6,7,1.167,1.714,-0.167,0.286,-0.548,-0.452,0.3,-0.156,OK,true,false,false,false,false
+742,Genk,380780,I. Bangoura,M,true,RESEARCH_ESTIMATE,5,8,1.6,1.375,0.2,0.0,0.225,0.2,0.25,0.054,OK,true,false,false,false,false
+742,Genk,392412,R. Mirisola,F,false,UNKNOWN,2,11,2,1.364,0.5,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+742,Genk,404891,K. Karetsas,M,false,UNKNOWN,9,4,1.667,1,0.222,-0.25,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_9_WITHOUT_4,true,false,false,false,false
+742,Genk,7195,T. Lawal,G,true,RESEARCH_ESTIMATE,7,6,1.143,1.833,-0.143,0.333,-0.69,-0.476,0.3,-0.188,OK,true,false,false,false,false
+742,Genk,807,P. Hrosovsky,M,true,RESEARCH_ESTIMATE,5,8,2,1.125,0.4,-0.125,0.875,0.525,0.25,0.192,OK,true,false,false,false,false
+742,Genk,8573,K. Nkuba,D,true,RESEARCH_ESTIMATE,5,8,2.2,1,0.6,-0.25,1.2,0.85,0.25,0.274,OK,true,false,false,false,false
+742,Genk,8632,H. Van Crombrugge,G,true,RESEARCH_ESTIMATE,6,7,1.833,1.143,0.333,-0.143,0.69,0.476,0.3,0.188,OK,true,false,false,false,false
+742,Genk,8845,D. Heymans,M,false,UNKNOWN,2,11,2,1.364,0.5,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_11,true,false,false,false,false
+781,Rapid Vienna,119139,E. Kara,F,true,RESEARCH_ESTIMATE,12,22,1.25,1.455,0.0,-0.136,-0.205,0.136,0.6,-0.062,OK,true,false,false,false,false
+781,Rapid Vienna,128999,S. Raux Yao,D,false,UNKNOWN,31,3,1.484,0.333,0.032,-1.333,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_31_WITHOUT_3,true,false,false,false,false
+781,Rapid Vienna,131294,Y. Demir,M,false,UNKNOWN,1,33,0,1.424,-2.0,-0.03,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_33,true,false,false,false,false
+781,Rapid Vienna,146053,T. Gulliksen,M,true,RESEARCH_ESTIMATE,11,23,0.636,1.739,-0.727,0.217,-1.103,-0.945,0.55,-0.581,OK,true,false,false,false,false
+781,Rapid Vienna,162152,A. Radulovic,F,true,RESEARCH_ESTIMATE,6,28,1.167,1.429,-0.5,0.0,-0.262,-0.5,0.3,-0.1,OK,true,false,false,false,false
+781,Rapid Vienna,169346,N. Hedl,G,true,RESEARCH_ESTIMATE,28,6,1.429,1.167,-0.036,-0.333,0.262,0.298,0.3,0.082,OK,true,false,false,false,false
+781,Rapid Vienna,1710,P. Gartler,G,true,RESEARCH_ESTIMATE,6,28,1.167,1.429,-0.333,-0.036,-0.262,-0.298,0.3,-0.082,OK,true,false,false,false,false
+781,Rapid Vienna,176022,M. Seidl,M,true,RESEARCH_ESTIMATE,27,7,1.37,1.429,-0.111,0.0,-0.058,-0.111,0.35,-0.026,OK,true,false,false,false,false
+781,Rapid Vienna,19283,A. Weimann,F,true,RESEARCH_ESTIMATE,15,19,1.267,1.474,-0.267,0.053,-0.207,-0.319,0.75,-0.18,OK,true,false,false,false,false
+781,Rapid Vienna,193870,J. Antiste,F,true,RESEARCH_ESTIMATE,19,15,1.737,0.933,0.053,-0.267,0.804,0.319,0.75,0.494,OK,true,false,false,false,false
+781,Rapid Vienna,20864,J. Marcelin,D,false,UNKNOWN,2,32,2,1.344,0.5,-0.125,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_32,true,false,false,false,false
+781,Rapid Vienna,24791,J. Horn,D,true,RESEARCH_ESTIMATE,19,15,1.526,1.2,0.0,-0.2,0.326,0.2,0.75,0.216,OK,true,false,false,false,false
+781,Rapid Vienna,24809,L. Schaub,M,false,UNKNOWN,2,32,0.5,1.438,-0.5,-0.062,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_32,true,false,false,false,false
+781,Rapid Vienna,277306,M. Sangare,M,false,UNKNOWN,3,31,2.333,1.29,0.667,-0.161,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_31,true,false,false,false,false
+781,Rapid Vienna,27778,B. Bolla,D,true,RESEARCH_ESTIMATE,28,6,1.5,0.833,0.036,-0.667,0.667,0.702,0.3,0.203,OK,true,false,false,false,false
+781,Rapid Vienna,293948,A. Ahoussou,D,true,RESEARCH_ESTIMATE,17,17,1.118,1.647,-0.471,0.294,-0.529,-0.765,0.85,-0.51,OK,true,false,false,false,false
+781,Rapid Vienna,322979,D. Weixelbraun,M,false,UNKNOWN,1,33,3,1.333,3.0,-0.182,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_1_WITHOUT_33,true,false,false,false,false
+781,Rapid Vienna,339985,J. M. Scholler,D,true,RESEARCH_ESTIMATE,11,23,1.364,1.391,0.0,-0.13,-0.028,0.13,0.55,0.011,OK,true,false,false,false,false
+781,Rapid Vienna,350854,R. Amane,M,false,UNKNOWN,32,2,1.375,1.5,-0.094,0.0,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_32_WITHOUT_2,true,false,false,false,false
+781,Rapid Vienna,352528,M. Ndzie,M,false,UNKNOWN,4,30,1.5,1.367,0.0,-0.1,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_4_WITHOUT_30,true,false,false,false,false
+781,Rapid Vienna,352728,P. Dahl,M,true,RESEARCH_ESTIMATE,16,18,1.25,1.5,-0.375,0.167,-0.25,-0.542,0.8,-0.27,OK,true,false,false,false,false
+781,Rapid Vienna,375316,F. Demir,D,true,RESEARCH_ESTIMATE,7,27,1.571,1.333,0.0,-0.111,0.238,0.111,0.35,0.07,OK,true,false,false,false,false
+781,Rapid Vienna,428779,N. Wurmbrand,F,true,RESEARCH_ESTIMATE,25,9,1.36,1.444,0.04,-0.444,-0.084,0.484,0.45,0.039,OK,true,false,false,false,false
+781,Rapid Vienna,46160,N. Cvetkovic,D,true,RESEARCH_ESTIMATE,29,5,1.379,1.4,-0.069,-0.2,-0.021,0.131,0.25,0.006,OK,true,false,false,false,false
+781,Rapid Vienna,498384,D. Nunoo,M,false,UNKNOWN,2,32,2,1.344,0.5,-0.125,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_32,true,false,false,false,false
+781,Rapid Vienna,66728,J. Auer,M,false,UNKNOWN,2,32,0,1.469,-1.0,-0.031,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_2_WITHOUT_32,true,false,false,false,false
+781,Rapid Vienna,68041,M. Tilio,F,false,UNKNOWN,3,31,2,1.323,0.333,-0.129,,,0.0,,INSUFFICIENT_CAPTURED_SAMPLE_WITH_3_WITHOUT_31,true,false,false,false,false
+781,Rapid Vienna,7072,L. Grgic,M,true,RESEARCH_ESTIMATE,7,27,1.571,1.333,0.143,-0.148,0.238,0.291,0.35,0.089,OK,true,false,false,false,false
+781,Rapid Vienna,87317,C. M'Buyi,F,true,RESEARCH_ESTIMATE,8,26,1.25,1.423,-0.125,-0.077,-0.173,-0.048,0.4,-0.054,OK,true,false,false,false,false

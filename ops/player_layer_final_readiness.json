@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_PLAYER_LAYER_FINALIZATION_V1",
-  "run_at_utc": "2026-09-21T16:17:01Z",
+  "run_at_utc": "2026-09-21T16:44:02Z",
   "status": "VALIDATION_PENDING",
   "checklist_item_10_data_engineering_foundation": "COMPLETE",
   "checklist_item_10_predictive_authority": "NOT_AUTHORIZED",
@@ -17,7 +17,7 @@
       "evidence": {
         "strictly_prior_xi_quality_rows": 572,
         "xi_quality_rows_with_8plus_coverage": 569,
-        "historical_player_remaining": 67081,
+        "historical_player_remaining": 66841,
         "basis": "STRICTLY_PRIOR_MATCH_CHRONOLOGY_FORM5_MIN30",
         "temporal_authority": "RETROSPECTIVE_CHRONOLOGY_ONLY"
       },
@@ -32,24 +32,22 @@
       "blockers": []
     },
     "PLAYER_IMPORTANCE": {
-      "status": "RESEARCH_ONLY",
+      "status": "VALIDATION_PENDING",
       "authority": "RESEARCH",
       "evidence": {
-        "importance_rows": 0,
-        "eligible_importance_rows": 0,
+        "importance_rows": 622,
+        "eligible_importance_rows": 266,
         "minimum_with_starts": 5,
         "minimum_without_starts": 5,
         "causal_claim": false
       },
-      "blockers": [
-        "NO_PLAYER_HAS_SUFFICIENT_WITH_WITHOUT_CAPTURED_SAMPLE"
-      ]
+      "blockers": []
     },
     "AVAILABILITY_ABSENCE": {
       "status": "RESEARCH_ONLY",
       "authority": "RESEARCH",
       "evidence": {
-        "descriptive_association_rows": 0,
+        "descriptive_association_rows": 398,
         "historical_availability_remaining_tasks": 80108,
         "prematch_observation_time_known": false
       },
@@ -71,10 +69,10 @@
       ]
     },
     "XI_ROTATION": {
-      "status": "RESEARCH_ONLY",
+      "status": "VALIDATION_PENDING",
       "authority": "RESEARCH",
       "evidence": {
-        "rotation_outcome_rows": 0,
+        "rotation_outcome_rows": 572,
         "strictly_prior_quality_rows": 569,
         "market_adjusted_validation_completed": false
       },
