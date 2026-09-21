@@ -1,0 +1,99 @@
+name: Player Synergy Research Foundation
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/player_synergy_research.py'
+      - 'scripts/tests/test_player_synergy_research.py'
+      - 'docs/player_synergy_research_foundation.md'
+      - '.github/workflows/player-synergy-research.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: player-synergy-research-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and provider-free tests
+        run: |
+          python -m py_compile scripts/player_synergy_research.py
+          python -m unittest scripts.tests.test_player_synergy_research -v
+      - name: Provider isolation
+        shell: bash
+        run: |
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/player_synergy_research.py; then
+            echo 'Player synergy research must remain provider-free.' >&2
+            exit 1
+          fi
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated outputs are forbidden in the feature PR.' >&2
+            exit 1
+          fi
+
+  materialize:
+    needs: validate
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build player synergy research datasets
+        env:
+          OPS_DIR: ops
+        run: python scripts/player_synergy_research.py
+      - name: Publish player synergy evidence safely
+        shell: bash
+        run: |
+          git config user.name 'player-synergy-research-bot'
+          git config user.email 'player-synergy-research-bot@users.noreply.github.com'
+          git add ops/player_synergy_pair_research.csv
+          git add ops/player_synergy_trio_research.csv
+          git add ops/player_synergy_line_research.csv
+          git add ops/player_anti_synergy_research.csv
+          git add ops/player_synergy_walk_forward.csv
+          git add ops/player_synergy_readiness.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m 'Player synergy research update'
+          git restore --worktree -- .
+          python scripts/publish_operational_commit.py
+      - name: Upload player synergy outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: player-synergy-research
+          path: |
+            ops/player_synergy_pair_research.csv
+            ops/player_synergy_trio_research.csv
+            ops/player_synergy_line_research.csv
+            ops/player_anti_synergy_research.csv
+            ops/player_synergy_walk_forward.csv
+            ops/player_synergy_readiness.json
+          if-no-files-found: warn
+          retention-days: 30
