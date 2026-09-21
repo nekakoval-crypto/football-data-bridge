@@ -42,7 +42,7 @@ OPS = Path(os.getenv("OPS_DIR", "ops"))
 
 LINEUPS = OPS / "historical_lineup_snapshots.csv"
 INJURIES = OPS / "historical_injury_snapshots.csv"
-FIXTURES = OPS / "historical_fixtures.csv"
+FIXTURES = OPS / "pbk16_all_competition_fixture_history.csv"
 GRADES = OPS / "player_grade_snapshots.csv"
 FORM = OPS / "player_form_walk_forward.csv"
 INT_RETURN = OPS / "international_duty_player_return_load.csv"
@@ -200,15 +200,31 @@ def parse_xi(value: Any) -> list[dict[str, str]]:
 
 
 def fixture_outcomes(fixture_rows: list[dict[str, str]]) -> dict[str, dict[str, Any]]:
+    """Index terminal PBK16 fixture results by the same provider fixture ids used
+    by the historical lineup/injury backfill.
+
+    The canonical source is pbk16_all_competition_fixture_history.csv.  It uses
+    status + home_goals/away_goals, whereas the newer rolling historical fixture
+    catalog uses latest_status + final_score_*.  Supporting both schemas keeps
+    this helper testable/fail-closed without ever joining by fuzzy team names.
+    """
     out: dict[str, dict[str, Any]] = {}
     for row in fixture_rows:
         fid = sval(row, "fixture_id", "api_fixture_id")
         if not fid:
             continue
         terminal = sval(row, "terminal_observed").upper()
-        status = sval(row, "latest_status", "status").upper()
-        hg = fnum(row.get("final_score_home", row.get("score_home")))
-        ag = fnum(row.get("final_score_away", row.get("score_away")))
+        status = sval(row, "status", "latest_status").upper()
+        hg = fnum(
+            row.get("home_goals")
+            if row.get("home_goals") not in (None, "")
+            else row.get("final_score_home", row.get("score_home"))
+        )
+        ag = fnum(
+            row.get("away_goals")
+            if row.get("away_goals") not in (None, "")
+            else row.get("final_score_away", row.get("score_away"))
+        )
         if hg is None or ag is None:
             continue
         if terminal not in {"YES", "TRUE", "1"} and status not in {"FINISHED", "FT", "AET", "PEN"}:
