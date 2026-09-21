@@ -6,8 +6,11 @@ semantics from generic round-name patterns.
 
 Safe reconstruction rules:
 - TABLE_PHASE + REGULAR rows are reconstructed from strictly earlier UTC dates;
-- TABLE_PHASE rows that require a season-format contract are fail-closed because
-  split phases can halve/reset/carry points differently by league/season;
+- non-regular TABLE_PHASE rows are admitted only when the exact season-scoped
+  phase contract says CARRY_FORWARD_UNCHANGED_CANDIDATE;
+- admitted split rows use a connected-component phase group as their ranking
+  scope, never the full pre-split league table;
+- transformed/unknown split contracts remain fail-closed;
 - POST_TABLE_PLAYOFF rows are excluded from league-table reconstruction;
 - unresolved awarded/WO table results taint the remaining regular table state
   for that league-season instead of silently assuming a points outcome;
@@ -26,6 +29,8 @@ from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
+from scripts import pbk16_historical_phase_contracts as phase_contracts
+
 VERSION="PBK_STAGE80_PBK16_HISTORICAL_TABLE_CONTEXT_V2"
 RANK_TIEBREAK_CONTRACT="POINTS_GD_GF_TEAMNAME_RESEARCH_APPROX_V1"
 PHASE_AUDIT_CONTRACT="PBK16_2017_2025_PROVIDER_ROUND_LABELS_V1"
@@ -35,7 +40,9 @@ FIELDS=[
     "round","kickoff_utc","date_utc","status",
     "home_team_id","home_team","away_team_id","away_team",
     "phase_role","phase_family","table_result_policy",
-    "season_format_contract_required","context_status","phase_audit_contract",
+    "season_format_contract_required","phase_contract_status",
+    "phase_points_transform","phase_group_status","ranking_scope_teams",
+    "context_status","phase_audit_contract",
     "core_participant_teams","table_teams_with_history","full_table_available",
     "home_played_pre","away_played_pre","home_points_pre","away_points_pre",
     "home_ppg_pre","away_ppg_pre","home_gf_pre","away_gf_pre",
@@ -182,7 +189,59 @@ def audit_index(audit_rows):
     return out,duplicates,invalid
 
 
-def safe_status(audit,scope_tainted,format_blocked):
+def phase_group_index(parsed):
+    """Map each non-regular table-phase team to its connected split group."""
+    graphs=defaultdict(lambda: defaultdict(set))
+    for league,season,day,dt,idx,row,arow in parsed:
+        if not arow or sval(arow,"phase_role")!="TABLE_PHASE":
+            continue
+        family=sval(arow,"phase_family")
+        if not family or family=="REGULAR":
+            continue
+        h=sval(row,"home_team_id") or sval(row,"home_team")
+        a=sval(row,"away_team_id") or sval(row,"away_team")
+        if not h or not a:
+            continue
+        key=(league,season,family)
+        graphs[key][h].add(a)
+        graphs[key][a].add(h)
+
+    out={}
+    for key,graph in graphs.items():
+        unseen=set(graph)
+        while unseen:
+            seed=next(iter(unseen))
+            stack=[seed]
+            component=set()
+            while stack:
+                team=stack.pop()
+                if team in component:
+                    continue
+                component.add(team)
+                stack.extend(graph.get(team,set())-component)
+            unseen-=component
+            frozen=frozenset(component)
+            for team in component:
+                out[(*key,team)]=frozen
+    return out
+
+
+def phase_contract_for(row,arow):
+    family=sval(arow,"phase_family") if arow else ""
+    if not arow or family=="REGULAR":
+        return {
+            "status":"NOT_REQUIRED",
+            "points_transform":"NONE",
+            "application_authorized":True,
+        }
+    return phase_contracts.lookup(
+        sval(row,"country"),
+        sval(row,"season"),
+        family,
+    )
+
+
+def safe_status(audit,scope_tainted,format_blocked,contract_status,group_ready):
     role=sval(audit,"phase_role")
     family=sval(audit,"phase_family")
     policy=sval(audit,"table_result_policy")
@@ -192,12 +251,22 @@ def safe_status(audit,scope_tainted,format_blocked):
         return "POST_TABLE_PLAYOFF_EXCLUDED_FROM_TABLE"
     if role!="TABLE_PHASE":
         return "BLOCKED_UNKNOWN_PHASE"
-    if requires or family!="REGULAR":
-        return "BLOCKED_TABLE_PHASE_REQUIRES_SEASON_FORMAT_CONTRACT"
     if format_blocked:
         return "BLOCKED_AFTER_UNMODELED_TABLE_PHASE"
     if scope_tainted:
         return "BLOCKED_PRIOR_AWARDED_RESULT_UNRESOLVED"
+    if requires or family!="REGULAR":
+        if contract_status!=phase_contracts.CARRY:
+            return "BLOCKED_TABLE_PHASE_REQUIRES_SEASON_FORMAT_CONTRACT"
+        if not group_ready:
+            return "BLOCKED_SPLIT_GROUP_UNRESOLVED"
+        if policy=="PLAYED_RESULT_USABLE":
+            return "VALID_SPLIT_CARRY_FORWARD_DERIVED"
+        if policy=="AWARDED_RESULT_REQUIRES_RULE_EVIDENCE":
+            return "VALID_PREMATCH_AWARDED_RESULT_WILL_TAINT"
+        if policy=="NOT_PLAYED_EXCLUDE":
+            return "VALID_PREMATCH_NOT_PLAYED_NO_STATE_MUTATION"
+        return "BLOCKED_UNSUPPORTED_RESULT_POLICY"
     if policy=="AWARDED_RESULT_REQUIRES_RULE_EVIDENCE":
         return "VALID_PREMATCH_AWARDED_RESULT_WILL_TAINT"
     if policy=="NOT_PLAYED_EXCLUDE":
@@ -241,6 +310,8 @@ def project(source_rows,audit_rows):
         if h: core_teams[(league,season)].add(h)
         if a: core_teams[(league,season)].add(a)
 
+    phase_groups=phase_group_index(parsed)
+
     groups=defaultdict(list)
     for item in parsed:
         league,season,day,dt,idx,row,arow=item
@@ -270,24 +341,56 @@ def project(source_rows,audit_rows):
                 family=sval(arow,"phase_family")
                 policy=sval(arow,"table_result_policy")
                 requires=is_true(arow.get("season_format_contract_required"))
+                contract=phase_contract_for(row,arow)
+                h=sval(row,"home_team_id") or sval(row,"home_team")
+                a=sval(row,"away_team_id") or sval(row,"away_team")
+                split_group=phase_groups.get((league,season,family,h))
+                group_ready=bool(
+                    split_group
+                    and a in split_group
+                    and len(split_group)>=2
+                ) if family!="REGULAR" else True
                 status=safe_status(
                     arow,
                     tainted_by_scope[scope],
                     format_blocked_by_scope[scope],
+                    contract.get("status"),
+                    group_ready,
                 )
+
+            if arow is None:
+                contract={
+                    "status":"UNKNOWN",
+                    "points_transform":None,
+                    "application_authorized":False,
+                }
+                split_group=None
+                group_ready=False
+                h=sval(row,"home_team_id") or sval(row,"home_team")
+                a=sval(row,"away_team_id") or sval(row,"away_team")
 
             safe=status in {
                 "VALID_REGULAR_RESULTS_DERIVED",
+                "VALID_SPLIT_CARRY_FORWARD_DERIVED",
                 "VALID_PREMATCH_AWARDED_RESULT_WILL_TAINT",
                 "VALID_PREMATCH_NOT_PLAYED_NO_STATE_MUTATION",
             }
-            h=sval(row,"home_team_id") or sval(row,"home_team")
-            a=sval(row,"away_team_id") or sval(row,"away_team")
-            table=ranked(states) if safe else []
+            core_count=len(core_teams.get(scope,set()))
+            if safe and family!="REGULAR":
+                ranking_scope=set(split_group or ())
+                phase_group_status="CONNECTED_COMPONENT_DERIVED" if group_ready else "UNRESOLVED"
+            else:
+                ranking_scope=set(core_teams.get(scope,set()))
+                phase_group_status="FULL_LEAGUE" if family=="REGULAR" else "NOT_APPLIED"
+            ranking_count=len(ranking_scope)
+            ranking_states={
+                team:state for team,state in states.items()
+                if team in ranking_scope
+            } if safe else {}
+            table=ranked(ranking_states) if safe else []
             hr=row_for(table,h) if safe else None
             ar=row_for(table,a) if safe else None
-            core_count=len(core_teams.get(scope,set()))
-            full=safe and bool(core_count) and len(table)==core_count
+            full=safe and bool(ranking_count) and len(table)==ranking_count
 
             def v(r,key,default=""):
                 return default if r is None else r.get(key,default)
@@ -306,6 +409,10 @@ def project(source_rows,audit_rows):
                 "away_team_id":sval(row,"away_team_id"),"away_team":sval(row,"away_team"),
                 "phase_role":role,"phase_family":family,"table_result_policy":policy,
                 "season_format_contract_required":btext(requires),
+                "phase_contract_status":contract.get("status") or "UNKNOWN",
+                "phase_points_transform":contract.get("points_transform") or "",
+                "phase_group_status":phase_group_status,
+                "ranking_scope_teams":ranking_count if safe else "",
                 "context_status":status,
                 "phase_audit_contract":PHASE_AUDIT_CONTRACT,
                 "core_participant_teams":core_count,
@@ -345,9 +452,18 @@ def project(source_rows,audit_rows):
             policy=sval(arow,"table_result_policy")
             requires=is_true(arow.get("season_format_contract_required"))
 
+            contract=phase_contract_for(row,arow)
+            h=sval(row,"home_team_id") or sval(row,"home_team")
+            a=sval(row,"away_team_id") or sval(row,"away_team")
+            split_group=phase_groups.get((league,season,family,h))
+            group_ready=bool(
+                split_group and a in split_group and len(split_group)>=2
+            ) if family!="REGULAR" else True
+
             if role=="TABLE_PHASE" and (requires or family!="REGULAR"):
-                format_blocked_by_scope[scope]=True
-                continue
+                if contract.get("status")!=phase_contracts.CARRY or not group_ready:
+                    format_blocked_by_scope[scope]=True
+                    continue
             if role!="TABLE_PHASE" or format_blocked_by_scope[scope]:
                 continue
             if tainted_by_scope[scope]:
@@ -392,6 +508,7 @@ def run(source,phase_audit,out_csv,meta_out):
     roles=Counter(r["phase_role"] for r in projected)
     safe_statuses={
         "VALID_REGULAR_RESULTS_DERIVED",
+        "VALID_SPLIT_CARRY_FORWARD_DERIVED",
         "VALID_PREMATCH_AWARDED_RESULT_WILL_TAINT",
         "VALID_PREMATCH_NOT_PLAYED_NO_STATE_MUTATION",
     }
@@ -440,6 +557,7 @@ def run(source,phase_audit,out_csv,meta_out):
         "safe_regular_prematch_rows":safe_rows,
         "safe_regular_rows_with_full_table":full,
         "blocked_table_phase_rows":format_blocked,
+        "split_carry_forward_rows":statuses.get("VALID_SPLIT_CARRY_FORWARD_DERIVED",0),
         "post_table_playoff_rows":post_table,
         "blocked_prior_awarded_result_rows":prior_awarded,
         "phase_audit_contract":PHASE_AUDIT_CONTRACT,
