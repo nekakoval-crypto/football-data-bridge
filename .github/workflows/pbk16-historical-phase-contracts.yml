@@ -1,0 +1,48 @@
+name: Item 13 Historical Phase Contracts
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/pbk16_historical_phase_contracts.py'
+      - 'scripts/tests/test_pbk16_historical_phase_contracts.py'
+      - '.github/workflows/pbk16-historical-phase-contracts.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/pbk16_historical_phase_contracts.py'
+      - 'scripts/tests/test_pbk16_historical_phase_contracts.py'
+      - '.github/workflows/pbk16-historical-phase-contracts.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and unit tests
+        run: |
+          python -m py_compile scripts/pbk16_historical_phase_contracts.py
+          python -m unittest scripts.tests.test_pbk16_historical_phase_contracts -v
+      - name: Reconcile production phase audit
+        run: |
+          python scripts/pbk16_historical_phase_contracts.py
+          python - <<'PY'
+          from pathlib import Path
+          from scripts.pbk16_historical_phase_contracts import analyze_csv
+          report=analyze_csv(Path('ops/pbk16_domestic_phase_audit.csv'))
+          assert report['status']=='OK', report
+          assert report['required_nonregular_table_phase_rows']==1747, report
+          assert report['contract_covered_rows']==1747, report
+          assert report['carry_forward_candidate_rows']==919, report
+          assert report['transform_required_rows']==828, report
+          assert report['unknown_contract_rows']==0, report
+          assert report['application_authorized_rows']==0, report
+          assert report['exact_title_relegation_motivation_allowed'] is False, report
+          assert report['operational_betting_authority'] is False, report
+          print(report)
+          PY
