@@ -1,0 +1,30 @@
+{
+  "version": "PBK_MOTIVATION_RIVALRIES_V1",
+  "status": "PARTIAL_VERIFIED_CATALOG",
+  "matching_policy": "EXACT_NORMALIZED_ALIAS_ONLY_NO_FUZZY",
+  "governance": {
+    "rivalry_is_independent_dimension": true,
+    "rivalry_never_overrides_table_context": true,
+    "table_gap_may_reduce_tournament_urgency_but_not_erase_derby_context": true,
+    "no_single_motivation_score": true,
+    "prematch_only": true
+  },
+  "rivalries": [
+    {
+      "id": "MADRID_DERBY_REAL_ATLETICO",
+      "rivalry_name": "Madrid derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "SPAIN",
+      "principled_rivalry": true,
+      "team_a_aliases": [
+        "Real Madrid"
+      ],
+      "team_b_aliases": [
+        "Atlético de Madrid",
+        "Atletico Madrid",
+        "Club Atlético de Madrid",
+        "Club Atletico de Madrid"
+      ]
+    }
+  ]
+}
