@@ -29,7 +29,10 @@ from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
-from scripts import pbk16_historical_phase_contracts as phase_contracts
+try:
+    from scripts import pbk16_historical_phase_contracts as phase_contracts
+except ModuleNotFoundError:
+    import pbk16_historical_phase_contracts as phase_contracts
 
 VERSION="PBK_STAGE80_PBK16_HISTORICAL_TABLE_CONTEXT_V2"
 RANK_TIEBREAK_CONTRACT="POINTS_GD_GF_TEAMNAME_RESEARCH_APPROX_V1"
