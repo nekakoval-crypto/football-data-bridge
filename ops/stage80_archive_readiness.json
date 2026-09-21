@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-21T12:33:34Z",
+  "generated_at_utc": "2026-09-21T12:38:31Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -67,12 +67,12 @@
     "transfer_identity": {
       "file": "pbk_transfermarkt_player_identity.csv",
       "present": true,
-      "rows": 3481
+      "rows": 3553
     },
     "transfer_history": {
       "file": "historical_transfer_events.csv",
       "present": true,
-      "rows": 26173
+      "rows": 26568
     },
     "match_context": {
       "file": "match_context_snapshots.csv",
@@ -417,11 +417,11 @@
   },
   "transfer_identity": {
     "present": true,
-    "rows": 3481,
-    "valid_rows": 2909,
+    "rows": 3553,
+    "valid_rows": 2981,
     "invalid_rows": 572,
-    "unique_pbk_players": 2909,
-    "unique_transfermarkt_players": 2909,
+    "unique_pbk_players": 2981,
+    "unique_transfermarkt_players": 2981,
     "approved_methods": [
       "EXACT_NAME_CURRENT_CLUB",
       "EXACT_PROFILE_NAME_DOB_CURRENT_CLUB",
@@ -431,11 +431,11 @@
   },
   "transfer_history": {
     "present": true,
-    "rows": 26173,
-    "valid_rows": 21039,
+    "rows": 26568,
+    "valid_rows": 21434,
     "invalid_identity_rows": 5134,
-    "unique_pbk_players": 2604,
-    "unique_transfermarkt_players": 2604,
+    "unique_pbk_players": 2655,
+    "unique_transfermarkt_players": 2655,
     "earliest_transfer_date": "1994-07-01",
     "latest_transfer_date": "2027-06-30",
     "evidence_note": "Durable transfer events count only when linked by an approved HIGH-confidence exact-name+club identity method; this is historical enrichment, not current squad authority."
