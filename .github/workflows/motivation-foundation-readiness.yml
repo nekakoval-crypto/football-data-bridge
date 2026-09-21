@@ -1,0 +1,47 @@
+name: Motivation Foundation Readiness
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/motivation_foundation_readiness.py'
+      - 'scripts/tests/test_motivation_foundation_readiness.py'
+      - '.github/workflows/motivation-foundation-readiness.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          python -m py_compile scripts/motivation_foundation_readiness.py
+          python -m unittest scripts.tests.test_motivation_foundation_readiness -v
+
+  materialize:
+    needs: validate
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/motivation_foundation_readiness.py
+      - name: Publish readiness safely
+        run: |
+          git config user.name 'motivation-readiness-bot'
+          git config user.email 'motivation-readiness-bot@users.noreply.github.com'
+          git add ops/motivation_foundation_readiness.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Motivation foundation readiness'
+          python scripts/publish_operational_commit.py
