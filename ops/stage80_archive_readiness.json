@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-21T00:55:38Z",
+  "generated_at_utc": "2026-09-21T00:58:44Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -22,17 +22,17 @@
     "player_stats": {
       "file": "player_stats_snapshots.csv",
       "present": true,
-      "rows": 66541
+      "rows": 66723
     },
     "player_grades": {
       "file": "player_grade_snapshots.csv",
       "present": true,
-      "rows": 66541
+      "rows": 66723
     },
     "stage77_backlog": {
       "file": "stage77_player_stats_backlog.csv",
       "present": true,
-      "rows": 171
+      "rows": 173
     },
     "team_stats": {
       "file": "team_match_statistics.csv",
@@ -283,10 +283,10 @@
   "fixtures": {
     "current_inventory": 128,
     "finished_in_current_inventory": 56,
-    "player_stats_fixture_count_all_snapshots": 1638,
-    "player_grade_fixture_count_all_snapshots": 1638,
-    "finished_current_inventory_with_player_stats": 52,
-    "finished_current_inventory_player_stats_coverage_pct": 92.86,
+    "player_stats_fixture_count_all_snapshots": 1642,
+    "player_grade_fixture_count_all_snapshots": 1642,
+    "finished_current_inventory_with_player_stats": 54,
+    "finished_current_inventory_player_stats_coverage_pct": 96.43,
     "per_league": [
       {
         "league": "A Lyga",
@@ -303,8 +303,8 @@
       {
         "league": "La Liga",
         "finished_fixtures_in_current_inventory": 10,
-        "finished_fixtures_with_player_stats": 9,
-        "player_stats_coverage_pct": 90.0
+        "finished_fixtures_with_player_stats": 10,
+        "player_stats_coverage_pct": 100.0
       },
       {
         "league": "Premier League",
@@ -315,8 +315,8 @@
       {
         "league": "Serie A",
         "finished_fixtures_in_current_inventory": 10,
-        "finished_fixtures_with_player_stats": 9,
-        "player_stats_coverage_pct": 90.0
+        "finished_fixtures_with_player_stats": 10,
+        "player_stats_coverage_pct": 100.0
       },
       {
         "league": "Süper Lig",
@@ -357,9 +357,9 @@
   },
   "stage77_backlog": {
     "present": true,
-    "total_fixtures": 171,
-    "pending_fixtures": 26,
-    "captured_fixtures": 145,
+    "total_fixtures": 173,
+    "pending_fixtures": 24,
+    "captured_fixtures": 149,
     "captured_without_complete_ledgers": 0,
     "oldest_pending_first_queued_at_utc": "2026-09-15T16:55:09Z",
     "evidence_note": "A pending backlog fixture is an observed terminal fixture awaiting player stats/Player Grade; it is not a provider-availability or completeness claim."
@@ -415,10 +415,10 @@
     "player_xg_xa_evidence_note": "Stage91 provides StatsBomb research metrics. The large Stage91 source payload may remain external/local when an OK Stage91 meta attestation plus valid Stage92 AUTO/HIGH mapped rows are persisted; this never implies the source CSV is stored in Git. Stage92 maps only exact full names through the verified Transfermarkt→PBK bridge; abbreviated-name candidates remain REVIEW and never enter mapped research. Mapped xG/xA remains research-only and non-operational."
   },
   "players": {
-    "player_stat_rows": 66541,
-    "unique_players_with_stats": 6865,
-    "player_grade_rows": 66541,
-    "unique_players_with_grades": 6865
+    "player_stat_rows": 66723,
+    "unique_players_with_stats": 6995,
+    "player_grade_rows": 66723,
+    "unique_players_with_grades": 6995
   },
   "rosters": {
     "current_roster_rows": 3516,
