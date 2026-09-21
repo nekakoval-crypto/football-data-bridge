@@ -9,6 +9,7 @@ the transient Stage84 current snapshot.
 from __future__ import annotations
 
 import json
+from bisect import bisect_right
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -17,14 +18,14 @@ try:
     from scripts.stage84_team_style_metric_normalization import (
         MIN_POPULATION,
         VERSION as STAGE84_NORMALIZATION_VERSION,
-        normalize_against_population,
+        normalize_metric,
         parse_iso,
     )
 except ModuleNotFoundError:
     from stage84_team_style_metric_normalization import (
         MIN_POPULATION,
         VERSION as STAGE84_NORMALIZATION_VERSION,
-        normalize_against_population,
+        normalize_metric,
         parse_iso,
     )
 
@@ -163,31 +164,89 @@ def valid_source_row(
     return True
 
 
+def population_key(
+    row: dict[str, Any],
+) -> tuple[str, ...]:
+    return (
+        str(row.get("league_id") or ""),
+        str(row.get("season") or ""),
+        str(row.get("split") or "").lower(),
+        str(row.get("window") or ""),
+        str(row.get("metric") or ""),
+    )
+
+
 def select_forward_candidates(
     source_rows: list[dict[str, Any]],
     existing_rows: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
-    existing_keys = {
-        observation_key(row)
-        for row in existing_rows
-        if all(observation_key(row))
-    }
+    """Select genuinely forward observations without replaying full history.
 
-    unique: dict[
+    First sight of a series admits only its latest available observation.
+    Once a series already exists, only observations newer than its watermark
+    are admitted. This keeps Stage86 forward-only and bounds each run.
+    """
+    watermarks: dict[tuple[str, ...], datetime] = {}
+
+    for row in existing_rows:
+        key = series_key(row)
+        timestamp = parse_iso(
+            row.get("profile_before_utc")
+        )
+
+        if not all(key) or timestamp is None:
+            continue
+
+        current = watermarks.get(key)
+
+        if current is None or timestamp > current:
+            watermarks[key] = timestamp
+
+    grouped: dict[
         tuple[str, ...],
-        dict[str, Any],
+        list[dict[str, Any]],
     ] = {}
 
     for row in source_rows:
         if not valid_source_row(row):
             continue
 
-        key = observation_key(row)
+        grouped.setdefault(
+            series_key(row),
+            [],
+        ).append(row)
 
-        if key in existing_keys:
+    candidates: list[dict[str, Any]] = []
+
+    for key, rows in grouped.items():
+        ordered = sorted(
+            rows,
+            key=lambda row: (
+                parse_iso(
+                    row.get("profile_before_utc")
+                ),
+                observation_key(row),
+            ),
+        )
+
+        watermark = watermarks.get(key)
+
+        if watermark is None:
+            candidates.append(ordered[-1])
             continue
 
-        unique[key] = row
+        for row in ordered:
+            timestamp = parse_iso(
+                row.get("profile_before_utc")
+            )
+
+            if timestamp is not None and timestamp > watermark:
+                candidates.append(row)
+
+    unique = {
+        observation_key(row): row
+        for row in candidates
+    }
 
     return sorted(
         unique.values(),
@@ -200,51 +259,134 @@ def select_forward_candidates(
     )
 
 
-def normalize_row(
-    target_row: dict[str, Any],
+def build_population_index(
     source_rows: list[dict[str, Any]],
-) -> dict[str, Any]:
-    cutoff = str(
-        target_row.get("profile_before_utc")
-        or ""
-    )
+) -> dict[
+    tuple[str, ...],
+    tuple[list[datetime], list[float]],
+]:
+    """Index comparable KNOWN population rows once for cutoff lookup."""
+    grouped: dict[
+        tuple[str, ...],
+        list[tuple[datetime, float]],
+    ] = {}
 
-    population_rows = [
-        row
-        for row in source_rows
+    for row in source_rows:
+        if not valid_source_row(row):
+            continue
+
         if (
-            valid_source_row(row)
-            and str(
+            str(
                 row.get("metric_status")
                 or ""
             ).upper()
-            == "KNOWN"
-        )
-    ]
+            != "KNOWN"
+        ):
+            continue
 
-    effective_target = dict(target_row)
+        try:
+            value = float(row.get("value"))
+        except (TypeError, ValueError):
+            continue
+
+        cutoff = parse_iso(
+            row.get("profile_before_utc")
+        )
+
+        if cutoff is None:
+            continue
+
+        grouped.setdefault(
+            population_key(row),
+            [],
+        ).append(
+            (
+                cutoff,
+                value,
+            )
+        )
+
+    result: dict[
+        tuple[str, ...],
+        tuple[list[datetime], list[float]],
+    ] = {}
+
+    for key, pairs in grouped.items():
+        pairs.sort(
+            key=lambda pair: pair[0]
+        )
+
+        result[key] = (
+            [
+                timestamp
+                for timestamp, _value
+                in pairs
+            ],
+            [
+                value
+                for _timestamp, value
+                in pairs
+            ],
+        )
+
+    return result
+
+
+def population_values_before(
+    target_row: dict[str, Any],
+    population_index: dict[
+        tuple[str, ...],
+        tuple[list[datetime], list[float]],
+    ],
+) -> list[float]:
+    cutoff = parse_iso(
+        target_row.get("profile_before_utc")
+    )
+
+    if cutoff is None:
+        return []
+
+    timestamps, values = population_index.get(
+        population_key(target_row),
+        (
+            [],
+            [],
+        ),
+    )
+
+    stop = bisect_right(
+        timestamps,
+        cutoff,
+    )
+
+    return values[:stop]
+
+
+def normalize_row(
+    target_row: dict[str, Any],
+    population_index: dict[
+        tuple[str, ...],
+        tuple[list[datetime], list[float]],
+    ],
+) -> dict[str, Any]:
+    raw_value = target_row.get("value")
 
     if (
         str(
-            effective_target.get(
-                "metric_status"
-            )
+            target_row.get("metric_status")
             or ""
         ).upper()
         != "KNOWN"
     ):
-        effective_target["value"] = None
+        raw_value = None
 
-    result = normalize_against_population(
-        target_row=effective_target,
-        population_rows=population_rows,
-        before_utc=cutoff,
+    normalized = normalize_metric(
+        raw_value=raw_value,
+        population_values=population_values_before(
+            target_row,
+            population_index,
+        ),
         min_population=MIN_POPULATION,
-    )
-
-    normalized = (
-        result.get("normalized")
-        or {}
     )
 
     return {
@@ -305,7 +447,7 @@ def normalize_row(
             "z_score"
         ),
         "normalization_status": (
-            result.get("status")
+            normalized.get("status")
         ),
         "minimum_population": (
             MIN_POPULATION
@@ -376,10 +518,14 @@ def main() -> int:
         existing_rows,
     )
 
+    population_index = build_population_index(
+        valid_rows,
+    )
+
     new_rows = [
         normalize_row(
             row,
-            valid_rows,
+            population_index,
         )
         for row in candidates
     ]
