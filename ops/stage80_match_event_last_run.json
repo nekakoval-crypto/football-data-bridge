@@ -1,18 +1,18 @@
 {
   "version": "PBK_STAGE80_MATCH_EVENT_ARCHIVE_V1",
-  "run_at_utc": "2026-09-21T14:53:38Z",
+  "run_at_utc": "2026-09-21T16:53:11Z",
   "status": "OK",
   "provider_endpoint": "/fixtures/events",
   "provider_calls": 0,
-  "daily_api_calls": 1588,
+  "daily_api_calls": 1979,
   "protected_calls": {
     "live": 0,
-    "current_round": 64,
+    "current_round": 32,
     "standings": 16,
     "player_stats_stage77": 4,
     "team_stats_stage81": 12,
     "safety": 8,
-    "total": 104
+    "total": 72
   },
   "candidate_fixtures": 0,
   "captured_fixtures": 0,
