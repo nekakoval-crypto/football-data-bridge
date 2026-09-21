@@ -10,6 +10,7 @@ from __future__ import annotations
 from datetime import datetime, timezone
 
 import standings_format_registry as format_registry
+import motivation_rivalry
 
 EUROPE_TYPES = {
     "CHAMPIONS_LEAGUE", "EUROPA_LEAGUE", "CONFERENCE_LEAGUE",
@@ -385,6 +386,11 @@ def _team_context(team, group_rows, format_meta):
 
 
 def _empty_payload(fixture, limitation):
+    rivalry = motivation_rivalry.fixture_rivalry(
+        fixture,
+        registry=rivalry_registry,
+    )
+
     return {
         "fixture_id": _text(fixture.get("fixture_id")) or None,
         "provider_league_id": _text(fixture.get("provider_league_id")) or None,
@@ -411,7 +417,7 @@ def _empty_payload(fixture, limitation):
     }
 
 
-def analyze_fixture(fixture, snapshot_rows, format_meta=None):
+def analyze_fixture(fixture, snapshot_rows, format_meta=None, rivalry_registry=None):
     """Build auditable motivation context from one eligible pre-match snapshot."""
     if not snapshot_rows:
         return _empty_payload(fixture, "NO_STANDINGS_SNAPSHOT")
@@ -481,6 +487,20 @@ def analyze_fixture(fixture, snapshot_rows, format_meta=None):
             "rank_gap": rank_gap, "points_gap": points_gap,
             "home_pressure": hp, "away_pressure": ap,
             "asymmetry": asymmetry,
+        },
+        "rivalry_context": rivalry,
+        "motivation_dimensions": {
+            "tournament_context": {
+                "home_pressure": hp,
+                "away_pressure": ap,
+                "points_gap": points_gap,
+                "rank_gap": rank_gap,
+            },
+            "rivalry_context": rivalry,
+            "single_motivation_score": None,
+            "aggregation_performed": False,
+            "prematch_frozen": True,
+            "result_hindsight_used": False,
         },
         "coverage": {
             "available": True, "status": coverage_status,
