@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-21T00:44:10Z",
+  "run_at_utc": "2026-09-21T06:45:50Z",
   "status": "OK",
   "mode": "SHARED_PREFETCHED_PROSPECTIVE_CAPTURE",
   "prefetched_fixture_ids": 160,
@@ -18,7 +18,7 @@
   "market_presence_count": 114,
   "market_presence_api_calls_added": 0,
   "generic_1x2_forward_capture": {
-    "run_at_utc": "2026-09-21T00:44:43Z",
+    "run_at_utc": "2026-09-21T06:46:13Z",
     "status": "OK",
     "mode": "STAGE71J_ZERO_EXTRA_CALL_PROSPECTIVE_CAPTURE",
     "source": "API-Football /odds Bet365 Match Winner",
@@ -34,8 +34,8 @@
       "complete_candidate_rows": 74
     },
     "candidate_rows": 74,
-    "observations_added": 3,
-    "observations_rejected": 71,
+    "observations_added": 0,
+    "observations_rejected": 74,
     "prematch_frozen": 206,
     "settled_rows": 2,
     "rejections": [
@@ -73,6 +73,10 @@
       },
       {
         "fixture_id": "1550145",
+        "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1550146",
         "reason": "already_frozen"
       },
       {
@@ -268,6 +272,10 @@
         "reason": "already_frozen"
       },
       {
+        "fixture_id": "1570407",
+        "reason": "already_frozen"
+      },
+      {
         "fixture_id": "1570408",
         "reason": "already_frozen"
       },
@@ -322,6 +330,10 @@
       {
         "fixture_id": "1575184",
         "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1575187",
+        "reason": "already_frozen"
       }
     ],
     "forward_report_status": "PER_LEAGUE_FORWARD_REVIEW"
@@ -343,7 +355,7 @@
       "logical_odds_calls": 0,
       "new_openers": 0,
       "new_snapshots": 0,
-      "new_closes": 36,
+      "new_closes": 0,
       "warnings": 0
     },
     {
@@ -353,7 +365,7 @@
       "logical_odds_calls": 0,
       "new_openers": 0,
       "new_snapshots": 0,
-      "new_closes": 4,
+      "new_closes": 0,
       "warnings": 0
     },
     {
@@ -363,7 +375,7 @@
       "logical_odds_calls": 0,
       "new_openers": 0,
       "new_snapshots": 0,
-      "new_closes": 21,
+      "new_closes": 0,
       "warnings": 0
     },
     {
@@ -373,7 +385,7 @@
       "logical_odds_calls": 0,
       "new_openers": 0,
       "new_snapshots": 0,
-      "new_closes": 4,
+      "new_closes": 0,
       "warnings": 0
     }
   ],
