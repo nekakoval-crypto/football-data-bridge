@@ -198,6 +198,71 @@ class StandingsMotivationTests(unittest.TestCase):
             payload['motivation_dimensions']['result_hindsight_used']
         )
 
+    def test_draw_can_be_preserve_gap_without_being_generic_must_win(self):
+        rows = [
+            srow(1, 'Team 1', 1, 30, played=20, description='Champions League'),
+            srow(2, 'Team 2', 2, 28, played=20, description='Champions League'),
+            srow(3, 'Team 3', 3, 25, played=20, description=''),
+        ]
+        payload = motivation.analyze_fixture(
+            fixture('1', '2'),
+            rows,
+            {'status': 'VERIFIED', 'total_games': 38},
+        )
+        self.assertTrue(payload['direct_rival_context']['table_direct_rival'])
+        home = payload['outcome_necessity']['home']
+        self.assertEqual(
+            home['draw_acceptability'],
+            'PRESERVES_PREMATCH_GAP_VS_DIRECT_RIVAL',
+        )
+        self.assertFalse(home['generic_must_win_emitted'])
+
+    def test_win_required_only_when_draw_breaks_current_points_path(self):
+        rows = [
+            srow(1, 'Team 1', 1, 80, played=37, description='Champions League'),
+            srow(2, 'Team 2', 2, 78, played=37, description='Champions League'),
+        ]
+        payload = motivation.analyze_fixture(
+            fixture('2', '1'),
+            rows,
+            {'status': 'VERIFIED', 'total_games': 38},
+        )
+        away = payload['outcome_necessity']['away']
+        home = payload['outcome_necessity']['home']
+        self.assertEqual(
+            home['need_to_win'],
+            'VERIFIED_TO_PRESERVE_CURRENT_POINTS_PATH',
+        )
+        self.assertEqual(
+            home['draw_acceptability'],
+            'NOT_ACCEPTABLE_FOR_CURRENT_POINTS_PATH',
+        )
+        self.assertEqual(away['need_to_win'], 'NOT_VERIFIED')
+        self.assertFalse(home['generic_must_win_emitted'])
+
+    def test_direct_rival_loss_cost_is_explicit_and_separate(self):
+        rows = [
+            srow(1, 'Atletico Madrid', 2, 28, played=12, description='Champions League'),
+            srow(2, 'Real Madrid', 1, 31, played=12, description='Champions League'),
+        ]
+        f = fixture('1', '2')
+        f['home_team'] = 'Atletico Madrid'
+        f['away_team'] = 'Real Madrid'
+        payload = motivation.analyze_fixture(
+            f,
+            rows,
+            {'status': 'VERIFIED', 'total_games': 38},
+        )
+        self.assertTrue(payload['direct_rival_context']['direct_rival'])
+        self.assertTrue(payload['direct_rival_context']['rivalry_direct_rival'])
+        self.assertIn(
+            'DIRECT_RIVAL_RELATIVE_SWING',
+            payload['outcome_necessity']['home']['loss_cost_reasons'],
+        )
+        self.assertIsNone(
+            payload['motivation_dimensions']['single_motivation_score']
+        )
+
 
 if __name__ == '__main__':
     unittest.main()
