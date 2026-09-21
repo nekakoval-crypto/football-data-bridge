@@ -49,12 +49,15 @@ class PBK16HistoricalTableContextTests(unittest.TestCase):
         self.assertEqual(by["3"]["same_day_results_excluded"],"true")
         self.assertEqual(by["3"]["no_lookahead"],"true")
 
-    def test_split_table_phase_is_blocked_and_taints_later_table_state(self):
+    def test_transform_required_split_is_blocked_and_taints_later_state(self):
         rows=[
             fixture(1,"2024-08-01",1,2,1,0),
             fixture(2,"2024-08-02",1,2,2,0),
             fixture(3,"2024-08-03",1,2,0,1),
         ]
+        for row in rows:
+            row["country"]="Austria"
+            row["season"]="2024"
         audits=[
             audit(1),
             audit(2,family="CHAMPIONSHIP_SPLIT",requires=True),
@@ -66,12 +69,72 @@ class PBK16HistoricalTableContextTests(unittest.TestCase):
             by["2"]["context_status"],
             "BLOCKED_TABLE_PHASE_REQUIRES_SEASON_FORMAT_CONTRACT",
         )
+        self.assertEqual(
+            by["2"]["phase_contract_status"],
+            "TRANSFORM_REQUIRED_NOT_IMPLEMENTED",
+        )
         self.assertEqual(by["2"]["home_points_pre"],"")
         self.assertEqual(
             by["3"]["context_status"],
             "BLOCKED_AFTER_UNMODELED_TABLE_PHASE",
         )
         self.assertEqual(by["3"]["home_rank_pre"],"")
+
+    def test_carry_forward_split_uses_group_only_ranking(self):
+        rows=[
+            fixture(1,"2025-08-01",1,2,1,0),
+            fixture(2,"2025-08-01",3,4,0,1),
+            fixture(3,"2025-08-02",1,3,1,0),
+            fixture(4,"2025-08-02",2,4,1,0),
+            fixture(5,"2025-09-01",1,2,0,0),
+            fixture(6,"2025-09-01",3,4,0,0),
+            fixture(7,"2025-09-02",1,2,2,0),
+            fixture(8,"2025-09-02",3,4,0,1),
+        ]
+        for row in rows:
+            row["country"]="Scotland"
+            row["season"]="2025"
+        audits=[
+            audit(1),audit(2),audit(3),audit(4),
+            audit(5,family="CHAMPIONSHIP_OR_SPLIT",requires=True),
+            audit(6,family="RELEGATION_SPLIT",requires=True),
+            audit(7,family="CHAMPIONSHIP_OR_SPLIT",requires=True),
+            audit(8,family="RELEGATION_SPLIT",requires=True),
+        ]
+        out,_=t.project(rows,audits)
+        by={r["domestic_fixture_id"]:r for r in out}
+
+        top=by["7"]
+        bottom=by["8"]
+        self.assertEqual(top["context_status"],"VALID_SPLIT_CARRY_FORWARD_DERIVED")
+        self.assertEqual(bottom["context_status"],"VALID_SPLIT_CARRY_FORWARD_DERIVED")
+        self.assertEqual(top["phase_contract_status"],"CARRY_FORWARD_UNCHANGED_CANDIDATE")
+        self.assertEqual(top["phase_group_status"],"CONNECTED_COMPONENT_DERIVED")
+        self.assertEqual(top["ranking_scope_teams"],2)
+        self.assertEqual(bottom["ranking_scope_teams"],2)
+        # Team 4 has more global points than Team 1 after fixture 6, but it is
+        # outside Team 1's split group and must not affect Team 1's rank.
+        self.assertEqual(top["home_rank_pre"],1)
+        self.assertEqual(top["away_rank_pre"],2)
+        self.assertEqual(bottom["home_rank_pre"],2)
+        self.assertEqual(bottom["away_rank_pre"],1)
+        self.assertEqual(top["phase_points_transform"],"CARRY_FORWARD_UNCHANGED")
+        self.assertEqual(top["exact_title_relegation_motivation_allowed"],"false")
+
+    def test_carry_split_with_unresolved_group_fails_closed(self):
+        rows=[fixture(1,"2025-08-01",1,2,1,0)]
+        rows[0]["country"]="Scotland"
+        rows[0]["season"]="2025"
+        audits=[audit(1,family="CHAMPIONSHIP_OR_SPLIT",requires=True)]
+        # One fixture is enough to form a two-team connected component, so
+        # remove the away identity to force group resolution failure.
+        rows[0]["away_team_id"]=""
+        rows[0]["away_team"]=""
+        out,_=t.project(rows,audits)
+        self.assertEqual(
+            out[0]["context_status"],
+            "BLOCKED_SPLIT_GROUP_UNRESOLVED",
+        )
 
     def test_post_table_playoff_is_excluded_without_appendix_team_pollution(self):
         rows=[
