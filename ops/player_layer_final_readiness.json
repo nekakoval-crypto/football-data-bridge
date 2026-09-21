@@ -1,0 +1,114 @@
+{
+  "version": "PBK_STAGE80_PLAYER_LAYER_FINALIZATION_V1",
+  "run_at_utc": "2026-09-21T16:17:01Z",
+  "status": "VALIDATION_PENDING",
+  "checklist_item_10_data_engineering_foundation": "COMPLETE",
+  "checklist_item_10_predictive_authority": "NOT_AUTHORIZED",
+  "operational_betting_authority": false,
+  "creates_signal": false,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "stake_changes": false,
+  "forward_journal_mutation": false,
+  "components": {
+    "PLAYER_QUALITY": {
+      "status": "VALIDATION_PENDING",
+      "authority": "RESEARCH",
+      "evidence": {
+        "strictly_prior_xi_quality_rows": 572,
+        "xi_quality_rows_with_8plus_coverage": 569,
+        "historical_player_remaining": 67081,
+        "basis": "STRICTLY_PRIOR_MATCH_CHRONOLOGY_FORM5_MIN30",
+        "temporal_authority": "RETROSPECTIVE_CHRONOLOGY_ONLY"
+      },
+      "blockers": []
+    },
+    "CURRENT_FORM": {
+      "status": "VALIDATION_PENDING",
+      "authority": "RESEARCH",
+      "evidence": {
+        "walk_forward_rows": 80556
+      },
+      "blockers": []
+    },
+    "PLAYER_IMPORTANCE": {
+      "status": "RESEARCH_ONLY",
+      "authority": "RESEARCH",
+      "evidence": {
+        "importance_rows": 0,
+        "eligible_importance_rows": 0,
+        "minimum_with_starts": 5,
+        "minimum_without_starts": 5,
+        "causal_claim": false
+      },
+      "blockers": [
+        "NO_PLAYER_HAS_SUFFICIENT_WITH_WITHOUT_CAPTURED_SAMPLE"
+      ]
+    },
+    "AVAILABILITY_ABSENCE": {
+      "status": "RESEARCH_ONLY",
+      "authority": "RESEARCH",
+      "evidence": {
+        "descriptive_association_rows": 0,
+        "historical_availability_remaining_tasks": 80108,
+        "prematch_observation_time_known": false
+      },
+      "blockers": [
+        "RETROSPECTIVE_INJURY_EVIDENCE_CANNOT_PROVE_PREMATCH_KNOWLEDGE",
+        "GENUINE_PREMATCH_ABSENCE_EVIDENCE_REQUIRED_FOR_PREDICTIVE_VALIDATION"
+      ]
+    },
+    "RETURN_IMPACT": {
+      "status": "RESEARCH_ONLY",
+      "authority": "RESEARCH",
+      "evidence": {
+        "retrospective_return_reconstructions": 74,
+        "prematch_observation_time_known": false
+      },
+      "blockers": [
+        "RETURN_RECONSTRUCTION_IS_RETROSPECTIVE",
+        "GENUINE_PREMATCH_RETURN_EVIDENCE_REQUIRED_FOR_PREDICTIVE_VALIDATION"
+      ]
+    },
+    "XI_ROTATION": {
+      "status": "RESEARCH_ONLY",
+      "authority": "RESEARCH",
+      "evidence": {
+        "rotation_outcome_rows": 0,
+        "strictly_prior_quality_rows": 569,
+        "market_adjusted_validation_completed": false
+      },
+      "blockers": [
+        "MARKET_ADJUSTED_OUT_OF_SAMPLE_VALIDATION_NOT_COMPLETED",
+        "RETROSPECTIVE_LINEUP_OBSERVATION_TIME_NOT_KNOWN"
+      ]
+    },
+    "INTERNATIONAL_RETURN_LOAD": {
+      "status": "VALIDATION_PENDING",
+      "authority": "RESEARCH",
+      "evidence": {
+        "return_load_rows": 577
+      },
+      "blockers": []
+    },
+    "DOUBLE_COUNTING_GOVERNANCE": {
+      "status": "OPERATIONAL_AUTHORIZED",
+      "authority": "GOVERNANCE",
+      "evidence": {
+        "raw_additive_mega_score_forbidden": true,
+        "player_quality_distinct_from_current_form": true,
+        "availability_distinct_from_rotation": true,
+        "international_load_distinct_from_club_form": true,
+        "specialist_model_required": true
+      },
+      "blockers": []
+    }
+  },
+  "hard_blockers": [
+    "GENUINE_PREMATCH_AVAILABILITY_TIMESTAMPS_NOT_AVAILABLE_FOR_HISTORICAL_BACKFILL",
+    "MARKET_ADJUSTED_OUT_OF_SAMPLE_PLAYER_LAYER_VALIDATION_NOT_COMPLETE",
+    "HISTORICAL_PLAYER_BACKFILL_INCOMPLETE",
+    "HISTORICAL_LINEUP_INJURY_BACKFILL_INCOMPLETE"
+  ],
+  "closure_rule": "Checklist item 10 may be considered DATA/RESEARCH FOUNDATION COMPLETE, but must not be called OPERATIONAL PREDICTIVE COMPLETE until genuine prematch availability evidence and market-adjusted OOS validation pass."
+}
