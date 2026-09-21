@@ -385,6 +385,148 @@ def _team_context(team, group_rows, format_meta):
     }
 
 
+def _active_objectives(context):
+    return [
+        obj
+        for obj in (context.get("objectives") or [])
+        if obj.get("status") not in {None, "UNKNOWN"} | RESOLVED_STATUSES
+    ]
+
+
+def _direct_rival_context(home_ctx, away_ctx, points_gap, rank_gap, rivalry):
+    """Describe direct-rival facts without collapsing them into one score."""
+    home_types = {obj.get("type") for obj in _active_objectives(home_ctx)}
+    away_types = {obj.get("type") for obj in _active_objectives(away_ctx)}
+    shared = sorted(item for item in home_types & away_types if item)
+
+    close_points = isinstance(points_gap, int) and abs(points_gap) <= 6
+    close_rank = isinstance(rank_gap, int) and abs(rank_gap) <= 2
+    table_direct = bool(shared and (close_points or close_rank))
+    rivalry_direct = bool(
+        rivalry.get("status") == "VERIFIED"
+        and (
+            rivalry.get("derby")
+            or rivalry.get("principled_rivalry")
+        )
+    )
+
+    reasons = []
+    if shared:
+        reasons.append("SHARED_ACTIVE_OBJECTIVE:" + ",".join(shared))
+    if close_points:
+        reasons.append("POINTS_GAP_WITHIN_6")
+    if close_rank:
+        reasons.append("RANK_GAP_WITHIN_2")
+    if rivalry_direct:
+        reasons.append("VERIFIED_RIVALRY")
+
+    return {
+        "table_direct_rival": table_direct,
+        "rivalry_direct_rival": rivalry_direct,
+        "direct_rival": bool(table_direct or rivalry_direct),
+        "shared_active_objectives": shared,
+        "points_gap_abs": abs(points_gap) if isinstance(points_gap, int) else None,
+        "rank_gap_abs": abs(rank_gap) if isinstance(rank_gap, int) else None,
+        "reasons": reasons,
+        "aggregation_performed": False,
+    }
+
+
+def _outcome_ceiling(points, remaining, result_points):
+    if points is None or remaining is None or remaining <= 0:
+        return None
+    return points + result_points + 3 * max(remaining - 1, 0)
+
+
+def _outcome_necessity(team_ctx, opponent_ctx, direct_rival, side):
+    """Prematch outcome-path facts; never emits a generic subjective MUST_WIN."""
+    standings = team_ctx.get("standings") or {}
+    fmt = team_ctx.get("format") or {}
+    points = _int(standings.get("points"))
+    remaining = _int(fmt.get("matches_remaining"))
+
+    ceilings = {
+        "win": _outcome_ceiling(points, remaining, 3),
+        "draw": _outcome_ceiling(points, remaining, 1),
+        "loss": _outcome_ceiling(points, remaining, 0),
+    }
+
+    required_reasons = []
+    draw_ok_reasons = []
+    loss_cost_reasons = []
+
+    for obj in _active_objectives(team_ctx):
+        target = _int(obj.get("target_points"))
+        typ = _text(obj.get("type")) or "OBJECTIVE"
+        if target is None:
+            continue
+
+        win_max = ceilings["win"]
+        draw_max = ceilings["draw"]
+        loss_max = ceilings["loss"]
+
+        if (
+            win_max is not None
+            and draw_max is not None
+            and draw_max < target <= win_max
+        ):
+            required_reasons.append(
+                f"{typ}:DRAW_BREAKS_CURRENT_POINTS_PATH"
+            )
+
+        if (
+            draw_max is not None
+            and loss_max is not None
+            and loss_max < target <= draw_max
+        ):
+            loss_cost_reasons.append(
+                f"{typ}:LOSS_BREAKS_CURRENT_POINTS_PATH"
+            )
+
+    if required_reasons:
+        need_to_win = "VERIFIED_TO_PRESERVE_CURRENT_POINTS_PATH"
+        draw_status = "NOT_ACCEPTABLE_FOR_CURRENT_POINTS_PATH"
+    else:
+        need_to_win = "NOT_VERIFIED"
+        draw_status = "UNKNOWN"
+
+    if direct_rival.get("direct_rival"):
+        loss_cost_reasons.append("DIRECT_RIVAL_RELATIVE_SWING")
+        if points is not None:
+            opponent_points = _int(
+                (opponent_ctx.get("standings") or {}).get("points")
+            )
+            if opponent_points is not None and points >= opponent_points:
+                draw_ok_reasons.append("DRAW_PRESERVES_PREMATCH_POINTS_GAP")
+                if not required_reasons:
+                    draw_status = "PRESERVES_PREMATCH_GAP_VS_DIRECT_RIVAL"
+
+    if required_reasons:
+        draw_ok_reasons = []
+
+    if loss_cost_reasons:
+        loss_cost = "ELEVATED_VERIFIED_CONTEXT"
+    else:
+        loss_cost = "NO_SPECIAL_COST_VERIFIED"
+
+    return {
+        "side": side,
+        "matches_remaining_including_fixture": remaining,
+        "max_points_if_win": ceilings["win"],
+        "max_points_if_draw": ceilings["draw"],
+        "max_points_if_loss": ceilings["loss"],
+        "need_to_win": need_to_win,
+        "need_to_win_reasons": required_reasons,
+        "draw_acceptability": draw_status,
+        "draw_acceptability_reasons": draw_ok_reasons,
+        "loss_cost": loss_cost,
+        "loss_cost_reasons": loss_cost_reasons,
+        "generic_must_win_emitted": False,
+        "prematch_frozen": True,
+        "result_hindsight_used": False,
+    }
+
+
 def _empty_payload(fixture, limitation, rivalry_registry=None):
     rivalry = motivation_rivalry.fixture_rivalry(
         fixture,
@@ -481,6 +623,25 @@ def analyze_fixture(fixture, snapshot_rows, format_meta=None, rivalry_registry=N
         fixture,
         registry=rivalry_registry,
     )
+    direct_rival = _direct_rival_context(
+        home_ctx,
+        away_ctx,
+        points_gap,
+        rank_gap,
+        rivalry,
+    )
+    home_outcome = _outcome_necessity(
+        home_ctx,
+        away_ctx,
+        direct_rival,
+        "HOME",
+    )
+    away_outcome = _outcome_necessity(
+        away_ctx,
+        home_ctx,
+        direct_rival,
+        "AWAY",
+    )
 
     return {
         "fixture_id": _text(fixture.get("fixture_id")) or None,
@@ -504,6 +665,11 @@ def analyze_fixture(fixture, snapshot_rows, format_meta=None, rivalry_registry=N
             "asymmetry": asymmetry,
         },
         "rivalry_context": rivalry,
+        "direct_rival_context": direct_rival,
+        "outcome_necessity": {
+            "home": home_outcome,
+            "away": away_outcome,
+        },
         "motivation_dimensions": {
             "tournament_context": {
                 "home_pressure": hp,
@@ -512,6 +678,11 @@ def analyze_fixture(fixture, snapshot_rows, format_meta=None, rivalry_registry=N
                 "rank_gap": rank_gap,
             },
             "rivalry_context": rivalry,
+            "direct_rival_context": direct_rival,
+            "outcome_necessity": {
+                "home": home_outcome,
+                "away": away_outcome,
+            },
             "single_motivation_score": None,
             "aggregation_performed": False,
             "prematch_frozen": True,
