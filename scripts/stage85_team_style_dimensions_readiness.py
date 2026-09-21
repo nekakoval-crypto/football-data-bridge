@@ -33,13 +33,13 @@ VERSION = "PBK_STAGE85_TEAM_STYLE_DIMENSIONS_READINESS_V1"
 CURRENT_STAGE84_METRICS = {
     "shots_for",
     "shots_against",
-    "sot_for",
-    "sot_against",
-    "possession",
+    "shots_on_target_for",
+    "shots_on_target_against",
+    "possession_pct",
     "corners_for",
     "corners_against",
     "passes",
-    "pass_accuracy",
+    "pass_accuracy_pct",
     "xg_for",
     "xg_against",
 }
