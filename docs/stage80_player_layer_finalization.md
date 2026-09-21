@@ -2,6 +2,16 @@
 
 This stage is the final provider-free data/research pass for PBK checklist item 10.
 
+## Canonical outcome identity
+
+The finalizer must join historical lineup/injury evidence to
+`ops/pbk16_all_competition_fixture_history.csv`, because that is the exact
+fixture universe used by the Stage80 historical lineup/injury backfill.  The
+join key is the provider `fixture_id`; fuzzy team/date matching is forbidden.
+
+The older `ops/historical_fixtures.csv` rolling catalog is not an acceptable
+substitute for this join because it covers a different fixture-id population.
+
 ## What it solves
 
 1. Rebuilds `player_importance_research.csv` from the historical official-XI archive plus terminal results instead of relying only on the tiny current-round rotation sample.

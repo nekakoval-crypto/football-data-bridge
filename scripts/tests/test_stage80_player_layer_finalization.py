@@ -12,6 +12,26 @@ class PlayerLayerFinalizationTests(unittest.TestCase):
             {"player": {"id": str(i), "name": f"P{i}"}} for i in ids
         ])
 
+    def test_fixture_outcomes_supports_canonical_pbk16_archive_schema(self):
+        outcomes = p.fixture_outcomes([{
+            "fixture_id": "1382426",
+            "status": "FT",
+            "home_goals": "2",
+            "away_goals": "1",
+        }])
+        self.assertEqual(outcomes["1382426"]["home_points"], 3)
+        self.assertEqual(outcomes["1382426"]["away_points"], 0)
+        self.assertEqual(outcomes["1382426"]["home_gd"], 1.0)
+
+    def test_fixture_outcomes_rejects_nonterminal_rows(self):
+        outcomes = p.fixture_outcomes([{
+            "fixture_id": "1382426",
+            "status": "NS",
+            "home_goals": "2",
+            "away_goals": "1",
+        }])
+        self.assertNotIn("1382426", outcomes)
+
     def test_prior_grade_excludes_target_and_future_match(self):
         histories = {
             "7": [
