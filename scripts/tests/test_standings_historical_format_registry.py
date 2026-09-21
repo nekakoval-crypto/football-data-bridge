@@ -61,6 +61,57 @@ class HistoricalTop5MotivationFormatRegistryTests(unittest.TestCase):
         self.assertTrue(recent["conditional_safety_playoff_if_tied"])
         self.assertIsNone(recent["relegation_playoff_rank"])
 
+
+    def test_all_pbk16_current_season_formats_are_verified(self):
+        league_ids = {
+            "39","140","135","78","61","88","103","106",
+            "94","362","218","144","119","365","203","179",
+        }
+        self.assertEqual(len(league_ids),16)
+        for league_id in league_ids:
+            with self.subTest(league_id=league_id):
+                item=registry.get_format(league_id,"2026")
+                self.assertEqual(item["status"],"VERIFIED")
+                self.assertIsInstance(item["total_games"],int)
+                self.assertGreater(item["total_games"],0)
+                self.assertTrue(item["source"])
+
+    def test_split_leagues_have_explicit_phase_contracts(self):
+        expected={
+            "218":(32,22,10,"NONE"),
+            "119":(32,22,10,"NONE"),
+            "179":(38,33,5,"NONE"),
+        }
+        for league_id, values in expected.items():
+            with self.subTest(league_id=league_id):
+                item=registry.get_format(league_id,"2026")
+                self.assertEqual(item["status"],"VERIFIED")
+                self.assertEqual(item["format_type"],"SPLIT_TOP6_BOTTOM6")
+                self.assertTrue(item["phase_aware"])
+                self.assertEqual(
+                    (
+                        item["total_games"],
+                        item["regular_phase_games"],
+                        item["post_split_games"],
+                        item["points_transform"],
+                    ),
+                    values,
+                )
+
+    def test_belgium_2026_reform_is_classic_34_round_table(self):
+        item=registry.get_format("144","2026")
+        self.assertEqual(item["status"],"VERIFIED")
+        self.assertEqual(item["format_type"],"CLASSIC_SINGLE_TABLE")
+        self.assertEqual(item["total_games"],34)
+        self.assertEqual(item["post_split_games"],0)
+        self.assertIn("no play-offs",item["reason"])
+
+    def test_latvia_and_turkey_current_totals_are_verified(self):
+        latvia=registry.get_format("365","2026")
+        turkey=registry.get_format("203","2026")
+        self.assertEqual(latvia["total_games"],36)
+        self.assertEqual(turkey["total_games"],34)
+
     def test_unknown_scope_fails_closed(self):
         item=registry.get_historical_top5_format("E0","2016/2017")
         self.assertEqual(item["status"],"UNKNOWN")

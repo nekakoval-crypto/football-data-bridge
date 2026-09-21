@@ -7,6 +7,7 @@ on:
   pull_request:
     paths:
       - 'scripts/standings_snapshot_capture.py'
+      - 'scripts/standings_format_registry.py'
       - 'scripts/stage72_build_data_layer.py'
       - 'scripts/stage73_internal_api.py'
       - 'scripts/tests/test_standings*.py'
@@ -14,6 +15,7 @@ on:
   push:
     paths:
       - 'scripts/standings_snapshot_capture.py'
+      - 'scripts/standings_format_registry.py'
       - 'scripts/stage72_build_data_layer.py'
       - 'scripts/stage73_internal_api.py'
       - 'scripts/tests/test_standings*.py'
