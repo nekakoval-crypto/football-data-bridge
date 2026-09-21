@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-21T00:32:03Z",
-  "status": "OK",
+  "run_at_utc": "2026-09-21T02:25:20Z",
+  "status": "ATTENTION",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 2,
-  "daily_api_calls": 2,
+  "provider_calls": 0,
+  "daily_api_calls": 339,
   "protected_calls": {
     "live": 0,
     "current_round": 96,
@@ -13,22 +13,13 @@
     "total": 120
   },
   "roster_ttl_days": 7,
-  "candidate_teams": 2,
-  "captured_teams": [
-    {
-      "team_id": "211",
-      "team_name": "Benfica",
-      "players": 32
-    },
-    {
-      "team_id": "212",
-      "team_name": "FC Porto",
-      "players": 32
-    }
-  ],
-  "deferred_teams": 0,
+  "candidate_teams": 8,
+  "captured_teams": [],
+  "deferred_teams": 8,
   "total_roster_rows": 3516,
-  "warnings": [],
+  "warnings": [
+    "Stage71 protected API reserve reached; Challenger deferred"
+  ],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
