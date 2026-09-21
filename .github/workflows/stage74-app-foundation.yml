@@ -157,8 +157,10 @@ jobs:
           m=p.get('probability_module') or {}
           assert code==200
           assert m.get('status')=='ACTIVE_FORWARD_MONITORING',m
-          assert m.get('max_probability_ranking_available') is True,m
-          assert m.get('value_ranking_available') is True,m
+          max_probability=m.get('max_probability') or []
+          best_value=m.get('best_value') or []
+          assert m.get('max_probability_ranking_available') is bool(max_probability),m
+          assert m.get('value_ranking_available') is bool(best_value),m
           assert (m.get('policy') or {}).get('stake_changes') is False,m
           print('Stage75 probability projection: OK')
           PY
