@@ -1,0 +1,111 @@
+{
+  "version": "PBK_STAGE80_PLAYER_LAYER_COMPLETION_V1",
+  "run_at_utc": "2026-09-21T15:50:41Z",
+  "status": "VALIDATION_PENDING",
+  "operational_betting_authority": false,
+  "creates_signal": false,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "stake_changes": false,
+  "forward_journal_mutation": false,
+  "components": {
+    "PLAYER_QUALITY": {
+      "status": "VALIDATION_PENDING",
+      "authority": "RESEARCH",
+      "evidence": {
+        "player_grade_rows": 96879,
+        "historical_player_backfill_status": "OK",
+        "historical_player_remaining": 67081
+      },
+      "blockers": []
+    },
+    "CURRENT_FORM": {
+      "status": "VALIDATION_PENDING",
+      "authority": "RESEARCH",
+      "evidence": {
+        "walk_forward_rows": 80556,
+        "leakage_violations": 0,
+        "no_lookahead": true
+      },
+      "blockers": []
+    },
+    "PLAYER_IMPORTANCE": {
+      "status": "RESEARCH_ONLY",
+      "authority": "RESEARCH",
+      "evidence": {
+        "importance_rows": 0
+      },
+      "blockers": [
+        "IMPORTANCE_EVIDENCE_INCOMPLETE"
+      ]
+    },
+    "AVAILABILITY": {
+      "status": "RESEARCH_ONLY",
+      "authority": "RESEARCH",
+      "evidence": {
+        "retrospective_injury_evidence_rows": 398,
+        "temporal_authority": "RETROSPECTIVE_ONLY",
+        "prematch_known": false
+      },
+      "blockers": [
+        "HISTORICAL_INJURY_RETRIEVAL_TIME_IS_NOT_PREMATCH_OBSERVATION_TIME",
+        "IMPACT_WEIGHTING_NOT_VALIDATED"
+      ]
+    },
+    "XI_ROTATION": {
+      "status": "RESEARCH_ONLY",
+      "authority": "RESEARCH",
+      "evidence": {
+        "structural_rotation_rows": 572,
+        "quality_delta_authorized": false,
+        "temporal_authority": "RETROSPECTIVE_ONLY"
+      },
+      "blockers": [
+        "STRICTLY_PRIOR_PLAYER_QUALITY_JOIN_REQUIRED_FOR_QUALITY_DELTA",
+        "ROTATION_OUTCOME_MODEL_NOT_VALIDATED"
+      ]
+    },
+    "INTERNATIONAL_RETURN_LOAD": {
+      "status": "VALIDATION_PENDING",
+      "authority": "RESEARCH",
+      "evidence": {
+        "return_load_rows": 577
+      },
+      "blockers": []
+    },
+    "SEPARATION_AND_DOUBLE_COUNTING_GUARD": {
+      "status": "OPERATIONAL_AUTHORIZED",
+      "authority": "GOVERNANCE",
+      "evidence": {
+        "dimensions": [
+          "PLAYER_QUALITY",
+          "CURRENT_FORM",
+          "PLAYER_IMPORTANCE",
+          "AVAILABILITY",
+          "XI_ROTATION",
+          "INTERNATIONAL_RETURN_LOAD"
+        ],
+        "raw_additive_mega_score_forbidden": true,
+        "specialist_model_required": true
+      },
+      "blockers": []
+    }
+  },
+  "separation_contract": {
+    "PLAYER_QUALITY": "stable/prior capability evidence; never short-term form",
+    "CURRENT_FORM": "recent deviation/trend; never a substitute for stable quality",
+    "PLAYER_IMPORTANCE": "role/minutes/replacement context; not the same as quality",
+    "AVAILABILITY": "presence/absence/return evidence only",
+    "XI_ROTATION": "membership/structural change; do not relabel as absence",
+    "INTERNATIONAL_RETURN_LOAD": "travel/minutes/load context; distinct from club form",
+    "double_counting_rule": "The same raw observation may feed multiple descriptive views, but a decision model must de-duplicate shared evidence and may not sum raw component scores without separate validation."
+  },
+  "next_gates": [
+    "continue historical player backfill",
+    "continue historical lineup/injury backfill",
+    "build strictly-prior player-quality join for XI quality delta",
+    "validate absence/return impact with genuine prematch evidence",
+    "validate rotation features against outcomes/markets without lookahead",
+    "only then consider OPERATIONAL_AUTHORIZED predictive authority"
+  ]
+}
