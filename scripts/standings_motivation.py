@@ -10,6 +10,7 @@ from __future__ import annotations
 from datetime import datetime, timezone
 
 import standings_format_registry as format_registry
+import motivation_rivalry
 
 EUROPE_TYPES = {
     "CHAMPIONS_LEAGUE", "EUROPA_LEAGUE", "CONFERENCE_LEAGUE",
@@ -384,7 +385,12 @@ def _team_context(team, group_rows, format_meta):
     }
 
 
-def _empty_payload(fixture, limitation):
+def _empty_payload(fixture, limitation, rivalry_registry=None):
+    rivalry = motivation_rivalry.fixture_rivalry(
+        fixture,
+        registry=rivalry_registry,
+    )
+
     return {
         "fixture_id": _text(fixture.get("fixture_id")) or None,
         "provider_league_id": _text(fixture.get("provider_league_id")) or None,
@@ -403,6 +409,15 @@ def _empty_payload(fixture, limitation):
             "home_pressure": "UNKNOWN", "away_pressure": "UNKNOWN",
             "asymmetry": "UNKNOWN",
         },
+        "rivalry_context": rivalry,
+        "motivation_dimensions": {
+            "tournament_context": None,
+            "rivalry_context": rivalry,
+            "single_motivation_score": None,
+            "aggregation_performed": False,
+            "prematch_frozen": True,
+            "result_hindsight_used": False,
+        },
         "coverage": {
             "available": False, "status": "UNKNOWN",
             "format_status": "UNKNOWN", "motivation_status": "UNKNOWN",
@@ -411,30 +426,30 @@ def _empty_payload(fixture, limitation):
     }
 
 
-def analyze_fixture(fixture, snapshot_rows, format_meta=None):
+def analyze_fixture(fixture, snapshot_rows, format_meta=None, rivalry_registry=None):
     """Build auditable motivation context from one eligible pre-match snapshot."""
     if not snapshot_rows:
-        return _empty_payload(fixture, "NO_STANDINGS_SNAPSHOT")
+        return _empty_payload(fixture, "NO_STANDINGS_SNAPSHOT", rivalry_registry)
     kickoff = _utc(fixture.get("kickoff_utc"))
     snapshot_ids = {_text(row.get("snapshot_id")) for row in snapshot_rows if _text(row.get("snapshot_id"))}
     observed_values = {_text(row.get("observed_at_utc")) for row in snapshot_rows if _text(row.get("observed_at_utc"))}
     if len(snapshot_ids) != 1 or len(observed_values) != 1:
-        return _empty_payload(fixture, "SNAPSHOT_INTEGRITY_ERROR")
+        return _empty_payload(fixture, "SNAPSHOT_INTEGRITY_ERROR", rivalry_registry)
     observed = _utc(next(iter(observed_values)))
     if kickoff is None or observed is None:
-        return _empty_payload(fixture, "SNAPSHOT_INTEGRITY_ERROR")
+        return _empty_payload(fixture, "SNAPSHOT_INTEGRITY_ERROR", rivalry_registry)
     if observed > kickoff:
-        return _empty_payload(fixture, "LOOKAHEAD_FORBIDDEN")
+        return _empty_payload(fixture, "LOOKAHEAD_FORBIDDEN", rivalry_registry)
 
     home, home_match = _find_team(snapshot_rows, fixture.get("home_team_id"), fixture.get("home_team"))
     away, away_match = _find_team(snapshot_rows, fixture.get("away_team_id"), fixture.get("away_team"))
     if not home or not away:
-        return _empty_payload(fixture, "TEAM_NOT_FOUND")
+        return _empty_payload(fixture, "TEAM_NOT_FOUND", rivalry_registry)
     if _text(home.get("group_name")) != _text(away.get("group_name")):
-        return _empty_payload(fixture, "GROUP_AMBIGUOUS")
+        return _empty_payload(fixture, "GROUP_AMBIGUOUS", rivalry_registry)
     group_rows = _same_group(snapshot_rows, home.get("group_name"))
     if home not in group_rows or away not in group_rows:
-        return _empty_payload(fixture, "GROUP_AMBIGUOUS")
+        return _empty_payload(fixture, "GROUP_AMBIGUOUS", rivalry_registry)
 
     effective_format = format_meta if format_meta is not None else format_registry.get_format(
         fixture.get("provider_league_id"), fixture.get("season"))
@@ -461,6 +476,12 @@ def analyze_fixture(fixture, snapshot_rows, format_meta=None):
         asymmetry = "UNKNOWN"
     else:
         asymmetry = "BALANCED"
+
+    rivalry = motivation_rivalry.fixture_rivalry(
+        fixture,
+        registry=rivalry_registry,
+    )
+
     return {
         "fixture_id": _text(fixture.get("fixture_id")) or None,
         "provider_league_id": _text(fixture.get("provider_league_id")) or None,
@@ -481,6 +502,20 @@ def analyze_fixture(fixture, snapshot_rows, format_meta=None):
             "rank_gap": rank_gap, "points_gap": points_gap,
             "home_pressure": hp, "away_pressure": ap,
             "asymmetry": asymmetry,
+        },
+        "rivalry_context": rivalry,
+        "motivation_dimensions": {
+            "tournament_context": {
+                "home_pressure": hp,
+                "away_pressure": ap,
+                "points_gap": points_gap,
+                "rank_gap": rank_gap,
+            },
+            "rivalry_context": rivalry,
+            "single_motivation_score": None,
+            "aggregation_performed": False,
+            "prematch_frozen": True,
+            "result_hindsight_used": False,
         },
         "coverage": {
             "available": True, "status": coverage_status,

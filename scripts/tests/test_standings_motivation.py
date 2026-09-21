@@ -170,6 +170,34 @@ class StandingsMotivationTests(unittest.TestCase):
         self.assertNotIn('unmotivated', str(payload).lower())
         self.assertIn(payload['away']['pressure'], {'NONE_VERIFIED', 'LOW', 'MEDIUM'})
 
+    def test_derby_context_does_not_disappear_when_table_pressure_is_low(self):
+        rows = [
+            srow(1, 'Atletico Madrid', 8, 20, played=10),
+            srow(2, 'Real Madrid', 1, 35, played=10),
+        ]
+        f = fixture('1', '2')
+        f['home_team'] = 'Atletico Madrid'
+        f['away_team'] = 'Real Madrid'
+        payload = motivation.analyze_fixture(
+            f,
+            rows,
+            {'status': 'VERIFIED', 'total_games': 38},
+        )
+        self.assertTrue(payload['rivalry_context']['derby'])
+        self.assertEqual(payload['rivalry_context']['status'], 'VERIFIED')
+        self.assertIsNone(
+            payload['motivation_dimensions']['single_motivation_score']
+        )
+        self.assertFalse(
+            payload['motivation_dimensions']['aggregation_performed']
+        )
+        self.assertTrue(
+            payload['motivation_dimensions']['prematch_frozen']
+        )
+        self.assertFalse(
+            payload['motivation_dimensions']['result_hindsight_used']
+        )
+
 
 if __name__ == '__main__':
     unittest.main()
