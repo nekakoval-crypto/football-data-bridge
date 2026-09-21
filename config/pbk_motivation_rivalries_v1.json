@@ -2,6 +2,11 @@
   "version": "PBK_MOTIVATION_RIVALRIES_V1",
   "status": "PARTIAL_VERIFIED_CATALOG",
   "matching_policy": "EXACT_NORMALIZED_ALIAS_ONLY_NO_FUZZY",
+  "coverage": {
+    "pbk16_leagues_represented": 16,
+    "catalog_completeness": "PARTIAL",
+    "rule": "Representative verified rivalries exist for every PBK16 league, but the catalog is not declared exhaustive."
+  },
   "governance": {
     "rivalry_is_independent_dimension": true,
     "rivalry_never_overrides_table_context": true,
@@ -10,21 +15,21 @@
     "prematch_only": true
   },
   "rivalries": [
-    {
-      "id": "MADRID_DERBY_REAL_ATLETICO",
-      "rivalry_name": "Madrid derby",
-      "rivalry_type": "DERBY",
-      "competition_scope": "SPAIN",
-      "principled_rivalry": true,
-      "team_a_aliases": [
-        "Real Madrid"
-      ],
-      "team_b_aliases": [
-        "Atlético de Madrid",
-        "Atletico Madrid",
-        "Club Atlético de Madrid",
-        "Club Atletico de Madrid"
-      ]
-    }
+    {"id":"ENG_NORTH_LONDON","rivalry_name":"North London derby","rivalry_type":"DERBY","competition_scope":"ENGLAND","principled_rivalry":true,"team_a_aliases":["Arsenal"],"team_b_aliases":["Tottenham","Tottenham Hotspur"]},
+    {"id":"ESP_MADRID_DERBY_REAL_ATLETICO","rivalry_name":"Madrid derby","rivalry_type":"DERBY","competition_scope":"SPAIN","principled_rivalry":true,"team_a_aliases":["Real Madrid"],"team_b_aliases":["Atlético de Madrid","Atletico Madrid","Club Atlético de Madrid","Club Atletico de Madrid"]},
+    {"id":"ITA_DERBY_DELLA_MADONNINA","rivalry_name":"Derby della Madonnina","rivalry_type":"DERBY","competition_scope":"ITALY","principled_rivalry":true,"team_a_aliases":["AC Milan","Milan"],"team_b_aliases":["Inter","Inter Milan","Internazionale"]},
+    {"id":"GER_KLASSIKER_BAYERN_DORTMUND","rivalry_name":"Bayern–Dortmund rivalry","rivalry_type":"RIVALRY","competition_scope":"GERMANY","principled_rivalry":true,"team_a_aliases":["Bayern Munich","Bayern München"],"team_b_aliases":["Borussia Dortmund","Dortmund"]},
+    {"id":"FRA_LE_CLASSIQUE","rivalry_name":"Le Classique","rivalry_type":"RIVALRY","competition_scope":"FRANCE","principled_rivalry":true,"team_a_aliases":["Paris Saint Germain","Paris Saint-Germain","PSG"],"team_b_aliases":["Marseille","Olympique Marseille","Olympique de Marseille"]},
+    {"id":"AUT_VIENNA_DERBY","rivalry_name":"Vienna derby","rivalry_type":"DERBY","competition_scope":"AUSTRIA","principled_rivalry":true,"team_a_aliases":["Rapid Vienna","Rapid Wien"],"team_b_aliases":["Austria Vienna","Austria Wien"]},
+    {"id":"BEL_BRUGGE_ANDERLECHT","rivalry_name":"Club Brugge–Anderlecht rivalry","rivalry_type":"RIVALRY","competition_scope":"BELGIUM","principled_rivalry":true,"team_a_aliases":["Club Brugge","Club Brugge KV"],"team_b_aliases":["Anderlecht","RSC Anderlecht"]},
+    {"id":"DEN_COPENHAGEN_BRONDBY","rivalry_name":"Copenhagen derby","rivalry_type":"DERBY","competition_scope":"DENMARK","principled_rivalry":true,"team_a_aliases":["FC Copenhagen","FC København","FC Kobenhavn"],"team_b_aliases":["Brondby","Brøndby","Brondby IF","Brøndby IF"]},
+    {"id":"LTU_VILNIUS_DERBY","rivalry_name":"Vilnius derby","rivalry_type":"DERBY","competition_scope":"LITHUANIA","principled_rivalry":true,"team_a_aliases":["FK Zalgiris Vilnius","Žalgiris Vilnius","Zalgiris Vilnius"],"team_b_aliases":["FK Riteriai","Riteriai"]},
+    {"id":"LVA_RIGA_DERBY","rivalry_name":"Riga derby","rivalry_type":"DERBY","competition_scope":"LATVIA","principled_rivalry":true,"team_a_aliases":["Riga FC","Riga"],"team_b_aliases":["RFS","FK RFS"]},
+    {"id":"NED_DE_KLASSIEKER","rivalry_name":"De Klassieker","rivalry_type":"RIVALRY","competition_scope":"NETHERLANDS","principled_rivalry":true,"team_a_aliases":["Ajax","Ajax Amsterdam"],"team_b_aliases":["Feyenoord","Feyenoord Rotterdam"]},
+    {"id":"NOR_ROSENBORG_MOLDE","rivalry_name":"Rosenborg–Molde rivalry","rivalry_type":"RIVALRY","competition_scope":"NORWAY","principled_rivalry":true,"team_a_aliases":["Rosenborg","Rosenborg BK"],"team_b_aliases":["Molde","Molde FK"]},
+    {"id":"POL_LEGIA_LECH","rivalry_name":"Legia–Lech rivalry","rivalry_type":"RIVALRY","competition_scope":"POLAND","principled_rivalry":true,"team_a_aliases":["Legia Warszawa","Legia Warsaw"],"team_b_aliases":["Lech Poznan","Lech Poznań"]},
+    {"id":"POR_LISBON_DERBY","rivalry_name":"Lisbon derby","rivalry_type":"DERBY","competition_scope":"PORTUGAL","principled_rivalry":true,"team_a_aliases":["Benfica","SL Benfica"],"team_b_aliases":["Sporting CP","Sporting Lisbon","Sporting"]},
+    {"id":"TUR_INTERCONTINENTAL_DERBY","rivalry_name":"Intercontinental derby","rivalry_type":"DERBY","competition_scope":"TURKEY","principled_rivalry":true,"team_a_aliases":["Fenerbahce","Fenerbahçe"],"team_b_aliases":["Galatasaray"]},
+    {"id":"SCO_OLD_FIRM","rivalry_name":"Old Firm","rivalry_type":"DERBY","competition_scope":"SCOTLAND","principled_rivalry":true,"team_a_aliases":["Celtic"],"team_b_aliases":["Rangers","Glasgow Rangers"]}
   ]
 }
