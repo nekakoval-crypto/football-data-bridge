@@ -1,18 +1,18 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-21T01:30:13Z
+Обновлено UTC: 2026-09-21T02:30:28Z
 Статус: **COLLECTING**
 
 ## Покрытие
-- Fixtures в текущем inventory: 128 (finished: 27).
-- Fixture history: 281 unique fixtures / 8889 observations / 69 observation runs (finished observed: 173).
-- Historical fixture catalog: 281 fixtures (terminal 173, rescheduled 1), history coverage 100.00%; missing 0, orphan 0.
-- Finished fixtures с player stats: 25 / 27 (92.59%).
+- Fixtures в текущем inventory: 128 (finished: 8).
+- Fixture history: 300 unique fixtures / 9017 observations / 70 observation runs (finished observed: 173).
+- Historical fixture catalog: 300 fixtures (terminal 173, rescheduled 1), history coverage 100.00%; missing 0, orphan 0.
+- Finished fixtures с player stats: 6 / 8 (75.00%).
 - Stage77 durable backlog: pending 24; captured 149; total 173.
 - Normalized lineup archive: 8 rows / 3 fixtures; injury archive: 54 rows / 3 fixtures.
 - Match event archive: 2009 rows / 121 fixtures; backlog pending 9 / total 130.
 - Stage81 durable backlog: pending 11; captured 126; total 137.
-- Team match statistics: 126 complete fixtures / 252 team rows; current finished coverage 92.59%.
+- Team match statistics: 126 complete fixtures / 252 team rows; current finished coverage 75.00%.
 - Team xG: 23 complete fixtures / 46 team rows; captured-team-stat coverage 18.25%.
 - Player xG/xA source: RESEARCH_SOURCE_EXTERNAL_LOCAL_ATTESTED_MAPPED_TO_PBK.
 - Player stat rows: 66723; уникальных игроков: 6995.
