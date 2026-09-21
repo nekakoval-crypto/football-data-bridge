@@ -115,7 +115,9 @@ jobs:
           git add ops/stage87_team_style_dimensions_last_run.json
           git add ops/team_style_dimension_validation_dataset.jsonl
           git add ops/stage88_team_style_dimension_validation_last_run.json
-          git add ops/team_style_dimension_forward_labels.jsonl
+          if [ -f ops/team_style_dimension_forward_labels.jsonl ]; then
+            git add ops/team_style_dimension_forward_labels.jsonl
+          fi
           git add ops/stage89_team_style_dimension_forward_labels_last_run.json
           git add ops/team_style_validation_readiness.json
           git add ops/stage93_team_style_validation_readiness_last_run.json
