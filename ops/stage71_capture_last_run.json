@@ -1,16 +1,16 @@
 {
-  "run_at_utc": "2026-09-20T23:30:39Z",
-  "status": "ATTENTION",
+  "run_at_utc": "2026-09-21T07:34:16Z",
+  "status": "OK",
   "research_leagues": 15,
-  "new_triggers": 7,
-  "new_r1_rows": 2,
+  "new_triggers": 0,
+  "new_r1_rows": 0,
   "new_r2_rows": 0,
-  "settled_rows": 14,
+  "settled_rows": 0,
   "trigger_rows": 280,
   "forward_rows": 85,
-  "api_calls": 60,
-  "odds_calls": 47,
-  "marathon_calls": 2,
+  "api_calls": 55,
+  "odds_calls": 40,
+  "marathon_calls": 0,
   "scan": [
     {
       "league": "Premier League",
@@ -118,22 +118,17 @@
       "inventory": "COMPLETE"
     }
   ],
-  "warnings": [
-    "1547639: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1547640: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1547643: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1547641: Bet365 capture failed: Stage71 API budget exhausted; retry next run"
-  ],
+  "warnings": [],
   "canonical_captured": 6,
   "challenger_deferred": false,
-  "api_day_calls_before_challenger": 2514,
-  "reserved_live_calls": 1,
-  "reserved_current_round_calls": 0,
+  "api_day_calls_before_challenger": 817,
+  "reserved_live_calls": 0,
+  "reserved_current_round_calls": 64,
   "safety_margin_calls": 10,
-  "challenger_available_calls": 4475,
-  "challenger_calls_used": 60,
-  "live_forecast_cycles": 1,
-  "live_peak_candidates": 1,
-  "live_peak_batches": 1,
+  "challenger_available_calls": 6109,
+  "challenger_calls_used": 55,
+  "live_forecast_cycles": 0,
+  "live_peak_candidates": 0,
+  "live_peak_batches": 0,
   "budget_protection_status": "LIMITED"
 }

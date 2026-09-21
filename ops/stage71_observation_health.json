@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-20T23:30:39.392945Z",
+  "run_at_utc": "2026-09-21T07:34:16.215523Z",
   "status": "ATTENTION",
   "counts": {
     "expected": 0,
@@ -127,12 +127,7 @@
       "inventory": "COMPLETE"
     }
   ],
-  "warnings": [
-    "1547639: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1547640: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1547643: Bet365 capture failed: Stage71 API budget exhausted; retry next run",
-    "1547641: Bet365 capture failed: Stage71 API budget exhausted; retry next run"
-  ],
+  "warnings": [],
   "scope": "16 locked leagues; 15 research writers; Serie A canonical read-only, completeness not certified",
   "canonical_captured": 6,
   "definitions": {
@@ -145,6 +140,6 @@
   "legacy_max_schedule_gap_hours": 18,
   "schedule_gap_hours": 8,
   "r2_freeze_hours": 12,
-  "api_calls": 60,
-  "api_day_calls": 2574
+  "api_calls": 55,
+  "api_day_calls": 872
 }
