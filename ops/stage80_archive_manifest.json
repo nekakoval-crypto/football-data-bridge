@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-21T20:54:01Z",
+  "generated_at_utc": "2026-09-21T20:58:15Z",
   "status": "OK",
   "datasets": [
     {
@@ -2457,6 +2457,10 @@
         "phase_family",
         "table_result_policy",
         "season_format_contract_required",
+        "phase_contract_status",
+        "phase_points_transform",
+        "phase_group_status",
+        "ranking_scope_teams",
         "context_status",
         "phase_audit_contract",
         "core_participant_teams",
