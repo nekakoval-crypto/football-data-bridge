@@ -1,6 +1,6 @@
 {
-  "version": "PBK_STAGE80_PBK16_HISTORICAL_TABLE_CONTEXT_V2",
-  "generated_at_utc": "2026-09-21T20:57:28Z",
+  "version": "PBK_STAGE80_PBK16_HISTORICAL_TABLE_CONTEXT_V3",
+  "generated_at_utc": "2026-09-21T21:02:09Z",
   "status": "OK",
   "source_domestic_rows": 40989,
   "output_rows": 40989,
@@ -22,19 +22,21 @@
     "TABLE_PHASE": 40731
   },
   "context_status_counts": {
-    "BLOCKED_AFTER_UNMODELED_TABLE_PHASE": 805,
+    "BLOCKED_AFTER_UNMODELED_TABLE_PHASE": 340,
     "BLOCKED_PRIOR_AWARDED_RESULT_UNRESOLVED": 241,
-    "BLOCKED_TABLE_PHASE_REQUIRES_SEASON_FORMAT_CONTRACT": 22,
+    "BLOCKED_TABLE_PHASE_REQUIRES_SEASON_FORMAT_CONTRACT": 7,
     "POST_TABLE_PLAYOFF_EXCLUDED_FROM_TABLE": 258,
     "VALID_PREMATCH_AWARDED_RESULT_WILL_TAINT": 4,
     "VALID_PREMATCH_NOT_PLAYED_NO_STATE_MUTATION": 601,
     "VALID_REGULAR_RESULTS_DERIVED": 38139,
-    "VALID_SPLIT_CARRY_FORWARD_DERIVED": 919
+    "VALID_SPLIT_CARRY_FORWARD_DERIVED": 919,
+    "VALID_SPLIT_HALVED_POINTS_DERIVED": 480
   },
-  "safe_regular_prematch_rows": 39663,
-  "safe_regular_rows_with_full_table": 38319,
-  "blocked_table_phase_rows": 827,
+  "safe_regular_prematch_rows": 40143,
+  "safe_regular_rows_with_full_table": 38799,
+  "blocked_table_phase_rows": 347,
   "split_carry_forward_rows": 919,
+  "split_halved_points_rows": 480,
   "post_table_playoff_rows": 258,
   "blocked_prior_awarded_result_rows": 241,
   "phase_audit_contract": "PBK16_2017_2025_PROVIDER_ROUND_LABELS_V1",
