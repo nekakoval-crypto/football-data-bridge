@@ -2,6 +2,7 @@
 
 from scripts.stage89_team_style_dimension_forward_labels import (
     build_forward_labels,
+    outcome_payload,
 )
 
 
@@ -204,6 +205,25 @@ class Stage89TeamStyleDimensionForwardLabelsTests(unittest.TestCase):
             counters["already_labeled"],
             1,
         )
+
+    def test_outcome_payload_uses_canonical_metric_names(self):
+        own = self.stats_row(
+            fixture_id="100", team_id="1", team_name="Team A", side="HOME"
+        )
+        opponent = self.stats_row(
+            fixture_id="100", team_id="2", team_name="Team B", side="AWAY"
+        )
+
+        attack = outcome_payload("ATTACK_VOLUME", own, opponent)
+        possession = outcome_payload("POSSESSION_CONTROL", own, opponent)
+        defence = outcome_payload("DEFENSIVE_RESISTANCE", own, opponent)
+
+        self.assertIn("shots_on_target_for", attack)
+        self.assertNotIn("sot_for", attack)
+        self.assertIn("passes", possession)
+        self.assertNotIn("passes_total", possession)
+        self.assertIn("shots_on_target_against", defence)
+        self.assertNotIn("sot_against", defence)
 
 
 if __name__ == "__main__":

@@ -336,7 +336,7 @@ def outcome_payload(
     if dimension == "ATTACK_VOLUME":
         return {
             "shots_for": fnum(own.get("shots_total")),
-            "sot_for": fnum(own.get("shots_on_goal")),
+            "shots_on_target_for": fnum(own.get("shots_on_goal")),
             "xg_for": fnum(own.get("expected_goals")),
             "corners_for": fnum(own.get("corners")),
         }
@@ -346,7 +346,7 @@ def outcome_payload(
             "possession_pct": fnum(
                 own.get("possession_pct")
             ),
-            "passes_total": fnum(
+            "passes": fnum(
                 own.get("passes_total")
             ),
             "pass_accuracy_pct": fnum(
@@ -359,7 +359,7 @@ def outcome_payload(
             "shots_against": fnum(
                 opponent.get("shots_total")
             ),
-            "sot_against": fnum(
+            "shots_on_target_against": fnum(
                 opponent.get("shots_on_goal")
             ),
             "xg_against": fnum(

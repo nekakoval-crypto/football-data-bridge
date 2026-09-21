@@ -29,7 +29,7 @@
           "direction": "HIGHER_MORE"
         },
         {
-          "metric": "sot_for",
+          "metric": "shots_on_target_for",
           "direction": "HIGHER_MORE"
         },
         {
@@ -51,7 +51,7 @@
       "status": "CANDIDATE",
       "components": [
         {
-          "metric": "possession",
+          "metric": "possession_pct",
           "direction": "HIGHER_MORE"
         },
         {
@@ -59,7 +59,7 @@
           "direction": "HIGHER_MORE"
         },
         {
-          "metric": "pass_accuracy",
+          "metric": "pass_accuracy_pct",
           "direction": "HIGHER_MORE"
         }
       ],
@@ -76,7 +76,7 @@
           "direction": "LOWER_MORE"
         },
         {
-          "metric": "sot_against",
+          "metric": "shots_on_target_against",
           "direction": "LOWER_MORE"
         },
         {
