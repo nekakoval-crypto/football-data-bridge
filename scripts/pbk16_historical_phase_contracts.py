@@ -2,13 +2,15 @@
 """Item 13 — PBK16 historical non-regular phase contract registry.
 
 This module does not mutate historical standings. It classifies every audited
-non-regular TABLE_PHASE into one of two explicit buckets:
+non-regular TABLE_PHASE into explicit season-scoped contract buckets:
 
 - CARRY_FORWARD_UNCHANGED_CANDIDATE: the historical format keeps accumulated
   league points across the phase boundary, but PBK still requires group-aware
   reconstruction before application.
-- TRANSFORM_REQUIRED_NOT_IMPLEMENTED: the phase applies a season/competition
-  specific points transform and remains fail-closed.
+- HALVE_FLOOR_WITH_ROUNDING_TIEBREAK: Austria's historical split applies the
+  verified floor(points/2) transform and records the rounded-half tie-break;
+- TRANSFORM_REQUIRED_NOT_IMPLEMENTED: a remaining season/competition-specific
+  transform is not yet safe to apply.
 
 The registry is season-scoped. No contract is inferred from a neighboring
 season and no betting/model authority is granted.
@@ -21,24 +23,29 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-VERSION = "PBK_ITEM13_HISTORICAL_PHASE_CONTRACTS_V1"
+VERSION = "PBK_ITEM13_HISTORICAL_PHASE_CONTRACTS_V2"
 
 CARRY = "CARRY_FORWARD_UNCHANGED_CANDIDATE"
+HALVE = "HALVE_FLOOR_WITH_ROUNDING_TIEBREAK"
 TRANSFORM = "TRANSFORM_REQUIRED_NOT_IMPLEMENTED"
 
 CONTRACTS: dict[tuple[str, str, str], dict[str, Any]] = {}
 
 
-def _add(country, seasons, families, *, status, points_transform, source, reason):
+def _add(
+    country, seasons, families, *, status, points_transform, source, reason,
+    application_authorized=False, **metadata
+):
     for season in seasons:
         for family in families:
             CONTRACTS[(country, str(season), family)] = {
                 "status": status,
                 "points_transform": points_transform,
-                "application_authorized": False,
+                "application_authorized": bool(application_authorized),
                 "group_aware_reconstruction_required": True,
                 "source": source,
                 "reason": reason,
+                **metadata,
             }
 
 
@@ -50,6 +57,7 @@ _add(
     ("CHAMPIONSHIP_SPLIT", "RELEGATION_SPLIT"),
     status=CARRY,
     points_transform="CARRY_FORWARD_UNCHANGED",
+    application_authorized=True,
     source="https://www.superliga.dk/struktur",
     reason=(
         "3F Superliga split structure is continuous league-table competition. "
@@ -65,6 +73,7 @@ _add(
     ("CHAMPIONSHIP_OR_SPLIT", "RELEGATION_SPLIT"),
     status=CARRY,
     points_transform="CARRY_FORWARD_UNCHANGED",
+    application_authorized=True,
     source="https://spfl.co.uk/league/premiership/table",
     reason=(
         "SPFL Premiership split preserves accumulated league points; PBK must "
@@ -80,6 +89,7 @@ _add(
     ("CHAMPIONSHIP_SPLIT", "RELEGATION_SPLIT"),
     status=CARRY,
     points_transform="CARRY_FORWARD_UNCHANGED",
+    application_authorized=True,
     source="https://en.wikipedia.org/wiki/2017%E2%80%9318_Ekstraklasa",
     reason=(
         "ESA-37 final phase used carried regular-season points in this PBK "
@@ -95,6 +105,7 @@ _add(
     ("CHAMPIONSHIP_SPLIT",),
     status=CARRY,
     points_transform="CARRY_FORWARD_UNCHANGED",
+    application_authorized=True,
     source="https://www.wikizero.org/wiki/en/2019_A_Lyga",
     reason=(
         "A Lyga championship-round tables are cumulative from the regular "
@@ -102,21 +113,27 @@ _add(
     ),
 )
 
-# Austria: historical seasons in this PBK window used point halving at the split.
-# Exact transform/rounding is deliberately not implemented here.
+# Austria: from 2018/19 through 2025/26 the table split after 22 rounds.
+# Regular-season points were halved; half-points were rounded down. A club that
+# lost a half-point in that rounding is ranked first when final-phase points tie.
 _add(
     "Austria",
     range(2018, 2026),
     ("CHAMPIONSHIP_SPLIT", "RELEGATION_SPLIT"),
-    status=TRANSFORM,
-    points_transform="HISTORICAL_POINT_HALVING_RULE_REQUIRED",
+    status=HALVE,
+    points_transform="FLOOR_HALF_AT_SPLIT",
+    application_authorized=True,
+    split_after_games=22,
+    half_point_rounding="FLOOR",
+    rounded_half_tiebreak="ROUNDED_DOWN_CLUB_FIRST",
     source=(
         "https://www.bundesliga.at/de/news/artikel/"
-        "neu-ab-2026-27-keine-punkteteilung-neuer-tv-verteilungsschluessel-inkl-oesterreicher-topf"
+        "die-details-der-ligareform-so-wird-ab-2018-19-gespielt"
     ),
     reason=(
-        "Austria suspended point halving only from 2026/27, so historical "
-        "split rows require the prior season-specific halving contract."
+        "Official Austria Bundesliga reform contract: after 22 rounds points "
+        "are halved, half-points are rounded down, and the rounded-half flag "
+        "precedes the next final-phase tie-break criterion."
     ),
 )
 
@@ -191,8 +208,15 @@ def analyze_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
             })
 
     carry = status_counts.get(CARRY, 0)
+    halving = status_counts.get(HALVE, 0)
     transform = status_counts.get(TRANSFORM, 0)
     unknown_count = status_counts.get("UNKNOWN", 0)
+    authorized = sum(
+        1
+        for row in required
+        if lookup(row.get("country"), row.get("season"), row.get("phase_family"))
+        .get("application_authorized")
+    )
 
     return {
         "version": VERSION,
@@ -200,10 +224,11 @@ def analyze_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "required_nonregular_table_phase_rows": len(required),
         "contract_covered_rows": len(required) - unknown_count,
         "carry_forward_candidate_rows": carry,
+        "halving_authorized_rows": halving,
         "transform_required_rows": transform,
         "unknown_contract_rows": unknown_count,
         "country_required_rows": dict(sorted(country_counts.items())),
-        "application_authorized_rows": 0,
+        "application_authorized_rows": authorized,
         "historical_table_mutation_performed": False,
         "exact_title_relegation_motivation_allowed": False,
         "operational_betting_authority": False,
