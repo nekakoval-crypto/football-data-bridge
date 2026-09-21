@@ -1,0 +1,142 @@
+name: Style-on-Style Foundation Refresh
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'config/pbk_team_style_dimensions_v1.json'
+      - 'scripts/stage85_team_style_dimensions_readiness.py'
+      - 'scripts/stage89_team_style_dimension_forward_labels.py'
+      - 'scripts/style_on_style_foundation_readiness.py'
+      - 'scripts/tests/test_stage85_team_style_dimensions_coverage.py'
+      - 'scripts/tests/test_stage89_team_style_dimension_forward_labels.py'
+      - 'scripts/tests/test_style_on_style_foundation_readiness.py'
+      - '.github/workflows/style-on-style-foundation-refresh.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: style-on-style-foundation-refresh-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile
+        run: |
+          python -m py_compile \
+            scripts/stage85_team_style_dimensions_readiness.py \
+            scripts/stage89_team_style_dimension_forward_labels.py \
+            scripts/style_on_style_foundation_readiness.py
+      - name: Style contract and readiness tests
+        run: |
+          python -m unittest \
+            scripts.tests.test_stage85_team_style_dimensions_coverage \
+            scripts.tests.test_stage85_team_style_dimensions_readiness \
+            scripts.tests.test_stage89_team_style_dimension_forward_labels \
+            scripts.tests.test_style_on_style_foundation_readiness -v
+      - name: Downstream style pipeline tests
+        run: |
+          python -m unittest \
+            scripts.tests.test_stage87_team_style_dimension_evidence \
+            scripts.tests.test_stage88_team_style_dimension_validation_dataset \
+            scripts.tests.test_stage89_team_style_dimension_forward_labels \
+            scripts.tests.test_stage93_style_validation_readiness \
+            scripts.tests.test_stage94_style_dimension_validation_statistics \
+            scripts.tests.test_stage95_matchup_validation_gate -v
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated ops outputs are forbidden in feature PR.' >&2
+            exit 1
+          fi
+
+  materialize:
+    needs: validate
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Refresh complete provider-free style foundation
+        run: |
+          python scripts/stage82_team_style_operational_bridge.py
+          python scripts/stage82_team_style_bridge_readiness.py
+          python scripts/stage83_team_style_operational_profiles.py
+          python scripts/stage83_team_style_profiles_readiness.py
+          python scripts/stage84_team_style_metric_observations.py
+          python scripts/stage90_team_style_population_history.py
+          python scripts/stage86_team_style_operational_normalization.py
+          python scripts/stage87_team_style_dimension_evidence.py
+          python scripts/stage88_team_style_dimension_validation_dataset.py
+          python scripts/stage89_team_style_dimension_forward_labels.py
+          python scripts/stage93_style_validation_readiness.py
+          python scripts/stage94_style_dimension_validation_statistics.py
+          python scripts/stage95_matchup_validation_gate.py
+          python scripts/style_on_style_foundation_readiness.py
+      - name: Publish style foundation safely
+        shell: bash
+        run: |
+          git config user.name 'style-on-style-foundation-bot'
+          git config user.email 'style-on-style-foundation-bot@users.noreply.github.com'
+          git add ops/stage82_team_style_bridge_last_run.json
+          git add ops/stage82_team_style_bridge_readiness.json
+          git add ops/team_style_operational_evidence.jsonl
+          git add ops/stage83_team_style_profiles_last_run.json
+          git add ops/stage83_team_style_profiles_readiness.json
+          git add ops/team_style_operational_profiles.json
+          git add ops/team_style_metric_observations.jsonl
+          git add ops/stage84_team_style_metric_observations_last_run.json
+          git add ops/team_style_metric_population_history.jsonl
+          git add ops/stage90_team_style_population_history_last_run.json
+          git add ops/team_style_normalized_observations.jsonl
+          git add ops/stage86_team_style_normalization_last_run.json
+          git add ops/team_style_dimension_evidence.jsonl
+          git add ops/stage87_team_style_dimensions_last_run.json
+          git add ops/team_style_dimension_validation_dataset.jsonl
+          git add ops/stage88_team_style_dimension_validation_last_run.json
+          git add ops/team_style_dimension_forward_labels.jsonl
+          git add ops/stage89_team_style_dimension_forward_labels_last_run.json
+          git add ops/team_style_validation_readiness.json
+          git add ops/stage93_team_style_validation_readiness_last_run.json
+          git add ops/team_style_dimension_validation_statistics.json
+          git add ops/stage94_team_style_validation_statistics_last_run.json
+          git add ops/matchup_validation_gate.json
+          git add ops/stage95_matchup_validation_gate_last_run.json
+          git add ops/style_on_style_foundation_readiness.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Style-on-style foundation refresh'
+          git restore --worktree -- .
+          python scripts/publish_operational_commit.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: style-on-style-foundation-refresh
+          path: |
+            ops/style_on_style_foundation_readiness.json
+            ops/stage87_team_style_dimensions_last_run.json
+            ops/stage88_team_style_dimension_validation_last_run.json
+            ops/stage89_team_style_dimension_forward_labels_last_run.json
+            ops/stage93_team_style_validation_readiness_last_run.json
+            ops/stage95_matchup_validation_gate_last_run.json
+          retention-days: 30
