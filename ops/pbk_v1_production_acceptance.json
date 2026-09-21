@@ -115,7 +115,7 @@
           "status": "PASS",
           "message": "at least one real no-lookahead motivation projection is available",
           "evidence": {
-            "rows": 129,
+            "rows": 128,
             "available_no_lookahead_rows": 10
           }
         }
@@ -160,6 +160,6 @@
   "next_actions": [
     "Wait for a <=75m pre-kickoff standings capture and downstream Stage72 motivation rebuild."
   ],
-  "evaluated_at_utc": "2026-09-20T22:32:37Z",
-  "state_fingerprint": "37f6aa4ed2522f3bb70f5030f03c1c1149104cfffb688ef1b7f22cad72041baf"
+  "evaluated_at_utc": "2026-09-21T00:40:31Z",
+  "state_fingerprint": "1a5ef8ecbd2f8c977727c2fc1e26c482e3b0e3dcae0f9e41f2fbc54cb996d55c"
 }
