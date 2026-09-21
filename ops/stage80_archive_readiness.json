@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-21T00:58:44Z",
+  "generated_at_utc": "2026-09-21T01:30:13Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -12,12 +12,12 @@
     "fixture_history": {
       "file": "fixture_history_snapshots.csv",
       "present": true,
-      "rows": 8761
+      "rows": 8889
     },
     "historical_fixtures": {
       "file": "historical_fixtures.csv",
       "present": true,
-      "rows": 252
+      "rows": 281
     },
     "player_stats": {
       "file": "player_stats_snapshots.csv",
@@ -282,11 +282,11 @@
   },
   "fixtures": {
     "current_inventory": 128,
-    "finished_in_current_inventory": 56,
+    "finished_in_current_inventory": 27,
     "player_stats_fixture_count_all_snapshots": 1642,
     "player_grade_fixture_count_all_snapshots": 1642,
-    "finished_current_inventory_with_player_stats": 54,
-    "finished_current_inventory_player_stats_coverage_pct": 96.43,
+    "finished_current_inventory_with_player_stats": 25,
+    "finished_current_inventory_player_stats_coverage_pct": 92.59,
     "per_league": [
       {
         "league": "A Lyga",
@@ -305,42 +305,24 @@
         "finished_fixtures_in_current_inventory": 10,
         "finished_fixtures_with_player_stats": 10,
         "player_stats_coverage_pct": 100.0
-      },
-      {
-        "league": "Premier League",
-        "finished_fixtures_in_current_inventory": 10,
-        "finished_fixtures_with_player_stats": 10,
-        "player_stats_coverage_pct": 100.0
-      },
-      {
-        "league": "Serie A",
-        "finished_fixtures_in_current_inventory": 10,
-        "finished_fixtures_with_player_stats": 10,
-        "player_stats_coverage_pct": 100.0
-      },
-      {
-        "league": "Süper Lig",
-        "finished_fixtures_in_current_inventory": 9,
-        "finished_fixtures_with_player_stats": 9,
-        "player_stats_coverage_pct": 100.0
       }
     ]
   },
   "fixture_history": {
     "present": true,
-    "rows": 8761,
-    "valid_observations": 8761,
-    "unique_fixtures": 252,
-    "observation_runs": 68,
+    "rows": 8889,
+    "valid_observations": 8889,
+    "unique_fixtures": 281,
+    "observation_runs": 69,
     "finished_fixtures_observed": 173,
     "invalid_identity_rows": 0,
     "evidence_note": "Counts represent only Stage71 current-round observations persisted after the fixture-history archive was enabled; they are not a pre-PBK historical backfill claim."
   },
   "historical_fixture_catalog": {
     "present": true,
-    "rows": 252,
-    "valid_rows": 252,
-    "unique_fixtures": 252,
+    "rows": 281,
+    "valid_rows": 281,
+    "unique_fixtures": 281,
     "terminal_fixtures": 173,
     "rescheduled_fixtures": 1,
     "invalid_identity_rows": 0,
@@ -350,8 +332,8 @@
     "orphan_catalog_fixtures": 0,
     "missing_terminal_evidence": 0,
     "orphan_terminal_evidence": 0,
-    "observation_count_total": 8761,
-    "expected_history_observations": 8761,
+    "observation_count_total": 8889,
+    "expected_history_observations": 8889,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
   },
@@ -376,8 +358,8 @@
   "team_statistics": {
     "rows": 252,
     "complete_fixture_count": 126,
-    "finished_current_inventory_with_team_stats": 54,
-    "finished_current_inventory_team_stats_coverage_pct": 96.43,
+    "finished_current_inventory_with_team_stats": 25,
+    "finished_current_inventory_team_stats_coverage_pct": 92.59,
     "evidence_note": "Complete means HOME and AWAY team rows exist; individual missing provider metrics remain UNKNOWN."
   },
   "advanced_metrics": {
@@ -386,8 +368,8 @@
     "team_xg_complete_fixture_count": 23,
     "team_stats_complete_fixture_count": 126,
     "team_xg_captured_fixture_coverage_pct": 18.25,
-    "finished_current_inventory_with_team_xg": 19,
-    "finished_current_inventory_team_xg_coverage_pct": 33.93,
+    "finished_current_inventory_with_team_xg": 0,
+    "finished_current_inventory_team_xg_coverage_pct": 0.0,
     "team_xg_evidence_note": "Verified provider field when present; API-Football may return it as missing for some competitions or fixtures and PBK preserves missing as UNKNOWN.",
     "player_xg_xa_source_status": "RESEARCH_SOURCE_EXTERNAL_LOCAL_ATTESTED_MAPPED_TO_PBK",
     "player_xg_xa_source_payload_in_repository": false,
