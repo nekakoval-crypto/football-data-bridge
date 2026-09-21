@@ -1,0 +1,93 @@
+name: Player Synergy Phase 2
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/player_synergy_validation.py'
+      - 'scripts/tests/test_player_synergy_validation.py'
+      - 'docs/player_synergy_phase2.md'
+      - '.github/workflows/player-synergy-phase2.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: player-synergy-phase2-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and provider-free tests
+        run: |
+          python -m py_compile scripts/player_synergy_validation.py
+          python -m unittest scripts.tests.test_player_synergy_validation -v
+      - name: Provider isolation
+        shell: bash
+        run: |
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/player_synergy_validation.py; then
+            echo 'Synergy phase 2 must remain provider-free.' >&2
+            exit 1
+          fi
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated ops outputs are forbidden in the feature PR.' >&2
+            exit 1
+          fi
+
+  materialize:
+    needs: validate
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build item 11 phase 2 datasets
+        env:
+          OPS_DIR: ops
+        run: python scripts/player_synergy_validation.py
+      - name: Publish phase 2 evidence safely
+        shell: bash
+        run: |
+          git config user.name 'player-synergy-phase2-bot'
+          git config user.email 'player-synergy-phase2-bot@users.noreply.github.com'
+          git add ops/player_synergy_market_validation.csv
+          git add ops/player_synergy_market_validation_summary.json
+          git add ops/player_synergy_substitution_interactions.csv
+          git add ops/player_synergy_substitution_summary.json
+          git add ops/player_synergy_phase2_readiness.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Player synergy phase 2 update'
+          git restore --worktree -- .
+          python scripts/publish_operational_commit.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: player-synergy-phase2
+          path: |
+            ops/player_synergy_market_validation.csv
+            ops/player_synergy_market_validation_summary.json
+            ops/player_synergy_substitution_interactions.csv
+            ops/player_synergy_substitution_summary.json
+            ops/player_synergy_phase2_readiness.json
+          retention-days: 30
