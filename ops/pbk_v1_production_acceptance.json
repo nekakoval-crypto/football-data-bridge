@@ -115,7 +115,7 @@
           "status": "PASS",
           "message": "at least one real no-lookahead motivation projection is available",
           "evidence": {
-            "rows": 129,
+            "rows": 128,
             "available_no_lookahead_rows": 10
           }
         }
@@ -123,16 +123,16 @@
     }
   },
   "global": {
-    "status": "PASS",
+    "status": "FAIL",
     "checks": [
       {
         "code": "SYSTEM_HEALTH_NO_CRITICAL",
-        "status": "PASS",
-        "message": "no CRITICAL system-health issues",
+        "status": "FAIL",
+        "message": "system health contains CRITICAL issues",
         "evidence": {
-          "health_status": "WARN",
-          "critical_issues": 0,
-          "warnings": 1
+          "health_status": "CRITICAL",
+          "critical_issues": 1,
+          "warnings": 0
         }
       },
       {
@@ -158,8 +158,9 @@
     ]
   },
   "next_actions": [
-    "Wait for a <=75m pre-kickoff standings capture and downstream Stage72 motivation rebuild."
+    "Wait for a <=75m pre-kickoff standings capture and downstream Stage72 motivation rebuild.",
+    "Resolve hard health/data-layer/API integrity failures before closure."
   ],
-  "evaluated_at_utc": "2026-09-20T20:33:48Z",
-  "state_fingerprint": "37f6aa4ed2522f3bb70f5030f03c1c1149104cfffb688ef1b7f22cad72041baf"
+  "evaluated_at_utc": "2026-09-21T14:35:14Z",
+  "state_fingerprint": "ab52d14cafebc4a7dd6b43bdc0757554bfcc1420e495d02e5e19ceccec413618"
 }
