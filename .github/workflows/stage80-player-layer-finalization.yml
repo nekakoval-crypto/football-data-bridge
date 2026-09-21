@@ -1,0 +1,99 @@
+name: Stage 80 Player Layer Finalization
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/stage80_player_layer_finalization.py'
+      - 'scripts/tests/test_stage80_player_layer_finalization.py'
+      - 'docs/stage80_player_layer_finalization.md'
+      - '.github/workflows/stage80-player-layer-finalization.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage80-player-layer-finalization-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and provider-free tests
+        run: |
+          python -m py_compile scripts/stage80_player_layer_finalization.py
+          python -m unittest scripts.tests.test_stage80_player_layer_finalization -v
+      - name: Provider isolation
+        shell: bash
+        run: |
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/stage80_player_layer_finalization.py; then
+            echo 'Player-layer finalization must remain provider-free.' >&2
+            exit 1
+          fi
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated outputs are forbidden in the feature PR.' >&2
+            exit 1
+          fi
+
+  materialize:
+    needs: validate
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build final player-layer research datasets
+        env:
+          OPS_DIR: ops
+        run: python scripts/stage80_player_layer_finalization.py
+      - name: Publish final player-layer evidence safely
+        shell: bash
+        run: |
+          git config user.name 'stage80-player-layer-finalization-bot'
+          git config user.email 'stage80-player-layer-finalization-bot@users.noreply.github.com'
+          git add ops/player_importance_research.csv
+          git add ops/player_layer_xi_quality_research.csv
+          git add ops/player_layer_rotation_validation_dataset.csv
+          git add ops/player_layer_availability_validation_dataset.csv
+          git add ops/player_layer_return_reconstruction.csv
+          git add ops/player_layer_final_readiness.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m 'Stage 80 player layer finalization update'
+          git restore --worktree -- .
+          python scripts/publish_operational_commit.py
+      - name: Upload final player-layer outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage80-player-layer-finalization
+          path: |
+            ops/player_importance_research.csv
+            ops/player_layer_xi_quality_research.csv
+            ops/player_layer_rotation_validation_dataset.csv
+            ops/player_layer_availability_validation_dataset.csv
+            ops/player_layer_return_reconstruction.csv
+            ops/player_layer_final_readiness.json
+          if-no-files-found: warn
+          retention-days: 30
