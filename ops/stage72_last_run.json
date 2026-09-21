@@ -1,13 +1,13 @@
 {
-  "run_at_utc": "2026-09-21T16:09:55Z",
+  "run_at_utc": "2026-09-21T16:22:59Z",
   "status": "OK",
   "schema_version": "15",
   "db_path": "build/pbk_unified.sqlite",
-  "db_bytes": 431542272,
-  "db_sha256": "e29ad51c4c98a2c47da11003d57a6536b54959c0f81b86d6fd0f51618de53643",
+  "db_bytes": 431792128,
+  "db_sha256": "085e125948aabce1cfa41de96b9621a6c766928a1c8d4bd9b5a6897c29a13734",
   "integrity_check": "ok",
-  "tables": 168,
-  "manifest_sources": 154,
+  "tables": 172,
+  "manifest_sources": 158,
   "stable_counts": {
     "competitions": 16,
     "canonical_signals": 6,
