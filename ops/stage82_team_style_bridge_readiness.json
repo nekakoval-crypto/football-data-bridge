@@ -1,0 +1,34 @@
+{
+  "version": "PBK_STAGE82_TEAM_STYLE_BRIDGE_READINESS_V1",
+  "status": "READY",
+  "source_rows": 252,
+  "complete_fixture_pairs": 126,
+  "expected_evidence_rows": 252,
+  "actual_operational_evidence_rows": 252,
+  "missing_evidence_rows": 0,
+  "unexpected_evidence_rows": 0,
+  "missing_fixture_team_keys": [],
+  "unexpected_fixture_team_keys": [],
+  "fixture_pair_exclusions": {
+    "missing_fixture_id": 0,
+    "unknown_side": 0,
+    "duplicate_side": 0,
+    "incomplete_fixture_pair": 0
+  },
+  "bridge_validation": {
+    "missing_team_id": 0,
+    "invalid_kickoff": 0,
+    "invalid_observed_at": 0,
+    "normalized_rejected": 0
+  },
+  "coverage_pct": 100.0,
+  "provider_calls_added": 0,
+  "missing_policy": "UNKNOWN_NOT_ZERO",
+  "research_only": true,
+  "creates_signal": false,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "stake_changes": false,
+  "forward_journal_mutation": false,
+  "ui_changes": false
+}

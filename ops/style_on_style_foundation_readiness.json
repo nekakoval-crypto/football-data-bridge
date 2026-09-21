@@ -1,0 +1,36 @@
+{
+  "version": "PBK_ITEM12_STYLE_ON_STYLE_FOUNDATION_V1",
+  "run_at_utc": "2026-09-21T19:48:12Z",
+  "status": "VALIDATION_PENDING",
+  "checklist_item_12_data_engineering_foundation": "COMPLETE",
+  "checklist_item_12_predictive_authority": "NOT_AUTHORIZED",
+  "operational_betting_authority": false,
+  "creates_signal": false,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "stake_changes": false,
+  "evidence": {
+    "stage82_style_evidence_rows": 252,
+    "stage83_profiles_written": 238,
+    "stage84_metric_rows": 49266,
+    "stage87_ready_dimension_rows": 180,
+    "stage88_forward_validation_rows": 180,
+    "stage89_forward_labels": 0,
+    "stage93_ready_groups": 0,
+    "stage95_advanced_matchup_gate_status": "DATA_BLOCKED"
+  },
+  "governance": {
+    "canonical_metric_names_locked": true,
+    "missing_evidence_unknown_not_zero": true,
+    "arbitrary_style_weights_forbidden": true,
+    "formation_context_only": true,
+    "forward_only_validation": true
+  },
+  "hard_blockers_to_predictive_authority": [
+    "FORWARD_LABELED_SAMPLE_BELOW_30",
+    "NO_STYLE_VALIDATION_GROUP_REACHED_SAMPLE_GATE",
+    "ADVANCED_MATCHUP_DIMENSIONS_STILL_REQUIRE_DETAILED_EVENT_METRICS",
+    "STYLE_SPECIALIST_PROBABILITY_MODEL_NOT_VALIDATED"
+  ],
+  "closure_rule": "Item 12 DATA/RESEARCH foundation may be closed when COMPLETE. Predictive style-on-style authority remains forbidden until forward samples and specialist validation pass; advanced press/transition/width/aerial/set-piece matchups remain data-dependent."
+}
