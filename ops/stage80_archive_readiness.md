@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-21T04:31:07Z
+Обновлено UTC: 2026-09-21T04:54:06Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -10,13 +10,13 @@
 - Finished fixtures с player stats: 0 / 2 (0.00%).
 - Stage77 durable backlog: pending 24; captured 149; total 173.
 - Normalized lineup archive: 8 rows / 3 fixtures; injury archive: 54 rows / 3 fixtures.
-- Match event archive: 2147 rows / 129 fixtures; backlog pending 1 / total 130.
+- Match event archive: 2169 rows / 130 fixtures; backlog pending 0 / total 130.
 - Stage81 durable backlog: pending 11; captured 126; total 137.
 - Team match statistics: 126 complete fixtures / 252 team rows; current finished coverage 0.00%.
 - Team xG: 23 complete fixtures / 46 team rows; captured-team-stat coverage 18.25%.
 - Player xG/xA source: RESEARCH_SOURCE_EXTERNAL_LOCAL_ATTESTED_MAPPED_TO_PBK.
-- Player stat rows: 66723; уникальных игроков: 6995.
-- Player Grade rows: 66723; уникальных игроков: 6995.
+- Player stat rows: 76814; уникальных игроков: 7575.
+- Player Grade rows: 76814; уникальных игроков: 7575.
 - Current roster: 114 команд / 3516 игроковых строк.
 - Player profile evidence: 3253 rows (3149 team-source + 104 residual-ID) / 3162 players / 113 teams; current-roster coverage 84.46%; identity-ready 2942 players (79.11%).
 - Roster history: 114 команд / 114 team-snapshots / 3514 строк.
@@ -55,7 +55,6 @@
 - PLAYER_STATS_BACKLOG_PENDING
 - PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE
 - TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE
-- MATCH_EVENT_BACKLOG_PENDING
 - REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL
 - PBK16_COMPETITION_PROVIDER_SEASONS_PARTIAL
 - PBK14_HISTORICAL_MARKET_BRIDGE_PARTIAL_MAPPING
