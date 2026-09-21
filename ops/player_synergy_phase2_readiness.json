@@ -1,0 +1,34 @@
+{
+  "version": "PBK_PLAYER_SYNERGY_PHASE2_V1",
+  "status": "VALIDATION_PENDING",
+  "checklist_item_11_data_engineering_foundation": "IN_PROGRESS",
+  "checklist_item_11_predictive_authority": "NOT_AUTHORIZED",
+  "operational_betting_authority": false,
+  "creates_signal": false,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "stake_changes": false,
+  "market_adjusted_oos_research_completed": true,
+  "substitution_interaction_dataset_built": true,
+  "evidence": {
+    "market_join_rows": 594,
+    "holdout_rows": 132,
+    "substitution_rows": 1182,
+    "substitution_rows_with_official_xi": 10,
+    "pair_train_holdout_same_sign": false,
+    "trio_train_holdout_same_sign": false,
+    "line_train_holdout_same_sign": true
+  },
+  "resolved_or_reduced_blockers": {
+    "MARKET_ADJUSTED_OUT_OF_SAMPLE_SYNERGY_VALIDATION_NOT_COMPLETED": "RESOLVED_AS_RESEARCH_GATE",
+    "SUBSTITUTION_INTERACTION_LAYER_NOT_BUILT": "RESOLVED_AS_DESCRIPTIVE_DATASET",
+    "PAIR_TRIO_LINE_CONTEXT_CONFOUNDERS_NOT_YET_CONTROLLED": "PARTIALLY_REDUCED_MARKET_BASELINE_PLUS_CONGESTION_FLAGS"
+  },
+  "hard_blockers": [
+    "HISTORICAL_LINEUPS_ARE_RETROSPECTIVE_NOT_PREMATCH_FROZEN",
+    "FULL_CONTEXT_CONFOUNDER_CONTROL_NOT_COMPLETED",
+    "SYNERGY_SPECIALIST_PROBABILITY_MODEL_NOT_VALIDATED",
+    "SUBSTITUTION_INTERACTIONS_ARE_POSTMATCH_FACTUAL_NOT_PREMATCH_FEATURES"
+  ],
+  "closure_rule": "Phase 2 may close market-adjusted association and substitution-data engineering gates only. Predictive synergy authority remains forbidden until a specialist model is validated on genuine prematch evidence."
+}

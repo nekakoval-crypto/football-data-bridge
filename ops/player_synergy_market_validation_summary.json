@@ -1,0 +1,78 @@
+{
+  "version": "PBK_PLAYER_SYNERGY_PHASE2_V1",
+  "run_at_utc": "2026-09-21T17:35:14Z",
+  "joined_team_fixture_rows": 594,
+  "dimensions": {
+    "pair": {
+      "feature": "pair_points_delta_mean",
+      "buckets": {
+        "TRAIN_EARLY": {
+          "rows": 176,
+          "pearson_feature_vs_market_residual": -0.039817,
+          "mean_market_residual": -0.005552
+        },
+        "VALIDATION_MIDDLE": {
+          "rows": 146,
+          "pearson_feature_vs_market_residual": 0.021343,
+          "mean_market_residual": 0.006658
+        },
+        "HOLDOUT_LATE": {
+          "rows": 132,
+          "pearson_feature_vs_market_residual": 0.011725,
+          "mean_market_residual": 0.000362
+        }
+      },
+      "train_holdout_same_sign": false
+    },
+    "trio": {
+      "feature": "trio_points_delta_mean",
+      "buckets": {
+        "TRAIN_EARLY": {
+          "rows": 174,
+          "pearson_feature_vs_market_residual": -0.024342,
+          "mean_market_residual": -0.007798
+        },
+        "VALIDATION_MIDDLE": {
+          "rows": 146,
+          "pearson_feature_vs_market_residual": 0.052138,
+          "mean_market_residual": 0.006658
+        },
+        "HOLDOUT_LATE": {
+          "rows": 131,
+          "pearson_feature_vs_market_residual": 0.047762,
+          "mean_market_residual": -0.004141
+        }
+      },
+      "train_holdout_same_sign": false
+    },
+    "line": {
+      "feature": "line_points_delta_mean",
+      "buckets": {
+        "TRAIN_EARLY": {
+          "rows": 47,
+          "pearson_feature_vs_market_residual": 0.011157,
+          "mean_market_residual": -0.128143
+        },
+        "VALIDATION_MIDDLE": {
+          "rows": 70,
+          "pearson_feature_vs_market_residual": -0.013815,
+          "mean_market_residual": -0.03499
+        },
+        "HOLDOUT_LATE": {
+          "rows": 75,
+          "pearson_feature_vs_market_residual": 0.138713,
+          "mean_market_residual": -0.00321
+        }
+      },
+      "train_holdout_same_sign": true
+    }
+  },
+  "market_baseline_control": true,
+  "congestion_flags_preserved": true,
+  "out_of_sample_buckets": [
+    "VALIDATION_MIDDLE",
+    "HOLDOUT_LATE"
+  ],
+  "operational_betting_authority": false,
+  "research_only": true
+}
