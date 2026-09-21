@@ -1,0 +1,38 @@
+{
+  "version": "PBK_PLAYER_SYNERGY_RESEARCH_V1",
+  "run_at_utc": "2026-09-21T17:25:44Z",
+  "status": "VALIDATION_PENDING",
+  "checklist_item_11_data_engineering_foundation": "IN_PROGRESS",
+  "checklist_item_11_predictive_authority": "NOT_AUTHORIZED",
+  "operational_betting_authority": false,
+  "creates_signal": false,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "stake_changes": false,
+  "outputs": {
+    "pair_rows": 5354,
+    "pair_eligible_rows": 2473,
+    "trio_rows": 24355,
+    "trio_eligible_rows": 8630,
+    "line_rows": 805,
+    "line_eligible_rows": 93,
+    "anti_synergy_candidates": 4222,
+    "walk_forward_team_fixture_rows": 600,
+    "walk_forward_prior_eligible_combo_exposures": 48779
+  },
+  "governance": {
+    "pair_trio_line_are_separate_dimensions": true,
+    "anti_synergy_is_descriptive_not_causal": true,
+    "strictly_prior_walk_forward_features": true,
+    "target_outcome_excluded_from_current_fixture_features": true,
+    "raw_combo_score_forbidden": true,
+    "specialist_validation_required_before_decision_use": true
+  },
+  "hard_blockers": [
+    "HISTORICAL_LINEUPS_ARE_RETROSPECTIVE_NOT_PREMATCH_FROZEN",
+    "MARKET_ADJUSTED_OUT_OF_SAMPLE_SYNERGY_VALIDATION_NOT_COMPLETED",
+    "SUBSTITUTION_INTERACTION_LAYER_NOT_BUILT",
+    "PAIR_TRIO_LINE_CONTEXT_CONFOUNDERS_NOT_YET_CONTROLLED"
+  ],
+  "closure_rule": "Item 11 may progress as a research/data foundation only. No synergy probability, EV, value, eligibility or stake authority is granted until strictly-prior features pass specialist out-of-sample validation."
+}
