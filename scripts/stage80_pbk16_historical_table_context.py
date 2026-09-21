@@ -411,6 +411,7 @@ def project(source_rows,audit_rows):
             safe=status in {
                 "VALID_REGULAR_RESULTS_DERIVED",
                 "VALID_SPLIT_CARRY_FORWARD_DERIVED",
+                "VALID_SPLIT_HALVED_POINTS_DERIVED",
                 "VALID_PREMATCH_AWARDED_RESULT_WILL_TAINT",
                 "VALID_PREMATCH_NOT_PLAYED_NO_STATE_MUTATION",
             }
