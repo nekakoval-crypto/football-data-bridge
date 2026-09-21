@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE80_MATCH_EVENT_ARCHIVE_V1",
-  "run_at_utc": "2026-09-21T04:53:51Z",
+  "run_at_utc": "2026-09-21T06:57:27Z",
   "status": "OK",
   "provider_endpoint": "/fixtures/events",
-  "provider_calls": 1,
-  "daily_api_calls": 684,
+  "provider_calls": 0,
+  "daily_api_calls": 753,
   "protected_calls": {
     "live": 0,
     "current_round": 96,
@@ -14,19 +14,17 @@
     "safety": 8,
     "total": 136
   },
-  "candidate_fixtures": 1,
-  "captured_fixtures": 1,
-  "captured_fixture_ids": [
-    "1575503"
-  ],
+  "candidate_fixtures": 0,
+  "captured_fixtures": 0,
+  "captured_fixture_ids": [],
   "deferred_fixtures": 0,
-  "attempted_fixtures": 1,
+  "attempted_fixtures": 0,
   "no_data_attempts": 0,
   "error_attempts": 0,
   "backlog_rows": 130,
   "backlog_pending": 0,
   "backlog_captured": 130,
-  "new_event_rows": 22,
+  "new_event_rows": 0,
   "total_event_rows": 2169,
   "warnings": [],
   "research_only": true,
