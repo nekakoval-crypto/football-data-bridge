@@ -1,25 +1,64 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-21T22:24:05Z",
-  "status": "ATTENTION",
+  "run_at_utc": "2026-09-22T00:31:07Z",
+  "status": "OK",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 0,
-  "daily_api_calls": 2390,
+  "provider_calls": 8,
+  "daily_api_calls": 8,
   "protected_calls": {
     "live": 0,
-    "current_round": 32,
+    "current_round": 96,
     "standings": 16,
     "safety": 8,
-    "total": 56
+    "total": 120
   },
   "roster_ttl_days": 7,
   "candidate_teams": 8,
-  "captured_teams": [],
-  "deferred_teams": 8,
-  "total_roster_rows": 3516,
-  "warnings": [
-    "Stage71 protected API reserve reached; Challenger deferred"
+  "captured_teams": [
+    {
+      "team_id": "341",
+      "team_name": "Wisla Plock",
+      "players": 37
+    },
+    {
+      "team_id": "319",
+      "team_name": "Brann",
+      "players": 28
+    },
+    {
+      "team_id": "398",
+      "team_name": "FC Nordsjaelland",
+      "players": 30
+    },
+    {
+      "team_id": "405",
+      "team_name": "Odense",
+      "players": 30
+    },
+    {
+      "team_id": "645",
+      "team_name": "Galatasaray",
+      "players": 36
+    },
+    {
+      "team_id": "759",
+      "team_name": "Viking",
+      "players": 32
+    },
+    {
+      "team_id": "215",
+      "team_name": "Moreirense",
+      "players": 30
+    },
+    {
+      "team_id": "762",
+      "team_name": "GIL Vicente",
+      "players": 30
+    }
   ],
+  "deferred_teams": 0,
+  "total_roster_rows": 3769,
+  "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
