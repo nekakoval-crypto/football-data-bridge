@@ -62,14 +62,48 @@ class MotivationRivalryTests(unittest.TestCase):
         self.assertEqual(registry["coverage"]["catalog_completeness"], "PARTIAL")
         self.assertEqual(registry["status"], "PARTIAL_VERIFIED_CATALOG")
 
-    def test_historical_lithuania_trakai_alias_resolves_vilnius_derby(self):
-        payload = motivation_rivalry.lookup_rivalry(
+    def test_historical_lithuania_vilnius_derby_is_time_bounded(self):
+        before_move = motivation_rivalry.lookup_rivalry(
+            "FK Zalgiris Vilnius",
+            "FK Trakai",
+            season="2018",
+        )
+        after_move_provider_alias = motivation_rivalry.lookup_rivalry(
+            "FK Zalgiris Vilnius",
+            "FK Trakai",
+            season="2019",
+        )
+        current_identity = motivation_rivalry.lookup_rivalry(
+            "FK Zalgiris Vilnius",
+            "FK Riteriai",
+            season="2019",
+        )
+        missing_season = motivation_rivalry.lookup_rivalry(
             "FK Zalgiris Vilnius",
             "FK Trakai",
         )
-        self.assertEqual(payload["status"], "VERIFIED")
-        self.assertEqual(payload["rivalry_id"], "LTU_VILNIUS_DERBY")
-        self.assertTrue(payload["derby"])
+
+        self.assertEqual(before_move["status"], "UNKNOWN")
+        self.assertEqual(missing_season["status"], "UNKNOWN")
+
+        for payload in (
+            after_move_provider_alias,
+            current_identity,
+        ):
+            self.assertEqual(payload["status"], "VERIFIED")
+            self.assertEqual(
+                payload["rivalry_id"],
+                "LTU_VILNIUS_DERBY",
+            )
+            self.assertTrue(payload["derby"])
+            self.assertEqual(
+                payload["rivalry_classes"],
+                ["CITY_DERBY"],
+            )
+            self.assertEqual(
+                payload["valid_from_season"],
+                2019,
+            )
 
 
     def test_historical_latvia_rigas_fs_alias_resolves_riga_derby(self):
@@ -116,7 +150,7 @@ class MotivationRivalryTests(unittest.TestCase):
         )
 
 
-    def test_legacy_contract_remains_backward_compatible(self):
+    def test_migrated_contract_remains_backward_compatible(self):
         payload = motivation_rivalry.lookup_rivalry(
             "Arsenal",
             "Tottenham",
@@ -125,7 +159,10 @@ class MotivationRivalryTests(unittest.TestCase):
         self.assertEqual(payload["status"], "VERIFIED")
         self.assertTrue(payload["derby"])
         self.assertTrue(payload["derby_label"])
-        self.assertEqual(payload["rivalry_classes"], [])
+        self.assertEqual(
+            payload["rivalry_classes"],
+            ["LOCAL_DERBY", "HISTORIC_RIVALRY"],
+        )
 
 
     def test_time_bounded_contract_is_fail_closed(self):
@@ -176,6 +213,30 @@ class MotivationRivalryTests(unittest.TestCase):
         self.assertEqual(before["status"], "UNKNOWN")
         self.assertEqual(after["status"], "UNKNOWN")
         self.assertEqual(unknown_season["status"], "UNKNOWN")
+
+
+
+    def test_all_registry_contracts_have_v2_semantics(self):
+        registry = motivation_rivalry.load_registry()
+
+        allowed = {
+            "LOCAL_DERBY",
+            "CITY_DERBY",
+            "REGIONAL_DERBY",
+            "NATIONAL_RIVALRY",
+            "HISTORIC_RIVALRY",
+        }
+
+        for row in registry["rivalries"]:
+            with self.subTest(rivalry_id=row["id"]):
+                self.assertIn("rivalry_classes", row)
+                self.assertTrue(row["rivalry_classes"])
+                self.assertTrue(
+                    set(row["rivalry_classes"]).issubset(allowed)
+                )
+                self.assertIn("derby_label", row)
+                self.assertIn("valid_from_season", row)
+                self.assertIn("valid_to_season", row)
 
 
 
