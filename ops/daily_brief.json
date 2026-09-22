@@ -1,7 +1,7 @@
 {
-  "generated_at_utc": "2026-09-22T06:03:38Z",
+  "generated_at_utc": "2026-09-22T07:04:00Z",
   "status": "OK",
-  "active_signals": 3,
+  "active_signals": 4,
   "policy": {
     "trigger": "immutable Bet365 first capture",
     "market_best": "observed API market price; not necessarily user executable",
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-22T05:44:04Z",
+        "captured_at_utc": "2026-09-22T06:49:37Z",
         "best_odds": "2.07",
         "best_bookmaker": "1xBet",
         "bet365_odds": "2.0",
@@ -155,7 +155,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-22T05:44:04Z",
+        "captured_at_utc": "2026-09-22T06:49:37Z",
         "best_odds": "1.84",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.75",
@@ -263,6 +263,131 @@
       "display_selection": "П2"
     },
     {
+      "forward_id": "R2|I1|1550145",
+      "rule": "R2",
+      "league": "Serie A",
+      "fixture_id": "1550145",
+      "kickoff_utc": "2026-10-11T16:00:00Z",
+      "home_team": "Sassuolo",
+      "away_team": "AC Milan",
+      "selection": "Away",
+      "stake_u": "1.000",
+      "status": "PAPER",
+      "trigger": {
+        "source": "Stage53 immutable first-captured Bet365 via API-Football",
+        "b365_home": "4.5",
+        "b365_draw": "3.6",
+        "b365_away": "1.75",
+        "selected_odds": "1.75",
+        "immutable": true
+      },
+      "market_observed": {
+        "captured_at_utc": "2026-09-22T06:49:37Z",
+        "best_odds": "1.84",
+        "best_bookmaker": "1xBet",
+        "bet365_odds": "1.75",
+        "api_odds_update_utc": "2026-09-20T16:38:15+00:00",
+        "note": "Observed market-best is not automatically a user-executable price"
+      },
+      "user_execution": {
+        "status": "AVAILABLE",
+        "odds": "1.79",
+        "bookmaker": "Marathonbet"
+      },
+      "paper_user_execution": {
+        "status": "FROZEN",
+        "odds": "1.79",
+        "bookmaker": "Marathonbet",
+        "captured_at_utc": "2026-09-22T06:49:37Z",
+        "execution_type": "PAPER_FIRST_OBSERVED_ALLOWLISTED_PRICE",
+        "note": "standardized paper execution; not proof of a real placed bet"
+      },
+      "league_state": {
+        "home_rank": "10",
+        "away_rank": "5",
+        "home_points": "7",
+        "away_points": "11",
+        "home_played": "5",
+        "away_played": "5",
+        "home_last5_ppg": "1.40",
+        "away_last5_ppg": "2.20"
+      },
+      "calendar": {
+        "snapshot_type": "",
+        "captured_at_utc": "",
+        "referee": "",
+        "venue": "",
+        "city": "",
+        "home_prev": {
+          "competition": "",
+          "opponent": "",
+          "date_utc": "",
+          "rest_hours": ""
+        },
+        "away_prev": {
+          "competition": "",
+          "opponent": "",
+          "date_utc": "",
+          "rest_hours": ""
+        },
+        "home_next": {
+          "competition": "",
+          "opponent": "",
+          "date_utc": "",
+          "hours_after": ""
+        },
+        "away_next": {
+          "competition": "",
+          "opponent": "",
+          "date_utc": "",
+          "hours_after": ""
+        }
+      },
+      "injuries": {
+        "status": "NOT_QUERIED_YET",
+        "total": "",
+        "home": "",
+        "away": ""
+      },
+      "weather": {
+        "snapshot_type": "",
+        "captured_at_utc": "",
+        "temperature_c": "",
+        "precipitation_probability_pct": "",
+        "precipitation_mm": "",
+        "wind_speed_kmh": "",
+        "wind_gusts_kmh": "",
+        "visibility_m": "",
+        "weather_code": "",
+        "role": "context-only"
+      },
+      "rotation": {
+        "status": "WAITING_OFFICIAL_XI",
+        "captured_at_utc": "",
+        "home_retained_starters": "",
+        "away_retained_starters": "",
+        "home_changed_starters": "",
+        "away_changed_starters": "",
+        "home_retained_pct": "",
+        "away_retained_pct": ""
+      },
+      "international": {
+        "fifa_relation": "AFTER",
+        "window": "FIFA 2026 combined Sep-Oct window",
+        "hours_to_start": "",
+        "hours_since_end": "112.0",
+        "within_7d_before": "NO",
+        "within_7d_after": "YES",
+        "player_level": "UNVERIFIED",
+        "player_level_reason": "Nationality is not evidence of call-up, travel, or appearance"
+      },
+      "flags": [
+        "WITHIN_7D_AFTER_FIFA_WINDOW",
+        "OFFICIAL_ROTATION_PENDING"
+      ],
+      "display_selection": "П2"
+    },
+    {
       "forward_id": "R1|I1|1550138",
       "rule": "R1",
       "league": "Serie A",
@@ -282,7 +407,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-22T05:44:04Z",
+        "captured_at_utc": "2026-09-22T06:49:37Z",
         "best_odds": "1.62",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.57",
@@ -401,7 +526,7 @@
     "observed_closes": 20,
     "close_qualified_total": 3,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-22T05:54:28Z",
+    "latest_run_utc": "2026-09-22T06:58:16Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -446,7 +571,7 @@
     "observed_closes": 18,
     "close_qualified_total": 7,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-22T05:22:08Z",
+    "latest_run_utc": "2026-09-22T06:53:20Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -513,12 +638,12 @@
     "observed_closes": 105,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-22T04:15:52Z",
+    "latest_run_utc": "2026-09-22T06:20:36Z",
     "warnings": [],
     "crossings": []
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-22T05:55:26Z",
+    "generated_at_utc": "2026-09-22T06:54:35Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
