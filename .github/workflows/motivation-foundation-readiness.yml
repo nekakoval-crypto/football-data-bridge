@@ -4,7 +4,11 @@ on:
   pull_request:
     paths:
       - 'scripts/motivation_foundation_readiness.py'
+      - 'scripts/pbk16_motivation_objective_contracts.py'
+      - 'scripts/standings_format_registry.py'
+      - 'ops/pbk16_domestic_league_format_inventory.csv'
       - 'scripts/tests/test_motivation_foundation_readiness.py'
+      - 'scripts/tests/test_pbk16_motivation_objective_contracts.py'
       - '.github/workflows/motivation-foundation-readiness.yml'
   workflow_dispatch:
 
