@@ -512,6 +512,71 @@ class MotivationRivalryTests(unittest.TestCase):
 
 
 
+    def test_zero_match_alias_recovery_batch(self):
+        cases = [
+            (
+                "Borussia Dortmund",
+                "FC Schalke 04",
+                "GER_REVIERDERBY",
+                True,
+            ),
+            (
+                "1. FC K\u00f6ln",
+                "Borussia Monchengladbach",
+                "GER_RHINE_DERBY_KOLN_GLADBACH",
+                True,
+            ),
+            (
+                "Lyon",
+                "Saint Etienne",
+                "FRA_RHONE_DERBY",
+                True,
+            ),
+            (
+                "Lech Poznan",
+                "Warta Pozna\u0144",
+                "POL_POZNAN_DERBY",
+                True,
+            ),
+            (
+                "Be\u015fikta\u015f",
+                "Fenerbah\u00e7e",
+                "TUR_BESIKTAS_FENER",
+                True,
+            ),
+            (
+                "Be\u015fikta\u015f",
+                "Galatasaray",
+                "TUR_BESIKTAS_GALA",
+                True,
+            ),
+            (
+                "Fenerbah\u00e7e",
+                "Trabzonspor",
+                "TUR_FENER_TRABZON",
+                False,
+            ),
+            (
+                "Dundee",
+                "Dundee Utd",
+                "SCO_DUNDEE_DERBY",
+                True,
+            ),
+        ]
+
+        for home, away, rid, derby in cases:
+            with self.subTest(rivalry_id=rid):
+                payload = motivation_rivalry.lookup_rivalry(
+                    home,
+                    away,
+                    season="2022",
+                )
+
+                self.assertEqual(payload["status"], "VERIFIED")
+                self.assertEqual(payload["rivalry_id"], rid)
+                self.assertEqual(payload["derby"], derby)
+
+
     def test_unknown_pair_stays_unknown(self):
         payload = motivation_rivalry.lookup_rivalry("Alpha", "Beta")
         self.assertEqual(payload["status"], "UNKNOWN")
