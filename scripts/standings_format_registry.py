@@ -287,6 +287,8 @@ def _pbk16_historical_contract(
     total_games,
     direct_relegation_start_rank=None,
     relegation_playoff_rank=None,
+    relegation_playoff_start_rank=None,
+    relegation_playoff_end_rank=None,
     format_type="CLASSIC_SINGLE_TABLE",
     regular_phase_games=None,
     post_split_games=0,
@@ -295,7 +297,9 @@ def _pbk16_historical_contract(
     reason,
     source,
 ):
-    if relegation_playoff_rank is not None:
+    if relegation_playoff_start_rank is not None:
+        safe_rank = int(relegation_playoff_start_rank) - 1
+    elif relegation_playoff_rank is not None:
         safe_rank = int(relegation_playoff_rank) - 1
     elif direct_relegation_start_rank is not None:
         safe_rank = int(direct_relegation_start_rank) - 1
@@ -327,6 +331,16 @@ def _pbk16_historical_contract(
             None
             if relegation_playoff_rank is None
             else int(relegation_playoff_rank)
+        ),
+        "relegation_playoff_start_rank": (
+            None
+            if relegation_playoff_start_rank is None
+            else int(relegation_playoff_start_rank)
+        ),
+        "relegation_playoff_end_rank": (
+            None
+            if relegation_playoff_end_rank is None
+            else int(relegation_playoff_end_rank)
         ),
         "europe_status": "UNKNOWN_BY_DESIGN",
         "reason": reason,
@@ -1241,6 +1255,103 @@ for _season in (
             "20%28CLEAN%20-%2025%20August%202025%29.pdf"
         ),
     )
+
+
+
+
+# ============================================================
+# BATCH H
+# Relegation-playoff range semantics.
+# ============================================================
+
+
+# Netherlands - Eredivisie 2017/18 and 2018/19.
+# 18 clubs / 34 matches.
+# Rank 18 direct relegation; ranks 16-17 promotion/relegation playoffs.
+for _season in ("2017", "2018"):
+    HISTORICAL_PBK16_FORMATS[
+        ("88", _season)
+    ] = _pbk16_historical_contract(
+        "88",
+        _season,
+        team_count=18,
+        total_games=34,
+        direct_relegation_start_rank=18,
+        relegation_playoff_start_rank=16,
+        relegation_playoff_end_rank=17,
+        format_type="CLASSIC_SINGLE_TABLE",
+        regular_phase_games=34,
+        post_split_games=0,
+        points_transform="NONE",
+        phase_aware=False,
+        reason=(
+            "Historical Eredivisie relegation structure before "
+            "the 2019/20 change: rank 18 directly relegated; "
+            "ranks 16-17 entered promotion/relegation playoffs."
+        ),
+        source=(
+            "https://www.knvb.nl/node/54909"
+            if _season == "2018"
+            else
+            "https://www.knvb.nl/node/81"
+        ),
+    )
+
+
+# Latvia - Virsliga 2021.
+# Nine participating clubs, four rounds => 32 matches per club.
+# Rank 9 entered the promotion/relegation playoff.
+HISTORICAL_PBK16_FORMATS[
+    ("365", "2021")
+] = _pbk16_historical_contract(
+    "365",
+    "2021",
+    team_count=9,
+    total_games=32,
+    direct_relegation_start_rank=None,
+    relegation_playoff_rank=9,
+    format_type="CLASSIC_MULTI_ROUND_ROBIN",
+    regular_phase_games=32,
+    post_split_games=0,
+    points_transform="NONE",
+    phase_aware=False,
+    reason=(
+        "LFF Virsliga 2021 regulation: four-round championship; "
+        "with nine clubs remaining, rank 9 entered a two-leg "
+        "promotion/relegation playoff."
+    ),
+    source=(
+        "https://lff.lv/files/documents/690/"
+        "2021_gada_Virsligas_reglaments_ar_labojumiem_15062021.pdf"
+    ),
+)
+
+
+# Scotland - Premiership 2018/19.
+# 12 clubs; split after 33 matches; total 38.
+# Rank 12 direct relegation; rank 11 Premiership playoff.
+HISTORICAL_PBK16_FORMATS[
+    ("179", "2018")
+] = _pbk16_historical_contract(
+    "179",
+    "2018",
+    team_count=12,
+    total_games=38,
+    direct_relegation_start_rank=12,
+    relegation_playoff_rank=11,
+    format_type="SPLIT_TOP6_BOTTOM6",
+    regular_phase_games=33,
+    post_split_games=5,
+    points_transform="NONE",
+    phase_aware=True,
+    reason=(
+        "SPFL Premiership 2018/19: 12th place directly relegated; "
+        "11th place entered the Premiership playoff."
+    ),
+    source=(
+        "https://spfl.co.uk/news/play-offs-continue-this-weekend-45700"
+    ),
+)
 
 
 def get_historical_pbk16_format(provider_league_id, season):

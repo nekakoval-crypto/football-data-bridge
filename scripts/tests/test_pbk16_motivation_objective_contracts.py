@@ -412,7 +412,6 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
             row("Turkey",203,"Super Lig",2019),
             row("Netherlands",88,"Eredivisie",2019),
             row("Poland",106,"Ekstraklasa",2019),
-            row("Latvia",365,"Virsliga",2021),
         ]
 
         for payload in exceptions:
@@ -598,7 +597,6 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
             row("Turkey",203,"Super Lig",2019),
             row("Netherlands",88,"Eredivisie",2019),
             row("Poland",106,"Ekstraklasa",2019),
-            row("Latvia",365,"Virsliga",2021),
             row("Scotland",179,"Premiership",2019),
         ]
 
@@ -609,6 +607,71 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
                     item["status"],
                     "UNKNOWN",
                 )
+
+
+
+    def test_batch_h_playoff_range_semantics(self):
+        nl_cases = [
+            row("Netherlands",88,"Eredivisie",2017),
+            row("Netherlands",88,"Eredivisie",2018),
+        ]
+
+        for payload in nl_cases:
+            with self.subTest(payload=payload):
+                item = c.cell_contract(payload)
+                self.assertEqual(item["status"], "VERIFIED")
+                self.assertEqual(item["safe_rank"], 15)
+                self.assertEqual(
+                    item["direct_relegation_start_rank"],
+                    18,
+                )
+                self.assertIsNone(
+                    item["relegation_playoff_rank"]
+                )
+                self.assertEqual(
+                    item["relegation_playoff_start_rank"],
+                    16,
+                )
+                self.assertEqual(
+                    item["relegation_playoff_end_rank"],
+                    17,
+                )
+
+        latvia = c.cell_contract(
+            row("Latvia",365,"Virsliga",2021)
+        )
+        self.assertEqual(latvia["status"], "VERIFIED")
+        self.assertEqual(latvia["total_games"], 32)
+        self.assertEqual(latvia["safe_rank"], 8)
+        self.assertIsNone(
+            latvia["direct_relegation_start_rank"]
+        )
+        self.assertEqual(
+            latvia["relegation_playoff_rank"],
+            9,
+        )
+
+        scotland = c.cell_contract(
+            row("Scotland",179,"Premiership",2018)
+        )
+        self.assertEqual(scotland["status"], "VERIFIED")
+        self.assertTrue(scotland["phase_aware"])
+        self.assertEqual(
+            scotland["regular_phase_games"],
+            33,
+        )
+        self.assertEqual(
+            scotland["post_split_games"],
+            5,
+        )
+        self.assertEqual(
+            scotland["direct_relegation_start_rank"],
+            12,
+        )
+        self.assertEqual(
+            scotland["relegation_playoff_rank"],
+            11,
+        )
 
 
 

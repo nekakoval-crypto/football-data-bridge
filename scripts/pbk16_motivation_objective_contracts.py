@@ -132,6 +132,12 @@ def cell_contract(row: dict[str, Any]) -> dict[str, Any]:
             "relegation_playoff_rank":historical_pbk16.get(
                 "relegation_playoff_rank"
             ),
+            "relegation_playoff_start_rank":historical_pbk16.get(
+                "relegation_playoff_start_rank"
+            ),
+            "relegation_playoff_end_rank":historical_pbk16.get(
+                "relegation_playoff_end_rank"
+            ),
             "europe_status":"UNKNOWN_BY_DESIGN",
             "source":historical_pbk16.get("source"),
         }
