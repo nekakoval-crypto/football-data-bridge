@@ -1,6 +1,6 @@
 ﻿fixture_id,provider_league_id,league_name,season,round,kickoff_utc,home_team,away_team,source_status,first_queued_at_utc,last_seen_at_utc,backlog_status,captured_at_utc,queue_source,attempt_count,last_attempt_at_utc,last_attempt_result
-1547585,362,A Lyga,2026,Regular Season - 22,2026-07-11T16:00:00+00:00,Kauno Žalgiris,Panevėžys,FT,2026-09-21T00:36:16Z,2026-09-22T09:28:21Z,PENDING,,current_round_terminal_fixture,3,2026-09-21T19:28:25Z,NO_DATA
-1547586,362,A Lyga,2026,Regular Season - 22,2026-07-12T15:45:00+00:00,TransINVEST Vilnius,Banga,FT,2026-09-21T00:36:16Z,2026-09-22T09:28:21Z,PENDING,,current_round_terminal_fixture,3,2026-09-21T19:28:25Z,NO_DATA
+1547585,362,A Lyga,2026,Regular Season - 22,2026-07-11T16:00:00+00:00,Kauno Žalgiris,Panevėžys,FT,2026-09-21T00:36:16Z,2026-09-22T10:29:57Z,PENDING,,current_round_terminal_fixture,3,2026-09-21T19:28:25Z,NO_DATA
+1547586,362,A Lyga,2026,Regular Season - 22,2026-07-12T15:45:00+00:00,TransINVEST Vilnius,Banga,FT,2026-09-21T00:36:16Z,2026-09-22T10:29:57Z,PENDING,,current_round_terminal_fixture,3,2026-09-21T19:28:25Z,NO_DATA
 1547634,362,A Lyga,2026,Regular Season - 32,2026-07-18T16:00:00+00:00,Kauno Žalgiris,Šiauliai,FT,2026-09-17T10:41:55Z,2026-09-20T23:26:02Z,PENDING,,current_round_terminal_fixture,6,2026-09-21T11:29:38Z,NO_DATA
 1570392,140,La Liga,2026,Regular Season - 6,2026-09-03T19:00:00+00:00,Real Sociedad,Celta Vigo,FT,2026-09-17T10:41:55Z,2026-09-18T06:31:34Z,CAPTURED,2026-09-18T00:32:43Z,current_round_terminal_fixture,1,2026-09-18T00:32:43Z,CAPTURED
 1570391,140,La Liga,2026,Regular Season - 6,2026-09-15T17:00:00+00:00,Rayo Vallecano,Espanyol,FT,2026-09-17T10:41:55Z,2026-09-18T06:31:34Z,CAPTURED,2026-09-18T10:34:45Z,current_round_terminal_fixture,1,2026-09-18T10:34:45Z,CAPTURED
@@ -94,7 +94,7 @@
 1561932,218,Bundesliga,2026,Regular Season - 7,2026-09-20T12:30:00+00:00,TSV Hartberg,Lask Linz,FT,2026-09-20T14:27:21Z,2026-09-21T02:29:18Z,CAPTURED,2026-09-20T14:27:21Z,current_round_terminal_fixture,1,2026-09-20T14:27:21Z,CAPTURED
 1561933,218,Bundesliga,2026,Regular Season - 7,2026-09-20T12:30:00+00:00,Ried,Wolfsberger AC,FT,2026-09-20T14:27:21Z,2026-09-21T02:29:18Z,CAPTURED,2026-09-20T14:27:21Z,current_round_terminal_fixture,1,2026-09-20T14:27:21Z,CAPTURED
 1553181,106,Ekstraklasa,2026,Regular Season - 9,2026-09-20T12:45:00+00:00,Zaglebie Lubin,Wisla Plock,FT,2026-09-20T15:27:20Z,2026-09-20T23:26:02Z,CAPTURED,2026-09-20T15:27:20Z,current_round_terminal_fixture,1,2026-09-20T15:27:20Z,CAPTURED
-1515928,365,Virsliga,2026,Regular Season - 31,2026-09-20T13:00:00+00:00,Tukums,Grobiņa,FT,2026-09-20T15:27:20Z,2026-09-20T23:26:02Z,PENDING,,current_round_terminal_fixture,3,2026-09-21T10:28:46Z,NO_DATA
+1515928,365,Virsliga,2026,Regular Season - 31,2026-09-20T13:00:00+00:00,Tukums,Grobiņa,FT,2026-09-20T15:27:20Z,2026-09-20T23:26:02Z,PENDING,,current_round_terminal_fixture,4,2026-09-22T10:29:57Z,NO_DATA
 1550131,135,Serie A,2026,Regular Season - 5,2026-09-20T13:00:00+00:00,Frosinone,Como,FT,2026-09-20T15:27:20Z,2026-09-21T00:36:16Z,CAPTURED,2026-09-20T15:27:20Z,current_round_terminal_fixture,1,2026-09-20T15:27:20Z,CAPTURED
 1550134,135,Serie A,2026,Regular Season - 5,2026-09-20T13:00:00+00:00,Parma,Genoa,FT,2026-09-20T15:27:20Z,2026-09-21T00:36:16Z,CAPTURED,2026-09-20T15:27:20Z,current_round_terminal_fixture,1,2026-09-20T15:27:20Z,CAPTURED
 1552766,61,Ligue 1,2026,Regular Season - 5,2026-09-20T13:00:00+00:00,Auxerre,Stade Brestois 29,FT,2026-09-20T15:27:20Z,2026-09-20T23:26:02Z,CAPTURED,2026-09-20T15:27:20Z,current_round_terminal_fixture,1,2026-09-20T15:27:20Z,CAPTURED
