@@ -44,9 +44,9 @@ class PBK16HistoricalPhaseContractsTests(unittest.TestCase):
         rows=[]
         counts={
             ("Lithuania","2019","CHAMPIONSHIP_SPLIT"):45,
-            ("Belgium","2024","CHAMPIONSHIP_SPLIT"):100,
-            ("Belgium","2024","EUROPE_SPLIT"):100,
-            ("Belgium","2024","RELEGATION_SPLIT"):148,
+            ("Belgium","2024","CHAMPIONSHIP_SPLIT"):156,
+            ("Belgium","2024","EUROPE_SPLIT"):156,
+            ("Belgium","2024","RELEGATION_SPLIT"):36,
             ("Denmark","2025","CHAMPIONSHIP_SPLIT"):261,
             ("Denmark","2025","RELEGATION_SPLIT"):261,
             ("Scotland","2025","CHAMPIONSHIP_OR_SPLIT"):120,
