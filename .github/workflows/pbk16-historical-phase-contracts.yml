@@ -38,11 +38,12 @@ jobs:
           assert report['status']=='OK', report
           assert report['required_nonregular_table_phase_rows']==1747, report
           assert report['contract_covered_rows']==1747, report
-          assert report['carry_forward_candidate_rows']==919, report
+          assert report['carry_forward_candidate_rows']==955, report
           assert report['halving_authorized_rows']==480, report
-          assert report['transform_required_rows']==348, report
+          assert report['belgium_halving_authorized_rows']==312, report
+          assert report['transform_required_rows']==0, report
           assert report['unknown_contract_rows']==0, report
-          assert report['application_authorized_rows']==1399, report
+          assert report['application_authorized_rows']==1747, report
           assert report['exact_title_relegation_motivation_allowed'] is False, report
           assert report['operational_betting_authority'] is False, report
           print(report)

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Stage80 — PBK16 provider-free historical pre-match table context V2.
+"""Stage80 — PBK16 provider-free historical pre-match table context V4.
 
-V2 consumes the durable PBK16 domestic phase audit instead of inferring phase
+V4 consumes the durable PBK16 domestic phase audit instead of inferring phase
 semantics from generic round-name patterns.
 
 Safe reconstruction rules:
@@ -34,7 +34,7 @@ try:
 except ModuleNotFoundError:
     import pbk16_historical_phase_contracts as phase_contracts
 
-VERSION="PBK_STAGE80_PBK16_HISTORICAL_TABLE_CONTEXT_V3"
+VERSION="PBK_STAGE80_PBK16_HISTORICAL_TABLE_CONTEXT_V4"
 RANK_TIEBREAK_CONTRACT="POINTS_GD_GF_TEAMNAME_RESEARCH_APPROX_V1"
 PHASE_AUDIT_CONTRACT="PBK16_2017_2025_PROVIDER_ROUND_LABELS_V1"
 
@@ -181,6 +181,20 @@ def apply_floor_half_transform(states):
         state["points"]=points//2
 
 
+def apply_ceil_half_transform(states, teams):
+    """Apply Belgium's verified half+ceil transform to one split group."""
+    for team in teams:
+        state=states.get(team)
+        if state is None:
+            continue
+        points=int(state.get("points") or 0)
+        # An odd total is rounded UP, but that half-point loses the first
+        # tie-break at equal final-phase points. Existing ranking sorts this
+        # field descending, so -1 correctly puts the asterisk club behind 0.
+        state["split_rounding_advantage"]=-1 if points % 2 else 0
+        state["points"]=(points+1)//2
+
+
 def ppg(points,played):
     if not played:
         return ""
@@ -280,13 +294,19 @@ def safe_status(audit,scope_tainted,format_blocked,contract_status,group_ready):
     if scope_tainted:
         return "BLOCKED_PRIOR_AWARDED_RESULT_UNRESOLVED"
     if requires or family!="REGULAR":
-        if contract_status not in {phase_contracts.CARRY, phase_contracts.HALVE}:
+        if contract_status not in {
+            phase_contracts.CARRY,
+            phase_contracts.HALVE,
+            phase_contracts.BELGIUM_HALF,
+        }:
             return "BLOCKED_TABLE_PHASE_REQUIRES_SEASON_FORMAT_CONTRACT"
         if not group_ready:
             return "BLOCKED_SPLIT_GROUP_UNRESOLVED"
         if policy=="PLAYED_RESULT_USABLE":
             if contract_status==phase_contracts.HALVE:
                 return "VALID_SPLIT_HALVED_POINTS_DERIVED"
+            if contract_status==phase_contracts.BELGIUM_HALF:
+                return "VALID_SPLIT_BELGIUM_HALVED_POINTS_DERIVED"
             return "VALID_SPLIT_CARRY_FORWARD_DERIVED"
         if policy=="AWARDED_RESULT_REQUIRES_RULE_EVIDENCE":
             return "VALID_PREMATCH_AWARDED_RESULT_WILL_TAINT"
@@ -347,6 +367,7 @@ def project(source_rows,audit_rows):
     tainted_by_scope=defaultdict(bool)
     format_blocked_by_scope=defaultdict(bool)
     halving_applied_by_scope=defaultdict(bool)
+    belgium_halving_applied=set()
     out=[]
     invalid_played_results=0
 
@@ -367,6 +388,24 @@ def project(source_rows,audit_rows):
             if needs_halving:
                 apply_floor_half_transform(states)
                 halving_applied_by_scope[scope]=True
+
+        # Belgium halves only the specific Champions/Europe split group.
+        # Relegation groups retain full regular-season points.
+        for dt,idx,row,arow in day_rows:
+            if arow is None:
+                continue
+            family=sval(arow,"phase_family")
+            contract=phase_contract_for(row,arow)
+            transform_key=(league,season,family)
+            if (
+                contract.get("status")==phase_contracts.BELGIUM_HALF
+                and transform_key not in belgium_halving_applied
+            ):
+                h=sval(row,"home_team_id") or sval(row,"home_team")
+                group=phase_groups.get((league,season,family,h))
+                if group:
+                    apply_ceil_half_transform(states,group)
+                    belgium_halving_applied.add(transform_key)
 
         # Project every fixture before applying any result from this UTC date.
         for dt,idx,row,arow in day_rows:
@@ -412,6 +451,7 @@ def project(source_rows,audit_rows):
                 "VALID_REGULAR_RESULTS_DERIVED",
                 "VALID_SPLIT_CARRY_FORWARD_DERIVED",
                 "VALID_SPLIT_HALVED_POINTS_DERIVED",
+                "VALID_SPLIT_BELGIUM_HALVED_POINTS_DERIVED",
                 "VALID_PREMATCH_AWARDED_RESULT_WILL_TAINT",
                 "VALID_PREMATCH_NOT_PLAYED_NO_STATE_MUTATION",
             }
@@ -509,7 +549,11 @@ def project(source_rows,audit_rows):
             if role=="TABLE_PHASE" and (requires or family!="REGULAR"):
                 if (
                     contract.get("status")
-                    not in {phase_contracts.CARRY, phase_contracts.HALVE}
+                    not in {
+                        phase_contracts.CARRY,
+                        phase_contracts.HALVE,
+                        phase_contracts.BELGIUM_HALF,
+                    }
                     or not group_ready
                 ):
                     format_blocked_by_scope[scope]=True
@@ -560,6 +604,7 @@ def run(source,phase_audit,out_csv,meta_out):
         "VALID_REGULAR_RESULTS_DERIVED",
         "VALID_SPLIT_CARRY_FORWARD_DERIVED",
         "VALID_SPLIT_HALVED_POINTS_DERIVED",
+        "VALID_SPLIT_BELGIUM_HALVED_POINTS_DERIVED",
         "VALID_PREMATCH_AWARDED_RESULT_WILL_TAINT",
         "VALID_PREMATCH_NOT_PLAYED_NO_STATE_MUTATION",
     }
@@ -610,6 +655,9 @@ def run(source,phase_audit,out_csv,meta_out):
         "blocked_table_phase_rows":format_blocked,
         "split_carry_forward_rows":statuses.get("VALID_SPLIT_CARRY_FORWARD_DERIVED",0),
         "split_halved_points_rows":statuses.get("VALID_SPLIT_HALVED_POINTS_DERIVED",0),
+        "split_belgium_halved_points_rows":statuses.get(
+            "VALID_SPLIT_BELGIUM_HALVED_POINTS_DERIVED",0
+        ),
         "post_table_playoff_rows":post_table,
         "blocked_prior_awarded_result_rows":prior_awarded,
         "phase_audit_contract":PHASE_AUDIT_CONTRACT,
