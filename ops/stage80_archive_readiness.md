@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-22T16:33:46Z
+Обновлено UTC: 2026-09-22T16:53:07Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -15,8 +15,8 @@
 - Team match statistics: 126 complete fixtures / 252 team rows; current finished coverage 0.00%.
 - Team xG: 23 complete fixtures / 46 team rows; captured-team-stat coverage 18.25%.
 - Player xG/xA source: RESEARCH_SOURCE_EXTERNAL_LOCAL_ATTESTED_MAPPED_TO_PBK.
-- Player stat rows: 146316; уникальных игроков: 9005.
-- Player Grade rows: 146316; уникальных игроков: 9005.
+- Player stat rows: 156233; уникальных игроков: 9061.
+- Player Grade rows: 156233; уникальных игроков: 9061.
 - Current roster: 122 команд / 3769 игроковых строк.
 - Player profile evidence: 3505 rows (3398 team-source + 107 residual-ID) / 3405 players / 121 teams; current-roster coverage 84.84%; identity-ready 3159 players (79.21%).
 - Roster history: 122 команд / 122 team-snapshots / 3767 строк.
