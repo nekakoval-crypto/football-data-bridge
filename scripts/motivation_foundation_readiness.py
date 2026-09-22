@@ -10,6 +10,11 @@ import json
 from pathlib import Path
 from typing import Any
 
+try:
+    from scripts import pbk16_motivation_objective_contracts as objective_contracts
+except ModuleNotFoundError:
+    import pbk16_motivation_objective_contracts as objective_contracts
+
 ROOT = Path(__file__).resolve().parents[1]
 OPS = ROOT / "ops"
 CONFIG = ROOT / "config"
@@ -58,7 +63,10 @@ def build_readiness(ops: Path = OPS, config: Path = CONFIG) -> dict[str, Any]:
     rivalry_catalog_present = bool(rivalry.get("rivalries"))
     rivalry_catalog_complete = rivalry.get("status") == "VERIFIED_PBK16_CATALOG"
 
-    exact_pbk16 = bool(pbk16.get("exact_title_relegation_motivation_allowed"))
+    objective_coverage = objective_contracts.build_coverage()
+    exact_pbk16 = bool(
+        objective_coverage.get("all_exact_title_relegation_contracts_verified")
+    )
 
     blockers = []
     if not top5_ok:
@@ -70,7 +78,7 @@ def build_readiness(ops: Path = OPS, config: Path = CONFIG) -> dict[str, Any]:
     if not forward_capture_ok:
         blockers.append("PBK16_FORWARD_STANDINGS_CAPTURE_NOT_READY")
     if not exact_pbk16:
-        blockers.append("PBK16_EXACT_TITLE_RELEGATION_MOTIVATION_NOT_AUTHORIZED")
+        blockers.append("PBK16_EXACT_OBJECTIVE_CONTRACTS_INCOMPLETE")
     if not rivalry_catalog_present:
         blockers.append("RIVALRY_CATALOG_MISSING")
     elif not rivalry_catalog_complete:
@@ -106,6 +114,15 @@ def build_readiness(ops: Path = OPS, config: Path = CONFIG) -> dict[str, Any]:
             "pbk16_leagues": int(pbk16.get("domestic_league_ids") or 0),
             "forward_tracked_leagues": int(forward.get("tracked_leagues") or 0),
             "verified_rivalries": len(rivalry.get("rivalries") or []),
+            "exact_objective_required_cells": int(
+                objective_coverage.get("required_league_season_cells") or 0
+            ),
+            "exact_objective_verified_cells": int(
+                objective_coverage.get("verified_league_season_cells") or 0
+            ),
+            "exact_objective_missing_cells": int(
+                objective_coverage.get("missing_league_season_cells") or 0
+            ),
         },
         "capabilities": {
             "table_pressure_context": top5_ok and pbk16_table_ok,
@@ -114,6 +131,7 @@ def build_readiness(ops: Path = OPS, config: Path = CONFIG) -> dict[str, Any]:
             "derby_rivalry_context": rivalry_catalog_present,
             "direct_rival_context": True,
             "outcome_necessity_context": True,
+            "exact_objective_contract_coverage": objective_coverage.get("status"),
             "generic_must_win_forbidden": True,
             "single_motivation_score_forbidden": True,
             "prematch_frozen_required": True,
