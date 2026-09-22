@@ -292,6 +292,142 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
 
 
 
+    def test_super_mega_maxi_batch_f(self):
+        cases = [
+            # country, league, name, season, games, safe, direct, playoff
+
+            ("Austria",218,"Bundesliga",2017,36,9,None,10),
+
+            ("Latvia",365,"Virsliga",2018,28,6,8,7),
+            ("Latvia",365,"Virsliga",2019,32,8,None,9),
+            ("Latvia",365,"Virsliga",2020,27,8,10,9),
+            ("Latvia",365,"Virsliga",2022,36,8,10,9),
+            ("Latvia",365,"Virsliga",2023,36,8,10,9),
+            ("Latvia",365,"Virsliga",2024,36,8,10,9),
+            ("Latvia",365,"Virsliga",2025,36,8,10,9),
+
+            ("Lithuania",362,"A Lyga",2020,20,6,None,None),
+            ("Lithuania",362,"A Lyga",2021,36,8,9,None),
+            ("Lithuania",362,"A Lyga",2022,36,8,10,9),
+            ("Lithuania",362,"A Lyga",2024,36,8,10,9),
+
+            ("Portugal",94,"Primeira Liga",2017,34,16,17,None),
+            ("Portugal",94,"Primeira Liga",2018,34,16,17,None),
+        ]
+
+        self.assertEqual(len(cases), 14)
+
+        for (
+            country,
+            league_id,
+            league_name,
+            season,
+            games,
+            safe,
+            direct,
+            playoff,
+        ) in cases:
+            with self.subTest(
+                country=country,
+                season=season,
+            ):
+                item = c.cell_contract(
+                    row(
+                        country,
+                        league_id,
+                        league_name,
+                        season,
+                    )
+                )
+
+                self.assertEqual(item["status"], "VERIFIED")
+                self.assertEqual(
+                    item["source_contract"],
+                    "HISTORICAL_PBK16_FORMATS",
+                )
+                self.assertTrue(
+                    item["title_boundary_authorized"]
+                )
+                self.assertTrue(
+                    item["relegation_boundary_authorized"]
+                )
+                self.assertEqual(
+                    item["total_games"],
+                    games,
+                )
+                self.assertEqual(
+                    item["safe_rank"],
+                    safe,
+                )
+                self.assertEqual(
+                    item["direct_relegation_start_rank"],
+                    direct,
+                )
+                self.assertEqual(
+                    item["relegation_playoff_rank"],
+                    playoff,
+                )
+
+    def test_batch_f_supports_three_relegation_semantics(self):
+        # Playoff-only.
+        austria = c.cell_contract(
+            row("Austria",218,"Bundesliga",2017)
+        )
+        self.assertIsNone(
+            austria["direct_relegation_start_rank"]
+        )
+        self.assertEqual(
+            austria["relegation_playoff_rank"],
+            10,
+        )
+        self.assertEqual(austria["safe_rank"], 9)
+
+        # Another playoff-only historical contract.
+        latvia = c.cell_contract(
+            row("Latvia",365,"Virsliga",2019)
+        )
+        self.assertIsNone(
+            latvia["direct_relegation_start_rank"]
+        )
+        self.assertEqual(
+            latvia["relegation_playoff_rank"],
+            9,
+        )
+
+        # Verified no-relegation season.
+        lithuania = c.cell_contract(
+            row("Lithuania",362,"A Lyga",2020)
+        )
+        self.assertIsNone(
+            lithuania["direct_relegation_start_rank"]
+        )
+        self.assertIsNone(
+            lithuania["relegation_playoff_rank"]
+        )
+        self.assertEqual(lithuania["safe_rank"], 6)
+
+    def test_batch_f_temporal_and_complex_exceptions_stay_unknown(self):
+        exceptions = [
+            row("Turkey",203,"Super Lig",2022),
+            row("Turkey",203,"Super Lig",2019),
+            row("Netherlands",88,"Eredivisie",2019),
+            row("Poland",106,"Ekstraklasa",2019),
+            row("Latvia",365,"Virsliga",2021),
+        ]
+
+        for payload in exceptions:
+            with self.subTest(payload=payload):
+                item = c.cell_contract(payload)
+                self.assertEqual(item["status"], "UNKNOWN")
+                self.assertFalse(
+                    item["title_boundary_authorized"]
+                )
+                self.assertFalse(
+                    item["relegation_boundary_authorized"]
+                )
+
+
+
     def test_non_top5_cell_remains_unknown(self):
         item=c.cell_contract(row("Denmark",119,"Superliga",2024))
         self.assertEqual(item["status"],"UNKNOWN")

@@ -285,16 +285,18 @@ def _pbk16_historical_contract(
     *,
     team_count,
     total_games,
-    direct_relegation_start_rank,
+    direct_relegation_start_rank=None,
     relegation_playoff_rank=None,
     reason,
     source,
 ):
-    safe_rank = (
-        int(relegation_playoff_rank) - 1
-        if relegation_playoff_rank is not None
-        else int(direct_relegation_start_rank) - 1
-    )
+    if relegation_playoff_rank is not None:
+        safe_rank = int(relegation_playoff_rank) - 1
+    elif direct_relegation_start_rank is not None:
+        safe_rank = int(direct_relegation_start_rank) - 1
+    else:
+        # Verified no-relegation season: every table position is safe.
+        safe_rank = int(team_count)
 
     return {
         "status": "VERIFIED_RULE_CONTRACT",
@@ -303,8 +305,10 @@ def _pbk16_historical_contract(
         "team_count": int(team_count),
         "total_games": int(total_games),
         "safe_rank": safe_rank,
-        "direct_relegation_start_rank": int(
-            direct_relegation_start_rank
+        "direct_relegation_start_rank": (
+            None
+            if direct_relegation_start_rank is None
+            else int(direct_relegation_start_rank)
         ),
         "relegation_playoff_rank": (
             None
@@ -784,6 +788,297 @@ for _season in ("2020", "2021", "2022", "2023", "2024", "2025"):
             "en-play-offs"
         ),
     )
+
+
+
+# ============================================================
+# SUPER MEGA MAXI BATCH F
+# Optional direct relegation semantics + 14 verified cells.
+# ============================================================
+
+
+# Austria - Bundesliga 2017/18.
+# 10 clubs, 36 matches.
+# Last place entered the relegation playoff; there was no direct
+# table-position relegation.
+HISTORICAL_PBK16_FORMATS[("218", "2017")] = _pbk16_historical_contract(
+    "218",
+    "2017",
+    team_count=10,
+    total_games=36,
+    direct_relegation_start_rank=None,
+    relegation_playoff_rank=10,
+    reason=(
+        "Austrian Bundesliga 2017/18: 10 clubs and 36 rounds; "
+        "rank 10 entered the relegation playoff rather than being "
+        "directly relegated."
+    ),
+    source=(
+        "https://www.bundesliga.at/de/news/artikel/"
+        "die-details-der-ligareform-so-wird-ab-2018-19-gespielt"
+    ),
+)
+
+
+# Latvia - Virsliga 2018.
+# Rank 8 direct relegation; rank 7 playoff.
+HISTORICAL_PBK16_FORMATS[("365", "2018")] = _pbk16_historical_contract(
+    "365",
+    "2018",
+    team_count=8,
+    total_games=28,
+    direct_relegation_start_rank=8,
+    relegation_playoff_rank=7,
+    reason=(
+        "LFF Virsliga 2018 regulation: last place directly loses "
+        "top-flight status and the penultimate club enters the playoff."
+    ),
+    source=(
+        "https://lff.lv/files/documents/105/"
+        "2018_Virsligas_reglaments__.pdf"
+    ),
+)
+
+
+# Latvia - Virsliga 2019.
+# 9 clubs, 32 matches.
+# Last place entered a playoff; no direct table-position relegation.
+HISTORICAL_PBK16_FORMATS[("365", "2019")] = _pbk16_historical_contract(
+    "365",
+    "2019",
+    team_count=9,
+    total_games=32,
+    direct_relegation_start_rank=None,
+    relegation_playoff_rank=9,
+    reason=(
+        "LFF Virsliga 2019 regulation: rank 9 entered a two-leg "
+        "promotion/relegation playoff; no direct table-position "
+        "relegation was specified."
+    ),
+    source=(
+        "https://lff.lv/files/documents/339/"
+        "2019_Virsligas_reglaments_lff.pdf"
+    ),
+)
+
+
+# Latvia - Virsliga 2020.
+# 10 clubs, three rounds = 27 matches.
+# Rank 10 direct; rank 9 playoff.
+HISTORICAL_PBK16_FORMATS[("365", "2020")] = _pbk16_historical_contract(
+    "365",
+    "2020",
+    team_count=10,
+    total_games=27,
+    direct_relegation_start_rank=10,
+    relegation_playoff_rank=9,
+    reason=(
+        "LFF Virsliga 2020 regulation: three-round competition; "
+        "rank 10 directly relegated and rank 9 entered the playoff."
+    ),
+    source=(
+        "https://lff.lv/files/documents/556/"
+        "_2020_gada_Virsligas_reglaments_apstiprinats_ar_labojumiem_.pdf"
+    ),
+)
+
+
+# Latvia - Virsliga 2022.
+HISTORICAL_PBK16_FORMATS[("365", "2022")] = _pbk16_historical_contract(
+    "365",
+    "2022",
+    team_count=10,
+    total_games=36,
+    direct_relegation_start_rank=10,
+    relegation_playoff_rank=9,
+    reason=(
+        "LFF Virsliga 2022 regulation: rank 10 directly relegated "
+        "and rank 9 entered the promotion/relegation playoff."
+    ),
+    source=(
+        "https://lff.lv/files/documents/855/"
+        "2022_gada_Virsligas_reglaments.pdf"
+    ),
+)
+
+
+# Latvia - Virsliga 2023.
+HISTORICAL_PBK16_FORMATS[("365", "2023")] = _pbk16_historical_contract(
+    "365",
+    "2023",
+    team_count=10,
+    total_games=36,
+    direct_relegation_start_rank=10,
+    relegation_playoff_rank=9,
+    reason=(
+        "LFF Virsliga 2023 regulation: four-round competition; "
+        "rank 10 directly relegated and rank 9 entered the playoff."
+    ),
+    source=(
+        "https://lff.lv/files/documents/1966/"
+        "2023_gada_Virsligas_reglaments.pdf"
+    ),
+)
+
+
+# Latvia - Virsliga 2024.
+HISTORICAL_PBK16_FORMATS[("365", "2024")] = _pbk16_historical_contract(
+    "365",
+    "2024",
+    team_count=10,
+    total_games=36,
+    direct_relegation_start_rank=10,
+    relegation_playoff_rank=9,
+    reason=(
+        "LFF Virsliga 2024 regulation: rank 10 directly relegated "
+        "and rank 9 entered the promotion/relegation playoff."
+    ),
+    source=(
+        "https://lff.lv/files/documents/2076/"
+        "2024_gada_Virsligas_cempionata_reglaments.pdf"
+    ),
+)
+
+
+# Latvia - Virsliga 2025.
+HISTORICAL_PBK16_FORMATS[("365", "2025")] = _pbk16_historical_contract(
+    "365",
+    "2025",
+    team_count=10,
+    total_games=36,
+    direct_relegation_start_rank=10,
+    relegation_playoff_rank=9,
+    reason=(
+        "LFF Virsliga 2025 regulation: rank 10 directly relegated "
+        "and rank 9 entered the promotion/relegation playoff."
+    ),
+    source=(
+        "https://lff.lv/files/documents/2202/"
+        "Latvijas_virsligas_cempionata_reglaments_2025.pdf"
+    ),
+)
+
+
+# Lithuania - A Lyga 2020.
+# Special six-team format: 20 matches and no relegation.
+HISTORICAL_PBK16_FORMATS[("362", "2020")] = _pbk16_historical_contract(
+    "362",
+    "2020",
+    team_count=6,
+    total_games=20,
+    direct_relegation_start_rank=None,
+    relegation_playoff_rank=None,
+    reason=(
+        "LFF 2020 competition regulation: with six A Lyga clubs, "
+        "the league was played over six rounds and no club was relegated."
+    ),
+    source=(
+        "https://lff.lt/files/documents/661/"
+        "2020%20m.%20LFF%20Nuostatai%20VK.pdf"
+    ),
+)
+
+
+# Lithuania - A Lyga 2021.
+# 10 clubs / 36 matches; ranks 9-10 direct relegation.
+HISTORICAL_PBK16_FORMATS[("362", "2021")] = _pbk16_historical_contract(
+    "362",
+    "2021",
+    team_count=10,
+    total_games=36,
+    direct_relegation_start_rank=9,
+    relegation_playoff_rank=None,
+    reason=(
+        "LFF 2021 regulation: 10 clubs and 36 matches; ranks 9-10 "
+        "were direct relegation positions."
+    ),
+    source=(
+        "https://www.lff.lt/files/documents/824/"
+        "2021%20M.%20LFF%20NUOSTATAI.pdf"
+    ),
+)
+
+
+# Lithuania - A Lyga 2022.
+# Last direct; penultimate playoff.
+HISTORICAL_PBK16_FORMATS[("362", "2022")] = _pbk16_historical_contract(
+    "362",
+    "2022",
+    team_count=10,
+    total_games=36,
+    direct_relegation_start_rank=10,
+    relegation_playoff_rank=9,
+    reason=(
+        "LFF A Lyga 2022 regulation: rank 10 directly relegated "
+        "and rank 9 entered the promotion/relegation playoff."
+    ),
+    source=(
+        "https://lff.lt/files/documents/946/"
+        "2022%20m.%20Optibet%20A%20lygos%20var%C5%BEyb%C5%B3%"
+        "20patvirtinti%20nuostatai.pdf"
+    ),
+)
+
+
+# Lithuania - A Lyga 2024.
+# Last direct; penultimate playoff.
+HISTORICAL_PBK16_FORMATS[("362", "2024")] = _pbk16_historical_contract(
+    "362",
+    "2024",
+    team_count=10,
+    total_games=36,
+    direct_relegation_start_rank=10,
+    relegation_playoff_rank=9,
+    reason=(
+        "LFF A Lyga 2024 regulation: last place directly relegated "
+        "and the penultimate team entered a two-leg playoff."
+    ),
+    source=(
+        "https://www.lff.lt/wp-content/uploads/2023/12/"
+        "2024-metu-A-lyga-varz%CC%8Cybu%CC%A8-nuostatai-.pdf"
+    ),
+)
+
+
+# Portugal - Liga NOS 2017/18.
+# 18 clubs; bottom two directly relegated.
+HISTORICAL_PBK16_FORMATS[("94", "2017")] = _pbk16_historical_contract(
+    "94",
+    "2017",
+    team_count=18,
+    total_games=34,
+    direct_relegation_start_rank=17,
+    relegation_playoff_rank=None,
+    reason=(
+        "Liga Portugal 2017/18 regulation: 18 clubs; the bottom two "
+        "places were direct relegation positions."
+    ),
+    source=(
+        "https://www.ligaportugal.pt/media/12329/"
+        "regulamento-das-competicoes-1718.pdf"
+    ),
+)
+
+
+# Portugal - Liga NOS 2018/19.
+# 18 clubs; bottom two directly relegated.
+HISTORICAL_PBK16_FORMATS[("94", "2018")] = _pbk16_historical_contract(
+    "94",
+    "2018",
+    team_count=18,
+    total_games=34,
+    direct_relegation_start_rank=17,
+    relegation_playoff_rank=None,
+    reason=(
+        "Liga Portugal 2018/19 regulation: 18 clubs; the bottom two "
+        "places were direct relegation positions."
+    ),
+    source=(
+        "https://www.ligaportugal.pt/media/15102/"
+        "regulamento-competicoes-2018-19.pdf"
+    ),
+)
+
 
 def get_historical_pbk16_format(provider_league_id, season):
     key = (
