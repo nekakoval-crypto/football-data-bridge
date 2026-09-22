@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-22T07:04:00Z
+Generated UTC: 2026-09-22T08:03:04Z
 Active canonical signals: 4
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -41,14 +41,14 @@ Active canonical signals: 4
 - Market-best observed: 1.84 @ 1xBet | Bet365 now: 1.75
 - Current user-executable: 1.79 @ Marathonbet
 - Paper user-execution (frozen): 1.79 @ Marathonbet [2026-09-22T06:49:37Z]
-- Referee / venue: TBD | TBD, TBD
-- Previous: home  vs  (h rest); away  vs  (h rest)
-- Next: home  vs  (h after); away  vs  (h after)
+- Referee / venue: TBD | TBD, Reggio Emilia
+- Previous: home Serie A vs Monza (549.2h rest); away Serie A vs Lecce (501.2h rest)
+- Next: home Serie A vs Frosinone (122.8h after); away UEFA Europa League vs Red Bull Salzburg (96.8h after)
 - Injuries: NOT_QUERIED_YET
-- Weather [pending]: °C, precip %, wind  km/h, gusts  km/h
+- Weather [BASELINE]: 16.0°C, precip %, wind 5.4 km/h, gusts 4.7 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: AFTER FIFA window; to start h; player-level UNVERIFIED
-- Flags: WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
+- Flags: AWAY_NEXT_UEFA_OR_CUP, WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
 
 ## R1 | Cagliari — Juventus
 - Kickoff UTC: 2026-10-11T18:45:00Z | Ставка: П2 | Stake: 1.000u

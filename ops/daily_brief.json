@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-22T07:04:00Z",
+  "generated_at_utc": "2026-09-22T08:03:04Z",
   "status": "OK",
   "active_signals": 4,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-22T06:49:37Z",
+        "captured_at_utc": "2026-09-22T07:44:39Z",
         "best_odds": "2.07",
         "best_bookmaker": "1xBet",
         "bet365_odds": "2.0",
@@ -155,7 +155,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-22T06:49:37Z",
+        "captured_at_utc": "2026-09-22T07:44:39Z",
         "best_odds": "1.84",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.75",
@@ -282,7 +282,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-22T06:49:37Z",
+        "captured_at_utc": "2026-09-22T07:44:39Z",
         "best_odds": "1.84",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.75",
@@ -313,34 +313,34 @@
         "away_last5_ppg": "2.20"
       },
       "calendar": {
-        "snapshot_type": "",
-        "captured_at_utc": "",
+        "snapshot_type": "BASELINE",
+        "captured_at_utc": "2026-09-22T07:17:07Z",
         "referee": "",
         "venue": "",
-        "city": "",
+        "city": "Reggio Emilia",
         "home_prev": {
-          "competition": "",
-          "opponent": "",
-          "date_utc": "",
-          "rest_hours": ""
+          "competition": "Serie A",
+          "opponent": "Monza",
+          "date_utc": "2026-09-18T18:45:00Z",
+          "rest_hours": "549.2"
         },
         "away_prev": {
-          "competition": "",
-          "opponent": "",
-          "date_utc": "",
-          "rest_hours": ""
+          "competition": "Serie A",
+          "opponent": "Lecce",
+          "date_utc": "2026-09-20T18:45:00Z",
+          "rest_hours": "501.2"
         },
         "home_next": {
-          "competition": "",
-          "opponent": "",
-          "date_utc": "",
-          "hours_after": ""
+          "competition": "Serie A",
+          "opponent": "Frosinone",
+          "date_utc": "2026-10-16T18:45:00Z",
+          "hours_after": "122.8"
         },
         "away_next": {
-          "competition": "",
-          "opponent": "",
-          "date_utc": "",
-          "hours_after": ""
+          "competition": "UEFA Europa League",
+          "opponent": "Red Bull Salzburg",
+          "date_utc": "2026-10-15T16:45:00Z",
+          "hours_after": "96.8"
         }
       },
       "injuries": {
@@ -350,15 +350,15 @@
         "away": ""
       },
       "weather": {
-        "snapshot_type": "",
-        "captured_at_utc": "",
-        "temperature_c": "",
+        "snapshot_type": "BASELINE",
+        "captured_at_utc": "2026-09-22T07:32:32Z",
+        "temperature_c": "16.0",
         "precipitation_probability_pct": "",
-        "precipitation_mm": "",
-        "wind_speed_kmh": "",
-        "wind_gusts_kmh": "",
-        "visibility_m": "",
-        "weather_code": "",
+        "precipitation_mm": "0.0",
+        "wind_speed_kmh": "5.4",
+        "wind_gusts_kmh": "4.7",
+        "visibility_m": "23680.0",
+        "weather_code": "0",
         "role": "context-only"
       },
       "rotation": {
@@ -382,6 +382,7 @@
         "player_level_reason": "Nationality is not evidence of call-up, travel, or appearance"
       },
       "flags": [
+        "AWAY_NEXT_UEFA_OR_CUP",
         "WITHIN_7D_AFTER_FIFA_WINDOW",
         "OFFICIAL_ROTATION_PENDING"
       ],
@@ -407,7 +408,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-22T06:49:37Z",
+        "captured_at_utc": "2026-09-22T07:44:39Z",
         "best_odds": "1.62",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.57",
@@ -526,7 +527,7 @@
     "observed_closes": 20,
     "close_qualified_total": 3,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-22T06:58:16Z",
+    "latest_run_utc": "2026-09-22T07:55:26Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -571,7 +572,7 @@
     "observed_closes": 18,
     "close_qualified_total": 7,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-22T06:53:20Z",
+    "latest_run_utc": "2026-09-22T07:49:37Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -643,7 +644,7 @@
     "crossings": []
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-22T06:54:35Z",
+    "generated_at_utc": "2026-09-22T07:55:39Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
