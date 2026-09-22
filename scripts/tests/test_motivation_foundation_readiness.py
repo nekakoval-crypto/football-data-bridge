@@ -49,13 +49,16 @@ class MotivationFoundationReadinessTests(unittest.TestCase):
                 "NOT_AUTHORIZED",
             )
             self.assertIn(
-                "PBK16_EXACT_TITLE_RELEGATION_MOTIVATION_NOT_AUTHORIZED",
+                "PBK16_EXACT_OBJECTIVE_CONTRACTS_INCOMPLETE",
                 report["hard_blockers_to_foundation_closure"],
             )
             self.assertIn(
                 "RIVALRY_CATALOG_PARTIAL",
                 report["hard_blockers_to_foundation_closure"],
             )
+            self.assertEqual(report["evidence"]["exact_objective_required_cells"],143)
+            self.assertEqual(report["evidence"]["exact_objective_verified_cells"],45)
+            self.assertEqual(report["evidence"]["exact_objective_missing_cells"],98)
             self.assertFalse(report["operational_betting_authority"])
 
     def test_even_with_pbk16_and_catalog_forward_validation_still_blocks_closure(self):
