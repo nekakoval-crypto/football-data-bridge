@@ -293,6 +293,8 @@ def _pbk16_historical_contract(
     regular_phase_games=None,
     post_split_games=0,
     points_transform="NONE",
+    title_total_games=None,
+    relegation_total_games=None,
     phase_aware=False,
     reason,
     source,
@@ -310,6 +312,12 @@ def _pbk16_historical_contract(
     if regular_phase_games is None:
         regular_phase_games = int(total_games)
 
+    if title_total_games is None:
+        title_total_games = int(total_games)
+
+    if relegation_total_games is None:
+        relegation_total_games = int(total_games)
+
     return {
         "status": "VERIFIED_RULE_CONTRACT",
         "provider_league_id": str(provider_league_id),
@@ -321,6 +329,8 @@ def _pbk16_historical_contract(
         "post_split_games": int(post_split_games),
         "points_transform": str(points_transform),
         "phase_aware": bool(phase_aware),
+        "title_total_games": int(title_total_games),
+        "relegation_total_games": int(relegation_total_games),
         "safe_rank": safe_rank,
         "direct_relegation_start_rank": (
             None
@@ -1350,6 +1360,157 @@ HISTORICAL_PBK16_FORMATS[
     ),
     source=(
         "https://spfl.co.uk/news/play-offs-continue-this-weekend-45700"
+    ),
+)
+
+
+
+
+# ============================================================
+# BATCH I
+# Objective-specific game horizons + six verified cells.
+# ============================================================
+
+
+# Lithuania 2017-2019:
+# 8 clubs.
+# Four-round base phase = 28 matches.
+# Top six then play one additional round among themselves = 33 title matches.
+# Rank 7 enters relegation playoff; rank 8 directly relegated.
+#
+# This is intentionally NOT flattened to one season length:
+# title horizon = 33; relegation horizon = 28.
+_lithuania_old_sources = {
+    "2017": (
+        "https://www.lff.lt/files/documents/163/"
+        "2017.02.13-LFF%20var%C5%BEyb%C5%B3%20nuostatai.pdf"
+    ),
+    "2018": (
+        "https://lff.lt/files/documents/345/"
+        "2018%20LFF%20var%C5%BEyb%C5%B3%20nuostatai.pdf"
+    ),
+    "2019": (
+        "https://www.lff.lt/"
+        "pasirinkta-lietuvos-jaunimo-futbolo-ugdymo-kryptis/"
+    ),
+}
+
+for _season in ("2017", "2018", "2019"):
+    HISTORICAL_PBK16_FORMATS[
+        ("362", _season)
+    ] = _pbk16_historical_contract(
+        "362",
+        _season,
+        team_count=8,
+        total_games=33,
+        direct_relegation_start_rank=8,
+        relegation_playoff_rank=7,
+        format_type="ASYMMETRIC_TOP6_FINAL_ROUND",
+        regular_phase_games=28,
+        post_split_games=5,
+        points_transform="NONE",
+        title_total_games=33,
+        relegation_total_games=28,
+        phase_aware=True,
+        reason=(
+            "LFF A Lyga historical format: eight clubs play four "
+            "rounds (28 matches); the top six then play a fifth "
+            "round among themselves. Rank 7 enters the relegation "
+            "playoff and rank 8 is directly relegated. Therefore "
+            "title and relegation objectives have different horizons."
+        ),
+        source=_lithuania_old_sources[_season],
+    )
+
+
+# Lithuania 2023.
+# 10 clubs / 36 matches.
+# Last place direct relegation; penultimate club enters playoff.
+HISTORICAL_PBK16_FORMATS[
+    ("362", "2023")
+] = _pbk16_historical_contract(
+    "362",
+    "2023",
+    team_count=10,
+    total_games=36,
+    direct_relegation_start_rank=10,
+    relegation_playoff_rank=9,
+    format_type="CLASSIC_MULTI_ROUND_ROBIN",
+    regular_phase_games=36,
+    post_split_games=0,
+    points_transform="NONE",
+    title_total_games=36,
+    relegation_total_games=36,
+    phase_aware=False,
+    reason=(
+        "LFF A Lyga 2023 regulations: 10 clubs play four rounds "
+        "for 36 matches; last place is directly relegated and the "
+        "penultimate club enters the promotion/relegation playoff."
+    ),
+    source=(
+        "https://www.lff.lt/wp-content/uploads/2023/01/"
+        "2023-Optibet-A-lyga-varz%CC%8Cybu%CC%A8-nuostatai-2023-01-09.pdf"
+    ),
+)
+
+
+# Lithuania 2025.
+# 10 clubs / 36 matches.
+# Last place direct relegation; penultimate club enters playoff.
+HISTORICAL_PBK16_FORMATS[
+    ("362", "2025")
+] = _pbk16_historical_contract(
+    "362",
+    "2025",
+    team_count=10,
+    total_games=36,
+    direct_relegation_start_rank=10,
+    relegation_playoff_rank=9,
+    format_type="CLASSIC_MULTI_ROUND_ROBIN",
+    regular_phase_games=36,
+    post_split_games=0,
+    points_transform="NONE",
+    title_total_games=36,
+    relegation_total_games=36,
+    phase_aware=False,
+    reason=(
+        "LFF TOPsport A Lyga 2025 regulations: last place is "
+        "directly relegated and the penultimate club enters the "
+        "promotion/relegation playoff."
+    ),
+    source=(
+        "https://www.lff.lt/wp-content/uploads/2025/01/"
+        "2025-m.-TOPsport-A-lygos-c%CC%8Cempionato-nuostatai.pdf"
+    ),
+)
+
+
+# Scotland 2017/18.
+# 12 clubs; 33-match initial phase + five post-split matches.
+# Rank 12 direct relegation; rank 11 Premiership playoff.
+HISTORICAL_PBK16_FORMATS[
+    ("179", "2017")
+] = _pbk16_historical_contract(
+    "179",
+    "2017",
+    team_count=12,
+    total_games=38,
+    direct_relegation_start_rank=12,
+    relegation_playoff_rank=11,
+    format_type="SPLIT_TOP6_BOTTOM6",
+    regular_phase_games=33,
+    post_split_games=5,
+    points_transform="NONE",
+    title_total_games=38,
+    relegation_total_games=38,
+    phase_aware=True,
+    reason=(
+        "SPFL Premiership 2017/18: 12-club split format; rank 12 "
+        "was directly relegated and rank 11 entered the Premiership "
+        "playoff."
+    ),
+    source=(
+        "https://spfl.co.uk/news/previous-play-off-finals"
     ),
 )
 

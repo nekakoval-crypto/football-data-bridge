@@ -125,6 +125,14 @@ def cell_contract(row: dict[str, Any]) -> dict[str, Any]:
                 "phase_aware",
                 False,
             ),
+            "title_total_games":historical_pbk16.get(
+                "title_total_games",
+                historical_pbk16.get("total_games"),
+            ),
+            "relegation_total_games":historical_pbk16.get(
+                "relegation_total_games",
+                historical_pbk16.get("total_games"),
+            ),
             "safe_rank":historical_pbk16.get("safe_rank"),
             "direct_relegation_start_rank":historical_pbk16.get(
                 "direct_relegation_start_rank"

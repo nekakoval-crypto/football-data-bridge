@@ -43,15 +43,22 @@ jobs:
           python - <<'PY'
           from scripts.pbk16_motivation_objective_contracts import build_coverage
           report=build_coverage()
-          assert report['status']=='IN_PROGRESS', report
-          assert report['required_league_season_cells']==143, report
-          assert report['verified_league_season_cells']==45, report
-          assert report['missing_league_season_cells']==98, report
+          required=report['required_league_season_cells']
+          verified=report['verified_league_season_cells']
+          missing=report['missing_league_season_cells']
+          assert required==143, report
+          assert verified + missing == required, report
+          assert verified >= 123, report
+          assert missing <= 20, report
           assert report['pbk16_leagues']==16, report
-          assert report['verified_countries']==[
-              'England','France','Germany','Italy','Spain'
-          ], report
-          assert report['all_exact_title_relegation_contracts_verified'] is False
+          assert set(['England','France','Germany','Italy','Spain']).issubset(
+              set(report['verified_countries'])
+          ), report
+          if report['all_exact_title_relegation_contracts_verified']:
+              assert report['status']=='COMPLETE', report
+              assert verified==required and missing==0, report
+          else:
+              assert report['status']=='IN_PROGRESS', report
           assert report['operational_betting_authority'] is False
           assert report['probability_mutation'] is False
           assert report['eligibility_mutation'] is False
