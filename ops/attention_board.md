@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 22.09.2026 09:01 (Europe/Berlin)
+Обновлено: 22.09.2026 10:00 (Europe/Berlin)
 Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -14,7 +14,7 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
 ## 🔵 Активные R1/R2/R3
 - **R1 | Lecce — Bologna** | П2 | 11.10 15:00 | 2.0 @ Marathonbet | контекст без срочных флагов
 - **R1 | Sassuolo — AC Milan** | П2 | 11.10 18:00 | 1.79 @ Marathonbet | гости после еврокубка/кубка; у гостей следующий матч еврокубок/кубок
-- **R2 | Sassuolo — AC Milan** | П2 | 11.10 18:00 | 1.79 @ Marathonbet | контекст без срочных флагов
+- **R2 | Sassuolo — AC Milan** | П2 | 11.10 18:00 | 1.79 @ Marathonbet | у гостей следующий матч еврокубок/кубок
 - **R1 | Cagliari — Juventus** | П2 | 11.10 20:45 | 1.53 @ Marathonbet | гости после еврокубка/кубка; у гостей следующий матч еврокубок/кубок
 
 ## 🟡 Research WATCH crossings
@@ -36,6 +36,6 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
 
 ## 🛡️ Состояние системы / governance
 - System Health: **WARN** | critical 0 | warnings 1
-- Логическая canonical экспозиция: **3.0u** | конфликтов матчей 0 | убрано дублей 0.0u
+- Логическая canonical экспозиция: **3.0u** | конфликтов матчей 0 | убрано дублей 1.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 25 | data required 2
