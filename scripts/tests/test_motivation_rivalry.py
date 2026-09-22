@@ -83,6 +83,102 @@ class MotivationRivalryTests(unittest.TestCase):
 
 
 
+    def test_tyne_wear_has_structured_v2_classes(self):
+        payload = motivation_rivalry.lookup_rivalry(
+            "Newcastle United",
+            "Sunderland",
+            season="2025",
+        )
+        self.assertEqual(payload["status"], "VERIFIED")
+        self.assertEqual(payload["rivalry_id"], "ENG_TYNE_WEAR")
+        self.assertTrue(payload["derby"])
+        self.assertTrue(payload["derby_label"])
+        self.assertEqual(
+            payload["rivalry_classes"],
+            ["LOCAL_DERBY", "HISTORIC_RIVALRY"],
+        )
+
+
+    def test_palace_brighton_keeps_legacy_rivalry_but_derby_label(self):
+        payload = motivation_rivalry.lookup_rivalry(
+            "Crystal Palace",
+            "Brighton",
+            season="2025",
+        )
+        self.assertEqual(payload["status"], "VERIFIED")
+        self.assertEqual(payload["rivalry_id"], "ENG_PALACE_BRIGHTON")
+        self.assertEqual(payload["rivalry_type"], "RIVALRY")
+        self.assertTrue(payload["derby"])
+        self.assertTrue(payload["derby_label"])
+        self.assertEqual(
+            payload["rivalry_classes"],
+            ["HISTORIC_RIVALRY"],
+        )
+
+
+    def test_legacy_contract_remains_backward_compatible(self):
+        payload = motivation_rivalry.lookup_rivalry(
+            "Arsenal",
+            "Tottenham",
+            season="2025",
+        )
+        self.assertEqual(payload["status"], "VERIFIED")
+        self.assertTrue(payload["derby"])
+        self.assertTrue(payload["derby_label"])
+        self.assertEqual(payload["rivalry_classes"], [])
+
+
+    def test_time_bounded_contract_is_fail_closed(self):
+        registry = {
+            "version": "TEST_V2",
+            "status": "TEST",
+            "rivalries": [
+                {
+                    "id": "TEST_BOUND",
+                    "rivalry_name": "Bounded rivalry",
+                    "rivalry_type": "RIVALRY",
+                    "rivalry_classes": ["HISTORIC_RIVALRY"],
+                    "derby_label": False,
+                    "valid_from_season": 2020,
+                    "valid_to_season": 2022,
+                    "principled_rivalry": True,
+                    "team_a_aliases": ["Alpha"],
+                    "team_b_aliases": ["Beta"],
+                }
+            ],
+        }
+
+        inside = motivation_rivalry.lookup_rivalry(
+            "Alpha",
+            "Beta",
+            season="2021",
+            registry=registry,
+        )
+        before = motivation_rivalry.lookup_rivalry(
+            "Alpha",
+            "Beta",
+            season="2019",
+            registry=registry,
+        )
+        after = motivation_rivalry.lookup_rivalry(
+            "Alpha",
+            "Beta",
+            season="2023",
+            registry=registry,
+        )
+        unknown_season = motivation_rivalry.lookup_rivalry(
+            "Alpha",
+            "Beta",
+            registry=registry,
+        )
+
+        self.assertEqual(inside["status"], "VERIFIED")
+        self.assertEqual(before["status"], "UNKNOWN")
+        self.assertEqual(after["status"], "UNKNOWN")
+        self.assertEqual(unknown_season["status"], "UNKNOWN")
+
+
+
     def test_unknown_pair_stays_unknown(self):
         payload = motivation_rivalry.lookup_rivalry("Alpha", "Beta")
         self.assertEqual(payload["status"], "UNKNOWN")

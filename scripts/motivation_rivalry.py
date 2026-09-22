@@ -43,6 +43,7 @@ def lookup_rivalry(
     home_team: Any,
     away_team: Any,
     *,
+    season: Any = None,
     registry: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     payload = registry if registry is not None else load_registry()
@@ -56,8 +57,12 @@ def lookup_rivalry(
         "rivalry_id": None,
         "rivalry_name": None,
         "rivalry_type": None,
+        "rivalry_classes": [],
         "derby": False,
+        "derby_label": False,
         "principled_rivalry": False,
+        "valid_from_season": None,
+        "valid_to_season": None,
         "independent_of_table_pressure": True,
         "matching_policy": str(
             payload.get("matching_policy")
@@ -68,14 +73,47 @@ def lookup_rivalry(
     if not home or not away:
         return result
 
+    def _season_start(value: Any) -> int | None:
+        raw = str(value or "").strip()
+        if not raw:
+            return None
+        try:
+            return int(raw[:4])
+        except (TypeError, ValueError):
+            return None
+
+    requested_season = _season_start(season)
+
     matches = []
     for row in payload.get("rivalries") or []:
         if not isinstance(row, dict):
             continue
+
         a = _alias_set(row.get("team_a_aliases"))
         b = _alias_set(row.get("team_b_aliases"))
-        if (home in a and away in b) or (home in b and away in a):
-            matches.append(row)
+
+        pair_match = (
+            (home in a and away in b)
+            or (home in b and away in a)
+        )
+        if not pair_match:
+            continue
+
+        valid_from = _season_start(row.get("valid_from_season"))
+        valid_to = _season_start(row.get("valid_to_season"))
+
+        # Fail closed for time-bounded rivalry contracts when the fixture
+        # season is unknown.
+        if (valid_from is not None or valid_to is not None) and requested_season is None:
+            continue
+
+        if valid_from is not None and requested_season < valid_from:
+            continue
+
+        if valid_to is not None and requested_season > valid_to:
+            continue
+
+        matches.append(row)
 
     if len(matches) != 1:
         if len(matches) > 1:
@@ -84,13 +122,30 @@ def lookup_rivalry(
 
     row = matches[0]
     rivalry_type = str(row.get("rivalry_type") or "").upper() or None
+
+    rivalry_classes = [
+        str(value).upper()
+        for value in (row.get("rivalry_classes") or [])
+        if str(value or "").strip()
+    ]
+
+    derby_label = (
+        bool(row.get("derby_label"))
+        if "derby_label" in row
+        else rivalry_type == "DERBY"
+    )
+
     result.update(
         status="VERIFIED",
         rivalry_id=row.get("id"),
         rivalry_name=row.get("rivalry_name"),
         rivalry_type=rivalry_type,
-        derby=rivalry_type == "DERBY",
+        rivalry_classes=rivalry_classes,
+        derby=derby_label,
+        derby_label=derby_label,
         principled_rivalry=bool(row.get("principled_rivalry")),
+        valid_from_season=row.get("valid_from_season"),
+        valid_to_season=row.get("valid_to_season"),
     )
     return result
 
@@ -103,5 +158,6 @@ def fixture_rivalry(
     return lookup_rivalry(
         fixture.get("home_team"),
         fixture.get("away_team"),
+        season=fixture.get("season"),
         registry=registry,
     )
