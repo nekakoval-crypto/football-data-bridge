@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_PLAYER_PROFILE_ENRICHMENT_V2_RESIDUAL_ID",
-  "run_at_utc": "2026-09-21T18:36:21Z",
+  "run_at_utc": "2026-09-22T00:38:38Z",
   "status": "ATTENTION",
   "season": "2026",
   "provider_endpoints": [
@@ -9,31 +9,72 @@
   ],
   "refresh_days": 7,
   "residual_retry_days": 7,
-  "provider_calls": 2,
-  "team_provider_calls": 2,
-  "residual_provider_calls": 0,
-  "daily_api_calls": 2051,
+  "provider_calls": 46,
+  "team_provider_calls": 18,
+  "residual_provider_calls": 28,
+  "daily_api_calls": 86,
   "protected_calls": {
     "live": 0,
-    "current_round": 60,
+    "current_round": 180,
     "standings": 32,
     "safety": 100,
-    "total": 192
+    "total": 312
   },
-  "candidate_teams": 2,
-  "completed_teams": [],
+  "candidate_teams": 10,
+  "completed_teams": [
+    {
+      "team_id": "341",
+      "team_name": "Wisla Plock",
+      "profile_rows": 31
+    },
+    {
+      "team_id": "645",
+      "team_name": "Galatasaray",
+      "profile_rows": 27
+    },
+    {
+      "team_id": "759",
+      "team_name": "Viking",
+      "profile_rows": 35
+    },
+    {
+      "team_id": "398",
+      "team_name": "FC Nordsjaelland",
+      "profile_rows": 30
+    },
+    {
+      "team_id": "762",
+      "team_name": "GIL Vicente",
+      "profile_rows": 29
+    },
+    {
+      "team_id": "215",
+      "team_name": "Moreirense",
+      "profile_rows": 30
+    },
+    {
+      "team_id": "405",
+      "team_name": "Odense",
+      "profile_rows": 30
+    },
+    {
+      "team_id": "319",
+      "team_name": "Brann",
+      "profile_rows": 37
+    }
+  ],
   "deferred_teams": 0,
-  "residual_candidate_players": 0,
-  "residual_captured_players": 0,
-  "residual_empty_players": 0,
+  "residual_candidate_players": 28,
+  "residual_captured_players": 3,
+  "residual_empty_players": 25,
   "residual_error_players": 0,
   "residual_deferred_players": 0,
   "residual_ambiguous_current_roster_player_ids": 0,
   "residual_suppressed_recent_attempts": 546,
-  "profile_rows": 3253,
-  "unique_profile_players": 3162,
-  "current_roster_players": 3513,
-  "current_roster_player_coverage_pct": 84.46,
+  "profile_rows": 3505,
+  "unique_profile_players": 3405,
+  "current_roster_players": 3766,
+  "current_roster_player_coverage_pct": 84.84,
   "warnings": [
     "18936 Ogre United: provider returned no usable profile rows",
     "4143 Super Nova: provider returned no usable profile rows"
