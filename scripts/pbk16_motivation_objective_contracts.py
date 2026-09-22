@@ -111,6 +111,20 @@ def cell_contract(row: dict[str, Any]) -> dict[str, Any]:
             "title_boundary_authorized":True,
             "relegation_boundary_authorized":True,
             "total_games":historical_pbk16.get("total_games"),
+            "format_type":historical_pbk16.get("format_type"),
+            "regular_phase_games":historical_pbk16.get(
+                "regular_phase_games"
+            ),
+            "post_split_games":historical_pbk16.get(
+                "post_split_games"
+            ),
+            "points_transform":historical_pbk16.get(
+                "points_transform"
+            ),
+            "phase_aware":historical_pbk16.get(
+                "phase_aware",
+                False,
+            ),
             "safe_rank":historical_pbk16.get("safe_rank"),
             "direct_relegation_start_rank":historical_pbk16.get(
                 "direct_relegation_start_rank"

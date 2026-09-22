@@ -287,6 +287,11 @@ def _pbk16_historical_contract(
     total_games,
     direct_relegation_start_rank=None,
     relegation_playoff_rank=None,
+    format_type="CLASSIC_SINGLE_TABLE",
+    regular_phase_games=None,
+    post_split_games=0,
+    points_transform="NONE",
+    phase_aware=False,
     reason,
     source,
 ):
@@ -298,12 +303,20 @@ def _pbk16_historical_contract(
         # Verified no-relegation season: every table position is safe.
         safe_rank = int(team_count)
 
+    if regular_phase_games is None:
+        regular_phase_games = int(total_games)
+
     return {
         "status": "VERIFIED_RULE_CONTRACT",
         "provider_league_id": str(provider_league_id),
         "season": str(season),
         "team_count": int(team_count),
         "total_games": int(total_games),
+        "format_type": str(format_type),
+        "regular_phase_games": int(regular_phase_games),
+        "post_split_games": int(post_split_games),
+        "points_transform": str(points_transform),
+        "phase_aware": bool(phase_aware),
         "safe_rank": safe_rank,
         "direct_relegation_start_rank": (
             None
@@ -1078,6 +1091,156 @@ HISTORICAL_PBK16_FORMATS[("94", "2018")] = _pbk16_historical_contract(
         "regulamento-competicoes-2018-19.pdf"
     ),
 )
+
+
+
+
+# ============================================================
+# SUPER MEGA MAXI BATCH G
+# Phase-aware exact objective contracts.
+# Austria 2018-2025, Denmark 2020-2025, Scotland 2020-2025.
+# ============================================================
+
+
+# Austria - Bundesliga.
+#
+# From 2018/19:
+# - 12 clubs
+# - 22-match regular phase
+# - split into Championship and Qualification groups
+# - 10 post-split matches
+# - points from the regular phase are halved and rounded down
+# - last club in Qualification Group is directly relegated
+for _season in (
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+):
+    HISTORICAL_PBK16_FORMATS[
+        ("218", _season)
+    ] = _pbk16_historical_contract(
+        "218",
+        _season,
+        team_count=12,
+        total_games=32,
+        direct_relegation_start_rank=12,
+        relegation_playoff_rank=None,
+        format_type="SPLIT_TOP6_BOTTOM6",
+        regular_phase_games=22,
+        post_split_games=10,
+        points_transform="HALVE_FLOOR",
+        phase_aware=True,
+        reason=(
+            "Austrian Bundesliga post-2018 reform: 12 clubs; "
+            "22-match regular phase followed by two six-team groups "
+            "for another 10 matches. Regular-phase points are halved "
+            "before the final phase; the last club in the "
+            "Qualification Group is directly relegated."
+        ),
+        source=(
+            "https://www.bundesliga.at/de/news/artikel/"
+            "die-details-der-ligareform-so-wird-ab-2018-19-gespielt"
+        ),
+    )
+
+
+# Denmark - Superliga.
+#
+# From 2020/21:
+# - 12 clubs
+# - 22-match regular phase
+# - Championship / Qualification split
+# - 10 post-split matches
+# - points and goals carry forward unchanged
+# - positions 11 and 12 are directly relegated
+for _season in (
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+):
+    HISTORICAL_PBK16_FORMATS[
+        ("119", _season)
+    ] = _pbk16_historical_contract(
+        "119",
+        _season,
+        team_count=12,
+        total_games=32,
+        direct_relegation_start_rank=11,
+        relegation_playoff_rank=None,
+        format_type="SPLIT_TOP6_BOTTOM6",
+        regular_phase_games=22,
+        post_split_games=10,
+        points_transform="NONE",
+        phase_aware=True,
+        reason=(
+            "Danish Superliga 12-club structure: 22-match regular "
+            "phase followed by 10 Championship/Qualification matches; "
+            "points and goals carry forward and positions 11-12 are "
+            "directly relegated."
+        ),
+        source=(
+            "https://cms.superliga.dk/media/wyjngaie/"
+            "struktur_superliga-pdf.pdf"
+        ),
+    )
+
+
+# Scotland - Premiership.
+#
+# - 12 clubs
+# - first 33 league matches
+# - split into top six / bottom six
+# - five additional matches
+# - total 38
+# - position 12 directly relegated
+# - position 11 enters Premiership/Championship playoff
+for _season in (
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+):
+    HISTORICAL_PBK16_FORMATS[
+        ("179", _season)
+    ] = _pbk16_historical_contract(
+        "179",
+        _season,
+        team_count=12,
+        total_games=38,
+        direct_relegation_start_rank=12,
+        relegation_playoff_rank=11,
+        format_type="SPLIT_TOP6_BOTTOM6",
+        regular_phase_games=33,
+        post_split_games=5,
+        points_transform="NONE",
+        phase_aware=True,
+        reason=(
+            "SPFL Premiership rules: 12 clubs, split after each "
+            "club's 33rd match and five post-split matches; position "
+            "12 is directly relegated and position 11 enters the "
+            "Premiership/Championship playoff."
+        ),
+        source=(
+            "https://spfl.co.uk/admin/filemanager/files/shares/"
+            "SPFL%20Rules%20and%20Regulations%2024-Jun-20%20"
+            "%28MASTER%20COPY%29%20CLEAN.pdf"
+            if _season != "2025"
+            else
+            "https://spfl.co.uk/admin/filemanager/images/shares/"
+            "August%202025/MASTER%20-%20Rules%20and%20Regulations%"
+            "20%28CLEAN%20-%2025%20August%202025%29.pdf"
+        ),
+    )
 
 
 def get_historical_pbk16_format(provider_league_id, season):

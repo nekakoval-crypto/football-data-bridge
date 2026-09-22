@@ -428,8 +428,194 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
 
 
 
+    def test_super_mega_maxi_batch_g_phase_aware(self):
+        cases = []
+
+        for season in range(2018, 2026):
+            cases.append(
+                (
+                    row("Austria",218,"Bundesliga",season),
+                    32,
+                    11,
+                    12,
+                    None,
+                    "SPLIT_TOP6_BOTTOM6",
+                    22,
+                    10,
+                    "HALVE_FLOOR",
+                )
+            )
+
+        for season in range(2020, 2026):
+            cases.append(
+                (
+                    row("Denmark",119,"Superliga",season),
+                    32,
+                    10,
+                    11,
+                    None,
+                    "SPLIT_TOP6_BOTTOM6",
+                    22,
+                    10,
+                    "NONE",
+                )
+            )
+
+        for season in range(2020, 2026):
+            cases.append(
+                (
+                    row("Scotland",179,"Premiership",season),
+                    38,
+                    10,
+                    12,
+                    11,
+                    "SPLIT_TOP6_BOTTOM6",
+                    33,
+                    5,
+                    "NONE",
+                )
+            )
+
+        self.assertEqual(len(cases), 20)
+
+        for (
+            payload,
+            games,
+            safe,
+            direct,
+            playoff,
+            format_type,
+            regular_games,
+            post_split,
+            transform,
+        ) in cases:
+            with self.subTest(payload=payload):
+                item = c.cell_contract(payload)
+
+                self.assertEqual(
+                    item["status"],
+                    "VERIFIED",
+                )
+                self.assertEqual(
+                    item["source_contract"],
+                    "HISTORICAL_PBK16_FORMATS",
+                )
+                self.assertTrue(
+                    item["title_boundary_authorized"]
+                )
+                self.assertTrue(
+                    item["relegation_boundary_authorized"]
+                )
+
+                self.assertEqual(
+                    item["total_games"],
+                    games,
+                )
+                self.assertEqual(
+                    item["safe_rank"],
+                    safe,
+                )
+                self.assertEqual(
+                    item["direct_relegation_start_rank"],
+                    direct,
+                )
+                self.assertEqual(
+                    item["relegation_playoff_rank"],
+                    playoff,
+                )
+
+                self.assertTrue(
+                    item["phase_aware"]
+                )
+                self.assertEqual(
+                    item["format_type"],
+                    format_type,
+                )
+                self.assertEqual(
+                    item["regular_phase_games"],
+                    regular_games,
+                )
+                self.assertEqual(
+                    item["post_split_games"],
+                    post_split,
+                )
+                self.assertEqual(
+                    item["points_transform"],
+                    transform,
+                )
+
+
+    def test_batch_g_phase_semantics_are_not_flattened(self):
+        austria = c.cell_contract(
+            row("Austria",218,"Bundesliga",2024)
+        )
+        denmark = c.cell_contract(
+            row("Denmark",119,"Superliga",2024)
+        )
+        scotland = c.cell_contract(
+            row("Scotland",179,"Premiership",2024)
+        )
+
+        self.assertEqual(
+            austria["points_transform"],
+            "HALVE_FLOOR",
+        )
+        self.assertEqual(
+            austria["regular_phase_games"],
+            22,
+        )
+        self.assertEqual(
+            austria["post_split_games"],
+            10,
+        )
+
+        self.assertEqual(
+            denmark["points_transform"],
+            "NONE",
+        )
+        self.assertEqual(
+            denmark["regular_phase_games"],
+            22,
+        )
+
+        self.assertEqual(
+            scotland["regular_phase_games"],
+            33,
+        )
+        self.assertEqual(
+            scotland["post_split_games"],
+            5,
+        )
+        self.assertEqual(
+            scotland["relegation_playoff_rank"],
+            11,
+        )
+
+
+    def test_batch_g_known_exceptions_remain_unknown(self):
+        exceptions = [
+            row("Turkey",203,"Super Lig",2022),
+            row("Turkey",203,"Super Lig",2019),
+            row("Netherlands",88,"Eredivisie",2019),
+            row("Poland",106,"Ekstraklasa",2019),
+            row("Latvia",365,"Virsliga",2021),
+            row("Scotland",179,"Premiership",2019),
+        ]
+
+        for payload in exceptions:
+            with self.subTest(payload=payload):
+                item = c.cell_contract(payload)
+                self.assertEqual(
+                    item["status"],
+                    "UNKNOWN",
+                )
+
+
+
     def test_non_top5_cell_remains_unknown(self):
-        item=c.cell_contract(row("Denmark",119,"Superliga",2024))
+        item=c.cell_contract(
+            row("Belgium",144,"Jupiler Pro League",2024)
+        )
         self.assertEqual(item["status"],"UNKNOWN")
         self.assertFalse(item["title_boundary_authorized"])
         self.assertFalse(item["relegation_boundary_authorized"])
@@ -438,7 +624,7 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
         rows=[
             row("England",39,"Premier League",2024),
             row("England",39,"Premier League",2024),
-            row("Denmark",119,"Superliga",2024),
+            row("Belgium",144,"Jupiler Pro League",2024),
         ]
         report=c.build_coverage(rows)
         self.assertEqual(report["required_league_season_cells"],2)
