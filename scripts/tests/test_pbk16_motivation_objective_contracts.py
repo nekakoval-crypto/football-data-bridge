@@ -199,6 +199,33 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
 
 
 
+    def test_historical_pbk16_batch_d_complete_norway(self):
+        for season in (2020, 2022, 2024, 2025):
+            with self.subTest(season=season):
+                item = c.cell_contract(
+                    row("Norway",103,"Eliteserien",season)
+                )
+
+                self.assertEqual(item["status"], "VERIFIED")
+                self.assertEqual(
+                    item["source_contract"],
+                    "HISTORICAL_PBK16_FORMATS",
+                )
+                self.assertTrue(item["title_boundary_authorized"])
+                self.assertTrue(item["relegation_boundary_authorized"])
+                self.assertEqual(item["total_games"], 30)
+                self.assertEqual(item["safe_rank"], 13)
+                self.assertEqual(
+                    item["direct_relegation_start_rank"],
+                    15,
+                )
+                self.assertEqual(
+                    item["relegation_playoff_rank"],
+                    14,
+                )
+
+
+
     def test_non_top5_cell_remains_unknown(self):
         item=c.cell_contract(row("Denmark",119,"Superliga",2024))
         self.assertEqual(item["status"],"UNKNOWN")
