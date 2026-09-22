@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-21T23:31:03Z",
+  "generated_at_utc": "2026-09-22T07:32:28Z",
   "status": "OK",
   "scope_leagues": 16,
   "families": [
@@ -629,13 +629,13 @@
       "prospective_roi_pct": "",
       "prospective_first_half_roi_pct": "",
       "prospective_second_half_roi_pct": "",
-      "marathonbet_coverage_pct": "",
+      "marathonbet_coverage_pct": "100.000",
       "status": "ACTIVE",
       "leader": "YES",
       "blocking_reason": "active forward sample 0/60 settled (60 remaining before deterioration review can be evaluated)",
-      "prospective_captured": "0",
-      "prospective_executable": "0",
-      "prospective_pending_executable": "0",
+      "prospective_captured": "1",
+      "prospective_executable": "1",
+      "prospective_pending_executable": "1",
       "review_target_settled": "60",
       "review_remaining_settled": "60",
       "review_progress_pct": "0.0",
@@ -1095,5 +1095,5 @@
     "automatic_promotion": "FORBIDDEN",
     "automatic_suspension": "FORBIDDEN"
   },
-  "progress_generated_at_utc": "2026-09-21T23:31:03Z"
+  "progress_generated_at_utc": "2026-09-22T07:32:28Z"
 }
