@@ -19,6 +19,7 @@ except ModuleNotFoundError:
 
 ROOT = Path(__file__).resolve().parents[1]
 INVENTORY = ROOT / "ops" / "pbk16_domestic_league_format_inventory.csv"
+TABLE_CONTEXT = ROOT / "ops" / "pbk16_historical_table_context_research.csv"
 
 TOP5_PROVIDER_TO_CODE = {
     "39": "E0",
@@ -40,6 +41,31 @@ def season_label(season: Any) -> str:
 def read_inventory(path: Path = INVENTORY) -> list[dict[str, str]]:
     with path.open(encoding="utf-8-sig",newline="") as stream:
         return list(csv.DictReader(stream))
+
+
+def read_required_cells(
+    path: Path = TABLE_CONTEXT,
+) -> list[dict[str, str]]:
+    """Use only league-seasons that exist in reconstructed table context."""
+    with path.open(encoding="utf-8-sig",newline="") as stream:
+        rows=list(csv.DictReader(stream))
+    seen=set()
+    out=[]
+    for row in rows:
+        key=(
+            str(row.get("provider_league_id") or "").strip(),
+            str(row.get("season") or "").strip(),
+        )
+        if not all(key) or key in seen:
+            continue
+        seen.add(key)
+        out.append({
+            "provider_league_id":key[0],
+            "season":key[1],
+            "country":row.get("country"),
+            "league_name":row.get("league_name"),
+        })
+    return out
 
 
 def cell_contract(row: dict[str, Any]) -> dict[str, Any]:
@@ -88,7 +114,7 @@ def cell_contract(row: dict[str, Any]) -> dict[str, Any]:
 
 
 def build_coverage(rows: list[dict[str, Any]] | None = None) -> dict[str, Any]:
-    rows=read_inventory() if rows is None else rows
+    rows=read_required_cells() if rows is None else rows
     cells=[]
     seen=set()
     for row in rows:
