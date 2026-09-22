@@ -21,6 +21,55 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
         self.assertTrue(item["relegation_boundary_authorized"])
         self.assertEqual(item["direct_relegation_start_rank"],18)
 
+    def test_historical_pbk16_batch_a(self):
+        cases = [
+            (
+                row("Norway",103,"Eliteserien",2019),
+                30,
+                13,
+                15,
+                14,
+            ),
+            (
+                row("Poland",106,"Ekstraklasa",2020),
+                30,
+                15,
+                16,
+                None,
+            ),
+            (
+                row("Turkey",203,"Super Lig",2020),
+                40,
+                17,
+                18,
+                None,
+            ),
+        ]
+
+        for payload, total_games, safe_rank, direct_start, playoff in cases:
+            with self.subTest(payload=payload):
+                item = c.cell_contract(payload)
+
+                self.assertEqual(item["status"], "VERIFIED")
+                self.assertEqual(
+                    item["source_contract"],
+                    "HISTORICAL_PBK16_FORMATS",
+                )
+                self.assertTrue(item["title_boundary_authorized"])
+                self.assertTrue(item["relegation_boundary_authorized"])
+                self.assertEqual(item["total_games"], total_games)
+                self.assertEqual(item["safe_rank"], safe_rank)
+                self.assertEqual(
+                    item["direct_relegation_start_rank"],
+                    direct_start,
+                )
+                self.assertEqual(
+                    item["relegation_playoff_rank"],
+                    playoff,
+                )
+
+
+
     def test_non_top5_cell_remains_unknown(self):
         item=c.cell_contract(row("Denmark",119,"Superliga",2024))
         self.assertEqual(item["status"],"UNKNOWN")
