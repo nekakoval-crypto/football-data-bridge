@@ -690,6 +690,101 @@ HISTORICAL_PBK16_FORMATS[("103", "2025")] = _pbk16_historical_contract(
 )
 
 
+
+
+# ============================================================
+# SUPER MEGA MAXI BATCH E
+# ============================================================
+
+
+# Poland - Ekstraklasa.
+# From 2021/22 onward: 18 clubs, 34 matches; ranks 16-18 relegated.
+for _season in ("2021", "2023", "2024", "2025"):
+    HISTORICAL_PBK16_FORMATS[("106", _season)] = _pbk16_historical_contract(
+        "106",
+        _season,
+        team_count=18,
+        total_games=34,
+        direct_relegation_start_rank=16,
+        relegation_playoff_rank=None,
+        reason=(
+            "PZPN Ekstraklasa post-expansion contract: 18 clubs, "
+            "34 rounds; ranks 16-18 directly relegated."
+        ),
+        source=(
+            "https://pzpn.pl/public/system/files/site_content/635/"
+            "3379-40.KOMUNIKAT%20ZARZ%C4%84DU%2021.02.2020.pdf"
+        ),
+    )
+
+
+# Portugal - Primeira Liga.
+# 18 clubs, 34 matches; bottom two direct, rank 16 playoff.
+for _season in ("2020", "2022", "2023", "2024", "2025"):
+    HISTORICAL_PBK16_FORMATS[("94", _season)] = _pbk16_historical_contract(
+        "94",
+        _season,
+        team_count=18,
+        total_games=34,
+        direct_relegation_start_rank=17,
+        relegation_playoff_rank=16,
+        reason=(
+            "Liga Portugal contract: 18 clubs; ranks 17-18 direct "
+            "relegation and rank 16 enters maintenance playoff."
+        ),
+        source=(
+            "https://www.ligaportugal.pt/media/26797/"
+            "regulamento-das-competicoes-2020-21.pdf"
+        ),
+    )
+
+
+# Turkey - Super Lig 2017/18 and 2018/19.
+# 18 clubs, 34 matches; ranks 16-18 directly relegated.
+for _season in ("2017", "2018"):
+    HISTORICAL_PBK16_FORMATS[("203", _season)] = _pbk16_historical_contract(
+        "203",
+        _season,
+        team_count=18,
+        total_games=34,
+        direct_relegation_start_rank=16,
+        relegation_playoff_rank=None,
+        reason=(
+            "TFF Super Lig historical contract: 18 clubs and "
+            "34 matches; ranks 16-18 directly relegated."
+        ),
+        source=(
+            "https://www.tff.org/default.aspx?pageID=1440"
+            if _season == "2017"
+            else
+            "https://www.tff.org/default.aspx?"
+            "2707pg=4&ftxtID=31439&pageID=204"
+        ),
+    )
+
+
+# Netherlands - Eredivisie modern relegation structure.
+# 18 clubs, 34 matches; ranks 17-18 direct, rank 16 playoff.
+for _season in ("2020", "2021", "2022", "2023", "2024", "2025"):
+    HISTORICAL_PBK16_FORMATS[("88", _season)] = _pbk16_historical_contract(
+        "88",
+        _season,
+        team_count=18,
+        total_games=34,
+        direct_relegation_start_rank=17,
+        relegation_playoff_rank=16,
+        reason=(
+            "KNVB Eredivisie modern contract: 18 clubs; ranks 17-18 "
+            "directly relegated and rank 16 enters promotion/"
+            "relegation playoff."
+        ),
+        source=(
+            "https://www.knvb.nl/nieuws/betaald-voetbal/"
+            "eredivisie/66189/virtuele-schemas-europees-ticket-"
+            "en-play-offs"
+        ),
+    )
+
 def get_historical_pbk16_format(provider_league_id, season):
     key = (
         str(provider_league_id or "").strip(),

@@ -226,6 +226,72 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
 
 
 
+    def test_super_mega_maxi_batch_e(self):
+        cases = [
+            # Poland
+            (row("Poland",106,"Ekstraklasa",2021),34,15,16,None),
+            (row("Poland",106,"Ekstraklasa",2023),34,15,16,None),
+            (row("Poland",106,"Ekstraklasa",2024),34,15,16,None),
+            (row("Poland",106,"Ekstraklasa",2025),34,15,16,None),
+
+            # Portugal
+            (row("Portugal",94,"Primeira Liga",2020),34,15,17,16),
+            (row("Portugal",94,"Primeira Liga",2022),34,15,17,16),
+            (row("Portugal",94,"Primeira Liga",2023),34,15,17,16),
+            (row("Portugal",94,"Primeira Liga",2024),34,15,17,16),
+            (row("Portugal",94,"Primeira Liga",2025),34,15,17,16),
+
+            # Turkey
+            (row("Turkey",203,"Super Lig",2017),34,15,16,None),
+            (row("Turkey",203,"Super Lig",2018),34,15,16,None),
+
+            # Netherlands
+            (row("Netherlands",88,"Eredivisie",2020),34,15,17,16),
+            (row("Netherlands",88,"Eredivisie",2021),34,15,17,16),
+            (row("Netherlands",88,"Eredivisie",2022),34,15,17,16),
+            (row("Netherlands",88,"Eredivisie",2023),34,15,17,16),
+            (row("Netherlands",88,"Eredivisie",2024),34,15,17,16),
+            (row("Netherlands",88,"Eredivisie",2025),34,15,17,16),
+        ]
+
+        self.assertEqual(len(cases), 17)
+
+        for payload, games, safe, direct, playoff in cases:
+            with self.subTest(payload=payload):
+                item = c.cell_contract(payload)
+
+                self.assertEqual(item["status"], "VERIFIED")
+                self.assertEqual(
+                    item["source_contract"],
+                    "HISTORICAL_PBK16_FORMATS",
+                )
+                self.assertTrue(item["title_boundary_authorized"])
+                self.assertTrue(item["relegation_boundary_authorized"])
+                self.assertEqual(item["total_games"], games)
+                self.assertEqual(item["safe_rank"], safe)
+                self.assertEqual(
+                    item["direct_relegation_start_rank"],
+                    direct,
+                )
+                self.assertEqual(
+                    item["relegation_playoff_rank"],
+                    playoff,
+                )
+
+
+    def test_maxi_batch_does_not_promote_known_exceptions(self):
+        turkey_2022 = c.cell_contract(
+            row("Turkey",203,"Super Lig",2022)
+        )
+        netherlands_2019 = c.cell_contract(
+            row("Netherlands",88,"Eredivisie",2019)
+        )
+
+        self.assertEqual(turkey_2022["status"], "UNKNOWN")
+        self.assertEqual(netherlands_2019["status"], "UNKNOWN")
+
+
+
     def test_non_top5_cell_remains_unknown(self):
         item=c.cell_contract(row("Denmark",119,"Superliga",2024))
         self.assertEqual(item["status"],"UNKNOWN")
