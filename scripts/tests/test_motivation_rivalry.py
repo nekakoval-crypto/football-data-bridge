@@ -240,6 +240,49 @@ class MotivationRivalryTests(unittest.TestCase):
 
 
 
+    def test_verified_england_rivalry_expansion(self):
+        cases = [
+            (
+                "Liverpool",
+                "Everton",
+                "ENG_MERSEYSIDE_DERBY",
+                True,
+                ["CITY_DERBY", "HISTORIC_RIVALRY"],
+            ),
+            (
+                "Manchester United",
+                "Manchester City",
+                "ENG_MANCHESTER_DERBY",
+                True,
+                ["CITY_DERBY", "HISTORIC_RIVALRY"],
+            ),
+            (
+                "Liverpool",
+                "Manchester United",
+                "ENG_LIVERPOOL_MAN_UTD",
+                False,
+                ["NATIONAL_RIVALRY", "HISTORIC_RIVALRY"],
+            ),
+        ]
+
+        for home, away, rid, derby, classes in cases:
+            with self.subTest(rivalry_id=rid):
+                payload = motivation_rivalry.lookup_rivalry(
+                    home,
+                    away,
+                    season="2025",
+                )
+
+                self.assertEqual(payload["status"], "VERIFIED")
+                self.assertEqual(payload["rivalry_id"], rid)
+                self.assertEqual(payload["derby"], derby)
+                self.assertEqual(
+                    payload["rivalry_classes"],
+                    classes,
+                )
+
+
+
     def test_unknown_pair_stays_unknown(self):
         payload = motivation_rivalry.lookup_rivalry("Alpha", "Beta")
         self.assertEqual(payload["status"], "UNKNOWN")
