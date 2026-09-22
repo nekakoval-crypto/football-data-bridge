@@ -1,11 +1,12 @@
 {
-  "version": "PBK_MOTIVATION_RIVALRIES_V1",
+  "version": "PBK_MOTIVATION_RIVALRIES_V2",
+  "schema_version": 2,
   "status": "PARTIAL_VERIFIED_CATALOG",
   "matching_policy": "EXACT_NORMALIZED_ALIAS_ONLY_NO_FUZZY",
   "coverage": {
     "pbk16_leagues_represented": 16,
     "catalog_completeness": "PARTIAL",
-    "rule": "Representative verified rivalries exist for every PBK16 league, but the catalog is not declared exhaustive."
+    "rule": "Verified rivalry contracts exist across PBK16, but the catalog remains explicitly non-exhaustive; V2 semantic classes are migrated incrementally without breaking legacy consumers."
   },
   "governance": {
     "rivalry_is_independent_dimension": true,
@@ -16,6 +17,8 @@
   },
   "rivalries": [
     {"id":"ENG_NORTH_LONDON","rivalry_name":"North London derby","rivalry_type":"DERBY","competition_scope":"ENGLAND","principled_rivalry":true,"team_a_aliases":["Arsenal"],"team_b_aliases":["Tottenham","Tottenham Hotspur"]},
+    {"id":"ENG_TYNE_WEAR","rivalry_name":"Tyne-Wear derby","rivalry_type":"DERBY","competition_scope":"ENGLAND","principled_rivalry":true,"rivalry_classes":["LOCAL_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Newcastle","Newcastle United"],"team_b_aliases":["Sunderland"]},
+    {"id":"ENG_PALACE_BRIGHTON","rivalry_name":"Crystal Palace-Brighton rivalry","rivalry_type":"RIVALRY","competition_scope":"ENGLAND","principled_rivalry":true,"rivalry_classes":["HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Crystal Palace"],"team_b_aliases":["Brighton","Brighton and Hove Albion","Brighton & Hove Albion"]},
     {"id":"ESP_MADRID_DERBY_REAL_ATLETICO","rivalry_name":"Madrid derby","rivalry_type":"DERBY","competition_scope":"SPAIN","principled_rivalry":true,"team_a_aliases":["Real Madrid"],"team_b_aliases":["Atlético de Madrid","Atletico Madrid","Club Atlético de Madrid","Club Atletico de Madrid"]},
     {"id":"ITA_DERBY_DELLA_MADONNINA","rivalry_name":"Derby della Madonnina","rivalry_type":"DERBY","competition_scope":"ITALY","principled_rivalry":true,"team_a_aliases":["AC Milan","Milan"],"team_b_aliases":["Inter","Inter Milan","Internazionale"]},
     {"id":"GER_KLASSIKER_BAYERN_DORTMUND","rivalry_name":"Bayern–Dortmund rivalry","rivalry_type":"RIVALRY","competition_scope":"GERMANY","principled_rivalry":true,"team_a_aliases":["Bayern Munich","Bayern München"],"team_b_aliases":["Borussia Dortmund","Dortmund"]},
