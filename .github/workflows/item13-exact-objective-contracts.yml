@@ -1,0 +1,60 @@
+name: Item 13 Exact Objective Contract Coverage
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/pbk16_motivation_objective_contracts.py'
+      - 'scripts/motivation_foundation_readiness.py'
+      - 'scripts/standings_format_registry.py'
+      - 'scripts/tests/test_pbk16_motivation_objective_contracts.py'
+      - 'scripts/tests/test_motivation_foundation_readiness.py'
+      - 'ops/pbk16_domestic_league_format_inventory.csv'
+      - '.github/workflows/item13-exact-objective-contracts.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/pbk16_motivation_objective_contracts.py'
+      - 'scripts/motivation_foundation_readiness.py'
+      - 'scripts/standings_format_registry.py'
+      - 'scripts/tests/test_pbk16_motivation_objective_contracts.py'
+      - 'scripts/tests/test_motivation_foundation_readiness.py'
+      - 'ops/pbk16_domestic_league_format_inventory.csv'
+      - '.github/workflows/item13-exact-objective-contracts.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Unit tests
+        run: |
+          python -m py_compile scripts/pbk16_motivation_objective_contracts.py
+          python -m py_compile scripts/motivation_foundation_readiness.py
+          python -m unittest scripts.tests.test_pbk16_motivation_objective_contracts -v
+          python -m unittest scripts.tests.test_motivation_foundation_readiness -v
+      - name: Reconcile production objective coverage
+        run: |
+          python - <<'PY'
+          from scripts.pbk16_motivation_objective_contracts import build_coverage
+          report=build_coverage()
+          assert report['status']=='IN_PROGRESS', report
+          assert report['required_league_season_cells']==143, report
+          assert report['verified_league_season_cells']==45, report
+          assert report['missing_league_season_cells']==98, report
+          assert report['pbk16_leagues']==16, report
+          assert report['verified_countries']==[
+              'England','France','Germany','Italy','Spain'
+          ], report
+          assert report['all_exact_title_relegation_contracts_verified'] is False
+          assert report['operational_betting_authority'] is False
+          assert report['probability_mutation'] is False
+          assert report['eligibility_mutation'] is False
+          assert report['stake_changes'] is False
+          print(report)
+          PY
