@@ -486,6 +486,118 @@ HISTORICAL_PBK16_FORMATS[("203", "2025")] = _pbk16_historical_contract(
 )
 
 
+
+# Norway - Eliteserien 2017.
+# Official NFF historical table: 16 clubs, 30 matches.
+# Rank 14 entered relegation qualification; ranks 15-16 were direct relegation.
+HISTORICAL_PBK16_FORMATS[("103", "2017")] = _pbk16_historical_contract(
+    "103",
+    "2017",
+    team_count=16,
+    total_games=30,
+    direct_relegation_start_rank=15,
+    relegation_playoff_rank=14,
+    reason=(
+        "NFF Eliteserien 2017 historical competition contract: "
+        "16 clubs and 30 league matches; rank 14 relegation "
+        "qualification, ranks 15-16 direct relegation."
+    ),
+    source=(
+        "https://www.fotball.no/fotballdata/turnering/hjem/"
+        "?fiksId=153173&underside=tabellen"
+    ),
+)
+
+
+# Norway - Eliteserien 2018.
+# Official NFF historical table: 16 clubs, 30 matches.
+# Rank 14 entered relegation qualification; ranks 15-16 were direct relegation.
+HISTORICAL_PBK16_FORMATS[("103", "2018")] = _pbk16_historical_contract(
+    "103",
+    "2018",
+    team_count=16,
+    total_games=30,
+    direct_relegation_start_rank=15,
+    relegation_playoff_rank=14,
+    reason=(
+        "NFF Eliteserien 2018 historical competition contract: "
+        "16 clubs and 30 league matches; rank 14 relegation "
+        "qualification, ranks 15-16 direct relegation."
+    ),
+    source=(
+        "https://www.fotball.no/fotballdata/turnering/hjem/"
+        "?fiksId=158475&underside=tabellen"
+    ),
+)
+
+
+# Norway - Eliteserien 2021.
+# NFF explicitly states that 14th place gave qualification.
+# The official table has 16 clubs and 30 matches; ranks 15-16 were relegated.
+HISTORICAL_PBK16_FORMATS[("103", "2021")] = _pbk16_historical_contract(
+    "103",
+    "2021",
+    team_count=16,
+    total_games=30,
+    direct_relegation_start_rank=15,
+    relegation_playoff_rank=14,
+    reason=(
+        "NFF Eliteserien 2021: 16 clubs, 30 matches; NFF explicitly "
+        "states that rank 14 entered qualification, with ranks 15-16 "
+        "as direct relegation positions."
+    ),
+    source=(
+        "https://www.fotball.no/turneringer/eliteserien/2021/"
+        "slik-endte-eliteserien-2021/"
+    ),
+)
+
+
+# Norway - Eliteserien 2023.
+# Official NFF historical table: 16 clubs, 30 matches.
+# Rank 14 relegation qualification; ranks 15-16 direct relegation.
+HISTORICAL_PBK16_FORMATS[("103", "2023")] = _pbk16_historical_contract(
+    "103",
+    "2023",
+    team_count=16,
+    total_games=30,
+    direct_relegation_start_rank=15,
+    relegation_playoff_rank=14,
+    reason=(
+        "NFF Eliteserien 2023 historical competition contract: "
+        "16 clubs and 30 league matches; rank 14 relegation "
+        "qualification, ranks 15-16 direct relegation."
+    ),
+    source=(
+        "https://www.fotball.no/fotballdata/turnering/hjem/"
+        "?fiksId=186850"
+    ),
+)
+
+
+# Portugal - Primeira Liga 2021/22.
+# Official Liga Portugal regulation: 18 clubs.
+# Bottom two directly relegated; the club immediately above them
+# enters the maintenance/promotion playoff.
+HISTORICAL_PBK16_FORMATS[("94", "2021")] = _pbk16_historical_contract(
+    "94",
+    "2021",
+    team_count=18,
+    total_games=34,
+    direct_relegation_start_rank=17,
+    relegation_playoff_rank=16,
+    reason=(
+        "Liga Portugal 2021/22 regulation: 18 clubs; the bottom two "
+        "are directly relegated and rank 16 enters the maintenance "
+        "playoff."
+    ),
+    source=(
+        "https://www.ligaportugal.pt/media/36226/"
+        "regulamento-das-competicoes-21-22.pdf"
+    ),
+)
+
+
 def get_historical_pbk16_format(provider_league_id, season):
     key = (
         str(provider_league_id or "").strip(),
