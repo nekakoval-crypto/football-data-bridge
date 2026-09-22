@@ -598,6 +598,98 @@ HISTORICAL_PBK16_FORMATS[("94", "2021")] = _pbk16_historical_contract(
 )
 
 
+
+# Norway - Eliteserien 2020.
+# 16 clubs, 30 matches. NFF explicitly states that rank 14 entered
+# the promotion/relegation qualification; ranks 15-16 were direct relegation.
+HISTORICAL_PBK16_FORMATS[("103", "2020")] = _pbk16_historical_contract(
+    "103",
+    "2020",
+    team_count=16,
+    total_games=30,
+    direct_relegation_start_rank=15,
+    relegation_playoff_rank=14,
+    reason=(
+        "NFF Eliteserien 2020: 16 clubs and 30 matches; rank 14 "
+        "entered relegation qualification, ranks 15-16 were direct "
+        "relegation positions."
+    ),
+    source=(
+        "https://www.fotball.no/turneringer/obosligaen/2020/"
+        "slik-spilles-kvalifiseringen-i-obos-ligaen/"
+    ),
+)
+
+
+# Norway - Eliteserien 2022.
+# The official NFF table has 16 clubs and 30 matches.
+# Sandefjord finished 14th and entered the relegation qualification;
+# Kristiansund and Jerv were directly relegated.
+HISTORICAL_PBK16_FORMATS[("103", "2022")] = _pbk16_historical_contract(
+    "103",
+    "2022",
+    team_count=16,
+    total_games=30,
+    direct_relegation_start_rank=15,
+    relegation_playoff_rank=14,
+    reason=(
+        "NFF Eliteserien 2022: 16 clubs and 30 matches; Sandefjord "
+        "finished rank 14 and entered relegation qualification, while "
+        "ranks 15-16 were directly relegated."
+    ),
+    source=(
+        "https://www.fotball.no/turneringer/eliteserien/2022/"
+        "dramatisk-avslutningsrunde-i-eliteserien/"
+    ),
+)
+
+
+# Norway - Eliteserien 2024.
+# Official NFF table: 16 clubs and 30 matches.
+# NFF explicitly scheduled rank 14 in the Eliteserien qualification.
+HISTORICAL_PBK16_FORMATS[("103", "2024")] = _pbk16_historical_contract(
+    "103",
+    "2024",
+    team_count=16,
+    total_games=30,
+    direct_relegation_start_rank=15,
+    relegation_playoff_rank=14,
+    reason=(
+        "NFF Eliteserien 2024: 16 clubs and 30 matches; rank 14 "
+        "entered the Eliteserien qualification and ranks 15-16 were "
+        "direct relegation positions."
+    ),
+    source=(
+        "https://www.fotball.no/turneringer/eliteserien/2024/"
+        "tidspunkt-for-kvalifseringskamper/"
+    ),
+)
+
+
+# Norway - Eliteserien 2025.
+# Official NFF table: 16 clubs and 30 matches.
+# NFF qualification rules explicitly match rank 14 in Eliteserien
+# against the OBOS qualification winner.
+HISTORICAL_PBK16_FORMATS[("103", "2025")] = _pbk16_historical_contract(
+    "103",
+    "2025",
+    team_count=16,
+    total_games=30,
+    direct_relegation_start_rank=15,
+    relegation_playoff_rank=14,
+    reason=(
+        "NFF Eliteserien 2025: 16 clubs and 30 matches; rank 14 "
+        "entered relegation qualification, ranks 15-16 were direct "
+        "relegation positions."
+    ),
+    source=(
+        "https://www.fotball.no/turneringer/obosligaen/2025/"
+        "slik-spilles-kvalifiseringskampene-til-eliteserien-"
+        "obos-ligaen-toppserien-og-1.-divisjon-2026"
+    ),
+)
+
+
 def get_historical_pbk16_format(provider_league_id, season):
     key = (
         str(provider_league_id or "").strip(),
