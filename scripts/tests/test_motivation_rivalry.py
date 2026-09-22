@@ -424,6 +424,44 @@ class MotivationRivalryTests(unittest.TestCase):
 
 
 
+    def test_verified_clean_multi_league_batch_2(self):
+        cases = [
+            ("Ajax", "PSV", "NED_AJAX_PSV", False,
+             ["NATIONAL_RIVALRY", "HISTORIC_RIVALRY"]),
+            ("Sparta Rotterdam", "Feyenoord", "NED_ROTTERDAM_DERBY", True,
+             ["CITY_DERBY", "HISTORIC_RIVALRY"]),
+            ("NEC Nijmegen", "Vitesse", "NED_GELDERLAND_DERBY", True,
+             ["REGIONAL_DERBY", "HISTORIC_RIVALRY"]),
+            ("Valerenga", "Lillestrom", "NOR_VALERENGA_LILLESTROM", True,
+             ["LOCAL_DERBY", "HISTORIC_RIVALRY"]),
+            ("Brann", "Viking", "NOR_BRANN_VIKING", True,
+             ["REGIONAL_DERBY", "HISTORIC_RIVALRY"]),
+            ("Benfica", "FC Porto", "POR_O_CLASSICO", False,
+             ["NATIONAL_RIVALRY", "HISTORIC_RIVALRY"]),
+            ("FC Porto", "Boavista", "POR_PORTO_DERBY", True,
+             ["CITY_DERBY", "HISTORIC_RIVALRY"]),
+            ("Heart Of Midlothian", "Hibernian", "SCO_EDINBURGH_DERBY", True,
+             ["CITY_DERBY", "HISTORIC_RIVALRY"]),
+        ]
+
+        for home, away, rid, derby, classes in cases:
+            with self.subTest(rivalry_id=rid):
+                payload = motivation_rivalry.lookup_rivalry(
+                    home,
+                    away,
+                    season="2025",
+                )
+
+                self.assertEqual(payload["status"], "VERIFIED")
+                self.assertEqual(payload["rivalry_id"], rid)
+                self.assertEqual(payload["derby"], derby)
+                self.assertEqual(
+                    payload["rivalry_classes"],
+                    classes,
+                )
+
+
+
     def test_unknown_pair_stays_unknown(self):
         payload = motivation_rivalry.lookup_rivalry("Alpha", "Beta")
         self.assertEqual(payload["status"], "UNKNOWN")
