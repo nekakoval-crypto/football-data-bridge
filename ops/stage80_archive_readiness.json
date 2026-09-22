@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-22T20:29:50Z",
+  "generated_at_utc": "2026-09-22T21:29:35Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -12,7 +12,7 @@
     "fixture_history": {
       "file": "fixture_history_snapshots.csv",
       "present": true,
-      "rows": 15033
+      "rows": 15161
     },
     "historical_fixtures": {
       "file": "historical_fixtures.csv",
@@ -22,12 +22,12 @@
     "player_stats": {
       "file": "player_stats_snapshots.csv",
       "present": true,
-      "rows": 156233
+      "rows": 166897
     },
     "player_grades": {
       "file": "player_grade_snapshots.csv",
       "present": true,
-      "rows": 156233
+      "rows": 166897
     },
     "stage77_backlog": {
       "file": "stage77_player_stats_backlog.csv",
@@ -283,8 +283,8 @@
   "fixtures": {
     "current_inventory": 128,
     "finished_in_current_inventory": 2,
-    "player_stats_fixture_count_all_snapshots": 3802,
-    "player_grade_fixture_count_all_snapshots": 3802,
+    "player_stats_fixture_count_all_snapshots": 4042,
+    "player_grade_fixture_count_all_snapshots": 4042,
     "finished_current_inventory_with_player_stats": 0,
     "finished_current_inventory_player_stats_coverage_pct": 0.0,
     "per_league": [
@@ -298,10 +298,10 @@
   },
   "fixture_history": {
     "present": true,
-    "rows": 15033,
-    "valid_observations": 15033,
+    "rows": 15161,
+    "valid_observations": 15161,
     "unique_fixtures": 306,
-    "observation_runs": 117,
+    "observation_runs": 118,
     "finished_fixtures_observed": 173,
     "invalid_identity_rows": 0,
     "evidence_note": "Counts represent only Stage71 current-round observations persisted after the fixture-history archive was enabled; they are not a pre-PBK historical backfill claim."
@@ -320,8 +320,8 @@
     "orphan_catalog_fixtures": 0,
     "missing_terminal_evidence": 0,
     "orphan_terminal_evidence": 0,
-    "observation_count_total": 15033,
-    "expected_history_observations": 15033,
+    "observation_count_total": 15161,
+    "expected_history_observations": 15161,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
   },
@@ -385,10 +385,10 @@
     "player_xg_xa_evidence_note": "Stage91 provides StatsBomb research metrics. The large Stage91 source payload may remain external/local when an OK Stage91 meta attestation plus valid Stage92 AUTO/HIGH mapped rows are persisted; this never implies the source CSV is stored in Git. Stage92 maps only exact full names through the verified Transfermarkt→PBK bridge; abbreviated-name candidates remain REVIEW and never enter mapped research. Mapped xG/xA remains research-only and non-operational."
   },
   "players": {
-    "player_stat_rows": 156233,
-    "unique_players_with_stats": 9061,
-    "player_grade_rows": 156233,
-    "unique_players_with_grades": 9061
+    "player_stat_rows": 166897,
+    "unique_players_with_stats": 9376,
+    "player_grade_rows": 166897,
+    "unique_players_with_grades": 9376
   },
   "rosters": {
     "current_roster_rows": 3769,
