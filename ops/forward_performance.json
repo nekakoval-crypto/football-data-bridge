@@ -1,13 +1,13 @@
 {
-  "generated_at_utc": "2026-09-22T04:53:40Z",
+  "generated_at_utc": "2026-09-22T08:54:39Z",
   "status": "OK",
   "scope": "clean prospective canonical forward only",
   "overall": {
-    "rows": 6,
-    "pending_rows": 3,
+    "rows": 7,
+    "pending_rows": 4,
     "settled_rows": 3,
     "void_rows": 0,
-    "frozen_user_execution_rows": 6,
+    "frozen_user_execution_rows": 7,
     "user_execution_coverage_pct": 100.0,
     "settled_with_user_execution": 3,
     "wins": 1,
@@ -42,6 +42,26 @@
       "user_close_rows": 3,
       "avg_user_price_ratio_clv_pct": 3.717,
       "observed_user_max_drawdown_u": 1.42
+    },
+    "R2": {
+      "rows": 1,
+      "pending_rows": 1,
+      "settled_rows": 0,
+      "void_rows": 0,
+      "frozen_user_execution_rows": 1,
+      "user_execution_coverage_pct": 100.0,
+      "settled_with_user_execution": 0,
+      "wins": 0,
+      "losses": 0,
+      "user_settled_stake_u": 0,
+      "user_profit_u": 0,
+      "user_roi_pct": null,
+      "market_settled_stake_u": 0,
+      "market_profit_u": 0,
+      "market_roi_pct": null,
+      "user_close_rows": 0,
+      "avg_user_price_ratio_clv_pct": null,
+      "observed_user_max_drawdown_u": null
     }
   },
   "policy": {
