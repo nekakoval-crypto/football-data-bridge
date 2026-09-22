@@ -70,6 +70,72 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
 
 
 
+    def test_historical_pbk16_batch_b(self):
+        cases = [
+            (
+                row("Poland",106,"Ekstraklasa",2022),
+                34,
+                15,
+                16,
+            ),
+            (
+                row("Turkey",203,"Super Lig",2021),
+                38,
+                16,
+                17,
+            ),
+            (
+                row("Turkey",203,"Super Lig",2023),
+                38,
+                16,
+                17,
+            ),
+            (
+                row("Turkey",203,"Super Lig",2024),
+                36,
+                15,
+                16,
+            ),
+            (
+                row("Turkey",203,"Super Lig",2025),
+                34,
+                15,
+                16,
+            ),
+        ]
+
+        for payload, total_games, safe_rank, direct_start in cases:
+            with self.subTest(payload=payload):
+                item = c.cell_contract(payload)
+
+                self.assertEqual(item["status"], "VERIFIED")
+                self.assertEqual(
+                    item["source_contract"],
+                    "HISTORICAL_PBK16_FORMATS",
+                )
+                self.assertTrue(item["title_boundary_authorized"])
+                self.assertTrue(item["relegation_boundary_authorized"])
+                self.assertEqual(item["total_games"], total_games)
+                self.assertEqual(item["safe_rank"], safe_rank)
+                self.assertEqual(
+                    item["direct_relegation_start_rank"],
+                    direct_start,
+                )
+                self.assertIsNone(
+                    item["relegation_playoff_rank"]
+                )
+
+    def test_turkey_2022_temporal_exception_stays_unknown(self):
+        item = c.cell_contract(
+            row("Turkey",203,"Super Lig",2022)
+        )
+
+        self.assertEqual(item["status"], "UNKNOWN")
+        self.assertFalse(item["title_boundary_authorized"])
+        self.assertFalse(item["relegation_boundary_authorized"])
+
+
+
     def test_non_top5_cell_remains_unknown(self):
         item=c.cell_contract(row("Denmark",119,"Superliga",2024))
         self.assertEqual(item["status"],"UNKNOWN")
