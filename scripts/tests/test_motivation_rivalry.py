@@ -62,6 +62,27 @@ class MotivationRivalryTests(unittest.TestCase):
         self.assertEqual(registry["coverage"]["catalog_completeness"], "PARTIAL")
         self.assertEqual(registry["status"], "PARTIAL_VERIFIED_CATALOG")
 
+    def test_historical_lithuania_trakai_alias_resolves_vilnius_derby(self):
+        payload = motivation_rivalry.lookup_rivalry(
+            "FK Zalgiris Vilnius",
+            "FK Trakai",
+        )
+        self.assertEqual(payload["status"], "VERIFIED")
+        self.assertEqual(payload["rivalry_id"], "LTU_VILNIUS_DERBY")
+        self.assertTrue(payload["derby"])
+
+
+    def test_historical_latvia_rigas_fs_alias_resolves_riga_derby(self):
+        payload = motivation_rivalry.lookup_rivalry(
+            "Riga",
+            "R\u012bgas FS",
+        )
+        self.assertEqual(payload["status"], "VERIFIED")
+        self.assertEqual(payload["rivalry_id"], "LVA_RIGA_DERBY")
+        self.assertTrue(payload["derby"])
+
+
+
     def test_unknown_pair_stays_unknown(self):
         payload = motivation_rivalry.lookup_rivalry("Alpha", "Beta")
         self.assertEqual(payload["status"], "UNKNOWN")
