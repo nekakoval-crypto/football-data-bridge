@@ -49,15 +49,12 @@ class PBK16HistoricalTableContextTests(unittest.TestCase):
         self.assertEqual(by["3"]["same_day_results_excluded"],"true")
         self.assertEqual(by["3"]["no_lookahead"],"true")
 
-    def test_transform_required_split_is_blocked_and_taints_later_state(self):
+    def test_unknown_split_contract_is_blocked_and_taints_later_state(self):
         rows=[
             fixture(1,"2024-08-01",1,2,1,0),
             fixture(2,"2024-08-02",1,2,2,0),
             fixture(3,"2024-08-03",1,2,0,1),
         ]
-        for row in rows:
-            row["country"]="Belgium"
-            row["season"]="2024"
         audits=[
             audit(1),
             audit(2,family="CHAMPIONSHIP_SPLIT",requires=True),
@@ -69,16 +66,12 @@ class PBK16HistoricalTableContextTests(unittest.TestCase):
             by["2"]["context_status"],
             "BLOCKED_TABLE_PHASE_REQUIRES_SEASON_FORMAT_CONTRACT",
         )
-        self.assertEqual(
-            by["2"]["phase_contract_status"],
-            "TRANSFORM_REQUIRED_NOT_IMPLEMENTED",
-        )
+        self.assertEqual(by["2"]["phase_contract_status"],"UNKNOWN")
         self.assertEqual(by["2"]["home_points_pre"],"")
         self.assertEqual(
             by["3"]["context_status"],
             "BLOCKED_AFTER_UNMODELED_TABLE_PHASE",
         )
-        self.assertEqual(by["3"]["home_rank_pre"],"")
 
     def test_carry_forward_split_uses_group_only_ranking(self):
         rows=[
@@ -204,6 +197,72 @@ class PBK16HistoricalTableContextTests(unittest.TestCase):
         self.assertEqual(states["A"]["split_rounding_advantage"],1)
         self.assertEqual(states["B"]["split_rounding_advantage"],0)
         self.assertEqual(table[0]["team"],"A")
+
+    def test_belgium_upper_playoff_uses_ceil_half_and_penalty(self):
+        rows=[
+            fixture(1,"2024-08-01",1,2,1,0),
+            fixture(2,"2024-08-02",1,2,0,0),
+            fixture(3,"2024-09-01",1,2,0,0),
+            fixture(4,"2024-09-02",1,2,0,0),
+        ]
+        for row in rows:
+            row["country"]="Belgium"
+            row["season"]="2024"
+        audits=[
+            audit(1),audit(2),
+            audit(3,family="CHAMPIONSHIP_SPLIT",requires=True),
+            audit(4,family="CHAMPIONSHIP_SPLIT",requires=True),
+        ]
+        out,_=t.project(rows,audits)
+        by={r["domestic_fixture_id"]:r for r in out}
+        first=by["3"]
+        second=by["4"]
+        # Team 1 has 4 regular points -> 2; Team 2 has 1 -> ceil(0.5)=1
+        # and receives the Belgian half-point penalty.
+        self.assertEqual(first["context_status"],"VALID_SPLIT_BELGIUM_HALVED_POINTS_DERIVED")
+        self.assertEqual(first["home_points_pre"],2)
+        self.assertEqual(first["away_points_pre"],1)
+        self.assertEqual(first["away_split_rounding_advantage"],-1)
+        self.assertEqual(first["phase_points_transform"],"CEIL_HALF_AT_SPLIT")
+        # Transform is applied once, then split results accumulate normally.
+        self.assertEqual(second["home_points_pre"],3)
+        self.assertEqual(second["away_points_pre"],2)
+
+    def test_belgium_relegation_split_keeps_full_points(self):
+        rows=[
+            fixture(1,"2024-08-01",3,4,1,0),
+            fixture(2,"2024-08-02",3,4,1,0),
+            fixture(3,"2024-09-01",3,4,0,0),
+        ]
+        for row in rows:
+            row["country"]="Belgium"
+            row["season"]="2024"
+        audits=[
+            audit(1),audit(2),
+            audit(3,family="RELEGATION_SPLIT",requires=True),
+        ]
+        out,_=t.project(rows,audits)
+        row=next(r for r in out if r["domestic_fixture_id"]=="3")
+        self.assertEqual(row["context_status"],"VALID_SPLIT_CARRY_FORWARD_DERIVED")
+        self.assertEqual(row["home_points_pre"],6)
+        self.assertEqual(row["away_points_pre"],0)
+        self.assertEqual(row["phase_points_transform"],"CARRY_FORWARD_UNCHANGED")
+
+    def test_belgium_half_point_penalty_loses_tie_before_goal_fallback(self):
+        states={
+            "A":{"played":30,"points":21,"gf":50,"ga":10,"split_rounding_advantage":0},
+            "B":{"played":30,"points":20,"gf":10,"ga":20,"split_rounding_advantage":0},
+        }
+        t.apply_ceil_half_transform(states,{"A","B"})
+        table=t.ranked(states)
+        self.assertEqual(states["A"]["points"],11)
+        self.assertEqual(states["B"]["points"],10)
+        self.assertEqual(states["A"]["split_rounding_advantage"],-1)
+        # Force equal final-phase points; B must rank above asterisk A even
+        # though A has the much stronger approximate goal difference.
+        states["B"]["points"]=11
+        table=t.ranked(states)
+        self.assertEqual(table[0]["team"],"B")
 
     def test_post_table_playoff_is_excluded_without_appendix_team_pollution(self):
         rows=[
