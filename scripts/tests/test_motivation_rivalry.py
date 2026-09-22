@@ -577,6 +577,61 @@ class MotivationRivalryTests(unittest.TestCase):
                 self.assertEqual(payload["derby"], derby)
 
 
+    def test_final_rivalry_tail(self):
+        cases = [
+            (
+                "Kauno \u017dalgiris",
+                "Hegelmann Litauen",
+                "LTU_KAUNAS_DERBY",
+                True,
+                ["CITY_DERBY"],
+                "2022",
+            ),
+            (
+                "\u0141KS \u0141\u00f3d\u017a",
+                "Widzew \u0141\u00f3d\u017a",
+                "POL_LODZ_DERBY",
+                True,
+                ["CITY_DERBY", "HISTORIC_RIVALRY"],
+                "2024",
+            ),
+            (
+                "SC Braga",
+                "Vit\u00f3ria SC",
+                "POR_MINHO_DERBY",
+                True,
+                ["REGIONAL_DERBY", "HISTORIC_RIVALRY"],
+                "2025",
+            ),
+        ]
+
+        for home, away, rid, derby, classes, season in cases:
+            with self.subTest(rivalry_id=rid):
+                payload = motivation_rivalry.lookup_rivalry(
+                    home,
+                    away,
+                    season=season,
+                )
+
+                self.assertEqual(
+                    payload["status"],
+                    "VERIFIED",
+                )
+                self.assertEqual(
+                    payload["rivalry_id"],
+                    rid,
+                )
+                self.assertEqual(
+                    payload["derby"],
+                    derby,
+                )
+                self.assertEqual(
+                    payload["rivalry_classes"],
+                    classes,
+                )
+
+
+
     def test_unknown_pair_stays_unknown(self):
         payload = motivation_rivalry.lookup_rivalry("Alpha", "Beta")
         self.assertEqual(payload["status"], "UNKNOWN")
