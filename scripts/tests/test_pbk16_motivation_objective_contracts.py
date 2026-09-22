@@ -675,6 +675,112 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
 
 
 
+    def test_batch_i_objective_specific_horizons(self):
+        for season in (2017, 2018, 2019):
+            with self.subTest(season=season):
+                item = c.cell_contract(
+                    row("Lithuania",362,"A Lyga",season)
+                )
+
+                self.assertEqual(item["status"], "VERIFIED")
+                self.assertTrue(item["phase_aware"])
+
+                self.assertEqual(
+                    item["format_type"],
+                    "ASYMMETRIC_TOP6_FINAL_ROUND",
+                )
+                self.assertEqual(
+                    item["regular_phase_games"],
+                    28,
+                )
+                self.assertEqual(
+                    item["post_split_games"],
+                    5,
+                )
+
+                self.assertEqual(
+                    item["title_total_games"],
+                    33,
+                )
+                self.assertEqual(
+                    item["relegation_total_games"],
+                    28,
+                )
+
+                self.assertEqual(item["safe_rank"], 6)
+                self.assertEqual(
+                    item["relegation_playoff_rank"],
+                    7,
+                )
+                self.assertEqual(
+                    item["direct_relegation_start_rank"],
+                    8,
+                )
+
+        for season in (2023, 2025):
+            item = c.cell_contract(
+                row("Lithuania",362,"A Lyga",season)
+            )
+            self.assertEqual(item["status"], "VERIFIED")
+            self.assertEqual(item["total_games"], 36)
+            self.assertEqual(item["title_total_games"], 36)
+            self.assertEqual(
+                item["relegation_total_games"],
+                36,
+            )
+            self.assertEqual(
+                item["direct_relegation_start_rank"],
+                10,
+            )
+            self.assertEqual(
+                item["relegation_playoff_rank"],
+                9,
+            )
+
+        scotland = c.cell_contract(
+            row("Scotland",179,"Premiership",2017)
+        )
+        self.assertEqual(scotland["status"], "VERIFIED")
+        self.assertTrue(scotland["phase_aware"])
+        self.assertEqual(
+            scotland["regular_phase_games"],
+            33,
+        )
+        self.assertEqual(
+            scotland["post_split_games"],
+            5,
+        )
+        self.assertEqual(
+            scotland["direct_relegation_start_rank"],
+            12,
+        )
+        self.assertEqual(
+            scotland["relegation_playoff_rank"],
+            11,
+        )
+
+
+    def test_batch_i_does_not_flatten_lithuania_old_format(self):
+        item = c.cell_contract(
+            row("Lithuania",362,"A Lyga",2018)
+        )
+
+        self.assertNotEqual(
+            item["title_total_games"],
+            item["relegation_total_games"],
+        )
+
+        self.assertEqual(
+            item["title_total_games"],
+            33,
+        )
+        self.assertEqual(
+            item["relegation_total_games"],
+            28,
+        )
+
+
+
     def test_non_top5_cell_remains_unknown(self):
         item=c.cell_contract(
             row("Belgium",144,"Jupiler Pro League",2024)
