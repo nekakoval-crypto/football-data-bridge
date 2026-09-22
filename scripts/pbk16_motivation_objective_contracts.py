@@ -95,6 +95,33 @@ def cell_contract(row: dict[str, Any]) -> dict[str, Any]:
                 "source":contract.get("source"),
             }
 
+    historical_pbk16 = registry.get_historical_pbk16_format(
+        league_id,
+        season,
+    )
+
+    if historical_pbk16.get("status") == "VERIFIED_RULE_CONTRACT":
+        return {
+            "status":"VERIFIED",
+            "provider_league_id":league_id,
+            "country":row.get("country"),
+            "league_name":row.get("league_name"),
+            "season":season,
+            "source_contract":"HISTORICAL_PBK16_FORMATS",
+            "title_boundary_authorized":True,
+            "relegation_boundary_authorized":True,
+            "total_games":historical_pbk16.get("total_games"),
+            "safe_rank":historical_pbk16.get("safe_rank"),
+            "direct_relegation_start_rank":historical_pbk16.get(
+                "direct_relegation_start_rank"
+            ),
+            "relegation_playoff_rank":historical_pbk16.get(
+                "relegation_playoff_rank"
+            ),
+            "europe_status":"UNKNOWN_BY_DESIGN",
+            "source":historical_pbk16.get("source"),
+        }
+
     return {
         "status":"UNKNOWN",
         "provider_league_id":league_id,

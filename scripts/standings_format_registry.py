@@ -270,6 +270,146 @@ for _season in ("2023/2024","2024/2025","2025/2026"):
     )
 
 
+
+# Historical PBK16 exact objective contracts beyond the Top-5.
+#
+# These entries are deliberately sparse and season-scoped. A contract is added
+# only when the title/relegation structure is verified from an official
+# competition or federation source. Missing seasons remain UNKNOWN.
+HISTORICAL_PBK16_FORMATS = {}
+
+
+def _pbk16_historical_contract(
+    provider_league_id,
+    season,
+    *,
+    team_count,
+    total_games,
+    direct_relegation_start_rank,
+    relegation_playoff_rank=None,
+    reason,
+    source,
+):
+    safe_rank = (
+        int(relegation_playoff_rank) - 1
+        if relegation_playoff_rank is not None
+        else int(direct_relegation_start_rank) - 1
+    )
+
+    return {
+        "status": "VERIFIED_RULE_CONTRACT",
+        "provider_league_id": str(provider_league_id),
+        "season": str(season),
+        "team_count": int(team_count),
+        "total_games": int(total_games),
+        "safe_rank": safe_rank,
+        "direct_relegation_start_rank": int(
+            direct_relegation_start_rank
+        ),
+        "relegation_playoff_rank": (
+            None
+            if relegation_playoff_rank is None
+            else int(relegation_playoff_rank)
+        ),
+        "europe_status": "UNKNOWN_BY_DESIGN",
+        "reason": reason,
+        "source": source,
+    }
+
+
+# Norway ? Eliteserien 2019.
+# 16 clubs, 30 matches per club. Places 15-16 were directly relegated;
+# place 14 entered the relegation qualification.
+HISTORICAL_PBK16_FORMATS[("103", "2019")] = _pbk16_historical_contract(
+    "103",
+    "2019",
+    team_count=16,
+    total_games=30,
+    direct_relegation_start_rank=15,
+    relegation_playoff_rank=14,
+    reason=(
+        "NFF Eliteserien 2019: 16 clubs; positions 15-16 directly "
+        "relegated and position 14 entered relegation qualification."
+    ),
+    source=(
+        "https://www.fotball.no/globalassets/krets/hordaland/"
+        "sesongen-2019/opp-og-nedrykk-senior-2019.pdf"
+    ),
+)
+
+
+# Poland ? Ekstraklasa 2020/21.
+# 16 clubs, 30 rounds. The 16th-placed club alone was relegated as the
+# league transitioned to 18 clubs for 2021/22.
+HISTORICAL_PBK16_FORMATS[("106", "2020")] = _pbk16_historical_contract(
+    "106",
+    "2020",
+    team_count=16,
+    total_games=30,
+    direct_relegation_start_rank=16,
+    relegation_playoff_rank=None,
+    reason=(
+        "PZPN Ekstraklasa 2020/21 transition contract: 16 clubs, "
+        "30 rounds, only position 16 relegated before expansion "
+        "to 18 clubs."
+    ),
+    source=(
+        "https://www.pzpn.pl/public/system/files/site_content/635/"
+        "3514-44.KOMUNIKAT%20ZARZ%C4%84DU%2024.07.2020.pdf"
+    ),
+)
+
+
+# Turkey ? Super Lig 2020/21.
+# 21 clubs. Double round-robin means 40 matches per club; positions
+# 18-21 were relegated.
+HISTORICAL_PBK16_FORMATS[("203", "2020")] = _pbk16_historical_contract(
+    "203",
+    "2020",
+    team_count=21,
+    total_games=40,
+    direct_relegation_start_rank=18,
+    relegation_playoff_rank=None,
+    reason=(
+        "TFF Super Lig 2020/21: 21 clubs in a double round-robin; "
+        "positions 18-21 relegated."
+    ),
+    source=(
+        "https://www.tff.org/Resources/TFF/Documents/STATULER/"
+        "2020-2021/2020-2021-SL-STATU.pdf"
+    ),
+)
+
+
+def get_historical_pbk16_format(provider_league_id, season):
+    key = (
+        str(provider_league_id or "").strip(),
+        str(season or "").strip(),
+    )
+
+    item = HISTORICAL_PBK16_FORMATS.get(key)
+
+    if item:
+        return dict(item)
+
+    return {
+        "status": "UNKNOWN",
+        "provider_league_id": key[0],
+        "season": key[1],
+        "team_count": None,
+        "total_games": None,
+        "safe_rank": None,
+        "direct_relegation_start_rank": None,
+        "relegation_playoff_rank": None,
+        "europe_status": "UNKNOWN_BY_DESIGN",
+        "reason": (
+            "No season-scoped verified historical PBK16 objective "
+            "contract in registry."
+        ),
+        "source": None,
+    }
+
+
 def get_historical_top5_format(league_code, season_label):
     key = (str(league_code or "").strip(), str(season_label or "").strip())
     item = HISTORICAL_TOP5_FORMATS.get(key)
