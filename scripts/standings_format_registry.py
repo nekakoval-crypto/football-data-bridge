@@ -317,7 +317,7 @@ def _pbk16_historical_contract(
     }
 
 
-# Norway ? Eliteserien 2019.
+# Norway - Eliteserien 2019.
 # 16 clubs, 30 matches per club. Places 15-16 were directly relegated;
 # place 14 entered the relegation qualification.
 HISTORICAL_PBK16_FORMATS[("103", "2019")] = _pbk16_historical_contract(
@@ -338,7 +338,7 @@ HISTORICAL_PBK16_FORMATS[("103", "2019")] = _pbk16_historical_contract(
 )
 
 
-# Poland ? Ekstraklasa 2020/21.
+# Poland - Ekstraklasa 2020/21.
 # 16 clubs, 30 rounds. The 16th-placed club alone was relegated as the
 # league transitioned to 18 clubs for 2021/22.
 HISTORICAL_PBK16_FORMATS[("106", "2020")] = _pbk16_historical_contract(
@@ -360,7 +360,7 @@ HISTORICAL_PBK16_FORMATS[("106", "2020")] = _pbk16_historical_contract(
 )
 
 
-# Turkey ? Super Lig 2020/21.
+# Turkey - Super Lig 2020/21.
 # 21 clubs. Double round-robin means 40 matches per club; positions
 # 18-21 were relegated.
 HISTORICAL_PBK16_FORMATS[("203", "2020")] = _pbk16_historical_contract(
@@ -377,6 +377,111 @@ HISTORICAL_PBK16_FORMATS[("203", "2020")] = _pbk16_historical_contract(
     source=(
         "https://www.tff.org/Resources/TFF/Documents/STATULER/"
         "2020-2021/2020-2021-SL-STATU.pdf"
+    ),
+)
+
+
+
+# Poland - Ekstraklasa 2022/23.
+# 18 clubs, 34 matches per club; ranks 16-18 directly relegated.
+HISTORICAL_PBK16_FORMATS[("106", "2022")] = _pbk16_historical_contract(
+    "106",
+    "2022",
+    team_count=18,
+    total_games=34,
+    direct_relegation_start_rank=16,
+    relegation_playoff_rank=None,
+    reason=(
+        "PZPN Ekstraklasa 2022/23: ranks 16, 17 and 18 were "
+        "direct relegation positions."
+    ),
+    source=(
+        "https://www.pzpn.pl/public/system/files/site_content/635/"
+        "4682-11.KOMUNIKAT%20ZARZ%C4%84DU%2023%2005%202022.pdf"
+    ),
+)
+
+
+# Turkey - Super Lig 2021/22.
+# 20 clubs, 38 matches per club; ranks 17-20 directly relegated.
+HISTORICAL_PBK16_FORMATS[("203", "2021")] = _pbk16_historical_contract(
+    "203",
+    "2021",
+    team_count=20,
+    total_games=38,
+    direct_relegation_start_rank=17,
+    relegation_playoff_rank=None,
+    reason=(
+        "TFF Super Lig 2021/22: 20 clubs; four clubs were designated "
+        "for relegation to TFF 1. Lig."
+    ),
+    source=(
+        "https://www.tff.org/default.aspx?"
+        "ftxtID=35367&pageID=687"
+    ),
+)
+
+
+# Turkey - Super Lig 2023/24.
+# Official preseason statute: 20 clubs, double round-robin,
+# ranks 17-20 directly relegated.
+HISTORICAL_PBK16_FORMATS[("203", "2023")] = _pbk16_historical_contract(
+    "203",
+    "2023",
+    team_count=20,
+    total_games=38,
+    direct_relegation_start_rank=17,
+    relegation_playoff_rank=None,
+    reason=(
+        "TFF Super Lig 2023/24 preseason statute: 20 clubs in a "
+        "double round-robin; ranks 17-20 relegated."
+    ),
+    source=(
+        "https://www.tff.org/Resources/TFF/Documents/STATULER/"
+        "2023-2024/Trendyol-Super-Lig-Musabakalari-Statusu.pdf"
+    ),
+)
+
+
+# Turkey - Super Lig 2024/25.
+# Official preseason statute: 19 clubs, each club plays 36 matches,
+# ranks 16-19 directly relegated.
+HISTORICAL_PBK16_FORMATS[("203", "2024")] = _pbk16_historical_contract(
+    "203",
+    "2024",
+    team_count=19,
+    total_games=36,
+    direct_relegation_start_rank=16,
+    relegation_playoff_rank=None,
+    reason=(
+        "TFF Super Lig 2024/25 preseason statute: 19 clubs in a "
+        "double round-robin; ranks 16-19 relegated."
+    ),
+    source=(
+        "https://www.tff.org/Resources/TFF/Documents/STATULER/"
+        "2024-2025/2024-2025-Sezonu-Trendyol-Super-Lig-"
+        "Musabakalari-Statusu.pdf"
+    ),
+)
+
+
+# Turkey - Super Lig 2025/26.
+# Official preseason statute: 18 clubs, 34 matches per club,
+# ranks 16-18 directly relegated.
+HISTORICAL_PBK16_FORMATS[("203", "2025")] = _pbk16_historical_contract(
+    "203",
+    "2025",
+    team_count=18,
+    total_games=34,
+    direct_relegation_start_rank=16,
+    relegation_playoff_rank=None,
+    reason=(
+        "TFF Super Lig 2025/26 preseason statute: 18 clubs in a "
+        "double round-robin; ranks 16-18 relegated."
+    ),
+    source=(
+        "https://www.tff.org/Resources/TFF/Auto/"
+        "0817868058e745499efca46044b32e57.pdf"
     ),
 )
 
