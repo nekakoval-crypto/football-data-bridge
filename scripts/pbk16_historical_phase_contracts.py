@@ -27,6 +27,7 @@ VERSION = "PBK_ITEM13_HISTORICAL_PHASE_CONTRACTS_V2"
 
 CARRY = "CARRY_FORWARD_UNCHANGED_CANDIDATE"
 HALVE = "HALVE_FLOOR_WITH_ROUNDING_TIEBREAK"
+BELGIUM_HALF = "HALVE_CEIL_WITH_HALF_POINT_PENALTY"
 TRANSFORM = "TRANSFORM_REQUIRED_NOT_IMPLEMENTED"
 
 CONTRACTS: dict[tuple[str, str, str], dict[str, Any]] = {}
@@ -137,31 +138,49 @@ _add(
     ),
 )
 
-# Belgium changed split structures repeatedly across the PBK history window.
-# Do not collapse championship/europe/relegation phases into one guessed rule.
+# Belgium: championship/europe play-offs halve regular-season points.
+# Odd totals are rounded UP; the rounded half-point becomes a disadvantage at
+# equal final-phase points. Relegation play-offs retain full points.
 for season, families in {
     2017: ("CHAMPIONSHIP_SPLIT",),
     2018: ("CHAMPIONSHIP_SPLIT",),
     2020: ("CHAMPIONSHIP_SPLIT", "EUROPE_SPLIT"),
     2021: ("CHAMPIONSHIP_SPLIT", "EUROPE_SPLIT"),
     2022: ("CHAMPIONSHIP_SPLIT", "EUROPE_SPLIT"),
-    2023: ("CHAMPIONSHIP_SPLIT", "EUROPE_SPLIT", "RELEGATION_SPLIT"),
-    2024: ("CHAMPIONSHIP_SPLIT", "EUROPE_SPLIT", "RELEGATION_SPLIT"),
-    2025: ("CHAMPIONSHIP_SPLIT", "EUROPE_SPLIT", "RELEGATION_SPLIT"),
+    2023: ("CHAMPIONSHIP_SPLIT", "EUROPE_SPLIT"),
+    2024: ("CHAMPIONSHIP_SPLIT", "EUROPE_SPLIT"),
+    2025: ("CHAMPIONSHIP_SPLIT", "EUROPE_SPLIT"),
 }.items():
     _add(
         "Belgium",
         (season,),
         families,
-        status=TRANSFORM,
-        points_transform="SEASON_AND_PHASE_SPECIFIC_RULE_REQUIRED",
-        source="https://www.proleague.be/nieuws/vanaf-seizoen-26-27-met-18-clubs-in-de-jupiler-pro-league",
+        status=BELGIUM_HALF,
+        points_transform="CEIL_HALF_AT_SPLIT",
+        application_authorized=True,
+        half_point_rounding="CEIL",
+        rounded_half_tiebreak="ROUNDED_UP_CLUB_LAST",
+        source="https://www.proleague.be/nieuws/hoe-verlopen-de-play-offs-in-het-seizoen-2024-25",
         reason=(
-            "Belgian historical play-off structures changed across seasons; "
-            "PBK requires explicit season+phase transforms before reconstruction."
+            "Official Pro League play-off contract: Champions/Europe play-off "
+            "points are halved; odd totals are rounded up and the rounded-half "
+            "club loses the first tie-break at equal final-phase points."
         ),
     )
 
+_add(
+    "Belgium",
+    (2023, 2024, 2025),
+    ("RELEGATION_SPLIT",),
+    status=CARRY,
+    points_transform="CARRY_FORWARD_UNCHANGED",
+    application_authorized=True,
+    source="https://www.proleague.be/nieuws/hoe-verlopen-de-play-offs-in-het-seizoen-2024-25",
+    reason=(
+        "Official Pro League Relegation Play-offs retain regular-season points "
+        "without halving."
+    ),
+)
 
 def lookup(country: Any, season: Any, phase_family: Any) -> dict[str, Any]:
     key = (
@@ -209,6 +228,7 @@ def analyze_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
 
     carry = status_counts.get(CARRY, 0)
     halving = status_counts.get(HALVE, 0)
+    belgium_halving = status_counts.get(BELGIUM_HALF, 0)
     transform = status_counts.get(TRANSFORM, 0)
     unknown_count = status_counts.get("UNKNOWN", 0)
     authorized = sum(
@@ -225,6 +245,7 @@ def analyze_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "contract_covered_rows": len(required) - unknown_count,
         "carry_forward_candidate_rows": carry,
         "halving_authorized_rows": halving,
+        "belgium_halving_authorized_rows": belgium_halving,
         "transform_required_rows": transform,
         "unknown_contract_rows": unknown_count,
         "country_required_rows": dict(sorted(country_counts.items())),
