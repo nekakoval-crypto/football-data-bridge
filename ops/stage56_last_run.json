@@ -1,18 +1,16 @@
 {
-  "run_at_utc": "2026-09-22T07:15:11Z",
+  "run_at_utc": "2026-09-22T07:32:32Z",
   "status": "OK",
   "active_forward_rows": 4,
-  "new_weather_snapshots": 0,
-  "total_weather_snapshots": 15,
+  "new_weather_snapshots": 1,
+  "total_weather_snapshots": 16,
   "new_rotation_snapshots": 0,
   "total_rotation_snapshots": 3,
   "geocoding_calls": 1,
-  "weather_calls": 0,
+  "weather_calls": 1,
   "current_lineup_calls": 0,
   "previous_lineup_calls": 0,
-  "warnings": [
-    "weather R2|I1|1550145: no geocoding result for ''/IT"
-  ],
+  "warnings": [],
   "policy": {
     "role": "context-only; never changes R1/R2/R3 eligibility",
     "weather": "Open-Meteo city-level proxy nearest hourly forecast to kickoff; timestamped snapshots",
