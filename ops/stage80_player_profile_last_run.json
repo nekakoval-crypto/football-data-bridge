@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_PLAYER_PROFILE_ENRICHMENT_V2_RESIDUAL_ID",
-  "run_at_utc": "2026-09-22T06:38:27Z",
+  "run_at_utc": "2026-09-22T12:38:17Z",
   "status": "ATTENTION",
   "season": "2026",
   "provider_endpoints": [
@@ -12,13 +12,13 @@
   "provider_calls": 2,
   "team_provider_calls": 2,
   "residual_provider_calls": 0,
-  "daily_api_calls": 523,
+  "daily_api_calls": 1058,
   "protected_calls": {
     "live": 0,
-    "current_round": 180,
+    "current_round": 120,
     "standings": 32,
     "safety": 100,
-    "total": 312
+    "total": 252
   },
   "candidate_teams": 2,
   "completed_teams": [],
