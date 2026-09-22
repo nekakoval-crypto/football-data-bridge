@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_PLAYER_PROFILE_ENRICHMENT_V2_RESIDUAL_ID",
-  "run_at_utc": "2026-09-22T00:38:38Z",
+  "run_at_utc": "2026-09-22T06:38:27Z",
   "status": "ATTENTION",
   "season": "2026",
   "provider_endpoints": [
@@ -9,10 +9,10 @@
   ],
   "refresh_days": 7,
   "residual_retry_days": 7,
-  "provider_calls": 46,
-  "team_provider_calls": 18,
-  "residual_provider_calls": 28,
-  "daily_api_calls": 86,
+  "provider_calls": 2,
+  "team_provider_calls": 2,
+  "residual_provider_calls": 0,
+  "daily_api_calls": 523,
   "protected_calls": {
     "live": 0,
     "current_round": 180,
@@ -20,57 +20,16 @@
     "safety": 100,
     "total": 312
   },
-  "candidate_teams": 10,
-  "completed_teams": [
-    {
-      "team_id": "341",
-      "team_name": "Wisla Plock",
-      "profile_rows": 31
-    },
-    {
-      "team_id": "645",
-      "team_name": "Galatasaray",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "759",
-      "team_name": "Viking",
-      "profile_rows": 35
-    },
-    {
-      "team_id": "398",
-      "team_name": "FC Nordsjaelland",
-      "profile_rows": 30
-    },
-    {
-      "team_id": "762",
-      "team_name": "GIL Vicente",
-      "profile_rows": 29
-    },
-    {
-      "team_id": "215",
-      "team_name": "Moreirense",
-      "profile_rows": 30
-    },
-    {
-      "team_id": "405",
-      "team_name": "Odense",
-      "profile_rows": 30
-    },
-    {
-      "team_id": "319",
-      "team_name": "Brann",
-      "profile_rows": 37
-    }
-  ],
+  "candidate_teams": 2,
+  "completed_teams": [],
   "deferred_teams": 0,
-  "residual_candidate_players": 28,
-  "residual_captured_players": 3,
-  "residual_empty_players": 25,
+  "residual_candidate_players": 0,
+  "residual_captured_players": 0,
+  "residual_empty_players": 0,
   "residual_error_players": 0,
   "residual_deferred_players": 0,
   "residual_ambiguous_current_roster_player_ids": 0,
-  "residual_suppressed_recent_attempts": 546,
+  "residual_suppressed_recent_attempts": 571,
   "profile_rows": 3505,
   "unique_profile_players": 3405,
   "current_roster_players": 3766,
