@@ -1,6 +1,6 @@
 # PBK WATCH Performance
 
-Generated UTC: 2026-09-23T23:45:03Z
+Generated UTC: 2026-09-23T23:52:59Z
 Scope: только prospective WATCH; это не реальные ставки и не canonical R1/R2/R3.
 
 ## Overall
