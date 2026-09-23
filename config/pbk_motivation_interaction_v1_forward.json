@@ -1,0 +1,95 @@
+{
+  "research_id": "PBK_MOTIVATION_INTERACTION_V1_FORWARD",
+  "model_version": "PBK_MOTIVATION_INTERACTION_SPECIALIST_V1",
+  "status": "FORWARD_REVIEW_CONTRACT",
+  "authority": "RESEARCH",
+  "frozen_candidate_source": "ops/motivation_interaction_specialist_v1.json",
+  "required_candidate_status": "FROZEN_FORWARD_INTERACTION_CANDIDATE_READY",
+  "historical_scope": {
+    "development_leagues": [
+      "E0",
+      "SP1",
+      "D1",
+      "I1",
+      "F1"
+    ],
+    "development_seasons": [
+      "2019/2020",
+      "2020/2021",
+      "2021/2022",
+      "2022/2023"
+    ],
+    "observed_v1_holdout_not_reused_as_proof": [
+      "2023/2024",
+      "2024/2025",
+      "2025/2026"
+    ]
+  },
+  "frozen_model": {
+    "formula": "softmax(log(p_market_H)+z, log(p_market_D), log(p_market_A)-z)",
+    "interactions": [
+      "HIGH_PRESSURE_X_FORM_ALIGNMENT",
+      "HIGH_PRESSURE_X_LARGE_RANK_DISADVANTAGE"
+    ],
+    "beta": {
+      "HIGH_PRESSURE_X_FORM_ALIGNMENT": -0.08139028122268811,
+      "HIGH_PRESSURE_X_LARGE_RANK_DISADVANTAGE": -0.04354603042978898
+    },
+    "refit_allowed": false,
+    "parameter_change_after_freeze": false
+  },
+  "prospective_inputs": {
+    "market_prematch_journal": "ops/generic_1x2_v1_forward_prematch.jsonl",
+    "motivation_prematch_journal": "ops/motivation_forward_prematch.jsonl",
+    "motivation_postmatch_labels": "ops/motivation_forward_labels.jsonl",
+    "join_key": "fixture_id",
+    "historical_backfill": false,
+    "first_frozen_observation_only": true,
+    "observation_must_precede_kickoff": true
+  },
+  "forward_scope": {
+    "official_historical_scope": "POOLED_BIG5",
+    "tracked_pbk16": true,
+    "non_big5_status": "EXPANSION_DIAGNOSTIC_ONLY",
+    "combined_pbk16_verdict": false,
+    "review_unit": "ACTIVE_INTERACTION_OBSERVATION"
+  },
+  "forward_review": {
+    "diagnostic_checkpoints_active_rows": [
+      100,
+      250
+    ],
+    "minimum_active_settled_rows_for_formal_review": 500,
+    "minimum_outcomes_per_class": 50,
+    "brier_strict_improvement_required": true,
+    "logloss_strict_improvement_required": true,
+    "maximum_absolute_class_calibration_error": 0.03,
+    "interaction_direction_stability_required": true,
+    "manual_governance_review_required": true,
+    "automatic_canonical_promotion": false
+  },
+  "guards": {
+    "unknown_not_zero": true,
+    "no_lookahead": true,
+    "prematch_frozen_required": true,
+    "postmatch_labels_separate": true,
+    "market_probability_is_baseline_not_pbk_opinion": true,
+    "standalone_motivation_v1_rejected": true,
+    "standalone_motivation_v2_rejected": true,
+    "creates_signal": false,
+    "predictive_authority": "NOT_AUTHORIZED",
+    "operational_betting_authority": false,
+    "probability_mutation_authorized": false,
+    "eligibility_mutation_authorized": false,
+    "value_or_ev_authorized": false,
+    "stake_changes_authorized": false,
+    "r1_r2_r3_changes_authorized": false,
+    "production_integration_authorized": false,
+    "ui_integration_authorized": false
+  },
+  "outputs": {
+    "prematch_journal": "motivation_interaction_v1_forward_prematch.jsonl",
+    "settlement_journal": "motivation_interaction_v1_forward_settlements.jsonl",
+    "performance_report": "motivation_interaction_v1_forward_performance.json"
+  }
+}
