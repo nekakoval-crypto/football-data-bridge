@@ -57,8 +57,8 @@ class MotivationFoundationReadinessTests(unittest.TestCase):
                 report["hard_blockers_to_foundation_closure"],
             )
             self.assertEqual(report["evidence"]["exact_objective_required_cells"],143)
-            self.assertEqual(report["evidence"]["exact_objective_verified_cells"],125)
-            self.assertEqual(report["evidence"]["exact_objective_missing_cells"],18)
+            self.assertEqual(report["evidence"]["exact_objective_verified_cells"],127)
+            self.assertEqual(report["evidence"]["exact_objective_missing_cells"],16)
             self.assertFalse(report["operational_betting_authority"])
 
     def test_even_with_pbk16_and_catalog_forward_validation_still_blocks_closure(self):

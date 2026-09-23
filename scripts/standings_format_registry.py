@@ -1605,6 +1605,93 @@ HISTORICAL_PBK16_FORMATS[
 )
 
 
+
+
+# ============================================================
+# BATCH K
+# Scotland 2019/20 curtailed-PpG + Poland 2019/20 split.
+# ============================================================
+
+
+# Scotland - Premiership 2019/20.
+#
+# SPFL concluded the season early.
+# Final placings were determined by points per game.
+# Celtic were crowned champions and Hearts were relegated.
+#
+# 38 is the scheduled full-season horizon. The season itself
+# was curtailed before the normal post-split completion.
+HISTORICAL_PBK16_FORMATS[
+    ("179", "2019")
+] = _pbk16_historical_contract(
+    "179",
+    "2019",
+    team_count=12,
+    total_games=38,
+    direct_relegation_start_rank=12,
+    relegation_playoff_rank=None,
+    format_type="CURTAILED_PPG_FINAL_TABLE",
+    regular_phase_games=33,
+    post_split_games=5,
+    points_transform="PPG_FINALIZATION",
+    title_total_games=38,
+    relegation_total_games=38,
+    season_completion_status="CURTAILED",
+    title_status="AWARDED",
+    relegation_status="APPLIES",
+    phase_aware=True,
+    reason=(
+        "SPFL concluded the 2019/20 Premiership early and "
+        "determined final placings by points per game. Celtic "
+        "were crowned champions and Hearts were relegated."
+    ),
+    source=(
+        "https://spfl.co.uk/news/"
+        "ladbrokes-premiership-and-spfl-season-201920-cur"
+    ),
+)
+
+
+# Poland - Ekstraklasa 2019/20.
+#
+# 16 clubs.
+# 30-match regular phase followed by championship/relegation
+# groups of eight clubs.
+# Each club plays seven further matches => 37 total.
+# Regular-phase points carry into the final phase.
+# Final ranks 14-16 are relegated.
+HISTORICAL_PBK16_FORMATS[
+    ("106", "2019")
+] = _pbk16_historical_contract(
+    "106",
+    "2019",
+    team_count=16,
+    total_games=37,
+    direct_relegation_start_rank=14,
+    relegation_playoff_rank=None,
+    format_type="SPLIT_TOP8_BOTTOM8",
+    regular_phase_games=30,
+    post_split_games=7,
+    points_transform="NONE",
+    title_total_games=37,
+    relegation_total_games=37,
+    season_completion_status="COMPLETED",
+    title_status="AWARDED",
+    relegation_status="APPLIES",
+    phase_aware=True,
+    reason=(
+        "PZPN Ekstraklasa 2019/20 regulation: after the regular "
+        "phase clubs split into places 1-8 and 9-16; each group "
+        "plays seven additional rounds, with regular-phase points "
+        "retained. Final positions 14-16 are relegated."
+    ),
+    source=(
+        "https://www.pzpn.pl/public/system/files/site_content/635/"
+        "2988-31.KOMUNIKAT%20ZARZ%C4%84DU%2023.05.2019.pdf"
+    ),
+)
+
+
 def get_historical_pbk16_format(provider_league_id, season):
     key = (
         str(provider_league_id or "").strip(),
