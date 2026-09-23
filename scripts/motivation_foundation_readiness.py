@@ -12,8 +12,10 @@ from typing import Any
 
 try:
     from scripts import pbk16_motivation_objective_contracts as objective_contracts
+    from scripts import motivation_rivalry
 except ModuleNotFoundError:
     import pbk16_motivation_objective_contracts as objective_contracts
+    import motivation_rivalry
 
 ROOT = Path(__file__).resolve().parents[1]
 OPS = ROOT / "ops"
@@ -61,7 +63,12 @@ def build_readiness(ops: Path = OPS, config: Path = CONFIG) -> dict[str, Any]:
         and bool(forward.get("provider_polling"))
     )
     rivalry_catalog_present = bool(rivalry.get("rivalries"))
-    rivalry_catalog_complete = rivalry.get("status") == "VERIFIED_PBK16_CATALOG"
+    rivalry_readiness = motivation_rivalry.registry_readiness(
+        rivalry
+    )
+    rivalry_catalog_complete = bool(
+        rivalry_readiness.get("verified")
+    )
 
     objective_coverage = objective_contracts.build_coverage()
     exact_pbk16 = bool(
@@ -113,7 +120,22 @@ def build_readiness(ops: Path = OPS, config: Path = CONFIG) -> dict[str, Any]:
             ),
             "pbk16_leagues": int(pbk16.get("domestic_league_ids") or 0),
             "forward_tracked_leagues": int(forward.get("tracked_leagues") or 0),
-            "verified_rivalries": len(rivalry.get("rivalries") or []),
+            "verified_rivalries": int(
+                rivalry_readiness.get(
+                    "verified_contracts"
+                ) or 0
+            ),
+            "rivalry_pbk16_leagues_represented": int(
+                rivalry_readiness.get(
+                    "pbk16_leagues_represented"
+                ) or 0
+            ),
+            "rivalry_catalog_status": rivalry_readiness.get(
+                "status"
+            ),
+            "rivalry_catalog_exhaustiveness": rivalry_readiness.get(
+                "exhaustiveness"
+            ),
             "exact_objective_required_cells": int(
                 objective_coverage.get("required_league_season_cells") or 0
             ),
@@ -128,7 +150,14 @@ def build_readiness(ops: Path = OPS, config: Path = CONFIG) -> dict[str, Any]:
             "table_pressure_context": top5_ok and pbk16_table_ok,
             "historical_no_lookahead_research": top5_ok and market_ok,
             "forward_standings_snapshot_capture": forward_capture_ok,
-            "derby_rivalry_context": rivalry_catalog_present,
+            "derby_rivalry_context": rivalry_catalog_complete,
+            "rivalry_catalog_verified_pbk16_baseline": (
+                rivalry_catalog_complete
+            ),
+            "rivalry_catalog_non_exhaustive_by_design": (
+                rivalry_readiness.get("exhaustiveness")
+                == "NON_EXHAUSTIVE_BY_DESIGN"
+            ),
             "direct_rival_context": True,
             "outcome_necessity_context": True,
             "exact_objective_contract_coverage": objective_coverage.get("status"),

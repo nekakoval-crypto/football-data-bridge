@@ -32,9 +32,48 @@ class MotivationFoundationReadinessTests(unittest.TestCase):
         self.write(ops / "standings_snapshot_last_run.json", {
             "tracked_leagues":16,"provider_polling":True,
         })
+        rivalry_rows = []
+        scopes = [
+            "ENGLAND","SPAIN","ITALY","GERMANY","FRANCE",
+            "AUSTRIA","BELGIUM","DENMARK","LITHUANIA","LATVIA",
+            "NETHERLANDS","NORWAY","POLAND","PORTUGAL","TURKEY",
+            "SCOTLAND",
+        ]
+
+        for index, scope in enumerate(scopes):
+            rivalry_rows.append({
+                "id":f"TEST_{scope}",
+                "rivalry_name":f"Test {scope}",
+                "rivalry_type":"RIVALRY",
+                "competition_scope":scope,
+                "principled_rivalry":True,
+                "team_a_aliases":[f"A{index}"],
+                "team_b_aliases":[f"B{index}"],
+                "rivalry_classes":["HISTORIC_RIVALRY"],
+                "derby_label":False,
+                "valid_from_season":None,
+                "valid_to_season":None,
+            })
+
         self.write(config / "pbk_motivation_rivalries_v1.json", {
-            "status":"VERIFIED_PBK16_CATALOG" if catalog else "PARTIAL_VERIFIED_CATALOG",
-            "rivalries":[{"id":"x"}],
+            "version":"TEST_RIVALRY_V2",
+            "status":(
+                "VERIFIED_PBK16_CATALOG"
+                if catalog
+                else "PARTIAL_VERIFIED_CATALOG"
+            ),
+            "matching_policy":"EXACT_NORMALIZED_ALIAS_ONLY_NO_FUZZY",
+            "coverage":{
+                "pbk16_leagues_represented":16,
+                "catalog_completeness":(
+                    "VERIFIED_BASELINE"
+                    if catalog
+                    else "PARTIAL"
+                ),
+                "exhaustiveness":"NON_EXHAUSTIVE_BY_DESIGN",
+                "unknown_pair_policy":"UNKNOWN",
+            },
+            "rivalries":rivalry_rows,
         })
         return ops, config
 
