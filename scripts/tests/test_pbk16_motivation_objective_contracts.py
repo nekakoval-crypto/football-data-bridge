@@ -283,12 +283,8 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
         turkey_2022 = c.cell_contract(
             row("Turkey",203,"Super Lig",2022)
         )
-        netherlands_2019 = c.cell_contract(
-            row("Netherlands",88,"Eredivisie",2019)
-        )
 
         self.assertEqual(turkey_2022["status"], "UNKNOWN")
-        self.assertEqual(netherlands_2019["status"], "UNKNOWN")
 
 
 
@@ -409,8 +405,6 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
     def test_batch_f_temporal_and_complex_exceptions_stay_unknown(self):
         exceptions = [
             row("Turkey",203,"Super Lig",2022),
-            row("Turkey",203,"Super Lig",2019),
-            row("Netherlands",88,"Eredivisie",2019),
             row("Poland",106,"Ekstraklasa",2019),
         ]
 
@@ -594,8 +588,6 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
     def test_batch_g_known_exceptions_remain_unknown(self):
         exceptions = [
             row("Turkey",203,"Super Lig",2022),
-            row("Turkey",203,"Super Lig",2019),
-            row("Netherlands",88,"Eredivisie",2019),
             row("Poland",106,"Ekstraklasa",2019),
             row("Scotland",179,"Premiership",2019),
         ]
@@ -777,6 +769,76 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
         self.assertEqual(
             item["relegation_total_games"],
             28,
+        )
+
+
+
+    def test_batch_j_verified_exception_semantics(self):
+        netherlands = c.cell_contract(
+            row("Netherlands",88,"Eredivisie",2019)
+        )
+
+        self.assertEqual(
+            netherlands["status"],
+            "VERIFIED",
+        )
+        self.assertEqual(
+            netherlands["season_completion_status"],
+            "CURTAILED",
+        )
+        self.assertEqual(
+            netherlands["title_status"],
+            "NO_CHAMPION",
+        )
+        self.assertEqual(
+            netherlands["relegation_status"],
+            "NO_RELEGATION",
+        )
+        self.assertFalse(
+            netherlands["title_boundary_authorized"]
+        )
+        self.assertFalse(
+            netherlands["relegation_boundary_authorized"]
+        )
+        self.assertIsNone(
+            netherlands["direct_relegation_start_rank"]
+        )
+        self.assertIsNone(
+            netherlands["relegation_playoff_rank"]
+        )
+
+        turkey = c.cell_contract(
+            row("Turkey",203,"Super Lig",2019)
+        )
+
+        self.assertEqual(
+            turkey["status"],
+            "VERIFIED",
+        )
+        self.assertEqual(
+            turkey["season_completion_status"],
+            "COMPLETED",
+        )
+        self.assertEqual(
+            turkey["title_status"],
+            "AWARDED",
+        )
+        self.assertEqual(
+            turkey["relegation_status"],
+            "NO_RELEGATION",
+        )
+        self.assertTrue(
+            turkey["title_boundary_authorized"]
+        )
+        self.assertFalse(
+            turkey["relegation_boundary_authorized"]
+        )
+        self.assertEqual(
+            turkey["total_games"],
+            34,
+        )
+        self.assertIsNone(
+            turkey["direct_relegation_start_rank"]
         )
 
 

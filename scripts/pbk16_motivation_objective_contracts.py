@@ -108,8 +108,30 @@ def cell_contract(row: dict[str, Any]) -> dict[str, Any]:
             "league_name":row.get("league_name"),
             "season":season,
             "source_contract":"HISTORICAL_PBK16_FORMATS",
-            "title_boundary_authorized":True,
-            "relegation_boundary_authorized":True,
+            "title_boundary_authorized":(
+                historical_pbk16.get(
+                    "title_status",
+                    "AWARDED",
+                ) == "AWARDED"
+            ),
+            "relegation_boundary_authorized":(
+                historical_pbk16.get(
+                    "relegation_status",
+                    "APPLIES",
+                ) == "APPLIES"
+            ),
+            "season_completion_status":historical_pbk16.get(
+                "season_completion_status",
+                "COMPLETED",
+            ),
+            "title_status":historical_pbk16.get(
+                "title_status",
+                "AWARDED",
+            ),
+            "relegation_status":historical_pbk16.get(
+                "relegation_status",
+                "APPLIES",
+            ),
             "total_games":historical_pbk16.get("total_games"),
             "format_type":historical_pbk16.get("format_type"),
             "regular_phase_games":historical_pbk16.get(
