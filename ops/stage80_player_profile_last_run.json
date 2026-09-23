@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_PLAYER_PROFILE_ENRICHMENT_V2_RESIDUAL_ID",
-  "run_at_utc": "2026-09-22T18:36:31Z",
+  "run_at_utc": "2026-09-23T00:37:54Z",
   "status": "ATTENTION",
   "season": "2026",
   "provider_endpoints": [
@@ -9,31 +9,72 @@
   ],
   "refresh_days": 7,
   "residual_retry_days": 7,
-  "provider_calls": 2,
-  "team_provider_calls": 2,
-  "residual_provider_calls": 0,
-  "daily_api_calls": 1823,
+  "provider_calls": 55,
+  "team_provider_calls": 18,
+  "residual_provider_calls": 37,
+  "daily_api_calls": 95,
   "protected_calls": {
     "live": 0,
-    "current_round": 60,
+    "current_round": 180,
     "standings": 32,
     "safety": 100,
-    "total": 192
+    "total": 312
   },
-  "candidate_teams": 2,
-  "completed_teams": [],
+  "candidate_teams": 10,
+  "completed_teams": [
+    {
+      "team_id": "228",
+      "team_name": "Sporting CP",
+      "profile_rows": 28
+    },
+    {
+      "team_id": "197",
+      "team_name": "PSV Eindhoven",
+      "profile_rows": 30
+    },
+    {
+      "team_id": "3491",
+      "team_name": "Raków Częstochowa",
+      "profile_rows": 33
+    },
+    {
+      "team_id": "3484",
+      "team_name": "GKS Katowice",
+      "profile_rows": 24
+    },
+    {
+      "team_id": "217",
+      "team_name": "SC Braga",
+      "profile_rows": 30
+    },
+    {
+      "team_id": "738",
+      "team_name": "SK Beveren",
+      "profile_rows": 26
+    },
+    {
+      "team_id": "210",
+      "team_name": "Heerenveen",
+      "profile_rows": 27
+    },
+    {
+      "team_id": "259",
+      "team_name": "Lommel United",
+      "profile_rows": 29
+    }
+  ],
   "deferred_teams": 0,
-  "residual_candidate_players": 0,
-  "residual_captured_players": 0,
-  "residual_empty_players": 0,
+  "residual_candidate_players": 37,
+  "residual_captured_players": 15,
+  "residual_empty_players": 22,
   "residual_error_players": 0,
   "residual_deferred_players": 0,
   "residual_ambiguous_current_roster_player_ids": 0,
   "residual_suppressed_recent_attempts": 571,
-  "profile_rows": 3505,
-  "unique_profile_players": 3405,
-  "current_roster_players": 3766,
-  "current_roster_player_coverage_pct": 84.84,
+  "profile_rows": 3747,
+  "unique_profile_players": 3640,
+  "current_roster_players": 4011,
+  "current_roster_player_coverage_pct": 85.22,
   "warnings": [
     "18936 Ogre United: provider returned no usable profile rows",
     "4143 Super Nova: provider returned no usable profile rows"
