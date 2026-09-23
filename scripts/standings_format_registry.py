@@ -295,6 +295,9 @@ def _pbk16_historical_contract(
     points_transform="NONE",
     title_total_games=None,
     relegation_total_games=None,
+    season_completion_status="COMPLETED",
+    title_status="AWARDED",
+    relegation_status="APPLIES",
     phase_aware=False,
     reason,
     source,
@@ -331,6 +334,9 @@ def _pbk16_historical_contract(
         "phase_aware": bool(phase_aware),
         "title_total_games": int(title_total_games),
         "relegation_total_games": int(relegation_total_games),
+        "season_completion_status": str(season_completion_status),
+        "title_status": str(title_status),
+        "relegation_status": str(relegation_status),
         "safe_rank": safe_rank,
         "direct_relegation_start_rank": (
             None
@@ -1511,6 +1517,90 @@ HISTORICAL_PBK16_FORMATS[
     ),
     source=(
         "https://spfl.co.uk/news/previous-play-off-finals"
+    ),
+)
+
+
+
+
+# ============================================================
+# BATCH J
+# Verified exceptional objective availability.
+# ============================================================
+
+
+# Netherlands - Eredivisie 2019/20.
+#
+# Competition was curtailed because of the COVID-19 pandemic.
+# KNVB explicitly decided:
+# - no champion;
+# - no promotion;
+# - no relegation.
+#
+# 34 is the scheduled league horizon, NOT a claim that the season
+# was completed.
+HISTORICAL_PBK16_FORMATS[
+    ("88", "2019")
+] = _pbk16_historical_contract(
+    "88",
+    "2019",
+    team_count=18,
+    total_games=34,
+    direct_relegation_start_rank=None,
+    relegation_playoff_rank=None,
+    format_type="CURTAILED_NO_CHAMPION_NO_RELEGATION",
+    regular_phase_games=34,
+    post_split_games=0,
+    points_transform="NONE",
+    title_total_games=34,
+    relegation_total_games=34,
+    season_completion_status="CURTAILED",
+    title_status="NO_CHAMPION",
+    relegation_status="NO_RELEGATION",
+    phase_aware=False,
+    reason=(
+        "KNVB terminated the 2019/20 professional season because "
+        "of COVID-19 and explicitly awarded no champion and applied "
+        "no promotion or relegation."
+    ),
+    source=(
+        "https://www.knvb.nl/node/59905"
+    ),
+)
+
+
+# Turkey - Super Lig 2019/20.
+#
+# The league itself was completed over 34 matches and Basaksehir
+# was registered as champion. After the season, TFF Board decision
+# no. 44 of 29 July 2020 removed relegation for 2019/20.
+HISTORICAL_PBK16_FORMATS[
+    ("203", "2019")
+] = _pbk16_historical_contract(
+    "203",
+    "2019",
+    team_count=18,
+    total_games=34,
+    direct_relegation_start_rank=None,
+    relegation_playoff_rank=None,
+    format_type="CLASSIC_SINGLE_TABLE_NO_RELEGATION",
+    regular_phase_games=34,
+    post_split_games=0,
+    points_transform="NONE",
+    title_total_games=34,
+    relegation_total_games=34,
+    season_completion_status="COMPLETED",
+    title_status="AWARDED",
+    relegation_status="NO_RELEGATION",
+    phase_aware=False,
+    reason=(
+        "TFF registered Basaksehir as 2019/20 Super Lig champion "
+        "and, under the Board decision of 29 July 2020, applied no "
+        "relegation from the professional leagues for that season."
+    ),
+    source=(
+        "https://www.tff.org/default.aspx?"
+        "ftxtID=33593&pageID=204"
     ),
 )
 
