@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-22T23:30:26.797586Z",
+  "run_at_utc": "2026-09-23T07:34:36.742195Z",
   "status": "ATTENTION",
   "counts": {
     "expected": 0,
@@ -8,7 +8,7 @@
     "missed_or_at_risk": 1,
     "pending": 6,
     "stale": 0,
-    "rescheduled": 159,
+    "rescheduled": 211,
     "cancelled": 19,
     "settled": 79,
     "duplicates": 0
@@ -141,5 +141,5 @@
   "schedule_gap_hours": 8,
   "r2_freeze_hours": 12,
   "api_calls": 55,
-  "api_day_calls": 2312
+  "api_day_calls": 655
 }
