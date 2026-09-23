@@ -109,14 +109,26 @@ def cell_contract(row: dict[str, Any]) -> dict[str, Any]:
             "season":season,
             "source_contract":"HISTORICAL_PBK16_FORMATS",
             "title_boundary_authorized":(
-                historical_pbk16.get(
-                    "title_status",
-                    "AWARDED",
-                ) == "AWARDED"
+                bool(
+                    historical_pbk16.get(
+                        "static_title_math_authorized",
+                        True,
+                    )
+                )
+                and historical_pbk16.get(
+                    "prematch_title_objective_status",
+                    "APPLIES",
+                ) == "APPLIES"
             ),
             "relegation_boundary_authorized":(
-                historical_pbk16.get(
-                    "relegation_status",
+                bool(
+                    historical_pbk16.get(
+                        "static_relegation_math_authorized",
+                        True,
+                    )
+                )
+                and historical_pbk16.get(
+                    "prematch_relegation_objective_status",
                     "APPLIES",
                 ) == "APPLIES"
             ),
@@ -131,6 +143,53 @@ def cell_contract(row: dict[str, Any]) -> dict[str, Any]:
             "relegation_status":historical_pbk16.get(
                 "relegation_status",
                 "APPLIES",
+            ),
+            "contract_mode":historical_pbk16.get(
+                "contract_mode",
+                "STATIC",
+            ),
+            "prematch_title_objective_status":historical_pbk16.get(
+                "prematch_title_objective_status",
+                "APPLIES",
+            ),
+            "prematch_relegation_objective_status":historical_pbk16.get(
+                "prematch_relegation_objective_status",
+                "APPLIES",
+            ),
+            "static_title_math_authorized":bool(
+                historical_pbk16.get(
+                    "static_title_math_authorized",
+                    True,
+                )
+            ),
+            "static_relegation_math_authorized":bool(
+                historical_pbk16.get(
+                    "static_relegation_math_authorized",
+                    True,
+                )
+            ),
+            "title_points_transform":historical_pbk16.get(
+                "title_points_transform",
+                historical_pbk16.get("points_transform", "NONE"),
+            ),
+            "relegation_points_transform":historical_pbk16.get(
+                "relegation_points_transform",
+                historical_pbk16.get("points_transform", "NONE"),
+            ),
+            "relegation_horizon_variable":bool(
+                historical_pbk16.get(
+                    "relegation_horizon_variable",
+                    False,
+                )
+            ),
+            "temporal_rule_regimes":historical_pbk16.get(
+                "temporal_rule_regimes",
+            ),
+            "final_resolution":historical_pbk16.get(
+                "final_resolution",
+            ),
+            "relegation_path":historical_pbk16.get(
+                "relegation_path",
             ),
             "total_games":historical_pbk16.get("total_games"),
             "format_type":historical_pbk16.get("format_type"),
