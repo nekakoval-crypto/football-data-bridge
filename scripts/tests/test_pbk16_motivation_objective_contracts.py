@@ -125,16 +125,26 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
                     item["relegation_playoff_rank"]
                 )
 
-    def test_turkey_2022_temporal_exception_stays_unknown(self):
+    def test_turkey_2022_temporal_exception_is_verified_but_static_relegation_math_stays_closed(self):
         item = c.cell_contract(
             row("Turkey",203,"Super Lig",2022)
         )
 
-        self.assertEqual(item["status"], "UNKNOWN")
-        self.assertFalse(item["title_boundary_authorized"])
-        self.assertFalse(item["relegation_boundary_authorized"])
-
-
+        self.assertEqual(item["status"], "VERIFIED")
+        self.assertEqual(
+            item["contract_mode"],
+            "TEMPORAL_RULE_REGIME",
+        )
+        self.assertTrue(
+            item["title_boundary_authorized"]
+        )
+        self.assertFalse(
+            item["relegation_boundary_authorized"]
+        )
+        self.assertEqual(
+            len(item["temporal_rule_regimes"]),
+            2,
+        )
 
     def test_historical_pbk16_batch_c(self):
         cases = [
@@ -279,14 +289,22 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
                 )
 
 
-    def test_maxi_batch_does_not_promote_known_exceptions(self):
+    def test_maxi_batch_temporal_exception_is_now_explicitly_verified(self):
         turkey_2022 = c.cell_contract(
             row("Turkey",203,"Super Lig",2022)
         )
 
-        self.assertEqual(turkey_2022["status"], "UNKNOWN")
-
-
+        self.assertEqual(
+            turkey_2022["status"],
+            "VERIFIED",
+        )
+        self.assertEqual(
+            turkey_2022["contract_mode"],
+            "TEMPORAL_RULE_REGIME",
+        )
+        self.assertFalse(
+            turkey_2022["relegation_boundary_authorized"]
+        )
 
     def test_super_mega_maxi_batch_f(self):
         cases = [
@@ -404,7 +422,6 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
 
     def test_batch_f_temporal_and_complex_exceptions_stay_unknown(self):
         exceptions = [
-            row("Turkey",203,"Super Lig",2022),
         ]
 
         for payload in exceptions:
@@ -586,7 +603,6 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
 
     def test_batch_g_known_exceptions_remain_unknown(self):
         exceptions = [
-            row("Turkey",203,"Super Lig",2022),
         ]
 
         for payload in exceptions:
@@ -771,74 +787,57 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
 
 
     def test_batch_j_verified_exception_semantics(self):
+        # Final season resolutions must never rewrite what was
+        # knowable before historical fixtures.
+
         netherlands = c.cell_contract(
             row("Netherlands",88,"Eredivisie",2019)
         )
 
+        self.assertEqual(netherlands["status"], "VERIFIED")
         self.assertEqual(
-            netherlands["status"],
-            "VERIFIED",
+            netherlands["contract_mode"],
+            "STATIC_PREMATCH_WITH_LATER_FINAL_RESOLUTION",
+        )
+        self.assertTrue(
+            netherlands["title_boundary_authorized"]
+        )
+        self.assertTrue(
+            netherlands["relegation_boundary_authorized"]
         )
         self.assertEqual(
-            netherlands["season_completion_status"],
-            "CURTAILED",
+            netherlands["direct_relegation_start_rank"],
+            17,
         )
         self.assertEqual(
-            netherlands["title_status"],
+            netherlands["relegation_playoff_rank"],
+            16,
+        )
+        self.assertEqual(
+            netherlands["final_resolution"]["title_status"],
             "NO_CHAMPION",
         )
         self.assertEqual(
-            netherlands["relegation_status"],
+            netherlands["final_resolution"]["relegation_status"],
             "NO_RELEGATION",
-        )
-        self.assertFalse(
-            netherlands["title_boundary_authorized"]
-        )
-        self.assertFalse(
-            netherlands["relegation_boundary_authorized"]
-        )
-        self.assertIsNone(
-            netherlands["direct_relegation_start_rank"]
-        )
-        self.assertIsNone(
-            netherlands["relegation_playoff_rank"]
         )
 
         turkey = c.cell_contract(
             row("Turkey",203,"Super Lig",2019)
         )
 
-        self.assertEqual(
-            turkey["status"],
-            "VERIFIED",
-        )
-        self.assertEqual(
-            turkey["season_completion_status"],
-            "COMPLETED",
-        )
-        self.assertEqual(
-            turkey["title_status"],
-            "AWARDED",
-        )
-        self.assertEqual(
-            turkey["relegation_status"],
-            "NO_RELEGATION",
-        )
+        self.assertEqual(turkey["status"], "VERIFIED")
         self.assertTrue(
-            turkey["title_boundary_authorized"]
-        )
-        self.assertFalse(
             turkey["relegation_boundary_authorized"]
         )
         self.assertEqual(
-            turkey["total_games"],
-            34,
+            turkey["direct_relegation_start_rank"],
+            16,
         )
-        self.assertIsNone(
-            turkey["direct_relegation_start_rank"]
+        self.assertEqual(
+            turkey["final_resolution"]["relegation_status"],
+            "NO_RELEGATION",
         )
-
-
 
     def test_batch_k_scotland_and_poland_2019(self):
         scotland = c.cell_contract(
@@ -847,16 +846,24 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
 
         self.assertEqual(scotland["status"], "VERIFIED")
         self.assertEqual(
-            scotland["season_completion_status"],
-            "CURTAILED",
+            scotland["contract_mode"],
+            "STATIC_PREMATCH_WITH_LATER_FINAL_RESOLUTION",
         )
         self.assertEqual(
-            scotland["title_status"],
-            "AWARDED",
+            scotland["format_type"],
+            "SPLIT_TOP6_BOTTOM6",
         )
         self.assertEqual(
-            scotland["relegation_status"],
-            "APPLIES",
+            scotland["points_transform"],
+            "NONE",
+        )
+        self.assertEqual(
+            scotland["direct_relegation_start_rank"],
+            12,
+        )
+        self.assertEqual(
+            scotland["relegation_playoff_rank"],
+            11,
         )
         self.assertTrue(
             scotland["title_boundary_authorized"]
@@ -865,19 +872,8 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
             scotland["relegation_boundary_authorized"]
         )
         self.assertEqual(
-            scotland["format_type"],
-            "CURTAILED_PPG_FINAL_TABLE",
-        )
-        self.assertEqual(
-            scotland["points_transform"],
-            "PPG_FINALIZATION",
-        )
-        self.assertEqual(
-            scotland["direct_relegation_start_rank"],
-            12,
-        )
-        self.assertIsNone(
-            scotland["relegation_playoff_rank"]
+            scotland["final_resolution"]["ranking_method"],
+            "POINTS_PER_GAME",
         )
 
         poland = c.cell_contract(
@@ -886,54 +882,206 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
 
         self.assertEqual(poland["status"], "VERIFIED")
         self.assertEqual(
-            poland["season_completion_status"],
-            "COMPLETED",
-        )
-        self.assertEqual(
             poland["format_type"],
             "SPLIT_TOP8_BOTTOM8",
         )
         self.assertTrue(poland["phase_aware"])
-        self.assertEqual(
-            poland["regular_phase_games"],
-            30,
-        )
-        self.assertEqual(
-            poland["post_split_games"],
-            7,
-        )
-        self.assertEqual(
-            poland["points_transform"],
-            "NONE",
-        )
-        self.assertEqual(
-            poland["total_games"],
-            37,
-        )
+        self.assertEqual(poland["regular_phase_games"], 30)
+        self.assertEqual(poland["post_split_games"], 7)
+        self.assertEqual(poland["points_transform"], "NONE")
+        self.assertEqual(poland["total_games"], 37)
         self.assertEqual(
             poland["direct_relegation_start_rank"],
             14,
         )
-        self.assertEqual(
-            poland["safe_rank"],
-            13,
-        )
-
-
+        self.assertEqual(poland["safe_rank"], 13)
 
     def test_non_top5_cell_remains_unknown(self):
-        item=c.cell_contract(
+        # A season outside required reconstructed coverage remains
+        # fail-closed even after Mega L.
+        item = c.cell_contract(
+            row("Belgium",144,"Jupiler Pro League",2016)
+        )
+        self.assertEqual(item["status"], "UNKNOWN")
+        self.assertFalse(item["title_boundary_authorized"])
+        self.assertFalse(
+            item["relegation_boundary_authorized"]
+        )
+
+    def test_mega_l_final_sixteen_contracts(self):
+        cases = [
+            *[
+                row(
+                    "Belgium",
+                    144,
+                    "Jupiler Pro League",
+                    season,
+                )
+                for season in range(2017, 2026)
+            ],
+            *[
+                row(
+                    "Denmark",
+                    119,
+                    "Superliga",
+                    season,
+                )
+                for season in range(2017, 2020)
+            ],
+            row("Latvia",365,"Virsliga",2017),
+            row("Poland",106,"Ekstraklasa",2018),
+            row("Portugal",94,"Primeira Liga",2019),
+            row("Turkey",203,"Super Lig",2022),
+        ]
+
+        self.assertEqual(len(cases), 16)
+
+        for payload in cases:
+            with self.subTest(payload=payload):
+                item = c.cell_contract(payload)
+                self.assertEqual(item["status"], "VERIFIED")
+                self.assertEqual(
+                    item["source_contract"],
+                    "HISTORICAL_PBK16_FORMATS",
+                )
+                self.assertTrue(item["source"])
+
+        # Complex Belgian math is verified evidence but remains
+        # unauthorized for one static formula.
+        belgium = c.cell_contract(
             row("Belgium",144,"Jupiler Pro League",2024)
         )
-        self.assertEqual(item["status"],"UNKNOWN")
-        self.assertFalse(item["title_boundary_authorized"])
-        self.assertFalse(item["relegation_boundary_authorized"])
+        self.assertEqual(
+            belgium["contract_mode"],
+            "MULTI_STAGE_RELEGATION",
+        )
+        self.assertFalse(
+            belgium["title_boundary_authorized"]
+        )
+        self.assertFalse(
+            belgium["relegation_boundary_authorized"]
+        )
+        self.assertEqual(
+            belgium["title_points_transform"],
+            "HALVE_WITH_ODD_ROUNDING",
+        )
+        self.assertEqual(
+            belgium["relegation_points_transform"],
+            "NONE",
+        )
+
+        denmark = c.cell_contract(
+            row("Denmark",119,"Superliga",2018)
+        )
+        self.assertEqual(
+            denmark["contract_mode"],
+            "MULTI_STAGE_RELEGATION",
+        )
+        self.assertFalse(
+            denmark["relegation_boundary_authorized"]
+        )
+        self.assertTrue(
+            denmark["relegation_horizon_variable"]
+        )
+
+        latvia = c.cell_contract(
+            row("Latvia",365,"Virsliga",2017)
+        )
+        self.assertEqual(
+            latvia["contract_mode"],
+            "TEMPORAL_RULE_REGIME",
+        )
+        self.assertFalse(
+            latvia["relegation_boundary_authorized"]
+        )
+        self.assertEqual(
+            len(latvia["temporal_rule_regimes"]),
+            2,
+        )
+
+        poland = c.cell_contract(
+            row("Poland",106,"Ekstraklasa",2018)
+        )
+        self.assertTrue(
+            poland["title_boundary_authorized"]
+        )
+        self.assertTrue(
+            poland["relegation_boundary_authorized"]
+        )
+        self.assertEqual(poland["total_games"], 37)
+        self.assertEqual(
+            poland["direct_relegation_start_rank"],
+            15,
+        )
+
+        portugal = c.cell_contract(
+            row("Portugal",94,"Primeira Liga",2019)
+        )
+        self.assertEqual(portugal["total_games"], 34)
+        self.assertEqual(
+            portugal["direct_relegation_start_rank"],
+            17,
+        )
+        self.assertTrue(
+            portugal["relegation_boundary_authorized"]
+        )
+
+        turkey = c.cell_contract(
+            row("Turkey",203,"Super Lig",2022)
+        )
+        self.assertEqual(
+            turkey["contract_mode"],
+            "TEMPORAL_RULE_REGIME",
+        )
+        self.assertTrue(
+            turkey["title_boundary_authorized"]
+        )
+        self.assertFalse(
+            turkey["relegation_boundary_authorized"]
+        )
+        self.assertEqual(
+            len(turkey["temporal_rule_regimes"]),
+            2,
+        )
+
+
+    def test_mega_l_verified_does_not_mean_betting_authority(self):
+        report = c.build_coverage()
+
+        self.assertEqual(report["status"], "COMPLETE")
+        self.assertEqual(
+            report["required_league_season_cells"],
+            143,
+        )
+        self.assertEqual(
+            report["verified_league_season_cells"],
+            143,
+        )
+        self.assertEqual(
+            report["missing_league_season_cells"],
+            0,
+        )
+
+        self.assertTrue(
+            report[
+                "all_exact_title_relegation_contracts_verified"
+            ]
+        )
+
+        self.assertFalse(
+            report["operational_betting_authority"]
+        )
+        self.assertFalse(report["probability_mutation"])
+        self.assertFalse(report["eligibility_mutation"])
+        self.assertFalse(report["stake_changes"])
+
+
 
     def test_duplicate_inventory_cells_are_counted_once(self):
         rows=[
             row("England",39,"Premier League",2024),
             row("England",39,"Premier League",2024),
-            row("Belgium",144,"Jupiler Pro League",2024),
+            row("Belgium",144,"Jupiler Pro League",2016),
         ]
         report=c.build_coverage(rows)
         self.assertEqual(report["required_league_season_cells"],2)

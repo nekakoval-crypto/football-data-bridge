@@ -48,7 +48,7 @@ class MotivationFoundationReadinessTests(unittest.TestCase):
                 report["checklist_item_13_predictive_authority"],
                 "NOT_AUTHORIZED",
             )
-            self.assertIn(
+            self.assertNotIn(
                 "PBK16_EXACT_OBJECTIVE_CONTRACTS_INCOMPLETE",
                 report["hard_blockers_to_foundation_closure"],
             )
@@ -57,8 +57,8 @@ class MotivationFoundationReadinessTests(unittest.TestCase):
                 report["hard_blockers_to_foundation_closure"],
             )
             self.assertEqual(report["evidence"]["exact_objective_required_cells"],143)
-            self.assertEqual(report["evidence"]["exact_objective_verified_cells"],127)
-            self.assertEqual(report["evidence"]["exact_objective_missing_cells"],16)
+            self.assertEqual(report["evidence"]["exact_objective_verified_cells"],143)
+            self.assertEqual(report["evidence"]["exact_objective_missing_cells"],0)
             self.assertFalse(report["operational_betting_authority"])
 
     def test_even_with_pbk16_and_catalog_forward_validation_still_blocks_closure(self):

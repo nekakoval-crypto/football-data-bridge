@@ -1692,6 +1692,688 @@ HISTORICAL_PBK16_FORMATS[
 )
 
 
+
+
+# ============================================================
+# MEGA BATCH L
+#
+# Final historical PBK16 exact rule-contract coverage.
+#
+# CRITICAL SEMANTICS:
+# VERIFIED_RULE_CONTRACT means the competition rule evidence
+# is verified. It does NOT automatically authorize one static
+# title/relegation formula.
+#
+# Complex, asymmetric and temporal formats therefore remain
+# fail-closed for static objective mathematics.
+# ============================================================
+
+
+def _mega_l_meta(
+    item,
+    *,
+    contract_mode="STATIC",
+    static_title_math_authorized=True,
+    static_relegation_math_authorized=True,
+    title_points_transform=None,
+    relegation_points_transform=None,
+    relegation_horizon_variable=False,
+    temporal_rule_regimes=None,
+    final_resolution=None,
+    relegation_path=None,
+):
+    item.update({
+        "contract_mode": contract_mode,
+        "prematch_title_objective_status": "APPLIES",
+        "prematch_relegation_objective_status": "APPLIES",
+        "static_title_math_authorized": bool(
+            static_title_math_authorized
+        ),
+        "static_relegation_math_authorized": bool(
+            static_relegation_math_authorized
+        ),
+        "title_points_transform": (
+            title_points_transform
+            if title_points_transform is not None
+            else item.get("points_transform", "NONE")
+        ),
+        "relegation_points_transform": (
+            relegation_points_transform
+            if relegation_points_transform is not None
+            else item.get("points_transform", "NONE")
+        ),
+        "relegation_horizon_variable": bool(
+            relegation_horizon_variable
+        ),
+        "temporal_rule_regimes": temporal_rule_regimes,
+        "final_resolution": final_resolution,
+        "relegation_path": relegation_path,
+    })
+    return item
+
+
+# ------------------------------------------------------------
+# NO-LOOKAHEAD REPAIR FOR ALREADY VERIFIED J/K CELLS
+# ------------------------------------------------------------
+
+
+# Netherlands 2019/20:
+# Prematch rule was the normal scheduled Eredivisie rule.
+# The later COVID decision must not rewrite earlier prematch
+# title/relegation objectives.
+_nl_2019 = HISTORICAL_PBK16_FORMATS[("88", "2019")]
+_nl_2019.update({
+    "format_type": "CLASSIC_SINGLE_TABLE",
+    "safe_rank": 15,
+    "direct_relegation_start_rank": 17,
+    "relegation_playoff_rank": 16,
+    "relegation_playoff_start_rank": None,
+    "relegation_playoff_end_rank": None,
+    "regular_phase_games": 34,
+    "post_split_games": 0,
+    "points_transform": "NONE",
+})
+_mega_l_meta(
+    _nl_2019,
+    contract_mode="STATIC_PREMATCH_WITH_LATER_FINAL_RESOLUTION",
+    static_title_math_authorized=True,
+    static_relegation_math_authorized=True,
+    final_resolution={
+        "effective_scope": "POST_SUSPENSION_RESOLUTION",
+        "season_completion_status": "CURTAILED",
+        "title_status": "NO_CHAMPION",
+        "relegation_status": "NO_RELEGATION",
+        "source": "https://www.knvb.nl/node/59905",
+    },
+)
+
+
+# Turkey 2019/20:
+# Relegation cancellation was decided after the matches had been
+# played. Prematch snapshots must retain the original bottom-three
+# relegation objective.
+_tr_2019 = HISTORICAL_PBK16_FORMATS[("203", "2019")]
+_tr_2019.update({
+    "format_type": "CLASSIC_SINGLE_TABLE",
+    "safe_rank": 15,
+    "direct_relegation_start_rank": 16,
+    "relegation_playoff_rank": None,
+    "regular_phase_games": 34,
+    "post_split_games": 0,
+    "points_transform": "NONE",
+})
+_mega_l_meta(
+    _tr_2019,
+    contract_mode="STATIC_PREMATCH_WITH_LATER_FINAL_RESOLUTION",
+    static_title_math_authorized=True,
+    static_relegation_math_authorized=True,
+    final_resolution={
+        "effective_date": "2020-07-29",
+        "season_completion_status": "COMPLETED",
+        "title_status": "AWARDED",
+        "relegation_status": "NO_RELEGATION",
+        "source": (
+            "https://www.tff.org/default.aspx?"
+            "ftxtID=33593&pageID=204"
+        ),
+    },
+)
+
+
+# Scotland 2019/20:
+# Before the COVID resolution, clubs competed under the normal
+# 33 + 5 split contract: rank 12 direct, rank 11 playoff.
+# PPG finalization is retained only as final-resolution metadata.
+_sc_2019 = HISTORICAL_PBK16_FORMATS[("179", "2019")]
+_sc_2019.update({
+    "format_type": "SPLIT_TOP6_BOTTOM6",
+    "safe_rank": 10,
+    "direct_relegation_start_rank": 12,
+    "relegation_playoff_rank": 11,
+    "regular_phase_games": 33,
+    "post_split_games": 5,
+    "points_transform": "NONE",
+})
+_mega_l_meta(
+    _sc_2019,
+    contract_mode="STATIC_PREMATCH_WITH_LATER_FINAL_RESOLUTION",
+    static_title_math_authorized=True,
+    static_relegation_math_authorized=True,
+    final_resolution={
+        "effective_scope": "COVID_CURTAILMENT",
+        "season_completion_status": "CURTAILED",
+        "title_status": "AWARDED",
+        "relegation_status": "APPLIES",
+        "ranking_method": "POINTS_PER_GAME",
+        "source": (
+            "https://spfl.co.uk/news/"
+            "ladbrokes-premiership-and-spfl-season-201920-cur"
+        ),
+    },
+)
+
+
+# ------------------------------------------------------------
+# BELGIUM ? 9 CELLS
+# ------------------------------------------------------------
+
+# 2017/18 - 2019/20:
+# 16 clubs; 30-match regular phase.
+# Top six title playoff adds ten matches with points halved.
+# Relegation objective belongs to the regular-season bottom.
+#
+# Because title and relegation have different horizons and the
+# title points are transformed, one generic static total_games
+# formula is deliberately NOT authorized.
+for _season in ("2017", "2018", "2019"):
+    _item = _pbk16_historical_contract(
+        "144",
+        _season,
+        team_count=16,
+        total_games=40,
+        direct_relegation_start_rank=16,
+        relegation_playoff_rank=None,
+        format_type="ASYMMETRIC_TITLE_PLAYOFF_RELEGATION_REGULAR",
+        regular_phase_games=30,
+        post_split_games=10,
+        points_transform="NONE",
+        title_total_games=40,
+        relegation_total_games=30,
+        phase_aware=True,
+        reason=(
+            "Belgian historical 16-club format: 30-match regular "
+            "phase; top six entered a ten-match title playoff with "
+            "points divided by two. The relegation objective was "
+            "resolved from the regular-season bottom position."
+        ),
+        source=(
+            "https://www.proleague.be/nieuws/"
+            "faq-champions-play-offs-and-europe-play-offs-de-uitleg"
+        ),
+    )
+
+    _mega_l_meta(
+        _item,
+        contract_mode="ASYMMETRIC_OBJECTIVE_HORIZONS",
+        static_title_math_authorized=False,
+        static_relegation_math_authorized=False,
+        title_points_transform="HALVE_WITH_ODD_ROUNDING",
+        relegation_points_transform="NONE",
+        relegation_path="REGULAR_PHASE_BOTTOM_POSITION",
+    )
+
+    if _season == "2019":
+        _item["final_resolution"] = {
+            "effective_scope": "COVID_CURTAILMENT",
+            "season_completion_status": "CURTAILED",
+            "source": (
+                "https://www.proleague.be/nieuws/"
+                "communicatie-na-algemene-vergadering-pro-league"
+            ),
+        }
+
+    HISTORICAL_PBK16_FORMATS[("144", _season)] = _item
+
+
+# 2020/21 and 2021/22:
+# 18 clubs / 34 regular matches.
+# Top four title playoff => +6, points divided.
+# Relegation: 18th direct, 17th barrage.
+for _season in ("2020", "2021"):
+    _item = _pbk16_historical_contract(
+        "144",
+        _season,
+        team_count=18,
+        total_games=40,
+        direct_relegation_start_rank=18,
+        relegation_playoff_rank=17,
+        format_type="ASYMMETRIC_TOP4_TITLE_PLAYOFF",
+        regular_phase_games=34,
+        post_split_games=6,
+        points_transform="NONE",
+        title_total_games=40,
+        relegation_total_games=34,
+        phase_aware=True,
+        reason=(
+            "Belgian 18-club format: 34 regular matches; top four "
+            "played six Champions Play-off matches with points "
+            "divided. Rank 18 was direct relegation and rank 17 "
+            "entered the relegation barrage."
+        ),
+        source=(
+            "https://www.proleague.be/nieuws/"
+            "faq-champions-play-offs-and-europe-play-offs-de-uitleg"
+        ),
+    )
+
+    _mega_l_meta(
+        _item,
+        contract_mode="ASYMMETRIC_OBJECTIVE_HORIZONS",
+        static_title_math_authorized=False,
+        static_relegation_math_authorized=False,
+        title_points_transform="HALVE",
+        relegation_points_transform="NONE",
+        relegation_path="REGULAR_PHASE_18_DIRECT_17_BARRAGE",
+    )
+
+    HISTORICAL_PBK16_FORMATS[("144", _season)] = _item
+
+
+# 2022/23:
+# 18 clubs / 34 regular matches; transition back toward 16 clubs.
+# Three direct relegation places.
+_item = _pbk16_historical_contract(
+    "144",
+    "2022",
+    team_count=18,
+    total_games=40,
+    direct_relegation_start_rank=16,
+    relegation_playoff_rank=None,
+    format_type="ASYMMETRIC_TOP4_TITLE_PLAYOFF_TRANSITION",
+    regular_phase_games=34,
+    post_split_games=6,
+    points_transform="NONE",
+    title_total_games=40,
+    relegation_total_games=34,
+    phase_aware=True,
+    reason=(
+        "Belgian 2022/23 transition format: 18 clubs in the "
+        "regular season; top four entered the title playoff and "
+        "the bottom three regular-season positions were direct "
+        "relegation positions."
+    ),
+    source=(
+        "https://www.proleague.be/nieuws/"
+        "pro-league-legt-stevige-fundamenten-voor-het-belgisch-profvoetbal"
+    ),
+)
+
+_mega_l_meta(
+    _item,
+    contract_mode="ASYMMETRIC_OBJECTIVE_HORIZONS",
+    static_title_math_authorized=False,
+    static_relegation_math_authorized=False,
+    title_points_transform="HALVE",
+    relegation_points_transform="NONE",
+    relegation_path="REGULAR_PHASE_BOTTOM_THREE_DIRECT",
+)
+
+HISTORICAL_PBK16_FORMATS[("144", "2022")] = _item
+
+
+# 2023/24 and 2024/25:
+# 16 clubs / 30 regular.
+# Top six: +10, points halved.
+# Bottom four: six Relegation Play-off matches, points NOT halved.
+# Survival/degradation is determined inside the play-down table,
+# so no single full-table relegation rank is safe.
+for _season in ("2023", "2024"):
+    _item = _pbk16_historical_contract(
+        "144",
+        _season,
+        team_count=16,
+        total_games=40,
+        direct_relegation_start_rank=None,
+        relegation_playoff_rank=None,
+        format_type="TOP6_TITLE_AND_BOTTOM4_RELEGATION_PLAYOFFS",
+        regular_phase_games=30,
+        post_split_games=10,
+        points_transform="NONE",
+        title_total_games=40,
+        relegation_total_games=36,
+        phase_aware=True,
+        reason=(
+            "Belgian 16-club playoff format: 30 regular matches; "
+            "top six play ten title-playoff matches with points "
+            "halved, while bottom four play six relegation-playoff "
+            "matches without points halving."
+        ),
+        source=(
+            "https://www.proleague.be/nieuws/"
+            "hoe-verlopen-de-play-offs-in-het-seizoen-2024-25"
+        ),
+    )
+
+    _item.update({
+        "safe_rank": None,
+        "direct_relegation_start_rank": None,
+        "relegation_playoff_rank": None,
+    })
+
+    _mega_l_meta(
+        _item,
+        contract_mode="MULTI_STAGE_RELEGATION",
+        static_title_math_authorized=False,
+        static_relegation_math_authorized=False,
+        title_points_transform="HALVE_WITH_ODD_ROUNDING",
+        relegation_points_transform="NONE",
+        relegation_path=(
+            "BOTTOM4_PLAY_DOWN_6_MATCHES:"
+            "FINAL_PLAYDOWN_BOTTOM2_DIRECT_"
+            "SECOND_PLAYS_BARRAGE"
+        ),
+    )
+
+    HISTORICAL_PBK16_FORMATS[("144", _season)] = _item
+
+
+# 2025/26 transition:
+# Current 16-club playoff format remains for the title.
+# Relegation transition: final play-down positions 13-15 remain;
+# last team plays barrage against Challenger Promotion PO winner.
+_item = _pbk16_historical_contract(
+    "144",
+    "2025",
+    team_count=16,
+    total_games=40,
+    direct_relegation_start_rank=None,
+    relegation_playoff_rank=None,
+    format_type="TRANSITION_2025_26_PLAYOFFS",
+    regular_phase_games=30,
+    post_split_games=10,
+    points_transform="NONE",
+    title_total_games=40,
+    relegation_total_games=36,
+    phase_aware=True,
+    reason=(
+        "Belgian 2025/26 transition season retains the playoff "
+        "title structure while adapting relegation for expansion "
+        "to 18 clubs in 2026/27."
+    ),
+    source=(
+        "https://www.proleague.be/fr/informations/"
+        "le-conseil-superieur-approuve-la-reforme-de-la-"
+        "jupiler-pro-league-et-de-la-challenger-pro-league"
+    ),
+)
+
+_item.update({
+    "safe_rank": None,
+    "direct_relegation_start_rank": None,
+    "relegation_playoff_rank": None,
+})
+
+_mega_l_meta(
+    _item,
+    contract_mode="MULTI_STAGE_RELEGATION_TRANSITION",
+    static_title_math_authorized=False,
+    static_relegation_math_authorized=False,
+    title_points_transform="HALVE_WITH_ODD_ROUNDING",
+    relegation_points_transform="NONE",
+    relegation_path=(
+        "RELEGATION_PLAYOFFS:"
+        "POSITIONS_13_15_RETAIN_TOP_FLIGHT;"
+        "LAST_PLAYS_PROMOTION_BARRAGE"
+    ),
+)
+
+HISTORICAL_PBK16_FORMATS[("144", "2025")] = _item
+
+
+# ------------------------------------------------------------
+# DENMARK ? 3 CELLS
+# ------------------------------------------------------------
+
+# Historical 14-club structure introduced from 2016/17:
+# 26-match regular phase, then championship/relegation structure
+# and qualification matches.
+#
+# The relegation path is multi-stage and cannot be represented as
+# one rank boundary. Fail closed for static title/relegation math.
+for _season in ("2017", "2018", "2019"):
+    _item = _pbk16_historical_contract(
+        "119",
+        _season,
+        team_count=14,
+        total_games=36,
+        direct_relegation_start_rank=None,
+        relegation_playoff_rank=None,
+        format_type="FOURTEEN_CLUB_MULTI_STAGE",
+        regular_phase_games=26,
+        post_split_games=10,
+        points_transform="NONE",
+        title_total_games=36,
+        relegation_total_games=36,
+        phase_aware=True,
+        reason=(
+            "Danish 14-club structure introduced from 2016/17: "
+            "regular phase followed by championship/relegation "
+            "stages and qualification matches. The relegation path "
+            "is multi-stage rather than one static league rank."
+        ),
+        source="https://superliga.dk/struktur",
+    )
+
+    _item.update({
+        "safe_rank": None,
+        "direct_relegation_start_rank": None,
+        "relegation_playoff_rank": None,
+    })
+
+    _mega_l_meta(
+        _item,
+        contract_mode="MULTI_STAGE_RELEGATION",
+        static_title_math_authorized=False,
+        static_relegation_math_authorized=False,
+        title_points_transform="NONE",
+        relegation_points_transform="NONE",
+        relegation_horizon_variable=True,
+        relegation_path=(
+            "REGULAR_PHASE_TO_QUALIFICATION_GROUPS_"
+            "TO_RELEGATION_QUALIFICATION_MATCHES"
+        ),
+    )
+
+    HISTORICAL_PBK16_FORMATS[("119", _season)] = _item
+
+
+# ------------------------------------------------------------
+# LATVIA 2017 ? TEMPORAL RULE REGIME
+# ------------------------------------------------------------
+
+_item = _pbk16_historical_contract(
+    "365",
+    "2017",
+    team_count=8,
+    total_games=28,
+    direct_relegation_start_rank=8,
+    relegation_playoff_rank=7,
+    format_type="TEMPORAL_REGIME_AFTER_CLUB_EXPULSION",
+    regular_phase_games=28,
+    post_split_games=0,
+    points_transform="NONE",
+    title_total_games=28,
+    relegation_total_games=28,
+    phase_aware=False,
+    reason=(
+        "Virsliga 2017 began under the published regulation, then "
+        "LFF changed the relegation/playoff treatment after "
+        "SK Babite/Dinamo was expelled and its results annulled."
+    ),
+    source=(
+        "https://lff.lv/files/documents/148/"
+        "2017_Virsligas_reglaments.pdf"
+    ),
+)
+
+_mega_l_meta(
+    _item,
+    contract_mode="TEMPORAL_RULE_REGIME",
+    static_title_math_authorized=False,
+    static_relegation_math_authorized=False,
+    temporal_rule_regimes=[
+        {
+            "effective_before": "2017-06-27",
+            "rule": (
+                "ORIGINAL_8_CLUB_CONTRACT:"
+                "LAST_DIRECT;PENULTIMATE_PLAYOFF"
+            ),
+            "source": (
+                "https://lff.lv/files/documents/148/"
+                "2017_Virsligas_reglaments.pdf"
+            ),
+        },
+        {
+            "effective_from": "2017-06-27",
+            "rule": (
+                "AFTER_BABITE_EXPULSION:"
+                "RANK6_SAFE;RANK7_PLAYOFF"
+            ),
+            "source": (
+                "https://lff.lv/zinas/6707/"
+                "virsligas-organizacijas-komitejas-"
+                "27-junija-sedes-lemumi/"
+            ),
+        },
+    ],
+    relegation_path="DATE_DEPENDENT_AFTER_BABITE_EXPULSION",
+)
+
+HISTORICAL_PBK16_FORMATS[("365", "2017")] = _item
+
+
+# ------------------------------------------------------------
+# POLAND 2018/19
+# ------------------------------------------------------------
+
+_item = _pbk16_historical_contract(
+    "106",
+    "2018",
+    team_count=16,
+    total_games=37,
+    direct_relegation_start_rank=15,
+    relegation_playoff_rank=None,
+    format_type="SPLIT_TOP8_BOTTOM8",
+    regular_phase_games=30,
+    post_split_games=7,
+    points_transform="NONE",
+    title_total_games=37,
+    relegation_total_games=37,
+    phase_aware=True,
+    reason=(
+        "Ekstraklasa historical split: 30-match regular phase "
+        "followed by seven final-round matches in top/bottom groups; "
+        "regular-phase points carry. Bottom two are relegation places."
+    ),
+    source=(
+        "https://pzpn.pl/federacja/dokumenty"
+    ),
+)
+
+_mega_l_meta(
+    _item,
+    contract_mode="STATIC_PHASE_AWARE",
+    static_title_math_authorized=True,
+    static_relegation_math_authorized=True,
+    title_points_transform="NONE",
+    relegation_points_transform="NONE",
+)
+
+HISTORICAL_PBK16_FORMATS[("106", "2018")] = _item
+
+
+# ------------------------------------------------------------
+# PORTUGAL 2019/20
+# ------------------------------------------------------------
+
+_item = _pbk16_historical_contract(
+    "94",
+    "2019",
+    team_count=18,
+    total_games=34,
+    direct_relegation_start_rank=17,
+    relegation_playoff_rank=None,
+    format_type="CLASSIC_SINGLE_TABLE",
+    regular_phase_games=34,
+    post_split_games=0,
+    points_transform="NONE",
+    title_total_games=34,
+    relegation_total_games=34,
+    phase_aware=False,
+    reason=(
+        "Liga NOS 2019/20 sporting contract: 18 clubs and "
+        "34 matchdays; final sporting relegation positions were "
+        "17 and 18."
+    ),
+    source=(
+        "https://www.ligaportugal.pt/video/38327/"
+        "liga-nos-%2834aj%29%3A-resumo-flash-"
+        "portimonense-2-0-cd-aves"
+    ),
+)
+
+_mega_l_meta(
+    _item,
+    contract_mode="STATIC",
+    static_title_math_authorized=True,
+    static_relegation_math_authorized=True,
+)
+
+HISTORICAL_PBK16_FORMATS[("94", "2019")] = _item
+
+
+# ------------------------------------------------------------
+# TURKEY 2022/23 ? EARTHQUAKE TEMPORAL REGIME
+# ------------------------------------------------------------
+
+_item = _pbk16_historical_contract(
+    "203",
+    "2022",
+    team_count=19,
+    total_games=36,
+    direct_relegation_start_rank=16,
+    relegation_playoff_rank=None,
+    format_type="TEMPORAL_EARTHQUAKE_WITHDRAWAL_REGIME",
+    regular_phase_games=36,
+    post_split_games=0,
+    points_transform="NONE",
+    title_total_games=36,
+    relegation_total_games=36,
+    phase_aware=False,
+    reason=(
+        "Super Lig 2022/23 began with the original four-team "
+        "relegation rule. After Hatayspor and Gaziantep withdrew "
+        "following the earthquake, TFF reduced sporting relegation "
+        "from four teams to two."
+    ),
+    source=(
+        "https://www.tff.org/default.aspx?"
+        "ftxtID=39836&pageID=687"
+    ),
+)
+
+_mega_l_meta(
+    _item,
+    contract_mode="TEMPORAL_RULE_REGIME",
+    static_title_math_authorized=True,
+    static_relegation_math_authorized=False,
+    temporal_rule_regimes=[
+        {
+            "effective_before": "2023-03-22",
+            "rule": "ORIGINAL_BOTTOM4_RELEGATION",
+        },
+        {
+            "effective_from": "2023-03-22",
+            "rule": (
+                "HATAYSPOR_AND_GAZIANTEP_WITHDRAWN;"
+                "TWO_ADDITIONAL_SPORTING_RELEGATIONS"
+            ),
+            "source": (
+                "https://www.tff.org/default.aspx?"
+                "ftxtID=39836&pageID=687"
+            ),
+        },
+    ],
+    relegation_path="DATE_DEPENDENT_EARTHQUAKE_WITHDRAWAL_RULE",
+)
+
+HISTORICAL_PBK16_FORMATS[("203", "2022")] = _item
+
+
+# ------------------------------------------------------------
+# END MEGA BATCH L
+# ------------------------------------------------------------
+
 def get_historical_pbk16_format(provider_league_id, season):
     key = (
         str(provider_league_id or "").strip(),
