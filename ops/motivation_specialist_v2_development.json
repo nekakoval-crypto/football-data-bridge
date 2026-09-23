@@ -1,0 +1,1086 @@
+{
+  "version": "PBK_MOTIVATION_SPECIALIST_V2_DEVELOPMENT_V1",
+  "status": "REJECTED_DEVELOPMENT_NO_STABLE_FEATURES",
+  "development_scope": {
+    "seasons": [
+      "2019/2020",
+      "2020/2021",
+      "2021/2022",
+      "2022/2023"
+    ],
+    "folds": [
+      {
+        "fold": "DEV_FOLD_A",
+        "train": [
+          "2019/2020",
+          "2020/2021"
+        ],
+        "test": "2021/2022"
+      },
+      {
+        "fold": "DEV_FOLD_B",
+        "train": [
+          "2019/2020",
+          "2020/2021",
+          "2021/2022"
+        ],
+        "test": "2022/2023"
+      }
+    ],
+    "v1_observed_holdout": [
+      "2023/2024",
+      "2024/2025",
+      "2025/2026"
+    ],
+    "v1_observed_holdout_reused_as_proof": false
+  },
+  "baseline": "CLOSING_1X2_MARKET_NOVIG",
+  "candidate_formula": "softmax(log(p_market_H)+z, log(p_market_D), log(p_market_A)-z)",
+  "feature_screen": [
+    {
+      "feature": "PRESSURE_ASYMMETRY",
+      "feature_index": 0,
+      "folds": [
+        {
+          "fold": "DEV_FOLD_A",
+          "train_seasons": [
+            "2019/2020",
+            "2020/2021"
+          ],
+          "test_season": "2021/2022",
+          "train_rows": 3418,
+          "test_rows": 1777,
+          "sample_ready": true,
+          "beta": -0.006966493097309734,
+          "beta_sign": "NEGATIVE",
+          "train_metrics": {
+            "rows": 3418,
+            "market_brier": 0.5804894525396068,
+            "challenger_brier": 0.5804804512083747,
+            "market_logloss": 0.9772818969928257,
+            "challenger_logloss": 0.977275191678941,
+            "brier_delta": -9.001331232161291e-06,
+            "logloss_delta": -6.705313884802777e-06,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.4274618722487755,
+                "observed_rate": 0.419836161497952,
+                "absolute_error": 0.007625710750823522
+              },
+              "D": {
+                "mean_probability": 0.2493754387854576,
+                "observed_rate": 0.251316559391457,
+                "absolute_error": 0.0019411206059993802
+              },
+              "A": {
+                "mean_probability": 0.32316268896576666,
+                "observed_rate": 0.328847279110591,
+                "absolute_error": 0.005684590144824309
+              }
+            },
+            "outcomes": {
+              "H": 1435,
+              "D": 859,
+              "A": 1124
+            }
+          },
+          "test_metrics": {
+            "rows": 1777,
+            "market_brier": 0.5804000618471991,
+            "challenger_brier": 0.5804233638294299,
+            "market_logloss": 0.976095166231085,
+            "challenger_logloss": 0.976147663510241,
+            "brier_delta": 2.330198223088331e-05,
+            "logloss_delta": 5.2497279155905296e-05,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.439922336477548,
+                "observed_rate": 0.4288126055149128,
+                "absolute_error": 0.011109730962635234
+              },
+              "D": {
+                "mean_probability": 0.24955687113447939,
+                "observed_rate": 0.2566122678671919,
+                "absolute_error": 0.007055396732712493
+              },
+              "A": {
+                "mean_probability": 0.31052079238797287,
+                "observed_rate": 0.31457512661789533,
+                "absolute_error": 0.004054334229922463
+              }
+            },
+            "outcomes": {
+              "H": 762,
+              "D": 456,
+              "A": 559
+            }
+          },
+          "brier_improved": false,
+          "logloss_improved": false
+        },
+        {
+          "fold": "DEV_FOLD_B",
+          "train_seasons": [
+            "2019/2020",
+            "2020/2021",
+            "2021/2022"
+          ],
+          "test_season": "2022/2023",
+          "train_rows": 5195,
+          "test_rows": 1777,
+          "sample_ready": true,
+          "beta": 0.004262906248905741,
+          "beta_sign": "POSITIVE",
+          "train_metrics": {
+            "rows": 5195,
+            "market_brier": 0.5804588755886138,
+            "challenger_brier": 0.580461434329566,
+            "market_logloss": 0.9768759642568078,
+            "challenger_logloss": 0.9768734192535197,
+            "brier_delta": 2.5587409522298543e-06,
+            "logloss_delta": -2.5450032881124685e-06,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.43173799172327765,
+                "observed_rate": 0.4229066410009625,
+                "absolute_error": 0.008831350722315168
+              },
+              "D": {
+                "mean_probability": 0.2495361653123142,
+                "observed_rate": 0.2531280076997113,
+                "absolute_error": 0.0035918423873970706
+              },
+              "A": {
+                "mean_probability": 0.3187258429644075,
+                "observed_rate": 0.3239653512993263,
+                "absolute_error": 0.005239508334918819
+              }
+            },
+            "outcomes": {
+              "H": 2197,
+              "D": 1315,
+              "A": 1683
+            }
+          },
+          "test_metrics": {
+            "rows": 1777,
+            "market_brier": 0.5830672504767543,
+            "challenger_brier": 0.5830811870520428,
+            "market_logloss": 0.9791706035156373,
+            "challenger_logloss": 0.9792021008635107,
+            "brier_delta": 1.3936575288475694e-05,
+            "logloss_delta": 3.149734787333269e-05,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.43720465646641077,
+                "observed_rate": 0.45807540799099605,
+                "absolute_error": 0.020870751524585285
+              },
+              "D": {
+                "mean_probability": 0.252000194921878,
+                "observed_rate": 0.2442318514350028,
+                "absolute_error": 0.007768343486875162
+              },
+              "A": {
+                "mean_probability": 0.3107951486117116,
+                "observed_rate": 0.29769274057400114,
+                "absolute_error": 0.013102408037710456
+              }
+            },
+            "outcomes": {
+              "H": 814,
+              "D": 434,
+              "A": 529
+            }
+          },
+          "brier_improved": false,
+          "logloss_improved": false
+        }
+      ],
+      "sample_ready_all_folds": true,
+      "coefficient_sign_stable": false,
+      "brier_improved_all_folds": false,
+      "logloss_improved_all_folds": false,
+      "selected_for_frozen_v2": false
+    },
+    {
+      "feature": "HIGH_PRESSURE_SIDE",
+      "feature_index": 1,
+      "folds": [
+        {
+          "fold": "DEV_FOLD_A",
+          "train_seasons": [
+            "2019/2020",
+            "2020/2021"
+          ],
+          "test_season": "2021/2022",
+          "train_rows": 3418,
+          "test_rows": 1777,
+          "sample_ready": true,
+          "beta": -0.07187202919140863,
+          "beta_sign": "NEGATIVE",
+          "train_metrics": {
+            "rows": 3418,
+            "market_brier": 0.5804894525396068,
+            "challenger_brier": 0.5802989848754267,
+            "market_logloss": 0.9772818969928257,
+            "challenger_logloss": 0.9769893816709962,
+            "brier_delta": -0.00019046766418007177,
+            "logloss_delta": -0.0002925153218295007,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.42753751257358147,
+                "observed_rate": 0.419836161497952,
+                "absolute_error": 0.00770135107562947
+              },
+              "D": {
+                "mean_probability": 0.2492367733095826,
+                "observed_rate": 0.251316559391457,
+                "absolute_error": 0.0020797860818743685
+              },
+              "A": {
+                "mean_probability": 0.3232257141168356,
+                "observed_rate": 0.328847279110591,
+                "absolute_error": 0.005621564993755379
+              }
+            },
+            "outcomes": {
+              "H": 1435,
+              "D": 859,
+              "A": 1124
+            }
+          },
+          "test_metrics": {
+            "rows": 1777,
+            "market_brier": 0.5804000618471991,
+            "challenger_brier": 0.5804287615681544,
+            "market_logloss": 0.976095166231085,
+            "challenger_logloss": 0.9762455708555571,
+            "brier_delta": 2.8699720955316366e-05,
+            "logloss_delta": 0.00015040462447202252,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.43990070898785844,
+                "observed_rate": 0.4288126055149128,
+                "absolute_error": 0.011088103472945643
+              },
+              "D": {
+                "mean_probability": 0.24940913935639972,
+                "observed_rate": 0.2566122678671919,
+                "absolute_error": 0.007203128510792162
+              },
+              "A": {
+                "mean_probability": 0.3106901516557429,
+                "observed_rate": 0.31457512661789533,
+                "absolute_error": 0.0038849749621524543
+              }
+            },
+            "outcomes": {
+              "H": 762,
+              "D": 456,
+              "A": 559
+            }
+          },
+          "brier_improved": false,
+          "logloss_improved": false
+        },
+        {
+          "fold": "DEV_FOLD_B",
+          "train_seasons": [
+            "2019/2020",
+            "2020/2021",
+            "2021/2022"
+          ],
+          "test_season": "2022/2023",
+          "train_rows": 5195,
+          "test_rows": 1777,
+          "sample_ready": true,
+          "beta": -0.04907122666531448,
+          "beta_sign": "NEGATIVE",
+          "train_metrics": {
+            "rows": 5195,
+            "market_brier": 0.5804588755886138,
+            "challenger_brier": 0.5803529437145909,
+            "market_logloss": 0.9768759642568078,
+            "challenger_logloss": 0.9767380127193888,
+            "brier_delta": -0.00010593187402285764,
+            "logloss_delta": -0.00013795153741902322,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.4317541246152296,
+                "observed_rate": 0.4229066410009625,
+                "absolute_error": 0.008847483614267126
+              },
+              "D": {
+                "mean_probability": 0.24936852089727884,
+                "observed_rate": 0.2531280076997113,
+                "absolute_error": 0.0037594868024324324
+              },
+              "A": {
+                "mean_probability": 0.31887735448748955,
+                "observed_rate": 0.3239653512993263,
+                "absolute_error": 0.005087996811836748
+              }
+            },
+            "outcomes": {
+              "H": 2197,
+              "D": 1315,
+              "A": 1683
+            }
+          },
+          "test_metrics": {
+            "rows": 1777,
+            "market_brier": 0.5830672504767543,
+            "challenger_brier": 0.5829258284128713,
+            "market_logloss": 0.9791706035156373,
+            "challenger_logloss": 0.9789492907537901,
+            "brier_delta": -0.00014142206388301215,
+            "logloss_delta": -0.00022131276184722548,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.4371536648393583,
+                "observed_rate": 0.45807540799099605,
+                "absolute_error": 0.02092174315163775
+              },
+              "D": {
+                "mean_probability": 0.25175585225764063,
+                "observed_rate": 0.2442318514350028,
+                "absolute_error": 0.007524000822637822
+              },
+              "A": {
+                "mean_probability": 0.3110904829030018,
+                "observed_rate": 0.29769274057400114,
+                "absolute_error": 0.01339774232900065
+              }
+            },
+            "outcomes": {
+              "H": 814,
+              "D": 434,
+              "A": 529
+            }
+          },
+          "brier_improved": true,
+          "logloss_improved": true
+        }
+      ],
+      "sample_ready_all_folds": true,
+      "coefficient_sign_stable": true,
+      "brier_improved_all_folds": false,
+      "logloss_improved_all_folds": false,
+      "selected_for_frozen_v2": false
+    },
+    {
+      "feature": "LATE_TITLE_NEAR_3_SIDE",
+      "feature_index": 2,
+      "folds": [
+        {
+          "fold": "DEV_FOLD_A",
+          "train_seasons": [
+            "2019/2020",
+            "2020/2021"
+          ],
+          "test_season": "2021/2022",
+          "train_rows": 3418,
+          "test_rows": 1777,
+          "sample_ready": true,
+          "beta": 0.0019946904498512772,
+          "beta_sign": "POSITIVE",
+          "train_metrics": {
+            "rows": 3418,
+            "market_brier": 0.5804894525396068,
+            "challenger_brier": 0.5804894441360577,
+            "market_logloss": 0.9772818969928257,
+            "challenger_logloss": 0.977281781785612,
+            "brier_delta": -8.403549078828121e-09,
+            "logloss_delta": -1.1520721376889753e-07,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.4274601418315665,
+                "observed_rate": 0.419836161497952,
+                "absolute_error": 0.0076239803336144996
+              },
+              "D": {
+                "mean_probability": 0.24942031861072886,
+                "observed_rate": 0.251316559391457,
+                "absolute_error": 0.0018962407807281145
+              },
+              "A": {
+                "mean_probability": 0.3231195395577036,
+                "observed_rate": 0.328847279110591,
+                "absolute_error": 0.0057277395528873565
+              }
+            },
+            "outcomes": {
+              "H": 1435,
+              "D": 859,
+              "A": 1124
+            }
+          },
+          "test_metrics": {
+            "rows": 1777,
+            "market_brier": 0.5804000618471991,
+            "challenger_brier": 0.5803972954570644,
+            "market_logloss": 0.976095166231085,
+            "challenger_logloss": 0.9760878153628981,
+            "brier_delta": -2.7663901346342e-06,
+            "logloss_delta": -7.3508681869283166e-06,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.43995383894303836,
+                "observed_rate": 0.4288126055149128,
+                "absolute_error": 0.011141233428125563
+              },
+              "D": {
+                "mean_probability": 0.24963339615437855,
+                "observed_rate": 0.2566122678671919,
+                "absolute_error": 0.006978871712813334
+              },
+              "A": {
+                "mean_probability": 0.31041276490258374,
+                "observed_rate": 0.31457512661789533,
+                "absolute_error": 0.004162361715311591
+              }
+            },
+            "outcomes": {
+              "H": 762,
+              "D": 456,
+              "A": 559
+            }
+          },
+          "brier_improved": true,
+          "logloss_improved": true
+        },
+        {
+          "fold": "DEV_FOLD_B",
+          "train_seasons": [
+            "2019/2020",
+            "2020/2021",
+            "2021/2022"
+          ],
+          "test_season": "2022/2023",
+          "train_rows": 5195,
+          "test_rows": 1777,
+          "sample_ready": true,
+          "beta": 0.03473369554533114,
+          "beta_sign": "POSITIVE",
+          "train_metrics": {
+            "rows": 5195,
+            "market_brier": 0.5804588755886138,
+            "challenger_brier": 0.5804487509054772,
+            "market_logloss": 0.9768759642568078,
+            "challenger_logloss": 0.9768409811050236,
+            "brier_delta": -1.0124683136547574e-05,
+            "logloss_delta": -3.498315178418476e-05,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.43175298056997263,
+                "observed_rate": 0.4229066410009625,
+                "absolute_error": 0.008846339569010153
+              },
+              "D": {
+                "mean_probability": 0.24938972705085471,
+                "observed_rate": 0.2531280076997113,
+                "absolute_error": 0.0037382806488565623
+              },
+              "A": {
+                "mean_probability": 0.3188572923791706,
+                "observed_rate": 0.3239653512993263,
+                "absolute_error": 0.0051080589201557
+              }
+            },
+            "outcomes": {
+              "H": 2197,
+              "D": 1315,
+              "A": 1683
+            }
+          },
+          "test_metrics": {
+            "rows": 1777,
+            "market_brier": 0.5830672504767543,
+            "challenger_brier": 0.5832344184539019,
+            "market_logloss": 0.9791706035156373,
+            "challenger_logloss": 0.9794313382373733,
+            "brier_delta": 0.00016716797714755316,
+            "logloss_delta": 0.0002607347217359335,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.4372375031505068,
+                "observed_rate": 0.45807540799099605,
+                "absolute_error": 0.020837904840489252
+              },
+              "D": {
+                "mean_probability": 0.2518404530912376,
+                "observed_rate": 0.2442318514350028,
+                "absolute_error": 0.007608601656234781
+              },
+              "A": {
+                "mean_probability": 0.3109220437582563,
+                "observed_rate": 0.29769274057400114,
+                "absolute_error": 0.013229303184255137
+              }
+            },
+            "outcomes": {
+              "H": 814,
+              "D": 434,
+              "A": 529
+            }
+          },
+          "brier_improved": false,
+          "logloss_improved": false
+        }
+      ],
+      "sample_ready_all_folds": true,
+      "coefficient_sign_stable": true,
+      "brier_improved_all_folds": false,
+      "logloss_improved_all_folds": false,
+      "selected_for_frozen_v2": false
+    },
+    {
+      "feature": "LATE_SURVIVAL_DANGER_SIDE",
+      "feature_index": 3,
+      "folds": [
+        {
+          "fold": "DEV_FOLD_A",
+          "train_seasons": [
+            "2019/2020",
+            "2020/2021"
+          ],
+          "test_season": "2021/2022",
+          "train_rows": 3418,
+          "test_rows": 1777,
+          "sample_ready": true,
+          "beta": -0.1329662943590615,
+          "beta_sign": "NEGATIVE",
+          "train_metrics": {
+            "rows": 3418,
+            "market_brier": 0.5804894525396068,
+            "challenger_brier": 0.5799069340681386,
+            "market_logloss": 0.9772818969928257,
+            "challenger_logloss": 0.9765066662284929,
+            "brier_delta": -0.0005825184714681741,
+            "logloss_delta": -0.0007752307643328349,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.4275046380374517,
+                "observed_rate": 0.419836161497952,
+                "absolute_error": 0.007668476539499702
+              },
+              "D": {
+                "mean_probability": 0.2487427381211646,
+                "observed_rate": 0.251316559391457,
+                "absolute_error": 0.0025738212702923757
+              },
+              "A": {
+                "mean_probability": 0.3237526238413828,
+                "observed_rate": 0.328847279110591,
+                "absolute_error": 0.005094655269208159
+              }
+            },
+            "outcomes": {
+              "H": 1435,
+              "D": 859,
+              "A": 1124
+            }
+          },
+          "test_metrics": {
+            "rows": 1777,
+            "market_brier": 0.5804000618471991,
+            "challenger_brier": 0.5809074452773921,
+            "market_logloss": 0.976095166231085,
+            "challenger_logloss": 0.97686121794214,
+            "brier_delta": 0.0005073834301930757,
+            "logloss_delta": 0.000766051711054927,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.44015844427615136,
+                "observed_rate": 0.4288126055149128,
+                "absolute_error": 0.01134583876123857
+              },
+              "D": {
+                "mean_probability": 0.24889867613887817,
+                "observed_rate": 0.2566122678671919,
+                "absolute_error": 0.007713591728313707
+              },
+              "A": {
+                "mean_probability": 0.3109428795849711,
+                "observed_rate": 0.31457512661789533,
+                "absolute_error": 0.0036322470329242518
+              }
+            },
+            "outcomes": {
+              "H": 762,
+              "D": 456,
+              "A": 559
+            }
+          },
+          "brier_improved": false,
+          "logloss_improved": false
+        },
+        {
+          "fold": "DEV_FOLD_B",
+          "train_seasons": [
+            "2019/2020",
+            "2020/2021",
+            "2021/2022"
+          ],
+          "test_season": "2022/2023",
+          "train_rows": 5195,
+          "test_rows": 1777,
+          "sample_ready": true,
+          "beta": -0.0740646679486446,
+          "beta_sign": "NEGATIVE",
+          "train_metrics": {
+            "rows": 5195,
+            "market_brier": 0.5804588755886138,
+            "challenger_brier": 0.5802768878939929,
+            "market_logloss": 0.9768759642568078,
+            "challenger_logloss": 0.9766317411219825,
+            "brier_delta": -0.0001819876946208554,
+            "logloss_delta": -0.00024422313482530544,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.43178482214279396,
+                "observed_rate": 0.4229066410009625,
+                "absolute_error": 0.008878181141831476
+              },
+              "D": {
+                "mean_probability": 0.249128123769803,
+                "observed_rate": 0.2531280076997113,
+                "absolute_error": 0.003999883929908271
+              },
+              "A": {
+                "mean_probability": 0.3190870540874008,
+                "observed_rate": 0.3239653512993263,
+                "absolute_error": 0.004878297211925509
+              }
+            },
+            "outcomes": {
+              "H": 2197,
+              "D": 1315,
+              "A": 1683
+            }
+          },
+          "test_metrics": {
+            "rows": 1777,
+            "market_brier": 0.5830672504767543,
+            "challenger_brier": 0.5832327564797382,
+            "market_logloss": 0.9791706035156373,
+            "challenger_logloss": 0.9794121996504604,
+            "brier_delta": 0.00016550600298381735,
+            "logloss_delta": 0.0002415961348231077,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.4372038650589671,
+                "observed_rate": 0.45807540799099605,
+                "absolute_error": 0.020871542932028975
+              },
+              "D": {
+                "mean_probability": 0.25156229657433093,
+                "observed_rate": 0.2442318514350028,
+                "absolute_error": 0.007330445139328123
+              },
+              "A": {
+                "mean_probability": 0.31123383836670226,
+                "observed_rate": 0.29769274057400114,
+                "absolute_error": 0.013541097792701129
+              }
+            },
+            "outcomes": {
+              "H": 814,
+              "D": 434,
+              "A": 529
+            }
+          },
+          "brier_improved": false,
+          "logloss_improved": false
+        }
+      ],
+      "sample_ready_all_folds": true,
+      "coefficient_sign_stable": true,
+      "brier_improved_all_folds": false,
+      "logloss_improved_all_folds": false,
+      "selected_for_frozen_v2": false
+    },
+    {
+      "feature": "DRAW_TITLE_PATH_SIDE",
+      "feature_index": 4,
+      "folds": [
+        {
+          "fold": "DEV_FOLD_A",
+          "train_seasons": [
+            "2019/2020",
+            "2020/2021"
+          ],
+          "test_season": "2021/2022",
+          "train_rows": 3418,
+          "test_rows": 1777,
+          "sample_ready": true,
+          "beta": 0.06433826759800805,
+          "beta_sign": "POSITIVE",
+          "train_metrics": {
+            "rows": 3418,
+            "market_brier": 0.5804894525396068,
+            "challenger_brier": 0.5803959973976455,
+            "market_logloss": 0.9772818969928257,
+            "challenger_logloss": 0.9771675517166309,
+            "brier_delta": -9.345514196135163e-05,
+            "logloss_delta": -0.00011434527619480495,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.4274705715465096,
+                "observed_rate": 0.419836161497952,
+                "absolute_error": 0.007634410048557583
+              },
+              "D": {
+                "mean_probability": 0.24941573501905537,
+                "observed_rate": 0.251316559391457,
+                "absolute_error": 0.001900824372401605
+              },
+              "A": {
+                "mean_probability": 0.3231136934344341,
+                "observed_rate": 0.328847279110591,
+                "absolute_error": 0.005733585676156894
+              }
+            },
+            "outcomes": {
+              "H": 1435,
+              "D": 859,
+              "A": 1124
+            }
+          },
+          "test_metrics": {
+            "rows": 1777,
+            "market_brier": 0.5804000618471991,
+            "challenger_brier": 0.5804681252579849,
+            "market_logloss": 0.976095166231085,
+            "challenger_logloss": 0.9762046742061796,
+            "brier_delta": 6.806341078580136e-05,
+            "logloss_delta": 0.00010950797509456933,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.43989465516078297,
+                "observed_rate": 0.4288126055149128,
+                "absolute_error": 0.011082049645870173
+              },
+              "D": {
+                "mean_probability": 0.24963407381820146,
+                "observed_rate": 0.2566122678671919,
+                "absolute_error": 0.006978194048990416
+              },
+              "A": {
+                "mean_probability": 0.3104712710210158,
+                "observed_rate": 0.31457512661789533,
+                "absolute_error": 0.004103855596879535
+              }
+            },
+            "outcomes": {
+              "H": 762,
+              "D": 456,
+              "A": 559
+            }
+          },
+          "brier_improved": false,
+          "logloss_improved": false
+        },
+        {
+          "fold": "DEV_FOLD_B",
+          "train_seasons": [
+            "2019/2020",
+            "2020/2021",
+            "2021/2022"
+          ],
+          "test_season": "2022/2023",
+          "train_rows": 5195,
+          "test_rows": 1777,
+          "sample_ready": true,
+          "beta": 0.030304760547822076,
+          "beta_sign": "POSITIVE",
+          "train_metrics": {
+            "rows": 5195,
+            "market_brier": 0.5804588755886138,
+            "challenger_brier": 0.5804355832221408,
+            "market_logloss": 0.9768759642568078,
+            "challenger_logloss": 0.9768508252361905,
+            "brier_delta": -2.329236647291566e-05,
+            "logloss_delta": -2.5139020617293006e-05,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.4317262501394469,
+                "observed_rate": 0.4229066410009625,
+                "absolute_error": 0.008819609138484397
+              },
+              "D": {
+                "mean_probability": 0.24949674867542318,
+                "observed_rate": 0.2531280076997113,
+                "absolute_error": 0.003631259024288097
+              },
+              "A": {
+                "mean_probability": 0.31877700118512725,
+                "observed_rate": 0.3239653512993263,
+                "absolute_error": 0.005188350114199047
+              }
+            },
+            "outcomes": {
+              "H": 2197,
+              "D": 1315,
+              "A": 1683
+            }
+          },
+          "test_metrics": {
+            "rows": 1777,
+            "market_brier": 0.5830672504767543,
+            "challenger_brier": 0.5830249828384204,
+            "market_logloss": 0.9791706035156373,
+            "challenger_logloss": 0.9791020583475796,
+            "brier_delta": -4.2267638333925994e-05,
+            "logloss_delta": -6.854516805776534e-05,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.4371465019052261,
+                "observed_rate": 0.45807540799099605,
+                "absolute_error": 0.02092890608576997
+              },
+              "D": {
+                "mean_probability": 0.2519490941131528,
+                "observed_rate": 0.2442318514350028,
+                "absolute_error": 0.007717242678149994
+              },
+              "A": {
+                "mean_probability": 0.31090440398162167,
+                "observed_rate": 0.29769274057400114,
+                "absolute_error": 0.013211663407620533
+              }
+            },
+            "outcomes": {
+              "H": 814,
+              "D": 434,
+              "A": 529
+            }
+          },
+          "brier_improved": true,
+          "logloss_improved": true
+        }
+      ],
+      "sample_ready_all_folds": true,
+      "coefficient_sign_stable": true,
+      "brier_improved_all_folds": false,
+      "logloss_improved_all_folds": false,
+      "selected_for_frozen_v2": false
+    },
+    {
+      "feature": "DRAW_SAFE_PATH_SIDE",
+      "feature_index": 5,
+      "folds": [
+        {
+          "fold": "DEV_FOLD_A",
+          "train_seasons": [
+            "2019/2020",
+            "2020/2021"
+          ],
+          "test_season": "2021/2022",
+          "train_rows": 3418,
+          "test_rows": 1777,
+          "sample_ready": true,
+          "beta": -0.022203496283067965,
+          "beta_sign": "NEGATIVE",
+          "train_metrics": {
+            "rows": 3418,
+            "market_brier": 0.5804894525396068,
+            "challenger_brier": 0.5804802460184473,
+            "market_logloss": 0.9772818969928257,
+            "challenger_logloss": 0.9772710783345784,
+            "brier_delta": -9.20652115954379e-06,
+            "logloss_delta": -1.081865824736905e-05,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.42745770367323394,
+                "observed_rate": 0.419836161497952,
+                "absolute_error": 0.007621542175281937
+              },
+              "D": {
+                "mean_probability": 0.24942270905478237,
+                "observed_rate": 0.251316559391457,
+                "absolute_error": 0.0018938503366746073
+              },
+              "A": {
+                "mean_probability": 0.3231195872719827,
+                "observed_rate": 0.328847279110591,
+                "absolute_error": 0.005727691838608273
+              }
+            },
+            "outcomes": {
+              "H": 1435,
+              "D": 859,
+              "A": 1124
+            }
+          },
+          "test_metrics": {
+            "rows": 1777,
+            "market_brier": 0.5804000618471991,
+            "challenger_brier": 0.5804103510604157,
+            "market_logloss": 0.976095166231085,
+            "challenger_logloss": 0.9761165694560998,
+            "brier_delta": 1.0289213216663207e-05,
+            "logloss_delta": 2.1403225014759997e-05,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.43994491600089963,
+                "observed_rate": 0.4288126055149128,
+                "absolute_error": 0.01113231048598684
+              },
+              "D": {
+                "mean_probability": 0.24963666815385752,
+                "observed_rate": 0.2566122678671919,
+                "absolute_error": 0.006975599713334363
+              },
+              "A": {
+                "mean_probability": 0.3104184158452429,
+                "observed_rate": 0.31457512661789533,
+                "absolute_error": 0.00415671077265245
+              }
+            },
+            "outcomes": {
+              "H": 762,
+              "D": 456,
+              "A": 559
+            }
+          },
+          "brier_improved": false,
+          "logloss_improved": false
+        },
+        {
+          "fold": "DEV_FOLD_B",
+          "train_seasons": [
+            "2019/2020",
+            "2020/2021",
+            "2021/2022"
+          ],
+          "test_season": "2022/2023",
+          "train_rows": 5195,
+          "test_rows": 1777,
+          "sample_ready": true,
+          "beta": -0.000772788632423289,
+          "beta_sign": "NEGATIVE",
+          "train_metrics": {
+            "rows": 5195,
+            "market_brier": 0.5804588755886138,
+            "challenger_brier": 0.5804587759623424,
+            "market_logloss": 0.9768759642568078,
+            "challenger_logloss": 0.9768759510308944,
+            "brier_delta": -9.962627134374458e-08,
+            "logloss_delta": -1.3225913364500741e-08,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.43173245286697104,
+                "observed_rate": 0.4229066410009625,
+                "absolute_error": 0.00882581186600856
+              },
+              "D": {
+                "mean_probability": 0.2494993226979039,
+                "observed_rate": 0.2531280076997113,
+                "absolute_error": 0.00362868500180738
+              },
+              "A": {
+                "mean_probability": 0.3187682244351228,
+                "observed_rate": 0.3239653512993263,
+                "absolute_error": 0.005197126864203483
+              }
+            },
+            "outcomes": {
+              "H": 2197,
+              "D": 1315,
+              "A": 1683
+            }
+          },
+          "test_metrics": {
+            "rows": 1777,
+            "market_brier": 0.5830672504767543,
+            "challenger_brier": 0.583066664937293,
+            "market_logloss": 0.9791706035156373,
+            "challenger_logloss": 0.9791697175525607,
+            "brier_delta": -5.855394613618614e-07,
+            "logloss_delta": -8.859630766799853e-07,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.4371999921208909,
+                "observed_rate": 0.45807540799099605,
+                "absolute_error": 0.020875415870105163
+              },
+              "D": {
+                "mean_probability": 0.25194509273555676,
+                "observed_rate": 0.2442318514350028,
+                "absolute_error": 0.007713241300553952
+              },
+              "A": {
+                "mean_probability": 0.3108549151435532,
+                "observed_rate": 0.29769274057400114,
+                "absolute_error": 0.013162174569552043
+              }
+            },
+            "outcomes": {
+              "H": 814,
+              "D": 434,
+              "A": 529
+            }
+          },
+          "brier_improved": true,
+          "logloss_improved": true
+        }
+      ],
+      "sample_ready_all_folds": true,
+      "coefficient_sign_stable": true,
+      "brier_improved_all_folds": false,
+      "logloss_improved_all_folds": false,
+      "selected_for_frozen_v2": false
+    }
+  ],
+  "selected_features": [],
+  "frozen_candidate": {
+    "created": false,
+    "features": [],
+    "beta": {},
+    "training_seasons": [
+      "2019/2020",
+      "2020/2021",
+      "2021/2022",
+      "2022/2023"
+    ],
+    "training_rows": 6972,
+    "parameters_may_change_after_freeze": false
+  },
+  "diagnostics": {
+    "source_rows": 16111,
+    "context_rows": 16111,
+    "source_unique_ids": 16111,
+    "context_unique_ids": 16111,
+    "invalid_context_governance_rows": 0,
+    "joined_rows": 16111,
+    "source_without_context": 0,
+    "context_without_source": 0,
+    "development_rows": 6972,
+    "excluded_dev_no_closing_market": 0,
+    "excluded_dev_unknown_features": 231,
+    "observed_v1_holdout_rows_excluded_before_v2_metrics": 5256,
+    "v1_observed_holdout_reused_as_proof": false
+  },
+  "authorization": {
+    "development_complete": true,
+    "forward_review_allowed": false,
+    "predictive_authority": "NOT_AUTHORIZED",
+    "production_integration_authorized": false,
+    "operational_betting_authority": false,
+    "probability_mutation_authorized": false,
+    "eligibility_mutation_authorized": false,
+    "stake_changes_authorized": false,
+    "value_or_ev_authorized": false,
+    "automatic_promotion": false
+  },
+  "governance": {
+    "research_only": true,
+    "historical_development_is_not_forward_validation": true,
+    "old_v1_holdout_is_not_fresh_proof": true,
+    "unknown_not_zero": true,
+    "no_posthoc_rescue_on_v1_holdout": true,
+    "forward_evidence_required_for_any_later_authorization": true
+  }
+}
