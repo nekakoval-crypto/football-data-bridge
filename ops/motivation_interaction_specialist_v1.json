@@ -1,0 +1,394 @@
+{
+  "version": "PBK_MOTIVATION_INTERACTION_SPECIALIST_V1",
+  "status": "FROZEN_FORWARD_INTERACTION_CANDIDATE_READY",
+  "development_scope": {
+    "development_seasons": [
+      "2019/2020",
+      "2020/2021",
+      "2021/2022",
+      "2022/2023"
+    ],
+    "observed_v1_holdout": [
+      "2023/2024",
+      "2024/2025",
+      "2025/2026"
+    ],
+    "observed_v1_holdout_reused_as_proof": false,
+    "folds": [
+      {
+        "fold": "DEV_FOLD_A",
+        "train": [
+          "2019/2020",
+          "2020/2021"
+        ],
+        "test": "2021/2022"
+      },
+      {
+        "fold": "DEV_FOLD_B",
+        "train": [
+          "2019/2020",
+          "2020/2021",
+          "2021/2022"
+        ],
+        "test": "2022/2023"
+      }
+    ]
+  },
+  "preregistered_interactions": [
+    "HIGH_PRESSURE_X_FORM_ALIGNMENT",
+    "HIGH_PRESSURE_X_SHORT_REST_DISADVANTAGE",
+    "HIGH_PRESSURE_X_LARGE_RANK_DISADVANTAGE",
+    "LATE_SURVIVAL_X_SHORT_REST"
+  ],
+  "interaction_screen": [
+    {
+      "interaction": "HIGH_PRESSURE_X_FORM_ALIGNMENT",
+      "index": 0,
+      "folds": [
+        {
+          "fold": "DEV_FOLD_A",
+          "train_seasons": [
+            "2019/2020",
+            "2020/2021"
+          ],
+          "test_season": "2021/2022",
+          "train_rows": 3053,
+          "test_rows": 1578,
+          "active_train_rows": 104,
+          "active_test_rows": 64,
+          "sample_ready": true,
+          "beta": -0.1268351511921792,
+          "beta_sign": "NEGATIVE",
+          "test_metrics": {
+            "rows": 1578,
+            "market_brier": 0.5813626788298009,
+            "challenger_brier": 0.5812331748609175,
+            "market_logloss": 0.9777655963342998,
+            "challenger_logloss": 0.97769356708085,
+            "brier_delta": -0.0001295039688833377,
+            "logloss_delta": -7.202925344984568e-05,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.4400011590869273,
+                "observed_rate": 0.435361216730038,
+                "absolute_error": 0.004639942356889248
+              },
+              "D": {
+                "mean_probability": 0.24967316631172343,
+                "observed_rate": 0.25158428390367554,
+                "absolute_error": 0.0019111175919521162
+              },
+              "A": {
+                "mean_probability": 0.31032567460134947,
+                "observed_rate": 0.31305449936628643,
+                "absolute_error": 0.0027288247649369657
+              }
+            },
+            "outcomes": {
+              "H": 687,
+              "D": 397,
+              "A": 494
+            }
+          },
+          "brier_improved": true,
+          "logloss_improved": true
+        },
+        {
+          "fold": "DEV_FOLD_B",
+          "train_seasons": [
+            "2019/2020",
+            "2020/2021",
+            "2021/2022"
+          ],
+          "test_season": "2022/2023",
+          "train_rows": 4631,
+          "test_rows": 1580,
+          "active_train_rows": 168,
+          "active_test_rows": 54,
+          "sample_ready": true,
+          "beta": -0.09842540907631041,
+          "beta_sign": "NEGATIVE",
+          "test_metrics": {
+            "rows": 1580,
+            "market_brier": 0.5817640992390728,
+            "challenger_brier": 0.5817145549918264,
+            "market_logloss": 0.9774113029881576,
+            "challenger_logloss": 0.9772906673063846,
+            "brier_delta": -4.9544247246346984e-05,
+            "logloss_delta": -0.00012063568177300699,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.4364082531518655,
+                "observed_rate": 0.4651898734177215,
+                "absolute_error": 0.02878162026585601
+              },
+              "D": {
+                "mean_probability": 0.25287067910487737,
+                "observed_rate": 0.23734177215189872,
+                "absolute_error": 0.01552890695297865
+              },
+              "A": {
+                "mean_probability": 0.31072106774325703,
+                "observed_rate": 0.2974683544303797,
+                "absolute_error": 0.013252713312877307
+              }
+            },
+            "outcomes": {
+              "H": 735,
+              "D": 375,
+              "A": 470
+            }
+          },
+          "brier_improved": true,
+          "logloss_improved": true
+        }
+      ],
+      "sample_ready_all_folds": true,
+      "coefficient_sign_stable": true,
+      "brier_improved_all_folds": true,
+      "logloss_improved_all_folds": true,
+      "selected_for_forward_candidate": true
+    },
+    {
+      "interaction": "HIGH_PRESSURE_X_SHORT_REST_DISADVANTAGE",
+      "index": 1,
+      "folds": [
+        {
+          "fold": "DEV_FOLD_A",
+          "train_seasons": [
+            "2019/2020",
+            "2020/2021"
+          ],
+          "test_season": "2021/2022",
+          "train_rows": 3053,
+          "test_rows": 1578,
+          "active_train_rows": 38,
+          "active_test_rows": 9,
+          "sample_ready": false
+        },
+        {
+          "fold": "DEV_FOLD_B",
+          "train_seasons": [
+            "2019/2020",
+            "2020/2021",
+            "2021/2022"
+          ],
+          "test_season": "2022/2023",
+          "train_rows": 4631,
+          "test_rows": 1580,
+          "active_train_rows": 47,
+          "active_test_rows": 11,
+          "sample_ready": false
+        }
+      ],
+      "sample_ready_all_folds": false,
+      "coefficient_sign_stable": false,
+      "brier_improved_all_folds": false,
+      "logloss_improved_all_folds": false,
+      "selected_for_forward_candidate": false
+    },
+    {
+      "interaction": "HIGH_PRESSURE_X_LARGE_RANK_DISADVANTAGE",
+      "index": 2,
+      "folds": [
+        {
+          "fold": "DEV_FOLD_A",
+          "train_seasons": [
+            "2019/2020",
+            "2020/2021"
+          ],
+          "test_season": "2021/2022",
+          "train_rows": 3053,
+          "test_rows": 1578,
+          "active_train_rows": 263,
+          "active_test_rows": 143,
+          "sample_ready": true,
+          "beta": -0.0721679329810674,
+          "beta_sign": "NEGATIVE",
+          "test_metrics": {
+            "rows": 1578,
+            "market_brier": 0.5813626788298009,
+            "challenger_brier": 0.5813364807914992,
+            "market_logloss": 0.9777655963342998,
+            "challenger_logloss": 0.9777135974796363,
+            "brier_delta": -2.6198038301616933e-05,
+            "logloss_delta": -5.199885466355969e-05,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.4400000005807611,
+                "observed_rate": 0.435361216730038,
+                "absolute_error": 0.004638783850723083
+              },
+              "D": {
+                "mean_probability": 0.24904279864306925,
+                "observed_rate": 0.25158428390367554,
+                "absolute_error": 0.0025414852606062965
+              },
+              "A": {
+                "mean_probability": 0.31095720077617023,
+                "observed_rate": 0.31305449936628643,
+                "absolute_error": 0.0020972985901162033
+              }
+            },
+            "outcomes": {
+              "H": 687,
+              "D": 397,
+              "A": 494
+            }
+          },
+          "brier_improved": true,
+          "logloss_improved": true
+        },
+        {
+          "fold": "DEV_FOLD_B",
+          "train_seasons": [
+            "2019/2020",
+            "2020/2021",
+            "2021/2022"
+          ],
+          "test_season": "2022/2023",
+          "train_rows": 4631,
+          "test_rows": 1580,
+          "active_train_rows": 406,
+          "active_test_rows": 156,
+          "sample_ready": true,
+          "beta": -0.0596032343928602,
+          "beta_sign": "NEGATIVE",
+          "test_metrics": {
+            "rows": 1580,
+            "market_brier": 0.5817640992390728,
+            "challenger_brier": 0.5817169033128359,
+            "market_logloss": 0.9774113029881576,
+            "challenger_logloss": 0.9774018255441949,
+            "brier_delta": -4.719592623692037e-05,
+            "logloss_delta": -9.477443962735421e-06,
+            "calibration": {
+              "H": {
+                "mean_probability": 0.43641741957588753,
+                "observed_rate": 0.4651898734177215,
+                "absolute_error": 0.028772453841833967
+              },
+              "D": {
+                "mean_probability": 0.2523742328974147,
+                "observed_rate": 0.23734177215189872,
+                "absolute_error": 0.015032460745515952
+              },
+              "A": {
+                "mean_probability": 0.31120834752669774,
+                "observed_rate": 0.2974683544303797,
+                "absolute_error": 0.013739993096318015
+              }
+            },
+            "outcomes": {
+              "H": 735,
+              "D": 375,
+              "A": 470
+            }
+          },
+          "brier_improved": true,
+          "logloss_improved": true
+        }
+      ],
+      "sample_ready_all_folds": true,
+      "coefficient_sign_stable": true,
+      "brier_improved_all_folds": true,
+      "logloss_improved_all_folds": true,
+      "selected_for_forward_candidate": true
+    },
+    {
+      "interaction": "LATE_SURVIVAL_X_SHORT_REST",
+      "index": 3,
+      "folds": [
+        {
+          "fold": "DEV_FOLD_A",
+          "train_seasons": [
+            "2019/2020",
+            "2020/2021"
+          ],
+          "test_season": "2021/2022",
+          "train_rows": 3053,
+          "test_rows": 1578,
+          "active_train_rows": 26,
+          "active_test_rows": 6,
+          "sample_ready": false
+        },
+        {
+          "fold": "DEV_FOLD_B",
+          "train_seasons": [
+            "2019/2020",
+            "2020/2021",
+            "2021/2022"
+          ],
+          "test_season": "2022/2023",
+          "train_rows": 4631,
+          "test_rows": 1580,
+          "active_train_rows": 32,
+          "active_test_rows": 5,
+          "sample_ready": false
+        }
+      ],
+      "sample_ready_all_folds": false,
+      "coefficient_sign_stable": false,
+      "brier_improved_all_folds": false,
+      "logloss_improved_all_folds": false,
+      "selected_for_forward_candidate": false
+    }
+  ],
+  "selected_interactions": [
+    "HIGH_PRESSURE_X_FORM_ALIGNMENT",
+    "HIGH_PRESSURE_X_LARGE_RANK_DISADVANTAGE"
+  ],
+  "frozen_candidate": {
+    "created": true,
+    "formula": "softmax(log(p_market_H)+z, log(p_market_D), log(p_market_A)-z)",
+    "interactions": [
+      "HIGH_PRESSURE_X_FORM_ALIGNMENT",
+      "HIGH_PRESSURE_X_LARGE_RANK_DISADVANTAGE"
+    ],
+    "beta": {
+      "HIGH_PRESSURE_X_FORM_ALIGNMENT": -0.08139028122268811,
+      "HIGH_PRESSURE_X_LARGE_RANK_DISADVANTAGE": -0.04354603042978898
+    },
+    "development_rows": 6211,
+    "parameters_may_change_after_freeze": false
+  },
+  "diagnostics": {
+    "source_rows": 16111,
+    "context_rows": 16111,
+    "source_unique_ids": 16111,
+    "context_unique_ids": 16111,
+    "invalid_context_governance_rows": 0,
+    "joined_rows": 16111,
+    "source_without_context": 0,
+    "context_without_source": 0,
+    "prematch_rows": 16111,
+    "prematch_unique_ids": 16111,
+    "invalid_prematch_governance_rows": 0,
+    "development_rows": 6211,
+    "excluded_observed_v1_holdout_before_metrics": 5256,
+    "excluded_dev_no_closing_market": 0,
+    "excluded_unknown_interaction": 992,
+    "missing_prematch_context": 0,
+    "observed_v1_holdout_reused_as_proof": false
+  },
+  "authorization": {
+    "development_complete": true,
+    "forward_review_allowed": true,
+    "predictive_authority": "NOT_AUTHORIZED",
+    "production_integration_authorized": false,
+    "operational_betting_authority": false,
+    "probability_mutation_authorized": false,
+    "eligibility_mutation_authorized": false,
+    "stake_changes_authorized": false,
+    "value_or_ev_authorized": false,
+    "automatic_promotion": false
+  },
+  "governance": {
+    "research_only": true,
+    "unknown_not_zero": true,
+    "historical_development_is_not_forward_validation": true,
+    "standalone_motivation_models_v1_v2_remain_rejected": true,
+    "old_holdout_not_reused_as_fresh_proof": true,
+    "forward_evidence_required_for_any_later_authorization": true
+  }
+}
