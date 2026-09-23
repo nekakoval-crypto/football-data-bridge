@@ -1,0 +1,255 @@
+{
+  "version": "PBK_MOTIVATION_SPECIALIST_CHALLENGER_V1",
+  "status": "COMPLETE",
+  "final_verdict": "FAIL_HISTORICAL_MOTIVATION_CHALLENGER_V1",
+  "baseline": "CLOSING_1X2_MARKET_NOVIG",
+  "challenger": "MARKET_OFFSET_PLUS_DIRECTIONAL_MOTIVATION_LOGIT_V1",
+  "features": [
+    "PRESSURE_ASYMMETRY",
+    "HIGH_PRESSURE_SIDE",
+    "LATE_TITLE_NEAR_3_SIDE",
+    "LATE_SURVIVAL_DANGER_SIDE",
+    "DRAW_TITLE_PATH_SIDE",
+    "DRAW_SAFE_PATH_SIDE"
+  ],
+  "feature_semantics": "Directional HOME=+1, AWAY=-1, known symmetric/neutral=0. UNKNOWN observations are excluded.",
+  "fit_contract": {
+    "archive_seasons_total": 9,
+    "closing_market_seasons_total": 7,
+    "closing_market_first_season": "2019/2020",
+    "closing_market_availability_amendment": "PREREGISTRATION_DATA_AVAILABILITY_ONLY_BEFORE_HOLDOUT_METRICS_SEEN",
+    "train_seasons": [
+      "2019/2020",
+      "2020/2021",
+      "2021/2022",
+      "2022/2023"
+    ],
+    "holdout_seasons": [
+      "2023/2024",
+      "2024/2025",
+      "2025/2026"
+    ],
+    "l2": 0.02,
+    "learning_rate": 0.08,
+    "iterations": 1800,
+    "intercept": false,
+    "parameters_fit_on_holdout": false,
+    "posthoc_tuning": false
+  },
+  "fit": {
+    "PRESSURE_ASYMMETRY": 0.016914929846629564,
+    "HIGH_PRESSURE_SIDE": -0.05182757855420307,
+    "LATE_TITLE_NEAR_3_SIDE": -0.010179406396599668,
+    "LATE_SURVIVAL_DANGER_SIDE": -0.02755361665896335,
+    "DRAW_TITLE_PATH_SIDE": 0.037216366369763436,
+    "DRAW_SAFE_PATH_SIDE": -0.00812479541778647
+  },
+  "samples": {
+    "joined_rows": 16111,
+    "usable_model_rows": 12084,
+    "train_rows": 6972,
+    "holdout_rows": 5112,
+    "excluded_no_closing_1x2": 3652,
+    "excluded_unknown_features": 375
+  },
+  "train_metrics": {
+    "rows": 6972,
+    "market_brier": 0.5811236894406255,
+    "challenger_brier": 0.5809361275729831,
+    "market_logloss": 0.9774608142228062,
+    "challenger_logloss": 0.9772040125033769,
+    "brier_delta": -0.00018756186764246063,
+    "logloss_delta": -0.0002568017194293226,
+    "calibration": {
+      "H": {
+        "mean_probability": 0.43313397245733876,
+        "observed_rate": 0.43187033849684453,
+        "absolute_error": 0.001263633960494226
+      },
+      "D": {
+        "mean_probability": 0.25002516939344427,
+        "observed_rate": 0.2508605851979346,
+        "absolute_error": 0.0008354158044903137
+      },
+      "A": {
+        "mean_probability": 0.3168408581492177,
+        "observed_rate": 0.3172690763052209,
+        "absolute_error": 0.0004282181560031906
+      }
+    },
+    "outcomes": {
+      "H": 3011,
+      "D": 1749,
+      "A": 2212
+    }
+  },
+  "holdout_metrics": {
+    "rows": 5112,
+    "market_brier": 0.5729106223101768,
+    "challenger_brier": 0.5731219698161725,
+    "market_logloss": 0.9638202999017698,
+    "challenger_logloss": 0.964095058861095,
+    "brier_delta": 0.00021134750599571817,
+    "logloss_delta": 0.00027475895932527195,
+    "calibration": {
+      "H": {
+        "mean_probability": 0.43911267505570317,
+        "observed_rate": 0.43172926447574334,
+        "absolute_error": 0.007383410579959837
+      },
+      "D": {
+        "mean_probability": 0.24965875843284252,
+        "observed_rate": 0.25508607198748046,
+        "absolute_error": 0.005427313554637936
+      },
+      "A": {
+        "mean_probability": 0.3112285665114536,
+        "observed_rate": 0.3131846635367762,
+        "absolute_error": 0.001956097025322623
+      }
+    },
+    "outcomes": {
+      "H": 2207,
+      "D": 1304,
+      "A": 1601
+    }
+  },
+  "holdout_season_metrics": {
+    "2023/2024": {
+      "rows": 1704,
+      "market_brier": 0.566478905333285,
+      "challenger_brier": 0.5668469584164217,
+      "market_logloss": 0.9539275999894617,
+      "challenger_logloss": 0.9543505446381018,
+      "brier_delta": 0.00036805308313669904,
+      "logloss_delta": 0.00042294464864001124,
+      "calibration": {
+        "H": {
+          "mean_probability": 0.4435048414579962,
+          "observed_rate": 0.4325117370892019,
+          "absolute_error": 0.010993104368794304
+        },
+        "D": {
+          "mean_probability": 0.24676859095892784,
+          "observed_rate": 0.26467136150234744,
+          "absolute_error": 0.0179027705434196
+        },
+        "A": {
+          "mean_probability": 0.30972656758307504,
+          "observed_rate": 0.3028169014084507,
+          "absolute_error": 0.0069096661746243515
+        }
+      },
+      "outcomes": {
+        "H": 737,
+        "D": 451,
+        "A": 516
+      }
+    },
+    "2024/2025": {
+      "rows": 1704,
+      "market_brier": 0.5703784100900172,
+      "challenger_brier": 0.5703975989955755,
+      "market_logloss": 0.9604660993876425,
+      "challenger_logloss": 0.9605241187050285,
+      "brier_delta": 1.918890555829833e-05,
+      "logloss_delta": 5.8019317386026614e-05,
+      "calibration": {
+        "H": {
+          "mean_probability": 0.44195933047949915,
+          "observed_rate": 0.4225352112676056,
+          "absolute_error": 0.01942411921189352
+        },
+        "D": {
+          "mean_probability": 0.2485931168863592,
+          "observed_rate": 0.24589201877934272,
+          "absolute_error": 0.002701098107016492
+        },
+        "A": {
+          "mean_probability": 0.30944755263414236,
+          "observed_rate": 0.3315727699530516,
+          "absolute_error": 0.022125217318909263
+        }
+      },
+      "outcomes": {
+        "H": 720,
+        "D": 419,
+        "A": 565
+      }
+    },
+    "2025/2026": {
+      "rows": 1704,
+      "market_brier": 0.581874551507228,
+      "challenger_brier": 0.5821213520365203,
+      "market_logloss": 0.9770672003282048,
+      "challenger_logloss": 0.9774105132401548,
+      "brier_delta": 0.00024680052929226814,
+      "logloss_delta": 0.00034331291195,
+      "calibration": {
+        "H": {
+          "mean_probability": 0.4318738532296127,
+          "observed_rate": 0.44014084507042256,
+          "absolute_error": 0.008266991840809867
+        },
+        "D": {
+          "mean_probability": 0.25361456745324273,
+          "observed_rate": 0.2546948356807512,
+          "absolute_error": 0.0010802682275084519
+        },
+        "A": {
+          "mean_probability": 0.31451157931714396,
+          "observed_rate": 0.3051643192488263,
+          "absolute_error": 0.009347260068317653
+        }
+      },
+      "outcomes": {
+        "H": 750,
+        "D": 434,
+        "A": 520
+      }
+    }
+  },
+  "holdout_seasons_with_both_metrics_improved": 0,
+  "maximum_holdout_class_calibration_error": 0.007383410579959837,
+  "gates": {
+    "train_sample": true,
+    "holdout_sample": true,
+    "holdout_brier_strict_improvement": false,
+    "holdout_logloss_strict_improvement": false,
+    "holdout_class_calibration": true,
+    "holdout_season_stability": false,
+    "no_unknown_as_zero": true,
+    "no_posthoc_tuning": true,
+    "no_intercept_home_bias": true
+  },
+  "source_diagnostics": {
+    "source_rows": 16111,
+    "context_rows": 16111,
+    "source_unique_ids": 16111,
+    "context_unique_ids": 16111,
+    "invalid_context_governance_rows": 0,
+    "joined_rows": 16111,
+    "source_without_context": 0,
+    "context_without_source": 0
+  },
+  "authorization": {
+    "historical_research_complete": true,
+    "forward_review_required": false,
+    "predictive_authority": "NOT_AUTHORIZED",
+    "production_integration_authorized": false,
+    "operational_betting_authority": false,
+    "probability_mutation_authorized": false,
+    "eligibility_mutation_authorized": false,
+    "stake_changes_authorized": false,
+    "value_or_ev_authorized": false,
+    "automatic_promotion": false
+  },
+  "governance": {
+    "research_only": true,
+    "market_probability_is_baseline_not_pbk_opinion": true,
+    "unknown_not_zero": true,
+    "no_lookahead_context_required": true,
+    "historical_holdout_is_not_forward_validation": true,
+    "profitability_conclusion": false
+  }
+}
