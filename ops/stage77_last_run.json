@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE77_PLAYER_STATS_CAPTURE_V3_FAIR_BACKLOG",
-  "run_at_utc": "2026-09-23T08:55:36Z",
+  "run_at_utc": "2026-09-23T12:58:14Z",
   "status": "OK",
   "provider_endpoint": "/fixtures/players",
   "provider_calls": 0,
-  "daily_api_calls": 927,
+  "daily_api_calls": 1299,
   "protected_calls": {
     "live": 0,
     "current_round": 64,
@@ -29,8 +29,8 @@
   "fair_retry_order": true,
   "new_stats_rows": 0,
   "new_grade_rows": 0,
-  "total_stats_rows": 186995,
-  "total_grade_rows": 186995,
+  "total_stats_rows": 196408,
+  "total_grade_rows": 196408,
   "warnings": [],
   "research_only": true,
   "no_lookahead_consumption": true,
