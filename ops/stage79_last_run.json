@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-23T00:29:54Z",
-  "status": "OK",
+  "run_at_utc": "2026-09-23T02:25:03Z",
+  "status": "ATTENTION",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 8,
-  "daily_api_calls": 8,
+  "provider_calls": 0,
+  "daily_api_calls": 134,
   "protected_calls": {
     "live": 0,
     "current_round": 96,
@@ -14,51 +14,12 @@
   },
   "roster_ttl_days": 7,
   "candidate_teams": 8,
-  "captured_teams": [
-    {
-      "team_id": "197",
-      "team_name": "PSV Eindhoven",
-      "players": 33
-    },
-    {
-      "team_id": "210",
-      "team_name": "Heerenveen",
-      "players": 28
-    },
-    {
-      "team_id": "3484",
-      "team_name": "GKS Katowice",
-      "players": 30
-    },
-    {
-      "team_id": "3491",
-      "team_name": "Raków Częstochowa",
-      "players": 31
-    },
-    {
-      "team_id": "259",
-      "team_name": "Lommel United",
-      "players": 28
-    },
-    {
-      "team_id": "738",
-      "team_name": "SK Beveren",
-      "players": 30
-    },
-    {
-      "team_id": "217",
-      "team_name": "SC Braga",
-      "players": 30
-    },
-    {
-      "team_id": "228",
-      "team_name": "Sporting CP",
-      "players": 35
-    }
-  ],
-  "deferred_teams": 0,
+  "captured_teams": [],
+  "deferred_teams": 8,
   "total_roster_rows": 4014,
-  "warnings": [],
+  "warnings": [
+    "Stage71 protected API reserve reached; Challenger deferred"
+  ],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
