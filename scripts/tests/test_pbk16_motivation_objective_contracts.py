@@ -405,7 +405,6 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
     def test_batch_f_temporal_and_complex_exceptions_stay_unknown(self):
         exceptions = [
             row("Turkey",203,"Super Lig",2022),
-            row("Poland",106,"Ekstraklasa",2019),
         ]
 
         for payload in exceptions:
@@ -588,8 +587,6 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
     def test_batch_g_known_exceptions_remain_unknown(self):
         exceptions = [
             row("Turkey",203,"Super Lig",2022),
-            row("Poland",106,"Ekstraklasa",2019),
-            row("Scotland",179,"Premiership",2019),
         ]
 
         for payload in exceptions:
@@ -839,6 +836,87 @@ class PBK16MotivationObjectiveContractsTests(unittest.TestCase):
         )
         self.assertIsNone(
             turkey["direct_relegation_start_rank"]
+        )
+
+
+
+    def test_batch_k_scotland_and_poland_2019(self):
+        scotland = c.cell_contract(
+            row("Scotland",179,"Premiership",2019)
+        )
+
+        self.assertEqual(scotland["status"], "VERIFIED")
+        self.assertEqual(
+            scotland["season_completion_status"],
+            "CURTAILED",
+        )
+        self.assertEqual(
+            scotland["title_status"],
+            "AWARDED",
+        )
+        self.assertEqual(
+            scotland["relegation_status"],
+            "APPLIES",
+        )
+        self.assertTrue(
+            scotland["title_boundary_authorized"]
+        )
+        self.assertTrue(
+            scotland["relegation_boundary_authorized"]
+        )
+        self.assertEqual(
+            scotland["format_type"],
+            "CURTAILED_PPG_FINAL_TABLE",
+        )
+        self.assertEqual(
+            scotland["points_transform"],
+            "PPG_FINALIZATION",
+        )
+        self.assertEqual(
+            scotland["direct_relegation_start_rank"],
+            12,
+        )
+        self.assertIsNone(
+            scotland["relegation_playoff_rank"]
+        )
+
+        poland = c.cell_contract(
+            row("Poland",106,"Ekstraklasa",2019)
+        )
+
+        self.assertEqual(poland["status"], "VERIFIED")
+        self.assertEqual(
+            poland["season_completion_status"],
+            "COMPLETED",
+        )
+        self.assertEqual(
+            poland["format_type"],
+            "SPLIT_TOP8_BOTTOM8",
+        )
+        self.assertTrue(poland["phase_aware"])
+        self.assertEqual(
+            poland["regular_phase_games"],
+            30,
+        )
+        self.assertEqual(
+            poland["post_split_games"],
+            7,
+        )
+        self.assertEqual(
+            poland["points_transform"],
+            "NONE",
+        )
+        self.assertEqual(
+            poland["total_games"],
+            37,
+        )
+        self.assertEqual(
+            poland["direct_relegation_start_rank"],
+            14,
+        )
+        self.assertEqual(
+            poland["safe_rank"],
+            13,
         )
 
 
