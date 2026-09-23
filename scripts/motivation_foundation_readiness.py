@@ -13,9 +13,11 @@ from typing import Any
 try:
     from scripts import pbk16_motivation_objective_contracts as objective_contracts
     from scripts import motivation_rivalry
+    from scripts import motivation_forward_validation
 except ModuleNotFoundError:
     import pbk16_motivation_objective_contracts as objective_contracts
     import motivation_rivalry
+    import motivation_forward_validation
 
 ROOT = Path(__file__).resolve().parents[1]
 OPS = ROOT / "ops"
@@ -69,6 +71,33 @@ def build_readiness(ops: Path = OPS, config: Path = CONFIG) -> dict[str, Any]:
     rivalry_catalog_complete = bool(
         rivalry_readiness.get("verified")
     )
+    forward_validation = (
+        motivation_forward_validation
+        .engineering_readiness()
+    )
+    forward_validation_rail_complete = (
+        forward_validation.get(
+            "engineering_status"
+        ) == "COMPLETE"
+        and bool(
+            forward_validation.get(
+                "forward_validation_rail"
+            )
+        )
+        and bool(
+            forward_validation.get(
+                "no_lookahead"
+            )
+        )
+        and forward_validation.get(
+            "historical_backfill"
+        ) == "FORBIDDEN"
+        and not bool(
+            forward_validation.get(
+                "operational_betting_authority"
+            )
+        )
+    )
 
     objective_coverage = objective_contracts.build_coverage()
     exact_pbk16 = bool(
@@ -90,8 +119,13 @@ def build_readiness(ops: Path = OPS, config: Path = CONFIG) -> dict[str, Any]:
         blockers.append("RIVALRY_CATALOG_MISSING")
     elif not rivalry_catalog_complete:
         blockers.append("RIVALRY_CATALOG_PARTIAL")
-    blockers.append("FORWARD_MOTIVATION_LABEL_AND_VALIDATION_RAIL_NOT_COMPLETE")
-    blockers.append("MOTIVATION_SPECIALIST_PROBABILITY_MODEL_NOT_VALIDATED")
+    if not forward_validation_rail_complete:
+        blockers.append(
+            "FORWARD_MOTIVATION_LABEL_AND_VALIDATION_RAIL_NOT_COMPLETE"
+        )
+    blockers.append(
+        "MOTIVATION_SPECIALIST_PROBABILITY_MODEL_NOT_VALIDATED"
+    )
 
     data_ready = all(
         [top5_ok, market_ok, pbk16_table_ok, forward_capture_ok, rivalry_catalog_present]
@@ -100,7 +134,7 @@ def build_readiness(ops: Path = OPS, config: Path = CONFIG) -> dict[str, Any]:
         data_ready
         and exact_pbk16
         and rivalry_catalog_complete
-        and "FORWARD_MOTIVATION_LABEL_AND_VALIDATION_RAIL_NOT_COMPLETE" not in blockers
+        and forward_validation_rail_complete
     )
 
     return {
@@ -136,6 +170,16 @@ def build_readiness(ops: Path = OPS, config: Path = CONFIG) -> dict[str, Any]:
             "rivalry_catalog_exhaustiveness": rivalry_readiness.get(
                 "exhaustiveness"
             ),
+            "forward_motivation_prematch_events": int(
+                forward_validation.get(
+                    "prematch_events"
+                ) or 0
+            ),
+            "forward_motivation_labeled_events": int(
+                forward_validation.get(
+                    "labeled_events"
+                ) or 0
+            ),
             "exact_objective_required_cells": int(
                 objective_coverage.get("required_league_season_cells") or 0
             ),
@@ -157,6 +201,14 @@ def build_readiness(ops: Path = OPS, config: Path = CONFIG) -> dict[str, Any]:
             "rivalry_catalog_non_exhaustive_by_design": (
                 rivalry_readiness.get("exhaustiveness")
                 == "NON_EXHAUSTIVE_BY_DESIGN"
+            ),
+            "forward_motivation_validation_rail": (
+                forward_validation_rail_complete
+            ),
+            "forward_motivation_prospective_only": bool(
+                forward_validation.get(
+                    "prospective_only"
+                )
             ),
             "direct_rival_context": True,
             "outcome_necessity_context": True,

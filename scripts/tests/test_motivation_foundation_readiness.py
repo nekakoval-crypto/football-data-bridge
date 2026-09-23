@@ -100,13 +100,13 @@ class MotivationFoundationReadinessTests(unittest.TestCase):
             self.assertEqual(report["evidence"]["exact_objective_missing_cells"],0)
             self.assertFalse(report["operational_betting_authority"])
 
-    def test_even_with_pbk16_and_catalog_forward_validation_still_blocks_closure(self):
+    def test_with_pbk16_catalog_and_forward_rail_foundation_closes_but_predictive_authority_stays_blocked(self):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             ops, config = self.materialize(root, exact=True, catalog=True)
             report = build_readiness(ops, config)
-            self.assertEqual(report["status"], "IN_PROGRESS")
-            self.assertIn(
+            self.assertEqual(report["status"], "COMPLETE")
+            self.assertNotIn(
                 "FORWARD_MOTIVATION_LABEL_AND_VALIDATION_RAIL_NOT_COMPLETE",
                 report["hard_blockers_to_foundation_closure"],
             )
