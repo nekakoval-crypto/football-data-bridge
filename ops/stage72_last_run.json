@@ -1,10 +1,10 @@
 {
-  "run_at_utc": "2026-09-23T15:32:50Z",
+  "run_at_utc": "2026-09-23T15:36:17Z",
   "status": "OK",
   "schema_version": "15",
   "db_path": "build/pbk_unified.sqlite",
-  "db_bytes": 559910912,
-  "db_sha256": "3fe827201b87651dccac313d2a407346abee15c9ea3e26fd3b7781f4ebef05fe",
+  "db_bytes": 560066560,
+  "db_sha256": "e7fd957e306bb55fa53a3c38683816c1a3865bd7efcdb816f282d81f66035e70",
   "integrity_check": "ok",
   "tables": 180,
   "manifest_sources": 166,
@@ -42,7 +42,7 @@
     "current_round_matches": 128,
     "standings_snapshots": 40,
     "fixture_motivation": 128,
-    "formation_research_events": 18638
+    "formation_research_events": 18766
   },
   "missing_stable_sources": [],
   "historical_leakage_violations": 0,
