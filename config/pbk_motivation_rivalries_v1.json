@@ -1,12 +1,16 @@
 {
   "version": "PBK_MOTIVATION_RIVALRIES_V2",
   "schema_version": 2,
-  "status": "PARTIAL_VERIFIED_CATALOG",
+  "status": "VERIFIED_PBK16_CATALOG",
   "matching_policy": "EXACT_NORMALIZED_ALIAS_ONLY_NO_FUZZY",
   "coverage": {
+    "verification_scope": "PBK16_BASELINE",
     "pbk16_leagues_represented": 16,
-    "catalog_completeness": "PARTIAL",
-    "rule": "Verified rivalry contracts exist across PBK16, but the catalog remains explicitly non-exhaustive; V2 semantic classes are migrated incrementally without breaking legacy consumers."
+    "verified_contracts": 58,
+    "catalog_completeness": "VERIFIED_BASELINE",
+    "exhaustiveness": "NON_EXHAUSTIVE_BY_DESIGN",
+    "unknown_pair_policy": "UNKNOWN",
+    "rule": "Verified rivalry contracts form a governed PBK16 baseline across all 16 leagues. The catalog is explicitly non-exhaustive: absence of an exact verified contract remains UNKNOWN and must never be inferred from geography, fuzzy names, standings, results, or later knowledge."
   },
   "governance": {
     "rivalry_is_independent_dimension": true,
@@ -16,63 +20,1327 @@
     "prematch_only": true
   },
   "rivalries": [
-    {"id":"ENG_NORTH_LONDON","rivalry_name":"North London derby","rivalry_type":"DERBY","competition_scope":"ENGLAND","principled_rivalry":true,"team_a_aliases":["Arsenal"],"team_b_aliases":["Tottenham","Tottenham Hotspur"],"rivalry_classes":["LOCAL_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null},
-    {"id":"ENG_TYNE_WEAR","rivalry_name":"Tyne-Wear derby","rivalry_type":"DERBY","competition_scope":"ENGLAND","principled_rivalry":true,"rivalry_classes":["LOCAL_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Newcastle","Newcastle United"],"team_b_aliases":["Sunderland"]},
-    {"id":"ENG_PALACE_BRIGHTON","rivalry_name":"Crystal Palace-Brighton rivalry","rivalry_type":"RIVALRY","competition_scope":"ENGLAND","principled_rivalry":true,"rivalry_classes":["HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Crystal Palace"],"team_b_aliases":["Brighton","Brighton and Hove Albion","Brighton & Hove Albion"]},
-    {"id":"ENG_MERSEYSIDE_DERBY","rivalry_name":"Merseyside derby","rivalry_type":"DERBY","competition_scope":"ENGLAND","principled_rivalry":true,"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Liverpool"],"team_b_aliases":["Everton"]},
-    {"id":"ENG_MANCHESTER_DERBY","rivalry_name":"Manchester derby","rivalry_type":"DERBY","competition_scope":"ENGLAND","principled_rivalry":true,"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Manchester United"],"team_b_aliases":["Manchester City"]},
-    {"id":"ENG_LIVERPOOL_MAN_UTD","rivalry_name":"Liverpool-Manchester United rivalry","rivalry_type":"RIVALRY","competition_scope":"ENGLAND","principled_rivalry":true,"rivalry_classes":["NATIONAL_RIVALRY","HISTORIC_RIVALRY"],"derby_label":false,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Liverpool"],"team_b_aliases":["Manchester United"]},
-    {"id":"ESP_MADRID_DERBY_REAL_ATLETICO","rivalry_name":"Madrid derby","rivalry_type":"DERBY","competition_scope":"SPAIN","principled_rivalry":true,"team_a_aliases":["Real Madrid"],"team_b_aliases":["Atlético de Madrid","Atletico Madrid","Club Atlético de Madrid","Club Atletico de Madrid"],"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null},
-    {"id":"ESP_EL_CLASICO","rivalry_name":"El Clasico","rivalry_type":"RIVALRY","competition_scope":"SPAIN","principled_rivalry":true,"rivalry_classes":["NATIONAL_RIVALRY","HISTORIC_RIVALRY"],"derby_label":false,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Barcelona","FC Barcelona"],"team_b_aliases":["Real Madrid"]},
-    {"id":"ESP_SEVILLE_DERBY","rivalry_name":"Seville derby","rivalry_type":"DERBY","competition_scope":"SPAIN","principled_rivalry":true,"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Sevilla","Sevilla FC"],"team_b_aliases":["Real Betis","Betis"]},
-    {"id":"ESP_BASQUE_DERBY","rivalry_name":"Basque derby","rivalry_type":"DERBY","competition_scope":"SPAIN","principled_rivalry":true,"rivalry_classes":["REGIONAL_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Athletic Club","Athletic Bilbao"],"team_b_aliases":["Real Sociedad"]},
-    {"id":"ESP_BARCELONA_DERBY","rivalry_name":"Barcelona derby","rivalry_type":"DERBY","competition_scope":"SPAIN","principled_rivalry":true,"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Barcelona","FC Barcelona"],"team_b_aliases":["Espanyol","RCD Espanyol"]},
-    {"id":"ITA_DERBY_DELLA_MADONNINA","rivalry_name":"Derby della Madonnina","rivalry_type":"DERBY","competition_scope":"ITALY","principled_rivalry":true,"team_a_aliases":["AC Milan","Milan"],"team_b_aliases":["Inter","Inter Milan","Internazionale"],"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null},
-    {"id":"ITA_DERBY_DITALIA","rivalry_name":"Derby d Italia","rivalry_type":"RIVALRY","competition_scope":"ITALY","principled_rivalry":true,"rivalry_classes":["NATIONAL_RIVALRY","HISTORIC_RIVALRY"],"derby_label":false,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Juventus"],"team_b_aliases":["Inter","Inter Milan","Internazionale"]},
-    {"id":"ITA_ROME_DERBY","rivalry_name":"Derby della Capitale","rivalry_type":"DERBY","competition_scope":"ITALY","principled_rivalry":true,"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Roma","AS Roma"],"team_b_aliases":["Lazio"]},
-    {"id":"ITA_TURIN_DERBY","rivalry_name":"Derby della Mole","rivalry_type":"DERBY","competition_scope":"ITALY","principled_rivalry":true,"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Juventus"],"team_b_aliases":["Torino"]},
-    {"id":"ITA_GENOA_DERBY","rivalry_name":"Derby della Lanterna","rivalry_type":"DERBY","competition_scope":"ITALY","principled_rivalry":true,"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Genoa"],"team_b_aliases":["Sampdoria"]},
-    {"id":"GER_KLASSIKER_BAYERN_DORTMUND","rivalry_name":"Bayern–Dortmund rivalry","rivalry_type":"RIVALRY","competition_scope":"GERMANY","principled_rivalry":true,"team_a_aliases":["Bayern Munich","Bayern München"],"team_b_aliases":["Borussia Dortmund","Dortmund"],"rivalry_classes":["NATIONAL_RIVALRY"],"derby_label":false,"valid_from_season":null,"valid_to_season":null},
-    {"id":"GER_NORDDERBY","rivalry_name":"Nordderby","rivalry_type":"DERBY","competition_scope":"GERMANY","principled_rivalry":true,"rivalry_classes":["REGIONAL_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Hamburger SV"],"team_b_aliases":["Werder Bremen"]},
-    {"id":"GER_BERLIN_DERBY","rivalry_name":"Berlin derby","rivalry_type":"DERBY","competition_scope":"GERMANY","principled_rivalry":true,"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Hertha Berlin","Hertha BSC"],"team_b_aliases":["Union Berlin","1. FC Union Berlin"]},
-    {"id":"GER_REVIERDERBY","rivalry_name":"Revierderby","rivalry_type":"DERBY","competition_scope":"GERMANY","principled_rivalry":true,"rivalry_classes":["REGIONAL_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Borussia Dortmund","Dortmund"],"team_b_aliases":["FC Schalke 04","Schalke 04","Schalke"]},
-    {"id":"GER_RHINE_DERBY_KOLN_GLADBACH","rivalry_name":"Rheinisches Derby","rivalry_type":"DERBY","competition_scope":"GERMANY","principled_rivalry":true,"rivalry_classes":["REGIONAL_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["1. FC K\u00f6ln","1. FC Koln"],"team_b_aliases":["Borussia M\u00f6nchengladbach","Borussia Monchengladbach"]},
-    {"id":"FRA_LE_CLASSIQUE","rivalry_name":"Le Classique","rivalry_type":"RIVALRY","competition_scope":"FRANCE","principled_rivalry":true,"team_a_aliases":["Paris Saint Germain","Paris Saint-Germain","PSG"],"team_b_aliases":["Marseille","Olympique Marseille","Olympique de Marseille"],"rivalry_classes":["NATIONAL_RIVALRY","HISTORIC_RIVALRY"],"derby_label":false,"valid_from_season":null,"valid_to_season":null},
-    {"id":"FRA_DERBY_DU_NORD","rivalry_name":"Derby du Nord","rivalry_type":"DERBY","competition_scope":"FRANCE","principled_rivalry":true,"rivalry_classes":["REGIONAL_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Lens","RC Lens"],"team_b_aliases":["Lille","LOSC Lille"]},
-    {"id":"FRA_RHONE_DERBY","rivalry_name":"Derby du Rhone","rivalry_type":"DERBY","competition_scope":"FRANCE","principled_rivalry":true,"rivalry_classes":["REGIONAL_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Lyon","Olympique Lyonnais"],"team_b_aliases":["Saint Etienne","Saint-Etienne","AS Saint-Etienne"]},
-    {"id":"AUT_VIENNA_DERBY","rivalry_name":"Vienna derby","rivalry_type":"DERBY","competition_scope":"AUSTRIA","principled_rivalry":true,"team_a_aliases":["Rapid Vienna","Rapid Wien"],"team_b_aliases":["Austria Vienna","Austria Wien"],"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null},
-    {"id":"AUT_GRAZ_DERBY","rivalry_name":"Grazer Derby","rivalry_type":"DERBY","competition_scope":"AUSTRIA","principled_rivalry":true,"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Grazer AK","Grazer AK 1902"],"team_b_aliases":["Sturm Graz","SK Sturm Graz"]},
-    {"id":"BEL_BRUGGE_ANDERLECHT","rivalry_name":"Club Brugge–Anderlecht rivalry","rivalry_type":"RIVALRY","competition_scope":"BELGIUM","principled_rivalry":true,"team_a_aliases":["Club Brugge","Club Brugge KV"],"team_b_aliases":["Anderlecht","RSC Anderlecht"],"rivalry_classes":["NATIONAL_RIVALRY","HISTORIC_RIVALRY"],"derby_label":false,"valid_from_season":null,"valid_to_season":null},
-    {"id":"BEL_BRUGES_DERBY","rivalry_name":"Bruges derby","rivalry_type":"DERBY","competition_scope":"BELGIUM","principled_rivalry":true,"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Cercle Brugge"],"team_b_aliases":["Club Brugge","Club Brugge KV"]},
-    {"id":"BEL_ANTWERP_DERBY","rivalry_name":"Antwerp derby","rivalry_type":"DERBY","competition_scope":"BELGIUM","principled_rivalry":true,"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Antwerp","Royal Antwerp FC"],"team_b_aliases":["Beerschot VA","K. Beerschot VA","Beerschot"]},
-    {"id":"DEN_COPENHAGEN_BRONDBY","rivalry_name":"Copenhagen derby","rivalry_type":"DERBY","competition_scope":"DENMARK","principled_rivalry":true,"team_a_aliases":["FC Copenhagen","FC København","FC Kobenhavn"],"team_b_aliases":["Brondby","Brøndby","Brondby IF","Brøndby IF"],"rivalry_classes":["LOCAL_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null},
-    {"id":"DEN_MIDTJYLLAND_VIBORG","rivalry_name":"Midtjysk derby","rivalry_type":"DERBY","competition_scope":"DENMARK","principled_rivalry":true,"rivalry_classes":["REGIONAL_DERBY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["FC Midtjylland","Midtjylland"],"team_b_aliases":["Viborg","Viborg FF"]},
-    {"id":"LTU_VILNIUS_DERBY","rivalry_name":"Vilnius derby","rivalry_type":"DERBY","competition_scope":"LITHUANIA","principled_rivalry":true,"team_a_aliases":["FK Zalgiris Vilnius","Žalgiris Vilnius","Zalgiris Vilnius"],"team_b_aliases":["FK Riteriai","Riteriai","FK Trakai","Trakai"],"rivalry_classes":["CITY_DERBY"],"derby_label":true,"valid_from_season":2019,"valid_to_season":null},
-    {"id":"LTU_KAUNAS_DERBY","rivalry_name":"Kauno derby","rivalry_type":"DERBY","competition_scope":"LITHUANIA","principled_rivalry":true,"rivalry_classes":["CITY_DERBY"],"derby_label":true,"valid_from_season":2021,"valid_to_season":null,"team_a_aliases":["Kauno Zalgiris","Kauno \u017dalgiris","FK Kauno Zalgiris","FK Kauno \u017dalgiris"],"team_b_aliases":["Hegelmann","Hegelmann Litauen","FC Hegelmann"]},
-    {"id":"LVA_RIGA_DERBY","rivalry_name":"Riga derby","rivalry_type":"DERBY","competition_scope":"LATVIA","principled_rivalry":true,"team_a_aliases":["Riga FC","Riga"],"team_b_aliases":["RFS","FK RFS","Rīgas FS","Rigas FS"],"rivalry_classes":["CITY_DERBY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null},
-    {"id":"LVA_KURZEME_DERBY","rivalry_name":"Kurzeme derby","rivalry_type":"DERBY","competition_scope":"LATVIA","principled_rivalry":true,"rivalry_classes":["REGIONAL_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Liepaja","FK Liepaja","Liep\u0101ja","FK Liep\u0101ja"],"team_b_aliases":["Ventspils","FK Ventspils"]},
-    {"id":"NED_DE_KLASSIEKER","rivalry_name":"De Klassieker","rivalry_type":"RIVALRY","competition_scope":"NETHERLANDS","principled_rivalry":true,"team_a_aliases":["Ajax","Ajax Amsterdam"],"team_b_aliases":["Feyenoord","Feyenoord Rotterdam"],"rivalry_classes":["NATIONAL_RIVALRY","HISTORIC_RIVALRY"],"derby_label":false,"valid_from_season":null,"valid_to_season":null},
-    {"id":"NED_AJAX_PSV","rivalry_name":"De Topper","rivalry_type":"RIVALRY","competition_scope":"NETHERLANDS","principled_rivalry":true,"rivalry_classes":["NATIONAL_RIVALRY","HISTORIC_RIVALRY"],"derby_label":false,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Ajax"],"team_b_aliases":["PSV","PSV Eindhoven"]},
-    {"id":"NED_ROTTERDAM_DERBY","rivalry_name":"Rotterdam derby","rivalry_type":"DERBY","competition_scope":"NETHERLANDS","principled_rivalry":true,"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Sparta Rotterdam","Sparta"],"team_b_aliases":["Feyenoord"]},
-    {"id":"NED_GELDERLAND_DERBY","rivalry_name":"Gelderland derby","rivalry_type":"DERBY","competition_scope":"NETHERLANDS","principled_rivalry":true,"rivalry_classes":["REGIONAL_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["NEC Nijmegen","NEC"],"team_b_aliases":["Vitesse"]},
-    {"id":"NOR_ROSENBORG_MOLDE","rivalry_name":"Rosenborg–Molde rivalry","rivalry_type":"RIVALRY","competition_scope":"NORWAY","principled_rivalry":true,"team_a_aliases":["Rosenborg","Rosenborg BK"],"team_b_aliases":["Molde","Molde FK"],"rivalry_classes":["NATIONAL_RIVALRY","HISTORIC_RIVALRY"],"derby_label":false,"valid_from_season":null,"valid_to_season":null},
-    {"id":"NOR_VALERENGA_LILLESTROM","rivalry_name":"Valerenga-Lillestrom derby","rivalry_type":"DERBY","competition_scope":"NORWAY","principled_rivalry":true,"rivalry_classes":["LOCAL_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Valerenga","V\u00e5lerenga"],"team_b_aliases":["Lillestrom","Lillestr\u00f8m"]},
-    {"id":"NOR_BRANN_VIKING","rivalry_name":"Vestlandsderbyet","rivalry_type":"DERBY","competition_scope":"NORWAY","principled_rivalry":true,"rivalry_classes":["REGIONAL_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Brann","SK Brann"],"team_b_aliases":["Viking","Viking FK"]},
-    {"id":"POL_LEGIA_LECH","rivalry_name":"Legia–Lech rivalry","rivalry_type":"RIVALRY","competition_scope":"POLAND","principled_rivalry":true,"team_a_aliases":["Legia Warszawa","Legia Warsaw"],"team_b_aliases":["Lech Poznan","Lech Poznań"],"rivalry_classes":["NATIONAL_RIVALRY","HISTORIC_RIVALRY"],"derby_label":false,"valid_from_season":null,"valid_to_season":null},
-    {"id":"POL_HOLY_WAR","rivalry_name":"Holy War","rivalry_type":"DERBY","competition_scope":"POLAND","principled_rivalry":true,"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Cracovia","Cracovia Krakow"],"team_b_aliases":["Wisla Krakow","Wisla Krak\u00f3w"]},
-    {"id":"POL_LEGIA_WISLA","rivalry_name":"Legia-Wisla rivalry","rivalry_type":"RIVALRY","competition_scope":"POLAND","principled_rivalry":true,"rivalry_classes":["NATIONAL_RIVALRY","HISTORIC_RIVALRY"],"derby_label":false,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Legia Warszawa","Legia Warsaw"],"team_b_aliases":["Wisla Krakow","Wisla Krak\u00f3w"]},
-    {"id":"POL_POZNAN_DERBY","rivalry_name":"Poznan derby","rivalry_type":"DERBY","competition_scope":"POLAND","principled_rivalry":true,"rivalry_classes":["CITY_DERBY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Lech Poznan","Lech Pozna\u0144"],"team_b_aliases":["Warta Pozna\u0144","Warta Poznan"]},
-    {"id":"POL_LODZ_DERBY","rivalry_name":"Derby Lodzi","rivalry_type":"DERBY","competition_scope":"POLAND","principled_rivalry":true,"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["LKS Lodz","\u0141KS Lodz","LKS \u0141\u00f3d\u017a","\u0141KS \u0141\u00f3d\u017a"],"team_b_aliases":["Widzew Lodz","Widzew \u0141\u00f3d\u017a"]},
-    {"id":"POR_LISBON_DERBY","rivalry_name":"Lisbon derby","rivalry_type":"DERBY","competition_scope":"PORTUGAL","principled_rivalry":true,"team_a_aliases":["Benfica","SL Benfica"],"team_b_aliases":["Sporting CP","Sporting Lisbon","Sporting"],"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null},
-    {"id":"POR_O_CLASSICO","rivalry_name":"O Classico","rivalry_type":"RIVALRY","competition_scope":"PORTUGAL","principled_rivalry":true,"rivalry_classes":["NATIONAL_RIVALRY","HISTORIC_RIVALRY"],"derby_label":false,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Benfica","SL Benfica"],"team_b_aliases":["FC Porto","Porto"]},
-    {"id":"POR_PORTO_DERBY","rivalry_name":"Porto derby","rivalry_type":"DERBY","competition_scope":"PORTUGAL","principled_rivalry":true,"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["FC Porto","Porto"],"team_b_aliases":["Boavista","Boavista FC"]},
-    {"id":"POR_MINHO_DERBY","rivalry_name":"Derbi do Minho","rivalry_type":"DERBY","competition_scope":"PORTUGAL","principled_rivalry":true,"rivalry_classes":["REGIONAL_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["SC Braga","Braga"],"team_b_aliases":["Vit\u00f3ria SC","Vitoria SC","Vitoria Guimaraes","Vit\u00f3ria Guimar\u00e3es"]},
-    {"id":"TUR_INTERCONTINENTAL_DERBY","rivalry_name":"Intercontinental derby","rivalry_type":"DERBY","competition_scope":"TURKEY","principled_rivalry":true,"team_a_aliases":["Fenerbahce","Fenerbahçe"],"team_b_aliases":["Galatasaray"],"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null},
-    {"id":"TUR_BESIKTAS_FENER","rivalry_name":"Besiktas-Fenerbahce derby","rivalry_type":"DERBY","competition_scope":"TURKEY","principled_rivalry":true,"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Be\u015fikta\u015f","Besiktas"],"team_b_aliases":["Fenerbah\u00e7e","Fenerbahce"]},
-    {"id":"TUR_BESIKTAS_GALA","rivalry_name":"Besiktas-Galatasaray derby","rivalry_type":"DERBY","competition_scope":"TURKEY","principled_rivalry":true,"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Be\u015fikta\u015f","Besiktas"],"team_b_aliases":["Galatasaray"]},
-    {"id":"TUR_FENER_TRABZON","rivalry_name":"Fenerbahce-Trabzonspor rivalry","rivalry_type":"RIVALRY","competition_scope":"TURKEY","principled_rivalry":true,"rivalry_classes":["NATIONAL_RIVALRY","HISTORIC_RIVALRY"],"derby_label":false,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Fenerbah\u00e7e","Fenerbahce"],"team_b_aliases":["Trabzonspor","Trabzon"]},
-    {"id":"SCO_OLD_FIRM","rivalry_name":"Old Firm","rivalry_type":"DERBY","competition_scope":"SCOTLAND","principled_rivalry":true,"team_a_aliases":["Celtic"],"team_b_aliases":["Rangers","Glasgow Rangers"],"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null},
-    {"id":"SCO_EDINBURGH_DERBY","rivalry_name":"Edinburgh derby","rivalry_type":"DERBY","competition_scope":"SCOTLAND","principled_rivalry":true,"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Heart Of Midlothian","Heart of Midlothian","Hearts"],"team_b_aliases":["Hibernian","Hibs"]},
-    {"id":"SCO_DUNDEE_DERBY","rivalry_name":"Dundee derby","rivalry_type":"DERBY","competition_scope":"SCOTLAND","principled_rivalry":true,"rivalry_classes":["CITY_DERBY","HISTORIC_RIVALRY"],"derby_label":true,"valid_from_season":null,"valid_to_season":null,"team_a_aliases":["Dundee","Dundee FC"],"team_b_aliases":["Dundee Utd","Dundee United"]}
-  ]
+    {
+      "id": "ENG_NORTH_LONDON",
+      "rivalry_name": "North London derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "ENGLAND",
+      "principled_rivalry": true,
+      "team_a_aliases": [
+        "Arsenal"
+      ],
+      "team_b_aliases": [
+        "Tottenham",
+        "Tottenham Hotspur"
+      ],
+      "rivalry_classes": [
+        "LOCAL_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null
+    },
+    {
+      "id": "ENG_TYNE_WEAR",
+      "rivalry_name": "Tyne-Wear derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "ENGLAND",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "LOCAL_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Newcastle",
+        "Newcastle United"
+      ],
+      "team_b_aliases": [
+        "Sunderland"
+      ]
+    },
+    {
+      "id": "ENG_PALACE_BRIGHTON",
+      "rivalry_name": "Crystal Palace-Brighton rivalry",
+      "rivalry_type": "RIVALRY",
+      "competition_scope": "ENGLAND",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Crystal Palace"
+      ],
+      "team_b_aliases": [
+        "Brighton",
+        "Brighton and Hove Albion",
+        "Brighton & Hove Albion"
+      ]
+    },
+    {
+      "id": "ENG_MERSEYSIDE_DERBY",
+      "rivalry_name": "Merseyside derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "ENGLAND",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Liverpool"
+      ],
+      "team_b_aliases": [
+        "Everton"
+      ]
+    },
+    {
+      "id": "ENG_MANCHESTER_DERBY",
+      "rivalry_name": "Manchester derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "ENGLAND",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Manchester United"
+      ],
+      "team_b_aliases": [
+        "Manchester City"
+      ]
+    },
+    {
+      "id": "ENG_LIVERPOOL_MAN_UTD",
+      "rivalry_name": "Liverpool-Manchester United rivalry",
+      "rivalry_type": "RIVALRY",
+      "competition_scope": "ENGLAND",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "NATIONAL_RIVALRY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": false,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Liverpool"
+      ],
+      "team_b_aliases": [
+        "Manchester United"
+      ]
+    },
+    {
+      "id": "ESP_MADRID_DERBY_REAL_ATLETICO",
+      "rivalry_name": "Madrid derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "SPAIN",
+      "principled_rivalry": true,
+      "team_a_aliases": [
+        "Real Madrid"
+      ],
+      "team_b_aliases": [
+        "Atlético de Madrid",
+        "Atletico Madrid",
+        "Club Atlético de Madrid",
+        "Club Atletico de Madrid"
+      ],
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null
+    },
+    {
+      "id": "ESP_EL_CLASICO",
+      "rivalry_name": "El Clasico",
+      "rivalry_type": "RIVALRY",
+      "competition_scope": "SPAIN",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "NATIONAL_RIVALRY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": false,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Barcelona",
+        "FC Barcelona"
+      ],
+      "team_b_aliases": [
+        "Real Madrid"
+      ]
+    },
+    {
+      "id": "ESP_SEVILLE_DERBY",
+      "rivalry_name": "Seville derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "SPAIN",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Sevilla",
+        "Sevilla FC"
+      ],
+      "team_b_aliases": [
+        "Real Betis",
+        "Betis"
+      ]
+    },
+    {
+      "id": "ESP_BASQUE_DERBY",
+      "rivalry_name": "Basque derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "SPAIN",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "REGIONAL_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Athletic Club",
+        "Athletic Bilbao"
+      ],
+      "team_b_aliases": [
+        "Real Sociedad"
+      ]
+    },
+    {
+      "id": "ESP_BARCELONA_DERBY",
+      "rivalry_name": "Barcelona derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "SPAIN",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Barcelona",
+        "FC Barcelona"
+      ],
+      "team_b_aliases": [
+        "Espanyol",
+        "RCD Espanyol"
+      ]
+    },
+    {
+      "id": "ITA_DERBY_DELLA_MADONNINA",
+      "rivalry_name": "Derby della Madonnina",
+      "rivalry_type": "DERBY",
+      "competition_scope": "ITALY",
+      "principled_rivalry": true,
+      "team_a_aliases": [
+        "AC Milan",
+        "Milan"
+      ],
+      "team_b_aliases": [
+        "Inter",
+        "Inter Milan",
+        "Internazionale"
+      ],
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null
+    },
+    {
+      "id": "ITA_DERBY_DITALIA",
+      "rivalry_name": "Derby d Italia",
+      "rivalry_type": "RIVALRY",
+      "competition_scope": "ITALY",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "NATIONAL_RIVALRY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": false,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Juventus"
+      ],
+      "team_b_aliases": [
+        "Inter",
+        "Inter Milan",
+        "Internazionale"
+      ]
+    },
+    {
+      "id": "ITA_ROME_DERBY",
+      "rivalry_name": "Derby della Capitale",
+      "rivalry_type": "DERBY",
+      "competition_scope": "ITALY",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Roma",
+        "AS Roma"
+      ],
+      "team_b_aliases": [
+        "Lazio"
+      ]
+    },
+    {
+      "id": "ITA_TURIN_DERBY",
+      "rivalry_name": "Derby della Mole",
+      "rivalry_type": "DERBY",
+      "competition_scope": "ITALY",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Juventus"
+      ],
+      "team_b_aliases": [
+        "Torino"
+      ]
+    },
+    {
+      "id": "ITA_GENOA_DERBY",
+      "rivalry_name": "Derby della Lanterna",
+      "rivalry_type": "DERBY",
+      "competition_scope": "ITALY",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Genoa"
+      ],
+      "team_b_aliases": [
+        "Sampdoria"
+      ]
+    },
+    {
+      "id": "GER_KLASSIKER_BAYERN_DORTMUND",
+      "rivalry_name": "Bayern–Dortmund rivalry",
+      "rivalry_type": "RIVALRY",
+      "competition_scope": "GERMANY",
+      "principled_rivalry": true,
+      "team_a_aliases": [
+        "Bayern Munich",
+        "Bayern München"
+      ],
+      "team_b_aliases": [
+        "Borussia Dortmund",
+        "Dortmund"
+      ],
+      "rivalry_classes": [
+        "NATIONAL_RIVALRY"
+      ],
+      "derby_label": false,
+      "valid_from_season": null,
+      "valid_to_season": null
+    },
+    {
+      "id": "GER_NORDDERBY",
+      "rivalry_name": "Nordderby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "GERMANY",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "REGIONAL_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Hamburger SV"
+      ],
+      "team_b_aliases": [
+        "Werder Bremen"
+      ]
+    },
+    {
+      "id": "GER_BERLIN_DERBY",
+      "rivalry_name": "Berlin derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "GERMANY",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Hertha Berlin",
+        "Hertha BSC"
+      ],
+      "team_b_aliases": [
+        "Union Berlin",
+        "1. FC Union Berlin"
+      ]
+    },
+    {
+      "id": "GER_REVIERDERBY",
+      "rivalry_name": "Revierderby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "GERMANY",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "REGIONAL_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Borussia Dortmund",
+        "Dortmund"
+      ],
+      "team_b_aliases": [
+        "FC Schalke 04",
+        "Schalke 04",
+        "Schalke"
+      ]
+    },
+    {
+      "id": "GER_RHINE_DERBY_KOLN_GLADBACH",
+      "rivalry_name": "Rheinisches Derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "GERMANY",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "REGIONAL_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "1. FC Köln",
+        "1. FC Koln"
+      ],
+      "team_b_aliases": [
+        "Borussia Mönchengladbach",
+        "Borussia Monchengladbach"
+      ]
+    },
+    {
+      "id": "FRA_LE_CLASSIQUE",
+      "rivalry_name": "Le Classique",
+      "rivalry_type": "RIVALRY",
+      "competition_scope": "FRANCE",
+      "principled_rivalry": true,
+      "team_a_aliases": [
+        "Paris Saint Germain",
+        "Paris Saint-Germain",
+        "PSG"
+      ],
+      "team_b_aliases": [
+        "Marseille",
+        "Olympique Marseille",
+        "Olympique de Marseille"
+      ],
+      "rivalry_classes": [
+        "NATIONAL_RIVALRY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": false,
+      "valid_from_season": null,
+      "valid_to_season": null
+    },
+    {
+      "id": "FRA_DERBY_DU_NORD",
+      "rivalry_name": "Derby du Nord",
+      "rivalry_type": "DERBY",
+      "competition_scope": "FRANCE",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "REGIONAL_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Lens",
+        "RC Lens"
+      ],
+      "team_b_aliases": [
+        "Lille",
+        "LOSC Lille"
+      ]
+    },
+    {
+      "id": "FRA_RHONE_DERBY",
+      "rivalry_name": "Derby du Rhone",
+      "rivalry_type": "DERBY",
+      "competition_scope": "FRANCE",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "REGIONAL_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Lyon",
+        "Olympique Lyonnais"
+      ],
+      "team_b_aliases": [
+        "Saint Etienne",
+        "Saint-Etienne",
+        "AS Saint-Etienne"
+      ]
+    },
+    {
+      "id": "AUT_VIENNA_DERBY",
+      "rivalry_name": "Vienna derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "AUSTRIA",
+      "principled_rivalry": true,
+      "team_a_aliases": [
+        "Rapid Vienna",
+        "Rapid Wien"
+      ],
+      "team_b_aliases": [
+        "Austria Vienna",
+        "Austria Wien"
+      ],
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null
+    },
+    {
+      "id": "AUT_GRAZ_DERBY",
+      "rivalry_name": "Grazer Derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "AUSTRIA",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Grazer AK",
+        "Grazer AK 1902"
+      ],
+      "team_b_aliases": [
+        "Sturm Graz",
+        "SK Sturm Graz"
+      ]
+    },
+    {
+      "id": "BEL_BRUGGE_ANDERLECHT",
+      "rivalry_name": "Club Brugge–Anderlecht rivalry",
+      "rivalry_type": "RIVALRY",
+      "competition_scope": "BELGIUM",
+      "principled_rivalry": true,
+      "team_a_aliases": [
+        "Club Brugge",
+        "Club Brugge KV"
+      ],
+      "team_b_aliases": [
+        "Anderlecht",
+        "RSC Anderlecht"
+      ],
+      "rivalry_classes": [
+        "NATIONAL_RIVALRY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": false,
+      "valid_from_season": null,
+      "valid_to_season": null
+    },
+    {
+      "id": "BEL_BRUGES_DERBY",
+      "rivalry_name": "Bruges derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "BELGIUM",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Cercle Brugge"
+      ],
+      "team_b_aliases": [
+        "Club Brugge",
+        "Club Brugge KV"
+      ]
+    },
+    {
+      "id": "BEL_ANTWERP_DERBY",
+      "rivalry_name": "Antwerp derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "BELGIUM",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Antwerp",
+        "Royal Antwerp FC"
+      ],
+      "team_b_aliases": [
+        "Beerschot VA",
+        "K. Beerschot VA",
+        "Beerschot"
+      ]
+    },
+    {
+      "id": "DEN_COPENHAGEN_BRONDBY",
+      "rivalry_name": "Copenhagen derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "DENMARK",
+      "principled_rivalry": true,
+      "team_a_aliases": [
+        "FC Copenhagen",
+        "FC København",
+        "FC Kobenhavn"
+      ],
+      "team_b_aliases": [
+        "Brondby",
+        "Brøndby",
+        "Brondby IF",
+        "Brøndby IF"
+      ],
+      "rivalry_classes": [
+        "LOCAL_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null
+    },
+    {
+      "id": "DEN_MIDTJYLLAND_VIBORG",
+      "rivalry_name": "Midtjysk derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "DENMARK",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "REGIONAL_DERBY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "FC Midtjylland",
+        "Midtjylland"
+      ],
+      "team_b_aliases": [
+        "Viborg",
+        "Viborg FF"
+      ]
+    },
+    {
+      "id": "LTU_VILNIUS_DERBY",
+      "rivalry_name": "Vilnius derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "LITHUANIA",
+      "principled_rivalry": true,
+      "team_a_aliases": [
+        "FK Zalgiris Vilnius",
+        "Žalgiris Vilnius",
+        "Zalgiris Vilnius"
+      ],
+      "team_b_aliases": [
+        "FK Riteriai",
+        "Riteriai",
+        "FK Trakai",
+        "Trakai"
+      ],
+      "rivalry_classes": [
+        "CITY_DERBY"
+      ],
+      "derby_label": true,
+      "valid_from_season": 2019,
+      "valid_to_season": null
+    },
+    {
+      "id": "LTU_KAUNAS_DERBY",
+      "rivalry_name": "Kauno derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "LITHUANIA",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "CITY_DERBY"
+      ],
+      "derby_label": true,
+      "valid_from_season": 2021,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Kauno Zalgiris",
+        "Kauno Žalgiris",
+        "FK Kauno Zalgiris",
+        "FK Kauno Žalgiris"
+      ],
+      "team_b_aliases": [
+        "Hegelmann",
+        "Hegelmann Litauen",
+        "FC Hegelmann"
+      ]
+    },
+    {
+      "id": "LVA_RIGA_DERBY",
+      "rivalry_name": "Riga derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "LATVIA",
+      "principled_rivalry": true,
+      "team_a_aliases": [
+        "Riga FC",
+        "Riga"
+      ],
+      "team_b_aliases": [
+        "RFS",
+        "FK RFS",
+        "Rīgas FS",
+        "Rigas FS"
+      ],
+      "rivalry_classes": [
+        "CITY_DERBY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null
+    },
+    {
+      "id": "LVA_KURZEME_DERBY",
+      "rivalry_name": "Kurzeme derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "LATVIA",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "REGIONAL_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Liepaja",
+        "FK Liepaja",
+        "Liepāja",
+        "FK Liepāja"
+      ],
+      "team_b_aliases": [
+        "Ventspils",
+        "FK Ventspils"
+      ]
+    },
+    {
+      "id": "NED_DE_KLASSIEKER",
+      "rivalry_name": "De Klassieker",
+      "rivalry_type": "RIVALRY",
+      "competition_scope": "NETHERLANDS",
+      "principled_rivalry": true,
+      "team_a_aliases": [
+        "Ajax",
+        "Ajax Amsterdam"
+      ],
+      "team_b_aliases": [
+        "Feyenoord",
+        "Feyenoord Rotterdam"
+      ],
+      "rivalry_classes": [
+        "NATIONAL_RIVALRY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": false,
+      "valid_from_season": null,
+      "valid_to_season": null
+    },
+    {
+      "id": "NED_AJAX_PSV",
+      "rivalry_name": "De Topper",
+      "rivalry_type": "RIVALRY",
+      "competition_scope": "NETHERLANDS",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "NATIONAL_RIVALRY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": false,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Ajax"
+      ],
+      "team_b_aliases": [
+        "PSV",
+        "PSV Eindhoven"
+      ]
+    },
+    {
+      "id": "NED_ROTTERDAM_DERBY",
+      "rivalry_name": "Rotterdam derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "NETHERLANDS",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Sparta Rotterdam",
+        "Sparta"
+      ],
+      "team_b_aliases": [
+        "Feyenoord"
+      ]
+    },
+    {
+      "id": "NED_GELDERLAND_DERBY",
+      "rivalry_name": "Gelderland derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "NETHERLANDS",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "REGIONAL_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "NEC Nijmegen",
+        "NEC"
+      ],
+      "team_b_aliases": [
+        "Vitesse"
+      ]
+    },
+    {
+      "id": "NOR_ROSENBORG_MOLDE",
+      "rivalry_name": "Rosenborg–Molde rivalry",
+      "rivalry_type": "RIVALRY",
+      "competition_scope": "NORWAY",
+      "principled_rivalry": true,
+      "team_a_aliases": [
+        "Rosenborg",
+        "Rosenborg BK"
+      ],
+      "team_b_aliases": [
+        "Molde",
+        "Molde FK"
+      ],
+      "rivalry_classes": [
+        "NATIONAL_RIVALRY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": false,
+      "valid_from_season": null,
+      "valid_to_season": null
+    },
+    {
+      "id": "NOR_VALERENGA_LILLESTROM",
+      "rivalry_name": "Valerenga-Lillestrom derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "NORWAY",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "LOCAL_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Valerenga",
+        "Vålerenga"
+      ],
+      "team_b_aliases": [
+        "Lillestrom",
+        "Lillestrøm"
+      ]
+    },
+    {
+      "id": "NOR_BRANN_VIKING",
+      "rivalry_name": "Vestlandsderbyet",
+      "rivalry_type": "DERBY",
+      "competition_scope": "NORWAY",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "REGIONAL_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Brann",
+        "SK Brann"
+      ],
+      "team_b_aliases": [
+        "Viking",
+        "Viking FK"
+      ]
+    },
+    {
+      "id": "POL_LEGIA_LECH",
+      "rivalry_name": "Legia–Lech rivalry",
+      "rivalry_type": "RIVALRY",
+      "competition_scope": "POLAND",
+      "principled_rivalry": true,
+      "team_a_aliases": [
+        "Legia Warszawa",
+        "Legia Warsaw"
+      ],
+      "team_b_aliases": [
+        "Lech Poznan",
+        "Lech Poznań"
+      ],
+      "rivalry_classes": [
+        "NATIONAL_RIVALRY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": false,
+      "valid_from_season": null,
+      "valid_to_season": null
+    },
+    {
+      "id": "POL_HOLY_WAR",
+      "rivalry_name": "Holy War",
+      "rivalry_type": "DERBY",
+      "competition_scope": "POLAND",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Cracovia",
+        "Cracovia Krakow"
+      ],
+      "team_b_aliases": [
+        "Wisla Krakow",
+        "Wisla Kraków"
+      ]
+    },
+    {
+      "id": "POL_LEGIA_WISLA",
+      "rivalry_name": "Legia-Wisla rivalry",
+      "rivalry_type": "RIVALRY",
+      "competition_scope": "POLAND",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "NATIONAL_RIVALRY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": false,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Legia Warszawa",
+        "Legia Warsaw"
+      ],
+      "team_b_aliases": [
+        "Wisla Krakow",
+        "Wisla Kraków"
+      ]
+    },
+    {
+      "id": "POL_POZNAN_DERBY",
+      "rivalry_name": "Poznan derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "POLAND",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "CITY_DERBY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Lech Poznan",
+        "Lech Poznań"
+      ],
+      "team_b_aliases": [
+        "Warta Poznań",
+        "Warta Poznan"
+      ]
+    },
+    {
+      "id": "POL_LODZ_DERBY",
+      "rivalry_name": "Derby Lodzi",
+      "rivalry_type": "DERBY",
+      "competition_scope": "POLAND",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "LKS Lodz",
+        "ŁKS Lodz",
+        "LKS Łódź",
+        "ŁKS Łódź"
+      ],
+      "team_b_aliases": [
+        "Widzew Lodz",
+        "Widzew Łódź"
+      ]
+    },
+    {
+      "id": "POR_LISBON_DERBY",
+      "rivalry_name": "Lisbon derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "PORTUGAL",
+      "principled_rivalry": true,
+      "team_a_aliases": [
+        "Benfica",
+        "SL Benfica"
+      ],
+      "team_b_aliases": [
+        "Sporting CP",
+        "Sporting Lisbon",
+        "Sporting"
+      ],
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null
+    },
+    {
+      "id": "POR_O_CLASSICO",
+      "rivalry_name": "O Classico",
+      "rivalry_type": "RIVALRY",
+      "competition_scope": "PORTUGAL",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "NATIONAL_RIVALRY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": false,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Benfica",
+        "SL Benfica"
+      ],
+      "team_b_aliases": [
+        "FC Porto",
+        "Porto"
+      ]
+    },
+    {
+      "id": "POR_PORTO_DERBY",
+      "rivalry_name": "Porto derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "PORTUGAL",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "FC Porto",
+        "Porto"
+      ],
+      "team_b_aliases": [
+        "Boavista",
+        "Boavista FC"
+      ]
+    },
+    {
+      "id": "POR_MINHO_DERBY",
+      "rivalry_name": "Derbi do Minho",
+      "rivalry_type": "DERBY",
+      "competition_scope": "PORTUGAL",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "REGIONAL_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "SC Braga",
+        "Braga"
+      ],
+      "team_b_aliases": [
+        "Vitória SC",
+        "Vitoria SC",
+        "Vitoria Guimaraes",
+        "Vitória Guimarães"
+      ]
+    },
+    {
+      "id": "TUR_INTERCONTINENTAL_DERBY",
+      "rivalry_name": "Intercontinental derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "TURKEY",
+      "principled_rivalry": true,
+      "team_a_aliases": [
+        "Fenerbahce",
+        "Fenerbahçe"
+      ],
+      "team_b_aliases": [
+        "Galatasaray"
+      ],
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null
+    },
+    {
+      "id": "TUR_BESIKTAS_FENER",
+      "rivalry_name": "Besiktas-Fenerbahce derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "TURKEY",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Beşiktaş",
+        "Besiktas"
+      ],
+      "team_b_aliases": [
+        "Fenerbahçe",
+        "Fenerbahce"
+      ]
+    },
+    {
+      "id": "TUR_BESIKTAS_GALA",
+      "rivalry_name": "Besiktas-Galatasaray derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "TURKEY",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Beşiktaş",
+        "Besiktas"
+      ],
+      "team_b_aliases": [
+        "Galatasaray"
+      ]
+    },
+    {
+      "id": "TUR_FENER_TRABZON",
+      "rivalry_name": "Fenerbahce-Trabzonspor rivalry",
+      "rivalry_type": "RIVALRY",
+      "competition_scope": "TURKEY",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "NATIONAL_RIVALRY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": false,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Fenerbahçe",
+        "Fenerbahce"
+      ],
+      "team_b_aliases": [
+        "Trabzonspor",
+        "Trabzon"
+      ]
+    },
+    {
+      "id": "SCO_OLD_FIRM",
+      "rivalry_name": "Old Firm",
+      "rivalry_type": "DERBY",
+      "competition_scope": "SCOTLAND",
+      "principled_rivalry": true,
+      "team_a_aliases": [
+        "Celtic"
+      ],
+      "team_b_aliases": [
+        "Rangers",
+        "Glasgow Rangers"
+      ],
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null
+    },
+    {
+      "id": "SCO_EDINBURGH_DERBY",
+      "rivalry_name": "Edinburgh derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "SCOTLAND",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Heart Of Midlothian",
+        "Heart of Midlothian",
+        "Hearts"
+      ],
+      "team_b_aliases": [
+        "Hibernian",
+        "Hibs"
+      ]
+    },
+    {
+      "id": "SCO_DUNDEE_DERBY",
+      "rivalry_name": "Dundee derby",
+      "rivalry_type": "DERBY",
+      "competition_scope": "SCOTLAND",
+      "principled_rivalry": true,
+      "rivalry_classes": [
+        "CITY_DERBY",
+        "HISTORIC_RIVALRY"
+      ],
+      "derby_label": true,
+      "valid_from_season": null,
+      "valid_to_season": null,
+      "team_a_aliases": [
+        "Dundee",
+        "Dundee FC"
+      ],
+      "team_b_aliases": [
+        "Dundee Utd",
+        "Dundee United"
+      ]
+    }
+  ],
+  "verification_contract": {
+    "required_competition_scopes": [
+      "ENGLAND",
+      "SPAIN",
+      "ITALY",
+      "GERMANY",
+      "FRANCE",
+      "AUSTRIA",
+      "BELGIUM",
+      "DENMARK",
+      "LITHUANIA",
+      "LATVIA",
+      "NETHERLANDS",
+      "NORWAY",
+      "POLAND",
+      "PORTUGAL",
+      "TURKEY",
+      "SCOTLAND"
+    ],
+    "matching_policy_required": "EXACT_NORMALIZED_ALIAS_ONLY_NO_FUZZY",
+    "required_contract_fields": [
+      "id",
+      "rivalry_name",
+      "rivalry_type",
+      "competition_scope",
+      "principled_rivalry",
+      "team_a_aliases",
+      "team_b_aliases",
+      "rivalry_classes",
+      "derby_label",
+      "valid_from_season",
+      "valid_to_season"
+    ],
+    "allowed_rivalry_classes": [
+      "LOCAL_DERBY",
+      "CITY_DERBY",
+      "REGIONAL_DERBY",
+      "NATIONAL_RIVALRY",
+      "HISTORIC_RIVALRY"
+    ],
+    "duplicate_id_policy": "FORBIDDEN",
+    "ambiguous_exact_pair_policy": "FORBIDDEN",
+    "time_bounded_contract_policy": "FAIL_CLOSED_WITHOUT_SEASON",
+    "fuzzy_matching": false,
+    "geographic_inference": false,
+    "result_hindsight": false,
+    "operational_betting_authority": false,
+    "probability_mutation": false,
+    "eligibility_mutation": false,
+    "stake_changes": false
+  }
 }

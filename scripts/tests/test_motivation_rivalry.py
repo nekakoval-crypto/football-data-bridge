@@ -42,7 +42,7 @@ class MotivationRivalryTests(unittest.TestCase):
                 self.assertEqual(payload["derby"], is_derby)
                 self.assertTrue(payload["principled_rivalry"])
 
-    def test_catalog_represents_all_pbk16_leagues_but_stays_partial(self):
+    def test_catalog_is_verified_pbk16_baseline_but_non_exhaustive(self):
         registry = motivation_rivalry.load_registry()
         scopes = {
             str(row.get("competition_scope") or "").upper()
@@ -59,8 +59,130 @@ class MotivationRivalryTests(unittest.TestCase):
             registry["coverage"]["pbk16_leagues_represented"],
             16,
         )
-        self.assertEqual(registry["coverage"]["catalog_completeness"], "PARTIAL")
-        self.assertEqual(registry["status"], "PARTIAL_VERIFIED_CATALOG")
+        self.assertEqual(
+            registry["coverage"]["catalog_completeness"],
+            "VERIFIED_BASELINE",
+        )
+        self.assertEqual(
+            registry["coverage"]["exhaustiveness"],
+            "NON_EXHAUSTIVE_BY_DESIGN",
+        )
+        self.assertEqual(
+            registry["coverage"]["unknown_pair_policy"],
+            "UNKNOWN",
+        )
+        self.assertEqual(
+            registry["status"],
+            "VERIFIED_PBK16_CATALOG",
+        )
+
+        readiness = motivation_rivalry.registry_readiness(
+            registry
+        )
+
+        self.assertTrue(readiness["verified"])
+        self.assertEqual(
+            readiness["status"],
+            "VERIFIED_PBK16_CATALOG",
+        )
+        self.assertEqual(
+            readiness["verified_contracts"],
+            58,
+        )
+        self.assertEqual(
+            readiness["pbk16_leagues_represented"],
+            16,
+        )
+        self.assertEqual(
+            readiness["required_pbk16_leagues"],
+            16,
+        )
+        self.assertEqual(readiness["blockers"], [])
+        self.assertEqual(
+            readiness["ambiguous_exact_pairs"],
+            [],
+        )
+
+    def test_registry_readiness_fails_closed_when_scope_is_removed(self):
+        registry = motivation_rivalry.load_registry()
+        broken = {
+            **registry,
+            "rivalries": [
+                row
+                for row in registry["rivalries"]
+                if row["competition_scope"] != "LATVIA"
+            ],
+        }
+
+        readiness = motivation_rivalry.registry_readiness(
+            broken
+        )
+
+        self.assertFalse(readiness["verified"])
+        self.assertEqual(
+            readiness["status"],
+            "PARTIAL_VERIFIED_CATALOG",
+        )
+        self.assertIn(
+            "PBK16_SCOPES_MISSING",
+            readiness["blockers"],
+        )
+        self.assertEqual(
+            readiness["missing_scopes"],
+            ["LATVIA"],
+        )
+
+
+    def test_registry_readiness_rejects_duplicate_exact_pair(self):
+        registry = motivation_rivalry.load_registry()
+        duplicate = dict(registry["rivalries"][0])
+        duplicate["id"] = "TEST_DUPLICATE_PAIR"
+
+        broken = {
+            **registry,
+            "rivalries": [
+                *registry["rivalries"],
+                duplicate,
+            ],
+        }
+
+        readiness = motivation_rivalry.registry_readiness(
+            broken
+        )
+
+        self.assertFalse(readiness["verified"])
+        self.assertIn(
+            "AMBIGUOUS_EXACT_ALIAS_PAIRS",
+            readiness["blockers"],
+        )
+
+
+    def test_verified_baseline_is_not_exhaustive_and_unknown_stays_unknown(self):
+        registry = motivation_rivalry.load_registry()
+
+        readiness = motivation_rivalry.registry_readiness(
+            registry
+        )
+
+        self.assertTrue(readiness["verified"])
+        self.assertEqual(
+            readiness["exhaustiveness"],
+            "NON_EXHAUSTIVE_BY_DESIGN",
+        )
+
+        unknown = motivation_rivalry.lookup_rivalry(
+            "Manchester United",
+            "Arsenal",
+            season="2025",
+            registry=registry,
+        )
+
+        self.assertEqual(
+            unknown["status"],
+            "UNKNOWN",
+        )
+
+
 
     def test_historical_lithuania_vilnius_derby_is_time_bounded(self):
         before_move = motivation_rivalry.lookup_rivalry(
