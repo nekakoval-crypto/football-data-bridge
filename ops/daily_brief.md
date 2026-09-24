@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-24T16:03:19Z
+Generated UTC: 2026-09-24T18:03:36Z
 Active canonical signals: 4
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -15,7 +15,7 @@ Active canonical signals: 4
 - Previous: home Serie A vs Monza (672.0h rest); away Serie A vs Napoli (669.0h rest)
 - Next: home Serie A vs Udinese (165.5h after); away Serie A vs Inter (147.0h after)
 - Injuries: NOT_QUERIED_YET
-- Weather [BASELINE]: 22.4°C, precip 4%, wind 0.5 km/h, gusts 3.6 km/h
+- Weather [pending]: °C, precip %, wind  km/h, gusts  km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: AFTER FIFA window; to start h; player-level UNVERIFIED
 - Flags: WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
@@ -30,7 +30,7 @@ Active canonical signals: 4
 - Previous: home Serie A vs Juventus (669.2h rest); away UEFA Europa League vs Benfica (597.0h rest)
 - Next: home Serie A vs Frosinone (122.8h after); away UEFA Europa League vs Red Bull Salzburg (96.8h after)
 - Injuries: NOT_QUERIED_YET
-- Weather [BASELINE]: 18.9°C, precip %, wind 3.9 km/h, gusts 5.4 km/h
+- Weather [pending]: °C, precip %, wind  km/h, gusts  km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: AFTER FIFA window; to start h; player-level UNVERIFIED
 - Flags: AWAY_PREV_UEFA_OR_CUP, AWAY_NEXT_UEFA_OR_CUP, WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
@@ -45,7 +45,7 @@ Active canonical signals: 4
 - Previous: home Serie A vs Monza (549.2h rest); away Serie A vs Lecce (501.2h rest)
 - Next: home Serie A vs Frosinone (122.8h after); away UEFA Europa League vs Red Bull Salzburg (96.8h after)
 - Injuries: NOT_QUERIED_YET
-- Weather [BASELINE]: 16.0°C, precip %, wind 5.4 km/h, gusts 4.7 km/h
+- Weather [pending]: °C, precip %, wind  km/h, gusts  km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: AFTER FIFA window; to start h; player-level UNVERIFIED
 - Flags: AWAY_NEXT_UEFA_OR_CUP, WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
@@ -60,7 +60,7 @@ Active canonical signals: 4
 - Previous: home Serie A vs Atalanta (696.0h rest); away UEFA Europa League vs NEC Nijmegen (575.8h rest)
 - Next: home Serie A vs Monza (189.8h after); away UEFA Europa League vs Celta Vigo (96.2h after)
 - Injuries: NOT_QUERIED_YET
-- Weather [BASELINE]: 21.4°C, precip 27%, wind 4.2 km/h, gusts 7.6 km/h
+- Weather [pending]: °C, precip %, wind  km/h, gusts  km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: AFTER FIFA window; to start h; player-level UNVERIFIED
 - Flags: AWAY_PREV_UEFA_OR_CUP, AWAY_NEXT_UEFA_OR_CUP, WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING

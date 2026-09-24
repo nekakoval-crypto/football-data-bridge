@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-24T16:03:19Z",
+  "generated_at_utc": "2026-09-24T18:03:36Z",
   "status": "OK",
   "active_signals": 4,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-24T15:46:07Z",
+        "captured_at_utc": "2026-09-24T17:43:45Z",
         "best_odds": "2.07",
         "best_bookmaker": "1xBet",
         "bet365_odds": "2.0",
@@ -98,15 +98,15 @@
         "away": ""
       },
       "weather": {
-        "snapshot_type": "BASELINE",
-        "captured_at_utc": "2026-09-18T07:31:54Z",
-        "temperature_c": "22.4",
-        "precipitation_probability_pct": "4",
-        "precipitation_mm": "0.0",
-        "wind_speed_kmh": "0.5",
-        "wind_gusts_kmh": "3.6",
-        "visibility_m": "24140.0",
-        "weather_code": "3",
+        "snapshot_type": "",
+        "captured_at_utc": "",
+        "temperature_c": "",
+        "precipitation_probability_pct": "",
+        "precipitation_mm": "",
+        "wind_speed_kmh": "",
+        "wind_gusts_kmh": "",
+        "visibility_m": "",
+        "weather_code": "",
         "role": "context-only"
       },
       "rotation": {
@@ -155,7 +155,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-24T15:46:07Z",
+        "captured_at_utc": "2026-09-24T17:43:45Z",
         "best_odds": "1.84",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.75",
@@ -223,15 +223,15 @@
         "away": ""
       },
       "weather": {
-        "snapshot_type": "BASELINE",
-        "captured_at_utc": "2026-09-18T07:31:54Z",
-        "temperature_c": "18.9",
+        "snapshot_type": "",
+        "captured_at_utc": "",
+        "temperature_c": "",
         "precipitation_probability_pct": "",
-        "precipitation_mm": "0.0",
-        "wind_speed_kmh": "3.9",
-        "wind_gusts_kmh": "5.4",
-        "visibility_m": "24140.0",
-        "weather_code": "2",
+        "precipitation_mm": "",
+        "wind_speed_kmh": "",
+        "wind_gusts_kmh": "",
+        "visibility_m": "",
+        "weather_code": "",
         "role": "context-only"
       },
       "rotation": {
@@ -282,7 +282,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-24T15:46:07Z",
+        "captured_at_utc": "2026-09-24T17:43:45Z",
         "best_odds": "1.84",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.75",
@@ -350,15 +350,15 @@
         "away": ""
       },
       "weather": {
-        "snapshot_type": "BASELINE",
-        "captured_at_utc": "2026-09-22T07:32:32Z",
-        "temperature_c": "16.0",
+        "snapshot_type": "",
+        "captured_at_utc": "",
+        "temperature_c": "",
         "precipitation_probability_pct": "",
-        "precipitation_mm": "0.0",
-        "wind_speed_kmh": "5.4",
-        "wind_gusts_kmh": "4.7",
-        "visibility_m": "23680.0",
-        "weather_code": "0",
+        "precipitation_mm": "",
+        "wind_speed_kmh": "",
+        "wind_gusts_kmh": "",
+        "visibility_m": "",
+        "weather_code": "",
         "role": "context-only"
       },
       "rotation": {
@@ -408,7 +408,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-24T15:46:07Z",
+        "captured_at_utc": "2026-09-24T17:43:45Z",
         "best_odds": "1.62",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.57",
@@ -476,15 +476,15 @@
         "away": ""
       },
       "weather": {
-        "snapshot_type": "BASELINE",
-        "captured_at_utc": "2026-09-18T07:31:54Z",
-        "temperature_c": "21.4",
-        "precipitation_probability_pct": "27",
-        "precipitation_mm": "0.0",
-        "wind_speed_kmh": "4.2",
-        "wind_gusts_kmh": "7.6",
-        "visibility_m": "24140.0",
-        "weather_code": "3",
+        "snapshot_type": "",
+        "captured_at_utc": "",
+        "temperature_c": "",
+        "precipitation_probability_pct": "",
+        "precipitation_mm": "",
+        "wind_speed_kmh": "",
+        "wind_gusts_kmh": "",
+        "visibility_m": "",
+        "weather_code": "",
         "role": "context-only"
       },
       "rotation": {
@@ -527,7 +527,7 @@
     "observed_closes": 20,
     "close_qualified_total": 3,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-24T15:54:52Z",
+    "latest_run_utc": "2026-09-24T17:53:52Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -572,7 +572,7 @@
     "observed_closes": 18,
     "close_qualified_total": 7,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-24T15:25:12Z",
+    "latest_run_utc": "2026-09-24T17:22:37Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -644,7 +644,7 @@
     "crossings": []
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-24T15:58:00Z",
+    "generated_at_utc": "2026-09-24T17:53:54Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
