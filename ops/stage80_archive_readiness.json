@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-24T18:37:27Z",
+  "generated_at_utc": "2026-09-24T18:39:46Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -67,12 +67,12 @@
     "transfer_identity": {
       "file": "pbk_transfermarkt_player_identity.csv",
       "present": true,
-      "rows": 5176
+      "rows": 5287
     },
     "transfer_history": {
       "file": "historical_transfer_events.csv",
       "present": true,
-      "rows": 37194
+      "rows": 37997
     },
     "match_context": {
       "file": "match_context_snapshots.csv",
@@ -417,11 +417,11 @@
   },
   "transfer_identity": {
     "present": true,
-    "rows": 5176,
-    "valid_rows": 4776,
+    "rows": 5287,
+    "valid_rows": 4887,
     "invalid_rows": 400,
-    "unique_pbk_players": 4776,
-    "unique_transfermarkt_players": 4776,
+    "unique_pbk_players": 4887,
+    "unique_transfermarkt_players": 4887,
     "approved_methods": [
       "EXACT_NAME_CURRENT_CLUB",
       "EXACT_PROFILE_NAME_DOB_CURRENT_CLUB",
@@ -431,11 +431,11 @@
   },
   "transfer_history": {
     "present": true,
-    "rows": 37194,
-    "valid_rows": 31910,
+    "rows": 37997,
+    "valid_rows": 32713,
     "invalid_identity_rows": 5284,
-    "unique_pbk_players": 3884,
-    "unique_transfermarkt_players": 3884,
+    "unique_pbk_players": 3982,
+    "unique_transfermarkt_players": 3982,
     "earliest_transfer_date": "1994-07-01",
     "latest_transfer_date": "2027-06-30",
     "evidence_note": "Durable transfer events count only when linked by an approved HIGH-confidence exact-name+club identity method; this is historical enrichment, not current squad authority."
@@ -633,17 +633,17 @@
     "source_meta_present": true,
     "source_meta_valid": false,
     "bridge_meta_present": true,
-    "bridge_meta_valid": true,
+    "bridge_meta_valid": false,
     "rows": 38550,
-    "valid_rows": 38550,
-    "invalid_rows": 0,
-    "unique_historical_match_ids": 38550,
+    "valid_rows": 38483,
+    "invalid_rows": 67,
+    "unique_historical_match_ids": 38483,
     "duplicate_historical_match_ids": 0,
     "mapped_auto": 18940,
     "mapped_high": 18387,
     "mapped_auto_high": 37327,
-    "review": 32,
-    "unmapped": 1191,
+    "review": 391,
+    "unmapped": 765,
     "duplicate_mapped_api_fixture_ids": 0,
     "supported_leagues": 14,
     "unsupported_locked_pbk_leagues": 2,

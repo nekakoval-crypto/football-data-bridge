@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-24T18:37:27Z
+Обновлено UTC: 2026-09-24T18:39:46Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -21,8 +21,8 @@
 - Player profile evidence: 3747 rows (3625 team-source + 122 residual-ID) / 3640 players / 129 teams; current-roster coverage 85.26%; identity-ready 3377 players (79.55%).
 - Roster history: 130 команд / 138 team-snapshots / 4257 строк.
 - Membership intervals: 4015 (open 4011, closed-by-observed-absence 4).
-- Verified PBK↔Transfermarkt identities: 4776 rows / 4776 PBK players; invalid 400.
-- Verified historical transfers: 31910 rows / 3884 PBK players; dates 1994-07-01 → 2027-06-30; invalid 5284.
+- Verified PBK↔Transfermarkt identities: 4887 rows / 4887 PBK players; invalid 400.
+- Verified historical transfers: 32713 rows / 3982 PBK players; dates 1994-07-01 → 2027-06-30; invalid 5284.
 - EPL referee research: 47 referees / 897 referee×team pairs / 3420 source matches; scope EPL_ONLY; penalties unavailable.
 - Top-5 API-Football referee backfill: 45 / 45 league-seasons; 16239 fixture rows; referee coverage 99.44%; profiles 453; referee×team pairs 7689.
 - Top-5 pre-match research context: 16111 valid rows / 16111 unique matches / 45 of 45 league-seasons; no-lookahead True.
@@ -31,7 +31,7 @@
 - Pre-match factor research: 2247 profile rows / 237 stability rows; closing 1X2 matches 12459; closing O/U2.5 matches 12459.
 - Pre-match walk-forward research: 7685 folds / 1145 summaries; sample-qualified folds 4455; promotes factor False.
 - Match context: 6 fixtures; official XI 1; injury evidence 3.
-- PBK14 historical market bridge: 37327 AUTO/HIGH of 38550 valid source rows; AUTO 18940, HIGH 18387, REVIEW 32, UNMAPPED 1191; fuzzy matching False; source coverage 14 / 16 locked leagues.
+- PBK14 historical market bridge: 37327 AUTO/HIGH of 38483 valid source rows; AUTO 18940, HIGH 18387, REVIEW 391, UNMAPPED 765; fuzzy matching False; source coverage 14 / 16 locked leagues.
 - PBK14 international-window × market join: 37327 valid rows; closing 1X2 30879; closing O/U2.5 22738; <=72h before 3595; <=72h after 424; player-level UNVERIFIED.
 - PBK14 international-window market research: join 37327 rows; descriptive profiles 2686; stability rows 313; closing 1X2 30879; closing O/U2.5 22738; player-level UNVERIFIED.
 - PBK14 congestion × market research: join 37327 rows; descriptive profiles 4698; stability rows 494; closing 1X2 30879; closing O/U2.5 22738; promotes factor False.
