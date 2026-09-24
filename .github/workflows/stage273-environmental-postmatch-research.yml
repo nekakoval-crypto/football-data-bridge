@@ -130,7 +130,7 @@ jobs:
           assert meta['source_semantics']['direct_stadium_observation'] is False
           assert meta['source_semantics']['usable_for_prematch'] is False
           assert meta['source_semantics']['historical_proxy_is_prematch_forecast'] is False
-          assert meta['source_semantics']['geocode_resolver_version']=='PBK_GEOCODE_V2'
+          assert meta['source_semantics']['geocode_resolver_version']=='PBK_GEOCODE_V3'
           assert meta['source_semantics']['geocode_country_filter_required'] is True
           assert meta['source_semantics']['legacy_geocode_rows_are_not_trusted_for_new_captures'] is True
           assert meta['research_guards']['causal_claim_from_single_match'] is False

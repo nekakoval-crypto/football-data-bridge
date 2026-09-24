@@ -49,7 +49,7 @@ HTTP_TIMEOUT = float(os.getenv("STAGE273_HTTP_TIMEOUT", "30"))
 HTTP_ATTEMPTS = int(os.getenv("STAGE273_HTTP_ATTEMPTS", "3"))
 HTTP_RETRY_DELAY = float(os.getenv("STAGE273_HTTP_RETRY_DELAY", "0.75"))
 USER_AGENT = "PBK-stage273/1.0"
-GEOCODE_RESOLVER_VERSION = "PBK_GEOCODE_V2"
+GEOCODE_RESOLVER_VERSION = "PBK_GEOCODE_V3"
 GEOCODE_REPAIR_DISTANCE_KM = 25.0
 GEOCODE_LEGACY_REVALIDATE_PER_RUN = int(
     os.getenv("STAGE273_GEOCODE_LEGACY_REVALIDATE_PER_RUN", "12")
@@ -406,10 +406,29 @@ CITY_ALIASES = {
     "koln": "Cologne",
     "firenze": "Florence",
     "roma": "Rome",
+    "torino": "Turin",
+    "venezia": "Venice",
+    "milano": "Milan",
+    "brugge": "Bruges",
+    "gent": "Ghent",
+    "bruxelles brussel": "Brussels",
+    "la haye": "The Hague",
+    "lyngby": "Norre Lyngby",
     "sevilla": "Seville",
     "donostia san sebastian": "San Sebastian",
     "ilha da madeira": "Madeira",
 }
+
+PLACE_TRANSLITERATION = str.maketrans({
+    "ł": "l", "Ł": "L",
+    "ø": "o", "Ø": "O",
+    "đ": "d", "Đ": "D",
+    "ð": "d", "Ð": "D",
+    "þ": "th", "Þ": "Th",
+    "æ": "ae", "Æ": "Ae",
+    "œ": "oe", "Œ": "Oe",
+    "ı": "i",
+})
 
 LOCALITY_FEATURE_RANK = {
     "PPLC": 5,
@@ -421,7 +440,8 @@ LOCALITY_FEATURE_RANK = {
 
 
 def normalize_place(value: Any) -> str:
-    text = html.unescape(str(value or "")).strip().casefold()
+    text = html.unescape(str(value or "")).strip()
+    text = text.translate(PLACE_TRANSLITERATION).casefold()
     text = unicodedata.normalize("NFKD", text)
     text = "".join(ch for ch in text if not unicodedata.combining(ch))
     text = re.sub(r"[^a-z0-9]+", " ", text)
@@ -532,6 +552,8 @@ def select_geocode_candidate(
             str(candidate.get("feature_code") or "").strip().upper(),
             0,
         )
+        if feature_rank <= 0:
+            continue
         population = fnum(candidate.get("population")) or 0.0
         ranked.append(
             (
@@ -556,7 +578,7 @@ def verified_geocache_by_venue(rows: list[dict[str, str]]) -> dict[str, dict[str
         for row in rows
         if str(row.get("venue_id") or "").strip()
         and str(row.get("resolver_version") or "") == GEOCODE_RESOLVER_VERSION
-        and str(row.get("geocode_quality_status") or "") == "VERIFIED_CITY_COUNTRY_V2"
+        and str(row.get("geocode_quality_status") or "") == "VERIFIED_LOCALITY_V3"
         and fnum(row.get("latitude")) is not None
         and fnum(row.get("longitude")) is not None
     }
@@ -568,7 +590,7 @@ def unresolved_geocache_venue_ids(rows: list[dict[str, str]]) -> set[str]:
         for row in rows
         if str(row.get("venue_id") or "").strip()
         and str(row.get("resolver_version") or "") == GEOCODE_RESOLVER_VERSION
-        and str(row.get("geocode_quality_status") or "") == "UNRESOLVED_V2"
+        and str(row.get("geocode_quality_status") or "") == "UNRESOLVED_V3"
     }
 
 
@@ -591,12 +613,12 @@ def unresolved_geocode_record(
         "geocoded_admin1": "",
         "geocoded_population": "",
         "geocoded_feature_code": "",
-        "geocode_quality_status": "UNRESOLVED_V2",
+        "geocode_quality_status": "UNRESOLVED_V3",
         "geocode_name_match_quality": "0",
         "geocode_query_used": " | ".join(queries),
         "resolver_version": GEOCODE_RESOLVER_VERSION,
         "captured_at_utc": iso(captured_at),
-        "source": "Open-Meteo Geocoding API city proxy v2",
+        "source": "Open-Meteo Geocoding API city proxy v3",
     }
 
 
@@ -658,12 +680,12 @@ def geocode_venue(
         "geocoded_admin1": str(result.get("admin1") or ""),
         "geocoded_population": fmt(fnum(result.get("population"))),
         "geocoded_feature_code": str(result.get("feature_code") or ""),
-        "geocode_quality_status": "VERIFIED_CITY_COUNTRY_V2",
+        "geocode_quality_status": "VERIFIED_LOCALITY_V3",
         "geocode_name_match_quality": str(quality),
         "geocode_query_used": str(result.get("_pbk_query") or ""),
         "resolver_version": GEOCODE_RESOLVER_VERSION,
         "captured_at_utc": iso(captured_at),
-        "source": "Open-Meteo Geocoding API city proxy v2",
+        "source": "Open-Meteo Geocoding API city proxy v3",
     }
 
 
