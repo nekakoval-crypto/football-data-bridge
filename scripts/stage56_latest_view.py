@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import csv
 import os
+from datetime import datetime, timezone
 from pathlib import Path
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
@@ -18,6 +19,7 @@ ENVIRONMENT_MAX_FORECAST_GAP_MINUTES = 90.0
 FIELDS = [
     "forward_id","rule","api_fixture_id","home_team","away_team",
     "kickoff_utc","weather_snapshot_type","weather_captured_at_utc",
+    "weather_evidence_time_status","weather_usable_for_prematch",
 
     "elevation_m","altitude_zone",
     "temperature_c","apparent_temperature_c",
@@ -74,13 +76,40 @@ def val(row, key):
     return "" if value is None else value
 
 
+def parse_iso(value):
+    try:
+        dt = datetime.fromisoformat(str(value or "").replace("Z", "+00:00"))
+        if dt.tzinfo is None:
+            return None
+        return dt.astimezone(timezone.utc)
+    except (TypeError, ValueError):
+        return None
+
+
+def evidence_time_contract(row):
+    captured = parse_iso(row.get("captured_at_utc"))
+    kickoff = parse_iso(row.get("kickoff_utc"))
+
+    if not captured or not kickoff:
+        return "UNKNOWN", "false"
+
+    if captured < kickoff:
+        return "PREMATCH_FROZEN", "true"
+
+    return "POSTMATCH_FACTUAL", "false"
+
+
 def valid_weather_row(row):
     try:
         gap = float(str(row.get("forecast_gap_minutes") or "").strip())
     except (TypeError, ValueError):
         return False
 
-    return 0.0 <= gap <= ENVIRONMENT_MAX_FORECAST_GAP_MINUTES
+    if not (0.0 <= gap <= ENVIRONMENT_MAX_FORECAST_GAP_MINUTES):
+        return False
+
+    _, usable = evidence_time_contract(row)
+    return usable == "true"
 
 
 def main():
@@ -97,6 +126,7 @@ def main():
     for bet in active:
         fid = bet.get("forward_id") or ""
         c, w, r = ctx.get(fid, {}), weather.get(fid, {}), rotation.get(fid, {})
+        time_status, usable = evidence_time_contract(w) if w else ("", "")
         rows.append({
             "forward_id": fid,
             "rule": val(bet, "rule"),
@@ -106,6 +136,8 @@ def main():
             "kickoff_utc": val(c, "current_kickoff_utc") or val(w, "kickoff_utc"),
             "weather_snapshot_type": val(w, "snapshot_type"),
             "weather_captured_at_utc": val(w, "captured_at_utc"),
+            "weather_evidence_time_status": time_status,
+            "weather_usable_for_prematch": usable,
 
             "elevation_m": val(w, "elevation_m"),
             "altitude_zone": val(w, "altitude_zone"),
