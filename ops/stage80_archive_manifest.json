@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-24T18:15:39Z",
+  "generated_at_utc": "2026-09-24T18:20:36Z",
   "status": "OK",
   "datasets": [
     {
@@ -2594,7 +2594,7 @@
       "source": "Stage80 Football-Data PBK14 historical market rows bridged to API-Football PBK16 domestic fixtures",
       "limitations": "AUTO/HIGH only are eligible downstream. No fuzzy string matching; REVIEW/UNMAPPED remain excluded. Final scores are used only as historical identity evidence. Lithuania/Latvia have no Football-Data historical market source in this contour. No betting/model authority.",
       "present": true,
-      "row_count": 37674,
+      "row_count": 38550,
       "columns": [
         "historical_match_id",
         "league_code",

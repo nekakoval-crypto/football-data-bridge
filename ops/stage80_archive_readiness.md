@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-24T18:15:51Z
+Обновлено UTC: 2026-09-24T18:20:43Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -31,7 +31,7 @@
 - Pre-match factor research: 2247 profile rows / 237 stability rows; closing 1X2 matches 12459; closing O/U2.5 matches 12459.
 - Pre-match walk-forward research: 7685 folds / 1145 summaries; sample-qualified folds 4455; promotes factor False.
 - Match context: 6 fixtures; official XI 1; injury evidence 3.
-- PBK14 historical market bridge: 37327 AUTO/HIGH of 37674 valid source rows; AUTO 18940, HIGH 18387, REVIEW 32, UNMAPPED 315; fuzzy matching False; source coverage 14 / 16 locked leagues.
+- PBK14 historical market bridge: 37327 AUTO/HIGH of 38550 valid source rows; AUTO 18940, HIGH 18387, REVIEW 32, UNMAPPED 1191; fuzzy matching False; source coverage 14 / 16 locked leagues.
 - PBK14 international-window × market join: 37327 valid rows; closing 1X2 30879; closing O/U2.5 22738; <=72h before 3595; <=72h after 424; player-level UNVERIFIED.
 - PBK14 international-window market research: join 37327 rows; descriptive profiles 2686; stability rows 313; closing 1X2 30879; closing O/U2.5 22738; player-level UNVERIFIED.
 - PBK14 congestion × market research: join 37327 rows; descriptive profiles 4698; stability rows 494; closing 1X2 30879; closing O/U2.5 22738; promotes factor False.
@@ -58,6 +58,7 @@
 - REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL
 - PBK16_COMPETITION_PROVIDER_SEASONS_PARTIAL
 - PBK16_HISTORICAL_TABLE_CONTEXT_INVALID
+- PBK14_HISTORICAL_MARKET_BRIDGE_INVALID
 - PBK14_HISTORICAL_MARKET_BRIDGE_PARTIAL_MAPPING
 - PBK16_HISTORICAL_MARKET_SOURCE_LIMITED_TO_14_LEAGUES
 - MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY

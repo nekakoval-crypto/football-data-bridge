@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-24T18:15:51Z",
+  "generated_at_utc": "2026-09-24T18:20:43Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -227,7 +227,7 @@
     "pbk14_market_bridge": {
       "file": "pbk14_football_data_fixture_bridge.csv",
       "present": true,
-      "rows": 37674
+      "rows": 38550
     },
     "pbk14_international_window_market_join": {
       "file": "pbk14_international_window_market_join_research.csv",
@@ -631,19 +631,19 @@
   "pbk14_historical_market_bridge": {
     "present": true,
     "source_meta_present": true,
-    "source_meta_valid": true,
+    "source_meta_valid": false,
     "bridge_meta_present": true,
     "bridge_meta_valid": true,
-    "rows": 37674,
-    "valid_rows": 37674,
+    "rows": 38550,
+    "valid_rows": 38550,
     "invalid_rows": 0,
-    "unique_historical_match_ids": 37674,
+    "unique_historical_match_ids": 38550,
     "duplicate_historical_match_ids": 0,
     "mapped_auto": 18940,
     "mapped_high": 18387,
     "mapped_auto_high": 37327,
     "review": 32,
-    "unmapped": 315,
+    "unmapped": 1191,
     "duplicate_mapped_api_fixture_ids": 0,
     "supported_leagues": 14,
     "unsupported_locked_pbk_leagues": 2,
@@ -947,6 +947,7 @@
     "REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL",
     "PBK16_COMPETITION_PROVIDER_SEASONS_PARTIAL",
     "PBK16_HISTORICAL_TABLE_CONTEXT_INVALID",
+    "PBK14_HISTORICAL_MARKET_BRIDGE_INVALID",
     "PBK14_HISTORICAL_MARKET_BRIDGE_PARTIAL_MAPPING",
     "PBK16_HISTORICAL_MARKET_SOURCE_LIMITED_TO_14_LEAGUES",
     "MATCH_CONTEXT_COVERAGE_IS_CANONICAL_SCOPE_ONLY",
