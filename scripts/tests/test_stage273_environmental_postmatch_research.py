@@ -231,6 +231,20 @@ class EnvironmentalPostmatchResearchTests(unittest.TestCase):
         )
         self.assertEqual(m.verified_geocache_by_venue([row]),{})
 
+    def test_snapshot_geocode_drift_detects_bad_city_proxy(self):
+        snapshot={"latitude":"44.994","longitude":"11.106"}
+        geo={"latitude":"41.8919","longitude":"12.5113"}
+        drift=m.snapshot_geocode_drift_km(snapshot,geo)
+        self.assertIsNotNone(drift)
+        self.assertGreater(drift,m.GEOCODE_REPAIR_DISTANCE_KM)
+
+    def test_snapshot_geocode_drift_accepts_same_city_area(self):
+        snapshot={"latitude":"41.389","longitude":"2.159"}
+        geo={"latitude":"41.387","longitude":"2.17"}
+        drift=m.snapshot_geocode_drift_km(snapshot,geo)
+        self.assertIsNotNone(drift)
+        self.assertLess(drift,m.GEOCODE_REPAIR_DISTANCE_KM)
+
     def test_finished_fixture_filter_rejects_scheduled(self):
         rows = [
             {
