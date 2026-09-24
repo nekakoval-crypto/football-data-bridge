@@ -3,6 +3,12 @@ name: Stage 281 Environmental Mechanism Comparisons
 on:
   workflow_dispatch:
 
+  workflow_run:
+    workflows:
+      - "Stage 276 Environmental Expectation Deviation Research"
+    types:
+      - completed
+
   pull_request:
     paths:
       - 'config/pbk_environmental_mechanism_comparisons_v1.json'
@@ -76,7 +82,15 @@ jobs:
 
   materialize:
     needs: validate
-    if: github.event_name != 'pull_request'
+    if: >
+      github.event_name != 'pull_request' &&
+      (
+        github.event_name != 'workflow_run' ||
+        (
+          github.event.workflow_run.conclusion == 'success' &&
+          github.event.workflow_run.head_branch == 'main'
+        )
+      )
     runs-on: ubuntu-latest
 
     steps:
