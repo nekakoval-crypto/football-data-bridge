@@ -2,22 +2,55 @@ name: Stage 56 Weather and XI Rotation Context
 
 on:
   workflow_dispatch:
+
   schedule:
     - cron: '*/15 * * * *'
+
+  pull_request:
+    paths:
+      - 'scripts/stage56_weather_rotation.py'
+      - 'scripts/stage56_latest_view.py'
+      - 'scripts/tests/test_stage56_weather_contract.py'
+      - '.github/workflows/stage56-weather-rotation.yml'
+
   push:
     branches:
       - main
     paths:
       - 'scripts/stage56_weather_rotation.py'
       - 'scripts/stage56_latest_view.py'
+      - 'scripts/tests/test_stage56_weather_contract.py'
       - '.github/workflows/stage56-weather-rotation.yml'
 
 permissions:
   contents: write
 
 jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile Stage 56 weather contract
+        run: |
+          python -m py_compile             scripts/stage56_weather_rotation.py             scripts/stage56_latest_view.py             scripts/tests/test_stage56_weather_contract.py
+
+      - name: Run Stage 56 weather fail-closed tests
+        run: |
+          python -m unittest             scripts.tests.test_stage56_weather_contract             -v
+
   enrich:
-    if: github.ref == 'refs/heads/main'
+    needs: validate
+    if: >
+      github.ref == 'refs/heads/main' &&
+      github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
@@ -115,4 +148,4 @@ jobs:
             ops/stage56_latest.csv
             ops/stage56_last_run.json
           if-no-files-found: ignore
-          retention-days: 30
+          retention-days: 30\n

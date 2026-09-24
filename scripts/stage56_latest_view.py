@@ -13,6 +13,8 @@ WEATHER = OPS / "weather_snapshots.csv"
 ROTATION = OPS / "rotation_snapshots.csv"
 LATEST = OPS / "stage56_latest.csv"
 
+WEATHER_MAX_FORECAST_GAP_MINUTES = 90.0
+
 FIELDS = [
     "forward_id","rule","api_fixture_id","home_team","away_team","kickoff_utc",
     "weather_snapshot_type","weather_captured_at_utc","temperature_c","precipitation_probability_pct",
@@ -54,10 +56,34 @@ def val(row, key):
     return "" if value is None else value
 
 
+def valid_weather_row(row):
+    try:
+        gap = float(
+            str(
+                row.get(
+                    "forecast_gap_minutes"
+                )
+                or ""
+            ).strip()
+        )
+    except (TypeError, ValueError):
+        return False
+
+    return (
+        0.0
+        <= gap
+        <= WEATHER_MAX_FORECAST_GAP_MINUTES
+    )
+
+
 def main():
     active = [r for r in read_csv(FORWARD) if r.get("status") in {"PAPER", "OPEN", "REVIEW"}]
     ctx = latest_by(read_csv(CONTEXT))
-    weather = latest_by(read_csv(WEATHER))
+    weather = latest_by([
+        row
+        for row in read_csv(WEATHER)
+        if valid_weather_row(row)
+    ])
     rotation = latest_by(read_csv(ROTATION))
 
     rows = []
@@ -95,4 +121,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main()\n

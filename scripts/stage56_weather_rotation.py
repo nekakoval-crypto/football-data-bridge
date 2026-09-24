@@ -37,12 +37,49 @@ META = OPS / "stage56_last_run.json"
 OPEN_METEO_FORECAST = "https://api.open-meteo.com/v1/forecast"
 OPEN_METEO_GEOCODING = "https://geocoding-api.open-meteo.com/v1/search"
 
+OPEN_METEO_FORECAST_DAYS = 16
+
+# Open-Meteo forecast_days includes the current UTC date. Keep the
+# BASELINE gate one day inside the nominal horizon so a far-future fixture
+# can never silently bind to the provider's last available forecast hour.
+WEATHER_BASELINE_MAX_HOURS = (
+    OPEN_METEO_FORECAST_DAYS - 1
+) * 24.0
+
+# Nearest-hour forecasts should normally be within 30 minutes of kickoff.
+# Ninety minutes is a deliberately conservative hard fail-closed ceiling.
+WEATHER_MAX_FORECAST_GAP_MINUTES = 90.0
+
 COUNTRY_CODE_BY_DIV = {
     "E0": "GB",
     "SP1": "ES",
     "I1": "IT",
     "D1": "DE",
     "F1": "FR",
+}
+
+# PBK16 locked competition universe. This mapping is context/geocoding only;
+# it grants no predictive or betting authority.
+COUNTRY_CODE_BY_LEAGUE = {
+    "Premier League": "GB",
+    "La Liga": "ES",
+    "Serie A": "IT",
+    "Bundesliga": "DE",
+    "Ligue 1": "FR",
+    "Austrian Bundesliga": "AT",
+    "Belgian Pro League": "BE",
+    "Jupiler Pro League": "BE",
+    "Danish Superliga": "DK",
+    "Superliga": "DK",
+    "A Lyga": "LT",
+    "Virsliga": "LV",
+    "Eredivisie": "NL",
+    "Eliteserien": "NO",
+    "Ekstraklasa": "PL",
+    "Primeira Liga": "PT",
+    "Super Lig": "TR",
+    "Süper Lig": "TR",
+    "Scottish Premiership": "GB",
 }
 
 WEATHER_FIELDS = [
@@ -138,15 +175,51 @@ def om_get(base, params):
 
 
 def weather_due_type(done, forward_id, hours):
-    if (forward_id, "BASELINE") not in done:
+    # Never request a BASELINE outside the usable provider forecast horizon.
+    # The old behaviour could attach the provider's final available forecast
+    # hour to a fixture many days later.
+    if (
+        0.0 < hours <= WEATHER_BASELINE_MAX_HOURS
+        and (forward_id, "BASELINE") not in done
+    ):
         return "BASELINE"
-    if 6.0 < hours <= 30.0 and (forward_id, "T24") not in done:
+
+    if (
+        6.0 < hours <= 30.0
+        and (forward_id, "T24") not in done
+    ):
         return "T24"
-    if 1.5 < hours <= 6.0 and (forward_id, "T3") not in done:
+
+    if (
+        1.5 < hours <= 6.0
+        and (forward_id, "T3") not in done
+    ):
         return "T3"
-    if 0.0 < hours <= 1.5 and (forward_id, "T60") not in done:
+
+    if (
+        0.0 < hours <= 1.5
+        and (forward_id, "T60") not in done
+    ):
         return "T60"
+
     return ""
+
+
+def country_code_for(bet, context):
+    league = str(
+        (context or {}).get("league")
+        or ""
+    ).strip()
+
+    if league in COUNTRY_CODE_BY_LEAGUE:
+        return COUNTRY_CODE_BY_LEAGUE[league]
+
+    div = str(
+        (bet or {}).get("div")
+        or ""
+    ).strip()
+
+    return COUNTRY_CODE_BY_DIV.get(div, "")
 
 
 def geocode_city(city, country_code):
@@ -175,7 +248,7 @@ def nearest_hourly_weather(lat, lon, kickoff):
         "longitude": lon,
         "hourly": ",".join(variables),
         "timezone": "UTC",
-        "forecast_days": 16,
+        "forecast_days": OPEN_METEO_FORECAST_DAYS,
     })
     hourly = d.get("hourly") or {}
     times = hourly.get("time") or []
@@ -184,7 +257,20 @@ def nearest_hourly_weather(lat, lon, kickoff):
     if not candidates:
         return None
     _, idx, dt = min(candidates, key=lambda x: x[0])
-    row = {"forecast_time": dt, "forecast_gap_minutes": abs((dt - kickoff).total_seconds()) / 60.0}
+
+    gap_minutes = (
+        abs((dt - kickoff).total_seconds())
+        / 60.0
+    )
+
+    if gap_minutes > WEATHER_MAX_FORECAST_GAP_MINUTES:
+        return None
+
+    row = {
+        "forecast_time": dt,
+        "forecast_gap_minutes": gap_minutes,
+    }
+
     for var in variables:
         vals = hourly.get(var) or []
         row[var] = vals[idx] if idx < len(vals) else None
@@ -284,7 +370,10 @@ def main():
         stype = weather_due_type(weather_done, fid, hours)
         if stype:
             city = c.get("venue_city") or ""
-            country_code = COUNTRY_CODE_BY_DIV.get(bet.get("div") or "", "")
+            country_code = country_code_for(
+                bet,
+                c,
+            )
             try:
                 geo = geocode_city(city, country_code)
                 geocoding_calls += 1
@@ -500,4 +589,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main()\n
