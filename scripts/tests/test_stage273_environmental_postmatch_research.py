@@ -132,7 +132,7 @@ class EnvironmentalPostmatchResearchTests(unittest.TestCase):
         self.assertEqual(m.normalize_place("Nørre Lyngby"), "norre lyngby")
 
     def test_city_query_variants_add_locality_aliases(self):
-        self.assertIn("Norre Lyngby", m.city_query_variants("Lyngby"))
+        self.assertIn("Kongens Lyngby", m.city_query_variants("Lyngby"))
         self.assertIn("Turin", m.city_query_variants("Torino"))
         self.assertIn("Venice", m.city_query_variants("Venezia"))
 
