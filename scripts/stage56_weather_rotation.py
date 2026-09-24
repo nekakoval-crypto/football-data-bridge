@@ -82,6 +82,7 @@ COUNTRY_CODE_BY_LEAGUE = {
 WEATHER_FIELDS = [
     "forward_id","rule","api_fixture_id","snapshot_type",
     "captured_at_utc","kickoff_utc","hours_to_kickoff",
+    "evidence_time_status","usable_for_prematch",
     "venue_name","venue_city","geocoded_name","country_code",
     "latitude","longitude",
 
@@ -248,6 +249,44 @@ def thunderstorm_evidence(value):
         return "UNKNOWN"
 
     return "YES" if code in {95, 96, 99} else "NO"
+
+
+def evidence_time_contract(captured_at, kickoff_at):
+    captured = captured_at if isinstance(captured_at, datetime) else parse_iso(captured_at)
+    kickoff = kickoff_at if isinstance(kickoff_at, datetime) else parse_iso(kickoff_at)
+
+    if not captured or not kickoff:
+        return {
+            "evidence_time_status": "UNKNOWN",
+            "usable_for_prematch": "false",
+        }
+
+    if captured < kickoff:
+        return {
+            "evidence_time_status": "PREMATCH_FROZEN",
+            "usable_for_prematch": "true",
+        }
+
+    return {
+        "evidence_time_status": "POSTMATCH_FACTUAL",
+        "usable_for_prematch": "false",
+    }
+
+
+def valid_prematch_weather_row(row):
+    try:
+        gap = float(str(row.get("forecast_gap_minutes") or "").strip())
+    except (TypeError, ValueError):
+        return False
+
+    if not (0.0 <= gap <= ENVIRONMENT_MAX_FORECAST_GAP_MINUTES):
+        return False
+
+    contract = evidence_time_contract(
+        row.get("captured_at_utc"),
+        row.get("kickoff_utc"),
+    )
+    return contract["usable_for_prematch"] == "true"
 
 
 def geocode_city(city, country_code):
@@ -504,6 +543,11 @@ def main():
                         air_status = "UNAVAILABLE"
                         warnings.append(f"air quality {fid}: {exc}")
 
+                time_contract = evidence_time_contract(now, kickoff)
+
+                if time_contract["usable_for_prematch"] != "true":
+                    raise RuntimeError("weather snapshot is not prematch-safe")
+
                 weather_rows.append({
                     "forward_id": fid,
                     "rule": bet.get("rule") or "",
@@ -512,6 +556,8 @@ def main():
                     "captured_at_utc": iso(now),
                     "kickoff_utc": iso(kickoff),
                     "hours_to_kickoff": f"{hours:.2f}",
+                    "evidence_time_status": time_contract["evidence_time_status"],
+                    "usable_for_prematch": time_contract["usable_for_prematch"],
                     "venue_name": c.get("venue_name") or "",
                     "venue_city": city,
                     "geocoded_name": geo.get("name") or "",
@@ -679,6 +725,8 @@ def main():
     # Compact latest view for daily consumption.
     weather_latest = {}
     for r in weather_rows:
+        if not valid_prematch_weather_row(r):
+            continue
         fid = r.get("forward_id") or ""
         if not fid:
             continue
@@ -745,6 +793,8 @@ def main():
         "policy": {
             "role": "context-only; never changes R1/R2/R3 eligibility",
             "weather": "Open-Meteo city-level proxy nearest hourly forecast to kickoff; timestamped snapshots",
+            "weather_evidence_time": "PREMATCH_FROZEN only when captured_at_utc < kickoff_utc; post-kickoff rows are never prematch-usable",
+            "postmatch_weather": "POSTMATCH_FACTUAL may exist only for research/audit and is excluded from prematch latest views",
             "rotation": "official current XI compared only with official previous-match XI",
             "missing_previous_xi": "rotation metrics left blank; never inferred",
             "xi_polling": "only inside final 90 minutes; workflow cadence handles re-checks until official XI appears",
