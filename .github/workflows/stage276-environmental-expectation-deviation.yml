@@ -1,0 +1,155 @@
+name: Stage 276 Environmental Expectation Deviation Research
+
+on:
+  workflow_dispatch:
+
+  pull_request:
+    paths:
+      - 'scripts/stage276_environmental_expectation_deviation.py'
+      - 'scripts/tests/test_stage276_environmental_expectation_deviation.py'
+      - '.github/workflows/stage276-environmental-expectation-deviation.yml'
+
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/stage276_environmental_expectation_deviation.py'
+      - 'scripts/tests/test_stage276_environmental_expectation_deviation.py'
+      - '.github/workflows/stage276-environmental-expectation-deviation.yml'
+
+  schedule:
+    - cron: '17 4 * * 0'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stage276-environmental-expectation-deviation
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile
+        run: |
+          python -m py_compile             scripts/stage276_environmental_expectation_deviation.py             scripts/tests/test_stage276_environmental_expectation_deviation.py
+
+      - name: Contract tests
+        run: |
+          python -m unittest             scripts.tests.test_stage276_environmental_expectation_deviation             -v
+
+      - name: Verify no synthetic expected goals
+        shell: bash
+        run: |
+          if grep -nE 'expected_goals_market|derive_expected_goals|poisson_from_odds'             scripts/stage276_environmental_expectation_deviation.py
+          then
+            echo 'Stage276 must not reverse-engineer expected goals from O/U 2.5.' >&2
+            exit 1
+          fi
+
+  build:
+    needs: validate
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Download and normalize historical closing markets
+        run: |
+          mkdir -p source normalized
+          python scripts/stage80_football_data_pbk14_history.py             --config config/stage80_football_data_pbk14_9seasons.json             --download-dir source             --out-csv normalized/football_data_pbk14_9season_matches.csv             --meta-out normalized/stage80_football_data_pbk14_history_meta.json             --fetch
+
+      - name: Rebuild conservative fixture identity bridge
+        run: |
+          python scripts/stage80_pbk14_fixture_bridge.py             --source normalized/football_data_pbk14_9season_matches.csv             --api-archive ops/pbk16_all_competition_fixture_history.csv             --config config/stage80_football_data_pbk14_9seasons.json             --out-csv normalized/pbk14_football_data_fixture_bridge.csv             --meta-out normalized/stage80_pbk14_fixture_bridge_meta.json
+
+      - name: Build environmental expectation deviation join
+        run: |
+          python scripts/stage276_environmental_expectation_deviation.py             --markets normalized/football_data_pbk14_9season_matches.csv             --bridge normalized/pbk14_football_data_fixture_bridge.csv             --mechanisms ops/environmental_postmatch_mechanism_dataset.csv             --out-csv ops/environmental_expectation_deviation_research.csv             --meta-out ops/stage276_environmental_expectation_deviation_last_run.json
+
+      - name: Verify research governance
+        run: |
+          python - <<'PY'
+          import csv
+          import json
+
+          with open(
+              'ops/stage276_environmental_expectation_deviation_last_run.json',
+              encoding='utf-8',
+          ) as f:
+              meta = json.load(f)
+
+          assert meta['status'] == 'OK'
+          assert meta['expected_goals_reverse_engineered'] is False
+          assert meta['primary_expectation_baseline'] == 'CLOSING_OU25_NO_VIG_PROBABILITY'
+          assert meta['causal_claim_authorized'] is False
+          assert meta['research_only'] is True
+          assert meta['historical_backfill_only'] is True
+          assert meta['predictive_authority'] == 'NOT_AUTHORIZED'
+          assert meta['operational_betting_authority'] is False
+          assert meta['creates_signal'] is False
+
+          with open(
+              'ops/environmental_expectation_deviation_research.csv',
+              encoding='utf-8-sig',
+              newline='',
+          ) as f:
+              rows = list(csv.DictReader(f))
+
+          assert all(r['expectation_source_is_prematch_market'] == 'true' for r in rows)
+          assert all(r['environment_source_is_postmatch_proxy'] == 'true' for r in rows)
+          assert all(r['causal_claim_authorized'] == 'false' for r in rows)
+          assert all(r['predictive_authority'] == 'NOT_AUTHORIZED' for r in rows)
+          assert all(r['betting_authority'] == 'NOT_AUTHORIZED' for r in rows)
+
+          print({
+              'rows': len(rows),
+              'bands': meta['expectation_band_counts'],
+              'deviations': meta['deviation_class_counts'],
+          })
+          PY
+
+      - name: Publish durable research projection
+        shell: bash
+        run: |
+          git config user.name 'stage276-bot'
+          git config user.email 'stage276-bot@users.noreply.github.com'
+
+          git add             ops/environmental_expectation_deviation_research.csv             ops/stage276_environmental_expectation_deviation_last_run.json
+
+          if git diff --cached --quiet; then
+            echo 'No Stage276 research changes.'
+            exit 0
+          fi
+
+          git commit -m 'Stage 276 environmental expectation deviation update'
+          python scripts/publish_operational_commit.py
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage276-environmental-expectation-deviation
+          path: |
+            ops/environmental_expectation_deviation_research.csv
+            ops/stage276_environmental_expectation_deviation_last_run.json
+            normalized/stage80_football_data_pbk14_history_meta.json
+            normalized/stage80_pbk14_fixture_bridge_meta.json
+          if-no-files-found: warn
+          retention-days: 90
