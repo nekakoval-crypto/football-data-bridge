@@ -1,21 +1,16 @@
 ﻿#!/usr/bin/env python3
-"""PBK Item 13 — frozen Motivation Interaction Specialist V1 forward monitor.
+"""PBK Item 13 — frozen Motivation Interaction V1 prospective monitor.
 
-Prospective research only.
+The frozen config is the single source of truth for:
+- frozen interactions and beta;
+- prospective inputs;
+- output journal names;
+- forward sample gates;
+- review thresholds;
+- governance restrictions.
 
-Consumes already-frozen PBK evidence:
-- motivation_forward_prematch.jsonl
-- generic_1x2_v1_forward_prematch.jsonl
-- motivation_forward_labels.jsonl
-- motivation_interaction_specialist_v1.json
-
-It NEVER:
-- refits beta;
-- reselects interactions;
-- reuses the old historical holdout;
-- historical-backfills missed forward observations;
-- mutates source prematch evidence;
-- grants predictive, betting, value, eligibility or stake authority.
+This monitor is research-only and can never automatically grant predictive,
+betting, value, eligibility, R1/R2/R3, UI or stake authority.
 """
 from __future__ import annotations
 
@@ -23,24 +18,29 @@ import hashlib
 import json
 import math
 import os
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 
-VERSION = "PBK_MOTIVATION_INTERACTION_FORWARD_MONITOR_V1"
+VERSION = "PBK_MOTIVATION_INTERACTION_FORWARD_MONITOR_V2"
 
 ROOT = Path(__file__).resolve().parents[1]
 OPS = Path(os.getenv("OPS_DIR", str(ROOT / "ops")))
 
-SPEC = OPS / "motivation_interaction_specialist_v1.json"
-MOTIVATION = OPS / "motivation_forward_prematch.jsonl"
-MARKET = OPS / "generic_1x2_v1_forward_prematch.jsonl"
-MOTIVATION_LABELS = OPS / "motivation_forward_labels.jsonl"
+DEFAULT_CONFIG = (
+    ROOT
+    / "config"
+    / "pbk_motivation_interaction_v1_forward.json"
+)
 
-PREMATCH = OPS / "motivation_interaction_v1_forward_prematch.jsonl"
-LABELS = OPS / "motivation_interaction_v1_forward_labels.jsonl"
-LAST_RUN = OPS / "motivation_interaction_v1_forward_last_run.json"
+EXPECTED_RESEARCH_ID = (
+    "PBK_MOTIVATION_INTERACTION_V1_FORWARD"
+)
+EXPECTED_MODEL_VERSION = (
+    "PBK_MOTIVATION_INTERACTION_SPECIALIST_V1"
+)
 
 SELECTED = (
     "HIGH_PRESSURE_X_FORM_ALIGNMENT",
@@ -48,8 +48,10 @@ SELECTED = (
 )
 
 EXPECTED_BETA = {
-    "HIGH_PRESSURE_X_FORM_ALIGNMENT": -0.08139028122268811,
-    "HIGH_PRESSURE_X_LARGE_RANK_DISADVANTAGE": -0.04354603042978898,
+    "HIGH_PRESSURE_X_FORM_ALIGNMENT":
+        -0.08139028122268811,
+    "HIGH_PRESSURE_X_LARGE_RANK_DISADVANTAGE":
+        -0.04354603042978898,
 }
 
 
@@ -68,28 +70,31 @@ def iso(value: datetime) -> str:
 
 def parse_iso(value: Any) -> datetime | None:
     text = str(value or "").strip()
+
     if not text:
         return None
 
     try:
-        result = datetime.fromisoformat(
+        parsed = datetime.fromisoformat(
             text.replace("Z", "+00:00")
         )
     except ValueError:
         return None
 
-    if result.tzinfo is None:
+    if parsed.tzinfo is None:
         return None
 
-    return result.astimezone(timezone.utc)
+    return parsed.astimezone(timezone.utc)
 
 
 def read_json(path: Path) -> dict[str, Any]:
     if not path.exists():
-        return {}
+        raise ValueError(
+            f"required JSON missing: {path}"
+        )
 
     value = json.loads(
-        path.read_text(encoding="utf-8")
+        path.read_text(encoding="utf-8-sig")
     )
 
     if not isinstance(value, dict):
@@ -110,7 +115,7 @@ def read_jsonl(
     rows = []
 
     for line_number, line in enumerate(
-        raw.decode("utf-8").splitlines(),
+        raw.decode("utf-8-sig").splitlines(),
         start=1,
     ):
         if not line.strip():
@@ -139,29 +144,6 @@ def read_jsonl(
         )
 
     return raw, rows
-
-
-def fingerprint(value: Any) -> str:
-    raw = json.dumps(
-        value,
-        ensure_ascii=False,
-        sort_keys=True,
-        separators=(",", ":"),
-    )
-
-    return hashlib.sha256(
-        raw.encode("utf-8")
-    ).hexdigest()
-
-
-def event_id(kind: str, fixture_id: str) -> str:
-    material = (
-        f"{VERSION}|{kind}|{fixture_id}"
-    )
-
-    return hashlib.sha256(
-        material.encode("utf-8")
-    ).hexdigest()[:32]
 
 
 def atomic_append(
@@ -237,36 +219,416 @@ def atomic_json(
     os.replace(tmp, path)
 
 
+def fingerprint(value: Any) -> str:
+    raw = json.dumps(
+        value,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    )
+
+    return hashlib.sha256(
+        raw.encode("utf-8")
+    ).hexdigest()
+
+
+def event_id(
+    kind: str,
+    fixture_id: str,
+) -> str:
+    material = (
+        f"{VERSION}|{kind}|{fixture_id}"
+    )
+
+    return hashlib.sha256(
+        material.encode("utf-8")
+    ).hexdigest()[:32]
+
+
+def ops_ref(
+    value: Any,
+    ops: Path,
+) -> Path:
+    text = str(value or "").strip()
+
+    if not text:
+        raise ValueError(
+            "empty frozen contract path"
+        )
+
+    path = Path(text)
+
+    if path.is_absolute():
+        raise ValueError(
+            "absolute path forbidden in frozen contract"
+        )
+
+    if ".." in path.parts:
+        raise ValueError(
+            "parent traversal forbidden in frozen contract"
+        )
+
+    # Config historically stores prospective inputs as ops/foo,
+    # while outputs are frozen as basenames.
+    if path.parts and path.parts[0] == "ops":
+        path = Path(*path.parts[1:])
+
+    if len(path.parts) != 1:
+        raise ValueError(
+            f"unexpected operational path: {text}"
+        )
+
+    return ops / path.name
+
+
+def validate_contract(
+    config: dict[str, Any],
+) -> dict[str, Any]:
+    if (
+        config.get("research_id")
+        != EXPECTED_RESEARCH_ID
+    ):
+        raise ValueError(
+            "forward research_id drift"
+        )
+
+    if (
+        config.get("model_version")
+        != EXPECTED_MODEL_VERSION
+    ):
+        raise ValueError(
+            "forward model_version drift"
+        )
+
+    if (
+        config.get("status")
+        != "FORWARD_REVIEW_CONTRACT"
+    ):
+        raise ValueError(
+            "forward contract status drift"
+        )
+
+    if config.get("authority") != "RESEARCH":
+        raise ValueError(
+            "forward contract authority drift"
+        )
+
+    frozen = config.get("frozen_model") or {}
+
+    if tuple(
+        frozen.get("interactions") or []
+    ) != SELECTED:
+        raise ValueError(
+            "frozen config interactions drift"
+        )
+
+    if frozen.get("refit_allowed") is not False:
+        raise ValueError(
+            "refit must stay forbidden"
+        )
+
+    if (
+        frozen.get(
+            "parameter_change_after_freeze"
+        )
+        is not False
+    ):
+        raise ValueError(
+            "parameter mutation must stay forbidden"
+        )
+
+    beta = frozen.get("beta") or {}
+
+    for name in SELECTED:
+        try:
+            value = float(beta[name])
+        except (
+            KeyError,
+            TypeError,
+            ValueError,
+        ) as exc:
+            raise ValueError(
+                f"missing frozen beta: {name}"
+            ) from exc
+
+        if not math.isclose(
+            value,
+            EXPECTED_BETA[name],
+            rel_tol=0.0,
+            abs_tol=1e-15,
+        ):
+            raise ValueError(
+                f"frozen config beta drift: {name}"
+            )
+
+    inputs = (
+        config.get("prospective_inputs")
+        or {}
+    )
+
+    if inputs.get("join_key") != "fixture_id":
+        raise ValueError(
+            "forward join key drift"
+        )
+
+    if (
+        inputs.get("historical_backfill")
+        is not False
+    ):
+        raise ValueError(
+            "historical backfill must stay forbidden"
+        )
+
+    if (
+        inputs.get(
+            "first_frozen_observation_only"
+        )
+        is not True
+    ):
+        raise ValueError(
+            "first frozen observation guard drift"
+        )
+
+    if (
+        inputs.get(
+            "observation_must_precede_kickoff"
+        )
+        is not True
+    ):
+        raise ValueError(
+            "prematch timing guard drift"
+        )
+
+    scope = config.get("forward_scope") or {}
+
+    if (
+        scope.get("review_unit")
+        != "ACTIVE_INTERACTION_OBSERVATION"
+    ):
+        raise ValueError(
+            "forward review unit drift"
+        )
+
+    review = config.get("forward_review") or {}
+
+    minimum = int(
+        review.get(
+            "minimum_active_settled_rows_for_formal_review",
+            0,
+        )
+    )
+
+    minimum_class = int(
+        review.get(
+            "minimum_outcomes_per_class",
+            0,
+        )
+    )
+
+    calibration = float(
+        review.get(
+            "maximum_absolute_class_calibration_error",
+            -1,
+        )
+    )
+
+    if minimum <= 0:
+        raise ValueError(
+            "invalid formal review sample gate"
+        )
+
+    if minimum_class <= 0:
+        raise ValueError(
+            "invalid class sample gate"
+        )
+
+    if calibration < 0.0:
+        raise ValueError(
+            "invalid calibration threshold"
+        )
+
+    if (
+        review.get(
+            "brier_strict_improvement_required"
+        )
+        is not True
+    ):
+        raise ValueError(
+            "Brier gate drift"
+        )
+
+    if (
+        review.get(
+            "logloss_strict_improvement_required"
+        )
+        is not True
+    ):
+        raise ValueError(
+            "logloss gate drift"
+        )
+
+    if (
+        review.get(
+            "interaction_direction_stability_required"
+        )
+        is not True
+    ):
+        raise ValueError(
+            "direction stability gate drift"
+        )
+
+    if (
+        review.get(
+            "manual_governance_review_required"
+        )
+        is not True
+    ):
+        raise ValueError(
+            "manual governance must remain required"
+        )
+
+    if (
+        review.get(
+            "automatic_canonical_promotion"
+        )
+        is not False
+    ):
+        raise ValueError(
+            "automatic promotion must remain forbidden"
+        )
+
+    guards = config.get("guards") or {}
+
+    required_false = (
+        "creates_signal",
+        "operational_betting_authority",
+        "probability_mutation_authorized",
+        "eligibility_mutation_authorized",
+        "value_or_ev_authorized",
+        "stake_changes_authorized",
+        "r1_r2_r3_changes_authorized",
+        "production_integration_authorized",
+        "ui_integration_authorized",
+    )
+
+    for key in required_false:
+        if guards.get(key) is not False:
+            raise ValueError(
+                f"guard must remain false: {key}"
+            )
+
+    required_true = (
+        "unknown_not_zero",
+        "no_lookahead",
+        "prematch_frozen_required",
+        "postmatch_labels_separate",
+        "market_probability_is_baseline_not_pbk_opinion",
+        "standalone_motivation_v1_rejected",
+        "standalone_motivation_v2_rejected",
+    )
+
+    for key in required_true:
+        if guards.get(key) is not True:
+            raise ValueError(
+                f"guard must remain true: {key}"
+            )
+
+    if (
+        guards.get("predictive_authority")
+        != "NOT_AUTHORIZED"
+    ):
+        raise ValueError(
+            "predictive authority drift"
+        )
+
+    outputs = config.get("outputs") or {}
+
+    for key in (
+        "prematch_journal",
+        "settlement_journal",
+        "performance_report",
+    ):
+        value = str(
+            outputs.get(key) or ""
+        ).strip()
+
+        if not value:
+            raise ValueError(
+                f"missing frozen output: {key}"
+            )
+
+        if (
+            Path(value).is_absolute()
+            or ".." in Path(value).parts
+            or len(Path(value).parts) != 1
+        ):
+            raise ValueError(
+                f"invalid frozen output: {key}"
+            )
+
+    return {
+        "beta": {
+            name: float(beta[name])
+            for name in SELECTED
+        },
+        "formula": str(
+            frozen.get("formula") or ""
+        ),
+        "inputs": inputs,
+        "review": review,
+        "scope": scope,
+        "guards": guards,
+        "outputs": outputs,
+        "required_candidate_status": str(
+            config.get(
+                "required_candidate_status"
+            )
+            or ""
+        ),
+        "candidate_source": str(
+            config.get(
+                "frozen_candidate_source"
+            )
+            or ""
+        ),
+    }
+
+
 def validate_spec(
     spec: dict[str, Any],
-) -> dict[str, float]:
+    contract: dict[str, Any],
+) -> None:
+    required_status = (
+        contract["required_candidate_status"]
+    )
+
+    if (
+        required_status
+        and spec.get("status")
+        != required_status
+    ):
+        raise ValueError(
+            "frozen candidate status drift"
+        )
+
     selected = tuple(
         spec.get("selected_interactions")
         or []
     )
 
-    frozen = (
-        spec.get("frozen_candidate")
-        or {}
-    )
-
-    auth = (
-        spec.get("authorization")
-        or {}
-    )
-
-    beta = frozen.get("beta") or {}
+    frozen = spec.get("frozen_candidate") or {}
+    auth = spec.get("authorization") or {}
 
     if selected != SELECTED:
         raise ValueError(
-            "frozen selected interactions drift"
+            "specialist selected interactions drift"
         )
 
     if tuple(
         frozen.get("interactions") or []
     ) != SELECTED:
         raise ValueError(
-            "frozen candidate interactions drift"
+            "specialist frozen interactions drift"
         )
 
     if (
@@ -276,7 +638,7 @@ def validate_spec(
         is not False
     ):
         raise ValueError(
-            "frozen beta mutation guard missing"
+            "specialist parameter guard drift"
         )
 
     if (
@@ -284,7 +646,7 @@ def validate_spec(
         is not True
     ):
         raise ValueError(
-            "forward review not authorized"
+            "specialist forward review closed"
         )
 
     if (
@@ -292,36 +654,29 @@ def validate_spec(
         != "NOT_AUTHORIZED"
     ):
         raise ValueError(
-            "predictive authority drift"
+            "specialist predictive authority drift"
         )
 
-    result = {}
+    spec_beta = frozen.get("beta") or {}
 
     for name in SELECTED:
-        value = float(beta[name])
+        value = float(spec_beta[name])
 
         if not math.isclose(
             value,
-            EXPECTED_BETA[name],
+            contract["beta"][name],
             rel_tol=0.0,
             abs_tol=1e-15,
         ):
             raise ValueError(
-                f"frozen beta drift: {name}"
+                f"config/spec beta mismatch: {name}"
             )
-
-        result[name] = value
-
-    return result
 
 
 def pressure_side(
     payload: dict[str, Any],
 ) -> float | None:
-    comparison = (
-        payload.get("comparison")
-        or {}
-    )
+    comparison = payload.get("comparison") or {}
 
     home = str(
         comparison.get("home_pressure")
@@ -400,13 +755,19 @@ def form_side(
 
     diff = hp - ap
 
+    if diff >= 0.75:
+        return 1.0
+
     if diff >= 0.25:
         return 1.0
 
-    if diff <= -0.25:
+    if diff > -0.25:
+        return 0.0
+
+    if diff > -0.75:
         return -1.0
 
-    return 0.0
+    return -1.0
 
 
 def rank_disadvantage_side(
@@ -453,7 +814,7 @@ def aligned(
     if motivation == 0.0:
         return 0.0
 
-    if motivation == context:
+    if context == motivation:
         return motivation
 
     return 0.0
@@ -488,9 +849,19 @@ def interactions(
         return None
 
     return {
-        SELECTED[0]: first,
-        SELECTED[1]: second,
+        SELECTED[0]: float(first),
+        SELECTED[1]: float(second),
     }
+
+
+def active_interaction(
+    values: dict[str, Any],
+) -> bool:
+    return any(
+        abs(float(values.get(name) or 0.0))
+        > 0.0
+        for name in SELECTED
+    )
 
 
 def candidate_probability(
@@ -563,24 +934,340 @@ def score(
         "A": 1.0 if result == "A" else 0.0,
     }
 
-    brier = sum(
-        (
-            probability[key]
-            - target[key]
-        ) ** 2
-        for key in ("H", "D", "A")
-    ) / 3.0
+    return {
+        "brier": sum(
+            (
+                probability[key]
+                - target[key]
+            ) ** 2
+            for key in ("H", "D", "A")
+        ) / 3.0,
+        "logloss": -math.log(
+            max(
+                probability[result],
+                1e-15,
+            )
+        ),
+    }
 
-    logloss = -math.log(
-        max(
-            probability[result],
-            1e-15,
+
+def mean(values: list[float]) -> float | None:
+    if not values:
+        return None
+
+    return sum(values) / len(values)
+
+
+def performance_report(
+    contract: dict[str, Any],
+    prematch_rows: list[dict[str, Any]],
+    settlement_rows: list[dict[str, Any]],
+) -> dict[str, Any]:
+    review = contract["review"]
+
+    prematch_by_id = {
+        str(row.get("event_id") or ""):
+        row
+        for row in prematch_rows
+    }
+
+    active_prematch = [
+        row
+        for row in prematch_rows
+        if active_interaction(
+            (
+                row.get("payload")
+                or {}
+            ).get("interactions") or {}
+        )
+    ]
+
+    active_settlements = []
+
+    for row in settlement_rows:
+        payload = row.get("payload") or {}
+
+        prematch = prematch_by_id.get(
+            str(
+                payload.get(
+                    "prematch_event_id"
+                )
+                or ""
+            )
+        )
+
+        if prematch is None:
+            continue
+
+        values = (
+            prematch.get("payload")
+            or {}
+        ).get("interactions") or {}
+
+        if active_interaction(values):
+            active_settlements.append(
+                (prematch, row)
+            )
+
+    outcomes = Counter(
+        str(
+            (
+                settlement.get("payload")
+                or {}
+            ).get("result")
+            or ""
+        )
+        for _, settlement
+        in active_settlements
+    )
+
+    n = len(active_settlements)
+
+    market_brier = []
+    candidate_brier = []
+    market_logloss = []
+    candidate_logloss = []
+
+    candidate_probabilities = {
+        "H": [],
+        "D": [],
+        "A": [],
+    }
+
+    hits = Counter()
+
+    for prematch, settlement in active_settlements:
+        pp = prematch.get("payload") or {}
+        sp = settlement.get("payload") or {}
+
+        result = str(
+            sp.get("result") or ""
+        )
+
+        market = pp.get("p_market") or {}
+        candidate = (
+            pp.get(
+                "p_frozen_interaction_candidate"
+            )
+            or {}
+        )
+
+        ms = score(market, result)
+        cs = score(candidate, result)
+
+        market_brier.append(ms["brier"])
+        candidate_brier.append(cs["brier"])
+        market_logloss.append(
+            ms["logloss"]
+        )
+        candidate_logloss.append(
+            cs["logloss"]
+        )
+
+        for cls in ("H", "D", "A"):
+            candidate_probabilities[cls].append(
+                float(candidate[cls])
+            )
+
+        hits[result] += 1
+
+    avg_market_brier = mean(market_brier)
+    avg_candidate_brier = mean(
+        candidate_brier
+    )
+    avg_market_logloss = mean(
+        market_logloss
+    )
+    avg_candidate_logloss = mean(
+        candidate_logloss
+    )
+
+    calibration = {}
+
+    for cls in ("H", "D", "A"):
+        if not n:
+            calibration[cls] = None
+            continue
+
+        predicted = mean(
+            candidate_probabilities[cls]
+        )
+
+        observed = hits[cls] / n
+
+        calibration[cls] = abs(
+            float(predicted) - observed
+        )
+
+    calibration_values = [
+        value
+        for value in calibration.values()
+        if value is not None
+    ]
+
+    max_calibration_error = (
+        max(calibration_values)
+        if calibration_values
+        else None
+    )
+
+    minimum_rows = int(
+        review[
+            "minimum_active_settled_rows_for_formal_review"
+        ]
+    )
+
+    minimum_class = int(
+        review[
+            "minimum_outcomes_per_class"
+        ]
+    )
+
+    sample_ready = (
+        n >= minimum_rows
+        and all(
+            outcomes[cls] >= minimum_class
+            for cls in ("H", "D", "A")
         )
     )
 
+    brier_improved = (
+        sample_ready
+        and avg_candidate_brier
+        is not None
+        and avg_market_brier
+        is not None
+        and avg_candidate_brier
+        < avg_market_brier
+    )
+
+    logloss_improved = (
+        sample_ready
+        and avg_candidate_logloss
+        is not None
+        and avg_market_logloss
+        is not None
+        and avg_candidate_logloss
+        < avg_market_logloss
+    )
+
+    calibration_passed = (
+        sample_ready
+        and max_calibration_error
+        is not None
+        and max_calibration_error
+        <= float(
+            review[
+                "maximum_absolute_class_calibration_error"
+            ]
+        )
+    )
+
+    metric_gate_passed = (
+        sample_ready
+        and brier_improved
+        and logloss_improved
+        and calibration_passed
+    )
+
+    if not sample_ready:
+        status = (
+            "INSUFFICIENT_FORWARD_SAMPLE"
+        )
+    elif not metric_gate_passed:
+        status = (
+            "FORWARD_METRIC_GATE_FAILED"
+        )
+    else:
+        status = (
+            "READY_FOR_MANUAL_GOVERNANCE_REVIEW"
+        )
+
+    checkpoints = [
+        int(value)
+        for value in (
+            review.get(
+                "diagnostic_checkpoints_active_rows"
+            )
+            or []
+        )
+    ]
+
     return {
-        "brier": brier,
-        "logloss": logloss,
+        "version": VERSION,
+        "status": status,
+        "review_unit":
+            "ACTIVE_INTERACTION_OBSERVATION",
+        "active_prematch_rows":
+            len(active_prematch),
+        "active_settled_rows": n,
+        "outcomes": {
+            cls: outcomes[cls]
+            for cls in ("H", "D", "A")
+        },
+        "diagnostic_checkpoints": {
+            str(value): (
+                len(active_prematch)
+                >= value
+            )
+            for value in checkpoints
+        },
+        "sample_gate": {
+            "minimum_active_settled_rows":
+                minimum_rows,
+            "minimum_outcomes_per_class":
+                minimum_class,
+            "sample_ready":
+                sample_ready,
+        },
+        "market_baseline": {
+            "mean_brier":
+                avg_market_brier,
+            "mean_logloss":
+                avg_market_logloss,
+        },
+        "frozen_candidate": {
+            "mean_brier":
+                avg_candidate_brier,
+            "mean_logloss":
+                avg_candidate_logloss,
+            "class_calibration_absolute_error":
+                calibration,
+            "maximum_absolute_class_calibration_error":
+                max_calibration_error,
+        },
+        "gates": {
+            "brier_strict_improvement":
+                brier_improved,
+            "logloss_strict_improvement":
+                logloss_improved,
+            "calibration_passed":
+                calibration_passed,
+            "metric_gate_passed":
+                metric_gate_passed,
+            "interaction_direction_stability":
+                (
+                    "REQUIRES_MANUAL_GOVERNANCE_REVIEW"
+                ),
+        },
+        "manual_governance_review_required":
+            True,
+        "automatic_canonical_promotion":
+            False,
+        "predictive_authority":
+            "NOT_AUTHORIZED",
+        "operational_betting_authority":
+            False,
+        "value_or_ev_authorized":
+            False,
+        "stake_changes_authorized":
+            False,
+        "r1_r2_r3_changes_authorized":
+            False,
+        "production_integration_authorized":
+            False,
+        "ui_integration_authorized":
+            False,
     }
 
 
@@ -588,43 +1275,93 @@ def run(
     *,
     observed_at: datetime | None = None,
     ops: Path = OPS,
+    config_path: Path = DEFAULT_CONFIG,
 ) -> dict[str, Any]:
     observed_at = (
         observed_at or utc_now()
     ).astimezone(timezone.utc)
 
-    beta = validate_spec(
-        read_json(
-            ops / SPEC.name
-        )
+    config = read_json(
+        Path(config_path)
     )
 
-    mot_raw, mot_rows = read_jsonl(
-        ops / MOTIVATION.name
+    contract = validate_contract(config)
+
+    spec_path = ops_ref(
+        contract["candidate_source"],
+        ops,
     )
 
-    market_raw, market_rows = read_jsonl(
-        ops / MARKET.name
+    spec = read_json(spec_path)
+
+    validate_spec(
+        spec,
+        contract,
     )
 
-    label_raw, motivation_labels = read_jsonl(
-        ops / MOTIVATION_LABELS.name
+    inputs = contract["inputs"]
+    outputs = contract["outputs"]
+
+    motivation_path = ops_ref(
+        inputs[
+            "motivation_prematch_journal"
+        ],
+        ops,
     )
 
-    del mot_raw, market_raw, label_raw
-
-    out_raw, out_rows = read_jsonl(
-        ops / PREMATCH.name
+    market_path = ops_ref(
+        inputs[
+            "market_prematch_journal"
+        ],
+        ops,
     )
 
-    comparison_raw, comparison_rows = read_jsonl(
-        ops / LABELS.name
+    motivation_labels_path = ops_ref(
+        inputs[
+            "motivation_postmatch_labels"
+        ],
+        ops,
     )
 
-    mot_by_fixture = {
+    prematch_path = ops_ref(
+        outputs["prematch_journal"],
+        ops,
+    )
+
+    settlement_path = ops_ref(
+        outputs["settlement_journal"],
+        ops,
+    )
+
+    performance_path = ops_ref(
+        outputs["performance_report"],
+        ops,
+    )
+
+    _, motivation_rows = read_jsonl(
+        motivation_path
+    )
+
+    _, market_rows = read_jsonl(
+        market_path
+    )
+
+    _, motivation_labels = read_jsonl(
+        motivation_labels_path
+    )
+
+    prematch_raw, prematch_rows = read_jsonl(
+        prematch_path
+    )
+
+    settlement_raw, settlement_rows = read_jsonl(
+        settlement_path
+    )
+
+    motivation_by_fixture = {
         str(row.get("fixture_id") or ""):
         row
-        for row in mot_rows
+        for row in motivation_rows
         if row.get("event_type")
         == "MOTIVATION_PREMATCH_FROZEN"
     }
@@ -637,29 +1374,37 @@ def run(
         == "GENERIC_1X2_V1_PREMATCH_FROZEN"
     }
 
-    existing = {
+    existing_fixtures = {
         str(row.get("fixture_id") or "")
-        for row in out_rows
+        for row in prematch_rows
     }
 
     created = []
+
     skipped_after_kickoff = 0
     skipped_missing_source = 0
     skipped_unknown_interaction = 0
 
     fixture_ids = sorted(
-        set(mot_by_fixture)
+        set(motivation_by_fixture)
         & set(market_by_fixture)
     )
 
-    for fid in fixture_ids:
-        if fid in existing:
+    for fixture_id in fixture_ids:
+        if fixture_id in existing_fixtures:
             continue
 
-        mot = mot_by_fixture[fid]
-        market = market_by_fixture[fid]
+        motivation = (
+            motivation_by_fixture[
+                fixture_id
+            ]
+        )
 
-        mp = mot.get("payload") or {}
+        market = market_by_fixture[
+            fixture_id
+        ]
+
+        mp = motivation.get("payload") or {}
         kp = market.get("payload") or {}
 
         kickoff = parse_iso(
@@ -670,13 +1415,12 @@ def run(
             skipped_missing_source += 1
             continue
 
-        # Missed observations are NEVER reconstructed.
         if observed_at >= kickoff:
             skipped_after_kickoff += 1
             continue
 
-        mot_frozen = parse_iso(
-            mot.get("frozen_at_utc")
+        motivation_frozen = parse_iso(
+            motivation.get("frozen_at_utc")
         )
 
         market_observed = parse_iso(
@@ -684,24 +1428,26 @@ def run(
         )
 
         if (
-            mot_frozen is None
+            motivation_frozen is None
             or market_observed is None
-            or mot_frozen >= kickoff
+            or motivation_frozen >= kickoff
             or market_observed >= kickoff
         ):
             skipped_missing_source += 1
             continue
 
-        features = interactions(mp)
+        feature_values = interactions(mp)
 
-        if features is None:
+        if feature_values is None:
             skipped_unknown_interaction += 1
             continue
 
-        p_market = kp.get("p_market")
+        market_probability = kp.get(
+            "p_market"
+        )
 
         if not isinstance(
-            p_market,
+            market_probability,
             dict,
         ):
             skipped_missing_source += 1
@@ -709,52 +1455,49 @@ def run(
 
         candidate, z = (
             candidate_probability(
-                p_market,
-                features,
-                beta,
+                market_probability,
+                feature_values,
+                contract["beta"],
             )
         )
 
         payload = {
-            "fixture_id": fid,
-            "kickoff_utc": mp.get(
-                "kickoff_utc"
-            ),
-            "home_team": mp.get(
-                "home_team"
-            ),
-            "away_team": mp.get(
-                "away_team"
-            ),
-            "captured_at_utc": iso(
-                observed_at
-            ),
+            "fixture_id": fixture_id,
+            "kickoff_utc":
+                mp.get("kickoff_utc"),
+            "home_team":
+                mp.get("home_team"),
+            "away_team":
+                mp.get("away_team"),
+            "captured_at_utc":
+                iso(observed_at),
             "motivation_source_event_id":
-                mot["event_id"],
+                motivation["event_id"],
             "market_source_event_id":
                 market["event_id"],
             "market_observed_at_utc":
                 kp.get("observed_at_utc"),
-            "interactions": features,
-            "beta": beta,
+            "review_unit":
+                "ACTIVE_INTERACTION_OBSERVATION",
+            "active_interaction_observation":
+                active_interaction(
+                    feature_values
+                ),
+            "interactions":
+                feature_values,
+            "beta":
+                contract["beta"],
             "z": z,
             "p_market": {
                 key: float(
-                    p_market[key]
+                    market_probability[key]
                 )
-                for key in (
-                    "H",
-                    "D",
-                    "A",
-                )
+                for key in ("H", "D", "A")
             },
             "p_frozen_interaction_candidate":
                 candidate,
-            "formula": (
-                "softmax(log(p_market_H)+z,"
-                "log(p_market_D),"
-                "log(p_market_A)-z)"
-            ),
+            "formula":
+                contract["formula"],
             "forward_only": True,
             "historical_backfill":
                 "FORBIDDEN",
@@ -778,6 +1521,12 @@ def run(
                 False,
             "stake_changes":
                 False,
+            "r1_r2_r3_changes":
+                False,
+            "production_integration_authorized":
+                False,
+            "ui_integration_authorized":
+                False,
             "automatic_promotion":
                 False,
         }
@@ -785,29 +1534,30 @@ def run(
         created.append({
             "event_id": event_id(
                 "INTERACTION_PREMATCH",
-                fid,
+                fixture_id,
             ),
             "event_type":
                 "MOTIVATION_INTERACTION_V1_PREMATCH_FROZEN",
             "version": VERSION,
-            "fixture_id": fid,
-            "frozen_at_utc": iso(
-                observed_at
-            ),
+            "fixture_id": fixture_id,
+            "frozen_at_utc":
+                iso(observed_at),
             "immutable_fingerprint":
                 fingerprint(payload),
             "payload": payload,
         })
 
     atomic_append(
-        ops / PREMATCH.name,
-        out_raw,
+        prematch_path,
+        prematch_raw,
         created,
     )
 
-    all_prematch = out_rows + created
+    all_prematch = (
+        prematch_rows + created
+    )
 
-    labels_by_fixture = {
+    factual_by_fixture = {
         str(row.get("fixture_id") or ""):
         row
         for row in motivation_labels
@@ -815,7 +1565,7 @@ def run(
         == "MOTIVATION_POSTMATCH_LABEL"
     }
 
-    already_labeled = {
+    settled_prematch_ids = {
         str(
             (
                 row.get("payload")
@@ -825,19 +1575,25 @@ def run(
             )
             or ""
         )
-        for row in comparison_rows
+        for row in settlement_rows
     }
 
-    new_comparisons = []
+    new_settlements = []
+
+    result_map = {
+        "HOME_WIN": "H",
+        "DRAW": "D",
+        "AWAY_WIN": "A",
+    }
 
     for prematch in all_prematch:
         if (
             prematch["event_id"]
-            in already_labeled
+            in settled_prematch_ids
         ):
             continue
 
-        factual = labels_by_fixture.get(
+        factual = factual_by_fixture.get(
             str(
                 prematch.get(
                     "fixture_id"
@@ -849,28 +1605,20 @@ def run(
         if factual is None:
             continue
 
-        result_name = str(
-            (
-                factual.get("payload")
-                or {}
-            ).get("match_result")
-            or ""
-        ).upper()
-
-        mapping = {
-            "HOME_WIN": "H",
-            "DRAW": "D",
-            "AWAY_WIN": "A",
-        }
-
-        result = mapping.get(
-            result_name
+        result = result_map.get(
+            str(
+                (
+                    factual.get("payload")
+                    or {}
+                ).get("match_result")
+                or ""
+            ).upper()
         )
 
         if result is None:
             continue
 
-        pp = prematch["payload"]
+        pp = prematch.get("payload") or {}
 
         market_score = score(
             pp["p_market"],
@@ -892,6 +1640,12 @@ def run(
             "source_postmatch_event_id":
                 factual["event_id"],
             "result": result,
+            "active_interaction_observation":
+                bool(
+                    pp.get(
+                        "active_interaction_observation"
+                    )
+                ),
             "market": market_score,
             "frozen_interaction_candidate":
                 candidate_score,
@@ -901,10 +1655,13 @@ def run(
             "candidate_minus_market_logloss":
                 candidate_score["logloss"]
                 - market_score["logloss"],
-            "postmatch_factual": True,
+            "postmatch_factual":
+                True,
             "prematch_evidence_mutated":
                 False,
             "parameters_refit":
+                False,
+            "interaction_reselection":
                 False,
             "research_only":
                 True,
@@ -920,82 +1677,80 @@ def run(
                 False,
         }
 
-        new_comparisons.append({
+        new_settlements.append({
             "event_id": event_id(
-                "INTERACTION_POSTMATCH",
+                "INTERACTION_SETTLEMENT",
                 prematch["fixture_id"],
             ),
             "event_type":
-                "MOTIVATION_INTERACTION_V1_POSTMATCH_REVIEW",
+                "MOTIVATION_INTERACTION_V1_FORWARD_SETTLEMENT",
             "version": VERSION,
             "fixture_id":
                 prematch["fixture_id"],
-            "frozen_at_utc": iso(
-                observed_at
-            ),
+            "frozen_at_utc":
+                iso(observed_at),
             "immutable_fingerprint":
                 fingerprint(payload),
             "payload": payload,
         })
 
     atomic_append(
-        ops / LABELS.name,
-        comparison_raw,
-        new_comparisons,
+        settlement_path,
+        settlement_raw,
+        new_settlements,
     )
 
-    report = {
-        "version": VERSION,
+    all_settlements = (
+        settlement_rows
+        + new_settlements
+    )
+
+    performance = performance_report(
+        contract,
+        all_prematch,
+        all_settlements,
+    )
+
+    performance.update({
         "run_at_utc": iso(
             observed_at
         ),
-        "status":
-            "PROSPECTIVE_FORWARD_MONITOR_ACTIVE",
+        "research_id":
+            EXPECTED_RESEARCH_ID,
+        "model_version":
+            EXPECTED_MODEL_VERSION,
         "selected_interactions":
             list(SELECTED),
-        "frozen_beta": beta,
-        "prospective_only": True,
-        "historical_backfill":
-            "FORBIDDEN",
-        "old_holdout_reused":
-            False,
-        "parameters_may_change":
-            False,
+        "frozen_beta":
+            contract["beta"],
         "prematch_events_created":
             len(created),
-        "postmatch_reviews_created":
-            len(new_comparisons),
+        "settlements_created":
+            len(new_settlements),
         "prematch_events_total":
             len(all_prematch),
-        "postmatch_reviews_total":
-            len(comparison_rows)
-            + len(new_comparisons),
+        "settlements_total":
+            len(all_settlements),
         "skipped_after_kickoff_no_backfill":
             skipped_after_kickoff,
         "skipped_missing_source":
             skipped_missing_source,
         "skipped_unknown_interaction":
             skipped_unknown_interaction,
-        "predictive_authority":
-            "NOT_AUTHORIZED",
-        "operational_betting_authority":
+        "historical_backfill":
+            "FORBIDDEN",
+        "old_holdout_reused":
             False,
-        "value_or_ev_authorized":
+        "parameters_may_change":
             False,
-        "eligibility_mutation":
-            False,
-        "stake_changes":
-            False,
-        "automatic_promotion":
-            False,
-    }
+    })
 
     atomic_json(
-        ops / LAST_RUN.name,
-        report,
+        performance_path,
+        performance,
     )
 
-    return report
+    return performance
 
 
 def main() -> int:
