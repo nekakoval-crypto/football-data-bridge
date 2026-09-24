@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-24T16:57:32Z",
+  "generated_at_utc": "2026-09-24T17:30:06Z",
   "status": "OK",
   "datasets": [
     {
@@ -68,7 +68,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 21433,
+      "row_count": 21561,
       "columns": [
         "fixture_id",
         "provider_league_id",
