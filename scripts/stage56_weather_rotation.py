@@ -289,6 +289,14 @@ def valid_prematch_weather_row(row):
     return contract["usable_for_prematch"] == "true"
 
 
+def weather_done_keys(rows):
+    return {
+        (row.get("forward_id"), row.get("snapshot_type"))
+        for row in rows
+        if valid_prematch_weather_row(row)
+    }
+
+
 def geocode_city(city, country_code):
     if not city:
         return None
@@ -474,7 +482,7 @@ def main():
     ctx = context_by_forward(context_rows)
 
     active = [r for r in forward if r.get("status") in {"PAPER", "OPEN", "REVIEW"}]
-    weather_done = {(r.get("forward_id"), r.get("snapshot_type")) for r in weather_rows}
+    weather_done = weather_done_keys(weather_rows)
     rotation_done = {r.get("forward_id") for r in rotation_rows}
 
     new_weather = 0

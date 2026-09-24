@@ -79,6 +79,29 @@ class EnvironmentContractTests(unittest.TestCase):
             })
         )
 
+    def test_invalid_snapshot_does_not_block_recovery_capture(self):
+        rows = [{
+            "forward_id": "x",
+            "snapshot_type": "BASELINE",
+            "forecast_gap_minutes": "10920",
+            "captured_at_utc": "2026-09-18T07:31:54Z",
+            "kickoff_utc": "2026-10-11T13:00:00Z",
+        }]
+        self.assertEqual(env.weather_done_keys(rows), set())
+
+    def test_valid_snapshot_blocks_duplicate_capture(self):
+        rows = [{
+            "forward_id": "x",
+            "snapshot_type": "BASELINE",
+            "forecast_gap_minutes": "30",
+            "captured_at_utc": "2026-09-24T10:00:00Z",
+            "kickoff_utc": "2026-09-24T12:00:00Z",
+        }]
+        self.assertEqual(
+            env.weather_done_keys(rows),
+            {("x", "BASELINE")},
+        )
+
     def test_altitude_contract(self):
         self.assertEqual(env.altitude_zone(""), "UNKNOWN")
         self.assertEqual(env.altitude_zone(50), "ALTITUDE_NORMAL")
