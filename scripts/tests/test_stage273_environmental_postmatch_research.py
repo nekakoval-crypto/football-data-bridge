@@ -1,0 +1,184 @@
+import json
+import unittest
+from datetime import datetime, timezone
+from pathlib import Path
+
+from scripts import stage273_environmental_postmatch_research as m
+
+
+class EnvironmentalPostmatchResearchTests(unittest.TestCase):
+
+    def test_contract_explicitly_denies_prematch_semantics(self):
+        cfg = json.loads(
+            Path("config/pbk_environmental_postmatch_research_v1.json")
+            .read_text(encoding="utf-8")
+        )
+        m.validate_contract(cfg)
+        source = cfg["source_policy"]
+        self.assertFalse(source["historical_proxy_is_direct_stadium_observation"])
+        self.assertFalse(source["historical_proxy_is_prematch_forecast"])
+        self.assertFalse(source["usable_for_prematch"])
+
+    def test_match_window_weather_summary(self):
+        hourly = {
+            "time": [
+                "2026-09-24T18:00",
+                "2026-09-24T19:00",
+                "2026-09-24T20:00",
+                "2026-09-24T21:00",
+                "2026-09-24T22:00",
+            ],
+            "temperature_2m": [20, 19, 18, 17, 16],
+            "apparent_temperature": [20, 18, 17, 16, 15],
+            "relative_humidity_2m": [60, 70, 80, 90, 95],
+            "dew_point_2m": [12, 13, 14, 15, 15],
+            "surface_pressure": [1000, 1001, 1002, 1003, 1004],
+            "precipitation": [0, 1, 3, 2, 0],
+            "rain": [0, 1, 3, 2, 0],
+            "showers": [0, 0, 0, 0, 0],
+            "snowfall": [0, 0, 0, 0, 0],
+            "weather_code": [3, 61, 63, 61, 3],
+            "visibility": [10000, 8000, 5000, 7000, 10000],
+            "wind_speed_10m": [10, 15, 20, 25, 10],
+            "wind_gusts_10m": [20, 30, 40, 45, 20],
+            "wind_direction_10m": [180, 180, 190, 200, 200],
+        }
+        start = datetime(2026, 9, 24, 18, 30, tzinfo=timezone.utc)
+        end = datetime(2026, 9, 24, 21, 30, tzinfo=timezone.utc)
+
+        row = m.summarize_historical_weather(hourly, start, end)
+
+        self.assertIsNotNone(row)
+        self.assertEqual(row["hourly_points"], "3")
+        self.assertEqual(row["precipitation_sum_mm"], "6")
+        self.assertEqual(row["rain_sum_mm"], "6")
+        self.assertEqual(row["wind_gust_max_kmh"], "45")
+        self.assertEqual(row["visibility_min_m"], "5000")
+        self.assertEqual(row["weather_code_mode"], "61")
+
+    def test_circular_wind_mean_handles_north_wrap(self):
+        value = m.circular_mean_degrees([350.0, 10.0])
+        self.assertIsNotNone(value)
+        self.assertTrue(value < 1.0 or value > 359.0)
+
+    def test_finished_fixture_filter_rejects_scheduled(self):
+        rows = [
+            {
+                "fixture_id": "1",
+                "is_finished": "YES",
+                "source_status": "FT",
+                "kickoff_utc": "2026-09-20T15:00:00Z",
+            },
+            {
+                "fixture_id": "2",
+                "is_finished": "NO",
+                "source_status": "NS",
+                "kickoff_utc": "2026-10-10T15:00:00Z",
+            },
+        ]
+        result = m.finished_fixtures(rows)
+        self.assertEqual(set(result), {"1"})
+
+    def test_team_statistics_require_both_sides(self):
+        rows = [
+            {"fixture_id": "1", "side": "HOME", "team_id": "10"},
+            {"fixture_id": "1", "side": "AWAY", "team_id": "20"},
+            {"fixture_id": "2", "side": "HOME", "team_id": "30"},
+        ]
+        result = m.complete_team_stats(rows)
+        self.assertEqual(set(result), {"1"})
+
+    def test_mechanism_projection_uses_real_match_statistics(self):
+        snapshots = [{
+            "fixture_id": "1",
+            "source_class": "HISTORICAL_FORECAST_ASSIMILATION_PROXY",
+            "temperature_mean_c": "15",
+            "rain_sum_mm": "8",
+            "precipitation_sum_mm": "8",
+            "wind_gust_max_kmh": "42",
+            "visibility_min_m": "6000",
+        }]
+        stats = {
+            "1": [
+                {
+                    "fixture_id": "1",
+                    "side": "HOME",
+                    "team_id": "10",
+                    "shots_total": "20",
+                    "shots_on_goal": "8",
+                    "shots_outsidebox": "7",
+                    "goalkeeper_saves": "3",
+                    "corners": "6",
+                    "passes_accuracy_pct": "80",
+                    "expected_goals": "2.1",
+                },
+                {
+                    "fixture_id": "1",
+                    "side": "AWAY",
+                    "team_id": "20",
+                    "shots_total": "10",
+                    "shots_on_goal": "5",
+                    "shots_outsidebox": "5",
+                    "goalkeeper_saves": "4",
+                    "corners": "4",
+                    "passes_accuracy_pct": "70",
+                    "expected_goals": "1.4",
+                },
+            ]
+        }
+        fixtures = {
+            "1": {
+                "fixture_id": "1",
+                "provider_league_id": "39",
+                "league_name": "Premier League",
+                "season": "2026",
+                "round": "R1",
+                "kickoff_utc": "2026-09-20T15:00:00Z",
+                "home_team": "Home",
+                "away_team": "Away",
+                "home_goals": "4",
+                "away_goals": "3",
+            }
+        }
+        venues = {
+            "10": {
+                "venue_id": "100",
+                "venue_name": "Example",
+                "surface_provider": "grass",
+                "roof_type": "UNKNOWN",
+            }
+        }
+        events = [
+            {"fixture_id": "1", "event_type": "Goal", "detail": "Normal Goal"},
+            {"fixture_id": "1", "event_type": "Goal", "detail": "Penalty"},
+            {"fixture_id": "1", "event_type": "Var", "detail": "Goal cancelled"},
+        ]
+
+        rows = m.mechanism_projection(snapshots, stats, fixtures, venues, events)
+        self.assertEqual(len(rows), 1)
+        row = rows[0]
+        self.assertEqual(row["goals_total"], "7")
+        self.assertEqual(row["shots_total"], "30")
+        self.assertEqual(row["shots_outsidebox_total"], "12")
+        self.assertEqual(row["goalkeeper_saves_total"], "7")
+        self.assertEqual(row["corners_total"], "10")
+        self.assertEqual(row["passes_accuracy_mean"], "75")
+        self.assertEqual(row["expected_goals_total"], "3.5")
+        self.assertEqual(row["normal_goals"], "1")
+        self.assertEqual(row["penalty_goals"], "1")
+        self.assertEqual(row["var_events"], "1")
+        self.assertEqual(
+            row["goalkeeper_error_evidence"],
+            "NOT_AVAILABLE_IN_CURRENT_EVENT_ARCHIVE",
+        )
+        self.assertEqual(row["causal_claim_authorized"], "false")
+        self.assertEqual(row["environment_usable_for_prematch"], "false")
+        self.assertEqual(row["predictive_authority"], "NOT_AUTHORIZED")
+
+    def test_single_match_never_authorizes_causal_claim(self):
+        self.assertIn("causal_claim_authorized", m.DATASET_FIELDS)
+        self.assertNotIn("environment_score", m.DATASET_FIELDS)
+
+
+if __name__ == "__main__":
+    unittest.main()
