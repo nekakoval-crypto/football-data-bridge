@@ -8,7 +8,10 @@ on:
       - 'scripts/stage276_environmental_expectation_deviation.py'
       - 'scripts/tests/test_stage276_environmental_expectation_deviation.py'
       - 'scripts/stage80_football_data_pbk14_history.py'
+      - 'scripts/stage80_pbk14_fixture_bridge.py'
       - 'scripts/tests/test_stage80_pbk14_market_bridge.py'
+      - 'config/stage80_football_data_pbk14_9seasons.json'
+      - 'ops/historical_fixtures.csv'
       - '.github/workflows/stage276-environmental-expectation-deviation.yml'
 
   push:
@@ -17,6 +20,11 @@ on:
     paths:
       - 'scripts/stage276_environmental_expectation_deviation.py'
       - 'scripts/tests/test_stage276_environmental_expectation_deviation.py'
+      - 'scripts/stage80_football_data_pbk14_history.py'
+      - 'scripts/stage80_pbk14_fixture_bridge.py'
+      - 'scripts/tests/test_stage80_pbk14_market_bridge.py'
+      - 'config/stage80_football_data_pbk14_9seasons.json'
+      - 'ops/historical_fixtures.csv'
       - '.github/workflows/stage276-environmental-expectation-deviation.yml'
 
   schedule:
@@ -80,7 +88,7 @@ jobs:
 
       - name: Rebuild conservative fixture identity bridge
         run: |
-          python scripts/stage80_pbk14_fixture_bridge.py             --source normalized/football_data_pbk14_9season_matches.csv             --api-archive ops/pbk16_all_competition_fixture_history.csv             --config config/stage80_football_data_pbk14_9seasons.json             --out-csv normalized/pbk14_football_data_fixture_bridge.csv             --meta-out normalized/stage80_pbk14_fixture_bridge_meta.json
+          python scripts/stage80_pbk14_fixture_bridge.py             --source normalized/football_data_pbk14_9season_matches.csv             --api-archive ops/pbk16_all_competition_fixture_history.csv             --current-fixtures ops/historical_fixtures.csv             --config config/stage80_football_data_pbk14_9seasons.json             --out-csv normalized/pbk14_football_data_fixture_bridge.csv             --meta-out normalized/stage80_pbk14_fixture_bridge_meta.json
 
       - name: Build environmental expectation deviation join
         run: |
