@@ -1,0 +1,75 @@
+{
+  "research_id": "PBK_ENVIRONMENTAL_POSTMATCH_FACTUAL_V1",
+  "status": "RESEARCH_ONLY",
+  "authority": "RESEARCH",
+  "source_policy": {
+    "preferred_direct_observation_class": "DIRECT_STATION_OBSERVED",
+    "implemented_weather_source_class": "HISTORICAL_FORECAST_ASSIMILATION_PROXY",
+    "implemented_weather_source": "Open-Meteo Historical Forecast API",
+    "historical_weather_endpoint": "https://historical-forecast-api.open-meteo.com/v1/forecast",
+    "geocoding_endpoint": "https://geocoding-api.open-meteo.com/v1/search",
+    "match_window_minutes_before_kickoff": 30,
+    "match_window_minutes_after_kickoff": 150,
+    "historical_proxy_is_direct_stadium_observation": false,
+    "historical_proxy_is_prematch_forecast": false,
+    "usable_for_prematch": false
+  },
+  "weather_variables": [
+    "temperature_2m",
+    "apparent_temperature",
+    "relative_humidity_2m",
+    "dew_point_2m",
+    "surface_pressure",
+    "precipitation",
+    "rain",
+    "showers",
+    "snowfall",
+    "weather_code",
+    "visibility",
+    "wind_speed_10m",
+    "wind_gusts_10m",
+    "wind_direction_10m"
+  ],
+  "mechanism_inputs": {
+    "team_statistics": "ops/team_match_statistics.csv",
+    "match_events": "ops/match_event_snapshots.csv",
+    "historical_fixtures": "ops/historical_fixtures.csv",
+    "venue_registry": "ops/pbk16_venue_registry.csv"
+  },
+  "mechanism_metrics": [
+    "goals_total",
+    "shots_total",
+    "shots_on_goal_total",
+    "shots_outsidebox_total",
+    "goalkeeper_saves_total",
+    "corners_total",
+    "passes_accuracy_mean",
+    "expected_goals_total",
+    "normal_goals",
+    "penalty_goals",
+    "own_goals",
+    "red_card_events",
+    "var_events"
+  ],
+  "guards": {
+    "postmatch_only": true,
+    "finished_fixture_required": true,
+    "both_team_statistics_required": true,
+    "no_causal_claim_from_single_match": true,
+    "no_predictive_authority": true,
+    "no_betting_authority": true,
+    "no_probability_mutation": true,
+    "no_eligibility_mutation": true,
+    "no_value_or_ev": true,
+    "no_stake_changes": true,
+    "no_forward_journal_mutation": true,
+    "never_relabel_as_prematch_known": true,
+    "unknown_not_zero": true
+  },
+  "outputs": {
+    "environment_snapshots": "environmental_postmatch_condition_snapshots.csv",
+    "venue_geocache": "environmental_postmatch_venue_geocache.csv",
+    "mechanism_dataset": "environmental_postmatch_mechanism_dataset.csv",
+    "last_run": "stage273_environmental_postmatch_last_run.json"
+  }
+}
