@@ -21,6 +21,7 @@ import argparse
 import csv
 import hashlib
 import json
+import time
 import urllib.request
 from pathlib import Path
 
@@ -31,6 +32,9 @@ except ModuleNotFoundError:
 
 VERSION = "PBK_STAGE80_FOOTBALL_DATA_PBK14_HISTORY_V1"
 DEFAULT_CONFIG = Path("config/stage80_football_data_pbk14_9seasons.json")
+DEFAULT_FETCH_TIMEOUT_SECONDS = 120
+DEFAULT_FETCH_ATTEMPTS = 3
+DEFAULT_FETCH_RETRY_DELAY_SECONDS = 2.0
 FIELDS = list(base.FIELDS)
 
 
@@ -91,22 +95,70 @@ def source_specs(cfg):
             raise ValueError(f"unsupported source_mode: {mode}")
 
 
-def fetch_specs(cfg,download_dir,timeout=40):
+def fetch_source_bytes(
+    url,
+    timeout=DEFAULT_FETCH_TIMEOUT_SECONDS,
+    attempts=DEFAULT_FETCH_ATTEMPTS,
+    retry_delay=DEFAULT_FETCH_RETRY_DELAY_SECONDS,
+):
+    if attempts < 1:
+        raise ValueError("attempts must be >= 1")
+
+    last_error = None
+
+    for attempt in range(1, attempts + 1):
+        req = urllib.request.Request(
+            url,
+            headers={"User-Agent":"PBK-historical-archive/1.0"},
+        )
+
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as response:
+                data = response.read()
+                status = getattr(response, "status", 200)
+
+            if status != 200 or not data:
+                raise RuntimeError(f"download failed {status}: {url}")
+
+            return data, attempt
+
+        except Exception as exc:
+            last_error = exc
+            if attempt >= attempts:
+                break
+            if retry_delay > 0:
+                time.sleep(retry_delay)
+
+    raise RuntimeError(
+        f"download failed after {attempts} attempts: {url}: {last_error}"
+    ) from last_error
+
+
+def fetch_specs(
+    cfg,
+    download_dir,
+    timeout=DEFAULT_FETCH_TIMEOUT_SECONDS,
+    attempts=DEFAULT_FETCH_ATTEMPTS,
+    retry_delay=DEFAULT_FETCH_RETRY_DELAY_SECONDS,
+):
     root=Path(download_dir)
     root.mkdir(parents=True,exist_ok=True)
     manifest=[]
+
     for spec in source_specs(cfg):
         target=root/spec["filename"]
-        req=urllib.request.Request(
+
+        data, used_attempts = fetch_source_bytes(
             spec["url"],
-            headers={"User-Agent":"PBK-historical-archive/1.0"},
+            timeout=timeout,
+            attempts=attempts,
+            retry_delay=retry_delay,
         )
-        with urllib.request.urlopen(req,timeout=timeout) as response:
-            data=response.read()
-            status=getattr(response,"status",200)
-        if status!=200 or not data:
-            raise RuntimeError(f"download failed {status}: {spec['url']}")
+
+        # The target is written only after a complete successful response,
+        # so a timed-out/partial response can never become a source file.
         target.write_bytes(data)
+
         manifest.append({
             "source_code":spec["source_code"],
             "source_mode":spec["source_mode"],
@@ -115,7 +167,9 @@ def fetch_specs(cfg,download_dir,timeout=40):
             "url":spec["url"],
             "bytes":len(data),
             "sha256":hashlib.sha256(data).hexdigest(),
+            "download_attempts":used_attempts,
         })
+
     return manifest
 
 
