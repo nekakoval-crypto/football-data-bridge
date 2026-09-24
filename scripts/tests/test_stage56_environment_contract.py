@@ -33,12 +33,49 @@ class EnvironmentContractTests(unittest.TestCase):
     def test_bad_historical_gap_fails_closed(self):
         self.assertFalse(
             latest.valid_weather_row({
-                "forecast_gap_minutes": "10920"
+                "forecast_gap_minutes": "10920",
+                "captured_at_utc": "2026-09-24T10:00:00Z",
+                "kickoff_utc": "2026-09-24T12:00:00Z",
             })
         )
         self.assertTrue(
             latest.valid_weather_row({
-                "forecast_gap_minutes": "30"
+                "forecast_gap_minutes": "30",
+                "captured_at_utc": "2026-09-24T10:00:00Z",
+                "kickoff_utc": "2026-09-24T12:00:00Z",
+            })
+        )
+
+    def test_prematch_freeze_contract(self):
+        contract = env.evidence_time_contract(
+            "2026-09-24T10:00:00Z",
+            "2026-09-24T12:00:00Z",
+        )
+        self.assertEqual(contract["evidence_time_status"], "PREMATCH_FROZEN")
+        self.assertEqual(contract["usable_for_prematch"], "true")
+
+    def test_postkickoff_weather_is_not_prematch_usable(self):
+        contract = env.evidence_time_contract(
+            "2026-09-24T12:00:00Z",
+            "2026-09-24T12:00:00Z",
+        )
+        self.assertEqual(contract["evidence_time_status"], "POSTMATCH_FACTUAL")
+        self.assertEqual(contract["usable_for_prematch"], "false")
+
+        self.assertFalse(
+            latest.valid_weather_row({
+                "forecast_gap_minutes": "0",
+                "captured_at_utc": "2026-09-24T12:00:00Z",
+                "kickoff_utc": "2026-09-24T12:00:00Z",
+            })
+        )
+
+    def test_missing_timestamps_fail_closed(self):
+        self.assertFalse(
+            latest.valid_weather_row({
+                "forecast_gap_minutes": "30",
+                "captured_at_utc": "",
+                "kickoff_utc": "",
             })
         )
 
