@@ -1,0 +1,190 @@
+name: Stage 266 Venue Evidence Backlog
+
+on:
+  workflow_dispatch:
+
+  pull_request:
+    paths:
+      - 'scripts/stage266_venue_evidence_backlog.py'
+      - 'scripts/tests/test_stage266_venue_evidence_backlog.py'
+      - '.github/workflows/stage266-venue-evidence-backlog.yml'
+
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/stage266_venue_evidence_backlog.py'
+      - 'scripts/tests/test_stage266_venue_evidence_backlog.py'
+      - '.github/workflows/stage266-venue-evidence-backlog.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage266-venue-evidence-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile and test backlog
+        run: |
+          python -m py_compile \
+            scripts/stage266_venue_evidence_backlog.py \
+            scripts/tests/test_stage266_venue_evidence_backlog.py
+
+          python -m unittest \
+            scripts.tests.test_stage266_venue_evidence_backlog \
+            -v
+
+      - name: Provider and web isolation
+        shell: bash
+        run: |
+          if grep -nE \
+            'urllib\.|requests\.|api_get|api-sports\.io|open-meteo|http://' \
+            scripts/stage266_venue_evidence_backlog.py; then
+            echo 'Stage266 backlog must remain provider/web free.' >&2
+            exit 1
+          fi
+
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated backlog outputs are forbidden in feature PR.' >&2
+            exit 1
+          fi
+
+  materialize:
+    needs: validate
+
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'push' &&
+       github.ref == 'refs/heads/main')
+
+    permissions:
+      contents: write
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    env:
+      OPS_DIR: ops
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build venue evidence backlog
+        run: |
+          python scripts/stage266_venue_evidence_backlog.py
+
+      - name: Verify backlog governance
+        run: |
+          python - <<'PY'
+          import csv
+          import json
+
+          with open(
+              'ops/stage266_venue_evidence_backlog_last_run.json',
+              encoding='utf-8',
+          ) as f:
+              meta = json.load(f)
+
+          assert meta['version'] == 'PBK_VENUE_EVIDENCE_BACKLOG_V1'
+          assert meta['status'] == 'OK'
+          assert meta['source_registry_rows'] == 258
+          assert meta['pbk16_leagues'] == 16
+          assert meta['unique_venues'] == 252
+          assert meta['shared_venues'] == 6
+          assert meta['duplicate_task_keys'] == 0
+          assert meta['invalid_backlog_rows'] == 0
+          assert meta['provider_calls'] == 0
+          assert meta['web_calls'] == 0
+          assert meta['priority_is_only_collection_order'] is True
+          assert meta['venue_property_inference_allowed'] is False
+          assert meta['research_only'] is True
+          assert meta['operational_betting_authority'] is False
+          assert meta['creates_signal'] is False
+
+          with open(
+              'ops/venue_evidence_backlog.csv',
+              encoding='utf-8-sig',
+              newline='',
+          ) as f:
+              rows = list(csv.DictReader(f))
+
+          assert len(rows) == meta['backlog_rows']
+          assert len({
+              (r['venue_id'], r['evidence_field'])
+              for r in rows
+          }) == len(rows)
+
+          assert all(
+              r['inference_allowed'] == 'false'
+              for r in rows
+          )
+
+          assert all(
+              r['operational_betting_authority'] == 'false'
+              for r in rows
+          )
+
+          print({
+              'unique_venues': meta['unique_venues'],
+              'backlog_rows': meta['backlog_rows'],
+              'shared_venues': meta['shared_venues'],
+              'non_grass_venues': meta['non_grass_venues'],
+              'field_counts': meta['field_counts'],
+          })
+          PY
+
+      - name: Publish venue evidence backlog safely
+        shell: bash
+        run: |
+          git config user.name 'stage266-bot'
+          git config user.email 'stage266-bot@users.noreply.github.com'
+
+          git add \
+            ops/venue_evidence_backlog.csv \
+            ops/stage266_venue_evidence_backlog_last_run.json
+
+          if git diff --cached --quiet; then
+            echo 'No venue evidence backlog changes.'
+            exit 0
+          fi
+
+          git commit -m 'Stage 266 venue evidence backlog update'
+          python scripts/publish_operational_commit.py
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage266-venue-evidence-backlog
+          path: |
+            ops/venue_evidence_backlog.csv
+            ops/stage266_venue_evidence_backlog_last_run.json
+          if-no-files-found: error
+          retention-days: 90
