@@ -2,6 +2,7 @@ import json
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
+from unittest import mock
 
 from scripts import stage273_environmental_postmatch_research as m
 
@@ -61,6 +62,62 @@ class EnvironmentalPostmatchResearchTests(unittest.TestCase):
         value = m.circular_mean_degrees([350.0, 10.0])
         self.assertIsNotNone(value)
         self.assertTrue(value < 1.0 or value > 359.0)
+
+    def test_http_json_retries_transient_failure(self):
+        class FakeResponse:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return False
+
+            def read(self):
+                return b'{"ok": true}'
+
+        calls=[]
+
+        def fake_urlopen(request, timeout):
+            calls.append(timeout)
+            if len(calls) < 3:
+                raise TimeoutError("transient")
+            return FakeResponse()
+
+        with mock.patch.object(
+            m.urllib.request,
+            "urlopen",
+            side_effect=fake_urlopen,
+        ):
+            with mock.patch.object(m.time, "sleep") as sleep:
+                payload=m.http_json(
+                    "https://example.test/weather",
+                    {"a":"b"},
+                    attempts=3,
+                    retry_delay=0.1,
+                )
+
+        self.assertEqual(payload, {"ok": True})
+        self.assertEqual(len(calls), 3)
+        self.assertEqual(sleep.call_count, 2)
+
+    def test_http_json_fails_after_bound(self):
+        with mock.patch.object(
+            m.urllib.request,
+            "urlopen",
+            side_effect=TimeoutError("persistent"),
+        ) as urlopen:
+            with mock.patch.object(m.time, "sleep"):
+                with self.assertRaisesRegex(
+                    RuntimeError,
+                    "failed after 2 attempts",
+                ):
+                    m.http_json(
+                        "https://example.test/weather",
+                        {},
+                        attempts=2,
+                        retry_delay=0,
+                    )
+
+        self.assertEqual(urlopen.call_count, 2)
 
     def test_finished_fixture_filter_rejects_scheduled(self):
         rows = [

@@ -82,11 +82,14 @@ jobs:
     needs: validate
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
 
     env:
       OPS_DIR: ops
-      STAGE273_MAX_FIXTURES_PER_RUN: '8'
+      STAGE273_MAX_FIXTURES_PER_RUN: '24'
+      STAGE273_HTTP_ATTEMPTS: '3'
+      STAGE273_HTTP_TIMEOUT: '30'
+      STAGE273_HTTP_RETRY_DELAY: '0.75'
 
     steps:
       - uses: actions/checkout@v4
@@ -98,9 +101,17 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Capture postmatch environmental conditions and mechanisms
+      - name: Accelerated bounded backfill
+        shell: bash
         run: |
-          python scripts/stage273_environmental_postmatch_research.py
+          set -euo pipefail
+          for pass in 1 2 3 4
+          do
+            echo "============================================================"
+            echo " STAGE273 BACKFILL PASS $pass / 4"
+            echo "============================================================"
+            python scripts/stage273_environmental_postmatch_research.py
+          done
 
       - name: Verify postmatch-only governance
         run: |
