@@ -22,4 +22,4 @@ jobs:
           python-version: '3.12'
       - name: Validate shared venue evidence
         run: |
-          python -m pytest scripts/tests/test_stage267_shared_venue_evidence.py -q
+          python -m unittest scripts.tests.test_stage267_shared_venue_evidence -v
