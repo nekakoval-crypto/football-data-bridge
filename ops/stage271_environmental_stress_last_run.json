@@ -1,0 +1,18 @@
+{
+  "version": "PBK_ENVIRONMENTAL_STRESS_FEATURES_V1",
+  "generated_at_utc": "2026-09-24T17:13:01Z",
+  "status": "OK",
+  "rows": 4,
+  "state_counts": {
+    "DATA_MISSING_WEATHER": 4
+  },
+  "provider_calls": 0,
+  "web_calls": 0,
+  "aggregate_environment_score": false,
+  "double_counting_guard": true,
+  "postmatch_weather_allowed": false,
+  "research_only": true,
+  "predictive_authority": "NOT_AUTHORIZED",
+  "betting_authority": "NOT_AUTHORIZED",
+  "next_stage": "Historical/prospective research by named factor group and market; no automatic promotion from descriptive feature availability."
+}
