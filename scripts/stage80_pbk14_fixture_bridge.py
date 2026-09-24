@@ -138,6 +138,16 @@ def load_config(path):
     }
 
 
+def load_season_starts(path):
+    cfg=json.loads(Path(path).read_text(encoding="utf-8"))
+    starts=[int(x) for x in cfg.get("season_starts") or []]
+    if not starts:
+        raise ValueError("season_starts missing from config")
+    if starts != sorted(set(starts)):
+        raise ValueError("season_starts must be unique and sorted")
+    return starts
+
+
 def source_event(row,side):
     hg=as_int(row.get("ft_home_goals"))
     ag=as_int(row.get("ft_away_goals"))
@@ -366,11 +376,12 @@ def map_scope(src,api,league_code,provider_id,season_start):
     return out
 
 
-def bridge(source_rows,api_rows,league_map):
+def bridge(source_rows,api_rows,league_map,season_starts=None):
     rows=[]
     scopes=[]
+    season_starts=list(season_starts or range(2017,2026))
     for code,info in sorted(league_map.items()):
-        for season_start in range(2017,2026):
+        for season_start in season_starts:
             src,api=scope_rows(
                 source_rows,api_rows,code,info["provider_league_id"],season_start
             )
@@ -455,7 +466,8 @@ def run(source,api_archive,config,out_csv,meta_out):
     source_rows=read_csv(source)
     api_rows=read_csv(api_archive)
     league_map=load_config(config)
-    rows,scopes=bridge(source_rows,api_rows,league_map)
+    season_starts=load_season_starts(config)
+    rows,scopes=bridge(source_rows,api_rows,league_map,season_starts)
     write_csv(out_csv,rows)
     meta=build_meta(rows,scopes)
     Path(meta_out).write_text(
