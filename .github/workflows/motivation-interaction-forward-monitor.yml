@@ -1,0 +1,179 @@
+﻿name: Motivation Interaction Forward Monitor
+
+on:
+  workflow_dispatch:
+
+  workflow_run:
+    workflows:
+      - "Stage 71 League Market Challenger"
+      - "Standings Snapshot Capture"
+      - "Stage 71J Shared Core Market Capture"
+    types:
+      - completed
+
+  pull_request:
+    paths:
+      - 'config/pbk_motivation_interaction_v1_forward.json'
+      - 'scripts/motivation_forward_validation.py'
+      - 'scripts/motivation_interaction_forward_monitor.py'
+      - 'scripts/tests/test_motivation_forward_validation.py'
+      - 'scripts/tests/test_motivation_interaction_forward_monitor.py'
+      - '.github/workflows/motivation-interaction-forward-monitor.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pbk-motivation-interaction-forward-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile forward rail
+        run: |
+          python -m py_compile \
+            scripts/motivation_forward_validation.py \
+            scripts/motivation_interaction_forward_monitor.py
+
+      - name: Run motivation forward guardrails
+        run: |
+          python -m unittest \
+            scripts.tests.test_motivation_forward_validation \
+            scripts.tests.test_motivation_interaction_forward_monitor \
+            scripts.tests.test_motivation_interaction_specialist_v1 \
+            -v
+
+      - name: Prove orchestration remains provider-free
+        shell: bash
+        run: |
+          if grep -nE \
+            'requests\.|urllib\.|api-sports\.io|v3\.football\.api-sports|API_FOOTBALL_KEY' \
+            scripts/motivation_forward_validation.py \
+            scripts/motivation_interaction_forward_monitor.py
+          then
+            echo 'Motivation forward orchestration must remain provider-free.' >&2
+            exit 1
+          fi
+
+      - name: Validate frozen forward contract
+        run: |
+          python - <<'PY'
+          from scripts import motivation_interaction_forward_monitor as m
+
+          config = m.read_json(m.DEFAULT_CONFIG)
+          contract = m.validate_contract(config)
+
+          spec = m.read_json(
+              m.OPS / "motivation_interaction_specialist_v1.json"
+          )
+
+          m.validate_spec(spec, contract)
+
+          print("FROZEN CONTRACT + SPECIALIST SPEC: OK")
+          print("outputs =", config["outputs"])
+          print("forward_review =", config["forward_review"])
+          PY
+
+  forward:
+    needs: validate
+
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (
+        github.event_name == 'workflow_run' &&
+        github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.head_branch == 'main'
+      )
+
+    permissions:
+      contents: write
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    env:
+      OPS_DIR: ops
+
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Capture prospective motivation prematch evidence and factual labels
+        run: python scripts/motivation_forward_validation.py
+
+      - name: Evaluate frozen interaction candidate prospectively
+        run: python scripts/motivation_interaction_forward_monitor.py
+
+      - name: Show forward summaries
+        shell: bash
+        run: |
+          echo '=== MOTIVATION FORWARD VALIDATION ==='
+          cat ops/motivation_forward_validation_last_run.json
+
+          echo
+          echo '=== FROZEN INTERACTION PERFORMANCE ==='
+          cat ops/motivation_interaction_v1_forward_performance.json
+
+      - name: Publish prospective motivation journals safely
+        shell: bash
+        run: |
+          git config user.name 'motivation-forward-bot'
+          git config user.email 'motivation-forward-bot@users.noreply.github.com'
+
+          git add ops/motivation_forward_validation_last_run.json
+
+          if [ -f ops/motivation_forward_prematch.jsonl ]; then
+            git add ops/motivation_forward_prematch.jsonl
+          fi
+
+          if [ -f ops/motivation_forward_labels.jsonl ]; then
+            git add ops/motivation_forward_labels.jsonl
+          fi
+
+          if [ -f ops/motivation_interaction_v1_forward_prematch.jsonl ]; then
+            git add ops/motivation_interaction_v1_forward_prematch.jsonl
+          fi
+
+          if [ -f ops/motivation_interaction_v1_forward_settlements.jsonl ]; then
+            git add ops/motivation_interaction_v1_forward_settlements.jsonl
+          fi
+
+          git add ops/motivation_interaction_v1_forward_performance.json
+
+          if git diff --cached --quiet; then
+            echo 'No new prospective motivation evidence to publish.'
+            exit 0
+          fi
+
+          git commit -m 'Motivation interaction forward monitor update'
+          python scripts/publish_operational_commit.py
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: motivation-interaction-forward-monitor
+          path: |
+            ops/motivation_forward_validation_last_run.json
+            ops/motivation_forward_prematch.jsonl
+            ops/motivation_forward_labels.jsonl
+            ops/motivation_interaction_v1_forward_prematch.jsonl
+            ops/motivation_interaction_v1_forward_settlements.jsonl
+            ops/motivation_interaction_v1_forward_performance.json
+          if-no-files-found: warn
+          retention-days: 30
