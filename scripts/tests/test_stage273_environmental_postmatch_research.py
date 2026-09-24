@@ -263,6 +263,12 @@ class EnvironmentalPostmatchResearchTests(unittest.TestCase):
         self.assertIn("causal_claim_authorized", m.DATASET_FIELDS)
         self.assertNotIn("environment_score", m.DATASET_FIELDS)
 
+    def test_candidate_attempt_budget_is_not_below_success_target(self):
+        self.assertGreaterEqual(
+            m.MAX_CANDIDATE_ATTEMPTS_PER_RUN,
+            m.MAX_FIXTURES_PER_RUN,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
