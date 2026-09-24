@@ -1,0 +1,179 @@
+name: Stage 273 Environmental Postmatch Research
+
+on:
+  workflow_dispatch:
+
+  pull_request:
+    paths:
+      - 'config/pbk_environmental_postmatch_research_v1.json'
+      - 'scripts/stage273_environmental_postmatch_research.py'
+      - 'scripts/tests/test_stage273_environmental_postmatch_research.py'
+      - '.github/workflows/stage273-environmental-postmatch-research.yml'
+
+  push:
+    branches:
+      - main
+    paths:
+      - 'config/pbk_environmental_postmatch_research_v1.json'
+      - 'scripts/stage273_environmental_postmatch_research.py'
+      - 'scripts/tests/test_stage273_environmental_postmatch_research.py'
+      - '.github/workflows/stage273-environmental-postmatch-research.yml'
+
+  schedule:
+    - cron: '43 3 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stage273-environmental-postmatch-research
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile
+        run: |
+          python -m py_compile             scripts/stage273_environmental_postmatch_research.py             scripts/tests/test_stage273_environmental_postmatch_research.py
+
+      - name: Contract tests
+        run: |
+          python -m unittest             scripts.tests.test_stage273_environmental_postmatch_research             -v
+
+      - name: Validate research contract
+        run: |
+          python - <<'PY'
+          from scripts import stage273_environmental_postmatch_research as m
+          cfg=m.read_json(m.CONFIG)
+          m.validate_contract(cfg)
+
+          source=cfg['source_policy']
+          assert source['historical_proxy_is_direct_stadium_observation'] is False
+          assert source['historical_proxy_is_prematch_forecast'] is False
+          assert source['usable_for_prematch'] is False
+
+          guards=cfg['guards']
+          assert guards['never_relabel_as_prematch_known'] is True
+          assert guards['no_causal_claim_from_single_match'] is True
+          assert guards['no_predictive_authority'] is True
+          assert guards['no_betting_authority'] is True
+
+          print('POSTMATCH ENVIRONMENTAL RESEARCH CONTRACT: OK')
+          PY
+
+      - name: No forbidden authority
+        shell: bash
+        run: |
+          if grep -nE             'predictive_authority.*AUTHORIZED|betting_authority.*AUTHORIZED|causal_claim_authorized.*true|usable_for_prematch.*true'             config/pbk_environmental_postmatch_research_v1.json
+          then
+            echo 'Forbidden Stage273 authority detected.' >&2
+            exit 1
+          fi
+
+  capture:
+    needs: validate
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    env:
+      OPS_DIR: ops
+      STAGE273_MAX_FIXTURES_PER_RUN: '8'
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Capture postmatch environmental conditions and mechanisms
+        run: |
+          python scripts/stage273_environmental_postmatch_research.py
+
+      - name: Verify postmatch-only governance
+        run: |
+          python - <<'PY'
+          import csv
+          import json
+          from pathlib import Path
+
+          meta_path=Path('ops/stage273_environmental_postmatch_last_run.json')
+          with meta_path.open(encoding='utf-8') as f:
+              meta=json.load(f)
+
+          assert meta['status']=='OK'
+          assert meta['mode']=='POSTMATCH_RESEARCH_ONLY'
+          assert meta['source_semantics']['direct_stadium_observation'] is False
+          assert meta['source_semantics']['usable_for_prematch'] is False
+          assert meta['source_semantics']['historical_proxy_is_prematch_forecast'] is False
+          assert meta['research_guards']['causal_claim_from_single_match'] is False
+          assert meta['research_guards']['predictive_authority']=='NOT_AUTHORIZED'
+          assert meta['research_guards']['operational_betting_authority'] is False
+
+          snapshots=Path('ops/environmental_postmatch_condition_snapshots.csv')
+          if snapshots.exists():
+              with snapshots.open(encoding='utf-8-sig', newline='') as f:
+                  rows=list(csv.DictReader(f))
+              assert all(r['usable_for_prematch']=='false' for r in rows)
+              assert all(r['evidence_time_status']=='POSTMATCH_FACTUAL_RESEARCH_PROXY' for r in rows)
+              assert all(r['predictive_authority']=='NOT_AUTHORIZED' for r in rows)
+
+          dataset=Path('ops/environmental_postmatch_mechanism_dataset.csv')
+          if dataset.exists():
+              with dataset.open(encoding='utf-8-sig', newline='') as f:
+                  rows=list(csv.DictReader(f))
+              assert all(r['environment_usable_for_prematch']=='false' for r in rows)
+              assert all(r['causal_claim_authorized']=='false' for r in rows)
+              assert all(r['predictive_authority']=='NOT_AUTHORIZED' for r in rows)
+
+          print({
+              'snapshots_total': meta['snapshots_total'],
+              'mechanism_dataset_rows': meta['mechanism_dataset_rows'],
+              'diagnostics': meta['diagnostics'],
+          })
+          PY
+
+      - name: Publish research archive
+        shell: bash
+        run: |
+          git config user.name 'stage273-bot'
+          git config user.email 'stage273-bot@users.noreply.github.com'
+
+          for f in             ops/environmental_postmatch_condition_snapshots.csv             ops/environmental_postmatch_venue_geocache.csv             ops/environmental_postmatch_mechanism_dataset.csv             ops/stage273_environmental_postmatch_last_run.json
+          do
+            if [ -f "$f" ]; then
+              git add "$f"
+            fi
+          done
+
+          if git diff --cached --quiet; then
+            echo 'No Stage273 research archive changes.'
+            exit 0
+          fi
+
+          git commit -m 'Stage 273 environmental postmatch research update'
+          python scripts/publish_operational_commit.py
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage273-environmental-postmatch-research
+          path: |
+            ops/environmental_postmatch_condition_snapshots.csv
+            ops/environmental_postmatch_venue_geocache.csv
+            ops/environmental_postmatch_mechanism_dataset.csv
+            ops/stage273_environmental_postmatch_last_run.json
+          if-no-files-found: warn
+          retention-days: 90
