@@ -90,6 +90,7 @@ jobs:
       STAGE273_HTTP_ATTEMPTS: '3'
       STAGE273_HTTP_TIMEOUT: '30'
       STAGE273_HTTP_RETRY_DELAY: '0.75'
+      STAGE273_GEOCODE_LEGACY_REVALIDATE_PER_RUN: '12'
 
     steps:
       - uses: actions/checkout@v4
@@ -129,6 +130,9 @@ jobs:
           assert meta['source_semantics']['direct_stadium_observation'] is False
           assert meta['source_semantics']['usable_for_prematch'] is False
           assert meta['source_semantics']['historical_proxy_is_prematch_forecast'] is False
+          assert meta['source_semantics']['geocode_resolver_version']=='PBK_GEOCODE_V2'
+          assert meta['source_semantics']['geocode_country_filter_required'] is True
+          assert meta['source_semantics']['legacy_geocode_rows_are_not_trusted_for_new_captures'] is True
           assert meta['research_guards']['causal_claim_from_single_match'] is False
           assert meta['research_guards']['predictive_authority']=='NOT_AUTHORIZED'
           assert meta['research_guards']['operational_betting_authority'] is False
