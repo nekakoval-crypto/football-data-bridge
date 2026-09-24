@@ -10,6 +10,15 @@ on:
       - 'config/pbk_venue_overrides.csv'
       - '.github/workflows/stage265-venue-registry.yml'
 
+  push:
+    branches:
+      - main
+    paths:
+      - 'config/pbk_venue_overrides.csv'
+      - 'scripts/stage265_venue_registry.py'
+      - 'scripts/tests/test_stage265_venue_registry.py'
+      - '.github/workflows/stage265-venue-registry.yml'
+
   schedule:
     - cron: '23 4 * * 1'
 
