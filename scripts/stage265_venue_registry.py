@@ -17,15 +17,23 @@ from __future__ import annotations
 import csv
 import json
 import os
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-try:
-    from scripts.api_football_broker import api_get
-    from scripts import standings_format_registry
-except ModuleNotFoundError:
-    from api_football_broker import api_get
-    import standings_format_registry
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+
+# Repository scripts historically import sibling modules as top-level modules.
+# Make that contract explicit so execution is identical for:
+#   python scripts/stage265_venue_registry.py
+# and:
+#   python -m unittest scripts.tests.test_stage265_venue_registry
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+from api_football_broker import api_get
+import standings_format_registry
 
 
 ROOT = Path(__file__).resolve().parents[1]
