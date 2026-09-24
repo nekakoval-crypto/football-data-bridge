@@ -1,14 +1,14 @@
 {
   "version": "PBK_STAGE80_PBK14_FIXTURE_BRIDGE_V2_NEAR_COMPLETE",
-  "generated_at_utc": "2026-09-24T18:18:20Z",
+  "generated_at_utc": "2026-09-24T18:37:04Z",
   "source_rows": 38550,
-  "mapped_auto": 18940,
+  "mapped_auto": 19007,
   "mapped_high": 18387,
-  "mapped_auto_high": 37327,
-  "review": 32,
-  "unmapped": 1191,
-  "mapped_pct": 96.827,
-  "unique_mapped_api_fixture_ids": 37327,
+  "mapped_auto_high": 37394,
+  "review": 391,
+  "unmapped": 765,
+  "mapped_pct": 97.001,
+  "unique_mapped_api_fixture_ids": 37394,
   "duplicate_mapped_api_fixture_ids": 0,
   "league_season_scopes": [
     {
@@ -105,11 +105,11 @@
       "league_code": "AUT",
       "season_start": 2026,
       "source_rows": 42,
-      "provider_rows": 0,
-      "mapped_auto": 0,
+      "provider_rows": 6,
+      "mapped_auto": 2,
       "mapped_high": 0,
-      "review": 0,
-      "unmapped": 42
+      "review": 3,
+      "unmapped": 37
     },
     {
       "league_code": "B1",
@@ -205,11 +205,11 @@
       "league_code": "B1",
       "season_start": 2026,
       "source_rows": 63,
-      "provider_rows": 0,
-      "mapped_auto": 0,
+      "provider_rows": 9,
+      "mapped_auto": 1,
       "mapped_high": 0,
-      "review": 0,
-      "unmapped": 63
+      "review": 13,
+      "unmapped": 49
     },
     {
       "league_code": "D1",
@@ -305,11 +305,11 @@
       "league_code": "D1",
       "season_start": 2026,
       "source_rows": 36,
-      "provider_rows": 0,
+      "provider_rows": 9,
       "mapped_auto": 0,
       "mapped_high": 0,
-      "review": 0,
-      "unmapped": 36
+      "review": 1,
+      "unmapped": 35
     },
     {
       "league_code": "DNK",
@@ -405,11 +405,11 @@
       "league_code": "DNK",
       "season_start": 2026,
       "source_rows": 54,
-      "provider_rows": 0,
-      "mapped_auto": 0,
+      "provider_rows": 6,
+      "mapped_auto": 3,
       "mapped_high": 0,
-      "review": 0,
-      "unmapped": 54
+      "review": 27,
+      "unmapped": 24
     },
     {
       "league_code": "E0",
@@ -505,11 +505,11 @@
       "league_code": "E0",
       "season_start": 2026,
       "source_rows": 50,
-      "provider_rows": 0,
-      "mapped_auto": 0,
+      "provider_rows": 10,
+      "mapped_auto": 6,
       "mapped_high": 0,
-      "review": 0,
-      "unmapped": 50
+      "review": 26,
+      "unmapped": 18
     },
     {
       "league_code": "F1",
@@ -605,11 +605,11 @@
       "league_code": "F1",
       "season_start": 2026,
       "source_rows": 45,
-      "provider_rows": 0,
-      "mapped_auto": 0,
+      "provider_rows": 9,
+      "mapped_auto": 6,
       "mapped_high": 0,
-      "review": 0,
-      "unmapped": 45
+      "review": 25,
+      "unmapped": 14
     },
     {
       "league_code": "I1",
@@ -705,11 +705,11 @@
       "league_code": "I1",
       "season_start": 2026,
       "source_rows": 50,
-      "provider_rows": 0,
-      "mapped_auto": 0,
+      "provider_rows": 10,
+      "mapped_auto": 8,
       "mapped_high": 0,
-      "review": 0,
-      "unmapped": 50
+      "review": 32,
+      "unmapped": 10
     },
     {
       "league_code": "N1",
@@ -805,11 +805,11 @@
       "league_code": "N1",
       "season_start": 2026,
       "source_rows": 63,
-      "provider_rows": 0,
-      "mapped_auto": 0,
+      "provider_rows": 18,
+      "mapped_auto": 10,
       "mapped_high": 0,
-      "review": 0,
-      "unmapped": 63
+      "review": 27,
+      "unmapped": 26
     },
     {
       "league_code": "NOR",
@@ -905,11 +905,11 @@
       "league_code": "NOR",
       "season_start": 2026,
       "source_rows": 168,
-      "provider_rows": 0,
-      "mapped_auto": 0,
+      "provider_rows": 8,
+      "mapped_auto": 5,
       "mapped_high": 0,
-      "review": 0,
-      "unmapped": 168
+      "review": 104,
+      "unmapped": 59
     },
     {
       "league_code": "P1",
@@ -1005,11 +1005,11 @@
       "league_code": "P1",
       "season_start": 2026,
       "source_rows": 62,
-      "provider_rows": 0,
-      "mapped_auto": 0,
+      "provider_rows": 9,
+      "mapped_auto": 5,
       "mapped_high": 0,
-      "review": 0,
-      "unmapped": 62
+      "review": 32,
+      "unmapped": 25
     },
     {
       "league_code": "POL",
@@ -1105,11 +1105,11 @@
       "league_code": "POL",
       "season_start": 2026,
       "source_rows": 78,
-      "provider_rows": 0,
-      "mapped_auto": 0,
+      "provider_rows": 17,
+      "mapped_auto": 6,
       "mapped_high": 0,
-      "review": 0,
-      "unmapped": 78
+      "review": 22,
+      "unmapped": 50
     },
     {
       "league_code": "SC0",
@@ -1205,11 +1205,11 @@
       "league_code": "SC0",
       "season_start": 2026,
       "source_rows": 42,
-      "provider_rows": 0,
-      "mapped_auto": 0,
+      "provider_rows": 12,
+      "mapped_auto": 8,
       "mapped_high": 0,
-      "review": 0,
-      "unmapped": 42
+      "review": 21,
+      "unmapped": 13
     },
     {
       "league_code": "SP1",
@@ -1305,11 +1305,11 @@
       "league_code": "SP1",
       "season_start": 2026,
       "source_rows": 69,
-      "provider_rows": 0,
-      "mapped_auto": 0,
+      "provider_rows": 17,
+      "mapped_auto": 5,
       "mapped_high": 0,
-      "review": 0,
-      "unmapped": 69
+      "review": 12,
+      "unmapped": 52
     },
     {
       "league_code": "T1",
@@ -1405,93 +1405,97 @@
       "league_code": "T1",
       "season_start": 2026,
       "source_rows": 54,
-      "provider_rows": 0,
-      "mapped_auto": 0,
+      "provider_rows": 9,
+      "mapped_auto": 2,
       "mapped_high": 0,
-      "review": 0,
-      "unmapped": 54
+      "review": 14,
+      "unmapped": 38
     }
   ],
   "mapping_by_league": {
     "AUT": {
-      "AUTO": 145,
+      "AUTO": 147,
       "HIGH": 1589,
-      "UNMAPPED": 46
+      "REVIEW": 3,
+      "UNMAPPED": 41
     },
     "B1": {
-      "AUTO": 760,
+      "AUTO": 761,
       "HIGH": 1802,
-      "REVIEW": 3,
-      "UNMAPPED": 63
+      "REVIEW": 16,
+      "UNMAPPED": 49
     },
     "D1": {
       "AUTO": 98,
       "HIGH": 2655,
-      "REVIEW": 1,
-      "UNMAPPED": 36
+      "REVIEW": 2,
+      "UNMAPPED": 35
     },
     "DNK": {
-      "AUTO": 1066,
+      "AUTO": 1069,
       "HIGH": 817,
-      "REVIEW": 14,
-      "UNMAPPED": 62
+      "REVIEW": 41,
+      "UNMAPPED": 32
     },
     "E0": {
-      "AUTO": 2484,
+      "AUTO": 2490,
       "HIGH": 936,
-      "UNMAPPED": 50
+      "REVIEW": 26,
+      "UNMAPPED": 18
     },
     "F1": {
-      "AUTO": 2159,
+      "AUTO": 2165,
       "HIGH": 937,
-      "REVIEW": 1,
-      "UNMAPPED": 45
+      "REVIEW": 26,
+      "UNMAPPED": 14
     },
     "I1": {
-      "AUTO": 2482,
+      "AUTO": 2490,
       "HIGH": 937,
-      "REVIEW": 1,
-      "UNMAPPED": 50
+      "REVIEW": 33,
+      "UNMAPPED": 10
     },
     "N1": {
-      "AUTO": 1624,
+      "AUTO": 1634,
       "HIGH": 1054,
-      "REVIEW": 2,
-      "UNMAPPED": 63
+      "REVIEW": 29,
+      "UNMAPPED": 26
     },
     "NOR": {
-      "AUTO": 1402,
+      "AUTO": 1407,
       "HIGH": 761,
-      "REVIEW": 2,
-      "UNMAPPED": 175
+      "REVIEW": 106,
+      "UNMAPPED": 66
     },
     "P1": {
-      "AUTO": 1560,
+      "AUTO": 1565,
       "HIGH": 1194,
-      "UNMAPPED": 62
+      "REVIEW": 32,
+      "UNMAPPED": 25
     },
     "POL": {
-      "AUTO": 869,
+      "AUTO": 875,
       "HIGH": 1492,
-      "REVIEW": 1,
-      "UNMAPPED": 374
+      "REVIEW": 23,
+      "UNMAPPED": 346
     },
     "SC0": {
-      "AUTO": 1398,
+      "AUTO": 1406,
       "HIGH": 604,
-      "REVIEW": 1,
-      "UNMAPPED": 42
+      "REVIEW": 22,
+      "UNMAPPED": 13
     },
     "SP1": {
-      "AUTO": 1406,
+      "AUTO": 1411,
       "HIGH": 2014,
-      "UNMAPPED": 69
+      "REVIEW": 12,
+      "UNMAPPED": 52
     },
     "T1": {
-      "AUTO": 1487,
+      "AUTO": 1489,
       "HIGH": 1595,
-      "REVIEW": 6,
-      "UNMAPPED": 54
+      "REVIEW": 20,
+      "UNMAPPED": 38
     }
   },
   "mapping_policy": {
@@ -1517,5 +1521,13 @@
   "probability_mutation": false,
   "eligibility_mutation": false,
   "stake_changes": false,
-  "forward_journal_mutation": false
+  "forward_journal_mutation": false,
+  "current_catalog_fallback": {
+    "path": "ops/historical_fixtures.csv",
+    "season_start": 2026,
+    "adapted_finished_rows": 173,
+    "exact_canonical_names_only": true,
+    "final_score_identity_only": true,
+    "fuzzy_string_matching_used": false
+  }
 }
