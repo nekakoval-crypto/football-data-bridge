@@ -1,0 +1,130 @@
+name: Stage 272 Environmental Forward Research
+
+on:
+  workflow_dispatch:
+
+  workflow_run:
+    workflows:
+      - "Stage 271 Environmental Stress Features"
+      - "Stage 71 League Market Challenger"
+    types:
+      - completed
+
+  pull_request:
+    paths:
+      - 'config/pbk_environmental_stress_v1_forward.json'
+      - 'scripts/stage272_environmental_forward_monitor.py'
+      - 'scripts/tests/test_stage272_environmental_forward_monitor.py'
+      - '.github/workflows/stage272-environmental-forward-research.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage272-environmental-forward-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile
+        run: |
+          python -m py_compile             scripts/stage272_environmental_forward_monitor.py             scripts/tests/test_stage272_environmental_forward_monitor.py
+
+      - name: Contract tests
+        run: |
+          python -m unittest scripts.tests.test_stage272_environmental_forward_monitor -v
+
+      - name: Provider and web isolation
+        shell: bash
+        run: |
+          if grep -nE             'requests\.|urllib\.|api-sports\.io|API_FOOTBALL_KEY|open-meteo'             scripts/stage272_environmental_forward_monitor.py
+          then
+            echo 'Stage272 must remain provider/web free.' >&2
+            exit 1
+          fi
+
+      - name: Validate frozen research contract
+        run: |
+          python - <<'PY'
+          from scripts import stage272_environmental_forward_monitor as m
+          cfg=m.read_json(m.DEFAULT_CONFIG)
+          m.validate_contract(cfg)
+          print('ENVIRONMENTAL FORWARD CONTRACT: OK')
+          print('outputs =', cfg['outputs'])
+          print('review =', cfg['forward_review'])
+          PY
+
+  forward:
+    needs: validate
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (
+        github.event_name == 'workflow_run' &&
+        github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.head_branch == 'main'
+      )
+
+    permissions:
+      contents: write
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    env:
+      OPS_DIR: ops
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Capture prospective environmental evidence and settle exact FT
+        run: python scripts/stage272_environmental_forward_monitor.py
+
+      - name: Show report
+        run: cat ops/environmental_stress_v1_forward_performance.json
+
+      - name: Publish immutable evidence safely
+        shell: bash
+        run: |
+          git config user.name 'stage272-bot'
+          git config user.email 'stage272-bot@users.noreply.github.com'
+
+          for f in             ops/environmental_stress_v1_forward_prematch.jsonl             ops/environmental_stress_v1_forward_settlements.jsonl
+          do
+            if [ -f "$f" ]; then
+              git add "$f"
+            fi
+          done
+
+          if git diff --cached --quiet; then
+            echo 'No new immutable environmental evidence. Repository publish is a no-op.'
+            exit 0
+          fi
+
+          git add ops/environmental_stress_v1_forward_performance.json
+          git commit -m 'Stage 272 environmental forward evidence update'
+          python scripts/publish_operational_commit.py
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage272-environmental-forward-research
+          path: |
+            ops/environmental_stress_v1_forward_prematch.jsonl
+            ops/environmental_stress_v1_forward_settlements.jsonl
+            ops/environmental_stress_v1_forward_performance.json
+          if-no-files-found: warn
+          retention-days: 90
