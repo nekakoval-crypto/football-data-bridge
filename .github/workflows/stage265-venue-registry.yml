@@ -1,0 +1,104 @@
+name: Stage 265 PBK16 Venue Registry
+
+on:
+  workflow_dispatch:
+
+  pull_request:
+    paths:
+      - 'scripts/stage265_venue_registry.py'
+      - 'scripts/tests/test_stage265_venue_registry.py'
+      - 'config/pbk_venue_overrides.csv'
+      - '.github/workflows/stage265-venue-registry.yml'
+
+  schedule:
+    - cron: '23 4 * * 1'
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile venue registry
+        run: |
+          python -m py_compile \
+            scripts/stage265_venue_registry.py \
+            scripts/tests/test_stage265_venue_registry.py
+
+      - name: Venue registry contract tests
+        run: |
+          python -m unittest \
+            scripts.tests.test_stage265_venue_registry \
+            -v
+
+  capture:
+    needs: validate
+
+    if: >
+      github.event_name != 'pull_request'
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      OPS_DIR: ops
+
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build PBK16 venue registry
+        run: |
+          python scripts/stage265_venue_registry.py
+
+      - name: Show venue summary
+        run: |
+          cat ops/stage265_venue_registry_last_run.json
+
+      - name: Publish venue registry
+        shell: bash
+        run: |
+          git config user.name 'stage265-bot'
+          git config user.email 'stage265-bot@users.noreply.github.com'
+
+          git add \
+            ops/pbk16_venue_registry.csv \
+            ops/stage265_venue_registry_last_run.json
+
+          if git diff --cached --quiet; then
+            echo 'No venue registry changes.'
+            exit 0
+          fi
+
+          git commit -m 'Stage 265 venue registry update'
+          python scripts/publish_operational_commit.py
+
+      - name: Upload venue registry
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage265-venue-registry
+          path: |
+            ops/pbk16_venue_registry.csv
+            ops/stage265_venue_registry_last_run.json
+          if-no-files-found: ignore
+          retention-days: 30
