@@ -1,0 +1,159 @@
+name: Stage 281 Environmental Mechanism Comparisons
+
+on:
+  workflow_dispatch:
+
+  pull_request:
+    paths:
+      - 'config/pbk_environmental_mechanism_comparisons_v1.json'
+      - 'scripts/stage281_environmental_mechanism_comparisons.py'
+      - 'scripts/tests/test_stage281_environmental_mechanism_comparisons.py'
+      - '.github/workflows/stage281-environmental-mechanism-comparisons.yml'
+
+  push:
+    branches:
+      - main
+    paths:
+      - 'config/pbk_environmental_mechanism_comparisons_v1.json'
+      - 'scripts/stage281_environmental_mechanism_comparisons.py'
+      - 'scripts/tests/test_stage281_environmental_mechanism_comparisons.py'
+      - 'ops/environmental_expectation_deviation_research.csv'
+      - '.github/workflows/stage281-environmental-mechanism-comparisons.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stage281-environmental-mechanism-comparisons
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile
+        run: |
+          python -m py_compile             scripts/stage281_environmental_mechanism_comparisons.py             scripts/tests/test_stage281_environmental_mechanism_comparisons.py
+
+      - name: Contract tests
+        run: |
+          python -m unittest             scripts.tests.test_stage281_environmental_mechanism_comparisons             -v
+
+      - name: Verify preregistration guards
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from scripts import stage281_environmental_mechanism_comparisons as m
+
+          cfg=json.loads(
+              Path('config/pbk_environmental_mechanism_comparisons_v1.json')
+              .read_text(encoding='utf-8')
+          )
+          m.validate_contract(cfg)
+
+          assert len(cfg['comparisons'])==8
+          assert cfg['sample_gates']['descriptive_ready']=={
+              'min_exposed':30,
+              'min_control':30,
+          }
+          assert cfg['sample_gates']['formal_review_ready']=={
+              'min_exposed':100,
+              'min_control':100,
+          }
+          assert cfg['interpretation_guards']['threshold_retargeting_after_results_forbidden'] is True
+          assert cfg['interpretation_guards']['report_both_direction_and_null_results'] is True
+          assert cfg['interpretation_guards']['no_automatic_model_promotion'] is True
+
+          print('STAGE281 PREREGISTRATION CONTRACT: OK')
+          PY
+
+  materialize:
+    needs: validate
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build preregistered comparison projection
+        run: |
+          python scripts/stage281_environmental_mechanism_comparisons.py
+
+      - name: Verify no authority opened
+        run: |
+          python - <<'PY'
+          import csv
+          import json
+
+          with open(
+              'ops/stage281_environmental_mechanism_comparisons_last_run.json',
+              encoding='utf-8',
+          ) as f:
+              meta=json.load(f)
+
+          assert meta['status']=='OK'
+          assert meta['research_only'] is True
+          assert meta['predictive_authority']=='NOT_AUTHORIZED'
+          assert meta['operational_betting_authority'] is False
+          assert meta['automatic_model_promotion'] is False
+          assert meta['threshold_retargeting_after_results_forbidden'] is True
+
+          with open(
+              'ops/environmental_mechanism_comparison_results.csv',
+              encoding='utf-8-sig',
+              newline='',
+          ) as f:
+              rows=list(csv.DictReader(f))
+
+          assert len(rows)==8
+          assert all(r['causal_claim_authorized']=='false' for r in rows)
+          assert all(r['predictive_authority']=='NOT_AUTHORIZED' for r in rows)
+          assert all(r['betting_authority']=='NOT_AUTHORIZED' for r in rows)
+          assert all(r['automatic_model_promotion']=='false' for r in rows)
+
+          print({
+              'input_rows':meta['input_rows'],
+              'exposure_counts':meta['exposure_counts'],
+              'sample_status_counts':meta['sample_status_counts'],
+          })
+          PY
+
+      - name: Publish research projection
+        shell: bash
+        run: |
+          git config user.name 'stage281-bot'
+          git config user.email 'stage281-bot@users.noreply.github.com'
+
+          git add             ops/environmental_mechanism_comparison_results.csv             ops/stage281_environmental_mechanism_comparisons_last_run.json
+
+          if git diff --cached --quiet; then
+            echo 'No Stage281 research changes.'
+            exit 0
+          fi
+
+          git commit -m 'Stage 281 environmental mechanism comparisons update'
+          python scripts/publish_operational_commit.py
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage281-environmental-mechanism-comparisons
+          path: |
+            ops/environmental_mechanism_comparison_results.csv
+            ops/stage281_environmental_mechanism_comparisons_last_run.json
+          if-no-files-found: warn
+          retention-days: 90
