@@ -247,18 +247,63 @@ def validate_contract(config: dict[str, Any]) -> None:
 
 
 def finished_fixtures(rows: list[dict[str, str]]) -> dict[str, dict[str, str]]:
+    """Normalize canonical Stage80 historical fixture rows for Stage273.
+
+    Current Stage80 schema uses:
+    terminal_observed / latest_source_status / latest_kickoff_utc /
+    final_score_home / final_score_away.
+    """
     out = {}
-    for row in rows:
-        fixture_id = str(row.get("fixture_id") or "").strip()
+
+    for source_row in rows:
+        fixture_id = str(source_row.get("fixture_id") or "").strip()
         if not fixture_id:
             continue
-        if str(row.get("is_finished") or "").strip().upper() not in {"YES","TRUE","1"}:
+
+        terminal = str(
+            source_row.get("terminal_observed")
+            or source_row.get("is_finished")
+            or ""
+        ).strip().upper()
+
+        source_status = str(
+            source_row.get("latest_source_status")
+            or source_row.get("source_status")
+            or ""
+        ).strip().upper()
+
+        kickoff = (
+            source_row.get("latest_kickoff_utc")
+            or source_row.get("kickoff_utc")
+            or source_row.get("first_kickoff_utc")
+            or ""
+        )
+
+        if terminal not in {"YES", "TRUE", "1"}:
             continue
-        if str(row.get("source_status") or "").strip().upper() not in {"FT","AET","PEN"}:
+
+        if source_status not in {"FT", "AET", "PEN"}:
             continue
-        if parse_iso(row.get("kickoff_utc")) is None:
+
+        if parse_iso(kickoff) is None:
             continue
+
+        row = dict(source_row)
+        row["kickoff_utc"] = str(kickoff)
+        row["source_status"] = source_status
+        row["home_goals"] = str(
+            source_row.get("final_score_home")
+            if source_row.get("final_score_home") not in {None, ""}
+            else source_row.get("home_goals") or ""
+        )
+        row["away_goals"] = str(
+            source_row.get("final_score_away")
+            if source_row.get("final_score_away") not in {None, ""}
+            else source_row.get("away_goals") or ""
+        )
+
         out[fixture_id] = row
+
     return out
 
 

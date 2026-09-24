@@ -6,6 +6,7 @@ from pathlib import Path
 from scripts import stage273_environmental_postmatch_research as m
 
 
+# Stage273 regression coverage for current Stage80 canonical fixture schema.
 class EnvironmentalPostmatchResearchTests(unittest.TestCase):
 
     def test_contract_explicitly_denies_prematch_semantics(self):
@@ -78,6 +79,32 @@ class EnvironmentalPostmatchResearchTests(unittest.TestCase):
         ]
         result = m.finished_fixtures(rows)
         self.assertEqual(set(result), {"1"})
+
+    def test_current_stage80_historical_fixture_schema_is_normalized(self):
+        rows = [{
+            "fixture_id": "1494764",
+            "provider_league_id": "103",
+            "league_name": "Eliteserien",
+            "season": "2026",
+            "round": "Regular Season - 22",
+            "home_team": "Brann",
+            "away_team": "Bodo/Glimt",
+            "latest_kickoff_utc": "2026-09-20T17:15:00+00:00",
+            "latest_status": "finished",
+            "latest_source_status": "FT",
+            "terminal_observed": "YES",
+            "final_score_home": "2",
+            "final_score_away": "1",
+        }]
+
+        result = m.finished_fixtures(rows)
+
+        self.assertEqual(set(result), {"1494764"})
+        row = result["1494764"]
+        self.assertEqual(row["kickoff_utc"], "2026-09-20T17:15:00+00:00")
+        self.assertEqual(row["source_status"], "FT")
+        self.assertEqual(row["home_goals"], "2")
+        self.assertEqual(row["away_goals"], "1")
 
     def test_team_statistics_require_both_sides(self):
         rows = [
