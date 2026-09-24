@@ -11,7 +11,7 @@ Supported source codes:
 - main season-by-season files: E0, SP1, I1, D1, F1, SC0, N1, B1, P1, T1;
 - cumulative all-seasons files: AUT, DNK, NOR, POL.
 
-Target season starts are 2017 through 2025.
+Target season starts are 2017 through 2026, including the current 2026/27 season for already-finished historical research rows.
 
 ## Source handling
 
