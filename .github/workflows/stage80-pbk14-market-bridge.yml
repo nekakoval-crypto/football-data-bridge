@@ -69,8 +69,8 @@ jobs:
           python - <<'PY'
           import json
           p=json.load(open('normalized/stage80_football_data_pbk14_history_meta.json',encoding='utf-8'))
-          assert p['expected_source_files']==94, p
-          assert p['present_source_files']==94, p
+          assert p['expected_source_files']==104, p
+          assert p['present_source_files']==104, p
           assert p['missing_source_files']==0, p
           assert p['supported_leagues']==14, p
           assert len(p['unsupported_pbk_leagues'])==2, p
