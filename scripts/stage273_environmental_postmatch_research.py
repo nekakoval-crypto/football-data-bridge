@@ -16,10 +16,13 @@ Research-only. No prediction, betting, value, stake or forward authority.
 from __future__ import annotations
 
 import csv
+import html
 import json
 import math
 import os
+import re
 import time
+import unicodedata
 import urllib.parse
 import urllib.request
 from collections import Counter, defaultdict
@@ -46,6 +49,7 @@ HTTP_TIMEOUT = float(os.getenv("STAGE273_HTTP_TIMEOUT", "30"))
 HTTP_ATTEMPTS = int(os.getenv("STAGE273_HTTP_ATTEMPTS", "3"))
 HTTP_RETRY_DELAY = float(os.getenv("STAGE273_HTTP_RETRY_DELAY", "0.75"))
 USER_AGENT = "PBK-stage273/1.0"
+GEOCODE_RESOLVER_VERSION = "PBK_GEOCODE_V2"
 
 SNAPSHOT_FIELDS = [
     "fixture_id","provider_league_id","league_name","season","round",
@@ -70,7 +74,11 @@ SNAPSHOT_FIELDS = [
 GEOCACHE_FIELDS = [
     "venue_id","venue_name","venue_city","team_country",
     "latitude","longitude","elevation_m",
-    "geocoded_name","geocoded_country","captured_at_utc","source",
+    "geocoded_name","geocoded_country","geocoded_country_code",
+    "geocoded_admin1","geocoded_population","geocoded_feature_code",
+    "geocode_quality_status","geocode_name_match_quality",
+    "geocode_query_used","resolver_version",
+    "captured_at_utc","source",
 ]
 
 DATASET_FIELDS = [
@@ -364,30 +372,265 @@ def venue_by_team(rows: list[dict[str, str]]) -> dict[str, dict[str, str]]:
     }
 
 
-def geocache_by_venue(rows: list[dict[str, str]]) -> dict[str, dict[str, str]]:
+COUNTRY_CODE_BY_TEAM_COUNTRY = {
+    "england": "GB",
+    "scotland": "GB",
+    "wales": "GB",
+    "northern ireland": "GB",
+    "france": "FR",
+    "germany": "DE",
+    "spain": "ES",
+    "italy": "IT",
+    "austria": "AT",
+    "belgium": "BE",
+    "denmark": "DK",
+    "lithuania": "LT",
+    "latvia": "LV",
+    "netherlands": "NL",
+    "norway": "NO",
+    "poland": "PL",
+    "portugal": "PT",
+    "turkey": "TR",
+    "turkiye": "TR",
+}
+
+CITY_ALIASES = {
+    "wien": "Vienna",
+    "munchen": "Munich",
+    "koln": "Cologne",
+    "firenze": "Florence",
+    "roma": "Rome",
+    "sevilla": "Seville",
+    "donostia san sebastian": "San Sebastian",
+    "ilha da madeira": "Madeira",
+}
+
+LOCALITY_FEATURE_RANK = {
+    "PPLC": 5,
+    "PPLA": 4,
+    "PPLA2": 3,
+    "PPLA3": 2,
+    "PPL": 1,
+}
+
+
+def normalize_place(value: Any) -> str:
+    text = html.unescape(str(value or "")).strip().casefold()
+    text = unicodedata.normalize("NFKD", text)
+    text = "".join(ch for ch in text if not unicodedata.combining(ch))
+    text = re.sub(r"[^a-z0-9]+", " ", text)
+    return " ".join(text.split())
+
+
+def city_query_variants(city: str) -> list[str]:
+    cleaned = html.unescape(str(city or "")).strip()
+    if not cleaned:
+        return []
+
+    variants = [cleaned]
+    if "," in cleaned:
+        variants.append(cleaned.split(",", 1)[0].strip())
+
+    normalized = normalize_place(cleaned)
+    alias = CITY_ALIASES.get(normalized)
+    if alias:
+        variants.append(alias)
+
+    if normalized.startswith("ilha da "):
+        variants.append(cleaned[8:].strip())
+
+    out = []
+    seen = set()
+    for value in variants:
+        key = normalize_place(value)
+        if value and key and key not in seen:
+            seen.add(key)
+            out.append(value)
+    return out
+
+
+def country_code_for_venue(venue: dict[str, str]) -> str:
+    return COUNTRY_CODE_BY_TEAM_COUNTRY.get(
+        normalize_place(venue.get("team_country")),
+        "",
+    )
+
+
+def candidate_name_quality(candidate_name: Any, query_variants: list[str]) -> int:
+    candidate = normalize_place(candidate_name)
+    if not candidate:
+        return 0
+    candidate_tokens = set(candidate.split())
+
+    best = 0
+    for variant in query_variants:
+        target = normalize_place(variant)
+        if not target:
+            continue
+        if candidate == target:
+            best = max(best, 3)
+            continue
+        target_tokens = set(target.split())
+        if target_tokens and (
+            target_tokens.issubset(candidate_tokens)
+            or candidate_tokens.issubset(target_tokens)
+        ):
+            best = max(best, 2)
+    return best
+
+
+def candidate_country_ok(candidate: dict[str, Any], venue: dict[str, str]) -> bool:
+    expected_code = country_code_for_venue(venue)
+    candidate_code = str(candidate.get("country_code") or "").strip().upper()
+
+    if expected_code and candidate_code:
+        return candidate_code == expected_code
+
+    expected_country = normalize_place(venue.get("team_country"))
+    candidate_country = normalize_place(candidate.get("country"))
+
+    if expected_country in {"england", "scotland", "wales", "northern ireland"}:
+        return candidate_country in {
+            "united kingdom",
+            "england",
+            "scotland",
+            "wales",
+            "northern ireland",
+        }
+
+    return bool(expected_country and candidate_country == expected_country)
+
+
+def select_geocode_candidate(
+    candidates: list[dict[str, Any]],
+    venue: dict[str, str],
+    query_variants: list[str],
+) -> tuple[dict[str, Any] | None, int]:
+    ranked = []
+
+    for candidate in candidates:
+        if not isinstance(candidate, dict):
+            continue
+        if not candidate_country_ok(candidate, venue):
+            continue
+        lat = fnum(candidate.get("latitude"))
+        lon = fnum(candidate.get("longitude"))
+        if lat is None or lon is None:
+            continue
+
+        quality = candidate_name_quality(candidate.get("name"), query_variants)
+        if quality < 2:
+            continue
+
+        feature_rank = LOCALITY_FEATURE_RANK.get(
+            str(candidate.get("feature_code") or "").strip().upper(),
+            0,
+        )
+        population = fnum(candidate.get("population")) or 0.0
+        ranked.append(
+            (
+                quality,
+                feature_rank,
+                population,
+                candidate,
+            )
+        )
+
+    if not ranked:
+        return None, 0
+
+    ranked.sort(key=lambda item: (item[0], item[1], item[2]), reverse=True)
+    quality, _, _, candidate = ranked[0]
+    return candidate, quality
+
+
+def verified_geocache_by_venue(rows: list[dict[str, str]]) -> dict[str, dict[str, str]]:
     return {
         str(row.get("venue_id") or "").strip(): row
         for row in rows
         if str(row.get("venue_id") or "").strip()
+        and str(row.get("resolver_version") or "") == GEOCODE_RESOLVER_VERSION
+        and str(row.get("geocode_quality_status") or "") == "VERIFIED_CITY_COUNTRY_V2"
         and fnum(row.get("latitude")) is not None
         and fnum(row.get("longitude")) is not None
     }
 
 
-def geocode_venue(config: dict[str, Any], venue: dict[str, str], captured_at: datetime) -> dict[str, str] | None:
-    city = str(venue.get("venue_city") or "").strip()
+def unresolved_geocache_venue_ids(rows: list[dict[str, str]]) -> set[str]:
+    return {
+        str(row.get("venue_id") or "").strip()
+        for row in rows
+        if str(row.get("venue_id") or "").strip()
+        and str(row.get("resolver_version") or "") == GEOCODE_RESOLVER_VERSION
+        and str(row.get("geocode_quality_status") or "") == "UNRESOLVED_V2"
+    }
+
+
+def unresolved_geocode_record(
+    venue: dict[str, str],
+    captured_at: datetime,
+    queries: list[str],
+) -> dict[str, str]:
+    return {
+        "venue_id": str(venue.get("venue_id") or "").strip(),
+        "venue_name": str(venue.get("venue_name") or ""),
+        "venue_city": html.unescape(str(venue.get("venue_city") or "")).strip(),
+        "team_country": str(venue.get("team_country") or ""),
+        "latitude": "",
+        "longitude": "",
+        "elevation_m": "",
+        "geocoded_name": "",
+        "geocoded_country": "",
+        "geocoded_country_code": "",
+        "geocoded_admin1": "",
+        "geocoded_population": "",
+        "geocoded_feature_code": "",
+        "geocode_quality_status": "UNRESOLVED_V2",
+        "geocode_name_match_quality": "0",
+        "geocode_query_used": " | ".join(queries),
+        "resolver_version": GEOCODE_RESOLVER_VERSION,
+        "captured_at_utc": iso(captured_at),
+        "source": "Open-Meteo Geocoding API city proxy v2",
+    }
+
+
+def geocode_venue(
+    config: dict[str, Any],
+    venue: dict[str, str],
+    captured_at: datetime,
+) -> dict[str, str] | None:
+    city = html.unescape(str(venue.get("venue_city") or "")).strip()
     country = str(venue.get("team_country") or "").strip()
     venue_id = str(venue.get("venue_id") or "").strip()
+
     if not city or not venue_id:
         return None
 
-    query = city if not country else f"{city}, {country}"
-    payload = http_json(
-        config["source_policy"]["geocoding_endpoint"],
-        {"name": query, "count": 1, "language": "en", "format": "json"},
+    queries = city_query_variants(city)
+    all_candidates = []
+
+    for query in queries:
+        payload = http_json(
+            config["source_policy"]["geocoding_endpoint"],
+            {
+                "name": query,
+                "count": 10,
+                "language": "en",
+                "format": "json",
+            },
+        )
+        for result in payload.get("results") or []:
+            if isinstance(result, dict):
+                enriched = dict(result)
+                enriched["_pbk_query"] = query
+                all_candidates.append(enriched)
+
+    result, quality = select_geocode_candidate(
+        all_candidates,
+        venue,
+        queries,
     )
-    result = (payload.get("results") or [None])[0]
-    if not isinstance(result, dict):
+    if result is None:
         return None
 
     lat = fnum(result.get("latitude"))
@@ -405,8 +648,16 @@ def geocode_venue(config: dict[str, Any], venue: dict[str, str], captured_at: da
         "elevation_m": fmt(fnum(result.get("elevation"))),
         "geocoded_name": str(result.get("name") or ""),
         "geocoded_country": str(result.get("country") or ""),
+        "geocoded_country_code": str(result.get("country_code") or ""),
+        "geocoded_admin1": str(result.get("admin1") or ""),
+        "geocoded_population": fmt(fnum(result.get("population"))),
+        "geocoded_feature_code": str(result.get("feature_code") or ""),
+        "geocode_quality_status": "VERIFIED_CITY_COUNTRY_V2",
+        "geocode_name_match_quality": str(quality),
+        "geocode_query_used": str(result.get("_pbk_query") or ""),
+        "resolver_version": GEOCODE_RESOLVER_VERSION,
         "captured_at_utc": iso(captured_at),
-        "source": "Open-Meteo Geocoding API city proxy",
+        "source": "Open-Meteo Geocoding API city proxy v2",
     }
 
 
@@ -722,7 +973,8 @@ def run(captured_at: datetime | None = None) -> dict[str, Any]:
     }
 
     geocache_rows = read_csv(GEOCACHE)
-    geocache = geocache_by_venue(geocache_rows)
+    geocache = verified_geocache_by_venue(geocache_rows)
+    unresolved_venues = unresolved_geocache_venue_ids(geocache_rows)
 
     eligible = []
     for fixture_id, pair in stats.items():
@@ -735,14 +987,22 @@ def run(captured_at: datetime | None = None) -> dict[str, Any]:
         venue = venues.get(str(home.get("team_id") or "").strip())
         if not venue:
             continue
+        venue_id = str(venue.get("venue_id") or "").strip()
+        if venue_id and venue_id in unresolved_venues:
+            continue
         eligible.append((parse_iso(fixture.get("kickoff_utc")), fixture_id, fixture, venue))
 
     eligible.sort(key=lambda x: (x[0] or captured_at, x[1]))
     selected = eligible[:MAX_FIXTURES_PER_RUN]
 
     new_snapshots = []
-    new_geos = []
+    geocache_updates = []
     diagnostics = Counter()
+    diagnostics["legacy_geocache_rows_seen"] = sum(
+        str(r.get("resolver_version") or "") != GEOCODE_RESOLVER_VERSION
+        for r in geocache_rows
+    )
+    diagnostics["unresolved_v2_venues_skipped"] = len(unresolved_venues)
 
     for _, fixture_id, fixture, venue in selected:
         venue_id = str(venue.get("venue_id") or "").strip()
@@ -754,12 +1014,20 @@ def run(captured_at: datetime | None = None) -> dict[str, Any]:
             except Exception:
                 diagnostics["geocode_error"] += 1
                 continue
+            diagnostics["geocode_calls"] += 1
             if not geo:
                 diagnostics["geocode_missing"] += 1
+                unresolved = unresolved_geocode_record(
+                    venue,
+                    captured_at,
+                    city_query_variants(venue.get("venue_city") or ""),
+                )
+                geocache_updates.append(unresolved)
+                unresolved_venues.add(venue_id)
                 continue
             geocache[venue_id] = geo
-            new_geos.append(geo)
-            diagnostics["geocode_calls"] += 1
+            geocache_updates.append(geo)
+            diagnostics["geocode_verified_v2"] += 1
             time.sleep(0.15)
 
         try:
@@ -778,11 +1046,19 @@ def run(captured_at: datetime | None = None) -> dict[str, Any]:
         diagnostics["snapshots_created"] += 1
         time.sleep(0.15)
 
-    if new_geos:
-        merged_geos = {str(r.get("venue_id") or ""): r for r in geocache_rows if str(r.get("venue_id") or "")}
-        for r in new_geos:
+    if geocache_updates:
+        merged_geos = {
+            str(r.get("venue_id") or ""): r
+            for r in geocache_rows
+            if str(r.get("venue_id") or "")
+        }
+        for r in geocache_updates:
             merged_geos[str(r.get("venue_id") or "")] = r
-        write_csv_atomic(GEOCACHE, GEOCACHE_FIELDS, [merged_geos[k] for k in sorted(merged_geos)])
+        write_csv_atomic(
+            GEOCACHE,
+            GEOCACHE_FIELDS,
+            [merged_geos[k] for k in sorted(merged_geos)],
+        )
 
     if new_snapshots:
         all_snaps = existing_snapshots + new_snapshots
@@ -819,6 +1095,10 @@ def run(captured_at: datetime | None = None) -> dict[str, Any]:
             "implemented_source_class": config["source_policy"]["implemented_weather_source_class"],
             "usable_for_prematch": False,
             "historical_proxy_is_prematch_forecast": False,
+            "geocode_resolver_version": GEOCODE_RESOLVER_VERSION,
+            "geocode_country_filter_required": True,
+            "geocode_exact_or_token_containment_name_match_required": True,
+            "legacy_geocode_rows_are_not_trusted_for_new_captures": True,
         },
         "research_guards": {
             "causal_claim_from_single_match": False,
