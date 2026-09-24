@@ -50,11 +50,16 @@ HTTP_ATTEMPTS = int(os.getenv("STAGE273_HTTP_ATTEMPTS", "3"))
 HTTP_RETRY_DELAY = float(os.getenv("STAGE273_HTTP_RETRY_DELAY", "0.75"))
 USER_AGENT = "PBK-stage273/1.0"
 GEOCODE_RESOLVER_VERSION = "PBK_GEOCODE_V2"
+GEOCODE_REPAIR_DISTANCE_KM = 25.0
+GEOCODE_LEGACY_REVALIDATE_PER_RUN = int(
+    os.getenv("STAGE273_GEOCODE_LEGACY_REVALIDATE_PER_RUN", "12")
+)
 
 SNAPSHOT_FIELDS = [
     "fixture_id","provider_league_id","league_name","season","round",
     "kickoff_utc","home_team","away_team","home_goals","away_goals",
     "venue_id","venue_name","venue_city","latitude","longitude",
+    "geocode_quality_status","geocode_resolver_version",
     "captured_at_utc","source_class","source_name","source_url",
     "evidence_time_status","usable_for_prematch",
     "window_start_utc","window_end_utc","hourly_points",
@@ -87,6 +92,7 @@ DATASET_FIELDS = [
     "goals_total",
     "venue_id","venue_name","surface_provider","roof_type",
     "environment_source_class","environment_usable_for_prematch",
+    "environment_geocode_quality_status","environment_geocode_resolver_version",
     "temperature_mean_c","apparent_temperature_mean_c",
     "relative_humidity_mean_pct","dew_point_mean_c",
     "surface_pressure_mean_hpa",
@@ -661,6 +667,57 @@ def geocode_venue(
     }
 
 
+def haversine_km(
+    lat1: float,
+    lon1: float,
+    lat2: float,
+    lon2: float,
+) -> float:
+    radius_km = 6371.0088
+    p1 = math.radians(lat1)
+    p2 = math.radians(lat2)
+    dlat = math.radians(lat2 - lat1)
+    dlon = math.radians(lon2 - lon1)
+    a = (
+        math.sin(dlat / 2.0) ** 2
+        + math.cos(p1) * math.cos(p2) * math.sin(dlon / 2.0) ** 2
+    )
+    return radius_km * 2.0 * math.atan2(math.sqrt(a), math.sqrt(1.0 - a))
+
+
+def snapshot_geocode_drift_km(
+    snapshot: dict[str, str],
+    geo: dict[str, str],
+) -> float | None:
+    values = [
+        fnum(snapshot.get("latitude")),
+        fnum(snapshot.get("longitude")),
+        fnum(geo.get("latitude")),
+        fnum(geo.get("longitude")),
+    ]
+    if any(v is None for v in values):
+        return None
+    return haversine_km(values[0], values[1], values[2], values[3])
+
+
+def venue_by_id(rows: list[dict[str, str]]) -> dict[str, dict[str, str]]:
+    out = {}
+    for row in rows:
+        venue_id = str(row.get("venue_id") or "").strip()
+        if venue_id and venue_id not in out:
+            out[venue_id] = row
+    return out
+
+
+def legacy_geocache_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    return [
+        row
+        for row in rows
+        if str(row.get("venue_id") or "").strip()
+        and str(row.get("resolver_version") or "") != GEOCODE_RESOLVER_VERSION
+    ]
+
+
 def parse_hour(value: Any) -> datetime | None:
     text = str(value or "").strip()
     if not text:
@@ -804,6 +861,8 @@ def fetch_fixture_environment(
         "venue_city": venue.get("venue_city") or "",
         "latitude": geo.get("latitude") or "",
         "longitude": geo.get("longitude") or "",
+        "geocode_quality_status": geo.get("geocode_quality_status") or "",
+        "geocode_resolver_version": geo.get("resolver_version") or "",
         "captured_at_utc": iso(captured_at),
         "source_class": source["implemented_weather_source_class"],
         "source_name": source["implemented_weather_source"],
@@ -907,6 +966,8 @@ def mechanism_projection(
 
             "environment_source_class": env.get("source_class") or "",
             "environment_usable_for_prematch": "false",
+            "environment_geocode_quality_status": env.get("geocode_quality_status") or "",
+            "environment_geocode_resolver_version": env.get("geocode_resolver_version") or "",
 
             "temperature_mean_c": env.get("temperature_mean_c") or "",
             "apparent_temperature_mean_c": env.get("apparent_temperature_mean_c") or "",
@@ -962,19 +1023,96 @@ def run(captured_at: datetime | None = None) -> dict[str, Any]:
 
     fixtures = finished_fixtures(read_csv(FIXTURES))
     stats = complete_team_stats(read_csv(TEAM_STATS))
-    venues = venue_by_team(read_csv(VENUES))
+    venue_rows = read_csv(VENUES)
+    venues = venue_by_team(venue_rows)
+    venues_by_id = venue_by_id(venue_rows)
     events = read_csv(EVENTS)
 
     existing_snapshots = read_csv(SNAPSHOTS)
+    geocache_rows = read_csv(GEOCACHE)
+    geocache = verified_geocache_by_venue(geocache_rows)
+    unresolved_venues = unresolved_geocache_venue_ids(geocache_rows)
+
+    diagnostics = Counter()
+    geocache_updates = []
+    repaired_snapshot_by_fixture = {}
+
+    legacy_rows = legacy_geocache_rows(geocache_rows)
+    diagnostics["legacy_geocache_rows_seen"] = len(legacy_rows)
+
+    for legacy in legacy_rows[:GEOCODE_LEGACY_REVALIDATE_PER_RUN]:
+        venue_id = str(legacy.get("venue_id") or "").strip()
+        venue = venues_by_id.get(venue_id)
+        if not venue:
+            diagnostics["legacy_geocode_venue_registry_missing"] += 1
+            continue
+
+        try:
+            resolved = geocode_venue(config, venue, captured_at)
+            diagnostics["legacy_geocode_revalidation_calls"] += 1
+        except Exception:
+            diagnostics["legacy_geocode_revalidation_error"] += 1
+            continue
+
+        if not resolved:
+            unresolved = unresolved_geocode_record(
+                venue,
+                captured_at,
+                city_query_variants(venue.get("venue_city") or ""),
+            )
+            geocache_updates.append(unresolved)
+            unresolved_venues.add(venue_id)
+            diagnostics["legacy_geocode_unresolved_v2"] += 1
+            continue
+
+        geocache[venue_id] = resolved
+        geocache_updates.append(resolved)
+        diagnostics["legacy_geocode_verified_v2"] += 1
+
+        for snapshot in existing_snapshots:
+            if str(snapshot.get("venue_id") or "").strip() != venue_id:
+                continue
+            drift = snapshot_geocode_drift_km(snapshot, resolved)
+            if drift is None or drift <= GEOCODE_REPAIR_DISTANCE_KM:
+                continue
+
+            fixture_id = str(snapshot.get("fixture_id") or "").strip()
+            fixture = fixtures.get(fixture_id)
+            if not fixture:
+                diagnostics["snapshot_repair_fixture_missing"] += 1
+                continue
+
+            try:
+                repaired = fetch_fixture_environment(
+                    config,
+                    fixture,
+                    venue,
+                    resolved,
+                    captured_at,
+                )
+                diagnostics["snapshot_repair_weather_calls"] += 1
+            except Exception:
+                diagnostics["snapshot_repair_weather_error"] += 1
+                continue
+
+            if repaired:
+                repaired_snapshot_by_fixture[fixture_id] = repaired
+                diagnostics["snapshots_repaired_geocode_drift"] += 1
+
+    if repaired_snapshot_by_fixture:
+        existing_snapshots = [
+            repaired_snapshot_by_fixture.get(
+                str(row.get("fixture_id") or "").strip(),
+                row,
+            )
+            for row in existing_snapshots
+        ]
+
     snap_by_fixture = {
         str(r.get("fixture_id") or "").strip(): r
         for r in existing_snapshots
         if str(r.get("fixture_id") or "").strip()
     }
-
-    geocache_rows = read_csv(GEOCACHE)
-    geocache = verified_geocache_by_venue(geocache_rows)
-    unresolved_venues = unresolved_geocache_venue_ids(geocache_rows)
 
     eligible = []
     for fixture_id, pair in stats.items():
@@ -996,12 +1134,6 @@ def run(captured_at: datetime | None = None) -> dict[str, Any]:
     selected = eligible[:MAX_FIXTURES_PER_RUN]
 
     new_snapshots = []
-    geocache_updates = []
-    diagnostics = Counter()
-    diagnostics["legacy_geocache_rows_seen"] = sum(
-        str(r.get("resolver_version") or "") != GEOCODE_RESOLVER_VERSION
-        for r in geocache_rows
-    )
     diagnostics["unresolved_v2_venues_skipped"] = len(unresolved_venues)
 
     for _, fixture_id, fixture, venue in selected:
@@ -1060,7 +1192,7 @@ def run(captured_at: datetime | None = None) -> dict[str, Any]:
             [merged_geos[k] for k in sorted(merged_geos)],
         )
 
-    if new_snapshots:
+    if new_snapshots or repaired_snapshot_by_fixture:
         all_snaps = existing_snapshots + new_snapshots
         write_csv_atomic(SNAPSHOTS, SNAPSHOT_FIELDS, all_snaps)
     elif not SNAPSHOTS.exists():
