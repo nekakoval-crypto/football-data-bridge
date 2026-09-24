@@ -130,6 +130,119 @@ class PBK14HistoryTests(unittest.TestCase):
         self.assertTrue(all(x["season_code"]=="2627" for x in current))
 
 
+class PBK14CurrentCatalogFallbackTests(unittest.TestCase):
+    def test_current_catalog_adapts_only_finished_current_season(self):
+        rows=[
+            {
+                "fixture_id":"1570392",
+                "provider_league_id":"140",
+                "season":"2026",
+                "home_team":"Real Sociedad",
+                "away_team":"Celta Vigo",
+                "latest_kickoff_utc":"2026-09-03T19:00:00+00:00",
+                "latest_source_status":"FT",
+                "terminal_observed":"YES",
+                "final_score_home":"0",
+                "final_score_away":"0",
+            },
+            {
+                "fixture_id":"future",
+                "provider_league_id":"140",
+                "season":"2026",
+                "home_team":"A",
+                "away_team":"B",
+                "latest_kickoff_utc":"2026-10-10T19:00:00+00:00",
+                "latest_source_status":"NS",
+                "terminal_observed":"NO",
+                "final_score_home":"",
+                "final_score_away":"",
+            },
+            {
+                "fixture_id":"old",
+                "provider_league_id":"140",
+                "season":"2025",
+                "home_team":"A",
+                "away_team":"B",
+                "latest_kickoff_utc":"2025-09-03T19:00:00+00:00",
+                "latest_source_status":"FT",
+                "terminal_observed":"YES",
+                "final_score_home":"1",
+                "final_score_away":"0",
+            },
+        ]
+        out=b.adapt_current_fixture_catalog(rows,2026)
+        self.assertEqual(len(out),1)
+        self.assertEqual(out[0]["fixture_id"],"1570392")
+        self.assertEqual(
+            out[0]["_bridge_fixture_source"],
+            "CURRENT_HISTORICAL_FIXTURE_CATALOG",
+        )
+
+    def test_current_catalog_exact_date_names_score_maps_auto(self):
+        source=[{
+            "historical_match_id":"m2026",
+            "league_code":"SP1",
+            "season_label":"2026/2027",
+            "date_iso":"2026-09-03",
+            "home_team":"Real Sociedad",
+            "away_team":"Celta Vigo",
+            "ft_home_goals":"0",
+            "ft_away_goals":"0",
+        }]
+        current=[{
+            "fixture_id":"1570392",
+            "provider_league_id":"140",
+            "season":"2026",
+            "home_team":"Real Sociedad",
+            "away_team":"Celta Vigo",
+            "latest_kickoff_utc":"2026-09-03T19:00:00+00:00",
+            "latest_source_status":"FT",
+            "terminal_observed":"YES",
+            "final_score_home":"0",
+            "final_score_away":"0",
+        }]
+        api=b.adapt_current_fixture_catalog(current,2026)
+        rows=b.map_scope(source,api,"SP1",140,2026)
+        self.assertEqual(rows[0]["mapping_status"],"AUTO")
+        self.assertEqual(rows[0]["api_fixture_id"],"1570392")
+        self.assertEqual(
+            rows[0]["mapping_reason"],
+            "CURRENT_CATALOG_EXACT_DATE_TEAMS_SCORE_UNIQUE",
+        )
+        self.assertEqual(
+            rows[0]["home_team_map_method"],
+            "CURRENT_CATALOG_CANONICAL_EXACT",
+        )
+        self.assertEqual(rows[0]["fuzzy_string_matching_used"],"false")
+
+    def test_current_catalog_name_mismatch_fails_closed(self):
+        source=[{
+            "historical_match_id":"m2026",
+            "league_code":"SP1",
+            "season_label":"2026/2027",
+            "date_iso":"2026-09-03",
+            "home_team":"Different Name",
+            "away_team":"Celta Vigo",
+            "ft_home_goals":"0",
+            "ft_away_goals":"0",
+        }]
+        current=[{
+            "fixture_id":"1570392",
+            "provider_league_id":"140",
+            "season":"2026",
+            "home_team":"Real Sociedad",
+            "away_team":"Celta Vigo",
+            "latest_kickoff_utc":"2026-09-03T19:00:00+00:00",
+            "latest_source_status":"FT",
+            "terminal_observed":"YES",
+            "final_score_home":"0",
+            "final_score_away":"0",
+        }]
+        api=b.adapt_current_fixture_catalog(current,2026)
+        rows=b.map_scope(source,api,"SP1",140,2026)
+        self.assertNotIn(rows[0]["mapping_status"],{"AUTO","HIGH"})
+
+
 class PBK14BridgeTests(unittest.TestCase):
     def source(self,mid,date,home,away,hg,ag,code="E0",season="2024/2025"):
         return {

@@ -38,9 +38,11 @@ Fixture identity additionally requires:
 - same provider league;
 - same season start;
 - exact calendar date;
-- mapped home and away provider team IDs;
+- exact team identity;
 - exact final score;
 - a unique provider fixture.
+
+For completed fixtures in the newest configured season, if the legacy all-competition provider archive has no rows, the bridge may use the canonical Stage80 `ops/historical_fixtures.csv` catalog as a fail-closed fallback. That fallback accepts only terminal FT/AET/PEN rows and only exact canonical home/away name equality. Its generated team identity keys are internal bridge tokens, not provider team IDs. No fuzzy matching is permitted.
 
 Final scores are used only for historical identity resolution. They are never exposed as prematch features and do not give the bridge operational betting authority.
 
