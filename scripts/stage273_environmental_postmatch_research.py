@@ -41,8 +41,10 @@ GEOCACHE = OPS / "environmental_postmatch_venue_geocache.csv"
 DATASET = OPS / "environmental_postmatch_mechanism_dataset.csv"
 META = OPS / "stage273_environmental_postmatch_last_run.json"
 
-MAX_FIXTURES_PER_RUN = int(os.getenv("STAGE273_MAX_FIXTURES_PER_RUN", "8"))
-HTTP_TIMEOUT = float(os.getenv("STAGE273_HTTP_TIMEOUT", "20"))
+MAX_FIXTURES_PER_RUN = int(os.getenv("STAGE273_MAX_FIXTURES_PER_RUN", "24"))
+HTTP_TIMEOUT = float(os.getenv("STAGE273_HTTP_TIMEOUT", "30"))
+HTTP_ATTEMPTS = int(os.getenv("STAGE273_HTTP_ATTEMPTS", "3"))
+HTTP_RETRY_DELAY = float(os.getenv("STAGE273_HTTP_RETRY_DELAY", "0.75"))
 USER_AGENT = "PBK-stage273/1.0"
 
 SNAPSHOT_FIELDS = [
@@ -195,17 +197,45 @@ def mode_code(values: list[int]) -> str:
     return str(sorted(counts.items(), key=lambda x: (-x[1], x[0]))[0][0])
 
 
-def http_json(url: str, params: dict[str, Any]) -> dict[str, Any]:
+def http_json(
+    url: str,
+    params: dict[str, Any],
+    *,
+    attempts: int | None = None,
+    retry_delay: float | None = None,
+) -> dict[str, Any]:
+    """GET JSON with bounded retry for transient research-source failures."""
+    attempts = HTTP_ATTEMPTS if attempts is None else attempts
+    retry_delay = HTTP_RETRY_DELAY if retry_delay is None else retry_delay
+
+    if attempts < 1:
+        raise ValueError("attempts must be >= 1")
+
     query = urllib.parse.urlencode(params)
-    request = urllib.request.Request(
-        f"{url}?{query}",
-        headers={"User-Agent": USER_AGENT},
-    )
-    with urllib.request.urlopen(request, timeout=HTTP_TIMEOUT) as response:
-        payload = json.loads(response.read().decode("utf-8"))
-    if not isinstance(payload, dict):
-        raise RuntimeError("unexpected non-object API response")
-    return payload
+    target = f"{url}?{query}"
+    last_error: Exception | None = None
+
+    for attempt in range(1, attempts + 1):
+        request = urllib.request.Request(
+            target,
+            headers={"User-Agent": USER_AGENT},
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=HTTP_TIMEOUT) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+            if not isinstance(payload, dict):
+                raise RuntimeError("unexpected non-object API response")
+            return payload
+        except Exception as exc:
+            last_error = exc
+            if attempt >= attempts:
+                break
+            if retry_delay > 0:
+                time.sleep(retry_delay * attempt)
+
+    raise RuntimeError(
+        f"HTTP JSON failed after {attempts} attempts: {target}: {last_error}"
+    ) from last_error
 
 
 def validate_contract(config: dict[str, Any]) -> None:
