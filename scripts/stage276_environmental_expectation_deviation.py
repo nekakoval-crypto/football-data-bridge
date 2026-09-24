@@ -64,6 +64,8 @@ FIELDS = [
     "favorite_result_alignment",
 
     "environment_source_class",
+    "environment_geocode_quality_status",
+    "environment_geocode_resolver_version",
     "temperature_mean_c",
     "apparent_temperature_mean_c",
     "relative_humidity_mean_pct",
@@ -310,6 +312,15 @@ def build_rows(markets, bridge, mechanisms):
             diag["bridge_without_stage273_mechanism"] += 1
             continue
 
+        if (
+            sval(env, "environment_geocode_quality_status")
+            != "VERIFIED_CITY_COUNTRY_V2"
+            or sval(env, "environment_geocode_resolver_version")
+            != "PBK_GEOCODE_V2"
+        ):
+            diag["unverified_environment_geocode"] += 1
+            continue
+
         market = market_by_mid.get(mid)
         if market is None:
             diag["stage273_without_market_row"] += 1
@@ -383,6 +394,8 @@ def build_rows(markets, bridge, mechanisms):
             "favorite_result_alignment": favorite_alignment,
 
             "environment_source_class": sval(env, "environment_source_class"),
+            "environment_geocode_quality_status": sval(env, "environment_geocode_quality_status"),
+            "environment_geocode_resolver_version": sval(env, "environment_geocode_resolver_version"),
             "temperature_mean_c": sval(env, "temperature_mean_c"),
             "apparent_temperature_mean_c": sval(env, "apparent_temperature_mean_c"),
             "relative_humidity_mean_pct": sval(env, "relative_humidity_mean_pct"),
