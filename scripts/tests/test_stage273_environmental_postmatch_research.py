@@ -119,6 +119,118 @@ class EnvironmentalPostmatchResearchTests(unittest.TestCase):
 
         self.assertEqual(urlopen.call_count, 2)
 
+    def test_city_query_variants_clean_region_suffix_and_alias(self):
+        self.assertEqual(
+            m.city_query_variants("Bournemouth, Dorset")[:2],
+            ["Bournemouth, Dorset", "Bournemouth"],
+        )
+        self.assertIn("Vienna", m.city_query_variants("Wien"))
+        self.assertIn("Rome", m.city_query_variants("Roma"))
+
+    def test_candidate_country_filter_maps_scotland_to_gb(self):
+        venue={"team_country":"Scotland"}
+        self.assertTrue(
+            m.candidate_country_ok(
+                {"country_code":"GB","country":"United Kingdom"},
+                venue,
+            )
+        )
+        self.assertFalse(
+            m.candidate_country_ok(
+                {"country_code":"US","country":"United States"},
+                venue,
+            )
+        )
+
+    def test_candidate_selection_prefers_real_major_rome(self):
+        venue={
+            "team_country":"Italy",
+            "venue_city":"Roma",
+        }
+        queries=m.city_query_variants("Roma")
+        candidates=[
+            {
+                "name":"Roma",
+                "country":"Italy",
+                "country_code":"IT",
+                "latitude":44.994,
+                "longitude":11.106,
+                "population":150,
+                "feature_code":"PPL",
+            },
+            {
+                "name":"Rome",
+                "country":"Italy",
+                "country_code":"IT",
+                "latitude":41.8919,
+                "longitude":12.5113,
+                "population":2318895,
+                "feature_code":"PPLC",
+            },
+        ]
+        result,quality=m.select_geocode_candidate(
+            candidates,
+            venue,
+            queries,
+        )
+        self.assertIsNotNone(result)
+        self.assertEqual(result["feature_code"],"PPLC")
+        self.assertEqual(quality,3)
+
+    def test_wienau_is_not_accepted_for_wien_when_vienna_exists(self):
+        venue={
+            "team_country":"Austria",
+            "venue_city":"Wien",
+        }
+        queries=m.city_query_variants("Wien")
+        candidates=[
+            {
+                "name":"Wienau",
+                "country":"Austria",
+                "country_code":"AT",
+                "latitude":48.5,
+                "longitude":14.7,
+                "population":100,
+                "feature_code":"PPL",
+            },
+            {
+                "name":"Vienna",
+                "country":"Austria",
+                "country_code":"AT",
+                "latitude":48.208,
+                "longitude":16.373,
+                "population":1973403,
+                "feature_code":"PPLC",
+            },
+        ]
+        result,quality=m.select_geocode_candidate(
+            candidates,
+            venue,
+            queries,
+        )
+        self.assertEqual(result["name"],"Vienna")
+        self.assertEqual(quality,3)
+
+    def test_unresolved_v2_is_cached_and_skippable(self):
+        venue={
+            "venue_id":"123",
+            "venue_name":"Example",
+            "venue_city":"Unknownville",
+            "team_country":"Germany",
+        }
+        row=m.unresolved_geocode_record(
+            venue,
+            datetime(2026,9,24,tzinfo=timezone.utc),
+            ["Unknownville"],
+        )
+        self.assertEqual(row["geocode_quality_status"],"UNRESOLVED_V2")
+        self.assertEqual(row["resolver_version"],m.GEOCODE_RESOLVER_VERSION)
+        self.assertEqual(
+            m.unresolved_geocache_venue_ids([row]),
+            {"123"},
+        )
+        self.assertEqual(m.verified_geocache_by_venue([row]),{})
+
     def test_finished_fixture_filter_rejects_scheduled(self):
         rows = [
             {
