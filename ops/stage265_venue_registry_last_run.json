@@ -1,0 +1,21 @@
+{
+  "version": "PBK_VENUE_REGISTRY_V1",
+  "run_at_utc": "2026-09-24T16:20:05Z",
+  "status": "OK",
+  "required_pbk16_leagues": 16,
+  "captured_leagues": 16,
+  "team_venue_rows": 258,
+  "distinct_venues": 252,
+  "nominal_capacity_rows": 258,
+  "operational_capacity_override_rows": 0,
+  "provider_calls": 16,
+  "warnings": [],
+  "policy": {
+    "nominal_capacity": "provider fact; never assumed to equal match-day usable capacity",
+    "operational_capacity": "only explicit dated verified override",
+    "attendance": "UNKNOWN/NOT_CONNECTED until evidence source exists",
+    "crowd_demand": "research-only; never fabricated as attendance",
+    "roof_wind_acoustics": "UNKNOWN until evidence-backed override exists",
+    "authority": "context-only; no predictive/betting/value/stake authority"
+  }
+}
