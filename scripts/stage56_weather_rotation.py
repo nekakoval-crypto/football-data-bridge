@@ -36,6 +36,17 @@ META = OPS / "stage56_last_run.json"
 
 OPEN_METEO_FORECAST = "https://api.open-meteo.com/v1/forecast"
 OPEN_METEO_GEOCODING = "https://geocoding-api.open-meteo.com/v1/search"
+OPEN_METEO_AIR_QUALITY = "https://air-quality-api.open-meteo.com/v1/air-quality"
+
+OPEN_METEO_FORECAST_DAYS = 16
+OPEN_METEO_AIR_QUALITY_DAYS = 7
+
+WEATHER_BASELINE_MAX_HOURS = (OPEN_METEO_FORECAST_DAYS - 1) * 24.0
+AIR_QUALITY_MAX_HOURS = (OPEN_METEO_AIR_QUALITY_DAYS - 1) * 24.0
+
+# Hard fail-closed maximum. A provider point farther away than this
+# is not accepted as weather for the fixture.
+ENVIRONMENT_MAX_FORECAST_GAP_MINUTES = 90.0
 
 COUNTRY_CODE_BY_DIV = {
     "E0": "GB",
@@ -45,12 +56,57 @@ COUNTRY_CODE_BY_DIV = {
     "F1": "FR",
 }
 
+COUNTRY_CODE_BY_LEAGUE = {
+    "Premier League": "GB",
+    "La Liga": "ES",
+    "Serie A": "IT",
+    "Bundesliga": "DE",
+    "Ligue 1": "FR",
+    "Austrian Bundesliga": "AT",
+    "Bundesliga Austria": "AT",
+    "Belgian Pro League": "BE",
+    "Jupiler Pro League": "BE",
+    "Danish Superliga": "DK",
+    "Superliga": "DK",
+    "A Lyga": "LT",
+    "Virsliga": "LV",
+    "Eredivisie": "NL",
+    "Eliteserien": "NO",
+    "Ekstraklasa": "PL",
+    "Primeira Liga": "PT",
+    "Super Lig": "TR",
+    "Süper Lig": "TR",
+    "Scottish Premiership": "GB",
+}
+
 WEATHER_FIELDS = [
-    "forward_id","rule","api_fixture_id","snapshot_type","captured_at_utc","kickoff_utc","hours_to_kickoff",
-    "venue_name","venue_city","geocoded_name","country_code","latitude","longitude","elevation_m",
-    "forecast_time_utc","forecast_gap_minutes","temperature_c","apparent_temperature_c",
-    "precipitation_probability_pct","precipitation_mm","rain_mm","snowfall_cm","weather_code",
-    "visibility_m","wind_speed_10m_kmh","wind_gusts_10m_kmh","source","context_only","notes"
+    "forward_id","rule","api_fixture_id","snapshot_type",
+    "captured_at_utc","kickoff_utc","hours_to_kickoff",
+    "venue_name","venue_city","geocoded_name","country_code",
+    "latitude","longitude",
+
+    "elevation_m","altitude_zone","elevation_source",
+
+    "forecast_time_utc","forecast_gap_minutes",
+    "temperature_c","apparent_temperature_c",
+    "relative_humidity_pct","dew_point_c",
+    "surface_pressure_hpa","cloud_cover_pct",
+
+    "precipitation_probability_pct","precipitation_mm",
+    "rain_mm","showers_mm","snowfall_cm",
+
+    "weather_code","thunderstorm_evidence",
+    "visibility_m",
+
+    "wind_speed_10m_kmh","wind_gusts_10m_kmh",
+    "wind_direction_10m_deg",
+
+    "air_quality_status","air_quality_time_utc",
+    "air_quality_gap_minutes","dust_ug_m3",
+    "pm10_ug_m3","pm2_5_ug_m3",
+    "aerosol_optical_depth","european_aqi",
+
+    "source","context_only","notes"
 ]
 
 ROTATION_FIELDS = [
@@ -138,15 +194,60 @@ def om_get(base, params):
 
 
 def weather_due_type(done, forward_id, hours):
-    if (forward_id, "BASELINE") not in done:
+    if (
+        0.0 < hours <= WEATHER_BASELINE_MAX_HOURS
+        and (forward_id, "BASELINE") not in done
+    ):
         return "BASELINE"
+
     if 6.0 < hours <= 30.0 and (forward_id, "T24") not in done:
         return "T24"
+
     if 1.5 < hours <= 6.0 and (forward_id, "T3") not in done:
         return "T3"
+
     if 0.0 < hours <= 1.5 and (forward_id, "T60") not in done:
         return "T60"
+
     return ""
+
+
+def country_code_for(bet, context):
+    league = str((context or {}).get("league") or "").strip()
+    if league in COUNTRY_CODE_BY_LEAGUE:
+        return COUNTRY_CODE_BY_LEAGUE[league]
+
+    return COUNTRY_CODE_BY_DIV.get(
+        str((bet or {}).get("div") or "").strip(),
+        "",
+    )
+
+
+def altitude_zone(value):
+    elevation = fnum(value)
+
+    if elevation is None:
+        return "UNKNOWN"
+    if elevation < 0:
+        return "BELOW_SEA_LEVEL"
+    if elevation < 500:
+        return "ALTITUDE_NORMAL"
+    if elevation < 1000:
+        return "ALTITUDE_ELEVATED"
+    if elevation < 1500:
+        return "ALTITUDE_MATERIAL"
+    if elevation < 2000:
+        return "ALTITUDE_HIGH"
+    return "ALTITUDE_VERY_HIGH"
+
+
+def thunderstorm_evidence(value):
+    try:
+        code = int(float(value))
+    except (TypeError, ValueError):
+        return "UNKNOWN"
+
+    return "YES" if code in {95, 96, 99} else "NO"
 
 
 def geocode_city(city, country_code):
@@ -165,30 +266,109 @@ def geocode_city(city, country_code):
     return (exact or rows)[0]
 
 
-def nearest_hourly_weather(lat, lon, kickoff):
-    variables = [
-        "temperature_2m","apparent_temperature","precipitation_probability","precipitation","rain","snowfall",
-        "weather_code","visibility","wind_speed_10m","wind_gusts_10m"
-    ]
-    d = om_get(OPEN_METEO_FORECAST, {
-        "latitude": lat,
-        "longitude": lon,
-        "hourly": ",".join(variables),
-        "timezone": "UTC",
-        "forecast_days": 16,
-    })
-    hourly = d.get("hourly") or {}
+def _nearest_hourly_row(hourly, kickoff, variables):
     times = hourly.get("time") or []
-    parsed = [parse_iso(t + ":00Z" if len(str(t)) == 16 else str(t)) for t in times]
-    candidates = [(abs((dt - kickoff).total_seconds()), i, dt) for i, dt in enumerate(parsed) if dt]
+
+    parsed = [
+        parse_iso(
+            str(value) + ":00Z"
+            if len(str(value)) == 16
+            else str(value)
+        )
+        for value in times
+    ]
+
+    candidates = [
+        (abs((dt - kickoff).total_seconds()), idx, dt)
+        for idx, dt in enumerate(parsed)
+        if dt
+    ]
+
     if not candidates:
         return None
-    _, idx, dt = min(candidates, key=lambda x: x[0])
-    row = {"forecast_time": dt, "forecast_gap_minutes": abs((dt - kickoff).total_seconds()) / 60.0}
-    for var in variables:
-        vals = hourly.get(var) or []
-        row[var] = vals[idx] if idx < len(vals) else None
+
+    _, idx, dt = min(candidates, key=lambda item: item[0])
+
+    gap = abs((dt - kickoff).total_seconds()) / 60.0
+
+    if gap > ENVIRONMENT_MAX_FORECAST_GAP_MINUTES:
+        return None
+
+    row = {
+        "forecast_time": dt,
+        "forecast_gap_minutes": gap,
+    }
+
+    for variable in variables:
+        values = hourly.get(variable) or []
+        row[variable] = values[idx] if idx < len(values) else None
+
     return row
+
+
+def nearest_hourly_weather(lat, lon, kickoff):
+    variables = [
+        "temperature_2m",
+        "apparent_temperature",
+        "relative_humidity_2m",
+        "dew_point_2m",
+        "surface_pressure",
+        "cloud_cover",
+        "precipitation_probability",
+        "precipitation",
+        "rain",
+        "showers",
+        "snowfall",
+        "weather_code",
+        "visibility",
+        "wind_speed_10m",
+        "wind_gusts_10m",
+        "wind_direction_10m",
+    ]
+
+    data = om_get(
+        OPEN_METEO_FORECAST,
+        {
+            "latitude": lat,
+            "longitude": lon,
+            "hourly": ",".join(variables),
+            "timezone": "UTC",
+            "forecast_days": OPEN_METEO_FORECAST_DAYS,
+        },
+    )
+
+    return _nearest_hourly_row(
+        data.get("hourly") or {},
+        kickoff,
+        variables,
+    )
+
+
+def nearest_hourly_air_quality(lat, lon, kickoff):
+    variables = [
+        "dust",
+        "pm10",
+        "pm2_5",
+        "aerosol_optical_depth",
+        "european_aqi",
+    ]
+
+    data = om_get(
+        OPEN_METEO_AIR_QUALITY,
+        {
+            "latitude": lat,
+            "longitude": lon,
+            "hourly": ",".join(variables),
+            "timezone": "UTC",
+            "forecast_days": OPEN_METEO_AIR_QUALITY_DAYS,
+        },
+    )
+
+    return _nearest_hourly_row(
+        data.get("hourly") or {},
+        kickoff,
+        variables,
+    )
 
 
 def get_lineups(fixture_id):
@@ -262,6 +442,7 @@ def main():
     new_rotation = 0
     geocoding_calls = 0
     weather_calls = 0
+    air_quality_calls = 0
     current_lineup_calls = 0
     previous_lineup_calls = 0
     warnings = []
@@ -284,16 +465,45 @@ def main():
         stype = weather_due_type(weather_done, fid, hours)
         if stype:
             city = c.get("venue_city") or ""
-            country_code = COUNTRY_CODE_BY_DIV.get(bet.get("div") or "", "")
+            country_code = country_code_for(bet, c)
             try:
                 geo = geocode_city(city, country_code)
                 geocoding_calls += 1
                 if not geo:
                     raise RuntimeError(f"no geocoding result for {city!r}/{country_code}")
-                w = nearest_hourly_weather(geo.get("latitude"), geo.get("longitude"), kickoff)
+                latitude = geo.get("latitude")
+                longitude = geo.get("longitude")
+                elevation = geo.get("elevation")
+
+                w = nearest_hourly_weather(
+                    latitude,
+                    longitude,
+                    kickoff,
+                )
                 weather_calls += 1
+
                 if not w:
-                    raise RuntimeError("no hourly weather forecast")
+                    raise RuntimeError(
+                        "no hourly weather forecast within "
+                        "fail-closed kickoff gap"
+                    )
+
+                air = None
+                air_status = "OUTSIDE_FORECAST_HORIZON"
+
+                if 0.0 < hours <= AIR_QUALITY_MAX_HOURS:
+                    try:
+                        air = nearest_hourly_air_quality(
+                            latitude,
+                            longitude,
+                            kickoff,
+                        )
+                        air_quality_calls += 1
+                        air_status = "CAPTURED" if air else "UNAVAILABLE"
+                    except Exception as exc:
+                        air_status = "UNAVAILABLE"
+                        warnings.append(f"air quality {fid}: {exc}")
+
                 weather_rows.append({
                     "forward_id": fid,
                     "rule": bet.get("rule") or "",
@@ -308,22 +518,66 @@ def main():
                     "country_code": geo.get("country_code") or country_code,
                     "latitude": geo.get("latitude") if geo.get("latitude") is not None else "",
                     "longitude": geo.get("longitude") if geo.get("longitude") is not None else "",
-                    "elevation_m": geo.get("elevation") if geo.get("elevation") is not None else "",
+                    "elevation_m": (
+                        elevation if elevation is not None else ""
+                    ),
+                    "altitude_zone": altitude_zone(elevation),
+                    "elevation_source": (
+                        "Open-Meteo city geocoding elevation proxy"
+                    ),
+
                     "forecast_time_utc": iso(w.get("forecast_time")),
-                    "forecast_gap_minutes": f"{w.get('forecast_gap_minutes'):.1f}",
+                    "forecast_gap_minutes": (
+                        f"{w.get('forecast_gap_minutes'):.1f}"
+                    ),
+
                     "temperature_c": w.get("temperature_2m") if w.get("temperature_2m") is not None else "",
                     "apparent_temperature_c": w.get("apparent_temperature") if w.get("apparent_temperature") is not None else "",
+                    "relative_humidity_pct": w.get("relative_humidity_2m") if w.get("relative_humidity_2m") is not None else "",
+                    "dew_point_c": w.get("dew_point_2m") if w.get("dew_point_2m") is not None else "",
+                    "surface_pressure_hpa": w.get("surface_pressure") if w.get("surface_pressure") is not None else "",
+                    "cloud_cover_pct": w.get("cloud_cover") if w.get("cloud_cover") is not None else "",
+
                     "precipitation_probability_pct": w.get("precipitation_probability") if w.get("precipitation_probability") is not None else "",
                     "precipitation_mm": w.get("precipitation") if w.get("precipitation") is not None else "",
                     "rain_mm": w.get("rain") if w.get("rain") is not None else "",
+                    "showers_mm": w.get("showers") if w.get("showers") is not None else "",
                     "snowfall_cm": w.get("snowfall") if w.get("snowfall") is not None else "",
+
                     "weather_code": w.get("weather_code") if w.get("weather_code") is not None else "",
+                    "thunderstorm_evidence": thunderstorm_evidence(
+                        w.get("weather_code")
+                    ),
+
                     "visibility_m": w.get("visibility") if w.get("visibility") is not None else "",
+
                     "wind_speed_10m_kmh": w.get("wind_speed_10m") if w.get("wind_speed_10m") is not None else "",
                     "wind_gusts_10m_kmh": w.get("wind_gusts_10m") if w.get("wind_gusts_10m") is not None else "",
-                    "source": "Open-Meteo hourly forecast; venue city geocoding",
+                    "wind_direction_10m_deg": w.get("wind_direction_10m") if w.get("wind_direction_10m") is not None else "",
+
+                    "air_quality_status": air_status,
+                    "air_quality_time_utc": (
+                        iso(air.get("forecast_time")) if air else ""
+                    ),
+                    "air_quality_gap_minutes": (
+                        f"{air.get('forecast_gap_minutes'):.1f}"
+                        if air else ""
+                    ),
+                    "dust_ug_m3": air.get("dust") if air and air.get("dust") is not None else "",
+                    "pm10_ug_m3": air.get("pm10") if air and air.get("pm10") is not None else "",
+                    "pm2_5_ug_m3": air.get("pm2_5") if air and air.get("pm2_5") is not None else "",
+                    "aerosol_optical_depth": air.get("aerosol_optical_depth") if air and air.get("aerosol_optical_depth") is not None else "",
+                    "european_aqi": air.get("european_aqi") if air and air.get("european_aqi") is not None else "",
+
+                    "source": (
+                        "Open-Meteo weather + Air Quality when available; "
+                        "venue-city geocoding"
+                    ),
                     "context_only": "YES",
-                    "notes": "city-level weather proxy; not a betting filter",
+                    "notes": (
+                        "environment evidence only; no predictive, "
+                        "eligibility, value or stake authority"
+                    ),
                 })
                 weather_done.add((fid, stype))
                 new_weather += 1
@@ -484,6 +738,7 @@ def main():
         "total_rotation_snapshots": len(rotation_rows),
         "geocoding_calls": geocoding_calls,
         "weather_calls": weather_calls,
+        "air_quality_calls": air_quality_calls,
         "current_lineup_calls": current_lineup_calls,
         "previous_lineup_calls": previous_lineup_calls,
         "warnings": warnings,

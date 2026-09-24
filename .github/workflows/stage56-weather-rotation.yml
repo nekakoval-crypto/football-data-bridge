@@ -2,8 +2,17 @@ name: Stage 56 Weather and XI Rotation Context
 
 on:
   workflow_dispatch:
+
   schedule:
     - cron: '*/15 * * * *'
+
+  pull_request:
+    paths:
+      - 'scripts/stage56_weather_rotation.py'
+      - 'scripts/stage56_latest_view.py'
+      - 'scripts/tests/test_stage56_environment_contract.py'
+      - '.github/workflows/stage56-weather-rotation.yml'
+
   push:
     branches:
       - main
@@ -16,8 +25,31 @@ permissions:
   contents: write
 
 jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile environment layer
+        run: |
+          python -m py_compile             scripts/stage56_weather_rotation.py             scripts/stage56_latest_view.py             scripts/tests/test_stage56_environment_contract.py
+
+      - name: Environment contract tests
+        run: |
+          python -m unittest             scripts.tests.test_stage56_environment_contract             -v
+
   enrich:
-    if: github.ref == 'refs/heads/main'
+    needs: validate
+    if: >
+      github.ref == 'refs/heads/main' &&
+      github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
