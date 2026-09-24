@@ -6,6 +6,7 @@ from pathlib import Path
 from scripts import stage273_environmental_postmatch_research as m
 
 
+# Stage273 regression coverage for current Stage80 canonical fixture schema.
 class EnvironmentalPostmatchResearchTests(unittest.TestCase):
 
     def test_contract_explicitly_denies_prematch_semantics(self):
