@@ -1,0 +1,72 @@
+{
+  "version": "PBK_MOTIVATION_INTERACTION_FORWARD_MONITOR_V2",
+  "status": "INSUFFICIENT_FORWARD_SAMPLE",
+  "review_unit": "ACTIVE_INTERACTION_OBSERVATION",
+  "active_prematch_rows": 0,
+  "active_settled_rows": 0,
+  "outcomes": {
+    "H": 0,
+    "D": 0,
+    "A": 0
+  },
+  "diagnostic_checkpoints": {
+    "100": false,
+    "250": false
+  },
+  "sample_gate": {
+    "minimum_active_settled_rows": 500,
+    "minimum_outcomes_per_class": 50,
+    "sample_ready": false
+  },
+  "market_baseline": {
+    "mean_brier": null,
+    "mean_logloss": null
+  },
+  "frozen_candidate": {
+    "mean_brier": null,
+    "mean_logloss": null,
+    "class_calibration_absolute_error": {
+      "H": null,
+      "D": null,
+      "A": null
+    },
+    "maximum_absolute_class_calibration_error": null
+  },
+  "gates": {
+    "brier_strict_improvement": false,
+    "logloss_strict_improvement": false,
+    "calibration_passed": false,
+    "metric_gate_passed": false,
+    "interaction_direction_stability": "REQUIRES_MANUAL_GOVERNANCE_REVIEW"
+  },
+  "manual_governance_review_required": true,
+  "automatic_canonical_promotion": false,
+  "predictive_authority": "NOT_AUTHORIZED",
+  "operational_betting_authority": false,
+  "value_or_ev_authorized": false,
+  "stake_changes_authorized": false,
+  "r1_r2_r3_changes_authorized": false,
+  "production_integration_authorized": false,
+  "ui_integration_authorized": false,
+  "run_at_utc": "2026-09-24T15:36:02Z",
+  "research_id": "PBK_MOTIVATION_INTERACTION_V1_FORWARD",
+  "model_version": "PBK_MOTIVATION_INTERACTION_SPECIALIST_V1",
+  "selected_interactions": [
+    "HIGH_PRESSURE_X_FORM_ALIGNMENT",
+    "HIGH_PRESSURE_X_LARGE_RANK_DISADVANTAGE"
+  ],
+  "frozen_beta": {
+    "HIGH_PRESSURE_X_FORM_ALIGNMENT": -0.08139028122268811,
+    "HIGH_PRESSURE_X_LARGE_RANK_DISADVANTAGE": -0.04354603042978898
+  },
+  "prematch_events_created": 0,
+  "settlements_created": 0,
+  "prematch_events_total": 0,
+  "settlements_total": 0,
+  "skipped_after_kickoff_no_backfill": 0,
+  "skipped_missing_source": 0,
+  "skipped_unknown_interaction": 0,
+  "historical_backfill": "FORBIDDEN",
+  "old_holdout_reused": false,
+  "parameters_may_change": false
+}
