@@ -2,6 +2,7 @@ import csv
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 from scripts import stage80_football_data_pbk14_history as h
 from scripts import stage80_pbk14_fixture_bridge as b
@@ -61,6 +62,60 @@ class PBK14HistoryTests(unittest.TestCase):
         }
         row={"Season":"2016/2017","Date":"17/08/2016","Home":"A","Away":"B"}
         self.assertIsNone(h.normalize_extra_row(league,row,2,set(range(2017,2026))))
+
+    def test_download_retries_after_transient_timeout(self):
+        class FakeResponse:
+            status=200
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self,*args):
+                return False
+
+            def read(self):
+                return b"Date,HomeTeam,AwayTeam\\n01/01/2025,A,B\\n"
+
+        calls=[]
+
+        def fake_urlopen(request,timeout):
+            calls.append(timeout)
+            if len(calls)==1:
+                raise TimeoutError("transient read timeout")
+            return FakeResponse()
+
+        with mock.patch.object(h.urllib.request,"urlopen",side_effect=fake_urlopen):
+            with mock.patch.object(h.time,"sleep") as sleep:
+                data,attempts=h.fetch_source_bytes(
+                    "https://example.test/source.csv",
+                    timeout=123,
+                    attempts=3,
+                    retry_delay=0.01,
+                )
+
+        self.assertTrue(data.startswith(b"Date,"))
+        self.assertEqual(attempts,2)
+        self.assertEqual(calls,[123,123])
+        sleep.assert_called_once_with(0.01)
+
+    def test_download_fails_only_after_all_attempts(self):
+        with mock.patch.object(
+            h.urllib.request,
+            "urlopen",
+            side_effect=TimeoutError("persistent timeout"),
+        ) as urlopen:
+            with mock.patch.object(h.time,"sleep"):
+                with self.assertRaisesRegex(
+                    RuntimeError,
+                    "download failed after 3 attempts",
+                ):
+                    h.fetch_source_bytes(
+                        "https://example.test/source.csv",
+                        attempts=3,
+                        retry_delay=0,
+                    )
+
+        self.assertEqual(urlopen.call_count,3)
 
 
 class PBK14BridgeTests(unittest.TestCase):
