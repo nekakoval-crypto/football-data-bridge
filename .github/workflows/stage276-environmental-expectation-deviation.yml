@@ -3,6 +3,12 @@ name: Stage 276 Environmental Expectation Deviation Research
 on:
   workflow_dispatch:
 
+  workflow_run:
+    workflows:
+      - "Stage 273 Environmental Postmatch Research"
+    types:
+      - completed
+
   pull_request:
     paths:
       - 'scripts/stage276_environmental_expectation_deviation.py'
@@ -69,7 +75,15 @@ jobs:
 
   build:
     needs: validate
-    if: github.event_name != 'pull_request'
+    if: >
+      github.event_name != 'pull_request' &&
+      (
+        github.event_name != 'workflow_run' ||
+        (
+          github.event.workflow_run.conclusion == 'success' &&
+          github.event.workflow_run.head_branch == 'main'
+        )
+      )
     runs-on: ubuntu-latest
     timeout-minutes: 50
 
