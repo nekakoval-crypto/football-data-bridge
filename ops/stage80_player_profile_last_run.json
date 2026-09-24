@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_PLAYER_PROFILE_ENRICHMENT_V2_RESIDUAL_ID",
-  "run_at_utc": "2026-09-23T18:38:40Z",
+  "run_at_utc": "2026-09-24T00:39:50Z",
   "status": "ATTENTION",
   "season": "2026",
   "provider_endpoints": [
@@ -12,13 +12,13 @@
   "provider_calls": 2,
   "team_provider_calls": 2,
   "residual_provider_calls": 0,
-  "daily_api_calls": 1824,
+  "daily_api_calls": 42,
   "protected_calls": {
     "live": 0,
-    "current_round": 60,
+    "current_round": 180,
     "standings": 32,
     "safety": 100,
-    "total": 192
+    "total": 312
   },
   "candidate_teams": 2,
   "completed_teams": [],
@@ -29,11 +29,11 @@
   "residual_error_players": 0,
   "residual_deferred_players": 0,
   "residual_ambiguous_current_roster_player_ids": 0,
-  "residual_suppressed_recent_attempts": 593,
+  "residual_suppressed_recent_attempts": 591,
   "profile_rows": 3747,
   "unique_profile_players": 3640,
-  "current_roster_players": 4011,
-  "current_roster_player_coverage_pct": 85.22,
+  "current_roster_players": 4010,
+  "current_roster_player_coverage_pct": 85.26,
   "warnings": [
     "18936 Ogre United: provider returned no usable profile rows",
     "4143 Super Nova: provider returned no usable profile rows"
