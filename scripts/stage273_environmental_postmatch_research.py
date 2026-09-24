@@ -42,6 +42,12 @@ DATASET = OPS / "environmental_postmatch_mechanism_dataset.csv"
 META = OPS / "stage273_environmental_postmatch_last_run.json"
 
 MAX_FIXTURES_PER_RUN = int(os.getenv("STAGE273_MAX_FIXTURES_PER_RUN", "24"))
+MAX_CANDIDATE_ATTEMPTS_PER_RUN = int(
+    os.getenv(
+        "STAGE273_MAX_CANDIDATE_ATTEMPTS_PER_RUN",
+        str(MAX_FIXTURES_PER_RUN * 2),
+    )
+)
 HTTP_TIMEOUT = float(os.getenv("STAGE273_HTTP_TIMEOUT", "30"))
 HTTP_ATTEMPTS = int(os.getenv("STAGE273_HTTP_ATTEMPTS", "3"))
 HTTP_RETRY_DELAY = float(os.getenv("STAGE273_HTTP_RETRY_DELAY", "0.75"))
@@ -738,13 +744,27 @@ def run(captured_at: datetime | None = None) -> dict[str, Any]:
         eligible.append((parse_iso(fixture.get("kickoff_utc")), fixture_id, fixture, venue))
 
     eligible.sort(key=lambda x: (x[0] or captured_at, x[1]))
-    selected = eligible[:MAX_FIXTURES_PER_RUN]
+
+    if MAX_FIXTURES_PER_RUN < 1:
+        raise ValueError("STAGE273_MAX_FIXTURES_PER_RUN must be >= 1")
+    if MAX_CANDIDATE_ATTEMPTS_PER_RUN < MAX_FIXTURES_PER_RUN:
+        raise ValueError(
+            "STAGE273_MAX_CANDIDATE_ATTEMPTS_PER_RUN must be >= "
+            "STAGE273_MAX_FIXTURES_PER_RUN"
+        )
+
+    candidates = eligible[:MAX_CANDIDATE_ATTEMPTS_PER_RUN]
 
     new_snapshots = []
     new_geos = []
     diagnostics = Counter()
+    attempted_candidates = 0
 
-    for _, fixture_id, fixture, venue in selected:
+    for _, fixture_id, fixture, venue in candidates:
+        if len(new_snapshots) >= MAX_FIXTURES_PER_RUN:
+            break
+
+        attempted_candidates += 1
         venue_id = str(venue.get("venue_id") or "").strip()
         geo = geocache.get(venue_id)
 
@@ -808,7 +828,9 @@ def run(captured_at: datetime | None = None) -> dict[str, Any]:
         "status": "OK",
         "mode": "POSTMATCH_RESEARCH_ONLY",
         "eligible_unseen_fixtures": len(eligible),
-        "selected_fixtures": len(selected),
+        "selected_fixtures": attempted_candidates,
+        "success_target_per_run": MAX_FIXTURES_PER_RUN,
+        "candidate_attempt_budget_per_run": MAX_CANDIDATE_ATTEMPTS_PER_RUN,
         "snapshots_total": len(read_csv(SNAPSHOTS)),
         "mechanism_dataset_rows": len(dataset),
         "source_class_counts": dict(sorted(source_counts.items())),
