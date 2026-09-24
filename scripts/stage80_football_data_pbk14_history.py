@@ -41,8 +41,8 @@ FIELDS = list(base.FIELDS)
 def load_config(path=DEFAULT_CONFIG):
     cfg=json.loads(Path(path).read_text(encoding="utf-8"))
     starts=[int(x) for x in cfg.get("season_starts") or []]
-    if starts != list(range(2017,2026)):
-        raise ValueError("season_starts must be exactly 2017..2025")
+    if starts != list(range(2017,2027)):
+        raise ValueError("season_starts must be exactly 2017..2026")
     leagues=cfg.get("leagues") or []
     if len(leagues)!=14:
         raise ValueError("Football-Data PBK market scope must contain exactly 14 supported leagues")
@@ -402,8 +402,9 @@ def build_meta(cfg,rows,sources,invalid,download_manifest):
         code for code in supported_codes
         if not by_league.get(code)
     ]
+    season_count=len(cfg["season_starts"])
     expected_files=sum(
-        9 if x["source_mode"]=="SEASON_FILE" else 1
+        season_count if x["source_mode"]=="SEASON_FILE" else 1
         for x in cfg["leagues"]
     )
     present_files=sum(1 for x in sources if x["present"])
@@ -414,7 +415,7 @@ def build_meta(cfg,rows,sources,invalid,download_manifest):
     }
     return {
         "version":VERSION,
-        "scope":"Football-Data historical market coverage for 14/16 locked PBK leagues; season starts 2017..2025",
+        "scope":"Football-Data historical market coverage for 14/16 locked PBK leagues; season starts 2017..2026",
         "expected_source_files":expected_files,
         "present_source_files":present_files,
         "missing_source_files":expected_files-present_files,

@@ -22,11 +22,11 @@ class PBK14HistoryTests(unittest.TestCase):
             {"E0","SP1","I1","D1","F1","SC0","N1","B1","P1","T1","AUT","DNK","NOR","POL"},
         )
 
-    def test_source_matrix_is_90_season_files_plus_4_cumulative_files(self):
+    def test_source_matrix_is_100_season_files_plus_4_cumulative_files(self):
         cfg=h.load_config()
         specs=list(h.source_specs(cfg))
-        self.assertEqual(len(specs),94)
-        self.assertEqual(sum(x["source_mode"]=="SEASON_FILE" for x in specs),90)
+        self.assertEqual(len(specs),104)
+        self.assertEqual(sum(x["source_mode"]=="SEASON_FILE" for x in specs),100)
         self.assertEqual(sum(x["source_mode"]=="ALL_SEASONS_FILE" for x in specs),4)
         self.assertEqual(
             {x["filename"] for x in specs if x["source_mode"]=="ALL_SEASONS_FILE"},
@@ -45,7 +45,7 @@ class PBK14HistoryTests(unittest.TestCase):
             "B365CH":"1.95","B365CD":"3.50","B365CA":"4.10",
             "AvgCH":"1.92","AvgCD":"3.45","AvgCA":"4.05",
         }
-        out=h.normalize_extra_row(league,row,2,set(range(2017,2026)))
+        out=h.normalize_extra_row(league,row,2,set(range(2017,2027)))
         self.assertEqual(out["league_code"],"POL")
         self.assertEqual(out["date_iso"],"2024-08-17")
         self.assertEqual(out["ft_result"],"H")
@@ -61,7 +61,7 @@ class PBK14HistoryTests(unittest.TestCase):
             "source_code":"POL","extra_source_base":"https://www.football-data.co.uk/new",
         }
         row={"Season":"2016/2017","Date":"17/08/2016","Home":"A","Away":"B"}
-        self.assertIsNone(h.normalize_extra_row(league,row,2,set(range(2017,2026))))
+        self.assertIsNone(h.normalize_extra_row(league,row,2,set(range(2017,2027))))
 
     def test_download_retries_after_transient_timeout(self):
         class FakeResponse:
@@ -116,6 +116,18 @@ class PBK14HistoryTests(unittest.TestCase):
                     )
 
         self.assertEqual(urlopen.call_count,3)
+
+    def test_current_2026_season_is_in_scope(self):
+        cfg=h.load_config()
+        self.assertEqual(cfg["season_starts"][-1],2026)
+        specs=list(h.source_specs(cfg))
+        current=[
+            x for x in specs
+            if x["source_mode"]=="SEASON_FILE"
+            and x["season_start"]==2026
+        ]
+        self.assertEqual(len(current),10)
+        self.assertTrue(all(x["season_code"]=="2627" for x in current))
 
 
 class PBK14BridgeTests(unittest.TestCase):
