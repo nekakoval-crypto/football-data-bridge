@@ -1,13 +1,13 @@
 {
   "version": "PBK_STAGE80_PBK14_FIXTURE_BRIDGE_V2_NEAR_COMPLETE",
-  "generated_at_utc": "2026-09-24T18:08:56Z",
-  "source_rows": 37674,
+  "generated_at_utc": "2026-09-24T18:18:20Z",
+  "source_rows": 38550,
   "mapped_auto": 18940,
   "mapped_high": 18387,
   "mapped_auto_high": 37327,
   "review": 32,
-  "unmapped": 315,
-  "mapped_pct": 99.079,
+  "unmapped": 1191,
+  "mapped_pct": 96.827,
   "unique_mapped_api_fixture_ids": 37327,
   "duplicate_mapped_api_fixture_ids": 0,
   "league_season_scopes": [
@@ -102,6 +102,16 @@
       "unmapped": 0
     },
     {
+      "league_code": "AUT",
+      "season_start": 2026,
+      "source_rows": 42,
+      "provider_rows": 0,
+      "mapped_auto": 0,
+      "mapped_high": 0,
+      "review": 0,
+      "unmapped": 42
+    },
+    {
       "league_code": "B1",
       "season_start": 2017,
       "source_rows": 240,
@@ -190,6 +200,16 @@
       "mapped_high": 222,
       "review": 0,
       "unmapped": 0
+    },
+    {
+      "league_code": "B1",
+      "season_start": 2026,
+      "source_rows": 63,
+      "provider_rows": 0,
+      "mapped_auto": 0,
+      "mapped_high": 0,
+      "review": 0,
+      "unmapped": 63
     },
     {
       "league_code": "D1",
@@ -282,6 +302,16 @@
       "unmapped": 0
     },
     {
+      "league_code": "D1",
+      "season_start": 2026,
+      "source_rows": 36,
+      "provider_rows": 0,
+      "mapped_auto": 0,
+      "mapped_high": 0,
+      "review": 0,
+      "unmapped": 36
+    },
+    {
       "league_code": "DNK",
       "season_start": 2017,
       "source_rows": 255,
@@ -372,6 +402,16 @@
       "unmapped": 0
     },
     {
+      "league_code": "DNK",
+      "season_start": 2026,
+      "source_rows": 54,
+      "provider_rows": 0,
+      "mapped_auto": 0,
+      "mapped_high": 0,
+      "review": 0,
+      "unmapped": 54
+    },
+    {
       "league_code": "E0",
       "season_start": 2017,
       "source_rows": 380,
@@ -460,6 +500,16 @@
       "mapped_high": 108,
       "review": 0,
       "unmapped": 0
+    },
+    {
+      "league_code": "E0",
+      "season_start": 2026,
+      "source_rows": 50,
+      "provider_rows": 0,
+      "mapped_auto": 0,
+      "mapped_high": 0,
+      "review": 0,
+      "unmapped": 50
     },
     {
       "league_code": "F1",
@@ -552,6 +602,16 @@
       "unmapped": 0
     },
     {
+      "league_code": "F1",
+      "season_start": 2026,
+      "source_rows": 45,
+      "provider_rows": 0,
+      "mapped_auto": 0,
+      "mapped_high": 0,
+      "review": 0,
+      "unmapped": 45
+    },
+    {
       "league_code": "I1",
       "season_start": 2017,
       "source_rows": 380,
@@ -640,6 +700,16 @@
       "mapped_high": 108,
       "review": 0,
       "unmapped": 0
+    },
+    {
+      "league_code": "I1",
+      "season_start": 2026,
+      "source_rows": 50,
+      "provider_rows": 0,
+      "mapped_auto": 0,
+      "mapped_high": 0,
+      "review": 0,
+      "unmapped": 50
     },
     {
       "league_code": "N1",
@@ -732,6 +802,16 @@
       "unmapped": 0
     },
     {
+      "league_code": "N1",
+      "season_start": 2026,
+      "source_rows": 63,
+      "provider_rows": 0,
+      "mapped_auto": 0,
+      "mapped_high": 0,
+      "review": 0,
+      "unmapped": 63
+    },
+    {
       "league_code": "NOR",
       "season_start": 2017,
       "source_rows": 242,
@@ -822,6 +902,16 @@
       "unmapped": 0
     },
     {
+      "league_code": "NOR",
+      "season_start": 2026,
+      "source_rows": 168,
+      "provider_rows": 0,
+      "mapped_auto": 0,
+      "mapped_high": 0,
+      "review": 0,
+      "unmapped": 168
+    },
+    {
       "league_code": "P1",
       "season_start": 2017,
       "source_rows": 306,
@@ -910,6 +1000,16 @@
       "mapped_high": 124,
       "review": 0,
       "unmapped": 0
+    },
+    {
+      "league_code": "P1",
+      "season_start": 2026,
+      "source_rows": 62,
+      "provider_rows": 0,
+      "mapped_auto": 0,
+      "mapped_high": 0,
+      "review": 0,
+      "unmapped": 62
     },
     {
       "league_code": "POL",
@@ -1002,6 +1102,16 @@
       "unmapped": 0
     },
     {
+      "league_code": "POL",
+      "season_start": 2026,
+      "source_rows": 78,
+      "provider_rows": 0,
+      "mapped_auto": 0,
+      "mapped_high": 0,
+      "review": 0,
+      "unmapped": 78
+    },
+    {
       "league_code": "SC0",
       "season_start": 2017,
       "source_rows": 228,
@@ -1090,6 +1200,16 @@
       "mapped_high": 73,
       "review": 0,
       "unmapped": 0
+    },
+    {
+      "league_code": "SC0",
+      "season_start": 2026,
+      "source_rows": 42,
+      "provider_rows": 0,
+      "mapped_auto": 0,
+      "mapped_high": 0,
+      "review": 0,
+      "unmapped": 42
     },
     {
       "league_code": "SP1",
@@ -1182,6 +1302,16 @@
       "unmapped": 0
     },
     {
+      "league_code": "SP1",
+      "season_start": 2026,
+      "source_rows": 69,
+      "provider_rows": 0,
+      "mapped_auto": 0,
+      "mapped_high": 0,
+      "review": 0,
+      "unmapped": 69
+    },
+    {
       "league_code": "T1",
       "season_start": 2017,
       "source_rows": 306,
@@ -1270,78 +1400,98 @@
       "mapped_high": 174,
       "review": 0,
       "unmapped": 0
+    },
+    {
+      "league_code": "T1",
+      "season_start": 2026,
+      "source_rows": 54,
+      "provider_rows": 0,
+      "mapped_auto": 0,
+      "mapped_high": 0,
+      "review": 0,
+      "unmapped": 54
     }
   ],
   "mapping_by_league": {
     "AUT": {
       "AUTO": 145,
       "HIGH": 1589,
-      "UNMAPPED": 4
+      "UNMAPPED": 46
     },
     "B1": {
       "AUTO": 760,
       "HIGH": 1802,
-      "REVIEW": 3
+      "REVIEW": 3,
+      "UNMAPPED": 63
     },
     "D1": {
       "AUTO": 98,
       "HIGH": 2655,
-      "REVIEW": 1
+      "REVIEW": 1,
+      "UNMAPPED": 36
     },
     "DNK": {
       "AUTO": 1066,
       "HIGH": 817,
       "REVIEW": 14,
-      "UNMAPPED": 8
+      "UNMAPPED": 62
     },
     "E0": {
       "AUTO": 2484,
-      "HIGH": 936
+      "HIGH": 936,
+      "UNMAPPED": 50
     },
     "F1": {
       "AUTO": 2159,
       "HIGH": 937,
-      "REVIEW": 1
+      "REVIEW": 1,
+      "UNMAPPED": 45
     },
     "I1": {
       "AUTO": 2482,
       "HIGH": 937,
-      "REVIEW": 1
+      "REVIEW": 1,
+      "UNMAPPED": 50
     },
     "N1": {
       "AUTO": 1624,
       "HIGH": 1054,
-      "REVIEW": 2
+      "REVIEW": 2,
+      "UNMAPPED": 63
     },
     "NOR": {
       "AUTO": 1402,
       "HIGH": 761,
       "REVIEW": 2,
-      "UNMAPPED": 7
+      "UNMAPPED": 175
     },
     "P1": {
       "AUTO": 1560,
-      "HIGH": 1194
+      "HIGH": 1194,
+      "UNMAPPED": 62
     },
     "POL": {
       "AUTO": 869,
       "HIGH": 1492,
       "REVIEW": 1,
-      "UNMAPPED": 296
+      "UNMAPPED": 374
     },
     "SC0": {
       "AUTO": 1398,
       "HIGH": 604,
-      "REVIEW": 1
+      "REVIEW": 1,
+      "UNMAPPED": 42
     },
     "SP1": {
       "AUTO": 1406,
-      "HIGH": 2014
+      "HIGH": 2014,
+      "UNMAPPED": 69
     },
     "T1": {
       "AUTO": 1487,
       "HIGH": 1595,
-      "REVIEW": 6
+      "REVIEW": 6,
+      "UNMAPPED": 54
     }
   },
   "mapping_policy": {
