@@ -1,30 +1,35 @@
 {
   "version": "PBK_ENVIRONMENTAL_POSTMATCH_RESEARCH_V1",
-  "run_at_utc": "2026-09-24T19:22:02Z",
+  "run_at_utc": "2026-09-24T19:42:45Z",
   "status": "OK",
   "mode": "POSTMATCH_RESEARCH_ONLY",
-  "eligible_unseen_fixtures": 64,
-  "selected_fixtures": 24,
-  "snapshots_total": 64,
-  "mechanism_dataset_rows": 64,
+  "eligible_unseen_fixtures": 0,
+  "selected_fixtures": 0,
+  "snapshots_total": 115,
+  "mechanism_dataset_rows": 115,
   "source_class_counts": {
-    "HISTORICAL_FORECAST_ASSIMILATION_PROXY": 64
+    "HISTORICAL_FORECAST_ASSIMILATION_PROXY": 115
   },
   "mechanism_coverage_counts": {
-    "TEAM_STATS_COMPLETE_EVENTS_AVAILABLE": 56,
-    "TEAM_STATS_COMPLETE_EVENTS_MISSING": 8
+    "TEAM_STATS_COMPLETE_EVENTS_AVAILABLE": 104,
+    "TEAM_STATS_COMPLETE_EVENTS_MISSING": 11
   },
   "diagnostics": {
-    "geocode_calls": 2,
-    "geocode_missing": 22,
-    "snapshots_created": 2,
-    "weather_calls": 2
+    "legacy_geocache_rows_seen": 27,
+    "legacy_geocode_revalidation_calls": 12,
+    "legacy_geocode_unresolved_v2": 1,
+    "legacy_geocode_verified_v2": 11,
+    "unresolved_v2_venues_skipped": 11
   },
   "source_semantics": {
     "direct_stadium_observation": false,
     "implemented_source_class": "HISTORICAL_FORECAST_ASSIMILATION_PROXY",
     "usable_for_prematch": false,
-    "historical_proxy_is_prematch_forecast": false
+    "historical_proxy_is_prematch_forecast": false,
+    "geocode_resolver_version": "PBK_GEOCODE_V2",
+    "geocode_country_filter_required": true,
+    "geocode_exact_or_token_containment_name_match_required": true,
+    "legacy_geocode_rows_are_not_trusted_for_new_captures": true
   },
   "research_guards": {
     "causal_claim_from_single_match": false,
