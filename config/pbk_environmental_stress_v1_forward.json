@@ -1,0 +1,63 @@
+{
+  "research_id": "PBK_ENVIRONMENTAL_STRESS_V1_FORWARD",
+  "feature_version": "PBK_ENVIRONMENTAL_STRESS_FEATURES_V1",
+  "status": "FORWARD_EVIDENCE_ACCUMULATION",
+  "authority": "RESEARCH",
+  "prospective_inputs": {
+    "feature_snapshot": "ops/environmental_stress_features.csv",
+    "settlement_overlay": "ops/live_fixture_overlay.csv",
+    "join_key": "api_fixture_id",
+    "historical_backfill": false,
+    "first_frozen_observation_only": true,
+    "observation_must_precede_kickoff": true,
+    "exact_ft_settlement_only": true
+  },
+  "factor_groups": [
+    "THERMAL",
+    "WIND_GUST",
+    "PRECIPITATION",
+    "VISIBILITY_THUNDER",
+    "AIR_QUALITY",
+    "ALTITUDE",
+    "SURFACE",
+    "ROOF_EXPOSURE"
+  ],
+  "forward_scope": {
+    "tracked_pbk16": true,
+    "review_unit": "UNIQUE_FIXTURE_FIRST_PREMATCH_ENVIRONMENT_OBSERVATION",
+    "duplicate_rules_same_fixture_count_once": true,
+    "combined_market_effect_claims": false
+  },
+  "forward_review": {
+    "diagnostic_checkpoints_settled_fixtures": [100, 250],
+    "minimum_settled_fixtures_for_formal_research": 500,
+    "minimum_outcomes_per_class": 50,
+    "manual_governance_review_required": true,
+    "automatic_factor_promotion": false,
+    "automatic_model_promotion": false
+  },
+  "guards": {
+    "unknown_not_zero": true,
+    "no_lookahead": true,
+    "prematch_frozen_required": true,
+    "postmatch_weather_forbidden": true,
+    "historical_weather_backfill_forbidden": true,
+    "aggregate_environment_score_forbidden": true,
+    "double_counting_guard_required": true,
+    "creates_signal": false,
+    "predictive_authority": "NOT_AUTHORIZED",
+    "operational_betting_authority": false,
+    "probability_mutation_authorized": false,
+    "eligibility_mutation_authorized": false,
+    "value_or_ev_authorized": false,
+    "stake_changes_authorized": false,
+    "r1_r2_r3_changes_authorized": false,
+    "production_integration_authorized": false,
+    "ui_integration_authorized": false
+  },
+  "outputs": {
+    "prematch_journal": "environmental_stress_v1_forward_prematch.jsonl",
+    "settlement_journal": "environmental_stress_v1_forward_settlements.jsonl",
+    "performance_report": "environmental_stress_v1_forward_performance.json"
+  }
+}
