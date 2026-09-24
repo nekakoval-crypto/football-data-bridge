@@ -40,6 +40,8 @@ class EnvironmentalExpectationDeviationTests(unittest.TestCase):
             "home_goals": home_goals,
             "away_goals": away_goals,
             "environment_source_class": "HISTORICAL_FORECAST_ASSIMILATION_PROXY",
+            "environment_geocode_quality_status": "VERIFIED_CITY_COUNTRY_V2",
+            "environment_geocode_resolver_version": "PBK_GEOCODE_V2",
             "temperature_mean_c": "34",
             "relative_humidity_mean_pct": "70",
             "rain_sum_mm": "0",
@@ -114,6 +116,18 @@ class EnvironmentalExpectationDeviationTests(unittest.TestCase):
             rows[0]["total_expectation_deviation_class"],
             "BALANCED_ACTUAL_OVER",
         )
+
+    def test_unverified_environment_geocode_is_fail_closed(self):
+        env=self.mechanism_row()
+        env["environment_geocode_quality_status"]=""
+        env["environment_geocode_resolver_version"]=""
+        rows,diag=m.build_rows(
+            [self.market_row()],
+            [self.bridge_row()],
+            [env],
+        )
+        self.assertEqual(rows,[])
+        self.assertEqual(diag["unverified_environment_geocode"],1)
 
     def test_review_bridge_is_fail_closed(self):
         bridge = self.bridge_row()
