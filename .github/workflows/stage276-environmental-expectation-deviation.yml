@@ -7,6 +7,8 @@ on:
     paths:
       - 'scripts/stage276_environmental_expectation_deviation.py'
       - 'scripts/tests/test_stage276_environmental_expectation_deviation.py'
+      - 'scripts/stage80_football_data_pbk14_history.py'
+      - 'scripts/tests/test_stage80_pbk14_market_bridge.py'
       - '.github/workflows/stage276-environmental-expectation-deviation.yml'
 
   push:
