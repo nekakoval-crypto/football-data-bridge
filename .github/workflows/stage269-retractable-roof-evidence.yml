@@ -1,0 +1,24 @@
+name: Stage 269 Retractable Roof Venue Evidence
+
+on:
+  pull_request:
+    paths:
+      - 'config/pbk_venue_evidence.csv'
+      - 'config/pbk_venue_overrides.csv'
+      - 'scripts/tests/test_stage269_retractable_roof_evidence.py'
+      - '.github/workflows/stage269-retractable-roof-evidence.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate retractable roof evidence contract
+        run: |
+          python -m unittest scripts.tests.test_stage269_retractable_roof_evidence -v

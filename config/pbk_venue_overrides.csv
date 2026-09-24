@@ -3,3 +3,6 @@ venue_id,team_id,valid_from,valid_to,operational_capacity,roof_type,roof_state_d
 176,,,,,LIMITED_STAND_COVER,FIXED,OPEN_CORNERS,EXPOSED_OPEN_CORNERS,LOW_RETENTION_OPEN_CORNERS,,CLASSIFIED_FROM_VERIFIED_EVIDENCE,config/pbk_venue_evidence.csv#JAN_BREYDEL_ROOF_2026,"Open NW/SW corners and limited roof; research context only"
 2612,,2022-01-01,,,ALL_STANDS_COVERED_OPEN_PITCH,FIXED,,,,,VERIFIED_DIRECT,config/pbk_venue_evidence.csv#KAUNAS_ROOF_2026,"All stands roof-covered after 2022 reconstruction"
 22763,,,,,PARTIAL_STAND_COVER,FIXED,,,,,CLASSIFIED_FROM_VERIFIED_EVIDENCE,config/pbk_venue_evidence.csv#KASIMPASA_ROOF_2026,"Covered stand only; no full enclosure claim"
+1456,,,,,RETRACTABLE_FULL_PITCH_COVER,,,,,,,VERIFIED_DIRECT,config/pbk_venue_evidence.csv#BERNABEU_RETRACTABLE_ROOF_2026,"Retractable roof capability only; match roof state remains dynamic prematch evidence"
+741,,,,,RETRACTABLE_FULL_PITCH_COVER,,,,,,,VERIFIED_DIRECT,config/pbk_venue_evidence.csv#VELTINS_RETRACTABLE_ROOF_2026,"Retractable full-pitch roof capability; match state not inferred"
+1117,,,,,RETRACTABLE_FULL_PITCH_COVER,,,,,,,VERIFIED_DIRECT,config/pbk_venue_evidence.csv#JCA_RETRACTABLE_ROOF_2026,"Retractable roof capability; actual match state requires prematch evidence"
