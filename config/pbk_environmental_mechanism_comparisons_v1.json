@@ -1,0 +1,148 @@
+{
+  "research_id": "PBK_ENVIRONMENTAL_MECHANISM_COMPARISONS_V1",
+  "status": "PREREGISTERED_RESEARCH_ONLY",
+  "authority": "RESEARCH",
+  "input": "ops/environmental_expectation_deviation_research.csv",
+  "primary_expectation_baseline": "CLOSING_OU25_NO_VIG_PROBABILITY",
+  "primary_deviation_metric": "over25_residual",
+  "mechanism_metrics": [
+    "goals_total",
+    "shots_total",
+    "shots_on_goal_total",
+    "shots_outsidebox_total",
+    "goalkeeper_saves_total",
+    "corners_total",
+    "passes_accuracy_mean",
+    "expected_goals_total"
+  ],
+  "exposure_definitions": {
+    "THERMAL_COLD": {
+      "field": "temperature_mean_c",
+      "rule": "value <= 5.0",
+      "control": "THERMAL_NEUTRAL"
+    },
+    "THERMAL_HOT": {
+      "field": "temperature_mean_c",
+      "rule": "value >= 30.0",
+      "control": "THERMAL_NEUTRAL"
+    },
+    "THERMAL_NEUTRAL": {
+      "field": "temperature_mean_c",
+      "rule": "12.0 <= value < 24.0"
+    },
+    "HEAT_HUMIDITY": {
+      "fields": ["temperature_mean_c", "relative_humidity_mean_pct"],
+      "rule": "temperature >= 24.0 AND humidity >= 70.0",
+      "control": "THERMAL_NEUTRAL"
+    },
+    "HEAVY_PRECIPITATION": {
+      "field": "precipitation_sum_mm",
+      "rule": "value >= 7.5",
+      "control": "DRY"
+    },
+    "DRY": {
+      "field": "precipitation_sum_mm",
+      "rule": "value < 0.1"
+    },
+    "SNOW_ANY": {
+      "field": "snowfall_sum_cm",
+      "rule": "value > 0.0",
+      "control": "DRY"
+    },
+    "STRONG_GUST": {
+      "field": "wind_gust_max_kmh",
+      "rule": "value >= 40.0",
+      "control": "LOW_GUST"
+    },
+    "LOW_GUST": {
+      "field": "wind_gust_max_kmh",
+      "rule": "value < 20.0"
+    },
+    "LOW_VISIBILITY": {
+      "field": "visibility_min_m",
+      "rule": "value < 5000.0",
+      "control": "NORMAL_VISIBILITY"
+    },
+    "NORMAL_VISIBILITY": {
+      "field": "visibility_min_m",
+      "rule": "value >= 10000.0"
+    },
+    "THUNDERSTORM": {
+      "field": "weather_code_mode",
+      "rule": "value in [95,96,99]",
+      "control": "NO_THUNDERSTORM"
+    },
+    "NO_THUNDERSTORM": {
+      "field": "weather_code_mode",
+      "rule": "known AND value not in [95,96,99]"
+    }
+  },
+  "comparisons": [
+    {
+      "comparison_id": "THERMAL_COLD_vs_NEUTRAL",
+      "exposed": "THERMAL_COLD",
+      "control": "THERMAL_NEUTRAL"
+    },
+    {
+      "comparison_id": "THERMAL_HOT_vs_NEUTRAL",
+      "exposed": "THERMAL_HOT",
+      "control": "THERMAL_NEUTRAL"
+    },
+    {
+      "comparison_id": "HEAT_HUMIDITY_vs_NEUTRAL",
+      "exposed": "HEAT_HUMIDITY",
+      "control": "THERMAL_NEUTRAL"
+    },
+    {
+      "comparison_id": "HEAVY_PRECIPITATION_vs_DRY",
+      "exposed": "HEAVY_PRECIPITATION",
+      "control": "DRY"
+    },
+    {
+      "comparison_id": "SNOW_ANY_vs_DRY",
+      "exposed": "SNOW_ANY",
+      "control": "DRY"
+    },
+    {
+      "comparison_id": "STRONG_GUST_vs_LOW_GUST",
+      "exposed": "STRONG_GUST",
+      "control": "LOW_GUST"
+    },
+    {
+      "comparison_id": "LOW_VISIBILITY_vs_NORMAL",
+      "exposed": "LOW_VISIBILITY",
+      "control": "NORMAL_VISIBILITY"
+    },
+    {
+      "comparison_id": "THUNDERSTORM_vs_NO_THUNDERSTORM",
+      "exposed": "THUNDERSTORM",
+      "control": "NO_THUNDERSTORM"
+    }
+  ],
+  "sample_gates": {
+    "descriptive_ready": {
+      "min_exposed": 30,
+      "min_control": 30
+    },
+    "formal_review_ready": {
+      "min_exposed": 100,
+      "min_control": 100
+    }
+  },
+  "interpretation_guards": {
+    "thresholds_are_research_bins_not_scientific_truth": true,
+    "threshold_retargeting_after_results_forbidden": true,
+    "single_match_causal_claim_forbidden": true,
+    "multiple_testing_correction_required_before_formal_claim": true,
+    "report_both_direction_and_null_results": true,
+    "unknown_not_zero": true,
+    "no_predictive_authority": true,
+    "no_betting_authority": true,
+    "no_probability_mutation": true,
+    "no_eligibility_mutation": true,
+    "no_value_or_ev": true,
+    "no_stake_changes": true,
+    "no_forward_journal_mutation": true,
+    "no_automatic_model_promotion": true
+  }
+}
