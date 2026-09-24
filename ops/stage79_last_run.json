@@ -1,25 +1,64 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-23T22:24:04Z",
-  "status": "ATTENTION",
+  "run_at_utc": "2026-09-24T00:31:55Z",
+  "status": "OK",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 0,
-  "daily_api_calls": 2160,
+  "provider_calls": 8,
+  "daily_api_calls": 8,
   "protected_calls": {
     "live": 0,
-    "current_round": 32,
+    "current_round": 96,
     "standings": 16,
     "safety": 8,
-    "total": 56
+    "total": 120
   },
   "roster_ttl_days": 7,
   "candidate_teams": 8,
-  "captured_teams": [],
-  "deferred_teams": 8,
-  "total_roster_rows": 4014,
-  "warnings": [
-    "Stage71 protected API reserve reached; Challenger deferred"
+  "captured_teams": [
+    {
+      "team_id": "162",
+      "team_name": "Werder Bremen",
+      "players": 32
+    },
+    {
+      "team_id": "116",
+      "team_name": "Lens",
+      "players": 30
+    },
+    {
+      "team_id": "535",
+      "team_name": "Malaga",
+      "players": 33
+    },
+    {
+      "team_id": "42",
+      "team_name": "Arsenal",
+      "players": 31
+    },
+    {
+      "team_id": "531",
+      "team_name": "Athletic Club",
+      "players": 30
+    },
+    {
+      "team_id": "157",
+      "team_name": "Bayern München",
+      "players": 30
+    },
+    {
+      "team_id": "164",
+      "team_name": "FSV Mainz 05",
+      "players": 31
+    },
+    {
+      "team_id": "170",
+      "team_name": "FC Augsburg",
+      "players": 28
+    }
   ],
+  "deferred_teams": 0,
+  "total_roster_rows": 4013,
+  "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
