@@ -12,6 +12,7 @@ on:
       - 'scripts/tests/test_stage80_pbk14_market_bridge.py'
       - 'config/stage80_football_data_pbk14_9seasons.json'
       - 'ops/historical_fixtures.csv'
+      - 'ops/environmental_postmatch_mechanism_dataset.csv'
       - '.github/workflows/stage276-environmental-expectation-deviation.yml'
 
   push:
@@ -25,6 +26,7 @@ on:
       - 'scripts/tests/test_stage80_pbk14_market_bridge.py'
       - 'config/stage80_football_data_pbk14_9seasons.json'
       - 'ops/historical_fixtures.csv'
+      - 'ops/environmental_postmatch_mechanism_dataset.csv'
       - '.github/workflows/stage276-environmental-expectation-deviation.yml'
 
   schedule:
