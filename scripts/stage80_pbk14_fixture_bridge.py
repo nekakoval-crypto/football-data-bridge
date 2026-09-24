@@ -147,6 +147,61 @@ def load_season_starts(path):
         raise ValueError("season_starts must be unique and sorted")
     return starts
 
+def current_catalog_identity_key(provider_id,name):
+    canon=canonical_name(name)
+    return f"CURRENT_CATALOG::{provider_id}::{canon}" if canon else ""
+
+
+def adapt_current_fixture_catalog(rows,current_season_start):
+    """Adapt current Stage80 historical fixture catalog to bridge provider shape.
+
+    This fallback is intentionally limited to the newest configured season.
+    Team identity is exact canonical-name equality only; the generated team
+    identity keys are bridge-internal tokens, not provider team IDs.
+    """
+    out=[]
+    for row in rows:
+        if as_int(row.get("season"))!=int(current_season_start):
+            continue
+        if sval(row.get("terminal_observed")).upper() not in {"YES","TRUE","1"}:
+            continue
+        status=sval(row.get("latest_source_status")).upper()
+        if status not in FINAL:
+            continue
+        provider_id=as_int(row.get("provider_league_id"))
+        fixture_id=sval(row.get("fixture_id"))
+        kickoff=sval(row.get("latest_kickoff_utc"))
+        home=sval(row.get("home_team"))
+        away=sval(row.get("away_team"))
+        hg=as_int(row.get("final_score_home"))
+        ag=as_int(row.get("final_score_away"))
+        if (
+            provider_id is None
+            or not fixture_id
+            or not kickoff_day(kickoff)
+            or not home
+            or not away
+            or hg is None
+            or ag is None
+        ):
+            continue
+        out.append({
+            "fixture_id":fixture_id,
+            "competition_role":"DOMESTIC_LEAGUE",
+            "provider_competition_id":str(provider_id),
+            "season":str(current_season_start),
+            "status":status,
+            "kickoff_utc":kickoff,
+            "home_team_id":current_catalog_identity_key(provider_id,home),
+            "home_team":home,
+            "away_team_id":current_catalog_identity_key(provider_id,away),
+            "away_team":away,
+            "home_goals":str(hg),
+            "away_goals":str(ag),
+            "_bridge_fixture_source":"CURRENT_HISTORICAL_FIXTURE_CATALOG",
+        })
+    return out
+
 
 def source_event(row,side):
     hg=as_int(row.get("ft_home_goals"))
@@ -342,13 +397,29 @@ def map_scope(src,api,league_code,provider_id,season_start):
             if len(score_matches)==1:
                 api_row=score_matches[0]
                 status="AUTO" if hmap[1]=="AUTO" and amap[1]=="AUTO" else "HIGH"
+                current_catalog = (
+                    sval(api_row.get("_bridge_fixture_source"))
+                    == "CURRENT_HISTORICAL_FIXTURE_CATALOG"
+                )
                 base.update({
                     "api_fixture_id":sval(api_row.get("fixture_id")),
                     "api_kickoff_utc":sval(api_row.get("kickoff_utc")),
                     "api_home_goals":sval(api_row.get("home_goals")),
                     "api_away_goals":sval(api_row.get("away_goals")),
+                    "home_team_map_method":(
+                        "CURRENT_CATALOG_CANONICAL_EXACT"
+                        if current_catalog else base["home_team_map_method"]
+                    ),
+                    "away_team_map_method":(
+                        "CURRENT_CATALOG_CANONICAL_EXACT"
+                        if current_catalog else base["away_team_map_method"]
+                    ),
                     "mapping_status":status,
-                    "mapping_reason":"EXACT_DATE_TEAMS_SCORE_UNIQUE",
+                    "mapping_reason":(
+                        "CURRENT_CATALOG_EXACT_DATE_TEAMS_SCORE_UNIQUE"
+                        if current_catalog
+                        else "EXACT_DATE_TEAMS_SCORE_UNIQUE"
+                    ),
                     "one_to_one_verified":"true",
                 })
             elif len(score_matches)>1:
@@ -462,14 +533,31 @@ def build_meta(rows,scopes):
     }
 
 
-def run(source,api_archive,config,out_csv,meta_out):
+def run(source,api_archive,config,out_csv,meta_out,current_fixtures=None):
     source_rows=read_csv(source)
     api_rows=read_csv(api_archive)
     league_map=load_config(config)
     season_starts=load_season_starts(config)
+
+    current_catalog_rows=[]
+    if current_fixtures and Path(current_fixtures).exists():
+        current_catalog_rows=adapt_current_fixture_catalog(
+            read_csv(current_fixtures),
+            max(season_starts),
+        )
+        api_rows.extend(current_catalog_rows)
+
     rows,scopes=bridge(source_rows,api_rows,league_map,season_starts)
     write_csv(out_csv,rows)
     meta=build_meta(rows,scopes)
+    meta["current_catalog_fallback"]={
+        "path":str(current_fixtures or ""),
+        "season_start":max(season_starts),
+        "adapted_finished_rows":len(current_catalog_rows),
+        "exact_canonical_names_only":True,
+        "final_score_identity_only":True,
+        "fuzzy_string_matching_used":False,
+    }
     Path(meta_out).write_text(
         json.dumps(meta,ensure_ascii=False,indent=2),
         encoding="utf-8",
@@ -481,12 +569,20 @@ def main():
     p=argparse.ArgumentParser()
     p.add_argument("--source",required=True)
     p.add_argument("--api-archive",default="ops/pbk16_all_competition_fixture_history.csv")
+    p.add_argument("--current-fixtures",default="ops/historical_fixtures.csv")
     p.add_argument("--config",default="config/stage80_football_data_pbk14_9seasons.json")
     p.add_argument("--out-csv",required=True)
     p.add_argument("--meta-out",required=True)
     a=p.parse_args()
     print(json.dumps(
-        run(a.source,a.api_archive,a.config,a.out_csv,a.meta_out),
+        run(
+            a.source,
+            a.api_archive,
+            a.config,
+            a.out_csv,
+            a.meta_out,
+            current_fixtures=a.current_fixtures,
+        ),
         ensure_ascii=False,
     ))
 
