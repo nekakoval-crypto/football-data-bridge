@@ -136,8 +136,8 @@ jobs:
           git config user.name 'motivation-forward-bot'
           git config user.email 'motivation-forward-bot@users.noreply.github.com'
 
-          git add ops/motivation_forward_validation_last_run.json
-
+          # Stage immutable append-only evidence first.
+          # Timestamp-only diagnostics must never create repository churn.
           if [ -f ops/motivation_forward_prematch.jsonl ]; then
             git add ops/motivation_forward_prematch.jsonl
           fi
@@ -154,16 +154,19 @@ jobs:
             git add ops/motivation_interaction_v1_forward_settlements.jsonl
           fi
 
-          git add ops/motivation_interaction_v1_forward_performance.json
-
+          # Zero new immutable evidence = successful operational no-op.
+          # Fresh reports are still preserved in the workflow artifact below.
           if git diff --cached --quiet; then
-            echo 'No new prospective motivation evidence to publish.'
+            echo 'No new immutable prospective motivation evidence. Repository publish is a no-op.'
             exit 0
           fi
 
+          # Evidence changed: publish matching diagnostics in the same commit.
+          git add ops/motivation_forward_validation_last_run.json
+          git add ops/motivation_interaction_v1_forward_performance.json
+
           git commit -m 'Motivation interaction forward monitor update'
           python scripts/publish_operational_commit.py
-
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -177,3 +180,4 @@ jobs:
             ops/motivation_interaction_v1_forward_performance.json
           if-no-files-found: warn
           retention-days: 30
+
