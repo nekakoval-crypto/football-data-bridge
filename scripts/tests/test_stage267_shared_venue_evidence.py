@@ -1,4 +1,5 @@
 import csv
+import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -20,47 +21,61 @@ def read_csv(path):
         return list(csv.DictReader(f))
 
 
-def test_shared_batch_evidence_contract():
-    rows = read_csv(EVIDENCE)
-    overrides = read_csv(OVERRIDES)
+class SharedVenueEvidenceTests(unittest.TestCase):
 
-    ids = {r["venue_id"] for r in rows}
-    assert SHARED_IDS <= ids
+    def test_shared_batch_evidence_contract(self):
+        rows = read_csv(EVIDENCE)
+        overrides = read_csv(OVERRIDES)
 
-    assert all(r["source_url"].startswith("https://") for r in rows)
-    assert all(r["evidence_status"] for r in rows)
-    assert all(r["source_checked_at_utc"] for r in rows)
+        ids = {r["venue_id"] for r in rows}
+        self.assertTrue(SHARED_IDS <= ids)
 
-    projected = [
-        r for r in rows
-        if r["projection_allowed"].strip().lower() == "true"
-    ]
+        self.assertTrue(all(r["source_url"].startswith("https://") for r in rows))
+        self.assertTrue(all(r["evidence_status"] for r in rows))
+        self.assertTrue(all(r["source_checked_at_utc"] for r in rows))
 
-    assert projected
-    assert all(r["projection_field"] in PROJECTABLE for r in projected)
-    assert all(r["captured_value"] not in {"", "UNKNOWN"} for r in projected)
+        projected = [
+            r for r in rows
+            if r["projection_allowed"].strip().lower() == "true"
+        ]
 
-    assert not any(
-        r["projection_field"] in {"operational_capacity", "pitch_orientation_deg"}
-        for r in projected
-    )
+        self.assertTrue(projected)
+        self.assertTrue(all(r["projection_field"] in PROJECTABLE for r in projected))
+        self.assertTrue(all(r["captured_value"] not in {"", "UNKNOWN"} for r in projected))
 
-    override_by_venue = {r["venue_id"]: r for r in overrides if r["venue_id"]}
+        self.assertFalse(any(
+            r["projection_field"] in {"operational_capacity", "pitch_orientation_deg"}
+            for r in projected
+        ))
 
-    for r in projected:
-        o = override_by_venue[r["venue_id"]]
-        assert o[r["projection_field"]] == r["captured_value"]
+        override_by_venue = {
+            r["venue_id"]: r
+            for r in overrides
+            if r["venue_id"]
+        }
 
-    for venue_id in SHARED_IDS:
-        o = override_by_venue.get(venue_id)
-        if o:
-            assert o["operational_capacity"] == ""
-            assert o["pitch_orientation_deg"] == ""
+        for r in projected:
+            o = override_by_venue[r["venue_id"]]
+            self.assertEqual(
+                o[r["projection_field"]],
+                r["captured_value"],
+            )
 
-    conflicts = {
-        r["evidence_field"]
-        for r in rows
-        if r["evidence_status"] == "NEEDS_REVIEW"
-    }
-    assert "provider_capacity_conflict" in conflicts
-    assert "surface_provider_conflict" in conflicts
+        for venue_id in SHARED_IDS:
+            o = override_by_venue.get(venue_id)
+            if o:
+                self.assertEqual(o["operational_capacity"], "")
+                self.assertEqual(o["pitch_orientation_deg"], "")
+
+        conflicts = {
+            r["evidence_field"]
+            for r in rows
+            if r["evidence_status"] == "NEEDS_REVIEW"
+        }
+
+        self.assertIn("provider_capacity_conflict", conflicts)
+        self.assertIn("surface_provider_conflict", conflicts)
+
+
+if __name__ == "__main__":
+    unittest.main()
