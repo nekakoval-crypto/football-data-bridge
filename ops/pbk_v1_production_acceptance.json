@@ -132,7 +132,7 @@
         "evidence": {
           "health_status": "CRITICAL",
           "critical_issues": 1,
-          "warnings": 1
+          "warnings": 0
         }
       },
       {
@@ -161,6 +161,6 @@
     "Wait for a <=75m pre-kickoff standings capture and downstream Stage72 motivation rebuild.",
     "Resolve hard health/data-layer/API integrity failures before closure."
   ],
-  "evaluated_at_utc": "2026-09-25T05:35:00Z",
-  "state_fingerprint": "aaadd1973c9d75d449dd30cb04731ec795e7705ea09a75064b4186ecb9912df0"
+  "evaluated_at_utc": "2026-09-25T07:35:47Z",
+  "state_fingerprint": "ab52d14cafebc4a7dd6b43bdc0757554bfcc1420e495d02e5e19ceccec413618"
 }
