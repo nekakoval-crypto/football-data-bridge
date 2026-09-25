@@ -2,6 +2,12 @@ name: Stage 292 Environmental Historical Team Stats Backfill
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/stage292_environmental_historical_backfill.py'
+      - '.github/workflows/stage292-environmental-historical-backfill.yml'
   schedule:
     - cron: '11 */3 * * *'
   pull_request:
