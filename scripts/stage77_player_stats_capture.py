@@ -447,6 +447,8 @@ def main():
         write_csv_atomic(BACKLOG, BACKLOG_FIELDS, backlog_after["rows"])
     audit.save(SHARED_STATE, state)
     broker_stats = get_broker().stats()
+    if int(broker_stats.get("archive_errors") or 0) > 0:
+        result["warnings"].append(f"raw archive write failures: {broker_stats.get('archive_errors')}")
     no_data_attempts = sum(item.get("result") == "NO_DATA" for item in result["attempts"])
     error_attempts = sum(item.get("result") == "ERROR" for item in result["attempts"])
     meta = {
