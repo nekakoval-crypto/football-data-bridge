@@ -724,6 +724,19 @@ def snapshot_geocode_drift_km(
     return haversine_km(values[0], values[1], values[2], values[3])
 
 
+def propagate_snapshot_geocode_metadata(
+    snapshot: dict[str, str],
+    geo: dict[str, str],
+) -> dict[str, str]:
+    """Upgrade trusted geocode metadata without changing weather evidence."""
+    row = dict(snapshot)
+    row["latitude"] = str(geo.get("latitude") or "")
+    row["longitude"] = str(geo.get("longitude") or "")
+    row["geocode_quality_status"] = str(geo.get("geocode_quality_status") or "")
+    row["geocode_resolver_version"] = str(geo.get("resolver_version") or "")
+    return row
+
+
 def venue_by_id(rows: list[dict[str, str]]) -> dict[str, dict[str, str]]:
     out = {}
     for row in rows:
@@ -1060,6 +1073,7 @@ def run(captured_at: datetime | None = None) -> dict[str, Any]:
     diagnostics = Counter()
     geocache_updates = []
     repaired_snapshot_by_fixture = {}
+    metadata_snapshot_by_fixture = {}
 
     legacy_rows = legacy_geocache_rows(geocache_rows)
     diagnostics["legacy_geocache_rows_seen"] = len(legacy_rows)
@@ -1097,10 +1111,20 @@ def run(captured_at: datetime | None = None) -> dict[str, Any]:
             if str(snapshot.get("venue_id") or "").strip() != venue_id:
                 continue
             drift = snapshot_geocode_drift_km(snapshot, resolved)
-            if drift is None or drift <= GEOCODE_REPAIR_DISTANCE_KM:
+            fixture_id = str(snapshot.get("fixture_id") or "").strip()
+
+            if drift is not None and drift <= GEOCODE_REPAIR_DISTANCE_KM:
+                metadata_snapshot_by_fixture[fixture_id] = propagate_snapshot_geocode_metadata(
+                    snapshot,
+                    resolved,
+                )
+                diagnostics["snapshots_geocode_metadata_upgraded"] += 1
                 continue
 
-            fixture_id = str(snapshot.get("fixture_id") or "").strip()
+            if drift is None:
+                diagnostics["snapshot_repair_geocode_drift_unknown"] += 1
+                continue
+
             fixture = fixtures.get(fixture_id)
             if not fixture:
                 diagnostics["snapshot_repair_fixture_missing"] += 1
@@ -1123,11 +1147,14 @@ def run(captured_at: datetime | None = None) -> dict[str, Any]:
                 repaired_snapshot_by_fixture[fixture_id] = repaired
                 diagnostics["snapshots_repaired_geocode_drift"] += 1
 
-    if repaired_snapshot_by_fixture:
+    if repaired_snapshot_by_fixture or metadata_snapshot_by_fixture:
         existing_snapshots = [
             repaired_snapshot_by_fixture.get(
                 str(row.get("fixture_id") or "").strip(),
-                row,
+                metadata_snapshot_by_fixture.get(
+                    str(row.get("fixture_id") or "").strip(),
+                    row,
+                ),
             )
             for row in existing_snapshots
         ]
@@ -1216,7 +1243,7 @@ def run(captured_at: datetime | None = None) -> dict[str, Any]:
             [merged_geos[k] for k in sorted(merged_geos)],
         )
 
-    if new_snapshots or repaired_snapshot_by_fixture:
+    if new_snapshots or repaired_snapshot_by_fixture or metadata_snapshot_by_fixture:
         all_snaps = existing_snapshots + new_snapshots
         write_csv_atomic(SNAPSHOTS, SNAPSHOT_FIELDS, all_snaps)
     elif not SNAPSHOTS.exists():
