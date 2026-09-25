@@ -181,6 +181,10 @@ def _exists(client, bucket, key):
         raise
 
 
+def _request_index_key(config, request_key_sha256):
+    return f"{config['prefix']}/request-index/{request_key_sha256[:2]}/{request_key_sha256}.json"
+
+
 def _archive_s3(*, config, raw, record, client=None):
     client = client or _s3_client(config)
     prefix = config["prefix"]
@@ -219,6 +223,36 @@ def _archive_s3(*, config, raw, record, client=None):
         )
         observation_created = True
 
+    # Mutable request pointer for archive-first reads. Immutable observation/blob
+    # objects remain the source of truth; this pointer only avoids scanning R2.
+    index_key = _request_index_key(config, record["request_key_sha256"])
+    index_body = json.dumps(
+        {
+            "archive_version": ARCHIVE_VERSION,
+            "request_key_sha256": record["request_key_sha256"],
+            "path": record["path"],
+            "normalized_params": record["normalized_params"],
+            "fetched_at_utc": record["fetched_at_utc"],
+            "payload_sha256": digest,
+            "blob_key": blob_key,
+            "observation_key": observation_key,
+        },
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    client.put_object(
+        Bucket=config["bucket"],
+        Key=index_key,
+        Body=index_body,
+        ContentType="application/json",
+        Metadata={
+            "request-key-sha256": record["request_key_sha256"],
+            "payload-sha256": digest,
+            "archive-version": ARCHIVE_VERSION,
+        },
+    )
+
     return {
         "backend": "S3",
         "bucket": config["bucket"],
@@ -226,6 +260,7 @@ def _archive_s3(*, config, raw, record, client=None):
         "payload_sha256": digest,
         "blob_path": blob_key,
         "observation_path": observation_key,
+        "request_index_path": index_key,
         "blob_created": blob_created,
         "manifest_appended": observation_created,
     }
@@ -252,6 +287,42 @@ def archive_response(*, root=None, request_key, path, normalized_params, payload
         raise RuntimeError("Raw archive storage is not configured")
     return _archive_s3(config=config, raw=raw, record=record, client=s3_client)
 
+
+
+def read_archived_response(request_key, *, client=None):
+    """Return a verified payload from the R2 request index, or None on miss.
+
+    This function never calls API-Football. The request index is a mutable
+    pointer to immutable observation/blob evidence.
+    """
+    config = s3_config_from_env()
+    if config is None:
+        return None
+    client = client or _s3_client(config)
+    request_hash = hashlib.sha256(str(request_key).encode("utf-8")).hexdigest()
+    index_key = _request_index_key(config, request_hash)
+    try:
+        body = client.get_object(Bucket=config["bucket"], Key=index_key)["Body"].read()
+    except Exception as exc:
+        if _not_found(exc):
+            return None
+        raise
+    record = json.loads(body.decode("utf-8"))
+    if str(record.get("request_key_sha256") or "") != request_hash:
+        raise RuntimeError("Raw archive request-index hash mismatch")
+    blob_key = str(record.get("blob_key") or "")
+    expected_digest = str(record.get("payload_sha256") or "")
+    if not blob_key or not expected_digest:
+        raise RuntimeError("Raw archive request-index is incomplete")
+    compressed = client.get_object(Bucket=config["bucket"], Key=blob_key)["Body"].read()
+    raw_payload = gzip.decompress(compressed)
+    digest = hashlib.sha256(raw_payload).hexdigest()
+    if digest != expected_digest:
+        raise RuntimeError("Raw archive payload SHA-256 mismatch")
+    payload = json.loads(raw_payload.decode("utf-8"))
+    if not isinstance(payload, dict):
+        raise RuntimeError("Raw archive payload is not a JSON object")
+    return payload
 
 def verify_s3_storage(*, client=None, keep_object=True):
     """Write/read/hash-verify one tiny object against the configured S3 backend."""
