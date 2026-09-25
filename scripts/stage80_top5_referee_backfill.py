@@ -20,7 +20,7 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 import stage71_observation_audit as audit
-from api_football_broker import ApiFootballBrokerError, get_broker, api_get
+from api_football_broker import ApiFootballBrokerError, get_broker, api_get, make_archive_before_budget_get
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 CONFIG = Path("config/stage80_api_football_top5_referee_9seasons.json")
@@ -323,6 +323,8 @@ def run(config_path=CONFIG, get=api_get, now=None):
         protected_calls=protected_calls(),
     )
 
+    archive_stats={"archive_read_hits":0,"archive_read_misses":0,"archive_read_errors":0}
+    historical_get=make_archive_before_budget_get(budget,archive_stats)
     calls_before=int(shared.get("api_day_calls") or 0)
     warnings=[]
     for row,spec in zip(state,matrix):
@@ -330,7 +332,7 @@ def run(config_path=CONFIG, get=api_get, now=None):
             continue
         attempted=iso_now()
         try:
-            payload=budget(
+            payload=historical_get(
                 "/fixtures",
                 {"league":spec["provider_league_id"],"season":spec["season"]},
                 ttl_seconds=365*24*3600,
@@ -377,6 +379,8 @@ def run(config_path=CONFIG, get=api_get, now=None):
         }
     referee_rows=sum(bool(str(r.get("referee") or "").strip()) for r in archive)
     broker_stats=get_broker().stats() if get is api_get else {}
+    if int(broker_stats.get("archive_errors") or 0) > 0:
+        warnings.append(f"raw archive write failures: {broker_stats.get('archive_errors')}")
     meta={
         "version":VERSION,"run_at_utc":iso_now(),
         "status":"OK" if pending==0 else "COLLECTING",
@@ -386,7 +390,15 @@ def run(config_path=CONFIG, get=api_get, now=None):
         "referee_coverage_pct":pct(referee_rows,len(archive)) if archive else None,
         "by_league":by_league,"profile_rows":len(profiles),
         "team_split_rows":len(splits),"provider_budget_calls":budget.calls,
+        "archive_first_enabled":True,
+        "archive_read_hits":archive_stats["archive_read_hits"],
+        "archive_read_misses":archive_stats["archive_read_misses"],
+        "archive_read_errors":archive_stats["archive_read_errors"],
         "real_api_calls":broker_stats.get("real_api_calls"),
+        "provider_successes":broker_stats.get("provider_successes"),
+        "archive_write_successes":broker_stats.get("archive_write_successes"),
+        "archive_write_failures":broker_stats.get("archive_errors"),
+        "provider_archive_write_through_ok":(broker_stats.get("provider_successes") == (broker_stats.get("archive_write_successes") or 0) + (broker_stats.get("archive_errors") or 0)) if broker_stats else None,
         "daily_api_calls_before":calls_before,
         "daily_api_calls_after":int(shared.get("api_day_calls") or 0),
         "protected_calls":protected_calls(),"warnings":warnings,

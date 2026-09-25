@@ -76,6 +76,8 @@ class RawArchiveTests(unittest.TestCase):
         self.assertEqual(len(self.manifest_rows()), 1)
         stats = broker.stats()
         self.assertEqual(stats["real_api_calls"], 1)
+        self.assertEqual(stats["provider_successes"], 1)
+        self.assertEqual(stats["archive_write_successes"], 1)
         self.assertEqual(stats["archive_observations"], 1)
         self.assertTrue(stats["archive_enabled"])
 
@@ -176,7 +178,18 @@ class RawArchiveTests(unittest.TestCase):
         result = broker.get("/fixtures", {"id": 123})
         self.assertEqual(result, self.payload)
         self.assertEqual(broker.stats()["archive_errors"], 1)
+        self.assertEqual(broker.stats()["provider_successes"], 1)
+        self.assertEqual(broker.stats()["archive_write_successes"], 0)
         self.assertEqual(broker.stats()["real_api_calls"], 1)
+
+    def test_provider_success_is_fully_accounted_as_archive_success_or_error(self):
+        broker = self.broker()
+        broker.get("/fixtures/players", {"fixture": 123})
+        stats = broker.stats()
+        self.assertEqual(
+            stats["provider_successes"],
+            stats["archive_write_successes"] + stats["archive_errors"],
+        )
 
     def test_archive_is_disabled_when_no_storage_is_configured(self):
         with patch.dict(os.environ, {"API_FOOTBALL_KEY": "x", "API_FOOTBALL_ARCHIVE_DIR": ""}, clear=False):

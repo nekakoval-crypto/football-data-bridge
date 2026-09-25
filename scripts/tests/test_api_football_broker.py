@@ -14,6 +14,7 @@ from api_football_broker import (
     ApiFootballBudgetExceeded,
     ApiFootballProviderError,
     request_key,
+    make_archive_before_budget_get,
 )
 
 
@@ -119,6 +120,42 @@ class BrokerTests(unittest.TestCase):
             broker.get("/fixtures", {"id": 2})
         self.assertEqual(broker.stats()["budget_rejections"], 1)
 
+
+    def test_archive_before_budget_hit_does_not_call_fallback(self):
+        calls = []
+        stats = {"archive_read_hits": 0, "archive_read_misses": 0, "archive_read_errors": 0}
+        archived = {"response": [{"id": 99}], "errors": []}
+
+        def fallback(path, params=None, **kwargs):
+            calls.append((path, params, kwargs))
+            raise AssertionError("fallback budget must not be called on archive hit")
+
+        get = make_archive_before_budget_get(
+            fallback, stats, archive_reader=lambda key: archived
+        )
+        result = get("/fixtures/events", {"fixture": 123}, force_refresh=False)
+        self.assertEqual(result, archived)
+        self.assertEqual(calls, [])
+        self.assertEqual(stats["archive_read_hits"], 1)
+        self.assertEqual(stats["archive_read_misses"], 0)
+
+    def test_archive_before_budget_miss_calls_fallback_once(self):
+        calls = []
+        stats = {"archive_read_hits": 0, "archive_read_misses": 0, "archive_read_errors": 0}
+
+        def fallback(path, params=None, **kwargs):
+            calls.append((path, params, kwargs))
+            return {"response": []}
+
+        get = make_archive_before_budget_get(
+            fallback, stats, archive_reader=lambda key: None
+        )
+        result = get("/fixtures/players", {"fixture": 123}, archive_first=True)
+        self.assertEqual(result, {"response": []})
+        self.assertEqual(len(calls), 1)
+        self.assertNotIn("archive_first", calls[0][2])
+        self.assertEqual(stats["archive_read_hits"], 0)
+        self.assertEqual(stats["archive_read_misses"], 1)
 
     def test_archive_first_hit_avoids_provider_and_api_key(self):
         broker = self.broker()

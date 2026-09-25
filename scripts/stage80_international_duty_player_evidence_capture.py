@@ -32,7 +32,7 @@ if str(SCRIPT_DIR) not in sys.path:
 
 import stage71_observation_audit as audit
 import stage80_international_duty_player_evidence_backlog as queue
-from api_football_broker import ApiFootballBrokerError, api_get, get_broker
+from api_football_broker import ApiFootballBrokerError, api_get, get_broker, make_archive_before_budget_get
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 BACKLOG = OPS / "international_duty_player_evidence_backlog.csv"
@@ -517,6 +517,8 @@ def run(
         protected_calls=protected_calls(),
     )
 
+    archive_stats = {"archive_read_hits": 0, "archive_read_misses": 0, "archive_read_errors": 0}
+    historical_get = make_archive_before_budget_get(budget, archive_stats)
     calls_before = int(shared.get("api_day_calls") or 0)
     candidates = candidate_rows(backlog, now, max_calls)
     evidence = existing_evidence
@@ -532,7 +534,7 @@ def run(
         result = ""
         error = ""
         try:
-            payload = budget(
+            payload = historical_get(
                 endpoint,
                 {"fixture": fixture_id},
                 ttl_seconds=365 * 24 * 3600,
@@ -601,6 +603,8 @@ def run(
     )
 
     broker_stats = get_broker().stats() if get is api_get else {}
+    if int(broker_stats.get("archive_errors") or 0) > 0:
+        warnings.append(f"raw archive write failures: {broker_stats.get('archive_errors')}")
     attempted_results = Counter(item["result"] for item in attempts)
 
     captured_fixture_ids = {
@@ -655,7 +659,15 @@ def run(
         "formal_callup_rows_confirmed": 0,
         "travel_rows_derived": 0,
         "provider_budget_calls": budget.calls,
+        "archive_first_enabled": True,
+        "archive_read_hits": archive_stats["archive_read_hits"],
+        "archive_read_misses": archive_stats["archive_read_misses"],
+        "archive_read_errors": archive_stats["archive_read_errors"],
         "real_api_calls": broker_stats.get("real_api_calls"),
+        "provider_successes": broker_stats.get("provider_successes"),
+        "archive_write_successes": broker_stats.get("archive_write_successes"),
+        "archive_write_failures": broker_stats.get("archive_errors"),
+        "provider_archive_write_through_ok": (broker_stats.get("provider_successes") == (broker_stats.get("archive_write_successes") or 0) + (broker_stats.get("archive_errors") or 0)) if broker_stats else None,
         "daily_api_calls_before": calls_before,
         "daily_api_calls_after": int(shared.get("api_day_calls") or 0),
         "protected_calls": protected_calls(),

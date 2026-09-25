@@ -114,6 +114,7 @@ class ApiFootballBroker:
             "cache_misses": 0, "retries": 0, "errors": 0,
             "budget_rejections": 0, "real_calls_by_path": {},
             "archive_observations": 0, "archive_blob_dedup_hits": 0,
+            "provider_successes": 0, "archive_write_successes": 0,
             "archive_manifest_dedup_hits": 0, "archive_errors": 0,
             "archive_read_hits": 0, "archive_read_misses": 0,
             "archive_read_errors": 0,
@@ -189,6 +190,7 @@ class ApiFootballBroker:
             self._stats["archive_last_observation_path"] = result.get("observation_path")
             self._stats["archive_last_blob_path"] = result.get("blob_path")
             self._stats["archive_last_payload_sha256"] = result.get("payload_sha256")
+            self._stats["archive_write_successes"] += 1
             if result.get("manifest_appended"):
                 self._stats["archive_observations"] += 1
             else:
@@ -314,6 +316,7 @@ class ApiFootballBroker:
                         raise ApiFootballProviderError(f"API-Football returned non-JSON object for {path}")
                     if payload.get("errors"):
                         raise ApiFootballProviderError(f"API-Football {path}: {payload['errors']}")
+                    self._stats["provider_successes"] += 1
                     fetched = _utc_timestamp()
                     expires = fetched + max(0.0, ttl)
                     self._memory[key] = (fetched, expires, payload)
@@ -355,6 +358,43 @@ def get_broker():
     if _DEFAULT_BROKER is None:
         _DEFAULT_BROKER = ApiFootballBroker()
     return _DEFAULT_BROKER
+
+
+def make_archive_before_budget_get(fallback_get, stats=None, archive_reader=read_archived_response):
+    """Read exact archived payload before calling a protected provider budget.
+
+    This is for historical/backfill consumers that wrap the shared broker in a
+    logical API budget. An archive HIT must not increment provider/day budgets.
+    """
+    stats = stats if stats is not None else {
+        "archive_read_hits": 0,
+        "archive_read_misses": 0,
+        "archive_read_errors": 0,
+    }
+
+    def get(path, params=None, **kwargs):
+        params = dict(params or {})
+        key = request_key("GET", path, params)
+        try:
+            payload = archive_reader(key)
+        except Exception:
+            stats["archive_read_errors"] = stats.get("archive_read_errors", 0) + 1
+            payload = None
+
+        if (
+            isinstance(payload, dict)
+            and not payload.get("errors")
+            and isinstance(payload.get("response"), list)
+        ):
+            stats["archive_read_hits"] = stats.get("archive_read_hits", 0) + 1
+            return payload
+
+        stats["archive_read_misses"] = stats.get("archive_read_misses", 0) + 1
+        kwargs.pop("archive_first", None)
+        return fallback_get(path, params, **kwargs)
+
+    get.archive_stats = stats
+    return get
 
 
 def api_get(path, params=None, **kwargs):
