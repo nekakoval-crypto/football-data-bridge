@@ -1,0 +1,454 @@
+name: Stage 80 International Duty Unified Orchestration
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '37 */12 * * *'
+  pull_request:
+    paths:
+      - '.github/workflows/stage80-international-duty-unified-orchestration.yml'
+      - 'scripts/tests/test_stage80_international_duty_unified_orchestration.py'
+      - 'scripts/stage80_international_duty_provider_catalog.py'
+      - 'scripts/stage80_international_duty_source_allowlist.py'
+      - 'scripts/stage80_international_duty_fixture_backfill.py'
+      - 'scripts/stage80_international_duty_player_evidence_backlog.py'
+      - 'scripts/stage80_international_duty_player_evidence_capture.py'
+      - 'scripts/stage80_international_duty_player_identity_join.py'
+      - 'scripts/stage80_international_duty_player_temporal_club.py'
+      - 'scripts/stage80_international_duty_pbk16_club_identity.py'
+      - 'scripts/stage80_international_duty_return_load.py'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage80-international-duty-unified-main
+  cancel-in-progress: false
+
+env:
+  OPS_DIR: ops
+  STAGE71_MAX_DAILY_API_CALLS: '7000'
+  PBK_RAW_ARCHIVE_S3_PREFIX: api-football-raw
+  PBK_RAW_ARCHIVE_S3_REGION: auto
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile orchestration scripts
+        run: |
+          python -m py_compile             scripts/stage80_international_duty_provider_catalog.py             scripts/stage80_international_duty_source_allowlist.py             scripts/stage80_international_duty_fixture_backfill.py             scripts/stage80_international_duty_player_evidence_backlog.py             scripts/stage80_international_duty_player_evidence_capture.py             scripts/stage80_international_duty_player_identity_join.py             scripts/stage80_international_duty_player_temporal_club.py             scripts/stage80_international_duty_pbk16_club_identity.py             scripts/stage80_international_duty_return_load.py             scripts/tests/test_stage80_international_duty_unified_orchestration.py
+      - name: Provider-free contract tests
+        run: |
+          python -m unittest             scripts.tests.test_stage80_international_duty_provider_catalog             scripts.tests.test_stage80_international_duty_source_allowlist             scripts.tests.test_stage80_international_duty_fixture_backfill             scripts.tests.test_stage80_international_duty_player_evidence_backlog             scripts.tests.test_stage80_international_duty_player_evidence_capture             scripts.tests.test_stage80_international_duty_player_identity_join             scripts.tests.test_stage80_international_duty_player_temporal_club             scripts.tests.test_stage80_international_duty_pbk16_club_identity             scripts.tests.test_stage80_international_duty_return_load             scripts.tests.test_stage80_international_duty_unified_orchestration -v
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated ops files are forbidden in orchestration feature PR.' >&2
+            exit 1
+          fi
+
+  provider_catalog:
+    needs: validate
+    if: github.event_name != 'pull_request'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+      PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+      PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+      PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+      API_FOOTBALL_MAX_REAL_CALLS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install --disable-pip-version-check boto3
+      - name: Capture provider competition-season coverage
+        run: |
+          python scripts/stage80_international_duty_provider_catalog.py             --out-csv ops/international_duty_provider_candidates.csv             --meta-out ops/stage80_international_duty_provider_catalog_last_run.json             --start-year 2017             --end-year 2026
+      - name: Verify provider catalog contract
+        run: |
+          python - <<'PY'
+          import json
+          m=json.load(open('ops/stage80_international_duty_provider_catalog_last_run.json',encoding='utf-8'))
+          assert m['status']=='OK', m
+          assert m['provider_endpoint']=='/leagues', m
+          assert m['provider_calls']==1, m
+          assert m['research_only'] is True, m
+          assert m['operational_betting_authority'] is False, m
+          PY
+      - name: Publish provider catalog
+        run: |
+          git config user.name 'stage80-international-duty-bot'
+          git config user.email 'stage80-international-duty-bot@users.noreply.github.com'
+          git add ops/international_duty_provider_candidates.csv ops/stage80_international_duty_provider_catalog_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 international-duty unified provider catalog update'
+          python scripts/publish_operational_commit.py
+
+  source_allowlist:
+    needs: provider_catalog
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Build source allowlist
+        run: |
+          python scripts/stage80_international_duty_source_allowlist.py             --source ops/international_duty_provider_candidates.csv             --allow-out ops/international_duty_source_allowlist.csv             --audit-out ops/international_duty_source_selection_audit.csv             --meta-out ops/stage80_international_duty_source_allowlist_last_run.json
+      - name: Verify source allowlist contract
+        run: |
+          python - <<'PY'
+          import json
+          m=json.load(open('ops/stage80_international_duty_source_allowlist_last_run.json',encoding='utf-8'))
+          assert m['status']=='OK', m
+          assert m['allowed_competitions']>0, m
+          assert m['nationality_inference_allowed'] is False, m
+          assert m['operational_betting_authority'] is False, m
+          PY
+      - name: Publish source allowlist
+        run: |
+          git config user.name 'stage80-international-duty-bot'
+          git config user.email 'stage80-international-duty-bot@users.noreply.github.com'
+          git add ops/international_duty_source_allowlist.csv ops/international_duty_source_selection_audit.csv ops/stage80_international_duty_source_allowlist_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 international-duty unified source allowlist update'
+          python scripts/publish_operational_commit.py
+
+  fixture_backfill:
+    needs: source_allowlist
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+      PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+      PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+      PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+      STAGE80_INTL_DUTY_FIXTURE_MAX_API_CALLS: '20'
+      STAGE80_INTL_DUTY_FIXTURE_PROTECTED_CALLS: '512'
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install --disable-pip-version-check boto3
+      - name: Run resumable fixture backfill
+        run: python scripts/stage80_international_duty_fixture_backfill.py
+      - name: Verify fixture archive contract
+        run: |
+          python - <<'PY'
+          import json
+          m=json.load(open('ops/stage80_international_duty_fixture_backfill_last_run.json',encoding='utf-8'))
+          assert m['status'] in {'OK','COLLECTING'}, m
+          assert m['duplicate_fixture_ids']==0, m
+          assert m['invalid_archive_rows']==0, m
+          assert m['nationality_inference_allowed'] is False, m
+          assert m['operational_betting_authority'] is False, m
+          PY
+      - name: Publish fixture archive
+        run: |
+          git config user.name 'stage80-international-duty-bot'
+          git config user.email 'stage80-international-duty-bot@users.noreply.github.com'
+          git add ops/international_team_fixture_history.csv ops/stage80_international_duty_fixture_backfill_state.csv ops/stage80_international_duty_fixture_backfill_last_run.json ops/stage71_observation_state.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 international-duty unified fixture backfill update'
+          python scripts/publish_operational_commit.py
+
+  evidence_backlog:
+    needs: fixture_backfill
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Build fixed-window player evidence backlog
+        run: python scripts/stage80_international_duty_player_evidence_backlog.py
+      - name: Verify backlog contract
+        run: |
+          python - <<'PY'
+          import json
+          m=json.load(open('ops/stage80_international_duty_player_evidence_backlog_last_run.json',encoding='utf-8'))
+          assert m['status']=='OK', m
+          assert m['configured_windows']==39, m
+          assert m['duplicate_backlog_fixture_ids']==0, m
+          assert m['callup_inference_allowed'] is False, m
+          assert m['nationality_inference_allowed'] is False, m
+          PY
+      - name: Publish evidence backlog
+        run: |
+          git config user.name 'stage80-international-duty-bot'
+          git config user.email 'stage80-international-duty-bot@users.noreply.github.com'
+          git add ops/international_duty_player_evidence_backlog.csv ops/stage80_international_duty_player_evidence_backlog_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 international-duty unified evidence backlog update'
+          python scripts/publish_operational_commit.py
+
+  evidence_capture:
+    needs: evidence_backlog
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+      PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+      PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+      PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+      STAGE80_INTL_DUTY_PLAYER_EVIDENCE_MAX_API_CALLS: '750'
+      STAGE80_INTL_DUTY_PLAYER_EVIDENCE_PROTECTED_CALLS: '512'
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install --disable-pip-version-check boto3
+      - name: Capture direct player evidence
+        run: python scripts/stage80_international_duty_player_evidence_capture.py
+      - name: Verify direct evidence contract
+        run: |
+          python - <<'PY'
+          import json
+          m=json.load(open('ops/stage80_international_duty_player_evidence_capture_last_run.json',encoding='utf-8'))
+          assert m['status'] in {'COLLECTING','OK'}, m
+          assert m['duplicate_evidence_rows']==0, m
+          assert m['invalid_evidence_rows']==0, m
+          assert m['nationality_inference_allowed'] is False, m
+          assert m['travel_inference_allowed'] is False, m
+          assert m['operational_betting_authority'] is False, m
+          PY
+      - name: Publish direct player evidence
+        run: |
+          git config user.name 'stage80-international-duty-bot'
+          git config user.email 'stage80-international-duty-bot@users.noreply.github.com'
+          git add ops/international_duty_player_evidence_backlog.csv ops/international_duty_player_evidence.csv ops/stage80_international_duty_player_evidence_capture_last_run.json ops/stage71_observation_state.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 international-duty unified evidence capture update'
+          python scripts/publish_operational_commit.py
+
+  identity_join:
+    needs: evidence_capture
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python scripts/stage80_international_duty_player_identity_join.py
+      - name: Verify exact player identity
+        run: |
+          python - <<'PY'
+          import json
+          m=json.load(open('ops/stage80_international_duty_player_identity_join_last_run.json',encoding='utf-8'))
+          assert m['status']=='OK', m
+          assert m['exact_id_only'] is True, m
+          assert m['fuzzy_matching_used'] is False, m
+          assert m['duplicate_output_players']==0, m
+          PY
+      - name: Publish exact identity join
+        run: |
+          git config user.name 'stage80-international-duty-bot'
+          git config user.email 'stage80-international-duty-bot@users.noreply.github.com'
+          git add ops/international_duty_player_identity_join.csv ops/stage80_international_duty_player_identity_join_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 international-duty unified identity join update'
+          python scripts/publish_operational_commit.py
+
+  temporal_club:
+    needs: identity_join
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python scripts/stage80_international_duty_player_temporal_club.py
+      - name: Verify temporal club
+        run: |
+          python - <<'PY'
+          import json
+          m=json.load(open('ops/stage80_international_duty_player_temporal_club_last_run.json',encoding='utf-8'))
+          assert m['status']=='OK', m
+          assert m['current_club_substituted'] is False, m
+          assert m['fuzzy_club_matching_used'] is False, m
+          assert m['duplicate_fixture_player_rows']==0, m
+          PY
+      - name: Publish temporal club
+        run: |
+          git config user.name 'stage80-international-duty-bot'
+          git config user.email 'stage80-international-duty-bot@users.noreply.github.com'
+          git add ops/international_duty_player_temporal_club.csv ops/stage80_international_duty_player_temporal_club_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 international-duty unified temporal club update'
+          python scripts/publish_operational_commit.py
+
+  pbk16_club_identity:
+    needs: temporal_club
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python scripts/stage80_international_duty_pbk16_club_identity.py
+      - name: Verify PBK16 club identity
+        run: |
+          python - <<'PY'
+          import json
+          m=json.load(open('ops/stage80_international_duty_pbk16_club_identity_last_run.json',encoding='utf-8'))
+          assert m['status']=='OK', m
+          assert m['current_player_club_used_for_identity'] is False, m
+          assert m['fuzzy_matching_used'] is False, m
+          assert m['duplicate_fixture_player_rows']==0, m
+          PY
+      - name: Publish PBK16 club identity
+        run: |
+          git config user.name 'stage80-international-duty-bot'
+          git config user.email 'stage80-international-duty-bot@users.noreply.github.com'
+          git add ops/international_duty_player_pbk16_club_identity.csv ops/stage80_international_duty_pbk16_club_identity_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 international-duty unified PBK16 club identity update'
+          python scripts/publish_operational_commit.py
+
+  return_load:
+    needs: pbk16_club_identity
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python scripts/stage80_international_duty_return_load.py
+      - name: Verify return-load contract
+        run: |
+          python - <<'PY'
+          import json
+          m=json.load(open('ops/stage80_international_duty_return_load_last_run.json',encoding='utf-8'))
+          assert m['status']=='OK', m
+          assert m['window_return_aggregated'] is True, m
+          assert m['direct_evidence_only'] is True, m
+          assert m['current_club_used'] is False, m
+          assert m['fuzzy_matching_used'] is False, m
+          assert m['travel_inferred'] is False, m
+          assert m['formal_callup_inferred'] is False, m
+          assert m['duplicate_output_rows']==0, m
+          assert m['operational_betting_authority'] is False, m
+          PY
+      - name: Publish return load
+        run: |
+          git config user.name 'stage80-international-duty-bot'
+          git config user.email 'stage80-international-duty-bot@users.noreply.github.com'
+          git add ops/international_duty_player_return_load.csv ops/stage80_international_duty_return_load_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 international-duty unified return load update'
+          python scripts/publish_operational_commit.py
+
+  convergence:
+    needs: return_load
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify end-to-end convergence
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          ops=Path('ops')
+          identity=json.loads((ops/'stage80_international_duty_player_identity_join_last_run.json').read_text(encoding='utf-8'))
+          temporal=json.loads((ops/'stage80_international_duty_player_temporal_club_last_run.json').read_text(encoding='utf-8'))
+          club=json.loads((ops/'stage80_international_duty_pbk16_club_identity_last_run.json').read_text(encoding='utf-8'))
+          ret=json.loads((ops/'stage80_international_duty_return_load_last_run.json').read_text(encoding='utf-8'))
+
+          assert identity['status']=='OK'
+          assert temporal['status']=='OK'
+          assert club['status']=='OK'
+          assert ret['status']=='OK'
+          assert identity['evidence_rows']==temporal['evidence_rows']
+          assert temporal['bounded_chain_confirmed_rows']==club['bounded_input_rows']
+          assert club['mapped_pbk16_rows']==ret['mapped_pbk16_input_rows']
+          assert ret['direct_evidence_rows']==identity['evidence_rows']
+          assert identity['duplicate_output_players']==0
+          assert temporal['duplicate_fixture_player_rows']==0
+          assert club['duplicate_fixture_player_rows']==0
+          assert ret['duplicate_output_rows']==0
+          assert identity['fuzzy_matching_used'] is False
+          assert temporal['current_club_substituted'] is False
+          assert club['current_player_club_used_for_identity'] is False
+          assert ret['current_club_used'] is False
+          assert ret['travel_inferred'] is False
+          assert ret['formal_callup_inferred'] is False
+
+          summary={
+            'version':'PBK_STAGE80_INTERNATIONAL_DUTY_UNIFIED_ORCHESTRATION_V1',
+            'status':'OK',
+            'orchestration':'SINGLE_WORKFLOW_JOBS_NEEDS',
+            'workflow_run_depth_dependency':False,
+            'evidence_rows':identity['evidence_rows'],
+            'international_players':identity['international_evidence_players'],
+            'bounded_rows':temporal['bounded_chain_confirmed_rows'],
+            'pbk16_mapped_rows':club['mapped_pbk16_rows'],
+            'return_load_rows':ret['output_rows'],
+            'research_only':True,
+            'operational_betting_authority':False,
+            'probability_mutation':False,
+            'eligibility_mutation':False,
+            'stake_changes':False,
+          }
+          (ops/'stage80_international_duty_unified_orchestration_last_run.json').write_text(
+            json.dumps(summary,ensure_ascii=False,indent=2)+'\n',encoding='utf-8'
+          )
+          print(summary)
+          PY
+      - name: Publish unified orchestration proof
+        run: |
+          git config user.name 'stage80-international-duty-bot'
+          git config user.email 'stage80-international-duty-bot@users.noreply.github.com'
+          git add ops/stage80_international_duty_unified_orchestration_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 international-duty unified orchestration proof'
+          python scripts/publish_operational_commit.py
