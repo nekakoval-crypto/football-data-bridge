@@ -27,7 +27,7 @@ from pathlib import Path
 
 import stage53_daily_screener as s53
 import stage71_observation_audit as audit
-from api_football_broker import ApiFootballBrokerError, make_archive_before_budget_get
+from api_football_broker import ApiFootballBrokerError, make_archive_before_budget_get, get_broker
 from player_grade import GRADE_VERSION, grade_aggregate, normalize_api_football_player
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
@@ -446,6 +446,7 @@ def main():
     if backlog_after["rows"] or BACKLOG.exists():
         write_csv_atomic(BACKLOG, BACKLOG_FIELDS, backlog_after["rows"])
     audit.save(SHARED_STATE, state)
+    broker_stats = get_broker().stats()
     no_data_attempts = sum(item.get("result") == "NO_DATA" for item in result["attempts"])
     error_attempts = sum(item.get("result") == "ERROR" for item in result["attempts"])
     meta = {
@@ -454,6 +455,10 @@ def main():
         "status": "ATTENTION" if result["warnings"] else ("WAITING" if result["deferred_fixtures"] else "OK"),
         "provider_endpoint": "/fixtures/players",
         "provider_calls": budget.calls,
+        "provider_successes": broker_stats.get("provider_successes"),
+        "archive_write_successes": broker_stats.get("archive_write_successes"),
+        "archive_write_failures": broker_stats.get("archive_errors"),
+        "provider_archive_write_through_ok": broker_stats.get("provider_successes") == (broker_stats.get("archive_write_successes") or 0) + (broker_stats.get("archive_errors") or 0),
         "archive_first_enabled": True,
         "archive_read_hits": archive_stats["archive_read_hits"],
         "archive_read_misses": archive_stats["archive_read_misses"],
