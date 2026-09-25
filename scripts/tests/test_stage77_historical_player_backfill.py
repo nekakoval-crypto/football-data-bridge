@@ -265,6 +265,96 @@ class HistoricalPlayerBackfillTests(unittest.TestCase):
         self.assertEqual(stats["archive_read_misses"], 0)
         self.assertEqual(result["no_data_fixtures"], 1)
 
+    def test_dual_lane_reserves_legacy_share(self):
+        candidates = [
+            self.fixture("r1", season="2025"),
+            self.fixture("r2", season="2025"),
+            self.fixture("r3", season="2024"),
+            self.fixture("r4", season="2024"),
+            self.fixture("o1", season="2023"),
+            self.fixture("o2", season="2022"),
+            self.fixture("o3", season="2021"),
+            self.fixture("o4", season="2020"),
+        ]
+
+        plan = h.plan_dual_lane(
+            candidates,
+            state={},
+            limit=5,
+            legacy_share=0.40,
+            recent_season_window=1,
+        )
+
+        seasons = [int(row["season"]) for row in plan["rows"]]
+        self.assertEqual(plan["recent_planned"], 3)
+        self.assertEqual(plan["legacy_planned"], 2)
+        self.assertEqual(sum(season <= 2023 for season in seasons), 2)
+
+    def test_dual_lane_interleaves_legacy_before_end_of_batch(self):
+        candidates = [
+            self.fixture(f"r{i}", season="2025")
+            for i in range(1, 7)
+        ] + [
+            self.fixture(f"o{i}", season="2020")
+            for i in range(1, 5)
+        ]
+
+        plan = h.plan_dual_lane(
+            candidates,
+            state={},
+            limit=10,
+            legacy_share=0.40,
+            recent_season_window=1,
+        )
+
+        first_five = plan["rows"][:5]
+        self.assertGreaterEqual(
+            sum(int(row["season"]) < 2024 for row in first_five),
+            1,
+        )
+        self.assertEqual(plan["legacy_planned"], 4)
+
+    def test_legacy_lane_prefers_productive_cell_then_oldest(self):
+        productive_old = self.fixture(
+            "p",
+            season="2021",
+            comp="Old Productive",
+            comp_id="100",
+        )
+        unproven_older = self.fixture(
+            "u",
+            season="2018",
+            comp="Older Unproven",
+            comp_id="200",
+        )
+        recent = self.fixture("r", season="2025", comp_id="39")
+
+        state = {
+            "proof": {
+                **self.fixture(
+                    "proof",
+                    season="2021",
+                    comp="Old Productive",
+                    comp_id="100",
+                ),
+                "last_attempt_result": "CAPTURED",
+            }
+        }
+
+        plan = h.plan_dual_lane(
+            [recent, productive_old, unproven_older],
+            state=state,
+            limit=2,
+            legacy_share=0.50,
+            recent_season_window=1,
+        )
+
+        legacy_rows = [
+            row for row in plan["rows"]
+            if int(row["season"]) < 2024
+        ]
+        self.assertEqual([row["fixture_id"] for row in legacy_rows], ["p"])
+
     def test_provider_quota_error_stops_batch_immediately(self):
         candidates = [
             self.fixture("1"),
