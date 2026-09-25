@@ -3,6 +3,12 @@ name: Stage 273 Environmental Postmatch Research
 on:
   workflow_dispatch:
 
+  workflow_run:
+    workflows:
+      - 'Stage 292 Environmental Historical Team Stats Backfill'
+    types:
+      - completed
+
   pull_request:
     paths:
       - 'config/pbk_environmental_postmatch_research_v1.json'
@@ -81,7 +87,7 @@ jobs:
 
   capture:
     needs: validate
-    if: github.event_name != 'pull_request'
+    if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
