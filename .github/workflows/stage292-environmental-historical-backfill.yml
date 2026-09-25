@@ -44,15 +44,36 @@ jobs:
 
       - name: Feature diff hygiene
         if: github.event_name == 'pull_request'
-        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
-          git fetch origin main
-          changed="$(git diff --name-only origin/main...HEAD)"
-          printf '%s\n' "$changed"
-          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
-            echo 'Generated ops files are forbidden in the Stage292 feature PR.' >&2
-            exit 1
-          fi
+          python - <<'PY'
+          import json
+          import os
+          import urllib.request
+
+          repo = os.environ["GITHUB_REPOSITORY"]
+          pr = os.environ["PR_NUMBER"]
+          request = urllib.request.Request(
+              f"https://api.github.com/repos/{repo}/pulls/{pr}/files?per_page=100",
+              headers={
+                  "Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}",
+                  "Accept": "application/vnd.github+json",
+              },
+          )
+          with urllib.request.urlopen(request, timeout=30) as response:
+              files = json.load(response)
+
+          names = [item["filename"] for item in files]
+          print("\n".join(names))
+          forbidden = [name for name in names if name.startswith("ops/")]
+          if forbidden:
+              raise SystemExit(
+                  "Generated ops files are forbidden in the Stage292 feature PR: "
+                  + ", ".join(forbidden)
+              )
+          PY
 
   capture:
     needs: validate
