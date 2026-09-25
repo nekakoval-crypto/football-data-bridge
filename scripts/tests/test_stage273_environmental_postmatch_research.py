@@ -303,6 +303,25 @@ class EnvironmentalPostmatchResearchTests(unittest.TestCase):
         self.assertIsNotNone(drift)
         self.assertLess(drift,m.GEOCODE_REPAIR_DISTANCE_KM)
 
+    def test_stale_snapshot_version_is_detectable_for_current_cache_sync(self):
+        snapshot={
+            "geocode_resolver_version":"PBK_GEOCODE_V3",
+            "latitude":"45.070",
+            "longitude":"7.687",
+        }
+        geo={
+            "resolver_version":"PBK_GEOCODE_V4",
+            "latitude":"45.070",
+            "longitude":"7.687",
+        }
+        self.assertNotEqual(
+            snapshot["geocode_resolver_version"],
+            m.GEOCODE_RESOLVER_VERSION,
+        )
+        drift=m.snapshot_geocode_drift_km(snapshot,geo)
+        self.assertIsNotNone(drift)
+        self.assertLessEqual(drift,m.GEOCODE_REPAIR_DISTANCE_KM)
+
     def test_propagate_snapshot_geocode_metadata_preserves_weather(self):
         snapshot={
             "fixture_id":"1",
