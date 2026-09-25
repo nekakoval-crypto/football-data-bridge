@@ -1,0 +1,119 @@
+﻿name: PBK R2 Archive-First Real Proof
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  real-r2-hit-proof:
+    runs-on: ubuntu-latest
+
+    env:
+      PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+      PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+      PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+      PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+      PBK_RAW_ARCHIVE_S3_PREFIX: ${{ secrets.PBK_RAW_ARCHIVE_S3_PREFIX }}
+      PBK_RAW_ARCHIVE_S3_REGION: ${{ secrets.PBK_RAW_ARCHIVE_S3_REGION }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install R2 dependency
+        run: python -m pip install boto3
+
+      - name: Verify API key is absent
+        shell: bash
+        run: |
+          if [ -n "${API_FOOTBALL_KEY:-}" ]; then
+            echo "API_FOOTBALL_KEY MUST NOT BE PRESENT"
+            exit 1
+          fi
+
+      - name: Real R2 archive-first HIT proof
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import sys
+          import tempfile
+          from pathlib import Path
+
+          sys.path.insert(0, "scripts")
+
+          from api_football_broker import ApiFootballBroker
+
+          required = [
+              "PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID",
+              "PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY",
+              "PBK_RAW_ARCHIVE_S3_ENDPOINT",
+              "PBK_RAW_ARCHIVE_S3_BUCKET",
+          ]
+
+          missing = [x for x in required if not os.getenv(x, "").strip()]
+          if missing:
+              raise SystemExit(f"Missing R2 secrets: {missing}")
+
+          # Provider access must be impossible for this proof.
+          os.environ.pop("API_FOOTBALL_KEY", None)
+
+          cache_path = Path(tempfile.gettempdir()) / "pbk-r2-real-proof.sqlite3"
+          if cache_path.exists():
+              cache_path.unlink()
+
+          broker = ApiFootballBroker(
+              cache_path=cache_path,
+              max_real_calls=0,
+              default_ttl_seconds=0,
+              attempts=1,
+          )
+
+          payload = broker.get(
+              "/status",
+              {},
+              ttl_seconds=0,
+              force_refresh=False,
+              archive_first=True,
+          )
+
+          stats = broker.stats()
+
+          assert isinstance(payload, dict), "Archive payload is not a dict"
+          assert stats["archive_read_hits"] == 1, stats
+          assert stats["archive_read_misses"] == 0, stats
+          assert stats["archive_read_errors"] == 0, stats
+          assert stats["real_api_calls"] == 0, stats
+          assert stats["budget_rejections"] == 0, stats
+          assert stats["archive_enabled"] is True, stats
+          assert not os.getenv("API_FOOTBALL_KEY", "").strip()
+
+          proof = {
+              "version": "PBK_R2_ARCHIVE_FIRST_REAL_PROOF_V1",
+              "status": "OK",
+              "endpoint": "/status",
+              "archive_first": True,
+              "api_football_key_present": False,
+              "archive_enabled": stats["archive_enabled"],
+              "archive_read_hits": stats["archive_read_hits"],
+              "archive_read_misses": stats["archive_read_misses"],
+              "archive_read_errors": stats["archive_read_errors"],
+              "real_api_calls": stats["real_api_calls"],
+              "budget_rejections": stats["budget_rejections"],
+              "provider_call_possible": False,
+          }
+
+          print(json.dumps(proof, ensure_ascii=False, indent=2))
+          PY
+
+      - name: #302 proof complete
+        run: |
+          echo "REAL R2 ARCHIVE-FIRST HIT PROVEN"
+          echo "API_FOOTBALL_KEY absent"
+          echo "real_api_calls=0"
