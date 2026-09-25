@@ -1,25 +1,64 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-24T22:25:10Z",
-  "status": "ATTENTION",
+  "run_at_utc": "2026-09-25T00:33:26Z",
+  "status": "OK",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 0,
-  "daily_api_calls": 2102,
+  "provider_calls": 8,
+  "daily_api_calls": 8,
   "protected_calls": {
     "live": 0,
-    "current_round": 32,
+    "current_round": 96,
     "standings": 16,
     "safety": 8,
-    "total": 56
+    "total": 120
   },
   "roster_ttl_days": 7,
   "candidate_teams": 8,
-  "captured_teams": [],
-  "deferred_teams": 8,
-  "total_roster_rows": 4013,
-  "warnings": [
-    "Stage71 protected API reserve reached; Challenger deferred"
+  "captured_teams": [
+    {
+      "team_id": "165",
+      "team_name": "Borussia Dortmund",
+      "players": 30
+    },
+    {
+      "team_id": "80",
+      "team_name": "Lyon",
+      "players": 29
+    },
+    {
+      "team_id": "63",
+      "team_name": "Leeds",
+      "players": 31
+    },
+    {
+      "team_id": "495",
+      "team_name": "Genoa",
+      "players": 39
+    },
+    {
+      "team_id": "502",
+      "team_name": "Fiorentina",
+      "players": 28
+    },
+    {
+      "team_id": "172",
+      "team_name": "VfB Stuttgart",
+      "players": 34
+    },
+    {
+      "team_id": "175",
+      "team_name": "Hamburger SV",
+      "players": 28
+    },
+    {
+      "team_id": "182",
+      "team_name": "Union Berlin",
+      "players": 37
+    }
   ],
+  "deferred_teams": 0,
+  "total_roster_rows": 4014,
+  "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
