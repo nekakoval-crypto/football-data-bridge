@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_INTERNATIONAL_DUTY_SOURCE_ALLOWLIST_V1",
-  "generated_at_utc": "2026-09-19T20:30:21Z",
+  "generated_at_utc": "2026-09-25T16:39:34Z",
   "status": "OK",
   "source_candidate_rows": 92,
   "source_candidate_competitions_with_inrange_seasons": 30,
@@ -14,12 +14,12 @@
   },
   "evidence_tier_counts": {
     "DIRECT_MATCHDAY_SQUAD": 32,
-    "DIRECT_MINUTES": 46,
-    "FIXTURE_ONLY": 2
+    "DIRECT_MINUTES": 47,
+    "FIXTURE_ONLY": 1
   },
-  "allowlisted_matchday_evidence_season_rows": 78,
-  "allowlisted_minutes_evidence_season_rows": 46,
-  "allowlisted_fixture_only_season_rows": 2,
+  "allowlisted_matchday_evidence_season_rows": 79,
+  "allowlisted_minutes_evidence_season_rows": 47,
+  "allowlisted_fixture_only_season_rows": 1,
   "unknown_provider_competition_ids": [],
   "name_mismatch_provider_competition_ids": [],
   "historical_callup_evidence_possible": false,
