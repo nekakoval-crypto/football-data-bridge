@@ -3,8 +3,9 @@ name: Stage 79 Team Rosters
 on:
   workflow_dispatch:
   schedule:
-    # Slow-changing reference data. Missing/stale teams only; each successful
-    # roster is cached for seven days and LIVE/current-round/standings quota wins.
+    # Slow-changing reference data. Missing/stale teams only. Freshness is
+    # transfer-aware: short TTL in broad transfer-sensitive periods, long TTL
+    # outside them. LIVE/current-round/standings quota always wins.
     - cron: '13 */2 * * *'
   pull_request:
     paths:
@@ -88,7 +89,9 @@ jobs:
       API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
       OPS_DIR: ops
       STAGE79_MAX_API_CALLS: '8'
-      STAGE79_ROSTER_TTL_DAYS: '7'
+      STAGE79_ROSTER_STABLE_TTL_DAYS: '28'
+      STAGE79_ROSTER_SENSITIVE_TTL_DAYS: '3'
+      STAGE79_ROSTER_TRANSFER_SENSITIVE_PERIODS: '01-01:02-15,06-01:09-10'
       STAGE71_MAX_DAILY_API_CALLS: '180'
       STAGE79_STANDINGS_RESERVE_CALLS: '16'
       STAGE79_SAFETY_RESERVE_CALLS: '8'

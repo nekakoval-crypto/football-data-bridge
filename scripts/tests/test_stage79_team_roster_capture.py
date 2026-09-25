@@ -70,7 +70,29 @@ class Stage79RosterTests(unittest.TestCase):
         self.assertIn('keep', {x.get('player_id') for x in merged})
         self.assertEqual(sum(x.get('team_id') == '541' for x in merged), 2)
 
-    def test_capture_is_idempotent_and_uses_weekly_ttl(self):
+    def test_transfer_aware_roster_ttl(self):
+        stable_now = datetime(2026, 9, 15, 14, 0, tzinfo=timezone.utc)
+        winter_now = datetime(2026, 1, 20, 14, 0, tzinfo=timezone.utc)
+        self.assertFalse(s79.transfer_sensitive(stable_now))
+        self.assertTrue(s79.transfer_sensitive(winter_now))
+        self.assertEqual(
+            s79.effective_roster_ttl_days(
+                stable_now,
+                stable_days=28,
+                sensitive_days=3,
+            ),
+            28,
+        )
+        self.assertEqual(
+            s79.effective_roster_ttl_days(
+                winter_now,
+                stable_days=28,
+                sensitive_days=3,
+            ),
+            3,
+        )
+
+    def test_capture_is_idempotent_and_uses_passed_ttl(self):
         calls = []
         def get(path, params, **kwargs):
             calls.append((path, params, kwargs))
@@ -78,11 +100,11 @@ class Stage79RosterTests(unittest.TestCase):
             return {'response': [{'team': {'id': int(tid), 'name': f'Team {tid}'}, 'players': [
                 {'id': int(tid) * 10 + 1, 'name': 'Player', 'position': 'Defender'}
             ]}], 'paging': {'current': 1, 'total': 1}, 'errors': []}
-        first = s79.capture(self.fixtures(), [], get, self.now, 4)
+        first = s79.capture(self.fixtures(), [], get, self.now, 4, ttl_days=28)
         self.assertEqual(len(first['captured_teams']), 4)
         self.assertEqual(calls[0][0], '/players/squads')
-        self.assertEqual(calls[0][2]['ttl_seconds'], 7 * 24 * 3600)
-        second = s79.capture(self.fixtures(), first['rows'], get, self.now, 4)
+        self.assertEqual(calls[0][2]['ttl_seconds'], 28 * 24 * 3600)
+        second = s79.capture(self.fixtures(), first['rows'], get, self.now, 4, ttl_days=28)
         self.assertEqual(second['candidate_teams'], 0)
         self.assertEqual(len(calls), 4)
 
