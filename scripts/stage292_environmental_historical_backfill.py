@@ -23,6 +23,8 @@ from pathlib import Path
 import stage53_daily_screener as s53
 import stage71_observation_audit as audit
 import stage81_team_match_statistics_capture as s81
+from api_football_broker import request_key
+from api_football_raw_archive import read_archived_response
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 BRIDGE = OPS / "pbk14_football_data_fixture_bridge.csv"
@@ -43,6 +45,32 @@ MAX_API_CALLS = int(os.getenv("STAGE292_MAX_API_CALLS", "96"))
 MAX_FIXTURES_PER_RUN = int(
     os.getenv("STAGE292_MAX_FIXTURES_PER_RUN", str(MAX_API_CALLS))
 )
+
+
+def make_archive_first_get(fallback_get, stats, archive_reader=read_archived_response):
+    """Serve exact historical requests from raw archive before provider budget."""
+    def get(path, params=None, **kwargs):
+        params = dict(params or {})
+        key = request_key("GET", path, params)
+        try:
+            payload = archive_reader(key)
+        except Exception:
+            stats["archive_read_errors"] += 1
+            payload = None
+
+        if (
+            isinstance(payload, dict)
+            and not payload.get("errors")
+            and isinstance(payload.get("response"), list)
+        ):
+            stats["archive_read_hits"] += 1
+            return payload
+
+        stats["archive_read_misses"] += 1
+        kwargs.pop("archive_first", None)
+        return fallback_get(path, params, **kwargs)
+
+    return get
 
 
 def read_csv(path):
@@ -226,10 +254,17 @@ def main():
         checkpoint=lambda value: audit.save(SHARED_STATE, value),
     )
 
+    archive_stats = {
+        "archive_read_hits": 0,
+        "archive_read_misses": 0,
+        "archive_read_errors": 0,
+    }
+    historical_get = make_archive_first_get(budget, archive_stats)
+
     result = s81.capture(
         historical_queue,
         existing_rows,
-        budget,
+        historical_get,
         now,
         MAX_FIXTURES_PER_RUN,
     )
@@ -279,6 +314,10 @@ def main():
         "historical_completed_fixtures": historical_completed,
         "historical_pending_fixtures": historical_pending,
         "provider_calls": budget.calls,
+        "archive_first_enabled": True,
+        "archive_read_hits": archive_stats["archive_read_hits"],
+        "archive_read_misses": archive_stats["archive_read_misses"],
+        "archive_read_errors": archive_stats["archive_read_errors"],
         "attempted_fixtures": len(result["attempts"]),
         "captured_fixtures_this_run": result["captured_fixtures"],
         "captured_fixture_ids": result["captured_fixture_ids"],

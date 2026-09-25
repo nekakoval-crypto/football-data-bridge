@@ -58,6 +58,44 @@ class Stage292EnvironmentalHistoricalBackfillTests(unittest.TestCase):
         no_venue = dict(base, api_home_team_id="999")
         self.assertIsNone(m.trusted_bridge_fixture(no_venue, {"10"}, 2022, {"hm100"}))
 
+    def test_archive_hit_bypasses_provider_budget(self):
+        calls = []
+        stats = {"archive_read_hits": 0, "archive_read_misses": 0, "archive_read_errors": 0}
+
+        def archive_reader(key):
+            self.assertIn("/fixtures/statistics", key)
+            return {"response": [{"team": {"id": 1, "name": "Home"}, "statistics": []}]}
+
+        def fallback_get(path, params=None, **kwargs):
+            calls.append((path, params, kwargs))
+            raise AssertionError("provider budget must not be touched on archive hit")
+
+        get = m.make_archive_first_get(fallback_get, stats, archive_reader=archive_reader)
+        payload = get("/fixtures/statistics", {"fixture": "123"}, force_refresh=False)
+        self.assertIsInstance(payload, dict)
+        self.assertEqual(calls, [])
+        self.assertEqual(stats["archive_read_hits"], 1)
+        self.assertEqual(stats["archive_read_misses"], 0)
+
+    def test_archive_miss_falls_back_once(self):
+        calls = []
+        stats = {"archive_read_hits": 0, "archive_read_misses": 0, "archive_read_errors": 0}
+
+        def archive_reader(_key):
+            return None
+
+        def fallback_get(path, params=None, **kwargs):
+            calls.append((path, params, kwargs))
+            return {"response": []}
+
+        get = m.make_archive_first_get(fallback_get, stats, archive_reader=archive_reader)
+        payload = get("/fixtures/statistics", {"fixture": "123"}, archive_first=True)
+        self.assertEqual(payload, {"response": []})
+        self.assertEqual(len(calls), 1)
+        self.assertNotIn("archive_first", calls[0][2])
+        self.assertEqual(stats["archive_read_hits"], 0)
+        self.assertEqual(stats["archive_read_misses"], 1)
+
     def test_eligible_bridge_fixtures_deduplicates_and_respects_min_season(self):
         rows = [
             {
