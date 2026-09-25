@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-09-25T18:00:41Z",
-  "generated_at_local": "2026-09-25T20:00:41+02:00",
+  "generated_at_utc": "2026-09-25T19:01:13Z",
+  "generated_at_local": "2026-09-25T21:01:13+02:00",
   "timezone": "Europe/Berlin",
   "status": "OK",
   "summary": {
@@ -9,9 +9,9 @@
     "blue_canonical": 4,
     "active_canonical": 4,
     "active_watch_crossings": 0,
-    "nearest_monitored_rows": 0,
+    "nearest_monitored_rows": 1,
     "recent_results": 3,
-    "market_cards": 6
+    "market_cards": 11
   },
   "red": [],
   "orange": [],
@@ -26,7 +26,7 @@
       "fixture_id": "1550143",
       "kickoff_utc": "2026-10-11T13:00:00Z",
       "kickoff_local": "11.10 15:00",
-      "hours_to_kickoff": 378.99,
+      "hours_to_kickoff": 377.98,
       "home_team": "Lecce",
       "away_team": "Bologna",
       "selection": "П2",
@@ -46,7 +46,7 @@
       "fixture_id": "1550145",
       "kickoff_utc": "2026-10-11T16:00:00Z",
       "kickoff_local": "11.10 18:00",
-      "hours_to_kickoff": 381.99,
+      "hours_to_kickoff": 380.98,
       "home_team": "Sassuolo",
       "away_team": "AC Milan",
       "selection": "П2",
@@ -66,7 +66,7 @@
       "fixture_id": "1550145",
       "kickoff_utc": "2026-10-11T16:00:00Z",
       "kickoff_local": "11.10 18:00",
-      "hours_to_kickoff": 381.99,
+      "hours_to_kickoff": 380.98,
       "home_team": "Sassuolo",
       "away_team": "AC Milan",
       "selection": "П2",
@@ -86,7 +86,7 @@
       "fixture_id": "1550138",
       "kickoff_utc": "2026-10-11T18:45:00Z",
       "kickoff_local": "11.10 20:45",
-      "hours_to_kickoff": 384.74,
+      "hours_to_kickoff": 383.73,
       "home_team": "Cagliari",
       "away_team": "Juventus",
       "selection": "П2",
@@ -98,7 +98,23 @@
     }
   ],
   "watch": [],
-  "nearest_monitored": [],
+  "nearest_monitored": [
+    {
+      "type": "MONITOR",
+      "stage": "Stage62",
+      "priority": "GRAY",
+      "league": "Бундеслига",
+      "fixture_id": "1575176",
+      "kickoff_utc": "2026-10-09T18:30:00Z",
+      "kickoff_local": "09.10 20:30",
+      "hours_to_kickoff": 335.48,
+      "home_team": "Borussia Dortmund",
+      "away_team": "Werder Bremen",
+      "market": "ТБ(2.5) steam",
+      "opener": "Bet365 ТБ 1.4 / ТМ 3.0",
+      "status": "наблюдение; crossing пока не зафиксирован"
+    }
+  ],
   "recent_results": [
     {
       "source": "CANONICAL",
@@ -446,12 +462,287 @@
       "fixture_status": "NS",
       "status": "MARKET_VIEW_ONLY",
       "creates_signal": false
+    },
+    {
+      "fixture_id": "1575176",
+      "league": "Bundesliga",
+      "league_id": "78",
+      "country": "Germany",
+      "home_team": "Borussia Dortmund",
+      "away_team": "Werder Bremen",
+      "kickoff_utc": "2026-10-09T18:30:00+00:00",
+      "kickoff_local": "09.10 18:30 UTC",
+      "markets": [
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 · П1: 1.36 | Х: 5.25 | П2: 7 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-09-19T15:30:59Z",
+          "api_update_utc": "2026-09-19T14:37:14+00:00",
+          "source": "stage71_research_trigger_ledger.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 · ТБ(2.5): 1.4 | ТМ(2.5): 3 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-09-25T18:51:24Z",
+          "api_update_utc": "2026-09-20T17:09:14+00:00",
+          "source": "stage62_ou_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 · ТБ(2.5): 1.34 | ТМ(2.5): 2.93 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-09-25T18:51:24Z",
+          "api_update_utc": "2026-09-20T17:09:14+00:00",
+          "source": "stage62_ou_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TEAM_TOTAL",
+          "text": "ИТБ/ИТМ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х/Х2/12 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP",
+          "text": "Европейская фора — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф(0) — нет данных",
+          "status": "NO_DATA"
+        }
+      ],
+      "fixture_status": "NS",
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
+    },
+    {
+      "fixture_id": "1553188",
+      "league": "Ekstraklasa",
+      "league_id": "106",
+      "country": "Poland",
+      "home_team": "Raków Częstochowa",
+      "away_team": "GKS Katowice",
+      "kickoff_utc": "2026-10-09T18:30:00+00:00",
+      "kickoff_local": "09.10 18:30 UTC",
+      "markets": [
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TEAM_TOTAL",
+          "text": "ИТБ/ИТМ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х/Х2/12 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP",
+          "text": "Европейская фора — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф(0) — нет данных",
+          "status": "NO_DATA"
+        }
+      ],
+      "fixture_status": "NS",
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
+    },
+    {
+      "fixture_id": "1558644",
+      "league": "Belgian Pro League",
+      "league_id": "144",
+      "country": "Belgium",
+      "home_team": "SK Beveren",
+      "away_team": "Lommel United",
+      "kickoff_utc": "2026-10-09T18:45:00+00:00",
+      "kickoff_local": "09.10 18:45 UTC",
+      "markets": [
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TEAM_TOTAL",
+          "text": "ИТБ/ИТМ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х/Х2/12 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP",
+          "text": "Европейская фора — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф(0) — нет данных",
+          "status": "NO_DATA"
+        }
+      ],
+      "fixture_status": "NS",
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
+    },
+    {
+      "fixture_id": "1552775",
+      "league": "Ligue 1",
+      "league_id": "61",
+      "country": "France",
+      "home_team": "Lens",
+      "away_team": "Lyon",
+      "kickoff_utc": "2026-10-09T18:45:00+00:00",
+      "kickoff_local": "09.10 18:45 UTC",
+      "markets": [
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 · П1: 2.25 | Х: 3.5 | П2: 2.88 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-09-20T07:30:26Z",
+          "api_update_utc": "2026-09-20T05:18:14+00:00",
+          "source": "stage71_research_trigger_ledger.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TEAM_TOTAL",
+          "text": "ИТБ/ИТМ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х/Х2/12 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP",
+          "text": "Европейская фора — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф(0) — нет данных",
+          "status": "NO_DATA"
+        }
+      ],
+      "fixture_status": "NS",
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
+    },
+    {
+      "fixture_id": "1570408",
+      "league": "La Liga",
+      "league_id": "140",
+      "country": "Spain",
+      "home_team": "Malaga",
+      "away_team": "Espanyol",
+      "kickoff_utc": "2026-10-09T19:00:00+00:00",
+      "kickoff_local": "09.10 19:00 UTC",
+      "markets": [
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 · П1: 2.35 | Х: 3.2 | П2: 3 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-09-20T15:30:51Z",
+          "api_update_utc": "2026-09-20T13:47:16+00:00",
+          "source": "stage71_research_trigger_ledger.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TEAM_TOTAL",
+          "text": "ИТБ/ИТМ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х/Х2/12 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP",
+          "text": "Европейская фора — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф(0) — нет данных",
+          "status": "NO_DATA"
+        }
+      ],
+      "fixture_status": "NS",
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
     }
   ],
   "governance": {
-    "system_health": "WARN",
-    "health_critical": 0,
-    "health_warnings": 3,
+    "system_health": "CRITICAL",
+    "health_critical": 1,
+    "health_warnings": 2,
     "logical_exposure_u": 3.0,
     "canonical_conflict_fixtures": 0,
     "deduplicated_overlap_u": 1.0,
