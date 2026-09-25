@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-25T14:55:43Z",
+  "generated_at_utc": "2026-09-25T16:54:34Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -37,7 +37,7 @@
     "team_stats": {
       "file": "team_match_statistics.csv",
       "present": true,
-      "rows": 660
+      "rows": 1044
     },
     "stage81_backlog": {
       "file": "stage81_team_stats_backlog.csv",
@@ -337,15 +337,15 @@
   "stage81_backlog": {
     "present": true,
     "total_fixtures": 13477,
-    "pending_fixtures": 13147,
-    "captured_fixtures": 330,
+    "pending_fixtures": 12955,
+    "captured_fixtures": 522,
     "captured_without_complete_ledger": 0,
     "oldest_pending_first_queued_at_utc": "2026-09-17T10:41:55Z",
     "evidence_note": "Pending means PBK observed a terminal fixture but has not yet persisted complete HOME+AWAY /fixtures/statistics evidence."
   },
   "team_statistics": {
-    "rows": 660,
-    "complete_fixture_count": 330,
+    "rows": 1044,
+    "complete_fixture_count": 522,
     "finished_current_inventory_with_team_stats": 0,
     "finished_current_inventory_team_stats_coverage_pct": 0.0,
     "evidence_note": "Complete means HOME and AWAY team rows exist; individual missing provider metrics remain UNKNOWN."
@@ -354,8 +354,8 @@
     "team_xg_source": "API-Football /fixtures/statistics expected_goals",
     "team_xg_rows": 46,
     "team_xg_complete_fixture_count": 23,
-    "team_stats_complete_fixture_count": 330,
-    "team_xg_captured_fixture_coverage_pct": 6.97,
+    "team_stats_complete_fixture_count": 522,
+    "team_xg_captured_fixture_coverage_pct": 4.41,
     "finished_current_inventory_with_team_xg": 0,
     "finished_current_inventory_team_xg_coverage_pct": 0.0,
     "team_xg_evidence_note": "Verified provider field when present; API-Football may return it as missing for some competitions or fixtures and PBK preserves missing as UNKNOWN.",
