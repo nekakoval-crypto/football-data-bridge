@@ -224,6 +224,25 @@ class HistoricalLineupInjuryBackfillTests(unittest.TestCase):
         self.assertEqual(len(rows), 1)
         self.assertEqual(rows[0]["player_id"], "3")
 
+
+    def test_historical_lineup_injury_requests_archive_first(self):
+        calls = []
+
+        def fake_get(path, params, **kwargs):
+            calls.append((path, params, kwargs))
+            return {"response": []}
+
+        h.provider_get_with_timeout(
+            fake_get,
+            h.ENDPOINT_LINEUPS,
+            "123",
+            timeout_seconds=0,
+        )
+
+        self.assertEqual(len(calls), 1)
+        self.assertTrue(calls[0][2]["archive_first"])
+        self.assertFalse(calls[0][2]["force_refresh"])
+
     def test_quota_error_stops_batch(self):
         tasks = [
             (self.fixture("1"), h.ENDPOINT_LINEUPS),
