@@ -114,6 +114,7 @@ class ApiFootballBroker:
             "cache_misses": 0, "retries": 0, "errors": 0,
             "budget_rejections": 0, "real_calls_by_path": {},
             "archive_observations": 0, "archive_blob_dedup_hits": 0,
+            "provider_successes": 0, "archive_write_successes": 0,
             "archive_manifest_dedup_hits": 0, "archive_errors": 0,
             "archive_read_hits": 0, "archive_read_misses": 0,
             "archive_read_errors": 0,
@@ -189,6 +190,7 @@ class ApiFootballBroker:
             self._stats["archive_last_observation_path"] = result.get("observation_path")
             self._stats["archive_last_blob_path"] = result.get("blob_path")
             self._stats["archive_last_payload_sha256"] = result.get("payload_sha256")
+            self._stats["archive_write_successes"] += 1
             if result.get("manifest_appended"):
                 self._stats["archive_observations"] += 1
             else:
@@ -272,6 +274,7 @@ class ApiFootballBroker:
                     self._stats["archive_read_errors"] += 1
                     payload = None
                 if payload is not None:
+                    self._stats["provider_successes"] += 1
                     fetched = _utc_timestamp()
                     expires = fetched + max(0.0, ttl)
                     if ttl > 0:
