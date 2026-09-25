@@ -1,0 +1,86 @@
+name: Stage 80 Raw Archive Request Index
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/stage80_raw_archive_request_index.py'
+      - 'scripts/tests/test_stage80_raw_archive_request_index.py'
+      - '.github/workflows/stage80-raw-archive-request-index.yml'
+  pull_request:
+    paths:
+      - 'scripts/stage80_raw_archive_request_index.py'
+      - 'scripts/tests/test_stage80_raw_archive_request_index.py'
+      - '.github/workflows/stage80-raw-archive-request-index.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and test
+        run: |
+          python -m py_compile scripts/stage80_raw_archive_request_index.py
+          python -m unittest scripts.tests.test_stage80_raw_archive_request_index -v
+      - name: Provider isolation
+        shell: bash
+        run: |
+          if grep -nE 'api-sports\.io|API_FOOTBALL_KEY|requests\.|urllib\.' scripts/stage80_raw_archive_request_index.py; then
+            echo 'Request-index backfill must remain provider-free.' >&2
+            exit 1
+          fi
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then exit 1; fi
+
+  backfill:
+    needs: validate
+    if: github.event_name != 'pull_request'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      OPS_DIR: ops
+      PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+      PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+      PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+      PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+      PBK_RAW_ARCHIVE_S3_PREFIX: api-football-raw
+      PBK_RAW_ARCHIVE_S3_REGION: auto
+      PBK_RAW_ARCHIVE_INDEX_WORKERS: '24'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check boto3
+      - name: Build request index from existing observations
+        run: python scripts/stage80_raw_archive_request_index.py
+      - name: Publish readiness proof
+        shell: bash
+        run: |
+          git config user.name 'stage80-raw-archive-bot'
+          git config user.email 'stage80-raw-archive-bot@users.noreply.github.com'
+          git add ops/stage80_raw_archive_request_index_last_run.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stage 80 raw archive request index update'
+          python scripts/publish_operational_commit.py
