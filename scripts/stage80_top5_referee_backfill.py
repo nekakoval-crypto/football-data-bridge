@@ -379,6 +379,8 @@ def run(config_path=CONFIG, get=api_get, now=None):
         }
     referee_rows=sum(bool(str(r.get("referee") or "").strip()) for r in archive)
     broker_stats=get_broker().stats() if get is api_get else {}
+    if int(broker_stats.get("archive_errors") or 0) > 0:
+        warnings.append(f"raw archive write failures: {broker_stats.get('archive_errors')}")
     meta={
         "version":VERSION,"run_at_utc":iso_now(),
         "status":"OK" if pending==0 else "COLLECTING",
