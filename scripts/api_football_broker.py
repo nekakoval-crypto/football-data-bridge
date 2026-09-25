@@ -274,7 +274,6 @@ class ApiFootballBroker:
                     self._stats["archive_read_errors"] += 1
                     payload = None
                 if payload is not None:
-                    self._stats["provider_successes"] += 1
                     fetched = _utc_timestamp()
                     expires = fetched + max(0.0, ttl)
                     if ttl > 0:
@@ -317,6 +316,7 @@ class ApiFootballBroker:
                         raise ApiFootballProviderError(f"API-Football returned non-JSON object for {path}")
                     if payload.get("errors"):
                         raise ApiFootballProviderError(f"API-Football {path}: {payload['errors']}")
+                    self._stats["provider_successes"] += 1
                     fetched = _utc_timestamp()
                     expires = fetched + max(0.0, ttl)
                     self._memory[key] = (fetched, expires, payload)
