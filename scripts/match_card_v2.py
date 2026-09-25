@@ -14,6 +14,7 @@ from formation_research import read_audit
 from lineup_surprise import build_surprise_context
 from player_grade_context import build_player_grade_context
 from style_matchup_passport import build_style_matchup_passport
+from factor_registry import build_factor_registry
 
 CARD_VERSION = _core.CARD_VERSION
 MARKET_FAMILY_ORDER = _core.MARKET_FAMILY_ORDER
@@ -118,6 +119,7 @@ def build_match_card(conn, fixture_id):
     payload["lineup_surprise"] = surprise
     payload["player_grade"] = player_grade
     payload["style_matchup"] = style_matchup
+    payload["factor_registry"] = build_factor_registry(payload)
 
     coverage = payload.setdefault("coverage", {})
     optional = coverage.setdefault("optional_sections", {})
@@ -125,6 +127,7 @@ def build_match_card(conn, fixture_id):
     optional["lineup_surprise"] = bool(surprise.get("available"))
     optional["player_grade"] = bool(player_grade.get("available"))
     optional["style_matchup"] = bool(style_matchup.get("available"))
+    optional["factor_registry"] = True
     extension_limitations = []
     if not lineup.get("available"):
         extension_limitations.append("LINEUP_CONTEXT_UNAVAILABLE")
@@ -146,6 +149,9 @@ def build_match_card(conn, fixture_id):
         "style_matchup_validated_claim_allowed": False,
         "matchup_grade_authorized": False,
         "manual_lineup_scenario_what_if_only": True,
+        "factor_registry_read_only": True,
+        "factor_registry_aggregate_score_authorized": False,
+        "factor_registry_double_counting_guard": True,
         "provider_polling": False,
         "probability_mutation": False,
         "eligibility_mutation": False,
