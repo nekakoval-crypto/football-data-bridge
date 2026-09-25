@@ -25,7 +25,7 @@ from pathlib import Path
 import stage53_daily_screener as s53
 import stage71_observation_audit as audit
 import stage77_player_stats_capture as current
-from api_football_broker import ApiFootballBrokerError
+from api_football_broker import ApiFootballBrokerError, make_archive_before_budget_get, get_broker
 
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
@@ -544,12 +544,22 @@ def main():
         ),
     )
 
+    archive_stats = {
+        "archive_read_hits": 0,
+        "archive_read_misses": 0,
+        "archive_read_errors": 0,
+    }
+    historical_get = make_archive_before_budget_get(
+        budget,
+        archive_stats,
+    )
+
     result = run_capture(
         candidates,
         existing_stats,
         existing_grades,
         state,
-        budget,
+        historical_get,
         now,
         max_calls,
         no_data_cell_threshold,
@@ -620,6 +630,12 @@ def main():
         )
     )
 
+    broker_stats = get_broker().stats()
+    if int(broker_stats.get("archive_errors") or 0) > 0:
+        result["warnings"].append(
+            f"raw archive write failures: {broker_stats.get('archive_errors')}"
+        )
+
     meta = {
         "version": VERSION,
         "run_at_utc": iso(now),
@@ -630,6 +646,18 @@ def main():
         ),
         "provider_endpoint": "/fixtures/players",
         "provider_calls": budget.calls,
+        "provider_successes": broker_stats.get("provider_successes"),
+        "archive_write_successes": broker_stats.get("archive_write_successes"),
+        "archive_write_failures": broker_stats.get("archive_errors"),
+        "provider_archive_write_through_ok": (
+            broker_stats.get("provider_successes")
+            == (broker_stats.get("archive_write_successes") or 0)
+            + (broker_stats.get("archive_errors") or 0)
+        ),
+        "archive_first_enabled": True,
+        "archive_read_hits": archive_stats["archive_read_hits"],
+        "archive_read_misses": archive_stats["archive_read_misses"],
+        "archive_read_errors": archive_stats["archive_read_errors"],
         "daily_api_calls": shared_state.get(
             "api_day_calls",
             0,
@@ -686,7 +714,6 @@ def main():
         "warnings": result["warnings"],
         "historical_backfill_only": True,
         "raw_archive_via_shared_broker": True,
-        "archive_first_enabled": True,
         "research_only": True,
         "operational_betting_authority": False,
         "no_lookahead": True,
