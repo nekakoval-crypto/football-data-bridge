@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-25T16:27:26Z",
+  "run_at_utc": "2026-09-25T18:27:07Z",
   "status": "ATTENTION",
   "provider_endpoint": "/players/squads",
   "provider_calls": 0,
-  "daily_api_calls": 899,
+  "daily_api_calls": 1094,
   "protected_calls": {
     "live": 0,
     "current_round": 32,
@@ -12,7 +12,12 @@
     "safety": 8,
     "total": 56
   },
-  "roster_ttl_days": 7,
+  "roster_ttl_days": 28,
+  "roster_freshness_policy": "TRANSFER_AWARE_V1",
+  "transfer_sensitive": false,
+  "stable_ttl_days": 28,
+  "sensitive_ttl_days": 3,
+  "transfer_sensitive_periods": "01-01:02-15,06-01:09-10",
   "candidate_teams": 8,
   "captured_teams": [],
   "deferred_teams": 8,
