@@ -15,7 +15,7 @@ from pathlib import Path
 
 import stage53_daily_screener as s53
 import stage71_observation_audit as audit
-from api_football_broker import ApiFootballBrokerError
+from api_football_broker import ApiFootballBrokerError, make_archive_before_budget_get
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 FIXTURES = OPS / "current_round_fixtures.csv"
@@ -265,7 +265,9 @@ def main():
     max_calls=int(os.getenv("STAGE80_EVENT_MAX_API_CALLS","8"))
     daily_limit=int(os.getenv("STAGE71_MAX_DAILY_API_CALLS","7000"))
     budget=audit.Budget(s53.api_get,state,now,limit=max_calls,daily_limit=daily_limit,protected_calls=reserve["total"],checkpoint=lambda value:audit.save(SHARED_STATE,value))
-    result=capture(before["rows"],existing,budget,now,int(os.getenv("STAGE80_EVENT_MAX_FIXTURES_PER_RUN",str(max_calls))))
+    archive_stats={"archive_read_hits":0,"archive_read_misses":0,"archive_read_errors":0}
+    historical_get=make_archive_before_budget_get(budget,archive_stats)
+    result=capture(before["rows"],existing,historical_get,now,int(os.getenv("STAGE80_EVENT_MAX_FIXTURES_PER_RUN",str(max_calls))))
     attempted=record_attempts(before["rows"],result["attempts"])
     after=sync_backlog(attempted,[],result["rows"],now)
     write_csv_atomic(EVENTS,EVENT_FIELDS,result["rows"])
@@ -273,7 +275,10 @@ def main():
     audit.save(SHARED_STATE,state)
     meta={
         "version":VERSION,"run_at_utc":iso(now),"status":"ATTENTION" if result["warnings"] else ("WAITING" if result["deferred_fixtures"] else "OK"),
-        "provider_endpoint":"/fixtures/events","provider_calls":budget.calls,"daily_api_calls":state.get("api_day_calls",0),
+        "provider_endpoint":"/fixtures/events","provider_calls":budget.calls,
+        "archive_first_enabled":True,"archive_read_hits":archive_stats["archive_read_hits"],
+        "archive_read_misses":archive_stats["archive_read_misses"],"archive_read_errors":archive_stats["archive_read_errors"],
+        "daily_api_calls":state.get("api_day_calls",0),
         "protected_calls":reserve,"candidate_fixtures":result["candidate_fixtures"],"captured_fixtures":result["captured_fixtures"],
         "captured_fixture_ids":result["captured_fixture_ids"],"deferred_fixtures":result["deferred_fixtures"],
         "attempted_fixtures":len(result["attempts"]),"no_data_attempts":sum(a.get("result")=="NO_DATA" for a in result["attempts"]),
