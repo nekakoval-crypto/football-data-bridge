@@ -48,6 +48,24 @@ class RawArchiveRequestIndexTests(unittest.TestCase):
         self.assertEqual(payload["blob_key"], "blob/hash")
         self.assertEqual(payload["observation_key"], "obs/1")
 
+    def test_online_merge_keeps_latest_without_full_record_list(self):
+        latest = {}
+        self.assertTrue(m.merge_latest(
+            latest, self.record("a", "2026-01-01T00:00:00Z", "old")
+        ))
+        self.assertTrue(m.merge_latest(
+            latest, self.record("a", "2026-01-03T00:00:00Z", "new")
+        ))
+        self.assertTrue(m.merge_latest(
+            latest, self.record("a", "2026-01-02T00:00:00Z", "middle")
+        ))
+        self.assertEqual(latest["a"]["payload_sha256"], "new")
+
+    def test_online_merge_rejects_invalid_record(self):
+        latest = {}
+        self.assertFalse(m.merge_latest(latest, {"request_key_sha256": "broken"}))
+        self.assertEqual(latest, {})
+
 
 if __name__ == "__main__":
     unittest.main()
