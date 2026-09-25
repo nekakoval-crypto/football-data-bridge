@@ -314,9 +314,9 @@ def build_rows(markets, bridge, mechanisms):
 
         if (
             sval(env, "environment_geocode_quality_status")
-            != "VERIFIED_LOCALITY_V3"
+            != "VERIFIED_LOCALITY_V4"
             or sval(env, "environment_geocode_resolver_version")
-            != "PBK_GEOCODE_V3"
+            != "PBK_GEOCODE_V4"
         ):
             diag["unverified_environment_geocode"] += 1
             continue

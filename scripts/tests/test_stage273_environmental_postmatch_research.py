@@ -132,7 +132,7 @@ class EnvironmentalPostmatchResearchTests(unittest.TestCase):
         self.assertEqual(m.normalize_place("Nørre Lyngby"), "norre lyngby")
 
     def test_city_query_variants_add_locality_aliases(self):
-        self.assertIn("Norre Lyngby", m.city_query_variants("Lyngby"))
+        self.assertIn("Kongens Lyngby", m.city_query_variants("Lyngby"))
         self.assertIn("Turin", m.city_query_variants("Torino"))
         self.assertIn("Venice", m.city_query_variants("Venezia"))
 
@@ -148,16 +148,25 @@ class EnvironmentalPostmatchResearchTests(unittest.TestCase):
         self.assertGreater(float(result["population"]),100000)
         self.assertEqual(quality,3)
 
-    def test_candidate_selection_prefers_norre_lyngby_alias(self):
-        venue={"team_country":"Denmark","venue_city":"Lyngby"}
-        queries=m.city_query_variants("Lyngby")
-        candidates=[
-            {"name":"Lyngby","country":"Denmark","country_code":"DK","latitude":56.87,"longitude":8.315,"population":0,"feature_code":"PPL"},
-            {"name":"Nørre Lyngby","country":"Denmark","country_code":"DK","latitude":55.77,"longitude":12.50,"population":20000,"feature_code":"PPLA2"},
+    def test_candidate_selection_prefers_canonical_locality_aliases(self):
+        cases=[
+            ("Lyngby","Kongens Lyngby","Denmark","DK",55.77,12.50),
+            ("Villarreal","Vila-real","Spain","ES",39.94,-0.10),
+            ("Kocaeli","Izmit","Turkey","TR",40.77,29.92),
+            ("Torino","Turin","Italy","IT",45.07,7.69),
+            ("Venezia","Venice","Italy","IT",45.44,12.33),
         ]
-        result,quality=m.select_geocode_candidate(candidates,venue,queries)
-        self.assertEqual(result["name"],"Nørre Lyngby")
-        self.assertEqual(quality,3)
+        for venue_city,major_name,country,code,lat,lon in cases:
+            with self.subTest(venue_city=venue_city):
+                venue={"team_country":country,"venue_city":venue_city}
+                queries=m.city_query_variants(venue_city)
+                candidates=[
+                    {"name":venue_city,"country":country,"country_code":code,"latitude":57.0,"longitude":9.0,"population":10,"feature_code":"PPL"},
+                    {"name":major_name,"country":country,"country_code":code,"latitude":lat,"longitude":lon,"population":50000,"feature_code":"PPLA"},
+                ]
+                result,quality=m.select_geocode_candidate(candidates,venue,queries)
+                self.assertEqual(result["name"],major_name)
+                self.assertEqual(quality,3)
 
     def test_candidate_selection_prefers_turin_and_venice_aliases(self):
         cases=[
@@ -272,7 +281,7 @@ class EnvironmentalPostmatchResearchTests(unittest.TestCase):
             datetime(2026,9,24,tzinfo=timezone.utc),
             ["Unknownville"],
         )
-        self.assertEqual(row["geocode_quality_status"],"UNRESOLVED_V3")
+        self.assertEqual(row["geocode_quality_status"],"UNRESOLVED_V4")
         self.assertEqual(row["resolver_version"],m.GEOCODE_RESOLVER_VERSION)
         self.assertEqual(
             m.unresolved_geocache_venue_ids([row]),
