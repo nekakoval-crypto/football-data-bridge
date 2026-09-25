@@ -15,7 +15,7 @@ from pathlib import Path
 
 import stage53_daily_screener as s53
 import stage71_observation_audit as audit
-from api_football_broker import ApiFootballBrokerError, make_archive_before_budget_get
+from api_football_broker import ApiFootballBrokerError, make_archive_before_budget_get, get_broker
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 FIXTURES = OPS / "current_round_fixtures.csv"
@@ -273,9 +273,13 @@ def main():
     write_csv_atomic(EVENTS,EVENT_FIELDS,result["rows"])
     write_csv_atomic(BACKLOG,BACKLOG_FIELDS,after["rows"])
     audit.save(SHARED_STATE,state)
+    broker_stats=get_broker().stats()
     meta={
         "version":VERSION,"run_at_utc":iso(now),"status":"ATTENTION" if result["warnings"] else ("WAITING" if result["deferred_fixtures"] else "OK"),
         "provider_endpoint":"/fixtures/events","provider_calls":budget.calls,
+        "provider_successes":broker_stats.get("provider_successes"),"archive_write_successes":broker_stats.get("archive_write_successes"),
+        "archive_write_failures":broker_stats.get("archive_errors"),
+        "provider_archive_write_through_ok":broker_stats.get("provider_successes") == (broker_stats.get("archive_write_successes") or 0) + (broker_stats.get("archive_errors") or 0),
         "archive_first_enabled":True,"archive_read_hits":archive_stats["archive_read_hits"],
         "archive_read_misses":archive_stats["archive_read_misses"],"archive_read_errors":archive_stats["archive_read_errors"],
         "daily_api_calls":state.get("api_day_calls",0),
