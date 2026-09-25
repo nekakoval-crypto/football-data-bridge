@@ -459,6 +459,8 @@ def run(
     )
 
     broker_stats = get_broker().stats() if get is api_get else {}
+    if int(broker_stats.get("archive_errors") or 0) > 0:
+        warnings.append(f"raw archive write failures: {broker_stats.get('archive_errors')}")
     tier_state = defaultdict(Counter)
     for row in state:
         tier_state[sval(row, "evidence_tier")][sval(row, "status")] += 1
