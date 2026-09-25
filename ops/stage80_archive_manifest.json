@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-25T00:39:17Z",
+  "generated_at_utc": "2026-09-25T00:43:37Z",
   "status": "OK",
   "datasets": [
     {
@@ -422,7 +422,7 @@
       "source": "Stage80 residual /players?id&season capture state",
       "limitations": "Operational retry ledger only. EMPTY responses are retried after a bounded TTL; transient ERROR rows remain retryable. Never betting/model authority.",
       "present": true,
-      "row_count": 715,
+      "row_count": 716,
       "columns": [
         "season",
         "player_id",
@@ -1549,7 +1549,7 @@
       "source": "Stage80 conservative PBK ↔ Transfermarkt AUTO_MATCH/HIGH identity projection",
       "limitations": "Identity bridge only. Approved methods include exact catalog name+club, exact API-Football profile full-name+DOB+club, or exact non-abbreviated match-stat name+club; no fuzzy authority and no betting/model authority.",
       "present": true,
-      "row_count": 5287,
+      "row_count": 5286,
       "columns": [
         "pbk_player_id",
         "pbk_player_name",

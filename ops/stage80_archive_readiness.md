@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-25T00:39:28Z
+Обновлено UTC: 2026-09-25T00:43:46Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -21,7 +21,7 @@
 - Player profile evidence: 3747 rows (3625 team-source + 122 residual-ID) / 3640 players / 129 teams; current-roster coverage 85.24%; identity-ready 3377 players (79.53%).
 - Roster history: 130 команд / 146 team-snapshots / 4512 строк.
 - Membership intervals: 4016 (open 4012, closed-by-observed-absence 4).
-- Verified PBK↔Transfermarkt identities: 4887 rows / 4887 PBK players; invalid 400.
+- Verified PBK↔Transfermarkt identities: 4886 rows / 4886 PBK players; invalid 400.
 - Verified historical transfers: 32713 rows / 3982 PBK players; dates 1994-07-01 → 2027-06-30; invalid 5284.
 - EPL referee research: 47 referees / 897 referee×team pairs / 3420 source matches; scope EPL_ONLY; penalties unavailable.
 - Top-5 API-Football referee backfill: 45 / 45 league-seasons; 16239 fixture rows; referee coverage 99.44%; profiles 453; referee×team pairs 7689.
