@@ -10,7 +10,7 @@ from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from api_football_broker import ApiFootballBroker
-from api_football_raw_archive import archive_response, payload_sha256
+from api_football_raw_archive import archive_response, payload_sha256, read_archived_response
 
 
 class RawArchiveTests(unittest.TestCase):
@@ -111,6 +111,58 @@ class RawArchiveTests(unittest.TestCase):
         self.assertNotIn("headers", row)
         self.assertNotIn("api_key", row)
         self.assertEqual(row["path"], "/fixtures/players")
+
+
+    def test_s3_request_index_supports_verified_archive_read(self):
+        class Body:
+            def __init__(self, value):
+                self.value = value
+            def read(self):
+                return self.value
+
+        class Missing(Exception):
+            def __init__(self):
+                self.response = {
+                    "Error": {"Code": "NoSuchKey"},
+                    "ResponseMetadata": {"HTTPStatusCode": 404},
+                }
+
+        class FakeS3:
+            def __init__(self):
+                self.objects = {}
+            def head_object(self, *, Bucket, Key):
+                if Key not in self.objects:
+                    raise Missing()
+                return {}
+            def put_object(self, *, Bucket, Key, Body, **kwargs):
+                self.objects[Key] = Body
+                return {}
+            def get_object(self, *, Bucket, Key):
+                if Key not in self.objects:
+                    raise Missing()
+                return {"Body": Body(self.objects[Key])}
+
+        fake = FakeS3()
+        env = {
+            "PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID": "a",
+            "PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY": "b",
+            "PBK_RAW_ARCHIVE_S3_ENDPOINT": "https://example.invalid",
+            "PBK_RAW_ARCHIVE_S3_BUCKET": "bucket",
+            "PBK_RAW_ARCHIVE_S3_PREFIX": "test-archive",
+        }
+        key = '["GET","/fixtures/players",[["fixture","123"]]]'
+        with patch.dict(os.environ, env, clear=False):
+            result = archive_response(
+                request_key=key,
+                path="/fixtures/players",
+                normalized_params=(("fixture", "123"),),
+                payload=self.payload,
+                fetched_at=1_789_480_000,
+                s3_client=fake,
+            )
+            self.assertIn("request_index_path", result)
+            restored = read_archived_response(key, client=fake)
+        self.assertEqual(restored, self.payload)
 
     def test_archive_failure_is_telemetry_only_and_valid_provider_response_survives(self):
         bad_root = Path(self.temp.name) / "not-a-directory"
