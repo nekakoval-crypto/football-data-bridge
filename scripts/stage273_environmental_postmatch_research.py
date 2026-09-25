@@ -1147,6 +1147,60 @@ def run(captured_at: datetime | None = None) -> dict[str, Any]:
                 repaired_snapshot_by_fixture[fixture_id] = repaired
                 diagnostics["snapshots_repaired_geocode_drift"] += 1
 
+    # V4 snapshot synchronization must not depend on legacy geocache rows still
+    # being present. Once the cache is fully V4, old snapshots can still carry
+    # V2/V3 metadata and would otherwise be rejected by Stage276 forever.
+    for snapshot in existing_snapshots:
+        if str(snapshot.get("geocode_resolver_version") or "") == GEOCODE_RESOLVER_VERSION:
+            continue
+
+        fixture_id = str(snapshot.get("fixture_id") or "").strip()
+        venue_id = str(snapshot.get("venue_id") or "").strip()
+        if not fixture_id or not venue_id:
+            diagnostics["snapshot_sync_identity_missing"] += 1
+            continue
+
+        resolved = geocache.get(venue_id)
+        if not resolved:
+            diagnostics["snapshot_sync_verified_geocache_missing"] += 1
+            continue
+
+        drift = snapshot_geocode_drift_km(snapshot, resolved)
+        if drift is not None and drift <= GEOCODE_REPAIR_DISTANCE_KM:
+            metadata_snapshot_by_fixture[fixture_id] = propagate_snapshot_geocode_metadata(
+                snapshot,
+                resolved,
+            )
+            diagnostics["snapshots_geocode_metadata_upgraded_from_current_cache"] += 1
+            continue
+
+        if drift is None:
+            diagnostics["snapshot_sync_geocode_drift_unknown"] += 1
+            continue
+
+        fixture = fixtures.get(fixture_id)
+        venue = venues_by_id.get(venue_id)
+        if not fixture or not venue:
+            diagnostics["snapshot_sync_repair_context_missing"] += 1
+            continue
+
+        try:
+            repaired = fetch_fixture_environment(
+                config,
+                fixture,
+                venue,
+                resolved,
+                captured_at,
+            )
+            diagnostics["snapshot_sync_weather_calls"] += 1
+        except Exception:
+            diagnostics["snapshot_sync_weather_error"] += 1
+            continue
+
+        if repaired:
+            repaired_snapshot_by_fixture[fixture_id] = repaired
+            diagnostics["snapshots_repaired_from_current_cache"] += 1
+
     if repaired_snapshot_by_fixture or metadata_snapshot_by_fixture:
         existing_snapshots = [
             repaired_snapshot_by_fixture.get(
