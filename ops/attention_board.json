@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-09-25T17:00:31Z",
-  "generated_at_local": "2026-09-25T19:00:31+02:00",
+  "generated_at_utc": "2026-09-25T18:00:41Z",
+  "generated_at_local": "2026-09-25T20:00:41+02:00",
   "timezone": "Europe/Berlin",
   "status": "OK",
   "summary": {
@@ -11,7 +11,7 @@
     "active_watch_crossings": 0,
     "nearest_monitored_rows": 0,
     "recent_results": 3,
-    "market_cards": 4
+    "market_cards": 6
   },
   "red": [],
   "orange": [],
@@ -26,7 +26,7 @@
       "fixture_id": "1550143",
       "kickoff_utc": "2026-10-11T13:00:00Z",
       "kickoff_local": "11.10 15:00",
-      "hours_to_kickoff": 379.99,
+      "hours_to_kickoff": 378.99,
       "home_team": "Lecce",
       "away_team": "Bologna",
       "selection": "П2",
@@ -46,7 +46,7 @@
       "fixture_id": "1550145",
       "kickoff_utc": "2026-10-11T16:00:00Z",
       "kickoff_local": "11.10 18:00",
-      "hours_to_kickoff": 382.99,
+      "hours_to_kickoff": 381.99,
       "home_team": "Sassuolo",
       "away_team": "AC Milan",
       "selection": "П2",
@@ -66,7 +66,7 @@
       "fixture_id": "1550145",
       "kickoff_utc": "2026-10-11T16:00:00Z",
       "kickoff_local": "11.10 18:00",
-      "hours_to_kickoff": 382.99,
+      "hours_to_kickoff": 381.99,
       "home_team": "Sassuolo",
       "away_team": "AC Milan",
       "selection": "П2",
@@ -86,7 +86,7 @@
       "fixture_id": "1550138",
       "kickoff_utc": "2026-10-11T18:45:00Z",
       "kickoff_local": "11.10 20:45",
-      "hours_to_kickoff": 385.74,
+      "hours_to_kickoff": 384.74,
       "home_team": "Cagliari",
       "away_team": "Juventus",
       "selection": "П2",
@@ -307,6 +307,110 @@
           "market": "MATCH_WINNER",
           "text": "1X2 — нет данных",
           "status": "NO_DATA"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TEAM_TOTAL",
+          "text": "ИТБ/ИТМ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х/Х2/12 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP",
+          "text": "Европейская фора — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф(0) — нет данных",
+          "status": "NO_DATA"
+        }
+      ],
+      "fixture_status": "NS",
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
+    },
+    {
+      "fixture_id": "1575516",
+      "league": "Primeira Liga",
+      "league_id": "94",
+      "country": "Portugal",
+      "home_team": "Moreirense",
+      "away_team": "GIL Vicente",
+      "kickoff_utc": "2026-10-09T17:45:00+00:00",
+      "kickoff_local": "09.10 17:45 UTC",
+      "markets": [
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TEAM_TOTAL",
+          "text": "ИТБ/ИТМ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х/Х2/12 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP",
+          "text": "Европейская фора — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф(0) — нет данных",
+          "status": "NO_DATA"
+        }
+      ],
+      "fixture_status": "NS",
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
+    },
+    {
+      "fixture_id": "1552180",
+      "league": "Eredivisie",
+      "league_id": "88",
+      "country": "Netherlands",
+      "home_team": "PSV Eindhoven",
+      "away_team": "Heerenveen",
+      "kickoff_utc": "2026-10-09T18:00:00+00:00",
+      "kickoff_local": "09.10 18:00 UTC",
+      "markets": [
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 · П1: 1.22 | Х: 6.5 | П2: 9.5 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-09-20T07:30:24Z",
+          "api_update_utc": "2026-09-20T05:17:21+00:00",
+          "source": "stage71_research_trigger_ledger.csv",
+          "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "TOTAL",
