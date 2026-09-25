@@ -2,6 +2,12 @@ name: Stage 80 International Duty Unified Orchestration
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/stage80-international-duty-unified-orchestration.yml'
+      - 'scripts/tests/test_stage80_international_duty_unified_orchestration.py'
   schedule:
     - cron: '37 */12 * * *'
   pull_request:
