@@ -31,9 +31,15 @@ LEDGER = OPS / "team_match_statistics.csv"
 BACKLOG = OPS / "stage81_team_stats_backlog.csv"
 SHARED_STATE = OPS / "stage71_observation_state.json"
 META = OPS / "stage292_environmental_historical_backfill_last_run.json"
+MARKETS = Path(
+    os.getenv(
+        "STAGE292_MARKETS_PATH",
+        "normalized/football_data_pbk14_9season_matches.csv",
+    )
+)
 
 MIN_SEASON = int(os.getenv("STAGE292_MIN_SEASON", "2022"))
-MAX_API_CALLS = int(os.getenv("STAGE292_MAX_API_CALLS", "48"))
+MAX_API_CALLS = int(os.getenv("STAGE292_MAX_API_CALLS", "96"))
 MAX_FIXTURES_PER_RUN = int(
     os.getenv("STAGE292_MAX_FIXTURES_PER_RUN", str(MAX_API_CALLS))
 )
@@ -53,8 +59,44 @@ def as_int(value):
         return None
 
 
-def trusted_bridge_fixture(row, venue_team_ids, min_season):
+def as_float(value):
+    try:
+        return float(str(value or "").strip())
+    except (TypeError, ValueError):
+        return None
+
+
+def valid_odds_pair(a, b):
+    x = as_float(a)
+    y = as_float(b)
+    return x is not None and y is not None and x > 1 and y > 1
+
+
+def market_ou25_historical_ids(rows):
+    out = set()
+    for row in rows:
+        historical_match_id = str(row.get("historical_match_id") or "").strip()
+        if not historical_match_id:
+            continue
+        if valid_odds_pair(
+            row.get("avg_close_over_25"),
+            row.get("avg_close_under_25"),
+        ) or valid_odds_pair(
+            row.get("b365_close_over_25"),
+            row.get("b365_close_under_25"),
+        ):
+            out.add(historical_match_id)
+    return out
+
+
+def trusted_bridge_fixture(
+    row,
+    venue_team_ids,
+    min_season,
+    market_historical_ids=None,
+):
     fixture_id = str(row.get("api_fixture_id") or "").strip()
+    historical_match_id = str(row.get("historical_match_id") or "").strip()
     kickoff = str(row.get("api_kickoff_utc") or "").strip()
     season = as_int(row.get("season_start"))
     home_team_id = str(row.get("api_home_team_id") or "").strip()
@@ -71,6 +113,10 @@ def trusted_bridge_fixture(row, venue_team_ids, min_season):
         or one_to_one != "true"
         or fuzzy != "false"
         or home_team_id not in venue_team_ids
+        or (
+            market_historical_ids is not None
+            and historical_match_id not in market_historical_ids
+        )
     ):
         return None
 
@@ -92,7 +138,12 @@ def trusted_bridge_fixture(row, venue_team_ids, min_season):
     }
 
 
-def eligible_bridge_fixtures(bridge_rows, venue_rows, min_season=MIN_SEASON):
+def eligible_bridge_fixtures(
+    bridge_rows,
+    venue_rows,
+    min_season=MIN_SEASON,
+    market_historical_ids=None,
+):
     venue_team_ids = {
         str(row.get("team_id") or "").strip()
         for row in venue_rows
@@ -102,7 +153,12 @@ def eligible_bridge_fixtures(bridge_rows, venue_rows, min_season=MIN_SEASON):
     seen = set()
 
     for row in bridge_rows:
-        fixture = trusted_bridge_fixture(row, venue_team_ids, min_season)
+        fixture = trusted_bridge_fixture(
+            row,
+            venue_team_ids,
+            min_season,
+            market_historical_ids,
+        )
         if not fixture:
             continue
         fixture_id = fixture["fixture_id"]
@@ -124,6 +180,10 @@ def main():
     now = datetime.now(timezone.utc)
     bridge_rows = read_csv(BRIDGE)
     venue_rows = read_csv(VENUES)
+    market_rows = read_csv(MARKETS)
+    if not market_rows:
+        raise RuntimeError(f"Stage292 market baseline missing or empty: {MARKETS}")
+    market_ids = market_ou25_historical_ids(market_rows)
     existing_rows = read_csv(LEDGER)
     existing_backlog = read_csv(BACKLOG)
 
@@ -131,6 +191,7 @@ def main():
         bridge_rows,
         venue_rows,
         MIN_SEASON,
+        market_ids,
     )
     historical_ids = {
         str(row.get("fixture_id") or "").strip()
@@ -211,6 +272,9 @@ def main():
         "min_season": MIN_SEASON,
         "bridge_rows": len(bridge_rows),
         "venue_registry_rows": len(venue_rows),
+        "market_rows": len(market_rows),
+        "market_ou25_historical_ids": len(market_ids),
+        "market_ou25_required": True,
         "eligible_bridge_fixtures": len(historical_fixtures),
         "historical_completed_fixtures": historical_completed,
         "historical_pending_fixtures": historical_pending,
@@ -228,6 +292,7 @@ def main():
             "one_to_one_verified_required": True,
             "fuzzy_string_matching_used": False,
             "home_team_in_pbk16_venue_registry_required": True,
+            "closing_ou25_required": True,
         },
         "weather_scope_reason": (
             "Historical Forecast coverage starts around 2022; older seasons "

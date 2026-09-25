@@ -9,7 +9,7 @@ on:
       - 'scripts/stage292_environmental_historical_backfill.py'
       - '.github/workflows/stage292-environmental-historical-backfill.yml'
   schedule:
-    - cron: '11 */3 * * *'
+    - cron: '11 * * * *'
   pull_request:
     paths:
       - 'scripts/stage292_environmental_historical_backfill.py'
@@ -99,8 +99,9 @@ jobs:
       OPS_DIR: ops
 
       STAGE292_MIN_SEASON: '2022'
-      STAGE292_MAX_API_CALLS: '48'
-      STAGE292_MAX_FIXTURES_PER_RUN: '48'
+      STAGE292_MARKETS_PATH: normalized/football_data_pbk14_9season_matches.csv
+      STAGE292_MAX_API_CALLS: '96'
+      STAGE292_MAX_FIXTURES_PER_RUN: '96'
       STAGE71_MAX_DAILY_API_CALLS: '7000'
       STAGE81_STANDINGS_RESERVE_CALLS: '16'
       STAGE81_PLAYER_STATS_RESERVE_CALLS: '4'
@@ -119,6 +120,16 @@ jobs:
 
       - name: Install raw archive S3 client
         run: python -m pip install --disable-pip-version-check boto3
+
+      - name: Download and normalize historical closing markets
+        run: |
+          mkdir -p source normalized
+          python scripts/stage80_football_data_pbk14_history.py \
+            --config config/stage80_football_data_pbk14_9seasons.json \
+            --download-dir source \
+            --out-csv normalized/football_data_pbk14_9season_matches.csv \
+            --meta-out normalized/stage80_football_data_pbk14_history_meta.json \
+            --fetch
 
       - name: Capture historical environment-research team statistics
         run: python scripts/stage292_environmental_historical_backfill.py
@@ -151,5 +162,6 @@ jobs:
             ops/stage292_environmental_historical_backfill_last_run.json
             ops/team_match_statistics.csv
             ops/stage81_team_stats_backlog.csv
+            normalized/stage80_football_data_pbk14_history_meta.json
           if-no-files-found: warn
           retention-days: 90
