@@ -365,6 +365,7 @@ def run_capture(candidates, existing_stats, existing_grades,
                 {"fixture": fixture_id},
                 ttl_seconds=30 * 24 * 3600,
                 force_refresh=False,
+                archive_first=True,
             )
 
         except audit.ProtectedBudgetError as exc:
@@ -685,6 +686,7 @@ def main():
         "warnings": result["warnings"],
         "historical_backfill_only": True,
         "raw_archive_via_shared_broker": True,
+        "archive_first_enabled": True,
         "research_only": True,
         "operational_betting_authority": False,
         "no_lookahead": True,

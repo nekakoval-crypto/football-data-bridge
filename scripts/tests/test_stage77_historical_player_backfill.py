@@ -206,6 +206,30 @@ class HistoricalPlayerBackfillTests(unittest.TestCase):
             ["3"],
         )
 
+
+    def test_historical_player_backfill_requests_archive_first(self):
+        fixture = self.fixture("1")
+        calls = []
+
+        def fake_get(path, params, **kwargs):
+            calls.append((path, params, kwargs))
+            return {"response": []}
+
+        h.run_capture(
+            [fixture],
+            existing_stats=[],
+            existing_grades=[],
+            state={},
+            get=fake_get,
+            now=h.datetime(2026, 9, 20, tzinfo=h.timezone.utc),
+            limit=1,
+            no_data_cell_threshold=8,
+        )
+
+        self.assertEqual(len(calls), 1)
+        self.assertTrue(calls[0][2]["archive_first"])
+        self.assertFalse(calls[0][2]["force_refresh"])
+
     def test_provider_quota_error_stops_batch_immediately(self):
         candidates = [
             self.fixture("1"),
