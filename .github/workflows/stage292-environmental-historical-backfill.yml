@@ -1,0 +1,128 @@
+name: Stage 292 Environmental Historical Team Stats Backfill
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '11 */3 * * *'
+  pull_request:
+    paths:
+      - 'scripts/stage292_environmental_historical_backfill.py'
+      - 'scripts/tests/test_stage292_environmental_historical_backfill.py'
+      - '.github/workflows/stage292-environmental-historical-backfill.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage71-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile
+        run: |
+          python -m py_compile scripts/stage292_environmental_historical_backfill.py
+          python -m py_compile scripts/tests/test_stage292_environmental_historical_backfill.py
+
+      - name: Tests
+        run: python -m unittest scripts.tests.test_stage292_environmental_historical_backfill -v
+
+      - name: Provider isolation
+        shell: bash
+        run: |
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/stage292_environmental_historical_backfill.py; then
+            echo 'Stage292 must use the shared API-Football broker only.' >&2
+            exit 1
+          fi
+
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then
+            echo 'Generated ops files are forbidden in the Stage292 feature PR.' >&2
+            exit 1
+          fi
+
+  capture:
+    needs: validate
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+      PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+      PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+      PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+      PBK_RAW_ARCHIVE_S3_PREFIX: api-football-raw
+      PBK_RAW_ARCHIVE_S3_REGION: auto
+      OPS_DIR: ops
+
+      STAGE292_MIN_SEASON: '2022'
+      STAGE292_MAX_API_CALLS: '48'
+      STAGE292_MAX_FIXTURES_PER_RUN: '48'
+      STAGE71_MAX_DAILY_API_CALLS: '7000'
+      STAGE81_STANDINGS_RESERVE_CALLS: '16'
+      STAGE81_PLAYER_STATS_RESERVE_CALLS: '4'
+      STAGE81_SAFETY_RESERVE_CALLS: '8'
+      STAGE81_CURRENT_ROUND_CALLS_PER_RUN: '32'
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install raw archive S3 client
+        run: python -m pip install --disable-pip-version-check boto3
+
+      - name: Capture historical environment-research team statistics
+        run: python scripts/stage292_environmental_historical_backfill.py
+
+      - name: Publish historical backfill safely
+        shell: bash
+        run: |
+          git config user.name 'stage292-bot'
+          git config user.email 'stage292-bot@users.noreply.github.com'
+
+          git add \
+            ops/team_match_statistics.csv \
+            ops/stage81_team_stats_backlog.csv \
+            ops/stage71_observation_state.json \
+            ops/stage292_environmental_historical_backfill_last_run.json
+
+          if git diff --cached --quiet; then
+            echo 'No Stage292 archive changes.'
+            exit 0
+          fi
+
+          git commit -m 'Stage 292 environmental historical backfill update'
+          python scripts/publish_operational_commit.py
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage292-environmental-historical-backfill
+          path: |
+            ops/stage292_environmental_historical_backfill_last_run.json
+            ops/team_match_statistics.csv
+            ops/stage81_team_stats_backlog.csv
+          if-no-files-found: warn
+          retention-days: 90
