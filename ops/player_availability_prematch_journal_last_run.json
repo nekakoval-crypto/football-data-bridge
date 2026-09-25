@@ -1,0 +1,35 @@
+{
+  "version": "PBK_PLAYER_AVAILABILITY_PREMATCH_JOURNAL_V1",
+  "run_at_utc": "2026-09-25T17:30:27Z",
+  "status": "OK",
+  "source_snapshots": 14,
+  "eligible_prematch_snapshots": 14,
+  "invalid_time_snapshots": 0,
+  "lookahead_violations": 0,
+  "incoming_events": 130,
+  "new_events": 76,
+  "total_events": 76,
+  "state_counts": {
+    "ABSENT": 54,
+    "PRESENT": 22
+  },
+  "source_counts": {
+    "STAGE55_PREMATCH_INJURY": 54,
+    "STAGE55_OFFICIAL_XI": 22
+  },
+  "invalid_existing_events": 0,
+  "append_only": true,
+  "absence_from_xi_implies_absent": false,
+  "roster_inference_used": false,
+  "nationality_inference_used": false,
+  "travel_inference_used": false,
+  "provider_calls": 0,
+  "no_lookahead": true,
+  "research_only": true,
+  "operational_betting_authority": false,
+  "creates_signal": false,
+  "probability_mutation": false,
+  "eligibility_mutation": false,
+  "stake_changes": false,
+  "forward_journal_mutation": false
+}
