@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_PLAYER_PROFILE_ENRICHMENT_V2_RESIDUAL_ID",
-  "run_at_utc": "2026-09-24T18:37:03Z",
+  "run_at_utc": "2026-09-25T00:40:25Z",
   "status": "ATTENTION",
   "season": "2026",
   "provider_endpoints": [
@@ -9,31 +9,31 @@
   ],
   "refresh_days": 7,
   "residual_retry_days": 7,
-  "provider_calls": 2,
+  "provider_calls": 3,
   "team_provider_calls": 2,
-  "residual_provider_calls": 0,
-  "daily_api_calls": 2004,
+  "residual_provider_calls": 1,
+  "daily_api_calls": 43,
   "protected_calls": {
     "live": 0,
-    "current_round": 60,
+    "current_round": 180,
     "standings": 32,
     "safety": 100,
-    "total": 192
+    "total": 312
   },
   "candidate_teams": 2,
   "completed_teams": [],
   "deferred_teams": 0,
-  "residual_candidate_players": 0,
+  "residual_candidate_players": 1,
   "residual_captured_players": 0,
-  "residual_empty_players": 0,
+  "residual_empty_players": 1,
   "residual_error_players": 0,
   "residual_deferred_players": 0,
   "residual_ambiguous_current_roster_player_ids": 0,
   "residual_suppressed_recent_attempts": 591,
   "profile_rows": 3747,
   "unique_profile_players": 3640,
-  "current_roster_players": 4010,
-  "current_roster_player_coverage_pct": 85.26,
+  "current_roster_players": 4011,
+  "current_roster_player_coverage_pct": 85.24,
   "warnings": [
     "18936 Ogre United: provider returned no usable profile rows",
     "4143 Super Nova: provider returned no usable profile rows"
