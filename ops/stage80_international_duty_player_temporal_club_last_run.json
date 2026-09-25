@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_INTERNATIONAL_DUTY_TEMPORAL_CLUB_V1_BOUNDED_CHAIN_ONLY",
-  "generated_at_utc": "2026-09-19T20:26:32Z",
+  "generated_at_utc": "2026-09-25T17:11:07Z",
   "status": "OK",
   "evidence_rows": 34238,
   "output_rows": 34238,
@@ -8,14 +8,15 @@
   "duplicate_fixture_player_rows": 0,
   "invalid_output_rows": 0,
   "status_counts": {
-    "BOUNDED_CHAIN_CONFIRMED": 1939,
-    "NO_SAFE_TRANSFER_IDENTITY": 27494,
-    "NO_TRANSFER_EVENTS": 31,
-    "UNBOUNDED_INTERVAL": 4774
+    "BOUNDED_CHAIN_CONFIRMED": 3623,
+    "NO_SAFE_TRANSFER_IDENTITY": 24193,
+    "NO_TRANSFER_EVENTS": 73,
+    "TRANSFER_DATE_COLLISION": 1,
+    "UNBOUNDED_INTERVAL": 6348
   },
-  "bounded_chain_confirmed_rows": 1939,
-  "bounded_chain_confirmed_players": 296,
-  "bounded_chain_coverage_pct": 5.6633,
+  "bounded_chain_confirmed_rows": 3623,
+  "bounded_chain_confirmed_players": 616,
+  "bounded_chain_coverage_pct": 10.5818,
   "pbk16_club_identity_derived": false,
   "current_club_substituted": false,
   "unbounded_transfer_history_used_as_fact": false,
