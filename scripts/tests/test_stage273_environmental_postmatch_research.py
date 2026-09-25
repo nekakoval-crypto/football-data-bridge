@@ -303,6 +303,30 @@ class EnvironmentalPostmatchResearchTests(unittest.TestCase):
         self.assertIsNotNone(drift)
         self.assertLess(drift,m.GEOCODE_REPAIR_DISTANCE_KM)
 
+    def test_propagate_snapshot_geocode_metadata_preserves_weather(self):
+        snapshot={
+            "fixture_id":"1",
+            "latitude":"41.389",
+            "longitude":"2.159",
+            "geocode_quality_status":"VERIFIED_LOCALITY_V3",
+            "geocode_resolver_version":"PBK_GEOCODE_V3",
+            "temperature_mean_c":"21.5",
+            "captured_at_utc":"2026-09-24T10:00:00Z",
+        }
+        geo={
+            "latitude":"41.387",
+            "longitude":"2.17",
+            "geocode_quality_status":"VERIFIED_LOCALITY_V4",
+            "resolver_version":"PBK_GEOCODE_V4",
+        }
+        row=m.propagate_snapshot_geocode_metadata(snapshot,geo)
+        self.assertEqual(row["geocode_quality_status"],"VERIFIED_LOCALITY_V4")
+        self.assertEqual(row["geocode_resolver_version"],"PBK_GEOCODE_V4")
+        self.assertEqual(row["latitude"],"41.387")
+        self.assertEqual(row["longitude"],"2.17")
+        self.assertEqual(row["temperature_mean_c"],"21.5")
+        self.assertEqual(row["captured_at_utc"],"2026-09-24T10:00:00Z")
+
     def test_finished_fixture_filter_rejects_scheduled(self):
         rows = [
             {
