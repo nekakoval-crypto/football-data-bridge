@@ -259,7 +259,7 @@ def candidate_rows(history, captured, state,
     return candidates
 
 
-def plan_dual_lane(candidates, limit, legacy_share=0.40, recent_season_window=1):
+def plan_dual_lane(candidates, state, limit, legacy_share=0.40, recent_season_window=1):
     """Reserve a deterministic share of every batch for older seasons.
 
     Recent seasons keep priority for operational usefulness, but legacy seasons
@@ -290,12 +290,14 @@ def plan_dual_lane(candidates, limit, legacy_share=0.40, recent_season_window=1)
         else:
             legacy.append(row)
 
-    # candidate_rows has already applied productive-cell priority to recent rows.
-    # Legacy rows deliberately move oldest season first, while preserving role
-    # and productive-cell ordering encoded on the candidate rows themselves.
+    counts = cell_observation_counts(state)
+    # Legacy rows deliberately move old seasons forward, but still avoid wasting
+    # calls: a competition-season already proven productive wins inside the
+    # legacy lane before an unproven cell of the same role.
     legacy.sort(
         key=lambda row: (
             role_priority(row),
+            cell_evidence_priority(row, counts),
             season_number(row),
             sval(row, "kickoff_utc"),
             sval(row, "country"),
@@ -659,6 +661,7 @@ def main():
 
     plan = plan_dual_lane(
         candidates,
+        state,
         max_calls,
         legacy_share=legacy_share,
         recent_season_window=recent_season_window,
