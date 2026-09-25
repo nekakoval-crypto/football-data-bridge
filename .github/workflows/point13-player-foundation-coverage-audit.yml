@@ -1,0 +1,74 @@
+name: Point 13 Player Foundation Coverage Audit
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/point13_player_foundation_coverage_audit.py'
+      - 'scripts/tests/test_point13_player_foundation_coverage_audit.py'
+      - '.github/workflows/point13-player-foundation-coverage-audit.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/point13_player_foundation_coverage_audit.py'
+      - 'scripts/tests/test_point13_player_foundation_coverage_audit.py'
+      - '.github/workflows/point13-player-foundation-coverage-audit.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and test
+        run: |
+          python -m py_compile scripts/point13_player_foundation_coverage_audit.py
+          python -m unittest scripts.tests.test_point13_player_foundation_coverage_audit -v
+      - name: Provider isolation
+        shell: bash
+        run: |
+          if grep -nE 'API_FOOTBALL_KEY|api-sports\.io|requests\.|urllib\.' scripts/point13_player_foundation_coverage_audit.py; then
+            echo 'Point13 coverage audit must remain provider-free.' >&2
+            exit 1
+          fi
+
+  audit:
+    needs: validate
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'workflow_dispatch' || github.event_name == 'push')
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      OPS_DIR: ops
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build Point13 coverage report
+        run: python scripts/point13_player_foundation_coverage_audit.py
+      - name: Publish report safely
+        shell: bash
+        run: |
+          git config user.name 'point13-audit-bot'
+          git config user.email 'point13-audit-bot@users.noreply.github.com'
+          git add ops/point13_player_foundation_coverage_audit.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Point13 player foundation coverage audit update'
+          python scripts/publish_operational_commit.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: point13-player-foundation-coverage-audit
+          path: ops/point13_player_foundation_coverage_audit.json
+          if-no-files-found: error
+          retention-days: 90
