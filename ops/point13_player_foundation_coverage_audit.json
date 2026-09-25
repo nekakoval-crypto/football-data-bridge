@@ -1,0 +1,2416 @@
+{
+  "version": "PBK_POINT13_PLAYER_FOUNDATION_COVERAGE_AUDIT_V1",
+  "run_at_utc": "2026-09-25T20:12:23Z",
+  "status": "OK",
+  "provider_calls": 0,
+  "research_only": true,
+  "operational_betting_authority": false,
+  "no_lookahead_form_contract": true,
+  "stage77_remaining_unattempted_or_retryable": 62655,
+  "stage77_archive_first_enabled": null,
+  "stage92_auto_match_high": 169,
+  "historical_fixture_coverage": {
+    "terminal_historical_fixtures": 69664,
+    "stats_fixtures": 6416,
+    "grade_fixtures": 6416,
+    "normalized_player_fixtures": 6416,
+    "fixture_coverage_pct": 9.2099
+  },
+  "player_catalog_coverage": {
+    "catalog_players": 12150,
+    "players_with_match_stats_evidence": 11610,
+    "match_stats_player_coverage_pct": 95.5556
+  },
+  "form_coverage": {
+    "form_rows": 257626,
+    "form3_full_window_rows": 187916,
+    "form5_full_window_rows": 160132,
+    "form10_full_window_rows": 108670,
+    "form3_full_window_pct": 72.9414,
+    "form5_full_window_pct": 62.1568,
+    "form10_full_window_pct": 42.1813
+  },
+  "xg_xa_coverage": {
+    "mapped_research_rows": 1291,
+    "mapped_pbk_players": 169,
+    "mapping_rows": 7787,
+    "auto_match_high": 169,
+    "review": 766,
+    "unmatched": 6852,
+    "mapped_vs_catalog_player_pct": 1.3909
+  },
+  "by_country_season": {
+    "Austria|2017": {
+      "terminal_fixtures": 243,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|2018": {
+      "terminal_fixtures": 258,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|2019": {
+      "terminal_fixtures": 258,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|2020": {
+      "terminal_fixtures": 259,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|2021": {
+      "terminal_fixtures": 258,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|2022": {
+      "terminal_fixtures": 258,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|2023": {
+      "terminal_fixtures": 258,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|2024": {
+      "terminal_fixtures": 258,
+      "normalized_player_fixtures": 195,
+      "fixture_coverage_pct": 75.5814
+    },
+    "Austria|2025": {
+      "terminal_fixtures": 258,
+      "normalized_player_fixtures": 195,
+      "fixture_coverage_pct": 75.5814
+    },
+    "Belgium|2017": {
+      "terminal_fixtures": 270,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|2018": {
+      "terminal_fixtures": 270,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|2019": {
+      "terminal_fixtures": 544,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|2020": {
+      "terminal_fixtures": 640,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|2021": {
+      "terminal_fixtures": 643,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|2022": {
+      "terminal_fixtures": 643,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|2023": {
+      "terminal_fixtures": 671,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|2024": {
+      "terminal_fixtures": 612,
+      "normalized_player_fixtures": 315,
+      "fixture_coverage_pct": 51.4706
+    },
+    "Belgium|2025": {
+      "terminal_fixtures": 539,
+      "normalized_player_fixtures": 321,
+      "fixture_coverage_pct": 59.5547
+    },
+    "Denmark|2017": {
+      "terminal_fixtures": 343,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|2018": {
+      "terminal_fixtures": 344,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|2019": {
+      "terminal_fixtures": 344,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|2020": {
+      "terminal_fixtures": 302,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|2021": {
+      "terminal_fixtures": 302,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|2022": {
+      "terminal_fixtures": 301,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|2023": {
+      "terminal_fixtures": 301,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|2024": {
+      "terminal_fixtures": 302,
+      "normalized_player_fixtures": 193,
+      "fixture_coverage_pct": 63.9073
+    },
+    "Denmark|2025": {
+      "terminal_fixtures": 303,
+      "normalized_player_fixtures": 193,
+      "fixture_coverage_pct": 63.6964
+    },
+    "England|2017": {
+      "terminal_fixtures": 622,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|2018": {
+      "terminal_fixtures": 623,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|2019": {
+      "terminal_fixtures": 1358,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|2020": {
+      "terminal_fixtures": 1192,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|2021": {
+      "terminal_fixtures": 1338,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|2022": {
+      "terminal_fixtures": 1361,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|2023": {
+      "terminal_fixtures": 1350,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|2024": {
+      "terminal_fixtures": 1345,
+      "normalized_player_fixtures": 80,
+      "fixture_coverage_pct": 5.948
+    },
+    "England|2025": {
+      "terminal_fixtures": 1342,
+      "normalized_player_fixtures": 380,
+      "fixture_coverage_pct": 28.3159
+    },
+    "France|2017": {
+      "terminal_fixtures": 617,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|2018": {
+      "terminal_fixtures": 618,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|2019": {
+      "terminal_fixtures": 518,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|2020": {
+      "terminal_fixtures": 555,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|2021": {
+      "terminal_fixtures": 574,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|2022": {
+      "terminal_fixtures": 575,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|2023": {
+      "terminal_fixtures": 505,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|2024": {
+      "terminal_fixtures": 507,
+      "normalized_player_fixtures": 72,
+      "fixture_coverage_pct": 14.2012
+    },
+    "France|2025": {
+      "terminal_fixtures": 508,
+      "normalized_player_fixtures": 307,
+      "fixture_coverage_pct": 60.4331
+    },
+    "Germany|2017": {
+      "terminal_fixtures": 369,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|2018": {
+      "terminal_fixtures": 371,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|2019": {
+      "terminal_fixtures": 371,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|2020": {
+      "terminal_fixtures": 371,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|2021": {
+      "terminal_fixtures": 371,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|2022": {
+      "terminal_fixtures": 371,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|2023": {
+      "terminal_fixtures": 371,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|2024": {
+      "terminal_fixtures": 371,
+      "normalized_player_fixtures": 63,
+      "fixture_coverage_pct": 16.9811
+    },
+    "Germany|2025": {
+      "terminal_fixtures": 371,
+      "normalized_player_fixtures": 308,
+      "fixture_coverage_pct": 83.0189
+    },
+    "Italy|2017": {
+      "terminal_fixtures": 459,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|2018": {
+      "terminal_fixtures": 459,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|2019": {
+      "terminal_fixtures": 459,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|2020": {
+      "terminal_fixtures": 459,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|2021": {
+      "terminal_fixtures": 425,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|2022": {
+      "terminal_fixtures": 426,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|2023": {
+      "terminal_fixtures": 425,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|2024": {
+      "terminal_fixtures": 425,
+      "normalized_player_fixtures": 81,
+      "fixture_coverage_pct": 19.0588
+    },
+    "Italy|2025": {
+      "terminal_fixtures": 425,
+      "normalized_player_fixtures": 380,
+      "fixture_coverage_pct": 89.4118
+    },
+    "Latvia|2017": {
+      "terminal_fixtures": 96,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|2018": {
+      "terminal_fixtures": 112,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|2019": {
+      "terminal_fixtures": 144,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|2020": {
+      "terminal_fixtures": 181,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|2021": {
+      "terminal_fixtures": 176,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|2022": {
+      "terminal_fixtures": 233,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|2023": {
+      "terminal_fixtures": 232,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|2024": {
+      "terminal_fixtures": 229,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|2025": {
+      "terminal_fixtures": 230,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|2017": {
+      "terminal_fixtures": 127,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|2018": {
+      "terminal_fixtures": 127,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|2019": {
+      "terminal_fixtures": 127,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|2020": {
+      "terminal_fixtures": 92,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|2021": {
+      "terminal_fixtures": 209,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|2022": {
+      "terminal_fixtures": 233,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|2023": {
+      "terminal_fixtures": 229,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|2024": {
+      "terminal_fixtures": 233,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|2025": {
+      "terminal_fixtures": 231,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|2017": {
+      "terminal_fixtures": 416,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|2018": {
+      "terminal_fixtures": 418,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|2019": {
+      "terminal_fixtures": 336,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|2020": {
+      "terminal_fixtures": 398,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|2021": {
+      "terminal_fixtures": 413,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|2022": {
+      "terminal_fixtures": 409,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|2023": {
+      "terminal_fixtures": 430,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|2024": {
+      "terminal_fixtures": 430,
+      "normalized_player_fixtures": 80,
+      "fixture_coverage_pct": 18.6047
+    },
+    "Netherlands|2025": {
+      "terminal_fixtures": 418,
+      "normalized_player_fixtures": 309,
+      "fixture_coverage_pct": 73.9234
+    },
+    "Norway|2017": {
+      "terminal_fixtures": 240,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Norway|2018": {
+      "terminal_fixtures": 240,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Norway|2019": {
+      "terminal_fixtures": 367,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Norway|2020": {
+      "terminal_fixtures": 241,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Norway|2021": {
+      "terminal_fixtures": 367,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Norway|2022": {
+      "terminal_fixtures": 368,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Norway|2023": {
+      "terminal_fixtures": 369,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Norway|2024": {
+      "terminal_fixtures": 369,
+      "normalized_player_fixtures": 242,
+      "fixture_coverage_pct": 65.5827
+    },
+    "Norway|2025": {
+      "terminal_fixtures": 368,
+      "normalized_player_fixtures": 241,
+      "fixture_coverage_pct": 65.4891
+    },
+    "Poland|2018": {
+      "terminal_fixtures": 296,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Poland|2019": {
+      "terminal_fixtures": 363,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Poland|2020": {
+      "terminal_fixtures": 307,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Poland|2021": {
+      "terminal_fixtures": 374,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Poland|2022": {
+      "terminal_fixtures": 374,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Poland|2023": {
+      "terminal_fixtures": 375,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Poland|2024": {
+      "terminal_fixtures": 375,
+      "normalized_player_fixtures": 302,
+      "fixture_coverage_pct": 80.5333
+    },
+    "Poland|2025": {
+      "terminal_fixtures": 373,
+      "normalized_player_fixtures": 306,
+      "fixture_coverage_pct": 82.0375
+    },
+    "Portugal|2017": {
+      "terminal_fixtures": 477,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|2018": {
+      "terminal_fixtures": 473,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|2019": {
+      "terminal_fixtures": 517,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|2020": {
+      "terminal_fixtures": 481,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|2021": {
+      "terminal_fixtures": 500,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|2022": {
+      "terminal_fixtures": 524,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|2023": {
+      "terminal_fixtures": 492,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|2024": {
+      "terminal_fixtures": 463,
+      "normalized_player_fixtures": 72,
+      "fixture_coverage_pct": 15.5508
+    },
+    "Portugal|2025": {
+      "terminal_fixtures": 465,
+      "normalized_player_fixtures": 308,
+      "fixture_coverage_pct": 66.2366
+    },
+    "Scotland|2017": {
+      "terminal_fixtures": 323,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|2018": {
+      "terminal_fixtures": 319,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|2019": {
+      "terminal_fixtures": 389,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|2020": {
+      "terminal_fixtures": 428,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|2021": {
+      "terminal_fixtures": 456,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|2022": {
+      "terminal_fixtures": 456,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|2023": {
+      "terminal_fixtures": 459,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|2024": {
+      "terminal_fixtures": 458,
+      "normalized_player_fixtures": 228,
+      "fixture_coverage_pct": 49.7817
+    },
+    "Scotland|2025": {
+      "terminal_fixtures": 456,
+      "normalized_player_fixtures": 228,
+      "fixture_coverage_pct": 50.0
+    },
+    "Spain|2017": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|2018": {
+      "terminal_fixtures": 492,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|2019": {
+      "terminal_fixtures": 506,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|2020": {
+      "terminal_fixtures": 507,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|2021": {
+      "terminal_fixtures": 507,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|2022": {
+      "terminal_fixtures": 506,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|2023": {
+      "terminal_fixtures": 506,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|2024": {
+      "terminal_fixtures": 506,
+      "normalized_player_fixtures": 100,
+      "fixture_coverage_pct": 19.7628
+    },
+    "Spain|2025": {
+      "terminal_fixtures": 517,
+      "normalized_player_fixtures": 380,
+      "fixture_coverage_pct": 73.501
+    },
+    "Turkey|2017": {
+      "terminal_fixtures": 494,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|2018": {
+      "terminal_fixtures": 501,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|2019": {
+      "terminal_fixtures": 495,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|2020": {
+      "terminal_fixtures": 563,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|2021": {
+      "terminal_fixtures": 513,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|2022": {
+      "terminal_fixtures": 490,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|2023": {
+      "terminal_fixtures": 545,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|2024": {
+      "terminal_fixtures": 516,
+      "normalized_player_fixtures": 82,
+      "fixture_coverage_pct": 15.8915
+    },
+    "Turkey|2025": {
+      "terminal_fixtures": 488,
+      "normalized_player_fixtures": 306,
+      "fixture_coverage_pct": 62.7049
+    },
+    "World|2017": {
+      "terminal_fixtures": 692,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|2018": {
+      "terminal_fixtures": 735,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|2019": {
+      "terminal_fixtures": 721,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|2020": {
+      "terminal_fixtures": 540,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|2021": {
+      "terminal_fixtures": 816,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|2022": {
+      "terminal_fixtures": 804,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|2023": {
+      "terminal_fixtures": 806,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|2024": {
+      "terminal_fixtures": 957,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|2025": {
+      "terminal_fixtures": 961,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    }
+  },
+  "by_competition_season": {
+    "Austria|Bundesliga|2017": {
+      "terminal_fixtures": 180,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|Bundesliga|2018": {
+      "terminal_fixtures": 195,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|Bundesliga|2019": {
+      "terminal_fixtures": 195,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|Bundesliga|2020": {
+      "terminal_fixtures": 197,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|Bundesliga|2021": {
+      "terminal_fixtures": 195,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|Bundesliga|2022": {
+      "terminal_fixtures": 195,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|Bundesliga|2023": {
+      "terminal_fixtures": 195,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|Bundesliga|2024": {
+      "terminal_fixtures": 195,
+      "normalized_player_fixtures": 195,
+      "fixture_coverage_pct": 100.0
+    },
+    "Austria|Bundesliga|2025": {
+      "terminal_fixtures": 195,
+      "normalized_player_fixtures": 195,
+      "fixture_coverage_pct": 100.0
+    },
+    "Austria|Cup|2017": {
+      "terminal_fixtures": 63,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|Cup|2018": {
+      "terminal_fixtures": 63,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|Cup|2019": {
+      "terminal_fixtures": 63,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|Cup|2020": {
+      "terminal_fixtures": 62,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|Cup|2021": {
+      "terminal_fixtures": 63,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|Cup|2022": {
+      "terminal_fixtures": 63,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|Cup|2023": {
+      "terminal_fixtures": 63,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|Cup|2024": {
+      "terminal_fixtures": 63,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Austria|Cup|2025": {
+      "terminal_fixtures": 63,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|Cup|2019": {
+      "terminal_fixtures": 312,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|Cup|2020": {
+      "terminal_fixtures": 308,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|Cup|2021": {
+      "terminal_fixtures": 311,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|Cup|2022": {
+      "terminal_fixtures": 315,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|Cup|2023": {
+      "terminal_fixtures": 356,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|Cup|2024": {
+      "terminal_fixtures": 297,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|Cup|2025": {
+      "terminal_fixtures": 218,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|Jupiler Pro League|2017": {
+      "terminal_fixtures": 270,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|Jupiler Pro League|2018": {
+      "terminal_fixtures": 270,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|Jupiler Pro League|2019": {
+      "terminal_fixtures": 232,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|Jupiler Pro League|2020": {
+      "terminal_fixtures": 332,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|Jupiler Pro League|2021": {
+      "terminal_fixtures": 332,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|Jupiler Pro League|2022": {
+      "terminal_fixtures": 328,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|Jupiler Pro League|2023": {
+      "terminal_fixtures": 315,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Belgium|Jupiler Pro League|2024": {
+      "terminal_fixtures": 315,
+      "normalized_player_fixtures": 315,
+      "fixture_coverage_pct": 100.0
+    },
+    "Belgium|Jupiler Pro League|2025": {
+      "terminal_fixtures": 321,
+      "normalized_player_fixtures": 321,
+      "fixture_coverage_pct": 100.0
+    },
+    "Denmark|DBU Pokalen|2017": {
+      "terminal_fixtures": 100,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|DBU Pokalen|2018": {
+      "terminal_fixtures": 101,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|DBU Pokalen|2019": {
+      "terminal_fixtures": 101,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|DBU Pokalen|2020": {
+      "terminal_fixtures": 109,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|DBU Pokalen|2021": {
+      "terminal_fixtures": 109,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|DBU Pokalen|2022": {
+      "terminal_fixtures": 108,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|DBU Pokalen|2023": {
+      "terminal_fixtures": 108,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|DBU Pokalen|2024": {
+      "terminal_fixtures": 109,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|DBU Pokalen|2025": {
+      "terminal_fixtures": 110,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|Superliga|2017": {
+      "terminal_fixtures": 243,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|Superliga|2018": {
+      "terminal_fixtures": 243,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|Superliga|2019": {
+      "terminal_fixtures": 243,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|Superliga|2020": {
+      "terminal_fixtures": 193,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|Superliga|2021": {
+      "terminal_fixtures": 193,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|Superliga|2022": {
+      "terminal_fixtures": 193,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|Superliga|2023": {
+      "terminal_fixtures": 193,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Denmark|Superliga|2024": {
+      "terminal_fixtures": 193,
+      "normalized_player_fixtures": 193,
+      "fixture_coverage_pct": 100.0
+    },
+    "Denmark|Superliga|2025": {
+      "terminal_fixtures": 193,
+      "normalized_player_fixtures": 193,
+      "fixture_coverage_pct": 100.0
+    },
+    "England|FA Cup|2017": {
+      "terminal_fixtures": 149,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|FA Cup|2018": {
+      "terminal_fixtures": 150,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|FA Cup|2019": {
+      "terminal_fixtures": 886,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|FA Cup|2020": {
+      "terminal_fixtures": 722,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|FA Cup|2021": {
+      "terminal_fixtures": 866,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|FA Cup|2022": {
+      "terminal_fixtures": 888,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|FA Cup|2023": {
+      "terminal_fixtures": 877,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|FA Cup|2024": {
+      "terminal_fixtures": 872,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|FA Cup|2025": {
+      "terminal_fixtures": 869,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|League Cup|2017": {
+      "terminal_fixtures": 93,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|League Cup|2018": {
+      "terminal_fixtures": 93,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|League Cup|2019": {
+      "terminal_fixtures": 92,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|League Cup|2020": {
+      "terminal_fixtures": 90,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|League Cup|2021": {
+      "terminal_fixtures": 92,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|League Cup|2022": {
+      "terminal_fixtures": 93,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|League Cup|2023": {
+      "terminal_fixtures": 93,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|League Cup|2024": {
+      "terminal_fixtures": 93,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|League Cup|2025": {
+      "terminal_fixtures": 93,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|Premier League|2017": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|Premier League|2018": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|Premier League|2019": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|Premier League|2020": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|Premier League|2021": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|Premier League|2022": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|Premier League|2023": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "England|Premier League|2024": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 80,
+      "fixture_coverage_pct": 21.0526
+    },
+    "England|Premier League|2025": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 380,
+      "fixture_coverage_pct": 100.0
+    },
+    "France|Coupe de France|2017": {
+      "terminal_fixtures": 195,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|Coupe de France|2018": {
+      "terminal_fixtures": 195,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|Coupe de France|2019": {
+      "terminal_fixtures": 195,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|Coupe de France|2020": {
+      "terminal_fixtures": 173,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|Coupe de France|2021": {
+      "terminal_fixtures": 192,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|Coupe de France|2022": {
+      "terminal_fixtures": 195,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|Coupe de France|2023": {
+      "terminal_fixtures": 197,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|Coupe de France|2024": {
+      "terminal_fixtures": 199,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|Coupe de France|2025": {
+      "terminal_fixtures": 201,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|Coupe de la Ligue|2017": {
+      "terminal_fixtures": 42,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|Coupe de la Ligue|2018": {
+      "terminal_fixtures": 43,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|Coupe de la Ligue|2019": {
+      "terminal_fixtures": 44,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|Ligue 1|2017": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|Ligue 1|2018": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|Ligue 1|2019": {
+      "terminal_fixtures": 279,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|Ligue 1|2020": {
+      "terminal_fixtures": 382,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|Ligue 1|2021": {
+      "terminal_fixtures": 382,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|Ligue 1|2022": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|Ligue 1|2023": {
+      "terminal_fixtures": 308,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "France|Ligue 1|2024": {
+      "terminal_fixtures": 308,
+      "normalized_player_fixtures": 72,
+      "fixture_coverage_pct": 23.3766
+    },
+    "France|Ligue 1|2025": {
+      "terminal_fixtures": 307,
+      "normalized_player_fixtures": 307,
+      "fixture_coverage_pct": 100.0
+    },
+    "Germany|Bundesliga|2017": {
+      "terminal_fixtures": 306,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|Bundesliga|2018": {
+      "terminal_fixtures": 308,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|Bundesliga|2019": {
+      "terminal_fixtures": 308,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|Bundesliga|2020": {
+      "terminal_fixtures": 308,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|Bundesliga|2021": {
+      "terminal_fixtures": 308,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|Bundesliga|2022": {
+      "terminal_fixtures": 308,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|Bundesliga|2023": {
+      "terminal_fixtures": 308,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|Bundesliga|2024": {
+      "terminal_fixtures": 308,
+      "normalized_player_fixtures": 63,
+      "fixture_coverage_pct": 20.4545
+    },
+    "Germany|Bundesliga|2025": {
+      "terminal_fixtures": 308,
+      "normalized_player_fixtures": 308,
+      "fixture_coverage_pct": 100.0
+    },
+    "Germany|DFB Pokal|2017": {
+      "terminal_fixtures": 63,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|DFB Pokal|2018": {
+      "terminal_fixtures": 63,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|DFB Pokal|2019": {
+      "terminal_fixtures": 63,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|DFB Pokal|2020": {
+      "terminal_fixtures": 63,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|DFB Pokal|2021": {
+      "terminal_fixtures": 63,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|DFB Pokal|2022": {
+      "terminal_fixtures": 63,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|DFB Pokal|2023": {
+      "terminal_fixtures": 63,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|DFB Pokal|2024": {
+      "terminal_fixtures": 63,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Germany|DFB Pokal|2025": {
+      "terminal_fixtures": 63,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|Coppa Italia|2017": {
+      "terminal_fixtures": 79,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|Coppa Italia|2018": {
+      "terminal_fixtures": 79,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|Coppa Italia|2019": {
+      "terminal_fixtures": 79,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|Coppa Italia|2020": {
+      "terminal_fixtures": 79,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|Coppa Italia|2021": {
+      "terminal_fixtures": 45,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|Coppa Italia|2022": {
+      "terminal_fixtures": 45,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|Coppa Italia|2023": {
+      "terminal_fixtures": 45,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|Coppa Italia|2024": {
+      "terminal_fixtures": 45,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|Coppa Italia|2025": {
+      "terminal_fixtures": 45,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|Serie A|2017": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|Serie A|2018": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|Serie A|2019": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|Serie A|2020": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|Serie A|2021": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|Serie A|2022": {
+      "terminal_fixtures": 381,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|Serie A|2023": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Italy|Serie A|2024": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 81,
+      "fixture_coverage_pct": 21.3158
+    },
+    "Italy|Serie A|2025": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 380,
+      "fixture_coverage_pct": 100.0
+    },
+    "Latvia|Cup|2020": {
+      "terminal_fixtures": 46,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|Cup|2021": {
+      "terminal_fixtures": 54,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|Cup|2022": {
+      "terminal_fixtures": 53,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|Cup|2023": {
+      "terminal_fixtures": 50,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|Cup|2024": {
+      "terminal_fixtures": 49,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|Cup|2025": {
+      "terminal_fixtures": 48,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|Virsliga|2017": {
+      "terminal_fixtures": 96,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|Virsliga|2018": {
+      "terminal_fixtures": 112,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|Virsliga|2019": {
+      "terminal_fixtures": 144,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|Virsliga|2020": {
+      "terminal_fixtures": 135,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|Virsliga|2021": {
+      "terminal_fixtures": 122,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|Virsliga|2022": {
+      "terminal_fixtures": 180,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|Virsliga|2023": {
+      "terminal_fixtures": 182,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|Virsliga|2024": {
+      "terminal_fixtures": 180,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Latvia|Virsliga|2025": {
+      "terminal_fixtures": 182,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|A Lyga|2017": {
+      "terminal_fixtures": 127,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|A Lyga|2018": {
+      "terminal_fixtures": 127,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|A Lyga|2019": {
+      "terminal_fixtures": 127,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|A Lyga|2020": {
+      "terminal_fixtures": 60,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|A Lyga|2021": {
+      "terminal_fixtures": 180,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|A Lyga|2022": {
+      "terminal_fixtures": 180,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|A Lyga|2023": {
+      "terminal_fixtures": 182,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|A Lyga|2024": {
+      "terminal_fixtures": 182,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|A Lyga|2025": {
+      "terminal_fixtures": 182,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|Cup|2020": {
+      "terminal_fixtures": 32,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|Cup|2021": {
+      "terminal_fixtures": 29,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|Cup|2022": {
+      "terminal_fixtures": 53,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|Cup|2023": {
+      "terminal_fixtures": 47,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|Cup|2024": {
+      "terminal_fixtures": 51,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Lithuania|Cup|2025": {
+      "terminal_fixtures": 49,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|Eredivisie|2017": {
+      "terminal_fixtures": 312,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|Eredivisie|2018": {
+      "terminal_fixtures": 312,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|Eredivisie|2019": {
+      "terminal_fixtures": 232,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|Eredivisie|2020": {
+      "terminal_fixtures": 315,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|Eredivisie|2021": {
+      "terminal_fixtures": 324,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|Eredivisie|2022": {
+      "terminal_fixtures": 324,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|Eredivisie|2023": {
+      "terminal_fixtures": 321,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|Eredivisie|2024": {
+      "terminal_fixtures": 321,
+      "normalized_player_fixtures": 80,
+      "fixture_coverage_pct": 24.9221
+    },
+    "Netherlands|Eredivisie|2025": {
+      "terminal_fixtures": 309,
+      "normalized_player_fixtures": 309,
+      "fixture_coverage_pct": 100.0
+    },
+    "Netherlands|KNVB Beker|2017": {
+      "terminal_fixtures": 104,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|KNVB Beker|2018": {
+      "terminal_fixtures": 106,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|KNVB Beker|2019": {
+      "terminal_fixtures": 104,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|KNVB Beker|2020": {
+      "terminal_fixtures": 83,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|KNVB Beker|2021": {
+      "terminal_fixtures": 89,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|KNVB Beker|2022": {
+      "terminal_fixtures": 85,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|KNVB Beker|2023": {
+      "terminal_fixtures": 109,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|KNVB Beker|2024": {
+      "terminal_fixtures": 109,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Netherlands|KNVB Beker|2025": {
+      "terminal_fixtures": 109,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Norway|Eliteserien|2017": {
+      "terminal_fixtures": 240,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Norway|Eliteserien|2018": {
+      "terminal_fixtures": 240,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Norway|Eliteserien|2019": {
+      "terminal_fixtures": 240,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Norway|Eliteserien|2020": {
+      "terminal_fixtures": 241,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Norway|Eliteserien|2021": {
+      "terminal_fixtures": 241,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Norway|Eliteserien|2022": {
+      "terminal_fixtures": 242,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Norway|Eliteserien|2023": {
+      "terminal_fixtures": 242,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Norway|Eliteserien|2024": {
+      "terminal_fixtures": 242,
+      "normalized_player_fixtures": 242,
+      "fixture_coverage_pct": 100.0
+    },
+    "Norway|Eliteserien|2025": {
+      "terminal_fixtures": 241,
+      "normalized_player_fixtures": 241,
+      "fixture_coverage_pct": 100.0
+    },
+    "Norway|NM Cupen|2019": {
+      "terminal_fixtures": 127,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Norway|NM Cupen|2021": {
+      "terminal_fixtures": 126,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Norway|NM Cupen|2022": {
+      "terminal_fixtures": 126,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Norway|NM Cupen|2023": {
+      "terminal_fixtures": 127,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Norway|NM Cupen|2024": {
+      "terminal_fixtures": 127,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Norway|NM Cupen|2025": {
+      "terminal_fixtures": 127,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Poland|Cup|2019": {
+      "terminal_fixtures": 67,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Poland|Cup|2020": {
+      "terminal_fixtures": 67,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Poland|Cup|2021": {
+      "terminal_fixtures": 68,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Poland|Cup|2022": {
+      "terminal_fixtures": 68,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Poland|Cup|2023": {
+      "terminal_fixtures": 69,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Poland|Cup|2024": {
+      "terminal_fixtures": 69,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Poland|Cup|2025": {
+      "terminal_fixtures": 67,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Poland|Ekstraklasa|2018": {
+      "terminal_fixtures": 296,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Poland|Ekstraklasa|2019": {
+      "terminal_fixtures": 296,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Poland|Ekstraklasa|2020": {
+      "terminal_fixtures": 240,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Poland|Ekstraklasa|2021": {
+      "terminal_fixtures": 306,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Poland|Ekstraklasa|2022": {
+      "terminal_fixtures": 306,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Poland|Ekstraklasa|2023": {
+      "terminal_fixtures": 306,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Poland|Ekstraklasa|2024": {
+      "terminal_fixtures": 306,
+      "normalized_player_fixtures": 302,
+      "fixture_coverage_pct": 98.6928
+    },
+    "Poland|Ekstraklasa|2025": {
+      "terminal_fixtures": 306,
+      "normalized_player_fixtures": 306,
+      "fixture_coverage_pct": 100.0
+    },
+    "Portugal|Primeira Liga|2017": {
+      "terminal_fixtures": 306,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Primeira Liga|2018": {
+      "terminal_fixtures": 306,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Primeira Liga|2019": {
+      "terminal_fixtures": 306,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Primeira Liga|2020": {
+      "terminal_fixtures": 308,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Primeira Liga|2021": {
+      "terminal_fixtures": 308,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Primeira Liga|2022": {
+      "terminal_fixtures": 308,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Primeira Liga|2023": {
+      "terminal_fixtures": 308,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Primeira Liga|2024": {
+      "terminal_fixtures": 308,
+      "normalized_player_fixtures": 72,
+      "fixture_coverage_pct": 23.3766
+    },
+    "Portugal|Primeira Liga|2025": {
+      "terminal_fixtures": 308,
+      "normalized_player_fixtures": 308,
+      "fixture_coverage_pct": 100.0
+    },
+    "Portugal|Taça da Liga|2019": {
+      "terminal_fixtures": 45,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Taça da Liga|2020": {
+      "terminal_fixtures": 7,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Taça da Liga|2021": {
+      "terminal_fixtures": 37,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Taça da Liga|2022": {
+      "terminal_fixtures": 63,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Taça da Liga|2023": {
+      "terminal_fixtures": 37,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Taça da Liga|2024": {
+      "terminal_fixtures": 7,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Taça da Liga|2025": {
+      "terminal_fixtures": 7,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Taça de Portugal|2017": {
+      "terminal_fixtures": 171,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Taça de Portugal|2018": {
+      "terminal_fixtures": 167,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Taça de Portugal|2019": {
+      "terminal_fixtures": 166,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Taça de Portugal|2020": {
+      "terminal_fixtures": 166,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Taça de Portugal|2021": {
+      "terminal_fixtures": 155,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Taça de Portugal|2022": {
+      "terminal_fixtures": 153,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Taça de Portugal|2023": {
+      "terminal_fixtures": 147,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Taça de Portugal|2024": {
+      "terminal_fixtures": 148,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Portugal|Taça de Portugal|2025": {
+      "terminal_fixtures": 150,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|FA Cup|2019": {
+      "terminal_fixtures": 115,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|FA Cup|2020": {
+      "terminal_fixtures": 99,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|FA Cup|2021": {
+      "terminal_fixtures": 127,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|FA Cup|2022": {
+      "terminal_fixtures": 127,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|FA Cup|2023": {
+      "terminal_fixtures": 130,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|FA Cup|2024": {
+      "terminal_fixtures": 129,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|FA Cup|2025": {
+      "terminal_fixtures": 127,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|League Cup|2017": {
+      "terminal_fixtures": 95,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|League Cup|2018": {
+      "terminal_fixtures": 91,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|League Cup|2019": {
+      "terminal_fixtures": 95,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|League Cup|2020": {
+      "terminal_fixtures": 95,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|League Cup|2021": {
+      "terminal_fixtures": 95,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|League Cup|2022": {
+      "terminal_fixtures": 95,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|League Cup|2023": {
+      "terminal_fixtures": 95,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|League Cup|2024": {
+      "terminal_fixtures": 95,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|League Cup|2025": {
+      "terminal_fixtures": 95,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|Premiership|2017": {
+      "terminal_fixtures": 228,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|Premiership|2018": {
+      "terminal_fixtures": 228,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|Premiership|2019": {
+      "terminal_fixtures": 179,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|Premiership|2020": {
+      "terminal_fixtures": 234,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|Premiership|2021": {
+      "terminal_fixtures": 234,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|Premiership|2022": {
+      "terminal_fixtures": 234,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|Premiership|2023": {
+      "terminal_fixtures": 234,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Scotland|Premiership|2024": {
+      "terminal_fixtures": 234,
+      "normalized_player_fixtures": 228,
+      "fixture_coverage_pct": 97.4359
+    },
+    "Scotland|Premiership|2025": {
+      "terminal_fixtures": 234,
+      "normalized_player_fixtures": 228,
+      "fixture_coverage_pct": 97.4359
+    },
+    "Spain|Copa del Rey|2018": {
+      "terminal_fixtures": 112,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|Copa del Rey|2019": {
+      "terminal_fixtures": 126,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|Copa del Rey|2020": {
+      "terminal_fixtures": 127,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|Copa del Rey|2021": {
+      "terminal_fixtures": 127,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|Copa del Rey|2022": {
+      "terminal_fixtures": 126,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|Copa del Rey|2023": {
+      "terminal_fixtures": 126,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|Copa del Rey|2024": {
+      "terminal_fixtures": 126,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|Copa del Rey|2025": {
+      "terminal_fixtures": 137,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|La Liga|2017": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|La Liga|2018": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|La Liga|2019": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|La Liga|2020": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|La Liga|2021": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|La Liga|2022": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|La Liga|2023": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Spain|La Liga|2024": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 100,
+      "fixture_coverage_pct": 26.3158
+    },
+    "Spain|La Liga|2025": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 380,
+      "fixture_coverage_pct": 100.0
+    },
+    "Turkey|Süper Lig|2017": {
+      "terminal_fixtures": 306,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|Süper Lig|2018": {
+      "terminal_fixtures": 306,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|Süper Lig|2019": {
+      "terminal_fixtures": 306,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|Süper Lig|2020": {
+      "terminal_fixtures": 420,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|Süper Lig|2021": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|Süper Lig|2022": {
+      "terminal_fixtures": 341,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|Süper Lig|2023": {
+      "terminal_fixtures": 380,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|Süper Lig|2024": {
+      "terminal_fixtures": 342,
+      "normalized_player_fixtures": 82,
+      "fixture_coverage_pct": 23.9766
+    },
+    "Turkey|Süper Lig|2025": {
+      "terminal_fixtures": 306,
+      "normalized_player_fixtures": 306,
+      "fixture_coverage_pct": 100.0
+    },
+    "Turkey|Türkiye Kupası|2017": {
+      "terminal_fixtures": 188,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|Türkiye Kupası|2018": {
+      "terminal_fixtures": 195,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|Türkiye Kupası|2019": {
+      "terminal_fixtures": 189,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|Türkiye Kupası|2020": {
+      "terminal_fixtures": 143,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|Türkiye Kupası|2021": {
+      "terminal_fixtures": 133,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|Türkiye Kupası|2022": {
+      "terminal_fixtures": 149,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|Türkiye Kupası|2023": {
+      "terminal_fixtures": 165,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|Türkiye Kupası|2024": {
+      "terminal_fixtures": 174,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "Turkey|Türkiye Kupası|2025": {
+      "terminal_fixtures": 182,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Champions League|2017": {
+      "terminal_fixtures": 219,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Champions League|2018": {
+      "terminal_fixtures": 216,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Champions League|2019": {
+      "terminal_fixtures": 210,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Champions League|2020": {
+      "terminal_fixtures": 178,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Champions League|2021": {
+      "terminal_fixtures": 218,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Champions League|2022": {
+      "terminal_fixtures": 214,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Champions League|2023": {
+      "terminal_fixtures": 214,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Champions League|2024": {
+      "terminal_fixtures": 279,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Champions League|2025": {
+      "terminal_fixtures": 281,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Europa Conference League|2021": {
+      "terminal_fixtures": 423,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Europa Conference League|2022": {
+      "terminal_fixtures": 415,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Europa Conference League|2023": {
+      "terminal_fixtures": 417,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Europa Conference League|2024": {
+      "terminal_fixtures": 409,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Europa Conference League|2025": {
+      "terminal_fixtures": 409,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Europa League|2017": {
+      "terminal_fixtures": 473,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Europa League|2018": {
+      "terminal_fixtures": 519,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Europa League|2019": {
+      "terminal_fixtures": 511,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Europa League|2020": {
+      "terminal_fixtures": 362,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Europa League|2021": {
+      "terminal_fixtures": 175,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Europa League|2022": {
+      "terminal_fixtures": 175,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Europa League|2023": {
+      "terminal_fixtures": 175,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Europa League|2024": {
+      "terminal_fixtures": 269,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    },
+    "World|UEFA Europa League|2025": {
+      "terminal_fixtures": 271,
+      "normalized_player_fixtures": 0,
+      "fixture_coverage_pct": 0.0
+    }
+  }
+}
