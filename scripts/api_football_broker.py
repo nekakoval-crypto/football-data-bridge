@@ -14,7 +14,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 from threading import Lock
 
-from api_football_raw_archive import archive_enabled_from_env, archive_response, archive_root_from_env
+from api_football_raw_archive import (
+    archive_enabled_from_env,
+    archive_response,
+    archive_root_from_env,
+    read_archived_response,
+)
 
 API_BASE = "https://v3.football.api-sports.io"
 
@@ -110,6 +115,8 @@ class ApiFootballBroker:
             "budget_rejections": 0, "real_calls_by_path": {},
             "archive_observations": 0, "archive_blob_dedup_hits": 0,
             "archive_manifest_dedup_hits": 0, "archive_errors": 0,
+            "archive_read_hits": 0, "archive_read_misses": 0,
+            "archive_read_errors": 0,
             "archive_backend": None,
             "archive_last_observation_path": None,
             "archive_last_blob_path": None,
@@ -221,9 +228,7 @@ class ApiFootballBroker:
             return result
         return 200, {}, result
 
-    def get(self, path, params=None, *, ttl_seconds=None, force_refresh=False):
-        if not os.getenv("API_FOOTBALL_KEY", "").strip():
-            raise ApiFootballBrokerError("API_FOOTBALL_KEY is missing")
+    def get(self, path, params=None, *, ttl_seconds=None, force_refresh=False, archive_first=False):
         path = normalize_path(path)
         params = dict(params or {})
         key = request_key("GET", path, params)
@@ -260,6 +265,24 @@ class ApiFootballBroker:
                         self._memory[key] = (fetched, float(expires), json.loads(payload))
                         self._stats["disk_cache_hits"] += 1
                         return self._memory[key][2]
+            if archive_first and not force_refresh:
+                try:
+                    payload = read_archived_response(key)
+                except Exception:
+                    self._stats["archive_read_errors"] += 1
+                    payload = None
+                if payload is not None:
+                    fetched = _utc_timestamp()
+                    expires = fetched + max(0.0, ttl)
+                    if ttl > 0:
+                        self._memory[key] = (fetched, expires, payload)
+                        self._disk_put(key, path, params, payload, fetched, expires)
+                    self._stats["archive_read_hits"] += 1
+                    return payload
+                self._stats["archive_read_misses"] += 1
+
+            if not os.getenv("API_FOOTBALL_KEY", "").strip():
+                raise ApiFootballBrokerError("API_FOOTBALL_KEY is missing")
             if self.max_real_calls is not None and self._stats["real_api_calls"] >= self.max_real_calls:
                 self._stats["budget_rejections"] += 1
                 raise ApiFootballBudgetExceeded(

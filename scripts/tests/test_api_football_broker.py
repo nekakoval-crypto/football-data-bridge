@@ -119,6 +119,50 @@ class BrokerTests(unittest.TestCase):
             broker.get("/fixtures", {"id": 2})
         self.assertEqual(broker.stats()["budget_rejections"], 1)
 
+
+    def test_archive_first_hit_avoids_provider_and_api_key(self):
+        broker = self.broker()
+        archived = {"response": [{"id": 99}], "errors": []}
+        with patch.dict(os.environ, {"API_FOOTBALL_KEY": ""}, clear=False):
+            with patch("api_football_broker.read_archived_response", return_value=archived):
+                result = broker.get(
+                    "/fixtures/players",
+                    {"fixture": 123},
+                    ttl_seconds=0,
+                    archive_first=True,
+                )
+        self.assertEqual(result, archived)
+        self.assertEqual(self.calls, [])
+        self.assertEqual(broker.stats()["archive_read_hits"], 1)
+        self.assertEqual(broker.stats()["real_api_calls"], 0)
+
+    def test_archive_first_miss_falls_back_to_provider(self):
+        broker = self.broker()
+        with patch("api_football_broker.read_archived_response", return_value=None):
+            result = broker.get(
+                "/fixtures/players",
+                {"fixture": 123},
+                archive_first=True,
+            )
+        self.assertEqual(result, self.payload)
+        self.assertEqual(len(self.calls), 1)
+        self.assertEqual(broker.stats()["archive_read_misses"], 1)
+        self.assertEqual(broker.stats()["real_api_calls"], 1)
+
+    def test_force_refresh_bypasses_archive_first(self):
+        broker = self.broker()
+        archived = {"response": [{"id": 99}]}
+        with patch("api_football_broker.read_archived_response", return_value=archived) as read:
+            result = broker.get(
+                "/fixtures/players",
+                {"fixture": 123},
+                archive_first=True,
+                force_refresh=True,
+            )
+        self.assertEqual(result, self.payload)
+        self.assertFalse(read.called)
+        self.assertEqual(len(self.calls), 1)
+
     def test_missing_key_does_not_call_transport(self):
         with patch.dict(os.environ, {"API_FOOTBALL_KEY": ""}):
             with self.assertRaisesRegex(RuntimeError, "API_FOOTBALL_KEY"):
