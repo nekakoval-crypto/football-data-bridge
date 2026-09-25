@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-09-25T15:01:46Z",
-  "generated_at_local": "2026-09-25T17:01:46+02:00",
+  "generated_at_utc": "2026-09-25T16:00:40Z",
+  "generated_at_local": "2026-09-25T18:00:40+02:00",
   "timezone": "Europe/Berlin",
   "status": "OK",
   "summary": {
@@ -11,7 +11,7 @@
     "active_watch_crossings": 0,
     "nearest_monitored_rows": 0,
     "recent_results": 3,
-    "market_cards": 0
+    "market_cards": 1
   },
   "red": [],
   "orange": [],
@@ -26,7 +26,7 @@
       "fixture_id": "1550143",
       "kickoff_utc": "2026-10-11T13:00:00Z",
       "kickoff_local": "11.10 15:00",
-      "hours_to_kickoff": 381.97,
+      "hours_to_kickoff": 380.99,
       "home_team": "Lecce",
       "away_team": "Bologna",
       "selection": "П2",
@@ -46,7 +46,7 @@
       "fixture_id": "1550145",
       "kickoff_utc": "2026-10-11T16:00:00Z",
       "kickoff_local": "11.10 18:00",
-      "hours_to_kickoff": 384.97,
+      "hours_to_kickoff": 383.99,
       "home_team": "Sassuolo",
       "away_team": "AC Milan",
       "selection": "П2",
@@ -66,7 +66,7 @@
       "fixture_id": "1550145",
       "kickoff_utc": "2026-10-11T16:00:00Z",
       "kickoff_local": "11.10 18:00",
-      "hours_to_kickoff": 384.97,
+      "hours_to_kickoff": 383.99,
       "home_team": "Sassuolo",
       "away_team": "AC Milan",
       "selection": "П2",
@@ -86,7 +86,7 @@
       "fixture_id": "1550138",
       "kickoff_utc": "2026-10-11T18:45:00Z",
       "kickoff_local": "11.10 20:45",
-      "hours_to_kickoff": 387.72,
+      "hours_to_kickoff": 386.74,
       "home_team": "Cagliari",
       "away_team": "Juventus",
       "selection": "П2",
@@ -142,11 +142,62 @@
     "priority_blue": "active canonical signal >24h from kickoff",
     "priority_gray": "tracked opener only; no crossing/signal"
   },
-  "market_cards": [],
+  "market_cards": [
+    {
+      "fixture_id": "1553190",
+      "league": "Ekstraklasa",
+      "league_id": "106",
+      "country": "Poland",
+      "home_team": "Wieczysta Kraków",
+      "away_team": "Wisla Plock",
+      "kickoff_utc": "2026-10-09T16:00:00+00:00",
+      "kickoff_local": "09.10 16:00 UTC",
+      "markets": [
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TEAM_TOTAL",
+          "text": "ИТБ/ИТМ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х/Х2/12 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP",
+          "text": "Европейская фора — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф(0) — нет данных",
+          "status": "NO_DATA"
+        }
+      ],
+      "fixture_status": "NS",
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
+    }
+  ],
   "governance": {
-    "system_health": "HEALTHY",
+    "system_health": "WARN",
     "health_critical": 0,
-    "health_warnings": 0,
+    "health_warnings": 1,
     "logical_exposure_u": 3.0,
     "canonical_conflict_fixtures": 0,
     "deduplicated_overlap_u": 1.0,
