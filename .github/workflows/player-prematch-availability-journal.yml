@@ -1,0 +1,90 @@
+name: Player Prematch Availability Journal
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - "Stage 55 Live Context Enrichment"
+    types:
+      - completed
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/player_availability_prematch_journal.py'
+      - 'scripts/tests/test_player_availability_prematch_journal.py'
+      - '.github/workflows/player-prematch-availability-journal.yml'
+  pull_request:
+    paths:
+      - 'scripts/player_availability_prematch_journal.py'
+      - 'scripts/tests/test_player_availability_prematch_journal.py'
+      - '.github/workflows/player-prematch-availability-journal.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: player-prematch-availability-journal-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and test
+        run: |
+          python -m py_compile scripts/player_availability_prematch_journal.py
+          python -m unittest scripts.tests.test_player_availability_prematch_journal -v
+      - name: Provider isolation
+        shell: bash
+        run: |
+          if grep -nE 'api-sports\.io|API_FOOTBALL_KEY|requests\.|urllib\.|api_get' scripts/player_availability_prematch_journal.py; then
+            echo 'Availability journal must remain provider-free.' >&2
+            exit 1
+          fi
+      - name: Feature diff hygiene
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git fetch origin main
+          changed="$(git diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Eq '^ops/'; then exit 1; fi
+
+  materialize:
+    needs: validate
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Materialize genuine prematch availability events
+        run: python scripts/player_availability_prematch_journal.py
+      - name: Publish availability journal safely
+        shell: bash
+        run: |
+          git config user.name 'player-availability-bot'
+          git config user.email 'player-availability-bot@users.noreply.github.com'
+          git add ops/player_availability_prematch_events.csv
+          git add ops/player_availability_prematch_journal_last_run.json
+          if git diff --cached --quiet; then
+            echo 'No new prematch availability evidence.'
+            exit 0
+          fi
+          git commit -m 'Player prematch availability journal update'
+          python scripts/publish_operational_commit.py
