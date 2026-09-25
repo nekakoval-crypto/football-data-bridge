@@ -18,6 +18,7 @@ on:
       - 'scripts/stage273_environmental_postmatch_research.py'
       - 'scripts/tests/test_stage273_environmental_postmatch_research.py'
       - '.github/workflows/stage273-environmental-postmatch-research.yml'
+      - 'ops/team_match_statistics.csv'
 
   schedule:
     - cron: '43 3 * * *'
