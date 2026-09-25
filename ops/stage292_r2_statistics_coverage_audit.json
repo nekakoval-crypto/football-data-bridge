@@ -1,0 +1,542 @@
+{
+  "version": "PBK_STAGE292_R2_STATISTICS_COVERAGE_AUDIT_V1",
+  "run_at_utc": "2026-09-25T19:36:06Z",
+  "status": "OK",
+  "endpoint": "/fixtures/statistics",
+  "pending_historical_fixtures": 12656,
+  "workers": 64,
+  "provider_calls": 0,
+  "downloads_payload_blobs": false,
+  "request_index_only": true,
+  "overall": {
+    "HIT": 12,
+    "MISS": 12644,
+    "ERROR": 0,
+    "total": 12656,
+    "hit_rate_pct": 0.0948
+  },
+  "by_season": {
+    "2022": {
+      "HIT": 12,
+      "MISS": 2535,
+      "ERROR": 0,
+      "total": 2547,
+      "hit_rate_pct": 0.4711
+    },
+    "2023": {
+      "HIT": 0,
+      "MISS": 3175,
+      "ERROR": 0,
+      "total": 3175,
+      "hit_rate_pct": 0.0
+    },
+    "2024": {
+      "HIT": 0,
+      "MISS": 3367,
+      "ERROR": 0,
+      "total": 3367,
+      "hit_rate_pct": 0.0
+    },
+    "2025": {
+      "HIT": 0,
+      "MISS": 3567,
+      "ERROR": 0,
+      "total": 3567,
+      "hit_rate_pct": 0.0
+    }
+  },
+  "by_league": {
+    "AUT": {
+      "HIT": 3,
+      "MISS": 672,
+      "ERROR": 0,
+      "total": 675,
+      "hit_rate_pct": 0.4444
+    },
+    "B1": {
+      "HIT": 0,
+      "MISS": 1018,
+      "ERROR": 0,
+      "total": 1018,
+      "hit_rate_pct": 0.0
+    },
+    "D1": {
+      "HIT": 0,
+      "MISS": 904,
+      "ERROR": 0,
+      "total": 904,
+      "hit_rate_pct": 0.0
+    },
+    "DNK": {
+      "HIT": 3,
+      "MISS": 647,
+      "ERROR": 0,
+      "total": 650,
+      "hit_rate_pct": 0.4615
+    },
+    "E0": {
+      "HIT": 0,
+      "MISS": 1151,
+      "ERROR": 0,
+      "total": 1151,
+      "hit_rate_pct": 0.0
+    },
+    "F1": {
+      "HIT": 0,
+      "MISS": 947,
+      "ERROR": 0,
+      "total": 947,
+      "hit_rate_pct": 0.0
+    },
+    "I1": {
+      "HIT": 0,
+      "MISS": 1197,
+      "ERROR": 0,
+      "total": 1197,
+      "hit_rate_pct": 0.0
+    },
+    "N1": {
+      "HIT": 0,
+      "MISS": 894,
+      "ERROR": 0,
+      "total": 894,
+      "hit_rate_pct": 0.0
+    },
+    "NOR": {
+      "HIT": 4,
+      "MISS": 661,
+      "ERROR": 0,
+      "total": 665,
+      "hit_rate_pct": 0.6015
+    },
+    "P1": {
+      "HIT": 0,
+      "MISS": 916,
+      "ERROR": 0,
+      "total": 916,
+      "hit_rate_pct": 0.0
+    },
+    "POL": {
+      "HIT": 2,
+      "MISS": 954,
+      "ERROR": 0,
+      "total": 956,
+      "hit_rate_pct": 0.2092
+    },
+    "SC0": {
+      "HIT": 0,
+      "MISS": 755,
+      "ERROR": 0,
+      "total": 755,
+      "hit_rate_pct": 0.0
+    },
+    "SP1": {
+      "HIT": 0,
+      "MISS": 1105,
+      "ERROR": 0,
+      "total": 1105,
+      "hit_rate_pct": 0.0
+    },
+    "T1": {
+      "HIT": 0,
+      "MISS": 823,
+      "ERROR": 0,
+      "total": 823,
+      "hit_rate_pct": 0.0
+    }
+  },
+  "by_league_season": {
+    "AUT|2022": {
+      "HIT": 3,
+      "MISS": 173,
+      "ERROR": 0,
+      "total": 176,
+      "hit_rate_pct": 1.7045
+    },
+    "AUT|2023": {
+      "HIT": 0,
+      "MISS": 163,
+      "ERROR": 0,
+      "total": 163,
+      "hit_rate_pct": 0.0
+    },
+    "AUT|2024": {
+      "HIT": 0,
+      "MISS": 160,
+      "ERROR": 0,
+      "total": 160,
+      "hit_rate_pct": 0.0
+    },
+    "AUT|2025": {
+      "HIT": 0,
+      "MISS": 176,
+      "ERROR": 0,
+      "total": 176,
+      "hit_rate_pct": 0.0
+    },
+    "B1|2022": {
+      "HIT": 0,
+      "MISS": 175,
+      "ERROR": 0,
+      "total": 175,
+      "hit_rate_pct": 0.0
+    },
+    "B1|2023": {
+      "HIT": 0,
+      "MISS": 276,
+      "ERROR": 0,
+      "total": 276,
+      "hit_rate_pct": 0.0
+    },
+    "B1|2024": {
+      "HIT": 0,
+      "MISS": 273,
+      "ERROR": 0,
+      "total": 273,
+      "hit_rate_pct": 0.0
+    },
+    "B1|2025": {
+      "HIT": 0,
+      "MISS": 294,
+      "ERROR": 0,
+      "total": 294,
+      "hit_rate_pct": 0.0
+    },
+    "D1|2022": {
+      "HIT": 0,
+      "MISS": 191,
+      "ERROR": 0,
+      "total": 191,
+      "hit_rate_pct": 0.0
+    },
+    "D1|2023": {
+      "HIT": 0,
+      "MISS": 238,
+      "ERROR": 0,
+      "total": 238,
+      "hit_rate_pct": 0.0
+    },
+    "D1|2024": {
+      "HIT": 0,
+      "MISS": 220,
+      "ERROR": 0,
+      "total": 220,
+      "hit_rate_pct": 0.0
+    },
+    "D1|2025": {
+      "HIT": 0,
+      "MISS": 255,
+      "ERROR": 0,
+      "total": 255,
+      "hit_rate_pct": 0.0
+    },
+    "DNK|2022": {
+      "HIT": 3,
+      "MISS": 166,
+      "ERROR": 0,
+      "total": 169,
+      "hit_rate_pct": 1.7751
+    },
+    "DNK|2023": {
+      "HIT": 0,
+      "MISS": 161,
+      "ERROR": 0,
+      "total": 161,
+      "hit_rate_pct": 0.0
+    },
+    "DNK|2024": {
+      "HIT": 0,
+      "MISS": 160,
+      "ERROR": 0,
+      "total": 160,
+      "hit_rate_pct": 0.0
+    },
+    "DNK|2025": {
+      "HIT": 0,
+      "MISS": 160,
+      "ERROR": 0,
+      "total": 160,
+      "hit_rate_pct": 0.0
+    },
+    "E0|2022": {
+      "HIT": 0,
+      "MISS": 239,
+      "ERROR": 0,
+      "total": 239,
+      "hit_rate_pct": 0.0
+    },
+    "E0|2023": {
+      "HIT": 0,
+      "MISS": 285,
+      "ERROR": 0,
+      "total": 285,
+      "hit_rate_pct": 0.0
+    },
+    "E0|2024": {
+      "HIT": 0,
+      "MISS": 304,
+      "ERROR": 0,
+      "total": 304,
+      "hit_rate_pct": 0.0
+    },
+    "E0|2025": {
+      "HIT": 0,
+      "MISS": 323,
+      "ERROR": 0,
+      "total": 323,
+      "hit_rate_pct": 0.0
+    },
+    "F1|2022": {
+      "HIT": 0,
+      "MISS": 216,
+      "ERROR": 0,
+      "total": 216,
+      "hit_rate_pct": 0.0
+    },
+    "F1|2023": {
+      "HIT": 0,
+      "MISS": 221,
+      "ERROR": 0,
+      "total": 221,
+      "hit_rate_pct": 0.0
+    },
+    "F1|2024": {
+      "HIT": 0,
+      "MISS": 238,
+      "ERROR": 0,
+      "total": 238,
+      "hit_rate_pct": 0.0
+    },
+    "F1|2025": {
+      "HIT": 0,
+      "MISS": 272,
+      "ERROR": 0,
+      "total": 272,
+      "hit_rate_pct": 0.0
+    },
+    "I1|2022": {
+      "HIT": 0,
+      "MISS": 209,
+      "ERROR": 0,
+      "total": 209,
+      "hit_rate_pct": 0.0
+    },
+    "I1|2023": {
+      "HIT": 0,
+      "MISS": 323,
+      "ERROR": 0,
+      "total": 323,
+      "hit_rate_pct": 0.0
+    },
+    "I1|2024": {
+      "HIT": 0,
+      "MISS": 342,
+      "ERROR": 0,
+      "total": 342,
+      "hit_rate_pct": 0.0
+    },
+    "I1|2025": {
+      "HIT": 0,
+      "MISS": 323,
+      "ERROR": 0,
+      "total": 323,
+      "hit_rate_pct": 0.0
+    },
+    "N1|2022": {
+      "HIT": 0,
+      "MISS": 180,
+      "ERROR": 0,
+      "total": 180,
+      "hit_rate_pct": 0.0
+    },
+    "N1|2023": {
+      "HIT": 0,
+      "MISS": 221,
+      "ERROR": 0,
+      "total": 221,
+      "hit_rate_pct": 0.0
+    },
+    "N1|2024": {
+      "HIT": 0,
+      "MISS": 238,
+      "ERROR": 0,
+      "total": 238,
+      "hit_rate_pct": 0.0
+    },
+    "N1|2025": {
+      "HIT": 0,
+      "MISS": 255,
+      "ERROR": 0,
+      "total": 255,
+      "hit_rate_pct": 0.0
+    },
+    "NOR|2022": {
+      "HIT": 4,
+      "MISS": 92,
+      "ERROR": 0,
+      "total": 96,
+      "hit_rate_pct": 4.1667
+    },
+    "NOR|2023": {
+      "HIT": 0,
+      "MISS": 180,
+      "ERROR": 0,
+      "total": 180,
+      "hit_rate_pct": 0.0
+    },
+    "NOR|2024": {
+      "HIT": 0,
+      "MISS": 195,
+      "ERROR": 0,
+      "total": 195,
+      "hit_rate_pct": 0.0
+    },
+    "NOR|2025": {
+      "HIT": 0,
+      "MISS": 194,
+      "ERROR": 0,
+      "total": 194,
+      "hit_rate_pct": 0.0
+    },
+    "P1|2022": {
+      "HIT": 0,
+      "MISS": 168,
+      "ERROR": 0,
+      "total": 168,
+      "hit_rate_pct": 0.0
+    },
+    "P1|2023": {
+      "HIT": 0,
+      "MISS": 221,
+      "ERROR": 0,
+      "total": 221,
+      "hit_rate_pct": 0.0
+    },
+    "P1|2024": {
+      "HIT": 0,
+      "MISS": 255,
+      "ERROR": 0,
+      "total": 255,
+      "hit_rate_pct": 0.0
+    },
+    "P1|2025": {
+      "HIT": 0,
+      "MISS": 272,
+      "ERROR": 0,
+      "total": 272,
+      "hit_rate_pct": 0.0
+    },
+    "POL|2022": {
+      "HIT": 2,
+      "MISS": 223,
+      "ERROR": 0,
+      "total": 225,
+      "hit_rate_pct": 0.8889
+    },
+    "POL|2023": {
+      "HIT": 0,
+      "MISS": 221,
+      "ERROR": 0,
+      "total": 221,
+      "hit_rate_pct": 0.0
+    },
+    "POL|2024": {
+      "HIT": 0,
+      "MISS": 255,
+      "ERROR": 0,
+      "total": 255,
+      "hit_rate_pct": 0.0
+    },
+    "POL|2025": {
+      "HIT": 0,
+      "MISS": 255,
+      "ERROR": 0,
+      "total": 255,
+      "hit_rate_pct": 0.0
+    },
+    "SC0|2022": {
+      "HIT": 0,
+      "MISS": 146,
+      "ERROR": 0,
+      "total": 146,
+      "hit_rate_pct": 0.0
+    },
+    "SC0|2023": {
+      "HIT": 0,
+      "MISS": 190,
+      "ERROR": 0,
+      "total": 190,
+      "hit_rate_pct": 0.0
+    },
+    "SC0|2024": {
+      "HIT": 0,
+      "MISS": 209,
+      "ERROR": 0,
+      "total": 209,
+      "hit_rate_pct": 0.0
+    },
+    "SC0|2025": {
+      "HIT": 0,
+      "MISS": 210,
+      "ERROR": 0,
+      "total": 210,
+      "hit_rate_pct": 0.0
+    },
+    "SP1|2022": {
+      "HIT": 0,
+      "MISS": 231,
+      "ERROR": 0,
+      "total": 231,
+      "hit_rate_pct": 0.0
+    },
+    "SP1|2023": {
+      "HIT": 0,
+      "MISS": 266,
+      "ERROR": 0,
+      "total": 266,
+      "hit_rate_pct": 0.0
+    },
+    "SP1|2024": {
+      "HIT": 0,
+      "MISS": 285,
+      "ERROR": 0,
+      "total": 285,
+      "hit_rate_pct": 0.0
+    },
+    "SP1|2025": {
+      "HIT": 0,
+      "MISS": 323,
+      "ERROR": 0,
+      "total": 323,
+      "hit_rate_pct": 0.0
+    },
+    "T1|2022": {
+      "HIT": 0,
+      "MISS": 126,
+      "ERROR": 0,
+      "total": 126,
+      "hit_rate_pct": 0.0
+    },
+    "T1|2023": {
+      "HIT": 0,
+      "MISS": 209,
+      "ERROR": 0,
+      "total": 209,
+      "hit_rate_pct": 0.0
+    },
+    "T1|2024": {
+      "HIT": 0,
+      "MISS": 233,
+      "ERROR": 0,
+      "total": 233,
+      "hit_rate_pct": 0.0
+    },
+    "T1|2025": {
+      "HIT": 0,
+      "MISS": 255,
+      "ERROR": 0,
+      "total": 255,
+      "hit_rate_pct": 0.0
+    }
+  }
+}
