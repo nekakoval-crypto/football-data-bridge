@@ -274,6 +274,8 @@ def main():
     write_csv_atomic(BACKLOG,BACKLOG_FIELDS,after["rows"])
     audit.save(SHARED_STATE,state)
     broker_stats=get_broker().stats()
+    if int(broker_stats.get("archive_errors") or 0)>0:
+        result["warnings"].append(f"raw archive write failures: {broker_stats.get('archive_errors')}")
     meta={
         "version":VERSION,"run_at_utc":iso(now),"status":"ATTENTION" if result["warnings"] else ("WAITING" if result["deferred_fixtures"] else "OK"),
         "provider_endpoint":"/fixtures/events","provider_calls":budget.calls,
