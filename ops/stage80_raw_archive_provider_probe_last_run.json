@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_RAW_ARCHIVE_PROVIDER_PROBE_V1",
-  "run_at_utc": "2026-09-18T13:04:58Z",
+  "run_at_utc": "2026-09-25T17:20:06Z",
   "status": "READY",
   "provider_endpoint": "/status",
   "provider_calls": 1,
@@ -8,9 +8,9 @@
   "archive_backend": "S3",
   "archive_observations": 1,
   "archive_errors": 0,
-  "observation_key": "api-football-raw/observations/2026/09/18/8484df568c865fbdfde352591454176cae3a516664944f1ffb2e41430148d92d.json",
-  "blob_key": "api-football-raw/blobs/sha256/7c/7c97dc1b595036623900a129cfd6eb9db146be1aa419e09d5d8f1636428d5d32.json.gz",
-  "payload_sha256": "7c97dc1b595036623900a129cfd6eb9db146be1aa419e09d5d8f1636428d5d32",
+  "observation_key": "api-football-raw/observations/2026/09/25/0b8cdceea1ab08147ac0eb7e5627445354e47ebc5701f3328f2039fa9843df11.json",
+  "blob_key": "api-football-raw/blobs/sha256/3b/3b3b9ae8d6f6a46e0d9d9d8e44fc94f087d68dd086ff98537f09d0f65a883126.json.gz",
+  "payload_sha256": "3b3b9ae8d6f6a46e0d9d9d8e44fc94f087d68dd086ff98537f09d0f65a883126",
   "checks": {
     "provider_hash_matches_broker": true,
     "blob_readback_hash_matches": true,
