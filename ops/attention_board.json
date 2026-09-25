@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-09-25T19:01:13Z",
-  "generated_at_local": "2026-09-25T21:01:13+02:00",
+  "generated_at_utc": "2026-09-25T20:00:47Z",
+  "generated_at_local": "2026-09-25T22:00:47+02:00",
   "timezone": "Europe/Berlin",
   "status": "OK",
   "summary": {
@@ -11,7 +11,7 @@
     "active_watch_crossings": 0,
     "nearest_monitored_rows": 1,
     "recent_results": 3,
-    "market_cards": 11
+    "market_cards": 12
   },
   "red": [],
   "orange": [],
@@ -26,7 +26,7 @@
       "fixture_id": "1550143",
       "kickoff_utc": "2026-10-11T13:00:00Z",
       "kickoff_local": "11.10 15:00",
-      "hours_to_kickoff": 377.98,
+      "hours_to_kickoff": 376.99,
       "home_team": "Lecce",
       "away_team": "Bologna",
       "selection": "П2",
@@ -46,7 +46,7 @@
       "fixture_id": "1550145",
       "kickoff_utc": "2026-10-11T16:00:00Z",
       "kickoff_local": "11.10 18:00",
-      "hours_to_kickoff": 380.98,
+      "hours_to_kickoff": 379.99,
       "home_team": "Sassuolo",
       "away_team": "AC Milan",
       "selection": "П2",
@@ -66,7 +66,7 @@
       "fixture_id": "1550145",
       "kickoff_utc": "2026-10-11T16:00:00Z",
       "kickoff_local": "11.10 18:00",
-      "hours_to_kickoff": 380.98,
+      "hours_to_kickoff": 379.99,
       "home_team": "Sassuolo",
       "away_team": "AC Milan",
       "selection": "П2",
@@ -86,7 +86,7 @@
       "fixture_id": "1550138",
       "kickoff_utc": "2026-10-11T18:45:00Z",
       "kickoff_local": "11.10 20:45",
-      "hours_to_kickoff": 383.73,
+      "hours_to_kickoff": 382.74,
       "home_team": "Cagliari",
       "away_team": "Juventus",
       "selection": "П2",
@@ -107,7 +107,7 @@
       "fixture_id": "1575176",
       "kickoff_utc": "2026-10-09T18:30:00Z",
       "kickoff_local": "09.10 20:30",
-      "hours_to_kickoff": 335.48,
+      "hours_to_kickoff": 334.49,
       "home_team": "Borussia Dortmund",
       "away_team": "Werder Bremen",
       "market": "ТБ(2.5) steam",
@@ -737,12 +737,62 @@
       "fixture_status": "NS",
       "status": "MARKET_VIEW_ONLY",
       "creates_signal": false
+    },
+    {
+      "fixture_id": "1575512",
+      "league": "Primeira Liga",
+      "league_id": "94",
+      "country": "Portugal",
+      "home_team": "SC Braga",
+      "away_team": "Sporting CP",
+      "kickoff_utc": "2026-10-09T19:15:00+00:00",
+      "kickoff_local": "09.10 19:15 UTC",
+      "markets": [
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TEAM_TOTAL",
+          "text": "ИТБ/ИТМ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х/Х2/12 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP",
+          "text": "Европейская фора — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф(0) — нет данных",
+          "status": "NO_DATA"
+        }
+      ],
+      "fixture_status": "NS",
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
     }
   ],
   "governance": {
     "system_health": "CRITICAL",
     "health_critical": 1,
-    "health_warnings": 2,
+    "health_warnings": 1,
     "logical_exposure_u": 3.0,
     "canonical_conflict_fixtures": 0,
     "deduplicated_overlap_u": 1.0,
