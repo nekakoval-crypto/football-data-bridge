@@ -47,6 +47,32 @@ MAX_FIXTURES_PER_RUN = int(
 )
 
 
+def make_archive_first_get(fallback_get, stats, archive_reader=read_archived_response):
+    """Serve exact historical requests from raw archive before provider budget."""
+    def get(path, params=None, **kwargs):
+        params = dict(params or {})
+        key = request_key("GET", path, params)
+        try:
+            payload = archive_reader(key)
+        except Exception:
+            stats["archive_read_errors"] += 1
+            payload = None
+
+        if (
+            isinstance(payload, dict)
+            and not payload.get("errors")
+            and isinstance(payload.get("response"), list)
+        ):
+            stats["archive_read_hits"] += 1
+            return payload
+
+        stats["archive_read_misses"] += 1
+        kwargs.pop("archive_first", None)
+        return fallback_get(path, params, **kwargs)
+
+    return get
+
+
 def read_csv(path):
     if not Path(path).exists():
         return []
@@ -228,10 +254,17 @@ def main():
         checkpoint=lambda value: audit.save(SHARED_STATE, value),
     )
 
+    archive_stats = {
+        "archive_read_hits": 0,
+        "archive_read_misses": 0,
+        "archive_read_errors": 0,
+    }
+    historical_get = make_archive_first_get(budget, archive_stats)
+
     result = s81.capture(
         historical_queue,
         existing_rows,
-        budget,
+        historical_get,
         now,
         MAX_FIXTURES_PER_RUN,
     )
@@ -281,6 +314,10 @@ def main():
         "historical_completed_fixtures": historical_completed,
         "historical_pending_fixtures": historical_pending,
         "provider_calls": budget.calls,
+        "archive_first_enabled": True,
+        "archive_read_hits": archive_stats["archive_read_hits"],
+        "archive_read_misses": archive_stats["archive_read_misses"],
+        "archive_read_errors": archive_stats["archive_read_errors"],
         "attempted_fixtures": len(result["attempts"]),
         "captured_fixtures_this_run": result["captured_fixtures"],
         "captured_fixture_ids": result["captured_fixture_ids"],
