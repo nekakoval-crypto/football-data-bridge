@@ -38,6 +38,7 @@ FIXTURES = OPS / "historical_fixtures.csv"
 TEAM_STATS = OPS / "team_match_statistics.csv"
 EVENTS = OPS / "match_event_snapshots.csv"
 VENUES = OPS / "pbk16_venue_registry.csv"
+PBK14_BRIDGE = OPS / "pbk14_football_data_fixture_bridge.csv"
 
 SNAPSHOTS = OPS / "environmental_postmatch_condition_snapshots.csv"
 GEOCACHE = OPS / "environmental_postmatch_venue_geocache.csv"
@@ -348,6 +349,47 @@ def finished_fixtures(rows: list[dict[str, str]]) -> dict[str, dict[str, str]]:
 
         out[fixture_id] = row
 
+    return out
+
+
+def finished_bridge_fixtures(rows: list[dict[str, str]]) -> dict[str, dict[str, str]]:
+    """Adapt trusted PBK14 bridge rows into Stage273 historical fixture shape."""
+    out = {}
+    for row in rows:
+        fixture_id = str(row.get("api_fixture_id") or "").strip()
+        mapping_status = str(row.get("mapping_status") or "").strip().upper()
+        one_to_one = str(row.get("one_to_one_verified") or "").strip().lower()
+        fuzzy = str(row.get("fuzzy_string_matching_used") or "").strip().lower()
+        kickoff = str(row.get("api_kickoff_utc") or "").strip()
+        if (
+            not fixture_id
+            or mapping_status not in {"AUTO", "HIGH"}
+            or one_to_one != "true"
+            or fuzzy != "false"
+            or parse_iso(kickoff) is None
+        ):
+            continue
+
+        home_goals = str(row.get("api_home_goals") or row.get("source_home_goals") or "").strip()
+        away_goals = str(row.get("api_away_goals") or row.get("source_away_goals") or "").strip()
+        if not home_goals or not away_goals:
+            continue
+
+        out[fixture_id] = {
+            "fixture_id": fixture_id,
+            "provider_league_id": str(row.get("provider_league_id") or "").strip(),
+            "league_name": str(row.get("league_code") or "").strip(),
+            "season": str(row.get("season_start") or "").strip(),
+            "round": "HISTORICAL_BRIDGE",
+            "kickoff_utc": kickoff,
+            "source_status": "FT",
+            "status": "FINISHED",
+            "home_team": str(row.get("api_home_team") or row.get("source_home_team") or "").strip(),
+            "away_team": str(row.get("api_away_team") or row.get("source_away_team") or "").strip(),
+            "home_goals": home_goals,
+            "away_goals": away_goals,
+            "fixture_source": "PBK14_FOOTBALL_DATA_BRIDGE",
+        }
     return out
 
 
@@ -1059,6 +1101,8 @@ def run(captured_at: datetime | None = None) -> dict[str, Any]:
     validate_contract(config)
 
     fixtures = finished_fixtures(read_csv(FIXTURES))
+    for fixture_id, row in finished_bridge_fixtures(read_csv(PBK14_BRIDGE)).items():
+        fixtures.setdefault(fixture_id, row)
     stats = complete_team_stats(read_csv(TEAM_STATS))
     venue_rows = read_csv(VENUES)
     venues = venue_by_team(venue_rows)

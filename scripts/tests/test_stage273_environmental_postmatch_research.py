@@ -346,6 +346,35 @@ class EnvironmentalPostmatchResearchTests(unittest.TestCase):
         self.assertEqual(row["temperature_mean_c"],"21.5")
         self.assertEqual(row["captured_at_utc"],"2026-09-24T10:00:00Z")
 
+    def test_finished_bridge_fixtures_accepts_only_trusted_identity(self):
+        rows=[
+            {
+                "api_fixture_id":"9001",
+                "provider_league_id":"39",
+                "league_code":"E0",
+                "season_start":"2024",
+                "api_kickoff_utc":"2024-08-17T14:00:00Z",
+                "api_home_team":"Home FC",
+                "api_away_team":"Away FC",
+                "api_home_goals":"2",
+                "api_away_goals":"1",
+                "mapping_status":"AUTO",
+                "one_to_one_verified":"true",
+                "fuzzy_string_matching_used":"false",
+            },
+            {
+                "api_fixture_id":"9002",
+                "api_kickoff_utc":"2024-08-17T14:00:00Z",
+                "mapping_status":"REVIEW",
+                "one_to_one_verified":"false",
+                "fuzzy_string_matching_used":"false",
+            },
+        ]
+        result=m.finished_bridge_fixtures(rows)
+        self.assertEqual(set(result),{"9001"})
+        self.assertEqual(result["9001"]["home_goals"],"2")
+        self.assertEqual(result["9001"]["round"],"HISTORICAL_BRIDGE")
+
     def test_finished_fixture_filter_rejects_scheduled(self):
         rows = [
             {
