@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-25T16:58:06Z",
+  "generated_at_utc": "2026-09-25T18:46:54Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -37,7 +37,7 @@
     "team_stats": {
       "file": "team_match_statistics.csv",
       "present": true,
-      "rows": 1044
+      "rows": 1428
     },
     "stage81_backlog": {
       "file": "stage81_team_stats_backlog.csv",
@@ -52,7 +52,7 @@
     "player_profiles": {
       "file": "player_profile_evidence.csv",
       "present": true,
-      "rows": 3747
+      "rows": 3779
     },
     "roster_history": {
       "file": "team_roster_history.csv",
@@ -67,12 +67,12 @@
     "transfer_identity": {
       "file": "pbk_transfermarkt_player_identity.csv",
       "present": true,
-      "rows": 5286
+      "rows": 5288
     },
     "transfer_history": {
       "file": "historical_transfer_events.csv",
       "present": true,
-      "rows": 37997
+      "rows": 38008
     },
     "match_context": {
       "file": "match_context_snapshots.csv",
@@ -337,15 +337,15 @@
   "stage81_backlog": {
     "present": true,
     "total_fixtures": 13477,
-    "pending_fixtures": 12955,
-    "captured_fixtures": 522,
+    "pending_fixtures": 12763,
+    "captured_fixtures": 714,
     "captured_without_complete_ledger": 0,
     "oldest_pending_first_queued_at_utc": "2026-09-17T10:41:55Z",
     "evidence_note": "Pending means PBK observed a terminal fixture but has not yet persisted complete HOME+AWAY /fixtures/statistics evidence."
   },
   "team_statistics": {
-    "rows": 1044,
-    "complete_fixture_count": 522,
+    "rows": 1428,
+    "complete_fixture_count": 714,
     "finished_current_inventory_with_team_stats": 0,
     "finished_current_inventory_team_stats_coverage_pct": 0.0,
     "evidence_note": "Complete means HOME and AWAY team rows exist; individual missing provider metrics remain UNKNOWN."
@@ -354,8 +354,8 @@
     "team_xg_source": "API-Football /fixtures/statistics expected_goals",
     "team_xg_rows": 46,
     "team_xg_complete_fixture_count": 23,
-    "team_stats_complete_fixture_count": 522,
-    "team_xg_captured_fixture_coverage_pct": 4.41,
+    "team_stats_complete_fixture_count": 714,
+    "team_xg_captured_fixture_coverage_pct": 3.22,
     "finished_current_inventory_with_team_xg": 0,
     "finished_current_inventory_team_xg_coverage_pct": 0.0,
     "team_xg_evidence_note": "Verified provider field when present; API-Football may return it as missing for some competitions or fixtures and PBK preserves missing as UNKNOWN.",
@@ -402,24 +402,24 @@
   },
   "player_profiles": {
     "present": true,
-    "rows": 3747,
-    "valid_rows": 3747,
-    "team_source_rows": 3625,
-    "residual_player_id_source_rows": 122,
-    "identity_ready_rows": 3484,
+    "rows": 3779,
+    "valid_rows": 3779,
+    "team_source_rows": 3663,
+    "residual_player_id_source_rows": 116,
+    "identity_ready_rows": 3510,
     "invalid_rows": 0,
-    "unique_players": 3640,
-    "identity_ready_unique_players": 3377,
+    "unique_players": 3670,
+    "identity_ready_unique_players": 3401,
     "unique_teams": 129,
-    "current_roster_player_coverage_pct": 85.24,
-    "identity_ready_current_roster_coverage_pct": 79.53,
+    "current_roster_player_coverage_pct": 85.66,
+    "identity_ready_current_roster_coverage_pct": 79.93,
     "evidence_note": "Bounded API-Football player profile evidence from team+season plus residual player-id+season calls. Residual team context is taken from the current PBK roster, not inferred from season statistics. Full-name+DOB+club may support conservative cross-provider identity mapping; this never grants betting/model authority."
   },
   "transfer_identity": {
     "present": true,
-    "rows": 5286,
+    "rows": 5288,
     "valid_rows": 4886,
-    "invalid_rows": 400,
+    "invalid_rows": 402,
     "unique_pbk_players": 4886,
     "unique_transfermarkt_players": 4886,
     "approved_methods": [
@@ -431,9 +431,9 @@
   },
   "transfer_history": {
     "present": true,
-    "rows": 37997,
+    "rows": 38008,
     "valid_rows": 32713,
-    "invalid_identity_rows": 5284,
+    "invalid_identity_rows": 5295,
     "unique_pbk_players": 3982,
     "unique_transfermarkt_players": 3982,
     "earliest_transfer_date": "1994-07-01",
@@ -928,7 +928,7 @@
     "backend": "S3",
     "status": "OK",
     "storage_verification_status": "READY",
-    "storage_verified_at_utc": "2026-09-18T13:04:32Z",
+    "storage_verified_at_utc": "2026-09-25T17:19:34Z",
     "storage_readback_match": true,
     "bucket": "pbk-api-football-raw",
     "prefix": "api-football-raw",

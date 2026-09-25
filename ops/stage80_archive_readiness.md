@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-25T16:58:06Z
+Обновлено UTC: 2026-09-25T18:46:54Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -11,18 +11,18 @@
 - Stage77 durable backlog: pending 24; captured 149; total 173.
 - Normalized lineup archive: 8 rows / 3 fixtures; injury archive: 54 rows / 3 fixtures.
 - Match event archive: 2169 rows / 130 fixtures; backlog pending 0 / total 130.
-- Stage81 durable backlog: pending 12955; captured 522; total 13477.
-- Team match statistics: 522 complete fixtures / 1044 team rows; current finished coverage 0.00%.
-- Team xG: 23 complete fixtures / 46 team rows; captured-team-stat coverage 4.41%.
+- Stage81 durable backlog: pending 12763; captured 714; total 13477.
+- Team match statistics: 714 complete fixtures / 1428 team rows; current finished coverage 0.00%.
+- Team xG: 23 complete fixtures / 46 team rows; captured-team-stat coverage 3.22%.
 - Player xG/xA source: RESEARCH_SOURCE_EXTERNAL_LOCAL_ATTESTED_MAPPED_TO_PBK.
 - Player stat rows: 263918; уникальных игроков: 11610.
 - Player Grade rows: 263918; уникальных игроков: 11610.
 - Current roster: 130 команд / 4014 игроковых строк.
-- Player profile evidence: 3747 rows (3625 team-source + 122 residual-ID) / 3640 players / 129 teams; current-roster coverage 85.24%; identity-ready 3377 players (79.53%).
+- Player profile evidence: 3779 rows (3663 team-source + 116 residual-ID) / 3670 players / 129 teams; current-roster coverage 85.66%; identity-ready 3401 players (79.93%).
 - Roster history: 130 команд / 146 team-snapshots / 4512 строк.
 - Membership intervals: 4016 (open 4012, closed-by-observed-absence 4).
-- Verified PBK↔Transfermarkt identities: 4886 rows / 4886 PBK players; invalid 400.
-- Verified historical transfers: 32713 rows / 3982 PBK players; dates 1994-07-01 → 2027-06-30; invalid 5284.
+- Verified PBK↔Transfermarkt identities: 4886 rows / 4886 PBK players; invalid 402.
+- Verified historical transfers: 32713 rows / 3982 PBK players; dates 1994-07-01 → 2027-06-30; invalid 5295.
 - EPL referee research: 47 referees / 897 referee×team pairs / 3420 source matches; scope EPL_ONLY; penalties unavailable.
 - Top-5 API-Football referee backfill: 45 / 45 league-seasons; 16239 fixture rows; referee coverage 99.44%; profiles 453; referee×team pairs 7689.
 - Top-5 pre-match research context: 16111 valid rows / 16111 unique matches / 45 of 45 league-seasons; no-lookahead True.
@@ -47,7 +47,7 @@
 - Storage configured: True.
 - Backend: S3.
 - Status: OK.
-- Durable readback verified: True; verified at 2026-09-18T13:04:32Z.
+- Durable readback verified: True; verified at 2026-09-25T17:19:34Z.
 - Observations: —; unique payloads: —.
 
 ## Незакрытые пробелы

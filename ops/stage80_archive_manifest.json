@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-25T16:57:57Z",
+  "generated_at_utc": "2026-09-25T18:46:44Z",
   "status": "OK",
   "datasets": [
     {
@@ -254,7 +254,7 @@
       "source": "Stage81 /fixtures/statistics via shared API-Football broker",
       "limitations": "Only observed finished fixtures captured under protected provider budget; missing provider metrics remain UNKNOWN and are never zero-filled.",
       "present": true,
-      "row_count": 1044,
+      "row_count": 1428,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -378,7 +378,7 @@
       "source": "Stage80 /players?team&season plus residual /players?id&season via shared API-Football broker; residual team context comes from current PBK roster",
       "limitations": "Identity enrichment only. Residual calls are limited to current-roster player IDs still missing after team capture. Missing profile fields remain UNKNOWN. No betting/model authority.",
       "present": true,
-      "row_count": 3747,
+      "row_count": 3779,
       "columns": [
         "team_id",
         "team_name",
@@ -1549,7 +1549,7 @@
       "source": "Stage80 conservative PBK ↔ Transfermarkt AUTO_MATCH/HIGH identity projection",
       "limitations": "Identity bridge only. Approved methods include exact catalog name+club, exact API-Football profile full-name+DOB+club, or exact non-abbreviated match-stat name+club; no fuzzy authority and no betting/model authority.",
       "present": true,
-      "row_count": 5286,
+      "row_count": 5288,
       "columns": [
         "pbk_player_id",
         "pbk_player_name",
@@ -1586,7 +1586,7 @@
       "source": "Stage80 durable projection from conservative PBK ↔ Transfermarkt AUTO_MATCH/HIGH mapping",
       "limitations": "Historical enrichment only; Transfermarkt IDs remain separate from API-Football IDs and source snapshot age prevents current-squad authority.",
       "present": true,
-      "row_count": 37997,
+      "row_count": 38008,
       "columns": [
         "transfer_event_id",
         "pbk_player_id",
@@ -3354,7 +3354,7 @@
       "columns": [],
       "missing_required_fields": [],
       "storage_backend": "S3",
-      "storage_verified_at_utc": "2026-09-18T13:04:32Z",
+      "storage_verified_at_utc": "2026-09-25T17:19:34Z",
       "contract_status": "CONFIGURED"
     }
   ],
