@@ -230,6 +230,41 @@ class HistoricalPlayerBackfillTests(unittest.TestCase):
         self.assertTrue(calls[0][2]["archive_first"])
         self.assertFalse(calls[0][2]["force_refresh"])
 
+    def test_archive_hit_can_bypass_budget_wrapper(self):
+        calls = []
+        stats = {
+            "archive_read_hits": 0,
+            "archive_read_misses": 0,
+            "archive_read_errors": 0,
+        }
+
+        def budget(path, params=None, **kwargs):
+            calls.append((path, params, kwargs))
+            raise AssertionError("budget must not be touched on archive hit")
+
+        archived = {"response": []}
+        get = h.make_archive_before_budget_get(
+            budget,
+            stats,
+            archive_reader=lambda key: archived,
+        )
+
+        result = h.run_capture(
+            [self.fixture("1")],
+            existing_stats=[],
+            existing_grades=[],
+            state={},
+            get=get,
+            now=h.datetime(2026, 9, 20, tzinfo=h.timezone.utc),
+            limit=1,
+            no_data_cell_threshold=8,
+        )
+
+        self.assertEqual(calls, [])
+        self.assertEqual(stats["archive_read_hits"], 1)
+        self.assertEqual(stats["archive_read_misses"], 0)
+        self.assertEqual(result["no_data_fixtures"], 1)
+
     def test_provider_quota_error_stops_batch_immediately(self):
         candidates = [
             self.fixture("1"),
