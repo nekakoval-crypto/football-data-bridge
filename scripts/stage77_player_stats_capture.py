@@ -27,7 +27,7 @@ from pathlib import Path
 
 import stage53_daily_screener as s53
 import stage71_observation_audit as audit
-from api_football_broker import ApiFootballBrokerError
+from api_football_broker import ApiFootballBrokerError, make_archive_before_budget_get
 from player_grade import GRADE_VERSION, grade_aggregate, normalize_api_football_player
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
@@ -427,8 +427,10 @@ def main():
         protected_calls=reserve["total"],
         checkpoint=lambda value: audit.save(SHARED_STATE, value),
     )
+    archive_stats = {"archive_read_hits": 0, "archive_read_misses": 0, "archive_read_errors": 0}
+    historical_get = make_archive_before_budget_get(budget, archive_stats)
     result = capture(
-        backlog_before["rows"], existing_stats, existing_grades, budget, now,
+        backlog_before["rows"], existing_stats, existing_grades, historical_get, now,
         int(os.getenv("STAGE77_MAX_FIXTURES_PER_RUN", str(max_calls))),
     )
 
@@ -452,6 +454,10 @@ def main():
         "status": "ATTENTION" if result["warnings"] else ("WAITING" if result["deferred_fixtures"] else "OK"),
         "provider_endpoint": "/fixtures/players",
         "provider_calls": budget.calls,
+        "archive_first_enabled": True,
+        "archive_read_hits": archive_stats["archive_read_hits"],
+        "archive_read_misses": archive_stats["archive_read_misses"],
+        "archive_read_errors": archive_stats["archive_read_errors"],
         "daily_api_calls": state.get("api_day_calls", 0),
         "protected_calls": reserve,
         "candidate_fixtures": result["candidate_fixtures"],
