@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-24T23:29:31Z",
+  "generated_at_utc": "2026-09-25T00:39:28Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -12,7 +12,7 @@
     "fixture_history": {
       "file": "fixture_history_snapshots.csv",
       "present": true,
-      "rows": 22329
+      "rows": 22585
     },
     "historical_fixtures": {
       "file": "historical_fixtures.csv",
@@ -47,7 +47,7 @@
     "current_rosters": {
       "file": "team_rosters.csv",
       "present": true,
-      "rows": 4013
+      "rows": 4014
     },
     "player_profiles": {
       "file": "player_profile_evidence.csv",
@@ -57,12 +57,12 @@
     "roster_history": {
       "file": "team_roster_history.csv",
       "present": true,
-      "rows": 4257
+      "rows": 4512
     },
     "membership_intervals": {
       "file": "team_membership_intervals.csv",
       "present": true,
-      "rows": 4015
+      "rows": 4016
     },
     "transfer_identity": {
       "file": "pbk_transfermarkt_player_identity.csv",
@@ -298,10 +298,10 @@
   },
   "fixture_history": {
     "present": true,
-    "rows": 22329,
-    "valid_observations": 22329,
+    "rows": 22585,
+    "valid_observations": 22585,
     "unique_fixtures": 306,
-    "observation_runs": 174,
+    "observation_runs": 176,
     "finished_fixtures_observed": 173,
     "invalid_identity_rows": 0,
     "evidence_note": "Counts represent only Stage71 current-round observations persisted after the fixture-history archive was enabled; they are not a pre-PBK historical backfill claim."
@@ -320,8 +320,8 @@
     "orphan_catalog_fixtures": 0,
     "missing_terminal_evidence": 0,
     "orphan_terminal_evidence": 0,
-    "observation_count_total": 22329,
-    "expected_history_observations": 22329,
+    "observation_count_total": 22585,
+    "expected_history_observations": 22585,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
   },
@@ -391,13 +391,13 @@
     "unique_players_with_grades": 11610
   },
   "rosters": {
-    "current_roster_rows": 4013,
+    "current_roster_rows": 4014,
     "current_roster_teams": 130,
-    "history_rows": 4257,
+    "history_rows": 4512,
     "history_teams": 130,
-    "history_team_snapshots": 138,
-    "membership_intervals": 4015,
-    "open_latest_intervals": 4011,
+    "history_team_snapshots": 146,
+    "membership_intervals": 4016,
+    "open_latest_intervals": 4012,
     "closed_by_observed_absence_intervals": 4
   },
   "player_profiles": {
@@ -411,8 +411,8 @@
     "unique_players": 3640,
     "identity_ready_unique_players": 3377,
     "unique_teams": 129,
-    "current_roster_player_coverage_pct": 85.26,
-    "identity_ready_current_roster_coverage_pct": 79.55,
+    "current_roster_player_coverage_pct": 85.24,
+    "identity_ready_current_roster_coverage_pct": 79.53,
     "evidence_note": "Bounded API-Football player profile evidence from team+season plus residual player-id+season calls. Residual team context is taken from the current PBK roster, not inferred from season statistics. Full-name+DOB+club may support conservative cross-provider identity mapping; this never grants betting/model authority."
   },
   "transfer_identity": {

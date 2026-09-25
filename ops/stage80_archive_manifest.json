@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-24T23:29:20Z",
+  "generated_at_utc": "2026-09-25T00:39:17Z",
   "status": "OK",
   "datasets": [
     {
@@ -68,7 +68,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 22329,
+      "row_count": 22585,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -1505,7 +1505,7 @@
       "source": "Stage80 normalized projection from team_roster_history + player_stats_snapshots",
       "limitations": "Observed player directory only; does not infer current team, exact transfer dates, xG or xA.",
       "present": true,
-      "row_count": 12149,
+      "row_count": 12150,
       "columns": [
         "player_id",
         "latest_observed_name",
@@ -1638,7 +1638,7 @@
       "source": "Stage79 /players/squads via shared broker",
       "limitations": "Latest roster only; use team_roster_history for historical membership evidence.",
       "present": true,
-      "row_count": 4013,
+      "row_count": 4014,
       "columns": [
         "team_id",
         "team_name",
@@ -1674,7 +1674,7 @@
       "source": "Stage80 archive of already-captured Stage79 roster snapshots",
       "limitations": "Observed squad membership, not an exact transfer-date claim.",
       "present": true,
-      "row_count": 4257,
+      "row_count": 4512,
       "columns": [
         "team_id",
         "team_name",
@@ -1710,7 +1710,7 @@
       "source": "Stage80 derived from team_roster_history",
       "limitations": "Observed presence intervals are not verified transfer events.",
       "present": true,
-      "row_count": 4015,
+      "row_count": 4016,
       "columns": [
         "interval_id",
         "team_id",
