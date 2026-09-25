@@ -357,5 +357,42 @@ def get_broker():
     return _DEFAULT_BROKER
 
 
+def make_archive_before_budget_get(fallback_get, stats=None, archive_reader=read_archived_response):
+    """Read exact archived payload before calling a protected provider budget.
+
+    This is for historical/backfill consumers that wrap the shared broker in a
+    logical API budget. An archive HIT must not increment provider/day budgets.
+    """
+    stats = stats if stats is not None else {
+        "archive_read_hits": 0,
+        "archive_read_misses": 0,
+        "archive_read_errors": 0,
+    }
+
+    def get(path, params=None, **kwargs):
+        params = dict(params or {})
+        key = request_key("GET", path, params)
+        try:
+            payload = archive_reader(key)
+        except Exception:
+            stats["archive_read_errors"] = stats.get("archive_read_errors", 0) + 1
+            payload = None
+
+        if (
+            isinstance(payload, dict)
+            and not payload.get("errors")
+            and isinstance(payload.get("response"), list)
+        ):
+            stats["archive_read_hits"] = stats.get("archive_read_hits", 0) + 1
+            return payload
+
+        stats["archive_read_misses"] = stats.get("archive_read_misses", 0) + 1
+        kwargs.pop("archive_first", None)
+        return fallback_get(path, params, **kwargs)
+
+    get.archive_stats = stats
+    return get
+
+
 def api_get(path, params=None, **kwargs):
     return get_broker().get(path, params, **kwargs)
