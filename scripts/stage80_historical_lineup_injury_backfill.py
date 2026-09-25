@@ -514,6 +514,7 @@ def provider_get_with_timeout(
     kwargs = {
         "ttl_seconds": 30 * 24 * 3600,
         "force_refresh": False,
+        "archive_first": True,
     }
     if (
         timeout_seconds <= 0
@@ -1054,6 +1055,7 @@ def main():
         ),
         "historical_no_data_is_terminal_per_fixture_endpoint": True,
         "raw_archive_via_shared_broker": True,
+        "archive_first_enabled": True,
         "retrospective_reconstructed": True,
         "temporal_authority": "RETROSPECTIVE_ONLY",
         "pre_match_observation_time_known": False,
