@@ -3,8 +3,10 @@
 
 Uses API-Football ``/players/squads`` only through the shared broker/backend.
 Roster data is slow-changing reference data, so successful team snapshots are
-cached for seven days and only stale/missing teams from current-round fixtures
-are candidates. Big-5/upcoming teams are filled first so Match Card's manual
+cached using a transfer-aware freshness contract and only stale/missing teams
+from current-round fixtures are candidates. During broad transfer-sensitive
+periods the TTL is short; outside them a confirmed roster is treated as
+slow-changing reference data and reused for longer. Big-5/upcoming teams are filled first so Match Card's manual
 lineup picker is useful before expected/official XI exists.
 
 This stage is context/reference only and never mutates canonical probability,
@@ -74,6 +76,61 @@ def team_id_from_fixture(row, side):
     logo = str(row.get(f"{side}_team_logo_url") or "")
     match = TEAM_ID_RE.search(logo)
     return match.group(1) if match else ""
+
+
+DEFAULT_TRANSFER_SENSITIVE_PERIODS = "01-01:02-15,06-01:09-10"
+
+
+def _month_day(value):
+    return value.month * 100 + value.day
+
+
+def transfer_sensitive(now, periods=None):
+    """Conservative broad transfer-sensitive calendar, not a legal registration claim."""
+    raw = str(periods or os.getenv(
+        "STAGE79_ROSTER_TRANSFER_SENSITIVE_PERIODS",
+        DEFAULT_TRANSFER_SENSITIVE_PERIODS,
+    )).strip()
+    point = _month_day(now)
+    for part in raw.split(","):
+        part = part.strip()
+        if not part or ":" not in part:
+            continue
+        start, end = [x.strip() for x in part.split(":", 1)]
+        try:
+            sm, sd = [int(x) for x in start.split("-", 1)]
+            em, ed = [int(x) for x in end.split("-", 1)]
+            lo = sm * 100 + sd
+            hi = em * 100 + ed
+        except (TypeError, ValueError):
+            continue
+        if lo <= hi:
+            if lo <= point <= hi:
+                return True
+        else:
+            if point >= lo or point <= hi:
+                return True
+    return False
+
+
+def effective_roster_ttl_days(
+    now,
+    *,
+    stable_days=None,
+    sensitive_days=None,
+    periods=None,
+):
+    stable = max(1, int(
+        stable_days
+        if stable_days is not None
+        else os.getenv("STAGE79_ROSTER_STABLE_TTL_DAYS", "28")
+    ))
+    sensitive = max(1, int(
+        sensitive_days
+        if sensitive_days is not None
+        else os.getenv("STAGE79_ROSTER_SENSITIVE_TTL_DAYS", "3")
+    ))
+    return sensitive if transfer_sensitive(now, periods=periods) else stable
 
 
 def latest_capture_by_team(rows):
@@ -221,8 +278,16 @@ def main():
         checkpoint=lambda value: audit.save(SHARED_STATE, value),
     )
     priorities = [x.strip() for x in os.getenv("STAGE79_PRIORITY_TEAM_IDS", "").split(",") if x.strip()]
-    ttl_days = int(os.getenv("STAGE79_ROSTER_TTL_DAYS", "7"))
-    result = capture(fixtures, existing, budget, now, max_calls, ttl_days=ttl_days, priority_team_ids=priorities)
+    ttl_days = effective_roster_ttl_days(now)
+    result = capture(
+        fixtures,
+        existing,
+        budget,
+        now,
+        max_calls,
+        ttl_days=ttl_days,
+        priority_team_ids=priorities,
+    )
     if result["rows"] or ROSTERS.exists():
         write_csv_atomic(ROSTERS, ROSTER_FIELDS, result["rows"])
     audit.save(SHARED_STATE, state)
@@ -235,6 +300,14 @@ def main():
         "daily_api_calls": state.get("api_day_calls", 0),
         "protected_calls": reserve,
         "roster_ttl_days": ttl_days,
+        "roster_freshness_policy": "TRANSFER_AWARE_V1",
+        "transfer_sensitive": transfer_sensitive(now),
+        "stable_ttl_days": max(1, int(os.getenv("STAGE79_ROSTER_STABLE_TTL_DAYS", "28"))),
+        "sensitive_ttl_days": max(1, int(os.getenv("STAGE79_ROSTER_SENSITIVE_TTL_DAYS", "3"))),
+        "transfer_sensitive_periods": os.getenv(
+            "STAGE79_ROSTER_TRANSFER_SENSITIVE_PERIODS",
+            DEFAULT_TRANSFER_SENSITIVE_PERIODS,
+        ),
         "candidate_teams": result["candidate_teams"],
         "captured_teams": result["captured_teams"],
         "deferred_teams": result["deferred_teams"],
