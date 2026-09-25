@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-25T13:33:01Z",
+  "generated_at_utc": "2026-09-25T14:33:26Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -12,7 +12,7 @@
     "fixture_history": {
       "file": "fixture_history_snapshots.csv",
       "present": true,
-      "rows": 24377
+      "rows": 24505
     },
     "historical_fixtures": {
       "file": "historical_fixtures.csv",
@@ -37,12 +37,12 @@
     "team_stats": {
       "file": "team_match_statistics.csv",
       "present": true,
-      "rows": 252
+      "rows": 660
     },
     "stage81_backlog": {
       "file": "stage81_team_stats_backlog.csv",
       "present": true,
-      "rows": 137
+      "rows": 13477
     },
     "current_rosters": {
       "file": "team_rosters.csv",
@@ -298,10 +298,10 @@
   },
   "fixture_history": {
     "present": true,
-    "rows": 24377,
-    "valid_observations": 24377,
+    "rows": 24505,
+    "valid_observations": 24505,
     "unique_fixtures": 306,
-    "observation_runs": 190,
+    "observation_runs": 191,
     "finished_fixtures_observed": 173,
     "invalid_identity_rows": 0,
     "evidence_note": "Counts represent only Stage71 current-round observations persisted after the fixture-history archive was enabled; they are not a pre-PBK historical backfill claim."
@@ -320,8 +320,8 @@
     "orphan_catalog_fixtures": 0,
     "missing_terminal_evidence": 0,
     "orphan_terminal_evidence": 0,
-    "observation_count_total": 24377,
-    "expected_history_observations": 24377,
+    "observation_count_total": 24505,
+    "expected_history_observations": 24505,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
   },
@@ -336,16 +336,16 @@
   },
   "stage81_backlog": {
     "present": true,
-    "total_fixtures": 137,
-    "pending_fixtures": 11,
-    "captured_fixtures": 126,
+    "total_fixtures": 13477,
+    "pending_fixtures": 13147,
+    "captured_fixtures": 330,
     "captured_without_complete_ledger": 0,
     "oldest_pending_first_queued_at_utc": "2026-09-17T10:41:55Z",
     "evidence_note": "Pending means PBK observed a terminal fixture but has not yet persisted complete HOME+AWAY /fixtures/statistics evidence."
   },
   "team_statistics": {
-    "rows": 252,
-    "complete_fixture_count": 126,
+    "rows": 660,
+    "complete_fixture_count": 330,
     "finished_current_inventory_with_team_stats": 0,
     "finished_current_inventory_team_stats_coverage_pct": 0.0,
     "evidence_note": "Complete means HOME and AWAY team rows exist; individual missing provider metrics remain UNKNOWN."
@@ -354,8 +354,8 @@
     "team_xg_source": "API-Football /fixtures/statistics expected_goals",
     "team_xg_rows": 46,
     "team_xg_complete_fixture_count": 23,
-    "team_stats_complete_fixture_count": 126,
-    "team_xg_captured_fixture_coverage_pct": 18.25,
+    "team_stats_complete_fixture_count": 330,
+    "team_xg_captured_fixture_coverage_pct": 6.97,
     "finished_current_inventory_with_team_xg": 0,
     "finished_current_inventory_team_xg_coverage_pct": 0.0,
     "team_xg_evidence_note": "Verified provider field when present; API-Football may return it as missing for some competitions or fixtures and PBK preserves missing as UNKNOWN.",
