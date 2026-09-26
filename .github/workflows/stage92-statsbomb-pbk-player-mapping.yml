@@ -117,7 +117,7 @@ jobs:
             echo 'Stage91 materialization not present; Stage92 remains waiting.'
             exit 0
           fi
-          python scripts/stage92_statsbomb_pbk_player_mapping.py             --source ops/statsbomb_player_xg_xa.csv             --transfers ops/historical_transfer_events.csv             --historical-players ops/historical_players.csv             --profiles ops/player_profile_evidence.csv             --mapping-out ops/statsbomb_pbk_player_mapping_candidates.csv             --mapped-out ops/pbk_player_xg_xa_research.csv             --meta-out ops/stage92_statsbomb_pbk_player_mapping_last_run.json
+          python scripts/stage92_statsbomb_pbk_player_mapping.py             --source ops/statsbomb_player_xg_xa.csv             --transfers ops/historical_transfer_events.csv             --historical-players ops/historical_players.csv             --identity-map ops/pbk_transfermarkt_player_identity.csv             --profiles ops/player_profile_evidence.csv             --mapping-out ops/statsbomb_pbk_player_mapping_candidates.csv             --mapped-out ops/pbk_player_xg_xa_research.csv             --meta-out ops/stage92_statsbomb_pbk_player_mapping_last_run.json
       - name: Publish Stage92 outputs safely
         shell: bash
         run: |
