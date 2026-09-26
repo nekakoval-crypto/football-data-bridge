@@ -140,6 +140,34 @@ def read_state(rows):
     return output
 
 
+def repair_legacy_budget_errors(state):
+    """Undo false ERROR rows created by the pre-#325 budget semantics.
+
+    These rows never reached the provider: Stage71 raised before issuing the
+    request once the per-run API budget was exhausted. They must therefore stay
+    retryable and must not count as fixture errors.
+    """
+    repaired = 0
+
+    for row in state.values():
+        result = sval(row, "last_attempt_result").upper()
+        error = sval(row, "last_error").lower()
+
+        if (
+            result == "ERROR"
+            and "stage71 api budget exhausted; retry next run" in error
+        ):
+            row["last_attempt_result"] = ""
+            row["last_error"] = ""
+            row["player_rows"] = ""
+            row["attempt_count"] = str(
+                max(0, attempt_count(row) - 1)
+            )
+            repaired += 1
+
+    return repaired
+
+
 def attempt_count(row):
     try:
         return max(
@@ -611,6 +639,7 @@ def main():
 
     history = historical_fixture_map(source_rows)
     state = read_state(state_rows)
+    repaired_legacy_budget_errors = repair_legacy_budget_errors(state)
 
     captured_before = completed_fixture_ids(
         existing_stats,
@@ -861,6 +890,7 @@ def main():
         "state_captured": captured_state_total,
         "state_no_data": no_data_total,
         "state_error": error_total,
+        "repaired_legacy_budget_errors": repaired_legacy_budget_errors,
         "remaining_unattempted_or_retryable": remaining,
         "historical_no_data_is_terminal": True,
         "priority_policy": (
