@@ -8,7 +8,10 @@ context-only journal; strategy and settlement source ledgers are never changed.
 """
 from __future__ import annotations
 import csv, json, os, re, sqlite3, hashlib
-from player_snapshot_store import read_snapshot_rows
+try:
+    from player_snapshot_store import read_snapshot_rows
+except ImportError:
+    from scripts.player_snapshot_store import read_snapshot_rows
 import formation_research
 from datetime import datetime, timezone
 from pathlib import Path
