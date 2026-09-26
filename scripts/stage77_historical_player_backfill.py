@@ -37,7 +37,7 @@ STATE = OPS / "stage77_historical_player_backfill_state.csv"
 META = OPS / "stage77_historical_player_backfill_last_run.json"
 SHARED_STATE = OPS / "stage71_observation_state.json"
 
-VERSION = "PBK_STAGE77_HISTORICAL_PLAYER_BACKFILL_V2"
+VERSION = "PBK_STAGE77_HISTORICAL_PLAYER_BACKFILL_V3"
 TERMINAL = {"FT", "AET", "PEN", "FINISHED"}
 
 STATE_FIELDS = [
@@ -257,6 +257,104 @@ def candidate_rows(history, captured, state,
     )
 
     return candidates
+
+
+def plan_dual_lane(candidates, state, limit, legacy_share=0.40, recent_season_window=1):
+    """Reserve a deterministic share of every batch for older seasons.
+
+    Recent seasons keep priority for operational usefulness, but legacy seasons
+    are interleaved through the whole batch so a provider/quota stop cannot
+    permanently starve them. Productive cells still win inside each lane.
+    """
+    limit = max(0, int(limit))
+    if limit <= 0 or not candidates:
+        return {
+            "rows": [],
+            "latest_season": None,
+            "recent_cutoff_season": None,
+            "recent_planned": 0,
+            "legacy_planned": 0,
+            "legacy_share": float(legacy_share),
+        }
+
+    seasons = [season_number(row) for row in candidates if season_number(row) >= 0]
+    latest = max(seasons) if seasons else None
+    cutoff = latest - max(0, int(recent_season_window)) if latest is not None else None
+
+    recent = []
+    legacy = []
+    for row in candidates:
+        season = season_number(row)
+        if cutoff is not None and season >= cutoff:
+            recent.append(row)
+        else:
+            legacy.append(row)
+
+    counts = cell_observation_counts(state)
+    # Legacy rows deliberately move old seasons forward, but still avoid wasting
+    # calls: a competition-season already proven productive wins inside the
+    # legacy lane before an unproven cell of the same role.
+    legacy.sort(
+        key=lambda row: (
+            role_priority(row),
+            cell_evidence_priority(row, counts),
+            season_number(row),
+            sval(row, "kickoff_utc"),
+            sval(row, "country"),
+            sval(row, "competition_name"),
+            sval(row, "fixture_id"),
+        )
+    )
+
+    legacy_target = 0
+    if legacy:
+        legacy_target = min(
+            len(legacy),
+            max(1, int(round(limit * max(0.0, min(1.0, float(legacy_share)))))),
+        )
+    recent_target = min(len(recent), max(0, limit - legacy_target))
+
+    # If one lane cannot fill its nominal quota, give unused slots to the other.
+    unused = limit - recent_target - legacy_target
+    if unused > 0:
+        extra_recent = min(unused, len(recent) - recent_target)
+        recent_target += extra_recent
+        unused -= extra_recent
+    if unused > 0:
+        legacy_target += min(unused, len(legacy) - legacy_target)
+
+    recent_selected = recent[:recent_target]
+    legacy_selected = legacy[:legacy_target]
+
+    # Weighted interleave keeps legacy work progressing even if the run stops
+    # early because protected budget/provider quota is reached.
+    planned = []
+    ri = li = 0
+    total_target = len(recent_selected) + len(legacy_selected)
+    legacy_ratio = (len(legacy_selected) / total_target) if total_target else 0.0
+    while len(planned) < total_target:
+        next_position = len(planned) + 1
+        desired_legacy = int(round(next_position * legacy_ratio))
+        take_legacy = li < len(legacy_selected) and li < desired_legacy
+
+        if take_legacy or ri >= len(recent_selected):
+            planned.append(legacy_selected[li])
+            li += 1
+        elif ri < len(recent_selected):
+            planned.append(recent_selected[ri])
+            ri += 1
+        elif li < len(legacy_selected):
+            planned.append(legacy_selected[li])
+            li += 1
+
+    return {
+        "rows": planned,
+        "latest_season": latest,
+        "recent_cutoff_season": cutoff,
+        "recent_planned": len(recent_selected),
+        "legacy_planned": len(legacy_selected),
+        "legacy_share": float(legacy_share),
+    }
 
 
 def is_provider_quota_error(exc):
@@ -514,6 +612,13 @@ def main():
         no_data_cell_threshold,
     )
 
+    legacy_share = float(
+        os.getenv("STAGE77_HISTORICAL_LEGACY_SHARE", "0.40")
+    )
+    recent_season_window = int(
+        os.getenv("STAGE77_HISTORICAL_RECENT_SEASON_WINDOW", "1")
+    )
+
     shared_state = audit.read(SHARED_STATE)
     reserve = current.protected_calls(OPS, now)
 
@@ -554,8 +659,16 @@ def main():
         archive_stats,
     )
 
-    result = run_capture(
+    plan = plan_dual_lane(
         candidates,
+        state,
+        max_calls,
+        legacy_share=legacy_share,
+        recent_season_window=recent_season_window,
+    )
+
+    result = run_capture(
+        plan["rows"],
         existing_stats,
         existing_grades,
         state,
@@ -669,6 +782,13 @@ def main():
             captured_before
         ),
         "candidate_fixtures_before_run": len(candidates),
+        "planned_fixtures_this_run": len(plan["rows"]),
+        "latest_season": plan["latest_season"],
+        "recent_cutoff_season": plan["recent_cutoff_season"],
+        "recent_planned_fixtures": plan["recent_planned"],
+        "legacy_planned_fixtures": plan["legacy_planned"],
+        "legacy_target_share": plan["legacy_share"],
+        "legacy_lane_guaranteed": True,
         "attempted_fixtures": result["attempted_fixtures"],
         "captured_fixtures_this_run": result[
             "captured_fixtures"
@@ -707,8 +827,10 @@ def main():
         "historical_no_data_is_terminal": True,
         "priority_policy": (
             "DOMESTIC_LEAGUE_THEN_UEFA_THEN_CUPS;"
+            "DUAL_LANE_RECENT_PLUS_LEGACY;"
             "PRODUCTIVE_CELL_FIRST;"
-            "NEWEST_SEASON_FIRST;"
+            "RECENT_NEWEST_FIRST;"
+            "LEGACY_OLDEST_FIRST;"
             "EMPTY_CELL_SUPPRESSION"
         ),
         "warnings": result["warnings"],
