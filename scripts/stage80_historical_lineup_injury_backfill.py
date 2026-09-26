@@ -54,7 +54,7 @@ META = OPS / "stage80_historical_lineup_injury_backfill_last_run.json"
 BUDGET_STATE = OPS / "stage80_historical_lineup_injury_budget_state.json"
 SHARED_STATE = OPS / "stage71_observation_state.json"
 
-VERSION = "PBK_STAGE80_HISTORICAL_LINEUP_INJURY_BACKFILL_V1"
+VERSION = "PBK_STAGE80_HISTORICAL_LINEUP_INJURY_BACKFILL_V2"
 TERMINAL = {"FT", "AET", "PEN", "FINISHED"}
 ENDPOINT_LINEUPS = "/fixtures/lineups"
 ENDPOINT_INJURIES = "/injuries"
@@ -271,11 +271,11 @@ def candidate_tasks(history, state, injury_no_data_cell_threshold=8):
     tasks.sort(
         key=lambda item: (
             -season_number(item[0]),
+            endpoint_priority(item[1]),
             sval(item[0], "country"),
             sval(item[0], "provider_competition_id"),
             sval(item[0], "kickoff_utc"),
             sval(item[0], "fixture_id"),
-            endpoint_priority(item[1]),
         )
     )
     return tasks

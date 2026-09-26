@@ -2,6 +2,8 @@ name: Stage 80 Historical Lineup Injury Backfill
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '17 1-23/4 * * *'
   pull_request:
     paths:
       - 'scripts/stage80_historical_lineup_injury_backfill.py'
@@ -50,7 +52,7 @@ jobs:
 
   backfill:
     needs: validate
-    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    if: (github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main'
     permissions:
       contents: write
     runs-on: ubuntu-latest
@@ -65,7 +67,6 @@ jobs:
       PBK_RAW_ARCHIVE_S3_REGION: auto
       OPS_DIR: ops
       STAGE71_MAX_DAILY_API_CALLS: '7000'
-      STAGE80_HISTORICAL_LINEUP_INJURY_MAX_API_CALLS: '600'
       STAGE80_HISTORICAL_INJURY_NO_DATA_CELL_THRESHOLD: '8'
       STAGE80_PROVIDER_CALL_TIMEOUT_SECONDS: '45'
       STAGE80_HEARTBEAT_EVERY_TASKS: '10'
@@ -80,6 +81,18 @@ jobs:
           python-version: '3.12'
       - name: Install raw archive S3 client
         run: python -m pip install --disable-pip-version-check boto3
+
+      - name: Select historical lineup backfill budget
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            echo "STAGE80_HISTORICAL_LINEUP_INJURY_MAX_API_CALLS=50" >> "$GITHUB_ENV"
+            echo "PBK Stage80 scheduled historical lineup budget: 50 calls"
+          else
+            echo "STAGE80_HISTORICAL_LINEUP_INJURY_MAX_API_CALLS=600" >> "$GITHUB_ENV"
+            echo "PBK Stage80 manual historical lineup budget: 600 calls"
+          fi
+
       - name: Run resumable PBK16 historical lineup injury backfill
         run: python scripts/stage80_historical_lineup_injury_backfill.py
       - name: Show backfill telemetry
