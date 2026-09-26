@@ -37,6 +37,33 @@ class HistoricalPlayerBackfillTests(unittest.TestCase):
             "away_team": "B",
         }
 
+    def test_repair_legacy_budget_errors_restores_retryable_state(self):
+        state = {
+            "1": {
+                "fixture_id": "1",
+                "attempt_count": "2",
+                "last_attempt_result": "ERROR",
+                "player_rows": "0",
+                "last_error": "RuntimeError: Stage71 API budget exhausted; retry next run",
+            },
+            "2": {
+                "fixture_id": "2",
+                "attempt_count": "1",
+                "last_attempt_result": "ERROR",
+                "player_rows": "0",
+                "last_error": "ApiFootballBrokerError: transport failed",
+            },
+        }
+
+        repaired = h.repair_legacy_budget_errors(state)
+
+        self.assertEqual(repaired, 1)
+        self.assertEqual(state["1"]["attempt_count"], "1")
+        self.assertEqual(state["1"]["last_attempt_result"], "")
+        self.assertEqual(state["1"]["last_error"], "")
+        self.assertEqual(state["1"]["player_rows"], "")
+        self.assertEqual(state["2"]["last_attempt_result"], "ERROR")
+
     def test_no_data_is_not_requeued(self):
         history = {
             "1": self.fixture("1"),
