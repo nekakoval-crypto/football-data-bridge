@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-25T22:53:07Z",
+  "generated_at_utc": "2026-09-26T00:49:24Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -37,7 +37,7 @@
     "team_stats": {
       "file": "team_match_statistics.csv",
       "present": true,
-      "rows": 2196
+      "rows": 2580
     },
     "stage81_backlog": {
       "file": "stage81_team_stats_backlog.csv",
@@ -47,7 +47,7 @@
     "current_rosters": {
       "file": "team_rosters.csv",
       "present": true,
-      "rows": 4014
+      "rows": 4266
     },
     "player_profiles": {
       "file": "player_profile_evidence.csv",
@@ -57,12 +57,12 @@
     "roster_history": {
       "file": "team_roster_history.csv",
       "present": true,
-      "rows": 4512
+      "rows": 4764
     },
     "membership_intervals": {
       "file": "team_membership_intervals.csv",
       "present": true,
-      "rows": 4016
+      "rows": 4268
     },
     "transfer_identity": {
       "file": "pbk_transfermarkt_player_identity.csv",
@@ -337,15 +337,15 @@
   "stage81_backlog": {
     "present": true,
     "total_fixtures": 13477,
-    "pending_fixtures": 12379,
-    "captured_fixtures": 1098,
+    "pending_fixtures": 12187,
+    "captured_fixtures": 1290,
     "captured_without_complete_ledger": 0,
     "oldest_pending_first_queued_at_utc": "2026-09-17T10:41:55Z",
     "evidence_note": "Pending means PBK observed a terminal fixture but has not yet persisted complete HOME+AWAY /fixtures/statistics evidence."
   },
   "team_statistics": {
-    "rows": 2196,
-    "complete_fixture_count": 1098,
+    "rows": 2580,
+    "complete_fixture_count": 1290,
     "finished_current_inventory_with_team_stats": 0,
     "finished_current_inventory_team_stats_coverage_pct": 0.0,
     "evidence_note": "Complete means HOME and AWAY team rows exist; individual missing provider metrics remain UNKNOWN."
@@ -354,8 +354,8 @@
     "team_xg_source": "API-Football /fixtures/statistics expected_goals",
     "team_xg_rows": 46,
     "team_xg_complete_fixture_count": 23,
-    "team_stats_complete_fixture_count": 1098,
-    "team_xg_captured_fixture_coverage_pct": 2.09,
+    "team_stats_complete_fixture_count": 1290,
+    "team_xg_captured_fixture_coverage_pct": 1.78,
     "finished_current_inventory_with_team_xg": 0,
     "finished_current_inventory_team_xg_coverage_pct": 0.0,
     "team_xg_evidence_note": "Verified provider field when present; API-Football may return it as missing for some competitions or fixtures and PBK preserves missing as UNKNOWN.",
@@ -391,13 +391,13 @@
     "unique_players_with_grades": 11610
   },
   "rosters": {
-    "current_roster_rows": 4014,
-    "current_roster_teams": 130,
-    "history_rows": 4512,
-    "history_teams": 130,
-    "history_team_snapshots": 146,
-    "membership_intervals": 4016,
-    "open_latest_intervals": 4012,
+    "current_roster_rows": 4266,
+    "current_roster_teams": 138,
+    "history_rows": 4764,
+    "history_teams": 138,
+    "history_team_snapshots": 154,
+    "membership_intervals": 4268,
+    "open_latest_intervals": 4264,
     "closed_by_observed_absence_intervals": 4
   },
   "player_profiles": {
@@ -411,8 +411,8 @@
     "unique_players": 3670,
     "identity_ready_unique_players": 3401,
     "unique_teams": 129,
-    "current_roster_player_coverage_pct": 85.66,
-    "identity_ready_current_roster_coverage_pct": 79.93,
+    "current_roster_player_coverage_pct": 80.62,
+    "identity_ready_current_roster_coverage_pct": 75.23,
     "evidence_note": "Bounded API-Football player profile evidence from team+season plus residual player-id+season calls. Residual team context is taken from the current PBK roster, not inferred from season statistics. Full-name+DOB+club may support conservative cross-provider identity mapping; this never grants betting/model authority."
   },
   "transfer_identity": {
