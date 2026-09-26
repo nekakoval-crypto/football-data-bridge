@@ -24,6 +24,7 @@ import os
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
+from player_snapshot_store import read_snapshot_rows
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 
@@ -363,7 +364,7 @@ def build_readiness(
 
 
 def main():
-    grade_rows = read_csv(GRADES)
+    grade_rows = read_snapshot_rows(GRADES)
     form_rows = read_csv(FORM)
     importance_rows = read_csv(IMPORTANCE)
     injury_rows = read_csv(HIST_INJURIES)
