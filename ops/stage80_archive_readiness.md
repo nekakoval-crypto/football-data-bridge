@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-26T10:32:06Z
+Обновлено UTC: 2026-09-26T10:52:15Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -47,7 +47,7 @@
 - Storage configured: True.
 - Backend: S3.
 - Status: OK.
-- Durable readback verified: True; verified at 2026-09-25T19:58:19Z.
+- Durable readback verified: True; verified at 2026-09-26T10:38:07Z.
 - Observations: —; unique payloads: —.
 
 ## Незакрытые пробелы
