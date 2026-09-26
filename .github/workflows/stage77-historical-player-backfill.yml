@@ -7,6 +7,8 @@ on:
   pull_request:
     paths:
       - 'scripts/stage77_historical_player_backfill.py'
+      - 'scripts/player_snapshot_store.py'
+      - 'scripts/tests/test_player_snapshot_store.py'
       - 'scripts/tests/test_stage77_historical_player_backfill.py'
       - '.github/workflows/stage77-historical-player-backfill.yml'
       - 'docs/stage77_historical_player_backfill.md'
@@ -40,6 +42,7 @@ jobs:
         run: |
           python -m unittest \
             scripts.tests.test_stage77_historical_player_backfill \
+            scripts.tests.test_player_snapshot_store \
             -v
 
       - name: Shared Stage77 regression tests
