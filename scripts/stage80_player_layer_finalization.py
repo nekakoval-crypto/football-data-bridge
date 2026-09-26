@@ -37,6 +37,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from statistics import mean
 from typing import Any
+from player_snapshot_store import read_snapshot_rows
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 
@@ -819,7 +820,7 @@ def main() -> None:
     lineup_rows = read_csv(LINEUPS)
     injury_rows = read_csv(INJURIES)
     fixture_rows = read_csv(FIXTURES)
-    grade_rows = read_csv(GRADES)
+    grade_rows = read_snapshot_rows(GRADES)
     form_rows = read_csv(FORM)
     international_rows = read_csv(INT_RETURN)
     player_meta = read_json(HIST_PLAYER_META)
