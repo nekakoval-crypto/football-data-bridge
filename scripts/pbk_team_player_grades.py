@@ -20,7 +20,10 @@ from datetime import datetime
 from pathlib import Path
 from statistics import mean
 from typing import Any
-from player_snapshot_store import read_snapshot_rows
+try:
+    from player_snapshot_store import read_snapshot_rows
+except ImportError:
+    from scripts.player_snapshot_store import read_snapshot_rows
 
 ROOT = Path(__file__).resolve().parents[1]
 OPS = Path(os.getenv("OPS_DIR", "ops"))
