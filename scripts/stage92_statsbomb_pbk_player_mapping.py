@@ -505,6 +505,7 @@ def main() -> None:
         Path(args.mapped_out),
         Path(args.meta_out),
         identity_path=Path(args.identity_map) if args.identity_map else None,
+        profile_path=Path(args.profiles) if args.profiles else None,
     )
     print(json.dumps(result, ensure_ascii=False))
 
