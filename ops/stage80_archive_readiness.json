@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-26T13:49:45Z",
+  "generated_at_utc": "2026-09-26T14:56:48Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -22,13 +22,13 @@
     "player_stats": {
       "file": "player_stats_snapshots_parts/*.csv",
       "present": true,
-      "rows": 305567,
+      "rows": 322977,
       "partitioned": true
     },
     "player_grades": {
       "file": "player_grade_snapshots_parts/*.csv",
       "present": true,
-      "rows": 305567,
+      "rows": 322977,
       "partitioned": true
     },
     "stage77_backlog": {
@@ -39,7 +39,7 @@
     "team_stats": {
       "file": "team_match_statistics.csv",
       "present": true,
-      "rows": 4716
+      "rows": 4908
     },
     "stage81_backlog": {
       "file": "stage81_team_stats_backlog.csv",
@@ -114,7 +114,7 @@
     "player_xg_xa_mapped": {
       "file": "pbk_player_xg_xa_research.csv",
       "present": true,
-      "rows": 6414
+      "rows": 6905
     },
     "referee_profiles": {
       "file": "epl_referee_profiles_research.csv",
@@ -285,8 +285,8 @@
   "fixtures": {
     "current_inventory": 128,
     "finished_in_current_inventory": 2,
-    "player_stats_fixture_count_all_snapshots": 7535,
-    "player_grade_fixture_count_all_snapshots": 7535,
+    "player_stats_fixture_count_all_snapshots": 8015,
+    "player_grade_fixture_count_all_snapshots": 8015,
     "finished_current_inventory_with_player_stats": 0,
     "finished_current_inventory_player_stats_coverage_pct": 0.0,
     "per_league": [
@@ -339,25 +339,25 @@
   "stage81_backlog": {
     "present": true,
     "total_fixtures": 13477,
-    "pending_fixtures": 11119,
-    "captured_fixtures": 2358,
+    "pending_fixtures": 11023,
+    "captured_fixtures": 2454,
     "captured_without_complete_ledger": 0,
     "oldest_pending_first_queued_at_utc": "2026-09-17T10:41:55Z",
     "evidence_note": "Pending means PBK observed a terminal fixture but has not yet persisted complete HOME+AWAY /fixtures/statistics evidence."
   },
   "team_statistics": {
-    "rows": 4716,
-    "complete_fixture_count": 2358,
+    "rows": 4908,
+    "complete_fixture_count": 2454,
     "finished_current_inventory_with_team_stats": 0,
     "finished_current_inventory_team_stats_coverage_pct": 0.0,
     "evidence_note": "Complete means HOME and AWAY team rows exist; individual missing provider metrics remain UNKNOWN."
   },
   "advanced_metrics": {
     "team_xg_source": "API-Football /fixtures/statistics expected_goals",
-    "team_xg_rows": 1062,
-    "team_xg_complete_fixture_count": 531,
-    "team_stats_complete_fixture_count": 2358,
-    "team_xg_captured_fixture_coverage_pct": 22.52,
+    "team_xg_rows": 1208,
+    "team_xg_complete_fixture_count": 604,
+    "team_stats_complete_fixture_count": 2454,
+    "team_xg_captured_fixture_coverage_pct": 24.61,
     "finished_current_inventory_with_team_xg": 0,
     "finished_current_inventory_team_xg_coverage_pct": 0.0,
     "team_xg_evidence_note": "Verified provider field when present; API-Football may return it as missing for some competitions or fixtures and PBK preserves missing as UNKNOWN.",
@@ -378,19 +378,19 @@
     "player_xg_xa_operational_authority": false,
     "player_xg_xa_pbk_identity_mapping": "AUTO_HIGH_MATERIALIZED",
     "player_xg_xa_mapping_rows": 7787,
-    "player_xg_xa_auto_high_mappings": 414,
-    "player_xg_xa_review_mappings": 1501,
-    "player_xg_xa_mapped_research_rows": 3243,
-    "player_xg_xa_mapped_research_invalid_rows": 3171,
-    "player_xg_xa_mapped_pbk_players": 414,
-    "player_xg_xa_mapped_matches": 1593,
+    "player_xg_xa_auto_high_mappings": 489,
+    "player_xg_xa_review_mappings": 1462,
+    "player_xg_xa_mapped_research_rows": 4011,
+    "player_xg_xa_mapped_research_invalid_rows": 2894,
+    "player_xg_xa_mapped_pbk_players": 489,
+    "player_xg_xa_mapped_matches": 1695,
     "player_xg_xa_evidence_note": "Stage91 provides StatsBomb research metrics. The large Stage91 source payload may remain external/local when an OK Stage91 meta attestation plus valid Stage92 AUTO/HIGH mapped rows are persisted; this never implies the source CSV is stored in Git. Stage92 maps only exact full names through the verified Transfermarkt→PBK bridge; abbreviated-name candidates remain REVIEW and never enter mapped research. Mapped xG/xA remains research-only and non-operational."
   },
   "players": {
-    "player_stat_rows": 305567,
-    "unique_players_with_stats": 13279,
-    "player_grade_rows": 305567,
-    "unique_players_with_grades": 13279
+    "player_stat_rows": 322977,
+    "unique_players_with_stats": 13652,
+    "player_grade_rows": 322977,
+    "unique_players_with_grades": 13652
   },
   "rosters": {
     "current_roster_rows": 4266,

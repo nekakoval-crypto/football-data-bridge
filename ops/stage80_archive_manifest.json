@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-26T13:49:33Z",
+  "generated_at_utc": "2026-09-26T14:56:36Z",
   "status": "OK",
   "datasets": [
     {
@@ -254,7 +254,7 @@
       "source": "Stage81 /fixtures/statistics via shared API-Football broker",
       "limitations": "Only observed finished fixtures captured under protected provider budget; missing provider metrics remain UNKNOWN and are never zero-filled.",
       "present": true,
-      "row_count": 4716,
+      "row_count": 4908,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -318,7 +318,7 @@
       "source": "Stage77 /fixtures/players via shared broker",
       "limitations": "Only fixtures successfully captured under protected provider budget.",
       "present": true,
-      "row_count": 305567,
+      "row_count": 322977,
       "columns": [
         "fixture_id",
         "team_id",
@@ -462,7 +462,7 @@
       "source": "Stage77/78 derived from captured player stats",
       "limitations": "Research-derived grade; not raw provider fact and not canonical authority.",
       "present": true,
-      "row_count": 305567,
+      "row_count": 322977,
       "columns": [
         "fixture_id",
         "team_id",
@@ -1452,7 +1452,7 @@
       "source": "Stage92 AUTO_MATCH/HIGH projection from Stage91 StatsBomb player xG/xA",
       "limitations": "Research-only advanced metrics. xG is StatsBomb source metric; xA is derived xG Assisted. No betting/model authority is granted.",
       "present": true,
-      "row_count": 6414,
+      "row_count": 6905,
       "columns": [
         "pbk_player_id",
         "pbk_player_name",
@@ -1511,7 +1511,7 @@
       "source": "Stage80 normalized projection from team_roster_history + player_stats_snapshots",
       "limitations": "Observed player directory only; does not infer current team, exact transfer dates, xG or xA.",
       "present": true,
-      "row_count": 13935,
+      "row_count": 14303,
       "columns": [
         "player_id",
         "latest_observed_name",
