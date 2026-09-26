@@ -115,5 +115,257 @@ class Point14AvailabilityGateTests(unittest.TestCase):
         self.assertEqual(result["availability_status"], "AVAILABLE")
 
 
+
+    def test_medical_fit_does_not_clear_suspension(self):
+        result = self.resolve([
+            ev(
+                "SUSPENSION",
+                "CONFIRMED_SUSPENSION",
+                "2026-10-03T10:00:00Z",
+            ),
+            ev(
+                "INJURY",
+                "FIT",
+                "2026-10-09T10:00:00Z",
+            ),
+        ])
+
+        self.assertEqual(
+            result["availability_status"],
+            "UNAVAILABLE",
+        )
+
+        self.assertIn(
+            "CONFIRMED_SUSPENSION",
+            result["blocking_reasons"],
+        )
+
+    def test_successful_appeal_does_not_clear_injury_out(self):
+        result = self.resolve([
+            ev(
+                "INJURY",
+                "CONFIRMED_INJURY_OUT",
+                "2026-10-03T10:00:00Z",
+            ),
+            ev(
+                "SUSPENSION",
+                "CONFIRMED_SUSPENSION",
+                "2026-10-04T10:00:00Z",
+            ),
+            ev(
+                "APPEAL",
+                "SUSPENSION_OVERTURNED",
+                "2026-10-09T10:00:00Z",
+            ),
+        ])
+
+        self.assertEqual(
+            result["availability_status"],
+            "UNAVAILABLE",
+        )
+
+        self.assertIn(
+            "CONFIRMED_INJURY_OUT",
+            result["blocking_reasons"],
+        )
+
+    def test_fit_plus_pending_appeal_remains_uncertain(self):
+        result = self.resolve([
+            ev(
+                "SUSPENSION",
+                "CONFIRMED_SUSPENSION",
+                "2026-10-03T10:00:00Z",
+            ),
+            ev(
+                "APPEAL",
+                "APPEAL_PENDING",
+                "2026-10-08T10:00:00Z",
+            ),
+            ev(
+                "INJURY",
+                "FIT",
+                "2026-10-09T10:00:00Z",
+            ),
+        ])
+
+        self.assertEqual(
+            result["availability_status"],
+            "UNCERTAIN",
+        )
+
+        self.assertIn(
+            "APPEAL_PENDING",
+            result["uncertainty_reasons"],
+        )
+
+
+
+    def test_medical_fit_does_not_clear_suspension(self):
+        result = self.resolve([
+            ev(
+                "SUSPENSION",
+                "CONFIRMED_SUSPENSION",
+                "2026-10-03T10:00:00Z",
+            ),
+            ev(
+                "INJURY",
+                "FIT",
+                "2026-10-09T10:00:00Z",
+            ),
+        ])
+
+        self.assertEqual(
+            result["availability_status"],
+            "UNAVAILABLE",
+        )
+
+        self.assertIn(
+            "CONFIRMED_SUSPENSION",
+            result["blocking_reasons"],
+        )
+
+    def test_successful_appeal_does_not_clear_injury_out(self):
+        result = self.resolve([
+            ev(
+                "INJURY",
+                "CONFIRMED_INJURY_OUT",
+                "2026-10-03T10:00:00Z",
+            ),
+            ev(
+                "SUSPENSION",
+                "CONFIRMED_SUSPENSION",
+                "2026-10-04T10:00:00Z",
+            ),
+            ev(
+                "APPEAL",
+                "SUSPENSION_OVERTURNED",
+                "2026-10-09T10:00:00Z",
+            ),
+        ])
+
+        self.assertEqual(
+            result["availability_status"],
+            "UNAVAILABLE",
+        )
+
+        self.assertIn(
+            "CONFIRMED_INJURY_OUT",
+            result["blocking_reasons"],
+        )
+
+    def test_fit_plus_pending_appeal_remains_uncertain(self):
+        result = self.resolve([
+            ev(
+                "SUSPENSION",
+                "CONFIRMED_SUSPENSION",
+                "2026-10-03T10:00:00Z",
+            ),
+            ev(
+                "APPEAL",
+                "APPEAL_PENDING",
+                "2026-10-08T10:00:00Z",
+            ),
+            ev(
+                "INJURY",
+                "FIT",
+                "2026-10-09T10:00:00Z",
+            ),
+        ])
+
+        self.assertEqual(
+            result["availability_status"],
+            "UNCERTAIN",
+        )
+
+        self.assertIn(
+            "APPEAL_PENDING",
+            result["uncertainty_reasons"],
+        )
+
+
+
+    def test_medical_fit_does_not_clear_suspension(self):
+        result = self.resolve([
+            ev(
+                "SUSPENSION",
+                "CONFIRMED_SUSPENSION",
+                "2026-10-03T10:00:00Z",
+            ),
+            ev(
+                "INJURY",
+                "FIT",
+                "2026-10-09T10:00:00Z",
+            ),
+        ])
+
+        self.assertEqual(
+            result["availability_status"],
+            "UNAVAILABLE",
+        )
+
+        self.assertIn(
+            "CONFIRMED_SUSPENSION",
+            result["blocking_reasons"],
+        )
+
+    def test_successful_appeal_does_not_clear_injury_out(self):
+        result = self.resolve([
+            ev(
+                "INJURY",
+                "CONFIRMED_INJURY_OUT",
+                "2026-10-03T10:00:00Z",
+            ),
+            ev(
+                "SUSPENSION",
+                "CONFIRMED_SUSPENSION",
+                "2026-10-04T10:00:00Z",
+            ),
+            ev(
+                "APPEAL",
+                "SUSPENSION_OVERTURNED",
+                "2026-10-09T10:00:00Z",
+            ),
+        ])
+
+        self.assertEqual(
+            result["availability_status"],
+            "UNAVAILABLE",
+        )
+
+        self.assertIn(
+            "CONFIRMED_INJURY_OUT",
+            result["blocking_reasons"],
+        )
+
+    def test_fit_plus_pending_appeal_remains_uncertain(self):
+        result = self.resolve([
+            ev(
+                "SUSPENSION",
+                "CONFIRMED_SUSPENSION",
+                "2026-10-03T10:00:00Z",
+            ),
+            ev(
+                "APPEAL",
+                "APPEAL_PENDING",
+                "2026-10-08T10:00:00Z",
+            ),
+            ev(
+                "INJURY",
+                "FIT",
+                "2026-10-09T10:00:00Z",
+            ),
+        ])
+
+        self.assertEqual(
+            result["availability_status"],
+            "UNCERTAIN",
+        )
+
+        self.assertIn(
+            "APPEAL_PENDING",
+            result["uncertainty_reasons"],
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
