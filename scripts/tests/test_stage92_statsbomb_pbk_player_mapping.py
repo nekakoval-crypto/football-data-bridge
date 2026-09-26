@@ -114,6 +114,74 @@ class Stage92StatsBombPbkMappingTests(unittest.TestCase):
         self.assertEqual(row["mapping_confidence"], "HIGH")
         self.assertEqual(row["operational_betting_authority"], "false")
 
+    def test_unique_exact_historical_full_name_is_auto_high(self):
+        source = [
+            self.source_row(
+                player_name="Scott McKenna",
+                statsbomb_player_id="9100",
+            )
+        ]
+        historical = [
+            {
+                "player_id": "44811",
+                "latest_observed_name": "Scott McKenna",
+            }
+        ]
+
+        row = s92.build_mapping(source, [], historical)[0]
+
+        self.assertEqual(row["match_status"], "AUTO_MATCH")
+        self.assertEqual(
+            row["match_method"],
+            s92.HISTORICAL_EXACT_METHOD,
+        )
+        self.assertEqual(row["match_confidence"], "HIGH")
+        self.assertEqual(row["pbk_player_id"], "44811")
+        self.assertEqual(
+            row["authoritative_for_player_xg_xa"],
+            "true",
+        )
+
+        mapped = s92.map_research_metrics(source, [row])
+        self.assertEqual(len(mapped), 1)
+        self.assertEqual(mapped[0]["pbk_player_id"], "44811")
+
+
+    def test_ambiguous_exact_historical_full_name_is_not_auto(self):
+        source = [
+            self.source_row(
+                player_name="Adama Traoré",
+                statsbomb_player_id="4464",
+            )
+        ]
+        historical = [
+            {
+                "player_id": "1",
+                "latest_observed_name": "Adama Traoré",
+            },
+            {
+                "player_id": "2",
+                "latest_observed_name": "Adama Traoré",
+            },
+            {
+                "player_id": "3",
+                "latest_observed_name": "Adama Traoré",
+            },
+        ]
+
+        row = s92.build_mapping(source, [], historical)[0]
+
+        self.assertNotEqual(row["match_status"], "AUTO_MATCH")
+        self.assertEqual(
+            row["authoritative_for_player_xg_xa"],
+            "false",
+        )
+        self.assertEqual(
+            s92.map_research_metrics(source, [row]),
+            [],
+        )
+
+
     def test_initial_surname_unique_is_review_not_authority(self):
         source = [self.source_row(player_name="Achraf Hakimi", statsbomb_player_id="9002")]
         historical = [{"player_id": "9", "latest_observed_name": "A. Hakimi"}]

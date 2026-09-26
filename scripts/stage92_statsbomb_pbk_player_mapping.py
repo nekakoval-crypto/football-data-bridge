@@ -32,8 +32,9 @@ except ImportError:
         classify_exact_profile,
     )
 
-VERSION = "PBK_STAGE92_STATSBOMB_PBK_PLAYER_MAPPING_V2"
+VERSION = "PBK_STAGE92_STATSBOMB_PBK_PLAYER_MAPPING_V3"
 AUTO_METHOD = "EXACT_FULL_NAME_VIA_VERIFIED_TRANSFER"
+HISTORICAL_EXACT_METHOD = "EXACT_FULL_NAME_VIA_UNIQUE_HISTORICAL_PLAYER"
 REVIEW_METHOD = "INITIAL_SURNAME_PBK_CANDIDATE"
 TRANSFER_METHODS = {"EXACT_NAME_CURRENT_CLUB", "EXACT_PROFILE_NAME_DOB_CURRENT_CLUB", "EXACT_STATS_NAME_CURRENT_CLUB"}
 TRANSFER_CONFIDENCE = "HIGH"
@@ -171,6 +172,35 @@ def verified_transfer_bridge(
     }
 
 
+def historical_exact_name_index(
+    historical_rows: list[dict[str, str]],
+) -> dict[str, list[dict[str, str]]]:
+    """Index exact historical full names without collapsing collisions.
+
+    Authority is allowed only later when one normalized full name resolves
+    to exactly one PBK player ID.
+    """
+    grouped: dict[str, dict[str, dict[str, str]]] = defaultdict(dict)
+
+    for row in historical_rows:
+        pbk_id = sval(row.get("player_id"))
+        name = sval(row.get("latest_observed_name"))
+        key = normalized_name(name)
+
+        if not pbk_id or not key:
+            continue
+
+        grouped[key][pbk_id] = {
+            "pbk_player_id": pbk_id,
+            "pbk_player_name": name,
+        }
+
+    return {
+        key: list(items.values())
+        for key, items in grouped.items()
+    }
+
+
 def historical_review_index(
     historical_rows: list[dict[str, str]],
 ) -> dict[str, list[dict[str, str]]]:
@@ -235,6 +265,7 @@ def build_mapping(
     profile_rows: list[dict[str, str]] | None = None,
 ) -> list[dict[str, Any]]:
     bridge = verified_transfer_bridge(transfer_rows)
+    historical_exact_index = historical_exact_name_index(historical_rows)
     review_index = historical_review_index(historical_rows)
     profile_rows = profile_rows or []
     output = []
@@ -296,6 +327,35 @@ def build_mapping(
             output.append(row)
             continue
 
+        historical_exact = historical_exact_index.get(
+            normalized_name(player_name),
+            [],
+        )
+        historical_exact_ids = {
+            entry["pbk_player_id"]
+            for entry in historical_exact
+        }
+
+        if historical_exact and len(historical_exact_ids) == 1:
+            pbk_id = next(iter(historical_exact_ids))
+            entry = next(
+                item
+                for item in historical_exact
+                if item["pbk_player_id"] == pbk_id
+            )
+            row.update(
+                {
+                    "pbk_player_id": pbk_id,
+                    "pbk_player_name": entry["pbk_player_name"],
+                    "match_status": "AUTO_MATCH",
+                    "match_method": HISTORICAL_EXACT_METHOD,
+                    "match_confidence": "HIGH",
+                    "authoritative_for_player_xg_xa": "true",
+                }
+            )
+            output.append(row)
+            continue
+
         profile_match = classify_exact_profile(player_name, profile_rows)
         if profile_match is not None:
             if profile_match["status"] == "AUTO_MATCH":
@@ -347,7 +407,11 @@ def authoritative_index(mapping_rows: list[dict[str, Any]]) -> dict[str, dict[st
     for row in mapping_rows:
         if (
             sval(row.get("match_status")) == "AUTO_MATCH"
-            and sval(row.get("match_method")) in {AUTO_METHOD, STRONG_PROFILE_METHOD}
+            and sval(row.get("match_method")) in {
+                AUTO_METHOD,
+                STRONG_PROFILE_METHOD,
+                HISTORICAL_EXACT_METHOD,
+            }
             and sval(row.get("match_confidence")) == "HIGH"
             and sval(row.get("authoritative_for_player_xg_xa")).lower() == "true"
             and sval(row.get("statsbomb_player_id"))
@@ -467,7 +531,11 @@ def run(
         "review": counts["REVIEW"],
         "unmatched": counts["UNMATCHED"],
         "mapped_research_rows": len(mapped_rows),
-        "auto_match_methods": [AUTO_METHOD, STRONG_PROFILE_METHOD],
+        "auto_match_methods": [
+            AUTO_METHOD,
+            STRONG_PROFILE_METHOD,
+            HISTORICAL_EXACT_METHOD,
+        ],
         "review_method": REVIEW_METHOD,
         "review_is_authoritative": False,
         "mapped_output_requires_auto_high": True,
