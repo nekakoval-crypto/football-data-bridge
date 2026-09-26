@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 26.09.2026 14:00 (Europe/Berlin)
+Обновлено: 26.09.2026 15:01 (Europe/Berlin)
 Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -25,6 +25,7 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
 - **Stage63 | Borussia Dortmund — Werder Bremen** | Bundesliga | 09.10 20:30 | ОЗ — Да / ОЗ — Нет | Bet365 Да 1.62 / Нет 2.2
 - **Stage63 | Lens — Lyon** | Ligue 1 | 09.10 20:45 | ОЗ — Да / ОЗ — Нет | Bet365 Да 1.5 / Нет 2.5
 - **Stage63 | Malaga — Espanyol** | La Liga | 09.10 21:00 | ОЗ — Да / ОЗ — Нет | Bet365 Да 1.8 / Нет 1.95
+- **Stage61 | Arsenal — Leeds** | АПЛ | 10.10 13:30 | П1/П2 steam | Bet365 1.3/5.0/9.0
 
 ## ✅ Последние рассчитанные результаты
 - CANONICAL | **Frosinone — Como** | П2 | H | P/L -1.000u
@@ -173,7 +174,27 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Ф(0) — нет данных
 
 - **Arsenal — Leeds** | Premier League | 10.10 11:30 UTC
+  - ОЗ · ОЗ Да: 2.1 | ОЗ Нет: 1.67 @ Bet365
+  - ОЗ · ОЗ Да: 2.09 | ОЗ Нет: 1.66 @ Marathonbet
   - 1X2 · П1: 1.3 | Х: 5 | П2: 9 @ Bet365
+  - 1X2 · П1: 1.33 | Х: 5.25 | П2: 9.9 @ Marathonbet
+  - Тотал 2.5 — нет данных
+  - ИТБ/ИТМ — нет данных
+  - 1Х/Х2/12 — нет данных
+  - Европейская фора — нет данных
+  - Ф(0) — нет данных
+
+- **Rayo Vallecano — Athletic Club** | La Liga | 10.10 12:00 UTC
+  - ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.05 @ Bet365
+  - 1X2 · П1: 2.9 | Х: 3.4 | П2: 2.3 @ Bet365
+  - Тотал 2.5 — нет данных
+  - ИТБ/ИТМ — нет данных
+  - 1Х/Х2/12 — нет данных
+  - Европейская фора — нет данных
+  - Ф(0) — нет данных
+
+- **Cracovia Krakow — Zaglebie Lubin** | Ekstraklasa | 10.10 12:45 UTC
+  - 1X2 — нет данных
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -181,8 +202,35 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Европейская фора — нет данных
   - Ф(0) — нет данных
 
-- **Rayo Vallecano — Athletic Club** | La Liga | 10.10 12:00 UTC
-  - 1X2 · П1: 2.9 | Х: 3.4 | П2: 2.3 @ Bet365
+- **Genoa — Fiorentina** | Serie A | 10.10 13:00 UTC
+  - 1X2 — нет данных
+  - Тотал 2.5 — нет данных
+  - ОЗ — нет данных
+  - ИТБ/ИТМ — нет данных
+  - 1Х/Х2/12 — нет данных
+  - Европейская фора — нет данных
+  - Ф(0) — нет данных
+
+- **Alanyaspor — Erzurumspor FK** | Super Lig | 10.10 13:00 UTC
+  - 1X2 — нет данных
+  - Тотал 2.5 — нет данных
+  - ОЗ — нет данных
+  - ИТБ/ИТМ — нет данных
+  - 1Х/Х2/12 — нет данных
+  - Европейская фора — нет данных
+  - Ф(0) — нет данных
+
+- **Samsunspor — Trabzonspor** | Super Lig | 10.10 13:00 UTC
+  - 1X2 — нет данных
+  - Тотал 2.5 — нет данных
+  - ОЗ — нет данных
+  - ИТБ/ИТМ — нет данных
+  - 1Х/Х2/12 — нет данных
+  - Европейская фора — нет данных
+  - Ф(0) — нет данных
+
+- **Super Nova — Grobiņa** | Virsliga | 10.10 13:00 UTC
+  - 1X2 — нет данных
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -194,7 +242,7 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **CRITICAL** | critical 1 | warnings 2
+- System Health: **CRITICAL** | critical 1 | warnings 1
 - Логическая canonical экспозиция: **3.0u** | конфликтов матчей 0 | убрано дублей 1.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 25 | data required 2
