@@ -492,10 +492,21 @@ def run_capture(candidates, existing_stats, existing_grades,
             TypeError,
             KeyError,
         ) as exc:
+            error_text = f"{type(exc).__name__}: {exc}"
+
+            # A per-run provider budget exhaustion is not fixture evidence and
+            # must never poison retryable historical rows as ERROR. Continue
+            # scanning the planned batch so later exact-R2 hits can still be
+            # replayed without provider calls; count these MISSes as deferred.
+            if (
+                isinstance(exc, RuntimeError)
+                and "stage71 api budget exhausted" in str(exc).lower()
+            ):
+                deferred += 1
+                continue
+
             attempted += 1
             errors += 1
-
-            error_text = f"{type(exc).__name__}: {exc}"
 
             apply_attempt(
                 state,
