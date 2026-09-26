@@ -14,7 +14,10 @@ from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from statistics import mean
-from player_snapshot_store import read_snapshot_rows
+try:
+    from player_snapshot_store import read_snapshot_rows
+except ImportError:
+    from scripts.player_snapshot_store import read_snapshot_rows
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 GRADES = OPS / "player_grade_snapshots.csv"
