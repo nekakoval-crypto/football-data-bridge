@@ -1,34 +1,34 @@
 {
   "version": "PBK_POINT13_PLAYER_FOUNDATION_COVERAGE_AUDIT_V1",
-  "run_at_utc": "2026-09-25T20:12:23Z",
+  "run_at_utc": "2026-09-26T08:50:02Z",
   "status": "OK",
   "provider_calls": 0,
   "research_only": true,
   "operational_betting_authority": false,
   "no_lookahead_form_contract": true,
-  "stage77_remaining_unattempted_or_retryable": 62655,
-  "stage77_archive_first_enabled": null,
+  "stage77_remaining_unattempted_or_retryable": 62248,
+  "stage77_archive_first_enabled": true,
   "stage92_auto_match_high": 169,
   "historical_fixture_coverage": {
     "terminal_historical_fixtures": 69664,
-    "stats_fixtures": 6416,
-    "grade_fixtures": 6416,
-    "normalized_player_fixtures": 6416,
-    "fixture_coverage_pct": 9.2099
+    "stats_fixtures": 6600,
+    "grade_fixtures": 6600,
+    "normalized_player_fixtures": 6600,
+    "fixture_coverage_pct": 9.474
   },
   "player_catalog_coverage": {
-    "catalog_players": 12150,
-    "players_with_match_stats_evidence": 11610,
-    "match_stats_player_coverage_pct": 95.5556
+    "catalog_players": 12528,
+    "players_with_match_stats_evidence": 11859,
+    "match_stats_player_coverage_pct": 94.66
   },
   "form_coverage": {
-    "form_rows": 257626,
-    "form3_full_window_rows": 187916,
-    "form5_full_window_rows": 160132,
-    "form10_full_window_rows": 108670,
-    "form3_full_window_pct": 72.9414,
-    "form5_full_window_pct": 62.1568,
-    "form10_full_window_pct": 42.1813
+    "form_rows": 264828,
+    "form3_full_window_rows": 193096,
+    "form5_full_window_rows": 164281,
+    "form10_full_window_rows": 109068,
+    "form3_full_window_pct": 72.9137,
+    "form5_full_window_pct": 62.0331,
+    "form10_full_window_pct": 41.1845
   },
   "xg_xa_coverage": {
     "mapped_research_rows": 1291,
@@ -37,7 +37,7 @@
     "auto_match_high": 169,
     "review": 766,
     "unmatched": 6852,
-    "mapped_vs_catalog_player_pct": 1.3909
+    "mapped_vs_catalog_player_pct": 1.349
   },
   "by_country_season": {
     "Austria|2017": {
@@ -212,8 +212,8 @@
     },
     "England|2024": {
       "terminal_fixtures": 1345,
-      "normalized_player_fixtures": 80,
-      "fixture_coverage_pct": 5.948
+      "normalized_player_fixtures": 99,
+      "fixture_coverage_pct": 7.3606
     },
     "England|2025": {
       "terminal_fixtures": 1342,
@@ -257,8 +257,8 @@
     },
     "France|2024": {
       "terminal_fixtures": 507,
-      "normalized_player_fixtures": 72,
-      "fixture_coverage_pct": 14.2012
+      "normalized_player_fixtures": 90,
+      "fixture_coverage_pct": 17.7515
     },
     "France|2025": {
       "terminal_fixtures": 508,
@@ -302,8 +302,8 @@
     },
     "Germany|2024": {
       "terminal_fixtures": 371,
-      "normalized_player_fixtures": 63,
-      "fixture_coverage_pct": 16.9811
+      "normalized_player_fixtures": 81,
+      "fixture_coverage_pct": 21.8329
     },
     "Germany|2025": {
       "terminal_fixtures": 371,
@@ -347,8 +347,8 @@
     },
     "Italy|2024": {
       "terminal_fixtures": 425,
-      "normalized_player_fixtures": 81,
-      "fixture_coverage_pct": 19.0588
+      "normalized_player_fixtures": 105,
+      "fixture_coverage_pct": 24.7059
     },
     "Italy|2025": {
       "terminal_fixtures": 425,
@@ -482,8 +482,8 @@
     },
     "Netherlands|2024": {
       "terminal_fixtures": 430,
-      "normalized_player_fixtures": 80,
-      "fixture_coverage_pct": 18.6047
+      "normalized_player_fixtures": 98,
+      "fixture_coverage_pct": 22.7907
     },
     "Netherlands|2025": {
       "terminal_fixtures": 418,
@@ -492,8 +492,8 @@
     },
     "Norway|2017": {
       "terminal_fixtures": 240,
-      "normalized_player_fixtures": 0,
-      "fixture_coverage_pct": 0.0
+      "normalized_player_fixtures": 40,
+      "fixture_coverage_pct": 16.6667
     },
     "Norway|2018": {
       "terminal_fixtures": 240,
@@ -612,8 +612,8 @@
     },
     "Portugal|2024": {
       "terminal_fixtures": 463,
-      "normalized_player_fixtures": 72,
-      "fixture_coverage_pct": 15.5508
+      "normalized_player_fixtures": 87,
+      "fixture_coverage_pct": 18.7905
     },
     "Portugal|2025": {
       "terminal_fixtures": 465,
@@ -702,8 +702,8 @@
     },
     "Spain|2024": {
       "terminal_fixtures": 506,
-      "normalized_player_fixtures": 100,
-      "fixture_coverage_pct": 19.7628
+      "normalized_player_fixtures": 116,
+      "fixture_coverage_pct": 22.9249
     },
     "Spain|2025": {
       "terminal_fixtures": 517,
@@ -747,8 +747,8 @@
     },
     "Turkey|2024": {
       "terminal_fixtures": 516,
-      "normalized_player_fixtures": 82,
-      "fixture_coverage_pct": 15.8915
+      "normalized_player_fixtures": 98,
+      "fixture_coverage_pct": 18.9922
     },
     "Turkey|2025": {
       "terminal_fixtures": 488,
@@ -1189,8 +1189,8 @@
     },
     "England|Premier League|2024": {
       "terminal_fixtures": 380,
-      "normalized_player_fixtures": 80,
-      "fixture_coverage_pct": 21.0526
+      "normalized_player_fixtures": 99,
+      "fixture_coverage_pct": 26.0526
     },
     "England|Premier League|2025": {
       "terminal_fixtures": 380,
@@ -1294,8 +1294,8 @@
     },
     "France|Ligue 1|2024": {
       "terminal_fixtures": 308,
-      "normalized_player_fixtures": 72,
-      "fixture_coverage_pct": 23.3766
+      "normalized_player_fixtures": 90,
+      "fixture_coverage_pct": 29.2208
     },
     "France|Ligue 1|2025": {
       "terminal_fixtures": 307,
@@ -1339,8 +1339,8 @@
     },
     "Germany|Bundesliga|2024": {
       "terminal_fixtures": 308,
-      "normalized_player_fixtures": 63,
-      "fixture_coverage_pct": 20.4545
+      "normalized_player_fixtures": 81,
+      "fixture_coverage_pct": 26.2987
     },
     "Germany|Bundesliga|2025": {
       "terminal_fixtures": 308,
@@ -1474,8 +1474,8 @@
     },
     "Italy|Serie A|2024": {
       "terminal_fixtures": 380,
-      "normalized_player_fixtures": 81,
-      "fixture_coverage_pct": 21.3158
+      "normalized_player_fixtures": 105,
+      "fixture_coverage_pct": 27.6316
     },
     "Italy|Serie A|2025": {
       "terminal_fixtures": 380,
@@ -1669,8 +1669,8 @@
     },
     "Netherlands|Eredivisie|2024": {
       "terminal_fixtures": 321,
-      "normalized_player_fixtures": 80,
-      "fixture_coverage_pct": 24.9221
+      "normalized_player_fixtures": 98,
+      "fixture_coverage_pct": 30.5296
     },
     "Netherlands|Eredivisie|2025": {
       "terminal_fixtures": 309,
@@ -1724,8 +1724,8 @@
     },
     "Norway|Eliteserien|2017": {
       "terminal_fixtures": 240,
-      "normalized_player_fixtures": 0,
-      "fixture_coverage_pct": 0.0
+      "normalized_player_fixtures": 40,
+      "fixture_coverage_pct": 16.6667
     },
     "Norway|Eliteserien|2018": {
       "terminal_fixtures": 240,
@@ -1909,8 +1909,8 @@
     },
     "Portugal|Primeira Liga|2024": {
       "terminal_fixtures": 308,
-      "normalized_player_fixtures": 72,
-      "fixture_coverage_pct": 23.3766
+      "normalized_player_fixtures": 87,
+      "fixture_coverage_pct": 28.2468
     },
     "Portugal|Primeira Liga|2025": {
       "terminal_fixtures": 308,
@@ -2199,8 +2199,8 @@
     },
     "Spain|La Liga|2024": {
       "terminal_fixtures": 380,
-      "normalized_player_fixtures": 100,
-      "fixture_coverage_pct": 26.3158
+      "normalized_player_fixtures": 116,
+      "fixture_coverage_pct": 30.5263
     },
     "Spain|La Liga|2025": {
       "terminal_fixtures": 380,
@@ -2244,8 +2244,8 @@
     },
     "Turkey|Süper Lig|2024": {
       "terminal_fixtures": 342,
-      "normalized_player_fixtures": 82,
-      "fixture_coverage_pct": 23.9766
+      "normalized_player_fixtures": 98,
+      "fixture_coverage_pct": 28.655
     },
     "Turkey|Süper Lig|2025": {
       "terminal_fixtures": 306,
