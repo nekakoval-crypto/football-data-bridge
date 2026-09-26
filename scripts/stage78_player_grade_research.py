@@ -14,6 +14,7 @@ from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from statistics import mean
+from player_snapshot_store import read_snapshot_rows
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 GRADES = OPS / "player_grade_snapshots.csv"
@@ -359,8 +360,8 @@ def build_player_importance(rotation_rows, fixture_rows, min_with=5, min_without
 
 
 def main():
-    grades = read_csv(GRADES)
-    stats = read_csv(STATS)
+    grades = read_snapshot_rows(GRADES)
+    stats = read_snapshot_rows(STATS)
     rotations = read_csv(ROTATION)
     fixtures = read_csv(FIXTURES)
     coverage = coverage_report(grades, stats)
