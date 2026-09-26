@@ -3,7 +3,7 @@ name: Stage 77 Historical Player Backfill
 on:
   workflow_dispatch:
   schedule:
-    - cron: '27 */4 * * *'
+    - cron: '27 */2 * * *'
   pull_request:
     paths:
       - 'scripts/stage77_historical_player_backfill.py'
@@ -95,7 +95,7 @@ jobs:
 
       OPS_DIR: ops
 
-      STAGE77_HISTORICAL_MAX_API_CALLS: '240'
+      STAGE77_HISTORICAL_MAX_API_CALLS: '480'
       STAGE77_HISTORICAL_MAX_FIXTURES_PER_RUN: '2000'
       STAGE77_HISTORICAL_NO_DATA_CELL_THRESHOLD: '8'
       STAGE77_HISTORICAL_LEGACY_SHARE: '0.40'
