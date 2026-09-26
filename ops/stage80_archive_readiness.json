@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-26T15:28:27Z",
+  "generated_at_utc": "2026-09-26T15:58:44Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -39,7 +39,7 @@
     "team_stats": {
       "file": "team_match_statistics.csv",
       "present": true,
-      "rows": 4908
+      "rows": 5100
     },
     "stage81_backlog": {
       "file": "stage81_team_stats_backlog.csv",
@@ -339,25 +339,25 @@
   "stage81_backlog": {
     "present": true,
     "total_fixtures": 13477,
-    "pending_fixtures": 11023,
-    "captured_fixtures": 2454,
+    "pending_fixtures": 10927,
+    "captured_fixtures": 2550,
     "captured_without_complete_ledger": 0,
     "oldest_pending_first_queued_at_utc": "2026-09-17T10:41:55Z",
     "evidence_note": "Pending means PBK observed a terminal fixture but has not yet persisted complete HOME+AWAY /fixtures/statistics evidence."
   },
   "team_statistics": {
-    "rows": 4908,
-    "complete_fixture_count": 2454,
+    "rows": 5100,
+    "complete_fixture_count": 2550,
     "finished_current_inventory_with_team_stats": 0,
     "finished_current_inventory_team_stats_coverage_pct": 0.0,
     "evidence_note": "Complete means HOME and AWAY team rows exist; individual missing provider metrics remain UNKNOWN."
   },
   "advanced_metrics": {
     "team_xg_source": "API-Football /fixtures/statistics expected_goals",
-    "team_xg_rows": 1208,
-    "team_xg_complete_fixture_count": 604,
-    "team_stats_complete_fixture_count": 2454,
-    "team_xg_captured_fixture_coverage_pct": 24.61,
+    "team_xg_rows": 1330,
+    "team_xg_complete_fixture_count": 665,
+    "team_stats_complete_fixture_count": 2550,
+    "team_xg_captured_fixture_coverage_pct": 26.08,
     "finished_current_inventory_with_team_xg": 0,
     "finished_current_inventory_team_xg_coverage_pct": 0.0,
     "team_xg_evidence_note": "Verified provider field when present; API-Football may return it as missing for some competitions or fixtures and PBK preserves missing as UNKNOWN.",
@@ -379,7 +379,7 @@
     "player_xg_xa_pbk_identity_mapping": "AUTO_HIGH_MATERIALIZED",
     "player_xg_xa_mapping_rows": 7787,
     "player_xg_xa_auto_high_mappings": 489,
-    "player_xg_xa_review_mappings": 1462,
+    "player_xg_xa_review_mappings": 1566,
     "player_xg_xa_mapped_research_rows": 4011,
     "player_xg_xa_mapped_research_invalid_rows": 2894,
     "player_xg_xa_mapped_pbk_players": 489,
