@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-26T16:09:25Z",
+  "generated_at_utc": "2026-09-26T17:08:01Z",
   "status": "OK",
   "cards": [
     {
@@ -10061,7 +10061,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 205,
+      "event_count": 206,
       "timeline": [
         {
           "entity_id": "R1|I1|1550143",
@@ -13547,6 +13547,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550143",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550143",
+          "league": "Serie A",
+          "home_team": "Lecce",
+          "away_team": "Bologna",
+          "kickoff_utc": "2026-10-11T13:00:00Z",
+          "event_time_utc": "2026-09-26T16:44:31Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     },
@@ -13562,7 +13579,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 204,
+      "event_count": 206,
       "timeline": [
         {
           "entity_id": "R1|I1|1550145",
@@ -17031,6 +17048,40 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550145",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550145",
+          "league": "Serie A",
+          "home_team": "Sassuolo",
+          "away_team": "AC Milan",
+          "kickoff_utc": "2026-10-11T16:00:00Z",
+          "event_time_utc": "2026-09-26T16:15:44Z",
+          "event_type": "WEATHER_SNAPSHOT",
+          "status": "",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "temp=22.2C precip=%"
+        },
+        {
+          "entity_id": "R1|I1|1550145",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550145",
+          "league": "Serie A",
+          "home_team": "Sassuolo",
+          "away_team": "AC Milan",
+          "kickoff_utc": "2026-10-11T16:00:00Z",
+          "event_time_utc": "2026-09-26T16:44:31Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     },
@@ -17046,7 +17097,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 110,
+      "event_count": 112,
       "timeline": [
         {
           "entity_id": "R2|I1|1550145",
@@ -18917,6 +18968,40 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R2|I1|1550145",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R2",
+          "api_fixture_id": "1550145",
+          "league": "Serie A",
+          "home_team": "Sassuolo",
+          "away_team": "AC Milan",
+          "kickoff_utc": "2026-10-11T16:00:00Z",
+          "event_time_utc": "2026-09-26T16:15:44Z",
+          "event_type": "WEATHER_SNAPSHOT",
+          "status": "",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "temp=22.2C precip=%"
+        },
+        {
+          "entity_id": "R2|I1|1550145",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R2",
+          "api_fixture_id": "1550145",
+          "league": "Serie A",
+          "home_team": "Sassuolo",
+          "away_team": "AC Milan",
+          "kickoff_utc": "2026-10-11T16:00:00Z",
+          "event_time_utc": "2026-09-26T16:44:31Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     },
@@ -18932,7 +19017,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 204,
+      "event_count": 205,
       "timeline": [
         {
           "entity_id": "R1|I1|1550138",
@@ -22401,6 +22486,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550138",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550138",
+          "league": "Serie A",
+          "home_team": "Cagliari",
+          "away_team": "Juventus",
+          "kickoff_utc": "2026-10-11T18:45:00Z",
+          "event_time_utc": "2026-09-26T16:44:31Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     }
@@ -22409,7 +22511,7 @@
     "cards": 55,
     "canonical_cards": 7,
     "watch_cards": 48,
-    "events": 1266
+    "events": 1272
   },
   "policy": {
     "read_only": true,
