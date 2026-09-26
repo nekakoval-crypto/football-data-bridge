@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE77_HISTORICAL_PLAYER_BACKFILL_V3",
-  "run_at_utc": "2026-09-26T20:39:32Z",
+  "run_at_utc": "2026-09-26T22:39:31Z",
   "status": "ATTENTION",
   "provider_endpoint": "/fixtures/players",
   "max_api_calls_this_run": 480,
@@ -14,7 +14,7 @@
   "archive_read_hits": 0,
   "archive_read_misses": 1,
   "archive_read_errors": 0,
-  "daily_api_calls": 4179,
+  "daily_api_calls": 4372,
   "protected_calls": {
     "live": 0,
     "current_round": 32,
