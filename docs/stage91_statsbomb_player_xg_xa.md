@@ -133,6 +133,30 @@ The small `ops/stage91_statsbomb_player_xg_xa_last_run.json` telemetry may be
 persisted so Stage80 can verify the external/local materialization without
 pretending that the source payload itself is repository-resident.
 
+## Durable derived artifact
+
+To make Stage91 reproducible outside the machine that performed the local
+StatsBomb checkout, PBK may store the **derived Stage91 CSV only** in the user's
+private R2/S3-compatible bucket. Raw StatsBomb event JSON is never uploaded by
+this mechanism.
+
+The artifact is content-addressed by SHA-256. R2 stores an immutable compressed
+CSV object plus a small `latest.json` pointer carrying the checksum, byte count,
+row count, source revision and research-only governance flags. Restore verifies
+SHA-256 and byte size before atomically writing `ops/statsbomb_player_xg_xa.csv`.
+
+One-time upload after local materialization:
+
+```
+python scripts/stage91_derived_artifact_r2.py upload \\
+  --source ops/statsbomb_player_xg_xa.csv \\
+  --source-revision <statsbomb-open-data-revision>
+```
+
+Stage92 restores this verified derived artifact from R2 before rebuilding the
+PBK identity mapping. If no artifact has been uploaded yet, Stage92 remains in
+its waiting state rather than fabricating or downloading source data.
+
 ## Governance
 
 Stage91:

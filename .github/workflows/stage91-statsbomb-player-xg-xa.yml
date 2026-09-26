@@ -5,6 +5,8 @@ on:
     paths:
       - 'config/pbk_statsbomb_open_data.json'
       - 'scripts/stage91_statsbomb_player_xg_xa.py'
+      - 'scripts/stage91_derived_artifact_r2.py'
+      - 'scripts/tests/test_stage91_derived_artifact_r2.py'
       - 'scripts/tests/test_stage91_statsbomb_player_xg_xa.py'
       - 'scripts/stage80_archive_manifest.py'
       - 'scripts/stage80_archive_readiness.py'
@@ -41,10 +43,13 @@ jobs:
       - name: Compile Stage91 and archive governance
         run: |
           python -m py_compile scripts/stage91_statsbomb_player_xg_xa.py
+          python -m py_compile scripts/stage91_derived_artifact_r2.py
           python -m py_compile scripts/stage80_archive_manifest.py
           python -m py_compile scripts/stage80_archive_readiness.py
       - name: Test StatsBomb xG xA projection
-        run: python -m unittest scripts.tests.test_stage91_statsbomb_player_xg_xa -v
+        run: |
+          python -m unittest scripts.tests.test_stage91_statsbomb_player_xg_xa -v
+          python -m unittest scripts.tests.test_stage91_derived_artifact_r2 -v
       - name: Test Stage80 manifest and readiness integration
         run: |
           python -m unittest scripts.tests.test_stage80_archive_manifest -v
