@@ -236,9 +236,11 @@ def candidate_rows(history, captured, state,
         old = state.get(fixture_id) or {}
         result = sval(old, "last_attempt_result").upper()
 
-        # Historical DATA already appears in normalized ledgers.
-        # Exact EMPTY evidence remains final for that fixture.
-        if result in {"CAPTURED", "NO_DATA"}:
+        # Normalized stats+grades are the durable truth for CAPTURED.
+        # A CAPTURED state row without both normalized ledgers must be replayed
+        # from the exact raw archive instead of being silently skipped.
+        # Exact EMPTY evidence remains terminal for that fixture.
+        if result == "NO_DATA":
             continue
 
         if cell_is_provider_empty(
@@ -690,6 +692,9 @@ def main():
         result["grades"],
     )
 
+    # Durability order is intentional: persist both normalized ledgers
+    # before writing CAPTURED state. If either ledger write is interrupted,
+    # the old state remains retryable and the exact raw archive can replay it.
     stats_store = migrate_legacy_monolith(
         STATS,
         STATS_PARTS,
