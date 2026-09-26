@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - 'scripts/stage92_statsbomb_pbk_player_mapping.py'
+      - 'scripts/stage91_derived_artifact_r2.py'
+      - 'scripts/tests/test_stage91_derived_artifact_r2.py'
       - 'scripts/tests/test_stage92_statsbomb_pbk_player_mapping.py'
       - 'scripts/stage92_profile_identity_bridge.py'
       - 'scripts/tests/test_stage92_profile_identity_bridge.py'
@@ -58,12 +60,14 @@ jobs:
           python-version: '3.12'
       - name: Compile Stage92 and connected read layers
         run: |
+          python -m py_compile scripts/stage91_derived_artifact_r2.py
           python -m py_compile scripts/stage92_statsbomb_pbk_player_mapping.py
           python -m py_compile scripts/stage80_archive_manifest.py
           python -m py_compile scripts/stage80_archive_readiness.py
           python -m py_compile scripts/stage73_internal_api.py
       - name: Test conservative Stage92 mapping
         run: |
+          python -m unittest scripts.tests.test_stage91_derived_artifact_r2 -v
           python -m unittest scripts.tests.test_stage92_statsbomb_pbk_player_mapping -v
           python -m unittest scripts.tests.test_stage92_profile_identity_bridge -v
       - name: Test archive governance and API integration
@@ -91,6 +95,20 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install Stage91 R2 artifact client
+        run: python -m pip install --disable-pip-version-check boto3
+      - name: Restore verified Stage91 derived artifact from R2
+        env:
+          PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+          PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+          PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+          PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+          PBK_RAW_ARCHIVE_S3_REGION: auto
+          PBK_DERIVED_RESEARCH_S3_PREFIX: pbk-derived-research
+        shell: bash
+        run: |
+          python scripts/stage91_derived_artifact_r2.py fetch \
+            --destination ops/statsbomb_player_xg_xa.csv
       - name: Build Stage92 only when Stage91 source rows exist
         shell: bash
         run: |
