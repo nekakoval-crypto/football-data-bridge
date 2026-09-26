@@ -29,11 +29,14 @@ import stage53_daily_screener as s53
 import stage71_observation_audit as audit
 from api_football_broker import ApiFootballBrokerError, make_archive_before_budget_get, get_broker
 from player_grade import GRADE_VERSION, grade_aggregate, normalize_api_football_player
+from player_snapshot_store import read_snapshot_rows, snapshot_parts_dir, migrate_legacy_monolith
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 FIXTURES = OPS / "current_round_fixtures.csv"
 STATS = OPS / "player_stats_snapshots.csv"
 GRADES = OPS / "player_grade_snapshots.csv"
+STATS_PARTS = snapshot_parts_dir(STATS)
+GRADES_PARTS = snapshot_parts_dir(GRADES)
 BACKLOG = OPS / "stage77_player_stats_backlog.csv"
 META = OPS / "stage77_last_run.json"
 SHARED_STATE = OPS / "stage71_observation_state.json"
@@ -408,8 +411,8 @@ def capture(fixtures, existing_stats, existing_grades, get, now, max_fixtures):
 def main():
     now = datetime.now(timezone.utc)
     fixtures = read_csv(FIXTURES)
-    existing_stats = read_csv(STATS)
-    existing_grades = read_csv(GRADES)
+    existing_stats = merge_rows([], read_snapshot_rows(STATS, STATS_PARTS))
+    existing_grades = merge_rows([], read_snapshot_rows(GRADES, GRADES_PARTS))
     existing_backlog = read_csv(BACKLOG)
 
     backlog_before = sync_backlog(
@@ -439,10 +442,12 @@ def main():
         attempted_backlog, [], result["stats"], result["grades"], now
     )
 
-    if result["stats"] or STATS.exists():
-        write_csv_atomic(STATS, STAT_FIELDS, result["stats"])
-    if result["grades"] or GRADES.exists():
-        write_csv_atomic(GRADES, GRADE_FIELDS, result["grades"])
+    stats_store = migrate_legacy_monolith(
+        STATS, STATS_PARTS, STAT_FIELDS, result["stats"]
+    )
+    grades_store = migrate_legacy_monolith(
+        GRADES, GRADES_PARTS, GRADE_FIELDS, result["grades"]
+    )
     if backlog_after["rows"] or BACKLOG.exists():
         write_csv_atomic(BACKLOG, BACKLOG_FIELDS, backlog_after["rows"])
     audit.save(SHARED_STATE, state)
@@ -485,6 +490,9 @@ def main():
         "new_grade_rows": result["new_grade_rows"],
         "total_stats_rows": len(result["stats"]),
         "total_grade_rows": len(result["grades"]),
+        "snapshot_store": "YEAR_PARTITIONED_V1",
+        "stats_partitions": stats_store["partitions"],
+        "grade_partitions": grades_store["partitions"],
         "warnings": result["warnings"],
         "research_only": True,
         "no_lookahead_consumption": True,
