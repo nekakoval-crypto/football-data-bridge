@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-26T11:02:50Z",
+  "generated_at_utc": "2026-09-26T14:02:52Z",
   "status": "OK",
   "active_signals": 4,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-26T10:43:29Z",
+        "captured_at_utc": "2026-09-26T13:43:10Z",
         "best_odds": "2.07",
         "best_bookmaker": "1xBet",
         "bet365_odds": "2.0",
@@ -98,15 +98,15 @@
         "away": ""
       },
       "weather": {
-        "snapshot_type": "",
-        "captured_at_utc": "",
-        "temperature_c": "",
-        "precipitation_probability_pct": "",
-        "precipitation_mm": "",
-        "wind_speed_kmh": "",
-        "wind_gusts_kmh": "",
-        "visibility_m": "",
-        "weather_code": "",
+        "snapshot_type": "BASELINE",
+        "captured_at_utc": "2026-09-26T13:14:02Z",
+        "temperature_c": "23.9",
+        "precipitation_probability_pct": "12",
+        "precipitation_mm": "0.2",
+        "wind_speed_kmh": "12.0",
+        "wind_gusts_kmh": "5.0",
+        "visibility_m": "24140.0",
+        "weather_code": "51",
         "role": "context-only"
       },
       "rotation": {
@@ -155,7 +155,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-26T10:43:29Z",
+        "captured_at_utc": "2026-09-26T13:43:10Z",
         "best_odds": "1.84",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.75",
@@ -282,7 +282,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-26T10:43:29Z",
+        "captured_at_utc": "2026-09-26T13:43:10Z",
         "best_odds": "1.84",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.75",
@@ -408,7 +408,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-09-26T10:43:29Z",
+        "captured_at_utc": "2026-09-26T13:43:10Z",
         "best_odds": "1.62",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.57",
@@ -521,13 +521,13 @@
     "scope": "Premier League Favorite Steam M1",
     "definition": "same opening favorite remains favorite; no-vig probability +3pp by observed close",
     "canonical_forward_changed": false,
-    "tracked_openers": 20,
+    "tracked_openers": 21,
     "active_crossings": 0,
     "total_crossings": 5,
     "observed_closes": 20,
     "close_qualified_total": 3,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-26T10:54:00Z",
+    "latest_run_utc": "2026-09-26T13:27:11Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -566,13 +566,13 @@
     "scope": "Bundesliga Over 2.5 Steam O1",
     "definition": "Bet365 no-vig P(Over 2.5) rises by >=3pp from frozen opener to observed close",
     "canonical_forward_changed": false,
-    "tracked_openers": 19,
+    "tracked_openers": 24,
     "active_crossings": 0,
     "total_crossings": 7,
     "observed_closes": 18,
     "close_qualified_total": 7,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-26T10:22:00Z",
+    "latest_run_utc": "2026-09-26T13:47:26Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -631,7 +631,7 @@
     "historical_edge_claimed": false,
     "historical_edge_reason": "Canonical 10-year dataset has no historical BTTS first/close odds",
     "canonical_forward_changed": false,
-    "tracked_openers": 108,
+    "tracked_openers": 110,
     "active_crossings_total": 0,
     "active_yes_crossings": 0,
     "active_no_crossings": 0,
@@ -639,12 +639,12 @@
     "observed_closes": 105,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-09-26T10:15:24Z",
+    "latest_run_utc": "2026-09-26T12:19:09Z",
     "warnings": [],
     "crossings": []
   },
   "watch_performance": {
-    "generated_at_utc": "2026-09-26T10:54:04Z",
+    "generated_at_utc": "2026-09-26T13:53:24Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {

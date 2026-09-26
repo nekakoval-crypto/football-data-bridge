@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-26T11:02:50Z
+Generated UTC: 2026-09-26T14:02:52Z
 Active canonical signals: 4
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -15,7 +15,7 @@ Active canonical signals: 4
 - Previous: home Serie A vs Monza (672.0h rest); away Serie A vs Napoli (669.0h rest)
 - Next: home Serie A vs Udinese (165.5h after); away Serie A vs Inter (147.0h after)
 - Injuries: NOT_QUERIED_YET
-- Weather [pending]: °C, precip %, wind  km/h, gusts  km/h
+- Weather [BASELINE]: 23.9°C, precip 12%, wind 12.0 km/h, gusts 5.0 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: AFTER FIFA window; to start h; player-level UNVERIFIED
 - Flags: WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
@@ -72,7 +72,7 @@ Active canonical signals: 4
 > This is **not R4 and not a bet signal**. It does not change the canonical R1/R2/R3 forward ledger.
 
 - Scope: АПЛ: движение фаворита П1/П2 (+3 pp no-vig from frozen Bet365 opener).
-- Frozen openers tracked: 20
+- Frozen openers tracked: 21
 - Active +3 pp crossings: 0
 - Observed closes: 20 | Close-qualified M1 watches: 3
 - Executable bookmaker being observed: Marathonbet
@@ -91,7 +91,7 @@ Active canonical signals: 4
 > This is **not a canonical rule and not a bet signal**. R1/R2/R3 are unchanged.
 
 - Scope: Бундеслига: ТБ(2.5) — движение рынка (+3 pp no-vig from frozen Bet365 O/U 2.5 opener).
-- Frozen O/U openers tracked: 19
+- Frozen O/U openers tracked: 24
 - Active +3 pp crossings ТБ(2.5): 0
 - Observed closes: 18 | Close-qualified O1 watches: 7
 - Executable bookmaker being observed: Marathonbet
@@ -112,7 +112,7 @@ Active canonical signals: 4
 > Это **не ставка и не новая стратегия**. Исторического edge по ОЗ мы не заявляем: в 10-летней базе нет first/close коэффициентов ОЗ.
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
-- Заморожено Bet365 opener'ов: 108
+- Заморожено Bet365 opener'ов: 110
 - Активные движения ≥3 п.п.: всего 0 | ОЗ — Да 0 | ОЗ — Нет 0
 - Зафиксировано observed close: 105
 - Исполнимый букмекер для наблюдения: Marathonbet
