@@ -21,10 +21,16 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-from scripts.stage92_profile_identity_bridge import (
-    STRONG_PROFILE_METHOD,
-    classify_exact_profile,
-)
+try:
+    from stage92_profile_identity_bridge import (
+        STRONG_PROFILE_METHOD,
+        classify_exact_profile,
+    )
+except ImportError:
+    from scripts.stage92_profile_identity_bridge import (
+        STRONG_PROFILE_METHOD,
+        classify_exact_profile,
+    )
 
 VERSION = "PBK_STAGE92_STATSBOMB_PBK_PLAYER_MAPPING_V2"
 AUTO_METHOD = "EXACT_FULL_NAME_VIA_VERIFIED_TRANSFER"
