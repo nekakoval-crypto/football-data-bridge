@@ -1,0 +1,41 @@
+name: Player Snapshot Store Verify
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/player_snapshot_store.py'
+      - 'scripts/stage77_player_stats_capture.py'
+      - 'scripts/stage77_historical_player_backfill.py'
+      - 'scripts/stage78_player_form_walk_forward.py'
+      - 'scripts/stage78_player_grade_research.py'
+      - 'scripts/stage80_historical_player_catalog.py'
+      - 'scripts/stage80_archive_readiness.py'
+      - 'scripts/stage80_archive_manifest.py'
+      - 'scripts/stage80_player_layer_completion.py'
+      - 'scripts/stage80_player_layer_finalization.py'
+      - 'scripts/pbk_team_player_grades.py'
+      - 'scripts/point13_player_foundation_coverage_audit.py'
+      - 'scripts/stage72_build_data_layer.py'
+      - 'scripts/tests/test_player_snapshot_store.py'
+      - '.github/workflows/player-snapshot-store.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile affected modules
+        run: |
+          python -m py_compile             scripts/player_snapshot_store.py             scripts/stage77_player_stats_capture.py             scripts/stage77_historical_player_backfill.py             scripts/stage78_player_form_walk_forward.py             scripts/stage78_player_grade_research.py             scripts/stage80_historical_player_catalog.py             scripts/stage80_archive_readiness.py             scripts/stage80_archive_manifest.py             scripts/stage80_player_layer_completion.py             scripts/stage80_player_layer_finalization.py             scripts/pbk_team_player_grades.py             scripts/point13_player_foundation_coverage_audit.py             scripts/stage72_build_data_layer.py
+      - name: Snapshot store tests
+        run: |
+          python -m unittest scripts.tests.test_player_snapshot_store -v
+      - name: Reader regressions
+        run: |
+          python -m unittest             scripts.tests.test_stage77_player_stats_capture             scripts.tests.test_stage77_historical_player_backfill             scripts.tests.test_stage78_player_form_walk_forward             scripts.tests.test_stage78_player_grade_research             scripts.tests.test_stage80_historical_player_catalog             scripts.tests.test_point13_player_foundation_coverage_audit             scripts.tests.test_pbk_team_player_grades             scripts.tests.test_stage80_player_layer_completion             scripts.tests.test_stage80_player_layer_finalization             -v

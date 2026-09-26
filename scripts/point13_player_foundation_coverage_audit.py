@@ -12,6 +12,10 @@ import os
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
+try:
+    from player_snapshot_store import read_snapshot_rows
+except ImportError:
+    from scripts.player_snapshot_store import read_snapshot_rows
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 HISTORY = OPS / "pbk16_all_competition_fixture_history.csv"
@@ -162,8 +166,8 @@ def summarize(history_rows, stats_rows, grade_rows, form_rows, player_rows, xgxa
 def main():
     coverage = summarize(
         read_csv(HISTORY),
-        read_csv(STATS),
-        read_csv(GRADES),
+        read_snapshot_rows(STATS),
+        read_snapshot_rows(GRADES),
         read_csv(FORM),
         read_csv(PLAYERS),
         read_csv(XGXA),

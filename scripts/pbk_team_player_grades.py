@@ -20,6 +20,10 @@ from datetime import datetime
 from pathlib import Path
 from statistics import mean
 from typing import Any
+try:
+    from player_snapshot_store import read_snapshot_rows
+except ImportError:
+    from scripts.player_snapshot_store import read_snapshot_rows
 
 ROOT = Path(__file__).resolve().parents[1]
 OPS = Path(os.getenv("OPS_DIR", "ops"))
@@ -243,8 +247,8 @@ def runtime_readiness(ops_dir: Path = OPS) -> dict[str, Any]:
     """Materialize honest runtime readiness from already-captured operational data."""
     stage77 = read_json(ops_dir / "stage77_last_run.json")
     stage78 = read_json(ops_dir / "stage78_last_run.json")
-    grade_rows = read_csv(ops_dir / "player_grade_snapshots.csv")
-    stats_rows = read_csv(ops_dir / "player_stats_snapshots.csv")
+    grade_rows = read_snapshot_rows(ops_dir / "player_grade_snapshots.csv")
+    stats_rows = read_snapshot_rows(ops_dir / "player_stats_snapshots.csv")
     xi_rows = read_csv(ops_dir / "xi_quality_history.csv")
     importance_rows = read_csv(ops_dir / "player_importance_research.csv")
     context_rows = read_csv(ops_dir / "context_latest.csv")

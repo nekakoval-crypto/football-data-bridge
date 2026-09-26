@@ -14,6 +14,10 @@ import os
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
+try:
+    from player_snapshot_store import read_snapshot_rows
+except ImportError:
+    from scripts.player_snapshot_store import read_snapshot_rows
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 ROSTERS = OPS / "team_roster_history.csv"
@@ -153,7 +157,7 @@ def main():
     roster_present = ROSTERS.exists()
     stats_present = STATS.exists()
     roster_rows = read_csv(ROSTERS)
-    stats_rows = read_csv(STATS)
+    stats_rows = read_snapshot_rows(STATS)
     catalog, invalid_roster, invalid_stats = build_catalog(roster_rows, stats_rows)
     write_csv_atomic(CATALOG, catalog)
     invalid = invalid_roster + invalid_stats

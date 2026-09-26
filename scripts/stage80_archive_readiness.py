@@ -15,6 +15,10 @@ import os
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
+try:
+    from player_snapshot_store import read_snapshot_rows, snapshot_parts_dir
+except ImportError:
+    from scripts.player_snapshot_store import read_snapshot_rows, snapshot_parts_dir
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
@@ -229,7 +233,16 @@ def raw_archive_inventory(archive_dir=None, ops=OPS):
 
 
 def build_report(ops=OPS, archive_dir=None):
-    data = {name: read_csv(Path(ops) / filename) for name, filename in SOURCES.items()}
+    ops = Path(ops)
+    data = {}
+    for name, filename in SOURCES.items():
+        path = ops / filename
+        if name in {"player_stats", "player_grades"}:
+            rows = read_snapshot_rows(path)
+            present = path.exists() or snapshot_parts_dir(path).exists()
+            data[name] = rows if present else None
+        else:
+            data[name] = read_csv(path)
     stage91_meta = read_json(Path(ops) / "stage91_statsbomb_player_xg_xa_last_run.json")
     referee_meta = read_json(Path(ops) / "stage80_referee_research_last_run.json")
     top5_referee_meta = read_json(Path(ops) / "stage80_top5_referee_backfill_last_run.json")
@@ -252,14 +265,24 @@ def build_report(ops=OPS, archive_dir=None):
     pbk14_congestion_join_meta = read_json(Path(ops) / "stage80_pbk14_congestion_market_join_last_run.json")
     pbk14_congestion_research_meta = read_json(Path(ops) / "stage80_pbk14_congestion_market_research_last_run.json")
     pbk14_congestion_walkforward_meta = read_json(Path(ops) / "stage80_pbk14_congestion_market_walkforward_last_run.json")
-    source_presence = {
-        name: {
-            "file": filename,
-            "present": rows is not None,
-            "rows": None if rows is None else len(rows),
-        }
-        for (name, filename), rows in zip(SOURCES.items(), data.values())
-    }
+    source_presence = {}
+    for name, filename in SOURCES.items():
+        rows = data.get(name)
+        path = ops / filename
+        if name in {"player_stats", "player_grades"}:
+            parts = snapshot_parts_dir(path)
+            source_presence[name] = {
+                "file": filename if path.exists() else f"{parts.name}/*.csv",
+                "present": path.exists() or parts.exists(),
+                "rows": None if rows is None else len(rows),
+                "partitioned": parts.exists(),
+            }
+        else:
+            source_presence[name] = {
+                "file": filename,
+                "present": rows is not None,
+                "rows": None if rows is None else len(rows),
+            }
 
     fixtures = data["fixtures"] or []
     finished = [row for row in fixtures if is_finished_fixture(row)]

@@ -26,6 +26,10 @@ import stage53_daily_screener as s53
 import stage71_observation_audit as audit
 import stage77_player_stats_capture as current
 from api_football_broker import ApiFootballBrokerError, make_archive_before_budget_get, get_broker
+try:
+    from player_snapshot_store import read_snapshot_rows, snapshot_parts_dir, migrate_legacy_monolith
+except ImportError:
+    from scripts.player_snapshot_store import read_snapshot_rows, snapshot_parts_dir, migrate_legacy_monolith
 
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
@@ -33,6 +37,8 @@ OPS = Path(os.getenv("OPS_DIR", "ops"))
 SOURCE = OPS / "pbk16_all_competition_fixture_history.csv"
 STATS = OPS / "player_stats_snapshots.csv"
 GRADES = OPS / "player_grade_snapshots.csv"
+STATS_PARTS = snapshot_parts_dir(STATS)
+GRADES_PARTS = snapshot_parts_dir(GRADES)
 STATE = OPS / "stage77_historical_player_backfill_state.csv"
 META = OPS / "stage77_historical_player_backfill_last_run.json"
 SHARED_STATE = OPS / "stage71_observation_state.json"
@@ -586,8 +592,8 @@ def main():
     now = datetime.now(timezone.utc)
 
     source_rows = read_csv(SOURCE)
-    existing_stats = read_csv(STATS)
-    existing_grades = read_csv(GRADES)
+    existing_stats = current.merge_rows([], read_snapshot_rows(STATS, STATS_PARTS))
+    existing_grades = current.merge_rows([], read_snapshot_rows(GRADES, GRADES_PARTS))
     state_rows = read_csv(STATE)
 
     history = historical_fixture_map(source_rows)
@@ -683,19 +689,18 @@ def main():
         result["grades"],
     )
 
-    if result["stats"] or STATS.exists():
-        current.write_csv_atomic(
-            STATS,
-            current.STAT_FIELDS,
-            result["stats"],
-        )
-
-    if result["grades"] or GRADES.exists():
-        current.write_csv_atomic(
-            GRADES,
-            current.GRADE_FIELDS,
-            result["grades"],
-        )
+    stats_store = migrate_legacy_monolith(
+        STATS,
+        STATS_PARTS,
+        current.STAT_FIELDS,
+        result["stats"],
+    )
+    grades_store = migrate_legacy_monolith(
+        GRADES,
+        GRADES_PARTS,
+        current.GRADE_FIELDS,
+        result["grades"],
+    )
 
     state_output = [
         state[key]
@@ -816,6 +821,9 @@ def main():
         "new_grade_rows": result["new_grade_rows"],
         "total_stats_rows": len(result["stats"]),
         "total_grade_rows": len(result["grades"]),
+        "snapshot_store": "YEAR_PARTITIONED_V1",
+        "stats_partitions": stats_store["partitions"],
+        "grade_partitions": grades_store["partitions"],
         "normalized_player_fixtures_after": len(
             captured_after
         ),

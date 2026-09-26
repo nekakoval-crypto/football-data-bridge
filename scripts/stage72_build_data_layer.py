@@ -8,6 +8,10 @@ context-only journal; strategy and settlement source ledgers are never changed.
 """
 from __future__ import annotations
 import csv, json, os, re, sqlite3, hashlib
+try:
+    from player_snapshot_store import read_snapshot_rows
+except ImportError:
+    from scripts.player_snapshot_store import read_snapshot_rows
 import formation_research
 from datetime import datetime, timezone
 from pathlib import Path
@@ -276,8 +280,29 @@ def main():
     built=now_iso();OUT.parent.mkdir(parents=True,exist_ok=True);OPS.mkdir(parents=True,exist_ok=True)
     if OUT.exists():OUT.unlink()
     conn=sqlite3.connect(OUT);conn.execute('PRAGMA journal_mode=DELETE');conn.execute('PRAGMA foreign_keys=ON');conn.execute('CREATE TABLE pbk_meta (key TEXT PRIMARY KEY, value TEXT NOT NULL)');conn.execute('CREATE TABLE source_manifest (source_name TEXT PRIMARY KEY, source_type TEXT, row_count INTEGER, sha256 TEXT)');missing=[]
+    snapshot_names={'player_stats_snapshots.csv','player_grade_snapshots.csv'}
     for p in sorted(OPS.glob('*.csv')):
+        if p.name in snapshot_names:
+            continue
         fields,rows=read_csv(p);count,_=create_text_table(conn,'raw_'+safe(p.stem),fields,rows);conn.execute('INSERT INTO source_manifest VALUES (?,?,?,?)',(p.name,'csv',count,file_sha(p)))
+
+    for filename in sorted(snapshot_names):
+        base=OPS/filename
+        rows=read_snapshot_rows(base)
+        if not rows:
+            continue
+        fields=list(rows[0].keys())
+        table='raw_'+safe(base.stem)
+        count,_=create_text_table(conn,table,fields,rows)
+        parts=base.with_name(base.stem+'_parts')
+        source_name=filename if base.exists() else str(parts.name)+'/*.csv'
+        digest=hashlib.sha256()
+        if base.exists():
+            digest.update(file_sha(base).encode('ascii'))
+        if parts.exists():
+            for part in sorted(parts.glob('*.csv')):
+                digest.update(part.name.encode('utf-8'));digest.update(file_sha(part).encode('ascii'))
+        conn.execute('INSERT INTO source_manifest VALUES (?,?,?,?)',(source_name,'partitioned_csv',count,digest.hexdigest()))
     stable_counts={}
     for table,filename in CORE_ALIASES.items():
         p=OPS/filename

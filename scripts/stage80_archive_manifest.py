@@ -90,6 +90,7 @@ DATASETS = [
     {
         "dataset_id": "player_stats_snapshots",
         "path": "player_stats_snapshots.csv",
+        "parts_dir": "player_stats_snapshots_parts",
         "role": "HISTORICAL_EVIDENCE",
         "lifecycle": "PERSISTED_FIXTURE_PLAYER_ROWS",
         "identity_key": ["fixture_id", "team_id", "player_id"],
@@ -123,6 +124,7 @@ DATASETS = [
     {
         "dataset_id": "player_grade_snapshots",
         "path": "player_grade_snapshots.csv",
+        "parts_dir": "player_grade_snapshots_parts",
         "role": "DERIVED_RESEARCH",
         "lifecycle": "DETERMINISTIC_DERIVED_ROWS",
         "identity_key": ["fixture_id", "team_id", "player_id"],
@@ -692,12 +694,73 @@ def inspect_csv(path: Path, contract: dict) -> dict:
     }
 
 
+def inspect_partitioned_csv(base_path: Path, parts_dir: Path, contract: dict) -> dict:
+    paths = []
+    if base_path.exists():
+        paths.append(base_path)
+    if parts_dir.exists():
+        paths.extend(sorted(parts_dir.glob("*.csv")))
+    if not paths:
+        return {
+            "present": False,
+            "row_count": None,
+            "columns": [],
+            "missing_required_fields": [],
+            "contract_status": "PENDING_MATERIALIZATION",
+            "partitioned": False,
+            "part_count": 0,
+        }
+
+    columns = []
+    row_count = 0
+    for path in paths:
+        with path.open(encoding="utf-8-sig", newline="") as stream:
+            reader = csv.DictReader(stream)
+            current = list(reader.fieldnames or [])
+            if not columns:
+                columns = current
+            elif current != columns:
+                return {
+                    "present": True,
+                    "row_count": None,
+                    "columns": columns,
+                    "missing_required_fields": [],
+                    "contract_status": "ATTENTION",
+                    "partitioned": parts_dir.exists(),
+                    "part_count": len(paths),
+                    "partition_schema_mismatch": True,
+                }
+            row_count += sum(1 for _ in reader)
+
+    required = list(dict.fromkeys(
+        contract["identity_key"] + contract["observed_time_fields"] + contract["effective_time_fields"]
+    ))
+    missing = [field for field in required if field not in columns]
+    return {
+        "present": True,
+        "row_count": row_count,
+        "columns": columns,
+        "missing_required_fields": missing,
+        "contract_status": "ATTENTION" if missing else "OK",
+        "partitioned": parts_dir.exists(),
+        "part_count": len(paths),
+    }
+
+
 def build_manifest(ops: Path = OPS, raw_archive_dir: str | None = None) -> dict:
     entries = []
     attention = 0
     pending = 0
     for declared in DATASETS:
-        runtime = inspect_csv(Path(ops) / declared["path"], declared)
+        base_path = Path(ops) / declared["path"]
+        if declared.get("parts_dir"):
+            runtime = inspect_partitioned_csv(
+                base_path,
+                Path(ops) / declared["parts_dir"],
+                declared,
+            )
+        else:
+            runtime = inspect_csv(base_path, declared)
         entry = {**declared, **runtime}
         entry["identity_key_text"] = "+".join(declared["identity_key"])
         entry["observed_time_fields_text"] = ",".join(declared["observed_time_fields"])

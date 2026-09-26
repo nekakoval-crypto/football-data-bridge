@@ -7,6 +7,8 @@ on:
   pull_request:
     paths:
       - 'scripts/stage77_historical_player_backfill.py'
+      - 'scripts/player_snapshot_store.py'
+      - 'scripts/tests/test_player_snapshot_store.py'
       - 'scripts/tests/test_stage77_historical_player_backfill.py'
       - '.github/workflows/stage77-historical-player-backfill.yml'
       - 'docs/stage77_historical_player_backfill.md'
@@ -40,6 +42,7 @@ jobs:
         run: |
           python -m unittest \
             scripts.tests.test_stage77_historical_player_backfill \
+            scripts.tests.test_player_snapshot_store \
             -v
 
       - name: Shared Stage77 regression tests
@@ -130,13 +133,7 @@ jobs:
             ops/stage77_historical_player_backfill_last_run.json \
             ops/stage71_observation_state.json
 
-          if [ -f ops/player_stats_snapshots.csv ]; then
-            git add ops/player_stats_snapshots.csv
-          fi
-
-          if [ -f ops/player_grade_snapshots.csv ]; then
-            git add ops/player_grade_snapshots.csv
-          fi
+          git add -A             ops/player_stats_snapshots.csv             ops/player_stats_snapshots_parts             ops/player_grade_snapshots.csv             ops/player_grade_snapshots_parts
 
           if git diff --cached --quiet; then
             exit 0
