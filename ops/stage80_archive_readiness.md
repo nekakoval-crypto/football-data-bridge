@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-26T09:54:36Z
+Обновлено UTC: 2026-09-26T10:03:40Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -66,5 +66,6 @@
 - TRANSFER_IDENTITY_INVALID_ROWS
 - TRANSFER_HISTORY_INVALID_IDENTITY_ROWS
 - TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE
+- PLAYER_XG_XA_MAPPED_RESEARCH_INVALID_ROWS
 
 Readiness — telemetry only. Этот отчёт не создаёт ставки, не меняет probability/EV, eligibility, stake или Forward journal.

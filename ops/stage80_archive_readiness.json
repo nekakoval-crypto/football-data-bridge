@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-26T09:54:36Z",
+  "generated_at_utc": "2026-09-26T10:03:40Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -114,7 +114,7 @@
     "player_xg_xa_mapped": {
       "file": "pbk_player_xg_xa_research.csv",
       "present": true,
-      "rows": 1291
+      "rows": 6905
     },
     "referee_profiles": {
       "file": "epl_referee_profiles_research.csv",
@@ -378,12 +378,12 @@
     "player_xg_xa_operational_authority": false,
     "player_xg_xa_pbk_identity_mapping": "AUTO_HIGH_MATERIALIZED",
     "player_xg_xa_mapping_rows": 7787,
-    "player_xg_xa_auto_high_mappings": 169,
-    "player_xg_xa_review_mappings": 766,
-    "player_xg_xa_mapped_research_rows": 1291,
-    "player_xg_xa_mapped_research_invalid_rows": 0,
-    "player_xg_xa_mapped_pbk_players": 169,
-    "player_xg_xa_mapped_matches": 823,
+    "player_xg_xa_auto_high_mappings": 489,
+    "player_xg_xa_review_mappings": 1143,
+    "player_xg_xa_mapped_research_rows": 4011,
+    "player_xg_xa_mapped_research_invalid_rows": 2894,
+    "player_xg_xa_mapped_pbk_players": 489,
+    "player_xg_xa_mapped_matches": 1695,
     "player_xg_xa_evidence_note": "Stage91 provides StatsBomb research metrics. The large Stage91 source payload may remain external/local when an OK Stage91 meta attestation plus valid Stage92 AUTO/HIGH mapped rows are persisted; this never implies the source CSV is stored in Git. Stage92 maps only exact full names through the verified Transfermarkt→PBK bridge; abbreviated-name candidates remain REVIEW and never enter mapped research. Mapped xG/xA remains research-only and non-operational."
   },
   "players": {
@@ -956,7 +956,8 @@
     "PLAYER_PROFILE_PARTIAL_CURRENT_ROSTER_COVERAGE",
     "TRANSFER_IDENTITY_INVALID_ROWS",
     "TRANSFER_HISTORY_INVALID_IDENTITY_ROWS",
-    "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE"
+    "TEAM_XG_PARTIAL_CAPTURED_FIXTURE_COVERAGE",
+    "PLAYER_XG_XA_MAPPED_RESEARCH_INVALID_ROWS"
   ],
   "creates_signal": false,
   "probability_mutation": false,
