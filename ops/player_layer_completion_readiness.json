@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_PLAYER_LAYER_COMPLETION_V1",
-  "run_at_utc": "2026-09-21T15:50:41Z",
+  "run_at_utc": "2026-09-26T14:52:20Z",
   "status": "VALIDATION_PENDING",
   "operational_betting_authority": false,
   "creates_signal": false,
@@ -13,9 +13,9 @@
       "status": "VALIDATION_PENDING",
       "authority": "RESEARCH",
       "evidence": {
-        "player_grade_rows": 96879,
+        "player_grade_rows": 322977,
         "historical_player_backfill_status": "OK",
-        "historical_player_remaining": 67081
+        "historical_player_remaining": 60311
       },
       "blockers": []
     },
@@ -23,7 +23,7 @@
       "status": "VALIDATION_PENDING",
       "authority": "RESEARCH",
       "evidence": {
-        "walk_forward_rows": 80556,
+        "walk_forward_rows": 290555,
         "leakage_violations": 0,
         "no_lookahead": true
       },
@@ -69,7 +69,7 @@
       "status": "VALIDATION_PENDING",
       "authority": "RESEARCH",
       "evidence": {
-        "return_load_rows": 577
+        "return_load_rows": 2540
       },
       "blockers": []
     },
