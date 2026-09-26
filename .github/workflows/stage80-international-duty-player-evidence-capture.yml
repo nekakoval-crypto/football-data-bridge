@@ -77,6 +77,7 @@ jobs:
       STAGE71_MAX_DAILY_API_CALLS: '7000'
       STAGE80_INTL_DUTY_PLAYER_EVIDENCE_MAX_API_CALLS: '750'
       STAGE80_INTL_DUTY_PLAYER_EVIDENCE_PROTECTED_CALLS: '512'
+      STAGE80_INTL_DUTY_LINEUP_EXPLORATION_CALLS: '10'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -112,7 +113,10 @@ jobs:
           assert meta['lineup_listing_implies_appearance'] is False, meta
           assert meta['player_stats_starter_inference_allowed'] is False, meta
           assert meta['player_stats_substitute_listing_inference_allowed'] is False, meta
-          assert meta['candidate_order']=='TIER_THEN_NEVER_ATTEMPTED_RECENT_FIRST_THEN_OLDEST_RETRY', meta
+          assert meta['candidate_order']=='LINEUP_EXPLORATION_THEN_CELL_YIELD_CLASS_THEN_TIER_THEN_RECENCY', meta
+          assert meta['candidate_policy']=='PROVEN_POSITIVE_THEN_UNPROVEN_THEN_LOW_YIELD', meta
+          assert meta['lineup_exploration_calls_requested']==10, meta
+          assert meta['candidate_endpoint_counts'].get('/fixtures/lineups',0)==10, meta
           assert meta['research_only'] is True, meta
           assert meta['operational_betting_authority'] is False, meta
           assert meta['creates_signal'] is False, meta

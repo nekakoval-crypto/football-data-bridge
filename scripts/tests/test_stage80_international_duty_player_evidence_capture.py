@@ -205,30 +205,40 @@ class InternationalDutyPlayerEvidenceCaptureTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             c.merge_evidence([base], [conflict])
 
-    def test_candidate_priority_recent_first_and_retry_cooldown(self):
+    def test_yield_aware_scheduler_and_lineup_reserve(self):
         now = datetime(2026, 9, 19, 15, 0, tzinfo=timezone.utc)
-        older = backlog_row("1")
-        older["kickoff_utc"] = "2023-09-05T18:45:00Z"
-        newest = backlog_row("4")
-        newest["kickoff_utc"] = "2025-09-09T18:45:00Z"
-        middle = backlog_row("5")
-        middle["kickoff_utc"] = "2024-09-05T18:45:00Z"
-        lineup = backlog_row("2", "/fixtures/lineups", "DIRECT_MATCHDAY_SQUAD")
-        lineup["kickoff_utc"] = "2025-09-09T20:45:00Z"
-        recent_no_data = backlog_row("3")
-        recent_no_data["kickoff_utc"] = "2025-09-08T18:45:00Z"
-        recent_no_data["backlog_status"] = "NO_DATA"
-        recent_no_data["attempt_count"] = "1"
-        recent_no_data["last_attempt_at_utc"] = "2026-09-19T14:00:00Z"
-        recent_no_data["last_attempt_result"] = "NO_DATA"
+        captured = backlog_row("90")
+        captured["provider_league_id"] = "32"
+        captured["backlog_status"] = "CAPTURED"
+        captured["attempt_count"] = "1"
+
+        proven = backlog_row("1")
+        proven["provider_league_id"] = "32"
+
+        unproven = backlog_row("2")
+        unproven["provider_league_id"] = "5"
+        unproven["kickoff_utc"] = "2025-09-05T18:45:00Z"
+
+        low = []
+        for i in range(3):
+            row = backlog_row(str(30 + i))
+            row["provider_league_id"] = "34"
+            row["backlog_status"] = "NO_DATA"
+            row["attempt_count"] = "1"
+            row["last_attempt_at_utc"] = "2026-09-17T12:00:00Z"
+            row["last_attempt_result"] = "NO_DATA"
+            low.append(row)
+        low_candidate = backlog_row("3")
+        low_candidate["provider_league_id"] = "34"
 
         selected = c.candidate_rows(
-            [older, lineup, recent_no_data, newest, middle], now, 10
+            [captured, proven, unproven, low_candidate] + low, now, 3
         )
-        self.assertEqual(
-            [r["fixture_id"] for r in selected],
-            ["4", "5", "1", "2"],
-        )
+        self.assertEqual([r["fixture_id"] for r in selected], ["1", "2", "3"])
+
+        lineup = backlog_row("4", "/fixtures/lineups", "DIRECT_MATCHDAY_SQUAD")
+        selected = c.candidate_rows([proven, lineup], now, 2, lineup_exploration=1)
+        self.assertEqual([r["fixture_id"] for r in selected], ["4", "1"])
 
     def test_sanitize_existing_v1_player_rows_removes_false_starter_claim(self):
         old = c.normalize_player_stats(
@@ -320,7 +330,7 @@ class InternationalDutyPlayerEvidenceCaptureTests(unittest.TestCase):
             self.assertFalse(meta["player_stats_substitute_listing_inference_allowed"])
             self.assertEqual(
                 meta["candidate_order"],
-                "TIER_THEN_NEVER_ATTEMPTED_RECENT_FIRST_THEN_OLDEST_RETRY",
+                "LINEUP_EXPLORATION_THEN_CELL_YIELD_CLASS_THEN_TIER_THEN_RECENCY",
             )
             self.assertEqual([x[0] for x in calls], ["/fixtures/players", "/fixtures/lineups"])
 
