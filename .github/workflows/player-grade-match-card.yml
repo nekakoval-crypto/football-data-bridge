@@ -5,6 +5,8 @@ on:
     paths:
       - 'scripts/player_grade_context.py'
       - 'scripts/match_card_v2.py'
+      - 'scripts/factor_registry.py'
+      - 'scripts/tests/test_factor_registry.py'
       - 'scripts/tests/test_player_grade_context.py'
       - 'scripts/tests/test_match_card_v2_lineup.py'
       - 'app/formations.js'
@@ -32,12 +34,13 @@ jobs:
         with:
           node-version: '22'
       - name: Compile Python
-        run: python -m py_compile scripts/player_grade.py scripts/player_grade_context.py scripts/manual_lineup_scenario.py scripts/match_card_v2.py
+        run: python -m py_compile scripts/player_grade.py scripts/player_grade_context.py scripts/manual_lineup_scenario.py scripts/factor_registry.py scripts/match_card_v2.py
       - name: Player Grade read model and scenario tests
         run: |
           python -m unittest scripts.tests.test_player_grade_manual_scenario -v
           python -m unittest scripts.tests.test_player_grade_context -v
           python -m unittest scripts.tests.test_match_card_v2_lineup -v
+          python -m unittest scripts.tests.test_factor_registry -v
       - name: Existing lineup and Match Card regressions
         run: |
           python -m unittest scripts.tests.test_lineup_context -v
