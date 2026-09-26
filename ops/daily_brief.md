@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-26T18:03:22Z
+Generated UTC: 2026-09-26T23:02:45Z
 Active canonical signals: 4
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -60,7 +60,7 @@ Active canonical signals: 4
 - Previous: home Serie A vs Atalanta (696.0h rest); away UEFA Europa League vs NEC Nijmegen (575.8h rest)
 - Next: home Serie A vs Monza (189.8h after); away UEFA Europa League vs Celta Vigo (96.2h after)
 - Injuries: NOT_QUERIED_YET
-- Weather [pending]: °C, precip %, wind  km/h, gusts  km/h
+- Weather [BASELINE]: 19.9°C, precip 16%, wind 5.2 km/h, gusts 6.8 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: AFTER FIFA window; to start h; player-level UNVERIFIED
 - Flags: AWAY_PREV_UEFA_OR_CUP, AWAY_NEXT_UEFA_OR_CUP, WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
@@ -112,7 +112,7 @@ Active canonical signals: 4
 > Это **не ставка и не новая стратегия**. Исторического edge по ОЗ мы не заявляем: в 10-летней базе нет first/close коэффициентов ОЗ.
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
-- Заморожено Bet365 opener'ов: 123
+- Заморожено Bet365 opener'ов: 126
 - Активные движения ≥3 п.п.: всего 0 | ОЗ — Да 0 | ОЗ — Нет 0
 - Зафиксировано observed close: 105
 - Исполнимый букмекер для наблюдения: Marathonbet
