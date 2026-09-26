@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-26T10:03:40Z",
+  "generated_at_utc": "2026-09-26T10:32:06Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -12,7 +12,7 @@
     "fixture_history": {
       "file": "fixture_history_snapshots.csv",
       "present": true,
-      "rows": 24505
+      "rows": 24633
     },
     "historical_fixtures": {
       "file": "historical_fixtures.csv",
@@ -22,13 +22,13 @@
     "player_stats": {
       "file": "player_stats_snapshots_parts/*.csv",
       "present": true,
-      "rows": 271120,
+      "rows": 279798,
       "partitioned": true
     },
     "player_grades": {
       "file": "player_grade_snapshots_parts/*.csv",
       "present": true,
-      "rows": 271120,
+      "rows": 279798,
       "partitioned": true
     },
     "stage77_backlog": {
@@ -39,7 +39,7 @@
     "team_stats": {
       "file": "team_match_statistics.csv",
       "present": true,
-      "rows": 4308
+      "rows": 4332
     },
     "stage81_backlog": {
       "file": "stage81_team_stats_backlog.csv",
@@ -285,8 +285,8 @@
   "fixtures": {
     "current_inventory": 128,
     "finished_in_current_inventory": 2,
-    "player_stats_fixture_count_all_snapshots": 6600,
-    "player_grade_fixture_count_all_snapshots": 6600,
+    "player_stats_fixture_count_all_snapshots": 6840,
+    "player_grade_fixture_count_all_snapshots": 6840,
     "finished_current_inventory_with_player_stats": 0,
     "finished_current_inventory_player_stats_coverage_pct": 0.0,
     "per_league": [
@@ -300,10 +300,10 @@
   },
   "fixture_history": {
     "present": true,
-    "rows": 24505,
-    "valid_observations": 24505,
+    "rows": 24633,
+    "valid_observations": 24633,
     "unique_fixtures": 306,
-    "observation_runs": 191,
+    "observation_runs": 192,
     "finished_fixtures_observed": 173,
     "invalid_identity_rows": 0,
     "evidence_note": "Counts represent only Stage71 current-round observations persisted after the fixture-history archive was enabled; they are not a pre-PBK historical backfill claim."
@@ -322,8 +322,8 @@
     "orphan_catalog_fixtures": 0,
     "missing_terminal_evidence": 0,
     "orphan_terminal_evidence": 0,
-    "observation_count_total": 24505,
-    "expected_history_observations": 24505,
+    "observation_count_total": 24633,
+    "expected_history_observations": 24633,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
   },
@@ -339,15 +339,15 @@
   "stage81_backlog": {
     "present": true,
     "total_fixtures": 13477,
-    "pending_fixtures": 11323,
-    "captured_fixtures": 2154,
+    "pending_fixtures": 11311,
+    "captured_fixtures": 2166,
     "captured_without_complete_ledger": 0,
     "oldest_pending_first_queued_at_utc": "2026-09-17T10:41:55Z",
     "evidence_note": "Pending means PBK observed a terminal fixture but has not yet persisted complete HOME+AWAY /fixtures/statistics evidence."
   },
   "team_statistics": {
-    "rows": 4308,
-    "complete_fixture_count": 2154,
+    "rows": 4332,
+    "complete_fixture_count": 2166,
     "finished_current_inventory_with_team_stats": 0,
     "finished_current_inventory_team_stats_coverage_pct": 0.0,
     "evidence_note": "Complete means HOME and AWAY team rows exist; individual missing provider metrics remain UNKNOWN."
@@ -356,8 +356,8 @@
     "team_xg_source": "API-Football /fixtures/statistics expected_goals",
     "team_xg_rows": 846,
     "team_xg_complete_fixture_count": 423,
-    "team_stats_complete_fixture_count": 2154,
-    "team_xg_captured_fixture_coverage_pct": 19.64,
+    "team_stats_complete_fixture_count": 2166,
+    "team_xg_captured_fixture_coverage_pct": 19.53,
     "finished_current_inventory_with_team_xg": 0,
     "finished_current_inventory_team_xg_coverage_pct": 0.0,
     "team_xg_evidence_note": "Verified provider field when present; API-Football may return it as missing for some competitions or fixtures and PBK preserves missing as UNKNOWN.",
@@ -387,10 +387,10 @@
     "player_xg_xa_evidence_note": "Stage91 provides StatsBomb research metrics. The large Stage91 source payload may remain external/local when an OK Stage91 meta attestation plus valid Stage92 AUTO/HIGH mapped rows are persisted; this never implies the source CSV is stored in Git. Stage92 maps only exact full names through the verified Transfermarkt→PBK bridge; abbreviated-name candidates remain REVIEW and never enter mapped research. Mapped xG/xA remains research-only and non-operational."
   },
   "players": {
-    "player_stat_rows": 271120,
-    "unique_players_with_stats": 11859,
-    "player_grade_rows": 271120,
-    "unique_players_with_grades": 11859
+    "player_stat_rows": 279798,
+    "unique_players_with_stats": 11934,
+    "player_grade_rows": 279798,
+    "unique_players_with_grades": 11934
   },
   "rosters": {
     "current_roster_rows": 4266,

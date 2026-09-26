@@ -1,22 +1,22 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-26T10:03:40Z
+Обновлено UTC: 2026-09-26T10:32:06Z
 Статус: **COLLECTING**
 
 ## Покрытие
 - Fixtures в текущем inventory: 128 (finished: 2).
-- Fixture history: 306 unique fixtures / 24505 observations / 191 observation runs (finished observed: 173).
+- Fixture history: 306 unique fixtures / 24633 observations / 192 observation runs (finished observed: 173).
 - Historical fixture catalog: 306 fixtures (terminal 173, rescheduled 1), history coverage 100.00%; missing 0, orphan 0.
 - Finished fixtures с player stats: 0 / 2 (0.00%).
 - Stage77 durable backlog: pending 24; captured 149; total 173.
 - Normalized lineup archive: 8 rows / 3 fixtures; injury archive: 54 rows / 3 fixtures.
 - Match event archive: 2169 rows / 130 fixtures; backlog pending 0 / total 130.
-- Stage81 durable backlog: pending 11323; captured 2154; total 13477.
-- Team match statistics: 2154 complete fixtures / 4308 team rows; current finished coverage 0.00%.
-- Team xG: 423 complete fixtures / 846 team rows; captured-team-stat coverage 19.64%.
+- Stage81 durable backlog: pending 11311; captured 2166; total 13477.
+- Team match statistics: 2166 complete fixtures / 4332 team rows; current finished coverage 0.00%.
+- Team xG: 423 complete fixtures / 846 team rows; captured-team-stat coverage 19.53%.
 - Player xG/xA source: RESEARCH_SOURCE_EXTERNAL_LOCAL_ATTESTED_MAPPED_TO_PBK.
-- Player stat rows: 271120; уникальных игроков: 11859.
-- Player Grade rows: 271120; уникальных игроков: 11859.
+- Player stat rows: 279798; уникальных игроков: 11934.
+- Player Grade rows: 279798; уникальных игроков: 11934.
 - Current roster: 138 команд / 4266 игроковых строк.
 - Player profile evidence: 3779 rows (3663 team-source + 116 residual-ID) / 3670 players / 129 teams; current-roster coverage 80.62%; identity-ready 3401 players (75.23%).
 - Roster history: 138 команд / 154 team-snapshots / 4764 строк.
