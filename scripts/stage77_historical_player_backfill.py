@@ -663,6 +663,7 @@ def main():
     historical_get = make_archive_before_budget_get(
         budget,
         archive_stats,
+        require_archive_after_fallback=True,
     )
 
     plan = plan_dual_lane(
