@@ -637,6 +637,13 @@ def main():
         )
     )
 
+    max_fixtures_per_run = int(
+        os.getenv(
+            "STAGE77_HISTORICAL_MAX_FIXTURES_PER_RUN",
+            "2000",
+        )
+    )
+
     daily_limit = int(
         os.getenv(
             "STAGE71_MAX_DAILY_API_CALLS",
@@ -668,10 +675,14 @@ def main():
         require_archive_after_fallback=True,
     )
 
+    # Provider budget and replay throughput are deliberately separate.
+    # Exact R2 hits do not consume API budget, so they must not be throttled by
+    # STAGE77_HISTORICAL_MAX_API_CALLS. The larger fixture cap controls only
+    # how much persisted/archive evidence we materialize in one operational run.
     plan = plan_dual_lane(
         candidates,
         state,
-        max_calls,
+        max_fixtures_per_run,
         legacy_share=legacy_share,
         recent_season_window=recent_season_window,
     )
@@ -683,7 +694,7 @@ def main():
         state,
         historical_get,
         now,
-        max_calls,
+        max_fixtures_per_run,
         no_data_cell_threshold,
     )
 
@@ -769,6 +780,8 @@ def main():
             else "OK"
         ),
         "provider_endpoint": "/fixtures/players",
+        "max_api_calls_this_run": max_calls,
+        "max_fixture_attempts_this_run": max_fixtures_per_run,
         "provider_calls": budget.calls,
         "provider_successes": broker_stats.get("provider_successes"),
         "archive_write_successes": broker_stats.get("archive_write_successes"),
