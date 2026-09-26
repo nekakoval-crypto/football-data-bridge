@@ -11,6 +11,8 @@ on:
   pull_request:
     paths:
       - 'scripts/stage77_player_stats_capture.py'
+      - 'scripts/player_snapshot_store.py'
+      - 'scripts/tests/test_player_snapshot_store.py'
       - 'scripts/player_grade_context.py'
       - 'scripts/tests/test_stage77_player_stats_capture.py'
       - 'scripts/tests/test_stage77_player_stats_backlog.py'
@@ -46,7 +48,7 @@ jobs:
         run: python -m py_compile scripts/stage77_player_stats_capture.py scripts/player_grade_context.py
       - name: Provider-free Stage77 tests
         run: |
-          python -m unittest scripts.tests.test_stage77_player_stats_capture -v
+          python -m unittest scripts.tests.test_stage77_player_stats_capture scripts.tests.test_player_snapshot_store -v
           python -m unittest scripts.tests.test_stage77_player_stats_backlog -v
           python -m unittest scripts.tests.test_player_grade_context -v
       - name: Provider isolation
