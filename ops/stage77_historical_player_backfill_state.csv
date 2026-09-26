@@ -9428,7 +9428,6 @@
 1224228,DOMESTIC_LEAGUE,Germany,78,Bundesliga,2024,Regular Season - 29,2025-04-13T13:30:00+00:00,VfB Stuttgart,Werder Bremen,1,2026-09-26T18:53:44Z,CAPTURED,40,
 1224230,DOMESTIC_LEAGUE,Germany,78,Bundesliga,2024,Regular Season - 29,2025-04-13T15:30:00+00:00,Eintracht Frankfurt,1. FC Heidenheim,1,2026-09-26T18:53:44Z,CAPTURED,40,
 1224236,DOMESTIC_LEAGUE,Germany,78,Bundesliga,2024,Regular Season - 30,2025-04-19T13:30:00+00:00,RB Leipzig,Holstein Kiel,1,2026-09-26T18:53:44Z,CAPTURED,39,
-1224238,DOMESTIC_LEAGUE,Germany,78,Bundesliga,2024,Regular Season - 30,2025-04-19T13:30:00+00:00,1. FC Heidenheim,Bayern München,1,2026-09-26T18:53:44Z,ERROR,0,"ApiFootballProviderError: API-Football /fixtures/players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}"
 1231981,DOMESTIC_LEAGUE,Portugal,94,Primeira Liga,2024,Regular Season - 29,2025-04-13T14:30:00+00:00,Estrela,Farense,1,2026-09-26T18:53:44Z,CAPTURED,40,
 1231982,DOMESTIC_LEAGUE,Portugal,94,Primeira Liga,2024,Regular Season - 29,2025-04-13T19:30:00+00:00,Moreirense,Rio Ave,1,2026-09-26T18:53:44Z,CAPTURED,40,
 1231984,DOMESTIC_LEAGUE,Portugal,94,Primeira Liga,2024,Regular Season - 29,2025-04-12T19:30:00+00:00,Casa Pia,FC Porto,1,2026-09-26T18:53:44Z,CAPTURED,40,
@@ -9473,3 +9472,4 @@
 35754,DOMESTIC_LEAGUE,France,61,Ligue 1,2017,Regular Season - 16,2017-12-02T19:00:00+00:00,Rennes,Amiens,1,2026-09-26T18:53:44Z,CAPTURED,28,
 35755,DOMESTIC_LEAGUE,France,61,Ligue 1,2017,Regular Season - 16,2017-12-02T16:00:00+00:00,Strasbourg,Paris Saint Germain,1,2026-09-26T18:53:44Z,CAPTURED,28,
 35756,DOMESTIC_LEAGUE,France,61,Ligue 1,2017,Regular Season - 16,2017-12-01T19:45:00+00:00,Dijon,Bordeaux,1,2026-09-26T18:53:44Z,CAPTURED,28,
+1224238,DOMESTIC_LEAGUE,Germany,78,Bundesliga,2024,Regular Season - 30,2025-04-19T13:30:00+00:00,1. FC Heidenheim,Bayern München,2,2026-09-26T20:39:32Z,ERROR,0,"ApiFootballProviderError: API-Football /fixtures/players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}"
