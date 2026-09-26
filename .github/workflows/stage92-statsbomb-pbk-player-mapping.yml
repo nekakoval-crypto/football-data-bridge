@@ -108,7 +108,8 @@ jobs:
         shell: bash
         run: |
           python scripts/stage91_derived_artifact_r2.py fetch \
-            --destination ops/statsbomb_player_xg_xa.csv
+            --destination ops/statsbomb_player_xg_xa.csv \
+            --allow-missing
       - name: Build Stage92 only when Stage91 source rows exist
         shell: bash
         run: |
