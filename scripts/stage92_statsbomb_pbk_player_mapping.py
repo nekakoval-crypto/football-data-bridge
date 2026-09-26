@@ -21,7 +21,8 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-VERSION = "PBK_STAGE92_STATSBOMB_PBK_PLAYER_MAPPING_V1"
+from scripts.stage92_profile_identity_bridge import (\n    STRONG_PROFILE_METHOD,\n    classify_exact_profile,\n)\n
+VERSION = "PBK_STAGE92_STATSBOMB_PBK_PLAYER_MAPPING_V2"
 AUTO_METHOD = "EXACT_FULL_NAME_VIA_VERIFIED_TRANSFER"
 REVIEW_METHOD = "INITIAL_SURNAME_PBK_CANDIDATE"
 TRANSFER_METHODS = {"EXACT_NAME_CURRENT_CLUB", "EXACT_PROFILE_NAME_DOB_CURRENT_CLUB", "EXACT_STATS_NAME_CURRENT_CLUB"}
@@ -221,9 +222,11 @@ def build_mapping(
     source_rows: list[dict[str, str]],
     transfer_rows: list[dict[str, str]],
     historical_rows: list[dict[str, str]],
+    profile_rows: list[dict[str, str]] | None = None,
 ) -> list[dict[str, Any]]:
     bridge = verified_transfer_bridge(transfer_rows)
     review_index = historical_review_index(historical_rows)
+    profile_rows = profile_rows or []
     output = []
 
     for player in statsbomb_players(source_rows):
@@ -283,6 +286,34 @@ def build_mapping(
             output.append(row)
             continue
 
+        profile_match = classify_exact_profile(player_name, profile_rows)
+        if profile_match is not None:
+            if profile_match["status"] == "AUTO_MATCH":
+                row.update(
+                    {
+                        "pbk_player_id": profile_match["pbk_player_id"],
+                        "pbk_player_name": profile_match["pbk_player_name"],
+                        "match_status": "AUTO_MATCH",
+                        "match_method": profile_match["method"],
+                        "match_confidence": "HIGH",
+                        "authoritative_for_player_xg_xa": "true",
+                    }
+                )
+                output.append(row)
+                continue
+            if profile_match["status"] in {"REVIEW", "CONFLICT"}:
+                row.update(
+                    {
+                        "pbk_player_id": profile_match.get("pbk_player_id", ""),
+                        "pbk_player_name": profile_match.get("pbk_player_name", ""),
+                        "match_status": "REVIEW",
+                        "match_method": profile_match["method"],
+                        "match_confidence": profile_match["confidence"],
+                    }
+                )
+                output.append(row)
+                continue
+
         review = review_index.get(initial_surname_key(player_name), [])
         row["review_candidate_count"] = len(review)
         row["review_candidate_pbk_ids"] = "|".join(sorted({x["pbk_player_id"] for x in review}))
@@ -306,7 +337,7 @@ def authoritative_index(mapping_rows: list[dict[str, Any]]) -> dict[str, dict[st
     for row in mapping_rows:
         if (
             sval(row.get("match_status")) == "AUTO_MATCH"
-            and sval(row.get("match_method")) == AUTO_METHOD
+            and sval(row.get("match_method")) in {AUTO_METHOD, STRONG_PROFILE_METHOD}
             and sval(row.get("match_confidence")) == "HIGH"
             and sval(row.get("authoritative_for_player_xg_xa")).lower() == "true"
             and sval(row.get("statsbomb_player_id"))
@@ -357,7 +388,7 @@ def map_research_metrics(
                 "penalty_xg": sval(source.get("penalty_xg")),
                 "assisted_shots": sval(source.get("assisted_shots")),
                 "xa": sval(source.get("xa")),
-                "mapping_method": AUTO_METHOD,
+                "mapping_method": sval(mapping.get("match_method")),
                 "mapping_confidence": "HIGH",
                 "statsbomb_record_id": record_id,
                 "source_event_sha256": sval(source.get("source_event_sha256")),
@@ -391,14 +422,16 @@ def run(
     mapped_out: Path,
     meta_out: Path,
     identity_path: Path | None = None,
+    profile_path: Path | None = None,
 ) -> dict[str, Any]:
     source_rows = read_csv(source_path)
     transfer_rows = read_csv(transfer_path)
     identity_rows = read_csv(identity_path) if identity_path and identity_path.exists() else []
     bridge_rows = identity_rows or transfer_rows
     historical_rows = read_csv(historical_path)
+    profile_rows = read_csv(profile_path) if profile_path and profile_path.exists() else []
 
-    mapping_rows = build_mapping(source_rows, bridge_rows, historical_rows)
+    mapping_rows = build_mapping(source_rows, bridge_rows, historical_rows, profile_rows)
     mapped_rows = map_research_metrics(source_rows, mapping_rows)
 
     write_csv(mapping_out, MAPPING_FIELDS, mapping_rows)
@@ -417,13 +450,13 @@ def run(
         "verified_transfer_rows": len(transfer_rows),
         "verified_identity_rows": len(identity_rows),
         "identity_bridge_source": "pbk_transfermarkt_player_identity.csv" if identity_rows else "historical_transfer_events.csv_fallback",
-        "historical_player_rows": len(historical_rows),
+        "historical_player_rows": len(historical_rows),\n        "profile_rows": len(profile_rows),
         "mapping_rows": len(mapping_rows),
         "auto_match_high": counts["AUTO_MATCH"],
         "review": counts["REVIEW"],
         "unmatched": counts["UNMATCHED"],
         "mapped_research_rows": len(mapped_rows),
-        "auto_match_method": AUTO_METHOD,
+        "auto_match_methods": [AUTO_METHOD, STRONG_PROFILE_METHOD],
         "review_method": REVIEW_METHOD,
         "review_is_authoritative": False,
         "mapped_output_requires_auto_high": True,
@@ -446,7 +479,7 @@ def main() -> None:
     parser.add_argument("--source", required=True)
     parser.add_argument("--transfers", required=True)
     parser.add_argument("--historical-players", required=True)
-    parser.add_argument("--identity-map", default="")
+    parser.add_argument("--identity-map", default="")\n    parser.add_argument("--profiles", default="")
     parser.add_argument("--mapping-out", required=True)
     parser.add_argument("--mapped-out", required=True)
     parser.add_argument("--meta-out", required=True)
