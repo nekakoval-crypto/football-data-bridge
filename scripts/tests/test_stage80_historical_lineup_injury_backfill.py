@@ -54,7 +54,7 @@ class HistoricalLineupInjuryBackfillTests(unittest.TestCase):
             ],
         )
 
-    def test_candidate_tasks_are_interleaved_by_fixture(self):
+    def test_candidate_tasks_are_lineups_first(self):
         history = {
             "1": self.fixture("1", season="2025"),
             "2": self.fixture("2", season="2025"),
@@ -64,8 +64,8 @@ class HistoricalLineupInjuryBackfillTests(unittest.TestCase):
             [(row["fixture_id"], endpoint) for row, endpoint in tasks],
             [
                 ("1", h.ENDPOINT_LINEUPS),
-                ("1", h.ENDPOINT_INJURIES),
                 ("2", h.ENDPOINT_LINEUPS),
+                ("1", h.ENDPOINT_INJURIES),
                 ("2", h.ENDPOINT_INJURIES),
             ],
         )
@@ -157,6 +157,41 @@ class HistoricalLineupInjuryBackfillTests(unittest.TestCase):
         ]
         self.assertEqual(injury_ids, ["2"])
 
+    def test_lineups_converge_before_injuries(self):
+        history = {
+            "1": self.fixture("1"),
+            "2": self.fixture("2"),
+            "3": self.fixture("3"),
+        }
+
+        tasks = h.candidate_tasks(
+            history,
+            {},
+            injury_no_data_cell_threshold=8,
+        )
+
+        endpoints = [
+            endpoint
+            for _, endpoint in tasks
+        ]
+
+        self.assertEqual(
+            endpoints[:3],
+            [
+                h.ENDPOINT_LINEUPS,
+                h.ENDPOINT_LINEUPS,
+                h.ENDPOINT_LINEUPS,
+            ],
+        )
+
+        self.assertEqual(
+            endpoints[3:],
+            [
+                h.ENDPOINT_INJURIES,
+                h.ENDPOINT_INJURIES,
+                h.ENDPOINT_INJURIES,
+            ],
+        )
     def test_normalize_lineups(self):
         fixture = self.fixture("1")
         payload = {
