@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-09-26T16:03:02Z
+Generated UTC: 2026-09-26T17:02:37Z
 Active canonical signals: 4
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -30,7 +30,7 @@ Active canonical signals: 4
 - Previous: home Serie A vs Juventus (669.2h rest); away UEFA Europa League vs Benfica (597.0h rest)
 - Next: home Serie A vs Frosinone (122.8h after); away UEFA Europa League vs Red Bull Salzburg (96.8h after)
 - Injuries: NOT_QUERIED_YET
-- Weather [pending]: °C, precip %, wind  km/h, gusts  km/h
+- Weather [BASELINE]: 22.2°C, precip %, wind 7.2 km/h, gusts 13.7 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: AFTER FIFA window; to start h; player-level UNVERIFIED
 - Flags: AWAY_PREV_UEFA_OR_CUP, AWAY_NEXT_UEFA_OR_CUP, WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
@@ -45,7 +45,7 @@ Active canonical signals: 4
 - Previous: home Serie A vs Monza (549.2h rest); away Serie A vs Lecce (501.2h rest)
 - Next: home Serie A vs Frosinone (122.8h after); away UEFA Europa League vs Red Bull Salzburg (96.8h after)
 - Injuries: NOT_QUERIED_YET
-- Weather [pending]: °C, precip %, wind  km/h, gusts  km/h
+- Weather [BASELINE]: 22.2°C, precip %, wind 7.2 km/h, gusts 13.7 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: AFTER FIFA window; to start h; player-level UNVERIFIED
 - Flags: AWAY_NEXT_UEFA_OR_CUP, WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
@@ -72,7 +72,7 @@ Active canonical signals: 4
 > This is **not R4 and not a bet signal**. It does not change the canonical R1/R2/R3 forward ledger.
 
 - Scope: АПЛ: движение фаворита П1/П2 (+3 pp no-vig from frozen Bet365 opener).
-- Frozen openers tracked: 25
+- Frozen openers tracked: 26
 - Active +3 pp crossings: 0
 - Observed closes: 20 | Close-qualified M1 watches: 3
 - Executable bookmaker being observed: Marathonbet
@@ -91,7 +91,7 @@ Active canonical signals: 4
 > This is **not a canonical rule and not a bet signal**. R1/R2/R3 are unchanged.
 
 - Scope: Бундеслига: ТБ(2.5) — движение рынка (+3 pp no-vig from frozen Bet365 O/U 2.5 opener).
-- Frozen O/U openers tracked: 24
+- Frozen O/U openers tracked: 25
 - Active +3 pp crossings ТБ(2.5): 0
 - Observed closes: 18 | Close-qualified O1 watches: 7
 - Executable bookmaker being observed: Marathonbet
@@ -112,7 +112,7 @@ Active canonical signals: 4
 > Это **не ставка и не новая стратегия**. Исторического edge по ОЗ мы не заявляем: в 10-летней базе нет first/close коэффициентов ОЗ.
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
-- Заморожено Bet365 opener'ов: 121
+- Заморожено Bet365 opener'ов: 123
 - Активные движения ≥3 п.п.: всего 0 | ОЗ — Да 0 | ОЗ — Нет 0
 - Зафиксировано observed close: 105
 - Исполнимый букмекер для наблюдения: Marathonbet
