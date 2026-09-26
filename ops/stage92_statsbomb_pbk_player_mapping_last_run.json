@@ -1,5 +1,5 @@
 {
-  "version": "PBK_STAGE92_STATSBOMB_PBK_PLAYER_MAPPING_V2",
+  "version": "PBK_STAGE92_STATSBOMB_PBK_PLAYER_MAPPING_V3",
   "status": "OK",
   "source_rows": 72880,
   "source_unique_statsbomb_players": 7787,
@@ -9,13 +9,14 @@
   "historical_player_rows": 14475,
   "profile_rows": 3779,
   "mapping_rows": 7787,
-  "auto_match_high": 843,
-  "review": 1566,
+  "auto_match_high": 1544,
+  "review": 865,
   "unmatched": 5378,
-  "mapped_research_rows": 6905,
+  "mapped_research_rows": 14753,
   "auto_match_methods": [
     "EXACT_FULL_NAME_VIA_VERIFIED_TRANSFER",
-    "EXACT_FULL_NAME_VIA_API_PROFILE"
+    "EXACT_FULL_NAME_VIA_API_PROFILE",
+    "EXACT_FULL_NAME_VIA_UNIQUE_HISTORICAL_PLAYER"
   ],
   "review_method": "INITIAL_SURNAME_PBK_CANDIDATE",
   "review_is_authoritative": false,
