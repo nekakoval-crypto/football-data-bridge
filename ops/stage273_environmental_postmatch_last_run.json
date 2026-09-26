@@ -1,10 +1,10 @@
 {
   "version": "PBK_ENVIRONMENTAL_POSTMATCH_RESEARCH_V1",
-  "run_at_utc": "2026-09-26T18:40:50Z",
+  "run_at_utc": "2026-09-26T19:28:14Z",
   "status": "OK",
   "mode": "POSTMATCH_RESEARCH_ONLY",
-  "eligible_unseen_fixtures": 17,
-  "selected_fixtures": 17,
+  "eligible_unseen_fixtures": 0,
+  "selected_fixtures": 0,
   "snapshots_total": 2637,
   "mechanism_dataset_rows": 2637,
   "source_class_counts": {
@@ -16,9 +16,7 @@
   },
   "diagnostics": {
     "legacy_geocache_rows_seen": 0,
-    "snapshots_created": 17,
-    "unresolved_v2_venues_skipped": 16,
-    "weather_calls": 17
+    "unresolved_v2_venues_skipped": 16
   },
   "source_semantics": {
     "direct_stadium_observation": false,
