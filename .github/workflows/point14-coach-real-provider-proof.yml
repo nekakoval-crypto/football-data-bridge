@@ -1,0 +1,54 @@
+﻿name: Point14 coach real provider proof
+
+on:
+  workflow_dispatch:
+
+jobs:
+  real-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+
+      PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+      PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+      PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+      PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+      PBK_RAW_ARCHIVE_S3_PREFIX: api-football-raw
+      PBK_RAW_ARCHIVE_S3_REGION: auto
+
+      API_FOOTBALL_MAX_REAL_CALLS: '1'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install raw archive dependency
+        run: python -m pip install boto3
+
+      - name: Verify required secret exists
+        shell: bash
+        run: |
+          if [ -z "$API_FOOTBALL_KEY" ]; then
+            echo "API_FOOTBALL_KEY secret is missing"
+            exit 1
+          fi
+
+      - name: Run one-call Manchester United coach proof
+        run: python -m scripts.point14_coach_real_provider_proof
+
+      - name: Verify tenure ledger unchanged
+        shell: bash
+        run: |
+          git diff --exit-code -- ops/coach_tenure_history.csv
+
+      - name: Upload proof artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: point14-coach-real-provider-proof
+          path: ops/point14_coach_real_provider_proof.json
+          if-no-files-found: error
