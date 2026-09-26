@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-26T08:39:50Z",
+  "generated_at_utc": "2026-09-26T08:43:00Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -22,12 +22,12 @@
     "player_stats": {
       "file": "player_stats_snapshots.csv",
       "present": true,
-      "rows": 263918
+      "rows": 271120
     },
     "player_grades": {
       "file": "player_grade_snapshots.csv",
       "present": true,
-      "rows": 263918
+      "rows": 271120
     },
     "stage77_backlog": {
       "file": "stage77_player_stats_backlog.csv",
@@ -283,8 +283,8 @@
   "fixtures": {
     "current_inventory": 128,
     "finished_in_current_inventory": 2,
-    "player_stats_fixture_count_all_snapshots": 6416,
-    "player_grade_fixture_count_all_snapshots": 6416,
+    "player_stats_fixture_count_all_snapshots": 6600,
+    "player_grade_fixture_count_all_snapshots": 6600,
     "finished_current_inventory_with_player_stats": 0,
     "finished_current_inventory_player_stats_coverage_pct": 0.0,
     "per_league": [
@@ -385,10 +385,10 @@
     "player_xg_xa_evidence_note": "Stage91 provides StatsBomb research metrics. The large Stage91 source payload may remain external/local when an OK Stage91 meta attestation plus valid Stage92 AUTO/HIGH mapped rows are persisted; this never implies the source CSV is stored in Git. Stage92 maps only exact full names through the verified Transfermarkt→PBK bridge; abbreviated-name candidates remain REVIEW and never enter mapped research. Mapped xG/xA remains research-only and non-operational."
   },
   "players": {
-    "player_stat_rows": 263918,
-    "unique_players_with_stats": 11610,
-    "player_grade_rows": 263918,
-    "unique_players_with_grades": 11610
+    "player_stat_rows": 271120,
+    "unique_players_with_stats": 11859,
+    "player_grade_rows": 271120,
+    "unique_players_with_grades": 11859
   },
   "rosters": {
     "current_roster_rows": 4266,
