@@ -15,7 +15,10 @@ import os
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
-from player_snapshot_store import read_snapshot_rows, snapshot_parts_dir
+try:
+    from player_snapshot_store import read_snapshot_rows, snapshot_parts_dir
+except ImportError:
+    from scripts.player_snapshot_store import read_snapshot_rows, snapshot_parts_dir
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 OUT_JSON = OPS / "stage80_archive_readiness.json"
