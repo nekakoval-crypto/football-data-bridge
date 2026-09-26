@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-09-26T10:00:46Z",
-  "generated_at_local": "2026-09-26T12:00:46+02:00",
+  "generated_at_utc": "2026-09-26T11:00:30Z",
+  "generated_at_local": "2026-09-26T13:00:30+02:00",
   "timezone": "Europe/Berlin",
   "status": "OK",
   "summary": {
@@ -11,7 +11,7 @@
     "active_watch_crossings": 0,
     "nearest_monitored_rows": 4,
     "recent_results": 3,
-    "market_cards": 12
+    "market_cards": 14
   },
   "red": [],
   "orange": [],
@@ -26,7 +26,7 @@
       "fixture_id": "1550143",
       "kickoff_utc": "2026-10-11T13:00:00Z",
       "kickoff_local": "11.10 15:00",
-      "hours_to_kickoff": 362.99,
+      "hours_to_kickoff": 361.99,
       "home_team": "Lecce",
       "away_team": "Bologna",
       "selection": "П2",
@@ -46,7 +46,7 @@
       "fixture_id": "1550145",
       "kickoff_utc": "2026-10-11T16:00:00Z",
       "kickoff_local": "11.10 18:00",
-      "hours_to_kickoff": 365.99,
+      "hours_to_kickoff": 364.99,
       "home_team": "Sassuolo",
       "away_team": "AC Milan",
       "selection": "П2",
@@ -66,7 +66,7 @@
       "fixture_id": "1550145",
       "kickoff_utc": "2026-10-11T16:00:00Z",
       "kickoff_local": "11.10 18:00",
-      "hours_to_kickoff": 365.99,
+      "hours_to_kickoff": 364.99,
       "home_team": "Sassuolo",
       "away_team": "AC Milan",
       "selection": "П2",
@@ -86,7 +86,7 @@
       "fixture_id": "1550138",
       "kickoff_utc": "2026-10-11T18:45:00Z",
       "kickoff_local": "11.10 20:45",
-      "hours_to_kickoff": 368.74,
+      "hours_to_kickoff": 367.74,
       "home_team": "Cagliari",
       "away_team": "Juventus",
       "selection": "П2",
@@ -107,7 +107,7 @@
       "fixture_id": "1575176",
       "kickoff_utc": "2026-10-09T18:30:00Z",
       "kickoff_local": "09.10 20:30",
-      "hours_to_kickoff": 320.49,
+      "hours_to_kickoff": 319.49,
       "home_team": "Borussia Dortmund",
       "away_team": "Werder Bremen",
       "market": "ТБ(2.5) steam",
@@ -122,7 +122,7 @@
       "fixture_id": "1575176",
       "kickoff_utc": "2026-10-09T18:30:00Z",
       "kickoff_local": "09.10 20:30",
-      "hours_to_kickoff": 320.49,
+      "hours_to_kickoff": 319.49,
       "home_team": "Borussia Dortmund",
       "away_team": "Werder Bremen",
       "market": "ОЗ — Да / ОЗ — Нет",
@@ -137,7 +137,7 @@
       "fixture_id": "1552775",
       "kickoff_utc": "2026-10-09T18:45:00Z",
       "kickoff_local": "09.10 20:45",
-      "hours_to_kickoff": 320.74,
+      "hours_to_kickoff": 319.74,
       "home_team": "Lens",
       "away_team": "Lyon",
       "market": "ОЗ — Да / ОЗ — Нет",
@@ -152,7 +152,7 @@
       "fixture_id": "1570408",
       "kickoff_utc": "2026-10-09T19:00:00Z",
       "kickoff_local": "09.10 21:00",
-      "hours_to_kickoff": 320.99,
+      "hours_to_kickoff": 319.99,
       "home_team": "Malaga",
       "away_team": "Espanyol",
       "market": "ОЗ — Да / ОЗ — Нет",
@@ -822,6 +822,106 @@
       "away_team": "Sporting CP",
       "kickoff_utc": "2026-10-09T19:15:00+00:00",
       "kickoff_local": "09.10 19:15 UTC",
+      "markets": [
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TEAM_TOTAL",
+          "text": "ИТБ/ИТМ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х/Х2/12 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP",
+          "text": "Европейская фора — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф(0) — нет данных",
+          "status": "NO_DATA"
+        }
+      ],
+      "fixture_status": "NS",
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
+    },
+    {
+      "fixture_id": "1584426",
+      "league": "Super Lig",
+      "league_id": "203",
+      "country": "Turkey",
+      "home_team": "Gençlerbirliği S.K.",
+      "away_team": "Amed",
+      "kickoff_utc": "2026-10-10T10:30:00+00:00",
+      "kickoff_local": "10.10 10:30 UTC",
+      "markets": [
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TEAM_TOTAL",
+          "text": "ИТБ/ИТМ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х/Х2/12 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP",
+          "text": "Европейская фора — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф(0) — нет данных",
+          "status": "NO_DATA"
+        }
+      ],
+      "fixture_status": "NS",
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
+    },
+    {
+      "fixture_id": "1515929",
+      "league": "Virsliga",
+      "league_id": "365",
+      "country": "Latvia",
+      "home_team": "Tukums",
+      "away_team": "Riga",
+      "kickoff_utc": "2026-10-10T11:00:00+00:00",
+      "kickoff_local": "10.10 11:00 UTC",
       "markets": [
         {
           "market": "MATCH_WINNER",
