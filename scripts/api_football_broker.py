@@ -360,7 +360,12 @@ def get_broker():
     return _DEFAULT_BROKER
 
 
-def make_archive_before_budget_get(\n    fallback_get,\n    stats=None,\n    archive_reader=read_archived_response,\n    require_archive_after_fallback=False,\n):
+def make_archive_before_budget_get(
+    fallback_get,
+    stats=None,
+    archive_reader=read_archived_response,
+    require_archive_after_fallback=False,
+):
     """Read exact archived payload before calling a protected provider budget.
 
     This is for historical/backfill consumers that wrap the shared broker in a
