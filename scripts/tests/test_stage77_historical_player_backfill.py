@@ -355,6 +355,46 @@ class HistoricalPlayerBackfillTests(unittest.TestCase):
         ]
         self.assertEqual([row["fixture_id"] for row in legacy_rows], ["p"])
 
+    def test_captured_state_without_normalized_ledgers_is_replayed(self):
+        fixture = self.fixture("123", season="2024")
+        history = {"123": fixture}
+        state = {
+            "123": {
+                **fixture,
+                "last_attempt_result": "CAPTURED",
+                "attempt_count": "1",
+            }
+        }
+
+        candidates = h.candidate_rows(
+            history,
+            captured=set(),
+            state=state,
+            no_data_cell_threshold=8,
+        )
+
+        self.assertEqual([row["fixture_id"] for row in candidates], ["123"])
+
+    def test_no_data_state_remains_terminal_without_normalized_ledgers(self):
+        fixture = self.fixture("124", season="2024")
+        history = {"124": fixture}
+        state = {
+            "124": {
+                **fixture,
+                "last_attempt_result": "NO_DATA",
+                "attempt_count": "1",
+            }
+        }
+
+        candidates = h.candidate_rows(
+            history,
+            captured=set(),
+            state=state,
+            no_data_cell_threshold=8,
+        )
+
+        self.assertEqual(candidates, [])
+
     def test_provider_quota_error_stops_batch_immediately(self):
         candidates = [
             self.fixture("1"),
