@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-26T08:45:10Z",
+  "generated_at_utc": "2026-09-26T08:48:56Z",
   "status": "OK",
   "datasets": [
     {
@@ -301,6 +301,7 @@
     {
       "dataset_id": "player_stats_snapshots",
       "path": "player_stats_snapshots.csv",
+      "parts_dir": "player_stats_snapshots_parts",
       "role": "HISTORICAL_EVIDENCE",
       "lifecycle": "PERSISTED_FIXTURE_PLAYER_ROWS",
       "identity_key": [
@@ -355,6 +356,8 @@
       ],
       "missing_required_fields": [],
       "contract_status": "OK",
+      "partitioned": false,
+      "part_count": 1,
       "identity_key_text": "fixture_id+team_id+player_id",
       "observed_time_fields_text": "observed_at_utc",
       "effective_time_fields_text": "kickoff_utc"
@@ -442,6 +445,7 @@
     {
       "dataset_id": "player_grade_snapshots",
       "path": "player_grade_snapshots.csv",
+      "parts_dir": "player_grade_snapshots_parts",
       "role": "DERIVED_RESEARCH",
       "lifecycle": "DETERMINISTIC_DERIVED_ROWS",
       "identity_key": [
@@ -485,6 +489,8 @@
       ],
       "missing_required_fields": [],
       "contract_status": "OK",
+      "partitioned": false,
+      "part_count": 1,
       "identity_key_text": "fixture_id+team_id+player_id",
       "observed_time_fields_text": "observed_at_utc",
       "effective_time_fields_text": "kickoff_utc"
