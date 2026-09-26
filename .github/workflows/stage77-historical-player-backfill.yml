@@ -9,6 +9,8 @@ on:
       - 'scripts/stage77_historical_player_backfill.py'
       - 'scripts/player_snapshot_store.py'
       - 'scripts/tests/test_player_snapshot_store.py'
+      - 'scripts/player_snapshot_store.py'
+      - 'scripts/tests/test_player_snapshot_store.py'
       - 'scripts/tests/test_stage77_historical_player_backfill.py'
       - '.github/workflows/stage77-historical-player-backfill.yml'
       - 'docs/stage77_historical_player_backfill.md'
