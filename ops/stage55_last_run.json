@@ -1,14 +1,19 @@
 {
-  "run_at_utc": "2026-09-26T18:18:28Z",
+  "run_at_utc": "2026-09-26T19:14:12Z",
   "status": "OK",
   "active_forward_rows": 4,
   "new_context_snapshots": 0,
   "total_context_snapshots": 14,
-  "fixture_checks": 4,
+  "fixture_checks": 0,
   "schedule_calls": 0,
   "injury_calls": 0,
   "lineup_calls": 0,
-  "warnings": [],
+  "warnings": [
+    "fixture 1550143: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "fixture 1550145: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "fixture 1550138: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "fixture 1550145: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}"
+  ],
   "policy": {
     "role": "context-only; never changes R1/R2/R3 eligibility",
     "baseline": "first capture after canonical forward entry",
