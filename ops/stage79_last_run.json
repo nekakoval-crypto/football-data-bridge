@@ -1,16 +1,16 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-25T22:24:58Z",
-  "status": "ATTENTION",
+  "run_at_utc": "2026-09-26T00:31:15Z",
+  "status": "OK",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 0,
-  "daily_api_calls": 1666,
+  "provider_calls": 8,
+  "daily_api_calls": 8,
   "protected_calls": {
     "live": 0,
-    "current_round": 32,
+    "current_round": 96,
     "standings": 16,
     "safety": 8,
-    "total": 56
+    "total": 120
   },
   "roster_ttl_days": 28,
   "roster_freshness_policy": "TRANSFER_AWARE_V1",
@@ -19,12 +19,51 @@
   "sensitive_ttl_days": 3,
   "transfer_sensitive_periods": "01-01:02-15,06-01:09-10",
   "candidate_teams": 8,
-  "captured_teams": [],
-  "deferred_teams": 8,
-  "total_roster_rows": 4014,
-  "warnings": [
-    "Stage71 protected API reserve reached; Challenger deferred"
+  "captured_teams": [
+    {
+      "team_id": "3579",
+      "team_name": "Amed",
+      "players": 28
+    },
+    {
+      "team_id": "997",
+      "team_name": "Gençlerbirliği S.K.",
+      "players": 31
+    },
+    {
+      "team_id": "10124",
+      "team_name": "Riga",
+      "players": 39
+    },
+    {
+      "team_id": "4144",
+      "team_name": "Tukums",
+      "players": 29
+    },
+    {
+      "team_id": "586",
+      "team_name": "FK Zalgiris Vilnius",
+      "players": 31
+    },
+    {
+      "team_id": "612",
+      "team_name": "Suduva Marijampole",
+      "players": 27
+    },
+    {
+      "team_id": "345",
+      "team_name": "Zaglebie Lubin",
+      "players": 34
+    },
+    {
+      "team_id": "350",
+      "team_name": "Cracovia Krakow",
+      "players": 33
+    }
   ],
+  "deferred_teams": 0,
+  "total_roster_rows": 4266,
+  "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
