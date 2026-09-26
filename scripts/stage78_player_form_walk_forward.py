@@ -4,6 +4,7 @@ import csv,json,os
 from collections import defaultdict
 from pathlib import Path
 from statistics import mean
+from player_snapshot_store import read_snapshot_rows
 
 OPS=Path(os.getenv("OPS_DIR","ops"))
 GRADES=OPS/"player_grade_snapshots.csv"
@@ -69,5 +70,5 @@ def write_csv(path,rows):
     tmp.replace(path)
 
 def main():
-    rows,meta=build(read_csv(GRADES),read_csv(HISTORY));write_csv(OUT,rows);META.write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding="utf-8");print(json.dumps(meta,ensure_ascii=False,indent=2))
+    rows,meta=build(read_snapshot_rows(GRADES),read_csv(HISTORY));write_csv(OUT,rows);META.write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding="utf-8");print(json.dumps(meta,ensure_ascii=False,indent=2))
 if __name__=="__main__":main()
