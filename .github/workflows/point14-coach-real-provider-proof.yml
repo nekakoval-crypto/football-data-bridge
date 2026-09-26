@@ -1,4 +1,4 @@
-﻿name: Point14 coach real provider proof
+name: Point14 coach real provider proof
 
 on:
   workflow_dispatch:
@@ -19,6 +19,7 @@ jobs:
       PBK_RAW_ARCHIVE_S3_REGION: auto
 
       API_FOOTBALL_MAX_REAL_CALLS: '1'
+      PYTHONPATH: scripts
 
     steps:
       - uses: actions/checkout@v4
