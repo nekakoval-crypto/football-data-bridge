@@ -118,17 +118,36 @@ def upload(
     return {**manifest, "status": "UPLOADED", "bucket": config["bucket"]}
 
 
+def _not_found(exc: Exception) -> bool:
+    response = getattr(exc, "response", {}) or {}
+    code = str((response.get("Error") or {}).get("Code") or "")
+    status = int((response.get("ResponseMetadata") or {}).get("HTTPStatusCode") or 0)
+    return code in {"404", "NoSuchKey", "NotFound"} or status == 404
+
+
 def fetch(
     destination: Path,
     *,
     config: dict[str, str] | None = None,
     client=None,
+    allow_missing: bool = False,
 ) -> dict[str, Any]:
     config = config or config_from_env()
     client = client or s3_client(config)
-    pointer_body = client.get_object(
-        Bucket=config["bucket"], Key=pointer_key(config)
-    )["Body"].read()
+    try:
+        pointer_body = client.get_object(
+            Bucket=config["bucket"], Key=pointer_key(config)
+        )["Body"].read()
+    except Exception as exc:
+        if allow_missing and (_not_found(exc) or isinstance(exc, KeyError)):
+            return {
+                "version": VERSION,
+                "status": "MISSING",
+                "bucket": config["bucket"],
+                "destination": str(destination),
+                "verified": False,
+            }
+        raise
     manifest = json.loads(pointer_body.decode("utf-8"))
     if manifest.get("version") != VERSION:
         raise RuntimeError("Stage91 artifact pointer version mismatch")
@@ -167,12 +186,16 @@ def main() -> None:
 
     down = sub.add_parser("fetch")
     down.add_argument("--destination", required=True)
+    down.add_argument("--allow-missing", action="store_true")
 
     args = parser.parse_args()
     if args.command == "upload":
         result = upload(Path(args.source), source_revision=args.source_revision)
     else:
-        result = fetch(Path(args.destination))
+        result = fetch(
+            Path(args.destination),
+            allow_missing=bool(args.allow_missing),
+        )
     print(json.dumps(result, ensure_ascii=False))
 
 
