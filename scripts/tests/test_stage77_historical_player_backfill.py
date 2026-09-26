@@ -395,6 +395,50 @@ class HistoricalPlayerBackfillTests(unittest.TestCase):
 
         self.assertEqual(candidates, [])
 
+    def test_per_run_budget_exhaustion_is_deferred_not_error(self):
+        candidates = [
+            self.fixture("1"),
+            self.fixture("2"),
+            self.fixture("3"),
+        ]
+
+        calls = []
+
+        def fake_get(path, params, **kwargs):
+            fixture_id = params["fixture"]
+            calls.append(fixture_id)
+            if fixture_id == "1":
+                return {"response": []}
+            raise RuntimeError(
+                "Stage71 API budget exhausted; retry next run"
+            )
+
+        state = {}
+        result = h.run_capture(
+            candidates,
+            existing_stats=[],
+            existing_grades=[],
+            state=state,
+            get=fake_get,
+            now=h.datetime(
+                2026,
+                9,
+                20,
+                tzinfo=h.timezone.utc,
+            ),
+            limit=3,
+            no_data_cell_threshold=8,
+        )
+
+        self.assertEqual(calls, ["1", "2", "3"])
+        self.assertEqual(result["attempted_fixtures"], 1)
+        self.assertEqual(result["no_data_fixtures"], 1)
+        self.assertEqual(result["error_fixtures"], 0)
+        self.assertEqual(result["deferred_fixtures"], 2)
+        self.assertEqual(state["1"]["last_attempt_result"], "NO_DATA")
+        self.assertNotIn("2", state)
+        self.assertNotIn("3", state)
+
     def test_provider_quota_error_stops_batch_immediately(self):
         candidates = [
             self.fixture("1"),
