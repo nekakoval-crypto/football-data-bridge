@@ -1,0 +1,29 @@
+{
+  "version": "PBK_ENVIRONMENTAL_STRESS_FORWARD_MONITOR_V1",
+  "research_id": "PBK_ENVIRONMENTAL_STRESS_V1_FORWARD",
+  "status": "FORWARD_EVIDENCE_ACCUMULATION",
+  "prematch_frozen_fixtures": 1,
+  "settled_fixtures": 0,
+  "outcome_counts": {},
+  "factor_group_known_counts": {
+    "THERMAL": 1,
+    "WIND_GUST": 1,
+    "PRECIPITATION": 1,
+    "VISIBILITY_THUNDER": 1,
+    "AIR_QUALITY": 0,
+    "ALTITUDE": 1,
+    "SURFACE": 1,
+    "ROOF_EXPOSURE": 0
+  },
+  "minimum_settled_fixtures_for_formal_research": 500,
+  "minimum_outcomes_per_class": 50,
+  "formal_research_sample_ready": false,
+  "automatic_factor_promotion": false,
+  "automatic_model_promotion": false,
+  "predictive_authority": "NOT_AUTHORIZED",
+  "operational_betting_authority": false,
+  "creates_signal": false,
+  "historical_backfill": false,
+  "aggregate_environment_score": false,
+  "research_note": "Sample readiness only. No causal/predictive effect claim is made by this report."
+}
