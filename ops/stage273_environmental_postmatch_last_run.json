@@ -1,24 +1,24 @@
 {
   "version": "PBK_ENVIRONMENTAL_POSTMATCH_RESEARCH_V1",
-  "run_at_utc": "2026-09-26T12:41:03Z",
+  "run_at_utc": "2026-09-26T13:34:53Z",
   "status": "OK",
   "mode": "POSTMATCH_RESEARCH_ONLY",
-  "eligible_unseen_fixtures": 28,
-  "selected_fixtures": 24,
-  "snapshots_total": 2096,
-  "mechanism_dataset_rows": 2096,
+  "eligible_unseen_fixtures": 22,
+  "selected_fixtures": 22,
+  "snapshots_total": 2190,
+  "mechanism_dataset_rows": 2190,
   "source_class_counts": {
-    "HISTORICAL_FORECAST_ASSIMILATION_PROXY": 2096
+    "HISTORICAL_FORECAST_ASSIMILATION_PROXY": 2190
   },
   "mechanism_coverage_counts": {
     "TEAM_STATS_COMPLETE_EVENTS_AVAILABLE": 107,
-    "TEAM_STATS_COMPLETE_EVENTS_MISSING": 1989
+    "TEAM_STATS_COMPLETE_EVENTS_MISSING": 2083
   },
   "diagnostics": {
     "legacy_geocache_rows_seen": 0,
-    "snapshots_created": 24,
+    "snapshots_created": 22,
     "unresolved_v2_venues_skipped": 16,
-    "weather_calls": 24
+    "weather_calls": 22
   },
   "source_semantics": {
     "direct_stadium_observation": false,
