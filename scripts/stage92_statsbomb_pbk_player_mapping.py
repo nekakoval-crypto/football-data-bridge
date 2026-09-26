@@ -21,7 +21,11 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-from scripts.stage92_profile_identity_bridge import (\n    STRONG_PROFILE_METHOD,\n    classify_exact_profile,\n)\n
+from scripts.stage92_profile_identity_bridge import (
+    STRONG_PROFILE_METHOD,
+    classify_exact_profile,
+)
+
 VERSION = "PBK_STAGE92_STATSBOMB_PBK_PLAYER_MAPPING_V2"
 AUTO_METHOD = "EXACT_FULL_NAME_VIA_VERIFIED_TRANSFER"
 REVIEW_METHOD = "INITIAL_SURNAME_PBK_CANDIDATE"
@@ -450,7 +454,8 @@ def run(
         "verified_transfer_rows": len(transfer_rows),
         "verified_identity_rows": len(identity_rows),
         "identity_bridge_source": "pbk_transfermarkt_player_identity.csv" if identity_rows else "historical_transfer_events.csv_fallback",
-        "historical_player_rows": len(historical_rows),\n        "profile_rows": len(profile_rows),
+        "historical_player_rows": len(historical_rows),
+        "profile_rows": len(profile_rows),
         "mapping_rows": len(mapping_rows),
         "auto_match_high": counts["AUTO_MATCH"],
         "review": counts["REVIEW"],
@@ -479,7 +484,8 @@ def main() -> None:
     parser.add_argument("--source", required=True)
     parser.add_argument("--transfers", required=True)
     parser.add_argument("--historical-players", required=True)
-    parser.add_argument("--identity-map", default="")\n    parser.add_argument("--profiles", default="")
+    parser.add_argument("--identity-map", default="")
+    parser.add_argument("--profiles", default="")
     parser.add_argument("--mapping-out", required=True)
     parser.add_argument("--mapped-out", required=True)
     parser.add_argument("--meta-out", required=True)
