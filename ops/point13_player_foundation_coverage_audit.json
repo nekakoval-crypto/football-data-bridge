@@ -1,6 +1,6 @@
 {
   "version": "PBK_POINT13_PLAYER_FOUNDATION_COVERAGE_AUDIT_V1",
-  "run_at_utc": "2026-09-26T15:36:30Z",
+  "run_at_utc": "2026-09-26T16:13:12Z",
   "status": "OK",
   "provider_calls": 0,
   "research_only": true,
@@ -8,7 +8,7 @@
   "no_lookahead_form_contract": true,
   "stage77_remaining_unattempted_or_retryable": 59831,
   "stage77_archive_first_enabled": true,
-  "stage92_auto_match_high": 843,
+  "stage92_auto_match_high": 1544,
   "historical_fixture_coverage": {
     "terminal_historical_fixtures": 69664,
     "stats_fixtures": 8495,
@@ -31,13 +31,13 @@
     "form10_full_window_pct": 42.401
   },
   "xg_xa_coverage": {
-    "mapped_research_rows": 6905,
-    "mapped_pbk_players": 843,
+    "mapped_research_rows": 14753,
+    "mapped_pbk_players": 1544,
     "mapping_rows": 7787,
-    "auto_match_high": 843,
-    "review": 1462,
-    "unmatched": 5482,
-    "mapped_vs_catalog_player_pct": 5.8238
+    "auto_match_high": 1544,
+    "review": 865,
+    "unmatched": 5378,
+    "mapped_vs_catalog_player_pct": 10.6667
   },
   "by_country_season": {
     "Austria|2017": {
