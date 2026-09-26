@@ -360,7 +360,12 @@ def get_broker():
     return _DEFAULT_BROKER
 
 
-def make_archive_before_budget_get(fallback_get, stats=None, archive_reader=read_archived_response):
+def make_archive_before_budget_get(
+    fallback_get,
+    stats=None,
+    archive_reader=read_archived_response,
+    require_archive_after_fallback=False,
+):
     """Read exact archived payload before calling a protected provider budget.
 
     This is for historical/backfill consumers that wrap the shared broker in a
@@ -391,7 +396,28 @@ def make_archive_before_budget_get(fallback_get, stats=None, archive_reader=read
 
         stats["archive_read_misses"] = stats.get("archive_read_misses", 0) + 1
         kwargs.pop("archive_first", None)
-        return fallback_get(path, params, **kwargs)
+        result = fallback_get(path, params, **kwargs)
+
+        if require_archive_after_fallback:
+            try:
+                archived_after = archive_reader(key)
+            except Exception as exc:
+                stats["archive_read_errors"] = stats.get("archive_read_errors", 0) + 1
+                raise ApiFootballBrokerError(
+                    f"raw archive verification failed after provider/cache fallback: {exc}"
+                ) from exc
+
+            if not (
+                isinstance(archived_after, dict)
+                and not archived_after.get("errors")
+                and isinstance(archived_after.get("response"), list)
+            ):
+                raise ApiFootballBrokerError(
+                    "raw archive missing after provider/cache fallback; "
+                    "refusing durable historical capture"
+                )
+
+        return result
 
     get.archive_stats = stats
     return get

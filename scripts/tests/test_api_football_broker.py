@@ -139,6 +139,59 @@ class BrokerTests(unittest.TestCase):
         self.assertEqual(stats["archive_read_hits"], 1)
         self.assertEqual(stats["archive_read_misses"], 0)
 
+    def test_strict_archive_after_fallback_requires_durable_replay_source(self):
+        calls = []
+        reads = [None, None]
+        stats = {"archive_read_hits": 0, "archive_read_misses": 0, "archive_read_errors": 0}
+
+        def archive_reader(key):
+            return reads.pop(0)
+
+        def fallback(path, params=None, **kwargs):
+            calls.append((path, params, kwargs))
+            return {"response": [{"id": 1}]}
+
+        get = make_archive_before_budget_get(
+            fallback,
+            stats,
+            archive_reader=archive_reader,
+            require_archive_after_fallback=True,
+        )
+
+        with self.assertRaisesRegex(
+            Exception,
+            "raw archive missing after provider/cache fallback",
+        ):
+            get("/fixtures/players", {"fixture": 123})
+
+        self.assertEqual(len(calls), 1)
+        self.assertEqual(stats["archive_read_misses"], 1)
+
+    def test_strict_archive_after_fallback_accepts_exact_replay_source(self):
+        calls = []
+        archived = {"response": [{"id": 1}], "errors": []}
+        reads = [None, archived]
+        stats = {"archive_read_hits": 0, "archive_read_misses": 0, "archive_read_errors": 0}
+
+        def archive_reader(key):
+            return reads.pop(0)
+
+        def fallback(path, params=None, **kwargs):
+            calls.append((path, params, kwargs))
+            return archived
+
+        get = make_archive_before_budget_get(
+            fallback,
+            stats,
+            archive_reader=archive_reader,
+            require_archive_after_fallback=True,
+        )
+        result = get("/fixtures/players", {"fixture": 123})
+
+        self.assertEqual(result, archived)
+        self.assertEqual(len(calls), 1)
+        self.assertEqual(stats["archive_read_misses"], 1)
+
     def test_archive_before_budget_miss_calls_fallback_once(self):
         calls = []
         stats = {"archive_read_hits": 0, "archive_read_misses": 0, "archive_read_errors": 0}
