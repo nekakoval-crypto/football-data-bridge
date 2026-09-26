@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-26T06:55:30Z",
+  "generated_at_utc": "2026-09-26T08:36:14Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -37,7 +37,7 @@
     "team_stats": {
       "file": "team_match_statistics.csv",
       "present": true,
-      "rows": 3732
+      "rows": 4116
     },
     "stage81_backlog": {
       "file": "stage81_team_stats_backlog.csv",
@@ -337,25 +337,25 @@
   "stage81_backlog": {
     "present": true,
     "total_fixtures": 13477,
-    "pending_fixtures": 11611,
-    "captured_fixtures": 1866,
+    "pending_fixtures": 11419,
+    "captured_fixtures": 2058,
     "captured_without_complete_ledger": 0,
     "oldest_pending_first_queued_at_utc": "2026-09-17T10:41:55Z",
     "evidence_note": "Pending means PBK observed a terminal fixture but has not yet persisted complete HOME+AWAY /fixtures/statistics evidence."
   },
   "team_statistics": {
-    "rows": 3732,
-    "complete_fixture_count": 1866,
+    "rows": 4116,
+    "complete_fixture_count": 2058,
     "finished_current_inventory_with_team_stats": 0,
     "finished_current_inventory_team_stats_coverage_pct": 0.0,
     "evidence_note": "Complete means HOME and AWAY team rows exist; individual missing provider metrics remain UNKNOWN."
   },
   "advanced_metrics": {
     "team_xg_source": "API-Football /fixtures/statistics expected_goals",
-    "team_xg_rows": 514,
-    "team_xg_complete_fixture_count": 257,
-    "team_stats_complete_fixture_count": 1866,
-    "team_xg_captured_fixture_coverage_pct": 13.77,
+    "team_xg_rows": 732,
+    "team_xg_complete_fixture_count": 366,
+    "team_stats_complete_fixture_count": 2058,
+    "team_xg_captured_fixture_coverage_pct": 17.78,
     "finished_current_inventory_with_team_xg": 0,
     "finished_current_inventory_team_xg_coverage_pct": 0.0,
     "team_xg_evidence_note": "Verified provider field when present; API-Football may return it as missing for some competitions or fixtures and PBK preserves missing as UNKNOWN.",
