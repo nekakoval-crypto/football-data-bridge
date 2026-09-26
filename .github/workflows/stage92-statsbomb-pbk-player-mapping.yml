@@ -5,6 +5,8 @@ on:
     paths:
       - 'scripts/stage92_statsbomb_pbk_player_mapping.py'
       - 'scripts/tests/test_stage92_statsbomb_pbk_player_mapping.py'
+      - 'scripts/stage92_profile_identity_bridge.py'
+      - 'scripts/tests/test_stage92_profile_identity_bridge.py'
       - 'scripts/stage80_archive_manifest.py'
       - 'scripts/stage80_archive_readiness.py'
       - 'scripts/stage73_internal_api.py'
@@ -25,6 +27,7 @@ on:
       - 'ops/historical_transfer_events.csv'
       - 'ops/pbk_transfermarkt_player_identity.csv'
       - 'ops/historical_players.csv'
+      - 'ops/player_profile_evidence.csv'
       - 'scripts/stage80_archive_manifest.py'
       - 'scripts/stage80_archive_readiness.py'
       - 'scripts/stage73_internal_api.py'
@@ -60,7 +63,9 @@ jobs:
           python -m py_compile scripts/stage80_archive_readiness.py
           python -m py_compile scripts/stage73_internal_api.py
       - name: Test conservative Stage92 mapping
-        run: python -m unittest scripts.tests.test_stage92_statsbomb_pbk_player_mapping -v
+        run: |
+          python -m unittest scripts.tests.test_stage92_statsbomb_pbk_player_mapping -v
+          python -m unittest scripts.tests.test_stage92_profile_identity_bridge -v
       - name: Test archive governance and API integration
         run: |
           python -m unittest scripts.tests.test_stage80_archive_manifest -v
@@ -93,7 +98,7 @@ jobs:
             echo 'Stage91 materialization not present; Stage92 remains waiting.'
             exit 0
           fi
-          python scripts/stage92_statsbomb_pbk_player_mapping.py             --source ops/statsbomb_player_xg_xa.csv             --transfers ops/historical_transfer_events.csv             --historical-players ops/historical_players.csv             --mapping-out ops/statsbomb_pbk_player_mapping_candidates.csv             --mapped-out ops/pbk_player_xg_xa_research.csv             --meta-out ops/stage92_statsbomb_pbk_player_mapping_last_run.json
+          python scripts/stage92_statsbomb_pbk_player_mapping.py             --source ops/statsbomb_player_xg_xa.csv             --transfers ops/historical_transfer_events.csv             --historical-players ops/historical_players.csv             --profiles ops/player_profile_evidence.csv             --mapping-out ops/statsbomb_pbk_player_mapping_candidates.csv             --mapped-out ops/pbk_player_xg_xa_research.csv             --meta-out ops/stage92_statsbomb_pbk_player_mapping_last_run.json
       - name: Publish Stage92 outputs safely
         shell: bash
         run: |
