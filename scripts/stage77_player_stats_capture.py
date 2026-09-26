@@ -29,7 +29,10 @@ import stage53_daily_screener as s53
 import stage71_observation_audit as audit
 from api_football_broker import ApiFootballBrokerError, make_archive_before_budget_get, get_broker
 from player_grade import GRADE_VERSION, grade_aggregate, normalize_api_football_player
-from player_snapshot_store import read_snapshot_rows, snapshot_parts_dir, migrate_legacy_monolith
+try:
+    from player_snapshot_store import read_snapshot_rows, snapshot_parts_dir, migrate_legacy_monolith
+except ImportError:
+    from scripts.player_snapshot_store import read_snapshot_rows, snapshot_parts_dir, migrate_legacy_monolith
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
 FIXTURES = OPS / "current_round_fixtures.csv"
