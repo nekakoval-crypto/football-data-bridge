@@ -130,13 +130,7 @@ jobs:
             ops/stage77_historical_player_backfill_last_run.json \
             ops/stage71_observation_state.json
 
-          if [ -f ops/player_stats_snapshots.csv ]; then
-            git add ops/player_stats_snapshots.csv
-          fi
-
-          if [ -f ops/player_grade_snapshots.csv ]; then
-            git add ops/player_grade_snapshots.csv
-          fi
+          git add -A             ops/player_stats_snapshots.csv             ops/player_stats_snapshots_parts             ops/player_grade_snapshots.csv             ops/player_grade_snapshots_parts
 
           if git diff --cached --quiet; then
             exit 0
