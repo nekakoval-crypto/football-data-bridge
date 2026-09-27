@@ -43,7 +43,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python scripts/point14_coach_provider_ambiguity_v18.py
+          python -m scripts.point14_coach_provider_ambiguity_v18
 
       - name: Verify tenure ledger unchanged
         shell: bash
