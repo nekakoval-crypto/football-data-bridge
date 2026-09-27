@@ -31,7 +31,13 @@ import stage77_player_stats_capture as current
 import stage80_historical_lineup_injury_backfill as base
 
 OPS = base.OPS
-SOURCE = base.SOURCE
+
+# IMPORTANT:
+# Historical PBK16 competition archive intentionally contains only completed
+# seasons 2017..2025. Current-season convergence must instead consume the
+# append-only rolling fixture observation archive produced from Stage71.
+SOURCE = OPS / "fixture_history_snapshots.csv"
+
 LINEUPS = base.LINEUPS
 INJURIES = base.INJURIES
 STATE = base.STATE
@@ -39,7 +45,70 @@ BUDGET_STATE = base.BUDGET_STATE
 SHARED_STATE = base.SHARED_STATE
 META = OPS / "stage80_current_season_lineup_backfill_last_run.json"
 
-VERSION = "PBK_STAGE80_CURRENT_SEASON_LINEUP_CONVERGENCE_V1"
+VERSION = "PBK_STAGE80_CURRENT_SEASON_LINEUP_CONVERGENCE_V2"
+
+CURRENT_TERMINAL_STATUS = {"FINISHED"}
+CURRENT_TERMINAL_SOURCE_STATUS = {"FT", "AET", "PEN"}
+
+
+def rolling_terminal_fixture_map(rows):
+    """Collapse rolling observations to the latest state of each fixture.
+
+    The Stage80 rolling archive is append-only and therefore contains many
+    observations of the same fixture. Current-season lineup convergence must
+    reason in fixture units, not observation units.
+
+    Only fixtures whose latest observation is terminal are eligible.
+    Returned rows are translated into the historical Stage80 fixture contract
+    expected by the shared lineup capture machinery.
+    """
+    latest = {}
+
+    for row in rows:
+        fixture_id = base.sval(row, "fixture_id")
+        observed_at = base.sval(row, "observed_at_utc")
+
+        if not fixture_id or not observed_at:
+            continue
+
+        previous = latest.get(fixture_id)
+
+        if (
+            previous is None
+            or observed_at > base.sval(previous, "observed_at_utc")
+        ):
+            latest[fixture_id] = dict(row)
+
+    output = {}
+
+    for fixture_id, row in latest.items():
+        status = base.sval(row, "status").upper()
+        source_status = base.sval(row, "source_status").upper()
+
+        if (
+            status not in CURRENT_TERMINAL_STATUS
+            and source_status not in CURRENT_TERMINAL_SOURCE_STATUS
+        ):
+            continue
+
+        output[fixture_id] = {
+            "fixture_id": fixture_id,
+            "country": base.sval(row, "country"),
+            "provider_competition_id": base.sval(
+                row, "provider_league_id"
+            ),
+            "competition_name": base.sval(row, "league_name"),
+            "season": base.sval(row, "season"),
+            "round": base.sval(row, "round"),
+            "kickoff_utc": base.sval(row, "kickoff_utc"),
+            "home_team": base.sval(row, "home_team"),
+            "away_team": base.sval(row, "away_team"),
+            "status": status,
+            "source_status": source_status,
+            "observed_at_utc": base.sval(row, "observed_at_utc"),
+        }
+
+    return output
 
 
 def current_season_number(history):
@@ -110,7 +179,7 @@ def main():
     existing_injuries = base.read_csv(INJURIES)
     state = base.read_state(base.read_csv(STATE))
 
-    history = base.domestic_terminal_fixture_map(source_rows)
+    history = rolling_terminal_fixture_map(source_rows)
     season = current_season_number(history)
 
     tasks_before = current_season_lineup_tasks(history, state, season)
@@ -215,6 +284,17 @@ def main():
         ),
         "season": season,
         "source_rows": len(source_rows),
+        "source_path": str(SOURCE).replace("\\", "/"),
+        "source_contract": (
+            "ROLLING_FIXTURE_HISTORY;"
+            "LATEST_OBSERVATION_PER_FIXTURE;"
+            "TERMINAL_ONLY"
+        ),
+        "source_unique_fixture_ids": len({
+            base.sval(row, "fixture_id")
+            for row in source_rows
+            if base.sval(row, "fixture_id")
+        }),
         "current_season_terminal_domestic_fixtures": current_season_fixture_count,
         "captured_current_season_lineup_fixtures_before": len(captured_before),
         "captured_current_season_lineup_fixtures_after": len(captured_after),
@@ -234,6 +314,8 @@ def main():
             "47": complete_counts.get("47", 0),
         },
         "task_policy": (
+            "ROLLING_CURRENT_SEASON_SOURCE;"
+            "LATEST_OBSERVATION_PER_FIXTURE;"
             "CURRENT_MAX_SEASON_ONLY;"
             "DOMESTIC_TERMINAL;"
             "LINEUPS_ONLY;"
