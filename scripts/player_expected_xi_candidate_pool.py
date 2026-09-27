@@ -306,6 +306,31 @@ def documented_slot_from_grid(
             "",
         )
 
+    if formation == "4-5-1":
+
+        maps = {
+            2: {
+                4: "RB",
+                3: "CB",
+                2: "CB",
+                1: "LB",
+            },
+
+            3: {
+                5: "RM",
+                4: "CM",
+                3: "DM",
+                2: "CM",
+                1: "LM",
+            },
+
+            4: {
+                1: "ST",
+            },
+        }
+
+        return maps.get(row, {}).get(col, "")
+
     if formation == "4-4-2":
 
         maps = {
@@ -336,6 +361,62 @@ def documented_slot_from_grid(
             col,
             "",
         )
+
+    if formation == "3-1-4-2":
+
+        maps = {
+            2: {
+                3: "CB",
+                2: "CB",
+                1: "CB",
+            },
+
+            3: {
+                1: "DM",
+            },
+
+            4: {
+                4: "RM",
+                3: "CM",
+                2: "CM",
+                1: "LM",
+            },
+
+            5: {
+                2: "ST",
+                1: "ST",
+            },
+        }
+
+        return maps.get(row, {}).get(col, "")
+
+    if formation == "3-4-2-1":
+
+        maps = {
+            2: {
+                3: "CB",
+                2: "CB",
+                1: "CB",
+            },
+
+            3: {
+                4: "RWB",
+                3: "CM",
+                2: "CM",
+                1: "LWB",
+            },
+
+            4: {
+                2: "AM",
+                1: "AM",
+            },
+
+            5: {
+                1: "ST",
+            },
+        }
+
+        return maps.get(row, {}).get(col, "")
 
     if formation == "3-4-3":
 

@@ -39,6 +39,12 @@ POSITION_GROUP = {
 
 
 FORMATION_SLOTS = {
+    "4-5-1": [
+        "GK",
+        "RB", "CB", "CB", "LB",
+        "RM", "CM", "DM", "CM", "LM",
+        "ST",
+    ],
     "4-3-3": [
         "GK",
         "RB", "CB", "CB", "LB",
@@ -55,6 +61,20 @@ FORMATION_SLOTS = {
     "4-4-2": [
         "GK",
         "RB", "CB", "CB", "LB",
+        "RM", "CM", "CM", "LM",
+        "ST", "ST",
+    ],
+    "3-4-2-1": [
+        "GK",
+        "CB", "CB", "CB",
+        "RWB", "CM", "CM", "LWB",
+        "AM", "AM",
+        "ST",
+    ],
+    "3-1-4-2": [
+        "GK",
+        "CB", "CB", "CB",
+        "DM",
         "RM", "CM", "CM", "LM",
         "ST", "ST",
     ],

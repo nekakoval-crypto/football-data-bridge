@@ -246,65 +246,208 @@ def build_team(target, roster_rows, all_lineups, tenures, availability_rows, off
             "roster_captured_at_utc": _s(r.get("captured_at_utc")),
         })
 
-    slots = list(FORMATION_SLOTS[target["formation"]])
-    selected = set()
-    assignments = {}
-    unresolved = []
+    slots = list(FORMATION_SLOTS.get(target["formation"], []))
 
-    for idx, slot in enumerate(slots):
-        ranked = []
-        for c in candidates:
-            pid = _s(c.get("player_id"))
-            if not pid or pid in selected:
-                continue
-            fit = positional_fit(c, slot)
-            if fit["fit_rank"] < 3:
-                continue
-            resolved = resolve_candidate(
-                c,
-                team_id=target["team_id"],
-                target_competition=target["competition"],
-                before_utc=AS_OF_UTC,
-            )
-            status = resolved["availability"]["availability_status"]
-            if status == "UNAVAILABLE":
-                continue
-            availability_rank = {"AVAILABLE": 1, "UNCERTAIN": 0}.get(status, -1)
-            ranked.append((resolved, fit, availability_rank))
+    if len(slots) != 11:
+        return {
+            **target,
+            "roster_status": roster["status"],
+            "roster_captured_at_utc": roster.get("captured_at_utc"),
+            "usage_source": usage_source,
+            "status": "EXPECTED_XI_UNSUPPORTED_FORMATION",
+            "expected_xi_count": 0,
+            "expected_xi": [],
+            "unresolved_slots": [
+                {
+                    "slot_index": None,
+                    "slot": target["formation"],
+                    "reason": "UNSUPPORTED_FORMATION",
+                }
+            ],
+            "probability_status": "UNCALIBRATED",
+            "research_only": True,
+            "operational_betting_authority": False,
+        }
 
-        ranked.sort(
-            key=lambda x: (
-                x[1]["fit_rank"],
-                int(x[0].get("starts_last_10", 0)),
-                int(x[0].get("starts_last_5", 0)),
-                x[2],
-                _s(x[0].get("player_id")),
-            ),
-            reverse=True,
+    # Resolve availability once per player.
+    resolved_candidates = []
+
+    for candidate in sorted(
+        candidates,
+        key=lambda c: _s(c.get("player_id")),
+    ):
+        resolved = resolve_candidate(
+            candidate,
+            team_id=target["team_id"],
+            target_competition=target["competition"],
+            before_utc=AS_OF_UTC,
         )
 
-        if not ranked:
-            unresolved.append({"slot_index": idx, "slot": slot, "reason": "NO_CURRENT_ROSTER_EXACT_ROLE_CANDIDATE"})
+        availability_status = (
+            resolved["availability"]["availability_status"]
+        )
+
+        if availability_status == "UNAVAILABLE":
             continue
 
-        chosen, fit, _ = ranked[0]
-        pid = _s(chosen.get("player_id"))
-        selected.add(pid)
-        assignments[idx] = {
-            "slot_index": idx,
-            "slot": slot,
-            "player_id": pid,
+        availability_rank = {
+            "AVAILABLE": 2,
+            "UNCERTAIN": 1,
+        }.get(availability_status, 0)
+
+        resolved_candidates.append(
+            {
+                "player": resolved,
+                "availability_rank": availability_rank,
+            }
+        )
+
+    # Exact global assignment.
+    #
+    # State mask = which of the 11 tactical slots have been filled.
+    # Each roster player is processed once, therefore one player cannot
+    # occupy two positions.
+    #
+    # Score is lexicographic:
+    #   1. number of filled slots
+    #   2. total starts in last 5
+    #   3. total starts in last 10
+    #   4. total positional fit
+    #   5. total availability confidence
+    #
+    # 2^11 = 2048 tactical states, so this is small and deterministic.
+    dp = {
+        0: (
+            (0, 0, 0, 0, 0),
+            (),
+        )
+    }
+
+    def add_score(left, right):
+        return tuple(
+            a + b
+            for a, b in zip(left, right)
+        )
+
+    for candidate_index, item in enumerate(resolved_candidates):
+
+        player = item["player"]
+
+        next_dp = dict(dp)
+
+        for mask, (score, picks) in dp.items():
+
+            for slot_index, slot in enumerate(slots):
+
+                bit = 1 << slot_index
+
+                if mask & bit:
+                    continue
+
+                fit = positional_fit(
+                    player,
+                    slot,
+                )
+
+                # Keep V23 conservative role rule:
+                # PRIMARY_EXACT or DOCUMENTED_EXACT only.
+                if fit["fit_rank"] < 3:
+                    continue
+
+                edge_score = (
+                    1,
+                    int(player.get("starts_last_5", 0)),
+                    int(player.get("starts_last_10", 0)),
+                    int(fit["fit_rank"]),
+                    int(item["availability_rank"]),
+                )
+
+                new_mask = mask | bit
+
+                new_score = add_score(
+                    score,
+                    edge_score,
+                )
+
+                new_picks = picks + (
+                    (
+                        slot_index,
+                        candidate_index,
+                        fit["fit_level"],
+                    ),
+                )
+
+                old = next_dp.get(new_mask)
+
+                if (
+                    old is None
+                    or new_score > old[0]
+                ):
+                    next_dp[new_mask] = (
+                        new_score,
+                        new_picks,
+                    )
+
+        dp = next_dp
+
+    best_mask, (best_score, best_picks) = max(
+        dp.items(),
+        key=lambda item: (
+            item[1][0],
+            item[0],
+        ),
+    )
+
+    assignments = {}
+
+    for (
+        slot_index,
+        candidate_index,
+        fit_level,
+    ) in best_picks:
+
+        item = resolved_candidates[candidate_index]
+
+        chosen = item["player"]
+
+        assignments[slot_index] = {
+            "slot_index": slot_index,
+            "slot": slots[slot_index],
+            "player_id": _s(chosen.get("player_id")),
             "player_name": _s(chosen.get("player_name")),
-            "availability_status": chosen["availability"]["availability_status"],
-            "availability_reason": chosen["availability"]["resolution_reason"],
-            "fit_level": fit["fit_level"],
-            "starts_last_10": int(chosen.get("starts_last_10", 0)),
-            "starts_last_5": int(chosen.get("starts_last_5", 0)),
+            "availability_status": (
+                chosen["availability"]["availability_status"]
+            ),
+            "availability_reason": (
+                chosen["availability"]["resolution_reason"]
+            ),
+            "fit_level": fit_level,
+            "starts_last_5": int(
+                chosen.get("starts_last_5", 0)
+            ),
+            "starts_last_10": int(
+                chosen.get("starts_last_10", 0)
+            ),
             "start_probability": None,
             "start_probability_status": "UNCALIBRATED",
         }
 
-    xi = [assignments[i] for i in range(11) if i in assignments]
+    unresolved = []
+
+    for slot_index, slot in enumerate(slots):
+
+        if slot_index not in assignments:
+            unresolved.append({
+                "slot_index": slot_index,
+                "slot": slot,
+                "reason": "NO_GLOBAL_CURRENT_ROSTER_ASSIGNMENT",
+            })
+
+    xi = [
+        assignments[i]
+        for i in range(11)
+        if i in assignments
+    ]
     return {
         **target,
         "roster_status": roster["status"],
