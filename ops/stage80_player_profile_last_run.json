@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_PLAYER_PROFILE_ENRICHMENT_V2_RESIDUAL_ID",
-  "run_at_utc": "2026-09-25T18:37:00Z",
+  "run_at_utc": "2026-09-27T18:36:37Z",
   "status": "ATTENTION",
   "season": "2026",
   "provider_endpoints": [
@@ -9,10 +9,10 @@
   ],
   "refresh_days": 7,
   "residual_retry_days": 7,
-  "provider_calls": 188,
-  "team_provider_calls": 188,
-  "residual_provider_calls": 0,
-  "daily_api_calls": 1378,
+  "provider_calls": 400,
+  "team_provider_calls": 30,
+  "residual_provider_calls": 370,
+  "daily_api_calls": 5146,
   "protected_calls": {
     "live": 0,
     "current_round": 60,
@@ -20,489 +20,422 @@
     "safety": 100,
     "total": 192
   },
-  "candidate_teams": 95,
-  "completed_teams": [
-    {
-      "team_id": "182",
-      "team_name": "Union Berlin",
-      "profile_rows": 25
-    },
-    {
-      "team_id": "108",
-      "team_name": "Auxerre",
-      "profile_rows": 26
-    },
-    {
-      "team_id": "111",
-      "team_name": "Le Havre",
-      "profile_rows": 29
-    },
-    {
-      "team_id": "164",
-      "team_name": "FSV Mainz 05",
-      "profile_rows": 25
-    },
-    {
-      "team_id": "867",
-      "team_name": "Lecce",
-      "profile_rows": 31
-    },
-    {
-      "team_id": "95",
-      "team_name": "Strasbourg",
-      "profile_rows": 28
-    },
-    {
-      "team_id": "167",
-      "team_name": "1899 Hoffenheim",
-      "profile_rows": 26
-    },
-    {
-      "team_id": "168",
-      "team_name": "Bayer Leverkusen",
-      "profile_rows": 28
-    },
-    {
-      "team_id": "495",
-      "team_name": "Genoa",
-      "profile_rows": 32
-    },
-    {
-      "team_id": "172",
-      "team_name": "VfB Stuttgart",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "500",
-      "team_name": "Bologna",
-      "profile_rows": 29
-    },
-    {
-      "team_id": "35",
-      "team_name": "Bournemouth",
-      "profile_rows": 24
-    },
-    {
-      "team_id": "169",
-      "team_name": "Eintracht Frankfurt",
-      "profile_rows": 24
-    },
-    {
-      "team_id": "174",
-      "team_name": "FC Schalke 04",
-      "profile_rows": 22
-    },
-    {
-      "team_id": "64",
-      "team_name": "Hull City",
-      "profile_rows": 32
-    },
-    {
-      "team_id": "63",
-      "team_name": "Leeds",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "79",
-      "team_name": "Lille",
-      "profile_rows": 26
-    },
-    {
-      "team_id": "33",
-      "team_name": "Manchester United",
-      "profile_rows": 25
-    },
-    {
-      "team_id": "84",
-      "team_name": "Nice",
-      "profile_rows": 28
-    },
-    {
-      "team_id": "65",
-      "team_name": "Nottingham Forest",
-      "profile_rows": 24
-    },
-    {
-      "team_id": "185",
-      "team_name": "SC Paderborn 07",
-      "profile_rows": 26
-    },
-    {
-      "team_id": "746",
-      "team_name": "Sunderland",
-      "profile_rows": 31
-    },
-    {
-      "team_id": "157",
-      "team_name": "Bayern München",
-      "profile_rows": 25
-    },
-    {
-      "team_id": "55",
-      "team_name": "Brentford",
-      "profile_rows": 25
-    },
-    {
-      "team_id": "110",
-      "team_name": "Estac Troyes",
-      "profile_rows": 25
-    },
-    {
-      "team_id": "170",
-      "team_name": "FC Augsburg",
-      "profile_rows": 25
-    },
-    {
-      "team_id": "546",
-      "team_name": "Getafe",
-      "profile_rows": 29
-    },
-    {
-      "team_id": "40",
-      "team_name": "Liverpool",
-      "profile_rows": 25
-    },
-    {
-      "team_id": "97",
-      "team_name": "Lorient",
-      "profile_rows": 24
-    },
-    {
-      "team_id": "1579",
-      "team_name": "Monza",
-      "profile_rows": 34
-    },
-    {
-      "team_id": "162",
-      "team_name": "Werder Bremen",
-      "profile_rows": 29
-    },
-    {
-      "team_id": "192",
-      "team_name": "1. FC Köln",
-      "profile_rows": 25
-    },
-    {
-      "team_id": "489",
-      "team_name": "AC Milan",
-      "profile_rows": 28
-    },
-    {
-      "team_id": "499",
-      "team_name": "Atalanta",
-      "profile_rows": 29
-    },
-    {
-      "team_id": "530",
-      "team_name": "Atletico Madrid",
-      "profile_rows": 29
-    },
-    {
-      "team_id": "163",
-      "team_name": "Borussia Mönchengladbach",
-      "profile_rows": 25
-    },
-    {
-      "team_id": "496",
-      "team_name": "Juventus",
-      "profile_rows": 37
-    },
-    {
-      "team_id": "487",
-      "team_name": "Lazio",
-      "profile_rows": 33
-    },
-    {
-      "team_id": "116",
-      "team_name": "Lens",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "539",
-      "team_name": "Levante",
-      "profile_rows": 29
-    },
-    {
-      "team_id": "535",
-      "team_name": "Malaga",
-      "profile_rows": 28
-    },
-    {
-      "team_id": "160",
-      "team_name": "SC Freiburg",
-      "profile_rows": 24
-    },
-    {
-      "team_id": "497",
-      "team_name": "AS Roma",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "531",
-      "team_name": "Athletic Club",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "529",
-      "team_name": "Barcelona",
-      "profile_rows": 28
-    },
-    {
-      "team_id": "544",
-      "team_name": "Deportivo La Coruna",
-      "profile_rows": 28
-    },
-    {
-      "team_id": "34",
-      "team_name": "Newcastle",
-      "profile_rows": 30
-    },
-    {
-      "team_id": "114",
-      "team_name": "Paris FC",
-      "profile_rows": 23
-    },
-    {
-      "team_id": "4665",
-      "team_name": "Racing Santander",
-      "profile_rows": 33
-    },
-    {
-      "team_id": "488",
-      "team_name": "Sassuolo",
-      "profile_rows": 35
-    },
-    {
-      "team_id": "106",
-      "team_name": "Stade Brestois 29",
-      "profile_rows": 29
-    },
-    {
-      "team_id": "96",
-      "team_name": "Toulouse",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "77",
-      "team_name": "Angers",
-      "profile_rows": 25
-    },
-    {
-      "team_id": "165",
-      "team_name": "Borussia Dortmund",
-      "profile_rows": 25
-    },
-    {
-      "team_id": "490",
-      "team_name": "Cagliari",
-      "profile_rows": 34
-    },
-    {
-      "team_id": "49",
-      "team_name": "Chelsea",
-      "profile_rows": 28
-    },
-    {
-      "team_id": "512",
-      "team_name": "Frosinone",
-      "profile_rows": 28
-    },
-    {
-      "team_id": "175",
-      "team_name": "Hamburger SV",
-      "profile_rows": 26
-    },
-    {
-      "team_id": "57",
-      "team_name": "Ipswich",
-      "profile_rows": 29
-    },
-    {
-      "team_id": "1298",
-      "team_name": "Le Mans",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "81",
-      "team_name": "Marseille",
-      "profile_rows": 26
-    },
-    {
-      "team_id": "91",
-      "team_name": "Monaco",
-      "profile_rows": 30
-    },
-    {
-      "team_id": "492",
-      "team_name": "Napoli",
-      "profile_rows": 26
-    },
-    {
-      "team_id": "85",
-      "team_name": "Paris Saint Germain",
-      "profile_rows": 26
-    },
-    {
-      "team_id": "173",
-      "team_name": "RB Leipzig",
-      "profile_rows": 29
-    },
-    {
-      "team_id": "543",
-      "team_name": "Real Betis",
-      "profile_rows": 28
-    },
-    {
-      "team_id": "94",
-      "team_name": "Rennes",
-      "profile_rows": 25
-    },
-    {
-      "team_id": "1660",
-      "team_name": "SV Elversberg",
-      "profile_rows": 21
-    },
-    {
-      "team_id": "503",
-      "team_name": "Torino",
-      "profile_rows": 35
-    },
-    {
-      "team_id": "47",
-      "team_name": "Tottenham",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "517",
-      "team_name": "Venezia",
-      "profile_rows": 34
-    },
-    {
-      "team_id": "533",
-      "team_name": "Villarreal",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "51",
-      "team_name": "Brighton",
-      "profile_rows": 31
-    },
-    {
-      "team_id": "895",
-      "team_name": "Como",
-      "profile_rows": 32
-    },
-    {
-      "team_id": "1346",
-      "team_name": "Coventry",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "52",
-      "team_name": "Crystal Palace",
-      "profile_rows": 31
-    },
-    {
-      "team_id": "45",
-      "team_name": "Everton",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "502",
-      "team_name": "Fiorentina",
-      "profile_rows": 32
-    },
-    {
-      "team_id": "36",
-      "team_name": "Fulham",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "505",
-      "team_name": "Inter",
-      "profile_rows": 26
-    },
-    {
-      "team_id": "80",
-      "team_name": "Lyon",
-      "profile_rows": 31
-    },
-    {
-      "team_id": "523",
-      "team_name": "Parma",
-      "profile_rows": 33
-    },
-    {
-      "team_id": "536",
-      "team_name": "Sevilla",
-      "profile_rows": 32
-    },
-    {
-      "team_id": "494",
-      "team_name": "Udinese",
-      "profile_rows": 33
-    },
-    {
-      "team_id": "42",
-      "team_name": "Arsenal",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "66",
-      "team_name": "Aston Villa",
-      "profile_rows": 31
-    },
-    {
-      "team_id": "727",
-      "team_name": "Osasuna",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "607",
-      "team_name": "Konyaspor",
-      "profile_rows": 28
-    },
-    {
-      "team_id": "625",
-      "team_name": "Lyngby",
-      "profile_rows": 25
-    },
-    {
-      "team_id": "6962",
-      "team_name": "Widzew Łódź",
-      "profile_rows": 29
-    },
-    {
-      "team_id": "1004",
-      "team_name": "Kasımpaşa",
-      "profile_rows": 28
-    },
-    {
-      "team_id": "17115",
-      "team_name": "Wieczysta Kraków",
-      "profile_rows": 28
-    },
-    {
-      "team_id": "2073",
-      "team_name": "Silkeborg",
-      "profile_rows": 28
-    }
-  ],
+  "candidate_teams": 30,
+  "completed_teams": [],
   "deferred_teams": 0,
-  "residual_candidate_players": 0,
+  "residual_candidate_players": 400,
   "residual_captured_players": 0,
   "residual_empty_players": 0,
-  "residual_error_players": 0,
-  "residual_deferred_players": 0,
+  "residual_error_players": 370,
+  "residual_deferred_players": 30,
   "residual_ambiguous_current_roster_player_ids": 0,
-  "residual_suppressed_recent_attempts": 575,
+  "residual_suppressed_recent_attempts": 49,
   "profile_rows": 3779,
   "unique_profile_players": 3670,
-  "current_roster_players": 4011,
-  "current_roster_player_coverage_pct": 85.66,
+  "current_roster_players": 4489,
+  "current_roster_player_coverage_pct": 76.63,
   "warnings": [
-    "18936 Ogre United: provider returned no usable profile rows",
-    "4143 Super Nova: provider returned no usable profile rows"
+    "797 Elche: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "541 Real Madrid: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "532 Valencia: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "540 Espanyol: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "728 Rayo Vallecano: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "542 Alaves: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "10124 Riga: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "1389 Falkirk: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "345 Zaglebie Lubin: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "350 Cracovia Krakow: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "998 Trabzonspor: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "586 FK Zalgiris Vilnius: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "997 Gençlerbirliği S.K.: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "4144 Tukums: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "3579 Amed: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "996 Alanyaspor: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "4138 Grobiņa: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "3603 Samsunspor: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "612 Suduva Marijampole: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "1386 Dundee Utd: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "1009 Erzurumspor FK: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "249 Hibernian: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "18936 Ogre United: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "4143 Super Nova: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "209 Feyenoord: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "247 Celtic: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "257 Rangers: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "349 Piast Gliwice: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "348 Pogon Szczecin: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "207 Utrecht: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 24892 1. FC Köln: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 493421 1. FC Köln: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 567697 1. FC Köln: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 610631 1. FC Köln: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 202976 1899 Hoffenheim: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 340089 1899 Hoffenheim: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 387306 1899 Hoffenheim: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 412708 1899 Hoffenheim: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 455332 1899 Hoffenheim: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 460151 1899 Hoffenheim: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 548529 1899 Hoffenheim: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 650520 1899 Hoffenheim: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 336580 AC Milan: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 336928 AC Milan: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 484293 AC Milan: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 496790 AC Milan: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 582073 AC Milan: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 552679 AS Roma: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 626686 AS Roma: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 626713 AS Roma: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 675841 AS Roma: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 551461 Alaves: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 486627 Angers: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 671920 Angers: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 409798 Arsenal: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 661146 Aston Villa: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 30419 Atalanta: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 392279 Atalanta: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 412893 Atalanta: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 484411 Atalanta: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 332305 Athletic Club: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 437637 Athletic Club: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 437644 Athletic Club: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 47278 Athletic Club: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 189997 Atletico Madrid: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 428799 Atletico Madrid: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 443748 Atletico Madrid: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 491091 Atletico Madrid: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 646997 Atletico Madrid: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 115588 Auxerre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 193505 Auxerre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 30748 Auxerre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 511151 Auxerre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 568137 Auxerre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 604390 Auxerre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 613216 Auxerre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 614174 Auxerre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 627298 Auxerre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 669876 Auxerre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 674510 Auxerre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 338958 Barcelona: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 478610 Barcelona: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 568002 Barcelona: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 568143 Barcelona: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 444961 Bayer Leverkusen: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 462209 Bayer Leverkusen: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 486523 Bayer Leverkusen: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 503467 Bayer Leverkusen: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 511930 Bayer Leverkusen: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 568387 Bayer Leverkusen: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 606223 Bayer Leverkusen: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 610930 Bayer Leverkusen: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 356353 Bayern München: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 453964 Bayern München: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 524214 Bayern München: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 568316 Bayern München: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 628356 Bayern München: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 657672 Bayern München: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 491232 Bologna: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 559723 Bologna: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 584426 Bologna: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 605412 Bologna: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 616147 Bologna: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 616196 Bologna: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 679113 Bologna: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 158053 Borussia Dortmund: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 280463 Borussia Dortmund: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 676939 Borussia Dortmund: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 125418 Borussia Mönchengladbach: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 178405 Borussia Mönchengladbach: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 25627 Borussia Mönchengladbach: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 585708 Borussia Mönchengladbach: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 651914 Borussia Mönchengladbach: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 18932 Bournemouth: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 19070 Bournemouth: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 368030 Bournemouth: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 407034 Bournemouth: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 51051 Bournemouth: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 573755 Bournemouth: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 671665 Bournemouth: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 19362 Brentford: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 327726 Brentford: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 363998 Brentford: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 36922 Brentford: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 513316 Brentford: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 624708 Brentford: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 383685 Brighton: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 570150 Brighton: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 31318 Cagliari: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 383026 Cagliari: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 626706 Cagliari: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 180940 Chelsea: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 609590 Chelsea: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 64167 Chelsea: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 567667 Como: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 674625 Como: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 17714 Coventry: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 298128 Coventry: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 557413 Crystal Palace: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 557584 Crystal Palace: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 551380 Deportivo La Coruna: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 576357 Deportivo La Coruna: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 628615 Deportivo La Coruna: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 26291 Eintracht Frankfurt: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 365266 Eintracht Frankfurt: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 467927 Eintracht Frankfurt: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 478662 Eintracht Frankfurt: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 478663 Eintracht Frankfurt: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 535152 Eintracht Frankfurt: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 284415 Elche: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 561102 Elche: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 580677 Elche: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 583971 Elche: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 635179 Elche: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 637727 Elche: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 647190 Elche: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 669865 Elche: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 671517 Elche: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 8746 Elche: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 162585 Espanyol: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 47299 Espanyol: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 47396 Espanyol: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 601891 Espanyol: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 669869 Espanyol: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 174596 Estac Troyes: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 21135 Estac Troyes: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 421863 Estac Troyes: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 456882 Estac Troyes: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 629912 Estac Troyes: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 641621 Estac Troyes: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 30407 Everton: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 588468 Everton: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 202755 FC Augsburg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 343159 FC Augsburg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 362795 FC Augsburg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 479269 FC Augsburg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 659290 FC Augsburg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 669879 FC Augsburg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 24228 FC Schalke 04: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 25586 FC Schalke 04: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 26525 FC Schalke 04: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 266192 FC Schalke 04: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 380854 FC Schalke 04: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 584046 FC Schalke 04: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 618035 FC Schalke 04: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 202736 FSV Mainz 05: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 342172 FSV Mainz 05: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 353950 FSV Mainz 05: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 548511 FSV Mainz 05: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 548539 FSV Mainz 05: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 606691 FSV Mainz 05: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 621880 FSV Mainz 05: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 628381 FSV Mainz 05: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 136087 Fiorentina: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 610724 Fiorentina: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 30513 Frosinone: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 31982 Frosinone: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 351324 Frosinone: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 19025 Fulham: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 436443 Fulham: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 393926 Genoa: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 567646 Genoa: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 567684 Genoa: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 616217 Genoa: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 616219 Genoa: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 616229 Genoa: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 635489 Genoa: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 675895 Genoa: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 403554 Getafe: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 432080 Getafe: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 625636 Getafe: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 631889 Getafe: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 669800 Getafe: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 671625 Getafe: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 380937 Hamburger SV: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 634887 Hamburger SV: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 162991 Hull City: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 282124 Hull City: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 2930 Hull City: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 331551 Hull City: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 557455 Hull City: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 615629 Hull City: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 461830 Inter: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 552669 Inter: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 18397 Ipswich: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 18958 Ipswich: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 37236 Ipswich: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 379068 Juventus: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 445447 Juventus: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 563925 Juventus: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 580818 Juventus: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 1841 Lazio: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 407916 Lazio: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 616197 Lazio: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 616206 Lazio: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 63934 Lazio: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 314232 Le Havre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 355955 Le Havre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 395808 Le Havre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 419584 Le Havre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 471290 Le Havre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 513415 Le Havre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 630731 Le Havre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 630733 Le Havre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 670668 Le Havre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 670669 Le Havre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 961 Le Havre: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 24259 Le Mans: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 349631 Le Mans: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 669862 Le Mans: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 340179 Lecce: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 525018 Lecce: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 558590 Lecce: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 595194 Lecce: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 595869 Lecce: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 616194 Lecce: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 650552 Lecce: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 675847 Lecce: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 675850 Lecce: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 328116 Leeds: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 449237 Leeds: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 538541 Leeds: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 557343 Leeds: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 557507 Leeds: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 579147 Leeds: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 322984 Lens: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 497661 Lens: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 660571 Lens: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 668701 Lens: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 668702 Lens: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 338295 Levante: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 385383 Levante: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 551227 Levante: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 609795 Levante: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 610643 Levante: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 562615 Lille: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 628379 Lille: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 630699 Lille: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 630702 Lille: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 668708 Lille: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 669877 Lille: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 671921 Lille: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 180316 Liverpool: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 30410 Liverpool: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 437561 Liverpool: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 498377 Liverpool: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 588501 Liverpool: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 606814 Liverpool: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 162236 Lorient: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 200873 Lorient: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 20936 Lorient: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 399903 Lorient: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 434785 Lorient: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 446829 Lorient: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 409794 Lyon: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 623922 Lyon: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 185234 Malaga: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 47478 Malaga: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 669867 Malaga: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 671614 Malaga: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 2931 Manchester United: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 383770 Manchester United: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 402330 Manchester United: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 407026 Manchester United: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 465942 Manchester United: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 517227 Manchester United: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 568058 Marseille: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 656975 Marseille: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 135775 Monaco: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 440070 Monaco: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 18824 Monza: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 213 Monza: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 30436 Monza: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 31532 Monza: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 579153 Monza: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 31226 Napoli: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 388547 Napoli: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 579077 Napoli: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 365988 Newcastle: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 401389 Newcastle: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 423714 Newcastle: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 44912 Newcastle: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 128987 Nice: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 1914 Nice: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 20917 Nice: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 603533 Nice: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 668718 Nice: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 671514 Nice: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 671608 Nice: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 19312 Nottingham Forest: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 329345 Nottingham Forest: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 329358 Nottingham Forest: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 353968 Nottingham Forest: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 357238 Nottingham Forest: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 380663 Nottingham Forest: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 383771 Nottingham Forest: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 21701 Osasuna: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 389322 Paris FC: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 490981 Paris FC: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 610561 Paris FC: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 629706 Paris FC: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 491107 Paris Saint Germain: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 491108 Paris Saint Germain: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 568268 Paris Saint Germain: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 552810 Parma: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 881 Parma: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 441231 RB Leipzig: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 601134 RB Leipzig: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 606949 RB Leipzig: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 452308 Racing Santander: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 584008 Racing Santander: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 606724 Racing Santander: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 672029 Racing Santander: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 1847 Rayo Vallecano: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 285505 Rayo Vallecano: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 626804 Rayo Vallecano: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 450714 Real Betis: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 47119 Real Betis: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 610742 Real Betis: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 308998 Real Madrid: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 441497 Real Madrid: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 443595 Real Madrid: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 451355 Real Madrid: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 460594 Real Madrid: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 561032 Real Madrid: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 561033 Real Madrid: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 653 Real Madrid: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 343792 Rennes: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 562237 Rennes: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 653231 Rennes: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 26250 SC Freiburg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 33805 SC Freiburg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 406094 SC Freiburg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 584890 SC Freiburg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 673308 SC Freiburg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 108640 SC Paderborn 07: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 119173 SC Paderborn 07: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 26333 SC Paderborn 07: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 373443 SC Paderborn 07: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 619522 SC Paderborn 07: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 177362 SV Elversberg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 26342 SV Elversberg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 554307 SV Elversberg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 40582 Sassuolo: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 584501 Sassuolo: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 626711 Sassuolo: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 663096 Sassuolo: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 41208 Sevilla: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 548842 Sevilla: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 20546 Stade Brestois 29: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 667330 Stade Brestois 29: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 669878 Stade Brestois 29: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 303016 Strasbourg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 390742 Strasbourg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 415001 Strasbourg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 493025 Strasbourg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 494590 Strasbourg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 584192 Strasbourg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 585206 Strasbourg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "residual player 629148 Strasbourg: API-Football /players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "Stage80 player-profile per-run API limit reached"
   ],
   "provider_polling_frontend": false,
   "research_only": true,
