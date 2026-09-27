@@ -1,0 +1,61 @@
+﻿name: PBK Point14 V34 Current Injury Universe
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+
+      PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+      PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+      PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+      PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+      PBK_RAW_ARCHIVE_S3_PREFIX: api-football-raw
+      PBK_RAW_ARCHIVE_S3_REGION: auto
+
+      OPS_DIR: ops
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install R2 client
+        run: python -m pip install --disable-pip-version-check boto3
+
+      - name: Compile
+        run: |
+          python -m py_compile scripts/point14_v34_current_injury_universe.py
+
+      - name: Run current injury universe probe
+        run: |
+          python scripts/point14_v34_current_injury_universe.py
+
+      - name: Show output
+        run: |
+          cat ops/point14_v34_current_injury_universe_last_run.json
+          echo
+          cat ops/point14_v34_current_injury_universe.csv
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: point14-v34-current-injury-universe
+          path: |
+            ops/point14_v34_current_injury_universe_last_run.json
+            ops/point14_v34_current_injury_universe.csv
+          if-no-files-found: error
+          retention-days: 30
