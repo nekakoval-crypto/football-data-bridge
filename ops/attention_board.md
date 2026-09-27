@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 27.09.2026 13:00 (Europe/Berlin)
+Обновлено: 27.09.2026 14:01 (Europe/Berlin)
 Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -715,11 +715,47 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Европейская фора — нет данных
   - Ф(0) — нет данных
 
+- **Standard Liege — Charleroi** | Belgian Pro League | 11.10 11:30 UTC
+  - 1X2 — нет данных
+  - Тотал 2.5 — нет данных
+  - ОЗ — нет данных
+  - ИТБ/ИТМ — нет данных
+  - 1Х/Х2/12 — нет данных
+  - Европейская фора — нет данных
+  - Ф(0) — нет данных
+
+- **Randers FC — Viborg** | Danish Superliga | 11.10 12:00 UTC
+  - 1X2 — нет данных
+  - Тотал 2.5 — нет данных
+  - ОЗ — нет данных
+  - ИТБ/ИТМ — нет данных
+  - 1Х/Х2/12 — нет данных
+  - Европейская фора — нет данных
+  - Ф(0) — нет данных
+
+- **Silkeborg — AC Horsens** | Danish Superliga | 11.10 12:00 UTC
+  - 1X2 — нет данных
+  - Тотал 2.5 — нет данных
+  - ОЗ — нет данных
+  - ИТБ/ИТМ — нет данных
+  - 1Х/Х2/12 — нет данных
+  - Европейская фора — нет данных
+  - Ф(0) — нет данных
+
+- **Elche — Celta Vigo** | La Liga | 11.10 12:00 UTC
+  - 1X2 — нет данных
+  - Тотал 2.5 — нет данных
+  - ОЗ — нет данных
+  - ИТБ/ИТМ — нет данных
+  - 1Х/Х2/12 — нет данных
+  - Европейская фора — нет данных
+  - Ф(0) — нет данных
+
 
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **CRITICAL** | critical 1 | warnings 2
+- System Health: **CRITICAL** | critical 1 | warnings 1
 - Логическая canonical экспозиция: **3.0u** | конфликтов матчей 0 | убрано дублей 1.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 25 | data required 2
