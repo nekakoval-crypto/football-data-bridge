@@ -31,7 +31,8 @@ import stage77_player_stats_capture as current
 import stage80_historical_lineup_injury_backfill as base
 
 OPS = base.OPS
-SOURCE = base.SOURCE
+SOURCE = OPS / "fixture_history_snapshots.csv"
+CURRENT = OPS / "current_round_fixtures.csv"
 LINEUPS = base.LINEUPS
 INJURIES = base.INJURIES
 STATE = base.STATE
@@ -39,7 +40,52 @@ BUDGET_STATE = base.BUDGET_STATE
 SHARED_STATE = base.SHARED_STATE
 META = OPS / "stage80_current_season_lineup_backfill_last_run.json"
 
-VERSION = "PBK_STAGE80_CURRENT_SEASON_LINEUP_CONVERGENCE_V1"
+VERSION = "PBK_STAGE80_CURRENT_SEASON_LINEUP_CONVERGENCE_V2"
+
+
+def current_provider_season(current_rows):
+    values = []
+    for row in current_rows:
+        try:
+            values.append(int(base.sval(row, "season")))
+        except ValueError:
+            continue
+    return max(values) if values else -1
+
+
+def latest_current_season_terminal_history(history_rows, season):
+    """Use append-only Stage80 fixture observations as the current-season fixture source."""
+    latest = {}
+    for row in history_rows:
+        if base.season_number(row) != int(season):
+            continue
+        fixture_id = base.sval(row, "fixture_id")
+        observed = base.sval(row, "observed_at_utc")
+        if not fixture_id:
+            continue
+        old = latest.get(fixture_id)
+        if old is None or observed >= base.sval(old, "observed_at_utc"):
+            latest[fixture_id] = dict(row)
+
+    output = {}
+    for fixture_id, row in latest.items():
+        status = base.sval(row, "source_status").upper() or base.sval(row, "status").upper()
+        normalized_status = base.sval(row, "status").upper()
+        if status not in base.TERMINAL and normalized_status not in {"FINISHED", "FT", "AET", "PEN"}:
+            continue
+        output[fixture_id] = {
+            "fixture_id": fixture_id,
+            "country": base.sval(row, "country"),
+            "provider_competition_id": base.sval(row, "provider_league_id"),
+            "competition_name": base.sval(row, "league_name"),
+            "season": base.sval(row, "season"),
+            "round": base.sval(row, "round"),
+            "kickoff_utc": base.sval(row, "kickoff_utc"),
+            "home_team": base.sval(row, "home_team"),
+            "away_team": base.sval(row, "away_team"),
+            "status": status or normalized_status,
+        }
+    return output
 
 
 def current_season_number(history):
@@ -106,12 +152,13 @@ def main():
     now = datetime.now(timezone.utc)
 
     source_rows = base.read_csv(SOURCE)
+    current_rows = base.read_csv(CURRENT)
     existing_lineups = base.read_csv(LINEUPS)
     existing_injuries = base.read_csv(INJURIES)
     state = base.read_state(base.read_csv(STATE))
 
-    history = base.domestic_terminal_fixture_map(source_rows)
-    season = current_season_number(history)
+    season = current_provider_season(current_rows)
+    history = latest_current_season_terminal_history(source_rows, season)
 
     tasks_before = current_season_lineup_tasks(history, state, season)
     captured_before = captured_fixture_ids(state, season)
@@ -215,6 +262,9 @@ def main():
         ),
         "season": season,
         "source_rows": len(source_rows),
+        "current_round_rows": len(current_rows),
+        "season_source": "CURRENT_ROUND_PROVIDER_SEASON",
+        "fixture_source": "FIXTURE_HISTORY_SNAPSHOTS_LATEST_OBSERVATION",
         "current_season_terminal_domestic_fixtures": current_season_fixture_count,
         "captured_current_season_lineup_fixtures_before": len(captured_before),
         "captured_current_season_lineup_fixtures_after": len(captured_after),
@@ -234,7 +284,7 @@ def main():
             "47": complete_counts.get("47", 0),
         },
         "task_policy": (
-            "CURRENT_MAX_SEASON_ONLY;"
+            "CURRENT_ROUND_SEASON_ONLY;"
             "DOMESTIC_TERMINAL;"
             "LINEUPS_ONLY;"
             "NEWEST_KICKOFF_FIRST;"
@@ -242,6 +292,7 @@ def main():
         ),
         "archive_first_enabled": True,
         "shared_state_reused": True,
+        "historical_static_archive_not_used_for_current_season_selection": True,
         "shared_budget_reused": True,
         "temporal_authority": "RETROSPECTIVE_ONLY",
         "pre_match_observation_time_known": False,
