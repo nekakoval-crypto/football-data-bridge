@@ -1,0 +1,19 @@
+name: Point14 squad hierarchy rotation V24
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  v24:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Run V24 hierarchy/rotation contract tests
+        run: python -m unittest scripts.tests.test_point14_squad_hierarchy_rotation_v24 -v
