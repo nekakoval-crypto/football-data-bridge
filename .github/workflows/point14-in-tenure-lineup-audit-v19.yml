@@ -1,0 +1,35 @@
+name: Point14 in-tenure lineup audit V19
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  v19-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Run V19 unit tests
+        run: python -m unittest scripts.tests.test_point14_in_tenure_lineup_audit_v19 -v
+
+      - name: Run V19 real archive audit
+        run: python -m scripts.point14_in_tenure_lineup_audit_v19
+
+      - name: Verify coach tenure ledger unchanged
+        run: git diff --exit-code -- ops/coach_tenure_history.csv
+
+      - name: Upload V19 artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: point14-in-tenure-lineup-audit-v19
+          path: ops/point14_in_tenure_lineup_audit_v19.json
+          if-no-files-found: error
