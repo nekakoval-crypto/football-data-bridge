@@ -1,0 +1,27 @@
+name: Point14 probable XI V21
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  v21:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Run V21 tests
+        run: python -m unittest scripts.tests.test_point14_probable_xi_v21 -v
+      - name: Build real probable XI
+        run: python -m scripts.point14_probable_xi_v21
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: point14-probable-xi-v21
+          path: ops/point14_probable_xi_v21.json
+          if-no-files-found: error
