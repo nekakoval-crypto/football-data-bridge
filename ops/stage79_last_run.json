@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-27T00:33:32Z",
-  "status": "OK",
+  "run_at_utc": "2026-09-27T02:25:47Z",
+  "status": "ATTENTION",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 8,
-  "daily_api_calls": 8,
+  "provider_calls": 0,
+  "daily_api_calls": 680,
   "protected_calls": {
     "live": 0,
     "current_round": 96,
@@ -19,51 +19,12 @@
   "sensitive_ttl_days": 3,
   "transfer_sensitive_periods": "01-01:02-15,06-01:09-10",
   "candidate_teams": 8,
-  "captured_teams": [
-    {
-      "team_id": "1009",
-      "team_name": "Erzurumspor FK",
-      "players": 26
-    },
-    {
-      "team_id": "3603",
-      "team_name": "Samsunspor",
-      "players": 27
-    },
-    {
-      "team_id": "4138",
-      "team_name": "Grobiņa",
-      "players": 27
-    },
-    {
-      "team_id": "996",
-      "team_name": "Alanyaspor",
-      "players": 27
-    },
-    {
-      "team_id": "998",
-      "team_name": "Trabzonspor",
-      "players": 33
-    },
-    {
-      "team_id": "1386",
-      "team_name": "Dundee Utd",
-      "players": 26
-    },
-    {
-      "team_id": "1389",
-      "team_name": "Falkirk",
-      "players": 34
-    },
-    {
-      "team_id": "249",
-      "team_name": "Hibernian",
-      "players": 26
-    }
-  ],
-  "deferred_teams": 0,
+  "captured_teams": [],
+  "deferred_teams": 8,
   "total_roster_rows": 4492,
-  "warnings": [],
+  "warnings": [
+    "Stage71 protected API reserve reached; Challenger deferred"
+  ],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
