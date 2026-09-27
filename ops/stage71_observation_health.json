@@ -1,8 +1,8 @@
 {
-  "run_at_utc": "2026-09-25T07:34:17.036695Z",
+  "run_at_utc": "2026-09-27T15:32:37.056523Z",
   "status": "ATTENTION",
   "counts": {
-    "expected": 0,
+    "expected": null,
     "scanned": 0,
     "captured": 85,
     "missed_or_at_risk": 1,
@@ -23,111 +23,113 @@
   "scan": [
     {
       "league": "Premier League",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "La Liga",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Bundesliga",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Ligue 1",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Austrian Bundesliga",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Belgian Pro League",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Danish Superliga",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "A Lyga",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Virsliga",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Eredivisie",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Eliteserien",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Ekstraklasa",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Primeira Liga",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Super Lig",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Scottish Premiership",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     }
   ],
-  "warnings": [],
+  "warnings": [
+    "Premier League: inventory unavailable: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "La Liga: inventory unavailable: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "Bundesliga: inventory unavailable: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "Ligue 1: inventory unavailable: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "Austrian Bundesliga: inventory unavailable: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "Belgian Pro League: inventory unavailable: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "Danish Superliga: inventory unavailable: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "A Lyga: inventory unavailable: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "Virsliga: inventory unavailable: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "Eredivisie: inventory unavailable: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "Eliteserien: inventory unavailable: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "Ekstraklasa: inventory unavailable: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "Primeira Liga: inventory unavailable: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "Super Lig: inventory unavailable: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "Scottish Premiership: inventory unavailable: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "Pending fixture retry failed: API-Football /fixtures: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}"
+  ],
   "scope": "16 locked leagues; 15 research writers; Serie A canonical read-only, completeness not certified",
   "canonical_captured": 7,
   "definitions": {
@@ -140,6 +142,6 @@
   "legacy_max_schedule_gap_hours": 18,
   "schedule_gap_hours": 8,
   "r2_freeze_hours": 12,
-  "api_calls": 55,
-  "api_day_calls": 362
+  "api_calls": 16,
+  "api_day_calls": 4457
 }
