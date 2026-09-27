@@ -1,0 +1,27 @@
+name: Point14 current roster role-aware V23
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  v23:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Run V23 tests
+        run: python -m unittest scripts.tests.test_point14_current_roster_roleaware_v23 -v
+      - name: Run real V23 expected XI proof
+        run: python -m scripts.point14_current_roster_roleaware_v23
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: point14-current-roster-roleaware-v23
+          path: ops/point14_current_expected_xi_v23.json
+          if-no-files-found: error
