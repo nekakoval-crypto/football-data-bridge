@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-09-27T14:52:44Z",
+  "generated_at_utc": "2026-09-27T16:53:52Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -330,8 +330,8 @@
   "stage77_backlog": {
     "present": true,
     "total_fixtures": 173,
-    "pending_fixtures": 24,
-    "captured_fixtures": 149,
+    "pending_fixtures": 173,
+    "captured_fixtures": 0,
     "captured_without_complete_ledgers": 0,
     "oldest_pending_first_queued_at_utc": "2026-09-15T16:55:09Z",
     "evidence_note": "A pending backlog fixture is an observed terminal fixture awaiting player stats/Player Grade; it is not a provider-availability or completeness claim."
