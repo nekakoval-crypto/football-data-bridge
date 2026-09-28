@@ -1,0 +1,67 @@
+﻿name: PBK Point10A13 LT-LV Missing Event Capture
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pbk-api-football-global
+  cancel-in-progress: false
+
+env:
+  PBK_GLOBAL_QUOTA_REQUIRED: '1'
+  API_FOOTBALL_GLOBAL_NORMAL_CEILING: '6800'
+  API_FOOTBALL_GLOBAL_ABSOLUTE_CEILING: '7350'
+  API_FOOTBALL_QUOTA_CLASS: HISTORICAL
+
+  PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+  PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+  PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+  PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+  PBK_RAW_ARCHIVE_S3_PREFIX: api-football-raw
+  PBK_RAW_ARCHIVE_S3_REGION: auto
+
+jobs:
+
+  capture:
+
+    runs-on: ubuntu-latest
+
+    env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      API_FOOTBALL_MAX_REAL_CALLS: '13'
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install R2 client
+        run: python -m pip install --disable-pip-version-check boto3
+
+      - name: Compile
+        run: python -m py_compile scripts/point10a13_lt_lv_event_capture.py
+
+      - name: Prove broker-only provider access
+        shell: bash
+        run: |
+          if grep -nE 'urllib\.|requests\.|api-sports\.io|v3\.football\.api-sports' scripts/point10a13_lt_lv_event_capture.py; then
+            echo "Direct provider transport forbidden"
+            exit 1
+          fi
+
+      - name: Capture exact 13 missing fixtures
+        run: python scripts/point10a13_lt_lv_event_capture.py
+
+      - name: Print result
+        run: cat ops/point10a13_lt_lv_event_capture_last_run.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: point10a13-lt-lv-event-capture
+          path: ops/point10a13_lt_lv_event_capture_last_run.json
