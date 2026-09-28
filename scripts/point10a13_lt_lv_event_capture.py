@@ -63,7 +63,6 @@ def main() -> int:
                 ttl_seconds=30 * 24 * 3600,
                 force_refresh=False,
                 archive_first=True,
-                quota_class="HISTORICAL",
             )
 
         except Exception as exc:
@@ -239,3 +238,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
