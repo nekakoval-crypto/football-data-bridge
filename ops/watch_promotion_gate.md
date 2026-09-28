@@ -1,6 +1,6 @@
 # PBK WATCH Promotion Gate
 
-Обновлено UTC: 2026-09-28T03:05:09Z
+Обновлено UTC: 2026-09-28T04:05:15Z
 Никакой WATCH не может автоматически стать R-правилом.
 
 ## Stage61 — COLLECTING
