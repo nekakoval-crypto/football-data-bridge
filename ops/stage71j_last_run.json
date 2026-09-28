@@ -1,11 +1,11 @@
 {
-  "run_at_utc": "2026-09-28T00:46:48Z",
+  "run_at_utc": "2026-09-28T06:48:49Z",
   "status": "OK",
   "mode": "SHARED_PREFETCHED_PROSPECTIVE_CAPTURE",
   "prefetched_fixture_ids": 160,
   "real_api_calls": 177,
   "api_hard_cap": 190,
-  "cache_hits": 347,
+  "cache_hits": 275,
   "unique_cached_requests": 177,
   "real_calls_by_path": {
     "/odds/bets": 1,
@@ -18,7 +18,7 @@
   "market_presence_count": 114,
   "market_presence_api_calls_added": 0,
   "generic_1x2_forward_capture": {
-    "run_at_utc": "2026-09-28T00:47:11Z",
+    "run_at_utc": "2026-09-28T06:49:19Z",
     "status": "OK",
     "mode": "STAGE71J_ZERO_EXTRA_CALL_PROSPECTIVE_CAPTURE",
     "source": "API-Football /odds Bet365 Match Winner",
@@ -352,8 +352,8 @@
       "market_family": "TEAM_TOTAL",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 68,
-      "new_openers": 160,
+      "logical_odds_calls": 50,
+      "new_openers": 0,
       "new_snapshots": 0,
       "new_closes": 0,
       "warnings": 0
@@ -362,8 +362,8 @@
       "market_family": "DOUBLE_CHANCE",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 69,
-      "new_openers": 18,
+      "logical_odds_calls": 51,
+      "new_openers": 0,
       "new_snapshots": 0,
       "new_closes": 0,
       "warnings": 0
@@ -372,8 +372,8 @@
       "market_family": "EUROPEAN_HANDICAP",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 68,
-      "new_openers": 90,
+      "logical_odds_calls": 50,
+      "new_openers": 0,
       "new_snapshots": 0,
       "new_closes": 0,
       "warnings": 0
@@ -382,8 +382,8 @@
       "market_family": "DRAW_NO_BET",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 75,
-      "new_openers": 18,
+      "logical_odds_calls": 57,
+      "new_openers": 0,
       "new_snapshots": 0,
       "new_closes": 0,
       "warnings": 0
