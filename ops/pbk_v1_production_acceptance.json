@@ -123,16 +123,16 @@
     }
   },
   "global": {
-    "status": "PASS",
+    "status": "FAIL",
     "checks": [
       {
         "code": "SYSTEM_HEALTH_NO_CRITICAL",
-        "status": "PASS",
-        "message": "no CRITICAL system-health issues",
+        "status": "FAIL",
+        "message": "system health contains CRITICAL issues",
         "evidence": {
-          "health_status": "WARN",
-          "critical_issues": 0,
-          "warnings": 2
+          "health_status": "CRITICAL",
+          "critical_issues": 2,
+          "warnings": 3
         }
       },
       {
@@ -158,8 +158,9 @@
     ]
   },
   "next_actions": [
-    "Wait for a <=75m pre-kickoff standings capture and downstream Stage72 motivation rebuild."
+    "Wait for a <=75m pre-kickoff standings capture and downstream Stage72 motivation rebuild.",
+    "Resolve hard health/data-layer/API integrity failures before closure."
   ],
-  "evaluated_at_utc": "2026-09-28T14:39:53Z",
-  "state_fingerprint": "1f66482666e1ad5895c87669c22b06e8c742d69a89817142b86f1c501a367131"
+  "evaluated_at_utc": "2026-09-28T16:39:23Z",
+  "state_fingerprint": "d3621bd66b98a51118d12991916e47c408f8c350bc4cf5478d5a88e9d27420a4"
 }
