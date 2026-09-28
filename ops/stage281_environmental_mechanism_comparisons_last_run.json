@@ -1,8 +1,8 @@
 {
   "version": "PBK_ENVIRONMENTAL_MECHANISM_COMPARISONS_V1",
-  "generated_at_utc": "2026-09-28T14:53:02Z",
+  "generated_at_utc": "2026-09-28T15:49:02Z",
   "status": "OK",
-  "input_rows": 5133,
+  "input_rows": 5218,
   "comparison_count": 8,
   "sample_status_counts": {
     "DESCRIPTIVE_READY": 2,
@@ -10,18 +10,18 @@
     "INSUFFICIENT_SAMPLE": 3
   },
   "exposure_counts": {
-    "DRY": 3932,
+    "DRY": 4004,
     "HEAT_HUMIDITY": 39,
     "HEAVY_PRECIPITATION": 25,
-    "LOW_GUST": 1704,
-    "LOW_VISIBILITY": 405,
-    "NORMAL_VISIBILITY": 3483,
-    "NO_THUNDERSTORM": 5122,
+    "LOW_GUST": 1730,
+    "LOW_VISIBILITY": 408,
+    "NORMAL_VISIBILITY": 3559,
+    "NO_THUNDERSTORM": 5207,
     "SNOW_ANY": 24,
-    "STRONG_GUST": 1083,
-    "THERMAL_COLD": 622,
+    "STRONG_GUST": 1101,
+    "THERMAL_COLD": 625,
     "THERMAL_HOT": 39,
-    "THERMAL_NEUTRAL": 2197,
+    "THERMAL_NEUTRAL": 2232,
     "THUNDERSTORM": 11
   },
   "descriptive_ready_comparisons": 2,
