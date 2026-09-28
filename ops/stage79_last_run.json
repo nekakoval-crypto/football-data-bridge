@@ -1,16 +1,16 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-27T22:25:17Z",
-  "status": "ATTENTION",
+  "run_at_utc": "2026-09-28T00:35:04Z",
+  "status": "OK",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 0,
-  "daily_api_calls": 5436,
+  "provider_calls": 8,
+  "daily_api_calls": 8,
   "protected_calls": {
     "live": 0,
-    "current_round": 32,
+    "current_round": 96,
     "standings": 16,
     "safety": 8,
-    "total": 56
+    "total": 120
   },
   "roster_ttl_days": 28,
   "roster_freshness_policy": "TRANSFER_AWARE_V1",
@@ -19,12 +19,51 @@
   "sensitive_ttl_days": 3,
   "transfer_sensitive_periods": "01-01:02-15,06-01:09-10",
   "candidate_teams": 8,
-  "captured_teams": [],
-  "deferred_teams": 8,
-  "total_roster_rows": 4492,
-  "warnings": [
-    "Stage71 protected API reserve reached; Challenger deferred"
+  "captured_teams": [
+    {
+      "team_id": "250",
+      "team_name": "Kilmarnock",
+      "players": 27
+    },
+    {
+      "team_id": "251",
+      "team_name": "ST Mirren",
+      "players": 33
+    },
+    {
+      "team_id": "253",
+      "team_name": "Dundee",
+      "players": 29
+    },
+    {
+      "team_id": "254",
+      "team_name": "Heart Of Midlothian",
+      "players": 33
+    },
+    {
+      "team_id": "320",
+      "team_name": "Kristiansund BK",
+      "players": 25
+    },
+    {
+      "team_id": "327",
+      "team_name": "Bodo/Glimt",
+      "players": 29
+    },
+    {
+      "team_id": "554",
+      "team_name": "Anderlecht",
+      "players": 34
+    },
+    {
+      "team_id": "741",
+      "team_name": "Cercle Brugge",
+      "players": 31
+    }
   ],
+  "deferred_teams": 0,
+  "total_roster_rows": 4733,
+  "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
