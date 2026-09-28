@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-09-28T00:01:01Z",
-  "generated_at_local": "2026-09-28T02:01:01+02:00",
+  "generated_at_utc": "2026-09-28T01:02:46Z",
+  "generated_at_local": "2026-09-28T03:02:46+02:00",
   "timezone": "Europe/Berlin",
   "status": "OK",
   "summary": {
@@ -26,7 +26,7 @@
       "fixture_id": "1550143",
       "kickoff_utc": "2026-10-11T13:00:00Z",
       "kickoff_local": "11.10 15:00",
-      "hours_to_kickoff": 324.98,
+      "hours_to_kickoff": 323.95,
       "home_team": "Lecce",
       "away_team": "Bologna",
       "selection": "П2",
@@ -46,7 +46,7 @@
       "fixture_id": "1550145",
       "kickoff_utc": "2026-10-11T16:00:00Z",
       "kickoff_local": "11.10 18:00",
-      "hours_to_kickoff": 327.98,
+      "hours_to_kickoff": 326.95,
       "home_team": "Sassuolo",
       "away_team": "AC Milan",
       "selection": "П2",
@@ -66,7 +66,7 @@
       "fixture_id": "1550145",
       "kickoff_utc": "2026-10-11T16:00:00Z",
       "kickoff_local": "11.10 18:00",
-      "hours_to_kickoff": 327.98,
+      "hours_to_kickoff": 326.95,
       "home_team": "Sassuolo",
       "away_team": "AC Milan",
       "selection": "П2",
@@ -86,7 +86,7 @@
       "fixture_id": "1550138",
       "kickoff_utc": "2026-10-11T18:45:00Z",
       "kickoff_local": "11.10 20:45",
-      "hours_to_kickoff": 330.73,
+      "hours_to_kickoff": 329.7,
       "home_team": "Cagliari",
       "away_team": "Juventus",
       "selection": "П2",
@@ -107,7 +107,7 @@
       "fixture_id": "1575176",
       "kickoff_utc": "2026-10-09T18:30:00Z",
       "kickoff_local": "09.10 20:30",
-      "hours_to_kickoff": 282.48,
+      "hours_to_kickoff": 281.45,
       "home_team": "Borussia Dortmund",
       "away_team": "Werder Bremen",
       "market": "ТБ(2.5) steam",
@@ -122,7 +122,7 @@
       "fixture_id": "1575176",
       "kickoff_utc": "2026-10-09T18:30:00Z",
       "kickoff_local": "09.10 20:30",
-      "hours_to_kickoff": 282.48,
+      "hours_to_kickoff": 281.45,
       "home_team": "Borussia Dortmund",
       "away_team": "Werder Bremen",
       "market": "ОЗ — Да / ОЗ — Нет",
@@ -137,7 +137,7 @@
       "fixture_id": "1552775",
       "kickoff_utc": "2026-10-09T18:45:00Z",
       "kickoff_local": "09.10 20:45",
-      "hours_to_kickoff": 282.73,
+      "hours_to_kickoff": 281.7,
       "home_team": "Lens",
       "away_team": "Lyon",
       "market": "ОЗ — Да / ОЗ — Нет",
@@ -152,7 +152,7 @@
       "fixture_id": "1570408",
       "kickoff_utc": "2026-10-09T19:00:00Z",
       "kickoff_local": "09.10 21:00",
-      "hours_to_kickoff": 282.98,
+      "hours_to_kickoff": 281.95,
       "home_team": "Malaga",
       "away_team": "Espanyol",
       "market": "ОЗ — Да / ОЗ — Нет",
@@ -167,7 +167,7 @@
       "fixture_id": "1557417",
       "kickoff_utc": "2026-10-10T11:30:00Z",
       "kickoff_local": "10.10 13:30",
-      "hours_to_kickoff": 299.48,
+      "hours_to_kickoff": 298.45,
       "home_team": "Arsenal",
       "away_team": "Leeds",
       "market": "П1/П2 steam",
@@ -182,7 +182,7 @@
       "fixture_id": "1575178",
       "kickoff_utc": "2026-10-10T13:30:00Z",
       "kickoff_local": "10.10 15:30",
-      "hours_to_kickoff": 301.48,
+      "hours_to_kickoff": 300.45,
       "home_team": "1899 Hoffenheim",
       "away_team": "Hamburger SV",
       "market": "ТБ(2.5) steam",
@@ -197,7 +197,7 @@
       "fixture_id": "1575180",
       "kickoff_utc": "2026-10-10T13:30:00Z",
       "kickoff_local": "10.10 15:30",
-      "hours_to_kickoff": 301.48,
+      "hours_to_kickoff": 300.45,
       "home_team": "FC Augsburg",
       "away_team": "Bayern München",
       "market": "ТБ(2.5) steam",
@@ -212,7 +212,7 @@
       "fixture_id": "1557418",
       "kickoff_utc": "2026-10-10T14:00:00Z",
       "kickoff_local": "10.10 16:00",
-      "hours_to_kickoff": 301.98,
+      "hours_to_kickoff": 300.95,
       "home_team": "Aston Villa",
       "away_team": "Brentford",
       "market": "П1/П2 steam",
@@ -227,7 +227,7 @@
       "fixture_id": "1557419",
       "kickoff_utc": "2026-10-10T14:00:00Z",
       "kickoff_local": "10.10 16:00",
-      "hours_to_kickoff": 301.98,
+      "hours_to_kickoff": 300.95,
       "home_team": "Chelsea",
       "away_team": "Bournemouth",
       "market": "П1/П2 steam",
@@ -5959,6 +5959,24 @@
       "kickoff_local": "11.10 15:15 UTC",
       "markets": [
         {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.67 | ОЗ Нет: 2.1 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-09-28T00:25:16Z",
+          "api_update_utc": "2026-09-20T16:44:17+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.65 | ОЗ Нет: 2.11 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-09-28T00:25:16Z",
+          "api_update_utc": "2026-09-20T16:44:17+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
           "market": "MATCH_WINNER",
           "text": "1X2 — нет данных",
           "status": "NO_DATA"
@@ -5966,11 +5984,6 @@
         {
           "market": "TOTAL",
           "text": "Тотал 2.5 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "BTTS",
-          "text": "ОЗ — нет данных",
           "status": "NO_DATA"
         },
         {
@@ -6009,18 +6022,44 @@
       "kickoff_local": "11.10 15:30 UTC",
       "markets": [
         {
-          "market": "MATCH_WINNER",
-          "text": "1X2 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "TOTAL",
-          "text": "Тотал 2.5 — нет данных",
-          "status": "NO_DATA"
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-09-28T00:25:16Z",
+          "api_update_utc": "2026-09-20T17:09:14+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "BTTS",
-          "text": "ОЗ — нет данных",
+          "text": "ОЗ · ОЗ Да: 1.61 | ОЗ Нет: 2.17 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-09-28T00:25:16Z",
+          "api_update_utc": "2026-09-20T17:09:14+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 · ТБ(2.5): 1.57 | ТМ(2.5): 2.38 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-09-28T00:32:40Z",
+          "api_update_utc": "2026-09-20T17:09:14+00:00",
+          "source": "stage62_ou_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 · ТБ(2.5): 1.57 | ТМ(2.5): 2.22 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-09-28T00:32:40Z",
+          "api_update_utc": "2026-09-20T17:09:14+00:00",
+          "source": "stage62_ou_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 — нет данных",
           "status": "NO_DATA"
         },
         {
@@ -6109,18 +6148,44 @@
       "kickoff_local": "11.10 15:30 UTC",
       "markets": [
         {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.5 | ОЗ Нет: 2.5 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-09-28T00:25:16Z",
+          "api_update_utc": "2026-09-20T09:29:18+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.5 | ОЗ Нет: 2.41 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-09-28T00:25:16Z",
+          "api_update_utc": "2026-09-20T09:29:18+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
           "market": "MATCH_WINNER",
-          "text": "1X2 — нет данных",
-          "status": "NO_DATA"
+          "text": "1X2 · П1: 2.9 | Х: 3.6 | П2: 2.2 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-09-28T00:59:12Z",
+          "api_update_utc": "2026-09-20T09:29:18+00:00",
+          "source": "stage61_market_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 · П1: 3.04 | Х: 3.7 | П2: 2.25 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-09-28T00:59:12Z",
+          "api_update_utc": "2026-09-20T09:29:18+00:00",
+          "source": "stage61_market_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "TOTAL",
           "text": "Тотал 2.5 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "BTTS",
-          "text": "ОЗ — нет данных",
           "status": "NO_DATA"
         },
         {
@@ -6209,6 +6274,24 @@
       "kickoff_local": "11.10 16:00 UTC",
       "markets": [
         {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 2 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-09-28T00:25:16Z",
+          "api_update_utc": "2026-09-20T16:38:15+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.73 | ОЗ Нет: 1.99 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-09-28T00:25:16Z",
+          "api_update_utc": "2026-09-20T16:38:15+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
           "market": "MATCH_WINNER",
           "text": "1X2 — нет данных",
           "status": "NO_DATA"
@@ -6216,11 +6299,6 @@
         {
           "market": "TOTAL",
           "text": "Тотал 2.5 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "BTTS",
-          "text": "ОЗ — нет данных",
           "status": "NO_DATA"
         },
         {
@@ -6359,6 +6437,24 @@
       "kickoff_local": "11.10 16:30 UTC",
       "markets": [
         {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-09-28T00:25:16Z",
+          "api_update_utc": "2026-09-20T17:04:18+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.74 | ОЗ Нет: 1.98 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-09-28T00:25:16Z",
+          "api_update_utc": "2026-09-20T17:04:18+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
           "market": "MATCH_WINNER",
           "text": "1X2 — нет данных",
           "status": "NO_DATA"
@@ -6366,11 +6462,6 @@
         {
           "market": "TOTAL",
           "text": "Тотал 2.5 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "BTTS",
-          "text": "ОЗ — нет данных",
           "status": "NO_DATA"
         },
         {
@@ -6609,6 +6700,24 @@
       "kickoff_local": "11.10 18:45 UTC",
       "markets": [
         {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.53 | ОЗ Нет: 2.38 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-09-28T00:25:16Z",
+          "api_update_utc": "2026-09-20T16:44:17+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.53 | ОЗ Нет: 2.34 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-09-28T00:25:16Z",
+          "api_update_utc": "2026-09-20T16:44:17+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
           "market": "MATCH_WINNER",
           "text": "1X2 — нет данных",
           "status": "NO_DATA"
@@ -6616,11 +6725,6 @@
         {
           "market": "TOTAL",
           "text": "Тотал 2.5 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "BTTS",
-          "text": "ОЗ — нет данных",
           "status": "NO_DATA"
         },
         {
@@ -6659,6 +6763,24 @@
       "kickoff_local": "11.10 18:45 UTC",
       "markets": [
         {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.95 | ОЗ Нет: 1.8 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-09-28T00:25:16Z",
+          "api_update_utc": "2026-09-20T16:38:15+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.95 | ОЗ Нет: 1.76 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-09-28T00:25:16Z",
+          "api_update_utc": "2026-09-20T16:38:15+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
           "market": "MATCH_WINNER",
           "text": "1X2 — нет данных",
           "status": "NO_DATA"
@@ -6666,11 +6788,6 @@
         {
           "market": "TOTAL",
           "text": "Тотал 2.5 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "BTTS",
-          "text": "ОЗ — нет данных",
           "status": "NO_DATA"
         },
         {
@@ -6709,6 +6826,24 @@
       "kickoff_local": "11.10 19:00 UTC",
       "markets": [
         {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.62 | ОЗ Нет: 2.2 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-09-28T00:25:16Z",
+          "api_update_utc": "2026-09-20T17:04:18+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.66 | ОЗ Нет: 2.09 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-09-28T00:25:16Z",
+          "api_update_utc": "2026-09-20T17:04:18+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
           "market": "MATCH_WINNER",
           "text": "1X2 — нет данных",
           "status": "NO_DATA"
@@ -6716,11 +6851,6 @@
         {
           "market": "TOTAL",
           "text": "Тотал 2.5 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "BTTS",
-          "text": "ОЗ — нет данных",
           "status": "NO_DATA"
         },
         {
