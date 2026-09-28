@@ -1,18 +1,18 @@
 {
   "version": "PBK_STAGE80_INTERNATIONAL_DUTY_PBK16_CLUB_IDENTITY_V2_FAIL_CLOSED_NAMESPACE",
-  "generated_at_utc": "2026-09-27T01:22:37Z",
+  "generated_at_utc": "2026-09-28T01:21:58Z",
   "status": "OK",
-  "bounded_input_rows": 14768,
+  "bounded_input_rows": 11166,
   "pbk16_catalog_fixture_rows": 128,
-  "pbk16_catalog_team_stat_rows": 5864,
-  "pbk16_catalog_team_roster_rows": 4492,
-  "output_rows": 14768,
-  "mapped_pbk16_rows": 9571,
-  "mapped_pbk16_players": 921,
-  "mapped_pbk16_coverage_pct": 64.809,
+  "pbk16_catalog_team_stat_rows": 8716,
+  "pbk16_catalog_team_roster_rows": 4733,
+  "output_rows": 11166,
+  "mapped_pbk16_rows": 7796,
+  "mapped_pbk16_players": 684,
+  "mapped_pbk16_coverage_pct": 69.8191,
   "status_counts": {
-    "NO_SAVED_PBK16_TEAM_IDENTITY": 5197,
-    "PBK16_EXACT_ALIAS_UNIQUE": 9571
+    "NO_SAVED_PBK16_TEAM_IDENTITY": 3370,
+    "PBK16_EXACT_ALIAS_UNIQUE": 7796
   },
   "duplicate_fixture_player_rows": 0,
   "invalid_output_rows": 0,
