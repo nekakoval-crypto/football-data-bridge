@@ -1,6 +1,6 @@
 # PBK Signal Lifecycle
 
-Обновлено UTC: 2026-09-28T16:11:03Z
+Обновлено UTC: 2026-09-28T17:09:59Z
 
 Cards: 55 | canonical 7 | WATCH 48 | events 1397
 
