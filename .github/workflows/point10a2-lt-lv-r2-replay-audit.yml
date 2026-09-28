@@ -1,0 +1,63 @@
+﻿name: PBK Point10A2 LT-LV R2 Replay Audit
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    env:
+      PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+      PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+      PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+      PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+      PBK_RAW_ARCHIVE_S3_PREFIX: api-football-raw
+      PBK_RAW_ARCHIVE_S3_REGION: auto
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install R2 client
+        run: python -m pip install --disable-pip-version-check boto3
+
+      - name: Prove provider key is absent
+        shell: bash
+        run: |
+          if [ -n "${API_FOOTBALL_KEY:-}" ]; then
+            echo "API_FOOTBALL_KEY must be absent" >&2
+            exit 2
+          fi
+          echo "PASS — provider key absent"
+
+      - name: Compile audit
+        run: |
+          python -m py_compile scripts/point10a2_lt_lv_r2_replay_audit.py
+
+      - name: Run exact R2 replay audit
+        run: |
+          python scripts/point10a2_lt_lv_r2_replay_audit.py
+
+      - name: Print result
+        if: always()
+        run: |
+          if [ -f ops/disciplinary_lt_lv_r2_replay_audit_last_run.json ]; then
+            cat ops/disciplinary_lt_lv_r2_replay_audit_last_run.json
+          fi
+
+      - name: Upload audit result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: point10a2-lt-lv-r2-replay-audit
+          path: ops/disciplinary_lt_lv_r2_replay_audit_last_run.json
+          if-no-files-found: warn
+          retention-days: 30
