@@ -2,20 +2,20 @@
 """PBK Point 10.A.2 — exact R2 replay audit for LT/LV disciplinary backlog.
 
 Provider-free by contract:
-- reads exact /fixtures/players request keys from PBK raw archive;
-- does not accept/use API_FOOTBALL_KEY;
-- does not fall back to provider;
-- does not mutate player stats or disciplinary state.
+- exact fixed set of 24 already-audited LT/LV fixture IDs;
+- reads only PBK R2 raw archive;
+- no API_FOOTBALL_KEY;
+- no provider fallback;
+- no disciplinary/player-state mutation.
 """
 
 from __future__ import annotations
 
-import csv
 import json
 import os
 import sys
-from pathlib import Path
 from datetime import datetime, timezone
+from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 ROOT = SCRIPT_DIR.parent
@@ -26,10 +26,40 @@ from api_football_broker import request_key, read_archived_response
 
 
 OPS = ROOT / "ops"
-BACKLOG = OPS / "disciplinary_current_season_finished_fixture_backlog.csv"
 OUT = OPS / "disciplinary_lt_lv_r2_replay_audit_last_run.json"
 
-VERSION = "PBK_POINT10A2_LT_LV_R2_REPLAY_AUDIT_V1"
+VERSION = "PBK_POINT10A2_LT_LV_R2_REPLAY_AUDIT_V2"
+
+
+TARGETS = [
+    # Virsliga — provider league 365
+    {"fixture_id": "1515889", "provider_league_id": "365", "league_name": "Virsliga"},
+    {"fixture_id": "1515890", "provider_league_id": "365", "league_name": "Virsliga"},
+    {"fixture_id": "1515891", "provider_league_id": "365", "league_name": "Virsliga"},
+    {"fixture_id": "1515892", "provider_league_id": "365", "league_name": "Virsliga"},
+    {"fixture_id": "1515893", "provider_league_id": "365", "league_name": "Virsliga"},
+    {"fixture_id": "1515894", "provider_league_id": "365", "league_name": "Virsliga"},
+    {"fixture_id": "1515895", "provider_league_id": "365", "league_name": "Virsliga"},
+    {"fixture_id": "1515896", "provider_league_id": "365", "league_name": "Virsliga"},
+    {"fixture_id": "1515898", "provider_league_id": "365", "league_name": "Virsliga"},
+    {"fixture_id": "1515924", "provider_league_id": "365", "league_name": "Virsliga"},
+    {"fixture_id": "1515925", "provider_league_id": "365", "league_name": "Virsliga"},
+    {"fixture_id": "1515926", "provider_league_id": "365", "league_name": "Virsliga"},
+    {"fixture_id": "1515927", "provider_league_id": "365", "league_name": "Virsliga"},
+    {"fixture_id": "1515928", "provider_league_id": "365", "league_name": "Virsliga"},
+
+    # A Lyga — provider league 362
+    {"fixture_id": "1547585", "provider_league_id": "362", "league_name": "A Lyga"},
+    {"fixture_id": "1547586", "provider_league_id": "362", "league_name": "A Lyga"},
+    {"fixture_id": "1547599", "provider_league_id": "362", "league_name": "A Lyga"},
+    {"fixture_id": "1547600", "provider_league_id": "362", "league_name": "A Lyga"},
+    {"fixture_id": "1547602", "provider_league_id": "362", "league_name": "A Lyga"},
+    {"fixture_id": "1547603", "provider_league_id": "362", "league_name": "A Lyga"},
+    {"fixture_id": "1547634", "provider_league_id": "362", "league_name": "A Lyga"},
+    {"fixture_id": "1547635", "provider_league_id": "362", "league_name": "A Lyga"},
+    {"fixture_id": "1547636", "provider_league_id": "362", "league_name": "A Lyga"},
+    {"fixture_id": "1547637", "provider_league_id": "362", "league_name": "A Lyga"},
+]
 
 
 def main() -> int:
@@ -46,7 +76,8 @@ def main() -> int:
     ]
 
     missing_env = [
-        name for name in required
+        name
+        for name in required
         if not os.getenv(name, "").strip()
     ]
 
@@ -55,31 +86,22 @@ def main() -> int:
             "Missing R2 configuration: " + ", ".join(missing_env)
         )
 
-    with BACKLOG.open(
-        "r",
-        encoding="utf-8-sig",
-        newline="",
-        errors="replace",
-    ) as f:
-        rows = list(csv.DictReader(f))
-
-    targets = [
-        row for row in rows
-        if str(row.get("provider_league_id") or "").strip()
-        in {"362", "365"}
-    ]
-
-    if len(targets) != 24:
+    if len(TARGETS) != 24:
         raise RuntimeError(
-            f"Expected exactly 24 LT/LV backlog fixtures, got {len(targets)}"
+            f"Expected exactly 24 LT/LV targets, got {len(TARGETS)}"
         )
+
+    fixture_ids = [row["fixture_id"] for row in TARGETS]
+
+    if len(fixture_ids) != len(set(fixture_ids)):
+        raise RuntimeError("Duplicate fixture IDs in fixed audit target set")
 
     hits = []
     misses = []
     errors = []
 
-    for idx, row in enumerate(targets, start=1):
-        fixture_id = str(row["fixture_id"]).strip()
+    for idx, row in enumerate(TARGETS, start=1):
+        fixture_id = row["fixture_id"]
 
         key = request_key(
             "GET",
@@ -90,10 +112,13 @@ def main() -> int:
         try:
             payload = read_archived_response(key)
         except Exception as exc:
-            errors.append({
-                "fixture_id": fixture_id,
-                "error": repr(exc),
-            })
+            errors.append(
+                {
+                    "fixture_id": fixture_id,
+                    "error": repr(exc),
+                }
+            )
+
             print(
                 f"[{idx:02d}/24] ERROR {fixture_id}: {exc!r}",
                 flush=True,
@@ -108,26 +133,23 @@ def main() -> int:
         )
 
         if valid:
-            entry_count = len(payload["response"])
+            entries = len(payload["response"])
 
-            hits.append({
-                "fixture_id": fixture_id,
-                "provider_league_id": row["provider_league_id"],
-                "league_name": row["league_name"],
-                "entries": entry_count,
-            })
+            hits.append(
+                {
+                    **row,
+                    "entries": entries,
+                }
+            )
 
             print(
                 f"[{idx:02d}/24] R2 HIT  "
-                f"{fixture_id} entries={entry_count}",
+                f"{fixture_id} entries={entries}",
                 flush=True,
             )
+
         else:
-            misses.append({
-                "fixture_id": fixture_id,
-                "provider_league_id": row["provider_league_id"],
-                "league_name": row["league_name"],
-            })
+            misses.append(dict(row))
 
             print(
                 f"[{idx:02d}/24] R2 MISS {fixture_id}",
@@ -140,7 +162,8 @@ def main() -> int:
         .replace(microsecond=0)
         .isoformat()
         .replace("+00:00", "Z"),
-        "backlog_fixtures": len(targets),
+        "target_source": "FIXED_PREVIOUSLY_AUDITED_LT_LV_24",
+        "backlog_fixtures": len(TARGETS),
         "r2_exact_replay_hits": len(hits),
         "r2_exact_replay_misses": len(misses),
         "r2_read_errors": len(errors),
@@ -173,8 +196,6 @@ def main() -> int:
     print("PROVIDER FALLBACK: FORBIDDEN")
     print("=" * 80)
 
-    # R2 misses are valid audit results.
-    # Only read/configuration errors fail the job.
     return 2 if errors else 0
 
 
