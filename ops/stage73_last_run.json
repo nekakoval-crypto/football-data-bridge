@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-09-28T00:39:04Z",
+  "run_at_utc": "2026-09-28T01:06:29Z",
   "status": "OK",
   "api_version": "v1",
   "db_path": "build/pbk_unified.sqlite",
@@ -38,25 +38,25 @@
       "path": "/v1/markets/team-totals/openers?limit=1",
       "http_status": 200,
       "passed": true,
-      "count": 2937
+      "count": 3097
     },
     {
       "path": "/v1/markets/double-chance/openers?limit=1",
       "http_status": 200,
       "passed": true,
-      "count": 313
+      "count": 331
     },
     {
       "path": "/v1/markets/european-handicap/openers?limit=1",
       "http_status": 200,
       "passed": true,
-      "count": 1616
+      "count": 1706
     },
     {
       "path": "/v1/markets/dnb/openers?limit=1",
       "http_status": 200,
       "passed": true,
-      "count": 286
+      "count": 304
     },
     {
       "path": "/v1/markets/settlements?limit=1",
