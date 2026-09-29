@@ -1,16 +1,16 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-28T22:25:39Z",
-  "status": "ATTENTION",
+  "run_at_utc": "2026-09-29T00:33:37Z",
+  "status": "OK",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 0,
-  "daily_api_calls": 5633,
+  "provider_calls": 8,
+  "daily_api_calls": 8,
   "protected_calls": {
     "live": 0,
-    "current_round": 32,
+    "current_round": 96,
     "standings": 16,
     "safety": 8,
-    "total": 56
+    "total": 120
   },
   "roster_ttl_days": 28,
   "roster_freshness_policy": "TRANSFER_AWARE_V1",
@@ -19,12 +19,51 @@
   "sensitive_ttl_days": 3,
   "transfer_sensitive_periods": "01-01:02-15,06-01:09-10",
   "candidate_teams": 8,
-  "captured_teams": [],
-  "deferred_teams": 8,
-  "total_roster_rows": 4733,
-  "warnings": [
-    "Stage71 protected API reserve reached; Challenger deferred"
+  "captured_teams": [
+    {
+      "team_id": "227",
+      "team_name": "Santa Clara",
+      "players": 28
+    },
+    {
+      "team_id": "410",
+      "team_name": "GO Ahead Eagles",
+      "players": 29
+    },
+    {
+      "team_id": "426",
+      "team_name": "Sparta Rotterdam",
+      "players": 26
+    },
+    {
+      "team_id": "4716",
+      "team_name": "Casa Pia",
+      "players": 29
+    },
+    {
+      "team_id": "1028",
+      "team_name": "Ried",
+      "players": 34
+    },
+    {
+      "team_id": "1398",
+      "team_name": "WSG Wattens",
+      "players": 27
+    },
+    {
+      "team_id": "4256",
+      "team_name": "Grazer AK",
+      "players": 30
+    },
+    {
+      "team_id": "571",
+      "team_name": "Red Bull Salzburg",
+      "players": 32
+    }
   ],
+  "deferred_teams": 0,
+  "total_roster_rows": 4968,
+  "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
