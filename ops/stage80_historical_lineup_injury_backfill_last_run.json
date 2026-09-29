@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_HISTORICAL_LINEUP_INJURY_BACKFILL_V2",
-  "run_at_utc": "2026-09-29T17:30:21Z",
+  "run_at_utc": "2026-09-29T21:29:56Z",
   "status": "ATTENTION",
   "source_rows": 70375,
   "terminal_pbk16_domestic_fixtures": 40354,
@@ -12,10 +12,10 @@
   "heartbeat_every_tasks": 10,
   "max_consecutive_provider_errors": 5,
   "checkpoint_every_tasks": 25,
-  "shared_api_day_calls_at_start": 5289,
-  "historical_api_day_calls": 201,
-  "estimated_combined_api_day_calls": 5490,
-  "historical_daily_limit_after_shared_usage": 1711,
+  "shared_api_day_calls_at_start": 6075,
+  "historical_api_day_calls": 202,
+  "estimated_combined_api_day_calls": 6277,
+  "historical_daily_limit_after_shared_usage": 925,
   "protected_calls": {
     "live": 0,
     "current_round": 32,
