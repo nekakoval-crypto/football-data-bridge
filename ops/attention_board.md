@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 29.09.2026 02:00 (Europe/Berlin)
+Обновлено: 29.09.2026 06:01 (Europe/Berlin)
 Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -1152,9 +1152,10 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Ф(0) — нет данных
 
 - **Atalanta — Venezia** | Serie A | 12.10 16:30 UTC
+  - ОЗ · ОЗ Да: 1.62 | ОЗ Нет: 2.2 @ Bet365
+  - ОЗ · ОЗ Да: 1.59 | ОЗ Нет: 2.21 @ Marathonbet
   - 1X2 — нет данных
   - Тотал 2.5 — нет данных
-  - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
   - 1Х/Х2/12 — нет данных
   - Европейская фора — нет данных
@@ -1197,27 +1198,30 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Ф(0) — нет данных
 
 - **Torino — Udinese** | Serie A | 12.10 18:45 UTC
+  - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
+  - ОЗ · ОЗ Да: 1.78 | ОЗ Нет: 1.93 @ Marathonbet
   - 1X2 — нет данных
   - Тотал 2.5 — нет данных
-  - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
   - 1Х/Х2/12 — нет данных
   - Европейская фора — нет данных
   - Ф(0) — нет данных
 
 - **Levante — Sevilla** | La Liga | 12.10 19:00 UTC
+  - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
   - 1X2 — нет данных
   - Тотал 2.5 — нет данных
-  - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
   - 1Х/Х2/12 — нет данных
   - Европейская фора — нет данных
   - Ф(0) — нет данных
 
 - **Coventry — Newcastle** | Premier League | 12.10 19:00 UTC
-  - 1X2 — нет данных
+  - ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Bet365
+  - ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Marathonbet
+  - 1X2 · П1: 3.25 | Х: 3.5 | П2: 2.1 @ Bet365
+  - 1X2 · П1: 3.42 | Х: 3.62 | П2: 2.11 @ Marathonbet
   - Тотал 2.5 — нет данных
-  - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
   - 1Х/Х2/12 — нет данных
   - Европейская фора — нет данных
@@ -1236,8 +1240,7 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **CRITICAL** | critical 6 | warnings 6
+- System Health: **WARN** | critical 0 | warnings 2
 - Логическая canonical экспозиция: **3.0u** | конфликтов матчей 0 | убрано дублей 1.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 25 | data required 2
-- 🔴 Есть критическая проблема данных: operational вывод нельзя считать полностью надёжным до разбора.
