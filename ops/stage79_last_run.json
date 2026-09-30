@@ -1,16 +1,16 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-09-29T22:26:53Z",
-  "status": "ATTENTION",
+  "run_at_utc": "2026-09-30T00:36:02Z",
+  "status": "OK",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 0,
-  "daily_api_calls": 6171,
+  "provider_calls": 8,
+  "daily_api_calls": 8,
   "protected_calls": {
     "live": 0,
-    "current_round": 32,
+    "current_round": 96,
     "standings": 16,
     "safety": 8,
-    "total": 56
+    "total": 120
   },
   "roster_ttl_days": 28,
   "roster_freshness_policy": "TRANSFER_AWARE_V1",
@@ -19,12 +19,51 @@
   "sensitive_ttl_days": 3,
   "transfer_sensitive_periods": "01-01:02-15,06-01:09-10",
   "candidate_teams": 8,
-  "captured_teams": [],
-  "deferred_teams": 8,
-  "total_roster_rows": 4968,
-  "warnings": [
-    "Stage71 protected API reserve reached; Challenger deferred"
+  "captured_teams": [
+    {
+      "team_id": "337",
+      "team_name": "Slask Wroclaw",
+      "players": 32
+    },
+    {
+      "team_id": "347",
+      "team_name": "Lech Poznan",
+      "players": 28
+    },
+    {
+      "team_id": "1007",
+      "team_name": "Rizespor",
+      "players": 29
+    },
+    {
+      "team_id": "331",
+      "team_name": "Rosenborg",
+      "players": 28
+    },
+    {
+      "team_id": "332",
+      "team_name": "Sandefjord",
+      "players": 30
+    },
+    {
+      "team_id": "611",
+      "team_name": "Fenerbahçe",
+      "players": 30
+    },
+    {
+      "team_id": "569",
+      "team_name": "Club Brugge KV",
+      "players": 29
+    },
+    {
+      "team_id": "5902",
+      "team_name": "RAAL La Louvière",
+      "players": 27
+    }
   ],
+  "deferred_teams": 0,
+  "total_roster_rows": 5201,
+  "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
