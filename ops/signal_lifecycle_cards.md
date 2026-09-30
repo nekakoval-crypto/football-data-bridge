@@ -1,8 +1,8 @@
 # PBK Signal Lifecycle
 
-Обновлено UTC: 2026-09-30T00:13:22Z
+Обновлено UTC: 2026-09-30T02:09:24Z
 
-Cards: 55 | canonical 7 | WATCH 48 | events 1457
+Cards: 55 | canonical 7 | WATCH 48 | events 1465
 
 ## WATCH | Stage63 | Venezia — Fiorentina
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-11T18:45:00Z
@@ -378,48 +378,48 @@ Cards: 55 | canonical 7 | WATCH 48 | events 1457
 
 ## CANONICAL | R1 | Lecce — Bologna
 - Ставка/рынок: П2 | kickoff: 2026-10-11T13:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 252
-  - 2026-09-29T07:48:01Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
-  - 2026-09-29T08:48:59Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 254
   - 2026-09-29T09:49:25Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-29T10:49:03Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-29T11:47:46Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-29T12:53:13Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-29T13:50:07Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-29T14:49:30Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-30T00:53:20Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-30T01:47:16Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
 
 ## CANONICAL | R1 | Sassuolo — AC Milan
 - Ставка/рынок: П2 | kickoff: 2026-10-11T16:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 252
-  - 2026-09-29T07:48:01Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
-  - 2026-09-29T08:48:59Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 254
   - 2026-09-29T09:49:25Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-29T10:49:03Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-29T11:47:46Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-29T12:53:13Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-29T13:50:07Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-29T14:49:30Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-30T00:53:20Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-30T01:47:16Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
 
 ## CANONICAL | R2 | Sassuolo — AC Milan
 - Ставка/рынок: П2 | kickoff: 2026-10-11T16:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 158
-  - 2026-09-29T07:48:01Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
-  - 2026-09-29T08:48:59Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 160
   - 2026-09-29T09:49:25Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-29T10:49:03Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-29T11:47:46Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-29T12:53:13Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-29T13:50:07Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-29T14:49:30Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-30T00:53:20Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-30T01:47:16Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
 
 ## CANONICAL | R1 | Cagliari — Juventus
 - Ставка/рынок: П2 | kickoff: 2026-10-11T18:45:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 252
-  - 2026-09-29T07:48:01Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
-  - 2026-09-29T08:48:59Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 254
   - 2026-09-29T09:49:25Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-29T10:49:03Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-29T11:47:46Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-29T12:53:13Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-29T13:50:07Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-09-29T14:49:30Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-30T00:53:20Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-09-30T01:47:16Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
