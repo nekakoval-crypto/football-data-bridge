@@ -26,11 +26,10 @@ Status: **❌ FAIL**
 
 ## Global closure gate
 
-- ❌ `SYSTEM_HEALTH_NO_CRITICAL` — system health contains CRITICAL issues
+- ✅ `SYSTEM_HEALTH_NO_CRITICAL` — no CRITICAL system-health issues
 - ✅ `DATA_LAYER_INTEGRITY` — Stage72 integrity is OK
 - ✅ `INTERNAL_API_SELF_TEST` — Stage73 self-tests pass
 
 ## Next
 
 - Wait for a <=75m pre-kickoff standings capture and downstream Stage72 motivation rebuild.
-- Resolve hard health/data-layer/API integrity failures before closure.
