@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-09-30T22:56:20Z
+Обновлено UTC: 2026-10-01T00:55:09Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -11,16 +11,16 @@
 - Stage77 durable backlog: pending 173; captured 0; total 173.
 - Normalized lineup archive: 8 rows / 3 fixtures; injury archive: 54 rows / 3 fixtures.
 - Match event archive: 2169 rows / 130 fixtures; backlog pending 0 / total 130.
-- Stage81 durable backlog: pending 4888; captured 8589; total 13477.
-- Team match statistics: 8589 complete fixtures / 17178 team rows; current finished coverage 0.00%.
-- Team xG: 6251 complete fixtures / 12502 team rows; captured-team-stat coverage 72.78%.
+- Stage81 durable backlog: pending 4792; captured 8685; total 13477.
+- Team match statistics: 8685 complete fixtures / 17370 team rows; current finished coverage 0.00%.
+- Team xG: 6341 complete fixtures / 12682 team rows; captured-team-stat coverage 73.01%.
 - Player xG/xA source: RESEARCH_SOURCE_EXTERNAL_LOCAL_ATTESTED_MAPPED_TO_PBK.
 - Player stat rows: 830545; уникальных игроков: 23132.
 - Player Grade rows: 830545; уникальных игроков: 23132.
-- Current roster: 170 команд / 5201 игроковых строк.
-- Player profile evidence: 3779 rows (3663 team-source + 116 residual-ID) / 3670 players / 129 teams; current-roster coverage 66.38%; identity-ready 3401 players (61.96%).
-- Roster history: 170 команд / 186 team-snapshots / 5699 строк.
-- Membership intervals: 5203 (open 5199, closed-by-observed-absence 4).
+- Current roster: 178 команд / 5450 игроковых строк.
+- Player profile evidence: 3779 rows (3663 team-source + 116 residual-ID) / 3670 players / 129 teams; current-roster coverage 63.35%; identity-ready 3401 players (59.13%).
+- Roster history: 178 команд / 194 team-snapshots / 5948 строк.
+- Membership intervals: 5452 (open 5448, closed-by-observed-absence 4).
 - Verified PBK↔Transfermarkt identities: 1508 rows / 1508 PBK players; invalid 675.
 - Verified historical transfers: 32899 rows / 4011 PBK players; dates 1994-07-01 → 2030-06-30; invalid 6266.
 - EPL referee research: 47 referees / 897 referee×team pairs / 3420 source matches; scope EPL_ONLY; penalties unavailable.
