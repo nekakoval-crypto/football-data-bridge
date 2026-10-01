@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE81_TEAM_MATCH_STATISTICS_V1",
-  "run_at_utc": "2026-10-01T18:39:41Z",
+  "run_at_utc": "2026-10-01T20:34:04Z",
   "status": "ATTENTION",
   "provider_endpoint": "/fixtures/statistics",
   "provider_calls": 12,
-  "daily_api_calls": 5098,
+  "daily_api_calls": 5623,
   "protected_calls": {
     "live": 0,
     "current_round": 32,
@@ -39,17 +39,17 @@
   "stake_changes": false,
   "forward_journal_mutation": false,
   "warnings": [
-    "874370: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
-    "874372: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
-    "865109: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
-    "831134: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
-    "831135: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
-    "831138: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
-    "881648: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
-    "831139: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
-    "865112: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
-    "865115: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
-    "881649: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
-    "831144: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}"
+    "831145: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "881650: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "865125: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "881651: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "865117: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "831140: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "886675: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "865121: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "874374: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "865122: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "881652: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}",
+    "865123: API-Football /fixtures/statistics: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}"
   ]
 }
