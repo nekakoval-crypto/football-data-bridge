@@ -1,31 +1,31 @@
 {
   "version": "PBK_ENVIRONMENTAL_EXPECTATION_DEVIATION_V1",
-  "generated_at_utc": "2026-10-01T10:48:47Z",
+  "generated_at_utc": "2026-10-01T11:47:52Z",
   "status": "OK",
-  "bridge_without_stage273_mechanism": 28623,
+  "bridge_without_stage273_mechanism": 28533,
   "missing_closing_ou25": 140,
-  "joined_expectation_environment_rows": 8631,
+  "joined_expectation_environment_rows": 8721,
   "market_rows": 38550,
   "market_duplicate_historical_ids": 0,
   "bridge_rows": 38550,
   "bridge_eligible_rows": 37394,
-  "mechanism_rows": 8835,
+  "mechanism_rows": 8925,
   "mechanism_duplicate_fixture_ids": 0,
   "expectation_band_counts": {
-    "BALANCED": 3242,
-    "OVER_LEAN": 3847,
-    "UNDER_LEAN": 1542
+    "BALANCED": 3282,
+    "OVER_LEAN": 3884,
+    "UNDER_LEAN": 1555
   },
   "deviation_class_counts": {
-    "BALANCED_ACTUAL_OVER": 1638,
-    "BALANCED_ACTUAL_UNDER": 1604,
-    "EXPECTED_OVER_ACTUAL_OVER": 2467,
-    "EXPECTED_OVER_ACTUAL_UNDER": 1380,
-    "EXPECTED_UNDER_ACTUAL_OVER": 610,
-    "EXPECTED_UNDER_ACTUAL_UNDER": 932
+    "BALANCED_ACTUAL_OVER": 1662,
+    "BALANCED_ACTUAL_UNDER": 1620,
+    "EXPECTED_OVER_ACTUAL_OVER": 2497,
+    "EXPECTED_OVER_ACTUAL_UNDER": 1387,
+    "EXPECTED_UNDER_ACTUAL_OVER": 616,
+    "EXPECTED_UNDER_ACTUAL_UNDER": 939
   },
   "market_total_source_counts": {
-    "FOOTBALL_DATA_AVG_CLOSING_OU25": 8631
+    "FOOTBALL_DATA_AVG_CLOSING_OU25": 8721
   },
   "primary_expectation_baseline": "CLOSING_OU25_NO_VIG_PROBABILITY",
   "expected_goals_reverse_engineered": false,
