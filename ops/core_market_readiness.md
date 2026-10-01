@@ -1,6 +1,6 @@
 # PBK Core Market Data Readiness
 
-Обновлено UTC: 2026-10-01T06:43:45Z
+Обновлено UTC: 2026-10-01T12:44:05Z
 
 > Это data-readiness board. `DISCOVERY_POOL_READY` не означает value, WATCH или ставку.
 
