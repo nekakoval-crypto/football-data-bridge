@@ -27684,7 +27684,6 @@
 884637,DOMESTIC_LEAGUE,Turkey,203,Süper Lig,2022,Regular Season - 34,2023-05-17T17:00:00+00:00,Ankaragücü,Antalyaspor,1,2026-10-01T16:43:33Z,CAPTURED,42,
 884638,DOMESTIC_LEAGUE,Turkey,203,Süper Lig,2022,Regular Season - 34,2023-05-17T14:00:00+00:00,Başakşehir,Ümraniyespor,1,2026-10-01T16:43:33Z,CAPTURED,42,
 884639,DOMESTIC_LEAGUE,Turkey,203,Süper Lig,2022,Regular Season - 34,2023-05-16T17:00:00+00:00,İstanbulspor,Galatasaray,1,2026-10-01T16:43:33Z,CAPTURED,42,
-884640,DOMESTIC_LEAGUE,Turkey,203,Süper Lig,2022,Regular Season - 34,2023-05-18T17:00:00+00:00,Fenerbahçe,Trabzonspor,1,2026-10-01T16:43:33Z,ERROR,0,ApiFootballProviderError: API-Football HTTP 429 for /fixtures/players
 884641,DOMESTIC_LEAGUE,Turkey,203,Süper Lig,2022,Regular Season - 34,2023-05-17T00:00:00+00:00,Beşiktaş,Gaziantep FK,1,2026-10-01T16:43:33Z,NO_DATA,0,
 884642,DOMESTIC_LEAGUE,Turkey,203,Süper Lig,2022,Regular Season - 34,2023-05-17T17:00:00+00:00,Fatih Karagümrük,Adana Demirspor,1,2026-10-01T16:43:33Z,CAPTURED,42,
 884643,DOMESTIC_LEAGUE,Turkey,203,Süper Lig,2022,Regular Season - 34,2023-05-16T14:00:00+00:00,Sivasspor,Kasımpaşa,1,2026-10-01T16:43:33Z,CAPTURED,42,
@@ -27704,3 +27703,4 @@
 898889,DOMESTIC_LEAGUE,Portugal,94,Primeira Liga,2022,Regular Season - 32,2023-05-12T19:15:00+00:00,GIL Vicente,Boavista,1,2026-10-01T16:43:33Z,CAPTURED,40,
 898890,DOMESTIC_LEAGUE,Portugal,94,Primeira Liga,2022,Regular Season - 32,2023-05-14T19:30:00+00:00,FC Porto,Casa Pia,1,2026-10-01T16:43:33Z,CAPTURED,40,
 898891,DOMESTIC_LEAGUE,Portugal,94,Primeira Liga,2022,Regular Season - 32,2023-05-15T19:15:00+00:00,Estoril,Arouca,1,2026-10-01T16:43:33Z,CAPTURED,40,
+884640,DOMESTIC_LEAGUE,Turkey,203,Süper Lig,2022,Regular Season - 34,2023-05-18T17:00:00+00:00,Fenerbahçe,Trabzonspor,2,2026-10-01T18:47:57Z,ERROR,0,"ApiFootballProviderError: API-Football /fixtures/players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}"
