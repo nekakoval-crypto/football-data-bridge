@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 01.10.2026 15:06 (Europe/Berlin)
+Обновлено: 01.10.2026 16:05 (Europe/Berlin)
 Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -1236,11 +1236,20 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Европейская фора — нет данных
   - Ф(0) — нет данных
 
+- **Rīgas FS — Super Nova** | Virsliga | 15.10 14:00 UTC
+  - 1X2 — нет данных
+  - Тотал 2.5 — нет данных
+  - ОЗ — нет данных
+  - ИТБ/ИТМ — нет данных
+  - 1Х/Х2/12 — нет данных
+  - Европейская фора — нет данных
+  - Ф(0) — нет данных
+
 
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **CRITICAL** | critical 1 | warnings 5
+- System Health: **CRITICAL** | critical 2 | warnings 4
 - Логическая canonical экспозиция: **3.0u** | конфликтов матчей 0 | убрано дублей 1.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 25 | data required 2
