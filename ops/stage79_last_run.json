@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-10-01T00:37:13Z",
-  "status": "OK",
+  "run_at_utc": "2026-10-01T02:27:25Z",
+  "status": "ATTENTION",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 8,
-  "daily_api_calls": 8,
+  "provider_calls": 0,
+  "daily_api_calls": 584,
   "protected_calls": {
     "live": 0,
     "current_round": 96,
@@ -19,51 +19,12 @@
   "sensitive_ttl_days": 3,
   "transfer_sensitive_periods": "01-01:02-15,06-01:09-10",
   "candidate_teams": 8,
-  "captured_teams": [
-    {
-      "team_id": "201",
-      "team_name": "AZ Alkmaar",
-      "players": 31
-    },
-    {
-      "team_id": "214",
-      "team_name": "Maritimo",
-      "players": 31
-    },
-    {
-      "team_id": "601",
-      "team_name": "Austria Vienna",
-      "players": 30
-    },
-    {
-      "team_id": "637",
-      "team_name": "Sturm Graz",
-      "players": 35
-    },
-    {
-      "team_id": "205",
-      "team_name": "Fortuna Sittard",
-      "players": 30
-    },
-    {
-      "team_id": "415",
-      "team_name": "Twente",
-      "players": 29
-    },
-    {
-      "team_id": "336",
-      "team_name": "Jagiellonia",
-      "players": 36
-    },
-    {
-      "team_id": "340",
-      "team_name": "Gornik Zabrze",
-      "players": 27
-    }
-  ],
-  "deferred_teams": 0,
+  "captured_teams": [],
+  "deferred_teams": 8,
   "total_roster_rows": 5450,
-  "warnings": [],
+  "warnings": [
+    "Stage71 protected API reserve reached; Challenger deferred"
+  ],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
