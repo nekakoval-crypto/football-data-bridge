@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-02T07:04:56Z",
+  "generated_at_utc": "2026-10-02T12:54:42Z",
   "status": "OK",
   "datasets": [
     {
@@ -68,7 +68,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 24761,
+      "row_count": 24889,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -318,7 +318,7 @@
       "source": "Stage77 /fixtures/players via shared broker",
       "limitations": "Only fixtures successfully captured under protected provider budget.",
       "present": true,
-      "row_count": 1011569,
+      "row_count": 1045537,
       "columns": [
         "fixture_id",
         "team_id",
@@ -357,7 +357,7 @@
       "missing_required_fields": [],
       "contract_status": "OK",
       "partitioned": true,
-      "part_count": 9,
+      "part_count": 10,
       "identity_key_text": "fixture_id+team_id+player_id",
       "observed_time_fields_text": "observed_at_utc",
       "effective_time_fields_text": "kickoff_utc"
@@ -462,7 +462,7 @@
       "source": "Stage77/78 derived from captured player stats",
       "limitations": "Research-derived grade; not raw provider fact and not canonical authority.",
       "present": true,
-      "row_count": 1011569,
+      "row_count": 1045537,
       "columns": [
         "fixture_id",
         "team_id",
@@ -490,7 +490,7 @@
       "missing_required_fields": [],
       "contract_status": "OK",
       "partitioned": true,
-      "part_count": 9,
+      "part_count": 10,
       "identity_key_text": "fixture_id+team_id+player_id",
       "observed_time_fields_text": "observed_at_utc",
       "effective_time_fields_text": "kickoff_utc"
@@ -1511,7 +1511,7 @@
       "source": "Stage80 normalized projection from team_roster_history + player_stats_snapshots",
       "limitations": "Observed player directory only; does not infer current team, exact transfer dates, xG or xA.",
       "present": true,
-      "row_count": 25186,
+      "row_count": 26033,
       "columns": [
         "player_id",
         "latest_observed_name",
