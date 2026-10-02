@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-02T07:01:42Z",
+  "generated_at_utc": "2026-10-02T07:05:18Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -54,7 +54,7 @@
     "player_profiles": {
       "file": "player_profile_evidence.csv",
       "present": true,
-      "rows": 3779
+      "rows": 5291
     },
     "roster_history": {
       "file": "team_roster_history.csv",
@@ -69,12 +69,12 @@
     "transfer_identity": {
       "file": "pbk_transfermarkt_player_identity.csv",
       "present": true,
-      "rows": 2259
+      "rows": 2600
     },
     "transfer_history": {
       "file": "historical_transfer_events.csv",
       "present": true,
-      "rows": 39176
+      "rows": 40453
     },
     "match_context": {
       "file": "match_context_snapshots.csv",
@@ -404,26 +404,26 @@
   },
   "player_profiles": {
     "present": true,
-    "rows": 3779,
-    "valid_rows": 3779,
-    "team_source_rows": 3663,
-    "residual_player_id_source_rows": 116,
-    "identity_ready_rows": 3510,
+    "rows": 5291,
+    "valid_rows": 5291,
+    "team_source_rows": 5168,
+    "residual_player_id_source_rows": 123,
+    "identity_ready_rows": 4919,
     "invalid_rows": 0,
-    "unique_players": 3670,
-    "identity_ready_unique_players": 3401,
-    "unique_teams": 129,
-    "current_roster_player_coverage_pct": 60.64,
-    "identity_ready_current_roster_coverage_pct": 56.6,
+    "unique_players": 5126,
+    "identity_ready_unique_players": 4755,
+    "unique_teams": 181,
+    "current_roster_player_coverage_pct": 84.24,
+    "identity_ready_current_roster_coverage_pct": 78.55,
     "evidence_note": "Bounded API-Football player profile evidence from team+season plus residual player-id+season calls. Residual team context is taken from the current PBK roster, not inferred from season statistics. Full-name+DOB+club may support conservative cross-provider identity mapping; this never grants betting/model authority."
   },
   "transfer_identity": {
     "present": true,
-    "rows": 2259,
-    "valid_rows": 1585,
-    "invalid_rows": 674,
-    "unique_pbk_players": 1585,
-    "unique_transfermarkt_players": 1585,
+    "rows": 2600,
+    "valid_rows": 1757,
+    "invalid_rows": 843,
+    "unique_pbk_players": 1757,
+    "unique_transfermarkt_players": 1757,
     "approved_methods": [
       "EXACT_NAME_CURRENT_CLUB",
       "EXACT_PROFILE_NAME_DOB_CURRENT_CLUB",
@@ -433,11 +433,11 @@
   },
   "transfer_history": {
     "present": true,
-    "rows": 39176,
-    "valid_rows": 32910,
-    "invalid_identity_rows": 6266,
-    "unique_pbk_players": 4013,
-    "unique_transfermarkt_players": 4013,
+    "rows": 40453,
+    "valid_rows": 33128,
+    "invalid_identity_rows": 7325,
+    "unique_pbk_players": 4043,
+    "unique_transfermarkt_players": 4042,
     "earliest_transfer_date": "1994-07-01",
     "latest_transfer_date": "2030-06-30",
     "evidence_note": "Durable transfer events count only when linked by an approved HIGH-confidence exact-name+club identity method; this is historical enrichment, not current squad authority."
