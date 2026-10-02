@@ -30500,7 +30500,6 @@
 718410,DOMESTIC_LEAGUE,France,61,Ligue 1,2021,Regular Season - 6,2021-09-19T13:00:00+00:00,Estac Troyes,Montpellier,1,2026-10-02T20:44:12Z,CAPTURED,40,
 718413,DOMESTIC_LEAGUE,France,61,Ligue 1,2021,Regular Season - 7,2021-09-22T17:00:00+00:00,Lille,Reims,1,2026-10-02T20:44:12Z,CAPTURED,40,
 718417,DOMESTIC_LEAGUE,France,61,Ligue 1,2021,Regular Season - 7,2021-09-22T17:00:00+00:00,Monaco,Saint Etienne,1,2026-10-02T20:44:12Z,CAPTURED,40,
-718418,DOMESTIC_LEAGUE,France,61,Ligue 1,2021,Regular Season - 7,2021-09-22T17:00:00+00:00,Montpellier,Bordeaux,1,2026-10-02T20:44:12Z,ERROR,0,"ApiFootballProviderError: API-Football /fixtures/players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}"
 718925,DOMESTIC_LEAGUE,Austria,218,Bundesliga,2021,Regular Season - 3,2021-08-08T15:00:00+00:00,Rapid Vienna,Wolfsberger AC,1,2026-10-02T20:44:12Z,CAPTURED,36,
 718927,DOMESTIC_LEAGUE,Austria,218,Bundesliga,2021,Regular Season - 3,2021-08-08T15:00:00+00:00,WSG Wattens,Lask Linz,1,2026-10-02T20:44:12Z,CAPTURED,36,
 718928,DOMESTIC_LEAGUE,Austria,218,Bundesliga,2021,Regular Season - 3,2021-08-08T15:00:00+00:00,Red Bull Salzburg,Austria Vienna,1,2026-10-02T20:44:12Z,CAPTURED,36,
@@ -30584,3 +30583,4 @@
 731329,DOMESTIC_LEAGUE,Portugal,94,Primeira Liga,2021,Regular Season - 6,2021-09-19T19:30:00+00:00,Estoril,Sporting CP,1,2026-10-02T20:44:12Z,CAPTURED,40,
 731330,DOMESTIC_LEAGUE,Portugal,94,Primeira Liga,2021,Regular Season - 6,2021-09-19T14:30:00+00:00,Vizela,Pacos Ferreira,1,2026-10-02T20:44:12Z,CAPTURED,40,
 731331,DOMESTIC_LEAGUE,Portugal,94,Primeira Liga,2021,Regular Season - 6,2021-09-18T19:30:00+00:00,Arouca,Vitória SC,1,2026-10-02T20:44:12Z,CAPTURED,40,
+718418,DOMESTIC_LEAGUE,France,61,Ligue 1,2021,Regular Season - 7,2021-09-22T17:00:00+00:00,Montpellier,Bordeaux,2,2026-10-02T22:43:24Z,ERROR,0,"ApiFootballProviderError: API-Football /fixtures/players: {'requests': 'You have reached the request limit for the day, Go to https://dashboard.api-football.com to upgrade your plan.'}"
