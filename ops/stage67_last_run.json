@@ -1,9 +1,9 @@
 {
-  "run_at_utc": "2026-10-02T00:09:21Z",
+  "run_at_utc": "2026-10-02T01:08:49Z",
   "status": "OK",
   "system_health": "CRITICAL",
-  "critical_issues": 5,
-  "warnings": 7,
+  "critical_issues": 2,
+  "warnings": 3,
   "active_canonical_rows": 4,
   "watch_crossing_rows": 48,
   "api_calls": 0,
@@ -17,7 +17,7 @@
   "stage73_api_tests": "16/16",
   "stage71j_real_api_calls": 177,
   "stage71j_api_budget": 190,
-  "stage71j_cache_hits": 303,
+  "stage71j_cache_hits": 307,
   "stage71j_child_warnings": 0,
   "optional_stable_sources_pending": []
 }
