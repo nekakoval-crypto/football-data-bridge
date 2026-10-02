@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-02T18:52:19Z",
+  "generated_at_utc": "2026-10-02T18:58:13Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -69,12 +69,12 @@
     "transfer_identity": {
       "file": "pbk_transfermarkt_player_identity.csv",
       "present": true,
-      "rows": 2610
+      "rows": 2611
     },
     "transfer_history": {
       "file": "historical_transfer_events.csv",
       "present": true,
-      "rows": 40498
+      "rows": 40505
     },
     "match_context": {
       "file": "match_context_snapshots.csv",
@@ -408,20 +408,20 @@
     "valid_rows": 5346,
     "team_source_rows": 5168,
     "residual_player_id_source_rows": 178,
-    "identity_ready_rows": 4958,
+    "identity_ready_rows": 4957,
     "invalid_rows": 0,
     "unique_players": 5181,
-    "identity_ready_unique_players": 4794,
+    "identity_ready_unique_players": 4793,
     "unique_teams": 183,
     "current_roster_player_coverage_pct": 85.21,
-    "identity_ready_current_roster_coverage_pct": 79.24,
+    "identity_ready_current_roster_coverage_pct": 79.22,
     "evidence_note": "Bounded API-Football player profile evidence from team+season plus residual player-id+season calls. Residual team context is taken from the current PBK roster, not inferred from season statistics. Full-name+DOB+club may support conservative cross-provider identity mapping; this never grants betting/model authority."
   },
   "transfer_identity": {
     "present": true,
-    "rows": 2610,
+    "rows": 2611,
     "valid_rows": 1759,
-    "invalid_rows": 851,
+    "invalid_rows": 852,
     "unique_pbk_players": 1759,
     "unique_transfermarkt_players": 1759,
     "approved_methods": [
@@ -433,9 +433,9 @@
   },
   "transfer_history": {
     "present": true,
-    "rows": 40498,
+    "rows": 40505,
     "valid_rows": 33128,
-    "invalid_identity_rows": 7370,
+    "invalid_identity_rows": 7377,
     "unique_pbk_players": 4043,
     "unique_transfermarkt_players": 4042,
     "earliest_transfer_date": "1994-07-01",
