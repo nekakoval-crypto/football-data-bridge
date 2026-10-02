@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 02.10.2026 17:04 (Europe/Berlin)
+Обновлено: 02.10.2026 19:03 (Europe/Berlin)
 Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -1245,11 +1245,29 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Европейская фора — нет данных
   - Ф(0) — нет данных
 
+- **AC Horsens — Randers FC** | Danish Superliga | 16.10 17:00 UTC
+  - 1X2 — нет данных
+  - Тотал 2.5 — нет данных
+  - ОЗ — нет данных
+  - ИТБ/ИТМ — нет данных
+  - 1Х/Х2/12 — нет данных
+  - Европейская фора — нет данных
+  - Ф(0) — нет данных
+
+- **Çorum FK — Rizespor** | Super Lig | 16.10 17:00 UTC
+  - 1X2 — нет данных
+  - Тотал 2.5 — нет данных
+  - ОЗ — нет данных
+  - ИТБ/ИТМ — нет данных
+  - 1Х/Х2/12 — нет данных
+  - Европейская фора — нет данных
+  - Ф(0) — нет данных
+
 
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **CRITICAL** | critical 4 | warnings 0
+- System Health: **CRITICAL** | critical 3 | warnings 2
 - Логическая canonical экспозиция: **3.0u** | конфликтов матчей 0 | убрано дублей 1.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 25 | data required 2
