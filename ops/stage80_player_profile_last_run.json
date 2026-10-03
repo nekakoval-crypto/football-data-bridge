@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_PLAYER_PROFILE_ENRICHMENT_V2_RESIDUAL_ID",
-  "run_at_utc": "2026-10-03T00:43:04Z",
+  "run_at_utc": "2026-10-03T06:51:03Z",
   "status": "ATTENTION",
   "season": "2026",
   "provider_endpoints": [
@@ -9,10 +9,10 @@
   ],
   "refresh_days": 7,
   "residual_retry_days": 7,
-  "provider_calls": 400,
-  "team_provider_calls": 97,
-  "residual_provider_calls": 303,
-  "daily_api_calls": 408,
+  "provider_calls": 41,
+  "team_provider_calls": 7,
+  "residual_provider_calls": 34,
+  "daily_api_calls": 1453,
   "protected_calls": {
     "live": 0,
     "current_round": 180,
@@ -20,256 +20,28 @@
     "safety": 100,
     "total": 312
   },
-  "candidate_teams": 52,
-  "completed_teams": [
-    {
-      "team_id": "492",
-      "team_name": "Napoli",
-      "profile_rows": 26
-    },
-    {
-      "team_id": "85",
-      "team_name": "Paris Saint Germain",
-      "profile_rows": 26
-    },
-    {
-      "team_id": "173",
-      "team_name": "RB Leipzig",
-      "profile_rows": 29
-    },
-    {
-      "team_id": "543",
-      "team_name": "Real Betis",
-      "profile_rows": 28
-    },
-    {
-      "team_id": "94",
-      "team_name": "Rennes",
-      "profile_rows": 25
-    },
-    {
-      "team_id": "1660",
-      "team_name": "SV Elversberg",
-      "profile_rows": 21
-    },
-    {
-      "team_id": "106",
-      "team_name": "Stade Brestois 29",
-      "profile_rows": 28
-    },
-    {
-      "team_id": "503",
-      "team_name": "Torino",
-      "profile_rows": 35
-    },
-    {
-      "team_id": "47",
-      "team_name": "Tottenham",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "517",
-      "team_name": "Venezia",
-      "profile_rows": 34
-    },
-    {
-      "team_id": "533",
-      "team_name": "Villarreal",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "77",
-      "team_name": "Angers",
-      "profile_rows": 25
-    },
-    {
-      "team_id": "51",
-      "team_name": "Brighton",
-      "profile_rows": 31
-    },
-    {
-      "team_id": "895",
-      "team_name": "Como",
-      "profile_rows": 32
-    },
-    {
-      "team_id": "1346",
-      "team_name": "Coventry",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "52",
-      "team_name": "Crystal Palace",
-      "profile_rows": 31
-    },
-    {
-      "team_id": "45",
-      "team_name": "Everton",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "502",
-      "team_name": "Fiorentina",
-      "profile_rows": 32
-    },
-    {
-      "team_id": "505",
-      "team_name": "Inter",
-      "profile_rows": 26
-    },
-    {
-      "team_id": "57",
-      "team_name": "Ipswich",
-      "profile_rows": 29
-    },
-    {
-      "team_id": "40",
-      "team_name": "Liverpool",
-      "profile_rows": 25
-    },
-    {
-      "team_id": "80",
-      "team_name": "Lyon",
-      "profile_rows": 31
-    },
-    {
-      "team_id": "81",
-      "team_name": "Marseille",
-      "profile_rows": 26
-    },
-    {
-      "team_id": "91",
-      "team_name": "Monaco",
-      "profile_rows": 30
-    },
-    {
-      "team_id": "523",
-      "team_name": "Parma",
-      "profile_rows": 33
-    },
-    {
-      "team_id": "536",
-      "team_name": "Sevilla",
-      "profile_rows": 32
-    },
-    {
-      "team_id": "42",
-      "team_name": "Arsenal",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "36",
-      "team_name": "Fulham",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "63",
-      "team_name": "Leeds",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "727",
-      "team_name": "Osasuna",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "746",
-      "team_name": "Sunderland",
-      "profile_rows": 31
-    },
-    {
-      "team_id": "494",
-      "team_name": "Udinese",
-      "profile_rows": 33
-    },
-    {
-      "team_id": "256",
-      "team_name": "Motherwell",
-      "profile_rows": 31
-    },
-    {
-      "team_id": "195",
-      "team_name": "Willem II",
-      "profile_rows": 32
-    },
-    {
-      "team_id": "401",
-      "team_name": "Randers FC",
-      "profile_rows": 33
-    },
-    {
-      "team_id": "2070",
-      "team_name": "Viborg",
-      "profile_rows": 26
-    },
-    {
-      "team_id": "564",
-      "team_name": "Başakşehir",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "736",
-      "team_name": "Charleroi",
-      "profile_rows": 27
-    },
-    {
-      "team_id": "733",
-      "team_name": "Standard Liege",
-      "profile_rows": 25
-    },
-    {
-      "team_id": "607",
-      "team_name": "Konyaspor",
-      "profile_rows": 28
-    },
-    {
-      "team_id": "625",
-      "team_name": "Lyngby",
-      "profile_rows": 25
-    },
-    {
-      "team_id": "6962",
-      "team_name": "Widzew Łódź",
-      "profile_rows": 29
-    },
-    {
-      "team_id": "1004",
-      "team_name": "Kasımpaşa",
-      "profile_rows": 28
-    },
-    {
-      "team_id": "17115",
-      "team_name": "Wieczysta Kraków",
-      "profile_rows": 28
-    },
-    {
-      "team_id": "2073",
-      "team_name": "Silkeborg",
-      "profile_rows": 28
-    }
-  ],
+  "candidate_teams": 7,
+  "completed_teams": [],
   "deferred_teams": 0,
-  "residual_candidate_players": 336,
-  "residual_captured_players": 25,
-  "residual_empty_players": 277,
-  "residual_error_players": 1,
-  "residual_deferred_players": 33,
+  "residual_candidate_players": 34,
+  "residual_captured_players": 2,
+  "residual_empty_players": 32,
+  "residual_error_players": 0,
+  "residual_deferred_players": 0,
   "residual_ambiguous_current_roster_player_ids": 0,
-  "residual_suppressed_recent_attempts": 564,
-  "profile_rows": 5572,
-  "unique_profile_players": 5396,
+  "residual_suppressed_recent_attempts": 841,
+  "profile_rows": 5574,
+  "unique_profile_players": 5398,
   "current_roster_players": 5936,
-  "current_roster_player_coverage_pct": 85.26,
+  "current_roster_player_coverage_pct": 85.29,
   "warnings": [
-    "4144 Tukums: provider returned no usable profile rows",
-    "4149 BFC Daugavpils: provider returned no usable profile rows",
     "586 FK Zalgiris Vilnius: provider returned no usable profile rows",
-    "612 Suduva Marijampole: provider returned no usable profile rows",
+    "4149 BFC Daugavpils: provider returned no usable profile rows",
+    "4144 Tukums: provider returned no usable profile rows",
     "18936 Ogre United: provider returned no usable profile rows",
-    "4143 Super Nova: provider returned no usable profile rows",
     "4138 Grobiņa: provider returned no usable profile rows",
-    "residual player 561309 Tukums: API-Football /players: {'bug': 'This is on our side, please report us this bug on https://dashboard.api-football.com', 'error': '5xEr'}",
-    "Stage80 player-profile per-run API limit reached"
+    "4143 Super Nova: provider returned no usable profile rows",
+    "612 Suduva Marijampole: provider returned no usable profile rows"
   ],
   "provider_polling_frontend": false,
   "research_only": true,
