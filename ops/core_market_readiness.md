@@ -1,6 +1,6 @@
 # PBK Core Market Data Readiness
 
-Обновлено UTC: 2026-10-03T00:42:36Z
+Обновлено UTC: 2026-10-03T06:50:44Z
 
 > Это data-readiness board. `DISCOVERY_POOL_READY` не означает value, WATCH или ставку.
 
@@ -15,7 +15,7 @@
 - Next gate: Freeze discovery sample, preregister hypothesis, test on independent future holdout
 
 ## Фора 0 — Ф1(0) / Ф2(0) — DISCOVERY_POOL_READY
-- Openers: 308 rows / 308 fixtures; snapshots: 2424 rows / 246 fixtures; closes: 246 rows / 246 fixtures.
+- Openers: 309 rows / 309 fixtures; snapshots: 2424 rows / 246 fixtures; closes: 246 rows / 246 fixtures.
 - Marathonbet close coverage: 99.59%; settlement coverage: 99.59%.
 - Blocking: нет на уровне data-readiness policy.
 - Next gate: Collect a new prospective discovery sample; any future hypothesis requires new preregistration and independent future holdout
