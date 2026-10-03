@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-02T22:56:30Z",
+  "generated_at_utc": "2026-10-03T00:54:05Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -49,7 +49,7 @@
     "current_rosters": {
       "file": "team_rosters.csv",
       "present": true,
-      "rows": 5702
+      "rows": 5940
     },
     "player_profiles": {
       "file": "player_profile_evidence.csv",
@@ -59,12 +59,12 @@
     "roster_history": {
       "file": "team_roster_history.csv",
       "present": true,
-      "rows": 6200
+      "rows": 6438
     },
     "membership_intervals": {
       "file": "team_membership_intervals.csv",
       "present": true,
-      "rows": 5704
+      "rows": 5942
     },
     "transfer_identity": {
       "file": "pbk_transfermarkt_player_identity.csv",
@@ -393,13 +393,13 @@
     "unique_players_with_grades": 25625
   },
   "rosters": {
-    "current_roster_rows": 5702,
-    "current_roster_teams": 186,
-    "history_rows": 6200,
-    "history_teams": 186,
-    "history_team_snapshots": 202,
-    "membership_intervals": 5704,
-    "open_latest_intervals": 5700,
+    "current_roster_rows": 5940,
+    "current_roster_teams": 194,
+    "history_rows": 6438,
+    "history_teams": 194,
+    "history_team_snapshots": 210,
+    "membership_intervals": 5942,
+    "open_latest_intervals": 5938,
     "closed_by_observed_absence_intervals": 4
   },
   "player_profiles": {
@@ -413,8 +413,8 @@
     "unique_players": 5181,
     "identity_ready_unique_players": 4793,
     "unique_teams": 183,
-    "current_roster_player_coverage_pct": 85.21,
-    "identity_ready_current_roster_coverage_pct": 79.22,
+    "current_roster_player_coverage_pct": 81.92,
+    "identity_ready_current_roster_coverage_pct": 76.15,
     "evidence_note": "Bounded API-Football player profile evidence from team+season plus residual player-id+season calls. Residual team context is taken from the current PBK roster, not inferred from season statistics. Full-name+DOB+club may support conservative cross-provider identity mapping; this never grants betting/model authority."
   },
   "transfer_identity": {
