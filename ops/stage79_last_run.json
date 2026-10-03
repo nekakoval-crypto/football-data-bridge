@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-10-03T00:34:11Z",
-  "status": "OK",
+  "run_at_utc": "2026-10-03T02:33:46Z",
+  "status": "ATTENTION",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 8,
-  "daily_api_calls": 8,
+  "provider_calls": 0,
+  "daily_api_calls": 408,
   "protected_calls": {
     "live": 0,
     "current_round": 96,
@@ -19,51 +19,12 @@
   "sensitive_ttl_days": 3,
   "transfer_sensitive_periods": "01-01:02-15,06-01:09-10",
   "candidate_teams": 8,
-  "captured_teams": [
-    {
-      "team_id": "195",
-      "team_name": "Willem II",
-      "players": 34
-    },
-    {
-      "team_id": "564",
-      "team_name": "Başakşehir",
-      "players": 27
-    },
-    {
-      "team_id": "256",
-      "team_name": "Motherwell",
-      "players": 36
-    },
-    {
-      "team_id": "4149",
-      "team_name": "BFC Daugavpils",
-      "players": 27
-    },
-    {
-      "team_id": "733",
-      "team_name": "Standard Liege",
-      "players": 27
-    },
-    {
-      "team_id": "736",
-      "team_name": "Charleroi",
-      "players": 27
-    },
-    {
-      "team_id": "2070",
-      "team_name": "Viborg",
-      "players": 28
-    },
-    {
-      "team_id": "401",
-      "team_name": "Randers FC",
-      "players": 32
-    }
-  ],
-  "deferred_teams": 0,
+  "captured_teams": [],
+  "deferred_teams": 8,
   "total_roster_rows": 5940,
-  "warnings": [],
+  "warnings": [
+    "Stage71 protected API reserve reached; Challenger deferred"
+  ],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
