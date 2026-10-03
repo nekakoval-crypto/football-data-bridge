@@ -1,16 +1,16 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-10-02T22:27:16Z",
-  "status": "ATTENTION",
+  "run_at_utc": "2026-10-03T00:34:11Z",
+  "status": "OK",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 0,
-  "daily_api_calls": 4282,
+  "provider_calls": 8,
+  "daily_api_calls": 8,
   "protected_calls": {
     "live": 0,
-    "current_round": 32,
+    "current_round": 96,
     "standings": 16,
     "safety": 8,
-    "total": 56
+    "total": 120
   },
   "roster_ttl_days": 28,
   "roster_freshness_policy": "TRANSFER_AWARE_V1",
@@ -19,12 +19,51 @@
   "sensitive_ttl_days": 3,
   "transfer_sensitive_periods": "01-01:02-15,06-01:09-10",
   "candidate_teams": 8,
-  "captured_teams": [],
-  "deferred_teams": 8,
-  "total_roster_rows": 5702,
-  "warnings": [
-    "Stage71 protected API reserve reached; Challenger deferred"
+  "captured_teams": [
+    {
+      "team_id": "195",
+      "team_name": "Willem II",
+      "players": 34
+    },
+    {
+      "team_id": "564",
+      "team_name": "Başakşehir",
+      "players": 27
+    },
+    {
+      "team_id": "256",
+      "team_name": "Motherwell",
+      "players": 36
+    },
+    {
+      "team_id": "4149",
+      "team_name": "BFC Daugavpils",
+      "players": 27
+    },
+    {
+      "team_id": "733",
+      "team_name": "Standard Liege",
+      "players": 27
+    },
+    {
+      "team_id": "736",
+      "team_name": "Charleroi",
+      "players": 27
+    },
+    {
+      "team_id": "2070",
+      "team_name": "Viborg",
+      "players": 28
+    },
+    {
+      "team_id": "401",
+      "team_name": "Randers FC",
+      "players": 32
+    }
   ],
+  "deferred_teams": 0,
+  "total_roster_rows": 5940,
+  "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
