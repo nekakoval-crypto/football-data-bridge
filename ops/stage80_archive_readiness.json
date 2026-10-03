@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-03T06:51:19Z",
+  "generated_at_utc": "2026-10-03T06:58:20Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -54,7 +54,7 @@
     "player_profiles": {
       "file": "player_profile_evidence.csv",
       "present": true,
-      "rows": 5572
+      "rows": 5574
     },
     "roster_history": {
       "file": "team_roster_history.csv",
@@ -69,12 +69,12 @@
     "transfer_identity": {
       "file": "pbk_transfermarkt_player_identity.csv",
       "present": true,
-      "rows": 2680
+      "rows": 2684
     },
     "transfer_history": {
       "file": "historical_transfer_events.csv",
       "present": true,
-      "rows": 40719
+      "rows": 40723
     },
     "match_context": {
       "file": "match_context_snapshots.csv",
@@ -404,26 +404,26 @@
   },
   "player_profiles": {
     "present": true,
-    "rows": 5572,
-    "valid_rows": 5572,
+    "rows": 5574,
+    "valid_rows": 5574,
     "team_source_rows": 5369,
-    "residual_player_id_source_rows": 203,
-    "identity_ready_rows": 5158,
+    "residual_player_id_source_rows": 205,
+    "identity_ready_rows": 5160,
     "invalid_rows": 0,
-    "unique_players": 5396,
-    "identity_ready_unique_players": 4985,
+    "unique_players": 5398,
+    "identity_ready_unique_players": 4987,
     "unique_teams": 194,
-    "current_roster_player_coverage_pct": 85.26,
-    "identity_ready_current_roster_coverage_pct": 79.09,
+    "current_roster_player_coverage_pct": 85.29,
+    "identity_ready_current_roster_coverage_pct": 79.13,
     "evidence_note": "Bounded API-Football player profile evidence from team+season plus residual player-id+season calls. Residual team context is taken from the current PBK roster, not inferred from season statistics. Full-name+DOB+club may support conservative cross-provider identity mapping; this never grants betting/model authority."
   },
   "transfer_identity": {
     "present": true,
-    "rows": 2680,
-    "valid_rows": 1798,
-    "invalid_rows": 882,
-    "unique_pbk_players": 1798,
-    "unique_transfermarkt_players": 1798,
+    "rows": 2684,
+    "valid_rows": 1804,
+    "invalid_rows": 880,
+    "unique_pbk_players": 1804,
+    "unique_transfermarkt_players": 1804,
     "approved_methods": [
       "EXACT_NAME_CURRENT_CLUB",
       "EXACT_PROFILE_NAME_DOB_CURRENT_CLUB",
@@ -433,9 +433,9 @@
   },
   "transfer_history": {
     "present": true,
-    "rows": 40719,
+    "rows": 40723,
     "valid_rows": 33156,
-    "invalid_identity_rows": 7563,
+    "invalid_identity_rows": 7567,
     "unique_pbk_players": 4047,
     "unique_transfermarkt_players": 4046,
     "earliest_transfer_date": "1994-07-01",
