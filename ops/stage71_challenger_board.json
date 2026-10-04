@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-04T03:07:25Z",
+  "generated_at_utc": "2026-10-04T15:12:21Z",
   "status": "OK",
   "scope_leagues": 16,
   "families": [
@@ -236,10 +236,10 @@
       "marathonbet_coverage_pct": "100.000",
       "status": "MONITORING",
       "leader": "NO",
-      "blocking_reason": "fresh discovery sample 2/120 settled (118 remaining); executable 2/2; Marathonbet coverage 100.0%; ROI 68.50%; first-half 78.00%; second-half 59.00%; no direct promotion",
-      "prospective_captured": "2",
-      "prospective_executable": "2",
-      "prospective_pending_executable": "0",
+      "blocking_reason": "fresh discovery sample 2/120 settled (118 remaining); executable 4/4; Marathonbet coverage 100.0%; ROI 68.50%; first-half 78.00%; second-half 59.00%; no direct promotion",
+      "prospective_captured": "4",
+      "prospective_executable": "4",
+      "prospective_pending_executable": "2",
       "review_target_settled": "60",
       "review_remaining_settled": "58",
       "review_progress_pct": "3.3",
@@ -467,10 +467,10 @@
       "marathonbet_coverage_pct": "100.000",
       "status": "MONITORING",
       "leader": "NO",
-      "blocking_reason": "fresh discovery sample 4/120 settled (116 remaining); executable 4/4; Marathonbet coverage 100.0%; ROI -18.50%; first-half -38.50%; second-half 1.50%; no direct promotion",
-      "prospective_captured": "4",
-      "prospective_executable": "4",
-      "prospective_pending_executable": "0",
+      "blocking_reason": "fresh discovery sample 4/120 settled (116 remaining); executable 6/6; Marathonbet coverage 100.0%; ROI -18.50%; first-half -38.50%; second-half 1.50%; no direct promotion",
+      "prospective_captured": "6",
+      "prospective_executable": "6",
+      "prospective_pending_executable": "2",
       "review_target_settled": "60",
       "review_remaining_settled": "56",
       "review_progress_pct": "6.7",
@@ -500,10 +500,10 @@
       "marathonbet_coverage_pct": "100.000",
       "status": "MONITORING",
       "leader": "NO",
-      "blocking_reason": "fresh discovery sample 4/120 settled (116 remaining); executable 4/4; Marathonbet coverage 100.0%; ROI -53.50%; first-half -7.00%; second-half -100.00%; no direct promotion",
-      "prospective_captured": "4",
-      "prospective_executable": "4",
-      "prospective_pending_executable": "0",
+      "blocking_reason": "fresh discovery sample 4/120 settled (116 remaining); executable 6/6; Marathonbet coverage 100.0%; ROI -53.50%; first-half -7.00%; second-half -100.00%; no direct promotion",
+      "prospective_captured": "6",
+      "prospective_executable": "6",
+      "prospective_pending_executable": "2",
       "review_target_settled": "60",
       "review_remaining_settled": "56",
       "review_progress_pct": "6.7",
@@ -1095,5 +1095,5 @@
     "automatic_promotion": "FORBIDDEN",
     "automatic_suspension": "FORBIDDEN"
   },
-  "progress_generated_at_utc": "2026-10-04T03:07:25Z"
+  "progress_generated_at_utc": "2026-10-04T15:12:21Z"
 }
