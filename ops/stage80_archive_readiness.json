@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-04T21:28:06Z",
+  "generated_at_utc": "2026-10-04T22:59:58Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -22,13 +22,13 @@
     "player_stats": {
       "file": "player_stats_snapshots_parts/*.csv",
       "present": true,
-      "rows": 1255210,
+      "rows": 1295346,
       "partitioned": true
     },
     "player_grades": {
       "file": "player_grade_snapshots_parts/*.csv",
       "present": true,
-      "rows": 1255210,
+      "rows": 1295346,
       "partitioned": true
     },
     "stage77_backlog": {
@@ -285,8 +285,8 @@
   "fixtures": {
     "current_inventory": 128,
     "finished_in_current_inventory": 2,
-    "player_stats_fixture_count_all_snapshots": 33848,
-    "player_grade_fixture_count_all_snapshots": 33848,
+    "player_stats_fixture_count_all_snapshots": 34792,
+    "player_grade_fixture_count_all_snapshots": 34792,
     "finished_current_inventory_with_player_stats": 0,
     "finished_current_inventory_player_stats_coverage_pct": 0.0,
     "per_league": [
@@ -387,10 +387,10 @@
     "player_xg_xa_evidence_note": "Stage91 provides StatsBomb research metrics. The large Stage91 source payload may remain external/local when an OK Stage91 meta attestation plus valid Stage92 AUTO/HIGH mapped rows are persisted; this never implies the source CSV is stored in Git. Stage92 maps only exact full names through the verified Transfermarkt→PBK bridge; abbreviated-name candidates remain REVIEW and never enter mapped research. Mapped xG/xA remains research-only and non-operational."
   },
   "players": {
-    "player_stat_rows": 1255210,
-    "unique_players_with_stats": 26315,
-    "player_grade_rows": 1255210,
-    "unique_players_with_grades": 26315
+    "player_stat_rows": 1295346,
+    "unique_players_with_stats": 26468,
+    "player_grade_rows": 1295346,
+    "unique_players_with_grades": 26468
   },
   "rosters": {
     "current_roster_rows": 5940,
