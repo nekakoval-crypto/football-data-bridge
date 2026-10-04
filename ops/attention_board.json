@@ -1,17 +1,17 @@
 {
-  "generated_at_utc": "2026-10-04T17:36:42Z",
-  "generated_at_local": "2026-10-04T19:36:42+02:00",
+  "generated_at_utc": "2026-10-04T21:06:43Z",
+  "generated_at_local": "2026-10-04T23:06:43+02:00",
   "timezone": "Europe/Berlin",
   "status": "OK",
   "summary": {
     "red_attention": 0,
     "orange_attention": 0,
-    "blue_canonical": 4,
-    "active_canonical": 4,
+    "blue_canonical": 10,
+    "active_canonical": 10,
     "active_watch_crossings": 0,
     "nearest_monitored_rows": 9,
     "recent_results": 3,
-    "market_cards": 172
+    "market_cards": 179
   },
   "red": [],
   "orange": [],
@@ -26,7 +26,7 @@
       "fixture_id": "1550143",
       "kickoff_utc": "2026-10-11T13:00:00Z",
       "kickoff_local": "11.10 15:00",
-      "hours_to_kickoff": 163.39,
+      "hours_to_kickoff": 159.89,
       "home_team": "Lecce",
       "away_team": "Bologna",
       "selection": "П2",
@@ -46,7 +46,7 @@
       "fixture_id": "1550145",
       "kickoff_utc": "2026-10-11T16:00:00Z",
       "kickoff_local": "11.10 18:00",
-      "hours_to_kickoff": 166.39,
+      "hours_to_kickoff": 162.89,
       "home_team": "Sassuolo",
       "away_team": "AC Milan",
       "selection": "П2",
@@ -66,7 +66,7 @@
       "fixture_id": "1550145",
       "kickoff_utc": "2026-10-11T16:00:00Z",
       "kickoff_local": "11.10 18:00",
-      "hours_to_kickoff": 166.39,
+      "hours_to_kickoff": 162.89,
       "home_team": "Sassuolo",
       "away_team": "AC Milan",
       "selection": "П2",
@@ -86,7 +86,7 @@
       "fixture_id": "1550138",
       "kickoff_utc": "2026-10-11T18:45:00Z",
       "kickoff_local": "11.10 20:45",
-      "hours_to_kickoff": 169.14,
+      "hours_to_kickoff": 165.64,
       "home_team": "Cagliari",
       "away_team": "Juventus",
       "selection": "П2",
@@ -94,6 +94,126 @@
       "paper_user_book": "Marathonbet",
       "status": "PAPER",
       "context": "гости после еврокубка/кубка; у гостей следующий матч еврокубок/кубок",
+      "snapshot_type": "BASELINE"
+    },
+    {
+      "type": "CANONICAL",
+      "priority": "BLUE",
+      "reason": "активный canonical сигнал",
+      "forward_id": "R1|I1|1550156",
+      "rule": "R1",
+      "league": "Serie A",
+      "fixture_id": "1550156",
+      "kickoff_utc": "2026-10-17T13:00:00Z",
+      "kickoff_local": "17.10 15:00",
+      "hours_to_kickoff": 303.89,
+      "home_team": "Venezia",
+      "away_team": "Napoli",
+      "selection": "П2",
+      "paper_user_odds": "1.71",
+      "paper_user_book": "Marathonbet",
+      "status": "PAPER",
+      "context": "у гостей следующий матч еврокубок/кубок",
+      "snapshot_type": "BASELINE"
+    },
+    {
+      "type": "CANONICAL",
+      "priority": "BLUE",
+      "reason": "активный canonical сигнал",
+      "forward_id": "R2|I1|1550156",
+      "rule": "R2",
+      "league": "Serie A",
+      "fixture_id": "1550156",
+      "kickoff_utc": "2026-10-17T13:00:00Z",
+      "kickoff_local": "17.10 15:00",
+      "hours_to_kickoff": 303.89,
+      "home_team": "Venezia",
+      "away_team": "Napoli",
+      "selection": "П2",
+      "paper_user_odds": "1.71",
+      "paper_user_book": "Marathonbet",
+      "status": "PAPER",
+      "context": "у гостей следующий матч еврокубок/кубок",
+      "snapshot_type": "BASELINE"
+    },
+    {
+      "type": "CANONICAL",
+      "priority": "BLUE",
+      "reason": "активный canonical сигнал",
+      "forward_id": "R1|I1|1550149",
+      "rule": "R1",
+      "league": "Serie A",
+      "fixture_id": "1550149",
+      "kickoff_utc": "2026-10-17T16:00:00Z",
+      "kickoff_local": "17.10 18:00",
+      "hours_to_kickoff": 306.89,
+      "home_team": "Bologna",
+      "away_team": "Inter",
+      "selection": "П2",
+      "paper_user_odds": "1.64",
+      "paper_user_book": "Marathonbet",
+      "status": "PAPER",
+      "context": "у гостей следующий матч еврокубок/кубок",
+      "snapshot_type": "BASELINE"
+    },
+    {
+      "type": "CANONICAL",
+      "priority": "BLUE",
+      "reason": "активный canonical сигнал",
+      "forward_id": "R2|I1|1550149",
+      "rule": "R2",
+      "league": "Serie A",
+      "fixture_id": "1550149",
+      "kickoff_utc": "2026-10-17T16:00:00Z",
+      "kickoff_local": "17.10 18:00",
+      "hours_to_kickoff": 306.89,
+      "home_team": "Bologna",
+      "away_team": "Inter",
+      "selection": "П2",
+      "paper_user_odds": "1.64",
+      "paper_user_book": "Marathonbet",
+      "status": "PAPER",
+      "context": "у гостей следующий матч еврокубок/кубок",
+      "snapshot_type": "BASELINE"
+    },
+    {
+      "type": "CANONICAL",
+      "priority": "BLUE",
+      "reason": "активный canonical сигнал",
+      "forward_id": "R1|I1|1550150",
+      "rule": "R1",
+      "league": "Serie A",
+      "fixture_id": "1550150",
+      "kickoff_utc": "2026-10-18T13:00:00Z",
+      "kickoff_local": "18.10 15:00",
+      "hours_to_kickoff": 327.89,
+      "home_team": "Fiorentina",
+      "away_team": "Como",
+      "selection": "П2",
+      "paper_user_odds": "2.07",
+      "paper_user_book": "Marathonbet",
+      "status": "PAPER",
+      "context": "у гостей следующий матч еврокубок/кубок",
+      "snapshot_type": "BASELINE"
+    },
+    {
+      "type": "CANONICAL",
+      "priority": "BLUE",
+      "reason": "активный canonical сигнал",
+      "forward_id": "R2|I1|1550150",
+      "rule": "R2",
+      "league": "Serie A",
+      "fixture_id": "1550150",
+      "kickoff_utc": "2026-10-18T13:00:00Z",
+      "kickoff_local": "18.10 15:00",
+      "hours_to_kickoff": 327.89,
+      "home_team": "Fiorentina",
+      "away_team": "Como",
+      "selection": "П2",
+      "paper_user_odds": "2.07",
+      "paper_user_book": "Marathonbet",
+      "status": "PAPER",
+      "context": "у гостей следующий матч еврокубок/кубок",
       "snapshot_type": "BASELINE"
     }
   ],
@@ -107,7 +227,7 @@
       "fixture_id": "1575176",
       "kickoff_utc": "2026-10-09T18:30:00Z",
       "kickoff_local": "09.10 20:30",
-      "hours_to_kickoff": 120.89,
+      "hours_to_kickoff": 117.39,
       "home_team": "Borussia Dortmund",
       "away_team": "Werder Bremen",
       "market": "ТБ(2.5) steam",
@@ -122,7 +242,7 @@
       "fixture_id": "1575176",
       "kickoff_utc": "2026-10-09T18:30:00Z",
       "kickoff_local": "09.10 20:30",
-      "hours_to_kickoff": 120.89,
+      "hours_to_kickoff": 117.39,
       "home_team": "Borussia Dortmund",
       "away_team": "Werder Bremen",
       "market": "ОЗ — Да / ОЗ — Нет",
@@ -137,7 +257,7 @@
       "fixture_id": "1552775",
       "kickoff_utc": "2026-10-09T18:45:00Z",
       "kickoff_local": "09.10 20:45",
-      "hours_to_kickoff": 121.14,
+      "hours_to_kickoff": 117.64,
       "home_team": "Lens",
       "away_team": "Lyon",
       "market": "ОЗ — Да / ОЗ — Нет",
@@ -152,7 +272,7 @@
       "fixture_id": "1570408",
       "kickoff_utc": "2026-10-09T19:00:00Z",
       "kickoff_local": "09.10 21:00",
-      "hours_to_kickoff": 121.39,
+      "hours_to_kickoff": 117.89,
       "home_team": "Malaga",
       "away_team": "Espanyol",
       "market": "ОЗ — Да / ОЗ — Нет",
@@ -167,7 +287,7 @@
       "fixture_id": "1557417",
       "kickoff_utc": "2026-10-10T11:30:00Z",
       "kickoff_local": "10.10 13:30",
-      "hours_to_kickoff": 137.89,
+      "hours_to_kickoff": 134.39,
       "home_team": "Arsenal",
       "away_team": "Leeds",
       "market": "П1/П2 steam",
@@ -182,7 +302,7 @@
       "fixture_id": "1575178",
       "kickoff_utc": "2026-10-10T13:30:00Z",
       "kickoff_local": "10.10 15:30",
-      "hours_to_kickoff": 139.89,
+      "hours_to_kickoff": 136.39,
       "home_team": "1899 Hoffenheim",
       "away_team": "Hamburger SV",
       "market": "ТБ(2.5) steam",
@@ -197,7 +317,7 @@
       "fixture_id": "1575180",
       "kickoff_utc": "2026-10-10T13:30:00Z",
       "kickoff_local": "10.10 15:30",
-      "hours_to_kickoff": 139.89,
+      "hours_to_kickoff": 136.39,
       "home_team": "FC Augsburg",
       "away_team": "Bayern München",
       "market": "ТБ(2.5) steam",
@@ -212,7 +332,7 @@
       "fixture_id": "1557418",
       "kickoff_utc": "2026-10-10T14:00:00Z",
       "kickoff_local": "10.10 16:00",
-      "hours_to_kickoff": 140.39,
+      "hours_to_kickoff": 136.89,
       "home_team": "Aston Villa",
       "away_team": "Brentford",
       "market": "П1/П2 steam",
@@ -227,7 +347,7 @@
       "fixture_id": "1557419",
       "kickoff_utc": "2026-10-10T14:00:00Z",
       "kickoff_local": "10.10 16:00",
-      "hours_to_kickoff": 140.39,
+      "hours_to_kickoff": 136.89,
       "home_team": "Chelsea",
       "away_team": "Bournemouth",
       "market": "П1/П2 steam",
@@ -9970,6 +10090,69 @@
       "creates_signal": false
     },
     {
+      "fixture_id": "1552783",
+      "league": "Ligue 1",
+      "league_id": "61",
+      "country": "France",
+      "home_team": "Angers",
+      "away_team": "Marseille",
+      "kickoff_utc": "2026-10-18T13:00:00+00:00",
+      "kickoff_local": "18.10 13:00 UTC",
+      "markets": [
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.53 | ОЗ Нет: 2.38 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T18:16:53Z",
+          "api_update_utc": "2026-10-04T03:56:16+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.5 | ОЗ Нет: 2.41 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-10-04T18:16:53Z",
+          "api_update_utc": "2026-10-04T03:56:16+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TEAM_TOTAL",
+          "text": "ИТБ/ИТМ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х/Х2/12 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP",
+          "text": "Европейская фора — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф(0) — нет данных",
+          "status": "NO_DATA"
+        }
+      ],
+      "fixture_status": "NS",
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
+    },
+    {
       "fixture_id": "1557427",
       "league": "Premier League",
       "league_id": "39",
@@ -9979,6 +10162,24 @@
       "kickoff_utc": "2026-10-18T13:00:00+00:00",
       "kickoff_local": "18.10 13:00 UTC",
       "markets": [
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.75 | ОЗ Нет: 2 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T18:16:53Z",
+          "api_update_utc": "2026-09-20T09:29:18+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.73 | ОЗ Нет: 1.99 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-10-04T18:16:53Z",
+          "api_update_utc": "2026-09-20T09:29:18+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
         {
           "market": "MATCH_WINNER",
           "text": "1X2 · П1: 1.73 | Х: 3.75 | П2: 4.4 @ Bet365",
@@ -10000,11 +10201,6 @@
         {
           "market": "TOTAL",
           "text": "Тотал 2.5 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "BTTS",
-          "text": "ОЗ — нет данных",
           "status": "NO_DATA"
         },
         {
@@ -10100,6 +10296,123 @@
         {
           "market": "TOTAL",
           "text": "Тотал 2.5 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TEAM_TOTAL",
+          "text": "ИТБ/ИТМ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х/Х2/12 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP",
+          "text": "Европейская фора — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф(0) — нет данных",
+          "status": "NO_DATA"
+        }
+      ],
+      "fixture_status": "NS",
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
+    },
+    {
+      "fixture_id": "1550150",
+      "league": "Serie A",
+      "league_id": "135",
+      "country": "Italy",
+      "home_team": "Fiorentina",
+      "away_team": "Como",
+      "kickoff_utc": "2026-10-18T13:00:00Z",
+      "kickoff_local": "18.10 13:00 UTC",
+      "markets": [
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T18:16:53Z",
+          "api_update_utc": "2026-10-04T03:44:16+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.55 | ОЗ Нет: 2.29 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-10-04T18:16:53Z",
+          "api_update_utc": "2026-10-04T03:44:16+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TEAM_TOTAL",
+          "text": "ИТБ/ИТМ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х/Х2/12 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP",
+          "text": "Европейская фора — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф(0) — нет данных",
+          "status": "NO_DATA"
+        }
+      ],
+      "fixture_status": "NS",
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
+    },
+    {
+      "fixture_id": "1575186",
+      "league": "Bundesliga",
+      "league_id": "78",
+      "country": "Germany",
+      "home_team": "Bayer Leverkusen",
+      "away_team": "SC Freiburg",
+      "kickoff_utc": "2026-10-18T13:30:00+00:00",
+      "kickoff_local": "18.10 13:30 UTC",
+      "markets": [
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 · ТБ(2.5): 1.44 | ТМ(2.5): 2.75 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T18:00:22Z",
+          "api_update_utc": "2026-09-20T17:09:14+00:00",
+          "source": "stage62_ou_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 — нет данных",
           "status": "NO_DATA"
         },
         {
@@ -10231,12 +10544,264 @@
       "fixture_status": "NS",
       "status": "MARKET_VIEW_ONLY",
       "creates_signal": false
+    },
+    {
+      "fixture_id": "1552784",
+      "league": "Ligue 1",
+      "league_id": "61",
+      "country": "France",
+      "home_team": "Le Havre",
+      "away_team": "Auxerre",
+      "kickoff_utc": "2026-10-18T15:15:00+00:00",
+      "kickoff_local": "18.10 15:15 UTC",
+      "markets": [
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.05 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T18:16:53Z",
+          "api_update_utc": "2026-10-04T03:56:16+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.65 | ОЗ Нет: 2.11 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-10-04T18:16:53Z",
+          "api_update_utc": "2026-10-04T03:56:16+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TEAM_TOTAL",
+          "text": "ИТБ/ИТМ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х/Х2/12 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP",
+          "text": "Европейская фора — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф(0) — нет данных",
+          "status": "NO_DATA"
+        }
+      ],
+      "fixture_status": "NS",
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
+    },
+    {
+      "fixture_id": "1552787",
+      "league": "Ligue 1",
+      "league_id": "61",
+      "country": "France",
+      "home_team": "Lorient",
+      "away_team": "Monaco",
+      "kickoff_utc": "2026-10-18T15:15:00+00:00",
+      "kickoff_local": "18.10 15:15 UTC",
+      "markets": [
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.05 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T18:16:53Z",
+          "api_update_utc": "2026-10-04T03:56:16+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.67 | ОЗ Нет: 2.08 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-10-04T18:16:53Z",
+          "api_update_utc": "2026-10-04T03:56:16+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TEAM_TOTAL",
+          "text": "ИТБ/ИТМ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х/Х2/12 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP",
+          "text": "Европейская фора — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф(0) — нет данных",
+          "status": "NO_DATA"
+        }
+      ],
+      "fixture_status": "NS",
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
+    },
+    {
+      "fixture_id": "1552789",
+      "league": "Ligue 1",
+      "league_id": "61",
+      "country": "France",
+      "home_team": "Paris FC",
+      "away_team": "Rennes",
+      "kickoff_utc": "2026-10-18T15:15:00+00:00",
+      "kickoff_local": "18.10 15:15 UTC",
+      "markets": [
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.57 | ОЗ Нет: 2.25 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T18:16:53Z",
+          "api_update_utc": "2026-10-04T03:56:16+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.51 | ОЗ Нет: 2.39 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-10-04T18:16:53Z",
+          "api_update_utc": "2026-10-04T03:56:16+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TEAM_TOTAL",
+          "text": "ИТБ/ИТМ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х/Х2/12 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP",
+          "text": "Европейская фора — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф(0) — нет данных",
+          "status": "NO_DATA"
+        }
+      ],
+      "fixture_status": "NS",
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
+    },
+    {
+      "fixture_id": "1550147",
+      "league": "Serie A",
+      "league_id": "135",
+      "country": "Italy",
+      "home_team": "AC Milan",
+      "away_team": "Atalanta",
+      "kickoff_utc": "2026-10-18T16:00:00Z",
+      "kickoff_local": "18.10 16:00 UTC",
+      "markets": [
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.05 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T18:16:53Z",
+          "api_update_utc": "2026-10-04T03:44:16+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.7 | ОЗ Нет: 2.03 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-10-04T18:16:53Z",
+          "api_update_utc": "2026-10-04T03:44:16+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TEAM_TOTAL",
+          "text": "ИТБ/ИТМ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х/Х2/12 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP",
+          "text": "Европейская фора — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф(0) — нет данных",
+          "status": "NO_DATA"
+        }
+      ],
+      "fixture_status": "NS",
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
     }
   ],
   "governance": {
     "system_health": "CRITICAL",
-    "health_critical": 11,
-    "health_warnings": 5,
+    "health_critical": 16,
+    "health_warnings": 1,
     "logical_exposure_u": 3.0,
     "canonical_conflict_fixtures": 0,
     "deduplicated_overlap_u": 1.0,
