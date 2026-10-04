@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-04T00:13:04Z",
+  "generated_at_utc": "2026-10-04T03:56:06Z",
   "fixture_sample": 160,
   "api_calls_added": 0,
   "markets": [
@@ -367,7 +367,7 @@
       "bet_id": 37,
       "bet_name": "Home win both halves",
       "fixture_sample": 160,
-      "fixtures_any": 88,
+      "fixtures_any": 89,
       "fixtures_bet365": 0,
       "fixtures_marathonbet": 80,
       "bet365_coverage_pct": 0.0,
@@ -444,6 +444,16 @@
       "marathonbet_coverage_pct": 60.0
     },
     {
+      "bet_id": 45,
+      "bet_name": "Corners Over Under",
+      "fixture_sample": 160,
+      "fixtures_any": 5,
+      "fixtures_bet365": 5,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 3.12,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
       "bet_id": 46,
       "bet_name": "Exact Goals Number - First Half",
       "fixture_sample": 160,
@@ -497,7 +507,7 @@
       "bet_id": 53,
       "bet_name": "Away win both halves",
       "fixture_sample": 160,
-      "fixtures_any": 70,
+      "fixtures_any": 71,
       "fixtures_bet365": 0,
       "fixtures_marathonbet": 47,
       "bet365_coverage_pct": 0.0,
@@ -511,6 +521,46 @@
       "fixtures_bet365": 94,
       "fixtures_marathonbet": 0,
       "bet365_coverage_pct": 58.75,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 55,
+      "bet_name": "Corners 1x2",
+      "fixture_sample": 160,
+      "fixtures_any": 5,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 56,
+      "bet_name": "Corners Asian Handicap",
+      "fixture_sample": 160,
+      "fixtures_any": 5,
+      "fixtures_bet365": 5,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 3.12,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 57,
+      "bet_name": "Home Corners Over/Under",
+      "fixture_sample": 160,
+      "fixtures_any": 5,
+      "fixtures_bet365": 5,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 3.12,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 58,
+      "bet_name": "Away Corners Over/Under",
+      "fixture_sample": 160,
+      "fixtures_any": 5,
+      "fixtures_bet365": 5,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 3.12,
       "marathonbet_coverage_pct": 0.0
     },
     {
@@ -564,6 +614,16 @@
       "marathonbet_coverage_pct": 0.0
     },
     {
+      "bet_id": 77,
+      "bet_name": "Total Corners (1st Half)",
+      "fixture_sample": 160,
+      "fixtures_any": 5,
+      "fixtures_bet365": 5,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 3.12,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
       "bet_id": 78,
       "bet_name": "RTG_H1",
       "fixture_sample": 160,
@@ -571,6 +631,16 @@
       "fixtures_bet365": 93,
       "fixtures_marathonbet": 0,
       "bet365_coverage_pct": 58.12,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 85,
+      "bet_name": "Total Corners (3 way)",
+      "fixture_sample": 160,
+      "fixtures_any": 5,
+      "fixtures_bet365": 5,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 3.12,
       "marathonbet_coverage_pct": 0.0
     },
     {
@@ -617,7 +687,7 @@
       "bet_id": 99,
       "bet_name": "To Score A Penalty",
       "fixture_sample": 160,
-      "fixtures_any": 70,
+      "fixtures_any": 72,
       "fixtures_bet365": 67,
       "fixtures_marathonbet": 0,
       "bet365_coverage_pct": 41.88,
@@ -627,7 +697,7 @@
       "bet_id": 100,
       "bet_name": "To Miss A Penalty",
       "fixture_sample": 160,
-      "fixtures_any": 70,
+      "fixtures_any": 72,
       "fixtures_bet365": 67,
       "fixtures_marathonbet": 0,
       "bet365_coverage_pct": 41.88,
@@ -687,7 +757,7 @@
       "bet_id": 109,
       "bet_name": "Draw No Bet (1st Half)",
       "fixture_sample": 160,
-      "fixtures_any": 58,
+      "fixtures_any": 60,
       "fixtures_bet365": 0,
       "fixtures_marathonbet": 0,
       "bet365_coverage_pct": 0.0,
@@ -777,7 +847,17 @@
       "bet_id": 124,
       "bet_name": "Home Come From Behind and Win",
       "fixture_sample": 160,
-      "fixtures_any": 50,
+      "fixtures_any": 52,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 127,
+      "bet_name": "Total Corners (2nd Half)",
+      "fixture_sample": 160,
+      "fixtures_any": 5,
       "fixtures_bet365": 0,
       "fixtures_marathonbet": 0,
       "bet365_coverage_pct": 0.0,
@@ -787,7 +867,37 @@
       "bet_id": 129,
       "bet_name": "Away Come From Behind and Win",
       "fixture_sample": 160,
-      "fixtures_any": 47,
+      "fixtures_any": 49,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 130,
+      "bet_name": "Corners 1x2 (1st Half)",
+      "fixture_sample": 160,
+      "fixtures_any": 5,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 132,
+      "bet_name": "Home Total Corners (1st Half)",
+      "fixture_sample": 160,
+      "fixtures_any": 5,
+      "fixtures_bet365": 0,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 0.0,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 134,
+      "bet_name": "Away Total Corners (1st Half)",
+      "fixture_sample": 160,
+      "fixtures_any": 5,
       "fixtures_bet365": 0,
       "fixtures_marathonbet": 0,
       "bet365_coverage_pct": 0.0,
@@ -837,7 +947,7 @@
       "bet_id": 144,
       "bet_name": "Goal in 1-15 minutes",
       "fixture_sample": 160,
-      "fixtures_any": 68,
+      "fixtures_any": 69,
       "fixtures_bet365": 0,
       "fixtures_marathonbet": 0,
       "bet365_coverage_pct": 0.0,
@@ -847,7 +957,7 @@
       "bet_id": 145,
       "bet_name": "Goal in 16-30 minutes",
       "fixture_sample": 160,
-      "fixtures_any": 68,
+      "fixtures_any": 69,
       "fixtures_bet365": 0,
       "fixtures_marathonbet": 0,
       "bet365_coverage_pct": 0.0,
@@ -857,7 +967,7 @@
       "bet_id": 146,
       "bet_name": "Goal in 31-45 minutes",
       "fixture_sample": 160,
-      "fixtures_any": 68,
+      "fixtures_any": 69,
       "fixtures_bet365": 0,
       "fixtures_marathonbet": 0,
       "bet365_coverage_pct": 0.0,
@@ -867,7 +977,7 @@
       "bet_id": 147,
       "bet_name": "Goal in 46-60 minutes",
       "fixture_sample": 160,
-      "fixtures_any": 68,
+      "fixtures_any": 69,
       "fixtures_bet365": 0,
       "fixtures_marathonbet": 0,
       "bet365_coverage_pct": 0.0,
@@ -877,7 +987,7 @@
       "bet_id": 148,
       "bet_name": "Goal in 61-75 minutes",
       "fixture_sample": 160,
-      "fixtures_any": 68,
+      "fixtures_any": 69,
       "fixtures_bet365": 0,
       "fixtures_marathonbet": 0,
       "bet365_coverage_pct": 0.0,
@@ -887,7 +997,7 @@
       "bet_id": 149,
       "bet_name": "Goal in 76-90 minutes",
       "fixture_sample": 160,
-      "fixtures_any": 68,
+      "fixtures_any": 69,
       "fixtures_bet365": 0,
       "fixtures_marathonbet": 0,
       "bet365_coverage_pct": 0.0,
@@ -907,7 +1017,7 @@
       "bet_id": 182,
       "bet_name": "Draw No Bet (2nd Half)",
       "fixture_sample": 160,
-      "fixtures_any": 50,
+      "fixtures_any": 52,
       "fixtures_bet365": 0,
       "fixtures_marathonbet": 0,
       "bet365_coverage_pct": 0.0,
@@ -957,7 +1067,7 @@
       "bet_id": 197,
       "bet_name": "Over/Under 15m-30m",
       "fixture_sample": 160,
-      "fixtures_any": 50,
+      "fixtures_any": 52,
       "fixtures_bet365": 0,
       "fixtures_marathonbet": 0,
       "bet365_coverage_pct": 0.0,
@@ -967,7 +1077,7 @@
       "bet_id": 198,
       "bet_name": "Over/Under 30m-45m",
       "fixture_sample": 160,
-      "fixtures_any": 50,
+      "fixtures_any": 52,
       "fixtures_bet365": 0,
       "fixtures_marathonbet": 0,
       "bet365_coverage_pct": 0.0,
@@ -1084,6 +1194,16 @@
       "marathonbet_coverage_pct": 0.0
     },
     {
+      "bet_id": 239,
+      "bet_name": "Corners. European Handicap",
+      "fixture_sample": 160,
+      "fixtures_any": 3,
+      "fixtures_bet365": 3,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 1.88,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
       "bet_id": 240,
       "bet_name": "Home Player Shots",
       "fixture_sample": 160,
@@ -1114,6 +1234,26 @@
       "marathonbet_coverage_pct": 0.0
     },
     {
+      "bet_id": 247,
+      "bet_name": "Corners Race To",
+      "fixture_sample": 160,
+      "fixtures_any": 3,
+      "fixtures_bet365": 3,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 1.88,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 249,
+      "bet_name": "Multicorners",
+      "fixture_sample": 160,
+      "fixtures_any": 4,
+      "fixtures_bet365": 4,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 2.5,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
       "bet_id": 257,
       "bet_name": "Player to Score or Assist",
       "fixture_sample": 160,
@@ -1141,6 +1281,26 @@
       "fixtures_bet365": 59,
       "fixtures_marathonbet": 0,
       "bet365_coverage_pct": 36.88,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 295,
+      "bet_name": "Corners. Total (Range)",
+      "fixture_sample": 160,
+      "fixtures_any": 5,
+      "fixtures_bet365": 5,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 3.12,
+      "marathonbet_coverage_pct": 0.0
+    },
+    {
+      "bet_id": 297,
+      "bet_name": "Corners. total between 0 and 10m",
+      "fixture_sample": 160,
+      "fixtures_any": 5,
+      "fixtures_bet365": 5,
+      "fixtures_marathonbet": 0,
+      "bet365_coverage_pct": 3.12,
       "marathonbet_coverage_pct": 0.0
     },
     {
