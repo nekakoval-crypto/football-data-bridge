@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 04.10.2026 04:24 (Europe/Berlin)
+Обновлено: 04.10.2026 06:32 (Europe/Berlin)
 Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -49,7 +49,7 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Ф(0) — нет данных
 
 - **FC Nordsjaelland — Odense** | Danish Superliga | 09.10 17:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 1.48 | Х: 4.33 | П2: 5.75 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -58,7 +58,7 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Ф(0) — нет данных
 
 - **Brann — Viking** | Eliteserien | 09.10 17:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 2.8 | Х: 3.75 | П2: 2.15 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -67,7 +67,7 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Ф(0) — нет данных
 
 - **Galatasaray — Kasımpaşa** | Super Lig | 09.10 17:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 1.25 | Х: 5.5 | П2: 11 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -76,7 +76,7 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Ф(0) — нет данных
 
 - **Moreirense — GIL Vicente** | Primeira Liga | 09.10 17:45 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 3.3 | Х: 3.2 | П2: 2.2 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -114,7 +114,7 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Ф(0) — нет данных
 
 - **SK Beveren — Lommel United** | Belgian Pro League | 09.10 18:45 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 1.8 | Х: 3.6 | П2: 3.9 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -142,7 +142,7 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Ф(0) — нет данных
 
 - **SC Braga — Sporting CP** | Primeira Liga | 09.10 19:15 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 3.3 | Х: 3.25 | П2: 2.15 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -308,7 +308,7 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Ф(0) — нет данных
 
 - **Bodo/Glimt — Kristiansund BK** | Eliteserien | 10.10 14:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 1.07 | Х: 12 | П2: 21 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -461,7 +461,7 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Ф(0) — нет данных
 
 - **Rosenborg — Sandefjord** | Eliteserien | 10.10 16:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 1.36 | Х: 4.75 | П2: 6.5 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -726,7 +726,7 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Ф(0) — нет данных
 
 - **Randers FC — Viborg** | Danish Superliga | 11.10 12:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 3.2 | Х: 3.5 | П2: 2.05 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -735,7 +735,7 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Ф(0) — нет данных
 
 - **Silkeborg — AC Horsens** | Danish Superliga | 11.10 12:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 2.15 | Х: 3.4 | П2: 3.1 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -772,7 +772,7 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Ф(0) — нет данных
 
 - **Fredrikstad — Tromso** | Eliteserien | 11.10 12:30 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 2.8 | Х: 3.4 | П2: 2.25 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -907,7 +907,7 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Ф(0) — нет данных
 
 - **Brondby — Lyngby** | Danish Superliga | 11.10 14:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 1.73 | Х: 3.8 | П2: 4.2 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -962,7 +962,7 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Ф(0) — нет данных
 
 - **Start — Ham-Kam** | Eliteserien | 11.10 15:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 1.91 | Х: 3.6 | П2: 3.5 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -1012,7 +1012,7 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Ф(0) — нет данных
 
 - **FC Midtjylland — FC Copenhagen** | Danish Superliga | 11.10 16:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 2.45 | Х: 3.5 | П2: 2.5 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -1392,6 +1392,37 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Европейская фора — нет данных
   - Ф(0) — нет данных
 
+- **Brentford — Liverpool** | Premier League | 17.10 14:00 UTC
+  - ОЗ · ОЗ Да: 1.5 | ОЗ Нет: 2.5 @ Bet365
+  - 1X2 · П1: 2.6 | Х: 3.75 | П2: 2.38 @ Bet365
+  - Тотал 2.5 — нет данных
+  - ИТБ/ИТМ — нет данных
+  - 1Х/Х2/12 — нет данных
+  - Европейская фора — нет данных
+  - Ф(0) — нет данных
+
+- **Fulham — Hull City** | Premier League | 17.10 14:00 UTC
+  - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
+  - ОЗ · ОЗ Да: 1.78 | ОЗ Нет: 1.93 @ Marathonbet
+  - 1X2 · П1: 1.48 | Х: 4.2 | П2: 6.25 @ Bet365
+  - 1X2 · П1: 1.51 | Х: 4.4 | П2: 6.5 @ Marathonbet
+  - Тотал 2.5 — нет данных
+  - ИТБ/ИТМ — нет данных
+  - 1Х/Х2/12 — нет данных
+  - Европейская фора — нет данных
+  - Ф(0) — нет данных
+
+- **Manchester City — Ipswich** | Premier League | 17.10 14:00 UTC
+  - ОЗ · ОЗ Да: 1.91 | ОЗ Нет: 1.91 @ Bet365
+  - ОЗ · ОЗ Да: 1.84 | ОЗ Нет: 1.86 @ Marathonbet
+  - 1X2 · П1: 1.18 | Х: 7 | П2: 12 @ Bet365
+  - 1X2 · П1: 1.21 | Х: 7.2 | П2: 12.75 @ Marathonbet
+  - Тотал 2.5 — нет данных
+  - ИТБ/ИТМ — нет данных
+  - 1Х/Х2/12 — нет данных
+  - Европейская фора — нет данных
+  - Ф(0) — нет данных
+
 - **Aberdeen — ST Mirren** | Scottish Premiership | 17.10 14:00 UTC
   - 1X2 — нет данных
   - Тотал 2.5 — нет данных
@@ -1423,37 +1454,6 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - 1X2 — нет данных
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
-  - ИТБ/ИТМ — нет данных
-  - 1Х/Х2/12 — нет данных
-  - Европейская фора — нет данных
-  - Ф(0) — нет данных
-
-- **Brentford — Liverpool** | Premier League | 17.10 14:00 UTC
-  - ОЗ · ОЗ Да: 1.5 | ОЗ Нет: 2.5 @ Bet365
-  - 1X2 · П1: 2.6 | Х: 3.75 | П2: 2.38 @ Bet365
-  - Тотал 2.5 — нет данных
-  - ИТБ/ИТМ — нет данных
-  - 1Х/Х2/12 — нет данных
-  - Европейская фора — нет данных
-  - Ф(0) — нет данных
-
-- **Fulham — Hull City** | Premier League | 17.10 14:00 UTC
-  - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
-  - ОЗ · ОЗ Да: 1.78 | ОЗ Нет: 1.93 @ Marathonbet
-  - 1X2 · П1: 1.48 | Х: 4.2 | П2: 6.25 @ Bet365
-  - 1X2 · П1: 1.51 | Х: 4.4 | П2: 6.5 @ Marathonbet
-  - Тотал 2.5 — нет данных
-  - ИТБ/ИТМ — нет данных
-  - 1Х/Х2/12 — нет данных
-  - Европейская фора — нет данных
-  - Ф(0) — нет данных
-
-- **Manchester City — Ipswich** | Premier League | 17.10 14:00 UTC
-  - ОЗ · ОЗ Да: 1.91 | ОЗ Нет: 1.91 @ Bet365
-  - ОЗ · ОЗ Да: 1.84 | ОЗ Нет: 1.86 @ Marathonbet
-  - 1X2 · П1: 1.18 | Х: 7 | П2: 12 @ Bet365
-  - 1X2 · П1: 1.21 | Х: 7.2 | П2: 12.75 @ Marathonbet
-  - Тотал 2.5 — нет данных
   - ИТБ/ИТМ — нет данных
   - 1Х/Х2/12 — нет данных
   - Европейская фора — нет данных
@@ -1539,7 +1539,7 @@ Canonical: 4 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **CRITICAL** | critical 5 | warnings 12
+- System Health: **CRITICAL** | critical 10 | warnings 1
 - Логическая canonical экспозиция: **3.0u** | конфликтов матчей 0 | убрано дублей 1.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 25 | data required 2

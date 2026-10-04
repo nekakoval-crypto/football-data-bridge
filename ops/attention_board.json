@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-10-04T02:24:31Z",
-  "generated_at_local": "2026-10-04T04:24:31+02:00",
+  "generated_at_utc": "2026-10-04T04:32:57Z",
+  "generated_at_local": "2026-10-04T06:32:57+02:00",
   "timezone": "Europe/Berlin",
   "status": "OK",
   "summary": {
@@ -26,7 +26,7 @@
       "fixture_id": "1550143",
       "kickoff_utc": "2026-10-11T13:00:00Z",
       "kickoff_local": "11.10 15:00",
-      "hours_to_kickoff": 178.59,
+      "hours_to_kickoff": 176.45,
       "home_team": "Lecce",
       "away_team": "Bologna",
       "selection": "П2",
@@ -46,7 +46,7 @@
       "fixture_id": "1550145",
       "kickoff_utc": "2026-10-11T16:00:00Z",
       "kickoff_local": "11.10 18:00",
-      "hours_to_kickoff": 181.59,
+      "hours_to_kickoff": 179.45,
       "home_team": "Sassuolo",
       "away_team": "AC Milan",
       "selection": "П2",
@@ -66,7 +66,7 @@
       "fixture_id": "1550145",
       "kickoff_utc": "2026-10-11T16:00:00Z",
       "kickoff_local": "11.10 18:00",
-      "hours_to_kickoff": 181.59,
+      "hours_to_kickoff": 179.45,
       "home_team": "Sassuolo",
       "away_team": "AC Milan",
       "selection": "П2",
@@ -86,7 +86,7 @@
       "fixture_id": "1550138",
       "kickoff_utc": "2026-10-11T18:45:00Z",
       "kickoff_local": "11.10 20:45",
-      "hours_to_kickoff": 184.34,
+      "hours_to_kickoff": 182.2,
       "home_team": "Cagliari",
       "away_team": "Juventus",
       "selection": "П2",
@@ -107,7 +107,7 @@
       "fixture_id": "1575176",
       "kickoff_utc": "2026-10-09T18:30:00Z",
       "kickoff_local": "09.10 20:30",
-      "hours_to_kickoff": 136.09,
+      "hours_to_kickoff": 133.95,
       "home_team": "Borussia Dortmund",
       "away_team": "Werder Bremen",
       "market": "ТБ(2.5) steam",
@@ -122,7 +122,7 @@
       "fixture_id": "1575176",
       "kickoff_utc": "2026-10-09T18:30:00Z",
       "kickoff_local": "09.10 20:30",
-      "hours_to_kickoff": 136.09,
+      "hours_to_kickoff": 133.95,
       "home_team": "Borussia Dortmund",
       "away_team": "Werder Bremen",
       "market": "ОЗ — Да / ОЗ — Нет",
@@ -137,7 +137,7 @@
       "fixture_id": "1552775",
       "kickoff_utc": "2026-10-09T18:45:00Z",
       "kickoff_local": "09.10 20:45",
-      "hours_to_kickoff": 136.34,
+      "hours_to_kickoff": 134.2,
       "home_team": "Lens",
       "away_team": "Lyon",
       "market": "ОЗ — Да / ОЗ — Нет",
@@ -152,7 +152,7 @@
       "fixture_id": "1570408",
       "kickoff_utc": "2026-10-09T19:00:00Z",
       "kickoff_local": "09.10 21:00",
-      "hours_to_kickoff": 136.59,
+      "hours_to_kickoff": 134.45,
       "home_team": "Malaga",
       "away_team": "Espanyol",
       "market": "ОЗ — Да / ОЗ — Нет",
@@ -167,7 +167,7 @@
       "fixture_id": "1557417",
       "kickoff_utc": "2026-10-10T11:30:00Z",
       "kickoff_local": "10.10 13:30",
-      "hours_to_kickoff": 153.09,
+      "hours_to_kickoff": 150.95,
       "home_team": "Arsenal",
       "away_team": "Leeds",
       "market": "П1/П2 steam",
@@ -182,7 +182,7 @@
       "fixture_id": "1575178",
       "kickoff_utc": "2026-10-10T13:30:00Z",
       "kickoff_local": "10.10 15:30",
-      "hours_to_kickoff": 155.09,
+      "hours_to_kickoff": 152.95,
       "home_team": "1899 Hoffenheim",
       "away_team": "Hamburger SV",
       "market": "ТБ(2.5) steam",
@@ -197,7 +197,7 @@
       "fixture_id": "1575180",
       "kickoff_utc": "2026-10-10T13:30:00Z",
       "kickoff_local": "10.10 15:30",
-      "hours_to_kickoff": 155.09,
+      "hours_to_kickoff": 152.95,
       "home_team": "FC Augsburg",
       "away_team": "Bayern München",
       "market": "ТБ(2.5) steam",
@@ -212,7 +212,7 @@
       "fixture_id": "1557418",
       "kickoff_utc": "2026-10-10T14:00:00Z",
       "kickoff_local": "10.10 16:00",
-      "hours_to_kickoff": 155.59,
+      "hours_to_kickoff": 153.45,
       "home_team": "Aston Villa",
       "away_team": "Brentford",
       "market": "П1/П2 steam",
@@ -227,7 +227,7 @@
       "fixture_id": "1557419",
       "kickoff_utc": "2026-10-10T14:00:00Z",
       "kickoff_local": "10.10 16:00",
-      "hours_to_kickoff": 155.59,
+      "hours_to_kickoff": 153.45,
       "home_team": "Chelsea",
       "away_team": "Bournemouth",
       "market": "П1/П2 steam",
@@ -341,8 +341,12 @@
       "markets": [
         {
           "market": "MATCH_WINNER",
-          "text": "1X2 — нет данных",
-          "status": "NO_DATA"
+          "text": "1X2 · П1: 1.48 | Х: 4.33 | П2: 5.75 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T03:05:44Z",
+          "api_update_utc": "2026-10-04T02:45:16+00:00",
+          "source": "stage71_research_trigger_ledger.csv",
+          "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "TOTAL",
@@ -391,8 +395,12 @@
       "markets": [
         {
           "market": "MATCH_WINNER",
-          "text": "1X2 — нет данных",
-          "status": "NO_DATA"
+          "text": "1X2 · П1: 2.8 | Х: 3.75 | П2: 2.15 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T03:05:47Z",
+          "api_update_utc": "2026-10-04T02:45:16+00:00",
+          "source": "stage71_research_trigger_ledger.csv",
+          "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "TOTAL",
@@ -441,8 +449,12 @@
       "markets": [
         {
           "market": "MATCH_WINNER",
-          "text": "1X2 — нет данных",
-          "status": "NO_DATA"
+          "text": "1X2 · П1: 1.25 | Х: 5.5 | П2: 11 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T03:05:50Z",
+          "api_update_utc": "2026-10-04T02:45:16+00:00",
+          "source": "stage71_research_trigger_ledger.csv",
+          "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "TOTAL",
@@ -491,8 +503,12 @@
       "markets": [
         {
           "market": "MATCH_WINNER",
-          "text": "1X2 — нет данных",
-          "status": "NO_DATA"
+          "text": "1X2 · П1: 3.3 | Х: 3.2 | П2: 2.2 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T03:05:53Z",
+          "api_update_utc": "2026-10-04T02:45:16+00:00",
+          "source": "stage71_research_trigger_ledger.csv",
+          "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "TOTAL",
@@ -725,8 +741,12 @@
       "markets": [
         {
           "market": "MATCH_WINNER",
-          "text": "1X2 — нет данных",
-          "status": "NO_DATA"
+          "text": "1X2 · П1: 1.8 | Х: 3.6 | П2: 3.9 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T03:05:59Z",
+          "api_update_utc": "2026-10-04T02:45:16+00:00",
+          "source": "stage71_research_trigger_ledger.csv",
+          "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "TOTAL",
@@ -900,8 +920,12 @@
       "markets": [
         {
           "market": "MATCH_WINNER",
-          "text": "1X2 — нет данных",
-          "status": "NO_DATA"
+          "text": "1X2 · П1: 3.3 | Х: 3.25 | П2: 2.15 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T03:06:02Z",
+          "api_update_utc": "2026-10-04T02:45:16+00:00",
+          "source": "stage71_research_trigger_ledger.csv",
+          "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "TOTAL",
@@ -1943,8 +1967,12 @@
       "markets": [
         {
           "market": "MATCH_WINNER",
-          "text": "1X2 — нет данных",
-          "status": "NO_DATA"
+          "text": "1X2 · П1: 1.07 | Х: 12 | П2: 21 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T03:06:25Z",
+          "api_update_utc": "2026-10-04T03:01:12+00:00",
+          "source": "stage71_research_trigger_ledger.csv",
+          "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "TOTAL",
@@ -2900,8 +2928,12 @@
       "markets": [
         {
           "market": "MATCH_WINNER",
-          "text": "1X2 — нет данных",
-          "status": "NO_DATA"
+          "text": "1X2 · П1: 1.36 | Х: 4.75 | П2: 6.5 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T03:06:33Z",
+          "api_update_utc": "2026-10-04T03:01:12+00:00",
+          "source": "stage71_research_trigger_ledger.csv",
+          "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "TOTAL",
@@ -4509,8 +4541,12 @@
       "markets": [
         {
           "market": "MATCH_WINNER",
-          "text": "1X2 — нет данных",
-          "status": "NO_DATA"
+          "text": "1X2 · П1: 3.2 | Х: 3.5 | П2: 2.05 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T03:06:54Z",
+          "api_update_utc": "2026-10-03T03:33:16+00:00",
+          "source": "stage71_research_trigger_ledger.csv",
+          "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "TOTAL",
@@ -4559,8 +4595,12 @@
       "markets": [
         {
           "market": "MATCH_WINNER",
-          "text": "1X2 — нет данных",
-          "status": "NO_DATA"
+          "text": "1X2 · П1: 2.15 | Х: 3.4 | П2: 3.1 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T03:06:59Z",
+          "api_update_utc": "2026-10-03T03:33:16+00:00",
+          "source": "stage71_research_trigger_ledger.csv",
+          "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "TOTAL",
@@ -4780,8 +4820,12 @@
       "markets": [
         {
           "market": "MATCH_WINNER",
-          "text": "1X2 — нет данных",
-          "status": "NO_DATA"
+          "text": "1X2 · П1: 2.8 | Х: 3.4 | П2: 2.25 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T03:07:02Z",
+          "api_update_utc": "2026-10-04T02:11:13+00:00",
+          "source": "stage71_research_trigger_ledger.csv",
+          "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "TOTAL",
@@ -5597,8 +5641,12 @@
       "markets": [
         {
           "market": "MATCH_WINNER",
-          "text": "1X2 — нет данных",
-          "status": "NO_DATA"
+          "text": "1X2 · П1: 1.73 | Х: 3.8 | П2: 4.2 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T03:07:07Z",
+          "api_update_utc": "2026-10-03T03:33:16+00:00",
+          "source": "stage71_research_trigger_ledger.csv",
+          "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "TOTAL",
@@ -5910,8 +5958,12 @@
       "markets": [
         {
           "market": "MATCH_WINNER",
-          "text": "1X2 — нет данных",
-          "status": "NO_DATA"
+          "text": "1X2 · П1: 1.91 | Х: 3.6 | П2: 3.5 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T03:07:10Z",
+          "api_update_utc": "2026-10-04T02:11:13+00:00",
+          "source": "stage71_research_trigger_ledger.csv",
+          "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "TOTAL",
@@ -6225,8 +6277,12 @@
       "markets": [
         {
           "market": "MATCH_WINNER",
-          "text": "1X2 — нет данных",
-          "status": "NO_DATA"
+          "text": "1X2 · П1: 2.45 | Х: 3.5 | П2: 2.5 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-04T03:07:13Z",
+          "api_update_utc": "2026-10-03T03:33:16+00:00",
+          "source": "stage71_research_trigger_ledger.csv",
+          "status": "COLLECTED_SNAPSHOT"
         },
         {
           "market": "TOTAL",
@@ -8012,7 +8068,7 @@
       "country": "England",
       "home_team": "Everton",
       "away_team": "Chelsea",
-      "kickoff_utc": "2026-10-17T11:30:00Z",
+      "kickoff_utc": "2026-10-17T11:30:00+00:00",
       "kickoff_local": "17.10 11:30 UTC",
       "markets": [
         {
@@ -8138,7 +8194,7 @@
       "country": "Germany",
       "home_team": "Union Berlin",
       "away_team": "Borussia Dortmund",
-      "kickoff_utc": "2026-10-17T13:30:00Z",
+      "kickoff_utc": "2026-10-17T13:30:00+00:00",
       "kickoff_local": "17.10 13:30 UTC",
       "markets": [
         {
@@ -8196,7 +8252,7 @@
       "country": "Germany",
       "home_team": "Hamburger SV",
       "away_team": "VfB Stuttgart",
-      "kickoff_utc": "2026-10-17T13:30:00Z",
+      "kickoff_utc": "2026-10-17T13:30:00+00:00",
       "kickoff_local": "17.10 13:30 UTC",
       "markets": [
         {
@@ -8254,7 +8310,7 @@
       "country": "Germany",
       "home_team": "Werder Bremen",
       "away_team": "SC Paderborn 07",
-      "kickoff_utc": "2026-10-17T13:30:00Z",
+      "kickoff_utc": "2026-10-17T13:30:00+00:00",
       "kickoff_local": "17.10 13:30 UTC",
       "markets": [
         {
@@ -8312,7 +8368,7 @@
       "country": "Germany",
       "home_team": "FC Schalke 04",
       "away_team": "FSV Mainz 05",
-      "kickoff_utc": "2026-10-17T13:30:00Z",
+      "kickoff_utc": "2026-10-17T13:30:00+00:00",
       "kickoff_local": "17.10 13:30 UTC",
       "markets": [
         {
@@ -8370,7 +8426,7 @@
       "country": "Germany",
       "home_team": "SV Elversberg",
       "away_team": "FC Augsburg",
-      "kickoff_utc": "2026-10-17T13:30:00Z",
+      "kickoff_utc": "2026-10-17T13:30:00+00:00",
       "kickoff_local": "17.10 13:30 UTC",
       "markets": [
         {
@@ -8444,6 +8500,216 @@
         {
           "market": "BTTS",
           "text": "ОЗ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TEAM_TOTAL",
+          "text": "ИТБ/ИТМ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х/Х2/12 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP",
+          "text": "Европейская фора — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф(0) — нет данных",
+          "status": "NO_DATA"
+        }
+      ],
+      "fixture_status": "NS",
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
+    },
+    {
+      "fixture_id": "1557428",
+      "league": "Premier League",
+      "league_id": "39",
+      "country": "England",
+      "home_team": "Brentford",
+      "away_team": "Liverpool",
+      "kickoff_utc": "2026-10-17T14:00:00+00:00",
+      "kickoff_local": "17.10 14:00 UTC",
+      "markets": [
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.5 | ОЗ Нет: 2.5 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-03T15:01:55Z",
+          "api_update_utc": "2026-09-20T09:29:18+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 · П1: 2.6 | Х: 3.75 | П2: 2.38 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-03T14:49:51Z",
+          "api_update_utc": "2026-09-20T09:29:18+00:00",
+          "source": "stage61_market_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TEAM_TOTAL",
+          "text": "ИТБ/ИТМ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х/Х2/12 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP",
+          "text": "Европейская фора — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф(0) — нет данных",
+          "status": "NO_DATA"
+        }
+      ],
+      "fixture_status": "NS",
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
+    },
+    {
+      "fixture_id": "1557431",
+      "league": "Premier League",
+      "league_id": "39",
+      "country": "England",
+      "home_team": "Fulham",
+      "away_team": "Hull City",
+      "kickoff_utc": "2026-10-17T14:00:00+00:00",
+      "kickoff_local": "17.10 14:00 UTC",
+      "markets": [
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-03T15:01:55Z",
+          "api_update_utc": "2026-09-20T09:29:18+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.78 | ОЗ Нет: 1.93 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-10-03T15:01:55Z",
+          "api_update_utc": "2026-09-20T09:29:18+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 · П1: 1.48 | Х: 4.2 | П2: 6.25 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-03T14:49:51Z",
+          "api_update_utc": "2026-09-20T09:29:18+00:00",
+          "source": "stage61_market_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 · П1: 1.51 | Х: 4.4 | П2: 6.5 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-10-03T14:49:51Z",
+          "api_update_utc": "2026-09-20T09:29:18+00:00",
+          "source": "stage61_market_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "TEAM_TOTAL",
+          "text": "ИТБ/ИТМ — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DOUBLE_CHANCE",
+          "text": "1Х/Х2/12 — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "EUROPEAN_HANDICAP",
+          "text": "Европейская фора — нет данных",
+          "status": "NO_DATA"
+        },
+        {
+          "market": "DNB",
+          "text": "Ф(0) — нет данных",
+          "status": "NO_DATA"
+        }
+      ],
+      "fixture_status": "NS",
+      "status": "MARKET_VIEW_ONLY",
+      "creates_signal": false
+    },
+    {
+      "fixture_id": "1557433",
+      "league": "Premier League",
+      "league_id": "39",
+      "country": "England",
+      "home_team": "Manchester City",
+      "away_team": "Ipswich",
+      "kickoff_utc": "2026-10-17T14:00:00+00:00",
+      "kickoff_local": "17.10 14:00 UTC",
+      "markets": [
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.91 | ОЗ Нет: 1.91 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-03T15:01:55Z",
+          "api_update_utc": "2026-09-20T09:29:18+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "BTTS",
+          "text": "ОЗ · ОЗ Да: 1.84 | ОЗ Нет: 1.86 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-10-03T15:01:55Z",
+          "api_update_utc": "2026-09-20T09:29:18+00:00",
+          "source": "stage63_btts_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 · П1: 1.18 | Х: 7 | П2: 12 @ Bet365",
+          "bookmaker": "Bet365",
+          "captured_at_utc": "2026-10-03T14:49:51Z",
+          "api_update_utc": "2026-09-20T09:29:18+00:00",
+          "source": "stage61_market_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "MATCH_WINNER",
+          "text": "1X2 · П1: 1.21 | Х: 7.2 | П2: 12.75 @ Marathonbet",
+          "bookmaker": "Marathonbet",
+          "captured_at_utc": "2026-10-03T14:49:51Z",
+          "api_update_utc": "2026-09-20T09:29:18+00:00",
+          "source": "stage61_market_snapshots.csv",
+          "status": "COLLECTED_SNAPSHOT"
+        },
+        {
+          "market": "TOTAL",
+          "text": "Тотал 2.5 — нет данных",
           "status": "NO_DATA"
         },
         {
@@ -8672,216 +8938,6 @@
       "creates_signal": false
     },
     {
-      "fixture_id": "1557428",
-      "league": "Premier League",
-      "league_id": "39",
-      "country": "England",
-      "home_team": "Brentford",
-      "away_team": "Liverpool",
-      "kickoff_utc": "2026-10-17T14:00:00Z",
-      "kickoff_local": "17.10 14:00 UTC",
-      "markets": [
-        {
-          "market": "BTTS",
-          "text": "ОЗ · ОЗ Да: 1.5 | ОЗ Нет: 2.5 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-10-03T15:01:55Z",
-          "api_update_utc": "2026-09-20T09:29:18+00:00",
-          "source": "stage63_btts_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "MATCH_WINNER",
-          "text": "1X2 · П1: 2.6 | Х: 3.75 | П2: 2.38 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-10-03T14:49:51Z",
-          "api_update_utc": "2026-09-20T09:29:18+00:00",
-          "source": "stage61_market_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TOTAL",
-          "text": "Тотал 2.5 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "DNB",
-          "text": "Ф(0) — нет данных",
-          "status": "NO_DATA"
-        }
-      ],
-      "fixture_status": "NS",
-      "status": "MARKET_VIEW_ONLY",
-      "creates_signal": false
-    },
-    {
-      "fixture_id": "1557431",
-      "league": "Premier League",
-      "league_id": "39",
-      "country": "England",
-      "home_team": "Fulham",
-      "away_team": "Hull City",
-      "kickoff_utc": "2026-10-17T14:00:00Z",
-      "kickoff_local": "17.10 14:00 UTC",
-      "markets": [
-        {
-          "market": "BTTS",
-          "text": "ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-10-03T15:01:55Z",
-          "api_update_utc": "2026-09-20T09:29:18+00:00",
-          "source": "stage63_btts_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "BTTS",
-          "text": "ОЗ · ОЗ Да: 1.78 | ОЗ Нет: 1.93 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-10-03T15:01:55Z",
-          "api_update_utc": "2026-09-20T09:29:18+00:00",
-          "source": "stage63_btts_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "MATCH_WINNER",
-          "text": "1X2 · П1: 1.48 | Х: 4.2 | П2: 6.25 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-10-03T14:49:51Z",
-          "api_update_utc": "2026-09-20T09:29:18+00:00",
-          "source": "stage61_market_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "MATCH_WINNER",
-          "text": "1X2 · П1: 1.51 | Х: 4.4 | П2: 6.5 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-10-03T14:49:51Z",
-          "api_update_utc": "2026-09-20T09:29:18+00:00",
-          "source": "stage61_market_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TOTAL",
-          "text": "Тотал 2.5 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "DNB",
-          "text": "Ф(0) — нет данных",
-          "status": "NO_DATA"
-        }
-      ],
-      "fixture_status": "NS",
-      "status": "MARKET_VIEW_ONLY",
-      "creates_signal": false
-    },
-    {
-      "fixture_id": "1557433",
-      "league": "Premier League",
-      "league_id": "39",
-      "country": "England",
-      "home_team": "Manchester City",
-      "away_team": "Ipswich",
-      "kickoff_utc": "2026-10-17T14:00:00Z",
-      "kickoff_local": "17.10 14:00 UTC",
-      "markets": [
-        {
-          "market": "BTTS",
-          "text": "ОЗ · ОЗ Да: 1.91 | ОЗ Нет: 1.91 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-10-03T15:01:55Z",
-          "api_update_utc": "2026-09-20T09:29:18+00:00",
-          "source": "stage63_btts_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "BTTS",
-          "text": "ОЗ · ОЗ Да: 1.84 | ОЗ Нет: 1.86 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-10-03T15:01:55Z",
-          "api_update_utc": "2026-09-20T09:29:18+00:00",
-          "source": "stage63_btts_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "MATCH_WINNER",
-          "text": "1X2 · П1: 1.18 | Х: 7 | П2: 12 @ Bet365",
-          "bookmaker": "Bet365",
-          "captured_at_utc": "2026-10-03T14:49:51Z",
-          "api_update_utc": "2026-09-20T09:29:18+00:00",
-          "source": "stage61_market_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "MATCH_WINNER",
-          "text": "1X2 · П1: 1.21 | Х: 7.2 | П2: 12.75 @ Marathonbet",
-          "bookmaker": "Marathonbet",
-          "captured_at_utc": "2026-10-03T14:49:51Z",
-          "api_update_utc": "2026-09-20T09:29:18+00:00",
-          "source": "stage61_market_snapshots.csv",
-          "status": "COLLECTED_SNAPSHOT"
-        },
-        {
-          "market": "TOTAL",
-          "text": "Тотал 2.5 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "TEAM_TOTAL",
-          "text": "ИТБ/ИТМ — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "DOUBLE_CHANCE",
-          "text": "1Х/Х2/12 — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "EUROPEAN_HANDICAP",
-          "text": "Европейская фора — нет данных",
-          "status": "NO_DATA"
-        },
-        {
-          "market": "DNB",
-          "text": "Ф(0) — нет данных",
-          "status": "NO_DATA"
-        }
-      ],
-      "fixture_status": "NS",
-      "status": "MARKET_VIEW_ONLY",
-      "creates_signal": false
-    },
-    {
       "fixture_id": "1547640",
       "league": "A Lyga",
       "league_id": "362",
@@ -8988,7 +9044,7 @@
       "country": "France",
       "home_team": "Strasbourg",
       "away_team": "Paris Saint Germain",
-      "kickoff_utc": "2026-10-17T15:15:00Z",
+      "kickoff_utc": "2026-10-17T15:15:00+00:00",
       "kickoff_local": "17.10 15:15 UTC",
       "markets": [
         {
@@ -9051,7 +9107,7 @@
       "country": "Germany",
       "home_team": "Bayern München",
       "away_team": "RB Leipzig",
-      "kickoff_utc": "2026-10-17T16:30:00Z",
+      "kickoff_utc": "2026-10-17T16:30:00+00:00",
       "kickoff_local": "17.10 16:30 UTC",
       "markets": [
         {
@@ -9109,7 +9165,7 @@
       "country": "England",
       "home_team": "Newcastle",
       "away_team": "Aston Villa",
-      "kickoff_utc": "2026-10-17T16:30:00Z",
+      "kickoff_utc": "2026-10-17T16:30:00+00:00",
       "kickoff_local": "17.10 16:30 UTC",
       "markets": [
         {
@@ -9222,7 +9278,7 @@
       "country": "France",
       "home_team": "Lille",
       "away_team": "Stade Brestois 29",
-      "kickoff_utc": "2026-10-17T18:45:00Z",
+      "kickoff_utc": "2026-10-17T18:45:00+00:00",
       "kickoff_local": "17.10 18:45 UTC",
       "markets": [
         {
@@ -9285,7 +9341,7 @@
       "country": "France",
       "home_team": "Estac Troyes",
       "away_team": "Lens",
-      "kickoff_utc": "2026-10-17T18:45:00Z",
+      "kickoff_utc": "2026-10-17T18:45:00+00:00",
       "kickoff_local": "17.10 18:45 UTC",
       "markets": [
         {
@@ -9344,8 +9400,8 @@
   ],
   "governance": {
     "system_health": "CRITICAL",
-    "health_critical": 5,
-    "health_warnings": 12,
+    "health_critical": 10,
+    "health_warnings": 1,
     "logical_exposure_u": 3.0,
     "canonical_conflict_fixtures": 0,
     "deduplicated_overlap_u": 1.0,
