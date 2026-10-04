@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-04T15:12:21Z",
+  "generated_at_utc": "2026-10-04T20:48:29Z",
   "status": "OK",
   "scope_leagues": 16,
   "families": [
@@ -105,9 +105,9 @@
       "status": "ACTIVE",
       "leader": "YES",
       "blocking_reason": "active forward sample 3/60 settled (57 remaining before deterioration review can be evaluated)",
-      "prospective_captured": "6",
-      "prospective_executable": "6",
-      "prospective_pending_executable": "3",
+      "prospective_captured": "9",
+      "prospective_executable": "9",
+      "prospective_pending_executable": "6",
       "review_target_settled": "60",
       "review_remaining_settled": "57",
       "review_progress_pct": "5.0",
@@ -633,9 +633,9 @@
       "status": "ACTIVE",
       "leader": "YES",
       "blocking_reason": "active forward sample 0/60 settled (60 remaining before deterioration review can be evaluated)",
-      "prospective_captured": "1",
-      "prospective_executable": "1",
-      "prospective_pending_executable": "1",
+      "prospective_captured": "4",
+      "prospective_executable": "4",
+      "prospective_pending_executable": "4",
       "review_target_settled": "60",
       "review_remaining_settled": "60",
       "review_progress_pct": "0.0",
@@ -1095,5 +1095,5 @@
     "automatic_promotion": "FORBIDDEN",
     "automatic_suspension": "FORBIDDEN"
   },
-  "progress_generated_at_utc": "2026-10-04T15:12:21Z"
+  "progress_generated_at_utc": "2026-10-04T20:48:29Z"
 }

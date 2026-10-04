@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-10-04T15:12:21.245728Z",
+  "run_at_utc": "2026-10-04T20:48:28.970305Z",
   "status": "ATTENTION",
   "counts": {
     "expected": 0,
@@ -129,7 +129,7 @@
   ],
   "warnings": [],
   "scope": "16 locked leagues; 15 research writers; Serie A canonical read-only, completeness not certified",
-  "canonical_captured": 7,
+  "canonical_captured": 13,
   "definitions": {
     "expected": "scheduled NS fixtures in next 24h, not inferred qualifying bets",
     "scanned": "those fixtures evaluated for capture using a fresh complete league inventory",
@@ -140,6 +140,6 @@
   "legacy_max_schedule_gap_hours": 18,
   "schedule_gap_hours": 8,
   "r2_freeze_hours": 12,
-  "api_calls": 47,
-  "api_day_calls": 1229
+  "api_calls": 30,
+  "api_day_calls": 1415
 }
