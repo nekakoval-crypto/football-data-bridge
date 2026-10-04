@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-10-03T18:50:26Z
+Generated UTC: 2026-10-04T10:58:17Z
 Active canonical signals: 4
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -8,8 +8,8 @@ Active canonical signals: 4
 ## R1 | Lecce — Bologna
 - Kickoff UTC: 2026-10-11T13:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.0 / Х 3.3 / П2 1.91 (immutable)
-- Market-best observed: 2.07 @ 1xBet | Bet365 now: 2.0
-- Current user-executable: 2.01 @ Marathonbet
+- Market-best observed: 2.0 @ Betano | Bet365 now: 1.9
+- Current user-executable: 1.93 @ Marathonbet
 - Paper user-execution (frozen): 2.0 @ Marathonbet [2026-09-18T06:48:35Z]
 - Referee / venue: TBD | Stadio Via del Mare, Lecce
 - Previous: home Serie A vs Monza (672.0h rest); away Serie A vs Napoli (669.0h rest)
@@ -23,8 +23,8 @@ Active canonical signals: 4
 ## R1 | Sassuolo — AC Milan
 - Kickoff UTC: 2026-10-11T16:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.5 / Х 3.6 / П2 1.75 (immutable)
-- Market-best observed: 1.84 @ 1xBet | Bet365 now: 1.75
-- Current user-executable: 1.79 @ Marathonbet
+- Market-best observed: 1.87 @ 1xBet | Bet365 now: 1.8
+- Current user-executable: 1.82 @ Marathonbet
 - Paper user-execution (frozen): 1.79 @ Marathonbet [2026-09-18T06:48:35Z]
 - Referee / venue: TBD | TBD, Reggio Emilia
 - Previous: home Serie A vs Juventus (669.2h rest); away UEFA Europa League vs Benfica (597.0h rest)
@@ -38,8 +38,8 @@ Active canonical signals: 4
 ## R2 | Sassuolo — AC Milan
 - Kickoff UTC: 2026-10-11T16:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.5 / Х 3.6 / П2 1.75 (immutable)
-- Market-best observed: 1.84 @ 1xBet | Bet365 now: 1.75
-- Current user-executable: 1.79 @ Marathonbet
+- Market-best observed: 1.87 @ 1xBet | Bet365 now: 1.8
+- Current user-executable: 1.82 @ Marathonbet
 - Paper user-execution (frozen): 1.79 @ Marathonbet [2026-09-22T06:49:37Z]
 - Referee / venue: TBD | TBD, Reggio Emilia
 - Previous: home Serie A vs Monza (549.2h rest); away Serie A vs Lecce (501.2h rest)
@@ -72,7 +72,7 @@ Active canonical signals: 4
 > This is **not R4 and not a bet signal**. It does not change the canonical R1/R2/R3 forward ledger.
 
 - Scope: АПЛ: движение фаворита П1/П2 (+3 pp no-vig from frozen Bet365 opener).
-- Frozen openers tracked: 34
+- Frozen openers tracked: 35
 - Active +3 pp crossings: 0
 - Observed closes: 20 | Close-qualified M1 watches: 3
 - Executable bookmaker being observed: Marathonbet
@@ -112,7 +112,7 @@ Active canonical signals: 4
 > Это **не ставка и не новая стратегия**. Исторического edge по ОЗ мы не заявляем: в 10-летней базе нет first/close коэффициентов ОЗ.
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
-- Заморожено Bet365 opener'ов: 164
+- Заморожено Bet365 opener'ов: 173
 - Активные движения ≥3 п.п.: всего 0 | ОЗ — Да 0 | ОЗ — Нет 0
 - Зафиксировано observed close: 105
 - Исполнимый букмекер для наблюдения: Marathonbet
