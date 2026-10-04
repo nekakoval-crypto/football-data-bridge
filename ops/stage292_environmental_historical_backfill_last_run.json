@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE292_ENVIRONMENTAL_HISTORICAL_BACKFILL_V1",
-  "run_at_utc": "2026-10-03T19:26:48Z",
+  "run_at_utc": "2026-10-04T05:22:05Z",
   "status": "OK",
   "min_season": 2022,
   "bridge_rows": 38550,
@@ -20,18 +20,18 @@
   "captured_fixtures_this_run": 0,
   "captured_fixture_ids": [],
   "new_team_stat_rows": 0,
-  "total_team_stat_rows": 21080,
+  "total_team_stat_rows": 21128,
   "deferred_fixtures": 0,
   "protected_calls": {
     "live": 0,
-    "current_round": 32,
+    "current_round": 96,
     "standings": 16,
     "player_stats_stage77": 4,
     "safety": 8,
-    "total": 60,
+    "total": 124,
     "live_forecast_status": "OPEN"
   },
-  "daily_api_calls": 3380,
+  "daily_api_calls": 619,
   "identity_policy": {
     "mapping_statuses": [
       "AUTO",
