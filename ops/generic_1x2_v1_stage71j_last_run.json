@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-10-04T03:56:06Z",
+  "run_at_utc": "2026-10-04T14:12:43Z",
   "status": "OK",
   "mode": "STAGE71J_ZERO_EXTRA_CALL_PROSPECTIVE_CAPTURE",
   "source": "API-Football /odds Bet365 Match Winner",
@@ -11,13 +11,13 @@
   "extraction": {
     "fixture_metadata": 160,
     "unfiltered_odds_payloads": 160,
-    "missing_complete_bet365_match_winner": 66,
-    "complete_candidate_rows": 94
+    "missing_complete_bet365_match_winner": 55,
+    "complete_candidate_rows": 105
   },
-  "candidate_rows": 94,
-  "observations_added": 0,
+  "candidate_rows": 105,
+  "observations_added": 11,
   "observations_rejected": 94,
-  "prematch_frozen": 226,
+  "prematch_frozen": 237,
   "settled_rows": 2,
   "rejections": [
     {

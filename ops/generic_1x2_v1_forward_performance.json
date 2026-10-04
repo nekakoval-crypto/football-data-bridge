@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-04T09:48:25Z",
+  "generated_at_utc": "2026-10-04T14:12:43Z",
   "research_id": "PBK_GENERIC_1X2_PROBABILITY_V1_FORWARD",
   "model_version": "PBK_GENERIC_1X2_PROBABILITY_V1",
   "status": "PER_LEAGUE_FORWARD_REVIEW",
@@ -243,7 +243,7 @@
     },
     "Belgian Pro League": {
       "status": "COLLECTING",
-      "prematch_frozen": 10,
+      "prematch_frozen": 14,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -495,7 +495,7 @@
     },
     "Primeira Liga": {
       "status": "COLLECTING",
-      "prematch_frozen": 11,
+      "prematch_frozen": 14,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -531,7 +531,7 @@
     },
     "Super Lig": {
       "status": "COLLECTING",
-      "prematch_frozen": 10,
+      "prematch_frozen": 14,
       "settled_rows": 0,
       "forward_outcomes": {
         "H": 0,
@@ -660,7 +660,7 @@
   },
   "pooled_all16_diagnostic": {
     "status": "DIAGNOSTIC_ONLY",
-    "prematch_frozen": 226,
+    "prematch_frozen": 237,
     "settled_rows": 2,
     "forward_outcomes": {
       "H": 1,
@@ -712,7 +712,7 @@
     "purpose": "ALL_16_POOLED_DIAGNOSTIC_ONLY_NOT_AN_OFFICIAL_FORWARD_VERDICT"
   },
   "all_leagues_totals": {
-    "prematch_frozen": 226,
+    "prematch_frozen": 237,
     "settled_rows": 2
   },
   "policy": {
