@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-04T20:36:54Z",
+  "generated_at_utc": "2026-10-04T21:23:15Z",
   "status": "OK",
   "datasets": [
     {
@@ -68,7 +68,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 25913,
+      "row_count": 26041,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -1592,7 +1592,7 @@
       "source": "Stage80 durable projection from conservative PBK ↔ Transfermarkt AUTO_MATCH/HIGH mapping",
       "limitations": "Historical enrichment only; Transfermarkt IDs remain separate from API-Football IDs and source snapshot age prevents current-squad authority.",
       "present": true,
-      "row_count": 40875,
+      "row_count": 40896,
       "columns": [
         "transfer_event_id",
         "pbk_player_id",

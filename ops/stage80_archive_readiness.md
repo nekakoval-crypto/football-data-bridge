@@ -1,11 +1,11 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-10-04T20:37:19Z
+Обновлено UTC: 2026-10-04T21:23:40Z
 Статус: **COLLECTING**
 
 ## Покрытие
 - Fixtures в текущем inventory: 128 (finished: 2).
-- Fixture history: 306 unique fixtures / 25913 observations / 202 observation runs (finished observed: 173).
+- Fixture history: 306 unique fixtures / 26041 observations / 203 observation runs (finished observed: 173).
 - Historical fixture catalog: 306 fixtures (terminal 173, rescheduled 1), history coverage 100.00%; missing 0, orphan 0.
 - Finished fixtures с player stats: 0 / 2 (0.00%).
 - Stage77 durable backlog: pending 173; captured 0; total 173.
@@ -22,7 +22,7 @@
 - Roster history: 194 команд / 210 team-snapshots / 6438 строк.
 - Membership intervals: 5942 (open 5938, closed-by-observed-absence 4).
 - Verified PBK↔Transfermarkt identities: 1806 rows / 1806 PBK players; invalid 892.
-- Verified historical transfers: 33156 rows / 4047 PBK players; dates 1994-07-01 → 2030-06-30; invalid 7719.
+- Verified historical transfers: 33156 rows / 4047 PBK players; dates 1994-07-01 → 2030-06-30; invalid 7740.
 - EPL referee research: 47 referees / 897 referee×team pairs / 3420 source matches; scope EPL_ONLY; penalties unavailable.
 - Top-5 API-Football referee backfill: 45 / 45 league-seasons; 16239 fixture rows; referee coverage 99.44%; profiles 453; referee×team pairs 7689.
 - Top-5 pre-match research context: 16111 valid rows / 16111 unique matches / 45 of 45 league-seasons; no-lookahead True.
