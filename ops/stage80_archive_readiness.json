@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-03T19:49:47Z",
+  "generated_at_utc": "2026-10-04T00:00:45Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -69,12 +69,12 @@
     "transfer_identity": {
       "file": "pbk_transfermarkt_player_identity.csv",
       "present": true,
-      "rows": 2684
+      "rows": 2697
     },
     "transfer_history": {
       "file": "historical_transfer_events.csv",
       "present": true,
-      "rows": 40723
+      "rows": 40875
     },
     "match_context": {
       "file": "match_context_snapshots.csv",
@@ -419,11 +419,11 @@
   },
   "transfer_identity": {
     "present": true,
-    "rows": 2684,
-    "valid_rows": 1804,
-    "invalid_rows": 880,
-    "unique_pbk_players": 1804,
-    "unique_transfermarkt_players": 1804,
+    "rows": 2697,
+    "valid_rows": 1805,
+    "invalid_rows": 892,
+    "unique_pbk_players": 1805,
+    "unique_transfermarkt_players": 1805,
     "approved_methods": [
       "EXACT_NAME_CURRENT_CLUB",
       "EXACT_PROFILE_NAME_DOB_CURRENT_CLUB",
@@ -433,9 +433,9 @@
   },
   "transfer_history": {
     "present": true,
-    "rows": 40723,
+    "rows": 40875,
     "valid_rows": 33156,
-    "invalid_identity_rows": 7567,
+    "invalid_identity_rows": 7719,
     "unique_pbk_players": 4047,
     "unique_transfermarkt_players": 4046,
     "earliest_transfer_date": "1994-07-01",
