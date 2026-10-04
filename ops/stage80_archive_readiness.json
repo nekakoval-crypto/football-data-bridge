@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-04T02:48:57Z",
+  "generated_at_utc": "2026-10-04T03:59:59Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -12,7 +12,7 @@
     "fixture_history": {
       "file": "fixture_history_snapshots.csv",
       "present": true,
-      "rows": 25401
+      "rows": 25529
     },
     "historical_fixtures": {
       "file": "historical_fixtures.csv",
@@ -300,10 +300,10 @@
   },
   "fixture_history": {
     "present": true,
-    "rows": 25401,
-    "valid_observations": 25401,
+    "rows": 25529,
+    "valid_observations": 25529,
     "unique_fixtures": 306,
-    "observation_runs": 198,
+    "observation_runs": 199,
     "finished_fixtures_observed": 173,
     "invalid_identity_rows": 0,
     "evidence_note": "Counts represent only Stage71 current-round observations persisted after the fixture-history archive was enabled; they are not a pre-PBK historical backfill claim."
@@ -322,8 +322,8 @@
     "orphan_catalog_fixtures": 0,
     "missing_terminal_evidence": 0,
     "orphan_terminal_evidence": 0,
-    "observation_count_total": 25401,
-    "expected_history_observations": 25401,
+    "observation_count_total": 25529,
+    "expected_history_observations": 25529,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
   },
@@ -420,10 +420,10 @@
   "transfer_identity": {
     "present": true,
     "rows": 2697,
-    "valid_rows": 1805,
-    "invalid_rows": 892,
-    "unique_pbk_players": 1805,
-    "unique_transfermarkt_players": 1805,
+    "valid_rows": 1806,
+    "invalid_rows": 891,
+    "unique_pbk_players": 1806,
+    "unique_transfermarkt_players": 1806,
     "approved_methods": [
       "EXACT_NAME_CURRENT_CLUB",
       "EXACT_PROFILE_NAME_DOB_CURRENT_CLUB",
