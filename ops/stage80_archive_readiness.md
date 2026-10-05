@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-10-05T02:58:55Z
+Обновлено UTC: 2026-10-05T06:57:30Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -15,13 +15,13 @@
 - Team match statistics: 10588 complete fixtures / 21176 team rows; current finished coverage 0.00%.
 - Team xG: 8121 complete fixtures / 16242 team rows; captured-team-stat coverage 76.70%.
 - Player xG/xA source: RESEARCH_SOURCE_EXTERNAL_LOCAL_ATTESTED_MAPPED_TO_PBK.
-- Player stat rows: 1308824; уникальных игроков: 27381.
-- Player Grade rows: 1308824; уникальных игроков: 27381.
+- Player stat rows: 1313742; уникальных игроков: 28259.
+- Player Grade rows: 1313742; уникальных игроков: 28259.
 - Current roster: 202 команд / 6171 игроковых строк.
 - Player profile evidence: 5806 rows (5599 team-source + 207 residual-ID) / 5622 players / 202 teams; current-roster coverage 85.39%; identity-ready 5187 players (79.13%).
 - Roster history: 202 команд / 218 team-snapshots / 6668 строк.
 - Membership intervals: 6172 (open 6168, closed-by-observed-absence 4).
-- Verified PBK↔Transfermarkt identities: 1847 rows / 1847 PBK players; invalid 896.
+- Verified PBK↔Transfermarkt identities: 1849 rows / 1849 PBK players; invalid 896.
 - Verified historical transfers: 33156 rows / 4047 PBK players; dates 1994-07-01 → 2030-06-30; invalid 7762.
 - EPL referee research: 47 referees / 897 referee×team pairs / 3420 source matches; scope EPL_ONLY; penalties unavailable.
 - Top-5 API-Football referee backfill: 45 / 45 league-seasons; 16239 fixture rows; referee coverage 99.44%; profiles 453; referee×team pairs 7689.

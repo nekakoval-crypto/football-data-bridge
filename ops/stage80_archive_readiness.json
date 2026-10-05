@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-05T02:58:55Z",
+  "generated_at_utc": "2026-10-05T06:57:30Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -22,13 +22,13 @@
     "player_stats": {
       "file": "player_stats_snapshots_parts/*.csv",
       "present": true,
-      "rows": 1308824,
+      "rows": 1313742,
       "partitioned": true
     },
     "player_grades": {
       "file": "player_grade_snapshots_parts/*.csv",
       "present": true,
-      "rows": 1308824,
+      "rows": 1313742,
       "partitioned": true
     },
     "stage77_backlog": {
@@ -69,7 +69,7 @@
     "transfer_identity": {
       "file": "pbk_transfermarkt_player_identity.csv",
       "present": true,
-      "rows": 2743
+      "rows": 2745
     },
     "transfer_history": {
       "file": "historical_transfer_events.csv",
@@ -285,8 +285,8 @@
   "fixtures": {
     "current_inventory": 128,
     "finished_in_current_inventory": 2,
-    "player_stats_fixture_count_all_snapshots": 35115,
-    "player_grade_fixture_count_all_snapshots": 35115,
+    "player_stats_fixture_count_all_snapshots": 35253,
+    "player_grade_fixture_count_all_snapshots": 35253,
     "finished_current_inventory_with_player_stats": 0,
     "finished_current_inventory_player_stats_coverage_pct": 0.0,
     "per_league": [
@@ -387,10 +387,10 @@
     "player_xg_xa_evidence_note": "Stage91 provides StatsBomb research metrics. The large Stage91 source payload may remain external/local when an OK Stage91 meta attestation plus valid Stage92 AUTO/HIGH mapped rows are persisted; this never implies the source CSV is stored in Git. Stage92 maps only exact full names through the verified Transfermarkt→PBK bridge; abbreviated-name candidates remain REVIEW and never enter mapped research. Mapped xG/xA remains research-only and non-operational."
   },
   "players": {
-    "player_stat_rows": 1308824,
-    "unique_players_with_stats": 27381,
-    "player_grade_rows": 1308824,
-    "unique_players_with_grades": 27381
+    "player_stat_rows": 1313742,
+    "unique_players_with_stats": 28259,
+    "player_grade_rows": 1313742,
+    "unique_players_with_grades": 28259
   },
   "rosters": {
     "current_roster_rows": 6171,
@@ -419,11 +419,11 @@
   },
   "transfer_identity": {
     "present": true,
-    "rows": 2743,
-    "valid_rows": 1847,
+    "rows": 2745,
+    "valid_rows": 1849,
     "invalid_rows": 896,
-    "unique_pbk_players": 1847,
-    "unique_transfermarkt_players": 1847,
+    "unique_pbk_players": 1849,
+    "unique_transfermarkt_players": 1849,
     "approved_methods": [
       "EXACT_NAME_CURRENT_CLUB",
       "EXACT_PROFILE_NAME_DOB_CURRENT_CLUB",

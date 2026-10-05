@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-05T02:58:34Z",
+  "generated_at_utc": "2026-10-05T06:57:04Z",
   "status": "OK",
   "datasets": [
     {
@@ -318,7 +318,7 @@
       "source": "Stage77 /fixtures/players via shared broker",
       "limitations": "Only fixtures successfully captured under protected provider budget.",
       "present": true,
-      "row_count": 1308824,
+      "row_count": 1313742,
       "columns": [
         "fixture_id",
         "team_id",
@@ -462,7 +462,7 @@
       "source": "Stage77/78 derived from captured player stats",
       "limitations": "Research-derived grade; not raw provider fact and not canonical authority.",
       "present": true,
-      "row_count": 1308824,
+      "row_count": 1313742,
       "columns": [
         "fixture_id",
         "team_id",
@@ -1511,7 +1511,7 @@
       "source": "Stage80 normalized projection from team_roster_history + player_stats_snapshots",
       "limitations": "Observed player directory only; does not infer current team, exact transfer dates, xG or xA.",
       "present": true,
-      "row_count": 27616,
+      "row_count": 29091,
       "columns": [
         "player_id",
         "latest_observed_name",
@@ -1555,7 +1555,7 @@
       "source": "Stage80 conservative PBK ↔ Transfermarkt AUTO_MATCH/HIGH identity projection",
       "limitations": "Identity bridge only. Approved methods include exact catalog name+club, exact API-Football profile full-name+DOB+club, or exact non-abbreviated match-stat name+club; no fuzzy authority and no betting/model authority.",
       "present": true,
-      "row_count": 2743,
+      "row_count": 2745,
       "columns": [
         "pbk_player_id",
         "pbk_player_name",
