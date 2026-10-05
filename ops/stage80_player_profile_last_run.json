@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_PLAYER_PROFILE_ENRICHMENT_V2_RESIDUAL_ID",
-  "run_at_utc": "2026-10-04T21:18:11Z",
+  "run_at_utc": "2026-10-05T00:48:37Z",
   "status": "ATTENTION",
   "season": "2026",
   "provider_endpoints": [
@@ -9,31 +9,72 @@
   ],
   "refresh_days": 7,
   "residual_retry_days": 7,
-  "provider_calls": 7,
-  "team_provider_calls": 7,
-  "residual_provider_calls": 0,
-  "daily_api_calls": 1422,
+  "provider_calls": 53,
+  "team_provider_calls": 23,
+  "residual_provider_calls": 30,
+  "daily_api_calls": 61,
   "protected_calls": {
     "live": 0,
-    "current_round": 60,
+    "current_round": 180,
     "standings": 32,
     "safety": 100,
-    "total": 192
+    "total": 312
   },
-  "candidate_teams": 7,
-  "completed_teams": [],
+  "candidate_teams": 15,
+  "completed_teams": [
+    {
+      "team_id": "404",
+      "team_name": "AC Horsens",
+      "profile_rows": 29
+    },
+    {
+      "team_id": "193",
+      "team_name": "PEC Zwolle",
+      "profile_rows": 26
+    },
+    {
+      "team_id": "198",
+      "team_name": "ADO Den Haag",
+      "profile_rows": 29
+    },
+    {
+      "team_id": "2149",
+      "team_name": "Fredrikstad",
+      "profile_rows": 34
+    },
+    {
+      "team_id": "1072",
+      "team_name": "TSV Hartberg",
+      "profile_rows": 26
+    },
+    {
+      "team_id": "325",
+      "team_name": "Tromso",
+      "profile_rows": 37
+    },
+    {
+      "team_id": "1025",
+      "team_name": "Wolfsberger AC",
+      "profile_rows": 25
+    },
+    {
+      "team_id": "1399",
+      "team_name": "Austria Lustenau",
+      "profile_rows": 24
+    }
+  ],
   "deferred_teams": 0,
-  "residual_candidate_players": 0,
-  "residual_captured_players": 0,
-  "residual_empty_players": 0,
+  "residual_candidate_players": 30,
+  "residual_captured_players": 2,
+  "residual_empty_players": 28,
   "residual_error_players": 0,
   "residual_deferred_players": 0,
   "residual_ambiguous_current_roster_player_ids": 0,
   "residual_suppressed_recent_attempts": 873,
-  "profile_rows": 5574,
-  "unique_profile_players": 5398,
-  "current_roster_players": 5936,
-  "current_roster_player_coverage_pct": 85.29,
+  "profile_rows": 5806,
+  "unique_profile_players": 5622,
+  "current_roster_players": 6166,
+  "current_roster_player_coverage_pct": 85.39,
   "warnings": [
     "586 FK Zalgiris Vilnius: provider returned no usable profile rows",
     "4149 BFC Daugavpils: provider returned no usable profile rows",
