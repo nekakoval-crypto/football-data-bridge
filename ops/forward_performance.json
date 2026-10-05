@@ -1,13 +1,13 @@
 {
-  "generated_at_utc": "2026-10-03T18:44:50Z",
+  "generated_at_utc": "2026-10-05T07:05:44Z",
   "status": "OK",
   "scope": "clean prospective canonical forward only",
   "overall": {
-    "rows": 7,
-    "pending_rows": 4,
+    "rows": 13,
+    "pending_rows": 10,
     "settled_rows": 3,
     "void_rows": 0,
-    "frozen_user_execution_rows": 7,
+    "frozen_user_execution_rows": 13,
     "user_execution_coverage_pct": 100.0,
     "settled_with_user_execution": 3,
     "wins": 1,
@@ -24,11 +24,11 @@
   },
   "by_rule": {
     "R1": {
-      "rows": 6,
-      "pending_rows": 3,
+      "rows": 9,
+      "pending_rows": 6,
       "settled_rows": 3,
       "void_rows": 0,
-      "frozen_user_execution_rows": 6,
+      "frozen_user_execution_rows": 9,
       "user_execution_coverage_pct": 100.0,
       "settled_with_user_execution": 3,
       "wins": 1,
@@ -44,11 +44,11 @@
       "observed_user_max_drawdown_u": 1.42
     },
     "R2": {
-      "rows": 1,
-      "pending_rows": 1,
+      "rows": 4,
+      "pending_rows": 4,
       "settled_rows": 0,
       "void_rows": 0,
-      "frozen_user_execution_rows": 1,
+      "frozen_user_execution_rows": 4,
       "user_execution_coverage_pct": 100.0,
       "settled_with_user_execution": 0,
       "wins": 0,
