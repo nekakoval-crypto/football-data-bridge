@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE80_HISTORICAL_LINEUP_INJURY_BACKFILL_V2",
-  "run_at_utc": "2026-10-05T17:36:11Z",
+  "run_at_utc": "2026-10-05T21:44:14Z",
   "status": "OK",
   "source_rows": 70375,
   "terminal_pbk16_domestic_fixtures": 40354,
-  "candidate_tasks_before_run": 77368,
+  "candidate_tasks_before_run": 77318,
   "attempted_tasks": 50,
   "provider_calls": 50,
   "max_provider_calls": 50,
@@ -13,8 +13,8 @@
   "max_consecutive_provider_errors": 5,
   "checkpoint_every_tasks": 25,
   "shared_api_day_calls_at_start": 1471,
-  "historical_api_day_calls": 250,
-  "estimated_combined_api_day_calls": 1721,
+  "historical_api_day_calls": 300,
+  "estimated_combined_api_day_calls": 1771,
   "historical_daily_limit_after_shared_usage": 5529,
   "protected_calls": {
     "live": 0,
@@ -33,12 +33,12 @@
   "suppressed_injury_tasks_this_run": 0,
   "new_lineup_rows": 100,
   "new_injury_rows": 0,
-  "total_lineup_rows": 6516,
+  "total_lineup_rows": 6616,
   "total_injury_rows": 398,
-  "state_rows": 3563,
+  "state_rows": 3613,
   "state_totals": {
     "/fixtures/lineups": {
-      "CAPTURED": 3258,
+      "CAPTURED": 3308,
       "NO_DATA": 5
     },
     "/injuries": {
@@ -48,7 +48,7 @@
   },
   "injury_no_data_cell_threshold": 8,
   "suppressed_injury_cells": [],
-  "remaining_candidate_tasks": 77318,
+  "remaining_candidate_tasks": 77268,
   "provider_quota_exhausted": false,
   "provider_quota_error": "",
   "warnings": [],
