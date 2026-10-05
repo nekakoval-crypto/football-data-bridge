@@ -1,7 +1,7 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-10-04T10:58:17Z
-Active canonical signals: 4
+Generated UTC: 2026-10-05T07:11:28Z
+Active canonical signals: 10
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
 
@@ -53,7 +53,7 @@ Active canonical signals: 4
 ## R1 | Cagliari — Juventus
 - Kickoff UTC: 2026-10-11T18:45:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 5.75 / Х 3.7 / П2 1.6 (immutable)
-- Market-best observed: 1.62 @ 1xBet | Bet365 now: 1.57
+- Market-best observed: 1.62 @ 1xBet | Bet365 now: 1.53
 - Current user-executable: 1.57 @ Marathonbet
 - Paper user-execution (frozen): 1.53 @ Marathonbet [2026-09-18T06:48:35Z]
 - Referee / venue: TBD | Unipol Domus, Cagliari
@@ -65,6 +65,96 @@ Active canonical signals: 4
 - International: AFTER FIFA window; to start h; player-level UNVERIFIED
 - Flags: AWAY_PREV_UEFA_OR_CUP, AWAY_NEXT_UEFA_OR_CUP, WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
 
+## R1 | Venezia — Napoli
+- Kickoff UTC: 2026-10-17T13:00:00Z | Ставка: П2 | Stake: 1.000u
+- Trigger Bet365: П1 4.5 / Х 3.7 / П2 1.7 (immutable)
+- Market-best observed: 1.76 @ 1xBet | Bet365 now: 1.7
+- Current user-executable: 1.71 @ Marathonbet
+- Paper user-execution (frozen): 1.71 @ Marathonbet [2026-10-04T18:05:16Z]
+- Referee / venue: TBD | Stadio Pierluigi Penzo, Venice
+- Previous: home Serie A vs Lazio (666.2h rest); away Serie A vs Fiorentina (650.5h rest)
+- Next: home Serie A vs Genoa (193.0h after); away UEFA Champions League vs Bodo/Glimt (78.0h after)
+- Injuries: NOT_QUERIED_YET
+- Weather [BASELINE]: 23.4°C, precip 11%, wind 12.6 km/h, gusts 30.2 km/h
+- Rotation: WAITING_OFFICIAL_XI
+- International: AFTER FIFA window; to start h; player-level UNVERIFIED
+- Flags: AWAY_NEXT_UEFA_OR_CUP, OFFICIAL_ROTATION_PENDING
+
+## R2 | Venezia — Napoli
+- Kickoff UTC: 2026-10-17T13:00:00Z | Ставка: П2 | Stake: 1.000u
+- Trigger Bet365: П1 4.5 / Х 3.7 / П2 1.7 (immutable)
+- Market-best observed: 1.76 @ 1xBet | Bet365 now: 1.7
+- Current user-executable: 1.71 @ Marathonbet
+- Paper user-execution (frozen): 1.71 @ Marathonbet [2026-10-04T18:05:16Z]
+- Referee / venue: TBD | Stadio Pierluigi Penzo, Venice
+- Previous: home Serie A vs Lazio (666.2h rest); away Serie A vs Fiorentina (650.5h rest)
+- Next: home Serie A vs Genoa (193.0h after); away UEFA Champions League vs Bodo/Glimt (78.0h after)
+- Injuries: NOT_QUERIED_YET
+- Weather [BASELINE]: 23.4°C, precip 11%, wind 12.6 km/h, gusts 30.2 km/h
+- Rotation: WAITING_OFFICIAL_XI
+- International: AFTER FIFA window; to start h; player-level UNVERIFIED
+- Flags: AWAY_NEXT_UEFA_OR_CUP, OFFICIAL_ROTATION_PENDING
+
+## R1 | Bologna — Inter
+- Kickoff UTC: 2026-10-17T16:00:00Z | Ставка: П2 | Stake: 1.000u
+- Trigger Bet365: П1 4.75 / Х 3.9 / П2 1.65 (immutable)
+- Market-best observed: 1.69 @ 1xBet | Bet365 now: 1.65
+- Current user-executable: 1.64 @ Marathonbet
+- Paper user-execution (frozen): 1.64 @ Marathonbet [2026-10-04T18:05:16Z]
+- Referee / venue: TBD | TBD, Bologna
+- Previous: home Serie A vs Torino (675.0h rest); away Friendlies Clubs vs Lumezzane (343.0h rest)
+- Next: home Serie A vs Cagliari (165.0h after); away UEFA Champions League vs Shakhtar Donetsk (99.0h after)
+- Injuries: NOT_QUERIED_YET
+- Weather [BASELINE]: 20.9°C, precip 11%, wind 5.0 km/h, gusts 25.9 km/h
+- Rotation: WAITING_OFFICIAL_XI
+- International: AFTER FIFA window; to start h; player-level UNVERIFIED
+- Flags: AWAY_NEXT_UEFA_OR_CUP, OFFICIAL_ROTATION_PENDING
+
+## R2 | Bologna — Inter
+- Kickoff UTC: 2026-10-17T16:00:00Z | Ставка: П2 | Stake: 1.000u
+- Trigger Bet365: П1 4.75 / Х 3.9 / П2 1.65 (immutable)
+- Market-best observed: 1.69 @ 1xBet | Bet365 now: 1.65
+- Current user-executable: 1.64 @ Marathonbet
+- Paper user-execution (frozen): 1.64 @ Marathonbet [2026-10-04T18:05:16Z]
+- Referee / venue: TBD | TBD, Bologna
+- Previous: home Serie A vs Torino (675.0h rest); away Friendlies Clubs vs Lumezzane (343.0h rest)
+- Next: home Serie A vs Cagliari (165.0h after); away UEFA Champions League vs Shakhtar Donetsk (99.0h after)
+- Injuries: NOT_QUERIED_YET
+- Weather [BASELINE]: 20.9°C, precip 11%, wind 5.0 km/h, gusts 25.9 km/h
+- Rotation: WAITING_OFFICIAL_XI
+- International: AFTER FIFA window; to start h; player-level UNVERIFIED
+- Flags: AWAY_NEXT_UEFA_OR_CUP, OFFICIAL_ROTATION_PENDING
+
+## R1 | Fiorentina — Como
+- Kickoff UTC: 2026-10-18T13:00:00Z | Ставка: П2 | Stake: 1.000u
+- Trigger Bet365: П1 3.5 / Х 3.4 / П2 2.05 (immutable)
+- Market-best observed: 2.13 @ 1xBet | Bet365 now: 2.05
+- Current user-executable: 2.07 @ Marathonbet
+- Paper user-execution (frozen): 2.07 @ Marathonbet [2026-10-04T18:05:16Z]
+- Referee / venue: TBD | Stadio Artemio Franchi, Florence
+- Previous: home Serie A vs Napoli (674.5h rest); away Serie A vs Frosinone (672.0h rest)
+- Next: home Serie A vs Inter (166.5h after); away UEFA Champions League vs Manchester United (75.8h after)
+- Injuries: NOT_QUERIED_YET
+- Weather [BASELINE]: 19.8°C, precip 12%, wind 17.9 km/h, gusts 42.1 km/h
+- Rotation: WAITING_OFFICIAL_XI
+- International: AFTER FIFA window; to start h; player-level UNVERIFIED
+- Flags: AWAY_NEXT_UEFA_OR_CUP, OFFICIAL_ROTATION_PENDING
+
+## R2 | Fiorentina — Como
+- Kickoff UTC: 2026-10-18T13:00:00Z | Ставка: П2 | Stake: 1.000u
+- Trigger Bet365: П1 3.5 / Х 3.4 / П2 2.05 (immutable)
+- Market-best observed: 2.13 @ 1xBet | Bet365 now: 2.05
+- Current user-executable: 2.07 @ Marathonbet
+- Paper user-execution (frozen): 2.07 @ Marathonbet [2026-10-04T18:05:16Z]
+- Referee / venue: TBD | Stadio Artemio Franchi, Florence
+- Previous: home Serie A vs Napoli (674.5h rest); away Serie A vs Frosinone (672.0h rest)
+- Next: home Serie A vs Inter (166.5h after); away UEFA Champions League vs Manchester United (75.8h after)
+- Injuries: NOT_QUERIED_YET
+- Weather [BASELINE]: 19.8°C, precip 12%, wind 17.9 km/h, gusts 42.1 km/h
+- Rotation: WAITING_OFFICIAL_XI
+- International: AFTER FIFA window; to start h; player-level UNVERIFIED
+- Flags: AWAY_NEXT_UEFA_OR_CUP, OFFICIAL_ROTATION_PENDING
+
 ---
 
 # MARKET STEAM WATCH — research only
@@ -72,7 +162,7 @@ Active canonical signals: 4
 > This is **not R4 and not a bet signal**. It does not change the canonical R1/R2/R3 forward ledger.
 
 - Scope: АПЛ: движение фаворита П1/П2 (+3 pp no-vig from frozen Bet365 opener).
-- Frozen openers tracked: 35
+- Frozen openers tracked: 36
 - Active +3 pp crossings: 0
 - Observed closes: 20 | Close-qualified M1 watches: 3
 - Executable bookmaker being observed: Marathonbet
@@ -91,7 +181,7 @@ Active canonical signals: 4
 > This is **not a canonical rule and not a bet signal**. R1/R2/R3 are unchanged.
 
 - Scope: Бундеслига: ТБ(2.5) — движение рынка (+3 pp no-vig from frozen Bet365 O/U 2.5 opener).
-- Frozen O/U openers tracked: 34
+- Frozen O/U openers tracked: 35
 - Active +3 pp crossings ТБ(2.5): 0
 - Observed closes: 18 | Close-qualified O1 watches: 7
 - Executable bookmaker being observed: Marathonbet
@@ -112,7 +202,7 @@ Active canonical signals: 4
 > Это **не ставка и не новая стратегия**. Исторического edge по ОЗ мы не заявляем: в 10-летней базе нет first/close коэффициентов ОЗ.
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
-- Заморожено Bet365 opener'ов: 173
+- Заморожено Bet365 opener'ов: 183
 - Активные движения ≥3 п.п.: всего 0 | ОЗ — Да 0 | ОЗ — Нет 0
 - Зафиксировано observed close: 105
 - Исполнимый букмекер для наблюдения: Marathonbet
