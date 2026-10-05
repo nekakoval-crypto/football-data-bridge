@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-05T01:01:38Z",
+  "generated_at_utc": "2026-10-05T02:58:34Z",
   "status": "OK",
   "datasets": [
     {
@@ -318,7 +318,7 @@
       "source": "Stage77 /fixtures/players via shared broker",
       "limitations": "Only fixtures successfully captured under protected provider budget.",
       "present": true,
-      "row_count": 1303072,
+      "row_count": 1308824,
       "columns": [
         "fixture_id",
         "team_id",
@@ -462,7 +462,7 @@
       "source": "Stage77/78 derived from captured player stats",
       "limitations": "Research-derived grade; not raw provider fact and not canonical authority.",
       "present": true,
-      "row_count": 1303072,
+      "row_count": 1308824,
       "columns": [
         "fixture_id",
         "team_id",
