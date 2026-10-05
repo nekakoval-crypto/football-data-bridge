@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-10-04T22:59:58Z
+Обновлено UTC: 2026-10-05T00:57:57Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -15,14 +15,14 @@
 - Team match statistics: 10588 complete fixtures / 21176 team rows; current finished coverage 0.00%.
 - Team xG: 8121 complete fixtures / 16242 team rows; captured-team-stat coverage 76.70%.
 - Player xG/xA source: RESEARCH_SOURCE_EXTERNAL_LOCAL_ATTESTED_MAPPED_TO_PBK.
-- Player stat rows: 1295346; уникальных игроков: 26468.
-- Player Grade rows: 1295346; уникальных игроков: 26468.
-- Current roster: 194 команд / 5940 игроковых строк.
-- Player profile evidence: 5574 rows (5369 team-source + 205 residual-ID) / 5398 players / 194 teams; current-roster coverage 85.29%; identity-ready 4987 players (79.13%).
-- Roster history: 194 команд / 210 team-snapshots / 6438 строк.
-- Membership intervals: 5942 (open 5938, closed-by-observed-absence 4).
-- Verified PBK↔Transfermarkt identities: 1806 rows / 1806 PBK players; invalid 892.
-- Verified historical transfers: 33156 rows / 4047 PBK players; dates 1994-07-01 → 2030-06-30; invalid 7740.
+- Player stat rows: 1303072; уникальных игроков: 26784.
+- Player Grade rows: 1303072; уникальных игроков: 26784.
+- Current roster: 202 команд / 6171 игроковых строк.
+- Player profile evidence: 5806 rows (5599 team-source + 207 residual-ID) / 5622 players / 202 teams; current-roster coverage 85.39%; identity-ready 5187 players (79.13%).
+- Roster history: 202 команд / 218 team-snapshots / 6668 строк.
+- Membership intervals: 6172 (open 6168, closed-by-observed-absence 4).
+- Verified PBK↔Transfermarkt identities: 1847 rows / 1847 PBK players; invalid 896.
+- Verified historical transfers: 33156 rows / 4047 PBK players; dates 1994-07-01 → 2030-06-30; invalid 7762.
 - EPL referee research: 47 referees / 897 referee×team pairs / 3420 source matches; scope EPL_ONLY; penalties unavailable.
 - Top-5 API-Football referee backfill: 45 / 45 league-seasons; 16239 fixture rows; referee coverage 99.44%; profiles 453; referee×team pairs 7689.
 - Top-5 pre-match research context: 16111 valid rows / 16111 unique matches / 45 of 45 league-seasons; no-lookahead True.

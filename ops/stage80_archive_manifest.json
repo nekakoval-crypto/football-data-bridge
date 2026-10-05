@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-04T22:59:32Z",
+  "generated_at_utc": "2026-10-05T00:57:31Z",
   "status": "OK",
   "datasets": [
     {
@@ -318,7 +318,7 @@
       "source": "Stage77 /fixtures/players via shared broker",
       "limitations": "Only fixtures successfully captured under protected provider budget.",
       "present": true,
-      "row_count": 1295346,
+      "row_count": 1303072,
       "columns": [
         "fixture_id",
         "team_id",
@@ -381,7 +381,7 @@
       "source": "Stage80 /players?team&season plus residual /players?id&season via shared API-Football broker; residual team context comes from current PBK roster",
       "limitations": "Identity enrichment only. Residual calls are limited to current-roster player IDs still missing after team capture. Missing profile fields remain UNKNOWN. No betting/model authority.",
       "present": true,
-      "row_count": 5574,
+      "row_count": 5806,
       "columns": [
         "team_id",
         "team_name",
@@ -425,7 +425,7 @@
       "source": "Stage80 residual /players?id&season capture state",
       "limitations": "Operational retry ledger only. EMPTY responses are retried after a bounded TTL; transient ERROR rows remain retryable. Never betting/model authority.",
       "present": true,
-      "row_count": 1104,
+      "row_count": 1134,
       "columns": [
         "season",
         "player_id",
@@ -462,7 +462,7 @@
       "source": "Stage77/78 derived from captured player stats",
       "limitations": "Research-derived grade; not raw provider fact and not canonical authority.",
       "present": true,
-      "row_count": 1295346,
+      "row_count": 1303072,
       "columns": [
         "fixture_id",
         "team_id",
@@ -1511,7 +1511,7 @@
       "source": "Stage80 normalized projection from team_roster_history + player_stats_snapshots",
       "limitations": "Observed player directory only; does not infer current team, exact transfer dates, xG or xA.",
       "present": true,
-      "row_count": 27115,
+      "row_count": 27616,
       "columns": [
         "player_id",
         "latest_observed_name",
@@ -1555,7 +1555,7 @@
       "source": "Stage80 conservative PBK ↔ Transfermarkt AUTO_MATCH/HIGH identity projection",
       "limitations": "Identity bridge only. Approved methods include exact catalog name+club, exact API-Football profile full-name+DOB+club, or exact non-abbreviated match-stat name+club; no fuzzy authority and no betting/model authority.",
       "present": true,
-      "row_count": 2698,
+      "row_count": 2743,
       "columns": [
         "pbk_player_id",
         "pbk_player_name",
@@ -1592,7 +1592,7 @@
       "source": "Stage80 durable projection from conservative PBK ↔ Transfermarkt AUTO_MATCH/HIGH mapping",
       "limitations": "Historical enrichment only; Transfermarkt IDs remain separate from API-Football IDs and source snapshot age prevents current-squad authority.",
       "present": true,
-      "row_count": 40896,
+      "row_count": 40918,
       "columns": [
         "transfer_event_id",
         "pbk_player_id",
@@ -1644,7 +1644,7 @@
       "source": "Stage79 /players/squads via shared broker",
       "limitations": "Latest roster only; use team_roster_history for historical membership evidence.",
       "present": true,
-      "row_count": 5940,
+      "row_count": 6171,
       "columns": [
         "team_id",
         "team_name",
@@ -1680,7 +1680,7 @@
       "source": "Stage80 archive of already-captured Stage79 roster snapshots",
       "limitations": "Observed squad membership, not an exact transfer-date claim.",
       "present": true,
-      "row_count": 6438,
+      "row_count": 6668,
       "columns": [
         "team_id",
         "team_name",
@@ -1716,7 +1716,7 @@
       "source": "Stage80 derived from team_roster_history",
       "limitations": "Observed presence intervals are not verified transfer events.",
       "present": true,
-      "row_count": 5942,
+      "row_count": 6172,
       "columns": [
         "interval_id",
         "team_id",
