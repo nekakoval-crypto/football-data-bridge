@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-10-05T00:51:18Z",
+  "run_at_utc": "2026-10-05T06:54:16Z",
   "status": "OK",
   "mode": "SHARED_PREFETCHED_PROSPECTIVE_CAPTURE",
   "prefetched_fixture_ids": 160,
@@ -18,7 +18,7 @@
   "market_presence_count": 134,
   "market_presence_api_calls_added": 0,
   "generic_1x2_forward_capture": {
-    "run_at_utc": "2026-10-05T00:52:03Z",
+    "run_at_utc": "2026-10-05T06:54:42Z",
     "status": "OK",
     "mode": "STAGE71J_ZERO_EXTRA_CALL_PROSPECTIVE_CAPTURE",
     "source": "API-Football /odds Bet365 Match Winner",
@@ -30,13 +30,13 @@
     "extraction": {
       "fixture_metadata": 160,
       "unfiltered_odds_payloads": 160,
-      "missing_complete_bet365_match_winner": 55,
-      "complete_candidate_rows": 105
+      "missing_complete_bet365_match_winner": 45,
+      "complete_candidate_rows": 115
     },
-    "candidate_rows": 105,
-    "observations_added": 0,
+    "candidate_rows": 115,
+    "observations_added": 10,
     "observations_rejected": 105,
-    "prematch_frozen": 237,
+    "prematch_frozen": 247,
     "settled_rows": 2,
     "rejections": [
       {
@@ -477,7 +477,7 @@
       "status": "OK",
       "fixtures_scanned": 160,
       "logical_odds_calls": 48,
-      "new_openers": 0,
+      "new_openers": 89,
       "new_snapshots": 0,
       "new_closes": 0,
       "warnings": 0
@@ -487,7 +487,7 @@
       "status": "OK",
       "fixtures_scanned": 160,
       "logical_odds_calls": 48,
-      "new_openers": 0,
+      "new_openers": 10,
       "new_snapshots": 0,
       "new_closes": 0,
       "warnings": 0
@@ -497,7 +497,7 @@
       "status": "OK",
       "fixtures_scanned": 160,
       "logical_odds_calls": 48,
-      "new_openers": 0,
+      "new_openers": 51,
       "new_snapshots": 0,
       "new_closes": 0,
       "warnings": 0
@@ -507,7 +507,7 @@
       "status": "OK",
       "fixtures_scanned": 160,
       "logical_odds_calls": 56,
-      "new_openers": 0,
+      "new_openers": 7,
       "new_snapshots": 0,
       "new_closes": 0,
       "warnings": 0
