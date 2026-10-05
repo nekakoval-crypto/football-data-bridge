@@ -1,16 +1,16 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-10-04T22:27:25Z",
-  "status": "ATTENTION",
+  "run_at_utc": "2026-10-05T00:38:31Z",
+  "status": "OK",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 0,
-  "daily_api_calls": 1902,
+  "provider_calls": 8,
+  "daily_api_calls": 8,
   "protected_calls": {
     "live": 0,
-    "current_round": 32,
+    "current_round": 96,
     "standings": 16,
     "safety": 8,
-    "total": 56
+    "total": 120
   },
   "roster_ttl_days": 28,
   "roster_freshness_policy": "TRANSFER_AWARE_V1",
@@ -19,12 +19,51 @@
   "sensitive_ttl_days": 3,
   "transfer_sensitive_periods": "01-01:02-15,06-01:09-10",
   "candidate_teams": 8,
-  "captured_teams": [],
-  "deferred_teams": 8,
-  "total_roster_rows": 5940,
-  "warnings": [
-    "Stage71 protected API reserve reached; Challenger deferred"
+  "captured_teams": [
+    {
+      "team_id": "404",
+      "team_name": "AC Horsens",
+      "players": 32
+    },
+    {
+      "team_id": "1025",
+      "team_name": "Wolfsberger AC",
+      "players": 27
+    },
+    {
+      "team_id": "1072",
+      "team_name": "TSV Hartberg",
+      "players": 29
+    },
+    {
+      "team_id": "1399",
+      "team_name": "Austria Lustenau",
+      "players": 25
+    },
+    {
+      "team_id": "193",
+      "team_name": "PEC Zwolle",
+      "players": 31
+    },
+    {
+      "team_id": "198",
+      "team_name": "ADO Den Haag",
+      "players": 30
+    },
+    {
+      "team_id": "2149",
+      "team_name": "Fredrikstad",
+      "players": 29
+    },
+    {
+      "team_id": "325",
+      "team_name": "Tromso",
+      "players": 28
+    }
   ],
+  "deferred_teams": 0,
+  "total_roster_rows": 6171,
+  "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
