@@ -1,16 +1,16 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-10-05T22:28:17Z",
-  "status": "ATTENTION",
+  "run_at_utc": "2026-10-06T00:40:49Z",
+  "status": "OK",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 0,
-  "daily_api_calls": 1471,
+  "provider_calls": 8,
+  "daily_api_calls": 8,
   "protected_calls": {
     "live": 0,
-    "current_round": 32,
+    "current_round": 96,
     "standings": 16,
     "safety": 8,
-    "total": 56
+    "total": 120
   },
   "roster_ttl_days": 28,
   "roster_freshness_policy": "TRANSFER_AWARE_V1",
@@ -19,12 +19,51 @@
   "sensitive_ttl_days": 3,
   "transfer_sensitive_periods": "01-01:02-15,06-01:09-10",
   "candidate_teams": 8,
-  "captured_teams": [],
-  "deferred_teams": 8,
-  "total_roster_rows": 6171,
-  "warnings": [
-    "Stage71 protected API reserve reached; Challenger deferred"
+  "captured_teams": [
+    {
+      "team_id": "420",
+      "team_name": "Cambuur",
+      "players": 33
+    },
+    {
+      "team_id": "427",
+      "team_name": "Telstar",
+      "players": 28
+    },
+    {
+      "team_id": "618",
+      "team_name": "SCR Altach",
+      "players": 32
+    },
+    {
+      "team_id": "18834",
+      "team_name": "FS Jelgava",
+      "players": 23
+    },
+    {
+      "team_id": "252",
+      "team_name": "Aberdeen",
+      "players": 30
+    },
+    {
+      "team_id": "258",
+      "team_name": "ST Johnstone",
+      "players": 28
+    },
+    {
+      "team_id": "3573",
+      "team_name": "Gaziantep FK",
+      "players": 34
+    },
+    {
+      "team_id": "4160",
+      "team_name": "Rīgas FS",
+      "players": 31
+    }
   ],
+  "deferred_teams": 0,
+  "total_roster_rows": 6410,
+  "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
