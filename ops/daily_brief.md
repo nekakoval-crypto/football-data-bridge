@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-10-06T00:04:12Z
+Generated UTC: 2026-10-06T09:06:19Z
 Active canonical signals: 10
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -8,8 +8,8 @@ Active canonical signals: 10
 ## R1 | Lecce — Bologna
 - Kickoff UTC: 2026-10-11T13:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.0 / Х 3.3 / П2 1.91 (immutable)
-- Market-best observed: 2.0 @ Betano | Bet365 now: 1.9
-- Current user-executable: 1.93 @ Marathonbet
+- Market-best observed: 1.98 @ 1xBet | Bet365 now: 1.91
+- Current user-executable: 1.92 @ Marathonbet
 - Paper user-execution (frozen): 2.0 @ Marathonbet [2026-09-18T06:48:35Z]
 - Referee / venue: TBD | Stadio Via del Mare, Lecce
 - Previous: home Serie A vs Monza (672.0h rest); away Serie A vs Napoli (669.0h rest)
@@ -53,7 +53,7 @@ Active canonical signals: 10
 ## R1 | Cagliari — Juventus
 - Kickoff UTC: 2026-10-11T18:45:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 5.75 / Х 3.7 / П2 1.6 (immutable)
-- Market-best observed: 1.62 @ 1xBet | Bet365 now: 1.53
+- Market-best observed: 1.62 @ 1xBet | Bet365 now: 1.55
 - Current user-executable: 1.57 @ Marathonbet
 - Paper user-execution (frozen): 1.53 @ Marathonbet [2026-09-18T06:48:35Z]
 - Referee / venue: TBD | Unipol Domus, Cagliari
@@ -202,7 +202,7 @@ Active canonical signals: 10
 > Это **не ставка и не новая стратегия**. Исторического edge по ОЗ мы не заявляем: в 10-летней базе нет first/close коэффициентов ОЗ.
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
-- Заморожено Bet365 opener'ов: 183
+- Заморожено Bet365 opener'ов: 185
 - Активные движения ≥3 п.п.: всего 0 | ОЗ — Да 0 | ОЗ — Нет 0
 - Зафиксировано observed close: 105
 - Исполнимый букмекер для наблюдения: Marathonbet
