@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-06T07:05:00Z",
+  "generated_at_utc": "2026-10-06T07:06:44Z",
   "status": "OK",
   "datasets": [
     {
@@ -1555,7 +1555,7 @@
       "source": "Stage80 conservative PBK ↔ Transfermarkt AUTO_MATCH/HIGH identity projection",
       "limitations": "Identity bridge only. Approved methods include exact catalog name+club, exact API-Football profile full-name+DOB+club, or exact non-abbreviated match-stat name+club; no fuzzy authority and no betting/model authority.",
       "present": true,
-      "row_count": 2745,
+      "row_count": 3015,
       "columns": [
         "pbk_player_id",
         "pbk_player_name",
@@ -1592,7 +1592,7 @@
       "source": "Stage80 durable projection from conservative PBK ↔ Transfermarkt AUTO_MATCH/HIGH mapping",
       "limitations": "Historical enrichment only; Transfermarkt IDs remain separate from API-Football IDs and source snapshot age prevents current-squad authority.",
       "present": true,
-      "row_count": 40918,
+      "row_count": 41579,
       "columns": [
         "transfer_event_id",
         "pbk_player_id",
