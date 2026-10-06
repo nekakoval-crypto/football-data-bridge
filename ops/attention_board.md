@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 06.10.2026 08:03 (Europe/Berlin)
+Обновлено: 06.10.2026 10:04 (Europe/Berlin)
 Canonical: 10 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -46,7 +46,7 @@ Canonical: 10 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
 > Собранные снимки рынков; не сигналы и не рекомендации.
 
 - **Wieczysta Kraków — Wisla Plock** | Ekstraklasa | 09.10 16:00 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 2.15 | Х: 3.3 | П2: 3 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -111,7 +111,7 @@ Canonical: 10 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Ф(0) — нет данных
 
 - **Raków Częstochowa — GKS Katowice** | Ekstraklasa | 09.10 18:30 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 2.1 | Х: 3.5 | П2: 3 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -204,7 +204,7 @@ Canonical: 10 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Ф(0) — нет данных
 
 - **Cracovia Krakow — Zaglebie Lubin** | Ekstraklasa | 10.10 12:45 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 1.85 | Х: 3.3 | П2: 3.75 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -458,7 +458,7 @@ Canonical: 10 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Ф(0) — нет данных
 
 - **Slask Wroclaw — Lech Poznan** | Ekstraklasa | 10.10 15:30 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 5 | Х: 4 | П2: 1.55 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -572,7 +572,7 @@ Canonical: 10 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Ф(0) — нет данных
 
 - **Jagiellonia — Gornik Zabrze** | Ekstraklasa | 10.10 18:15 UTC
-  - 1X2 — нет данных
+  - 1X2 · П1: 2.4 | Х: 3.4 | П2: 2.6 @ Bet365
   - Тотал 2.5 — нет данных
   - ОЗ — нет данных
   - ИТБ/ИТМ — нет данных
@@ -1806,8 +1806,8 @@ Canonical: 10 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **CRITICAL** | critical 3 | warnings 5
+- System Health: **CRITICAL** | critical 6 | warnings 2
 - Логическая canonical экспозиция: **6.0u** | конфликтов матчей 0 | убрано дублей 4.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
-- League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 25 | data required 2
+- League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 26 | data required 1
 - 🔴 Есть критическая проблема данных: operational вывод нельзя считать полностью надёжным до разбора.
