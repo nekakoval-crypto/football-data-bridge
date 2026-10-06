@@ -1,11 +1,11 @@
 {
-  "run_at_utc": "2026-10-06T06:49:44Z",
+  "run_at_utc": "2026-10-06T12:50:07Z",
   "status": "OK",
   "mode": "SHARED_PREFETCHED_PROSPECTIVE_CAPTURE",
   "prefetched_fixture_ids": 160,
   "real_api_calls": 177,
   "api_hard_cap": 190,
-  "cache_hits": 238,
+  "cache_hits": 194,
   "unique_cached_requests": 177,
   "real_calls_by_path": {
     "/odds/bets": 1,
@@ -18,7 +18,7 @@
   "market_presence_count": 137,
   "market_presence_api_calls_added": 0,
   "generic_1x2_forward_capture": {
-    "run_at_utc": "2026-10-06T06:50:17Z",
+    "run_at_utc": "2026-10-06T12:50:50Z",
     "status": "OK",
     "mode": "STAGE71J_ZERO_EXTRA_CALL_PROSPECTIVE_CAPTURE",
     "source": "API-Football /odds Bet365 Match Winner",
@@ -34,8 +34,8 @@
       "complete_candidate_rows": 126
     },
     "candidate_rows": 126,
-    "observations_added": 11,
-    "observations_rejected": 115,
+    "observations_added": 0,
+    "observations_rejected": 126,
     "prematch_frozen": 258,
     "settled_rows": 2,
     "rejections": [
@@ -213,6 +213,42 @@
       },
       {
         "fixture_id": "1552785",
+        "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1553182",
+        "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1553183",
+        "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1553184",
+        "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1553185",
+        "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1553186",
+        "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1553187",
+        "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1553188",
+        "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1553189",
+        "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1553190",
         "reason": "already_frozen"
       },
       {
@@ -456,6 +492,10 @@
         "reason": "already_frozen"
       },
       {
+        "fixture_id": "1575514",
+        "reason": "already_frozen"
+      },
+      {
         "fixture_id": "1575515",
         "reason": "already_frozen"
       },
@@ -473,6 +513,10 @@
       },
       {
         "fixture_id": "1584422",
+        "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1584423",
         "reason": "already_frozen"
       },
       {
@@ -516,8 +560,8 @@
       "market_family": "TEAM_TOTAL",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 40,
-      "new_openers": 101,
+      "logical_odds_calls": 29,
+      "new_openers": 0,
       "new_snapshots": 0,
       "new_closes": 0,
       "warnings": 0
@@ -526,8 +570,8 @@
       "market_family": "DOUBLE_CHANCE",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 40,
-      "new_openers": 11,
+      "logical_odds_calls": 29,
+      "new_openers": 0,
       "new_snapshots": 0,
       "new_closes": 0,
       "warnings": 0
@@ -536,8 +580,8 @@
       "market_family": "EUROPEAN_HANDICAP",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 40,
-      "new_openers": 55,
+      "logical_odds_calls": 29,
+      "new_openers": 0,
       "new_snapshots": 0,
       "new_closes": 0,
       "warnings": 0
@@ -546,8 +590,8 @@
       "market_family": "DRAW_NO_BET",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 51,
-      "new_openers": 11,
+      "logical_odds_calls": 40,
+      "new_openers": 0,
       "new_snapshots": 0,
       "new_closes": 0,
       "warnings": 0

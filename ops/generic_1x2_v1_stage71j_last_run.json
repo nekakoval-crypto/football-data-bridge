@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-10-06T06:50:17Z",
+  "run_at_utc": "2026-10-06T12:50:50Z",
   "status": "OK",
   "mode": "STAGE71J_ZERO_EXTRA_CALL_PROSPECTIVE_CAPTURE",
   "source": "API-Football /odds Bet365 Match Winner",
@@ -15,8 +15,8 @@
     "complete_candidate_rows": 126
   },
   "candidate_rows": 126,
-  "observations_added": 11,
-  "observations_rejected": 115,
+  "observations_added": 0,
+  "observations_rejected": 126,
   "prematch_frozen": 258,
   "settled_rows": 2,
   "rejections": [
@@ -194,6 +194,42 @@
     },
     {
       "fixture_id": "1552785",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1553182",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1553183",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1553184",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1553185",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1553186",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1553187",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1553188",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1553189",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1553190",
       "reason": "already_frozen"
     },
     {
@@ -437,6 +473,10 @@
       "reason": "already_frozen"
     },
     {
+      "fixture_id": "1575514",
+      "reason": "already_frozen"
+    },
+    {
       "fixture_id": "1575515",
       "reason": "already_frozen"
     },
@@ -454,6 +494,10 @@
     },
     {
       "fixture_id": "1584422",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1584423",
       "reason": "already_frozen"
     },
     {
