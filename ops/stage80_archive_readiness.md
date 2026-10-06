@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-10-06T01:02:30Z
+Обновлено UTC: 2026-10-06T02:57:52Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -17,10 +17,10 @@
 - Player xG/xA source: RESEARCH_SOURCE_EXTERNAL_LOCAL_ATTESTED_MAPPED_TO_PBK.
 - Player stat rows: 1331575; уникальных игроков: 29673.
 - Player Grade rows: 1331575; уникальных игроков: 29673.
-- Current roster: 210 команд / 6410 игроковых строк.
-- Player profile evidence: 5806 rows (5599 team-source + 207 residual-ID) / 5622 players / 202 teams; current-roster coverage 82.26%; identity-ready 5187 players (76.24%).
-- Roster history: 210 команд / 226 team-snapshots / 6907 строк.
-- Membership intervals: 6411 (open 6407, closed-by-observed-absence 4).
+- Current roster: 218 команд / 6660 игроковых строк.
+- Player profile evidence: 5806 rows (5599 team-source + 207 residual-ID) / 5622 players / 202 teams; current-roster coverage 79.29%; identity-ready 5187 players (73.49%).
+- Roster history: 218 команд / 234 team-snapshots / 7156 строк.
+- Membership intervals: 6660 (open 6656, closed-by-observed-absence 4).
 - Verified PBK↔Transfermarkt identities: 1849 rows / 1849 PBK players; invalid 896.
 - Verified historical transfers: 33156 rows / 4047 PBK players; dates 1994-07-01 → 2030-06-30; invalid 7762.
 - EPL referee research: 47 referees / 897 referee×team pairs / 3420 source matches; scope EPL_ONLY; penalties unavailable.
