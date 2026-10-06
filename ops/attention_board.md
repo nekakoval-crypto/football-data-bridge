@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 06.10.2026 03:06 (Europe/Berlin)
+Обновлено: 06.10.2026 05:03 (Europe/Berlin)
 Canonical: 10 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -1782,11 +1782,31 @@ Canonical: 10 | active WATCH crossings: 0 | RED: 0 | ORANGE: 0
   - Европейская фора — нет данных
   - Ф(0) — нет данных
 
+- **Monza — Cagliari** | Serie A | 19.10 16:30 UTC
+  - ОЗ · ОЗ Да: 1.8 | ОЗ Нет: 1.95 @ Bet365
+  - ОЗ · ОЗ Да: 1.85 | ОЗ Нет: 1.85 @ Marathonbet
+  - 1X2 — нет данных
+  - Тотал 2.5 — нет данных
+  - ИТБ/ИТМ — нет данных
+  - 1Х/Х2/12 — нет данных
+  - Европейская фора — нет данных
+  - Ф(0) — нет данных
+
+- **Parma — Torino** | Serie A | 19.10 18:45 UTC
+  - ОЗ · ОЗ Да: 1.95 | ОЗ Нет: 1.8 @ Bet365
+  - ОЗ · ОЗ Да: 1.9 | ОЗ Нет: 1.8 @ Marathonbet
+  - 1X2 — нет данных
+  - Тотал 2.5 — нет данных
+  - ИТБ/ИТМ — нет данных
+  - 1Х/Х2/12 — нет данных
+  - Европейская фора — нет данных
+  - Ф(0) — нет данных
+
 
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **CRITICAL** | critical 5 | warnings 3
+- System Health: **CRITICAL** | critical 4 | warnings 2
 - Логическая canonical экспозиция: **6.0u** | конфликтов матчей 0 | убрано дублей 4.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 25 | data required 2
