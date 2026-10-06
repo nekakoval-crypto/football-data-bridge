@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-10-06T00:40:49Z",
+  "run_at_utc": "2026-10-06T02:29:26Z",
   "status": "OK",
   "provider_endpoint": "/players/squads",
   "provider_calls": 8,
-  "daily_api_calls": 8,
+  "daily_api_calls": 16,
   "protected_calls": {
     "live": 0,
     "current_round": 96,
@@ -21,48 +21,48 @@
   "candidate_teams": 8,
   "captured_teams": [
     {
-      "team_id": "420",
-      "team_name": "Cambuur",
+      "team_id": "6343",
+      "team_name": "Çorum FK",
+      "players": 28
+    },
+    {
+      "team_id": "1393",
+      "team_name": "Union St. Gilloise",
+      "players": 29
+    },
+    {
+      "team_id": "260",
+      "team_name": "OH Leuven",
       "players": 33
     },
     {
-      "team_id": "427",
-      "team_name": "Telstar",
-      "players": 28
-    },
-    {
-      "team_id": "618",
-      "team_name": "SCR Altach",
-      "players": 32
-    },
-    {
-      "team_id": "18834",
-      "team_name": "FS Jelgava",
-      "players": 23
-    },
-    {
-      "team_id": "252",
-      "team_name": "Aberdeen",
+      "team_id": "407",
+      "team_name": "Brondby",
       "players": 30
     },
     {
-      "team_id": "258",
-      "team_name": "ST Johnstone",
-      "players": 28
+      "team_id": "225",
+      "team_name": "Nacional",
+      "players": 31
     },
     {
-      "team_id": "3573",
-      "team_name": "Gaziantep FK",
+      "team_id": "226",
+      "team_name": "Rio Ave",
       "players": 34
     },
     {
-      "team_id": "4160",
-      "team_name": "Rīgas FS",
-      "players": 31
+      "team_id": "196",
+      "team_name": "Excelsior",
+      "players": 29
+    },
+    {
+      "team_id": "202",
+      "team_name": "Groningen",
+      "players": 36
     }
   ],
   "deferred_teams": 0,
-  "total_roster_rows": 6410,
+  "total_roster_rows": 6660,
   "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
