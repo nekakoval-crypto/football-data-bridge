@@ -7,66 +7,75 @@ Fixture sample: **160** | API calls: **0**
 ## Точный счёт
 - Catalog markets: 3 | observed: 3
 - Source status: **API_FOOTBALL_PROSPECTIVE_SOURCE_POSSIBLE**
-- Max coverage: Bet365 78.8% | Marathonbet 78.8%
-  - bet 10 `Exact Score` — Bet365 78.8% | Marathonbet 78.8%
+- Max coverage: Bet365 78.8% | Marathonbet 80.0%
+  - bet 10 `Exact Score` — Bet365 78.8% | Marathonbet 80.0%
   - bet 31 `Correct Score - First Half` — Bet365 78.8% | Marathonbet 0.0%
   - bet 62 `Correct Score - Second Half` — Bet365 0.0% | Marathonbet 0.0%
 
 ## Комбо ОЗ + ТБ/ТМ / исход + тотал
 - Catalog markets: 5 | observed: 2
 - Source status: **API_FOOTBALL_PROSPECTIVE_SOURCE_POSSIBLE**
-- Max coverage: Bet365 78.8% | Marathonbet 78.8%
-  - bet 25 `Result/Total Goals` — Bet365 78.8% | Marathonbet 78.8%
+- Max coverage: Bet365 78.8% | Marathonbet 80.0%
+  - bet 25 `Result/Total Goals` — Bet365 78.8% | Marathonbet 80.0%
   - bet 49 `Total Goals/Both Teams To Score` — Bet365 78.8% | Marathonbet 0.0%
 
 ## Игроки / бомбардиры
-- Catalog markets: 68 | observed: 24
+- Catalog markets: 68 | observed: 27
 - Source status: **API_FOOTBALL_PROSPECTIVE_SOURCE_POSSIBLE**
-- Max coverage: Bet365 78.8% | Marathonbet 78.8%
-  - bet 35 `Both Teams To Score - Second Half` — Bet365 78.8% | Marathonbet 78.8%
-  - bet 184 `To Score in Both Halves` — Bet365 0.0% | Marathonbet 78.8%
-  - bet 185 `First Team to Score (3 way) 1st Half` — Bet365 0.0% | Marathonbet 78.8%
-  - bet 15 `Team To Score Last` — Bet365 78.8% | Marathonbet 76.2%
-  - bet 14 `Team To Score First` — Bet365 78.1% | Marathonbet 76.2%
+- Max coverage: Bet365 78.8% | Marathonbet 80.0%
+  - bet 35 `Both Teams To Score - Second Half` — Bet365 78.8% | Marathonbet 80.0%
+  - bet 184 `To Score in Both Halves` — Bet365 0.0% | Marathonbet 80.0%
+  - bet 185 `First Team to Score (3 way) 1st Half` — Bet365 0.0% | Marathonbet 80.0%
+  - bet 15 `Team To Score Last` — Bet365 78.8% | Marathonbet 77.5%
+  - bet 14 `Team To Score First` — Bet365 78.1% | Marathonbet 77.5%
 
 ## Угловые
 - Catalog markets: 35 | observed: 23
-- Source status: **BET365_REFERENCE_PRESENT_USER_BOOK_SOURCE_WEAK**
-- Max coverage: Bet365 68.1% | Marathonbet 1.2%
-  - bet 45 `Corners Over Under` — Bet365 68.1% | Marathonbet 1.2%
-  - bet 56 `Corners Asian Handicap` — Bet365 68.1% | Marathonbet 1.2%
-  - bet 57 `Home Corners Over/Under` — Bet365 68.1% | Marathonbet 1.2%
-  - bet 58 `Away Corners Over/Under` — Bet365 68.1% | Marathonbet 1.2%
-  - bet 77 `Total Corners (1st Half)` — Bet365 68.1% | Marathonbet 1.2%
+- Source status: **API_FOOTBALL_PROSPECTIVE_SOURCE_POSSIBLE**
+- Max coverage: Bet365 74.4% | Marathonbet 21.9%
+  - bet 45 `Corners Over Under` — Bet365 74.4% | Marathonbet 21.9%
+  - bet 56 `Corners Asian Handicap` — Bet365 74.4% | Marathonbet 21.9%
+  - bet 57 `Home Corners Over/Under` — Bet365 74.4% | Marathonbet 21.9%
+  - bet 58 `Away Corners Over/Under` — Bet365 74.4% | Marathonbet 21.9%
+  - bet 77 `Total Corners (1st Half)` — Bet365 74.4% | Marathonbet 21.9%
 
 ## Карточки / предупреждения
-- Catalog markets: 21 | observed: 0
-- Source status: **CATALOG_ONLY_NO_OBSERVED_COVERAGE_YET**
-- Max coverage: Bet365 0.0% | Marathonbet 0.0%
+- Catalog markets: 21 | observed: 7
+- Source status: **LOW_OBSERVED_COVERAGE_REVIEW**
+- Max coverage: Bet365 6.2% | Marathonbet 0.0%
+  - bet 79 `Cards European Handicap` — Bet365 6.2% | Marathonbet 0.0%
+  - bet 80 `Cards Over/Under` — Bet365 6.2% | Marathonbet 0.0%
+  - bet 81 `Cards Asian Handicap` — Bet365 6.2% | Marathonbet 0.0%
+  - bet 82 `Home Team Total Cards` — Bet365 6.2% | Marathonbet 0.0%
+  - bet 83 `Away Team Total Cards` — Bet365 6.2% | Marathonbet 0.0%
 
 ## Удары / удары в створ
-- Catalog markets: 21 | observed: 4
+- Catalog markets: 21 | observed: 9
 - Source status: **BET365_REFERENCE_PRESENT_USER_BOOK_SOURCE_WEAK**
-- Max coverage: Bet365 60.6% | Marathonbet 0.0%
-  - bet 240 `Home Player Shots` — Bet365 60.6% | Marathonbet 0.0%
-  - bet 241 `Away Player Shots` — Bet365 60.6% | Marathonbet 0.0%
-  - bet 269 `Home Player Shots On Target Total` — Bet365 60.6% | Marathonbet 0.0%
-  - bet 275 `Away Player Shots On Target Total` — Bet365 41.2% | Marathonbet 0.0%
+- Max coverage: Bet365 63.8% | Marathonbet 0.0%
+  - bet 240 `Home Player Shots` — Bet365 63.8% | Marathonbet 0.0%
+  - bet 241 `Away Player Shots` — Bet365 63.8% | Marathonbet 0.0%
+  - bet 269 `Home Player Shots On Target Total` — Bet365 63.8% | Marathonbet 0.0%
+  - bet 275 `Away Player Shots On Target Total` — Bet365 41.9% | Marathonbet 0.0%
+  - bet 87 `Total ShotOnGoal` — Bet365 11.9% | Marathonbet 0.0%
 
 ## Офсайды
-- Catalog markets: 7 | observed: 0
-- Source status: **CATALOG_ONLY_NO_OBSERVED_COVERAGE_YET**
-- Max coverage: Bet365 0.0% | Marathonbet 0.0%
+- Catalog markets: 7 | observed: 3
+- Source status: **LOW_OBSERVED_COVERAGE_REVIEW**
+- Max coverage: Bet365 3.1% | Marathonbet 0.0%
+  - bet 164 `Offsides Total` — Bet365 3.1% | Marathonbet 0.0%
+  - bet 167 `Offsides Home Total` — Bet365 3.1% | Marathonbet 0.0%
+  - bet 168 `Offsides Away Total` — Bet365 3.1% | Marathonbet 0.0%
 
 ## Таймы / периодные рынки
 - Catalog markets: 69 | observed: 40
 - Source status: **API_FOOTBALL_PROSPECTIVE_SOURCE_POSSIBLE**
-- Max coverage: Bet365 78.8% | Marathonbet 78.8%
-  - bet 6 `Goals Over/Under First Half` — Bet365 78.8% | Marathonbet 78.8%
-  - bet 13 `First Half Winner` — Bet365 78.8% | Marathonbet 78.8%
-  - bet 20 `Double Chance - First Half` — Bet365 78.8% | Marathonbet 78.8%
-  - bet 34 `Both Teams Score - First Half` — Bet365 78.8% | Marathonbet 78.8%
-  - bet 18 `Handicap Result - First Half` — Bet365 78.8% | Marathonbet 78.8%
+- Max coverage: Bet365 78.8% | Marathonbet 80.0%
+  - bet 6 `Goals Over/Under First Half` — Bet365 78.8% | Marathonbet 80.0%
+  - bet 13 `First Half Winner` — Bet365 78.8% | Marathonbet 80.0%
+  - bet 34 `Both Teams Score - First Half` — Bet365 78.8% | Marathonbet 80.0%
+  - bet 18 `Handicap Result - First Half` — Bet365 78.8% | Marathonbet 80.0%
+  - bet 19 `Asian Handicap First Half` — Bet365 78.8% | Marathonbet 80.0%
 
 ## Время гола / интервалы
 - Catalog markets: 8 | observed: 6
