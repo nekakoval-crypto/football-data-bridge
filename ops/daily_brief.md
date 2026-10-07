@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-10-07T02:06:25Z
+Generated UTC: 2026-10-07T04:06:12Z
 Active canonical signals: 10
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -8,7 +8,7 @@ Active canonical signals: 10
 ## R1 | Lecce — Bologna
 - Kickoff UTC: 2026-10-11T13:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.0 / Х 3.3 / П2 1.91 (immutable)
-- Market-best observed: 1.98 @ 1xBet | Bet365 now: 1.91
+- Market-best observed: 2.0 @ Betfair | Bet365 now: 1.91
 - Current user-executable: 1.92 @ Marathonbet
 - Paper user-execution (frozen): 2.0 @ Marathonbet [2026-09-18T06:48:35Z]
 - Referee / venue: TBD | Stadio Via del Mare, Lecce
@@ -68,7 +68,7 @@ Active canonical signals: 10
 ## R1 | Venezia — Napoli
 - Kickoff UTC: 2026-10-17T13:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.5 / Х 3.7 / П2 1.7 (immutable)
-- Market-best observed: 1.76 @ 1xBet | Bet365 now: 1.7
+- Market-best observed: 1.76 @ 1xBet | Bet365 now: 1.67
 - Current user-executable: 1.71 @ Marathonbet
 - Paper user-execution (frozen): 1.71 @ Marathonbet [2026-10-04T18:05:16Z]
 - Referee / venue: TBD | Stadio Pierluigi Penzo, Venice
@@ -83,7 +83,7 @@ Active canonical signals: 10
 ## R2 | Venezia — Napoli
 - Kickoff UTC: 2026-10-17T13:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.5 / Х 3.7 / П2 1.7 (immutable)
-- Market-best observed: 1.76 @ 1xBet | Bet365 now: 1.7
+- Market-best observed: 1.76 @ 1xBet | Bet365 now: 1.67
 - Current user-executable: 1.71 @ Marathonbet
 - Paper user-execution (frozen): 1.71 @ Marathonbet [2026-10-04T18:05:16Z]
 - Referee / venue: TBD | Stadio Pierluigi Penzo, Venice
