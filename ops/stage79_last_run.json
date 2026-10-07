@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-10-07T00:40:38Z",
+  "run_at_utc": "2026-10-07T02:30:22Z",
   "status": "OK",
   "provider_endpoint": "/players/squads",
   "provider_calls": 8,
-  "daily_api_calls": 8,
+  "daily_api_calls": 16,
   "protected_calls": {
     "live": 0,
     "current_round": 96,
@@ -21,48 +21,48 @@
   "candidate_teams": 8,
   "captured_teams": [
     {
-      "team_id": "735",
-      "team_name": "St. Truiden",
-      "players": 29
+      "team_id": "4248",
+      "team_name": "Radomiak Radom",
+      "players": 33
     },
     {
-      "team_id": "338",
-      "team_name": "Wisla Krakow",
-      "players": 31
-    },
-    {
-      "team_id": "339",
-      "team_name": "Legia Warszawa",
-      "players": 30
-    },
-    {
-      "team_id": "15130",
-      "team_name": "Estrela",
-      "players": 31
-    },
-    {
-      "team_id": "240",
-      "team_name": "Arouca",
-      "players": 28
-    },
-    {
-      "team_id": "4135",
-      "team_name": "Auda",
-      "players": 32
-    },
-    {
-      "team_id": "661",
-      "team_name": "FK Liepaja",
+      "team_id": "326",
+      "team_name": "Valerenga",
       "players": 27
     },
     {
-      "team_id": "14562",
-      "team_name": "Motor Lublin",
-      "players": 30
+      "team_id": "3588",
+      "team_name": "Eyüpspor",
+      "players": 28
+    },
+    {
+      "team_id": "396",
+      "team_name": "Sonderjyske",
+      "players": 33
+    },
+    {
+      "team_id": "406",
+      "team_name": "Aarhus",
+      "players": 33
+    },
+    {
+      "team_id": "994",
+      "team_name": "Göztepe",
+      "players": 24
+    },
+    {
+      "team_id": "242",
+      "team_name": "Famalicao",
+      "players": 27
+    },
+    {
+      "team_id": "4724",
+      "team_name": "Alverca",
+      "players": 34
     }
   ],
   "deferred_teams": 0,
-  "total_roster_rows": 7362,
+  "total_roster_rows": 7601,
   "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
