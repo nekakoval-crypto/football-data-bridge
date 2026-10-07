@@ -1,6 +1,6 @@
 # PBK Stage71 — League & Market Challenger Board
 
-Обновлено UTC: 2026-10-06T23:40:50Z
+Обновлено UTC: 2026-10-07T07:42:37Z
 Текущие лидеры R1/R2: Serie A / Serie A
 
 > Captured → executable → settled — это исследовательский прогресс. Он не меняет canonical eligibility и не создаёт автоматический promotion.
