@@ -1,11 +1,11 @@
 {
-  "run_at_utc": "2026-10-06T18:48:07Z",
+  "run_at_utc": "2026-10-07T00:53:24Z",
   "status": "OK",
   "mode": "SHARED_PREFETCHED_PROSPECTIVE_CAPTURE",
   "prefetched_fixture_ids": 160,
   "real_api_calls": 177,
   "api_hard_cap": 190,
-  "cache_hits": 232,
+  "cache_hits": 240,
   "unique_cached_requests": 177,
   "real_calls_by_path": {
     "/odds/bets": 1,
@@ -18,7 +18,7 @@
   "market_presence_count": 137,
   "market_presence_api_calls_added": 0,
   "generic_1x2_forward_capture": {
-    "run_at_utc": "2026-10-06T18:48:33Z",
+    "run_at_utc": "2026-10-07T00:54:10Z",
     "status": "OK",
     "mode": "STAGE71J_ZERO_EXTRA_CALL_PROSPECTIVE_CAPTURE",
     "source": "API-Football /odds Bet365 Match Winner",
@@ -560,9 +560,9 @@
       "market_family": "TEAM_TOTAL",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 39,
-      "new_openers": 1,
-      "new_snapshots": 98,
+      "logical_odds_calls": 41,
+      "new_openers": 0,
+      "new_snapshots": 115,
       "new_closes": 0,
       "warnings": 0
     },
@@ -570,9 +570,9 @@
       "market_family": "DOUBLE_CHANCE",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 39,
+      "logical_odds_calls": 41,
       "new_openers": 0,
-      "new_snapshots": 10,
+      "new_snapshots": 12,
       "new_closes": 0,
       "warnings": 0
     },
@@ -580,9 +580,9 @@
       "market_family": "EUROPEAN_HANDICAP",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 39,
-      "new_openers": 0,
-      "new_snapshots": 50,
+      "logical_odds_calls": 41,
+      "new_openers": 1,
+      "new_snapshots": 60,
       "new_closes": 0,
       "warnings": 0
     },
@@ -590,9 +590,9 @@
       "market_family": "DRAW_NO_BET",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 48,
+      "logical_odds_calls": 50,
       "new_openers": 0,
-      "new_snapshots": 8,
+      "new_snapshots": 10,
       "new_closes": 0,
       "warnings": 0
     }
