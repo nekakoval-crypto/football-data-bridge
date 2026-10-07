@@ -40,35 +40,36 @@ Fixture sample: **160** | API calls: **0**
   - bet 77 `Total Corners (1st Half)` — Bet365 74.4% | Marathonbet 21.9%
 
 ## Карточки / предупреждения
-- Catalog markets: 21 | observed: 7
+- Catalog markets: 21 | observed: 12
 - Source status: **LOW_OBSERVED_COVERAGE_REVIEW**
-- Max coverage: Bet365 6.2% | Marathonbet 0.0%
-  - bet 79 `Cards European Handicap` — Bet365 6.2% | Marathonbet 0.0%
-  - bet 80 `Cards Over/Under` — Bet365 6.2% | Marathonbet 0.0%
-  - bet 81 `Cards Asian Handicap` — Bet365 6.2% | Marathonbet 0.0%
-  - bet 82 `Home Team Total Cards` — Bet365 6.2% | Marathonbet 0.0%
-  - bet 83 `Away Team Total Cards` — Bet365 6.2% | Marathonbet 0.0%
+- Max coverage: Bet365 6.9% | Marathonbet 0.0%
+  - bet 80 `Cards Over/Under` — Bet365 6.9% | Marathonbet 0.0%
+  - bet 81 `Cards Asian Handicap` — Bet365 6.9% | Marathonbet 0.0%
+  - bet 82 `Home Team Total Cards` — Bet365 6.9% | Marathonbet 0.0%
+  - bet 83 `Away Team Total Cards` — Bet365 6.9% | Marathonbet 0.0%
+  - bet 79 `Cards European Handicap` — Bet365 6.9% | Marathonbet 0.0%
 
 ## Удары / удары в створ
-- Catalog markets: 21 | observed: 9
+- Catalog markets: 21 | observed: 10
 - Source status: **BET365_REFERENCE_PRESENT_USER_BOOK_SOURCE_WEAK**
 - Max coverage: Bet365 63.8% | Marathonbet 0.0%
   - bet 240 `Home Player Shots` — Bet365 63.8% | Marathonbet 0.0%
   - bet 241 `Away Player Shots` — Bet365 63.8% | Marathonbet 0.0%
   - bet 269 `Home Player Shots On Target Total` — Bet365 63.8% | Marathonbet 0.0%
   - bet 275 `Away Player Shots On Target Total` — Bet365 41.9% | Marathonbet 0.0%
-  - bet 87 `Total ShotOnGoal` — Bet365 11.9% | Marathonbet 0.0%
+  - bet 276 `Away Player Shots Total` — Bet365 13.1% | Marathonbet 0.0%
 
 ## Офсайды
-- Catalog markets: 7 | observed: 3
+- Catalog markets: 7 | observed: 4
 - Source status: **LOW_OBSERVED_COVERAGE_REVIEW**
 - Max coverage: Bet365 3.1% | Marathonbet 0.0%
   - bet 164 `Offsides Total` — Bet365 3.1% | Marathonbet 0.0%
   - bet 167 `Offsides Home Total` — Bet365 3.1% | Marathonbet 0.0%
   - bet 168 `Offsides Away Total` — Bet365 3.1% | Marathonbet 0.0%
+  - bet 166 `Offsides Handicap` — Bet365 0.0% | Marathonbet 0.0%
 
 ## Таймы / периодные рынки
-- Catalog markets: 69 | observed: 40
+- Catalog markets: 69 | observed: 44
 - Source status: **API_FOOTBALL_PROSPECTIVE_SOURCE_POSSIBLE**
 - Max coverage: Bet365 78.8% | Marathonbet 80.0%
   - bet 6 `Goals Over/Under First Half` — Bet365 78.8% | Marathonbet 80.0%
