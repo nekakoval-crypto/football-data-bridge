@@ -1,9 +1,9 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-10-07T02:30:22Z",
+  "run_at_utc": "2026-10-07T04:32:01Z",
   "status": "OK",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 8,
+  "provider_calls": 0,
   "daily_api_calls": 16,
   "protected_calls": {
     "live": 0,
@@ -18,49 +18,8 @@
   "stable_ttl_days": 28,
   "sensitive_ttl_days": 3,
   "transfer_sensitive_periods": "01-01:02-15,06-01:09-10",
-  "candidate_teams": 8,
-  "captured_teams": [
-    {
-      "team_id": "4248",
-      "team_name": "Radomiak Radom",
-      "players": 33
-    },
-    {
-      "team_id": "326",
-      "team_name": "Valerenga",
-      "players": 27
-    },
-    {
-      "team_id": "3588",
-      "team_name": "Eyüpspor",
-      "players": 28
-    },
-    {
-      "team_id": "396",
-      "team_name": "Sonderjyske",
-      "players": 33
-    },
-    {
-      "team_id": "406",
-      "team_name": "Aarhus",
-      "players": 33
-    },
-    {
-      "team_id": "994",
-      "team_name": "Göztepe",
-      "players": 24
-    },
-    {
-      "team_id": "242",
-      "team_name": "Famalicao",
-      "players": 27
-    },
-    {
-      "team_id": "4724",
-      "team_name": "Alverca",
-      "players": 34
-    }
-  ],
+  "candidate_teams": 0,
+  "captured_teams": [],
   "deferred_teams": 0,
   "total_roster_rows": 7601,
   "warnings": [],
