@@ -57,6 +57,12 @@ jobs:
         with:
           python-version: '3.12'
       - run: python scripts/standings_snapshot_capture.py
+
+      - name: Freeze Point13 motivation forward observation
+        run: python scripts/motivation_forward_validation.py
+
+      - name: Update frozen Motivation Interaction forward monitor
+        run: python scripts/motivation_interaction_forward_monitor.py
       - name: Publish standings operational files
         run: |
           git config user.name 'standings-bot'
@@ -67,6 +73,12 @@ jobs:
           git add ops/standings_snapshot_last_run.json ops/stage71_observation_state.json
           if [ -f ops/standings_snapshots.csv ]; then git add ops/standings_snapshots.csv; fi
           if [ -f ops/standings_capture_state.json ]; then git add ops/standings_capture_state.json; fi
+          if [ -f ops/motivation_forward_prematch.jsonl ]; then git add ops/motivation_forward_prematch.jsonl; fi
+          if [ -f ops/motivation_forward_labels.jsonl ]; then git add ops/motivation_forward_labels.jsonl; fi
+          if [ -f ops/motivation_forward_validation_last_run.json ]; then git add ops/motivation_forward_validation_last_run.json; fi
+          if [ -f ops/motivation_interaction_v1_forward_prematch.jsonl ]; then git add ops/motivation_interaction_v1_forward_prematch.jsonl; fi
+          if [ -f ops/motivation_interaction_v1_forward_settlements.jsonl ]; then git add ops/motivation_interaction_v1_forward_settlements.jsonl; fi
+          if [ -f ops/motivation_interaction_v1_forward_performance.json ]; then git add ops/motivation_interaction_v1_forward_performance.json; fi
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'Standings snapshot capture update'
           python scripts/publish_operational_commit.py

@@ -42,7 +42,7 @@ PREMATCH = OPS / "motivation_forward_prematch.jsonl"
 LABELS = OPS / "motivation_forward_labels.jsonl"
 LAST_RUN = OPS / "motivation_forward_validation_last_run.json"
 
-CAPTURE_WINDOW_MINUTES = 90
+CAPTURE_WINDOW_MINUTES = 45
 
 ENGINEERING_CONTRACT = {
     "prematch_frozen_required": True,

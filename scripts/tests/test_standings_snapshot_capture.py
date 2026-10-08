@@ -22,7 +22,7 @@ def write_csv(path, fields, rows):
         writer.writerows(rows)
 
 
-def schedule(league="39", season="2026", kickoff=NOW + timedelta(minutes=60), fixture_id=None):
+def schedule(league="39", season="2026", kickoff=NOW + timedelta(minutes=30), fixture_id=None):
     return {
         "provider_league_id": league, "league_name": f"League {league}",
         "season": season, "fixture_id": fixture_id or f"{league}-{kickoff.minute}",
@@ -81,10 +81,10 @@ class CaptureTests(unittest.TestCase):
         self.assertTrue(calls[0][2]["force_refresh"])
 
     def test_adequate_snapshot_skips_call_and_post_kickoff_is_not_adequate(self):
-        kickoff = NOW + timedelta(minutes=60)
+        kickoff = NOW + timedelta(minutes=30)
         existing = {key: "" for key in FIELDS}
         existing.update(snapshot_id="old", provider_league_id="39", season="2026",
-                       observed_at_utc=(NOW + timedelta(minutes=30)).isoformat(), team_id="10")
+                       observed_at_utc=(NOW + timedelta(minutes=15)).isoformat(), team_id="10")
         write_csv(self.ops / "standings_snapshots.csv", FIELDS, [existing])
         calls = []
         meta = self.execute(lambda *args, **kwargs: calls.append(args) or provider())
@@ -98,14 +98,14 @@ class CaptureTests(unittest.TestCase):
 
     def test_same_league_fixture_cluster_is_one_call_and_two_leagues_are_two(self):
         self.write_fixtures([schedule(fixture_id="39-a"), schedule(kickoff=NOW + timedelta(minutes=70), fixture_id="39-b"),
-                             schedule("140", kickoff=NOW + timedelta(minutes=60), fixture_id="140-a")])
+                             schedule("140", kickoff=NOW + timedelta(minutes=30), fixture_id="140-a")])
         calls = []
         meta = self.execute(lambda path, params, **kwargs: calls.append(params) or provider(params["league"]))
         self.assertEqual(meta["provider_calls"], 2)
         self.assertEqual({x["league"] for x in calls}, {"39", "140"})
 
     def test_later_fixture_can_become_a_new_candidate(self):
-        self.write_fixtures([schedule(kickoff=NOW + timedelta(minutes=60), fixture_id="39-a"),
+        self.write_fixtures([schedule(kickoff=NOW + timedelta(minutes=30), fixture_id="39-a"),
                              schedule(kickoff=NOW + timedelta(hours=4), fixture_id="39-b")])
         calls = []
         self.execute(lambda path, params, **kwargs: calls.append(params) or provider())
@@ -117,7 +117,7 @@ class CaptureTests(unittest.TestCase):
             row["observed_at_utc"] = NOW.isoformat().replace("+00:00", "Z")
         write_csv(self.ops / "standings_snapshots.csv", FIELDS, rows)
         calls.clear()
-        later = NOW + timedelta(hours=3, minutes=10)
+        later = NOW + timedelta(hours=3, minutes=30)
         self.execute(lambda path, params, **kwargs: calls.append(params) or provider(), now=later)
         self.assertEqual(len(calls), 1)
 

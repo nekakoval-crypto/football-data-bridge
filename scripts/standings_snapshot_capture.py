@@ -84,7 +84,7 @@ def tracked_scope(leagues, fixtures):
                    for row in fixtures)}
 
 
-def candidate_leagues(leagues, fixtures, now, window_minutes=75):
+def candidate_leagues(leagues, fixtures, now, window_minutes=45):
     scope = tracked_scope(leagues, fixtures)
     if scope is None:
         return None
@@ -109,7 +109,7 @@ def read_snapshot_rows(path=SNAPSHOTS):
 
 
 def adequate_snapshot(rows, league_id, season, kickoff):
-    """Find a valid single snapshot in the 90-minute pre-kickoff window."""
+    """Find a valid single snapshot in the 45-minute pre-kickoff window."""
     groups = {}
     for row in rows:
         if (str(row.get("provider_league_id") or "") != str(league_id)
@@ -128,7 +128,7 @@ def adequate_snapshot(rows, league_id, season, kickoff):
         if len(observations) != 1 or len(teams) != len(set(teams)):
             continue
         observed = next(iter(observations))
-        if kickoff - timedelta(minutes=90) <= observed <= kickoff:
+        if kickoff - timedelta(minutes=45) <= observed <= kickoff:
             eligible.append((observed, snapshot))
     if not eligible:
         return None
