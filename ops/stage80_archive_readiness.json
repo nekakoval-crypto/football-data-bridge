@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-07T22:57:07Z",
+  "generated_at_utc": "2026-10-08T00:59:59Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -12,7 +12,7 @@
     "fixture_history": {
       "file": "fixture_history_snapshots.csv",
       "present": true,
-      "rows": 27321
+      "rows": 27449
     },
     "historical_fixtures": {
       "file": "historical_fixtures.csv",
@@ -54,7 +54,7 @@
     "player_profiles": {
       "file": "player_profile_evidence.csv",
       "present": true,
-      "rows": 6709
+      "rows": 7146
     },
     "roster_history": {
       "file": "team_roster_history.csv",
@@ -69,12 +69,12 @@
     "transfer_identity": {
       "file": "pbk_transfermarkt_player_identity.csv",
       "present": true,
-      "rows": 3015
+      "rows": 3158
     },
     "transfer_history": {
       "file": "historical_transfer_events.csv",
       "present": true,
-      "rows": 41579
+      "rows": 42003
     },
     "match_context": {
       "file": "match_context_snapshots.csv",
@@ -300,10 +300,10 @@
   },
   "fixture_history": {
     "present": true,
-    "rows": 27321,
-    "valid_observations": 27321,
+    "rows": 27449,
+    "valid_observations": 27449,
     "unique_fixtures": 306,
-    "observation_runs": 213,
+    "observation_runs": 214,
     "finished_fixtures_observed": 173,
     "invalid_identity_rows": 0,
     "evidence_note": "Counts represent only Stage71 current-round observations persisted after the fixture-history archive was enabled; they are not a pre-PBK historical backfill claim."
@@ -322,8 +322,8 @@
     "orphan_catalog_fixtures": 0,
     "missing_terminal_evidence": 0,
     "orphan_terminal_evidence": 0,
-    "observation_count_total": 27321,
-    "expected_history_observations": 27321,
+    "observation_count_total": 27449,
+    "expected_history_observations": 27449,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
   },
@@ -404,26 +404,26 @@
   },
   "player_profiles": {
     "present": true,
-    "rows": 6709,
-    "valid_rows": 6709,
-    "team_source_rows": 6486,
-    "residual_player_id_source_rows": 223,
-    "identity_ready_rows": 6195,
+    "rows": 7146,
+    "valid_rows": 7146,
+    "team_source_rows": 6886,
+    "residual_player_id_source_rows": 260,
+    "identity_ready_rows": 6586,
     "invalid_rows": 0,
-    "unique_players": 6467,
-    "identity_ready_unique_players": 5959,
-    "unique_teams": 234,
-    "current_roster_player_coverage_pct": 79.97,
-    "identity_ready_current_roster_coverage_pct": 73.98,
+    "unique_players": 6883,
+    "identity_ready_unique_players": 6330,
+    "unique_teams": 250,
+    "current_roster_player_coverage_pct": 85.14,
+    "identity_ready_current_roster_coverage_pct": 78.61,
     "evidence_note": "Bounded API-Football player profile evidence from team+season plus residual player-id+season calls. Residual team context is taken from the current PBK roster, not inferred from season statistics. Full-name+DOB+club may support conservative cross-provider identity mapping; this never grants betting/model authority."
   },
   "transfer_identity": {
     "present": true,
-    "rows": 3015,
-    "valid_rows": 2022,
-    "invalid_rows": 993,
-    "unique_pbk_players": 2022,
-    "unique_transfermarkt_players": 2022,
+    "rows": 3158,
+    "valid_rows": 2114,
+    "invalid_rows": 1044,
+    "unique_pbk_players": 2114,
+    "unique_transfermarkt_players": 2114,
     "approved_methods": [
       "EXACT_NAME_CURRENT_CLUB",
       "EXACT_PROFILE_NAME_DOB_CURRENT_CLUB",
@@ -433,11 +433,11 @@
   },
   "transfer_history": {
     "present": true,
-    "rows": 41579,
-    "valid_rows": 33200,
-    "invalid_identity_rows": 8379,
-    "unique_pbk_players": 4055,
-    "unique_transfermarkt_players": 4053,
+    "rows": 42003,
+    "valid_rows": 33217,
+    "invalid_identity_rows": 8786,
+    "unique_pbk_players": 4057,
+    "unique_transfermarkt_players": 4055,
     "earliest_transfer_date": "1994-07-01",
     "latest_transfer_date": "2030-06-30",
     "evidence_note": "Durable transfer events count only when linked by an approved HIGH-confidence exact-name+club identity method; this is historical enrichment, not current squad authority."

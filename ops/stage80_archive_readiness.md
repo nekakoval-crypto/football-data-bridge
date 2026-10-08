@@ -1,11 +1,11 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-10-07T22:57:07Z
+Обновлено UTC: 2026-10-08T00:59:59Z
 Статус: **COLLECTING**
 
 ## Покрытие
 - Fixtures в текущем inventory: 128 (finished: 2).
-- Fixture history: 306 unique fixtures / 27321 observations / 213 observation runs (finished observed: 173).
+- Fixture history: 306 unique fixtures / 27449 observations / 214 observation runs (finished observed: 173).
 - Historical fixture catalog: 306 fixtures (terminal 173, rescheduled 1), history coverage 100.00%; missing 0, orphan 0.
 - Finished fixtures с player stats: 0 / 2 (0.00%).
 - Stage77 durable backlog: pending 173; captured 0; total 173.
@@ -18,11 +18,11 @@
 - Player stat rows: 1331575; уникальных игроков: 29673.
 - Player Grade rows: 1331575; уникальных игроков: 29673.
 - Current roster: 250 команд / 7601 игроковых строк.
-- Player profile evidence: 6709 rows (6486 team-source + 223 residual-ID) / 6467 players / 234 teams; current-roster coverage 79.97%; identity-ready 5959 players (73.98%).
+- Player profile evidence: 7146 rows (6886 team-source + 260 residual-ID) / 6883 players / 250 teams; current-roster coverage 85.14%; identity-ready 6330 players (78.61%).
 - Roster history: 250 команд / 266 team-snapshots / 8096 строк.
 - Membership intervals: 7600 (open 7596, closed-by-observed-absence 4).
-- Verified PBK↔Transfermarkt identities: 2022 rows / 2022 PBK players; invalid 993.
-- Verified historical transfers: 33200 rows / 4055 PBK players; dates 1994-07-01 → 2030-06-30; invalid 8379.
+- Verified PBK↔Transfermarkt identities: 2114 rows / 2114 PBK players; invalid 1044.
+- Verified historical transfers: 33217 rows / 4057 PBK players; dates 1994-07-01 → 2030-06-30; invalid 8786.
 - EPL referee research: 47 referees / 897 referee×team pairs / 3420 source matches; scope EPL_ONLY; penalties unavailable.
 - Top-5 API-Football referee backfill: 45 / 45 league-seasons; 16239 fixture rows; referee coverage 99.44%; profiles 453; referee×team pairs 7689.
 - Top-5 pre-match research context: 16111 valid rows / 16111 unique matches / 45 of 45 league-seasons; no-lookahead True.
