@@ -1,15 +1,15 @@
 {
-  "run_at_utc": "2026-10-08T12:11:21Z",
+  "run_at_utc": "2026-10-08T13:13:55Z",
   "status": "OK",
   "system_health": "CRITICAL",
   "critical_issues": 4,
-  "warnings": 1,
+  "warnings": 3,
   "active_canonical_rows": 10,
   "watch_crossing_rows": 56,
   "api_calls": 0,
-  "stage71c_team_total_openers": 3712,
+  "stage71c_team_total_openers": 3714,
   "stage71e_double_chance_openers": 398,
-  "stage71f_european_handicap_openers": 2039,
+  "stage71f_european_handicap_openers": 2040,
   "stage71g_dnb_openers": 364,
   "stage71i_settlement_rows": 4357,
   "stage72_schema_version": "15",
@@ -17,7 +17,7 @@
   "stage73_api_tests": "16/16",
   "stage71j_real_api_calls": 177,
   "stage71j_api_budget": 190,
-  "stage71j_cache_hits": 438,
+  "stage71j_cache_hits": 486,
   "stage71j_child_warnings": 0,
   "optional_stable_sources_pending": []
 }
