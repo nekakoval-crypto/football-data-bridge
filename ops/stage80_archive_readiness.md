@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-10-08T10:59:59Z
+Обновлено UTC: 2026-10-08T12:56:10Z
 Статус: **COLLECTING**
 
 ## Покрытие
@@ -51,7 +51,6 @@
 - Observations: —; unique payloads: —.
 
 ## Незакрытые пробелы
-- HISTORICAL_FIXTURE_CATALOG_OBSERVATION_COUNT_MISMATCH
 - TEAM_STATS_BACKLOG_PENDING
 - PLAYER_STATS_BACKLOG_PENDING
 - PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE
