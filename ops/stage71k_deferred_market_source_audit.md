@@ -32,22 +32,22 @@ Fixture sample: **160** | API calls: **0**
 ## Угловые
 - Catalog markets: 35 | observed: 23
 - Source status: **API_FOOTBALL_PROSPECTIVE_SOURCE_POSSIBLE**
-- Max coverage: Bet365 74.4% | Marathonbet 30.6%
-  - bet 45 `Corners Over Under` — Bet365 74.4% | Marathonbet 30.6%
-  - bet 56 `Corners Asian Handicap` — Bet365 74.4% | Marathonbet 30.6%
-  - bet 57 `Home Corners Over/Under` — Bet365 74.4% | Marathonbet 30.6%
-  - bet 58 `Away Corners Over/Under` — Bet365 74.4% | Marathonbet 30.6%
-  - bet 77 `Total Corners (1st Half)` — Bet365 74.4% | Marathonbet 30.6%
+- Max coverage: Bet365 74.4% | Marathonbet 32.5%
+  - bet 45 `Corners Over Under` — Bet365 74.4% | Marathonbet 32.5%
+  - bet 56 `Corners Asian Handicap` — Bet365 74.4% | Marathonbet 32.5%
+  - bet 57 `Home Corners Over/Under` — Bet365 74.4% | Marathonbet 32.5%
+  - bet 58 `Away Corners Over/Under` — Bet365 74.4% | Marathonbet 32.5%
+  - bet 77 `Total Corners (1st Half)` — Bet365 74.4% | Marathonbet 32.5%
 
 ## Карточки / предупреждения
 - Catalog markets: 21 | observed: 14
 - Source status: **LOW_OBSERVED_COVERAGE_REVIEW**
-- Max coverage: Bet365 15.6% | Marathonbet 0.0%
-  - bet 80 `Cards Over/Under` — Bet365 15.6% | Marathonbet 0.0%
-  - bet 81 `Cards Asian Handicap` — Bet365 15.6% | Marathonbet 0.0%
+- Max coverage: Bet365 17.5% | Marathonbet 0.0%
+  - bet 80 `Cards Over/Under` — Bet365 17.5% | Marathonbet 0.0%
+  - bet 299 `Cards over/under between 0 and 10 m` — Bet365 17.5% | Marathonbet 0.0%
+  - bet 81 `Cards Asian Handicap` — Bet365 16.2% | Marathonbet 0.0%
+  - bet 79 `Cards European Handicap` — Bet365 16.2% | Marathonbet 0.0%
   - bet 82 `Home Team Total Cards` — Bet365 15.6% | Marathonbet 0.0%
-  - bet 83 `Away Team Total Cards` — Bet365 15.6% | Marathonbet 0.0%
-  - bet 79 `Cards European Handicap` — Bet365 15.6% | Marathonbet 0.0%
 
 ## Удары / удары в створ
 - Catalog markets: 21 | observed: 10
@@ -57,7 +57,7 @@ Fixture sample: **160** | API calls: **0**
   - bet 241 `Away Player Shots` — Bet365 63.8% | Marathonbet 0.0%
   - bet 269 `Home Player Shots On Target Total` — Bet365 63.8% | Marathonbet 0.0%
   - bet 275 `Away Player Shots On Target Total` — Bet365 42.5% | Marathonbet 0.0%
-  - bet 211 `Total Shots` — Bet365 25.6% | Marathonbet 0.0%
+  - bet 87 `Total ShotOnGoal` — Bet365 25.6% | Marathonbet 0.0%
 
 ## Офсайды
 - Catalog markets: 7 | observed: 6
