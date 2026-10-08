@@ -1,6 +1,6 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-10-08T09:00:52Z
+Обновлено UTC: 2026-10-08T10:59:59Z
 Статус: **COLLECTING**
 
 ## Покрытие
