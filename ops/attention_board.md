@@ -1,6 +1,6 @@
 # PBK — Что требует внимания сейчас
 
-Обновлено: 07.10.2026 21:07 (Europe/Berlin)
+Обновлено: 08.10.2026 02:01 (Europe/Berlin)
 Canonical: 10 | active WATCH crossings: 1 | RED: 0 | ORANGE: 1
 
 > Stage66 — только экран внимания. Он не создаёт ставки и не меняет R1/R2/R3.
@@ -3222,7 +3222,7 @@ Canonical: 10 | active WATCH crossings: 1 | RED: 0 | ORANGE: 1
 ---
 
 ## 🛡️ Состояние системы / governance
-- System Health: **CRITICAL** | critical 7 | warnings 3
+- System Health: **CRITICAL** | critical 6 | warnings 3
 - Логическая canonical экспозиция: **6.0u** | конфликтов матчей 0 | убрано дублей 4.0u
 - Promotion Gate: Stage61 **COLLECTING** | Stage62 **COLLECTING** | Stage63 **DISCOVERY_ONLY_NO_DIRECT_PROMOTION**
 - League Challenger: R1 лидер **Serie A** | R2 лидер **Serie A** | monitoring 26 | data required 1
