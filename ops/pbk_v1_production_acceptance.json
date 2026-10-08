@@ -131,8 +131,8 @@
         "message": "system health contains CRITICAL issues",
         "evidence": {
           "health_status": "CRITICAL",
-          "critical_issues": 5,
-          "warnings": 5
+          "critical_issues": 4,
+          "warnings": 4
         }
       },
       {
@@ -161,6 +161,6 @@
     "Wait for a <=75m pre-kickoff standings capture and downstream Stage72 motivation rebuild.",
     "Resolve hard health/data-layer/API integrity failures before closure."
   ],
-  "evaluated_at_utc": "2026-10-08T04:42:28Z",
-  "state_fingerprint": "6b37f85f9b31686cdf7599801dfe5c746aba8133d760c9f844b12bf25726a287"
+  "evaluated_at_utc": "2026-10-08T06:49:56Z",
+  "state_fingerprint": "89dc6439f8a867a824d2a27ac035d44687003d139d4b58f3e2b26522d526270d"
 }
