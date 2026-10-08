@@ -1,11 +1,11 @@
 {
-  "run_at_utc": "2026-10-08T12:52:06Z",
+  "run_at_utc": "2026-10-08T18:49:01Z",
   "status": "OK",
   "mode": "SHARED_PREFETCHED_PROSPECTIVE_CAPTURE",
   "prefetched_fixture_ids": 160,
   "real_api_calls": 177,
   "api_hard_cap": 190,
-  "cache_hits": 486,
+  "cache_hits": 610,
   "unique_cached_requests": 177,
   "real_calls_by_path": {
     "/odds/bets": 1,
@@ -18,7 +18,7 @@
   "market_presence_count": 182,
   "market_presence_api_calls_added": 0,
   "generic_1x2_forward_capture": {
-    "run_at_utc": "2026-10-08T12:52:58Z",
+    "run_at_utc": "2026-10-08T18:49:26Z",
     "status": "OK",
     "mode": "STAGE71J_ZERO_EXTRA_CALL_PROSPECTIVE_CAPTURE",
     "source": "API-Football /odds Bet365 Match Winner",
@@ -584,9 +584,9 @@
       "market_family": "TEAM_TOTAL",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 104,
-      "new_openers": 2,
-      "new_snapshots": 764,
+      "logical_odds_calls": 136,
+      "new_openers": 4,
+      "new_snapshots": 1058,
       "new_closes": 0,
       "warnings": 0
     },
@@ -594,9 +594,9 @@
       "market_family": "DOUBLE_CHANCE",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 104,
+      "logical_odds_calls": 136,
       "new_openers": 0,
-      "new_snapshots": 81,
+      "new_snapshots": 113,
       "new_closes": 0,
       "warnings": 0
     },
@@ -604,9 +604,9 @@
       "market_family": "EUROPEAN_HANDICAP",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 104,
-      "new_openers": 1,
-      "new_snapshots": 407,
+      "logical_odds_calls": 136,
+      "new_openers": 2,
+      "new_snapshots": 568,
       "new_closes": 0,
       "warnings": 0
     },
@@ -614,9 +614,9 @@
       "market_family": "DRAW_NO_BET",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 107,
+      "logical_odds_calls": 135,
       "new_openers": 0,
-      "new_snapshots": 71,
+      "new_snapshots": 99,
       "new_closes": 0,
       "warnings": 0
     }
