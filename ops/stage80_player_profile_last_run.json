@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_PLAYER_PROFILE_ENRICHMENT_V2_RESIDUAL_ID",
-  "run_at_utc": "2026-10-06T18:42:51Z",
+  "run_at_utc": "2026-10-08T00:49:52Z",
   "status": "ATTENTION",
   "season": "2026",
   "provider_endpoints": [
@@ -9,32 +9,105 @@
   ],
   "refresh_days": 7,
   "residual_retry_days": 7,
-  "provider_calls": 9,
-  "team_provider_calls": 9,
-  "residual_provider_calls": 0,
-  "daily_api_calls": 531,
+  "provider_calls": 150,
+  "team_provider_calls": 39,
+  "residual_provider_calls": 111,
+  "daily_api_calls": 150,
   "protected_calls": {
     "live": 0,
-    "current_round": 60,
+    "current_round": 180,
     "standings": 32,
     "safety": 100,
-    "total": 192
+    "total": 312
   },
-  "candidate_teams": 9,
-  "completed_teams": [],
+  "candidate_teams": 25,
+  "completed_teams": [
+    {
+      "team_id": "4724",
+      "team_name": "Alverca",
+      "profile_rows": 30
+    },
+    {
+      "team_id": "406",
+      "team_name": "Aarhus",
+      "profile_rows": 33
+    },
+    {
+      "team_id": "4248",
+      "team_name": "Radomiak Radom",
+      "profile_rows": 29
+    },
+    {
+      "team_id": "396",
+      "team_name": "Sonderjyske",
+      "profile_rows": 36
+    },
+    {
+      "team_id": "338",
+      "team_name": "Wisla Krakow",
+      "profile_rows": 26
+    },
+    {
+      "team_id": "339",
+      "team_name": "Legia Warszawa",
+      "profile_rows": 28
+    },
+    {
+      "team_id": "14562",
+      "team_name": "Motor Lublin",
+      "profile_rows": 31
+    },
+    {
+      "team_id": "735",
+      "team_name": "St. Truiden",
+      "profile_rows": 26
+    },
+    {
+      "team_id": "240",
+      "team_name": "Arouca",
+      "profile_rows": 26
+    },
+    {
+      "team_id": "3588",
+      "team_name": "Eyüpspor",
+      "profile_rows": 26
+    },
+    {
+      "team_id": "661",
+      "team_name": "FK Liepaja",
+      "profile_rows": 23
+    },
+    {
+      "team_id": "242",
+      "team_name": "Famalicao",
+      "profile_rows": 27
+    },
+    {
+      "team_id": "326",
+      "team_name": "Valerenga",
+      "profile_rows": 35
+    },
+    {
+      "team_id": "994",
+      "team_name": "Göztepe",
+      "profile_rows": 24
+    }
+  ],
   "deferred_teams": 0,
-  "residual_candidate_players": 0,
-  "residual_captured_players": 0,
-  "residual_empty_players": 0,
+  "residual_candidate_players": 111,
+  "residual_captured_players": 37,
+  "residual_empty_players": 74,
   "residual_error_players": 0,
   "residual_deferred_players": 0,
   "residual_ambiguous_current_roster_player_ids": 0,
   "residual_suppressed_recent_attempts": 1054,
-  "profile_rows": 6709,
-  "unique_profile_players": 6467,
-  "current_roster_players": 7118,
-  "current_roster_player_coverage_pct": 85.19,
+  "profile_rows": 7146,
+  "unique_profile_players": 6883,
+  "current_roster_players": 7593,
+  "current_roster_player_coverage_pct": 85.14,
   "warnings": [
+    "4135 Auda: provider returned no usable profile rows",
+    "15130 Estrela: provider returned no usable profile rows",
     "586 FK Zalgiris Vilnius: provider returned no usable profile rows",
     "4149 BFC Daugavpils: provider returned no usable profile rows",
     "4144 Tukums: provider returned no usable profile rows",
