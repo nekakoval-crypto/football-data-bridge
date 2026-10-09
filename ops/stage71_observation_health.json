@@ -1,12 +1,12 @@
 {
-  "run_at_utc": "2026-10-09T15:45:29.692712Z",
+  "run_at_utc": "2026-10-09T23:42:06.414300Z",
   "status": "ATTENTION",
   "counts": {
-    "expected": 43,
-    "scanned": 43,
-    "captured": 96,
+    "expected": 51,
+    "scanned": 51,
+    "captured": 97,
     "missed_or_at_risk": 1,
-    "pending": 17,
+    "pending": 18,
     "stale": 0,
     "rescheduled": 252,
     "cancelled": 19,
@@ -23,15 +23,15 @@
   "scan": [
     {
       "league": "Premier League",
-      "expected": 5,
-      "scanned": 5,
-      "legacy_next5_omitted": 0,
+      "expected": 6,
+      "scanned": 6,
+      "legacy_next5_omitted": 1,
       "inventory": "COMPLETE"
     },
     {
       "league": "La Liga",
-      "expected": 3,
-      "scanned": 3,
+      "expected": 4,
+      "scanned": 4,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -44,29 +44,29 @@
     },
     {
       "league": "Ligue 1",
-      "expected": 2,
-      "scanned": 2,
+      "expected": 5,
+      "scanned": 5,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Austrian Bundesliga",
-      "expected": 2,
-      "scanned": 2,
+      "expected": 3,
+      "scanned": 3,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Belgian Pro League",
-      "expected": 2,
-      "scanned": 2,
+      "expected": 4,
+      "scanned": 4,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Danish Superliga",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -86,8 +86,8 @@
     },
     {
       "league": "Eredivisie",
-      "expected": 2,
-      "scanned": 2,
+      "expected": 4,
+      "scanned": 4,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -100,8 +100,8 @@
     },
     {
       "league": "Ekstraklasa",
-      "expected": 4,
-      "scanned": 4,
+      "expected": 3,
+      "scanned": 3,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -140,6 +140,6 @@
   "legacy_max_schedule_gap_hours": 18,
   "schedule_gap_hours": 8,
   "r2_freeze_hours": 12,
-  "api_calls": 21,
-  "api_day_calls": 842
+  "api_calls": 33,
+  "api_day_calls": 1026
 }

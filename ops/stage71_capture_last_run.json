@@ -1,28 +1,28 @@
 {
-  "run_at_utc": "2026-10-09T15:45:29Z",
+  "run_at_utc": "2026-10-09T23:42:06Z",
   "status": "OK",
   "research_leagues": 15,
-  "new_triggers": 1,
-  "new_r1_rows": 1,
-  "new_r2_rows": 0,
+  "new_triggers": 13,
+  "new_r1_rows": 0,
+  "new_r2_rows": 1,
   "settled_rows": 0,
-  "trigger_rows": 317,
-  "forward_rows": 96,
-  "api_calls": 21,
-  "odds_calls": 5,
+  "trigger_rows": 330,
+  "forward_rows": 97,
+  "api_calls": 33,
+  "odds_calls": 17,
   "marathon_calls": 1,
   "scan": [
     {
       "league": "Premier League",
-      "expected": 5,
-      "scanned": 5,
-      "legacy_next5_omitted": 0,
+      "expected": 6,
+      "scanned": 6,
+      "legacy_next5_omitted": 1,
       "inventory": "COMPLETE"
     },
     {
       "league": "La Liga",
-      "expected": 3,
-      "scanned": 3,
+      "expected": 4,
+      "scanned": 4,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -35,29 +35,29 @@
     },
     {
       "league": "Ligue 1",
-      "expected": 2,
-      "scanned": 2,
+      "expected": 5,
+      "scanned": 5,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Austrian Bundesliga",
-      "expected": 2,
-      "scanned": 2,
+      "expected": 3,
+      "scanned": 3,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Belgian Pro League",
-      "expected": 2,
-      "scanned": 2,
+      "expected": 4,
+      "scanned": 4,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Danish Superliga",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -77,8 +77,8 @@
     },
     {
       "league": "Eredivisie",
-      "expected": 2,
-      "scanned": 2,
+      "expected": 4,
+      "scanned": 4,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -91,8 +91,8 @@
     },
     {
       "league": "Ekstraklasa",
-      "expected": 4,
-      "scanned": 4,
+      "expected": 3,
+      "scanned": 3,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -121,14 +121,14 @@
   "warnings": [],
   "canonical_captured": 13,
   "challenger_deferred": false,
-  "api_day_calls_before_challenger": 821,
-  "reserved_live_calls": 15,
-  "reserved_current_round_calls": 32,
+  "api_day_calls_before_challenger": 993,
+  "reserved_live_calls": 0,
+  "reserved_current_round_calls": 0,
   "safety_margin_calls": 10,
-  "challenger_available_calls": 6122,
-  "challenger_calls_used": 21,
-  "live_forecast_cycles": 15,
-  "live_peak_candidates": 12,
-  "live_peak_batches": 1,
+  "challenger_available_calls": 5997,
+  "challenger_calls_used": 33,
+  "live_forecast_cycles": 0,
+  "live_peak_candidates": 0,
+  "live_peak_batches": 0,
   "budget_protection_status": "LIMITED"
 }

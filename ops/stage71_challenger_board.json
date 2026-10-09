@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-09T15:45:29Z",
+  "generated_at_utc": "2026-10-09T23:42:06Z",
   "status": "OK",
   "scope_leagues": 16,
   "families": [
@@ -863,10 +863,10 @@
       "marathonbet_coverage_pct": "100.000",
       "status": "MONITORING",
       "leader": "NO",
-      "blocking_reason": "fresh discovery sample 3/120 settled (117 remaining); executable 3/3; Marathonbet coverage 100.0%; ROI -58.33%; first-half -100.00%; second-half -37.50%; no direct promotion",
-      "prospective_captured": "3",
-      "prospective_executable": "3",
-      "prospective_pending_executable": "0",
+      "blocking_reason": "fresh discovery sample 3/120 settled (117 remaining); executable 4/4; Marathonbet coverage 100.0%; ROI -58.33%; first-half -100.00%; second-half -37.50%; no direct promotion",
+      "prospective_captured": "4",
+      "prospective_executable": "4",
+      "prospective_pending_executable": "1",
       "review_target_settled": "60",
       "review_remaining_settled": "57",
       "review_progress_pct": "5.0",
@@ -1095,5 +1095,5 @@
     "automatic_promotion": "FORBIDDEN",
     "automatic_suspension": "FORBIDDEN"
   },
-  "progress_generated_at_utc": "2026-10-09T15:45:29Z"
+  "progress_generated_at_utc": "2026-10-09T23:42:06Z"
 }
