@@ -1,11 +1,11 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-10-09T15:02:04Z
+Обновлено UTC: 2026-10-09T17:00:16Z
 Статус: **COLLECTING**
 
 ## Покрытие
 - Fixtures в текущем inventory: 128 (finished: 2).
-- Fixture history: 306 unique fixtures / 27961 observations / 218 observation runs (finished observed: 173).
+- Fixture history: 306 unique fixtures / 28089 observations / 219 observation runs (finished observed: 173).
 - Historical fixture catalog: 306 fixtures (terminal 173, rescheduled 1), history coverage 100.00%; missing 0, orphan 0.
 - Finished fixtures с player stats: 0 / 2 (0.00%).
 - Stage77 durable backlog: pending 173; captured 0; total 173.
@@ -51,6 +51,7 @@
 - Observations: —; unique payloads: —.
 
 ## Незакрытые пробелы
+- HISTORICAL_FIXTURE_CATALOG_OBSERVATION_COUNT_MISMATCH
 - TEAM_STATS_BACKLOG_PENDING
 - PLAYER_STATS_BACKLOG_PENDING
 - PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE
