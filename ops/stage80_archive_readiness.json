@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-09T06:59:11Z",
+  "generated_at_utc": "2026-10-09T07:07:47Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -54,7 +54,7 @@
     "player_profiles": {
       "file": "player_profile_evidence.csv",
       "present": true,
-      "rows": 7146
+      "rows": 7148
     },
     "roster_history": {
       "file": "team_roster_history.csv",
@@ -404,17 +404,17 @@
   },
   "player_profiles": {
     "present": true,
-    "rows": 7146,
-    "valid_rows": 7146,
+    "rows": 7148,
+    "valid_rows": 7148,
     "team_source_rows": 6886,
-    "residual_player_id_source_rows": 260,
-    "identity_ready_rows": 6586,
+    "residual_player_id_source_rows": 262,
+    "identity_ready_rows": 6588,
     "invalid_rows": 0,
-    "unique_players": 6883,
-    "identity_ready_unique_players": 6330,
+    "unique_players": 6885,
+    "identity_ready_unique_players": 6332,
     "unique_teams": 250,
-    "current_roster_player_coverage_pct": 85.14,
-    "identity_ready_current_roster_coverage_pct": 78.61,
+    "current_roster_player_coverage_pct": 85.17,
+    "identity_ready_current_roster_coverage_pct": 78.64,
     "evidence_note": "Bounded API-Football player profile evidence from team+season plus residual player-id+season calls. Residual team context is taken from the current PBK roster, not inferred from season statistics. Full-name+DOB+club may support conservative cross-provider identity mapping; this never grants betting/model authority."
   },
   "transfer_identity": {
