@@ -1,65 +1,25 @@
 {
-  "run_at_utc": "2026-10-09T18:57:15Z",
+  "run_at_utc": "2026-10-09T20:54:38Z",
   "status": "OK",
   "mode": "RESEARCH_SETTLEMENT_ONLY",
-  "pending_market_rows": 185,
-  "pending_unique_fixtures": 11,
-  "fixture_api_calls": 11,
-  "new_settlement_rows": 33,
-  "total_settlement_rows": 4390,
+  "pending_market_rows": 152,
+  "pending_unique_fixtures": 9,
+  "fixture_api_calls": 9,
+  "new_settlement_rows": 136,
+  "total_settlement_rows": 4526,
   "settlement_rows_by_family": {
-    "TEAM_TOTAL": 2493,
-    "DOUBLE_CHANCE": 268,
-    "EUROPEAN_HANDICAP": 1382,
-    "DRAW_NO_BET": 247
+    "TEAM_TOTAL": 2573,
+    "DOUBLE_CHANCE": 276,
+    "EUROPEAN_HANDICAP": 1423,
+    "DRAW_NO_BET": 254
   },
   "non_ft_or_review_fixtures": [
-    {
-      "fixture_id": "1494774",
-      "status": "2H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1552180",
-      "status": "HT",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1552775",
-      "status": "1H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1553188",
-      "status": "1H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1558644",
-      "status": "1H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
     {
       "fixture_id": "1570389",
       "status": "NS",
       "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1575176",
-      "status": "1H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1575516",
-      "status": "2H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1584424",
-      "status": "2H",
-      "detail": "Not auto-settled; FT regulation score required"
     }
   ],
   "signals_created": 0,
-  "api_calls": 11
+  "api_calls": 9
 }
