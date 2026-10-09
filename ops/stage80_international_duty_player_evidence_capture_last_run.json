@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_INTERNATIONAL_DUTY_PLAYER_EVIDENCE_CAPTURE_V2_STRICT_ROLE_SEMANTICS",
-  "generated_at_utc": "2026-10-09T01:07:03Z",
+  "generated_at_utc": "2026-10-09T13:03:36Z",
   "status": "COLLECTING",
   "backlog_rows": 6185,
   "backlog_status_counts": {
@@ -8,11 +8,9 @@
     "ERROR": 23,
     "NO_DATA": 2350
   },
-  "candidate_fixtures_this_run": 6,
-  "attempted_fixtures_this_run": 6,
-  "attempt_result_counts": {
-    "ERROR": 6
-  },
+  "candidate_fixtures_this_run": 0,
+  "attempted_fixtures_this_run": 0,
+  "attempt_result_counts": {},
   "captured_fixtures_total": 3812,
   "pending_or_retry_fixtures": 2373,
   "evidence_rows": 161210,
@@ -35,7 +33,7 @@
   "travel_rows_derived": 0,
   "provider_budget_calls": 0,
   "archive_first_enabled": true,
-  "archive_read_hits": 6,
+  "archive_read_hits": 0,
   "archive_read_misses": 0,
   "archive_read_errors": 0,
   "real_api_calls": 0,
@@ -43,21 +41,14 @@
   "archive_write_successes": 0,
   "archive_write_failures": 0,
   "provider_archive_write_through_ok": true,
-  "daily_api_calls_before": 0,
-  "daily_api_calls_after": 0,
+  "daily_api_calls_before": 789,
+  "daily_api_calls_after": 789,
   "protected_calls": 512,
   "raw_archive_enabled": true,
   "raw_archive_backend": null,
   "raw_archive_observations": 0,
   "raw_archive_errors": 0,
-  "warnings": [
-    "685793: duplicate lineup player for 685793:2381:65657",
-    "257202: fixture 257202 provider team '4767' not in expected national teams ['1544', '1556']",
-    "257191: fixture 257191 provider team '4767' not in expected national teams ['1544', '1554']",
-    "257165: fixture 257165 provider team '4767' not in expected national teams ['1537', '1544']",
-    "257153: fixture 257153 provider team '4767' not in expected national teams ['1544', '1556']",
-    "257142: fixture 257142 provider team '4767' not in expected national teams ['1544', '1554']"
-  ],
+  "warnings": [],
   "nationality_inference_allowed": false,
   "travel_inference_allowed": false,
   "formal_callup_separately_verified": false,
