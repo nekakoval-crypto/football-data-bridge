@@ -1,11 +1,11 @@
 {
-  "run_at_utc": "2026-10-09T00:55:57Z",
+  "run_at_utc": "2026-10-09T06:52:00Z",
   "status": "OK",
   "mode": "SHARED_PREFETCHED_PROSPECTIVE_CAPTURE",
   "prefetched_fixture_ids": 160,
   "real_api_calls": 177,
   "api_hard_cap": 190,
-  "cache_hits": 618,
+  "cache_hits": 615,
   "unique_cached_requests": 177,
   "real_calls_by_path": {
     "/odds/bets": 1,
@@ -18,7 +18,7 @@
   "market_presence_count": 182,
   "market_presence_api_calls_added": 0,
   "generic_1x2_forward_capture": {
-    "run_at_utc": "2026-10-09T00:56:34Z",
+    "run_at_utc": "2026-10-09T06:52:49Z",
     "status": "OK",
     "mode": "STAGE71J_ZERO_EXTRA_CALL_PROSPECTIVE_CAPTURE",
     "source": "API-Football /odds Bet365 Match Winner",
@@ -30,12 +30,12 @@
     "extraction": {
       "fixture_metadata": 160,
       "unfiltered_odds_payloads": 160,
-      "missing_complete_bet365_match_winner": 29,
-      "complete_candidate_rows": 131
+      "missing_complete_bet365_match_winner": 28,
+      "complete_candidate_rows": 132
     },
-    "candidate_rows": 131,
+    "candidate_rows": 132,
     "observations_added": 0,
-    "observations_rejected": 131,
+    "observations_rejected": 132,
     "prematch_frozen": 264,
     "settled_rows": 2,
     "rejections": [
@@ -376,6 +376,10 @@
         "reason": "already_frozen"
       },
       {
+        "fixture_id": "1558649",
+        "reason": "already_frozen"
+      },
+      {
         "fixture_id": "1558650",
         "reason": "already_frozen"
       },
@@ -580,9 +584,9 @@
       "market_family": "TEAM_TOTAL",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 138,
-      "new_openers": 12,
-      "new_snapshots": 1066,
+      "logical_odds_calls": 137,
+      "new_openers": 1,
+      "new_snapshots": 1076,
       "new_closes": 0,
       "warnings": 0
     },
@@ -590,9 +594,9 @@
       "market_family": "DOUBLE_CHANCE",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 138,
-      "new_openers": 1,
-      "new_snapshots": 114,
+      "logical_odds_calls": 137,
+      "new_openers": 0,
+      "new_snapshots": 115,
       "new_closes": 0,
       "warnings": 0
     },
@@ -600,9 +604,9 @@
       "market_family": "EUROPEAN_HANDICAP",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 138,
-      "new_openers": 5,
-      "new_snapshots": 573,
+      "logical_odds_calls": 137,
+      "new_openers": 1,
+      "new_snapshots": 579,
       "new_closes": 0,
       "warnings": 0
     },
