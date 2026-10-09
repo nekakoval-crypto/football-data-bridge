@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-10-08T11:06:28Z
+Generated UTC: 2026-10-09T02:07:02Z
 Active canonical signals: 10
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -8,7 +8,7 @@ Active canonical signals: 10
 ## R1 | Lecce — Bologna
 - Kickoff UTC: 2026-10-11T13:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.0 / Х 3.3 / П2 1.91 (immutable)
-- Market-best observed: 1.98 @ 1xBet | Bet365 now: 1.91
+- Market-best observed: 1.98 @ 1xBet | Bet365 now: 1.85
 - Current user-executable: 1.92 @ Marathonbet
 - Paper user-execution (frozen): 2.0 @ Marathonbet [2026-09-18T06:48:35Z]
 - Referee / venue: TBD | Stadio Via del Mare, Lecce
@@ -23,7 +23,7 @@ Active canonical signals: 10
 ## R1 | Sassuolo — AC Milan
 - Kickoff UTC: 2026-10-11T16:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.5 / Х 3.6 / П2 1.75 (immutable)
-- Market-best observed: 1.87 @ 1xBet | Bet365 now: 1.8
+- Market-best observed: 1.87 @ 1xBet | Bet365 now: 1.75
 - Current user-executable: 1.82 @ Marathonbet
 - Paper user-execution (frozen): 1.79 @ Marathonbet [2026-09-18T06:48:35Z]
 - Referee / venue: TBD | TBD, Reggio Emilia
@@ -38,7 +38,7 @@ Active canonical signals: 10
 ## R2 | Sassuolo — AC Milan
 - Kickoff UTC: 2026-10-11T16:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.5 / Х 3.6 / П2 1.75 (immutable)
-- Market-best observed: 1.87 @ 1xBet | Bet365 now: 1.8
+- Market-best observed: 1.87 @ 1xBet | Bet365 now: 1.75
 - Current user-executable: 1.82 @ Marathonbet
 - Paper user-execution (frozen): 1.79 @ Marathonbet [2026-09-22T06:49:37Z]
 - Referee / venue: TBD | TBD, Reggio Emilia
@@ -182,7 +182,7 @@ Active canonical signals: 10
 > This is **not a canonical rule and not a bet signal**. R1/R2/R3 are unchanged.
 
 - Scope: Бундеслига: ТБ(2.5) — движение рынка (+3 pp no-vig from frozen Bet365 O/U 2.5 opener).
-- Frozen O/U openers tracked: 35
+- Frozen O/U openers tracked: 36
 - Active +3 pp crossings ТБ(2.5): 1
 - Observed closes: 18 | Close-qualified O1 watches: 7
 - Executable bookmaker being observed: Marathonbet
@@ -205,7 +205,7 @@ Active canonical signals: 10
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 185
-- Активные движения ≥3 п.п.: всего 6 | ОЗ — Да 5 | ОЗ — Нет 1
+- Активные движения ≥3 п.п.: всего 12 | ОЗ — Да 10 | ОЗ — Нет 2
 - Зафиксировано observed close: 105
 - Исполнимый букмекер для наблюдения: Marathonbet
 
@@ -216,6 +216,12 @@ Active canonical signals: 10
 - WATCH | La Liga | Real Madrid — Villarreal | ОЗ — Да | движение P(ОЗ — Да) +3.60 п.п. | Marathonbet 1.49 | 3992.8 мин до матча
 - WATCH | Bundesliga | RB Leipzig — Eintracht Frankfurt | ОЗ — Да | движение P(ОЗ — Да) +4.28 п.п. | Marathonbet 1.36 | 3842.8 мин до матча
 - WATCH | Bundesliga | Union Berlin — SV Elversberg | ОЗ — Да | движение P(ОЗ — Да) +5.63 п.п. | Marathonbet 1.48 | 3662.8 мин до матча
+- WATCH | Serie A | Como — AS Roma | ОЗ — Да | движение P(ОЗ — Да) +5.17 п.п. | Marathonbet 1.49 | 3967.9 мин до матча
+- WATCH | Serie A | Lecce — Bologna | ОЗ — Нет | движение P(ОЗ — Да) -4.00 п.п. | Marathonbet 1.83 | 4117.9 мин до матча
+- WATCH | Ligue 1 | Nice — Strasbourg | ОЗ — Да | движение P(ОЗ — Да) +3.28 п.п. | Marathonbet 1.56 | 4117.9 мин до матча
+- WATCH | Premier League | Hull City — Everton | ОЗ — Да | движение P(ОЗ — Да) +4.00 п.п. | Marathonbet 1.79 | 4117.9 мин до матча
+- WATCH | Premier League | Manchester United — Tottenham | ОЗ — Да | движение P(ОЗ — Да) +3.60 п.п. | Marathonbet 1.49 | 2887.9 мин до матча
+- WATCH | La Liga | Barcelona — Getafe | ОЗ — Да | движение P(ОЗ — Да) +3.28 п.п. | Marathonbet 2.23 | 2887.9 мин до матча
 
 ---
 
@@ -223,14 +229,14 @@ Active canonical signals: 10
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 56 | settled 48 | pending 8
+- Crossings: 62 | settled 48 | pending 14
 - Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: -9.140u | ROI -19.042% | W-L 25-23
 - Close: observed 48 | stayed qualified 37 | reverted 11 | persistence 77.083%
 - Close-qualified ROI: -17.216% | Reverted ROI: -25.182%
 
 ## By WATCH family
-- Big-5 ОЗ market movement — ОЗ — Да: crossings 34, settled 29, ROI -18.034%, close persistence 79.31%
-- Big-5 ОЗ market movement — ОЗ — Нет: crossings 8, settled 7, ROI 5.286%, close persistence 57.143%
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 39, settled 29, ROI -18.034%, close persistence 79.31%
+- Big-5 ОЗ market movement — ОЗ — Нет: crossings 9, settled 7, ROI 5.286%, close persistence 57.143%
 - АПЛ favorite steam: crossings 6, settled 5, ROI -100.0%, close persistence 60.0%
 - Бундеслига ТБ(2.5) steam: crossings 8, settled 7, ROI 10.286%, close persistence 100.0%
