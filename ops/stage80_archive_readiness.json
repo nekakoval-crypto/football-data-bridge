@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-09T07:07:47Z",
+  "generated_at_utc": "2026-10-09T07:09:15Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -69,12 +69,12 @@
     "transfer_identity": {
       "file": "pbk_transfermarkt_player_identity.csv",
       "present": true,
-      "rows": 3158
+      "rows": 3159
     },
     "transfer_history": {
       "file": "historical_transfer_events.csv",
       "present": true,
-      "rows": 42003
+      "rows": 42008
     },
     "match_context": {
       "file": "match_context_snapshots.csv",
@@ -419,9 +419,9 @@
   },
   "transfer_identity": {
     "present": true,
-    "rows": 3158,
+    "rows": 3159,
     "valid_rows": 2114,
-    "invalid_rows": 1044,
+    "invalid_rows": 1045,
     "unique_pbk_players": 2114,
     "unique_transfermarkt_players": 2114,
     "approved_methods": [
@@ -433,9 +433,9 @@
   },
   "transfer_history": {
     "present": true,
-    "rows": 42003,
+    "rows": 42008,
     "valid_rows": 33217,
-    "invalid_identity_rows": 8786,
+    "invalid_identity_rows": 8791,
     "unique_pbk_players": 4057,
     "unique_transfermarkt_players": 4055,
     "earliest_transfer_date": "1994-07-01",
