@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-09T22:58:21Z",
+  "generated_at_utc": "2026-10-10T00:59:43Z",
   "status": "OK",
   "datasets": [
     {
@@ -68,7 +68,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 28089,
+      "row_count": 28217,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -166,7 +166,7 @@
       "source": "Stage71 terminal observation + Stage77 reconciliation",
       "limitations": "Queue evidence is not player-stat evidence; CAPTURED requires both stats and grade ledgers.",
       "present": true,
-      "row_count": 173,
+      "row_count": 185,
       "columns": [
         "fixture_id",
         "provider_league_id",

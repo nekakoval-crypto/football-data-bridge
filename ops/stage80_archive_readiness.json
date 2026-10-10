@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-09T22:58:46Z",
+  "generated_at_utc": "2026-10-10T01:00:09Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -12,7 +12,7 @@
     "fixture_history": {
       "file": "fixture_history_snapshots.csv",
       "present": true,
-      "rows": 28089
+      "rows": 28217
     },
     "historical_fixtures": {
       "file": "historical_fixtures.csv",
@@ -34,7 +34,7 @@
     "stage77_backlog": {
       "file": "stage77_player_stats_backlog.csv",
       "present": true,
-      "rows": 173
+      "rows": 185
     },
     "team_stats": {
       "file": "team_match_statistics.csv",
@@ -284,7 +284,7 @@
   },
   "fixtures": {
     "current_inventory": 128,
-    "finished_in_current_inventory": 2,
+    "finished_in_current_inventory": 14,
     "player_stats_fixture_count_all_snapshots": 35805,
     "player_grade_fixture_count_all_snapshots": 35805,
     "finished_current_inventory_with_player_stats": 0,
@@ -295,16 +295,76 @@
         "finished_fixtures_in_current_inventory": 2,
         "finished_fixtures_with_player_stats": 0,
         "player_stats_coverage_pct": 0.0
+      },
+      {
+        "league": "Bundesliga",
+        "finished_fixtures_in_current_inventory": 1,
+        "finished_fixtures_with_player_stats": 0,
+        "player_stats_coverage_pct": 0.0
+      },
+      {
+        "league": "Ekstraklasa",
+        "finished_fixtures_in_current_inventory": 2,
+        "finished_fixtures_with_player_stats": 0,
+        "player_stats_coverage_pct": 0.0
+      },
+      {
+        "league": "Eliteserien",
+        "finished_fixtures_in_current_inventory": 1,
+        "finished_fixtures_with_player_stats": 0,
+        "player_stats_coverage_pct": 0.0
+      },
+      {
+        "league": "Eredivisie",
+        "finished_fixtures_in_current_inventory": 1,
+        "finished_fixtures_with_player_stats": 0,
+        "player_stats_coverage_pct": 0.0
+      },
+      {
+        "league": "Jupiler Pro League",
+        "finished_fixtures_in_current_inventory": 1,
+        "finished_fixtures_with_player_stats": 0,
+        "player_stats_coverage_pct": 0.0
+      },
+      {
+        "league": "La Liga",
+        "finished_fixtures_in_current_inventory": 1,
+        "finished_fixtures_with_player_stats": 0,
+        "player_stats_coverage_pct": 0.0
+      },
+      {
+        "league": "Ligue 1",
+        "finished_fixtures_in_current_inventory": 1,
+        "finished_fixtures_with_player_stats": 0,
+        "player_stats_coverage_pct": 0.0
+      },
+      {
+        "league": "Primeira Liga",
+        "finished_fixtures_in_current_inventory": 2,
+        "finished_fixtures_with_player_stats": 0,
+        "player_stats_coverage_pct": 0.0
+      },
+      {
+        "league": "Superliga",
+        "finished_fixtures_in_current_inventory": 1,
+        "finished_fixtures_with_player_stats": 0,
+        "player_stats_coverage_pct": 0.0
+      },
+      {
+        "league": "Süper Lig",
+        "finished_fixtures_in_current_inventory": 1,
+        "finished_fixtures_with_player_stats": 0,
+        "player_stats_coverage_pct": 0.0
       }
     ]
   },
   "fixture_history": {
     "present": true,
-    "rows": 28089,
-    "valid_observations": 28089,
+    "rows": 28217,
+    "valid_observations": 28217,
     "unique_fixtures": 306,
-    "observation_runs": 219,
-    "finished_fixtures_observed": 173,
+    "observation_runs": 220,
+    "finished_fixtures_observed": 185,
     "invalid_identity_rows": 0,
     "evidence_note": "Counts represent only Stage71 current-round observations persisted after the fixture-history archive was enabled; they are not a pre-PBK historical backfill claim."
   },
@@ -313,7 +373,7 @@
     "rows": 306,
     "valid_rows": 306,
     "unique_fixtures": 306,
-    "terminal_fixtures": 173,
+    "terminal_fixtures": 185,
     "rescheduled_fixtures": 1,
     "invalid_identity_rows": 0,
     "duplicate_fixture_ids": 0,
@@ -322,15 +382,15 @@
     "orphan_catalog_fixtures": 0,
     "missing_terminal_evidence": 0,
     "orphan_terminal_evidence": 0,
-    "observation_count_total": 28089,
-    "expected_history_observations": 28089,
+    "observation_count_total": 28217,
+    "expected_history_observations": 28217,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
   },
   "stage77_backlog": {
     "present": true,
-    "total_fixtures": 173,
-    "pending_fixtures": 173,
+    "total_fixtures": 185,
+    "pending_fixtures": 185,
     "captured_fixtures": 0,
     "captured_without_complete_ledgers": 0,
     "oldest_pending_first_queued_at_utc": "2026-09-15T16:55:09Z",
