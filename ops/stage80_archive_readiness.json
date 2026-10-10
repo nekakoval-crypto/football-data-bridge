@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-10T16:58:19Z",
+  "generated_at_utc": "2026-10-10T18:47:00Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -89,7 +89,7 @@
     "injury_archive": {
       "file": "injury_snapshots.csv",
       "present": true,
-      "rows": 68
+      "rows": 80
     },
     "match_events": {
       "file": "match_event_snapshots.csv",
@@ -391,16 +391,16 @@
     "rows": 306,
     "valid_rows": 306,
     "unique_fixtures": 306,
-    "terminal_fixtures": 185,
-    "rescheduled_fixtures": 1,
+    "terminal_fixtures": 199,
+    "rescheduled_fixtures": 2,
     "invalid_identity_rows": 0,
     "duplicate_fixture_ids": 0,
     "history_fixture_coverage_pct": 100.0,
     "missing_history_fixtures": 0,
     "orphan_catalog_fixtures": 0,
-    "missing_terminal_evidence": 14,
+    "missing_terminal_evidence": 0,
     "orphan_terminal_evidence": 0,
-    "observation_count_total": 28345,
+    "observation_count_total": 28473,
     "expected_history_observations": 28473,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
@@ -999,8 +999,8 @@
   "normalized_context_archives": {
     "lineup_rows": 8,
     "lineup_fixtures": 3,
-    "injury_rows": 68,
-    "injury_fixtures": 5,
+    "injury_rows": 80,
+    "injury_fixtures": 6,
     "evidence_note": "Provider-free normalized append-only projections from already-persisted PBK context/rotation evidence; coverage remains limited by upstream capture scope."
   },
   "raw_provider_archive": {
@@ -1020,8 +1020,6 @@
     "inventory_note": "Remote S3/R2 object counts are intentionally not fetched by this provider-free readiness stage."
   },
   "gaps": [
-    "HISTORICAL_FIXTURE_CATALOG_TERMINAL_EVIDENCE_MISMATCH",
-    "HISTORICAL_FIXTURE_CATALOG_OBSERVATION_COUNT_MISMATCH",
     "TEAM_STATS_BACKLOG_PENDING",
     "PLAYER_STATS_BACKLOG_PENDING",
     "PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
