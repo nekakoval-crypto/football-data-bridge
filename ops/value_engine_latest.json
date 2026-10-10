@@ -12,84 +12,6 @@
   "reports": [
     {
       "fixture": {
-        "api_fixture_id": "1584426",
-        "league": "Süper Lig",
-        "league_id": 203,
-        "kickoff_utc": "2026-10-10T10:30:00+00:00",
-        "home_team": "Gençlerbirliği S.K.",
-        "away_team": "Amed"
-      },
-      "best_official_value": null,
-      "official_candidates": [],
-      "research_only_candidates": []
-    },
-    {
-      "fixture": {
-        "api_fixture_id": "1515929",
-        "league": "Virsliga",
-        "league_id": 365,
-        "kickoff_utc": "2026-10-10T11:00:00+00:00",
-        "home_team": "Tukums",
-        "away_team": "Riga"
-      },
-      "best_official_value": null,
-      "official_candidates": [],
-      "research_only_candidates": []
-    },
-    {
-      "fixture": {
-        "api_fixture_id": "1547587",
-        "league": "A Lyga",
-        "league_id": 362,
-        "kickoff_utc": "2026-10-10T11:15:00+00:00",
-        "home_team": "FK Zalgiris Vilnius",
-        "away_team": "Suduva Marijampole"
-      },
-      "best_official_value": null,
-      "official_candidates": [],
-      "research_only_candidates": []
-    },
-    {
-      "fixture": {
-        "api_fixture_id": "1557417",
-        "league": "Premier League",
-        "league_id": 39,
-        "kickoff_utc": "2026-10-10T11:30:00+00:00",
-        "home_team": "Arsenal",
-        "away_team": "Leeds"
-      },
-      "best_official_value": null,
-      "official_candidates": [],
-      "research_only_candidates": []
-    },
-    {
-      "fixture": {
-        "api_fixture_id": "1570410",
-        "league": "La Liga",
-        "league_id": 140,
-        "kickoff_utc": "2026-10-10T12:00:00+00:00",
-        "home_team": "Rayo Vallecano",
-        "away_team": "Athletic Club"
-      },
-      "best_official_value": null,
-      "official_candidates": [],
-      "research_only_candidates": []
-    },
-    {
-      "fixture": {
-        "api_fixture_id": "1553182",
-        "league": "Ekstraklasa",
-        "league_id": 106,
-        "kickoff_utc": "2026-10-10T12:45:00+00:00",
-        "home_team": "Cracovia Krakow",
-        "away_team": "Zaglebie Lubin"
-      },
-      "best_official_value": null,
-      "official_candidates": [],
-      "research_only_candidates": []
-    },
-    {
-      "fixture": {
         "api_fixture_id": "1515930",
         "league": "Virsliga",
         "league_id": 365,
@@ -356,19 +278,6 @@
         "kickoff_utc": "2026-10-10T14:30:00+00:00",
         "home_team": "GO Ahead Eagles",
         "away_team": "Sparta Rotterdam"
-      },
-      "best_official_value": null,
-      "official_candidates": [],
-      "research_only_candidates": []
-    },
-    {
-      "fixture": {
-        "api_fixture_id": "1575513",
-        "league": "Primeira Liga",
-        "league_id": 94,
-        "kickoff_utc": "2026-10-10T14:30:00+00:00",
-        "home_team": "Casa Pia",
-        "away_team": "Santa Clara"
       },
       "best_official_value": null,
       "official_candidates": [],
@@ -707,6 +616,19 @@
         "kickoff_utc": "2026-10-10T19:30:00+00:00",
         "home_team": "Academico Viseu",
         "away_team": "Estoril"
+      },
+      "best_official_value": null,
+      "official_candidates": [],
+      "research_only_candidates": []
+    },
+    {
+      "fixture": {
+        "api_fixture_id": "1575513",
+        "league": "Primeira Liga",
+        "league_id": 94,
+        "kickoff_utc": "2026-10-10T19:30:00+00:00",
+        "home_team": "Casa Pia",
+        "away_team": "Santa Clara"
       },
       "best_official_value": null,
       "official_candidates": [],
@@ -1663,12 +1585,64 @@
     },
     {
       "fixture": {
+        "api_fixture_id": "1557430",
+        "league": "Premier League",
+        "league_id": 39,
+        "kickoff_utc": "2026-10-17T11:30:00+00:00",
+        "home_team": "Everton",
+        "away_team": "Chelsea"
+      },
+      "best_official_value": null,
+      "official_candidates": [],
+      "research_only_candidates": []
+    },
+    {
+      "fixture": {
         "api_fixture_id": "1494780",
         "league": "Eliteserien",
         "league_id": 103,
         "kickoff_utc": "2026-10-17T12:00:00+00:00",
         "home_team": "Ham-Kam",
         "away_team": "Bodo/Glimt"
+      },
+      "best_official_value": null,
+      "official_candidates": [],
+      "research_only_candidates": []
+    },
+    {
+      "fixture": {
+        "api_fixture_id": "1570416",
+        "league": "La Liga",
+        "league_id": 140,
+        "kickoff_utc": "2026-10-17T12:00:00+00:00",
+        "home_team": "Espanyol",
+        "away_team": "Atletico Madrid"
+      },
+      "best_official_value": null,
+      "official_candidates": [],
+      "research_only_candidates": []
+    },
+    {
+      "fixture": {
+        "api_fixture_id": "1553195",
+        "league": "Ekstraklasa",
+        "league_id": 106,
+        "kickoff_utc": "2026-10-17T12:45:00+00:00",
+        "home_team": "Motor Lublin",
+        "away_team": "Slask Wroclaw"
+      },
+      "best_official_value": null,
+      "official_candidates": [],
+      "research_only_candidates": []
+    },
+    {
+      "fixture": {
+        "api_fixture_id": "1584435",
+        "league": "Süper Lig",
+        "league_id": 203,
+        "kickoff_utc": "2026-10-17T13:00:00+00:00",
+        "home_team": "Gençlerbirliği S.K.",
+        "away_team": "Galatasaray"
       },
       "best_official_value": null,
       "official_candidates": [],
@@ -1975,6 +1949,19 @@
     },
     {
       "fixture": {
+        "api_fixture_id": "1515935",
+        "league": "Virsliga",
+        "league_id": 365,
+        "kickoff_utc": "2026-10-19T16:00:00+00:00",
+        "home_team": "Rīgas FS",
+        "away_team": "Tukums"
+      },
+      "best_official_value": null,
+      "official_candidates": [],
+      "research_only_candidates": []
+    },
+    {
+      "fixture": {
         "api_fixture_id": "1558657",
         "league": "Jupiler Pro League",
         "league_id": 144,
@@ -2085,6 +2072,19 @@
         "kickoff_utc": "2026-10-25T16:30:00+00:00",
         "home_team": "FK Trakai",
         "away_team": "Suduva Marijampole"
+      },
+      "best_official_value": null,
+      "official_candidates": [],
+      "research_only_candidates": []
+    },
+    {
+      "fixture": {
+        "api_fixture_id": "1547644",
+        "league": "A Lyga",
+        "league_id": 362,
+        "kickoff_utc": "2026-10-26T16:45:00+00:00",
+        "home_team": "Kauno Žalgiris",
+        "away_team": "FK Zalgiris Vilnius"
       },
       "best_official_value": null,
       "official_candidates": [],
