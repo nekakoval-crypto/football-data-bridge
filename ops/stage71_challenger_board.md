@@ -1,6 +1,6 @@
 # PBK Stage71 — League & Market Challenger Board
 
-Обновлено UTC: 2026-10-09T23:42:06Z
+Обновлено UTC: 2026-10-10T07:42:39Z
 Текущие лидеры R1/R2: Serie A / Serie A
 
 > Captured → executable → settled — это исследовательский прогресс. Он не меняет canonical eligibility и не создаёт автоматический promotion.
@@ -31,20 +31,20 @@
 | Лига | Статус | Captured | Executable | Settled | Mbet cov. | ROI | 1H ROI | 2H ROI | До 60 | До 120 |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | Premier League | MONITORING_REJECTED_CURRENT_RULE | 0 | 0 | 0 | — | — | — | — | 60 | 120 |
-| La Liga | MONITORING | 4 | 4 | 4 | 100.0 | -38.50 | 23.00 | -100.00 | 56 | 116 |
+| La Liga | MONITORING | 5 | 5 | 4 | 100.0 | -38.50 | 23.00 | -100.00 | 56 | 116 |
 | Serie A 🏆 | ACTIVE | 4 | 4 | 0 | 100.0 | — | — | — | 60 | 120 |
 | Bundesliga | MONITORING_REJECTED_CURRENT_RULE | 0 | 0 | 0 | — | — | — | — | 60 | 120 |
 | Ligue 1 | MONITORING_REJECTED_CURRENT_RULE | 0 | 0 | 0 | — | — | — | — | 60 | 120 |
-| Austrian Bundesliga | MONITORING | 3 | 3 | 3 | 100.0 | -44.67 | -100.00 | -17.00 | 57 | 117 |
-| Belgian Pro League | MONITORING | 2 | 2 | 2 | 100.0 | 67.50 | 78.00 | 57.00 | 58 | 118 |
+| Austrian Bundesliga | MONITORING | 4 | 4 | 3 | 100.0 | -44.67 | -100.00 | -17.00 | 57 | 117 |
+| Belgian Pro League | MONITORING | 4 | 4 | 2 | 100.0 | 67.50 | 78.00 | 57.00 | 58 | 118 |
 | Danish Superliga | MONITORING | 2 | 2 | 2 | 100.0 | -100.00 | -100.00 | -100.00 | 58 | 118 |
 | A Lyga | MONITORING | 4 | 3 | 3 | 75.0 | -48.67 | 54.00 | -100.00 | 57 | 117 |
 | Virsliga | MONITORING | 4 | 4 | 3 | 100.0 | -58.33 | -100.00 | -37.50 | 57 | 117 |
-| Eredivisie | MONITORING | 2 | 2 | 2 | 100.0 | -30.50 | -100.00 | 39.00 | 58 | 118 |
+| Eredivisie | MONITORING | 3 | 3 | 2 | 100.0 | -30.50 | -100.00 | 39.00 | 58 | 118 |
 | Eliteserien | MONITORING | 4 | 4 | 4 | 100.0 | -22.75 | -18.50 | -27.00 | 56 | 116 |
-| Ekstraklasa | DATA_REQUIRED | 0 | 0 | 0 | — | — | — | — | 60 | 120 |
-| Primeira Liga | MONITORING | 2 | 2 | 2 | 100.0 | -38.50 | 23.00 | -100.00 | 58 | 118 |
-| Super Lig | MONITORING | 1 | 1 | 1 | 100.0 | -100.00 | — | -100.00 | 59 | 119 |
+| Ekstraklasa | MONITORING | 1 | 1 | 0 | 100.0 | — | — | — | 60 | 120 |
+| Primeira Liga | MONITORING | 4 | 3 | 2 | 75.0 | -38.50 | 23.00 | -100.00 | 58 | 118 |
+| Super Lig | MONITORING | 3 | 3 | 1 | 100.0 | -100.00 | — | -100.00 | 59 | 119 |
 | Scottish Premiership | MONITORING | 2 | 2 | 2 | 100.0 | -100.00 | -100.00 | -100.00 | 58 | 118 |
 
 ## Locked gates
