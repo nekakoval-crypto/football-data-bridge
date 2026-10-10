@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE77_HISTORICAL_PLAYER_BACKFILL_V3",
-  "run_at_utc": "2026-10-10T08:45:38Z",
+  "run_at_utc": "2026-10-10T10:43:58Z",
   "status": "OK",
   "provider_endpoint": "/fixtures/players",
   "max_api_calls_this_run": 480,
@@ -16,11 +16,11 @@
   "archive_read_errors": 0,
   "daily_api_calls": 450,
   "protected_calls": {
-    "live": 40,
+    "live": 39,
     "current_round": 64,
     "standings": 16,
     "safety": 8,
-    "total": 128,
+    "total": 127,
     "live_forecast_status": "OPEN"
   },
   "pbk16_source_rows": 70375,
