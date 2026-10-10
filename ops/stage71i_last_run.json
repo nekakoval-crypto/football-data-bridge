@@ -1,69 +1,19 @@
 {
-  "run_at_utc": "2026-10-10T18:55:00Z",
+  "run_at_utc": "2026-10-10T20:51:46Z",
   "status": "OK",
   "mode": "RESEARCH_SETTLEMENT_ONLY",
-  "pending_market_rows": 773,
-  "pending_unique_fixtures": 47,
-  "fixture_api_calls": 47,
-  "new_settlement_rows": 548,
-  "total_settlement_rows": 5185,
+  "pending_market_rows": 225,
+  "pending_unique_fixtures": 14,
+  "fixture_api_calls": 14,
+  "new_settlement_rows": 179,
+  "total_settlement_rows": 5364,
   "settlement_rows_by_family": {
-    "TEAM_TOTAL": 2958,
-    "DOUBLE_CHANCE": 316,
-    "EUROPEAN_HANDICAP": 1623,
-    "DRAW_NO_BET": 288
+    "TEAM_TOTAL": 3061,
+    "DOUBLE_CHANCE": 327,
+    "EUROPEAN_HANDICAP": 1678,
+    "DRAW_NO_BET": 298
   },
   "non_ft_or_review_fixtures": [
-    {
-      "fixture_id": "1550144",
-      "status": "1H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1552184",
-      "status": "HT",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1552774",
-      "status": "1H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1552777",
-      "status": "1H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1552778",
-      "status": "1H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1552780",
-      "status": "1H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1553183",
-      "status": "1H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1558646",
-      "status": "1H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1558651",
-      "status": "1H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1561937",
-      "status": "2H",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
     {
       "fixture_id": "1570389",
       "status": "NS",
@@ -76,15 +26,10 @@
     },
     {
       "fixture_id": "1575513",
-      "status": "NS",
-      "detail": "Not auto-settled; FT regulation score required"
-    },
-    {
-      "fixture_id": "1575515",
       "status": "2H",
       "detail": "Not auto-settled; FT regulation score required"
     }
   ],
   "signals_created": 0,
-  "api_calls": 47
+  "api_calls": 14
 }
