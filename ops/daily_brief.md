@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-10-10T08:04:52Z
+Generated UTC: 2026-10-10T15:04:15Z
 Active canonical signals: 10
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -26,14 +26,14 @@ Active canonical signals: 10
 - Market-best observed: 1.87 @ 1xBet | Bet365 now: 1.8
 - Current user-executable: 1.82 @ Marathonbet
 - Paper user-execution (frozen): 1.79 @ Marathonbet [2026-09-18T06:48:35Z]
-- Referee / venue: TBD | TBD, Reggio Emilia
-- Previous: home Serie A vs Juventus (669.2h rest); away UEFA Europa League vs Benfica (597.0h rest)
+- Referee / venue: Francesco Fourneau | Mapei Stadium – Città del Tricolore, Reggio Emilia
+- Previous: home Serie A vs Monza (549.2h rest); away Serie A vs Lecce (501.2h rest)
 - Next: home Serie A vs Frosinone (122.8h after); away UEFA Europa League vs Red Bull Salzburg (96.8h after)
-- Injuries: NOT_QUERIED_YET
-- Weather [BASELINE]: 22.2°C, precip %, wind 7.2 km/h, gusts 13.7 km/h
+- Injuries: QUERIED
+- Weather [T24]: 23.1°C, precip 1%, wind 4.5 km/h, gusts 15.5 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: AFTER FIFA window; to start h; player-level UNVERIFIED
-- Flags: AWAY_PREV_UEFA_OR_CUP, AWAY_NEXT_UEFA_OR_CUP, WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
+- Flags: AWAY_NEXT_UEFA_OR_CUP, WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
 
 ## R2 | Sassuolo — AC Milan
 - Kickoff UTC: 2026-10-11T16:00:00Z | Ставка: П2 | Stake: 1.000u
@@ -41,11 +41,11 @@ Active canonical signals: 10
 - Market-best observed: 1.87 @ 1xBet | Bet365 now: 1.8
 - Current user-executable: 1.82 @ Marathonbet
 - Paper user-execution (frozen): 1.79 @ Marathonbet [2026-09-22T06:49:37Z]
-- Referee / venue: TBD | TBD, Reggio Emilia
+- Referee / venue: Francesco Fourneau | Mapei Stadium – Città del Tricolore, Reggio Emilia
 - Previous: home Serie A vs Monza (549.2h rest); away Serie A vs Lecce (501.2h rest)
 - Next: home Serie A vs Frosinone (122.8h after); away UEFA Europa League vs Red Bull Salzburg (96.8h after)
-- Injuries: NOT_QUERIED_YET
-- Weather [BASELINE]: 22.2°C, precip %, wind 7.2 km/h, gusts 13.7 km/h
+- Injuries: QUERIED
+- Weather [T24]: 23.1°C, precip 1%, wind 4.5 km/h, gusts 15.5 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: AFTER FIFA window; to start h; player-level UNVERIFIED
 - Flags: AWAY_NEXT_UEFA_OR_CUP, WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
@@ -53,17 +53,17 @@ Active canonical signals: 10
 ## R1 | Cagliari — Juventus
 - Kickoff UTC: 2026-10-11T18:45:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 5.75 / Х 3.7 / П2 1.6 (immutable)
-- Market-best observed: 1.62 @ 1xBet | Bet365 now: 1.55
-- Current user-executable: 1.57 @ Marathonbet
+- Market-best observed: 1.61 @ 1xBet | Bet365 now: 1.55
+- Current user-executable: 1.58 @ Marathonbet
 - Paper user-execution (frozen): 1.53 @ Marathonbet [2026-09-18T06:48:35Z]
-- Referee / venue: TBD | Unipol Domus, Cagliari
-- Previous: home Serie A vs Atalanta (696.0h rest); away UEFA Europa League vs NEC Nijmegen (575.8h rest)
+- Referee / venue: Matteo Marcenaro | Unipol Domus, Cagliari
+- Previous: home Serie A vs Udinese (533.8h rest); away Friendlies Clubs vs Cremonese (224.2h rest)
 - Next: home Serie A vs Monza (189.8h after); away UEFA Europa League vs Celta Vigo (96.2h after)
-- Injuries: NOT_QUERIED_YET
-- Weather [BASELINE]: 19.9°C, precip 16%, wind 5.2 km/h, gusts 6.8 km/h
+- Injuries: QUERIED
+- Weather [T24]: 20.2°C, precip 0%, wind 10.2 km/h, gusts 23.4 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: AFTER FIFA window; to start h; player-level UNVERIFIED
-- Flags: AWAY_PREV_UEFA_OR_CUP, AWAY_NEXT_UEFA_OR_CUP, WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
+- Flags: AWAY_NEXT_UEFA_OR_CUP, WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
 
 ## R1 | Venezia — Napoli
 - Kickoff UTC: 2026-10-17T13:00:00Z | Ставка: П2 | Stake: 1.000u
@@ -163,17 +163,17 @@ Active canonical signals: 10
 
 - Scope: АПЛ: движение фаворита П1/П2 (+3 pp no-vig from frozen Bet365 opener).
 - Frozen openers tracked: 40
-- Active +3 pp crossings: 1
-- Observed closes: 20 | Close-qualified M1 watches: 3
+- Active +3 pp crossings: 0
+- Observed closes: 25 | Close-qualified M1 watches: 4
 - Executable bookmaker being observed: Marathonbet
 
-## Current crossings
-- WATCH | Sunderland — Brighton | фаворит на opener A | move +3.85 pp | Bet365 2.3 | Marathonbet 2.42 | 3083.4 min to kickoff
+- No active +3 pp crossing is currently recorded.
 
 ## Recent close-qualified watches
 - Tottenham — Aston Villa | move +7.02 pp | B365 close 1.91 | Marathonbet close 1.98
 - Nottingham Forest — Coventry | move +4.77 pp | B365 close 1.62 | Marathonbet close 1.64
 - Leeds — Crystal Palace | move +11.92 pp | B365 close 1.7 | Marathonbet close 1.7
+- Sunderland — Brighton | move +3.76 pp | B365 close 2.3 | Marathonbet close 2.32
 
 ---
 
@@ -183,20 +183,18 @@ Active canonical signals: 10
 
 - Scope: Бундеслига: ТБ(2.5) — движение рынка (+3 pp no-vig from frozen Bet365 O/U 2.5 opener).
 - Frozen O/U openers tracked: 36
-- Active +3 pp crossings ТБ(2.5): 2
-- Observed closes: 19 | Close-qualified O1 watches: 7
+- Active +3 pp crossings ТБ(2.5): 0
+- Observed closes: 24 | Close-qualified O1 watches: 10
 - Executable bookmaker being observed: Marathonbet
 
-## Current O/U crossings
-- WATCH | Union Berlin — SV Elversberg | Over move +5.19 pp | Bet365 O2.5 1.53 | Marathonbet O2.5 1.58 | 4190.6 min to kickoff
-- WATCH | SC Paderborn 07 — VfB Stuttgart | Over move +3.70 pp | Bet365 O2.5 1.33 | Marathonbet O2.5 1.28 | 771.9 min to kickoff
+- No active +3 pp Over crossing is currently recorded.
 
 ## Recent close-qualified O/U watches
-- Bayern München — Union Berlin | move +7.07 pp | B365 close O2.5 1.08 | Marathonbet close O2.5 1.05
-- Eintracht Frankfurt — SC Freiburg | move +3.60 pp | B365 close O2.5 1.44 | Marathonbet close O2.5 1.48
-- Werder Bremen — FC Augsburg | move +6.15 pp | B365 close O2.5 1.4 | Marathonbet close O2.5 1.4
 - Borussia Mönchengladbach — FSV Mainz 05 | move +5.38 pp | B365 close O2.5 1.44 | Marathonbet close O2.5 1.44
 - FC Schalke 04 — SV Elversberg | move +3.36 pp | B365 close O2.5 1.53 | Marathonbet close O2.5 1.48
+- FC Augsburg — Bayern München | move +3.23 pp | B365 close O2.5 1.12 | Marathonbet close O2.5 1.09
+- Union Berlin — SV Elversberg | move +3.41 pp | B365 close O2.5 1.57 | Marathonbet close O2.5 1.57
+- SC Paderborn 07 — VfB Stuttgart | move +3.70 pp | B365 close O2.5 1.33 | Marathonbet close O2.5 1.26
 
 ---
 
@@ -206,12 +204,11 @@ Active canonical signals: 10
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 201
-- Активные движения ≥3 п.п.: всего 19 | ОЗ — Да 14 | ОЗ — Нет 5
-- Зафиксировано observed close: 108
+- Активные движения ≥3 п.п.: всего 20 | ОЗ — Да 15 | ОЗ — Нет 5
+- Зафиксировано observed close: 110
 - Исполнимый букмекер для наблюдения: Marathonbet
 
 ## Текущие ОЗ-watch
-- WATCH | Bundesliga | RB Leipzig — Eintracht Frankfurt | ОЗ — Да | движение P(ОЗ — Да) +4.28 п.п. | Marathonbet 1.36 | 3842.8 мин до матча
 - WATCH | Bundesliga | Union Berlin — SV Elversberg | ОЗ — Да | движение P(ОЗ — Да) +5.63 п.п. | Marathonbet 1.48 | 3662.8 мин до матча
 - WATCH | Serie A | Como — AS Roma | ОЗ — Да | движение P(ОЗ — Да) +5.17 п.п. | Marathonbet 1.49 | 3967.9 мин до матча
 - WATCH | Serie A | Lecce — Bologna | ОЗ — Нет | движение P(ОЗ — Да) -4.00 п.п. | Marathonbet 1.83 | 4117.9 мин до матча
@@ -226,6 +223,7 @@ Active canonical signals: 10
 - WATCH | Bundesliga | SC Freiburg — FC Schalke 04 | ОЗ — Нет | движение P(ОЗ — Да) -3.20 п.п. | Marathonbet 2.14 | 2341.7 мин до матча
 - WATCH | Bundesliga | FC Augsburg — Bayern München | ОЗ — Нет | движение P(ОЗ — Да) -3.77 п.п. | Marathonbet 2.55 | 781.7 мин до матча
 - WATCH | Bundesliga | SC Paderborn 07 — VfB Stuttgart | ОЗ — Да | движение P(ОЗ — Да) +3.77 п.п. | Marathonbet 1.39 | 781.7 мин до матча
+- WATCH | Premier League | Aston Villa — Brentford | ОЗ — Да | движение P(ОЗ — Да) +3.28 п.п. | Marathonbet 1.52 | 223.1 мин до матча
 
 ---
 
@@ -233,14 +231,14 @@ Active canonical signals: 10
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 70 | settled 48 | pending 22
+- Crossings: 72 | settled 48 | pending 24
 - Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: -9.140u | ROI -19.042% | W-L 25-23
-- Close: observed 48 | stayed qualified 37 | reverted 11 | persistence 77.083%
+- Close: observed 52 | stayed qualified 41 | reverted 11 | persistence 78.846%
 - Close-qualified ROI: -17.216% | Reverted ROI: -25.182%
 
 ## By WATCH family
-- Big-5 ОЗ market movement — ОЗ — Да: crossings 43, settled 29, ROI -18.034%, close persistence 79.31%
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 44, settled 29, ROI -18.034%, close persistence 79.31%
 - Big-5 ОЗ market movement — ОЗ — Нет: crossings 12, settled 7, ROI 5.286%, close persistence 57.143%
-- АПЛ favorite steam: crossings 6, settled 5, ROI -100.0%, close persistence 60.0%
-- Бундеслига ТБ(2.5) steam: crossings 9, settled 7, ROI 10.286%, close persistence 100.0%
+- АПЛ favorite steam: crossings 6, settled 5, ROI -100.0%, close persistence 66.667%
+- Бундеслига ТБ(2.5) steam: crossings 10, settled 7, ROI 10.286%, close persistence 100.0%
