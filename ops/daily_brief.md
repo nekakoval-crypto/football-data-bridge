@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-10-10T04:05:47Z
+Generated UTC: 2026-10-10T08:04:52Z
 Active canonical signals: 10
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -11,11 +11,11 @@ Active canonical signals: 10
 - Market-best observed: 1.98 @ 1xBet | Bet365 now: 1.91
 - Current user-executable: 1.92 @ Marathonbet
 - Paper user-execution (frozen): 2.0 @ Marathonbet [2026-09-18T06:48:35Z]
-- Referee / venue: TBD | Stadio Via del Mare, Lecce
-- Previous: home Serie A vs Monza (672.0h rest); away Serie A vs Napoli (669.0h rest)
+- Referee / venue: Luca J. Pairetto | Stadio Via del Mare, Lecce
+- Previous: home Serie A vs AC Milan (498.2h rest); away Serie A vs Torino (528.0h rest)
 - Next: home Serie A vs Udinese (165.5h after); away Serie A vs Inter (147.0h after)
-- Injuries: NOT_QUERIED_YET
-- Weather [BASELINE]: 23.9°C, precip 12%, wind 12.0 km/h, gusts 5.0 km/h
+- Injuries: QUERIED
+- Weather [T24]: 22.8°C, precip 67%, wind 7.2 km/h, gusts 30.2 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: AFTER FIFA window; to start h; player-level UNVERIFIED
 - Flags: WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
