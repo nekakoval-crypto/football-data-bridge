@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-10T15:04:15Z",
+  "generated_at_utc": "2026-10-10T17:04:43Z",
   "status": "OK",
   "active_signals": 10,
   "policy": {
@@ -30,7 +30,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-10T14:46:56Z",
+        "captured_at_utc": "2026-10-10T16:48:33Z",
         "best_odds": "1.98",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.91",
@@ -155,7 +155,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-10T14:46:56Z",
+        "captured_at_utc": "2026-10-10T16:48:33Z",
         "best_odds": "1.87",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.8",
@@ -281,7 +281,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-10T14:46:56Z",
+        "captured_at_utc": "2026-10-10T16:48:33Z",
         "best_odds": "1.87",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.8",
@@ -407,7 +407,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-10T14:46:56Z",
+        "captured_at_utc": "2026-10-10T16:48:33Z",
         "best_odds": "1.61",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.55",
@@ -533,7 +533,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-10T14:46:56Z",
+        "captured_at_utc": "2026-10-10T16:48:33Z",
         "best_odds": "1.76",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.7",
@@ -658,7 +658,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-10T14:46:56Z",
+        "captured_at_utc": "2026-10-10T16:48:33Z",
         "best_odds": "1.76",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.7",
@@ -783,7 +783,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-10T14:46:56Z",
+        "captured_at_utc": "2026-10-10T16:48:33Z",
         "best_odds": "1.69",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.65",
@@ -908,7 +908,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-10T14:46:56Z",
+        "captured_at_utc": "2026-10-10T16:48:33Z",
         "best_odds": "1.69",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.65",
@@ -1033,7 +1033,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-10T14:46:56Z",
+        "captured_at_utc": "2026-10-10T16:48:33Z",
         "best_odds": "2.13",
         "best_bookmaker": "1xBet",
         "bet365_odds": "2.05",
@@ -1158,7 +1158,7 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-10T14:46:56Z",
+        "captured_at_utc": "2026-10-10T16:48:33Z",
         "best_odds": "2.13",
         "best_bookmaker": "1xBet",
         "bet365_odds": "2.05",
@@ -1329,7 +1329,7 @@
     "observed_closes": 24,
     "close_qualified_total": 10,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-10-10T14:25:26Z",
+    "latest_run_utc": "2026-10-10T15:53:21Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -1582,48 +1582,48 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-10-10T14:59:04Z",
+    "generated_at_utc": "2026-10-10T17:00:45Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
       "crossings": 72,
-      "pending": 24,
-      "settled": 48,
+      "pending": 15,
+      "settled": 57,
       "void": 0,
       "review": 0,
       "user_price_rows": 72,
       "user_execution_coverage_pct": 100.0,
-      "user_settled_rows": 48,
-      "wins": 25,
-      "losses": 23,
-      "user_profit_u": -9.14,
-      "user_roi_pct": -19.042,
+      "user_settled_rows": 57,
+      "wins": 28,
+      "losses": 29,
+      "user_profit_u": -13.11,
+      "user_roi_pct": -23.0,
       "close_observed": 52,
       "close_qualified": 41,
       "reverted_at_close": 11,
       "close_persistence_pct": 78.846,
-      "close_qualified_settled": 37,
-      "close_qualified_profit_u": -6.37,
-      "close_qualified_roi_pct": -17.216,
+      "close_qualified_settled": 41,
+      "close_qualified_profit_u": -6.86,
+      "close_qualified_roi_pct": -16.732,
       "reverted_settled": 11,
       "reverted_profit_u": -2.77,
       "reverted_roi_pct": -25.182,
-      "observed_max_drawdown_u": 10.15
+      "observed_max_drawdown_u": 15.54
     },
     "by_family": {
       "Big-5 ОЗ market movement — ОЗ — Да": {
         "crossings": 44,
-        "pending": 15,
-        "settled": 29,
+        "pending": 12,
+        "settled": 32,
         "void": 0,
         "review": 0,
         "user_price_rows": 44,
         "user_execution_coverage_pct": 100.0,
-        "user_settled_rows": 29,
-        "wins": 15,
-        "losses": 14,
-        "user_profit_u": -5.23,
-        "user_roi_pct": -18.034,
+        "user_settled_rows": 32,
+        "wins": 16,
+        "losses": 16,
+        "user_profit_u": -6.71,
+        "user_roi_pct": -20.969,
         "close_observed": 29,
         "close_qualified": 23,
         "reverted_at_close": 6,
@@ -1638,17 +1638,17 @@
       },
       "Big-5 ОЗ market movement — ОЗ — Нет": {
         "crossings": 12,
-        "pending": 5,
-        "settled": 7,
+        "pending": 3,
+        "settled": 9,
         "void": 0,
         "review": 0,
         "user_price_rows": 12,
         "user_execution_coverage_pct": 100.0,
-        "user_settled_rows": 7,
+        "user_settled_rows": 9,
         "wins": 4,
-        "losses": 3,
-        "user_profit_u": 0.37,
-        "user_roi_pct": 5.286,
+        "losses": 5,
+        "user_profit_u": -1.63,
+        "user_roi_pct": -18.111,
         "close_observed": 7,
         "close_qualified": 4,
         "reverted_at_close": 3,
@@ -1659,28 +1659,28 @@
         "reverted_settled": 3,
         "reverted_profit_u": -1.22,
         "reverted_roi_pct": -40.667,
-        "observed_max_drawdown_u": 1.33
+        "observed_max_drawdown_u": 3.33
       },
       "АПЛ favorite steam": {
         "crossings": 6,
-        "pending": 1,
-        "settled": 5,
+        "pending": 0,
+        "settled": 6,
         "void": 0,
         "review": 0,
         "user_price_rows": 6,
         "user_execution_coverage_pct": 100.0,
-        "user_settled_rows": 5,
-        "wins": 0,
+        "user_settled_rows": 6,
+        "wins": 1,
         "losses": 5,
-        "user_profit_u": -5.0,
-        "user_roi_pct": -100.0,
+        "user_profit_u": -3.58,
+        "user_roi_pct": -59.667,
         "close_observed": 6,
         "close_qualified": 4,
         "reverted_at_close": 2,
         "close_persistence_pct": 66.667,
-        "close_qualified_settled": 3,
-        "close_qualified_profit_u": -3.0,
-        "close_qualified_roi_pct": -100.0,
+        "close_qualified_settled": 4,
+        "close_qualified_profit_u": -1.58,
+        "close_qualified_roi_pct": -39.5,
         "reverted_settled": 2,
         "reverted_profit_u": -2.0,
         "reverted_roi_pct": -100.0,
@@ -1688,28 +1688,28 @@
       },
       "Бундеслига ТБ(2.5) steam": {
         "crossings": 10,
-        "pending": 3,
-        "settled": 7,
+        "pending": 0,
+        "settled": 10,
         "void": 0,
         "review": 0,
         "user_price_rows": 10,
         "user_execution_coverage_pct": 100.0,
-        "user_settled_rows": 7,
-        "wins": 6,
-        "losses": 1,
-        "user_profit_u": 0.72,
-        "user_roi_pct": 10.286,
+        "user_settled_rows": 10,
+        "wins": 7,
+        "losses": 3,
+        "user_profit_u": -1.19,
+        "user_roi_pct": -11.9,
         "close_observed": 10,
         "close_qualified": 10,
         "reverted_at_close": 0,
         "close_persistence_pct": 100.0,
-        "close_qualified_settled": 7,
-        "close_qualified_profit_u": 0.72,
-        "close_qualified_roi_pct": 10.286,
+        "close_qualified_settled": 10,
+        "close_qualified_profit_u": -1.19,
+        "close_qualified_roi_pct": -11.9,
         "reverted_settled": 0,
         "reverted_profit_u": 0,
         "reverted_roi_pct": null,
-        "observed_max_drawdown_u": 1.0
+        "observed_max_drawdown_u": 2.91
       }
     },
     "policy": {
