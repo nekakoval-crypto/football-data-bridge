@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-10T14:56:39Z",
+  "generated_at_utc": "2026-10-10T16:58:19Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -12,7 +12,7 @@
     "fixture_history": {
       "file": "fixture_history_snapshots.csv",
       "present": true,
-      "rows": 28345
+      "rows": 28473
     },
     "historical_fixtures": {
       "file": "historical_fixtures.csv",
@@ -34,7 +34,7 @@
     "stage77_backlog": {
       "file": "stage77_player_stats_backlog.csv",
       "present": true,
-      "rows": 185
+      "rows": 199
     },
     "team_stats": {
       "file": "team_match_statistics.csv",
@@ -94,12 +94,12 @@
     "match_events": {
       "file": "match_event_snapshots.csv",
       "present": true,
-      "rows": 2375
+      "rows": 2529
     },
     "match_event_backlog": {
       "file": "stage80_match_event_backlog.csv",
       "present": true,
-      "rows": 142
+      "rows": 156
     },
     "player_xg_xa_research": {
       "file": "statsbomb_player_xg_xa.csv",
@@ -284,7 +284,7 @@
   },
   "fixtures": {
     "current_inventory": 128,
-    "finished_in_current_inventory": 14,
+    "finished_in_current_inventory": 28,
     "player_stats_fixture_count_all_snapshots": 35805,
     "player_grade_fixture_count_all_snapshots": 35805,
     "finished_current_inventory_with_player_stats": 0,
@@ -292,19 +292,19 @@
     "per_league": [
       {
         "league": "A Lyga",
-        "finished_fixtures_in_current_inventory": 2,
+        "finished_fixtures_in_current_inventory": 3,
         "finished_fixtures_with_player_stats": 0,
         "player_stats_coverage_pct": 0.0
       },
       {
         "league": "Bundesliga",
-        "finished_fixtures_in_current_inventory": 1,
+        "finished_fixtures_in_current_inventory": 6,
         "finished_fixtures_with_player_stats": 0,
         "player_stats_coverage_pct": 0.0
       },
       {
         "league": "Ekstraklasa",
-        "finished_fixtures_in_current_inventory": 2,
+        "finished_fixtures_in_current_inventory": 3,
         "finished_fixtures_with_player_stats": 0,
         "player_stats_coverage_pct": 0.0
       },
@@ -339,8 +339,20 @@
         "player_stats_coverage_pct": 0.0
       },
       {
+        "league": "Premier League",
+        "finished_fixtures_in_current_inventory": 1,
+        "finished_fixtures_with_player_stats": 0,
+        "player_stats_coverage_pct": 0.0
+      },
+      {
         "league": "Primeira Liga",
         "finished_fixtures_in_current_inventory": 2,
+        "finished_fixtures_with_player_stats": 0,
+        "player_stats_coverage_pct": 0.0
+      },
+      {
+        "league": "Serie A",
+        "finished_fixtures_in_current_inventory": 1,
         "finished_fixtures_with_player_stats": 0,
         "player_stats_coverage_pct": 0.0
       },
@@ -352,7 +364,13 @@
       },
       {
         "league": "Süper Lig",
-        "finished_fixtures_in_current_inventory": 1,
+        "finished_fixtures_in_current_inventory": 4,
+        "finished_fixtures_with_player_stats": 0,
+        "player_stats_coverage_pct": 0.0
+      },
+      {
+        "league": "Virsliga",
+        "finished_fixtures_in_current_inventory": 2,
         "finished_fixtures_with_player_stats": 0,
         "player_stats_coverage_pct": 0.0
       }
@@ -360,11 +378,11 @@
   },
   "fixture_history": {
     "present": true,
-    "rows": 28345,
-    "valid_observations": 28345,
+    "rows": 28473,
+    "valid_observations": 28473,
     "unique_fixtures": 306,
-    "observation_runs": 221,
-    "finished_fixtures_observed": 185,
+    "observation_runs": 222,
+    "finished_fixtures_observed": 199,
     "invalid_identity_rows": 0,
     "evidence_note": "Counts represent only Stage71 current-round observations persisted after the fixture-history archive was enabled; they are not a pre-PBK historical backfill claim."
   },
@@ -380,17 +398,17 @@
     "history_fixture_coverage_pct": 100.0,
     "missing_history_fixtures": 0,
     "orphan_catalog_fixtures": 0,
-    "missing_terminal_evidence": 0,
+    "missing_terminal_evidence": 14,
     "orphan_terminal_evidence": 0,
     "observation_count_total": 28345,
-    "expected_history_observations": 28345,
+    "expected_history_observations": 28473,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
   },
   "stage77_backlog": {
     "present": true,
-    "total_fixtures": 185,
-    "pending_fixtures": 185,
+    "total_fixtures": 199,
+    "pending_fixtures": 199,
     "captured_fixtures": 0,
     "captured_without_complete_ledgers": 0,
     "oldest_pending_first_queued_at_utc": "2026-09-15T16:55:09Z",
@@ -510,11 +528,11 @@
     "coverage_note": "Stage55 context is canonical-signal scoped; these counts are not full 16-league archive coverage."
   },
   "match_events": {
-    "event_rows": 2375,
-    "event_fixtures": 142,
-    "backlog_total_fixtures": 142,
-    "backlog_pending_fixtures": 0,
-    "backlog_captured_fixtures": 142,
+    "event_rows": 2529,
+    "event_fixtures": 150,
+    "backlog_total_fixtures": 156,
+    "backlog_pending_fixtures": 6,
+    "backlog_captured_fixtures": 150,
     "evidence_note": "Append-only normalized provider match events captured only after PBK observed a terminal fixture; empty provider responses remain retryable."
   },
   "referee_research": {
@@ -1002,10 +1020,13 @@
     "inventory_note": "Remote S3/R2 object counts are intentionally not fetched by this provider-free readiness stage."
   },
   "gaps": [
+    "HISTORICAL_FIXTURE_CATALOG_TERMINAL_EVIDENCE_MISMATCH",
+    "HISTORICAL_FIXTURE_CATALOG_OBSERVATION_COUNT_MISMATCH",
     "TEAM_STATS_BACKLOG_PENDING",
     "PLAYER_STATS_BACKLOG_PENDING",
     "PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
     "TEAM_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
+    "MATCH_EVENT_BACKLOG_PENDING",
     "REFEREE_HISTORY_TOP5_PROVIDER_REFEREE_FIELD_PARTIAL",
     "PBK16_COMPETITION_PROVIDER_SEASONS_PARTIAL",
     "PBK16_HISTORICAL_TABLE_CONTEXT_INVALID",
