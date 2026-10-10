@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-10T14:22:22Z",
+  "generated_at_utc": "2026-10-10T14:35:37Z",
   "status": "OK",
   "scope": "prospective research WATCH crossings only",
   "overall": {
@@ -15,10 +15,10 @@
     "losses": 23,
     "user_profit_u": -9.14,
     "user_roi_pct": -19.042,
-    "close_observed": 48,
-    "close_qualified": 37,
+    "close_observed": 52,
+    "close_qualified": 41,
     "reverted_at_close": 11,
-    "close_persistence_pct": 77.083,
+    "close_persistence_pct": 78.846,
     "close_qualified_settled": 37,
     "close_qualified_profit_u": -6.37,
     "close_qualified_roi_pct": -17.216,
@@ -91,10 +91,10 @@
       "losses": 5,
       "user_profit_u": -5.0,
       "user_roi_pct": -100.0,
-      "close_observed": 5,
-      "close_qualified": 3,
+      "close_observed": 6,
+      "close_qualified": 4,
       "reverted_at_close": 2,
-      "close_persistence_pct": 60.0,
+      "close_persistence_pct": 66.667,
       "close_qualified_settled": 3,
       "close_qualified_profit_u": -3.0,
       "close_qualified_roi_pct": -100.0,
@@ -116,8 +116,8 @@
       "losses": 1,
       "user_profit_u": 0.72,
       "user_roi_pct": 10.286,
-      "close_observed": 7,
-      "close_qualified": 7,
+      "close_observed": 10,
+      "close_qualified": 10,
       "reverted_at_close": 0,
       "close_persistence_pct": 100.0,
       "close_qualified_settled": 7,
@@ -137,7 +137,5 @@
     "historical_backfill": "forbidden",
     "canonical_forward": "unchanged"
   },
-  "warnings": [
-    "fixture 1550142: API-Football /fixtures: {'bug': 'This is on our side, please report us this bug on https://dashboard.api-football.com', 'error': '5xEr'}"
-  ]
+  "warnings": []
 }
