@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-10T12:57:40Z",
+  "generated_at_utc": "2026-10-10T14:56:13Z",
   "status": "OK",
   "datasets": [
     {
@@ -1944,7 +1944,7 @@
       "source": "Stage55 timestamped context via shared broker",
       "limitations": "Canonical-forward scope only; not complete 16-league context coverage.",
       "present": true,
-      "row_count": 23,
+      "row_count": 24,
       "columns": [
         "forward_id",
         "rule",
