@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-10T00:07:42Z",
+  "generated_at_utc": "2026-10-10T01:10:45Z",
   "status": "OK",
   "policy_locked_at": "2026-09-11",
   "families": {
@@ -31,8 +31,8 @@
     "Stage62": {
       "status": "COLLECTING",
       "metrics": {
-        "crossings": 8,
-        "user_price_rows": 8,
+        "crossings": 9,
+        "user_price_rows": 9,
         "execution_coverage_pct": 100.0,
         "settled_executable": 7,
         "roi_pct": 10.286,
@@ -53,8 +53,8 @@
     "Stage63": {
       "status": "DISCOVERY_ONLY_NO_DIRECT_PROMOTION",
       "metrics": {
-        "crossings": 48,
-        "user_price_rows": 48,
+        "crossings": 55,
+        "user_price_rows": 55,
         "execution_coverage_pct": 100.0,
         "settled_executable": 36,
         "roi_pct": -13.5,
