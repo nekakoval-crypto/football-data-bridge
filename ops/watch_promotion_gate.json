@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-10T15:04:55Z",
+  "generated_at_utc": "2026-10-10T16:04:44Z",
   "status": "OK",
   "policy_locked_at": "2026-09-11",
   "families": {
@@ -9,23 +9,23 @@
         "crossings": 6,
         "user_price_rows": 6,
         "execution_coverage_pct": 100.0,
-        "settled_executable": 5,
-        "roi_pct": -100.0,
-        "first_half_n": 2,
+        "settled_executable": 6,
+        "roi_pct": -59.667,
+        "first_half_n": 3,
         "first_half_roi_pct": -100.0,
         "second_half_n": 3,
-        "second_half_roi_pct": -100.0,
-        "close_observed_settled": 5,
+        "second_half_roi_pct": -19.333,
+        "close_observed_settled": 6,
         "close_observed_coverage_pct": 100.0,
-        "close_qualified_settled": 3,
-        "close_qualified_roi_pct": -100.0
+        "close_qualified_settled": 4,
+        "close_qualified_roi_pct": -39.5
       },
       "blocking_reasons": [
-        "settled 5/60",
-        "ROI -100.0 not >0",
+        "settled 6/60",
+        "ROI -59.667 not >0",
         "first-half ROI -100.0 not >0",
-        "second-half ROI -100.0 not >0",
-        "close-qualified subset 3/20"
+        "second-half ROI -19.333 not >0",
+        "close-qualified subset 4/20"
       ]
     },
     "Stage62": {
@@ -34,20 +34,22 @@
         "crossings": 10,
         "user_price_rows": 10,
         "execution_coverage_pct": 100.0,
-        "settled_executable": 7,
-        "roi_pct": 10.286,
-        "first_half_n": 3,
-        "first_half_roi_pct": 14.0,
-        "second_half_n": 4,
-        "second_half_roi_pct": 7.5,
-        "close_observed_settled": 7,
+        "settled_executable": 10,
+        "roi_pct": -11.9,
+        "first_half_n": 5,
+        "first_half_roi_pct": 25.0,
+        "second_half_n": 5,
+        "second_half_roi_pct": -48.8,
+        "close_observed_settled": 10,
         "close_observed_coverage_pct": 100.0,
-        "close_qualified_settled": 7,
-        "close_qualified_roi_pct": 10.286
+        "close_qualified_settled": 10,
+        "close_qualified_roi_pct": -11.9
       },
       "blocking_reasons": [
-        "settled 7/60",
-        "close-qualified subset 7/20"
+        "settled 10/60",
+        "ROI -11.9 not >0",
+        "second-half ROI -48.8 not >0",
+        "close-qualified subset 10/20"
       ]
     },
     "Stage63": {
@@ -56,14 +58,14 @@
         "crossings": 56,
         "user_price_rows": 56,
         "execution_coverage_pct": 100.0,
-        "settled_executable": 36,
-        "roi_pct": -13.5,
-        "first_half_n": 18,
-        "first_half_roi_pct": -27.889,
-        "second_half_n": 18,
-        "second_half_roi_pct": 0.889,
+        "settled_executable": 40,
+        "roi_pct": -22.15,
+        "first_half_n": 20,
+        "first_half_roi_pct": -28.15,
+        "second_half_n": 20,
+        "second_half_roi_pct": -16.15,
         "close_observed_settled": 36,
-        "close_observed_coverage_pct": 100.0,
+        "close_observed_coverage_pct": 90.0,
         "close_qualified_settled": 27,
         "close_qualified_roi_pct": -15.148
       },
