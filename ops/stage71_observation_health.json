@@ -1,16 +1,16 @@
 {
-  "run_at_utc": "2026-10-10T15:44:47.776174Z",
+  "run_at_utc": "2026-10-10T23:38:20.899620Z",
   "status": "ATTENTION",
   "counts": {
-    "expected": 54,
-    "scanned": 54,
-    "captured": 109,
+    "expected": 44,
+    "scanned": 44,
+    "captured": 113,
     "missed_or_at_risk": 2,
-    "pending": 24,
+    "pending": 9,
     "stale": 0,
     "rescheduled": 253,
     "cancelled": 19,
-    "settled": 85,
+    "settled": 104,
     "duplicates": 0
   },
   "risks": [
@@ -27,8 +27,8 @@
   "scan": [
     {
       "league": "Premier League",
-      "expected": 4,
-      "scanned": 4,
+      "expected": 3,
+      "scanned": 3,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -41,36 +41,36 @@
     },
     {
       "league": "Bundesliga",
+      "expected": 2,
+      "scanned": 2,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
+      "league": "Ligue 1",
       "expected": 3,
       "scanned": 3,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
-      "league": "Ligue 1",
-      "expected": 6,
-      "scanned": 6,
-      "legacy_next5_omitted": 1,
+      "league": "Austrian Bundesliga",
+      "expected": 3,
+      "scanned": 3,
+      "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
-      "league": "Austrian Bundesliga",
+      "league": "Belgian Pro League",
       "expected": 4,
       "scanned": 4,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
-      "league": "Belgian Pro League",
-      "expected": 5,
-      "scanned": 5,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
-    },
-    {
       "league": "Danish Superliga",
-      "expected": 3,
-      "scanned": 3,
+      "expected": 4,
+      "scanned": 4,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -90,9 +90,9 @@
     },
     {
       "league": "Eredivisie",
-      "expected": 7,
-      "scanned": 7,
-      "legacy_next5_omitted": 2,
+      "expected": 4,
+      "scanned": 4,
+      "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
@@ -111,8 +111,8 @@
     },
     {
       "league": "Primeira Liga",
-      "expected": 4,
-      "scanned": 4,
+      "expected": 3,
+      "scanned": 3,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -144,6 +144,6 @@
   "legacy_max_schedule_gap_hours": 18,
   "schedule_gap_hours": 8,
   "r2_freeze_hours": 12,
-  "api_calls": 52,
-  "api_day_calls": 577
+  "api_calls": 44,
+  "api_day_calls": 678
 }
