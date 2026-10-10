@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-10-10T06:49:33Z",
+  "run_at_utc": "2026-10-10T12:49:46Z",
   "status": "OK",
   "mode": "STAGE71J_ZERO_EXTRA_CALL_PROSPECTIVE_CAPTURE",
   "source": "API-Football /odds Bet365 Match Winner",
@@ -11,13 +11,13 @@
   "extraction": {
     "fixture_metadata": 160,
     "unfiltered_odds_payloads": 160,
-    "missing_complete_bet365_match_winner": 32,
-    "complete_candidate_rows": 128
+    "missing_complete_bet365_match_winner": 35,
+    "complete_candidate_rows": 125
   },
-  "candidate_rows": 128,
-  "observations_added": 0,
-  "observations_rejected": 128,
-  "prematch_frozen": 272,
+  "candidate_rows": 125,
+  "observations_added": 3,
+  "observations_rejected": 122,
+  "prematch_frozen": 275,
   "settled_rows": 2,
   "rejections": [
     {
@@ -49,10 +49,6 @@
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1515929",
-      "reason": "already_frozen"
-    },
-    {
       "fixture_id": "1515930",
       "reason": "already_frozen"
     },
@@ -66,10 +62,6 @@
     },
     {
       "fixture_id": "1515933",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1547587",
       "reason": "already_frozen"
     },
     {
@@ -213,10 +205,6 @@
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1553182",
-      "reason": "already_frozen"
-    },
-    {
       "fixture_id": "1553183",
       "reason": "already_frozen"
     },
@@ -278,10 +266,6 @@
     },
     {
       "fixture_id": "1556681",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1557417",
       "reason": "already_frozen"
     },
     {
@@ -417,10 +401,6 @@
       "reason": "already_frozen"
     },
     {
-      "fixture_id": "1570410",
-      "reason": "already_frozen"
-    },
-    {
       "fixture_id": "1570411",
       "reason": "already_frozen"
     },
@@ -514,10 +494,6 @@
     },
     {
       "fixture_id": "1584425",
-      "reason": "already_frozen"
-    },
-    {
-      "fixture_id": "1584426",
       "reason": "already_frozen"
     },
     {
