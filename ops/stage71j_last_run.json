@@ -1,11 +1,11 @@
 {
-  "run_at_utc": "2026-10-11T13:17:14Z",
+  "run_at_utc": "2026-10-11T22:17:41Z",
   "status": "OK",
   "mode": "SHARED_PREFETCHED_PROSPECTIVE_CAPTURE",
   "prefetched_fixture_ids": 160,
   "real_api_calls": 177,
   "api_hard_cap": 190,
-  "cache_hits": 494,
+  "cache_hits": 455,
   "unique_cached_requests": 177,
   "real_calls_by_path": {
     "/odds/bets": 1,
@@ -18,7 +18,7 @@
   "market_presence_count": 182,
   "market_presence_api_calls_added": 0,
   "generic_1x2_forward_capture": {
-    "run_at_utc": "2026-10-11T13:17:54Z",
+    "run_at_utc": "2026-10-11T22:18:16Z",
     "status": "OK",
     "mode": "STAGE71J_ZERO_EXTRA_CALL_PROSPECTIVE_CAPTURE",
     "source": "API-Football /odds Bet365 Match Winner",
@@ -30,29 +30,17 @@
     "extraction": {
       "fixture_metadata": 160,
       "unfiltered_odds_payloads": 160,
-      "missing_complete_bet365_match_winner": 62,
-      "complete_candidate_rows": 98
+      "missing_complete_bet365_match_winner": 73,
+      "complete_candidate_rows": 87
     },
-    "candidate_rows": 98,
-    "observations_added": 12,
-    "observations_rejected": 86,
-    "prematch_frozen": 319,
+    "candidate_rows": 87,
+    "observations_added": 15,
+    "observations_rejected": 72,
+    "prematch_frozen": 334,
     "settled_rows": 2,
     "rejections": [
       {
-        "fixture_id": "1494772",
-        "reason": "already_frozen"
-      },
-      {
         "fixture_id": "1494776",
-        "reason": "already_frozen"
-      },
-      {
-        "fixture_id": "1494777",
-        "reason": "already_frozen"
-      },
-      {
-        "fixture_id": "1494779",
         "reason": "already_frozen"
       },
       {
@@ -64,23 +52,7 @@
         "reason": "already_frozen"
       },
       {
-        "fixture_id": "1549029",
-        "reason": "already_frozen"
-      },
-      {
-        "fixture_id": "1549030",
-        "reason": "already_frozen"
-      },
-      {
         "fixture_id": "1550137",
-        "reason": "already_frozen"
-      },
-      {
-        "fixture_id": "1550138",
-        "reason": "already_frozen"
-      },
-      {
-        "fixture_id": "1550145",
         "reason": "already_frozen"
       },
       {
@@ -88,7 +60,15 @@
         "reason": "already_frozen"
       },
       {
+        "fixture_id": "1550148",
+        "reason": "already_frozen"
+      },
+      {
         "fixture_id": "1550149",
+        "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1550150",
         "reason": "already_frozen"
       },
       {
@@ -96,11 +76,11 @@
         "reason": "already_frozen"
       },
       {
-        "fixture_id": "1550156",
+        "fixture_id": "1550155",
         "reason": "already_frozen"
       },
       {
-        "fixture_id": "1552188",
+        "fixture_id": "1550156",
         "reason": "already_frozen"
       },
       {
@@ -109,6 +89,10 @@
       },
       {
         "fixture_id": "1552190",
+        "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1552191",
         "reason": "already_frozen"
       },
       {
@@ -128,11 +112,11 @@
         "reason": "already_frozen"
       },
       {
-        "fixture_id": "1552781",
+        "fixture_id": "1552196",
         "reason": "already_frozen"
       },
       {
-        "fixture_id": "1552782",
+        "fixture_id": "1552197",
         "reason": "already_frozen"
       },
       {
@@ -156,6 +140,10 @@
         "reason": "already_frozen"
       },
       {
+        "fixture_id": "1552789",
+        "reason": "already_frozen"
+      },
+      {
         "fixture_id": "1552790",
         "reason": "already_frozen"
       },
@@ -165,14 +153,6 @@
       },
       {
         "fixture_id": "1553119",
-        "reason": "already_frozen"
-      },
-      {
-        "fixture_id": "1553184",
-        "reason": "already_frozen"
-      },
-      {
-        "fixture_id": "1553186",
         "reason": "already_frozen"
       },
       {
@@ -204,6 +184,14 @@
         "reason": "already_frozen"
       },
       {
+        "fixture_id": "1556682",
+        "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1556683",
+        "reason": "already_frozen"
+      },
+      {
         "fixture_id": "1556686",
         "reason": "already_frozen"
       },
@@ -216,15 +204,15 @@
         "reason": "already_frozen"
       },
       {
-        "fixture_id": "1557424",
-        "reason": "already_frozen"
-      },
-      {
         "fixture_id": "1557427",
         "reason": "already_frozen"
       },
       {
         "fixture_id": "1557428",
+        "reason": "already_frozen"
+      },
+      {
+        "fixture_id": "1557429",
         "reason": "already_frozen"
       },
       {
@@ -236,27 +224,15 @@
         "reason": "already_frozen"
       },
       {
+        "fixture_id": "1557432",
+        "reason": "already_frozen"
+      },
+      {
         "fixture_id": "1557433",
         "reason": "already_frozen"
       },
       {
         "fixture_id": "1557434",
-        "reason": "already_frozen"
-      },
-      {
-        "fixture_id": "1558647",
-        "reason": "already_frozen"
-      },
-      {
-        "fixture_id": "1558649",
-        "reason": "already_frozen"
-      },
-      {
-        "fixture_id": "1558652",
-        "reason": "already_frozen"
-      },
-      {
-        "fixture_id": "1561940",
         "reason": "already_frozen"
       },
       {
@@ -284,19 +260,7 @@
         "reason": "already_frozen"
       },
       {
-        "fixture_id": "1570405",
-        "reason": "already_frozen"
-      },
-      {
         "fixture_id": "1570407",
-        "reason": "already_frozen"
-      },
-      {
-        "fixture_id": "1570409",
-        "reason": "already_frozen"
-      },
-      {
-        "fixture_id": "1570412",
         "reason": "already_frozen"
       },
       {
@@ -312,19 +276,15 @@
         "reason": "already_frozen"
       },
       {
+        "fixture_id": "1570419",
+        "reason": "already_frozen"
+      },
+      {
         "fixture_id": "1570421",
         "reason": "already_frozen"
       },
       {
         "fixture_id": "1570422",
-        "reason": "already_frozen"
-      },
-      {
-        "fixture_id": "1575179",
-        "reason": "already_frozen"
-      },
-      {
-        "fixture_id": "1575183",
         "reason": "already_frozen"
       },
       {
@@ -360,23 +320,7 @@
         "reason": "already_frozen"
       },
       {
-        "fixture_id": "1575510",
-        "reason": "already_frozen"
-      },
-      {
-        "fixture_id": "1575511",
-        "reason": "already_frozen"
-      },
-      {
         "fixture_id": "1575514",
-        "reason": "already_frozen"
-      },
-      {
-        "fixture_id": "1575517",
-        "reason": "already_frozen"
-      },
-      {
-        "fixture_id": "1584422",
         "reason": "already_frozen"
       },
       {
@@ -400,40 +344,40 @@
       "market_family": "TEAM_TOTAL",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 106,
-      "new_openers": 123,
-      "new_snapshots": 341,
-      "new_closes": 206,
+      "logical_odds_calls": 96,
+      "new_openers": 83,
+      "new_snapshots": 101,
+      "new_closes": 244,
       "warnings": 0
     },
     {
       "market_family": "DOUBLE_CHANCE",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 105,
-      "new_openers": 12,
-      "new_snapshots": 37,
-      "new_closes": 23,
+      "logical_odds_calls": 96,
+      "new_openers": 9,
+      "new_snapshots": 11,
+      "new_closes": 26,
       "warnings": 0
     },
     {
       "market_family": "EUROPEAN_HANDICAP",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 106,
-      "new_openers": 66,
-      "new_snapshots": 187,
-      "new_closes": 117,
+      "logical_odds_calls": 96,
+      "new_openers": 50,
+      "new_snapshots": 56,
+      "new_closes": 132,
       "warnings": 0
     },
     {
       "market_family": "DRAW_NO_BET",
       "status": "OK",
       "fixtures_scanned": 160,
-      "logical_odds_calls": 110,
-      "new_openers": 13,
-      "new_snapshots": 34,
-      "new_closes": 21,
+      "logical_odds_calls": 100,
+      "new_openers": 9,
+      "new_snapshots": 11,
+      "new_closes": 23,
       "warnings": 0
     }
   ],
