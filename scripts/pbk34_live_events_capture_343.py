@@ -4,6 +4,7 @@
 import json
 import os
 import sys
+import traceback
 from collections import Counter
 from pathlib import Path
 
@@ -44,7 +45,7 @@ if not os.getenv("API_FOOTBALL_KEY", "").strip():
     raise RuntimeError("API_FOOTBALL_KEY_MISSING")
 
 broker = ApiFootballBroker(
-    max_real_calls=9,
+    max_real_calls=1,
     attempts=1,
     default_ttl_seconds=0,
 )
@@ -52,6 +53,7 @@ broker = ApiFootballBroker(
 rows = []
 fatal = False
 stopped_by_budget = False
+stopped_after_error = False
 
 def valid(payload):
     return (
@@ -70,6 +72,11 @@ for league, fid in FIXTURES.items():
         "card_details": {},
         "r2_verified": False,
     }
+
+    if stopped_after_error:
+        row["status"] = "DEFERRED_AFTER_ERROR"
+        rows.append(row)
+        continue
 
     if stopped_by_budget:
         row["status"] = "DEFERRED_BY_BUDGET"
@@ -156,6 +163,20 @@ for league, fid in FIXTURES.items():
     except Exception as exc:
         row["status"] = "CAPTURE_ERROR"
         row["error_type"] = type(exc).__name__
+        row["error_message"] = str(exc)[:350]
+        tb = traceback.extract_tb(exc.__traceback__)
+        if tb:
+            frame = tb[-1]
+            row["error_location"] = (
+                f"{Path(frame.filename).name}:{frame.lineno}:{frame.name}"
+            )
+        print(
+            "DIAGNOSTIC_ERROR =", row["error_type"],
+            "| LOCATION =", row.get("error_location"),
+            "| MESSAGE =", row["error_message"],
+            flush=True,
+        )
+        stopped_after_error = True
         fatal = True
 
     rows.append(row)
@@ -171,7 +192,7 @@ for league, fid in FIXTURES.items():
 stats = broker.stats()
 real_calls = int(stats.get("real_api_calls") or 0)
 
-if real_calls > 9:
+if real_calls > 1:
     raise RuntimeError("REAL_API_CALL_CAP_EXCEEDED")
 
 counts = Counter(r["status"] for r in rows)
