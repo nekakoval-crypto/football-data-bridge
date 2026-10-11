@@ -1,19 +1,19 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-10-11T20:38:00Z
+Обновлено UTC: 2026-10-11T22:07:18Z
 Статус: **COLLECTING**
 
 ## Покрытие
-- Fixtures в текущем inventory: 129 (finished: 108).
-- Fixture history: 311 unique fixtures / 29246 observations / 228 observation runs (finished observed: 282).
-- Historical fixture catalog: 311 fixtures (terminal 277, rescheduled 2), history coverage 100.00%; missing 0, orphan 0.
-- Finished fixtures с player stats: 0 / 108 (0.00%).
+- Fixtures в текущем inventory: 129 (finished: 113).
+- Fixture history: 311 unique fixtures / 29375 observations / 229 observation runs (finished observed: 287).
+- Historical fixture catalog: 311 fixtures (terminal 287, rescheduled 2), history coverage 100.00%; missing 0, orphan 0.
+- Finished fixtures с player stats: 0 / 113 (0.00%).
 - Stage77 durable backlog: pending 282; captured 0; total 282.
 - Normalized lineup archive: 8 rows / 3 fixtures; injury archive: 99 rows / 6 fixtures.
 - Match event archive: 3165 rows / 188 fixtures; backlog pending 51 / total 239.
-- Stage81 durable backlog: pending 2884; captured 10696; total 13580.
-- Team match statistics: 10696 complete fixtures / 21392 team rows; current finished coverage 0.00%.
-- Team xG: 8121 complete fixtures / 16242 team rows; captured-team-stat coverage 75.93%.
+- Stage81 durable backlog: pending 2882; captured 10708; total 13590.
+- Team match statistics: 10708 complete fixtures / 21416 team rows; current finished coverage 0.00%.
+- Team xG: 8121 complete fixtures / 16242 team rows; captured-team-stat coverage 75.84%.
 - Player xG/xA source: RESEARCH_SOURCE_EXTERNAL_LOCAL_ATTESTED_MAPPED_TO_PBK.
 - Player stat rows: 1331575; уникальных игроков: 29673.
 - Player Grade rows: 1331575; уникальных игроков: 29673.
@@ -51,8 +51,6 @@
 - Observations: —; unique payloads: —.
 
 ## Незакрытые пробелы
-- HISTORICAL_FIXTURE_CATALOG_TERMINAL_EVIDENCE_MISMATCH
-- HISTORICAL_FIXTURE_CATALOG_OBSERVATION_COUNT_MISMATCH
 - TEAM_STATS_BACKLOG_PENDING
 - PLAYER_STATS_BACKLOG_PENDING
 - PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE
