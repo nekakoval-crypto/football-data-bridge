@@ -11,6 +11,7 @@ on:
         options:
           - archive_pilot
           - live_events_343
+          - process_r2_cards_380
       fixture_ids:
         description: "JSON array of up to 180 fixture IDs"
         required: true
@@ -48,14 +49,26 @@ jobs:
       - name: Install archive reader dependency
         run: python -m pip install boto3
       - name: Read existing R2 evidence only
-        if: ${{ inputs.capture_mode != 'live_events_343' }}
+        if: ${{ inputs.capture_mode == 'archive_pilot' }}
         run: python scripts/pbk34_r2_events_pilot_339.py
       - name: PBK34 bounded live event capture
         if: ${{ inputs.capture_mode == 'live_events_343' }}
         run: python scripts/pbk34_live_events_capture_343.py
 
+      - name: Process already stored PBK34 card events
+        if: ${{ inputs.capture_mode == 'process_r2_cards_380' }}
+        run: python scripts/pbk34_r2_card_processing_380.py
+
+      - name: Upload PBK34 processed card evidence
+        if: ${{ always() && inputs.capture_mode == 'process_r2_cards_380' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: pbk34-card-processing-380
+          path: ops/pbk34_card_processing_380/
+          if-no-files-found: error
+
       - name: Upload archive pilot report
-        if: ${{ always() && inputs.capture_mode != 'live_events_343' }}
+        if: ${{ always() && inputs.capture_mode == 'archive_pilot' }}
         uses: actions/upload-artifact@v4
         with:
           name: pbk34-r2-events-pilot-339
