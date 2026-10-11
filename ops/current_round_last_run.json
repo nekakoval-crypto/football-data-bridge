@@ -1,14 +1,14 @@
 {
-  "run_at_utc": "2026-10-10T23:35:36Z",
+  "run_at_utc": "2026-10-11T05:57:05Z",
   "status": "OK",
   "season": 2026,
   "leagues": 16,
   "available_leagues": 16,
-  "fixture_rows": 128,
+  "fixture_rows": 129,
   "warnings": [],
   "api_calls": 32,
-  "api_day_calls": 634,
-  "api_budget_limit": 60,
+  "api_day_calls": 51,
+  "api_budget_limit": 40,
   "api_daily_budget_limit": 7000,
   "provider_polling": true,
   "refresh_status": "OK",
@@ -17,6 +17,6 @@
   "preserved_leagues": 0,
   "failed_leagues": 0,
   "served_available_leagues": 16,
-  "served_fixture_rows": 128,
+  "served_fixture_rows": 129,
   "last_good_preserved": false
 }
