@@ -39,6 +39,7 @@ jobs:
       PBK_RAW_ARCHIVE_S3_PREFIX: ${{ secrets.PBK_RAW_ARCHIVE_S3_PREFIX }}
       PBK_RAW_ARCHIVE_S3_REGION: ${{ secrets.PBK_RAW_ARCHIVE_S3_REGION }}
       PBK34_PILOT_FIXTURE_IDS: ${{ inputs.fixture_ids }}
+      PBK34_MAX_REAL_CALLS: '4'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

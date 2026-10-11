@@ -20,7 +20,7 @@ from api_football_raw_archive import (
     s3_config_from_env,
 )
 
-FIXTURES = {
+PILOT_FIXTURES = {
     "88": "1213444",
     "94": "1231736",
     "103": "1164320",
@@ -32,11 +32,97 @@ FIXTURES = {
     "218": "1218574",
 }
 
+def resolve_fixture_scope():
+    raw = os.getenv("PBK34_PILOT_FIXTURE_IDS", "").strip()
+
+    if not raw:
+        return list(PILOT_FIXTURES.items()), "LEGACY_PILOT"
+
+    try:
+        supplied = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise RuntimeError("INVALID_FIXTURE_JSON") from exc
+
+    if not isinstance(supplied, list):
+        raise RuntimeError("FIXTURE_SCOPE_MUST_BE_ARRAY")
+
+    if not 1 <= len(supplied) <= 180:
+        raise RuntimeError("FIXTURE_SCOPE_OUT_OF_RANGE")
+
+    known = {
+        fid: league
+        for league, fid in PILOT_FIXTURES.items()
+    }
+
+    seen = set()
+    resolved = []
+
+    for item in supplied:
+        if isinstance(item, dict):
+            fid_value = item.get("fixture_id")
+            league_value = item.get("provider_league_id")
+        else:
+            fid_value = item
+            league_value = None
+
+        if isinstance(fid_value, bool):
+            raise RuntimeError("BOOLEAN_FIXTURE_ID")
+
+        fid = str(fid_value or "").strip()
+
+        if (
+            not fid.isascii()
+            or not fid.isdecimal()
+            or int(fid) <= 0
+            or fid in seen
+        ):
+            raise RuntimeError("INVALID_OR_DUPLICATE_FIXTURE_ID")
+
+        seen.add(fid)
+        league = known.get(fid)
+
+        if league_value is not None:
+            supplied_league = str(league_value).strip()
+
+            if (
+                isinstance(league_value, bool)
+                or not supplied_league.isascii()
+                or not supplied_league.isdecimal()
+                or int(supplied_league) <= 0
+            ):
+                raise RuntimeError("INVALID_LEAGUE_ID")
+
+            if league and league != supplied_league:
+                raise RuntimeError("PILOT_LEAGUE_CONFLICT")
+
+            league = supplied_league
+
+        resolved.append((league or "UNRESOLVED", fid))
+
+    return resolved, "DYNAMIC_BATCH"
+
+
+FIXTURES, SCOPE_MODE = resolve_fixture_scope()
+
+raw_max = os.getenv("PBK34_MAX_REAL_CALLS", "4").strip()
+
+if not raw_max.isascii() or not raw_max.isdecimal():
+    raise RuntimeError("INVALID_MAX_REAL_CALLS")
+
+MAX_REAL_CALLS = int(raw_max)
+
+if not 1 <= MAX_REAL_CALLS <= 20:
+    raise RuntimeError("REAL_CALL_CAP_OUT_OF_RANGE")
+
+
 OUT = Path("ops/pbk34_live_events_capture_343_result.json")
 OUT.parent.mkdir(parents=True, exist_ok=True)
 
-if len(FIXTURES) != 9 or len(set(FIXTURES.values())) != 9:
-    raise RuntimeError("INVALID_PILOT_FIXTURE_SCOPE")
+if not FIXTURES:
+    raise RuntimeError("EMPTY_CAPTURE_SCOPE")
+
+if len({fid for _, fid in FIXTURES}) != len(FIXTURES):
+    raise RuntimeError("DUPLICATE_CAPTURE_SCOPE")
 
 if s3_config_from_env() is None:
     raise RuntimeError("R2_STORAGE_NOT_CONFIGURED")
@@ -45,7 +131,7 @@ if not os.getenv("API_FOOTBALL_KEY", "").strip():
     raise RuntimeError("API_FOOTBALL_KEY_MISSING")
 
 broker = ApiFootballBroker(
-    max_real_calls=1,
+    max_real_calls=MAX_REAL_CALLS,
     attempts=1,
     default_ttl_seconds=0,
 )
@@ -62,7 +148,7 @@ def valid(payload):
         and isinstance(payload.get("response"), list)
     )
 
-for league, fid in FIXTURES.items():
+for league, fid in FIXTURES:
     row = {
         "provider_league_id": league,
         "fixture_id": fid,
@@ -75,11 +161,6 @@ for league, fid in FIXTURES.items():
 
     if stopped_after_error:
         row["status"] = "DEFERRED_AFTER_ERROR"
-        rows.append(row)
-        continue
-
-    if stopped_by_budget:
-        row["status"] = "DEFERRED_BY_BUDGET"
         rows.append(row)
         continue
 
@@ -101,6 +182,11 @@ for league, fid in FIXTURES.items():
             row["status"] = "ARCHIVE_HIT"
 
         else:
+            if stopped_by_budget:
+                row["status"] = "DEFERRED_BY_BUDGET"
+                rows.append(row)
+                continue
+
             payload = broker.get(
                 "/fixtures/events",
                 {"fixture": fid},
@@ -157,7 +243,7 @@ for league, fid in FIXTURES.items():
         row["status"] = "BUDGET_BLOCKED"
         row["error_type"] = type(exc).__name__
         stopped_by_budget = True
-        fatal = True
+        # Expected partial completion; do not promote card totals.
 
     except Exception as exc:
         row["status"] = "CAPTURE_ERROR"
@@ -191,7 +277,7 @@ for league, fid in FIXTURES.items():
 stats = broker.stats()
 real_calls = int(stats.get("real_api_calls") or 0)
 
-if real_calls > 1:
+if real_calls > MAX_REAL_CALLS:
     raise RuntimeError("REAL_API_CALL_CAP_EXCEEDED")
 
 counts = Counter(r["status"] for r in rows)
@@ -200,6 +286,9 @@ result = {
     "contract": "PBK34_LIVE_EVENTS_CAPTURE_343",
     "endpoint": "/fixtures/events",
     "fixtures": len(FIXTURES),
+    "scope_mode": SCOPE_MODE,
+    "max_real_calls": MAX_REAL_CALLS,
+    "partial_by_budget": stopped_by_budget,
     "results": rows,
     "status_counts": dict(counts),
     "real_provider_calls": real_calls,
@@ -235,5 +324,8 @@ print("RESULT =", OUT)
 print("CARD TOTALS PROMOTED = 0")
 print("=" * 76)
 
-if fatal or result["r2_verified_fixtures"] != 9:
+if fatal:
     raise SystemExit(2)
+
+# A partially completed batch is not a fatal error.
+
