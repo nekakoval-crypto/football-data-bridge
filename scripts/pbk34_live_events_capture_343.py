@@ -46,7 +46,7 @@ def resolve_fixture_scope():
     if not isinstance(supplied, list):
         raise RuntimeError("FIXTURE_SCOPE_MUST_BE_ARRAY")
 
-    if not 1 <= len(supplied) <= 180:
+    if not 1 <= len(supplied) <= 2000:
         raise RuntimeError("FIXTURE_SCOPE_OUT_OF_RANGE")
 
     known = {
@@ -61,6 +61,8 @@ def resolve_fixture_scope():
         if isinstance(item, dict):
             fid_value = item.get("fixture_id")
             league_value = item.get("provider_league_id")
+        elif isinstance(item, (list, tuple)) and len(item) == 2:
+            fid_value, league_value = item
         else:
             fid_value = item
             league_value = None
@@ -111,7 +113,7 @@ if not raw_max.isascii() or not raw_max.isdecimal():
 
 MAX_REAL_CALLS = int(raw_max)
 
-if not 1 <= MAX_REAL_CALLS <= 20:
+if not 1 <= MAX_REAL_CALLS <= 2000:
     raise RuntimeError("REAL_CALL_CAP_OUT_OF_RANGE")
 
 

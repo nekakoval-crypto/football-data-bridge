@@ -26,7 +26,7 @@ concurrency:
 jobs:
   archive-pilot:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 360
     env:
       API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
       API_FOOTBALL_GLOBAL_NORMAL_CEILING: '6800'
@@ -39,7 +39,7 @@ jobs:
       PBK_RAW_ARCHIVE_S3_PREFIX: ${{ secrets.PBK_RAW_ARCHIVE_S3_PREFIX }}
       PBK_RAW_ARCHIVE_S3_REGION: ${{ secrets.PBK_RAW_ARCHIVE_S3_REGION }}
       PBK34_PILOT_FIXTURE_IDS: ${{ inputs.fixture_ids }}
-      PBK34_MAX_REAL_CALLS: '4'
+      PBK34_MAX_REAL_CALLS: '1913'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
