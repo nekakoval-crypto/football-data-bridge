@@ -1,0 +1,34 @@
+name: PBK34 Referee R2 Fixture 329
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  referee-archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install archive dependency
+        run: python -m pip install boto3
+      - name: Read R2 fixture passports only
+        env:
+          PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
+          PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
+          PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
+          PBK_RAW_ARCHIVE_S3_ENDPOINT: ${{ secrets.PBK_RAW_ARCHIVE_S3_ENDPOINT }}
+          PBK_RAW_ARCHIVE_S3_PREFIX: ${{ secrets.PBK_RAW_ARCHIVE_S3_PREFIX }}
+          PBK_RAW_ARCHIVE_S3_REGION: ${{ secrets.PBK_RAW_ARCHIVE_S3_REGION }}
+        run: python scripts/pbk34_r2_referee_fixture_329.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pbk34-r2-referee-fixture-329
+          path: ops/pbk34_r2_referee_fixture_329.json
+          if-no-files-found: error
