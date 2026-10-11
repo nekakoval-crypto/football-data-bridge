@@ -3,6 +3,14 @@ name: PBK34 R2 Card Pilot
 on:
   workflow_dispatch:
     inputs:
+      capture_mode:
+        description: 'Archive pilot or bounded live capture'
+        required: false
+        default: archive_pilot
+        type: choice
+        options:
+          - archive_pilot
+          - live_events_343
       fixture_ids:
         description: "JSON array of up to 180 fixture IDs"
         required: true
@@ -11,11 +19,19 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: pbk-api-football-global
+  cancel-in-progress: false
+
 jobs:
   archive-pilot:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
+      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      API_FOOTBALL_GLOBAL_NORMAL_CEILING: '6800'
+      API_FOOTBALL_GLOBAL_ABSOLUTE_CEILING: '7350'
+      API_FOOTBALL_QUOTA_CLASS: NORMAL
       PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID: ${{ secrets.PBK_RAW_ARCHIVE_S3_ACCESS_KEY_ID }}
       PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY: ${{ secrets.PBK_RAW_ARCHIVE_S3_SECRET_ACCESS_KEY }}
       PBK_RAW_ARCHIVE_S3_BUCKET: ${{ secrets.PBK_RAW_ARCHIVE_S3_BUCKET }}
@@ -31,11 +47,24 @@ jobs:
       - name: Install archive reader dependency
         run: python -m pip install boto3
       - name: Read existing R2 evidence only
+        if: ${{ inputs.capture_mode != 'live_events_343' }}
         run: python scripts/pbk34_r2_events_pilot_339.py
+      - name: PBK34 bounded live event capture
+        if: ${{ inputs.capture_mode == 'live_events_343' }}
+        run: python scripts/pbk34_live_events_capture_343.py
+
       - name: Upload archive pilot report
-        if: always()
+        if: ${{ always() && inputs.capture_mode != 'live_events_343' }}
         uses: actions/upload-artifact@v4
         with:
           name: pbk34-r2-events-pilot-339
           path: ops/pbk34_r2_events_pilot_339_result.json
+          if-no-files-found: warn
+
+      - name: Upload PBK34 live capture evidence
+        if: ${{ always() && inputs.capture_mode == 'live_events_343' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: pbk34-live-events-343
+          path: ops/pbk34_live_events_capture_343_result.json
           if-no-files-found: warn
