@@ -1,10 +1,10 @@
 {
-  "run_at_utc": "2026-10-11T18:29:39Z",
+  "run_at_utc": "2026-10-11T22:30:24Z",
   "status": "OK",
   "canonical_forward_rows": 13,
   "new_user_execution_rows": 0,
   "frozen_user_execution_rows": 13,
-  "settled_rows_with_user_profit": 6,
+  "settled_rows_with_user_profit": 7,
   "policy": {
     "paper_user_execution": "first observed allowlisted price after signal; immutable once frozen",
     "real_bet_claim": "never inferred from API observation",
