@@ -1,16 +1,16 @@
 {
-  "run_at_utc": "2026-10-11T14:17:52Z",
+  "run_at_utc": "2026-10-11T19:43:18Z",
   "status": "OK",
   "research_leagues": 15,
-  "new_triggers": 13,
-  "new_r1_rows": 5,
+  "new_triggers": 8,
+  "new_r1_rows": 4,
   "new_r2_rows": 0,
-  "settled_rows": 4,
-  "trigger_rows": 386,
-  "forward_rows": 118,
-  "api_calls": 54,
-  "odds_calls": 34,
-  "marathon_calls": 5,
+  "settled_rows": 1,
+  "trigger_rows": 394,
+  "forward_rows": 122,
+  "api_calls": 60,
+  "odds_calls": 41,
+  "marathon_calls": 4,
   "scan": [
     {
       "league": "Premier League",
@@ -21,36 +21,36 @@
     },
     {
       "league": "La Liga",
-      "expected": 2,
-      "scanned": 2,
+      "expected": 1,
+      "scanned": 1,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Bundesliga",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Ligue 1",
-      "expected": 2,
-      "scanned": 2,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Austrian Bundesliga",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Belgian Pro League",
-      "expected": 2,
-      "scanned": 2,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -70,22 +70,22 @@
     },
     {
       "league": "Virsliga",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
-    },
-    {
-      "league": "Eredivisie",
       "expected": 1,
       "scanned": 1,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
+      "league": "Eredivisie",
+      "expected": 0,
+      "scanned": 0,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
       "league": "Eliteserien",
-      "expected": 3,
-      "scanned": 3,
+      "expected": 1,
+      "scanned": 1,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -98,8 +98,8 @@
     },
     {
       "league": "Primeira Liga",
-      "expected": 3,
-      "scanned": 3,
+      "expected": 1,
+      "scanned": 1,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -121,14 +121,14 @@
   "warnings": [],
   "canonical_captured": 13,
   "challenger_deferred": false,
-  "api_day_calls_before_challenger": 159,
-  "reserved_live_calls": 27,
-  "reserved_current_round_calls": 64,
+  "api_day_calls_before_challenger": 297,
+  "reserved_live_calls": 8,
+  "reserved_current_round_calls": 32,
   "safety_margin_calls": 10,
-  "challenger_available_calls": 6740,
-  "challenger_calls_used": 54,
-  "live_forecast_cycles": 19,
-  "live_peak_candidates": 33,
-  "live_peak_batches": 2,
+  "challenger_available_calls": 6653,
+  "challenger_calls_used": 60,
+  "live_forecast_cycles": 8,
+  "live_peak_candidates": 13,
+  "live_peak_batches": 1,
   "budget_protection_status": "LIMITED"
 }
