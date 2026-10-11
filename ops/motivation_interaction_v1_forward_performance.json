@@ -48,7 +48,7 @@
   "r1_r2_r3_changes_authorized": false,
   "production_integration_authorized": false,
   "ui_integration_authorized": false,
-  "run_at_utc": "2026-10-11T09:10:50Z",
+  "run_at_utc": "2026-10-11T13:20:44Z",
   "research_id": "PBK_MOTIVATION_INTERACTION_V1_FORWARD",
   "model_version": "PBK_MOTIVATION_INTERACTION_SPECIALIST_V1",
   "selected_interactions": [
@@ -59,10 +59,10 @@
     "HIGH_PRESSURE_X_FORM_ALIGNMENT": -0.08139028122268811,
     "HIGH_PRESSURE_X_LARGE_RANK_DISADVANTAGE": -0.04354603042978898
   },
-  "prematch_events_created": 1,
-  "settlements_created": 0,
+  "prematch_events_created": 0,
+  "settlements_created": 1,
   "prematch_events_total": 1,
-  "settlements_total": 0,
+  "settlements_total": 1,
   "skipped_after_kickoff_no_backfill": 0,
   "skipped_missing_source": 0,
   "skipped_unknown_interaction": 0,
