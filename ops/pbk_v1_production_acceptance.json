@@ -80,24 +80,24 @@
       "latched": true
     },
     "5_standings_motivation": {
-      "status": "FAIL",
+      "status": "PASS",
       "checks": [
         {
           "code": "STANDINGS_PROVIDER_SNAPSHOT",
           "status": "PASS",
           "message": "real provider standings snapshot exists",
           "evidence": {
-            "valid_snapshots": 2,
-            "rows": 40,
+            "valid_snapshots": 3,
+            "rows": 58,
             "missing_fields": []
           }
         },
         {
           "code": "STANDINGS_NO_LOOKAHEAD_EVIDENCE",
-          "status": "FAIL",
-          "message": "standings snapshots exist but no snapshot can be tied to a <=90m pre-kickoff fixture",
+          "status": "PASS",
+          "message": "provider standings evidence is tied to a pre-kickoff cutoff",
           "evidence": {
-            "prematch_snapshots": 0
+            "prematch_snapshots": 1
           }
         },
         {
@@ -106,7 +106,7 @@
           "message": "Stage72 ingested real standings without leakage",
           "evidence": {
             "stage72_status": "OK",
-            "standings_snapshots": 40,
+            "standings_snapshots": 58,
             "historical_leakage_violations": 0
           }
         },
@@ -116,7 +116,7 @@
           "message": "at least one real no-lookahead motivation projection is available",
           "evidence": {
             "rows": 129,
-            "available_no_lookahead_rows": 10
+            "available_no_lookahead_rows": 14
           }
         }
       ]
@@ -131,8 +131,8 @@
         "message": "system health contains CRITICAL issues",
         "evidence": {
           "health_status": "CRITICAL",
-          "critical_issues": 8,
-          "warnings": 4
+          "critical_issues": 11,
+          "warnings": 10
         }
       },
       {
@@ -158,9 +158,8 @@
     ]
   },
   "next_actions": [
-    "Wait for a <=75m pre-kickoff standings capture and downstream Stage72 motivation rebuild.",
     "Resolve hard health/data-layer/API integrity failures before closure."
   ],
-  "evaluated_at_utc": "2026-10-11T06:04:13Z",
-  "state_fingerprint": "0dc4c976d813470a310512fc53e55783f7b99bb430197fcb873beade95f7095a"
+  "evaluated_at_utc": "2026-10-11T13:11:18Z",
+  "state_fingerprint": "e10e008e222f70df631749661021853ab28c1f2c26c4f72e56cf9dade40f3f33"
 }
