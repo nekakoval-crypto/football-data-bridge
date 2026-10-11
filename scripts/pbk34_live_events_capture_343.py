@@ -107,7 +107,6 @@ for league, fid in FIXTURES.items():
                 ttl_seconds=0,
                 force_refresh=False,
                 archive_first=True,
-                quota_class="NORMAL",
             )
 
             if not valid(payload):
