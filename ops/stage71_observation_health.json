@@ -1,22 +1,30 @@
 {
-  "run_at_utc": "2026-10-10T23:38:20.899620Z",
+  "run_at_utc": "2026-10-11T14:17:52.737445Z",
   "status": "ATTENTION",
   "counts": {
-    "expected": 44,
-    "scanned": 44,
-    "captured": 113,
-    "missed_or_at_risk": 2,
-    "pending": 9,
+    "expected": 20,
+    "scanned": 20,
+    "captured": 118,
+    "missed_or_at_risk": 4,
+    "pending": 10,
     "stale": 0,
     "rescheduled": 253,
     "cancelled": 19,
-    "settled": 104,
+    "settled": 108,
     "duplicates": 0
   },
   "risks": [
     {
+      "fixture_id": "1557422",
+      "reason": "R2_window_missed; qualification_unknown"
+    },
+    {
       "fixture_id": "1570385",
       "reason": "kickoff_passed_without_trigger; qualification_unknown"
+    },
+    {
+      "fixture_id": "1549032",
+      "reason": "R2_window_missed; qualification_unknown"
     },
     {
       "fixture_id": "1575513",
@@ -27,50 +35,50 @@
   "scan": [
     {
       "league": "Premier League",
-      "expected": 3,
-      "scanned": 3,
+      "expected": 1,
+      "scanned": 1,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "La Liga",
-      "expected": 4,
-      "scanned": 4,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
-    },
-    {
-      "league": "Bundesliga",
       "expected": 2,
       "scanned": 2,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
+      "league": "Bundesliga",
+      "expected": 1,
+      "scanned": 1,
+      "legacy_next5_omitted": 0,
+      "inventory": "COMPLETE"
+    },
+    {
       "league": "Ligue 1",
-      "expected": 3,
-      "scanned": 3,
+      "expected": 2,
+      "scanned": 2,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Austrian Bundesliga",
-      "expected": 3,
-      "scanned": 3,
+      "expected": 1,
+      "scanned": 1,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Belgian Pro League",
-      "expected": 4,
-      "scanned": 4,
+      "expected": 2,
+      "scanned": 2,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Danish Superliga",
-      "expected": 4,
-      "scanned": 4,
+      "expected": 1,
+      "scanned": 1,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -83,29 +91,29 @@
     },
     {
       "league": "Virsliga",
-      "expected": 2,
-      "scanned": 2,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Eredivisie",
-      "expected": 4,
-      "scanned": 4,
+      "expected": 1,
+      "scanned": 1,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Eliteserien",
-      "expected": 4,
-      "scanned": 4,
+      "expected": 3,
+      "scanned": 3,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Ekstraklasa",
-      "expected": 3,
-      "scanned": 3,
+      "expected": 2,
+      "scanned": 2,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -118,15 +126,15 @@
     },
     {
       "league": "Super Lig",
-      "expected": 3,
-      "scanned": 3,
+      "expected": 1,
+      "scanned": 1,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Scottish Premiership",
-      "expected": 2,
-      "scanned": 2,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     }
@@ -144,6 +152,6 @@
   "legacy_max_schedule_gap_hours": 18,
   "schedule_gap_hours": 8,
   "r2_freeze_hours": 12,
-  "api_calls": 44,
-  "api_day_calls": 678
+  "api_calls": 54,
+  "api_day_calls": 213
 }
