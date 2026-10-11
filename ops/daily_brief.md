@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-10-10T20:03:54Z
+Generated UTC: 2026-10-11T13:38:53Z
 Active canonical signals: 10
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -8,14 +8,14 @@ Active canonical signals: 10
 ## R1 | Lecce — Bologna
 - Kickoff UTC: 2026-10-11T13:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.0 / Х 3.3 / П2 1.91 (immutable)
-- Market-best observed: 1.98 @ 1xBet | Bet365 now: 1.91
+- Market-best observed: 2.0 @ Betano | Bet365 now: 1.91
 - Current user-executable: 1.92 @ Marathonbet
 - Paper user-execution (frozen): 2.0 @ Marathonbet [2026-09-18T06:48:35Z]
 - Referee / venue: Luca J. Pairetto | Stadio Via del Mare, Lecce
 - Previous: home Serie A vs AC Milan (498.2h rest); away Serie A vs Torino (528.0h rest)
 - Next: home Serie A vs Udinese (165.5h after); away Serie A vs Inter (147.0h after)
 - Injuries: QUERIED
-- Weather [T24]: 22.8°C, precip 67%, wind 7.2 km/h, gusts 30.2 km/h
+- Weather [T3]: 21.5°C, precip 67%, wind 14.9 km/h, gusts 35.3 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: AFTER FIFA window; to start h; player-level UNVERIFIED
 - Flags: WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
@@ -23,14 +23,14 @@ Active canonical signals: 10
 ## R1 | Sassuolo — AC Milan
 - Kickoff UTC: 2026-10-11T16:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.5 / Х 3.6 / П2 1.75 (immutable)
-- Market-best observed: 1.87 @ 1xBet | Bet365 now: 1.8
-- Current user-executable: 1.82 @ Marathonbet
+- Market-best observed: 1.89 @ 1xBet | Bet365 now: 1.8
+- Current user-executable: 1.83 @ Marathonbet
 - Paper user-execution (frozen): 1.79 @ Marathonbet [2026-09-18T06:48:35Z]
 - Referee / venue: Francesco Fourneau | Mapei Stadium – Città del Tricolore, Reggio Emilia
 - Previous: home Serie A vs Monza (549.2h rest); away Serie A vs Lecce (501.2h rest)
 - Next: home Serie A vs Frosinone (122.8h after); away UEFA Europa League vs Red Bull Salzburg (96.8h after)
 - Injuries: QUERIED
-- Weather [T24]: 23.1°C, precip 1%, wind 4.5 km/h, gusts 15.5 km/h
+- Weather [T3]: 23.0°C, precip 1%, wind 3.3 km/h, gusts 9.4 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: AFTER FIFA window; to start h; player-level UNVERIFIED
 - Flags: AWAY_NEXT_UEFA_OR_CUP, WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
@@ -38,14 +38,14 @@ Active canonical signals: 10
 ## R2 | Sassuolo — AC Milan
 - Kickoff UTC: 2026-10-11T16:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.5 / Х 3.6 / П2 1.75 (immutable)
-- Market-best observed: 1.87 @ 1xBet | Bet365 now: 1.8
-- Current user-executable: 1.82 @ Marathonbet
+- Market-best observed: 1.89 @ 1xBet | Bet365 now: 1.8
+- Current user-executable: 1.83 @ Marathonbet
 - Paper user-execution (frozen): 1.79 @ Marathonbet [2026-09-22T06:49:37Z]
 - Referee / venue: Francesco Fourneau | Mapei Stadium – Città del Tricolore, Reggio Emilia
 - Previous: home Serie A vs Monza (549.2h rest); away Serie A vs Lecce (501.2h rest)
 - Next: home Serie A vs Frosinone (122.8h after); away UEFA Europa League vs Red Bull Salzburg (96.8h after)
 - Injuries: QUERIED
-- Weather [T24]: 23.1°C, precip 1%, wind 4.5 km/h, gusts 15.5 km/h
+- Weather [T3]: 23.0°C, precip 1%, wind 3.3 km/h, gusts 9.4 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International: AFTER FIFA window; to start h; player-level UNVERIFIED
 - Flags: AWAY_NEXT_UEFA_OR_CUP, WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
@@ -53,8 +53,8 @@ Active canonical signals: 10
 ## R1 | Cagliari — Juventus
 - Kickoff UTC: 2026-10-11T18:45:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 5.75 / Х 3.7 / П2 1.6 (immutable)
-- Market-best observed: 1.61 @ 1xBet | Bet365 now: 1.55
-- Current user-executable: 1.58 @ Marathonbet
+- Market-best observed: 1.58 @ 1xBet | Bet365 now: 1.53
+- Current user-executable: 1.55 @ Marathonbet
 - Paper user-execution (frozen): 1.53 @ Marathonbet [2026-09-18T06:48:35Z]
 - Referee / venue: Matteo Marcenaro | Unipol Domus, Cagliari
 - Previous: home Serie A vs Udinese (533.8h rest); away Friendlies Clubs vs Cremonese (224.2h rest)
@@ -203,27 +203,19 @@ Active canonical signals: 10
 > Это **не ставка и не новая стратегия**. Исторического edge по ОЗ мы не заявляем: в 10-летней базе нет first/close коэффициентов ОЗ.
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
-- Заморожено Bet365 opener'ов: 201
-- Активные движения ≥3 п.п.: всего 20 | ОЗ — Да 15 | ОЗ — Нет 5
-- Зафиксировано observed close: 110
+- Заморожено Bet365 opener'ов: 206
+- Активные движения ≥3 п.п.: всего 7 | ОЗ — Да 5 | ОЗ — Нет 2
+- Зафиксировано observed close: 134
 - Исполнимый букмекер для наблюдения: Marathonbet
 
 ## Текущие ОЗ-watch
-- WATCH | Bundesliga | Union Berlin — SV Elversberg | ОЗ — Да | движение P(ОЗ — Да) +5.63 п.п. | Marathonbet 1.48 | 3662.8 мин до матча
-- WATCH | Serie A | Como — AS Roma | ОЗ — Да | движение P(ОЗ — Да) +5.17 п.п. | Marathonbet 1.49 | 3967.9 мин до матча
 - WATCH | Serie A | Lecce — Bologna | ОЗ — Нет | движение P(ОЗ — Да) -4.00 п.п. | Marathonbet 1.83 | 4117.9 мин до матча
 - WATCH | Ligue 1 | Nice — Strasbourg | ОЗ — Да | движение P(ОЗ — Да) +3.28 п.п. | Marathonbet 1.56 | 4117.9 мин до матча
 - WATCH | Premier League | Hull City — Everton | ОЗ — Да | движение P(ОЗ — Да) +4.00 п.п. | Marathonbet 1.79 | 4117.9 мин до матча
-- WATCH | Premier League | Manchester United — Tottenham | ОЗ — Да | движение P(ОЗ — Да) +3.60 п.п. | Marathonbet 1.49 | 2887.9 мин до матча
-- WATCH | La Liga | Barcelona — Getafe | ОЗ — Да | движение P(ОЗ — Да) +3.28 п.п. | Marathonbet 2.23 | 2887.9 мин до матча
 - WATCH | Serie A | Lazio — Monza | ОЗ — Да | движение P(ОЗ — Да) +3.33 п.п. | Marathonbet 1.83 | 2191.7 мин до матча
-- WATCH | Premier League | Chelsea — Bournemouth | ОЗ — Нет | движение P(ОЗ — Да) -3.66 п.п. | Marathonbet 2.39 | 811.7 мин до матча
 - WATCH | Premier League | Crystal Palace — Nottingham Forest | ОЗ — Да | движение P(ОЗ — Да) +3.70 п.п. | Marathonbet 1.65 | 2191.7 мин до матча
 - WATCH | La Liga | Racing Santander — Valencia | ОЗ — Да | движение P(ОЗ — Да) +3.28 п.п. | Marathonbet 1.57 | 2551.7 мин до матча
 - WATCH | Bundesliga | SC Freiburg — FC Schalke 04 | ОЗ — Нет | движение P(ОЗ — Да) -3.20 п.п. | Marathonbet 2.14 | 2341.7 мин до матча
-- WATCH | Bundesliga | FC Augsburg — Bayern München | ОЗ — Нет | движение P(ОЗ — Да) -3.77 п.п. | Marathonbet 2.55 | 781.7 мин до матча
-- WATCH | Bundesliga | SC Paderborn 07 — VfB Stuttgart | ОЗ — Да | движение P(ОЗ — Да) +3.77 п.п. | Marathonbet 1.39 | 781.7 мин до матча
-- WATCH | Premier League | Aston Villa — Brentford | ОЗ — Да | движение P(ОЗ — Да) +3.28 п.п. | Marathonbet 1.52 | 223.1 мин до матча
 
 ---
 
@@ -231,14 +223,14 @@ Active canonical signals: 10
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 72 | settled 61 | pending 11
+- Crossings: 72 | settled 65 | pending 7
 - Marathonbet coverage at crossing: 100.0%
-- First-crossing P&L: -15.620u | ROI -25.607% | W-L 29-32
-- Close: observed 52 | stayed qualified 41 | reverted 11 | persistence 78.846%
-- Close-qualified ROI: -16.732% | Reverted ROI: -25.182%
+- First-crossing P&L: -19.620u | ROI -30.185% | W-L 29-36
+- Close: observed 65 | stayed qualified 52 | reverted 13 | persistence 80.0%
+- Close-qualified ROI: -31.423% | Reverted ROI: -25.231%
 
 ## By WATCH family
-- Big-5 ОЗ market movement — ОЗ — Да: crossings 44, settled 36, ROI -25.611%, close persistence 79.31%
-- Big-5 ОЗ market movement — ОЗ — Нет: crossings 12, settled 9, ROI -18.111%, close persistence 57.143%
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 44, settled 39, ROI -31.333%, close persistence 82.051%
+- Big-5 ОЗ market movement — ОЗ — Нет: crossings 12, settled 10, ROI -26.3%, close persistence 60.0%
 - АПЛ favorite steam: crossings 6, settled 6, ROI -59.667%, close persistence 66.667%
 - Бундеслига ТБ(2.5) steam: crossings 10, settled 10, ROI -11.9%, close persistence 100.0%
