@@ -131,8 +131,8 @@
         "message": "system health contains CRITICAL issues",
         "evidence": {
           "health_status": "CRITICAL",
-          "critical_issues": 11,
-          "warnings": 10
+          "critical_issues": 6,
+          "warnings": 7
         }
       },
       {
@@ -160,6 +160,6 @@
   "next_actions": [
     "Resolve hard health/data-layer/API integrity failures before closure."
   ],
-  "evaluated_at_utc": "2026-10-11T13:11:18Z",
-  "state_fingerprint": "e10e008e222f70df631749661021853ab28c1f2c26c4f72e56cf9dade40f3f33"
+  "evaluated_at_utc": "2026-10-11T18:14:00Z",
+  "state_fingerprint": "bff881ac250278c116ce6221fe16e5ade6edf9770877133ee3828c3ae5a11aab"
 }
