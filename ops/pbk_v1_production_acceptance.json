@@ -115,7 +115,7 @@
           "status": "PASS",
           "message": "at least one real no-lookahead motivation projection is available",
           "evidence": {
-            "rows": 128,
+            "rows": 129,
             "available_no_lookahead_rows": 10
           }
         }
@@ -131,8 +131,8 @@
         "message": "system health contains CRITICAL issues",
         "evidence": {
           "health_status": "CRITICAL",
-          "critical_issues": 4,
-          "warnings": 6
+          "critical_issues": 8,
+          "warnings": 4
         }
       },
       {
@@ -161,6 +161,6 @@
     "Wait for a <=75m pre-kickoff standings capture and downstream Stage72 motivation rebuild.",
     "Resolve hard health/data-layer/API integrity failures before closure."
   ],
-  "evaluated_at_utc": "2026-10-11T00:20:16Z",
-  "state_fingerprint": "d7deaab3e50078e507c374335b2a557359e7a1154bf1140226b29c8a394e622d"
+  "evaluated_at_utc": "2026-10-11T06:04:13Z",
+  "state_fingerprint": "0dc4c976d813470a310512fc53e55783f7b99bb430197fcb873beade95f7095a"
 }
