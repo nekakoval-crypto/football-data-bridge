@@ -1,6 +1,6 @@
 # PBK Core Market Data Readiness
 
-Обновлено UTC: 2026-10-11T13:07:25Z
+Обновлено UTC: 2026-10-11T22:09:14Z
 
 > Это data-readiness board. `DISCOVERY_POOL_READY` не означает value, WATCH или ставку.
 
@@ -9,14 +9,14 @@
 - Next gate: Continue clean forward and challenger governance
 
 ## Двойной шанс — 1Х / Х2 / 12 — DISCOVERY_POOL_READY
-- Openers: 442 rows / 442 fixtures; snapshots: 4108 rows / 393 fixtures; closes: 333 rows / 333 fixtures.
-- Marathonbet close coverage: 94.59%; settlement coverage: 99.4%.
+- Openers: 454 rows / 454 fixtures; snapshots: 4145 rows / 393 fixtures; closes: 356 rows / 356 fixtures.
+- Marathonbet close coverage: 94.66%; settlement coverage: 99.44%.
 - Blocking: нет на уровне data-readiness policy.
 - Next gate: Freeze discovery sample, preregister hypothesis, test on independent future holdout
 
 ## Фора 0 — Ф1(0) / Ф2(0) — DISCOVERY_POOL_READY
-- Openers: 403 rows / 403 fixtures; snapshots: 3615 rows / 359 fixtures; closes: 304 rows / 304 fixtures.
-- Marathonbet close coverage: 99.67%; settlement coverage: 99.34%.
+- Openers: 416 rows / 416 fixtures; snapshots: 3649 rows / 359 fixtures; closes: 325 rows / 325 fixtures.
+- Marathonbet close coverage: 99.69%; settlement coverage: 99.38%.
 - Blocking: нет на уровне data-readiness policy.
 - Next gate: Collect a new prospective discovery sample; any future hypothesis requires new preregistration and independent future holdout
 
@@ -25,8 +25,8 @@
 - Next gate: Only a new independently preregistered hypothesis or regime-change prospective path
 
 ## Европейская фора 3-way — DISCOVERY_POOL_READY
-- Openers: 2261 rows / 441 fixtures; snapshots: 20350 rows / 393 fixtures; closes: 1709 rows / 333 fixtures.
-- Marathonbet close coverage: 99.7%; settlement coverage: 99.4%.
+- Openers: 2327 rows / 454 fixtures; snapshots: 20537 rows / 393 fixtures; closes: 1826 rows / 356 fixtures.
+- Marathonbet close coverage: 99.72%; settlement coverage: 99.44%.
 - Blocking: нет на уровне data-readiness policy.
 - Next gate: Freeze discovery sample, preregister line/selection logic, test on independent future holdout
 
@@ -35,8 +35,8 @@
 - Next gate: Prospective WATCH promotion policy only; no automatic R-rule
 
 ## Индивидуальные тоталы — ИТБ/ИТМ — DISCOVERY_POOL_READY
-- Openers: 4144 rows / 441 fixtures; snapshots: 39888 rows / 393 fixtures; closes: 3117 rows / 333 fixtures.
-- Marathonbet close coverage: 99.7%; settlement coverage: 99.4%.
+- Openers: 4267 rows / 454 fixtures; snapshots: 40229 rows / 393 fixtures; closes: 3323 rows / 356 fixtures.
+- Marathonbet close coverage: 99.72%; settlement coverage: 99.44%.
 - Blocking: нет на уровне data-readiness policy.
 - Next gate: Freeze discovery sample, preregister team/line/selection logic, independent future holdout
 
