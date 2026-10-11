@@ -1,24 +1,9 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-10-11T18:32:18Z
-Active canonical signals: 7
+Generated UTC: 2026-10-11T22:35:19Z
+Active canonical signals: 6
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
-
-## R1 | Cagliari — Juventus
-- Kickoff UTC: 2026-10-11T18:45:00Z | Ставка: П2 | Stake: 1.000u
-- Trigger Bet365: П1 5.75 / Х 3.7 / П2 1.6 (immutable)
-- Market-best observed: 1.65 @ Betano | Bet365 now: 1.6
-- Current user-executable: 1.59 @ Marathonbet
-- Paper user-execution (frozen): 1.53 @ Marathonbet [2026-09-18T06:48:35Z]
-- Referee / venue: Matteo Marcenaro | Unipol Domus, Cagliari
-- Previous: home Serie A vs Udinese (533.8h rest); away Friendlies Clubs vs Cremonese (224.2h rest)
-- Next: home Serie A vs Monza (189.8h after); away UEFA Europa League vs Celta Vigo (96.2h after)
-- Injuries: QUERIED
-- Weather [T3]: 20.4°C, precip 0%, wind 9.2 km/h, gusts 23.8 km/h
-- Rotation: WAITING_OFFICIAL_XI
-- International: AFTER FIFA window; to start h; player-level UNVERIFIED
-- Flags: AWAY_NEXT_UEFA_OR_CUP, WITHIN_7D_AFTER_FIFA_WINDOW, OFFICIAL_ROTATION_PENDING
 
 ## R1 | Venezia — Napoli
 - Kickoff UTC: 2026-10-17T13:00:00Z | Ставка: П2 | Stake: 1.000u
@@ -137,9 +122,9 @@ Active canonical signals: 7
 > This is **not a canonical rule and not a bet signal**. R1/R2/R3 are unchanged.
 
 - Scope: Бундеслига: ТБ(2.5) — движение рынка (+3 pp no-vig from frozen Bet365 O/U 2.5 opener).
-- Frozen O/U openers tracked: 36
+- Frozen O/U openers tracked: 44
 - Active +3 pp crossings ТБ(2.5): 0
-- Observed closes: 25 | Close-qualified O1 watches: 10
+- Observed closes: 27 | Close-qualified O1 watches: 10
 - Executable bookmaker being observed: Marathonbet
 
 - No active +3 pp Over crossing is currently recorded.
@@ -178,14 +163,14 @@ Active canonical signals: 7
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 72 | settled 71 | pending 1
+- Crossings: 72 | settled 72 | pending 0
 - Marathonbet coverage at crossing: 100.0%
-- First-crossing P&L: -18.790u | ROI -26.465% | W-L 33-38
+- First-crossing P&L: -18.220u | ROI -25.306% | W-L 34-38
 - Close: observed 65 | stayed qualified 52 | reverted 13 | persistence 80.0%
 - Close-qualified ROI: -31.423% | Reverted ROI: -25.231%
 
 ## By WATCH family
-- Big-5 ОЗ market movement — ОЗ — Да: crossings 44, settled 43, ROI -21.837%, close persistence 82.051%
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 44, settled 44, ROI -20.045%, close persistence 82.051%
 - Big-5 ОЗ market movement — ОЗ — Нет: crossings 12, settled 12, ROI -38.583%, close persistence 60.0%
 - АПЛ favorite steam: crossings 6, settled 6, ROI -59.667%, close persistence 66.667%
 - Бундеслига ТБ(2.5) steam: crossings 10, settled 10, ROI -11.9%, close persistence 100.0%
