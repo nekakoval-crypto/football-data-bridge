@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       fixture_ids:
-        description: "JSON array of exactly 12 fixture IDs"
+        description: "JSON array of up to 180 fixture IDs"
         required: true
         type: string
 
@@ -31,11 +31,11 @@ jobs:
       - name: Install archive reader dependency
         run: python -m pip install boto3
       - name: Read existing R2 evidence only
-        run: python scripts/pbk34_r2_card_pilot_310.py
+        run: python scripts/pbk34_r2_card_batch_315.py
       - name: Upload archive pilot report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: pbk34-r2-card-pilot-310
-          path: ops/pbk34_r2_card_pilot_310_result.json
+          name: pbk34-r2-card-batch-315
+          path: ops/pbk34_r2_card_batch_315_result.json
           if-no-files-found: warn
