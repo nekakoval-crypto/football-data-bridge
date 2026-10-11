@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE77_HISTORICAL_PLAYER_BACKFILL_V3",
-  "run_at_utc": "2026-10-11T19:08:23Z",
+  "run_at_utc": "2026-10-11T23:52:08Z",
   "status": "OK",
   "provider_endpoint": "/fixtures/players",
   "max_api_calls_this_run": 480,
@@ -14,13 +14,13 @@
   "archive_read_hits": 0,
   "archive_read_misses": 0,
   "archive_read_errors": 0,
-  "daily_api_calls": 265,
+  "daily_api_calls": 420,
   "protected_calls": {
-    "live": 9,
-    "current_round": 32,
+    "live": 0,
+    "current_round": 0,
     "standings": 16,
     "safety": 8,
-    "total": 65,
+    "total": 24,
     "live_forecast_status": "OPEN"
   },
   "pbk16_source_rows": 70375,
