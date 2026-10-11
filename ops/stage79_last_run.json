@@ -1,16 +1,16 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-10-11T01:01:59Z",
-  "status": "OK",
+  "run_at_utc": "2026-10-11T08:48:35Z",
+  "status": "ATTENTION",
   "provider_endpoint": "/players/squads",
   "provider_calls": 0,
-  "daily_api_calls": 11,
+  "daily_api_calls": 63,
   "protected_calls": {
     "live": 39,
-    "current_round": 96,
+    "current_round": 64,
     "standings": 16,
     "safety": 8,
-    "total": 159
+    "total": 127
   },
   "roster_ttl_days": 28,
   "roster_freshness_policy": "TRANSFER_AWARE_V1",
@@ -18,11 +18,13 @@
   "stable_ttl_days": 28,
   "sensitive_ttl_days": 3,
   "transfer_sensitive_periods": "01-01:02-15,06-01:09-10",
-  "candidate_teams": 0,
+  "candidate_teams": 8,
   "captured_teams": [],
-  "deferred_teams": 0,
+  "deferred_teams": 8,
   "total_roster_rows": 7601,
-  "warnings": [],
+  "warnings": [
+    "Stage71 protected API reserve reached; Challenger deferred"
+  ],
   "reference_only": true,
   "provider_polling_frontend": false,
   "probability_mutation": false,
