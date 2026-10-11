@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-11T13:26:17Z",
+  "generated_at_utc": "2026-10-11T16:27:41Z",
   "status": "OK",
   "datasets": [
     {
@@ -68,7 +68,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 28859,
+      "row_count": 28988,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -166,7 +166,7 @@
       "source": "Stage71 terminal observation + Stage77 reconciliation",
       "limitations": "Queue evidence is not player-stat evidence; CAPTURED requires both stats and grade ledgers.",
       "present": true,
-      "row_count": 238,
+      "row_count": 247,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -1847,7 +1847,7 @@
       "source": "Stage71 terminal observation + Stage80 event capture reconciliation",
       "limitations": "Queue evidence is not event evidence; CAPTURED requires at least one normalized provider event row.",
       "present": true,
-      "row_count": 195,
+      "row_count": 204,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -1890,7 +1890,7 @@
       "source": "Stage80 /fixtures/events via shared API-Football broker",
       "limitations": "Only terminal fixtures captured under protected provider budget; empty provider responses remain retryable and are not converted to fake no-event evidence.",
       "present": true,
-      "row_count": 2895,
+      "row_count": 3032,
       "columns": [
         "event_id",
         "fixture_id",
@@ -1944,7 +1944,7 @@
       "source": "Stage55 timestamped context via shared broker",
       "limitations": "Canonical-forward scope only; not complete 16-league context coverage.",
       "present": true,
-      "row_count": 24,
+      "row_count": 27,
       "columns": [
         "forward_id",
         "rule",
