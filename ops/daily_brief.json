@@ -1,7 +1,7 @@
 {
-  "generated_at_utc": "2026-10-11T13:38:53Z",
+  "generated_at_utc": "2026-10-11T18:32:18Z",
   "status": "OK",
-  "active_signals": 10,
+  "active_signals": 7,
   "policy": {
     "trigger": "immutable Bet365 first capture",
     "market_best": "observed API market price; not necessarily user executable",
@@ -10,383 +10,6 @@
     "context": "explanatory only; does not change locked rules"
   },
   "matches": [
-    {
-      "forward_id": "R1|I1|1550143",
-      "rule": "R1",
-      "league": "Serie A",
-      "fixture_id": "1550143",
-      "kickoff_utc": "2026-10-11T13:00:00Z",
-      "home_team": "Lecce",
-      "away_team": "Bologna",
-      "selection": "Away",
-      "stake_u": "1.000",
-      "status": "PAPER",
-      "trigger": {
-        "source": "Stage53 immutable first-captured Bet365 via API-Football",
-        "b365_home": "4.0",
-        "b365_draw": "3.3",
-        "b365_away": "1.91",
-        "selected_odds": "1.91",
-        "immutable": true
-      },
-      "market_observed": {
-        "captured_at_utc": "2026-10-11T06:20:16Z",
-        "best_odds": "2.0",
-        "best_bookmaker": "Betano",
-        "bet365_odds": "1.91",
-        "api_odds_update_utc": "2026-10-11T05:09:25+00:00",
-        "note": "Observed market-best is not automatically a user-executable price"
-      },
-      "user_execution": {
-        "status": "AVAILABLE",
-        "odds": "1.92",
-        "bookmaker": "Marathonbet"
-      },
-      "paper_user_execution": {
-        "status": "FROZEN",
-        "odds": "2.0",
-        "bookmaker": "Marathonbet",
-        "captured_at_utc": "2026-09-18T06:48:35Z",
-        "execution_type": "PAPER_FIRST_OBSERVED_ALLOWLISTED_PRICE",
-        "note": "standardized paper execution; not proof of a real placed bet"
-      },
-      "league_state": {
-        "home_rank": "12",
-        "away_rank": "16",
-        "home_points": "6",
-        "away_points": "1",
-        "home_played": "4",
-        "away_played": "4",
-        "home_last5_ppg": "1.50",
-        "away_last5_ppg": "0.25"
-      },
-      "calendar": {
-        "snapshot_type": "T24",
-        "captured_at_utc": "2026-10-10T07:18:12Z",
-        "referee": "Luca J. Pairetto",
-        "venue": "Stadio Via del Mare",
-        "city": "Lecce",
-        "home_prev": {
-          "competition": "Serie A",
-          "opponent": "AC Milan",
-          "date_utc": "2026-09-20T18:45:00Z",
-          "rest_hours": "498.2"
-        },
-        "away_prev": {
-          "competition": "Serie A",
-          "opponent": "Torino",
-          "date_utc": "2026-09-19T13:00:00Z",
-          "rest_hours": "528.0"
-        },
-        "home_next": {
-          "competition": "Serie A",
-          "opponent": "Udinese",
-          "date_utc": "2026-10-18T10:30:00Z",
-          "hours_after": "165.5"
-        },
-        "away_next": {
-          "competition": "Serie A",
-          "opponent": "Inter",
-          "date_utc": "2026-10-17T16:00:00Z",
-          "hours_after": "147.0"
-        }
-      },
-      "injuries": {
-        "status": "QUERIED",
-        "total": "10",
-        "home": "2",
-        "away": "8"
-      },
-      "weather": {
-        "snapshot_type": "T3",
-        "captured_at_utc": "2026-10-11T11:27:59Z",
-        "temperature_c": "21.5",
-        "precipitation_probability_pct": "67",
-        "precipitation_mm": "0.0",
-        "wind_speed_kmh": "14.9",
-        "wind_gusts_kmh": "35.3",
-        "visibility_m": "39840.0",
-        "weather_code": "3",
-        "role": "context-only"
-      },
-      "rotation": {
-        "status": "WAITING_OFFICIAL_XI",
-        "captured_at_utc": "",
-        "home_retained_starters": "",
-        "away_retained_starters": "",
-        "home_changed_starters": "",
-        "away_changed_starters": "",
-        "home_retained_pct": "",
-        "away_retained_pct": ""
-      },
-      "international": {
-        "fifa_relation": "AFTER",
-        "window": "FIFA 2026 combined Sep-Oct window",
-        "hours_to_start": "",
-        "hours_since_end": "109.0",
-        "within_7d_before": "NO",
-        "within_7d_after": "YES",
-        "player_level": "UNVERIFIED",
-        "player_level_reason": "Nationality is not evidence of call-up, travel, or appearance"
-      },
-      "flags": [
-        "WITHIN_7D_AFTER_FIFA_WINDOW",
-        "OFFICIAL_ROTATION_PENDING"
-      ],
-      "display_selection": "П2"
-    },
-    {
-      "forward_id": "R1|I1|1550145",
-      "rule": "R1",
-      "league": "Serie A",
-      "fixture_id": "1550145",
-      "kickoff_utc": "2026-10-11T16:00:00Z",
-      "home_team": "Sassuolo",
-      "away_team": "AC Milan",
-      "selection": "Away",
-      "stake_u": "1.000",
-      "status": "PAPER",
-      "trigger": {
-        "source": "Stage53 immutable first-captured Bet365 via API-Football",
-        "b365_home": "4.5",
-        "b365_draw": "3.6",
-        "b365_away": "1.75",
-        "selected_odds": "1.75",
-        "immutable": true
-      },
-      "market_observed": {
-        "captured_at_utc": "2026-10-11T13:25:08Z",
-        "best_odds": "1.89",
-        "best_bookmaker": "1xBet",
-        "bet365_odds": "1.8",
-        "api_odds_update_utc": "2026-10-11T13:05:19+00:00",
-        "note": "Observed market-best is not automatically a user-executable price"
-      },
-      "user_execution": {
-        "status": "AVAILABLE",
-        "odds": "1.83",
-        "bookmaker": "Marathonbet"
-      },
-      "paper_user_execution": {
-        "status": "FROZEN",
-        "odds": "1.79",
-        "bookmaker": "Marathonbet",
-        "captured_at_utc": "2026-09-18T06:48:35Z",
-        "execution_type": "PAPER_FIRST_OBSERVED_ALLOWLISTED_PRICE",
-        "note": "standardized paper execution; not proof of a real placed bet"
-      },
-      "league_state": {
-        "home_rank": "9",
-        "away_rank": "6",
-        "home_points": "7",
-        "away_points": "8",
-        "home_played": "4",
-        "away_played": "4",
-        "home_last5_ppg": "1.75",
-        "away_last5_ppg": "2.00"
-      },
-      "calendar": {
-        "snapshot_type": "T24",
-        "captured_at_utc": "2026-10-10T10:17:07Z",
-        "referee": "Francesco Fourneau",
-        "venue": "Mapei Stadium – Città del Tricolore",
-        "city": "Reggio Emilia",
-        "home_prev": {
-          "competition": "Serie A",
-          "opponent": "Monza",
-          "date_utc": "2026-09-18T18:45:00Z",
-          "rest_hours": "549.2"
-        },
-        "away_prev": {
-          "competition": "Serie A",
-          "opponent": "Lecce",
-          "date_utc": "2026-09-20T18:45:00Z",
-          "rest_hours": "501.2"
-        },
-        "home_next": {
-          "competition": "Serie A",
-          "opponent": "Frosinone",
-          "date_utc": "2026-10-16T18:45:00Z",
-          "hours_after": "122.8"
-        },
-        "away_next": {
-          "competition": "UEFA Europa League",
-          "opponent": "Red Bull Salzburg",
-          "date_utc": "2026-10-15T16:45:00Z",
-          "hours_after": "96.8"
-        }
-      },
-      "injuries": {
-        "status": "QUERIED",
-        "total": "18",
-        "home": "16",
-        "away": "2"
-      },
-      "weather": {
-        "snapshot_type": "T3",
-        "captured_at_utc": "2026-10-11T11:27:59Z",
-        "temperature_c": "23.0",
-        "precipitation_probability_pct": "1",
-        "precipitation_mm": "0.0",
-        "wind_speed_kmh": "3.3",
-        "wind_gusts_kmh": "9.4",
-        "visibility_m": "40820.0",
-        "weather_code": "3",
-        "role": "context-only"
-      },
-      "rotation": {
-        "status": "WAITING_OFFICIAL_XI",
-        "captured_at_utc": "",
-        "home_retained_starters": "",
-        "away_retained_starters": "",
-        "home_changed_starters": "",
-        "away_changed_starters": "",
-        "home_retained_pct": "",
-        "away_retained_pct": ""
-      },
-      "international": {
-        "fifa_relation": "AFTER",
-        "window": "FIFA 2026 combined Sep-Oct window",
-        "hours_to_start": "",
-        "hours_since_end": "112.0",
-        "within_7d_before": "NO",
-        "within_7d_after": "YES",
-        "player_level": "UNVERIFIED",
-        "player_level_reason": "Nationality is not evidence of call-up, travel, or appearance"
-      },
-      "flags": [
-        "AWAY_NEXT_UEFA_OR_CUP",
-        "WITHIN_7D_AFTER_FIFA_WINDOW",
-        "OFFICIAL_ROTATION_PENDING"
-      ],
-      "display_selection": "П2"
-    },
-    {
-      "forward_id": "R2|I1|1550145",
-      "rule": "R2",
-      "league": "Serie A",
-      "fixture_id": "1550145",
-      "kickoff_utc": "2026-10-11T16:00:00Z",
-      "home_team": "Sassuolo",
-      "away_team": "AC Milan",
-      "selection": "Away",
-      "stake_u": "1.000",
-      "status": "PAPER",
-      "trigger": {
-        "source": "Stage53 immutable first-captured Bet365 via API-Football",
-        "b365_home": "4.5",
-        "b365_draw": "3.6",
-        "b365_away": "1.75",
-        "selected_odds": "1.75",
-        "immutable": true
-      },
-      "market_observed": {
-        "captured_at_utc": "2026-10-11T13:25:08Z",
-        "best_odds": "1.89",
-        "best_bookmaker": "1xBet",
-        "bet365_odds": "1.8",
-        "api_odds_update_utc": "2026-10-11T13:05:19+00:00",
-        "note": "Observed market-best is not automatically a user-executable price"
-      },
-      "user_execution": {
-        "status": "AVAILABLE",
-        "odds": "1.83",
-        "bookmaker": "Marathonbet"
-      },
-      "paper_user_execution": {
-        "status": "FROZEN",
-        "odds": "1.79",
-        "bookmaker": "Marathonbet",
-        "captured_at_utc": "2026-09-22T06:49:37Z",
-        "execution_type": "PAPER_FIRST_OBSERVED_ALLOWLISTED_PRICE",
-        "note": "standardized paper execution; not proof of a real placed bet"
-      },
-      "league_state": {
-        "home_rank": "10",
-        "away_rank": "5",
-        "home_points": "7",
-        "away_points": "11",
-        "home_played": "5",
-        "away_played": "5",
-        "home_last5_ppg": "1.40",
-        "away_last5_ppg": "2.20"
-      },
-      "calendar": {
-        "snapshot_type": "T24",
-        "captured_at_utc": "2026-10-10T10:17:07Z",
-        "referee": "Francesco Fourneau",
-        "venue": "Mapei Stadium – Città del Tricolore",
-        "city": "Reggio Emilia",
-        "home_prev": {
-          "competition": "Serie A",
-          "opponent": "Monza",
-          "date_utc": "2026-09-18T18:45:00Z",
-          "rest_hours": "549.2"
-        },
-        "away_prev": {
-          "competition": "Serie A",
-          "opponent": "Lecce",
-          "date_utc": "2026-09-20T18:45:00Z",
-          "rest_hours": "501.2"
-        },
-        "home_next": {
-          "competition": "Serie A",
-          "opponent": "Frosinone",
-          "date_utc": "2026-10-16T18:45:00Z",
-          "hours_after": "122.8"
-        },
-        "away_next": {
-          "competition": "UEFA Europa League",
-          "opponent": "Red Bull Salzburg",
-          "date_utc": "2026-10-15T16:45:00Z",
-          "hours_after": "96.8"
-        }
-      },
-      "injuries": {
-        "status": "QUERIED",
-        "total": "18",
-        "home": "16",
-        "away": "2"
-      },
-      "weather": {
-        "snapshot_type": "T3",
-        "captured_at_utc": "2026-10-11T11:27:59Z",
-        "temperature_c": "23.0",
-        "precipitation_probability_pct": "1",
-        "precipitation_mm": "0.0",
-        "wind_speed_kmh": "3.3",
-        "wind_gusts_kmh": "9.4",
-        "visibility_m": "40820.0",
-        "weather_code": "3",
-        "role": "context-only"
-      },
-      "rotation": {
-        "status": "WAITING_OFFICIAL_XI",
-        "captured_at_utc": "",
-        "home_retained_starters": "",
-        "away_retained_starters": "",
-        "home_changed_starters": "",
-        "away_changed_starters": "",
-        "home_retained_pct": "",
-        "away_retained_pct": ""
-      },
-      "international": {
-        "fifa_relation": "AFTER",
-        "window": "FIFA 2026 combined Sep-Oct window",
-        "hours_to_start": "",
-        "hours_since_end": "112.0",
-        "within_7d_before": "NO",
-        "within_7d_after": "YES",
-        "player_level": "UNVERIFIED",
-        "player_level_reason": "Nationality is not evidence of call-up, travel, or appearance"
-      },
-      "flags": [
-        "AWAY_NEXT_UEFA_OR_CUP",
-        "WITHIN_7D_AFTER_FIFA_WINDOW",
-        "OFFICIAL_ROTATION_PENDING"
-      ],
-      "display_selection": "П2"
-    },
     {
       "forward_id": "R1|I1|1550138",
       "rule": "R1",
@@ -407,16 +30,16 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-11T13:25:08Z",
-        "best_odds": "1.58",
-        "best_bookmaker": "1xBet",
-        "bet365_odds": "1.53",
-        "api_odds_update_utc": "2026-10-11T09:06:22+00:00",
+        "captured_at_utc": "2026-10-11T18:24:48Z",
+        "best_odds": "1.65",
+        "best_bookmaker": "Betano",
+        "bet365_odds": "1.6",
+        "api_odds_update_utc": "2026-10-11T16:41:15+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
         "status": "AVAILABLE",
-        "odds": "1.55",
+        "odds": "1.59",
         "bookmaker": "Marathonbet"
       },
       "paper_user_execution": {
@@ -438,8 +61,8 @@
         "away_last5_ppg": "1.75"
       },
       "calendar": {
-        "snapshot_type": "T24",
-        "captured_at_utc": "2026-10-10T13:17:34Z",
+        "snapshot_type": "T3",
+        "captured_at_utc": "2026-10-11T13:54:57Z",
         "referee": "Matteo Marcenaro",
         "venue": "Unipol Domus",
         "city": "Cagliari",
@@ -470,19 +93,19 @@
       },
       "injuries": {
         "status": "QUERIED",
-        "total": "24",
-        "home": "10",
+        "total": "20",
+        "home": "6",
         "away": "14"
       },
       "weather": {
-        "snapshot_type": "T24",
-        "captured_at_utc": "2026-10-10T12:53:21Z",
-        "temperature_c": "20.2",
+        "snapshot_type": "T3",
+        "captured_at_utc": "2026-10-11T16:46:19Z",
+        "temperature_c": "20.4",
         "precipitation_probability_pct": "0",
         "precipitation_mm": "0.0",
-        "wind_speed_kmh": "10.2",
-        "wind_gusts_kmh": "23.4",
-        "visibility_m": "36880.0",
+        "wind_speed_kmh": "9.2",
+        "wind_gusts_kmh": "23.8",
+        "visibility_m": "37520.0",
         "weather_code": "1",
         "role": "context-only"
       },
@@ -533,11 +156,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-11T13:25:08Z",
+        "captured_at_utc": "2026-10-11T18:24:48Z",
         "best_odds": "1.76",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.7",
-        "api_odds_update_utc": "2026-10-11T09:06:22+00:00",
+        "api_odds_update_utc": "2026-10-11T16:41:15+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -658,11 +281,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-11T13:25:08Z",
+        "captured_at_utc": "2026-10-11T18:24:48Z",
         "best_odds": "1.76",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.7",
-        "api_odds_update_utc": "2026-10-11T09:06:22+00:00",
+        "api_odds_update_utc": "2026-10-11T16:41:15+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -783,11 +406,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-11T13:25:08Z",
+        "captured_at_utc": "2026-10-11T18:24:48Z",
         "best_odds": "1.69",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.65",
-        "api_odds_update_utc": "2026-10-11T09:06:22+00:00",
+        "api_odds_update_utc": "2026-10-11T16:41:15+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -908,11 +531,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-11T13:25:08Z",
+        "captured_at_utc": "2026-10-11T18:24:48Z",
         "best_odds": "1.69",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.65",
-        "api_odds_update_utc": "2026-10-11T09:06:22+00:00",
+        "api_odds_update_utc": "2026-10-11T16:41:15+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -1033,11 +656,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-11T13:25:08Z",
+        "captured_at_utc": "2026-10-11T18:24:48Z",
         "best_odds": "2.13",
         "best_bookmaker": "1xBet",
         "bet365_odds": "2.05",
-        "api_odds_update_utc": "2026-10-11T09:06:22+00:00",
+        "api_odds_update_utc": "2026-10-11T16:41:15+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -1158,11 +781,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-11T13:25:08Z",
+        "captured_at_utc": "2026-10-11T18:24:48Z",
         "best_odds": "2.13",
         "best_bookmaker": "1xBet",
         "bet365_odds": "2.05",
-        "api_odds_update_utc": "2026-10-11T09:06:22+00:00",
+        "api_odds_update_utc": "2026-10-11T16:41:15+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -1269,13 +892,13 @@
     "scope": "Premier League Favorite Steam M1",
     "definition": "same opening favorite remains favorite; no-vig probability +3pp by observed close",
     "canonical_forward_changed": false,
-    "tracked_openers": 40,
+    "tracked_openers": 46,
     "active_crossings": 0,
     "total_crossings": 6,
-    "observed_closes": 26,
+    "observed_closes": 28,
     "close_qualified_total": 4,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-10-10T21:58:04Z",
+    "latest_run_utc": "2026-10-11T14:06:46Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -1486,22 +1109,22 @@
     ]
   },
   "watch_performance": {
-    "generated_at_utc": "2026-10-11T12:41:53Z",
+    "generated_at_utc": "2026-10-11T17:48:04Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
       "crossings": 72,
-      "pending": 7,
-      "settled": 65,
+      "pending": 1,
+      "settled": 71,
       "void": 0,
       "review": 0,
       "user_price_rows": 72,
       "user_execution_coverage_pct": 100.0,
-      "user_settled_rows": 65,
-      "wins": 29,
-      "losses": 36,
-      "user_profit_u": -19.62,
-      "user_roi_pct": -30.185,
+      "user_settled_rows": 71,
+      "wins": 33,
+      "losses": 38,
+      "user_profit_u": -18.79,
+      "user_roi_pct": -26.465,
       "close_observed": 65,
       "close_qualified": 52,
       "reverted_at_close": 13,
@@ -1512,22 +1135,22 @@
       "reverted_settled": 13,
       "reverted_profit_u": -3.28,
       "reverted_roi_pct": -25.231,
-      "observed_max_drawdown_u": 20.11
+      "observed_max_drawdown_u": 21.11
     },
     "by_family": {
       "Big-5 ОЗ market movement — ОЗ — Да": {
         "crossings": 44,
-        "pending": 5,
-        "settled": 39,
+        "pending": 1,
+        "settled": 43,
         "void": 0,
         "review": 0,
         "user_price_rows": 44,
         "user_execution_coverage_pct": 100.0,
-        "user_settled_rows": 39,
-        "wins": 17,
+        "user_settled_rows": 43,
+        "wins": 21,
         "losses": 22,
-        "user_profit_u": -12.22,
-        "user_roi_pct": -31.333,
+        "user_profit_u": -9.39,
+        "user_roi_pct": -21.837,
         "close_observed": 39,
         "close_qualified": 32,
         "reverted_at_close": 7,
@@ -1542,17 +1165,17 @@
       },
       "Big-5 ОЗ market movement — ОЗ — Нет": {
         "crossings": 12,
-        "pending": 2,
-        "settled": 10,
+        "pending": 0,
+        "settled": 12,
         "void": 0,
         "review": 0,
         "user_price_rows": 12,
         "user_execution_coverage_pct": 100.0,
-        "user_settled_rows": 10,
+        "user_settled_rows": 12,
         "wins": 4,
-        "losses": 6,
-        "user_profit_u": -2.63,
-        "user_roi_pct": -26.3,
+        "losses": 8,
+        "user_profit_u": -4.63,
+        "user_roi_pct": -38.583,
         "close_observed": 10,
         "close_qualified": 6,
         "reverted_at_close": 4,
@@ -1563,7 +1186,7 @@
         "reverted_settled": 4,
         "reverted_profit_u": -2.22,
         "reverted_roi_pct": -55.5,
-        "observed_max_drawdown_u": 4.33
+        "observed_max_drawdown_u": 6.33
       },
       "АПЛ favorite steam": {
         "crossings": 6,
