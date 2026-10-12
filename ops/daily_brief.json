@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-11T22:35:19Z",
+  "generated_at_utc": "2026-10-12T01:55:23Z",
   "status": "OK",
   "active_signals": 6,
   "policy": {
@@ -30,11 +30,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-11T22:23:45Z",
+        "captured_at_utc": "2026-10-12T01:41:17Z",
         "best_odds": "1.76",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.7",
-        "api_odds_update_utc": "2026-10-11T20:40:15+00:00",
+        "api_odds_update_utc": "2026-10-12T00:31:20+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -155,11 +155,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-11T22:23:45Z",
+        "captured_at_utc": "2026-10-12T01:41:17Z",
         "best_odds": "1.76",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.7",
-        "api_odds_update_utc": "2026-10-11T20:40:15+00:00",
+        "api_odds_update_utc": "2026-10-12T00:31:20+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -280,11 +280,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-11T22:23:45Z",
+        "captured_at_utc": "2026-10-12T01:41:17Z",
         "best_odds": "1.69",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.65",
-        "api_odds_update_utc": "2026-10-11T20:40:15+00:00",
+        "api_odds_update_utc": "2026-10-12T00:31:20+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -405,11 +405,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-11T22:23:45Z",
+        "captured_at_utc": "2026-10-12T01:41:17Z",
         "best_odds": "1.69",
         "best_bookmaker": "1xBet",
         "bet365_odds": "1.65",
-        "api_odds_update_utc": "2026-10-11T20:40:15+00:00",
+        "api_odds_update_utc": "2026-10-12T00:31:20+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -530,11 +530,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-11T22:23:45Z",
+        "captured_at_utc": "2026-10-12T01:41:17Z",
         "best_odds": "2.13",
         "best_bookmaker": "1xBet",
         "bet365_odds": "2.05",
-        "api_odds_update_utc": "2026-10-11T20:40:15+00:00",
+        "api_odds_update_utc": "2026-10-12T00:31:20+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -655,11 +655,11 @@
         "immutable": true
       },
       "market_observed": {
-        "captured_at_utc": "2026-10-11T22:23:45Z",
+        "captured_at_utc": "2026-10-12T01:41:17Z",
         "best_odds": "2.13",
         "best_bookmaker": "1xBet",
         "bet365_odds": "2.05",
-        "api_odds_update_utc": "2026-10-11T20:40:15+00:00",
+        "api_odds_update_utc": "2026-10-12T00:31:20+00:00",
         "note": "Observed market-best is not automatically a user-executable price"
       },
       "user_execution": {
@@ -769,10 +769,10 @@
     "tracked_openers": 46,
     "active_crossings": 0,
     "total_crossings": 6,
-    "observed_closes": 28,
+    "observed_closes": 29,
     "close_qualified_total": 4,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-10-11T14:06:46Z",
+    "latest_run_utc": "2026-10-11T22:58:31Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -826,7 +826,7 @@
     "observed_closes": 27,
     "close_qualified_total": 10,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-10-11T20:58:40Z",
+    "latest_run_utc": "2026-10-12T00:31:39Z",
     "warnings": [],
     "crossings": [],
     "recent_close_qualified": [
@@ -885,105 +885,20 @@
     "historical_edge_claimed": false,
     "historical_edge_reason": "Canonical 10-year dataset has no historical BTTS first/close odds",
     "canonical_forward_changed": false,
-    "tracked_openers": 206,
-    "active_crossings_total": 7,
-    "active_yes_crossings": 5,
-    "active_no_crossings": 2,
+    "tracked_openers": 227,
+    "active_crossings_total": 0,
+    "active_yes_crossings": 0,
+    "active_no_crossings": 0,
     "total_crossings": 56,
-    "observed_closes": 134,
+    "observed_closes": 149,
     "movement_watch_threshold_pp": 0.03,
     "user_bookmaker": "Marathonbet",
-    "latest_run_utc": "2026-10-11T12:33:26Z",
+    "latest_run_utc": "2026-10-11T23:34:14Z",
     "warnings": [],
-    "crossings": [
-      {
-        "fixture_id": "1550143",
-        "league": "Serie A",
-        "home_team": "Lecce",
-        "away_team": "Bologna",
-        "selection": "ОЗ — Нет",
-        "movement_yes_pp": "-0.04000000",
-        "crossed_at_utc": "2026-10-08T16:22:04Z",
-        "minutes_to_kickoff": "4117.9",
-        "user_selected_odds": "1.83",
-        "note": "research watch only; not a bet signal"
-      },
-      {
-        "fixture_id": "1552779",
-        "league": "Ligue 1",
-        "home_team": "Nice",
-        "away_team": "Strasbourg",
-        "selection": "ОЗ — Да",
-        "movement_yes_pp": "0.03277942",
-        "crossed_at_utc": "2026-10-08T16:22:04Z",
-        "minutes_to_kickoff": "4117.9",
-        "user_selected_odds": "1.56",
-        "note": "research watch only; not a bet signal"
-      },
-      {
-        "fixture_id": "1557422",
-        "league": "Premier League",
-        "home_team": "Hull City",
-        "away_team": "Everton",
-        "selection": "ОЗ — Да",
-        "movement_yes_pp": "0.04000000",
-        "crossed_at_utc": "2026-10-08T16:22:04Z",
-        "minutes_to_kickoff": "4117.9",
-        "user_selected_odds": "1.79",
-        "note": "research watch only; not a bet signal"
-      },
-      {
-        "fixture_id": "1550142",
-        "league": "Serie A",
-        "home_team": "Lazio",
-        "away_team": "Monza",
-        "selection": "ОЗ — Да",
-        "movement_yes_pp": "0.03333333",
-        "crossed_at_utc": "2026-10-10T00:28:19Z",
-        "minutes_to_kickoff": "2191.7",
-        "user_selected_odds": "1.83",
-        "note": "research watch only; not a bet signal"
-      },
-      {
-        "fixture_id": "1557421",
-        "league": "Premier League",
-        "home_team": "Crystal Palace",
-        "away_team": "Nottingham Forest",
-        "selection": "ОЗ — Да",
-        "movement_yes_pp": "0.03702918",
-        "crossed_at_utc": "2026-10-10T00:28:19Z",
-        "minutes_to_kickoff": "2191.7",
-        "user_selected_odds": "1.65",
-        "note": "research watch only; not a bet signal"
-      },
-      {
-        "fixture_id": "1570409",
-        "league": "La Liga",
-        "home_team": "Racing Santander",
-        "away_team": "Valencia",
-        "selection": "ОЗ — Да",
-        "movement_yes_pp": "0.03277942",
-        "crossed_at_utc": "2026-10-10T00:28:19Z",
-        "minutes_to_kickoff": "2551.7",
-        "user_selected_odds": "1.57",
-        "note": "research watch only; not a bet signal"
-      },
-      {
-        "fixture_id": "1575179",
-        "league": "Bundesliga",
-        "home_team": "SC Freiburg",
-        "away_team": "FC Schalke 04",
-        "selection": "ОЗ — Нет",
-        "movement_yes_pp": "-0.03197606",
-        "crossed_at_utc": "2026-10-10T00:28:19Z",
-        "minutes_to_kickoff": "2341.7",
-        "user_selected_odds": "2.14",
-        "note": "research watch only; not a bet signal"
-      }
-    ]
+    "crossings": []
   },
   "watch_performance": {
-    "generated_at_utc": "2026-10-11T21:06:10Z",
+    "generated_at_utc": "2026-10-12T00:29:43Z",
     "status": "OK",
     "scope": "prospective research WATCH crossings only",
     "overall": {
@@ -999,16 +914,16 @@
       "losses": 38,
       "user_profit_u": -18.22,
       "user_roi_pct": -25.306,
-      "close_observed": 65,
-      "close_qualified": 52,
-      "reverted_at_close": 13,
-      "close_persistence_pct": 80.0,
-      "close_qualified_settled": 52,
-      "close_qualified_profit_u": -16.34,
-      "close_qualified_roi_pct": -31.423,
-      "reverted_settled": 13,
-      "reverted_profit_u": -3.28,
-      "reverted_roi_pct": -25.231,
+      "close_observed": 72,
+      "close_qualified": 57,
+      "reverted_at_close": 15,
+      "close_persistence_pct": 79.167,
+      "close_qualified_settled": 57,
+      "close_qualified_profit_u": -14.5,
+      "close_qualified_roi_pct": -25.439,
+      "reverted_settled": 15,
+      "reverted_profit_u": -3.72,
+      "reverted_roi_pct": -24.8,
       "observed_max_drawdown_u": 21.11
     },
     "by_family": {
@@ -1025,16 +940,16 @@
         "losses": 22,
         "user_profit_u": -8.82,
         "user_roi_pct": -20.045,
-        "close_observed": 39,
-        "close_qualified": 32,
-        "reverted_at_close": 7,
-        "close_persistence_pct": 82.051,
-        "close_qualified_settled": 32,
-        "close_qualified_profit_u": -13.16,
-        "close_qualified_roi_pct": -41.125,
-        "reverted_settled": 7,
-        "reverted_profit_u": 0.94,
-        "reverted_roi_pct": 13.429,
+        "close_observed": 44,
+        "close_qualified": 36,
+        "reverted_at_close": 8,
+        "close_persistence_pct": 81.818,
+        "close_qualified_settled": 36,
+        "close_qualified_profit_u": -10.32,
+        "close_qualified_roi_pct": -28.667,
+        "reverted_settled": 8,
+        "reverted_profit_u": 1.5,
+        "reverted_roi_pct": 18.75,
         "observed_max_drawdown_u": 12.71
       },
       "Big-5 ОЗ market movement — ОЗ — Нет": {
@@ -1050,16 +965,16 @@
         "losses": 8,
         "user_profit_u": -4.63,
         "user_roi_pct": -38.583,
-        "close_observed": 10,
-        "close_qualified": 6,
-        "reverted_at_close": 4,
-        "close_persistence_pct": 60.0,
-        "close_qualified_settled": 6,
-        "close_qualified_profit_u": -0.41,
-        "close_qualified_roi_pct": -6.833,
-        "reverted_settled": 4,
-        "reverted_profit_u": -2.22,
-        "reverted_roi_pct": -55.5,
+        "close_observed": 12,
+        "close_qualified": 7,
+        "reverted_at_close": 5,
+        "close_persistence_pct": 58.333,
+        "close_qualified_settled": 7,
+        "close_qualified_profit_u": -1.41,
+        "close_qualified_roi_pct": -20.143,
+        "reverted_settled": 5,
+        "reverted_profit_u": -3.22,
+        "reverted_roi_pct": -64.4,
         "observed_max_drawdown_u": 6.33
       },
       "АПЛ favorite steam": {
