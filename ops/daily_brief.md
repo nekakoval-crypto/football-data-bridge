@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-10-12T08:41:59Z
+Generated UTC: 2026-10-12T18:21:19Z
 Active canonical signals: 6
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -38,7 +38,7 @@ Active canonical signals: 6
 ## R1 | Bologna — Inter
 - Kickoff UTC: 2026-10-17T16:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.75 / Х 3.9 / П2 1.65 (immutable)
-- Market-best observed: 1.69 @ 1xBet | Bet365 now: 1.65
+- Market-best observed: 1.69 @ 1xBet | Bet365 now: 1.55
 - Current user-executable: 1.64 @ Marathonbet
 - Paper user-execution (frozen): 1.64 @ Marathonbet [2026-10-04T18:05:16Z]
 - Referee / venue: TBD | TBD, Bologna
@@ -53,7 +53,7 @@ Active canonical signals: 6
 ## R2 | Bologna — Inter
 - Kickoff UTC: 2026-10-17T16:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.75 / Х 3.9 / П2 1.65 (immutable)
-- Market-best observed: 1.69 @ 1xBet | Bet365 now: 1.65
+- Market-best observed: 1.69 @ 1xBet | Bet365 now: 1.55
 - Current user-executable: 1.64 @ Marathonbet
 - Paper user-execution (frozen): 1.64 @ Marathonbet [2026-10-04T18:05:16Z]
 - Referee / venue: TBD | TBD, Bologna
@@ -68,7 +68,7 @@ Active canonical signals: 6
 ## R1 | Fiorentina — Como
 - Kickoff UTC: 2026-10-18T13:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 3.5 / Х 3.4 / П2 2.05 (immutable)
-- Market-best observed: 2.13 @ 1xBet | Bet365 now: 2.05
+- Market-best observed: 2.13 @ 1xBet | Bet365 now: 1.95
 - Current user-executable: 2.07 @ Marathonbet
 - Paper user-execution (frozen): 2.07 @ Marathonbet [2026-10-04T18:05:16Z]
 - Referee / venue: TBD | Stadio Artemio Franchi, Florence
@@ -83,7 +83,7 @@ Active canonical signals: 6
 ## R2 | Fiorentina — Como
 - Kickoff UTC: 2026-10-18T13:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 3.5 / Х 3.4 / П2 2.05 (immutable)
-- Market-best observed: 2.13 @ 1xBet | Bet365 now: 2.05
+- Market-best observed: 2.13 @ 1xBet | Bet365 now: 1.95
 - Current user-executable: 2.07 @ Marathonbet
 - Paper user-execution (frozen): 2.07 @ Marathonbet [2026-10-04T18:05:16Z]
 - Referee / venue: TBD | Stadio Artemio Franchi, Florence
