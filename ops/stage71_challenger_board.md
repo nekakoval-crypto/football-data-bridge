@@ -1,6 +1,6 @@
 # PBK Stage71 — League & Market Challenger Board
 
-Обновлено UTC: 2026-10-11T19:43:19Z
+Обновлено UTC: 2026-10-12T02:35:37Z
 Текущие лидеры R1/R2: Serie A / Serie A
 
 > Captured → executable → settled — это исследовательский прогресс. Он не меняет canonical eligibility и не создаёт автоматический promotion.
@@ -11,9 +11,9 @@
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | Premier League | MONITORING | 5 | 5 | 5 | 100.0 | -32.20 | 69.50 | -100.00 | 55 | 115 |
 | La Liga | MONITORING | 8 | 7 | 5 | 87.5 | -10.40 | 63.00 | -59.33 | 55 | 115 |
-| Serie A 🏆 | ACTIVE | 9 | 9 | 5 | 100.0 | -28.40 | -21.00 | -33.33 | 55 | 115 |
+| Serie A 🏆 | ACTIVE | 9 | 9 | 6 | 100.0 | -40.33 | -47.33 | -33.33 | 54 | 114 |
 | Bundesliga | MONITORING | 6 | 6 | 4 | 100.0 | -60.25 | -100.00 | -20.50 | 56 | 116 |
-| Ligue 1 | MONITORING | 7 | 7 | 4 | 100.0 | -33.50 | -37.00 | -30.00 | 56 | 116 |
+| Ligue 1 | MONITORING | 7 | 7 | 5 | 100.0 | -7.80 | -37.00 | 11.67 | 55 | 115 |
 | Austrian Bundesliga | MONITORING | 6 | 6 | 5 | 100.0 | -26.40 | -17.00 | -32.67 | 55 | 115 |
 | Belgian Pro League | MONITORING | 4 | 4 | 4 | 100.0 | 66.50 | 68.50 | 64.50 | 56 | 116 |
 | Danish Superliga | MONITORING | 4 | 4 | 4 | 100.0 | -48.25 | -100.00 | 3.50 | 56 | 116 |
