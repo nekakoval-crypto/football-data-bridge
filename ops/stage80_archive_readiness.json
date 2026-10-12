@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-12T00:02:37Z",
+  "generated_at_utc": "2026-10-12T06:27:59Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -12,12 +12,12 @@
     "fixture_history": {
       "file": "fixture_history_snapshots.csv",
       "present": true,
-      "rows": 29375
+      "rows": 29504
     },
     "historical_fixtures": {
       "file": "historical_fixtures.csv",
       "present": true,
-      "rows": 311
+      "rows": 341
     },
     "player_stats": {
       "file": "player_stats_snapshots_parts/*.csv",
@@ -34,7 +34,7 @@
     "stage77_backlog": {
       "file": "stage77_player_stats_backlog.csv",
       "present": true,
-      "rows": 282
+      "rows": 287
     },
     "team_stats": {
       "file": "team_match_statistics.csv",
@@ -49,32 +49,32 @@
     "current_rosters": {
       "file": "team_rosters.csv",
       "present": true,
-      "rows": 7601
+      "rows": 7812
     },
     "player_profiles": {
       "file": "player_profile_evidence.csv",
       "present": true,
-      "rows": 7149
+      "rows": 7184
     },
     "roster_history": {
       "file": "team_roster_history.csv",
       "present": true,
-      "rows": 8096
+      "rows": 8306
     },
     "membership_intervals": {
       "file": "team_membership_intervals.csv",
       "present": true,
-      "rows": 7600
+      "rows": 7810
     },
     "transfer_identity": {
       "file": "pbk_transfermarkt_player_identity.csv",
       "present": true,
-      "rows": 3159
+      "rows": 3169
     },
     "transfer_history": {
       "file": "historical_transfer_events.csv",
       "present": true,
-      "rows": 42008
+      "rows": 42123
     },
     "match_context": {
       "file": "match_context_snapshots.csv",
@@ -284,18 +284,12 @@
   },
   "fixtures": {
     "current_inventory": 129,
-    "finished_in_current_inventory": 113,
+    "finished_in_current_inventory": 83,
     "player_stats_fixture_count_all_snapshots": 35805,
     "player_grade_fixture_count_all_snapshots": 35805,
     "finished_current_inventory_with_player_stats": 0,
     "finished_current_inventory_player_stats_coverage_pct": 0.0,
     "per_league": [
-      {
-        "league": "Bundesliga",
-        "finished_fixtures_in_current_inventory": 15,
-        "finished_fixtures_with_player_stats": 0,
-        "player_stats_coverage_pct": 0.0
-      },
       {
         "league": "Ekstraklasa",
         "finished_fixtures_in_current_inventory": 8,
@@ -315,12 +309,6 @@
         "player_stats_coverage_pct": 0.0
       },
       {
-        "league": "Jupiler Pro League",
-        "finished_fixtures_in_current_inventory": 9,
-        "finished_fixtures_with_player_stats": 0,
-        "player_stats_coverage_pct": 0.0
-      },
-      {
         "league": "La Liga",
         "finished_fixtures_in_current_inventory": 8,
         "finished_fixtures_with_player_stats": 0,
@@ -335,12 +323,6 @@
       {
         "league": "Premier League",
         "finished_fixtures_in_current_inventory": 9,
-        "finished_fixtures_with_player_stats": 0,
-        "player_stats_coverage_pct": 0.0
-      },
-      {
-        "league": "Premiership",
-        "finished_fixtures_in_current_inventory": 6,
         "finished_fixtures_with_player_stats": 0,
         "player_stats_coverage_pct": 0.0
       },
@@ -378,19 +360,19 @@
   },
   "fixture_history": {
     "present": true,
-    "rows": 29375,
-    "valid_observations": 29375,
-    "unique_fixtures": 311,
-    "observation_runs": 229,
+    "rows": 29504,
+    "valid_observations": 29504,
+    "unique_fixtures": 341,
+    "observation_runs": 230,
     "finished_fixtures_observed": 287,
     "invalid_identity_rows": 0,
     "evidence_note": "Counts represent only Stage71 current-round observations persisted after the fixture-history archive was enabled; they are not a pre-PBK historical backfill claim."
   },
   "historical_fixture_catalog": {
     "present": true,
-    "rows": 311,
-    "valid_rows": 311,
-    "unique_fixtures": 311,
+    "rows": 341,
+    "valid_rows": 341,
+    "unique_fixtures": 341,
     "terminal_fixtures": 287,
     "rescheduled_fixtures": 2,
     "invalid_identity_rows": 0,
@@ -400,15 +382,15 @@
     "orphan_catalog_fixtures": 0,
     "missing_terminal_evidence": 0,
     "orphan_terminal_evidence": 0,
-    "observation_count_total": 29375,
-    "expected_history_observations": 29375,
+    "observation_count_total": 29504,
+    "expected_history_observations": 29504,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
   },
   "stage77_backlog": {
     "present": true,
-    "total_fixtures": 282,
-    "pending_fixtures": 282,
+    "total_fixtures": 287,
+    "pending_fixtures": 287,
     "captured_fixtures": 0,
     "captured_without_complete_ledgers": 0,
     "oldest_pending_first_queued_at_utc": "2026-09-15T16:55:09Z",
@@ -471,35 +453,35 @@
     "unique_players_with_grades": 29673
   },
   "rosters": {
-    "current_roster_rows": 7601,
-    "current_roster_teams": 250,
-    "history_rows": 8096,
-    "history_teams": 250,
-    "history_team_snapshots": 266,
-    "membership_intervals": 7600,
-    "open_latest_intervals": 7596,
+    "current_roster_rows": 7812,
+    "current_roster_teams": 258,
+    "history_rows": 8306,
+    "history_teams": 258,
+    "history_team_snapshots": 274,
+    "membership_intervals": 7810,
+    "open_latest_intervals": 7806,
     "closed_by_observed_absence_intervals": 4
   },
   "player_profiles": {
     "present": true,
-    "rows": 7149,
-    "valid_rows": 7149,
-    "team_source_rows": 6888,
-    "residual_player_id_source_rows": 261,
-    "identity_ready_rows": 6587,
+    "rows": 7184,
+    "valid_rows": 7184,
+    "team_source_rows": 6914,
+    "residual_player_id_source_rows": 270,
+    "identity_ready_rows": 6620,
     "invalid_rows": 0,
-    "unique_players": 6886,
-    "identity_ready_unique_players": 6331,
-    "unique_teams": 250,
-    "current_roster_player_coverage_pct": 85.18,
-    "identity_ready_current_roster_coverage_pct": 78.64,
+    "unique_players": 6921,
+    "identity_ready_unique_players": 6364,
+    "unique_teams": 255,
+    "current_roster_player_coverage_pct": 83.31,
+    "identity_ready_current_roster_coverage_pct": 76.92,
     "evidence_note": "Bounded API-Football player profile evidence from team+season plus residual player-id+season calls. Residual team context is taken from the current PBK roster, not inferred from season statistics. Full-name+DOB+club may support conservative cross-provider identity mapping; this never grants betting/model authority."
   },
   "transfer_identity": {
     "present": true,
-    "rows": 3159,
+    "rows": 3169,
     "valid_rows": 2114,
-    "invalid_rows": 1045,
+    "invalid_rows": 1055,
     "unique_pbk_players": 2114,
     "unique_transfermarkt_players": 2114,
     "approved_methods": [
@@ -511,9 +493,9 @@
   },
   "transfer_history": {
     "present": true,
-    "rows": 42008,
+    "rows": 42123,
     "valid_rows": 33217,
-    "invalid_identity_rows": 8791,
+    "invalid_identity_rows": 8906,
     "unique_pbk_players": 4057,
     "unique_transfermarkt_players": 4055,
     "earliest_transfer_date": "1994-07-01",
