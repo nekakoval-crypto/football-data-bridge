@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_PLAYER_PROFILE_ENRICHMENT_V2_RESIDUAL_ID",
-  "run_at_utc": "2026-10-11T22:09:44Z",
+  "run_at_utc": "2026-10-12T06:12:50Z",
   "status": "ATTENTION",
   "season": "2026",
   "provider_endpoints": [
@@ -9,42 +9,95 @@
   ],
   "refresh_days": 7,
   "residual_retry_days": 7,
-  "provider_calls": 11,
-  "team_provider_calls": 11,
-  "residual_provider_calls": 0,
-  "daily_api_calls": 420,
+  "provider_calls": 250,
+  "team_provider_calls": 36,
+  "residual_provider_calls": 214,
+  "daily_api_calls": 346,
   "protected_calls": {
-    "live": 3,
-    "current_round": 60,
+    "live": 17,
+    "current_round": 180,
     "standings": 32,
     "safety": 100,
-    "total": 195
+    "total": 329
   },
-  "candidate_teams": 11,
-  "completed_teams": [],
+  "candidate_teams": 27,
+  "completed_teams": [
+    {
+      "team_id": "3872",
+      "team_name": "Kauno Žalgiris",
+      "profile_rows": 21
+    },
+    {
+      "team_id": "193",
+      "team_name": "PEC Zwolle",
+      "profile_rows": 26
+    },
+    {
+      "team_id": "404",
+      "team_name": "AC Horsens",
+      "profile_rows": 30
+    },
+    {
+      "team_id": "1072",
+      "team_name": "TSV Hartberg",
+      "profile_rows": 27
+    },
+    {
+      "team_id": "1025",
+      "team_name": "Wolfsberger AC",
+      "profile_rows": 28
+    },
+    {
+      "team_id": "198",
+      "team_name": "ADO Den Haag",
+      "profile_rows": 28
+    },
+    {
+      "team_id": "1399",
+      "team_name": "Austria Lustenau",
+      "profile_rows": 24
+    },
+    {
+      "team_id": "325",
+      "team_name": "Tromso",
+      "profile_rows": 37
+    },
+    {
+      "team_id": "2149",
+      "team_name": "Fredrikstad",
+      "profile_rows": 34
+    }
+  ],
   "deferred_teams": 0,
-  "residual_candidate_players": 0,
-  "residual_captured_players": 0,
-  "residual_empty_players": 0,
+  "residual_candidate_players": 214,
+  "residual_captured_players": 9,
+  "residual_empty_players": 205,
   "residual_error_players": 0,
   "residual_deferred_players": 0,
-  "residual_ambiguous_current_roster_player_ids": 0,
-  "residual_suppressed_recent_attempts": 1125,
-  "profile_rows": 7149,
-  "unique_profile_players": 6886,
-  "current_roster_players": 7593,
-  "current_roster_player_coverage_pct": 85.18,
+  "residual_ambiguous_current_roster_player_ids": 1,
+  "residual_suppressed_recent_attempts": 1096,
+  "profile_rows": 7184,
+  "unique_profile_players": 6921,
+  "current_roster_players": 7802,
+  "current_roster_player_coverage_pct": 83.31,
   "warnings": [
+    "3870 Šiauliai: provider returned no usable profile rows",
+    "3874 Panevėžys: provider returned no usable profile rows",
+    "3861 Hegelmann Litauen: provider returned no usable profile rows",
     "586 FK Zalgiris Vilnius: provider returned no usable profile rows",
+    "18878 TransINVEST Vilnius: provider returned no usable profile rows",
     "4149 BFC Daugavpils: provider returned no usable profile rows",
     "4144 Tukums: provider returned no usable profile rows",
     "4135 Auda: provider returned no usable profile rows",
+    "3860 Džiugas Telšiai: provider returned no usable profile rows",
     "18936 Ogre United: provider returned no usable profile rows",
     "4138 Grobiņa: provider returned no usable profile rows",
     "4160 Rīgas FS: provider returned no usable profile rows",
     "4143 Super Nova: provider returned no usable profile rows",
+    "3858 Banga: provider returned no usable profile rows",
     "18834 FS Jelgava: provider returned no usable profile rows",
     "612 Suduva Marijampole: provider returned no usable profile rows",
+    "638 FK Trakai: provider returned no usable profile rows",
     "15130 Estrela: provider returned no usable profile rows"
   ],
   "provider_polling_frontend": false,
