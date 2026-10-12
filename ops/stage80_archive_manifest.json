@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-12T06:32:21Z",
+  "generated_at_utc": "2026-10-12T09:22:44Z",
   "status": "OK",
   "datasets": [
     {
@@ -68,7 +68,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 29504,
+      "row_count": 29633,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -117,7 +117,7 @@
       "source": "Stage80 normalized projection from fixture_history_snapshots",
       "limitations": "Rebuildable convenience layer; fixture_history_snapshots remains historical evidence source-of-truth.",
       "present": true,
-      "row_count": 341,
+      "row_count": 359,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -254,7 +254,7 @@
       "source": "Stage81 /fixtures/statistics via shared API-Football broker",
       "limitations": "Only observed finished fixtures captured under protected provider budget; missing provider metrics remain UNKNOWN and are never zero-filled.",
       "present": true,
-      "row_count": 21416,
+      "row_count": 21440,
       "columns": [
         "fixture_id",
         "provider_league_id",
