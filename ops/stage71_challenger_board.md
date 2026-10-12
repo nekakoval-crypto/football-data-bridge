@@ -1,6 +1,6 @@
 # PBK Stage71 — League & Market Challenger Board
 
-Обновлено UTC: 2026-10-12T02:35:37Z
+Обновлено UTC: 2026-10-12T16:54:29Z
 Текущие лидеры R1/R2: Serie A / Serie A
 
 > Captured → executable → settled — это исследовательский прогресс. Он не меняет canonical eligibility и не создаёт автоматический promotion.
@@ -20,10 +20,10 @@
 | A Lyga | MONITORING | 4 | 3 | 3 | 75.0 | -49.33 | 52.00 | -100.00 | 57 | 117 |
 | Virsliga | MONITORING | 8 | 8 | 8 | 100.0 | -14.38 | -4.00 | -24.75 | 52 | 112 |
 | Eredivisie | MONITORING | 7 | 7 | 4 | 100.0 | -29.25 | -30.00 | -28.50 | 56 | 116 |
-| Eliteserien | MONITORING | 4 | 4 | 4 | 100.0 | -20.50 | -15.00 | -26.00 | 56 | 116 |
+| Eliteserien | MONITORING | 5 | 5 | 4 | 100.0 | -20.50 | -15.00 | -26.00 | 56 | 116 |
 | Ekstraklasa | MONITORING | 1 | 1 | 1 | 100.0 | 56.00 | — | 56.00 | 59 | 119 |
-| Primeira Liga | MONITORING | 6 | 6 | 6 | 100.0 | 7.50 | -59.00 | 74.00 | 54 | 114 |
-| Super Lig | MONITORING | 7 | 7 | 6 | 100.0 | -8.17 | -38.00 | 21.67 | 54 | 114 |
+| Primeira Liga | MONITORING | 7 | 7 | 6 | 100.0 | 7.50 | -59.00 | 74.00 | 54 | 114 |
+| Super Lig | MONITORING | 8 | 8 | 6 | 100.0 | -8.17 | -38.00 | 21.67 | 54 | 114 |
 | Scottish Premiership | MONITORING | 4 | 3 | 2 | 75.0 | -100.00 | -100.00 | -100.00 | 58 | 118 |
 
 ## R2
