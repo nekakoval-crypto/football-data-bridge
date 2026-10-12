@@ -1,4 +1,6 @@
 ﻿fixture_id,kickoff_utc,player_id,player_name,transfermarkt_club_id,transfermarkt_club_name,pbk16_club_identity_status,pbk16_team_id,pbk16_team_name,pbk16_provider_league_id,identity_method,identity_key,candidate_count,provider_calls,research_only,operational_betting_authority,creates_signal,probability_mutation,eligibility_mutation,stake_changes,forward_journal_mutation
+225749,2017-03-22T17:00:00+00:00,44850,V. Slivka,408,Ascoli,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,ascoli,0,0,true,false,false,false,false,false,false
+225749,2017-03-22T17:00:00+00:00,53655,F. Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
 225749,2017-03-22T17:00:00+00:00,798,J. Brabec,1184,Genk,PBK16_EXACT_ALIAS_UNIQUE,742,Genk,144,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,genk,1,0,true,false,false,false,false,false,false
 225750,2017-03-22T19:45:00+00:00,127,M. ter Stegen,131,Barcelona,PBK16_EXACT_ALIAS_UNIQUE,529,Barcelona,140,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,barcelona,1,0,true,false,false,false,false,false,false
 225750,2017-03-22T19:45:00+00:00,1438,B. Leno,15,Leverkusen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,leverkusen,0,0,true,false,false,false,false,false,false
@@ -222,6 +224,8 @@
 256547,2017-06-10T18:45:00+00:00,18886,Martin Dúbravka,697,Slovan Liberec,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,slovan liberec,0,0,true,false,false,false,false,false,false
 256547,2017-06-10T18:45:00+00:00,198,Milan Škriniar,1038,Sampdoria,PBK16_EXACT_ALIAS_UNIQUE,498,Sampdoria,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,sampdoria,1,0,true,false,false,false,false,false,false
 256547,2017-06-10T18:45:00+00:00,24962,László Bénes,18,Mönchengladbach,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,monchengladbach,0,0,true,false,false,false,false,false,false
+256547,2017-06-10T18:45:00+00:00,44850,Vykintas Slivka,408,Ascoli,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,ascoli,0,0,true,false,false,false,false,false,false
+256547,2017-06-10T18:45:00+00:00,53655,Fedor Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
 256549,2017-06-11T16:00:00+00:00,1082,Stefan Lainer,409,Salzburg,PBK16_EXACT_ALIAS_UNIQUE,571,Red Bull Salzburg,218,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,red bull salzburg,1,0,true,false,false,false,false,false,false
 256549,2017-06-11T16:00:00+00:00,25297,Michael Gregoritsch,41,Hamburg,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hamburg,0,0,true,false,false,false,false,false,false
 256549,2017-06-11T16:00:00+00:00,719,Florian Grillitsch,86,Werder Bremen,PBK16_EXACT_ALIAS_UNIQUE,162,Werder Bremen,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,werder bremen,1,0,true,false,false,false,false,false,false
@@ -365,6 +369,8 @@
 256572,2017-09-01T18:45:00+00:00,18945,Stuart Armstrong,371,Celtic,PBK16_EXACT_ALIAS_UNIQUE,247,Celtic,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,celtic,1,0,true,false,false,false,false,false,false
 256572,2017-09-01T18:45:00+00:00,19191,John McGinn,903,Hibernian FC,PBK16_EXACT_ALIAS_UNIQUE,249,Hibernian,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,hibernian,1,0,true,false,false,false,false,false,false
 256572,2017-09-01T18:45:00+00:00,289,Andrew Robertson,31,Liverpool,PBK16_EXACT_ALIAS_UNIQUE,40,Liverpool,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,liverpool,1,0,true,false,false,false,false,false,false
+256572,2017-09-01T18:45:00+00:00,44850,Vykintas Slivka,903,Hibernian FC,PBK16_EXACT_ALIAS_UNIQUE,249,Hibernian,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,hibernian,1,0,true,false,false,false,false,false,false
+256572,2017-09-01T18:45:00+00:00,53655,Fedor Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
 256573,2017-09-01T18:45:00+00:00,1469,Danny Welbeck,11,Arsenal,PBK16_EXACT_ALIAS_UNIQUE,42,Arsenal,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,arsenal,1,0,true,false,false,false,false,false,false
 256573,2017-09-01T18:45:00+00:00,184,Harry Kane,148,Tottenham,PBK16_EXACT_ALIAS_UNIQUE,47,Tottenham,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,tottenham,1,0,true,false,false,false,false,false,false
 256573,2017-09-01T18:45:00+00:00,292,Jordan Henderson,31,Liverpool,PBK16_EXACT_ALIAS_UNIQUE,40,Liverpool,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,liverpool,1,0,true,false,false,false,false,false,false
@@ -479,6 +485,9 @@
 256600,2017-09-04T18:45:00+00:00,18945,Stuart Armstrong,371,Celtic,PBK16_EXACT_ALIAS_UNIQUE,247,Celtic,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,celtic,1,0,true,false,false,false,false,false,false
 256600,2017-09-04T18:45:00+00:00,19066,Grant Hanley,1123,Norwich,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,norwich,0,0,true,false,false,false,false,false,false
 256600,2017-09-04T18:45:00+00:00,289,Andrew Robertson,31,Liverpool,PBK16_EXACT_ALIAS_UNIQUE,40,Liverpool,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,liverpool,1,0,true,false,false,false,false,false,false
+256601,2017-09-04T18:45:00+00:00,44850,Vykintas Slivka,903,Hibernian FC,PBK16_EXACT_ALIAS_UNIQUE,249,Hibernian,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,hibernian,1,0,true,false,false,false,false,false,false
+256601,2017-09-04T18:45:00+00:00,53655,Fedor Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
+256601,2017-09-04T18:45:00+00:00,70340,Edvinas Girdvainis,3691,Tom Tomsk,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,tom tomsk,0,0,true,false,false,false,false,false,false
 256819,2017-09-05T14:30:00+00:00,30532,A. Duncan,6574,Sassuolo,PBK16_EXACT_ALIAS_UNIQUE,488,Sassuolo,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,sassuolo,1,0,true,false,false,false,false,false,false
 256972,2017-09-05T15:00:00+00:00,2700,Alireza Jahanbakhsh,1090,AZ Alkmaar,PBK16_EXACT_ALIAS_UNIQUE,201,AZ Alkmaar,88,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,az alkmaar,1,0,true,false,false,false,false,false,false
 256973,2017-09-05T15:00:00+00:00,2897,Kim Min-Jae,6502,Jeonbuk Hyundai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,jeonbuk hyundai,0,0,true,false,false,false,false,false,false
@@ -562,6 +571,9 @@
 256617,2017-10-05T18:45:00+00:00,297,Alex Oxlade-Chamberlain,31,Liverpool,PBK16_EXACT_ALIAS_UNIQUE,40,Liverpool,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,liverpool,1,0,true,false,false,false,false,false,false
 256617,2017-10-05T18:45:00+00:00,626,John Stones,281,Man City,PBK16_EXACT_ALIAS_UNIQUE,50,Manchester City,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,manchester city,1,0,true,false,false,false,false,false,false
 256617,2017-10-05T18:45:00+00:00,909,Marcus Rashford,985,Man Utd,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,man utd,0,0,true,false,false,false,false,false,false
+256618,2017-10-05T18:45:00+00:00,44850,Vykintas Slivka,903,Hibernian FC,PBK16_EXACT_ALIAS_UNIQUE,249,Hibernian,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,hibernian,1,0,true,false,false,false,false,false,false
+256618,2017-10-05T18:45:00+00:00,53655,Fedor Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
+256618,2017-10-05T18:45:00+00:00,70340,Edvinas Girdvainis,3691,Tom Tomsk,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,tom tomsk,0,0,true,false,false,false,false,false,false
 256619,2017-10-05T18:45:00+00:00,1117,Kieran Tierney,371,Celtic,PBK16_EXACT_ALIAS_UNIQUE,247,Celtic,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,celtic,1,0,true,false,false,false,false,false,false
 256619,2017-10-05T18:45:00+00:00,18886,Martin Dúbravka,197,Sparta Prague,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sparta prague,0,0,true,false,false,false,false,false,false
 256619,2017-10-05T18:45:00+00:00,289,Andrew Robertson,31,Liverpool,PBK16_EXACT_ALIAS_UNIQUE,40,Liverpool,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,liverpool,1,0,true,false,false,false,false,false,false
@@ -671,7 +683,10 @@
 256641,2017-10-08T16:00:00+00:00,184,Harry Kane,148,Tottenham,PBK16_EXACT_ALIAS_UNIQUE,47,Tottenham,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,tottenham,1,0,true,false,false,false,false,false,false
 256641,2017-10-08T16:00:00+00:00,292,Jordan Henderson,31,Liverpool,PBK16_EXACT_ALIAS_UNIQUE,40,Liverpool,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,liverpool,1,0,true,false,false,false,false,false,false
 256641,2017-10-08T16:00:00+00:00,2935,Harry Maguire,1003,Leicester,PBK16_EXACT_ALIAS_UNIQUE,46,Leicester,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,leicester,1,0,true,false,false,false,false,false,false
+256641,2017-10-08T16:00:00+00:00,44850,Vykintas Slivka,903,Hibernian FC,PBK16_EXACT_ALIAS_UNIQUE,249,Hibernian,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,hibernian,1,0,true,false,false,false,false,false,false
+256641,2017-10-08T16:00:00+00:00,53655,Fedor Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
 256641,2017-10-08T16:00:00+00:00,626,John Stones,281,Man City,PBK16_EXACT_ALIAS_UNIQUE,50,Manchester City,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,manchester city,1,0,true,false,false,false,false,false,false
+256641,2017-10-08T16:00:00+00:00,70340,Edvinas Girdvainis,3691,Tom Tomsk,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,tom tomsk,0,0,true,false,false,false,false,false,false
 256641,2017-10-08T16:00:00+00:00,909,Marcus Rashford,985,Man Utd,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,man utd,0,0,true,false,false,false,false,false,false
 256642,2017-10-08T16:00:00+00:00,18886,Martin Dúbravka,197,Sparta Prague,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sparta prague,0,0,true,false,false,false,false,false,false
 256642,2017-10-08T16:00:00+00:00,198,Milan Škriniar,46,Inter,PBK16_EXACT_ALIAS_UNIQUE,505,Inter,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,inter,1,0,true,false,false,false,false,false,false
@@ -1220,6 +1235,8 @@
 225594,2018-03-24T14:00:00+00:00,1457,H. Mkhitaryan,11,Arsenal,PBK16_EXACT_ALIAS_UNIQUE,42,Arsenal,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,arsenal,1,0,true,false,false,false,false,false,false
 225362,2018-03-24T15:00:00+00:00,51295,D. Cornelius,8819,Javor-Matis,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,javor matis,0,0,true,false,false,false,false,false,false
 225595,2018-03-24T15:00:00+00:00,48451,O. Kakabadze,5648,Gimnàstic,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,gimnastic,0,0,true,false,false,false,false,false,false
+225595,2018-03-24T15:00:00+00:00,53655,F. Černych,121,Dinamo Moscow,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,dinamo moscow,0,0,true,false,false,false,false,false,false
+225595,2018-03-24T15:00:00+00:00,70340,E. Girdvainis,3691,Tom Tomsk,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,tom tomsk,0,0,true,false,false,false,false,false,false
 225595,2018-03-24T15:00:00+00:00,8481,G. Chakvetadze,157,KAA Gent,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kaa gent,0,0,true,false,false,false,false,false,false
 225366,2018-03-24T17:00:00+00:00,889,V. Lindelöf,985,Man Utd,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,man utd,0,0,true,false,false,false,false,false,false
 225367,2018-03-24T18:00:00+00:00,43036,D. Man,301,Steaua Bucharest,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,steaua bucharest,0,0,true,false,false,false,false,false,false
@@ -1262,6 +1279,7 @@
 225375,2018-03-27T12:20:00+00:00,2182,V. Tsygankov,338,Dynamo Kyiv,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,dynamo kyiv,0,0,true,false,false,false,false,false,false
 225375,2018-03-27T12:20:00+00:00,8500,W. Endo,828,Urawa Reds,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,urawa reds,0,0,true,false,false,false,false,false,false
 225603,2018-03-27T15:00:00+00:00,1457,H. Mkhitaryan,11,Arsenal,PBK16_EXACT_ALIAS_UNIQUE,42,Arsenal,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,arsenal,1,0,true,false,false,false,false,false,false
+225603,2018-03-27T15:00:00+00:00,53655,F. Černych,121,Dinamo Moscow,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,dinamo moscow,0,0,true,false,false,false,false,false,false
 225604,2018-03-27T15:00:00+00:00,48451,O. Kakabadze,5648,Gimnàstic,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,gimnastic,0,0,true,false,false,false,false,false,false
 225378,2018-03-27T15:50:00+00:00,102,D. Sidibé,162,Monaco,PBK16_EXACT_ALIAS_UNIQUE,91,Monaco,61,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,monaco,1,0,true,false,false,false,false,false,false
 225378,2018-03-27T15:50:00+00:00,109,A. Golovin,2410,CSKA Moscow,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,cska moscow,0,0,true,false,false,false,false,false,false
@@ -1949,6 +1967,8 @@
 132771,2019-03-22T19:45:00+00:00,855,João Cancelo,506,Juventus,PBK16_EXACT_ALIAS_UNIQUE,496,Juventus,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,juventus,1,0,true,false,false,false,false,false,false
 132772,2019-03-22T19:45:00+00:00,20522,Laurent Jans,347,FC Metz,PBK16_EXACT_ALIAS_UNIQUE,112,Metz,61,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,metz,1,0,true,false,false,false,false,false,false
 132772,2019-03-22T19:45:00+00:00,25918,Leandro Barreiro,39,Mainz,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,mainz,0,0,true,false,false,false,false,false,false
+132772,2019-03-22T19:45:00+00:00,44850,Vykintas Slivka,903,Hibernian FC,PBK16_EXACT_ALIAS_UNIQUE,249,Hibernian,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,hibernian,1,0,true,false,false,false,false,false,false
+132772,2019-03-22T19:45:00+00:00,53655,Fedor Černych,121,Dinamo Moscow,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,dinamo moscow,0,0,true,false,false,false,false,false,false
 132773,2019-03-22T19:45:00+00:00,1922,Florian Thauvin,244,Marseille,PBK16_EXACT_ALIAS_UNIQUE,81,Marseille,61,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,marseille,1,0,true,false,false,false,false,false,false
 132773,2019-03-22T19:45:00+00:00,2290,N'Golo Kanté,631,Chelsea,PBK16_EXACT_ALIAS_UNIQUE,49,Chelsea,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,chelsea,1,0,true,false,false,false,false,false,false
 132773,2019-03-22T19:45:00+00:00,2295,Olivier Giroud,631,Chelsea,PBK16_EXACT_ALIAS_UNIQUE,49,Chelsea,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,chelsea,1,0,true,false,false,false,false,false,false
@@ -2056,6 +2076,8 @@
 672486,2019-03-24T22:00:00+00:00,51295,D. Cornelius,6321,Vancouver,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,vancouver,0,0,true,false,false,false,false,false,false
 672486,2019-03-24T22:00:00+00:00,8489,J. David,157,KAA Gent,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kaa gent,0,0,true,false,false,false,false,false,false
 672487,2019-03-24T22:30:00+00:00,20850,C. Arcus,290,AJ Auxerre,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,aj auxerre,0,0,true,false,false,false,false,false,false
+218362,2019-03-25T14:00:00+00:00,44850,Vykintas Slivka,903,Hibernian FC,PBK16_EXACT_ALIAS_UNIQUE,249,Hibernian,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,hibernian,1,0,true,false,false,false,false,false,false
+218362,2019-03-25T14:00:00+00:00,53655,Fedor Černych,121,Dinamo Moscow,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,dinamo moscow,0,0,true,false,false,false,false,false,false
 218275,2019-03-25T15:45:00+00:00,122468,Saúl Coco,60398,UA Horta,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,ua horta,0,0,true,false,false,false,false,false,false
 132794,2019-03-25T17:00:00+00:00,1640,Hakan Çalhanoğlu,5,AC Milan,PBK16_EXACT_ALIAS_UNIQUE,489,AC Milan,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,milan,1,0,true,false,false,false,false,false,false
 132794,2019-03-25T17:00:00+00:00,22222,Zeki Çelik,1082,Lille,PBK16_EXACT_ALIAS_UNIQUE,79,Lille,61,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,lille,1,0,true,false,false,false,false,false,false
@@ -2250,6 +2272,8 @@
 132812,2019-06-07T18:45:00+00:00,554,Dušan Tadić,610,Ajax,PBK16_EXACT_ALIAS_UNIQUE,194,Ajax,88,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,ajax,1,0,true,false,false,false,false,false,false
 132813,2019-06-07T18:45:00+00:00,20522,Laurent Jans,347,FC Metz,PBK16_EXACT_ALIAS_UNIQUE,112,Metz,61,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,metz,1,0,true,false,false,false,false,false,false
 132813,2019-06-07T18:45:00+00:00,25918,Leandro Barreiro,39,Mainz,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,mainz,0,0,true,false,false,false,false,false,false
+132813,2019-06-07T18:45:00+00:00,44850,Vykintas Slivka,903,Hibernian FC,PBK16_EXACT_ALIAS_UNIQUE,249,Hibernian,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,hibernian,1,0,true,false,false,false,false,false,false
+132813,2019-06-07T18:45:00+00:00,53655,Fedor Černych,121,Dinamo Moscow,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,dinamo moscow,0,0,true,false,false,false,false,false,false
 132813,2019-06-07T18:45:00+00:00,55902,Paulius Golubickas,8047,Suduva,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,suduva,0,0,true,false,false,false,false,false,false
 132814,2019-06-07T18:45:00+00:00,1167,Yussuf Poulsen,23826,Leipzig,PBK16_EXACT_ALIAS_UNIQUE,173,RB Leipzig,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,rb leipzig,1,0,true,false,false,false,false,false,false
 132814,2019-06-07T18:45:00+00:00,15,Thomas Delaney,16,Dortmund,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,dortmund,0,0,true,false,false,false,false,false,false
@@ -2412,6 +2436,8 @@
 132837,2019-06-10T18:45:00+00:00,2813,Marko Dmitrović,1533,SD Eibar,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sd eibar,0,0,true,false,false,false,false,false,false
 132837,2019-06-10T18:45:00+00:00,2817,Nikola Milenković,430,Fiorentina,PBK16_EXACT_ALIAS_UNIQUE,502,Fiorentina,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,fiorentina,1,0,true,false,false,false,false,false,false
 132837,2019-06-10T18:45:00+00:00,2823,Saša Lukić,416,Torino,PBK16_EXACT_ALIAS_UNIQUE,503,Torino,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,torino,1,0,true,false,false,false,false,false,false
+132837,2019-06-10T18:45:00+00:00,44850,Vykintas Slivka,903,Hibernian FC,PBK16_EXACT_ALIAS_UNIQUE,249,Hibernian,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,hibernian,1,0,true,false,false,false,false,false,false
+132837,2019-06-10T18:45:00+00:00,53655,Fedor Černych,121,Dinamo Moscow,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,dinamo moscow,0,0,true,false,false,false,false,false,false
 132837,2019-06-10T18:45:00+00:00,554,Dušan Tadić,610,Ajax,PBK16_EXACT_ALIAS_UNIQUE,194,Ajax,88,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,ajax,1,0,true,false,false,false,false,false,false
 132839,2019-06-10T18:45:00+00:00,1167,Yussuf Poulsen,23826,Leipzig,PBK16_EXACT_ALIAS_UNIQUE,173,RB Leipzig,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,rb leipzig,1,0,true,false,false,false,false,false,false
 132839,2019-06-10T18:45:00+00:00,1283,Peter Ankersen,190,Copenhagen,PBK16_EXACT_ALIAS_UNIQUE,400,FC Copenhagen,119,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,fc copenhagen,1,0,true,false,false,false,false,false,false
@@ -2673,8 +2699,11 @@
 132879,2019-09-07T16:00:00+00:00,1938,Ruslan Malinovskyi,800,Atalanta,PBK16_EXACT_ALIAS_UNIQUE,499,Atalanta,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,atalanta,1,0,true,false,false,false,false,false,false
 132879,2019-09-07T16:00:00+00:00,2165,Vitaliy Mykolenko,338,Dynamo Kyiv,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,dynamo kyiv,0,0,true,false,false,false,false,false,false
 132879,2019-09-07T16:00:00+00:00,2182,Viktor Tsygankov,338,Dynamo Kyiv,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,dynamo kyiv,0,0,true,false,false,false,false,false,false
+132879,2019-09-07T16:00:00+00:00,44850,Vykintas Slivka,903,Hibernian FC,PBK16_EXACT_ALIAS_UNIQUE,249,Hibernian,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,hibernian,1,0,true,false,false,false,false,false,false
+132879,2019-09-07T16:00:00+00:00,53655,Fedor Černych,14589,Orenburg,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,orenburg,0,0,true,false,false,false,false,false,false
 132879,2019-09-07T16:00:00+00:00,55902,Paulius Golubickas,8047,Suduva,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,suduva,0,0,true,false,false,false,false,false,false
 132879,2019-09-07T16:00:00+00:00,69898,Giedrius Matulevicius,8047,Suduva,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,suduva,0,0,true,false,false,false,false,false,false
+132879,2019-09-07T16:00:00+00:00,70340,Edvinas Girdvainis,33783,RFS,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,rfs,0,0,true,false,false,false,false,false,false
 132880,2019-09-07T16:00:00+00:00,41724,Oleg Reabciuk,2995,Paços Ferreira,PBK16_EXACT_ALIAS_UNIQUE,234,Pacos Ferreira,94,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,pacos ferreira,1,0,true,false,false,false,false,false,false
 132881,2019-09-07T18:45:00+00:00,130,Nélson Semedo,131,Barcelona,PBK16_EXACT_ALIAS_UNIQUE,529,Barcelona,140,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,barcelona,1,0,true,false,false,false,false,false,false
 132881,2019-09-07T18:45:00+00:00,1485,Bruno Fernandes,336,Sporting,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sporting,0,0,true,false,false,false,false,false,false
@@ -2834,9 +2863,11 @@
 132904,2019-09-10T18:45:00+00:00,2823,Saša Lukić,416,Torino,PBK16_EXACT_ALIAS_UNIQUE,503,Torino,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,torino,1,0,true,false,false,false,false,false,false
 132904,2019-09-10T18:45:00+00:00,902,Nemanja Matić,985,Man Utd,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,man utd,0,0,true,false,false,false,false,false,false
 132905,2019-09-10T18:45:00+00:00,1485,Bruno Fernandes,336,Sporting,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sporting,0,0,true,false,false,false,false,false,false
+132905,2019-09-10T18:45:00+00:00,44850,Vykintas Slivka,903,Hibernian FC,PBK16_EXACT_ALIAS_UNIQUE,249,Hibernian,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,hibernian,1,0,true,false,false,false,false,false,false
 132905,2019-09-10T18:45:00+00:00,567,Rúben Dias,294,Benfica,PBK16_EXACT_ALIAS_UNIQUE,211,Benfica,94,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,benfica,1,0,true,false,false,false,false,false,false
 132905,2019-09-10T18:45:00+00:00,573,Rafa Silva,294,Benfica,PBK16_EXACT_ALIAS_UNIQUE,211,Benfica,94,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,benfica,1,0,true,false,false,false,false,false,false
 132905,2019-09-10T18:45:00+00:00,636,Bernardo Silva,281,Man City,PBK16_EXACT_ALIAS_UNIQUE,50,Manchester City,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,manchester city,1,0,true,false,false,false,false,false,false
+132905,2019-09-10T18:45:00+00:00,70340,Edvinas Girdvainis,33783,RFS,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,rfs,0,0,true,false,false,false,false,false,false
 132905,2019-09-10T18:45:00+00:00,855,João Cancelo,281,Man City,PBK16_EXACT_ALIAS_UNIQUE,50,Manchester City,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,manchester city,1,0,true,false,false,false,false,false,false
 132905,2019-09-10T18:45:00+00:00,925,Gonçalo Guedes,1049,Valencia,PBK16_EXACT_ALIAS_UNIQUE,532,Valencia,140,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,valencia,1,0,true,false,false,false,false,false,false
 132906,2019-09-10T18:45:00+00:00,1640,Hakan Çalhanoğlu,5,AC Milan,PBK16_EXACT_ALIAS_UNIQUE,489,AC Milan,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,milan,1,0,true,false,false,false,false,false,false
@@ -2955,6 +2986,7 @@
 132921,2019-10-11T18:45:00+00:00,1938,Ruslan Malinovskyi,800,Atalanta,PBK16_EXACT_ALIAS_UNIQUE,499,Atalanta,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,atalanta,1,0,true,false,false,false,false,false,false
 132921,2019-10-11T18:45:00+00:00,2182,Viktor Tsygankov,338,Dynamo Kyiv,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,dynamo kyiv,0,0,true,false,false,false,false,false,false
 132921,2019-10-11T18:45:00+00:00,55902,Paulius Golubickas,8047,Suduva,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,suduva,0,0,true,false,false,false,false,false,false
+132921,2019-10-11T18:45:00+00:00,70340,Edvinas Girdvainis,33783,RFS,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,rfs,0,0,true,false,false,false,false,false,false
 132922,2019-10-11T18:45:00+00:00,130,Nélson Semedo,131,Barcelona,PBK16_EXACT_ALIAS_UNIQUE,529,Barcelona,140,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,barcelona,1,0,true,false,false,false,false,false,false
 132922,2019-10-11T18:45:00+00:00,1485,Bruno Fernandes,336,Sporting,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sporting,0,0,true,false,false,false,false,false,false
 132922,2019-10-11T18:45:00+00:00,20522,Laurent Jans,127,SC Paderborn,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,paderborn,0,0,true,false,false,false,false,false,false
@@ -3148,6 +3180,7 @@
 132946,2019-10-14T18:45:00+00:00,2817,Nikola Milenković,430,Fiorentina,PBK16_EXACT_ALIAS_UNIQUE,502,Fiorentina,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,fiorentina,1,0,true,false,false,false,false,false,false
 132946,2019-10-14T18:45:00+00:00,2823,Saša Lukić,416,Torino,PBK16_EXACT_ALIAS_UNIQUE,503,Torino,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,torino,1,0,true,false,false,false,false,false,false
 132946,2019-10-14T18:45:00+00:00,55902,Paulius Golubickas,8047,Suduva,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,suduva,0,0,true,false,false,false,false,false,false
+132946,2019-10-14T18:45:00+00:00,70340,Edvinas Girdvainis,33783,RFS,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,rfs,0,0,true,false,false,false,false,false,false
 132947,2019-10-14T18:45:00+00:00,108453,Lindon Selahi,317,FC Twente,PBK16_EXACT_ALIAS_UNIQUE,415,Twente,88,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,twente,1,0,true,false,false,false,false,false,false
 132947,2019-10-14T18:45:00+00:00,14329,Ardian Ismajli,447,Hajduk Split,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hajduk split,0,0,true,false,false,false,false,false,false
 132947,2019-10-14T18:45:00+00:00,30924,Marash Kumbulla,276,Hellas Verona,PBK16_EXACT_ALIAS_UNIQUE,504,Hellas Verona,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,hellas verona,1,0,true,false,false,false,false,false,false
@@ -3275,9 +3308,12 @@
 132963,2019-11-14T19:45:00+00:00,1485,Bruno Fernandes,336,Sporting,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sporting,0,0,true,false,false,false,false,false,false
 132963,2019-11-14T19:45:00+00:00,1830,Gonçalo Paciência,24,Frankfurt,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,frankfurt,0,0,true,false,false,false,false,false,false
 132963,2019-11-14T19:45:00+00:00,2677,João Moutinho,543,Wolves,PBK16_EXACT_ALIAS_UNIQUE,39,Wolves,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,wolverhampton,1,0,true,false,false,false,false,false,false
+132963,2019-11-14T19:45:00+00:00,44850,Vykintas Slivka,903,Hibernian FC,PBK16_EXACT_ALIAS_UNIQUE,249,Hibernian,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,hibernian,1,0,true,false,false,false,false,false,false
+132963,2019-11-14T19:45:00+00:00,53655,Fedor Černych,14589,Orenburg,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,orenburg,0,0,true,false,false,false,false,false,false
 132963,2019-11-14T19:45:00+00:00,55902,Paulius Golubickas,8047,Suduva,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,suduva,0,0,true,false,false,false,false,false,false
 132963,2019-11-14T19:45:00+00:00,567,Rúben Dias,294,Benfica,PBK16_EXACT_ALIAS_UNIQUE,211,Benfica,94,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,benfica,1,0,true,false,false,false,false,false,false
 132963,2019-11-14T19:45:00+00:00,636,Bernardo Silva,281,Man City,PBK16_EXACT_ALIAS_UNIQUE,50,Manchester City,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,manchester city,1,0,true,false,false,false,false,false,false
+132963,2019-11-14T19:45:00+00:00,70340,Edvinas Girdvainis,33783,RFS,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,rfs,0,0,true,false,false,false,false,false,false
 132964,2019-11-14T19:45:00+00:00,133,Clément Lenglet,131,Barcelona,PBK16_EXACT_ALIAS_UNIQUE,529,Barcelona,140,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,barcelona,1,0,true,false,false,false,false,false,false
 132964,2019-11-14T19:45:00+00:00,2290,N'Golo Kanté,631,Chelsea,PBK16_EXACT_ALIAS_UNIQUE,49,Chelsea,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,chelsea,1,0,true,false,false,false,false,false,false
 132964,2019-11-14T19:45:00+00:00,2295,Olivier Giroud,631,Chelsea,PBK16_EXACT_ALIAS_UNIQUE,49,Chelsea,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,chelsea,1,0,true,false,false,false,false,false,false
@@ -3431,8 +3467,10 @@
 132985,2019-11-17T14:00:00+00:00,2677,João Moutinho,543,Wolves,PBK16_EXACT_ALIAS_UNIQUE,39,Wolves,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,wolverhampton,1,0,true,false,false,false,false,false,false
 132985,2019-11-17T14:00:00+00:00,567,Rúben Dias,294,Benfica,PBK16_EXACT_ALIAS_UNIQUE,211,Benfica,94,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,benfica,1,0,true,false,false,false,false,false,false
 132985,2019-11-17T14:00:00+00:00,636,Bernardo Silva,281,Man City,PBK16_EXACT_ALIAS_UNIQUE,50,Manchester City,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,manchester city,1,0,true,false,false,false,false,false,false
+218370,2019-11-17T14:00:00+00:00,53655,F. Černych,14589,Orenburg,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,orenburg,0,0,true,false,false,false,false,false,false
 218370,2019-11-17T14:00:00+00:00,55902,P. Golubickas,8047,Suduva,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,suduva,0,0,true,false,false,false,false,false,false
 218370,2019-11-17T14:00:00+00:00,69898,G. Matulevičius,8047,Suduva,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,suduva,0,0,true,false,false,false,false,false,false
+218370,2019-11-17T14:00:00+00:00,70340,E. Girdvainis,33783,RFS,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,rfs,0,0,true,false,false,false,false,false,false
 218370,2019-11-17T14:00:00+00:00,94541,J. Bell,9842,Virginia Cavs,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,virginia cavs,0,0,true,false,false,false,false,false,false
 132986,2019-11-17T17:00:00+00:00,182,Harry Winks,148,Tottenham,PBK16_EXACT_ALIAS_UNIQUE,47,Tottenham,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,tottenham,1,0,true,false,false,false,false,false,false
 132986,2019-11-17T17:00:00+00:00,184,Harry Kane,148,Tottenham,PBK16_EXACT_ALIAS_UNIQUE,47,Tottenham,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,tottenham,1,0,true,false,false,false,false,false,false
@@ -3675,7 +3713,11 @@
 332522,2020-09-03T18:45:00+00:00,597,Stratos Svarnas,2441,AEK Athens,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,aek athens,0,0,true,false,false,false,false,false,false
 332522,2020-09-03T18:45:00+00:00,833,Jaka Bijol,2410,CSKA Moscow,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,cska moscow,0,0,true,false,false,false,false,false,false
 332569,2020-09-03T18:45:00+00:00,73029,Adrian Justinussen,4313,HB Tórshavn,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hb torshavn,0,0,true,false,false,false,false,false,false
+332524,2020-09-04T16:00:00+00:00,53655,Fedor Černych,121,Dinamo Moscow,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,dinamo moscow,0,0,true,false,false,false,false,false,false
+332524,2020-09-04T16:00:00+00:00,69890,Dominykas Barauskas,32832,Riteriai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,riteriai,0,0,true,false,false,false,false,false,false
+332524,2020-09-04T16:00:00+00:00,69948,Tomas Švedkauskas,5026,Lommel SK,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,lommel sk,0,0,true,false,false,false,false,false,false
 332524,2020-09-04T16:00:00+00:00,69981,Domantas Antanavičius,710,NK Celje,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,nk celje,0,0,true,false,false,false,false,false,false
+332524,2020-09-04T16:00:00+00:00,70340,Edvinas Girdvainis,95,KFC Uerdingen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kfc uerdingen,0,0,true,false,false,false,false,false,false
 332427,2020-09-04T18:45:00+00:00,1442,Sead Kolašinac,11,Arsenal,PBK16_EXACT_ALIAS_UNIQUE,42,Arsenal,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,arsenal,1,0,true,false,false,false,false,false,false
 332427,2020-09-04T18:45:00+00:00,1622,Gianluigi Donnarumma,5,AC Milan,PBK16_EXACT_ALIAS_UNIQUE,489,AC Milan,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,milan,1,0,true,false,false,false,false,false,false
 332427,2020-09-04T18:45:00+00:00,30396,Cristiano Biraghi,430,Fiorentina,PBK16_EXACT_ALIAS_UNIQUE,502,Fiorentina,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,fiorentina,1,0,true,false,false,false,false,false,false
@@ -3968,7 +4010,10 @@
 332488,2020-09-07T18:45:00+00:00,61142,Dominik Greif,540,Slo. Bratislava,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,slo bratislava,0,0,true,false,false,false,false,false,false
 332532,2020-09-07T18:45:00+00:00,108453,Lindon Selahi,317,FC Twente,PBK16_EXACT_ALIAS_UNIQUE,415,Twente,88,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,twente,1,0,true,false,false,false,false,false,false
 332532,2020-09-07T18:45:00+00:00,20953,Qazim Laci,1147,AC Ajaccio,PBK16_EXACT_ALIAS_UNIQUE,98,Ajaccio,61,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,ajaccio,1,0,true,false,false,false,false,false,false
+332532,2020-09-07T18:45:00+00:00,69890,Dominykas Barauskas,32832,Riteriai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,riteriai,0,0,true,false,false,false,false,false,false
+332532,2020-09-07T18:45:00+00:00,69948,Tomas Švedkauskas,5026,Lommel SK,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,lommel sk,0,0,true,false,false,false,false,false,false
 332532,2020-09-07T18:45:00+00:00,69981,Domantas Antanavičius,710,NK Celje,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,nk celje,0,0,true,false,false,false,false,false,false
+332532,2020-09-07T18:45:00+00:00,70340,Edvinas Girdvainis,95,KFC Uerdingen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kfc uerdingen,0,0,true,false,false,false,false,false,false
 332533,2020-09-08T16:00:00+00:00,169295,Karl Hein,9249,Arsenal U23,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,arsenal u23,0,0,true,false,false,false,false,false,false
 332533,2020-09-08T16:00:00+00:00,61232,Vahan Bichakhchyan,1443,MSK Zilina,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,msk zilina,0,0,true,false,false,false,false,false,false
 332534,2020-09-08T16:00:00+00:00,105474,Visar Musliu,11107,Vidi FC,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,vidi,0,0,true,false,false,false,false,false,false
@@ -4054,7 +4099,10 @@
 598333,2020-10-07T16:00:00+00:00,1231,V. Coufal,379,West Ham,PBK16_EXACT_ALIAS_UNIQUE,48,West Ham,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,west ham,1,0,true,false,false,false,false,false,false
 598333,2020-10-07T16:00:00+00:00,1234,A. Král,232,Spartak Moscow,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,spartak moscow,0,0,true,false,false,false,false,false,false
 598333,2020-10-07T16:00:00+00:00,66019,A. Hložek,197,Sparta Prague,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sparta prague,0,0,true,false,false,false,false,false,false
+598355,2020-10-07T16:00:00+00:00,53655,F. Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
 598355,2020-10-07T16:00:00+00:00,55902,P. Golubickas,24575,HNK Gorica,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hnk gorica,0,0,true,false,false,false,false,false,false
+598355,2020-10-07T16:00:00+00:00,69948,T. Švedkauskas,5026,Lommel SK,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,lommel sk,0,0,true,false,false,false,false,false,false
+598355,2020-10-07T16:00:00+00:00,70340,E. Girdvainis,95,KFC Uerdingen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kfc uerdingen,0,0,true,false,false,false,false,false,false
 598359,2020-10-07T16:00:00+00:00,56029,R. Ozols,48325,Riga,PBK16_EXACT_ALIAS_UNIQUE,10124,Riga,365,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,riga,1,0,true,false,false,false,false,false,false
 598359,2020-10-07T16:00:00+00:00,70397,R. Jurkovskis,43162,Liepaja,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,liepaja,0,0,true,false,false,false,false,false,false
 598356,2020-10-07T18:15:00+00:00,20522,L. Jans,3057,Standard Liège,PBK16_EXACT_ALIAS_UNIQUE,733,Standard Liege,144,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,standard liege,1,0,true,false,false,false,false,false,false
@@ -4442,7 +4490,10 @@
 332538,2020-10-11T16:00:00+00:00,126756,Markus Soomets,1002,FC Flora,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,flora,0,0,true,false,false,false,false,false,false
 332538,2020-10-11T16:00:00+00:00,169295,Karl Hein,9249,Arsenal U23,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,arsenal u23,0,0,true,false,false,false,false,false,false
 332538,2020-10-11T16:00:00+00:00,47461,Enis Bardhi,3368,Levante,PBK16_EXACT_ALIAS_UNIQUE,539,Levante,140,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,levante,1,0,true,false,false,false,false,false,false
+332542,2020-10-11T16:00:00+00:00,53655,Fedor Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
 332542,2020-10-11T16:00:00+00:00,55902,Paulius Golubickas,24575,HNK Gorica,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hnk gorica,0,0,true,false,false,false,false,false,false
+332542,2020-10-11T16:00:00+00:00,69948,Tomas Švedkauskas,5026,Lommel SK,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,lommel sk,0,0,true,false,false,false,false,false,false
+332542,2020-10-11T16:00:00+00:00,70340,Edvinas Girdvainis,95,KFC Uerdingen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kfc uerdingen,0,0,true,false,false,false,false,false,false
 332442,2020-10-11T18:45:00+00:00,1622,Gianluigi Donnarumma,5,AC Milan,PBK16_EXACT_ALIAS_UNIQUE,489,AC Milan,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,milan,1,0,true,false,false,false,false,false,false
 332442,2020-10-11T18:45:00+00:00,3000,Bartosz Bereszyński,1038,Sampdoria,PBK16_EXACT_ALIAS_UNIQUE,498,Sampdoria,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,sampdoria,1,0,true,false,false,false,false,false,false
 332442,2020-10-11T18:45:00+00:00,3008,Mateusz Klich,399,Leeds,PBK16_EXACT_ALIAS_UNIQUE,63,Leeds,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,leeds,1,0,true,false,false,false,false,false,false
@@ -4650,7 +4701,10 @@
 332504,2020-10-14T16:00:00+00:00,963,Lukáš Hrádecký,15,Leverkusen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,leverkusen,0,0,true,false,false,false,false,false,false
 332552,2020-10-14T16:00:00+00:00,20953,Qazim Laci,1147,AC Ajaccio,PBK16_EXACT_ALIAS_UNIQUE,98,Ajaccio,61,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,ajaccio,1,0,true,false,false,false,false,false,false
 332552,2020-10-14T16:00:00+00:00,30924,Marash Kumbulla,12,Roma,PBK16_EXACT_ALIAS_UNIQUE,497,AS Roma,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,as roma,1,0,true,false,false,false,false,false,false
+332552,2020-10-14T16:00:00+00:00,53655,Fedor Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
 332552,2020-10-14T16:00:00+00:00,55902,Paulius Golubickas,24575,HNK Gorica,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hnk gorica,0,0,true,false,false,false,false,false,false
+332552,2020-10-14T16:00:00+00:00,69948,Tomas Švedkauskas,5026,Lommel SK,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,lommel sk,0,0,true,false,false,false,false,false,false
+332552,2020-10-14T16:00:00+00:00,70340,Edvinas Girdvainis,95,KFC Uerdingen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kfc uerdingen,0,0,true,false,false,false,false,false,false
 332449,2020-10-14T18:45:00+00:00,1622,Gianluigi Donnarumma,5,AC Milan,PBK16_EXACT_ALIAS_UNIQUE,489,AC Milan,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,milan,1,0,true,false,false,false,false,false,false
 332449,2020-10-14T18:45:00+00:00,226,Denzel Dumfries,383,PSV,PBK16_EXACT_ALIAS_UNIQUE,197,PSV Eindhoven,88,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,psv eindhoven,1,0,true,false,false,false,false,false,false
 332449,2020-10-14T18:45:00+00:00,249,Donyell Malen,383,PSV,PBK16_EXACT_ALIAS_UNIQUE,197,PSV Eindhoven,88,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,psv eindhoven,1,0,true,false,false,false,false,false,false
@@ -4842,6 +4896,9 @@
 598362,2020-11-11T17:00:00+00:00,72421,A. Jaunzems,5084,Valmiera,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,valmiera,0,0,true,false,false,false,false,false,false
 598363,2020-11-11T17:00:00+00:00,48111,D. Islamović,195,Rosenborg BK,PBK16_EXACT_ALIAS_UNIQUE,331,Rosenborg,103,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,rosenborg,1,0,true,false,false,false,false,false,false
 598363,2020-11-11T17:00:00+00:00,66761,M. Osmajić,3070,Sutjeska Niksic,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sutjeska niksic,0,0,true,false,false,false,false,false,false
+640113,2020-11-11T17:00:00+00:00,44850,V. Slivka,441,Apollon Smyrni,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,apollon smyrni,0,0,true,false,false,false,false,false,false
+640113,2020-11-11T17:00:00+00:00,69948,T. Švedkauskas,5026,Lommel SK,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,lommel sk,0,0,true,false,false,false,false,false,false
+640113,2020-11-11T17:00:00+00:00,70340,E. Girdvainis,95,KFC Uerdingen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kfc uerdingen,0,0,true,false,false,false,false,false,false
 644688,2020-11-11T17:00:00+00:00,25921,A. Maxim,2832,Gaziantep FK,PBK16_EXACT_ALIAS_UNIQUE,3573,Gaziantep FK,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,gaziantep fk,1,0,true,false,false,false,false,false,false
 644688,2020-11-11T17:00:00+00:00,43036,D. Man,301,Steaua Bucharest,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,steaua bucharest,0,0,true,false,false,false,false,false,false
 598349,2020-11-11T17:45:00+00:00,1084,M. Pongracic,82,Wolfsburg,PBK16_EXACT_ALIAS_UNIQUE,161,VfL Wolfsburg,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,vfl wolfsburg,1,0,true,false,false,false,false,false,false
@@ -5228,6 +5285,10 @@
 332510,2020-11-15T17:00:00+00:00,50126,Deniz Türüç,6890,Basaksehir,PBK16_EXACT_ALIAS_UNIQUE,564,Başakşehir,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,basaksehir,1,0,true,false,false,false,false,false,false
 332510,2020-11-15T17:00:00+00:00,50132,Altay Bayındır,36,Fenerbahçe,PBK16_EXACT_ALIAS_UNIQUE,611,Fenerbahçe,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,fenerbahce,1,0,true,false,false,false,false,false,false
 332510,2020-11-15T17:00:00+00:00,785,Cengiz Ünder,1003,Leicester,PBK16_EXACT_ALIAS_UNIQUE,46,Leicester,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,leicester,1,0,true,false,false,false,false,false,false
+332554,2020-11-15T17:00:00+00:00,44850,Vykintas Slivka,441,Apollon Smyrni,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,apollon smyrni,0,0,true,false,false,false,false,false,false
+332554,2020-11-15T17:00:00+00:00,69890,Dominykas Barauskas,32832,Riteriai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,riteriai,0,0,true,false,false,false,false,false,false
+332554,2020-11-15T17:00:00+00:00,69948,Tomas Švedkauskas,5026,Lommel SK,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,lommel sk,0,0,true,false,false,false,false,false,false
+332554,2020-11-15T17:00:00+00:00,70340,Edvinas Girdvainis,95,KFC Uerdingen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kfc uerdingen,0,0,true,false,false,false,false,false,false
 332556,2020-11-15T17:00:00+00:00,108453,Lindon Selahi,317,FC Twente,PBK16_EXACT_ALIAS_UNIQUE,415,Twente,88,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,twente,1,0,true,false,false,false,false,false,false
 332556,2020-11-15T17:00:00+00:00,14329,Ardian Ismajli,3522,Spezia Calcio,PBK16_EXACT_ALIAS_UNIQUE,515,Spezia,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,spezia,1,0,true,false,false,false,false,false,false
 332556,2020-11-15T17:00:00+00:00,15673,Ylber Ramadani,443,Vejle BK,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,vejle bk,0,0,true,false,false,false,false,false,false
@@ -5473,6 +5534,9 @@
 332561,2020-11-18T15:00:00+00:00,14329,Ardian Ismajli,3522,Spezia Calcio,PBK16_EXACT_ALIAS_UNIQUE,515,Spezia,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,spezia,1,0,true,false,false,false,false,false,false
 332561,2020-11-18T15:00:00+00:00,15673,Ylber Ramadani,443,Vejle BK,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,vejle bk,0,0,true,false,false,false,false,false,false
 332561,2020-11-18T15:00:00+00:00,20953,Qazim Laci,1147,AC Ajaccio,PBK16_EXACT_ALIAS_UNIQUE,98,Ajaccio,61,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,ajaccio,1,0,true,false,false,false,false,false,false
+332562,2020-11-18T15:00:00+00:00,44850,Vykintas Slivka,441,Apollon Smyrni,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,apollon smyrni,0,0,true,false,false,false,false,false,false
+332562,2020-11-18T15:00:00+00:00,69948,Tomas Švedkauskas,5026,Lommel SK,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,lommel sk,0,0,true,false,false,false,false,false,false
+332562,2020-11-18T15:00:00+00:00,70340,Edvinas Girdvainis,95,KFC Uerdingen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kfc uerdingen,0,0,true,false,false,false,false,false,false
 332565,2020-11-18T17:00:00+00:00,105474,Visar Musliu,11107,Vidi FC,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,vidi,0,0,true,false,false,false,false,false,false
 332565,2020-11-18T17:00:00+00:00,61232,Vahan Bichakhchyan,1443,MSK Zilina,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,msk zilina,0,0,true,false,false,false,false,false,false
 332566,2020-11-18T17:00:00+00:00,126756,Markus Soomets,1002,FC Flora,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,flora,0,0,true,false,false,false,false,false,false
@@ -5746,8 +5810,11 @@
 650916,2021-03-24T19:45:00+00:00,842,Nikola Vlašić,2410,CSKA Moscow,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,cska moscow,0,0,true,false,false,false,false,false,false
 673221,2021-03-24T19:45:00+00:00,19042,F. Hadërgjonaj,10484,Kasimpasa,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kasimpasa,0,0,true,false,false,false,false,false,false
 673221,2021-03-24T19:45:00+00:00,25324,M. Rashica,86,Werder Bremen,PBK16_EXACT_ALIAS_UNIQUE,162,Werder Bremen,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,werder bremen,1,0,true,false,false,false,false,false,false
+673221,2021-03-24T19:45:00+00:00,44850,V. Slivka,441,Apollon Smyrni,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,apollon smyrni,0,0,true,false,false,false,false,false,false
 673221,2021-03-24T19:45:00+00:00,48211,F. Aliti,260,FC Zürich,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,zurich,0,0,true,false,false,false,false,false,false
 673221,2021-03-24T19:45:00+00:00,50048,V. Muriqi,398,Lazio,PBK16_EXACT_ALIAS_UNIQUE,487,Lazio,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,lazio,1,0,true,false,false,false,false,false,false
+673221,2021-03-24T19:45:00+00:00,53655,F. Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
+673221,2021-03-24T19:45:00+00:00,69948,T. Švedkauskas,5026,Lommel SK,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,lommel sk,0,0,true,false,false,false,false,false,false
 673221,2021-03-24T19:45:00+00:00,8586,M. Vojvoda,416,Torino,PBK16_EXACT_ALIAS_UNIQUE,503,Torino,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,torino,1,0,true,false,false,false,false,false,false
 683978,2021-03-25T10:20:00+00:00,1101,T. Minamino,180,Southampton,PBK16_EXACT_ALIAS_UNIQUE,41,Southampton,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,southampton,1,0,true,false,false,false,false,false,false
 683978,2021-03-25T10:20:00+00:00,1942,J. Ito,1184,Genk,PBK16_EXACT_ALIAS_UNIQUE,742,Genk,144,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,genk,1,0,true,false,false,false,false,false,false
@@ -6124,10 +6191,13 @@
 650947,2021-03-28T18:45:00+00:00,1631,Ricardo Rodríguez,416,Torino,PBK16_EXACT_ALIAS_UNIQUE,503,Torino,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,torino,1,0,true,false,false,false,false,false,false
 650947,2021-03-28T18:45:00+00:00,2802,Yann Sommer,18,Mönchengladbach,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,monchengladbach,0,0,true,false,false,false,false,false,false
 650947,2021-03-28T18:45:00+00:00,2810,Denis Zakaria,18,Mönchengladbach,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,monchengladbach,0,0,true,false,false,false,false,false,false
+650947,2021-03-28T18:45:00+00:00,44850,Vykintas Slivka,441,Apollon Smyrni,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,apollon smyrni,0,0,true,false,false,false,false,false,false
 650947,2021-03-28T18:45:00+00:00,48372,Eray Cömert,26,Basel,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,basel,0,0,true,false,false,false,false,false,false
 650947,2021-03-28T18:45:00+00:00,48378,Silvan Widmer,26,Basel,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,basel,0,0,true,false,false,false,false,false,false
 650947,2021-03-28T18:45:00+00:00,48471,Ruben Vargas,167,Augsburg,PBK16_EXACT_ALIAS_UNIQUE,170,FC Augsburg,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,augsburg,1,0,true,false,false,false,false,false,false
 650947,2021-03-28T18:45:00+00:00,5,Manuel Akanji,16,Dortmund,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,dortmund,0,0,true,false,false,false,false,false,false
+650947,2021-03-28T18:45:00+00:00,53655,Fedor Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
+650947,2021-03-28T18:45:00+00:00,69948,Tomas Švedkauskas,5026,Lommel SK,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,lommel sk,0,0,true,false,false,false,false,false,false
 650947,2021-03-28T18:45:00+00:00,957,Djibril Sow,24,Frankfurt,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,frankfurt,0,0,true,false,false,false,false,false,false
 650948,2021-03-28T18:45:00+00:00,1938,Ruslan Malinovskyi,800,Atalanta,PBK16_EXACT_ALIAS_UNIQUE,499,Atalanta,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,atalanta,1,0,true,false,false,false,false,false,false
 650948,2021-03-28T18:45:00+00:00,2165,Vitaliy Mykolenko,338,Dynamo Kyiv,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,dynamo kyiv,0,0,true,false,false,false,false,false,false
@@ -6368,6 +6438,10 @@
 650968,2021-03-31T18:45:00+00:00,30410,Federico Chiesa,506,Juventus,PBK16_EXACT_ALIAS_UNIQUE,496,Juventus,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,juventus,1,0,true,false,false,false,false,false,false
 650968,2021-03-31T18:45:00+00:00,30436,Matteo Pessina,800,Atalanta,PBK16_EXACT_ALIAS_UNIQUE,499,Atalanta,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,atalanta,1,0,true,false,false,false,false,false,false
 650968,2021-03-31T18:45:00+00:00,30533,Manuel Locatelli,6574,Sassuolo,PBK16_EXACT_ALIAS_UNIQUE,488,Sassuolo,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,sassuolo,1,0,true,false,false,false,false,false,false
+650968,2021-03-31T18:45:00+00:00,44850,Vykintas Slivka,441,Apollon Smyrni,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,apollon smyrni,0,0,true,false,false,false,false,false,false
+650968,2021-03-31T18:45:00+00:00,53655,Fedor Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
+650968,2021-03-31T18:45:00+00:00,69948,Tomas Švedkauskas,5026,Lommel SK,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,lommel sk,0,0,true,false,false,false,false,false,false
+650968,2021-03-31T18:45:00+00:00,70340,Edvinas Girdvainis,95,KFC Uerdingen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kfc uerdingen,0,0,true,false,false,false,false,false,false
 650968,2021-03-31T18:45:00+00:00,791,Stephan El Shaarawy,12,Roma,PBK16_EXACT_ALIAS_UNIQUE,497,AS Roma,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,as roma,1,0,true,false,false,false,false,false,false
 650968,2021-03-31T18:45:00+00:00,862,Leonardo Spinazzola,12,Roma,PBK16_EXACT_ALIAS_UNIQUE,497,AS Roma,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,as roma,1,0,true,false,false,false,false,false,false
 650968,2021-03-31T18:45:00+00:00,873,Federico Bernardeschi,506,Juventus,PBK16_EXACT_ALIAS_UNIQUE,496,Juventus,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,juventus,1,0,true,false,false,false,false,false,false
@@ -6520,7 +6594,10 @@
 700412,2021-06-01T16:00:00+00:00,8586,M. Vojvoda,416,Torino,PBK16_EXACT_ALIAS_UNIQUE,503,Torino,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,torino,1,0,true,false,false,false,false,false,false
 714975,2021-06-01T16:00:00+00:00,126756,M. Soomets,1002,FC Flora,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,flora,0,0,true,false,false,false,false,false,false
 714975,2021-06-01T16:00:00+00:00,169295,K. Hein,9249,Arsenal U23,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,arsenal u23,0,0,true,false,false,false,false,false,false
+714975,2021-06-01T16:00:00+00:00,53655,F. Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
 714975,2021-06-01T16:00:00+00:00,60353,M. Paskotši,6928,Spurs U18,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,spurs u18,0,0,true,false,false,false,false,false,false
+714975,2021-06-01T16:00:00+00:00,69948,T. Švedkauskas,5026,Lommel SK,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,lommel sk,0,0,true,false,false,false,false,false,false
+714975,2021-06-01T16:00:00+00:00,70340,E. Girdvainis,95,KFC Uerdingen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kfc uerdingen,0,0,true,false,false,false,false,false,false
 697992,2021-06-01T18:45:00+00:00,119762,K. Piątkowski,9644,Raków,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,rakow,0,0,true,false,false,false,false,false,false
 697992,2021-06-01T18:45:00+00:00,2068,M. Safonov,16704,Krasnodar,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,krasnodar,0,0,true,false,false,false,false,false,false
 697992,2021-06-01T18:45:00+00:00,2385,K. Świderski,1091,PAOK,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,paok,0,0,true,false,false,false,false,false,false
@@ -6735,10 +6812,13 @@
 705522,2021-06-04T16:00:00+00:00,1358,E. Elmas,6195,Napoli,PBK16_EXACT_ALIAS_UNIQUE,492,Napoli,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,napoli,1,0,true,false,false,false,false,false,false
 705522,2021-06-04T16:00:00+00:00,47527,S. Dimitrievski,367,Rayo Vallecano,PBK16_EXACT_ALIAS_UNIQUE,728,Rayo Vallecano,140,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,rayo vallecano,1,0,true,false,false,false,false,false,false
 714976,2021-06-04T16:00:00+00:00,18380,R. Matrevics,5084,Valmiera,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,valmiera,0,0,true,false,false,false,false,false,false
+714976,2021-06-04T16:00:00+00:00,53655,F. Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
 714976,2021-06-04T16:00:00+00:00,55902,P. Golubickas,30739,DFK Dainava,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,dfk dainava,0,0,true,false,false,false,false,false,false
 714976,2021-06-04T16:00:00+00:00,56029,R. Ozols,48325,Riga,PBK16_EXACT_ALIAS_UNIQUE,10124,Riga,365,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,riga,1,0,true,false,false,false,false,false,false
 714976,2021-06-04T16:00:00+00:00,56041,R. Savaļnieks,33783,RFS,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,rfs,0,0,true,false,false,false,false,false,false
+714976,2021-06-04T16:00:00+00:00,69948,T. Švedkauskas,5026,Lommel SK,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,lommel sk,0,0,true,false,false,false,false,false,false
 714976,2021-06-04T16:00:00+00:00,70000,K. Zviedris,43162,Liepaja,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,liepaja,0,0,true,false,false,false,false,false,false
+714976,2021-06-04T16:00:00+00:00,70340,E. Girdvainis,95,KFC Uerdingen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kfc uerdingen,0,0,true,false,false,false,false,false,false
 714976,2021-06-04T16:00:00+00:00,70397,R. Jurkovskis,6066,Dundalk FC,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,dundalk,0,0,true,false,false,false,false,false,false
 714976,2021-06-04T16:00:00+00:00,72421,A. Jaunzems,5084,Valmiera,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,valmiera,0,0,true,false,false,false,false,false,false
 672829,2021-06-04T17:30:00+00:00,130,Nélson Semedo,543,Wolves,PBK16_EXACT_ALIAS_UNIQUE,39,Wolves,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,wolverhampton,1,0,true,false,false,false,false,false,false
@@ -7042,7 +7122,10 @@
 705138,2021-06-08T18:45:00+00:00,46982,Gonzalo Villar,12,Roma,PBK16_EXACT_ALIAS_UNIQUE,497,AS Roma,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,as roma,1,0,true,false,false,false,false,false,false
 705138,2021-06-08T18:45:00+00:00,46988,Josep Martínez,23826,Leipzig,PBK16_EXACT_ALIAS_UNIQUE,173,RB Leipzig,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,rb leipzig,1,0,true,false,false,false,false,false,false
 705138,2021-06-08T18:45:00+00:00,47315,Martín Zubimendi,681,Real Sociedad,PBK16_EXACT_ALIAS_UNIQUE,548,Real Sociedad,140,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,real sociedad,1,0,true,false,false,false,false,false,false
+705138,2021-06-08T18:45:00+00:00,53655,F. Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
 705138,2021-06-08T18:45:00+00:00,55902,P. Golubickas,30739,DFK Dainava,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,dfk dainava,0,0,true,false,false,false,false,false,false
+705138,2021-06-08T18:45:00+00:00,69948,T. Švedkauskas,5026,Lommel SK,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,lommel sk,0,0,true,false,false,false,false,false,false
+705138,2021-06-08T18:45:00+00:00,70340,E. Girdvainis,95,KFC Uerdingen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kfc uerdingen,0,0,true,false,false,false,false,false,false
 705138,2021-06-08T18:45:00+00:00,744,Brahim Díaz,5,AC Milan,PBK16_EXACT_ALIAS_UNIQUE,489,AC Milan,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,milan,1,0,true,false,false,false,false,false,false
 705137,2021-06-08T19:00:00+00:00,213,K. Baldé,1038,Sampdoria,PBK16_EXACT_ALIAS_UNIQUE,498,Sampdoria,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,sampdoria,1,0,true,false,false,false,false,false,false
 705137,2021-06-08T19:00:00+00:00,22015,B. Dia,1421,Stade Reims,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,stade reims,0,0,true,false,false,false,false,false,false
@@ -7297,6 +7380,8 @@
 650995,2021-09-02T18:45:00+00:00,873,Federico Bernardeschi,506,Juventus,PBK16_EXACT_ALIAS_UNIQUE,496,Juventus,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,juventus,1,0,true,false,false,false,false,false,false
 650996,2021-09-02T18:45:00+00:00,19242,Paddy McNair,641,Middlesbrough,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,middlesbrough,0,0,true,false,false,false,false,false,false
 650996,2021-09-02T18:45:00+00:00,44914,Liam Donnelly,987,Motherwell FC,PBK16_EXACT_ALIAS_UNIQUE,256,Motherwell,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,motherwell,1,0,true,false,false,false,false,false,false
+650996,2021-09-02T18:45:00+00:00,53655,Fedor Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
+650996,2021-09-02T18:45:00+00:00,69890,Dominykas Barauskas,32832,Riteriai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,riteriai,0,0,true,false,false,false,false,false,false
 650997,2021-09-02T18:45:00+00:00,1231,Vladimír Coufal,379,West Ham,PBK16_EXACT_ALIAS_UNIQUE,48,West Ham,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,west ham,1,0,true,false,false,false,false,false,false
 650997,2021-09-02T18:45:00+00:00,1234,Alex Král,379,West Ham,PBK16_EXACT_ALIAS_UNIQUE,48,West Ham,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,west ham,1,0,true,false,false,false,false,false,false
 650997,2021-09-02T18:45:00+00:00,66019,Adam Hložek,197,Sparta Prague,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sparta prague,0,0,true,false,false,false,false,false,false
@@ -7554,6 +7639,9 @@
 781082,2021-09-05T13:00:00+00:00,48203,J. Larsson,232,Spartak Moscow,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,spartak moscow,0,0,true,false,false,false,false,false,false
 781082,2021-09-05T13:00:00+00:00,53535,E. Shomurodov,12,Roma,PBK16_EXACT_ALIAS_UNIQUE,497,AS Roma,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,as roma,1,0,true,false,false,false,false,false,false
 781082,2021-09-05T13:00:00+00:00,889,V. Lindelöf,985,Man Utd,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,man utd,0,0,true,false,false,false,false,false,false
+651019,2021-09-05T16:00:00+00:00,44850,Vykintas Slivka,441,Apollon Smyrni,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,apollon smyrni,0,0,true,false,false,false,false,false,false
+651019,2021-09-05T16:00:00+00:00,53655,Fedor Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
+651019,2021-09-05T16:00:00+00:00,69890,Dominykas Barauskas,32832,Riteriai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,riteriai,0,0,true,false,false,false,false,false,false
 651020,2021-09-05T16:00:00+00:00,1096,Dominik Szoboszlai,23826,Leipzig,PBK16_EXACT_ALIAS_UNIQUE,173,RB Leipzig,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,rb leipzig,1,0,true,false,false,false,false,false,false
 651020,2021-09-05T16:00:00+00:00,14329,Ardian Ismajli,749,FC Empoli,PBK16_EXACT_ALIAS_UNIQUE,511,Empoli,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,empoli,1,0,true,false,false,false,false,false,false
 651020,2021-09-05T16:00:00+00:00,15673,Ylber Ramadani,634,MTK Budapest,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,mtk budapest,0,0,true,false,false,false,false,false,false
@@ -7901,6 +7989,8 @@
 651046,2021-09-08T18:45:00+00:00,30533,Manuel Locatelli,506,Juventus,PBK16_EXACT_ALIAS_UNIQUE,496,Juventus,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,juventus,1,0,true,false,false,false,false,false,false
 651046,2021-09-08T18:45:00+00:00,30543,Giacomo Raspadori,6574,Sassuolo,PBK16_EXACT_ALIAS_UNIQUE,488,Sassuolo,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,sassuolo,1,0,true,false,false,false,false,false,false
 651046,2021-09-08T18:45:00+00:00,30544,Gianluca Scamacca,6574,Sassuolo,PBK16_EXACT_ALIAS_UNIQUE,488,Sassuolo,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,sassuolo,1,0,true,false,false,false,false,false,false
+651046,2021-09-08T18:45:00+00:00,44850,Vykintas Slivka,441,Apollon Smyrni,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,apollon smyrni,0,0,true,false,false,false,false,false,false
+651046,2021-09-08T18:45:00+00:00,69890,Dominykas Barauskas,32832,Riteriai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,riteriai,0,0,true,false,false,false,false,false,false
 651046,2021-09-08T18:45:00+00:00,873,Federico Bernardeschi,506,Juventus,PBK16_EXACT_ALIAS_UNIQUE,496,Juventus,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,juventus,1,0,true,false,false,false,false,false,false
 651046,2021-09-08T18:45:00+00:00,877,Moise Kean,506,Juventus,PBK16_EXACT_ALIAS_UNIQUE,496,Juventus,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,juventus,1,0,true,false,false,false,false,false,false
 651047,2021-09-08T18:45:00+00:00,1142,Yvon Mvogo,383,PSV,PBK16_EXACT_ALIAS_UNIQUE,197,PSV Eindhoven,88,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,psv eindhoven,1,0,true,false,false,false,false,false,false
@@ -8205,6 +8295,10 @@
 651065,2021-10-08T18:45:00+00:00,109564,Bojan Miovski,634,MTK Budapest,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,mtk budapest,0,0,true,false,false,false,false,false,false
 651065,2021-10-08T18:45:00+00:00,1358,Eljif Elmas,6195,Napoli,PBK16_EXACT_ALIAS_UNIQUE,492,Napoli,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,napoli,1,0,true,false,false,false,false,false,false
 651065,2021-10-08T18:45:00+00:00,47527,Stole Dimitrievski,367,Rayo Vallecano,PBK16_EXACT_ALIAS_UNIQUE,728,Rayo Vallecano,140,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,rayo vallecano,1,0,true,false,false,false,false,false,false
+651066,2021-10-09T13:00:00+00:00,44850,Vykintas Slivka,441,Apollon Smyrni,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,apollon smyrni,0,0,true,false,false,false,false,false,false
+651066,2021-10-09T13:00:00+00:00,53655,Fedor Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
+651066,2021-10-09T13:00:00+00:00,69890,Dominykas Barauskas,32832,Riteriai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,riteriai,0,0,true,false,false,false,false,false,false
+651066,2021-10-09T13:00:00+00:00,70340,Edvinas Girdvainis,40090,Kauno Zalgiris,PBK16_EXACT_ALIAS_UNIQUE,3872,Kauno Žalgiris,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,kauno zalgiris,1,0,true,false,false,false,false,false,false
 651067,2021-10-09T13:00:00+00:00,1442,Sead Kolašinac,11,Arsenal,PBK16_EXACT_ALIAS_UNIQUE,42,Arsenal,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,arsenal,1,0,true,false,false,false,false,false,false
 651067,2021-10-09T13:00:00+00:00,46930,Ermedin Demirović,60,Freiburg,PBK16_EXACT_ALIAS_UNIQUE,160,SC Freiburg,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,freiburg,1,0,true,false,false,false,false,false,false
 651067,2021-10-09T13:00:00+00:00,50006,Amir Hadžiahmetović,2293,Konyaspor,PBK16_EXACT_ALIAS_UNIQUE,607,Konyaspor,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,konyaspor,1,0,true,false,false,false,false,false,false
@@ -8604,9 +8698,13 @@
 651096,2021-10-12T18:45:00+00:00,19242,Paddy McNair,641,Middlesbrough,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,middlesbrough,0,0,true,false,false,false,false,false,false
 651097,2021-10-12T18:45:00+00:00,1631,Ricardo Rodríguez,416,Torino,PBK16_EXACT_ALIAS_UNIQUE,503,Torino,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,torino,1,0,true,false,false,false,false,false,false
 651097,2021-10-12T18:45:00+00:00,2802,Yann Sommer,18,Mönchengladbach,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,monchengladbach,0,0,true,false,false,false,false,false,false
+651097,2021-10-12T18:45:00+00:00,44850,Vykintas Slivka,441,Apollon Smyrni,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,apollon smyrni,0,0,true,false,false,false,false,false,false
 651097,2021-10-12T18:45:00+00:00,48372,Eray Cömert,26,Basel,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,basel,0,0,true,false,false,false,false,false,false
 651097,2021-10-12T18:45:00+00:00,48471,Ruben Vargas,167,Augsburg,PBK16_EXACT_ALIAS_UNIQUE,170,FC Augsburg,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,augsburg,1,0,true,false,false,false,false,false,false
 651097,2021-10-12T18:45:00+00:00,48497,Cédric Itten,65,Greuther Fürth,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,greuther furth,0,0,true,false,false,false,false,false,false
+651097,2021-10-12T18:45:00+00:00,53655,Fedor Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
+651097,2021-10-12T18:45:00+00:00,69890,Dominykas Barauskas,32832,Riteriai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,riteriai,0,0,true,false,false,false,false,false,false
+651097,2021-10-12T18:45:00+00:00,70340,Edvinas Girdvainis,40090,Kauno Zalgiris,PBK16_EXACT_ALIAS_UNIQUE,3872,Kauno Žalgiris,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,kauno zalgiris,1,0,true,false,false,false,false,false,false
 651097,2021-10-12T18:45:00+00:00,943,Ulisses Garcia,452,Young Boys,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,young boys,0,0,true,false,false,false,false,false,false
 651097,2021-10-12T18:45:00+00:00,951,Michel Aebischer,452,Young Boys,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,young boys,0,0,true,false,false,false,false,false,false
 651097,2021-10-12T18:45:00+00:00,957,Djibril Sow,24,Frankfurt,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,frankfurt,0,0,true,false,false,false,false,false,false
@@ -8879,6 +8977,8 @@
 651115,2021-11-12T19:45:00+00:00,951,Michel Aebischer,452,Young Boys,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,young boys,0,0,true,false,false,false,false,false,false
 651115,2021-11-12T19:45:00+00:00,957,Djibril Sow,24,Frankfurt,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,frankfurt,0,0,true,false,false,false,false,false,false
 651116,2021-11-12T19:45:00+00:00,19242,Paddy McNair,641,Middlesbrough,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,middlesbrough,0,0,true,false,false,false,false,false,false
+651116,2021-11-12T19:45:00+00:00,53655,Fedor Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
+651116,2021-11-12T19:45:00+00:00,69890,Dominykas Barauskas,32832,Riteriai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,riteriai,0,0,true,false,false,false,false,false,false
 651116,2021-11-12T19:45:00+00:00,69898,Giedrius Matulevicius,8047,Suduva,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,suduva,0,0,true,false,false,false,false,false,false
 651117,2021-11-12T19:45:00+00:00,1159,Marcel Sabitzer,27,Bayern Munich,PBK16_EXACT_ALIAS_UNIQUE,157,Bayern München,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,bayern munchen,1,0,true,false,false,false,false,false,false
 651117,2021-11-12T19:45:00+00:00,119139,Ercan Kara,170,Rapid Vienna,PBK16_EXACT_ALIAS_UNIQUE,781,Rapid Vienna,218,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,rapid vienna,1,0,true,false,false,false,false,false,false
@@ -9149,6 +9249,8 @@
 804756,2021-11-15T14:00:00+00:00,24669,G. Giorbelidze,129,Dynamo Dresden,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,dynamo dresden,0,0,true,false,false,false,false,false,false
 804756,2021-11-15T14:00:00+00:00,483,K. Kvaratskhelia,2698,Rubin Kazan,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,rubin kazan,0,0,true,false,false,false,false,false,false
 804756,2021-11-15T14:00:00+00:00,53535,E. Shomurodov,12,Roma,PBK16_EXACT_ALIAS_UNIQUE,497,AS Roma,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,as roma,1,0,true,false,false,false,false,false,false
+804757,2021-11-15T17:00:00+00:00,53655,F. Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
+804757,2021-11-15T17:00:00+00:00,69890,D. Barauskas,32832,Riteriai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,riteriai,0,0,true,false,false,false,false,false,false
 651140,2021-11-15T19:45:00+00:00,1622,Gianluigi Donnarumma,583,PSG,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,psg,0,0,true,false,false,false,false,false,false
 651140,2021-11-15T19:45:00+00:00,30410,Federico Chiesa,506,Juventus,PBK16_EXACT_ALIAS_UNIQUE,496,Juventus,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,juventus,1,0,true,false,false,false,false,false,false
 651140,2021-11-15T19:45:00+00:00,30436,Matteo Pessina,800,Atalanta,PBK16_EXACT_ALIAS_UNIQUE,499,Atalanta,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,atalanta,1,0,true,false,false,false,false,false,false
@@ -9913,8 +10015,11 @@
 854630,2022-06-04T16:00:00+00:00,963,Lukáš Hrádecký,15,Leverkusen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,leverkusen,0,0,true,false,false,false,false,false,false
 854679,2022-06-04T16:00:00+00:00,140612,Mathias Olesen,3,1.FC Köln,PBK16_EXACT_ALIAS_UNIQUE,192,1. FC Köln,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,1 koln,1,0,true,false,false,false,false,false,false
 854679,2022-06-04T16:00:00+00:00,25918,Leandro Barreiro,39,Mainz,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,mainz,0,0,true,false,false,false,false,false,false
+854679,2022-06-04T16:00:00+00:00,44850,Vykintas Slivka,441,Apollon Smyrni,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,apollon smyrni,0,0,true,false,false,false,false,false,false
 854679,2022-06-04T16:00:00+00:00,55902,Paulius Golubickas,24575,HNK Gorica,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hnk gorica,0,0,true,false,false,false,false,false,false
+854679,2022-06-04T16:00:00+00:00,69890,Dominykas Barauskas,32832,Riteriai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,riteriai,0,0,true,false,false,false,false,false,false
 854679,2022-06-04T16:00:00+00:00,69898,Giedrius Matulevicius,8047,Suduva,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,suduva,0,0,true,false,false,false,false,false,false
+854679,2022-06-04T16:00:00+00:00,70340,Edvinas Girdvainis,40090,Kauno Zalgiris,PBK16_EXACT_ALIAS_UNIQUE,3872,Kauno Žalgiris,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,kauno zalgiris,1,0,true,false,false,false,false,false,false
 854679,2022-06-04T16:00:00+00:00,70363,Marvin Martins,14,Austria Vienna,PBK16_EXACT_ALIAS_UNIQUE,601,Austria Vienna,218,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,austria vienna,1,0,true,false,false,false,false,false,false
 859126,2022-06-04T16:00:00+00:00,303493,N. Miroshi,10763,B TLV Bat Yam,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,b tlv bat yam,0,0,true,false,false,false,false,false,false
 859128,2022-06-04T16:00:00+00:00,198465,J. Gomez,2414,AC Horsens,PBK16_EXACT_ALIAS_UNIQUE,404,AC Horsens,119,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,horsens,1,0,true,false,false,false,false,false,false
@@ -10235,12 +10340,16 @@
 854688,2022-06-07T18:45:00+00:00,26300,Ozan Kabak,1123,Norwich,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,norwich,0,0,true,false,false,false,false,false,false
 854688,2022-06-07T18:45:00+00:00,37155,Orkun Kökçü,234,Feyenoord,PBK16_EXACT_ALIAS_UNIQUE,209,Feyenoord,88,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,feyenoord,1,0,true,false,false,false,false,false,false
 854688,2022-06-07T18:45:00+00:00,37440,Halil Dervişoğlu,141,Galatasaray,PBK16_EXACT_ALIAS_UNIQUE,645,Galatasaray,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,galatasaray,1,0,true,false,false,false,false,false,false
+854688,2022-06-07T18:45:00+00:00,44850,Vykintas Slivka,441,Apollon Smyrni,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,apollon smyrni,0,0,true,false,false,false,false,false,false
 854688,2022-06-07T18:45:00+00:00,454,Yunus Akgün,3840,Adana Demirspor,PBK16_EXACT_ALIAS_UNIQUE,3563,Adana Demirspor,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,adana demirspor,1,0,true,false,false,false,false,false,false
 854688,2022-06-07T18:45:00+00:00,49866,Uğurcan Çakır,449,Trabzonspor,PBK16_EXACT_ALIAS_UNIQUE,998,Trabzonspor,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,trabzonspor,1,0,true,false,false,false,false,false,false
 854688,2022-06-07T18:45:00+00:00,50104,Doğan Alemdar,273,Stade Rennais,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,stade rennais,0,0,true,false,false,false,false,false,false
 854688,2022-06-07T18:45:00+00:00,50132,Altay Bayındır,36,Fenerbahçe,PBK16_EXACT_ALIAS_UNIQUE,611,Fenerbahçe,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,fenerbahce,1,0,true,false,false,false,false,false,false
+854688,2022-06-07T18:45:00+00:00,53655,Fedor Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
 854688,2022-06-07T18:45:00+00:00,55902,Paulius Golubickas,24575,HNK Gorica,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hnk gorica,0,0,true,false,false,false,false,false,false
+854688,2022-06-07T18:45:00+00:00,69890,Dominykas Barauskas,32832,Riteriai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,riteriai,0,0,true,false,false,false,false,false,false
 854688,2022-06-07T18:45:00+00:00,69898,Giedrius Matulevicius,8047,Suduva,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,suduva,0,0,true,false,false,false,false,false,false
+854688,2022-06-07T18:45:00+00:00,70340,Edvinas Girdvainis,40090,Kauno Zalgiris,PBK16_EXACT_ALIAS_UNIQUE,3872,Kauno Žalgiris,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,kauno zalgiris,1,0,true,false,false,false,false,false,false
 854688,2022-06-07T18:45:00+00:00,72048,Cenk Özkaçar,2727,OH Leuven,PBK16_EXACT_ALIAS_UNIQUE,260,OH Leuven,144,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,oh leuven,1,0,true,false,false,false,false,false,false
 854688,2022-06-07T18:45:00+00:00,785,Cengiz Ünder,244,Marseille,PBK16_EXACT_ALIAS_UNIQUE,81,Marseille,61,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,marseille,1,0,true,false,false,false,false,false,false
 859162,2022-06-07T19:00:00+00:00,18592,I. Ndiaye,350,Sheff Utd,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sheff utd,0,0,true,false,false,false,false,false,false
@@ -10553,7 +10662,11 @@
 854646,2022-06-11T16:00:00+00:00,44937,Liam Kelly,987,Motherwell FC,PBK16_EXACT_ALIAS_UNIQUE,256,Motherwell,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,motherwell,1,0,true,false,false,false,false,false,false
 854646,2022-06-11T16:00:00+00:00,903,Scott McTominay,985,Man Utd,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,man utd,0,0,true,false,false,false,false,false,false
 854695,2022-06-11T16:00:00+00:00,125643,Titas Milašius,6361,Podbeskidzie,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,podbeskidzie,0,0,true,false,false,false,false,false,false
+854695,2022-06-11T16:00:00+00:00,44850,Vykintas Slivka,441,Apollon Smyrni,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,apollon smyrni,0,0,true,false,false,false,false,false,false
+854695,2022-06-11T16:00:00+00:00,53655,Fedor Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
 854695,2022-06-11T16:00:00+00:00,55902,Paulius Golubickas,24575,HNK Gorica,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hnk gorica,0,0,true,false,false,false,false,false,false
+854695,2022-06-11T16:00:00+00:00,69890,Dominykas Barauskas,32832,Riteriai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,riteriai,0,0,true,false,false,false,false,false,false
+854695,2022-06-11T16:00:00+00:00,70340,Edvinas Girdvainis,40090,Kauno Zalgiris,PBK16_EXACT_ALIAS_UNIQUE,3872,Kauno Žalgiris,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,kauno zalgiris,1,0,true,false,false,false,false,false,false
 854597,2022-06-11T18:45:00+00:00,15573,Kamil Grabara,190,Copenhagen,PBK16_EXACT_ALIAS_UNIQUE,400,FC Copenhagen,119,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,fc copenhagen,1,0,true,false,false,false,false,false,false
 854597,2022-06-11T18:45:00+00:00,19497,Bruno Martins Indi,1090,AZ Alkmaar,PBK16_EXACT_ALIAS_UNIQUE,201,AZ Alkmaar,88,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,az alkmaar,1,0,true,false,false,false,false,false,false
 854597,2022-06-11T18:45:00+00:00,203474,Nicola Zalewski,12,Roma,PBK16_EXACT_ALIAS_UNIQUE,497,AS Roma,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,as roma,1,0,true,false,false,false,false,false,false
@@ -10971,12 +11084,16 @@
 854704,2022-06-14T18:45:00+00:00,26300,Ozan Kabak,1123,Norwich,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,norwich,0,0,true,false,false,false,false,false,false
 854704,2022-06-14T18:45:00+00:00,264627,Berkan Kutlu,141,Galatasaray,PBK16_EXACT_ALIAS_UNIQUE,645,Galatasaray,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,galatasaray,1,0,true,false,false,false,false,false,false
 854704,2022-06-14T18:45:00+00:00,37440,Halil Dervişoğlu,141,Galatasaray,PBK16_EXACT_ALIAS_UNIQUE,645,Galatasaray,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,galatasaray,1,0,true,false,false,false,false,false,false
+854704,2022-06-14T18:45:00+00:00,44850,Vykintas Slivka,441,Apollon Smyrni,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,apollon smyrni,0,0,true,false,false,false,false,false,false
 854704,2022-06-14T18:45:00+00:00,454,Yunus Akgün,3840,Adana Demirspor,PBK16_EXACT_ALIAS_UNIQUE,3563,Adana Demirspor,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,adana demirspor,1,0,true,false,false,false,false,false,false
 854704,2022-06-14T18:45:00+00:00,49866,Uğurcan Çakır,449,Trabzonspor,PBK16_EXACT_ALIAS_UNIQUE,998,Trabzonspor,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,trabzonspor,1,0,true,false,false,false,false,false,false
 854704,2022-06-14T18:45:00+00:00,50104,Doğan Alemdar,273,Stade Rennais,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,stade rennais,0,0,true,false,false,false,false,false,false
 854704,2022-06-14T18:45:00+00:00,50132,Altay Bayındır,36,Fenerbahçe,PBK16_EXACT_ALIAS_UNIQUE,611,Fenerbahçe,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,fenerbahce,1,0,true,false,false,false,false,false,false
+854704,2022-06-14T18:45:00+00:00,53655,Fedor Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
 854704,2022-06-14T18:45:00+00:00,55902,Paulius Golubickas,24575,HNK Gorica,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hnk gorica,0,0,true,false,false,false,false,false,false
+854704,2022-06-14T18:45:00+00:00,69890,Dominykas Barauskas,32832,Riteriai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,riteriai,0,0,true,false,false,false,false,false,false
 854704,2022-06-14T18:45:00+00:00,69898,Giedrius Matulevicius,8047,Suduva,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,suduva,0,0,true,false,false,false,false,false,false
+854704,2022-06-14T18:45:00+00:00,70340,Edvinas Girdvainis,40090,Kauno Zalgiris,PBK16_EXACT_ALIAS_UNIQUE,3872,Kauno Žalgiris,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,kauno zalgiris,1,0,true,false,false,false,false,false,false
 854704,2022-06-14T18:45:00+00:00,72048,Cenk Özkaçar,2727,OH Leuven,PBK16_EXACT_ALIAS_UNIQUE,260,OH Leuven,144,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,oh leuven,1,0,true,false,false,false,false,false,false
 854704,2022-06-14T18:45:00+00:00,785,Cengiz Ünder,244,Marseille,PBK16_EXACT_ALIAS_UNIQUE,81,Marseille,61,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,marseille,1,0,true,false,false,false,false,false,false
 854731,2022-06-14T18:45:00+00:00,18380,Rihards Matrevics,5084,Valmiera,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,valmiera,0,0,true,false,false,false,false,false,false
@@ -11088,7 +11205,11 @@
 854612,2022-09-22T18:45:00+00:00,851,Wojciech Szczęsny,506,Juventus,PBK16_EXACT_ALIAS_UNIQUE,496,Juventus,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,juventus,1,0,true,false,false,false,false,false,false
 854612,2022-09-22T18:45:00+00:00,97,Kamil Glik,4171,Benevento,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,benevento,0,0,true,false,false,false,false,false,false
 854706,2022-09-22T18:45:00+00:00,125643,Titas Milašius,6361,Podbeskidzie,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,podbeskidzie,0,0,true,false,false,false,false,false,false
+854706,2022-09-22T18:45:00+00:00,44850,Vykintas Slivka,3999,PAS Lamia,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pas lamia,0,0,true,false,false,false,false,false,false
+854706,2022-09-22T18:45:00+00:00,53655,Fedor Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
 854706,2022-09-22T18:45:00+00:00,55902,Paulius Golubickas,24575,HNK Gorica,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hnk gorica,0,0,true,false,false,false,false,false,false
+854706,2022-09-22T18:45:00+00:00,69890,Dominykas Barauskas,22431,Stal Mielec,PBK16_EXACT_ALIAS_UNIQUE,3493,Stal Mielec,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,stal mielec,1,0,true,false,false,false,false,false,false
+854706,2022-09-22T18:45:00+00:00,70340,Edvinas Girdvainis,40090,Kauno Zalgiris,PBK16_EXACT_ALIAS_UNIQUE,3872,Kauno Žalgiris,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,kauno zalgiris,1,0,true,false,false,false,false,false,false
 854707,2022-09-22T18:45:00+00:00,1361,Ferdi Kadıoğlu,36,Fenerbahçe,PBK16_EXACT_ALIAS_UNIQUE,611,Fenerbahçe,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,fenerbahce,1,0,true,false,false,false,false,false,false
 854707,2022-09-22T18:45:00+00:00,142959,Kerem Aktürkoğlu,141,Galatasaray,PBK16_EXACT_ALIAS_UNIQUE,645,Galatasaray,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,galatasaray,1,0,true,false,false,false,false,false,false
 854707,2022-09-22T18:45:00+00:00,18776,Çağlar Söyüncü,1003,Leicester,PBK16_EXACT_ALIAS_UNIQUE,46,Leicester,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,leicester,1,0,true,false,false,false,false,false,false
@@ -11397,7 +11518,11 @@
 854716,2022-09-25T18:45:00+00:00,125643,Titas Milašius,6361,Podbeskidzie,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,podbeskidzie,0,0,true,false,false,false,false,false,false
 854716,2022-09-25T18:45:00+00:00,20522,Laurent Jans,85,W. Mannheim,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,w mannheim,0,0,true,false,false,false,false,false,false
 854716,2022-09-25T18:45:00+00:00,25918,Leandro Barreiro,39,Mainz,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,mainz,0,0,true,false,false,false,false,false,false
+854716,2022-09-25T18:45:00+00:00,44850,Vykintas Slivka,3999,PAS Lamia,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pas lamia,0,0,true,false,false,false,false,false,false
+854716,2022-09-25T18:45:00+00:00,53655,Fedor Černych,2300,Jagiellonia,PBK16_EXACT_ALIAS_UNIQUE,336,Jagiellonia,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,jagiellonia,1,0,true,false,false,false,false,false,false
 854716,2022-09-25T18:45:00+00:00,55902,Paulius Golubickas,24575,HNK Gorica,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hnk gorica,0,0,true,false,false,false,false,false,false
+854716,2022-09-25T18:45:00+00:00,69890,Dominykas Barauskas,22431,Stal Mielec,PBK16_EXACT_ALIAS_UNIQUE,3493,Stal Mielec,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,stal mielec,1,0,true,false,false,false,false,false,false
+854716,2022-09-25T18:45:00+00:00,70340,Edvinas Girdvainis,40090,Kauno Zalgiris,PBK16_EXACT_ALIAS_UNIQUE,3872,Kauno Žalgiris,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,kauno zalgiris,1,0,true,false,false,false,false,false,false
 854716,2022-09-25T18:45:00+00:00,70363,Marvin Martins,14,Austria Vienna,PBK16_EXACT_ALIAS_UNIQUE,601,Austria Vienna,218,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,austria vienna,1,0,true,false,false,false,false,false,false
 854621,2022-09-26T18:45:00+00:00,127,Marc-André ter Stegen,131,Barcelona,PBK16_EXACT_ALIAS_UNIQUE,529,Barcelona,140,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,barcelona,1,0,true,false,false,false,false,false,false
 854621,2022-09-26T18:45:00+00:00,129718,Jude Bellingham,16,Dortmund,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,dortmund,0,0,true,false,false,false,false,false,false
@@ -11910,11 +12035,14 @@
 980471,2023-03-24T19:45:00+00:00,2817,Nikola Milenković,430,Fiorentina,PBK16_EXACT_ALIAS_UNIQUE,502,Fiorentina,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,fiorentina,1,0,true,false,false,false,false,false,false
 980471,2023-03-24T19:45:00+00:00,30415,Dušan Vlahović,506,Juventus,PBK16_EXACT_ALIAS_UNIQUE,496,Juventus,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,juventus,1,0,true,false,false,false,false,false,false
 980471,2023-03-24T19:45:00+00:00,31156,Vanja Milinković-Savić,416,Torino,PBK16_EXACT_ALIAS_UNIQUE,503,Torino,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,torino,1,0,true,false,false,false,false,false,false
+980471,2023-03-24T19:45:00+00:00,44850,Vykintas Slivka,3999,PAS Lamia,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pas lamia,0,0,true,false,false,false,false,false,false
 980471,2023-03-24T19:45:00+00:00,45826,Strahinja Pavlović,409,Salzburg,PBK16_EXACT_ALIAS_UNIQUE,571,Red Bull Salzburg,218,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,red bull salzburg,1,0,true,false,false,false,false,false,false
 980471,2023-03-24T19:45:00+00:00,46170,Ivan Ilić,416,Torino,PBK16_EXACT_ALIAS_UNIQUE,503,Torino,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,torino,1,0,true,false,false,false,false,false,false
+980471,2023-03-24T19:45:00+00:00,53655,Fedor Černych,786,AEL Limassol,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,ael limassol,0,0,true,false,false,false,false,false,false
 980471,2023-03-24T19:45:00+00:00,554,Dušan Tadić,610,Ajax,PBK16_EXACT_ALIAS_UNIQUE,194,Ajax,88,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,ajax,1,0,true,false,false,false,false,false,false
 980471,2023-03-24T19:45:00+00:00,55902,Paulius Golubickas,602,Zalgiris,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,zalgiris,0,0,true,false,false,false,false,false,false
 980471,2023-03-24T19:45:00+00:00,70016,Klaudijus Upstas,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
+980471,2023-03-24T19:45:00+00:00,70340,Edvinas Girdvainis,40090,Kauno Zalgiris,PBK16_EXACT_ALIAS_UNIQUE,3872,Kauno Žalgiris,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,kauno zalgiris,1,0,true,false,false,false,false,false,false
 859167,2023-03-24T20:30:00+00:00,20589,B. Mbeumo,1148,Brentford,PBK16_EXACT_ALIAS_UNIQUE,55,Brentford,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,brentford,1,0,true,false,false,false,false,false,false
 859167,2023-03-24T20:30:00+00:00,85205,O. Kemen,3205,Kayserispor,PBK16_EXACT_ALIAS_UNIQUE,1001,Kayserispor,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,kayserispor,1,0,true,false,false,false,false,false,false
 859167,2023-03-24T20:30:00+00:00,87633,M. Bokele,40,G. Bordeaux,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,g bordeaux,0,0,true,false,false,false,false,false,false
@@ -12744,9 +12872,12 @@
 859225,2023-06-17T13:00:00+00:00,22842,J. Krasso,618,Saint-Étienne,PBK16_EXACT_ALIAS_UNIQUE,1063,Saint Etienne,61,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,saint etienne,1,0,true,false,false,false,false,false,false
 859225,2023-06-17T13:00:00+00:00,30504,W. Singo,416,Torino,PBK16_EXACT_ALIAS_UNIQUE,503,Torino,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,torino,1,0,true,false,false,false,false,false,false
 980514,2023-06-17T13:00:00+00:00,11116,Martin Minchev,197,Sparta Prague,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sparta prague,0,0,true,false,false,false,false,false,false
+980514,2023-06-17T13:00:00+00:00,128737,Rokas Lekiatas,42310,FA Siauliai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,fa siauliai,0,0,true,false,false,false,false,false,false
 980514,2023-06-17T13:00:00+00:00,129142,Ilia Gruev,86,Werder Bremen,PBK16_EXACT_ALIAS_UNIQUE,162,Werder Bremen,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,werder bremen,1,0,true,false,false,false,false,false,false
 980514,2023-06-17T13:00:00+00:00,200078,Hristiyan Petrov,208,CSKA-Sofia,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,cska sofia,0,0,true,false,false,false,false,false,false
+980514,2023-06-17T13:00:00+00:00,53655,Fedor Černych,786,AEL Limassol,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,ael limassol,0,0,true,false,false,false,false,false,false
 980514,2023-06-17T13:00:00+00:00,70016,Klaudijus Upstas,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
+980514,2023-06-17T13:00:00+00:00,70340,Edvinas Girdvainis,40090,Kauno Zalgiris,PBK16_EXACT_ALIAS_UNIQUE,3872,Kauno Žalgiris,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,kauno zalgiris,1,0,true,false,false,false,false,false,false
 980515,2023-06-17T13:00:00+00:00,140612,Mathias Olesen,3,1.FC Köln,PBK16_EXACT_ALIAS_UNIQUE,192,1. FC Köln,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,1 koln,1,0,true,false,false,false,false,false,false
 980515,2023-06-17T13:00:00+00:00,20522,Laurent Jans,85,W. Mannheim,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,w mannheim,0,0,true,false,false,false,false,false,false
 980515,2023-06-17T13:00:00+00:00,25918,Leandro Barreiro,39,Mainz,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,mainz,0,0,true,false,false,false,false,false,false
@@ -13218,12 +13349,15 @@
 980542,2023-06-20T18:45:00+00:00,8673,Olivier Deman,520,Cercle Brugge,PBK16_EXACT_ALIAS_UNIQUE,741,Cercle Brugge,144,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,cercle brugge,1,0,true,false,false,false,false,false,false
 980542,2023-06-20T18:45:00+00:00,907,Romelu Lukaku,46,Inter,PBK16_EXACT_ALIAS_UNIQUE,505,Inter,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,inter,1,0,true,false,false,false,false,false,false
 980543,2023-06-20T18:45:00+00:00,1096,Dominik Szoboszlai,23826,Leipzig,PBK16_EXACT_ALIAS_UNIQUE,173,RB Leipzig,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,rb leipzig,1,0,true,false,false,false,false,false,false
+980543,2023-06-20T18:45:00+00:00,128737,Rokas Lekiatas,42310,FA Siauliai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,fa siauliai,0,0,true,false,false,false,false,false,false
 980543,2023-06-20T18:45:00+00:00,206254,Miloš Kerkez,1090,AZ Alkmaar,PBK16_EXACT_ALIAS_UNIQUE,201,AZ Alkmaar,88,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,az alkmaar,1,0,true,false,false,false,false,false,false
 980543,2023-06-20T18:45:00+00:00,26252,Roland Sallai,60,Freiburg,PBK16_EXACT_ALIAS_UNIQUE,160,SC Freiburg,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,freiburg,1,0,true,false,false,false,false,false,false
+980543,2023-06-20T18:45:00+00:00,267996,Matijus Remeikis,49149,Panevezys,PBK16_EXACT_ALIAS_UNIQUE,3874,Panevėžys,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,panevezys,1,0,true,false,false,false,false,false,false
 980543,2023-06-20T18:45:00+00:00,27778,Bendegúz Bolla,504,Grasshoppers,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,grasshoppers,0,0,true,false,false,false,false,false,false
 980543,2023-06-20T18:45:00+00:00,28443,Attila Szalai,36,Fenerbahçe,PBK16_EXACT_ALIAS_UNIQUE,611,Fenerbahçe,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,fenerbahce,1,0,true,false,false,false,false,false,false
 980543,2023-06-20T18:45:00+00:00,324234,Gábor Szalai,12423,Kecskeméti TE,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kecskemeti te,0,0,true,false,false,false,false,false,false
 980543,2023-06-20T18:45:00+00:00,70016,Klaudijus Upstas,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
+980543,2023-06-20T18:45:00+00:00,70340,Edvinas Girdvainis,40090,Kauno Zalgiris,PBK16_EXACT_ALIAS_UNIQUE,3872,Kauno Žalgiris,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,kauno zalgiris,1,0,true,false,false,false,false,false,false
 980544,2023-06-20T18:45:00+00:00,11116,Martin Minchev,197,Sparta Prague,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sparta prague,0,0,true,false,false,false,false,false,false
 980544,2023-06-20T18:45:00+00:00,129142,Ilia Gruev,86,Werder Bremen,PBK16_EXACT_ALIAS_UNIQUE,162,Werder Bremen,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,werder bremen,1,0,true,false,false,false,false,false,false
 980544,2023-06-20T18:45:00+00:00,133391,Strahinja Eraković,159,Red Star,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,red star,0,0,true,false,false,false,false,false,false
@@ -13287,9 +13421,14 @@
 859244,2023-09-07T16:00:00+00:00,19281,A. Semenyo,989,Bournemouth,PBK16_EXACT_ALIAS_UNIQUE,35,Bournemouth,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,bournemouth,1,0,true,false,false,false,false,false,false
 859244,2023-09-07T16:00:00+00:00,196187,A. Seidu,3524,Clermont Foot,PBK16_EXACT_ALIAS_UNIQUE,99,Clermont Foot,61,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,clermont foot,1,0,true,false,false,false,false,false,false
 859244,2023-09-07T16:00:00+00:00,350856,E. Nuamah,1041,Lyon,PBK16_EXACT_ALIAS_UNIQUE,80,Lyon,61,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,lyon,1,0,true,false,false,false,false,false,false
+980554,2023-09-07T16:00:00+00:00,128737,Rokas Lekiatas,42310,FA Siauliai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,fa siauliai,0,0,true,false,false,false,false,false,false
+980554,2023-09-07T16:00:00+00:00,267996,Matijus Remeikis,49149,Panevezys,PBK16_EXACT_ALIAS_UNIQUE,3874,Panevėžys,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,panevezys,1,0,true,false,false,false,false,false,false
 980554,2023-09-07T16:00:00+00:00,39,Stefan Savić,13,Atlético,PBK16_EXACT_ALIAS_UNIQUE,530,Atletico Madrid,140,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,atletico madrid,1,0,true,false,false,false,false,false,false
+980554,2023-09-07T16:00:00+00:00,44850,Vykintas Slivka,3999,PAS Lamia,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pas lamia,0,0,true,false,false,false,false,false,false
+980554,2023-09-07T16:00:00+00:00,53655,Fedor Černych,786,AEL Limassol,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,ael limassol,0,0,true,false,false,false,false,false,false
 980554,2023-09-07T16:00:00+00:00,55902,Paulius Golubickas,602,Zalgiris,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,zalgiris,0,0,true,false,false,false,false,false,false
 980554,2023-09-07T16:00:00+00:00,66817,Nikola Krstović,1005,Lecce,PBK16_EXACT_ALIAS_UNIQUE,867,Lecce,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,lecce,1,0,true,false,false,false,false,false,false
+980554,2023-09-07T16:00:00+00:00,70340,Edvinas Girdvainis,40090,Kauno Zalgiris,PBK16_EXACT_ALIAS_UNIQUE,3872,Kauno Žalgiris,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,kauno zalgiris,1,0,true,false,false,false,false,false,false
 1012348,2023-09-07T17:00:00+00:00,18967,Leo Østigård,6195,Napoli,PBK16_EXACT_ALIAS_UNIQUE,492,Napoli,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,napoli,1,0,true,false,false,false,false,false,false
 1012348,2023-09-07T17:00:00+00:00,19172,Ørjan Nyland,368,Sevilla FC,PBK16_EXACT_ALIAS_UNIQUE,536,Sevilla,140,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,sevilla,1,0,true,false,false,false,false,false,false
 1012348,2023-09-07T17:00:00+00:00,1934,Sander Berge,1132,Burnley,PBK16_EXACT_ALIAS_UNIQUE,44,Burnley,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,burnley,1,0,true,false,false,false,false,false,false
@@ -13728,16 +13867,21 @@
 980577,2023-09-10T18:45:00+00:00,40592,Adrian Benedyczak,130,Parma,PBK16_EXACT_ALIAS_UNIQUE,523,Parma,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,parma,1,0,true,false,false,false,false,false,false
 980577,2023-09-10T18:45:00+00:00,61431,Jakub Kiwior,11,Arsenal,PBK16_EXACT_ALIAS_UNIQUE,42,Arsenal,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,arsenal,1,0,true,false,false,false,false,false,false
 980577,2023-09-10T18:45:00+00:00,851,Wojciech Szczęsny,506,Juventus,PBK16_EXACT_ALIAS_UNIQUE,496,Juventus,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,juventus,1,0,true,false,false,false,false,false,false
+980578,2023-09-10T18:45:00+00:00,128737,Rokas Lekiatas,42310,FA Siauliai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,fa siauliai,0,0,true,false,false,false,false,false,false
 980578,2023-09-10T18:45:00+00:00,133391,Strahinja Eraković,964,Zenit S-Pb,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,zenit s pb,0,0,true,false,false,false,false,false,false
 980578,2023-09-10T18:45:00+00:00,1489,Nemanja Gudelj,368,Sevilla FC,PBK16_EXACT_ALIAS_UNIQUE,536,Sevilla,140,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,sevilla,1,0,true,false,false,false,false,false,false
 980578,2023-09-10T18:45:00+00:00,178749,Lazar Samardžić,410,Udinese,PBK16_EXACT_ALIAS_UNIQUE,494,Udinese,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,udinese,1,0,true,false,false,false,false,false,false
 980578,2023-09-10T18:45:00+00:00,1821,Filip Kostić,506,Juventus,PBK16_EXACT_ALIAS_UNIQUE,496,Juventus,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,juventus,1,0,true,false,false,false,false,false,false
+980578,2023-09-10T18:45:00+00:00,267996,Matijus Remeikis,49149,Panevezys,PBK16_EXACT_ALIAS_UNIQUE,3874,Panevėžys,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,panevezys,1,0,true,false,false,false,false,false,false
 980578,2023-09-10T18:45:00+00:00,2817,Nikola Milenković,430,Fiorentina,PBK16_EXACT_ALIAS_UNIQUE,502,Fiorentina,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,fiorentina,1,0,true,false,false,false,false,false,false
 980578,2023-09-10T18:45:00+00:00,30415,Dušan Vlahović,506,Juventus,PBK16_EXACT_ALIAS_UNIQUE,496,Juventus,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,juventus,1,0,true,false,false,false,false,false,false
 980578,2023-09-10T18:45:00+00:00,31156,Vanja Milinković-Savić,416,Torino,PBK16_EXACT_ALIAS_UNIQUE,503,Torino,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,torino,1,0,true,false,false,false,false,false,false
+980578,2023-09-10T18:45:00+00:00,44850,Vykintas Slivka,3999,PAS Lamia,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pas lamia,0,0,true,false,false,false,false,false,false
 980578,2023-09-10T18:45:00+00:00,45826,Strahinja Pavlović,409,Salzburg,PBK16_EXACT_ALIAS_UNIQUE,571,Red Bull Salzburg,218,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,red bull salzburg,1,0,true,false,false,false,false,false,false
+980578,2023-09-10T18:45:00+00:00,53655,Fedor Černych,786,AEL Limassol,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,ael limassol,0,0,true,false,false,false,false,false,false
 980578,2023-09-10T18:45:00+00:00,554,Dušan Tadić,36,Fenerbahçe,PBK16_EXACT_ALIAS_UNIQUE,611,Fenerbahçe,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,fenerbahce,1,0,true,false,false,false,false,false,false
 980578,2023-09-10T18:45:00+00:00,55902,Paulius Golubickas,602,Zalgiris,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,zalgiris,0,0,true,false,false,false,false,false,false
+980578,2023-09-10T18:45:00+00:00,70340,Edvinas Girdvainis,40090,Kauno Zalgiris,PBK16_EXACT_ALIAS_UNIQUE,3872,Kauno Žalgiris,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,kauno zalgiris,1,0,true,false,false,false,false,false,false
 980579,2023-09-10T18:45:00+00:00,115589,Benjamin Šeško,23826,Leipzig,PBK16_EXACT_ALIAS_UNIQUE,173,RB Leipzig,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,rb leipzig,1,0,true,false,false,false,false,false,false
 980579,2023-09-10T18:45:00+00:00,36983,Vanja Drkušić,41231,FK Sochi,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,fk sochi,0,0,true,false,false,false,false,false,false
 980579,2023-09-10T18:45:00+00:00,7591,Sandi Lovrić,410,Udinese,PBK16_EXACT_ALIAS_UNIQUE,494,Udinese,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,udinese,1,0,true,false,false,false,false,false,false
@@ -14252,9 +14396,14 @@
 980611,2023-10-14T13:00:00+00:00,19242,Paddy McNair,641,Middlesbrough,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,middlesbrough,0,0,true,false,false,false,false,false,false
 980611,2023-10-14T13:00:00+00:00,284356,Shea Charles,180,Southampton,PBK16_EXACT_ALIAS_UNIQUE,41,Southampton,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,southampton,1,0,true,false,false,false,false,false,false
 980612,2023-10-14T16:00:00+00:00,11116,Martin Minchev,126,C. Rizespor,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,c rizespor,0,0,true,false,false,false,false,false,false
+980612,2023-10-14T16:00:00+00:00,128737,Rokas Lekiatas,42310,FA Siauliai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,fa siauliai,0,0,true,false,false,false,false,false,false
 980612,2023-10-14T16:00:00+00:00,177452,Lukas Petkov,65,Greuther Fürth,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,greuther furth,0,0,true,false,false,false,false,false,false
 980612,2023-10-14T16:00:00+00:00,17939,Dimitar Mitov,2578,St. Johnstone,PBK16_EXACT_ALIAS_UNIQUE,258,ST Johnstone,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,st johnstone,1,0,true,false,false,false,false,false,false
+980612,2023-10-14T16:00:00+00:00,267996,Matijus Remeikis,49149,Panevezys,PBK16_EXACT_ALIAS_UNIQUE,3874,Panevėžys,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,panevezys,1,0,true,false,false,false,false,false,false
+980612,2023-10-14T16:00:00+00:00,44850,Vykintas Slivka,3999,PAS Lamia,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pas lamia,0,0,true,false,false,false,false,false,false
+980612,2023-10-14T16:00:00+00:00,53655,Fedor Černych,786,AEL Limassol,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,ael limassol,0,0,true,false,false,false,false,false,false
 980612,2023-10-14T16:00:00+00:00,70016,Klaudijus Upstas,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
+980612,2023-10-14T16:00:00+00:00,70340,Edvinas Girdvainis,40090,Kauno Zalgiris,PBK16_EXACT_ALIAS_UNIQUE,3872,Kauno Žalgiris,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,kauno zalgiris,1,0,true,false,false,false,false,false,false
 980613,2023-10-14T16:00:00+00:00,115589,Benjamin Šeško,23826,Leipzig,PBK16_EXACT_ALIAS_UNIQUE,173,RB Leipzig,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,rb leipzig,1,0,true,false,false,false,false,false,false
 980613,2023-10-14T16:00:00+00:00,169291,Viljami Sinisalo,6699,Exeter City,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,exeter city,0,0,true,false,false,false,false,false,false
 980613,2023-10-14T16:00:00+00:00,289513,Martin Turk,130,Parma,PBK16_EXACT_ALIAS_UNIQUE,523,Parma,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,parma,1,0,true,false,false,false,false,false,false
@@ -14559,12 +14708,17 @@
 980635,2023-10-17T18:45:00+00:00,45826,Strahinja Pavlović,409,Salzburg,PBK16_EXACT_ALIAS_UNIQUE,571,Red Bull Salzburg,218,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,red bull salzburg,1,0,true,false,false,false,false,false,false
 980635,2023-10-17T18:45:00+00:00,554,Dušan Tadić,36,Fenerbahçe,PBK16_EXACT_ALIAS_UNIQUE,611,Fenerbahçe,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,fenerbahce,1,0,true,false,false,false,false,false,false
 980635,2023-10-17T18:45:00+00:00,66817,Nikola Krstović,1005,Lecce,PBK16_EXACT_ALIAS_UNIQUE,867,Lecce,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,lecce,1,0,true,false,false,false,false,false,false
+980636,2023-10-17T18:45:00+00:00,128737,Rokas Lekiatas,42310,FA Siauliai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,fa siauliai,0,0,true,false,false,false,false,false,false
 980636,2023-10-17T18:45:00+00:00,206254,Miloš Kerkez,989,Bournemouth,PBK16_EXACT_ALIAS_UNIQUE,35,Bournemouth,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,bournemouth,1,0,true,false,false,false,false,false,false
 980636,2023-10-17T18:45:00+00:00,26252,Roland Sallai,60,Freiburg,PBK16_EXACT_ALIAS_UNIQUE,160,SC Freiburg,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,freiburg,1,0,true,false,false,false,false,false,false
+980636,2023-10-17T18:45:00+00:00,267996,Matijus Remeikis,49149,Panevezys,PBK16_EXACT_ALIAS_UNIQUE,3874,Panevėžys,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,panevezys,1,0,true,false,false,false,false,false,false
 980636,2023-10-17T18:45:00+00:00,27778,Bendegúz Bolla,61,Servette FC,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,servette,0,0,true,false,false,false,false,false,false
 980636,2023-10-17T18:45:00+00:00,28443,Attila Szalai,533,Hoffenheim,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hoffenheim,0,0,true,false,false,false,false,false,false
 980636,2023-10-17T18:45:00+00:00,324234,Gábor Szalai,12423,Kecskeméti TE,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kecskemeti te,0,0,true,false,false,false,false,false,false
+980636,2023-10-17T18:45:00+00:00,44850,Vykintas Slivka,3999,PAS Lamia,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pas lamia,0,0,true,false,false,false,false,false,false
+980636,2023-10-17T18:45:00+00:00,53655,Fedor Černych,786,AEL Limassol,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,ael limassol,0,0,true,false,false,false,false,false,false
 980636,2023-10-17T18:45:00+00:00,70016,Klaudijus Upstas,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
+980636,2023-10-17T18:45:00+00:00,70340,Edvinas Girdvainis,40090,Kauno Zalgiris,PBK16_EXACT_ALIAS_UNIQUE,3872,Kauno Žalgiris,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,kauno zalgiris,1,0,true,false,false,false,false,false,false
 980637,2023-10-17T18:45:00+00:00,115589,Benjamin Šeško,23826,Leipzig,PBK16_EXACT_ALIAS_UNIQUE,173,RB Leipzig,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,rb leipzig,1,0,true,false,false,false,false,false,false
 980637,2023-10-17T18:45:00+00:00,284356,Shea Charles,180,Southampton,PBK16_EXACT_ALIAS_UNIQUE,41,Southampton,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,southampton,1,0,true,false,false,false,false,false,false
 980637,2023-10-17T18:45:00+00:00,289513,Martin Turk,130,Parma,PBK16_EXACT_ALIAS_UNIQUE,523,Parma,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,parma,1,0,true,false,false,false,false,false,false
@@ -14713,9 +14867,14 @@
 980644,2023-11-16T17:00:00+00:00,27778,Bendegúz Bolla,61,Servette FC,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,servette,0,0,true,false,false,false,false,false,false
 980644,2023-11-16T17:00:00+00:00,28443,Attila Szalai,533,Hoffenheim,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hoffenheim,0,0,true,false,false,false,false,false,false
 980644,2023-11-16T17:00:00+00:00,324234,Gábor Szalai,12423,Kecskeméti TE,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kecskemeti te,0,0,true,false,false,false,false,false,false
+980645,2023-11-16T19:45:00+00:00,128737,Rokas Lekiatas,42310,FA Siauliai,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,fa siauliai,0,0,true,false,false,false,false,false,false
+980645,2023-11-16T19:45:00+00:00,267996,Matijus Remeikis,49149,Panevezys,PBK16_EXACT_ALIAS_UNIQUE,3874,Panevėžys,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,panevezys,1,0,true,false,false,false,false,false,false
+980645,2023-11-16T19:45:00+00:00,44850,Vykintas Slivka,3999,PAS Lamia,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pas lamia,0,0,true,false,false,false,false,false,false
 980645,2023-11-16T19:45:00+00:00,45800,Slobodan Rubežić,370,Aberdeen FC,PBK16_EXACT_ALIAS_UNIQUE,252,Aberdeen,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,aberdeen,1,0,true,false,false,false,false,false,false
+980645,2023-11-16T19:45:00+00:00,53655,Fedor Černych,786,AEL Limassol,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,ael limassol,0,0,true,false,false,false,false,false,false
 980645,2023-11-16T19:45:00+00:00,66817,Nikola Krstović,1005,Lecce,PBK16_EXACT_ALIAS_UNIQUE,867,Lecce,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,lecce,1,0,true,false,false,false,false,false,false
 980645,2023-11-16T19:45:00+00:00,70016,Klaudijus Upstas,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
+980645,2023-11-16T19:45:00+00:00,70340,Edvinas Girdvainis,40090,Kauno Zalgiris,PBK16_EXACT_ALIAS_UNIQUE,3872,Kauno Žalgiris,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,kauno zalgiris,1,0,true,false,false,false,false,false,false
 980646,2023-11-16T19:45:00+00:00,18886,Martin Dúbravka,762,Newcastle,PBK16_EXACT_ALIAS_UNIQUE,34,Newcastle,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,newcastle,1,0,true,false,false,false,false,false,false
 980646,2023-11-16T19:45:00+00:00,191879,Kristian Hlynsson,610,Ajax,PBK16_EXACT_ALIAS_UNIQUE,194,Ajax,88,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,ajax,1,0,true,false,false,false,false,false,false
 980646,2023-11-16T19:45:00+00:00,19198,Henrich Ravas,88,Widzew Lodz,PBK16_EXACT_ALIAS_UNIQUE,6962,Widzew Łódź,106,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,widzew lodz,1,0,true,false,false,false,false,false,false
@@ -15351,9 +15510,12 @@
 1155265,2024-03-21T19:45:00+00:00,47985,Emil Holm,800,Atalanta,PBK16_EXACT_ALIAS_UNIQUE,499,Atalanta,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,atalanta,1,0,true,false,false,false,false,false,false
 1155265,2024-03-21T19:45:00+00:00,636,Bernardo Silva,281,Man City,PBK16_EXACT_ALIAS_UNIQUE,50,Manchester City,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,manchester city,1,0,true,false,false,false,false,false,false
 1155265,2024-03-21T19:45:00+00:00,889,Victor Lindelöf,985,Man Utd,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,man utd,0,0,true,false,false,false,false,false,false
+963191,2024-03-21T19:45:00+00:00,44850,Vykintas Slivka,3999,PAS Lamia,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pas lamia,0,0,true,false,false,false,false,false,false
+963191,2024-03-21T19:45:00+00:00,53655,Fedor Černych,45277,Kerala Blasters,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kerala blasters,0,0,true,false,false,false,false,false,false
 963191,2024-03-21T19:45:00+00:00,55902,Paulius Golubickas,602,Zalgiris,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,zalgiris,0,0,true,false,false,false,false,false,false
 963191,2024-03-21T19:45:00+00:00,69918,Matas Vareika,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
 963191,2024-03-21T19:45:00+00:00,70016,Klaudijus Upstas,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
+963191,2024-03-21T19:45:00+00:00,70340,Edvinas Girdvainis,254,SV Sandhausen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sv sandhausen,0,0,true,false,false,false,false,false,false
 1143862,2024-03-21T23:00:00+00:00,1138,Timothy Weah,506,Juventus,PBK16_EXACT_ALIAS_UNIQUE,496,Juventus,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,juventus,1,0,true,false,false,false,false,false,false
 1143862,2024-03-21T23:00:00+00:00,161921,Giovanni Reyna,703,Nott'm Forest,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,nott m forest,0,0,true,false,false,false,false,false,false
 1143862,2024-03-21T23:00:00+00:00,162037,Malik Tillman,383,PSV,PBK16_EXACT_ALIAS_UNIQUE,197,PSV Eindhoven,88,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,psv eindhoven,1,0,true,false,false,false,false,false,false
@@ -15627,6 +15789,9 @@
 1187511,2024-03-26T17:00:00+00:00,55342,Daniel Håkans,76,Vålerenga,PBK16_EXACT_ALIAS_UNIQUE,326,Valerenga,103,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,valerenga,1,0,true,false,false,false,false,false,false
 1187511,2024-03-26T17:00:00+00:00,60353,Maksim Paskotsi,504,Grasshoppers,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,grasshoppers,0,0,true,false,false,false,false,false,false
 1187511,2024-03-26T17:00:00+00:00,963,Lukáš Hrádecký,15,Leverkusen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,leverkusen,0,0,true,false,false,false,false,false,false
+963192,2024-03-26T17:00:00+00:00,128737,Rokas Lekiatas,1007,FC U Craiova,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,u craiova,0,0,true,false,false,false,false,false,false
+963192,2024-03-26T17:00:00+00:00,44850,Vykintas Slivka,3999,PAS Lamia,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pas lamia,0,0,true,false,false,false,false,false,false
+963192,2024-03-26T17:00:00+00:00,53655,Fedor Černych,45277,Kerala Blasters,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kerala blasters,0,0,true,false,false,false,false,false,false
 963192,2024-03-26T17:00:00+00:00,55902,Paulius Golubickas,602,Zalgiris,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,zalgiris,0,0,true,false,false,false,false,false,false
 963192,2024-03-26T17:00:00+00:00,69918,Matas Vareika,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
 963192,2024-03-26T17:00:00+00:00,70016,Klaudijus Upstas,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
@@ -15959,9 +16124,13 @@
 1172891,2024-09-06T14:00:00+00:00,39082,Egil Selvik,2761,Haugesund,PBK16_EXACT_ALIAS_UNIQUE,328,Haugesund,103,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,haugesund,1,0,true,false,false,false,false,false,false
 1172891,2024-09-06T14:00:00+00:00,39362,Marcus Pedersen,416,Torino,PBK16_EXACT_ALIAS_UNIQUE,503,Torino,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,torino,1,0,true,false,false,false,false,false,false
 1189855,2024-09-06T16:00:00+00:00,125643,Titas Milašius,4896,Pogon Siedlce,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pogon siedlce,0,0,true,false,false,false,false,false,false
+1189855,2024-09-06T16:00:00+00:00,128737,Rokas Lekiatas,1007,FC U Craiova,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,u craiova,0,0,true,false,false,false,false,false,false
 1189855,2024-09-06T16:00:00+00:00,179540,Stelios Andreou,172,R Charleroi SC,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,r charleroi,0,0,true,false,false,false,false,false,false
+1189855,2024-09-06T16:00:00+00:00,207805,Mantas Bertasius,23559,Banga,PBK16_EXACT_ALIAS_UNIQUE,3858,Banga,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,banga,1,0,true,false,false,false,false,false,false
+1189855,2024-09-06T16:00:00+00:00,69890,Dominykas Barauskas,3291,Gornik Leczna,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,gornik leczna,0,0,true,false,false,false,false,false,false
 1189855,2024-09-06T16:00:00+00:00,69981,Domantas Antanavičius,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
 1189855,2024-09-06T16:00:00+00:00,70016,Klaudijus Upstas,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
+1189855,2024-09-06T16:00:00+00:00,70340,Edvinas Girdvainis,254,SV Sandhausen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sv sandhausen,0,0,true,false,false,false,false,false,false
 1232414,2024-09-06T16:00:00+00:00,123675,T. Klidje,434,FC Luzern,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,luzern,0,0,true,false,false,false,false,false,false
 1232419,2024-09-06T16:00:00+00:00,162123,I. Moriba,940,Celta de Vigo,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,celta de vigo,0,0,true,false,false,false,false,false,false
 1232419,2024-09-06T16:00:00+00:00,18816,A. Masuaku,114,Besiktas,PBK16_EXACT_ALIAS_UNIQUE,549,Beşiktaş,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,besiktas,1,0,true,false,false,false,false,false,false
@@ -16346,12 +16515,16 @@
 1172952,2024-09-09T18:45:00+00:00,329715,Oscar Gloukh,409,Salzburg,PBK16_EXACT_ALIAS_UNIQUE,571,Red Bull Salzburg,218,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,red bull salzburg,1,0,true,false,false,false,false,false,false
 1172952,2024-09-09T18:45:00+00:00,876,Nicolò Fagioli,506,Juventus,PBK16_EXACT_ALIAS_UNIQUE,496,Juventus,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,juventus,1,0,true,false,false,false,false,false,false
 1189856,2024-09-09T18:45:00+00:00,125643,Titas Milašius,4896,Pogon Siedlce,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pogon siedlce,0,0,true,false,false,false,false,false,false
+1189856,2024-09-09T18:45:00+00:00,128737,Rokas Lekiatas,1007,FC U Craiova,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,u craiova,0,0,true,false,false,false,false,false,false
+1189856,2024-09-09T18:45:00+00:00,207805,Mantas Bertasius,23559,Banga,PBK16_EXACT_ALIAS_UNIQUE,3858,Banga,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,banga,1,0,true,false,false,false,false,false,false
 1189856,2024-09-09T18:45:00+00:00,43036,Dennis Man,130,Parma,PBK16_EXACT_ALIAS_UNIQUE,523,Parma,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,parma,1,0,true,false,false,false,false,false,false
 1189856,2024-09-09T18:45:00+00:00,43056,Valentin Mihăilă,130,Parma,PBK16_EXACT_ALIAS_UNIQUE,523,Parma,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,parma,1,0,true,false,false,false,false,false,false
 1189856,2024-09-09T18:45:00+00:00,43084,Ianis Hagi,124,Rangers,PBK16_EXACT_ALIAS_UNIQUE,257,Rangers,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,rangers,1,0,true,false,false,false,false,false,false
+1189856,2024-09-09T18:45:00+00:00,69890,Dominykas Barauskas,3291,Gornik Leczna,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,gornik leczna,0,0,true,false,false,false,false,false,false
 1189856,2024-09-09T18:45:00+00:00,69918,Matas Vareika,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
 1189856,2024-09-09T18:45:00+00:00,69981,Domantas Antanavičius,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
 1189856,2024-09-09T18:45:00+00:00,70016,Klaudijus Upstas,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
+1189856,2024-09-09T18:45:00+00:00,70340,Edvinas Girdvainis,254,SV Sandhausen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sv sandhausen,0,0,true,false,false,false,false,false,false
 1232439,2024-09-09T19:00:00+00:00,237120,Maestro,3840,Adana Demirspor,PBK16_EXACT_ALIAS_UNIQUE,3563,Adana Demirspor,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,adana demirspor,1,0,true,false,false,false,false,false,false
 1232439,2024-09-09T19:00:00+00:00,3314,Show,8816,Dallas,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,dallas,0,0,true,false,false,false,false,false,false
 1232439,2024-09-09T19:00:00+00:00,49986,Fredy,44006,Bodrum FK,PBK16_EXACT_ALIAS_UNIQUE,3583,Bodrum FK,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,bodrum fk,1,0,true,false,false,false,false,false,false
@@ -16788,12 +16961,16 @@
 1100277,2024-10-12T01:30:00+00:00,311773,Santiago Mouriño,1108,Alavés,PBK16_EXACT_ALIAS_UNIQUE,542,Alaves,140,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,alaves,1,0,true,false,false,false,false,false,false
 1100277,2024-10-12T01:30:00+00:00,56266,Franco Israel,336,Sporting,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sporting,0,0,true,false,false,false,false,false,false
 1189857,2024-10-12T13:00:00+00:00,125643,Titas Milašius,4896,Pogon Siedlce,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pogon siedlce,0,0,true,false,false,false,false,false,false
+1189857,2024-10-12T13:00:00+00:00,128737,Rokas Lekiatas,1007,FC U Craiova,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,u craiova,0,0,true,false,false,false,false,false,false
 1189857,2024-10-12T13:00:00+00:00,202501,Fisnik Asllani,64,SV Elversberg,PBK16_EXACT_ALIAS_UNIQUE,1660,SV Elversberg,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,sv elversberg,1,0,true,false,false,false,false,false,false
+1189857,2024-10-12T13:00:00+00:00,207805,Mantas Bertasius,23559,Banga,PBK16_EXACT_ALIAS_UNIQUE,3858,Banga,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,banga,1,0,true,false,false,false,false,false,false
 1189857,2024-10-12T13:00:00+00:00,271921,Ermal Krasniqi,197,Sparta Prague,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sparta prague,0,0,true,false,false,false,false,false,false
 1189857,2024-10-12T13:00:00+00:00,48392,Edon Zhegrova,1082,Lille,PBK16_EXACT_ALIAS_UNIQUE,79,Lille,61,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,lille,1,0,true,false,false,false,false,false,false
 1189857,2024-10-12T13:00:00+00:00,55902,Paulius Golubickas,602,Zalgiris,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,zalgiris,0,0,true,false,false,false,false,false,false
 1189857,2024-10-12T13:00:00+00:00,616,Arijanet Murić,677,Ipswich,PBK16_EXACT_ALIAS_UNIQUE,57,Ipswich,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,ipswich,1,0,true,false,false,false,false,false,false
+1189857,2024-10-12T13:00:00+00:00,69890,Dominykas Barauskas,3291,Gornik Leczna,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,gornik leczna,0,0,true,false,false,false,false,false,false
 1189857,2024-10-12T13:00:00+00:00,69981,Domantas Antanavičius,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
+1189857,2024-10-12T13:00:00+00:00,70340,Edvinas Girdvainis,254,SV Sandhausen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sv sandhausen,0,0,true,false,false,false,false,false,false
 1189857,2024-10-12T13:00:00+00:00,8586,Mërgim Vojvoda,416,Torino,PBK16_EXACT_ALIAS_UNIQUE,503,Torino,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,torino,1,0,true,false,false,false,false,false,false
 1172959,2024-10-12T16:00:00+00:00,1305,Dominik Livaković,36,Fenerbahçe,PBK16_EXACT_ALIAS_UNIQUE,611,Fenerbahçe,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,fenerbahce,1,0,true,false,false,false,false,false,false
 1172959,2024-10-12T16:00:00+00:00,1902,Duje Ćaleta-Car,1041,Lyon,PBK16_EXACT_ALIAS_UNIQUE,80,Lyon,61,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,lyon,1,0,true,false,false,false,false,false,false
@@ -17171,13 +17348,17 @@
 1173014,2024-10-15T18:45:00+00:00,200078,Hristiyan Petrov,208,CSKA-Sofia,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,cska sofia,0,0,true,false,false,false,false,false,false
 1173014,2024-10-15T18:45:00+00:00,284356,Shea Charles,1035,Sheff Wed,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sheff wed,0,0,true,false,false,false,false,false,false
 1189858,2024-10-15T18:45:00+00:00,125643,Titas Milašius,4896,Pogon Siedlce,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pogon siedlce,0,0,true,false,false,false,false,false,false
+1189858,2024-10-15T18:45:00+00:00,128737,Rokas Lekiatas,1007,FC U Craiova,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,u craiova,0,0,true,false,false,false,false,false,false
+1189858,2024-10-15T18:45:00+00:00,207805,Mantas Bertasius,23559,Banga,PBK16_EXACT_ALIAS_UNIQUE,3858,Banga,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,banga,1,0,true,false,false,false,false,false,false
 1189858,2024-10-15T18:45:00+00:00,42642,Horațiu Moldovan,6574,Sassuolo,PBK16_EXACT_ALIAS_UNIQUE,488,Sassuolo,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,sassuolo,1,0,true,false,false,false,false,false,false
 1189858,2024-10-15T18:45:00+00:00,43036,Dennis Man,130,Parma,PBK16_EXACT_ALIAS_UNIQUE,523,Parma,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,parma,1,0,true,false,false,false,false,false,false
 1189858,2024-10-15T18:45:00+00:00,43056,Valentin Mihăilă,130,Parma,PBK16_EXACT_ALIAS_UNIQUE,523,Parma,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,parma,1,0,true,false,false,false,false,false,false
 1189858,2024-10-15T18:45:00+00:00,43084,Ianis Hagi,124,Rangers,PBK16_EXACT_ALIAS_UNIQUE,257,Rangers,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,rangers,1,0,true,false,false,false,false,false,false
 1189858,2024-10-15T18:45:00+00:00,55902,Paulius Golubickas,602,Zalgiris,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,zalgiris,0,0,true,false,false,false,false,false,false
+1189858,2024-10-15T18:45:00+00:00,69890,Dominykas Barauskas,3291,Gornik Leczna,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,gornik leczna,0,0,true,false,false,false,false,false,false
 1189858,2024-10-15T18:45:00+00:00,69981,Domantas Antanavičius,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
 1189858,2024-10-15T18:45:00+00:00,70016,Klaudijus Upstas,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
+1189858,2024-10-15T18:45:00+00:00,70340,Edvinas Girdvainis,254,SV Sandhausen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sv sandhausen,0,0,true,false,false,false,false,false,false
 1232477,2024-10-15T19:00:00+00:00,162265,W. Omari,1041,Lyon,PBK16_EXACT_ALIAS_UNIQUE,80,Lyon,61,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,lyon,1,0,true,false,false,false,false,false,false
 1232477,2024-10-15T19:00:00+00:00,20802,Y. Bourhane,3426,Esbjerg fB,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,esbjerg fb,0,0,true,false,false,false,false,false,false
 1232479,2024-10-15T19:00:00+00:00,129682,A. Adli,15,Leverkusen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,leverkusen,0,0,true,false,false,false,false,false,false
@@ -17361,10 +17542,14 @@
 1232517,2024-11-15T16:00:00+00:00,7571,S. Koïta,2410,CSKA Moscow,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,cska moscow,0,0,true,false,false,false,false,false,false
 1232520,2024-11-15T16:00:00+00:00,354267,M. Garan'anga,190,Copenhagen,PBK16_EXACT_ALIAS_UNIQUE,400,FC Copenhagen,119,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,fc copenhagen,1,0,true,false,false,false,false,false,false
 1189859,2024-11-15T17:00:00+00:00,125643,Titas Milašius,4896,Pogon Siedlce,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pogon siedlce,0,0,true,false,false,false,false,false,false
+1189859,2024-11-15T17:00:00+00:00,128737,Rokas Lekiatas,1007,FC U Craiova,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,u craiova,0,0,true,false,false,false,false,false,false
 1189859,2024-11-15T17:00:00+00:00,179540,Stelios Andreou,172,R Charleroi SC,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,r charleroi,0,0,true,false,false,false,false,false,false
+1189859,2024-11-15T17:00:00+00:00,207805,Mantas Bertasius,23559,Banga,PBK16_EXACT_ALIAS_UNIQUE,3858,Banga,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,banga,1,0,true,false,false,false,false,false,false
 1189859,2024-11-15T17:00:00+00:00,55902,Paulius Golubickas,602,Zalgiris,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,zalgiris,0,0,true,false,false,false,false,false,false
+1189859,2024-11-15T17:00:00+00:00,69890,Dominykas Barauskas,3291,Gornik Leczna,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,gornik leczna,0,0,true,false,false,false,false,false,false
 1189859,2024-11-15T17:00:00+00:00,69918,Matas Vareika,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
 1189859,2024-11-15T17:00:00+00:00,69981,Domantas Antanavičius,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
+1189859,2024-11-15T17:00:00+00:00,70340,Edvinas Girdvainis,254,SV Sandhausen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sv sandhausen,0,0,true,false,false,false,false,false,false
 1232502,2024-11-15T19:00:00+00:00,162265,W. Omari,1041,Lyon,PBK16_EXACT_ALIAS_UNIQUE,80,Lyon,61,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,lyon,1,0,true,false,false,false,false,false,false
 1232502,2024-11-15T19:00:00+00:00,20802,Y. Bourhane,3426,Esbjerg fB,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,esbjerg fb,0,0,true,false,false,false,false,false,false
 1232503,2024-11-15T19:00:00+00:00,1465,P. Aubameyang,26069,Al-Qadsiah,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,al qadsiah,0,0,true,false,false,false,false,false,false
@@ -17731,13 +17916,17 @@
 1173026,2024-11-18T19:45:00+00:00,340155,Tiago Pereira Cardoso,4121,M'gladbach U19,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,m gladbach u19,0,0,true,false,false,false,false,false,false
 1173026,2024-11-18T19:45:00+00:00,70363,Marvin Martins,14,Austria Vienna,PBK16_EXACT_ALIAS_UNIQUE,601,Austria Vienna,218,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,austria vienna,1,0,true,false,false,false,false,false,false
 1189860,2024-11-18T19:45:00+00:00,125643,Titas Milašius,4896,Pogon Siedlce,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pogon siedlce,0,0,true,false,false,false,false,false,false
+1189860,2024-11-18T19:45:00+00:00,128737,Rokas Lekiatas,1007,FC U Craiova,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,u craiova,0,0,true,false,false,false,false,false,false
 1189860,2024-11-18T19:45:00+00:00,202501,Fisnik Asllani,64,SV Elversberg,PBK16_EXACT_ALIAS_UNIQUE,1660,SV Elversberg,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,sv elversberg,1,0,true,false,false,false,false,false,false
+1189860,2024-11-18T19:45:00+00:00,207805,Mantas Bertasius,23559,Banga,PBK16_EXACT_ALIAS_UNIQUE,3858,Banga,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,banga,1,0,true,false,false,false,false,false,false
 1189860,2024-11-18T19:45:00+00:00,348168,Art Smakaj,11194,NK Lokomotiva,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,nk lokomotiva,0,0,true,false,false,false,false,false,false
 1189860,2024-11-18T19:45:00+00:00,48392,Edon Zhegrova,1082,Lille,PBK16_EXACT_ALIAS_UNIQUE,79,Lille,61,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,lille,1,0,true,false,false,false,false,false,false
 1189860,2024-11-18T19:45:00+00:00,55902,Paulius Golubickas,602,Zalgiris,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,zalgiris,0,0,true,false,false,false,false,false,false
 1189860,2024-11-18T19:45:00+00:00,616,Arijanet Murić,677,Ipswich,PBK16_EXACT_ALIAS_UNIQUE,57,Ipswich,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,ipswich,1,0,true,false,false,false,false,false,false
+1189860,2024-11-18T19:45:00+00:00,69890,Dominykas Barauskas,3291,Gornik Leczna,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,gornik leczna,0,0,true,false,false,false,false,false,false
 1189860,2024-11-18T19:45:00+00:00,69981,Domantas Antanavičius,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
 1189860,2024-11-18T19:45:00+00:00,70016,Klaudijus Upstas,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
+1189860,2024-11-18T19:45:00+00:00,70340,Edvinas Girdvainis,254,SV Sandhausen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sv sandhausen,0,0,true,false,false,false,false,false,false
 1189860,2024-11-18T19:45:00+00:00,8586,Mërgim Vojvoda,416,Torino,PBK16_EXACT_ALIAS_UNIQUE,503,Torino,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,torino,1,0,true,false,false,false,false,false,false
 1201322,2024-11-18T20:00:00+00:00,20143,Regan Charles-Cook,1245,KAS Eupen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kas eupen,0,0,true,false,false,false,false,false,false
 1201321,2024-11-18T23:00:00+00:00,19047,Juninho Bacuna,17209,Al-Wehda,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,al wehda,0,0,true,false,false,false,false,false,false
@@ -18069,6 +18258,8 @@
 1323238,2025-03-21T19:45:00+00:00,125643,Titas Milašius,4896,Pogon Siedlce,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pogon siedlce,0,0,true,false,false,false,false,false,false
 1323238,2025-03-21T19:45:00+00:00,182280,Kacper Urbański,2919,Monza,PBK16_EXACT_ALIAS_UNIQUE,1579,Monza,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,monza,1,0,true,false,false,false,false,false,false
 1323238,2025-03-21T19:45:00+00:00,1939,Jakub Piotrowski,31614,Ludogorets,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,ludogorets,0,0,true,false,false,false,false,false,false
+1323238,2025-03-21T19:45:00+00:00,207805,Mantas Bertasius,23559,Banga,PBK16_EXACT_ALIAS_UNIQUE,3858,Banga,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,banga,1,0,true,false,false,false,false,false,false
+1323238,2025-03-21T19:45:00+00:00,267996,Matijus Remeikis,2531,Botev Plovdiv,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,botev plovdiv,0,0,true,false,false,false,false,false,false
 1323238,2025-03-21T19:45:00+00:00,2999,Jan Bednarek,180,Southampton,PBK16_EXACT_ALIAS_UNIQUE,41,Southampton,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,southampton,1,0,true,false,false,false,false,false,false
 1323238,2025-03-21T19:45:00+00:00,3000,Bartosz Bereszyński,1038,Sampdoria,PBK16_EXACT_ALIAS_UNIQUE,498,Sampdoria,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,sampdoria,1,0,true,false,false,false,false,false,false
 1323238,2025-03-21T19:45:00+00:00,31035,Bartłomiej Drągowski,265,Panathinaikos,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,panathinaikos,0,0,true,false,false,false,false,false,false
@@ -18080,9 +18271,11 @@
 1323238,2025-03-21T19:45:00+00:00,40594,Adam Buksa,865,Midtjylland,PBK16_EXACT_ALIAS_UNIQUE,397,FC Midtjylland,119,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,midtjylland,1,0,true,false,false,false,false,false,false
 1323238,2025-03-21T19:45:00+00:00,55902,Paulius Golubickas,7154,Radomiak,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,radomiak,0,0,true,false,false,false,false,false,false
 1323238,2025-03-21T19:45:00+00:00,61431,Jakub Kiwior,11,Arsenal,PBK16_EXACT_ALIAS_UNIQUE,42,Arsenal,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,arsenal,1,0,true,false,false,false,false,false,false
+1323238,2025-03-21T19:45:00+00:00,69890,Dominykas Barauskas,3291,Gornik Leczna,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,gornik leczna,0,0,true,false,false,false,false,false,false
 1323238,2025-03-21T19:45:00+00:00,69918,Matas Vareika,10301,Pyunik Yerevan,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pyunik yerevan,0,0,true,false,false,false,false,false,false
 1323238,2025-03-21T19:45:00+00:00,69981,Domantas Antanavičius,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
 1323238,2025-03-21T19:45:00+00:00,70016,Klaudijus Upstas,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
+1323238,2025-03-21T19:45:00+00:00,70340,Edvinas Girdvainis,254,SV Sandhausen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sv sandhausen,0,0,true,false,false,false,false,false,false
 1323240,2025-03-21T19:45:00+00:00,1741,Nikola Katić,2262,Plymouth,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,plymouth,0,0,true,false,false,false,false,false,false
 1323240,2025-03-21T19:45:00+00:00,271350,Tarik Muharemović,6574,Sassuolo,PBK16_EXACT_ALIAS_UNIQUE,488,Sassuolo,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,sassuolo,1,0,true,false,false,false,false,false,false
 1323240,2025-03-21T19:45:00+00:00,314377,Samed Baždar,142,Real Zaragoza,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,real zaragoza,0,0,true,false,false,false,false,false,false
@@ -18316,10 +18509,14 @@
 1323249,2025-03-24T17:00:00+00:00,125643,Titas Milašius,4896,Pogon Siedlce,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pogon siedlce,0,0,true,false,false,false,false,false,false
 1323249,2025-03-24T17:00:00+00:00,15906,Oliver Antman,1435,Go Ahead Eagles,PBK16_EXACT_ALIAS_UNIQUE,410,GO Ahead Eagles,88,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,go ahead eagles,1,0,true,false,false,false,false,false,false
 1323249,2025-03-24T17:00:00+00:00,177780,Anssi Suhonen,109,J. Regensburg,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,j regensburg,0,0,true,false,false,false,false,false,false
+1323249,2025-03-24T17:00:00+00:00,207805,Mantas Bertasius,23559,Banga,PBK16_EXACT_ALIAS_UNIQUE,3858,Banga,362,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,banga,1,0,true,false,false,false,false,false,false
+1323249,2025-03-24T17:00:00+00:00,267996,Matijus Remeikis,2531,Botev Plovdiv,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,botev plovdiv,0,0,true,false,false,false,false,false,false
 1323249,2025-03-24T17:00:00+00:00,55902,Paulius Golubickas,7154,Radomiak,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,radomiak,0,0,true,false,false,false,false,false,false
+1323249,2025-03-24T17:00:00+00:00,69890,Dominykas Barauskas,3291,Gornik Leczna,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,gornik leczna,0,0,true,false,false,false,false,false,false
 1323249,2025-03-24T17:00:00+00:00,69918,Matas Vareika,10301,Pyunik Yerevan,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pyunik yerevan,0,0,true,false,false,false,false,false,false
 1323249,2025-03-24T17:00:00+00:00,69981,Domantas Antanavičius,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
 1323249,2025-03-24T17:00:00+00:00,70016,Klaudijus Upstas,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
+1323249,2025-03-24T17:00:00+00:00,70340,Edvinas Girdvainis,254,SV Sandhausen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sv sandhausen,0,0,true,false,false,false,false,false,false
 1323249,2025-03-24T17:00:00+00:00,963,Lukáš Hrádecký,15,Leverkusen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,leverkusen,0,0,true,false,false,false,false,false,false
 1323250,2025-03-24T19:45:00+00:00,119762,Kamil Piątkowski,10484,Kasimpasa,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kasimpasa,0,0,true,false,false,false,false,false,false
 1323250,2025-03-24T19:45:00+00:00,182280,Kacper Urbański,2919,Monza,PBK16_EXACT_ALIAS_UNIQUE,1579,Monza,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,monza,1,0,true,false,false,false,false,false,false
@@ -18633,9 +18830,11 @@
 1323265,2025-06-07T13:00:00+00:00,76867,Nihad Mujakić,669,Partizan,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,partizan,0,0,true,false,false,false,false,false,false
 1323265,2025-06-07T13:00:00+00:00,790,Edin Džeko,36,Fenerbahçe,PBK16_EXACT_ALIAS_UNIQUE,611,Fenerbahçe,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,fenerbahce,1,0,true,false,false,false,false,false,false
 1323266,2025-06-07T16:00:00+00:00,125643,Titas Milašius,4896,Pogon Siedlce,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pogon siedlce,0,0,true,false,false,false,false,false,false
+1323266,2025-06-07T16:00:00+00:00,128737,Rokas Lekiatas,1007,FC U Craiova,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,u craiova,0,0,true,false,false,false,false,false,false
 1323266,2025-06-07T16:00:00+00:00,55902,Paulius Golubickas,7154,Radomiak,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,radomiak,0,0,true,false,false,false,false,false,false
 1323266,2025-06-07T16:00:00+00:00,69981,Domantas Antanavičius,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
 1323266,2025-06-07T16:00:00+00:00,70016,Klaudijus Upstas,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
+1323266,2025-06-07T16:00:00+00:00,70340,Edvinas Girdvainis,254,SV Sandhausen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sv sandhausen,0,0,true,false,false,false,false,false,false
 1323267,2025-06-07T16:00:00+00:00,136723,Noni Madueke,631,Chelsea,PBK16_EXACT_ALIAS_UNIQUE,49,Chelsea,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,chelsea,1,0,true,false,false,false,false,false,false
 1323267,2025-06-07T16:00:00+00:00,138787,Anthony Gordon,762,Newcastle,PBK16_EXACT_ALIAS_UNIQUE,34,Newcastle,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,newcastle,1,0,true,false,false,false,false,false,false
 1323267,2025-06-07T16:00:00+00:00,162489,James Trafford,1132,Burnley,PBK16_EXACT_ALIAS_UNIQUE,44,Burnley,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,burnley,1,0,true,false,false,false,false,false,false
@@ -18817,6 +19016,7 @@
 1339899,2025-06-10T16:00:00+00:00,28373,Tamás Nikitscher,366,Real Valladolid,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,real valladolid,0,0,true,false,false,false,false,false,false
 1339899,2025-06-10T16:00:00+00:00,361485,Alex Tóth,279,Ferencváros,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,ferencvaros,0,0,true,false,false,false,false,false,false
 1366907,2025-06-10T17:00:00+00:00,125643,Titas Milašius,4896,Pogon Siedlce,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,pogon siedlce,0,0,true,false,false,false,false,false,false
+1366907,2025-06-10T17:00:00+00:00,128737,Rokas Lekiatas,1007,FC U Craiova,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,u craiova,0,0,true,false,false,false,false,false,false
 1366907,2025-06-10T17:00:00+00:00,15843,Oliver Christensen,380,Salernitana,PBK16_EXACT_ALIAS_UNIQUE,514,Salernitana,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,salernitana,1,0,true,false,false,false,false,false,false
 1366907,2025-06-10T17:00:00+00:00,19030,Matt O'Riley,1237,Brighton,PBK16_EXACT_ALIAS_UNIQUE,51,Brighton,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,brighton,1,0,true,false,false,false,false,false,false
 1366907,2025-06-10T17:00:00+00:00,2735,Pierre-Emile Højbjerg,244,Marseille,PBK16_EXACT_ALIAS_UNIQUE,81,Marseille,61,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,marseille,1,0,true,false,false,false,false,false,false
@@ -18825,6 +19025,7 @@
 1366907,2025-06-10T17:00:00+00:00,550,Kasper Dolberg,58,RSC Anderlecht,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,rsc anderlecht,0,0,true,false,false,false,false,false,false
 1366907,2025-06-10T17:00:00+00:00,69981,Domantas Antanavičius,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
 1366907,2025-06-10T17:00:00+00:00,70016,Klaudijus Upstas,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
+1366907,2025-06-10T17:00:00+00:00,70340,Edvinas Girdvainis,254,SV Sandhausen,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,sv sandhausen,0,0,true,false,false,false,false,false,false
 1367920,2025-06-10T17:00:00+00:00,129047,Ramiz Zerrouki,234,Feyenoord,PBK16_EXACT_ALIAS_UNIQUE,209,Feyenoord,88,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,feyenoord,1,0,true,false,false,false,false,false,false
 1367920,2025-06-10T17:00:00+00:00,135505,Samuel Dahl,294,Benfica,PBK16_EXACT_ALIAS_UNIQUE,211,Benfica,94,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,benfica,1,0,true,false,false,false,false,false,false
 1367920,2025-06-10T17:00:00+00:00,198654,Daniel Svensson,16,Dortmund,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,dortmund,0,0,true,false,false,false,false,false,false
@@ -18947,6 +19148,7 @@
 1323282,2025-09-04T16:00:00+00:00,55902,Paulius Golubickas,6251,KuPS,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kups,0,0,true,false,false,false,false,false,false
 1323282,2025-09-04T16:00:00+00:00,69981,Domantas Antanavičius,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
 1323282,2025-09-04T16:00:00+00:00,70016,Klaudijus Upstas,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
+1323282,2025-09-04T16:00:00+00:00,70340,Edvinas Girdvainis,43162,Liepaja,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,liepaja,0,0,true,false,false,false,false,false,false
 1352744,2025-09-04T16:00:00+00:00,106759,Ville Koski,999,NK Istra,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,nk istra,0,0,true,false,false,false,false,false,false
 1352744,2025-09-04T16:00:00+00:00,177780,Anssi Suhonen,1236,Östers IF,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,osters if,0,0,true,false,false,false,false,false,false
 1352744,2025-09-04T16:00:00+00:00,18967,Leo Østigård,252,Genoa,PBK16_EXACT_ALIAS_UNIQUE,495,Genoa,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,genoa,1,0,true,false,false,false,false,false,false
@@ -19058,6 +19260,7 @@
 1366287,2025-09-07T16:00:00+00:00,55902,Paulius Golubickas,6251,KuPS,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kups,0,0,true,false,false,false,false,false,false
 1366287,2025-09-07T16:00:00+00:00,69981,Domantas Antanavičius,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
 1366287,2025-09-07T16:00:00+00:00,70016,Klaudijus Upstas,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
+1366287,2025-09-07T16:00:00+00:00,70340,Edvinas Girdvainis,43162,Liepaja,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,liepaja,0,0,true,false,false,false,false,false,false
 1323297,2025-09-07T18:45:00+00:00,140612,Mathias Olesen,65,Greuther Fürth,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,greuther furth,0,0,true,false,false,false,false,false,false
 1323297,2025-09-07T18:45:00+00:00,18886,Martin Dúbravka,1132,Burnley,PBK16_EXACT_ALIAS_UNIQUE,44,Burnley,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,burnley,1,0,true,false,false,false,false,false,false
 1323297,2025-09-07T18:45:00+00:00,24962,László Bénes,3205,Kayserispor,PBK16_EXACT_ALIAS_UNIQUE,1001,Kayserispor,203,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,kayserispor,1,0,true,false,false,false,false,false,false
@@ -19168,6 +19371,7 @@
 1323312,2025-10-09T16:00:00+00:00,55902,Paulius Golubickas,6251,KuPS,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,kups,0,0,true,false,false,false,false,false,false
 1323312,2025-10-09T16:00:00+00:00,69981,Domantas Antanavičius,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
 1323312,2025-10-09T16:00:00+00:00,70016,Klaudijus Upstas,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
+1323312,2025-10-09T16:00:00+00:00,70340,Edvinas Girdvainis,43162,Liepaja,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,liepaja,0,0,true,false,false,false,false,false,false
 1337510,2025-10-09T18:00:00+00:00,41724,Oleg Reabciuk,232,Spartak Moscow,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,spartak moscow,0,0,true,false,false,false,false,false,false
 1323311,2025-10-09T18:45:00+00:00,126690,Kieron Bowie,903,Hibernian FC,PBK16_EXACT_ALIAS_UNIQUE,249,Hibernian,179,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,hibernian,1,0,true,false,false,false,false,false,false
 1323311,2025-10-09T18:45:00+00:00,1600,Konstantinos Tsimikas,12,Roma,PBK16_EXACT_ALIAS_UNIQUE,497,AS Roma,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,as roma,1,0,true,false,false,false,false,false,false
@@ -19296,6 +19500,7 @@
 1323330,2025-10-12T18:45:00+00:00,61431,Jakub Kiwior,720,Porto,PBK16_EXACT_ALIAS_UNIQUE,212,FC Porto,94,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,porto,1,0,true,false,false,false,false,false,false
 1323330,2025-10-12T18:45:00+00:00,69981,Domantas Antanavičius,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
 1323330,2025-10-12T18:45:00+00:00,70016,Klaudijus Upstas,69752,Hegelmann,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,hegelmann,0,0,true,false,false,false,false,false,false
+1323330,2025-10-12T18:45:00+00:00,70340,Edvinas Girdvainis,43162,Liepaja,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,liepaja,0,0,true,false,false,false,false,false,false
 1323331,2025-10-12T18:45:00+00:00,25297,Michael Gregoritsch,206,Bröndby IF,PBK16_EXACT_ALIAS_UNIQUE,407,Brondby,119,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,brondby,1,0,true,false,false,false,false,false,false
 1323331,2025-10-12T18:45:00+00:00,417,Alessandro Schöpf,4441,Wolfsberger AC,PBK16_EXACT_ALIAS_UNIQUE,1025,Wolfsberger AC,218,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,wolfsberger,1,0,true,false,false,false,false,false,false
 1323331,2025-10-12T18:45:00+00:00,711,Stefan Posch,1047,Como,PBK16_EXACT_ALIAS_UNIQUE,895,Como,135,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,como,1,0,true,false,false,false,false,false,false
@@ -19539,6 +19744,7 @@
 1366322,2025-11-17T19:45:00+00:00,399,Alexander Nübel,79,Stuttgart,PBK16_EXACT_ALIAS_UNIQUE,172,VfB Stuttgart,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,vfb stuttgart,1,0,true,false,false,false,false,false,false
 1366322,2025-11-17T19:45:00+00:00,511,Leon Goretzka,27,Bayern Munich,PBK16_EXACT_ALIAS_UNIQUE,157,Bayern München,78,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,bayern munchen,1,0,true,false,false,false,false,false,false
 1366323,2025-11-17T19:45:00+00:00,203762,Emmanuel Emegha,667,R. Strasbourg,PBK16_EXACT_ALIAS_UNIQUE,95,Strasbourg,61,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,strasbourg,1,0,true,false,false,false,false,false,false
+1366323,2025-11-17T19:45:00+00:00,210027,Motiejus Burba,602,Zalgiris,NO_SAVED_PBK16_TEAM_IDENTITY,,,,NO_SAVED_PBK16_TEAM_IDENTITY_CANDIDATE,zalgiris,0,0,true,false,false,false,false,false,false
 1366323,2025-11-17T19:45:00+00:00,249,Donyell Malen,405,Aston Villa,PBK16_EXACT_ALIAS_UNIQUE,66,Aston Villa,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,aston villa,1,0,true,false,false,false,false,false,false
 1366323,2025-11-17T19:45:00+00:00,37143,Lutsharel Geertruida,289,Sunderland,PBK16_EXACT_ALIAS_UNIQUE,746,Sunderland,39,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,sunderland,1,0,true,false,false,false,false,false,false
 1366323,2025-11-17T19:45:00+00:00,38747,Quinten Timber,234,Feyenoord,PBK16_EXACT_ALIAS_UNIQUE,209,Feyenoord,88,EXACT_NORMALIZED_OR_EXPLICIT_ALIAS_UNIQUE,feyenoord,1,0,true,false,false,false,false,false,false
