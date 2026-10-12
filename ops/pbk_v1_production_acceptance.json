@@ -80,7 +80,7 @@
       "latched": true
     },
     "5_standings_motivation": {
-      "status": "PASS",
+      "status": "FAIL",
       "checks": [
         {
           "code": "STANDINGS_PROVIDER_SNAPSHOT",
@@ -94,10 +94,10 @@
         },
         {
           "code": "STANDINGS_NO_LOOKAHEAD_EVIDENCE",
-          "status": "PASS",
-          "message": "provider standings evidence is tied to a pre-kickoff cutoff",
+          "status": "FAIL",
+          "message": "standings snapshots exist but no snapshot can be tied to a <=90m pre-kickoff fixture",
           "evidence": {
-            "prematch_snapshots": 1
+            "prematch_snapshots": 0
           }
         },
         {
@@ -116,7 +116,7 @@
           "message": "at least one real no-lookahead motivation projection is available",
           "evidence": {
             "rows": 129,
-            "available_no_lookahead_rows": 14
+            "available_no_lookahead_rows": 19
           }
         }
       ]
@@ -131,7 +131,7 @@
         "message": "system health contains CRITICAL issues",
         "evidence": {
           "health_status": "CRITICAL",
-          "critical_issues": 3,
+          "critical_issues": 6,
           "warnings": 5
         }
       },
@@ -158,8 +158,9 @@
     ]
   },
   "next_actions": [
+    "Wait for a <=75m pre-kickoff standings capture and downstream Stage72 motivation rebuild.",
     "Resolve hard health/data-layer/API integrity failures before closure."
   ],
-  "evaluated_at_utc": "2026-10-12T01:29:11Z",
-  "state_fingerprint": "e6c8fcfa4c7086303ebe2eb3f5f929b06a97f0cdb82c13673c28ff3b847d431b"
+  "evaluated_at_utc": "2026-10-12T09:29:53Z",
+  "state_fingerprint": "ccbe492fdb5c14b2c10b7ea5be2b5da94d7bddd83519aefd1d0289e1c3e8a610"
 }
