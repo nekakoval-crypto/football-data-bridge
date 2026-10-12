@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-11T20:47:47Z",
+  "generated_at_utc": "2026-10-12T00:12:32Z",
   "status": "OK",
   "cards": [
     {
@@ -34037,9 +34037,9 @@
       "away_team": "Juventus",
       "kickoff_utc": "2026-10-11T18:45:00Z",
       "selection": "П2",
-      "latest_event": "ODDS_SNAPSHOT",
-      "latest_status": "NS",
-      "event_count": 472,
+      "latest_event": "CLOSE_LOCKED",
+      "latest_status": "",
+      "event_count": 474,
       "timeline": [
         {
           "entity_id": "R1|I1|1550138",
@@ -34052,7 +34052,7 @@
           "kickoff_utc": "2026-10-11T18:45:00Z",
           "event_time_utc": "2026-09-18T06:32:52Z",
           "event_type": "SIGNAL_CREATED",
-          "status": "PAPER",
+          "status": "SETTLED",
           "selection": "П2",
           "bookmaker": "Bet365",
           "odds": "1.6",
@@ -42064,6 +42064,40 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550138",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550138",
+          "league": "Serie A",
+          "home_team": "Cagliari",
+          "away_team": "Juventus",
+          "kickoff_utc": "2026-10-11T18:45:00Z",
+          "event_time_utc": "2026-10-11T18:45:00Z",
+          "event_type": "SETTLEMENT",
+          "status": "SETTLED",
+          "selection": "П2",
+          "bookmaker": "Marathonbet",
+          "odds": "1.53",
+          "details": "result=D user_profit_u=-1.000"
+        },
+        {
+          "entity_id": "R1|I1|1550138",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550138",
+          "league": "Serie A",
+          "home_team": "Cagliari",
+          "away_team": "Juventus",
+          "kickoff_utc": "2026-10-11T18:45:00Z",
+          "event_time_utc": "2026-10-11T22:23:45Z",
+          "event_type": "CLOSE_LOCKED",
+          "status": "",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "1.59",
+          "details": "Latest observed pre-kickoff close"
         }
       ]
     },
@@ -42077,9 +42111,9 @@
       "away_team": "Valencia",
       "kickoff_utc": "2026-10-11T19:00:00Z",
       "selection": "ОЗ — Да",
-      "latest_event": "WATCH_CROSSING",
-      "latest_status": "WATCH_ONLY",
-      "event_count": 1,
+      "latest_event": "WATCH_SETTLEMENT",
+      "latest_status": "SETTLED",
+      "event_count": 2,
       "timeline": [
         {
           "entity_id": "BTTS_YES|1570409",
@@ -42097,6 +42131,23 @@
           "bookmaker": "Marathonbet",
           "odds": "1.57",
           "details": "movement_pp=0.03277942"
+        },
+        {
+          "entity_id": "BTTS_YES|1570409",
+          "entity_type": "WATCH",
+          "rule_or_stage": "Stage63",
+          "api_fixture_id": "1570409",
+          "league": "La Liga",
+          "home_team": "Racing Santander",
+          "away_team": "Valencia",
+          "kickoff_utc": "2026-10-11T19:00:00Z",
+          "event_time_utc": "2026-10-11T21:06:10Z",
+          "event_type": "WATCH_SETTLEMENT",
+          "status": "SETTLED",
+          "selection": "ОЗ — Да",
+          "bookmaker": "Marathonbet",
+          "odds": "1.57",
+          "details": "result=W profit_u=0.570"
         }
       ]
     },
@@ -42112,7 +42163,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 152,
+      "event_count": 153,
       "timeline": [
         {
           "entity_id": "R1|I1|1550156",
@@ -44691,6 +44742,23 @@
           "away_team": "Napoli",
           "kickoff_utc": "2026-10-17T13:00:00Z",
           "event_time_utc": "2026-10-11T18:24:48Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550156",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550156",
+          "league": "Serie A",
+          "home_team": "Venezia",
+          "away_team": "Napoli",
+          "kickoff_utc": "2026-10-17T13:00:00Z",
+          "event_time_utc": "2026-10-11T22:23:45Z",
           "event_type": "ODDS_SNAPSHOT",
           "status": "NS",
           "selection": "П2",
@@ -44712,7 +44780,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 152,
+      "event_count": 153,
       "timeline": [
         {
           "entity_id": "R2|I1|1550156",
@@ -47297,6 +47365,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R2|I1|1550156",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R2",
+          "api_fixture_id": "1550156",
+          "league": "Serie A",
+          "home_team": "Venezia",
+          "away_team": "Napoli",
+          "kickoff_utc": "2026-10-17T13:00:00Z",
+          "event_time_utc": "2026-10-11T22:23:45Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     },
@@ -47312,7 +47397,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 152,
+      "event_count": 153,
       "timeline": [
         {
           "entity_id": "R1|I1|1550149",
@@ -49891,6 +49976,23 @@
           "away_team": "Inter",
           "kickoff_utc": "2026-10-17T16:00:00Z",
           "event_time_utc": "2026-10-11T18:24:48Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550149",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550149",
+          "league": "Serie A",
+          "home_team": "Bologna",
+          "away_team": "Inter",
+          "kickoff_utc": "2026-10-17T16:00:00Z",
+          "event_time_utc": "2026-10-11T22:23:45Z",
           "event_type": "ODDS_SNAPSHOT",
           "status": "NS",
           "selection": "П2",
@@ -49912,7 +50014,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 152,
+      "event_count": 153,
       "timeline": [
         {
           "entity_id": "R2|I1|1550149",
@@ -52497,6 +52599,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R2|I1|1550149",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R2",
+          "api_fixture_id": "1550149",
+          "league": "Serie A",
+          "home_team": "Bologna",
+          "away_team": "Inter",
+          "kickoff_utc": "2026-10-17T16:00:00Z",
+          "event_time_utc": "2026-10-11T22:23:45Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     },
@@ -52512,7 +52631,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 152,
+      "event_count": 153,
       "timeline": [
         {
           "entity_id": "R1|I1|1550150",
@@ -55091,6 +55210,23 @@
           "away_team": "Como",
           "kickoff_utc": "2026-10-18T13:00:00Z",
           "event_time_utc": "2026-10-11T18:24:48Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R1|I1|1550150",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R1",
+          "api_fixture_id": "1550150",
+          "league": "Serie A",
+          "home_team": "Fiorentina",
+          "away_team": "Como",
+          "kickoff_utc": "2026-10-18T13:00:00Z",
+          "event_time_utc": "2026-10-11T22:23:45Z",
           "event_type": "ODDS_SNAPSHOT",
           "status": "NS",
           "selection": "П2",
@@ -55112,7 +55248,7 @@
       "selection": "П2",
       "latest_event": "ODDS_SNAPSHOT",
       "latest_status": "NS",
-      "event_count": 152,
+      "event_count": 153,
       "timeline": [
         {
           "entity_id": "R2|I1|1550150",
@@ -57697,6 +57833,23 @@
           "bookmaker": "",
           "odds": "",
           "details": "Pre-kickoff odds snapshot"
+        },
+        {
+          "entity_id": "R2|I1|1550150",
+          "entity_type": "CANONICAL",
+          "rule_or_stage": "R2",
+          "api_fixture_id": "1550150",
+          "league": "Serie A",
+          "home_team": "Fiorentina",
+          "away_team": "Como",
+          "kickoff_utc": "2026-10-18T13:00:00Z",
+          "event_time_utc": "2026-10-11T22:23:45Z",
+          "event_type": "ODDS_SNAPSHOT",
+          "status": "NS",
+          "selection": "П2",
+          "bookmaker": "",
+          "odds": "",
+          "details": "Pre-kickoff odds snapshot"
         }
       ]
     }
@@ -57705,7 +57858,7 @@
     "cards": 85,
     "canonical_cards": 13,
     "watch_cards": 72,
-    "events": 3314
+    "events": 3323
   },
   "policy": {
     "read_only": true,
