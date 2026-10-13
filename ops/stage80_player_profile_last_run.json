@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_PLAYER_PROFILE_ENRICHMENT_V2_RESIDUAL_ID",
-  "run_at_utc": "2026-10-13T00:52:18Z",
+  "run_at_utc": "2026-10-13T14:25:17Z",
   "status": "ATTENTION",
   "season": "2026",
   "provider_endpoints": [
@@ -9,31 +9,172 @@
   ],
   "refresh_days": 7,
   "residual_retry_days": 7,
-  "provider_calls": 18,
-  "team_provider_calls": 18,
-  "residual_provider_calls": 0,
-  "daily_api_calls": 18,
+  "provider_calls": 221,
+  "team_provider_calls": 74,
+  "residual_provider_calls": 147,
+  "daily_api_calls": 416,
   "protected_calls": {
     "live": 0,
-    "current_round": 180,
+    "current_round": 120,
     "standings": 32,
     "safety": 100,
-    "total": 312
+    "total": 252
   },
-  "candidate_teams": 18,
-  "completed_teams": [],
+  "candidate_teams": 46,
+  "completed_teams": [
+    {
+      "team_id": "202",
+      "team_name": "Groningen",
+      "profile_rows": 29
+    },
+    {
+      "team_id": "757",
+      "team_name": "Aalesund",
+      "profile_rows": 32
+    },
+    {
+      "team_id": "549",
+      "team_name": "Beşiktaş",
+      "profile_rows": 26
+    },
+    {
+      "team_id": "407",
+      "team_name": "Brondby",
+      "profile_rows": 25
+    },
+    {
+      "team_id": "196",
+      "team_name": "Excelsior",
+      "profile_rows": 28
+    },
+    {
+      "team_id": "3573",
+      "team_name": "Gaziantep FK",
+      "profile_rows": 29
+    },
+    {
+      "team_id": "260",
+      "team_name": "OH Leuven",
+      "profile_rows": 28
+    },
+    {
+      "team_id": "618",
+      "team_name": "SCR Altach",
+      "profile_rows": 28
+    },
+    {
+      "team_id": "420",
+      "team_name": "Cambuur",
+      "profile_rows": 29
+    },
+    {
+      "team_id": "346",
+      "team_name": "Korona Kielce",
+      "profile_rows": 28
+    },
+    {
+      "team_id": "397",
+      "team_name": "FC Midtjylland",
+      "profile_rows": 35
+    },
+    {
+      "team_id": "321",
+      "team_name": "Lillestrom",
+      "profile_rows": 34
+    },
+    {
+      "team_id": "258",
+      "team_name": "ST Johnstone",
+      "profile_rows": 27
+    },
+    {
+      "team_id": "224",
+      "team_name": "Vitória SC",
+      "profile_rows": 27
+    },
+    {
+      "team_id": "252",
+      "team_name": "Aberdeen",
+      "profile_rows": 30
+    },
+    {
+      "team_id": "740",
+      "team_name": "Antwerp",
+      "profile_rows": 29
+    },
+    {
+      "team_id": "266",
+      "team_name": "KV Mechelen",
+      "profile_rows": 32
+    },
+    {
+      "team_id": "261",
+      "team_name": "KVC Westerlo",
+      "profile_rows": 28
+    },
+    {
+      "team_id": "7411",
+      "team_name": "Kocaelispor",
+      "profile_rows": 27
+    },
+    {
+      "team_id": "427",
+      "team_name": "Telstar",
+      "profile_rows": 27
+    },
+    {
+      "team_id": "6343",
+      "team_name": "Çorum FK",
+      "profile_rows": 28
+    },
+    {
+      "team_id": "400",
+      "team_name": "FC Copenhagen",
+      "profile_rows": 35
+    },
+    {
+      "team_id": "1026",
+      "team_name": "Lask Linz",
+      "profile_rows": 27
+    },
+    {
+      "team_id": "226",
+      "team_name": "Rio Ave",
+      "profile_rows": 33
+    },
+    {
+      "team_id": "1393",
+      "team_name": "Union St. Gilloise",
+      "profile_rows": 33
+    },
+    {
+      "team_id": "225",
+      "team_name": "Nacional",
+      "profile_rows": 30
+    },
+    {
+      "team_id": "781",
+      "team_name": "Rapid Vienna",
+      "profile_rows": 28
+    },
+    {
+      "team_id": "334",
+      "team_name": "Start",
+      "profile_rows": 37
+    }
+  ],
   "deferred_teams": 0,
-  "residual_candidate_players": 0,
+  "residual_candidate_players": 147,
   "residual_captured_players": 0,
-  "residual_empty_players": 0,
+  "residual_empty_players": 147,
   "residual_error_players": 0,
   "residual_deferred_players": 0,
   "residual_ambiguous_current_roster_player_ids": 1,
-  "residual_suppressed_recent_attempts": 1301,
-  "profile_rows": 7184,
-  "unique_profile_players": 6921,
+  "residual_suppressed_recent_attempts": 1148,
+  "profile_rows": 7195,
+  "unique_profile_players": 6932,
   "current_roster_players": 7802,
-  "current_roster_player_coverage_pct": 83.31,
+  "current_roster_player_coverage_pct": 83.39,
   "warnings": [
     "3870 Šiauliai: provider returned no usable profile rows",
     "3874 Panevėžys: provider returned no usable profile rows",
