@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-10-13T03:44:00.096219Z",
+  "run_at_utc": "2026-10-13T15:14:47.063816Z",
   "status": "ATTENTION",
   "counts": {
     "expected": 0,
@@ -8,7 +8,7 @@
     "missed_or_at_risk": 4,
     "pending": 16,
     "stale": 0,
-    "rescheduled": 253,
+    "rescheduled": 263,
     "cancelled": 19,
     "settled": 111,
     "duplicates": 0
@@ -152,6 +152,6 @@
   "legacy_max_schedule_gap_hours": 18,
   "schedule_gap_hours": 8,
   "r2_freeze_hours": 12,
-  "api_calls": 49,
-  "api_day_calls": 143
+  "api_calls": 35,
+  "api_day_calls": 483
 }
