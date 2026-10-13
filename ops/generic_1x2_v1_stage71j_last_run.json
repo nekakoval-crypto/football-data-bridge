@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-10-13T00:56:01Z",
+  "run_at_utc": "2026-10-13T14:29:38Z",
   "status": "OK",
   "mode": "STAGE71J_ZERO_EXTRA_CALL_PROSPECTIVE_CAPTURE",
   "source": "API-Football /odds Bet365 Match Winner",
@@ -15,11 +15,67 @@
     "complete_candidate_rows": 112
   },
   "candidate_rows": 112,
-  "observations_added": 19,
-  "observations_rejected": 93,
+  "observations_added": 0,
+  "observations_rejected": 112,
   "prematch_frozen": 370,
   "settled_rows": 2,
   "rejections": [
+    {
+      "fixture_id": "1494780",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1494781",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1494782",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1494783",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1494784",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1494785",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1494786",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1494787",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1549034",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1549035",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1549036",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1549037",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1549038",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1549039",
+      "reason": "already_frozen"
+    },
     {
       "fixture_id": "1550147",
       "reason": "already_frozen"
@@ -42,6 +98,14 @@
     },
     {
       "fixture_id": "1550152",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1550153",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1550154",
       "reason": "already_frozen"
     },
     {
@@ -209,6 +273,10 @@
       "reason": "already_frozen"
     },
     {
+      "fixture_id": "1557436",
+      "reason": "already_frozen"
+    },
+    {
       "fixture_id": "1561942",
       "reason": "already_frozen"
     },
@@ -262,6 +330,10 @@
     },
     {
       "fixture_id": "1570416",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1570417",
       "reason": "already_frozen"
     },
     {
@@ -354,6 +426,10 @@
     },
     {
       "fixture_id": "1575525",
+      "reason": "already_frozen"
+    },
+    {
+      "fixture_id": "1575526",
       "reason": "already_frozen"
     },
     {
