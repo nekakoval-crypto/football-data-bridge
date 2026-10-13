@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_INTERNATIONAL_DUTY_TEMPORAL_CLUB_V1_BOUNDED_CHAIN_ONLY",
-  "generated_at_utc": "2026-10-13T07:12:08Z",
+  "generated_at_utc": "2026-10-13T20:14:57Z",
   "status": "OK",
   "evidence_rows": 161210,
   "output_rows": 161210,
@@ -10,10 +10,10 @@
   "status_counts": {
     "BOUNDED_CHAIN_CONFIRMED": 19810,
     "CHAIN_BREAK": 14,
-    "NO_SAFE_TRANSFER_IDENTITY": 129934,
-    "NO_TRANSFER_EVENTS": 378,
+    "NO_SAFE_TRANSFER_IDENTITY": 129925,
+    "NO_TRANSFER_EVENTS": 383,
     "TRANSFER_DATE_COLLISION": 2,
-    "UNBOUNDED_INTERVAL": 11072
+    "UNBOUNDED_INTERVAL": 11076
   },
   "bounded_chain_confirmed_rows": 19810,
   "bounded_chain_confirmed_players": 1411,
