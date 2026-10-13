@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-10-12T18:21:19Z
+Generated UTC: 2026-10-13T01:02:51Z
 Active canonical signals: 6
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -38,8 +38,8 @@ Active canonical signals: 6
 ## R1 | Bologna — Inter
 - Kickoff UTC: 2026-10-17T16:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.75 / Х 3.9 / П2 1.65 (immutable)
-- Market-best observed: 1.69 @ 1xBet | Bet365 now: 1.55
-- Current user-executable: 1.64 @ Marathonbet
+- Market-best observed: 1.65 @ 1xBet | Bet365 now: 1.55
+- Current user-executable: 1.6 @ Marathonbet
 - Paper user-execution (frozen): 1.64 @ Marathonbet [2026-10-04T18:05:16Z]
 - Referee / venue: TBD | TBD, Bologna
 - Previous: home Serie A vs Torino (675.0h rest); away Friendlies Clubs vs Lumezzane (343.0h rest)
@@ -53,8 +53,8 @@ Active canonical signals: 6
 ## R2 | Bologna — Inter
 - Kickoff UTC: 2026-10-17T16:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.75 / Х 3.9 / П2 1.65 (immutable)
-- Market-best observed: 1.69 @ 1xBet | Bet365 now: 1.55
-- Current user-executable: 1.64 @ Marathonbet
+- Market-best observed: 1.65 @ 1xBet | Bet365 now: 1.55
+- Current user-executable: 1.6 @ Marathonbet
 - Paper user-execution (frozen): 1.64 @ Marathonbet [2026-10-04T18:05:16Z]
 - Referee / venue: TBD | TBD, Bologna
 - Previous: home Serie A vs Torino (675.0h rest); away Friendlies Clubs vs Lumezzane (343.0h rest)
@@ -68,8 +68,8 @@ Active canonical signals: 6
 ## R1 | Fiorentina — Como
 - Kickoff UTC: 2026-10-18T13:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 3.5 / Х 3.4 / П2 2.05 (immutable)
-- Market-best observed: 2.13 @ 1xBet | Bet365 now: 1.95
-- Current user-executable: 2.07 @ Marathonbet
+- Market-best observed: 2.12 @ 1xBet | Bet365 now: 1.95
+- Current user-executable: 2.06 @ Marathonbet
 - Paper user-execution (frozen): 2.07 @ Marathonbet [2026-10-04T18:05:16Z]
 - Referee / venue: TBD | Stadio Artemio Franchi, Florence
 - Previous: home Serie A vs Napoli (674.5h rest); away Serie A vs Frosinone (672.0h rest)
@@ -83,8 +83,8 @@ Active canonical signals: 6
 ## R2 | Fiorentina — Como
 - Kickoff UTC: 2026-10-18T13:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 3.5 / Х 3.4 / П2 2.05 (immutable)
-- Market-best observed: 2.13 @ 1xBet | Bet365 now: 1.95
-- Current user-executable: 2.07 @ Marathonbet
+- Market-best observed: 2.12 @ 1xBet | Bet365 now: 1.95
+- Current user-executable: 2.06 @ Marathonbet
 - Paper user-execution (frozen): 2.07 @ Marathonbet [2026-10-04T18:05:16Z]
 - Referee / venue: TBD | Stadio Artemio Franchi, Florence
 - Previous: home Serie A vs Napoli (674.5h rest); away Serie A vs Frosinone (672.0h rest)
@@ -145,7 +145,7 @@ Active canonical signals: 6
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 243
 - Активные движения ≥3 п.п.: всего 0 | ОЗ — Да 0 | ОЗ — Нет 0
-- Зафиксировано observed close: 149
+- Зафиксировано observed close: 153
 - Исполнимый букмекер для наблюдения: Marathonbet
 
 - Сейчас активных движений ≥3 п.п. по ОЗ нет.
