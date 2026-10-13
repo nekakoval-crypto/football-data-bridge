@@ -1,8 +1,8 @@
 # PBK Signal Lifecycle
 
-Обновлено UTC: 2026-10-13T05:21:36Z
+Обновлено UTC: 2026-10-13T13:31:38Z
 
-Cards: 85 | canonical 13 | WATCH 72 | events 3354
+Cards: 85 | canonical 13 | WATCH 72 | events 3360
 
 ## WATCH | Stage63 | Venezia — Fiorentina
 - Ставка/рынок: ОЗ — Да | kickoff: 2026-09-11T18:45:00Z
@@ -594,8 +594,7 @@ Cards: 85 | canonical 13 | WATCH 72 | events 3354
 
 ## CANONICAL | R1 | Venezia — Napoli
 - Ставка/рынок: П2 | kickoff: 2026-10-17T13:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 157
-  - 2026-10-11T06:20:16Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 158
   - 2026-10-11T13:25:08Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-11T18:24:48Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-11T22:23:45Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -603,11 +602,11 @@ Cards: 85 | canonical 13 | WATCH 72 | events 3354
   - 2026-10-12T09:41:12Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-12T19:58:57Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-13T02:13:37Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-10-13T09:43:04Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
 
 ## CANONICAL | R2 | Venezia — Napoli
 - Ставка/рынок: П2 | kickoff: 2026-10-17T13:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 157
-  - 2026-10-11T06:20:16Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 158
   - 2026-10-11T13:25:08Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-11T18:24:48Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-11T22:23:45Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -615,11 +614,11 @@ Cards: 85 | canonical 13 | WATCH 72 | events 3354
   - 2026-10-12T09:41:12Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-12T19:58:57Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-13T02:13:37Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-10-13T09:43:04Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
 
 ## CANONICAL | R1 | Bologna — Inter
 - Ставка/рынок: П2 | kickoff: 2026-10-17T16:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 157
-  - 2026-10-11T06:20:16Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 158
   - 2026-10-11T13:25:08Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-11T18:24:48Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-11T22:23:45Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -627,11 +626,11 @@ Cards: 85 | canonical 13 | WATCH 72 | events 3354
   - 2026-10-12T09:41:12Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-12T19:58:57Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-13T02:13:37Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-10-13T09:43:04Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
 
 ## CANONICAL | R2 | Bologna — Inter
 - Ставка/рынок: П2 | kickoff: 2026-10-17T16:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 157
-  - 2026-10-11T06:20:16Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 158
   - 2026-10-11T13:25:08Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-11T18:24:48Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-11T22:23:45Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -639,11 +638,11 @@ Cards: 85 | canonical 13 | WATCH 72 | events 3354
   - 2026-10-12T09:41:12Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-12T19:58:57Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-13T02:13:37Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-10-13T09:43:04Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
 
 ## CANONICAL | R1 | Fiorentina — Como
 - Ставка/рынок: П2 | kickoff: 2026-10-18T13:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 157
-  - 2026-10-11T06:20:16Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 158
   - 2026-10-11T13:25:08Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-11T18:24:48Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-11T22:23:45Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -651,11 +650,11 @@ Cards: 85 | canonical 13 | WATCH 72 | events 3354
   - 2026-10-12T09:41:12Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-12T19:58:57Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-13T02:13:37Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-10-13T09:43:04Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
 
 ## CANONICAL | R2 | Fiorentina — Como
 - Ставка/рынок: П2 | kickoff: 2026-10-18T13:00:00Z
-- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 157
-  - 2026-10-11T06:20:16Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+- Последнее событие: ODDS_SNAPSHOT | статус: NS | событий: 158
   - 2026-10-11T13:25:08Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-11T18:24:48Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-11T22:23:45Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
@@ -663,3 +662,4 @@ Cards: 85 | canonical 13 | WATCH 72 | events 3354
   - 2026-10-12T09:41:12Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-12T19:58:57Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
   - 2026-10-13T02:13:37Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
+  - 2026-10-13T09:43:04Z — ODDS_SNAPSHOT — Pre-kickoff odds snapshot
