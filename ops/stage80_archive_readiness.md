@@ -1,16 +1,16 @@
 # PBK Stage80 Archive Readiness
 
-Обновлено UTC: 2026-10-13T17:47:07Z
+Обновлено UTC: 2026-10-13T21:36:36Z
 Статус: **COLLECTING**
 
 ## Покрытие
 - Fixtures в текущем inventory: 129 (finished: 4).
-- Fixture history: 430 unique fixtures / 30536 observations / 238 observation runs (finished observed: 296).
+- Fixture history: 430 unique fixtures / 30665 observations / 239 observation runs (finished observed: 296).
 - Historical fixture catalog: 430 fixtures (terminal 296, rescheduled 2), history coverage 100.00%; missing 0, orphan 0.
 - Finished fixtures с player stats: 0 / 4 (0.00%).
 - Stage77 durable backlog: pending 287; captured 0; total 287.
 - Normalized lineup archive: 8 rows / 3 fixtures; injury archive: 99 rows / 6 fixtures.
-- Match event archive: 3839 rows / 228 fixtures; backlog pending 26 / total 254.
+- Match event archive: 3977 rows / 236 fixtures; backlog pending 18 / total 254.
 - Stage81 durable backlog: pending 2835; captured 10768; total 13603.
 - Team match statistics: 10768 complete fixtures / 21536 team rows; current finished coverage 0.00%.
 - Team xG: 8121 complete fixtures / 16242 team rows; captured-team-stat coverage 75.42%.
@@ -30,7 +30,7 @@
 - Top-5 motivation × market research: 2719 profiles / 288 stability rows; closing 1X2 12459; closing O/U2.5 12459; promotes factor False.
 - Pre-match factor research: 2247 profile rows / 237 stability rows; closing 1X2 matches 12459; closing O/U2.5 matches 12459.
 - Pre-match walk-forward research: 7685 folds / 1145 summaries; sample-qualified folds 4455; promotes factor False.
-- Match context: 9 fixtures; official XI 1; injury evidence 6.
+- Match context: 11 fixtures; official XI 1; injury evidence 6.
 - PBK14 historical market bridge: 37327 AUTO/HIGH of 38483 valid source rows; AUTO 18940, HIGH 18387, REVIEW 391, UNMAPPED 765; fuzzy matching False; source coverage 14 / 16 locked leagues.
 - PBK14 international-window × market join: 37327 valid rows; closing 1X2 30879; closing O/U2.5 22738; <=72h before 3595; <=72h after 424; player-level UNVERIFIED.
 - PBK14 international-window market research: join 37327 rows; descriptive profiles 2686; stability rows 313; closing 1X2 30879; closing O/U2.5 22738; player-level UNVERIFIED.
@@ -51,6 +51,7 @@
 - Observations: —; unique payloads: —.
 
 ## Незакрытые пробелы
+- HISTORICAL_FIXTURE_CATALOG_OBSERVATION_COUNT_MISMATCH
 - TEAM_STATS_BACKLOG_PENDING
 - PLAYER_STATS_BACKLOG_PENDING
 - PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE

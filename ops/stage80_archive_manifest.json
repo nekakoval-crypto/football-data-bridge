@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-13T17:46:45Z",
+  "generated_at_utc": "2026-10-13T21:36:10Z",
   "status": "OK",
   "datasets": [
     {
@@ -68,7 +68,7 @@
       "source": "Stage80 archive of already-persisted Stage71 observations",
       "limitations": "Begins when PBK observed the fixture; no pre-PBK hindsight backfill.",
       "present": true,
-      "row_count": 30536,
+      "row_count": 30665,
       "columns": [
         "fixture_id",
         "provider_league_id",
@@ -1890,7 +1890,7 @@
       "source": "Stage80 /fixtures/events via shared API-Football broker",
       "limitations": "Only terminal fixtures captured under protected provider budget; empty provider responses remain retryable and are not converted to fake no-event evidence.",
       "present": true,
-      "row_count": 3839,
+      "row_count": 3977,
       "columns": [
         "event_id",
         "fixture_id",
@@ -1944,7 +1944,7 @@
       "source": "Stage55 timestamped context via shared broker",
       "limitations": "Canonical-forward scope only; not complete 16-league context coverage.",
       "present": true,
-      "row_count": 27,
+      "row_count": 31,
       "columns": [
         "forward_id",
         "rule",
@@ -2027,7 +2027,7 @@
       "source": "Stage55/56 latest projection from context snapshots",
       "limitations": "Convenience read model; historical evidence remains match_context_snapshots.",
       "present": true,
-      "row_count": 13,
+      "row_count": 17,
       "columns": [
         "forward_id",
         "rule",
