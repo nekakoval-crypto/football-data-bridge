@@ -1,6 +1,6 @@
 # PBK Stage71 — League & Market Challenger Board
 
-Обновлено UTC: 2026-10-12T16:54:29Z
+Обновлено UTC: 2026-10-13T03:44:00Z
 Текущие лидеры R1/R2: Serie A / Serie A
 
 > Captured → executable → settled — это исследовательский прогресс. Он не меняет canonical eligibility и не создаёт автоматический promotion.
@@ -10,20 +10,20 @@
 | Лига | Статус | Captured | Executable | Settled | Mbet cov. | ROI | 1H ROI | 2H ROI | До 60 | До 120 |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | Premier League | MONITORING | 5 | 5 | 5 | 100.0 | -32.20 | 69.50 | -100.00 | 55 | 115 |
-| La Liga | MONITORING | 8 | 7 | 5 | 87.5 | -10.40 | 63.00 | -59.33 | 55 | 115 |
+| La Liga | MONITORING | 9 | 8 | 5 | 88.9 | -10.40 | 63.00 | -59.33 | 55 | 115 |
 | Serie A 🏆 | ACTIVE | 9 | 9 | 6 | 100.0 | -40.33 | -47.33 | -33.33 | 54 | 114 |
 | Bundesliga | MONITORING | 6 | 6 | 4 | 100.0 | -60.25 | -100.00 | -20.50 | 56 | 116 |
 | Ligue 1 | MONITORING | 7 | 7 | 5 | 100.0 | -7.80 | -37.00 | 11.67 | 55 | 115 |
 | Austrian Bundesliga | MONITORING | 6 | 6 | 5 | 100.0 | -26.40 | -17.00 | -32.67 | 55 | 115 |
 | Belgian Pro League | MONITORING | 4 | 4 | 4 | 100.0 | 66.50 | 68.50 | 64.50 | 56 | 116 |
-| Danish Superliga | MONITORING | 4 | 4 | 4 | 100.0 | -48.25 | -100.00 | 3.50 | 56 | 116 |
+| Danish Superliga | MONITORING | 5 | 5 | 4 | 100.0 | -48.25 | -100.00 | 3.50 | 56 | 116 |
 | A Lyga | MONITORING | 4 | 3 | 3 | 75.0 | -49.33 | 52.00 | -100.00 | 57 | 117 |
 | Virsliga | MONITORING | 8 | 8 | 8 | 100.0 | -14.38 | -4.00 | -24.75 | 52 | 112 |
 | Eredivisie | MONITORING | 7 | 7 | 4 | 100.0 | -29.25 | -30.00 | -28.50 | 56 | 116 |
 | Eliteserien | MONITORING | 5 | 5 | 4 | 100.0 | -20.50 | -15.00 | -26.00 | 56 | 116 |
 | Ekstraklasa | MONITORING | 1 | 1 | 1 | 100.0 | 56.00 | — | 56.00 | 59 | 119 |
 | Primeira Liga | MONITORING | 7 | 7 | 6 | 100.0 | 7.50 | -59.00 | 74.00 | 54 | 114 |
-| Super Lig | MONITORING | 8 | 8 | 6 | 100.0 | -8.17 | -38.00 | 21.67 | 54 | 114 |
+| Super Lig | MONITORING | 8 | 8 | 7 | 100.0 | 4.86 | -38.00 | 37.00 | 53 | 113 |
 | Scottish Premiership | MONITORING | 4 | 3 | 2 | 75.0 | -100.00 | -100.00 | -100.00 | 58 | 118 |
 
 ## R2

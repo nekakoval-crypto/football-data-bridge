@@ -1,28 +1,28 @@
 {
-  "run_at_utc": "2026-10-12T16:54:29Z",
+  "run_at_utc": "2026-10-13T03:43:59Z",
   "status": "OK",
   "research_leagues": 15,
-  "new_triggers": 10,
-  "new_r1_rows": 3,
+  "new_triggers": 12,
+  "new_r1_rows": 2,
   "new_r2_rows": 0,
-  "settled_rows": 0,
-  "trigger_rows": 404,
-  "forward_rows": 125,
-  "api_calls": 53,
-  "odds_calls": 35,
-  "marathon_calls": 3,
+  "settled_rows": 1,
+  "trigger_rows": 416,
+  "forward_rows": 127,
+  "api_calls": 49,
+  "odds_calls": 32,
+  "marathon_calls": 2,
   "scan": [
     {
       "league": "Premier League",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "La Liga",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -56,8 +56,8 @@
     },
     {
       "league": "Danish Superliga",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -84,29 +84,29 @@
     },
     {
       "league": "Eliteserien",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Ekstraklasa",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Primeira Liga",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Super Lig",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -121,14 +121,14 @@
   "warnings": [],
   "canonical_captured": 13,
   "challenger_deferred": false,
-  "api_day_calls_before_challenger": 440,
-  "reserved_live_calls": 13,
-  "reserved_current_round_calls": 32,
+  "api_day_calls_before_challenger": 94,
+  "reserved_live_calls": 0,
+  "reserved_current_round_calls": 96,
   "safety_margin_calls": 10,
-  "challenger_available_calls": 6505,
-  "challenger_calls_used": 53,
-  "live_forecast_cycles": 13,
-  "live_peak_candidates": 10,
-  "live_peak_batches": 1,
+  "challenger_available_calls": 6800,
+  "challenger_calls_used": 49,
+  "live_forecast_cycles": 0,
+  "live_peak_candidates": 0,
+  "live_peak_batches": 0,
   "budget_protection_status": "LIMITED"
 }

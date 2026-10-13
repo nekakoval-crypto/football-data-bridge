@@ -1,16 +1,16 @@
 {
-  "run_at_utc": "2026-10-12T16:54:29.447714Z",
+  "run_at_utc": "2026-10-13T03:44:00.096219Z",
   "status": "ATTENTION",
   "counts": {
-    "expected": 7,
-    "scanned": 7,
-    "captured": 125,
+    "expected": 0,
+    "scanned": 0,
+    "captured": 127,
     "missed_or_at_risk": 4,
-    "pending": 15,
+    "pending": 16,
     "stale": 0,
     "rescheduled": 253,
     "cancelled": 19,
-    "settled": 110,
+    "settled": 111,
     "duplicates": 0
   },
   "risks": [
@@ -35,15 +35,15 @@
   "scan": [
     {
       "league": "Premier League",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "La Liga",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -77,8 +77,8 @@
     },
     {
       "league": "Danish Superliga",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -105,29 +105,29 @@
     },
     {
       "league": "Eliteserien",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Ekstraklasa",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Primeira Liga",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
     {
       "league": "Super Lig",
-      "expected": 1,
-      "scanned": 1,
+      "expected": 0,
+      "scanned": 0,
       "legacy_next5_omitted": 0,
       "inventory": "COMPLETE"
     },
@@ -152,6 +152,6 @@
   "legacy_max_schedule_gap_hours": 18,
   "schedule_gap_hours": 8,
   "r2_freeze_hours": 12,
-  "api_calls": 53,
-  "api_day_calls": 493
+  "api_calls": 49,
+  "api_day_calls": 143
 }
