@@ -1,14 +1,14 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-10-13T01:02:51Z
-Active canonical signals: 6
+Generated UTC: 2026-10-13T21:39:54Z
+Active canonical signals: 10
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
 
 ## R1 | Venezia — Napoli
 - Kickoff UTC: 2026-10-17T13:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.5 / Х 3.7 / П2 1.7 (immutable)
-- Market-best observed: 1.76 @ 1xBet | Bet365 now: 1.7
+- Market-best observed: 1.76 @ 1xBet | Bet365 now: 1.67
 - Current user-executable: 1.71 @ Marathonbet
 - Paper user-execution (frozen): 1.71 @ Marathonbet [2026-10-04T18:05:16Z]
 - Referee / venue: TBD | Stadio Pierluigi Penzo, Venice
@@ -23,7 +23,7 @@ Active canonical signals: 6
 ## R2 | Venezia — Napoli
 - Kickoff UTC: 2026-10-17T13:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.5 / Х 3.7 / П2 1.7 (immutable)
-- Market-best observed: 1.76 @ 1xBet | Bet365 now: 1.7
+- Market-best observed: 1.76 @ 1xBet | Bet365 now: 1.67
 - Current user-executable: 1.71 @ Marathonbet
 - Paper user-execution (frozen): 1.71 @ Marathonbet [2026-10-04T18:05:16Z]
 - Referee / venue: TBD | Stadio Pierluigi Penzo, Venice
@@ -95,6 +95,66 @@ Active canonical signals: 6
 - International: AFTER FIFA window; to start h; player-level UNVERIFIED
 - Flags: AWAY_NEXT_UEFA_OR_CUP, OFFICIAL_ROTATION_PENDING
 
+## R1 | Lecce — Juventus
+- Kickoff UTC: 2026-10-25T17:00:00Z | Ставка: П2 | Stake: 1.000u
+- Trigger Bet365: П1 8.0 / Х 4.2 / П2 1.42 (immutable)
+- Market-best observed: 1.5 @ 1xBet | Bet365 now: 1.42
+- Current user-executable: 1.46 @ Marathonbet
+- Paper user-execution (frozen): WAITING_EXECUTABLE_PRICE
+- Referee / venue: TBD | Stadio Via del Mare, Lecce
+- Previous: home Serie A vs Bologna (340.0h rest); away Serie A vs Cagliari (334.2h rest)
+- Next: home Serie A vs Frosinone (96.5h after); away Serie A vs Genoa (74.8h after)
+- Injuries: NOT_QUERIED_YET
+- Weather [pending]: °C, precip %, wind  km/h, gusts  km/h
+- Rotation: WAITING_OFFICIAL_XI
+- International:  FIFA window; to start h; player-level UNVERIFIED
+- Flags: OFFICIAL_ROTATION_PENDING
+
+## R2 | Lecce — Juventus
+- Kickoff UTC: 2026-10-25T17:00:00Z | Ставка: П2 | Stake: 1.000u
+- Trigger Bet365: П1 8.0 / Х 4.2 / П2 1.42 (immutable)
+- Market-best observed: 1.5 @ 1xBet | Bet365 now: 1.42
+- Current user-executable: 1.46 @ Marathonbet
+- Paper user-execution (frozen): WAITING_EXECUTABLE_PRICE
+- Referee / venue: TBD | Stadio Via del Mare, Lecce
+- Previous: home Serie A vs Bologna (340.0h rest); away Serie A vs Cagliari (334.2h rest)
+- Next: home Serie A vs Frosinone (96.5h after); away Serie A vs Genoa (74.8h after)
+- Injuries: NOT_QUERIED_YET
+- Weather [pending]: °C, precip %, wind  km/h, gusts  km/h
+- Rotation: WAITING_OFFICIAL_XI
+- International:  FIFA window; to start h; player-level UNVERIFIED
+- Flags: OFFICIAL_ROTATION_PENDING
+
+## R1 | Udinese — AC Milan
+- Kickoff UTC: 2026-10-25T19:45:00Z | Ставка: П2 | Stake: 1.000u
+- Trigger Bet365: П1 4.5 / Х 3.5 / П2 1.8 (immutable)
+- Market-best observed: 1.83 @ 1xBet | Bet365 now: 1.8
+- Current user-executable: 1.78 @ Marathonbet
+- Paper user-execution (frozen): WAITING_EXECUTABLE_PRICE
+- Referee / venue: TBD | Bluenergy Stadium - Stadio Friuli, Udine
+- Previous: home Serie A vs Torino (313.0h rest); away Serie A vs Sassuolo (339.8h rest)
+- Next: home Serie A vs Parma (69.8h after); away Serie A vs Bologna (69.8h after)
+- Injuries: NOT_QUERIED_YET
+- Weather [pending]: °C, precip %, wind  km/h, gusts  km/h
+- Rotation: WAITING_OFFICIAL_XI
+- International:  FIFA window; to start h; player-level UNVERIFIED
+- Flags: OFFICIAL_ROTATION_PENDING
+
+## R2 | Udinese — AC Milan
+- Kickoff UTC: 2026-10-25T19:45:00Z | Ставка: П2 | Stake: 1.000u
+- Trigger Bet365: П1 4.5 / Х 3.5 / П2 1.8 (immutable)
+- Market-best observed: 1.83 @ 1xBet | Bet365 now: 1.8
+- Current user-executable: 1.78 @ Marathonbet
+- Paper user-execution (frozen): WAITING_EXECUTABLE_PRICE
+- Referee / venue: TBD | Bluenergy Stadium - Stadio Friuli, Udine
+- Previous: home Serie A vs Torino (313.0h rest); away Serie A vs Sassuolo (339.8h rest)
+- Next: home Serie A vs Parma (69.8h after); away Serie A vs Bologna (69.8h after)
+- Injuries: NOT_QUERIED_YET
+- Weather [pending]: °C, precip %, wind  km/h, gusts  km/h
+- Rotation: WAITING_OFFICIAL_XI
+- International:  FIFA window; to start h; player-level UNVERIFIED
+- Flags: OFFICIAL_ROTATION_PENDING
+
 ---
 
 # MARKET STEAM WATCH — research only
@@ -102,9 +162,9 @@ Active canonical signals: 6
 > This is **not R4 and not a bet signal**. It does not change the canonical R1/R2/R3 forward ledger.
 
 - Scope: АПЛ: движение фаворита П1/П2 (+3 pp no-vig from frozen Bet365 opener).
-- Frozen openers tracked: 46
+- Frozen openers tracked: 49
 - Active +3 pp crossings: 0
-- Observed closes: 29 | Close-qualified M1 watches: 4
+- Observed closes: 30 | Close-qualified M1 watches: 4
 - Executable bookmaker being observed: Marathonbet
 
 - No active +3 pp crossing is currently recorded.
@@ -143,7 +203,7 @@ Active canonical signals: 6
 > Это **не ставка и не новая стратегия**. Исторического edge по ОЗ мы не заявляем: в 10-летней базе нет first/close коэффициентов ОЗ.
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
-- Заморожено Bet365 opener'ов: 243
+- Заморожено Bet365 opener'ов: 245
 - Активные движения ≥3 п.п.: всего 0 | ОЗ — Да 0 | ОЗ — Нет 0
 - Зафиксировано observed close: 153
 - Исполнимый букмекер для наблюдения: Marathonbet
