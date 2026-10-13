@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-10-13T02:35:16Z",
+  "run_at_utc": "2026-10-13T07:59:11Z",
   "status": "OK",
   "api_version": "v1",
   "db_path": "build/pbk_unified.sqlite",
@@ -26,7 +26,7 @@
       "path": "/v1/signals/challengers",
       "http_status": 200,
       "passed": true,
-      "count": 125
+      "count": 127
     },
     {
       "path": "/v1/signals/watch",
@@ -62,13 +62,13 @@
       "path": "/v1/markets/settlements?limit=1",
       "http_status": 200,
       "passed": true,
-      "count": 6242
+      "count": 6405
     },
     {
       "path": "/v1/lifecycle",
       "http_status": 200,
       "passed": true,
-      "count": 3348
+      "count": 3354
     },
     {
       "path": "/v1/attention",
