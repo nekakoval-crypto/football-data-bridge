@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-13T14:42:08Z",
+  "generated_at_utc": "2026-10-13T16:30:15Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -12,7 +12,7 @@
     "fixture_history": {
       "file": "fixture_history_snapshots.csv",
       "present": true,
-      "rows": 30278
+      "rows": 30407
     },
     "historical_fixtures": {
       "file": "historical_fixtures.csv",
@@ -94,7 +94,7 @@
     "match_events": {
       "file": "match_event_snapshots.csv",
       "present": true,
-      "rows": 3688
+      "rows": 3839
     },
     "match_event_backlog": {
       "file": "stage80_match_event_backlog.csv",
@@ -300,10 +300,10 @@
   },
   "fixture_history": {
     "present": true,
-    "rows": 30278,
-    "valid_observations": 30278,
+    "rows": 30407,
+    "valid_observations": 30407,
     "unique_fixtures": 430,
-    "observation_runs": 236,
+    "observation_runs": 237,
     "finished_fixtures_observed": 296,
     "invalid_identity_rows": 0,
     "evidence_note": "Counts represent only Stage71 current-round observations persisted after the fixture-history archive was enabled; they are not a pre-PBK historical backfill claim."
@@ -323,7 +323,7 @@
     "missing_terminal_evidence": 0,
     "orphan_terminal_evidence": 0,
     "observation_count_total": 30278,
-    "expected_history_observations": 30278,
+    "expected_history_observations": 30407,
     "invalid_observation_count_rows": 0,
     "evidence_note": "historical_fixtures is a deterministic warehouse projection only; fixture_history_snapshots remains the append-only historical evidence source-of-truth."
   },
@@ -450,11 +450,11 @@
     "coverage_note": "Stage55 context is canonical-signal scoped; these counts are not full 16-league archive coverage."
   },
   "match_events": {
-    "event_rows": 3688,
-    "event_fixtures": 220,
+    "event_rows": 3839,
+    "event_fixtures": 228,
     "backlog_total_fixtures": 254,
-    "backlog_pending_fixtures": 34,
-    "backlog_captured_fixtures": 220,
+    "backlog_pending_fixtures": 26,
+    "backlog_captured_fixtures": 228,
     "evidence_note": "Append-only normalized provider match events captured only after PBK observed a terminal fixture; empty provider responses remain retryable."
   },
   "referee_research": {
@@ -942,6 +942,7 @@
     "inventory_note": "Remote S3/R2 object counts are intentionally not fetched by this provider-free readiness stage."
   },
   "gaps": [
+    "HISTORICAL_FIXTURE_CATALOG_OBSERVATION_COUNT_MISMATCH",
     "TEAM_STATS_BACKLOG_PENDING",
     "PLAYER_STATS_BACKLOG_PENDING",
     "PLAYER_STATS_PARTIAL_FINISHED_FIXTURE_COVERAGE",
