@@ -6,9 +6,16 @@ import csv
 import os
 from datetime import datetime, timezone
 from pathlib import Path
+from pbk_data_registry import resolve
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
-FORWARD = OPS / "forward_log.csv"
+# PBK488_PBK16_LATEST
+FORWARD = resolve(
+    "PBK.CAPTURE_UNIVERSE.PBK16.V1",
+    require_class="DERIVED",
+    require_scope="CURRENT",
+    require_prematch=True,
+)[0]
 CONTEXT = OPS / "context_latest.csv"
 WEATHER = OPS / "weather_snapshots.csv"
 ROTATION = OPS / "rotation_snapshots.csv"
@@ -52,11 +59,95 @@ def read_csv(path):
 
 
 def write_csv(path, fields, rows):
+    import csv
+    import os
+    import tempfile
+    from pathlib import Path
+
+    path = Path(path)
+    fields = list(fields)
+    rows = list(rows)
+
+    def equivalent():
+        if not path.is_file():
+            return False
+
+        try:
+            with path.open(
+                "r",
+                encoding="utf-8-sig",
+                newline=""
+            ) as stream:
+                reader = csv.DictReader(stream)
+
+                if list(reader.fieldnames or []) != fields:
+                    return False
+
+                sentinel = object()
+                expected = iter(rows)
+
+                for existing in reader:
+                    candidate = next(expected, sentinel)
+
+                    if candidate is sentinel:
+                        return False
+
+                    projected = {
+                        field: str(
+                            candidate.get(field, "")
+                            if candidate.get(field, "") is not None
+                            else ""
+                        )
+                        for field in fields
+                    }
+
+                    if existing != projected:
+                        return False
+
+                return next(expected, sentinel) is sentinel
+
+        except (OSError, UnicodeError, csv.Error):
+            return False
+
+    if equivalent():
+        return False
+
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8-sig", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
-        w.writeheader()
-        w.writerows(rows)
+    temp_name = None
+
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8-sig",
+            newline="",
+            dir=path.parent,
+            prefix=path.name + ".",
+            suffix=".tmp",
+            delete=False,
+        ) as stream:
+            temp_name = stream.name
+
+            writer = csv.DictWriter(
+                stream,
+                fieldnames=fields,
+                extrasaction="ignore",
+            )
+
+            writer.writeheader()
+            writer.writerows(rows)
+
+            stream.flush()
+            os.fsync(stream.fileno())
+
+        os.replace(temp_name, path)
+        return True
+
+    finally:
+        if temp_name is not None:
+            try:
+                os.unlink(temp_name)
+            except FileNotFoundError:
+                pass
 
 
 def latest_by(rows, key="forward_id"):
@@ -99,26 +190,69 @@ def evidence_time_contract(row):
     return "POSTMATCH_FACTUAL", "false"
 
 
-def valid_weather_row(row):
-    try:
-        gap = float(str(row.get("forecast_gap_minutes") or "").strip())
-    except (TypeError, ValueError):
-        return False
+from pbk_weather_evidence_gate import valid_weather_evidence
 
-    if not (0.0 <= gap <= ENVIRONMENT_MAX_FORECAST_GAP_MINUTES):
-        return False
+def valid_weather_row(row, fixture=None, context=None):
+    return valid_weather_evidence(row, fixture, context)
 
-    _, usable = evidence_time_contract(row)
-    return usable == "true"
 
 
 def main():
-    active = [r for r in read_csv(FORWARD) if r.get("status") in {"PAPER", "OPEN", "REVIEW"}]
+    source_rows = read_csv(FORWARD)
+    active = [
+        r for r in source_rows
+        if str(r.get("status") or "").strip() == "CAPTURE"
+    ]
+
+    if not active:
+        raise SystemExit(
+            "PBK488 FAIL-CLOSED: PBK16 capture universe empty"
+        )
+
+    ids = [
+        str(r.get("forward_id") or "").strip()
+        for r in active
+    ]
+
+    fixture_ids = [
+        str(r.get("api_fixture_id") or "").strip()
+        for r in active
+    ]
+
+    if any(not value for value in ids + fixture_ids):
+        raise SystemExit(
+            "PBK488 FAIL-CLOSED: missing capture identity"
+        )
+
+    if len(set(ids)) != len(ids):
+        raise SystemExit(
+            "PBK488 FAIL-CLOSED: duplicate forward IDs"
+        )
+
+    if len(set(fixture_ids)) != len(fixture_ids):
+        raise SystemExit(
+            "PBK488 FAIL-CLOSED: duplicate fixture IDs"
+        )
+
+    if any(
+        forward != f"CAPTURE|{fixture}"
+        for forward, fixture in zip(ids, fixture_ids)
+    ):
+        raise SystemExit(
+            "PBK488 FAIL-CLOSED: inconsistent capture identities"
+        )
+
     ctx = latest_by(read_csv(CONTEXT))
+    # PBK542_SHARED_GEO_GATE
+    active_by_id = {r['forward_id']: r for r in active}
     weather = latest_by([
         row
         for row in read_csv(WEATHER)
-        if valid_weather_row(row)
+        if valid_weather_row(
+            row,
+            active_by_id.get(row.get('forward_id')),
+            ctx.get(row.get('forward_id')),
+        )
     ])
     rotation = latest_by(read_csv(ROTATION))
 
@@ -179,7 +313,26 @@ def main():
             "rotation_verified": "YES" if r.get("home_rotation_verified") == "YES" and r.get("away_rotation_verified") == "YES" else "NO",
             "context_only": "YES",
         })
+    if len(rows) != len(active):
+        raise SystemExit(
+            "PBK488 FAIL-CLOSED: incomplete latest view"
+        )
+
+    output_ids = [
+        str(r.get("forward_id") or "").strip()
+        for r in rows
+    ]
+
+    if set(output_ids) != set(ids):
+        raise SystemExit(
+            "PBK488 FAIL-CLOSED: latest identity mismatch"
+        )
+
     write_csv(LATEST, FIELDS, rows)
+    print(f"PBK488 CAPTURE ROWS = {len(active)}")
+    print(f"PBK488 LATEST ROWS = {len(rows)}")
+    print(f"PBK488 UNIQUE FIXTURES = {len(set(fixture_ids))}")
+    print(f"PBK488 CONTRACT = PASS")
     print(f"stage56_latest_rows={len(rows)}")
 
 

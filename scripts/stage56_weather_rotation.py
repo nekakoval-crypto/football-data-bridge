@@ -25,9 +25,10 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 from api_football_broker import api_get as broker_api_get
+from pbk_data_registry import resolve
 
 OPS = Path(os.getenv("OPS_DIR", "ops"))
-FORWARD = OPS / "forward_log.csv"
+FORWARD = resolve("PBK.CAPTURE_UNIVERSE.PBK16.V1", require_class="DERIVED", require_scope="CURRENT", require_prematch=True)[0]
 CONTEXT = OPS / "context_latest.csv"
 WEATHER = OPS / "weather_snapshots.csv"
 ROTATION = OPS / "rotation_snapshots.csv"
@@ -41,7 +42,7 @@ OPEN_METEO_AIR_QUALITY = "https://air-quality-api.open-meteo.com/v1/air-quality"
 OPEN_METEO_FORECAST_DAYS = 16
 OPEN_METEO_AIR_QUALITY_DAYS = 7
 
-WEATHER_BASELINE_MAX_HOURS = (OPEN_METEO_FORECAST_DAYS - 1) * 24.0
+WEATHER_BASELINE_MAX_HOURS = 72.0
 AIR_QUALITY_MAX_HOURS = (OPEN_METEO_AIR_QUALITY_DAYS - 1) * 24.0
 
 # Hard fail-closed maximum. A provider point farther away than this
@@ -75,7 +76,7 @@ COUNTRY_CODE_BY_LEAGUE = {
     "Ekstraklasa": "PL",
     "Primeira Liga": "PT",
     "Super Lig": "TR",
-    "Süper Lig": "TR",
+    "SГјper Lig": "TR",
     "Scottish Premiership": "GB",
 }
 
@@ -165,11 +166,95 @@ def read_csv(path):
 
 
 def write_csv(path, fields, rows):
+    import csv
+    import os
+    import tempfile
+    from pathlib import Path
+
+    path = Path(path)
+    fields = list(fields)
+    rows = list(rows)
+
+    def equivalent():
+        if not path.is_file():
+            return False
+
+        try:
+            with path.open(
+                "r",
+                encoding="utf-8-sig",
+                newline=""
+            ) as stream:
+                reader = csv.DictReader(stream)
+
+                if list(reader.fieldnames or []) != fields:
+                    return False
+
+                sentinel = object()
+                expected = iter(rows)
+
+                for existing in reader:
+                    candidate = next(expected, sentinel)
+
+                    if candidate is sentinel:
+                        return False
+
+                    projected = {
+                        field: str(
+                            candidate.get(field, "")
+                            if candidate.get(field, "") is not None
+                            else ""
+                        )
+                        for field in fields
+                    }
+
+                    if existing != projected:
+                        return False
+
+                return next(expected, sentinel) is sentinel
+
+        except (OSError, UnicodeError, csv.Error):
+            return False
+
+    if equivalent():
+        return False
+
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8-sig", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
-        w.writeheader()
-        w.writerows(rows)
+    temp_name = None
+
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8-sig",
+            newline="",
+            dir=path.parent,
+            prefix=path.name + ".",
+            suffix=".tmp",
+            delete=False,
+        ) as stream:
+            temp_name = stream.name
+
+            writer = csv.DictWriter(
+                stream,
+                fieldnames=fields,
+                extrasaction="ignore",
+            )
+
+            writer.writeheader()
+            writer.writerows(rows)
+
+            stream.flush()
+            os.fsync(stream.fileno())
+
+        os.replace(temp_name, path)
+        return True
+
+    finally:
+        if temp_name is not None:
+            try:
+                os.unlink(temp_name)
+            except FileNotFoundError:
+                pass
 
 
 def http_json(url, headers=None, attempts=3):
@@ -213,15 +298,31 @@ def weather_due_type(done, forward_id, hours):
     return ""
 
 
-def country_code_for(bet, context):
-    league = str((context or {}).get("league") or "").strip()
-    if league in COUNTRY_CODE_BY_LEAGUE:
-        return COUNTRY_CODE_BY_LEAGUE[league]
+# PBK514_CAPTURE_COUNTRY_AUTHORITY
+PBK16_CAPTURE_COUNTRY_CODES = {
+    "austria": "AT",
+    "belgium": "BE",
+    "denmark": "DK",
+    "england": "GB",
+    "france": "FR",
+    "germany": "DE",
+    "italy": "IT",
+    "latvia": "LV",
+    "lithuania": "LT",
+    "netherlands": "NL",
+    "norway": "NO",
+    "poland": "PL",
+    "portugal": "PT",
+    "scotland": "GB",
+    "spain": "ES",
+    "turkey": "TR",
+}
 
-    return COUNTRY_CODE_BY_DIV.get(
-        str((bet or {}).get("div") or "").strip(),
-        "",
-    )
+def country_code_for(bet, context):
+    """Use the PBK16 calendar country, never an ambiguous league."""
+    country = str((bet or {}).get("country") or "").strip()
+    return PBK16_CAPTURE_COUNTRY_CODES.get(country.casefold(), "")
+
 
 
 def altitude_zone(value):
@@ -273,44 +374,201 @@ def evidence_time_contract(captured_at, kickoff_at):
     }
 
 
-def valid_prematch_weather_row(row):
-    try:
-        gap = float(str(row.get("forecast_gap_minutes") or "").strip())
-    except (TypeError, ValueError):
-        return False
+from pbk_weather_evidence_gate import valid_weather_evidence
 
-    if not (0.0 <= gap <= ENVIRONMENT_MAX_FORECAST_GAP_MINUTES):
-        return False
-
-    contract = evidence_time_contract(
-        row.get("captured_at_utc"),
-        row.get("kickoff_utc"),
-    )
-    return contract["usable_for_prematch"] == "true"
+def valid_prematch_weather_row(row, fixture=None, context=None):
+    return valid_weather_evidence(row, fixture, context)
 
 
-def weather_done_keys(rows):
+
+def weather_done_keys(rows, fixtures, contexts):
+    by_id = {
+        r.get("forward_id"): r
+        for r in fixtures
+        if r.get("status") == "CAPTURE"
+    }
     return {
-        (row.get("forward_id"), row.get("snapshot_type"))
-        for row in rows
-        if valid_prematch_weather_row(row)
+        (r.get("forward_id"), r.get("snapshot_type"))
+        for r in rows
+        if valid_prematch_weather_row(
+            r,
+            by_id.get(r.get("forward_id")),
+            contexts.get(r.get("forward_id")),
+        )
     }
 
 
+
 def geocode_city(city, country_code):
-    if not city:
-        return None
-    d = om_get(OPEN_METEO_GEOCODING, {"name": city, "count": 10, "language": "en", "format": "json"})
-    rows = d.get("results") or []
-    if country_code:
-        exact_country = [r for r in rows if str(r.get("country_code") or "").upper() == country_code]
-        if exact_country:
-            rows = exact_country
-    if not rows:
-        return None
-    # Prefer exact normalized city name, otherwise the provider's first ranked result.
-    exact = [r for r in rows if str(r.get("name") or "").strip().casefold() == city.strip().casefold()]
-    return (exact or rows)[0]
+    # PBK518_VERIFIED_CITY_ID
+    # Open-Meteo IDs confirmed by live geocoding, PBK517.
+    # City-level forecast proxy, not stadium coordinates.
+    import unicodedata
+
+    def _city_key(value):
+        text = unicodedata.normalize("NFKD", str(value or ""))
+        return "".join(
+            ch for ch in text
+            if not unicodedata.combining(ch)
+        ).strip().casefold()
+
+    verified = {
+        ("DE", "frankfurt"): (
+            "Frankfurt am Main", 2925533, "Hesse"
+        ),
+        ("ES", "la coruna"): (
+            "A Coruña", 3119841, "Galicia"
+        ),
+        # PBK522_DIYARBAKIR_CITY_ID
+        ("TR", "diyarbakir"): (
+            "Diyarbakır", 316541, "Diyarbakır Province"
+        ),
+    }
+    country_key = str(country_code or "").strip().upper()
+    lookup = verified.get((country_key, _city_key(city)))
+
+    if lookup is not None:
+        query_name, required_id, required_region = lookup
+        response = om_get(
+            OPEN_METEO_GEOCODING,
+            {
+                "name": query_name,
+                "count": 100,
+                "language": "en",
+                "format": "json",
+            },
+        )
+        candidates = [
+            row for row in (response.get("results") or [])
+            if str(row.get("id") or "") == str(required_id)
+            and str(row.get("country_code") or "").upper()
+                == country_key
+            and _city_key(row.get("name")) == _city_key(query_name)
+            and _city_key(row.get("admin1"))
+                == _city_key(required_region)
+        ]
+        if len(candidates) != 1:
+            raise RuntimeError(
+                f"PBK518 verified city identity unavailable: "
+                f"{city!r}/{country_key}, ID={required_id}"
+            )
+        selected = candidates[0]
+        try:
+            latitude = float(selected["latitude"])
+            longitude = float(selected["longitude"])
+        except (KeyError, TypeError, ValueError):
+            raise RuntimeError(
+                "PBK518 verified city has invalid coordinates"
+            )
+        if not (-90 <= latitude <= 90 and -180 <= longitude <= 180):
+            raise RuntimeError(
+                "PBK518 verified city coordinates out of range"
+            )
+        return selected
+
+    # PBK515_CITY_IDENTITY_GATE
+    import unicodedata
+
+    def normalize(value):
+        s = unicodedata.normalize("NFKD", str(value or ""))
+        return "".join(
+            ch for ch in s if not unicodedata.combining(ch)
+        ).strip().casefold()
+
+    city = str(city or "").strip()
+    expected_country = str(country_code or "").strip().upper()
+
+    if not city or not expected_country:
+        raise RuntimeError(
+            f"weather geocoding blocked: city/country missing "
+            f"for {city!r}/{expected_country!r}"
+        )
+
+    d = om_get(
+        OPEN_METEO_GEOCODING,
+        {
+            "name": city,
+            "count": 100,
+            "language": "en",
+            "format": "json",
+        },
+    )
+
+    results = [
+        r for r in (d.get("results") or [])
+        if str(r.get("country_code") or "").strip().upper()
+        == expected_country
+    ]
+
+    if not results:
+        raise RuntimeError(
+            f"weather geocoding blocked: no location in "
+            f"{expected_country} for {city!r}"
+        )
+
+    aliases = {
+        ("ES", "la coruna"): {"la coruna", "a coruna"},
+    }
+    accepted_names = aliases.get(
+        (expected_country, normalize(city)),
+        {normalize(city)},
+    )
+
+    exact = [
+        r for r in results
+        if normalize(r.get("name")) in accepted_names
+    ]
+
+    if not exact:
+        raise RuntimeError(
+            f"weather geocoding blocked: no matching city "
+            f"identity for {city!r}/{expected_country}"
+        )
+
+    if len(exact) == 1:
+        chosen = exact[0]
+    else:
+        ranked = []
+        for r in exact:
+            try:
+                population = int(r.get("population"))
+            except (TypeError, ValueError):
+                population = -1
+            ranked.append((population, r))
+
+        ranked.sort(key=lambda item: item[0], reverse=True)
+
+        if ranked[0][0] < 0:
+            raise RuntimeError(
+                f"weather geocoding blocked: ambiguous city "
+                f"without population for {city!r}/{expected_country}"
+            )
+
+        if (
+            len(ranked) > 1
+            and ranked[0][0] == ranked[1][0]
+        ):
+            raise RuntimeError(
+                f"weather geocoding blocked: tied city "
+                f"population for {city!r}/{expected_country}"
+            )
+
+        chosen = ranked[0][1]
+
+    try:
+        latitude = float(chosen["latitude"])
+        longitude = float(chosen["longitude"])
+    except (KeyError, TypeError, ValueError):
+        raise RuntimeError(
+            f"weather geocoding blocked: invalid coordinates "
+            f"for {city!r}/{expected_country}"
+        )
+
+    if not (-90 <= latitude <= 90 and -180 <= longitude <= 180):
+        raise RuntimeError("weather geocoding blocked: coordinates out of range")
+
+    return chosen
+
 
 
 def _nearest_hourly_row(hourly, kickoff, variables):
@@ -481,8 +739,8 @@ def main():
     rotation_rows, _ = read_csv(ROTATION)
     ctx = context_by_forward(context_rows)
 
-    active = [r for r in forward if r.get("status") in {"PAPER", "OPEN", "REVIEW"}]
-    weather_done = weather_done_keys(weather_rows)
+    active = [r for r in forward if r.get("status") == "CAPTURE"]
+    weather_done = weather_done_keys(weather_rows, active, ctx)
     rotation_done = {r.get("forward_id") for r in rotation_rows}
 
     new_weather = 0
@@ -493,6 +751,10 @@ def main():
     current_lineup_calls = 0
     previous_lineup_calls = 0
     warnings = []
+    # PBK538_RUN_STATUS_GATE
+    weather_due_count = 0
+    weather_failures = 0
+    kickoff_failures = 0
 
     for bet in active:
         fid = bet.get("forward_id") or ""
@@ -502,6 +764,7 @@ def main():
             # Fallback to Stage 53 date/time, which is stored in UTC by the screener.
             kickoff = parse_iso(f"{bet.get('match_date')}T{bet.get('kickoff_time')}:00Z")
         if not kickoff:
+            kickoff_failures += 1
             warnings.append(f"{fid}: kickoff unavailable")
             continue
         hours = (kickoff - now).total_seconds() / 3600.0
@@ -511,6 +774,7 @@ def main():
         # ---------- Weather ----------
         stype = weather_due_type(weather_done, fid, hours)
         if stype:
+            weather_due_count += 1
             city = c.get("venue_city") or ""
             country_code = country_code_for(bet, c)
             try:
@@ -636,6 +900,7 @@ def main():
                 weather_done.add((fid, stype))
                 new_weather += 1
             except Exception as exc:
+                weather_failures += 1
                 warnings.append(f"weather {fid}: {exc}")
 
         # ---------- Official XI + rotation ----------
@@ -730,12 +995,16 @@ def main():
     write_csv(WEATHER, WEATHER_FIELDS, weather_rows)
     write_csv(ROTATION, ROTATION_FIELDS, rotation_rows)
 
+    # PBK542_SHARED_GEO_GATE
+    active_by_id = {r.get('forward_id'): r for r in active}
     # Compact latest view for daily consumption.
     weather_latest = {}
     for r in weather_rows:
-        if not valid_prematch_weather_row(r):
-            continue
         fid = r.get("forward_id") or ""
+        if not valid_prematch_weather_row(
+            r, active_by_id.get(fid), ctx.get(fid)
+        ):
+            continue
         if not fid:
             continue
         cur = weather_latest.get(fid)
@@ -786,7 +1055,14 @@ def main():
 
     meta = {
         "run_at_utc": iso(now),
-        "status": "OK",
+        "status": (
+            "BLOCKED" if kickoff_failures
+            else "PARTIAL" if weather_failures
+            else "OK"
+        ),
+        "weather_due_count": weather_due_count,
+        "weather_failures": weather_failures,
+        "kickoff_failures": kickoff_failures,
         "active_forward_rows": len(active),
         "new_weather_snapshots": new_weather,
         "total_weather_snapshots": len(weather_rows),
@@ -812,5 +1088,49 @@ def main():
     print(json.dumps(meta, ensure_ascii=False))
 
 
+# PBK544_EXIT_STATUS_GATE
+def pbk544_exit_code(status):
+    return 0 if status == "OK" else 1
+
+
 if __name__ == "__main__":
+    import json as _pbk544_json
+    import sys as _pbk544_sys
+
     main()
+
+    try:
+        _pbk544_meta = _pbk544_json.loads(
+            META.read_text(encoding="utf-8-sig")
+        )
+        _pbk544_status = str(
+            _pbk544_meta.get("status") or ""
+        ).strip()
+    except Exception as _pbk544_exc:
+        print(
+            "PBK544 METADATA FAILURE:",
+            _pbk544_exc,
+            file=_pbk544_sys.stderr,
+        )
+        _pbk544_sys.exit(1)
+
+    print("PBK544 RUN STATUS =", _pbk544_status)
+    print(
+        "PBK544 WEATHER FAILURES =",
+        _pbk544_meta.get("weather_failures"),
+    )
+    print(
+        "PBK544 KICKOFF FAILURES =",
+        _pbk544_meta.get("kickoff_failures"),
+    )
+
+    _pbk544_code = pbk544_exit_code(_pbk544_status)
+
+    if _pbk544_code:
+        print(
+            "PBK544 RELEASE GATE = FAILED:",
+            _pbk544_status,
+            file=_pbk544_sys.stderr,
+        )
+
+    _pbk544_sys.exit(_pbk544_code)

@@ -1,0 +1,1146 @@
+{
+  "version": "PBK_DATA_REGISTRY_V1",
+  "policy": {
+    "analytics_must_request_dataset_id": true,
+    "unregistered_path_is_forbidden": true,
+    "derived_is_not_source": true,
+    "research_output_is_not_source": true,
+    "prematch_requires_explicit_authorization": true,
+    "postmatch_cannot_be_same_match_prematch_feature": true,
+    "filename_does_not_define_semantics": true,
+    "new_file_does_not_become_source_automatically": true
+  },
+  "datasets": [
+    {
+      "dataset_id": "PBK.LINEUP.HISTORICAL",
+      "description": "Historical lineup/formation snapshot layer.",
+      "data_class": "CANONICAL",
+      "scope": "HISTORICAL",
+      "time_semantics": "RETROSPECTIVE_FACTUAL_HISTORY",
+      "prematch_authorized": false,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/historical_lineup_snapshots.csv"
+      ],
+      "producer": "UNRESOLVED",
+      "authoritative_for": [],
+      "notes": "H7B.1A found structure but prematch timing not yet proven.",
+      "resolved_paths": [
+        "ops/historical_lineup_snapshots.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "same_fixture_prematch_authorized": false,
+      "prior_fixture_history_authorized": true,
+      "prior_fixture_rule": "SOURCE_FIXTURE_KICKOFF_UTC < TARGET_FIXTURE_KICKOFF_UTC",
+      "timing_proof": {
+        "status": "PROVEN",
+        "proof_stage": "11.H7B.1.2",
+        "producer": "scripts/stage80_historical_lineup_injury_backfill.py",
+        "source_endpoint": "/fixtures/lineups",
+        "physical_temporal_authority": "RETROSPECTIVE_ONLY",
+        "same_fixture_use": "FORBIDDEN",
+        "later_fixture_history_use": "AUTHORIZED_WITH_STRICT_DATE_LT_TARGET",
+        "proofed_at_utc": "2026-09-29T13:45:27Z"
+      }
+    },
+    {
+      "dataset_id": "PBK.LINEUP.CURRENT",
+      "description": "Current lineup snapshot layer.",
+      "data_class": "EVIDENCE",
+      "scope": "CURRENT",
+      "time_semantics": "TIMING_UNPROVEN",
+      "prematch_authorized": false,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/lineup_snapshots.csv"
+      ],
+      "producer": "UNRESOLVED",
+      "authoritative_for": [],
+      "notes": "Do not infer historical prematch authority from filename.",
+      "resolved_paths": [
+        "ops/lineup_snapshots.csv"
+      ],
+      "physical_state": "RESOLVED"
+    },
+    {
+      "dataset_id": "PBK.PLAYER_FORM.WALK_FORWARD",
+      "description": "Historical player form walk-forward artifact.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "PREMATCH_RECONSTRUCTED_NO_LOOKAHEAD",
+      "prematch_authorized": false,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_form_walk_forward.csv"
+      ],
+      "producer": "UNRESOLVED",
+      "authoritative_for": [],
+      "notes": "Must prove producer chronology before H7B historical features.",
+      "resolved_paths": [
+        "ops/player_form_walk_forward.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "same_fixture_prematch_authorized": false,
+      "research_only": true,
+      "predictive_authority": false,
+      "betting_authority": false,
+      "timing_proof": {
+        "status": "PROVEN",
+        "proof_stage": "11.H7B.1.2",
+        "producers": [
+          "scripts/stage78_player_form_walk_forward.py",
+          "scripts/stage80_player_layer_completion.py"
+        ],
+        "evidence_time_basis": "PRIOR_TERMINAL_FIXTURE_CHRONOLOGY",
+        "no_lookahead": true,
+        "retrospective_reconstructed": true,
+        "proofed_at_utc": "2026-09-29T13:45:27Z"
+      },
+      "value_time_semantics": "PREMATCH_RECONSTRUCTED_NO_LOOKAHEAD",
+      "membership_semantics": "SAME_FIXTURE_PLAYER_ROW_MEMBERSHIP_UNPROVEN",
+      "authorized_use": "VALUE_SEMANTICS_PROVEN_BUT_ROW_MEMBERSHIP_BLOCKED",
+      "membership_firewall_stage": "11.H7B.1D"
+    },
+    {
+      "dataset_id": "PBK.PLAYER_STATS.HISTORICAL_FACTUAL",
+      "description": "Historical player match factual statistics.",
+      "data_class": "EVIDENCE",
+      "scope": "HISTORICAL",
+      "time_semantics": "POSTMATCH_FACTUAL",
+      "prematch_authorized": false,
+      "postmatch_target_authorized": true,
+      "globs": [
+        "ops/player_stats_snapshots_parts/*.csv"
+      ],
+      "producer": "UNRESOLVED",
+      "authoritative_for": [
+        "POSTMATCH_PLAYER_EVENT_TARGETS"
+      ],
+      "notes": "Never legal as same-match prematch feature.",
+      "resolved_paths": [
+        "ops/player_stats_snapshots_parts/2017.csv",
+        "ops/player_stats_snapshots_parts/2018.csv",
+        "ops/player_stats_snapshots_parts/2024.csv",
+        "ops/player_stats_snapshots_parts/2025.csv",
+        "ops/player_stats_snapshots_parts/2026.csv"
+      ],
+      "physical_state": "RESOLVED"
+    },
+    {
+      "dataset_id": "PBK.PLAYER_GRADE.HISTORICAL_FACTUAL",
+      "description": "Historical player grade artifacts containing match minutes.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "POSTMATCH_FACTUAL",
+      "prematch_authorized": false,
+      "postmatch_target_authorized": true,
+      "globs": [
+        "ops/player_grade_snapshots_parts/*.csv"
+      ],
+      "producer": "UNRESOLVED",
+      "authoritative_for": [
+        "POSTMATCH_PLAYER_GRADE_RESEARCH"
+      ],
+      "notes": "Contains current-match minutes; blocked from same-match prematch use.",
+      "resolved_paths": [
+        "ops/player_grade_snapshots_parts/2017.csv",
+        "ops/player_grade_snapshots_parts/2018.csv",
+        "ops/player_grade_snapshots_parts/2024.csv",
+        "ops/player_grade_snapshots_parts/2025.csv",
+        "ops/player_grade_snapshots_parts/2026.csv"
+      ],
+      "physical_state": "RESOLVED"
+    },
+    {
+      "dataset_id": "PBK.TEAM_STATS.HISTORICAL.CANONICAL",
+      "description": "Canonical historical team match statistics.",
+      "data_class": "CANONICAL",
+      "scope": "HISTORICAL",
+      "time_semantics": "POSTMATCH_FACTUAL",
+      "prematch_authorized": false,
+      "postmatch_target_authorized": true,
+      "paths": [
+        "ops/historical_team_match_statistics_canonical_v2.csv"
+      ],
+      "producer": "UNRESOLVED",
+      "authoritative_for": [
+        "FOUL_TARGET",
+        "CARD_TARGET",
+        "XG_TARGET_RESEARCH"
+      ],
+      "notes": "Current preferred historical team-stat target layer.",
+      "resolved_paths": [
+        "ops/historical_team_match_statistics_canonical_v2.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "last_controlled_backfill": "PBK_POINT11_H7B4B_API_FOOTBALL_DELTA",
+      "backfill_source_dataset_id": "PBK.TEAM_STATS.RAW",
+      "canonical_sha256": "e9a0330806cc57c7a130c3529819c9241f98d63ba0072fa04dbb53dacf16357e",
+      "backfill_source": "API_FOOTBALL_FIXTURE_STATISTICS"
+    },
+    {
+      "dataset_id": "PBK.TEAM_STATS.RAW",
+      "description": "Raw/noncanonical team match statistics.",
+      "data_class": "EVIDENCE",
+      "scope": "HISTORICAL",
+      "time_semantics": "POSTMATCH_FACTUAL",
+      "prematch_authorized": false,
+      "postmatch_target_authorized": true,
+      "paths": [
+        "ops/team_match_statistics.csv"
+      ],
+      "producer": "UNRESOLVED",
+      "authoritative_for": [],
+      "notes": "Use canonical V2 where available.",
+      "resolved_paths": [
+        "ops/team_match_statistics.csv"
+      ],
+      "physical_state": "RESOLVED"
+    },
+    {
+      "dataset_id": "PBK.INJURY.HISTORICAL",
+      "description": "Historical injury snapshots.",
+      "data_class": "EVIDENCE",
+      "scope": "HISTORICAL",
+      "time_semantics": "TIMING_UNPROVEN",
+      "prematch_authorized": false,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/historical_injury_snapshots.csv"
+      ],
+      "producer": "UNRESOLVED",
+      "authoritative_for": [],
+      "notes": "Snapshot naming does not establish prematch timing.",
+      "resolved_paths": [
+        "ops/historical_injury_snapshots.csv"
+      ],
+      "physical_state": "RESOLVED"
+    },
+    {
+      "dataset_id": "PBK.PLAYER_STATE.CURRENT_PREMATCH",
+      "description": "Unified current player prematch state.",
+      "data_class": "CANONICAL",
+      "scope": "CURRENT",
+      "time_semantics": "PREMATCH",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_unified_prematch_state_v1.csv"
+      ],
+      "producer": "PBK_POINT10",
+      "authoritative_for": [
+        "CURRENT_AVAILABILITY",
+        "CURRENT_DISCIPLINE_STATE"
+      ],
+      "notes": "Current prematch player state source used by Point10/11.",
+      "resolved_paths": [
+        "ops/player_unified_prematch_state_v1.csv"
+      ],
+      "physical_state": "RESOLVED"
+    },
+    {
+      "dataset_id": "PBK.PLAYER_IMPORTANCE.CURRENT",
+      "description": "Current player importance/role layer.",
+      "data_class": "DERIVED",
+      "scope": "CURRENT",
+      "time_semantics": "PREMATCH",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_importance_current_v1.csv"
+      ],
+      "producer": "PBK_POINT10",
+      "authoritative_for": [
+        "CURRENT_PLAYER_IMPORTANCE",
+        "CURRENT_AVAILABILITY_CONTEXT"
+      ],
+      "notes": "Derived current prematch layer.",
+      "resolved_paths": [
+        "ops/player_importance_current_v1.csv"
+      ],
+      "physical_state": "RESOLVED"
+    },
+    {
+      "dataset_id": "PBK.DISCIPLINE.CURRENT_LEDGER",
+      "description": "Current-season disciplinary factual ledger.",
+      "data_class": "CANONICAL",
+      "scope": "CURRENT",
+      "time_semantics": "POSTMATCH_FACTUAL_LEDGER",
+      "prematch_authorized": false,
+      "postmatch_target_authorized": true,
+      "paths": [
+        "ops/player_disciplinary_ledger_v3_current_season.csv"
+      ],
+      "producer": "PBK_POINT10A",
+      "authoritative_for": [
+        "DISCIPLINARY_LEDGER"
+      ],
+      "notes": "Prematch state must be derived from ledger with chronology, not same-match outcome.",
+      "resolved_paths": [
+        "ops/player_disciplinary_ledger_v3_current_season.csv"
+      ],
+      "physical_state": "RESOLVED"
+    },
+    {
+      "dataset_id": "PBK.XI.CURRENT.AVAILABILITY_GATED",
+      "description": "Current availability-gated expected XI.",
+      "data_class": "DERIVED",
+      "scope": "CURRENT",
+      "time_semantics": "PREMATCH",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_synergy_expected_xi_role_slotted_current_v3_availability_gated.csv"
+      ],
+      "producer": "PBK_POINT11_H5A0B",
+      "authoritative_for": [
+        "POINT11_CURRENT_XI"
+      ],
+      "notes": "Derived; never to be reclassified as raw/source evidence.",
+      "resolved_paths": [
+        "ops/player_synergy_expected_xi_role_slotted_current_v3_availability_gated.csv"
+      ],
+      "physical_state": "RESOLVED"
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.CONTACT_PATH.CURRENT",
+      "description": "Availability-gated functional contact graph.",
+      "data_class": "DERIVED",
+      "scope": "CURRENT",
+      "time_semantics": "PREMATCH",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_synergy_functional_contact_paths_current_v2_availability_gated.csv"
+      ],
+      "producer": "PBK_POINT11_H5A0C",
+      "authoritative_for": [
+        "POINT11_CURRENT_CONTACT_GRAPH"
+      ],
+      "notes": "Derived topology/mechanism artifact.",
+      "resolved_paths": [
+        "ops/player_synergy_functional_contact_paths_current_v2_availability_gated.csv"
+      ],
+      "physical_state": "RESOLVED"
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.EVENT.CURRENT",
+      "description": "Current availability-gated event mechanism layer.",
+      "data_class": "DERIVED",
+      "scope": "CURRENT",
+      "time_semantics": "PREMATCH",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_synergy_event_mechanism_current_v2_availability_gated.csv"
+      ],
+      "producer": "PBK_POINT11_H6A",
+      "authoritative_for": [
+        "POINT11_CURRENT_EVENT_MECHANISM"
+      ],
+      "notes": "Descriptive only; no probability/betting authority.",
+      "resolved_paths": [
+        "ops/player_synergy_event_mechanism_current_v2_availability_gated.csv"
+      ],
+      "physical_state": "RESOLVED"
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.EVENT_CONTEXT.CURRENT",
+      "description": "Current event mechanism + provenance-safe context.",
+      "data_class": "DERIVED",
+      "scope": "CURRENT",
+      "time_semantics": "PREMATCH",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_synergy_event_mechanism_context_current_v4_availability_gated.csv"
+      ],
+      "producer": "PBK_POINT11_H6B3",
+      "authoritative_for": [
+        "POINT11_CURRENT_EVENT_CONTEXT"
+      ],
+      "notes": "Descriptive/current only.",
+      "resolved_paths": [
+        "ops/player_synergy_event_mechanism_context_current_v4_availability_gated.csv"
+      ],
+      "physical_state": "RESOLVED"
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.MATCH_PASSPORT.CURRENT",
+      "description": "Current Point11 match passport.",
+      "data_class": "DERIVED",
+      "scope": "CURRENT",
+      "time_semantics": "PREMATCH",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_synergy_match_passport_current_v2_availability_gated.csv"
+      ],
+      "producer": "PBK_POINT11_H6D",
+      "authoritative_for": [
+        "POINT11_MATCH_PASSPORT"
+      ],
+      "notes": "Output artifact; never input source evidence.",
+      "resolved_paths": [
+        "ops/player_synergy_match_passport_current_v2_availability_gated.csv"
+      ],
+      "physical_state": "RESOLVED"
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.HISTORICAL.PRIOR_ROLE_SLOT",
+      "description": "Strictly prior-fixture factual role/slot evidence.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "PREMATCH_PRIOR_FIXTURE_HISTORY",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_synergy_h7b1c_historical_prior_role_slot_v1.csv"
+      ],
+      "resolved_paths": [
+        "ops/player_synergy_h7b1c_historical_prior_role_slot_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_POINT11_H7B1C",
+      "authoritative_for": [
+        "H7B_PRIOR_ROLE_EVIDENCE"
+      ],
+      "same_fixture_lineup_used": false,
+      "strict_date_lt_target": true,
+      "predictive_authority": false,
+      "betting_authority": false,
+      "notes": "Prior factual lineup only; never target-fixture XI."
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.HISTORICAL.FOUL_ROLE_PROXY",
+      "description": "Historical foul structural mechanism reconstructed only from strictly prior factual lineups.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "PREMATCH_PRIOR_FIXTURE_HISTORY",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_synergy_h7b1d_historical_foul_mechanism_team_v1.csv"
+      ],
+      "resolved_paths": [
+        "ops/player_synergy_h7b1d_historical_foul_mechanism_team_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_POINT11_H7B1D",
+      "authoritative_for": [
+        "H7B_FOUL_MECHANISM_RESEARCH"
+      ],
+      "same_fixture_player_membership_used": false,
+      "same_fixture_lineup_used": false,
+      "predictive_authority": false,
+      "betting_authority": false,
+      "notes": "Research proxy only. Does not claim target-fixture XI or player membership."
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.H7B.FROZEN_FOUL_COHORT",
+      "description": "Frozen H7B historical foul validation cohort.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "FROZEN_VALIDATION_COHORT",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_synergy_h7b1b_historical_validation_cohort_v1.csv"
+      ],
+      "resolved_paths": [
+        "ops/player_synergy_h7b1b_historical_validation_cohort_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_POINT11_H7B1B",
+      "authoritative_for": [
+        "H7B_FOUL_VALIDATION_COHORT"
+      ],
+      "predictive_authority": false,
+      "betting_authority": false,
+      "notes": "Frozen cohort. No source rediscovery."
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.HISTORICAL.PRIOR_ROLE_READINESS",
+      "description": "Fixture readiness for prior-role reconstruction.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "PREMATCH_PRIOR_FIXTURE_HISTORY",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_synergy_h7b1c_fixture_readiness_v1.csv"
+      ],
+      "resolved_paths": [
+        "ops/player_synergy_h7b1c_fixture_readiness_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_POINT11_H7B1C",
+      "authoritative_for": [
+        "H7B_PRIOR_ROLE_READINESS"
+      ],
+      "predictive_authority": false,
+      "betting_authority": false,
+      "notes": "Readiness state for historical prior-role reconstruction."
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.HISTORICAL.FOUL_MECHANISM_TEAM",
+      "description": "Historical team-level foul mechanism proxy from strictly prior factual lineups.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "PREMATCH_PRIOR_FIXTURE_HISTORY",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_synergy_h7b1d_historical_foul_mechanism_team_v1.csv"
+      ],
+      "resolved_paths": [
+        "ops/player_synergy_h7b1d_historical_foul_mechanism_team_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_POINT11_H7B1D",
+      "authoritative_for": [
+        "H7B_FOUL_MECHANISM_RESEARCH"
+      ],
+      "same_fixture_player_membership_used": false,
+      "same_fixture_lineup_used": false,
+      "player_form_used": false,
+      "predictive_authority": false,
+      "betting_authority": false,
+      "notes": "Research mechanism only. No target-fixture player identity or XI used."
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.HISTORICAL.FOUL_MECHANISM_FIXTURE",
+      "description": "Fixture-level historical foul mechanism proxy.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "PREMATCH_PRIOR_FIXTURE_HISTORY",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_synergy_h7b1d_historical_foul_mechanism_fixture_v1.csv"
+      ],
+      "resolved_paths": [
+        "ops/player_synergy_h7b1d_historical_foul_mechanism_fixture_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_POINT11_H7B1D",
+      "authoritative_for": [
+        "H7B_FOUL_FIXTURE_RESEARCH"
+      ],
+      "same_fixture_player_membership_used": false,
+      "same_fixture_lineup_used": false,
+      "player_form_used": false,
+      "predictive_authority": false,
+      "betting_authority": false,
+      "notes": "Fixture research layer only."
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.H7B.FOUL_PRIOR_ROLE_PROXY.REJECTION",
+      "description": "H7B historical validation result rejecting the prior-role structural foul proxy as a stable component.",
+      "data_class": "RESEARCH_OUTPUT",
+      "scope": "HISTORICAL",
+      "time_semantics": "FROZEN_RESEARCH_RESULT",
+      "prematch_authorized": false,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_synergy_h7b3_foul_component_temporal_stability_v1_last_run.json"
+      ],
+      "resolved_paths": [
+        "ops/player_synergy_h7b3_foul_component_temporal_stability_v1_last_run.json"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_POINT11_H7B3",
+      "authoritative_for": [
+        "H7B_FOUL_PROXY_REJECTION"
+      ],
+      "research_status": "REJECTED_NO_STABLE_COMPONENT",
+      "predictive_authority": false,
+      "betting_authority": false,
+      "notes": "Rejects only the prior-role D/M/F structural foul proxy. Does not reject Player Synergy or foul mechanisms globally."
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.H7B.COHORT.YELLOW_CARD",
+      "description": "Frozen H7B YELLOW_CARD historical validation cohort with complete target data and strictly prior factual lineup history for both teams.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "FROZEN_VALIDATION_COHORT",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops\\player_synergy_h7b4c_yellow_card_cohort_v1.csv"
+      ],
+      "resolved_paths": [
+        "ops\\player_synergy_h7b4c_yellow_card_cohort_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_POINT11_H7B4C",
+      "authoritative_for": [
+        "H7B_YELLOW_CARD_VALIDATION_COHORT"
+      ],
+      "cohort_sha256": "1712d98043663eec07e31482d46f90fcc9ef677163d044b30e5b5b801d147468",
+      "fixture_count": 103,
+      "strict_prior_history": true,
+      "same_fixture_lineup_players_used": false,
+      "source_rediscovery": false,
+      "predictive_authority": false,
+      "betting_authority": false,
+      "notes": "Frozen cohort membership must not change during subsequent H7B validation."
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.H7B.COHORT.SHOT",
+      "description": "Frozen H7B SHOT historical validation cohort with complete target data and strictly prior factual lineup history for both teams.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "FROZEN_VALIDATION_COHORT",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops\\player_synergy_h7b4c_shot_cohort_v1.csv"
+      ],
+      "resolved_paths": [
+        "ops\\player_synergy_h7b4c_shot_cohort_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_POINT11_H7B4C",
+      "authoritative_for": [
+        "H7B_SHOT_VALIDATION_COHORT"
+      ],
+      "cohort_sha256": "4ebd8606e353ecdfc89873dd5a7143463dd5204ae57d2fb563eff7d67087c0da",
+      "fixture_count": 104,
+      "strict_prior_history": true,
+      "same_fixture_lineup_players_used": false,
+      "source_rediscovery": false,
+      "predictive_authority": false,
+      "betting_authority": false,
+      "notes": "Frozen cohort membership must not change during subsequent H7B validation."
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.H7B.COHORT.CORNER",
+      "description": "Frozen H7B CORNER historical validation cohort with complete target data and strictly prior factual lineup history for both teams.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "FROZEN_VALIDATION_COHORT",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops\\player_synergy_h7b4c_corner_cohort_v1.csv"
+      ],
+      "resolved_paths": [
+        "ops\\player_synergy_h7b4c_corner_cohort_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_POINT11_H7B4C",
+      "authoritative_for": [
+        "H7B_CORNER_VALIDATION_COHORT"
+      ],
+      "cohort_sha256": "879b9c8db53c0eb1efef480fbf8b97e9f7d0cd5a42208580762c53feda6c2d81",
+      "fixture_count": 104,
+      "strict_prior_history": true,
+      "same_fixture_lineup_players_used": false,
+      "source_rediscovery": false,
+      "predictive_authority": false,
+      "betting_authority": false,
+      "notes": "Frozen cohort membership must not change during subsequent H7B validation."
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.H7B.YELLOW_CARD.PLAYER_HISTORY_MECHANISM",
+      "description": "Yellow-card historical research mechanism using players from the frozen strictly-prior lineup and each player's strictly-prior factual card history.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "PREMATCH_PRIOR_HISTORY_ONLY",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_synergy_h7b5a_yellow_card_player_history_team_v1.csv"
+      ],
+      "resolved_paths": [
+        "ops/player_synergy_h7b5a_yellow_card_player_history_team_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_POINT11_H7B5A",
+      "authoritative_for": [
+        "H7B_YELLOW_CARD_MECHANISM_RESEARCH"
+      ],
+      "dataset_sha256": "b7944c852e1d162a895de2044cb9a02d2d4a7e21a39255b0bb303d3b2a92d3f4",
+      "same_fixture_lineup_used": false,
+      "target_fixture_player_membership_used": false,
+      "strict_prior_player_history": true,
+      "predictive_authority": false,
+      "betting_authority": false,
+      "notes": "Research mechanism only. Uses no target-fixture XI membership."
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.H7B.YELLOW_CARD.CANDIDATE_DECISION",
+      "description": "Yellow-card H7B multiple-testing and candidate decision.",
+      "data_class": "RESEARCH_OUTPUT",
+      "scope": "HISTORICAL",
+      "time_semantics": "FROZEN_RESEARCH_DECISION",
+      "prematch_authorized": false,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_synergy_h7b5c_yellow_card_forward_candidate_v1.json"
+      ],
+      "resolved_paths": [
+        "ops/player_synergy_h7b5c_yellow_card_forward_candidate_v1.json"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_POINT11_H7B5C",
+      "authoritative_for": [
+        "H7B_YELLOW_CARD_CANDIDATE_DECISION"
+      ],
+      "research_status": "RESEARCH_CANDIDATE_ONLY",
+      "candidate_signal": "mean_yellow_per90",
+      "contract_sha256": "d2f928ba8587e3eef75660784aa6114295bdcb9fc42c15e8cde4f02734db3213",
+      "predictive_authority": false,
+      "betting_authority": false,
+      "notes": "Multiple-testing corrected. No automatic model or betting promotion."
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.H7B.SHOT.PLAYER_HISTORY_MECHANISM",
+      "description": "Historical shot research mechanism using players from strictly-prior factual starting XI and strictly-prior player shot history.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "PREMATCH_PRIOR_HISTORY_ONLY",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_synergy_h7b6a_shot_player_history_team_v1.csv"
+      ],
+      "resolved_paths": [
+        "ops/player_synergy_h7b6a_shot_player_history_team_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_POINT11_H7B6A",
+      "authoritative_for": [
+        "H7B_SHOT_MECHANISM_RESEARCH"
+      ],
+      "dataset_sha256": "bb36ba1a598d1869ab8cc9aaff2353de4cfbc4b07481ea498a4b52c579ce9f08",
+      "same_fixture_lineup_used": false,
+      "target_fixture_player_membership_used": false,
+      "strict_prior_player_history": true,
+      "predictive_authority": false,
+      "betting_authority": false,
+      "notes": "Research mechanism only. No target-fixture XI membership used."
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.H7B.SHOT.CANDIDATE_DECISION",
+      "description": "H7B shot-history multiple-testing corrected candidate decision.",
+      "data_class": "RESEARCH_OUTPUT",
+      "scope": "HISTORICAL",
+      "time_semantics": "FROZEN_RESEARCH_DECISION",
+      "prematch_authorized": false,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_synergy_h7b6c_shot_forward_candidates_v1.json"
+      ],
+      "resolved_paths": [
+        "ops/player_synergy_h7b6c_shot_forward_candidates_v1.json"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_POINT11_H7B6C",
+      "authoritative_for": [
+        "H7B_SHOT_CANDIDATE_DECISION"
+      ],
+      "research_status": "FORWARD_CANDIDATE_FAMILY",
+      "forward_candidate_count": 12,
+      "research_only_count": 0,
+      "contract_sha256": "0bd97f38823829186fb213fd787e935feb48604fd198dbf5ef0c971dab9b9dae",
+      "predictive_authority": false,
+      "betting_authority": false,
+      "notes": "Candidate family frozen after temporal validation and BH-FDR. No automatic model promotion."
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.H7B.SHOT.FORWARD_MONITOR",
+      "description": "Prospective append-only forward monitor for frozen shot-history candidate family using corrected team-level availability eligibility.",
+      "data_class": "FORWARD_JOURNAL",
+      "scope": "CURRENT_FORWARD",
+      "time_semantics": "PREMATCH_FROZEN_FORWARD",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_synergy_h7b6d_shot_forward_journal_v1.csv"
+      ],
+      "resolved_paths": [
+        "ops/player_synergy_h7b6d_shot_forward_journal_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_POINT11_H7B6D3",
+      "authoritative_for": [
+        "H7B_SHOT_PROSPECTIVE_FORWARD_MONITOR"
+      ],
+      "candidate_family": "PRIOR_XI_PLAYER_SHOT_HISTORY",
+      "primary_signal": "sum_shots_per_appearance",
+      "secondary_signal": "sum_shots_on_per_appearance",
+      "eligibility_semantics": "UNRESOLVED_AFTER_GATE_OR_NO_VALID_SLOT_REPLACEMENT_BLOCKS_TEAM",
+      "historical_retuning_allowed": false,
+      "forward_retraining_allowed": false,
+      "predictive_authority": false,
+      "betting_authority": false,
+      "journal_repaired_after_known_bug": true,
+      "invalidated_audit_path": "ops/player_synergy_h7b6d3_invalidated_forward_rows_v1.csv",
+      "valid_forward_rows": 213,
+      "blocked_team_groups": 13
+    },
+    {
+      "dataset_id": "PBK.FIXTURE.CURRENT.PREMATCH_CLOCK_BRIDGE",
+      "description": "Current fixture kickoff bridge for availability-gated prematch XI, resolved only from an already registered prematch-authorized dataset.",
+      "data_class": "DERIVED",
+      "scope": "CURRENT",
+      "time_semantics": "PREMATCH_FIXTURE_CLOCK",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_synergy_h7b6d1_fixture_clock_bridge_v1.csv"
+      ],
+      "resolved_paths": [
+        "ops/player_synergy_h7b6d1_fixture_clock_bridge_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_POINT11_H7B6D1",
+      "authoritative_for": [
+        "CURRENT_PREMATCH_FIXTURE_CLOCK"
+      ],
+      "upstream_dataset_id": "PBK.PLAYER_IMPORTANCE.CURRENT",
+      "source_rediscovery": false,
+      "predictive_authority": false,
+      "betting_authority": false
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.H7B.CORNER.PLAYER_HISTORY_MECHANISM",
+      "description": "Historical corner research mechanism using strictly-prior XI player dribble, key-pass and shot histories.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "PREMATCH_PRIOR_HISTORY_ONLY",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_synergy_h7b7a_corner_player_history_team_v1.csv"
+      ],
+      "resolved_paths": [
+        "ops/player_synergy_h7b7a_corner_player_history_team_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_POINT11_H7B7A_B",
+      "authoritative_for": [
+        "H7B_CORNER_MECHANISM_RESEARCH"
+      ],
+      "dataset_sha256": "b16f228c0f133f1d3115cb1976c5d20e8314c013c436760947cd4d2ba30b06c9",
+      "arbitrary_weighted_score": false,
+      "strict_prior_player_history": true,
+      "predictive_authority": false,
+      "betting_authority": false
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.H7B.CORNER.COMPONENTS",
+      "description": "Corner component reconstruction using strictly-prior team attack history, opponent concession and structural formation-grid flank chains.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "PREMATCH_PRIOR_HISTORY_ONLY",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_synergy_h7b7a_corner_component_team_v1.csv"
+      ],
+      "resolved_paths": [
+        "ops/player_synergy_h7b7a_corner_component_team_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_POINT11_H7B7A1",
+      "authoritative_for": [
+        "H7B_CORNER_COMPONENT_VALIDATION_INPUT"
+      ],
+      "dataset_sha256": "5d7727883c9923a39833479364d87d0a376e3fee4374f720f022f5de6332b1f6",
+      "width_semantics": "STRUCTURAL_GRID_EDGES_NOT_LITERAL_LEFT_RIGHT",
+      "combined_corner_score": false,
+      "arbitrary_weights": false,
+      "strict_prior_history": true,
+      "predictive_authority": false,
+      "betting_authority": false
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.H7B.CORNER.WIDTH.PRIOR_XI",
+      "description": "Frozen CORNER cohort structural width reconstructed directly from each team's frozen strictly-prior factual starting XI grid.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "PREMATCH_PRIOR_FIXTURE_ONLY",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/player_synergy_h7b7a2_corner_width_from_prior_xi_v1.csv"
+      ],
+      "resolved_paths": [
+        "ops/player_synergy_h7b7a2_corner_width_from_prior_xi_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_POINT11_H7B7A2",
+      "authoritative_for": [
+        "H7B_CORNER_STRUCTURAL_WIDTH_COMPONENT"
+      ],
+      "dataset_sha256": "bcd502003cbb7272387f2dfd28d352055a83f042bf1c72aa40989ba345b7c5db",
+      "width_semantics": "STRUCTURAL_GRID_EDGES_NOT_ATTACK_DIRECTION",
+      "strict_prior_lineup": true,
+      "same_fixture_lineup_used": false,
+      "predictive_authority": false,
+      "betting_authority": false
+    },
+    {
+      "dataset_id": "PBK.STATSBOMB.EVENTS.RAW.LOCAL",
+      "description": "Local StatsBomb Open Data raw event JSON checkout. External-local research evidence; never committed to PBK.",
+      "data_class": "EVIDENCE",
+      "scope": "HISTORICAL",
+      "time_semantics": "POSTMATCH_FACTUAL",
+      "prematch_authorized": false,
+      "postmatch_target_authorized": true,
+      "paths": [
+        "I:\\PBK\\statsbomb-open-data\\data\\events"
+      ],
+      "resolved_paths": [
+        "I:\\PBK\\statsbomb-open-data\\data\\events"
+      ],
+      "physical_state": "EXTERNAL_LOCAL_RESOLVED",
+      "producer": "STATSBOMB_OPEN_DATA",
+      "authoritative_for": [
+        "HISTORICAL_SPATIAL_EVENT_RESEARCH"
+      ],
+      "source_revision": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "event_files": 4235,
+      "raw_data_committed": false,
+      "redistribution": false,
+      "research_only": true,
+      "predictive_authority": false,
+      "betting_authority": false
+    },
+    {
+      "dataset_id": "PBK.ATTACK_DIRECTION.HISTORICAL.STATSBOMB",
+      "description": "Historical StatsBomb team-match LEFT/CENTER/RIGHT spatial attack profiles from passes, carries, dribbles, entries, crosses and shots.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "POSTMATCH_FACTUAL_HISTORY",
+      "prematch_authorized": false,
+      "postmatch_target_authorized": false,
+      "paths": [
+        "ops/statsbomb_attack_direction_team_match_v1.csv"
+      ],
+      "resolved_paths": [
+        "ops/statsbomb_attack_direction_team_match_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_ATTACK_DIRECTION_V1_SAFE",
+      "authoritative_for": [
+        "HISTORICAL_ATTACK_DIRECTION_RESEARCH"
+      ],
+      "dataset_sha256": "0104c7d15c8da84f293349c08372a50f44fb0cba896d995ab11bb3928845e042",
+      "orientation_mode": "STATSBOMB_ATTACK_DIRECTION_NORMALIZED",
+      "research_only": true,
+      "predictive_authority": false,
+      "betting_authority": false
+    },
+    {
+      "dataset_id": "PBK.STATSBOMB.MATCHES.RAW.LOCAL",
+      "description": "Local StatsBomb Open Data match metadata JSON checkout. External-local historical research evidence; never committed to PBK.",
+      "data_class": "EVIDENCE",
+      "scope": "HISTORICAL",
+      "time_semantics": "POSTMATCH_FACTUAL",
+      "prematch_authorized": false,
+      "postmatch_target_authorized": true,
+      "paths": [
+        "I:\\PBK\\statsbomb-open-data\\data\\matches"
+      ],
+      "resolved_paths": [
+        "I:\\PBK\\statsbomb-open-data\\data\\matches"
+      ],
+      "physical_state": "EXTERNAL_LOCAL_RESOLVED",
+      "producer": "STATSBOMB_OPEN_DATA",
+      "authoritative_for": [
+        "HISTORICAL_MATCH_METADATA_RESEARCH"
+      ],
+      "source_revision": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+      "raw_data_committed": false,
+      "redistribution": false,
+      "research_only": true,
+      "predictive_authority": false,
+      "betting_authority": false
+    },
+    {
+      "dataset_id": "PBK.STATSBOMB.PBK.FIXTURE_IDENTITY_BRIDGE.V1",
+      "description": "Historical StatsBomb-to-PBK fixture identity bridge.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "IDENTITY_BRIDGE_NON_TARGET",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "resolved_paths": [
+        "ops/statsbomb_pbk_fixture_identity_bridge_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_STATSBOMB_FIXTURE_IDENTITY_BRIDGE_V1",
+      "authoritative_for": [
+        "STATSBOMB_PBK_FIXTURE_IDENTITY"
+      ],
+      "research_only": true,
+      "predictive_authority": false,
+      "betting_authority": false
+    },
+    {
+      "dataset_id": "PBK.ATTACK_DIRECTION.PREMATCH_ROLLING.V1",
+      "description": "Strictly-prior rolling attack-direction history for frozen PBK target fixtures.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "PREMATCH_PRIOR_HISTORY_ONLY",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "resolved_paths": [
+        "ops/statsbomb_attack_direction_prematch_rolling_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_ATTACK_DIRECTION_PREMATCH_ROLLING_V1",
+      "authoritative_for": [
+        "SPATIAL_ATTACK_PREMATCH_RESEARCH"
+      ],
+      "research_only": true,
+      "predictive_authority": false,
+      "betting_authority": false
+    },
+    {
+      "dataset_id": "PBK.DEFENSIVE_EXPOSURE.PREMATCH_ROLLING.V1",
+      "description": "Strictly-prior opponent attacking-zone exposure history for frozen PBK target fixtures.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "PREMATCH_PRIOR_HISTORY_ONLY",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "resolved_paths": [
+        "ops/statsbomb_defensive_exposure_prematch_rolling_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_DEFENSIVE_EXPOSURE_PREMATCH_ROLLING_V1",
+      "authoritative_for": [
+        "SPATIAL_DEFENSIVE_EXPOSURE_PREMATCH_RESEARCH"
+      ],
+      "research_only": true,
+      "predictive_authority": false,
+      "betting_authority": false
+    },
+    {
+      "dataset_id": "PBK.STYLE_ON_STYLE.SPATIAL_MATCHUP.V1",
+      "description": "Historical no-lookahead spatial Style-on-Style matchup research layer.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "PREMATCH_PRIOR_HISTORY_ONLY",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "resolved_paths": [
+        "ops/statsbomb_style_on_style_spatial_matchup_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_STYLE_ON_STYLE_SPATIAL_MATCHUP_V1",
+      "authoritative_for": [
+        "SPATIAL_STYLE_ON_STYLE_RESEARCH"
+      ],
+      "research_only": true,
+      "predictive_authority": false,
+      "betting_authority": false
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.H7B.CORNER.WIDTH.VALIDATION",
+      "description": "Historical validation of structural prior-XI width components against actual team corners.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "POSTMATCH_RESEARCH_VALIDATION",
+      "prematch_authorized": false,
+      "postmatch_target_authorized": false,
+      "resolved_paths": [
+        "ops/player_synergy_h7b7b_width_component_validation_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_H7B7B_WIDTH_COMPONENT_VALIDATION_V1",
+      "authoritative_for": [
+        "H7B_CORNER_WIDTH_VALIDATION"
+      ],
+      "research_only": true,
+      "predictive_authority": false,
+      "betting_authority": false
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.H7B.CORNER.SIGNAL_SUMMARY",
+      "description": "Historical H7B corner signal temporal/descriptive validation summary.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "POSTMATCH_RESEARCH_VALIDATION",
+      "prematch_authorized": false,
+      "postmatch_target_authorized": false,
+      "resolved_paths": [
+        "ops/player_synergy_h7b7b_corner_signal_summary_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_H7B7B_CORNER_VALIDATION_V1",
+      "authoritative_for": [
+        "H7B_CORNER_MULTIPLE_TESTING_INPUT"
+      ],
+      "research_only": true,
+      "predictive_authority": false,
+      "betting_authority": false
+    },
+    {
+      "dataset_id": "PBK.SYNERGY.H7B.CORNER.CANDIDATE_DECISION",
+      "description": "H7B corner multiple-testing corrected forward-candidate decision results.",
+      "data_class": "DERIVED",
+      "scope": "HISTORICAL",
+      "time_semantics": "FROZEN_RESEARCH_DECISION",
+      "prematch_authorized": false,
+      "postmatch_target_authorized": false,
+      "resolved_paths": [
+        "ops/player_synergy_h7b7c_corner_fdr_results_v1.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_H7B7C_CORNER_MULTIPLE_TESTING_DECISION_V1",
+      "authoritative_for": [
+        "H7B_CORNER_FORWARD_CANDIDATE_DECISION"
+      ],
+      "historical_retuning_allowed": false,
+      "research_only": true,
+      "predictive_authority": false,
+      "betting_authority": false
+    },
+    {
+      "dataset_id": "PBK.CURRENT_ROUND.FIXTURES.V1",
+      "description": "Canonical current-round PBK16 fixture universe captured by Stage71.",
+      "data_class": "EVIDENCE",
+      "scope": "CURRENT",
+      "time_semantics": "CURRENT_FIXTURE_STATE",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "resolved_paths": [
+        "ops/current_round_fixtures.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "STAGE71_CURRENT_ROUND_CAPTURE",
+      "authoritative_for": [
+        "PBK16_CURRENT_FIXTURE_UNIVERSE"
+      ],
+      "predictive_authority": false,
+      "betting_authority": false
+    },
+    {
+      "dataset_id": "PBK.CAPTURE_UNIVERSE.PBK16.V1",
+      "description": "Normalized PBK16 prematch capture universe adapter for Stage55/Stage56.",
+      "data_class": "DERIVED",
+      "scope": "CURRENT",
+      "time_semantics": "PREMATCH_CAPTURE_ELIGIBILITY",
+      "prematch_authorized": true,
+      "postmatch_target_authorized": false,
+      "resolved_paths": [
+        "ops/pbk16_capture_universe.csv"
+      ],
+      "physical_state": "RESOLVED",
+      "producer": "PBK_POINT11_CAPTURE_UNIVERSE_ADAPTER_V1",
+      "authoritative_for": [
+        "STAGE55_STAGE56_PREMATCH_CAPTURE_UNIVERSE"
+      ],
+      "predictive_authority": false,
+      "betting_authority": false
+    }
+  ],
+  "generated_at_utc": "2026-09-29T18:42:17Z",
+  "registry_sha256": "bda21a5b74c63402c99044963ae222e2b963895e03f7a43b21d88d6d6d93469e"
+}
