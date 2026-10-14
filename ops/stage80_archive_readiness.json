@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_READINESS_V33_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-14T08:04:20Z",
+  "generated_at_utc": "2026-10-14T12:20:18Z",
   "status": "COLLECTING",
   "scope": "historical archive telemetry only",
   "source_presence": {
@@ -69,7 +69,7 @@
     "transfer_identity": {
       "file": "pbk_transfermarkt_player_identity.csv",
       "present": true,
-      "rows": 3173
+      "rows": 3161
     },
     "transfer_history": {
       "file": "historical_transfer_events.csv",
@@ -419,11 +419,11 @@
   },
   "transfer_identity": {
     "present": true,
-    "rows": 3173,
-    "valid_rows": 2116,
-    "invalid_rows": 1057,
-    "unique_pbk_players": 2116,
-    "unique_transfermarkt_players": 2116,
+    "rows": 3161,
+    "valid_rows": 2087,
+    "invalid_rows": 1074,
+    "unique_pbk_players": 2087,
+    "unique_transfermarkt_players": 2087,
     "approved_methods": [
       "EXACT_NAME_CURRENT_CLUB",
       "EXACT_PROFILE_NAME_DOB_CURRENT_CLUB",
