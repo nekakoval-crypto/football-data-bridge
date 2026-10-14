@@ -1,6 +1,6 @@
 # PBK Exposure & Conflict Map
 
-Обновлено UTC: 2026-10-14T00:09:27Z
+Обновлено UTC: 2026-10-14T11:10:57Z
 Активные rule-строки: 10 | логических экспозиций: 5
 Raw stake: 10.000u | логическая экспозиция: 5.000u | убрано дублей: 5.000u
 Canonical conflicts: 0 | WATCH overlaps: 0
@@ -9,8 +9,8 @@ Canonical conflicts: 0 | WATCH overlaps: 0
 - **Venezia — Napoli** | R1+R2 | П2 | 1.000u | 1.71 @ Marathonbet | совпали правила R1+R2; считаем как 1 позицию
 - **Bologna — Inter** | R1+R2 | П2 | 1.000u | 1.64 @ Marathonbet | совпали правила R1+R2; считаем как 1 позицию
 - **Fiorentina — Como** | R1+R2 | П2 | 1.000u | 2.07 @ Marathonbet | совпали правила R1+R2; считаем как 1 позицию
-- **Lecce — Juventus** | R1+R2 | П2 | 1.000u | N/A @ N/A | совпали правила R1+R2; считаем как 1 позицию
-- **Udinese — AC Milan** | R1+R2 | П2 | 1.000u | N/A @ N/A | совпали правила R1+R2; считаем как 1 позицию
+- **Lecce — Juventus** | R1+R2 | П2 | 1.000u | 1.46 @ Marathonbet | совпали правила R1+R2; считаем как 1 позицию
+- **Udinese — AC Milan** | R1+R2 | П2 | 1.000u | 1.78 @ Marathonbet | совпали правила R1+R2; считаем как 1 позицию
 
 ## Конфликты
 - Нет разных canonical экспозиций на один и тот же матч.
