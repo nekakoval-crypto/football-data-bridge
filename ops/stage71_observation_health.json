@@ -1,12 +1,12 @@
 {
-  "run_at_utc": "2026-10-13T20:50:34.370418Z",
+  "run_at_utc": "2026-10-14T13:02:17.160043Z",
   "status": "ATTENTION",
   "counts": {
-    "expected": 0,
+    "expected": null,
     "scanned": 0,
-    "captured": 127,
+    "captured": 131,
     "missed_or_at_risk": 4,
-    "pending": 16,
+    "pending": 20,
     "stale": 0,
     "rescheduled": 263,
     "cancelled": 19,
@@ -63,10 +63,9 @@
     },
     {
       "league": "Austrian Bundesliga",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Belgian Pro League",
@@ -139,7 +138,9 @@
       "inventory": "COMPLETE"
     }
   ],
-  "warnings": [],
+  "warnings": [
+    "Austrian Bundesliga: inventory unavailable: IncompleteRead(27908 bytes read)"
+  ],
   "scope": "16 locked leagues; 15 research writers; Serie A canonical read-only, completeness not certified",
   "canonical_captured": 17,
   "definitions": {
@@ -152,6 +153,6 @@
   "legacy_max_schedule_gap_hours": 18,
   "schedule_gap_hours": 8,
   "r2_freeze_hours": 12,
-  "api_calls": 35,
-  "api_day_calls": 602
+  "api_calls": 40,
+  "api_day_calls": 225
 }

@@ -1,16 +1,16 @@
 {
-  "run_at_utc": "2026-10-13T20:50:34Z",
-  "status": "OK",
+  "run_at_utc": "2026-10-14T13:02:16Z",
+  "status": "ATTENTION",
   "research_leagues": 15,
-  "new_triggers": 0,
-  "new_r1_rows": 0,
+  "new_triggers": 11,
+  "new_r1_rows": 4,
   "new_r2_rows": 0,
   "settled_rows": 0,
-  "trigger_rows": 416,
-  "forward_rows": 127,
-  "api_calls": 35,
+  "trigger_rows": 427,
+  "forward_rows": 131,
+  "api_calls": 40,
   "odds_calls": 20,
-  "marathon_calls": 0,
+  "marathon_calls": 4,
   "scan": [
     {
       "league": "Premier League",
@@ -42,10 +42,9 @@
     },
     {
       "league": "Austrian Bundesliga",
-      "expected": 0,
-      "scanned": 0,
-      "legacy_next5_omitted": 0,
-      "inventory": "COMPLETE"
+      "inventory": "UNKNOWN",
+      "expected": null,
+      "scanned": 0
     },
     {
       "league": "Belgian Pro League",
@@ -118,15 +117,17 @@
       "inventory": "COMPLETE"
     }
   ],
-  "warnings": [],
+  "warnings": [
+    "Austrian Bundesliga: inventory unavailable: IncompleteRead(27908 bytes read)"
+  ],
   "canonical_captured": 17,
   "challenger_deferred": false,
-  "api_day_calls_before_challenger": 567,
+  "api_day_calls_before_challenger": 185,
   "reserved_live_calls": 0,
-  "reserved_current_round_calls": 32,
+  "reserved_current_round_calls": 64,
   "safety_margin_calls": 10,
-  "challenger_available_calls": 6391,
-  "challenger_calls_used": 35,
+  "challenger_available_calls": 6741,
+  "challenger_calls_used": 40,
   "live_forecast_cycles": 0,
   "live_peak_candidates": 0,
   "live_peak_batches": 0,
