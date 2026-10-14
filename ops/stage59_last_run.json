@@ -1,9 +1,9 @@
 {
-  "run_at_utc": "2026-10-13T17:11:30Z",
+  "run_at_utc": "2026-10-14T01:26:00Z",
   "status": "OK",
   "canonical_forward_rows": 17,
-  "new_user_execution_rows": 0,
-  "frozen_user_execution_rows": 13,
+  "new_user_execution_rows": 4,
+  "frozen_user_execution_rows": 17,
   "settled_rows_with_user_profit": 7,
   "policy": {
     "paper_user_execution": "first observed allowlisted price after signal; immutable once frozen",
