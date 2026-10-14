@@ -1,6 +1,6 @@
 {
   "version": "PBK_STAGE80_ARCHIVE_MANIFEST_V29_PBK16_STANDINGS_FOUNDATION",
-  "generated_at_utc": "2026-10-14T07:47:58Z",
+  "generated_at_utc": "2026-10-14T08:03:59Z",
   "status": "OK",
   "datasets": [
     {
@@ -1890,7 +1890,7 @@
       "source": "Stage80 /fixtures/events via shared API-Football broker",
       "limitations": "Only terminal fixtures captured under protected provider budget; empty provider responses remain retryable and are not converted to fake no-event evidence.",
       "present": true,
-      "row_count": 4134,
+      "row_count": 4276,
       "columns": [
         "event_id",
         "fixture_id",
