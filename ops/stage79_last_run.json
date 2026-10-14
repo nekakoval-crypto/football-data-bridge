@@ -1,16 +1,16 @@
 {
   "version": "PBK_STAGE79_TEAM_ROSTERS_V1",
-  "run_at_utc": "2026-10-13T22:43:51Z",
+  "run_at_utc": "2026-10-14T04:51:41Z",
   "status": "OK",
   "provider_endpoint": "/players/squads",
-  "provider_calls": 0,
-  "daily_api_calls": 610,
+  "provider_calls": 8,
+  "daily_api_calls": 60,
   "protected_calls": {
     "live": 0,
-    "current_round": 32,
+    "current_round": 96,
     "standings": 16,
     "safety": 8,
-    "total": 56
+    "total": 120
   },
   "roster_ttl_days": 28,
   "roster_freshness_policy": "TRANSFER_AWARE_V1",
@@ -18,10 +18,51 @@
   "stable_ttl_days": 28,
   "sensitive_ttl_days": 3,
   "transfer_sensitive_periods": "01-01:02-15,06-01:09-10",
-  "candidate_teams": 0,
-  "captured_teams": [],
+  "candidate_teams": 8,
+  "captured_teams": [
+    {
+      "team_id": "488",
+      "team_name": "Sassuolo",
+      "players": 80
+    },
+    {
+      "team_id": "539",
+      "team_name": "Levante",
+      "players": 30
+    },
+    {
+      "team_id": "544",
+      "team_name": "Deportivo La Coruna",
+      "players": 56
+    },
+    {
+      "team_id": "49",
+      "team_name": "Chelsea",
+      "players": 71
+    },
+    {
+      "team_id": "530",
+      "team_name": "Atletico Madrid",
+      "players": 67
+    },
+    {
+      "team_id": "55",
+      "team_name": "Brentford",
+      "players": 71
+    },
+    {
+      "team_id": "533",
+      "team_name": "Villarreal",
+      "players": 69
+    },
+    {
+      "team_id": "529",
+      "team_name": "Barcelona",
+      "players": 72
+    }
+  ],
   "deferred_teams": 0,
-  "total_roster_rows": 7812,
+  "total_roster_rows": 8076,
   "warnings": [],
   "reference_only": true,
   "provider_polling_frontend": false,
