@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-10-14T00:45:04Z
+Generated UTC: 2026-10-14T15:38:28Z
 Active canonical signals: 10
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -8,8 +8,8 @@ Active canonical signals: 10
 ## R1 | Venezia — Napoli
 - Kickoff UTC: 2026-10-17T13:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.5 / Х 3.7 / П2 1.7 (immutable)
-- Market-best observed: 1.76 @ 1xBet | Bet365 now: 1.67
-- Current user-executable: 1.71 @ Marathonbet
+- Market-best observed: 1.73 @ Betfair | Bet365 now: 1.67
+- Current user-executable: 1.66 @ Marathonbet
 - Paper user-execution (frozen): 1.71 @ Marathonbet [2026-10-04T18:05:16Z]
 - Referee / venue: TBD | Stadio Pierluigi Penzo, Venice
 - Previous: home Serie A vs Lazio (666.2h rest); away Serie A vs Fiorentina (650.5h rest)
@@ -23,8 +23,8 @@ Active canonical signals: 10
 ## R2 | Venezia — Napoli
 - Kickoff UTC: 2026-10-17T13:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 4.5 / Х 3.7 / П2 1.7 (immutable)
-- Market-best observed: 1.76 @ 1xBet | Bet365 now: 1.67
-- Current user-executable: 1.71 @ Marathonbet
+- Market-best observed: 1.73 @ Betfair | Bet365 now: 1.67
+- Current user-executable: 1.66 @ Marathonbet
 - Paper user-execution (frozen): 1.71 @ Marathonbet [2026-10-04T18:05:16Z]
 - Referee / venue: TBD | Stadio Pierluigi Penzo, Venice
 - Previous: home Serie A vs Lazio (666.2h rest); away Serie A vs Fiorentina (650.5h rest)
@@ -68,7 +68,7 @@ Active canonical signals: 10
 ## R1 | Fiorentina — Como
 - Kickoff UTC: 2026-10-18T13:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 3.5 / Х 3.4 / П2 2.05 (immutable)
-- Market-best observed: 2.12 @ 1xBet | Bet365 now: 1.95
+- Market-best observed: 2.12 @ 1xBet | Bet365 now: 2.0
 - Current user-executable: 2.06 @ Marathonbet
 - Paper user-execution (frozen): 2.07 @ Marathonbet [2026-10-04T18:05:16Z]
 - Referee / venue: TBD | Stadio Artemio Franchi, Florence
@@ -83,7 +83,7 @@ Active canonical signals: 10
 ## R2 | Fiorentina — Como
 - Kickoff UTC: 2026-10-18T13:00:00Z | Ставка: П2 | Stake: 1.000u
 - Trigger Bet365: П1 3.5 / Х 3.4 / П2 2.05 (immutable)
-- Market-best observed: 2.12 @ 1xBet | Bet365 now: 1.95
+- Market-best observed: 2.12 @ 1xBet | Bet365 now: 2.0
 - Current user-executable: 2.06 @ Marathonbet
 - Paper user-execution (frozen): 2.07 @ Marathonbet [2026-10-04T18:05:16Z]
 - Referee / venue: TBD | Stadio Artemio Franchi, Florence
@@ -100,7 +100,7 @@ Active canonical signals: 10
 - Trigger Bet365: П1 8.0 / Х 4.2 / П2 1.42 (immutable)
 - Market-best observed: 1.5 @ 1xBet | Bet365 now: 1.42
 - Current user-executable: 1.46 @ Marathonbet
-- Paper user-execution (frozen): WAITING_EXECUTABLE_PRICE
+- Paper user-execution (frozen): 1.46 @ Marathonbet [2026-10-13T17:46:36Z]
 - Referee / venue: TBD | Stadio Via del Mare, Lecce
 - Previous: home Serie A vs Bologna (340.0h rest); away Serie A vs Cagliari (334.2h rest)
 - Next: home Serie A vs Frosinone (96.5h after); away Serie A vs Genoa (74.8h after)
@@ -115,7 +115,7 @@ Active canonical signals: 10
 - Trigger Bet365: П1 8.0 / Х 4.2 / П2 1.42 (immutable)
 - Market-best observed: 1.5 @ 1xBet | Bet365 now: 1.42
 - Current user-executable: 1.46 @ Marathonbet
-- Paper user-execution (frozen): WAITING_EXECUTABLE_PRICE
+- Paper user-execution (frozen): 1.46 @ Marathonbet [2026-10-13T17:46:36Z]
 - Referee / venue: TBD | Stadio Via del Mare, Lecce
 - Previous: home Serie A vs Bologna (340.0h rest); away Serie A vs Cagliari (334.2h rest)
 - Next: home Serie A vs Frosinone (96.5h after); away Serie A vs Genoa (74.8h after)
@@ -130,7 +130,7 @@ Active canonical signals: 10
 - Trigger Bet365: П1 4.5 / Х 3.5 / П2 1.8 (immutable)
 - Market-best observed: 1.83 @ 1xBet | Bet365 now: 1.8
 - Current user-executable: 1.78 @ Marathonbet
-- Paper user-execution (frozen): WAITING_EXECUTABLE_PRICE
+- Paper user-execution (frozen): 1.78 @ Marathonbet [2026-10-13T17:46:36Z]
 - Referee / venue: TBD | Bluenergy Stadium - Stadio Friuli, Udine
 - Previous: home Serie A vs Torino (313.0h rest); away Serie A vs Sassuolo (339.8h rest)
 - Next: home Serie A vs Parma (69.8h after); away Serie A vs Bologna (69.8h after)
@@ -145,7 +145,7 @@ Active canonical signals: 10
 - Trigger Bet365: П1 4.5 / Х 3.5 / П2 1.8 (immutable)
 - Market-best observed: 1.83 @ 1xBet | Bet365 now: 1.8
 - Current user-executable: 1.78 @ Marathonbet
-- Paper user-execution (frozen): WAITING_EXECUTABLE_PRICE
+- Paper user-execution (frozen): 1.78 @ Marathonbet [2026-10-13T17:46:36Z]
 - Referee / venue: TBD | Bluenergy Stadium - Stadio Friuli, Udine
 - Previous: home Serie A vs Torino (313.0h rest); away Serie A vs Sassuolo (339.8h rest)
 - Next: home Serie A vs Parma (69.8h after); away Serie A vs Bologna (69.8h after)
@@ -183,11 +183,12 @@ Active canonical signals: 10
 
 - Scope: Бундеслига: ТБ(2.5) — движение рынка (+3 pp no-vig from frozen Bet365 O/U 2.5 opener).
 - Frozen O/U openers tracked: 44
-- Active +3 pp crossings ТБ(2.5): 0
+- Active +3 pp crossings ТБ(2.5): 1
 - Observed closes: 27 | Close-qualified O1 watches: 10
 - Executable bookmaker being observed: Marathonbet
 
-- No active +3 pp Over crossing is currently recorded.
+## Current O/U crossings
+- WATCH | Eintracht Frankfurt — 1. FC Köln | Over move +4.54 pp | Bet365 O2.5 1.36 | Marathonbet O2.5 1.34 | 3874.8 min to kickoff
 
 ## Recent close-qualified O/U watches
 - Borussia Mönchengladbach — FSV Mainz 05 | move +5.38 pp | B365 close O2.5 1.44 | Marathonbet close O2.5 1.44
@@ -204,11 +205,14 @@ Active canonical signals: 10
 
 - Рынок: ОЗ — Да / ОЗ — Нет, Big-5.
 - Заморожено Bet365 opener'ов: 245
-- Активные движения ≥3 п.п.: всего 0 | ОЗ — Да 0 | ОЗ — Нет 0
+- Активные движения ≥3 п.п.: всего 3 | ОЗ — Да 3 | ОЗ — Нет 0
 - Зафиксировано observed close: 153
 - Исполнимый букмекер для наблюдения: Marathonbet
 
-- Сейчас активных движений ≥3 п.п. по ОЗ нет.
+## Текущие ОЗ-watch
+- WATCH | Serie A | Frosinone — Sassuolo | ОЗ — Да | движение P(ОЗ — Да) +3.77 п.п. | Marathonbet 1.4 | 3940.8 мин до матча
+- WATCH | Bundesliga | Union Berlin — Borussia Dortmund | ОЗ — Да | движение P(ОЗ — Да) +3.60 п.п. | Marathonbet 1.5 | 4315.5 мин до матча
+- WATCH | Bundesliga | FC Schalke 04 — FSV Mainz 05 | ОЗ — Да | движение P(ОЗ — Да) +3.60 п.п. | Marathonbet 1.48 | 4315.5 мин до матча
 
 ---
 
@@ -216,14 +220,14 @@ Active canonical signals: 10
 
 > Это paper-оценка research WATCH, а не реальные ставки и не R1/R2/R3.
 
-- Crossings: 72 | settled 72 | pending 0
+- Crossings: 76 | settled 72 | pending 4
 - Marathonbet coverage at crossing: 100.0%
 - First-crossing P&L: -18.220u | ROI -25.306% | W-L 34-38
 - Close: observed 72 | stayed qualified 57 | reverted 15 | persistence 79.167%
 - Close-qualified ROI: -25.439% | Reverted ROI: -24.8%
 
 ## By WATCH family
-- Big-5 ОЗ market movement — ОЗ — Да: crossings 44, settled 44, ROI -20.045%, close persistence 81.818%
+- Big-5 ОЗ market movement — ОЗ — Да: crossings 47, settled 44, ROI -20.045%, close persistence 81.818%
 - Big-5 ОЗ market movement — ОЗ — Нет: crossings 12, settled 12, ROI -38.583%, close persistence 58.333%
 - АПЛ favorite steam: crossings 6, settled 6, ROI -59.667%, close persistence 66.667%
-- Бундеслига ТБ(2.5) steam: crossings 10, settled 10, ROI -11.9%, close persistence 100.0%
+- Бундеслига ТБ(2.5) steam: crossings 11, settled 10, ROI -11.9%, close persistence 100.0%
