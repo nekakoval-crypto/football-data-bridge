@@ -1,10 +1,10 @@
 {
   "version": "PBK_STAGE80_HISTORICAL_LINEUP_INJURY_BACKFILL_V2",
-  "run_at_utc": "2026-10-14T00:20:17Z",
+  "run_at_utc": "2026-10-14T06:10:48Z",
   "status": "OK",
   "source_rows": 70375,
   "terminal_pbk16_domestic_fixtures": 40354,
-  "candidate_tasks_before_run": 75318,
+  "candidate_tasks_before_run": 75268,
   "attempted_tasks": 50,
   "provider_calls": 50,
   "max_provider_calls": 50,
@@ -12,10 +12,10 @@
   "heartbeat_every_tasks": 10,
   "max_consecutive_provider_errors": 5,
   "checkpoint_every_tasks": 25,
-  "shared_api_day_calls_at_start": 0,
-  "historical_api_day_calls": 50,
-  "estimated_combined_api_day_calls": 50,
-  "historical_daily_limit_after_shared_usage": 7000,
+  "shared_api_day_calls_at_start": 83,
+  "historical_api_day_calls": 100,
+  "estimated_combined_api_day_calls": 183,
+  "historical_daily_limit_after_shared_usage": 6917,
   "protected_calls": {
     "live": 0,
     "current_round": 96,
@@ -25,30 +25,30 @@
     "live_forecast_status": "OPEN"
   },
   "captured_lineup_tasks_this_run": 0,
-  "captured_injury_tasks_this_run": 50,
+  "captured_injury_tasks_this_run": 43,
   "no_data_lineup_tasks_this_run": 0,
-  "no_data_injury_tasks_this_run": 0,
+  "no_data_injury_tasks_this_run": 7,
   "error_lineup_tasks_this_run": 0,
   "error_injury_tasks_this_run": 0,
   "suppressed_injury_tasks_this_run": 0,
   "new_lineup_rows": 0,
-  "new_injury_rows": 567,
+  "new_injury_rows": 376,
   "total_lineup_rows": 9400,
-  "total_injury_rows": 3270,
-  "state_rows": 5613,
+  "total_injury_rows": 3646,
+  "state_rows": 5663,
   "state_totals": {
     "/fixtures/lineups": {
       "CAPTURED": 4700,
       "NO_DATA": 5
     },
     "/injuries": {
-      "CAPTURED": 497,
-      "NO_DATA": 411
+      "CAPTURED": 540,
+      "NO_DATA": 418
     }
   },
   "injury_no_data_cell_threshold": 8,
   "suppressed_injury_cells": [],
-  "remaining_candidate_tasks": 75268,
+  "remaining_candidate_tasks": 75218,
   "provider_quota_exhausted": false,
   "provider_quota_error": "",
   "warnings": [],
