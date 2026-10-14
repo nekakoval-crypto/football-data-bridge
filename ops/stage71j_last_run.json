@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-10-13T23:00:40Z",
+  "run_at_utc": "2026-10-14T05:12:57Z",
   "status": "OK",
   "mode": "SHARED_PREFETCHED_PROSPECTIVE_CAPTURE",
   "prefetched_fixture_ids": 160,
@@ -15,10 +15,10 @@
   "bet_catalog_saved": true,
   "bet_catalog_api_calls_added": 0,
   "market_presence_saved": true,
-  "market_presence_count": 137,
+  "market_presence_count": 161,
   "market_presence_api_calls_added": 0,
   "generic_1x2_forward_capture": {
-    "run_at_utc": "2026-10-13T23:01:22Z",
+    "run_at_utc": "2026-10-14T05:13:34Z",
     "status": "OK",
     "mode": "STAGE71J_ZERO_EXTRA_CALL_PROSPECTIVE_CAPTURE",
     "source": "API-Football /odds Bet365 Match Winner",
@@ -30,13 +30,13 @@
     "extraction": {
       "fixture_metadata": 160,
       "unfiltered_odds_payloads": 160,
-      "missing_complete_bet365_match_winner": 48,
-      "complete_candidate_rows": 112
+      "missing_complete_bet365_match_winner": 39,
+      "complete_candidate_rows": 121
     },
-    "candidate_rows": 112,
-    "observations_added": 0,
+    "candidate_rows": 121,
+    "observations_added": 9,
     "observations_rejected": 112,
-    "prematch_frozen": 370,
+    "prematch_frozen": 379,
     "settled_rows": 2,
     "rejections": [
       {
@@ -505,8 +505,8 @@
       "status": "OK",
       "fixtures_scanned": 160,
       "logical_odds_calls": 64,
-      "new_openers": 1,
-      "new_snapshots": 78,
+      "new_openers": 76,
+      "new_snapshots": 87,
       "new_closes": 0,
       "warnings": 0
     },
@@ -515,8 +515,8 @@
       "status": "OK",
       "fixtures_scanned": 160,
       "logical_odds_calls": 64,
-      "new_openers": 0,
-      "new_snapshots": 8,
+      "new_openers": 6,
+      "new_snapshots": 9,
       "new_closes": 0,
       "warnings": 0
     },
@@ -525,8 +525,8 @@
       "status": "OK",
       "fixtures_scanned": 160,
       "logical_odds_calls": 60,
-      "new_openers": 0,
-      "new_snapshots": 40,
+      "new_openers": 40,
+      "new_snapshots": 45,
       "new_closes": 0,
       "warnings": 0
     },
@@ -535,7 +535,7 @@
       "status": "OK",
       "fixtures_scanned": 160,
       "logical_odds_calls": 67,
-      "new_openers": 0,
+      "new_openers": 5,
       "new_snapshots": 8,
       "new_closes": 0,
       "warnings": 0
