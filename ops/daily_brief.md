@@ -1,6 +1,6 @@
 # PBK Daily Brief
 
-Generated UTC: 2026-10-13T21:39:54Z
+Generated UTC: 2026-10-14T00:45:04Z
 Active canonical signals: 10
 
 > Context layers are explanatory only. Current executable and frozen paper-execution prices are shown separately.
@@ -105,7 +105,7 @@ Active canonical signals: 10
 - Previous: home Serie A vs Bologna (340.0h rest); away Serie A vs Cagliari (334.2h rest)
 - Next: home Serie A vs Frosinone (96.5h after); away Serie A vs Genoa (74.8h after)
 - Injuries: NOT_QUERIED_YET
-- Weather [pending]: °C, precip %, wind  km/h, gusts  km/h
+- Weather [BASELINE]: 15.7°C, precip 40%, wind 5.4 km/h, gusts 17.3 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International:  FIFA window; to start h; player-level UNVERIFIED
 - Flags: OFFICIAL_ROTATION_PENDING
@@ -120,7 +120,7 @@ Active canonical signals: 10
 - Previous: home Serie A vs Bologna (340.0h rest); away Serie A vs Cagliari (334.2h rest)
 - Next: home Serie A vs Frosinone (96.5h after); away Serie A vs Genoa (74.8h after)
 - Injuries: NOT_QUERIED_YET
-- Weather [pending]: °C, precip %, wind  km/h, gusts  km/h
+- Weather [BASELINE]: 15.7°C, precip 40%, wind 5.4 km/h, gusts 17.3 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International:  FIFA window; to start h; player-level UNVERIFIED
 - Flags: OFFICIAL_ROTATION_PENDING
@@ -135,7 +135,7 @@ Active canonical signals: 10
 - Previous: home Serie A vs Torino (313.0h rest); away Serie A vs Sassuolo (339.8h rest)
 - Next: home Serie A vs Parma (69.8h after); away Serie A vs Bologna (69.8h after)
 - Injuries: NOT_QUERIED_YET
-- Weather [pending]: °C, precip %, wind  km/h, gusts  km/h
+- Weather [BASELINE]: 12.2°C, precip 19%, wind 14.7 km/h, gusts 36.7 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International:  FIFA window; to start h; player-level UNVERIFIED
 - Flags: OFFICIAL_ROTATION_PENDING
@@ -150,7 +150,7 @@ Active canonical signals: 10
 - Previous: home Serie A vs Torino (313.0h rest); away Serie A vs Sassuolo (339.8h rest)
 - Next: home Serie A vs Parma (69.8h after); away Serie A vs Bologna (69.8h after)
 - Injuries: NOT_QUERIED_YET
-- Weather [pending]: °C, precip %, wind  km/h, gusts  km/h
+- Weather [BASELINE]: 12.2°C, precip 19%, wind 14.7 km/h, gusts 36.7 km/h
 - Rotation: WAITING_OFFICIAL_XI
 - International:  FIFA window; to start h; player-level UNVERIFIED
 - Flags: OFFICIAL_ROTATION_PENDING
