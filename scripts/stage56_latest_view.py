@@ -59,11 +59,95 @@ def read_csv(path):
 
 
 def write_csv(path, fields, rows):
+    import csv
+    import os
+    import tempfile
+    from pathlib import Path
+
+    path = Path(path)
+    fields = list(fields)
+    rows = list(rows)
+
+    def equivalent():
+        if not path.is_file():
+            return False
+
+        try:
+            with path.open(
+                "r",
+                encoding="utf-8-sig",
+                newline=""
+            ) as stream:
+                reader = csv.DictReader(stream)
+
+                if list(reader.fieldnames or []) != fields:
+                    return False
+
+                sentinel = object()
+                expected = iter(rows)
+
+                for existing in reader:
+                    candidate = next(expected, sentinel)
+
+                    if candidate is sentinel:
+                        return False
+
+                    projected = {
+                        field: str(
+                            candidate.get(field, "")
+                            if candidate.get(field, "") is not None
+                            else ""
+                        )
+                        for field in fields
+                    }
+
+                    if existing != projected:
+                        return False
+
+                return next(expected, sentinel) is sentinel
+
+        except (OSError, UnicodeError, csv.Error):
+            return False
+
+    if equivalent():
+        return False
+
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8-sig", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
-        w.writeheader()
-        w.writerows(rows)
+    temp_name = None
+
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8-sig",
+            newline="",
+            dir=path.parent,
+            prefix=path.name + ".",
+            suffix=".tmp",
+            delete=False,
+        ) as stream:
+            temp_name = stream.name
+
+            writer = csv.DictWriter(
+                stream,
+                fieldnames=fields,
+                extrasaction="ignore",
+            )
+
+            writer.writeheader()
+            writer.writerows(rows)
+
+            stream.flush()
+            os.fsync(stream.fileno())
+
+        os.replace(temp_name, path)
+        return True
+
+    finally:
+        if temp_name is not None:
+            try:
+                os.unlink(temp_name)
+            except FileNotFoundError:
+                pass
 
 
 def latest_by(rows, key="forward_id"):
