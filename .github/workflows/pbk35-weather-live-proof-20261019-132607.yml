@@ -1,0 +1,118 @@
+name: PBK35 Weather Live Proof 708
+
+on:
+  push:
+    branches:
+      - pbk35-weather-only-*
+    paths:
+      - .github/workflows/pbk35-weather-live-proof-*.yml
+
+permissions:
+  contents: read
+
+jobs:
+  weather-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Isolated live Open-Meteo and authoritative gate
+        env:
+          PBK35_ROOT: ${{ github.workspace }}/pbk35/proof708_20261019-132607
+          PBK35_SOURCE_ROOT: ${{ github.workspace }}/pbk35/proof708_20261019-132607/source
+        run: |
+          python - <<'PY'
+          import csv
+          import importlib.util
+          import os
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          root = Path(os.environ["PBK35_ROOT"])
+          ops = root / "PBK35_DATA" / "ops"
+          archive = ops / "weather_snapshots.csv"
+          universe = ops / "pbk16_capture_universe.csv"
+          context = ops / "pbk35_verified_venue_context_612.csv"
+
+          def read(path):
+              with path.open(encoding="utf-8-sig", newline="") as f:
+                  return list(csv.DictReader(f))
+
+          before = read(archive)
+          fixtures = {
+              r["api_fixture_id"]: r for r in read(universe)
+          }
+          venues = {
+              r["api_fixture_id"]: r for r in read(context)
+          }
+
+          print("INPUT WEATHER ROWS =", len(before), flush=True)
+          print("INPUT FIXTURES =", len(fixtures), flush=True)
+
+          if len(before) < 289 or not fixtures or not venues:
+              raise RuntimeError("INVALID_INPUT_BASELINE")
+
+          cmd = [
+              sys.executable, "-B",
+              "pbk35/weather_only_worker_v2.py",
+              "--live", "--max-calls", "1"
+          ]
+          run = subprocess.run(
+              cmd, capture_output=True, text=True, timeout=180
+          )
+          print(run.stdout, flush=True)
+          if run.stderr:
+              print(run.stderr, flush=True)
+          if run.returncode:
+              raise RuntimeError("WEATHER_WORKER_FAILED")
+
+          after = read(archive)
+          if len(after) != len(before) + 1:
+              raise RuntimeError(
+                  "EXPECTED_ONE_NEW_SNAPSHOT; BEFORE="
+                  + str(len(before)) + "; AFTER=" + str(len(after))
+              )
+
+          new = after[-1]
+          fid = new["api_fixture_id"]
+          if fid not in fixtures or fid not in venues:
+              raise RuntimeError("NEW_SNAPSHOT_IDENTITY_UNVERIFIED")
+
+          gate_path = Path("pbk35/weather_evidence_gate.py")
+          spec = importlib.util.spec_from_file_location(
+              "pbk35_evidence_gate", gate_path
+          )
+          module = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(module)
+
+          accepted = module.valid_weather_evidence(
+              new, fixtures[fid], venues[fid]
+          )
+          print("NEW FIXTURE =", fid)
+          print("NEW SNAPSHOT =", new["snapshot_type"])
+          print("AUTHORITATIVE EVIDENCE =", repr(accepted))
+
+          if accepted is not True:
+              raise RuntimeError("AUTHORITATIVE_GATE_REJECTED")
+
+          print("PBK708 = GITHUB LIVE WEATHER + GATE PASS")
+          print("API-FOOTBALL = NOT CALLED")
+          print("XI = NOT CALLED")
+          print("MAIN = UNCHANGED")
+          PY
+
+      - name: Preserve proof output as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pbk35-weather-live-proof
+          path: pbk35/proof708_20261019-132607/PBK35_DATA/ops/weather_snapshots.csv
+          retention-days: 7
+          if-no-files-found: warn
