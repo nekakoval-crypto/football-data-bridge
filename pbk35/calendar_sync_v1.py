@@ -1,4 +1,4 @@
-﻿import csv
+import csv
 import hashlib
 import os
 import sys
@@ -6,7 +6,7 @@ import tempfile
 from pathlib import Path
 from datetime import datetime, timezone
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(os.environ.get("PBK35_ROOT", Path(__file__).resolve().parent))
 SOURCE = Path(os.environ["PBK683_SOURCE"])
 DEST = ROOT / "PBK35_DATA/ops/pbk16_capture_universe.csv"
 ARCHIVE = ROOT / "PBK35_DATA/ops/weather_snapshots.csv"
