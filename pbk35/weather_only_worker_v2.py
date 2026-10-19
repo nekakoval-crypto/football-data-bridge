@@ -10,7 +10,7 @@ from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(os.environ.get("PBK35_ROOT", Path(__file__).resolve().parent))
 OPS = ROOT / "PBK35_DATA" / "ops"
 ARCHIVE = OPS / "weather_snapshots.csv"
 UNIVERSE = OPS / "pbk16_capture_universe.csv"
@@ -192,9 +192,10 @@ def main():
         OPS / "pbk35_verified_venue_context_612.csv"
     )
 
-    main_root = Path(
-        r"I:\PBK\football-data-bridge-v34-5-shadow"
-    )
+    source_root = os.environ.get("PBK35_SOURCE_ROOT")
+    if not source_root:
+        raise RuntimeError("PBK35_SOURCE_ROOT_REQUIRED")
+    main_root = Path(source_root)
     round_rows, _ = read_csv(
         main_root / "ops/current_round_fixtures.csv"
     )
