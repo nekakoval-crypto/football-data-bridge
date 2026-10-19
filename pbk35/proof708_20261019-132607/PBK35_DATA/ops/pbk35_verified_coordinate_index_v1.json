@@ -1,0 +1,1545 @@
+{
+  "version": "PBK692_VERIFIED_CITY_COORDINATES_V1",
+  "source_weather_rows": 313,
+  "current_fixtures": 124,
+  "verified_fixture_contexts": 117,
+  "reusable_cities": 109,
+  "conflicting_cities": 0,
+  "rejected_counts": {
+    "UNVERIFIED_FIXTURE": 166,
+    "CITY_CONFLICT": 5
+  },
+  "conflicts": {},
+  "entries": {
+    "AT|graz": {
+      "country_code": "AT",
+      "normalized_city": "graz",
+      "venue_city": "Graz",
+      "latitude": 47.06733,
+      "longitude": 15.44197,
+      "evidence_fixture_ids": [
+        "1561946"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "AT|lustenau": {
+      "country_code": "AT",
+      "normalized_city": "lustenau",
+      "venue_city": "Lustenau",
+      "latitude": 47.42642,
+      "longitude": 9.65851,
+      "evidence_fixture_ids": [
+        "1561942"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "AT|ried": {
+      "country_code": "AT",
+      "normalized_city": "ried",
+      "venue_city": "Ried",
+      "latitude": 47.99722,
+      "longitude": 12.96639,
+      "evidence_fixture_ids": [
+        "1561943"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "AT|salzburg": {
+      "country_code": "AT",
+      "normalized_city": "salzburg",
+      "venue_city": "Salzburg",
+      "latitude": 47.79941,
+      "longitude": 13.04399,
+      "evidence_fixture_ids": [
+        "1561944"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "AT|vienna": {
+      "country_code": "AT",
+      "normalized_city": "vienna",
+      "venue_city": "Vienna",
+      "latitude": 48.20849,
+      "longitude": 16.37208,
+      "evidence_fixture_ids": [
+        "1561945"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "AT|wolfsberg": {
+      "country_code": "AT",
+      "normalized_city": "wolfsberg",
+      "venue_city": "Wolfsberg",
+      "latitude": 46.84056,
+      "longitude": 14.84417,
+      "evidence_fixture_ids": [
+        "1561947"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "BE|brugge": {
+      "country_code": "BE",
+      "normalized_city": "brugge",
+      "venue_city": "Brugge",
+      "latitude": 51.20892,
+      "longitude": 3.22424,
+      "evidence_fixture_ids": [
+        "1558654"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "BE|brussels": {
+      "country_code": "BE",
+      "normalized_city": "brussels",
+      "venue_city": "Brussels",
+      "latitude": 50.85045,
+      "longitude": 4.34878,
+      "evidence_fixture_ids": [
+        "1558660"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "BE|genk": {
+      "country_code": "BE",
+      "normalized_city": "genk",
+      "venue_city": "Genk",
+      "latitude": 50.965,
+      "longitude": 5.50082,
+      "evidence_fixture_ids": [
+        "1558655"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "BE|gent": {
+      "country_code": "BE",
+      "normalized_city": "gent",
+      "venue_city": "Gent",
+      "latitude": 51.05,
+      "longitude": 3.71667,
+      "evidence_fixture_ids": [
+        "1558656"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "BE|heverlee": {
+      "country_code": "BE",
+      "normalized_city": "heverlee",
+      "venue_city": "Heverlee",
+      "latitude": 50.86426,
+      "longitude": 4.69597,
+      "evidence_fixture_ids": [
+        "1558658"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "BE|kortrijk": {
+      "country_code": "BE",
+      "normalized_city": "kortrijk",
+      "venue_city": "Kortrijk",
+      "latitude": 50.82803,
+      "longitude": 3.26487,
+      "evidence_fixture_ids": [
+        "1558657"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "BE|westerlo": {
+      "country_code": "BE",
+      "normalized_city": "westerlo",
+      "venue_city": "Westerlo",
+      "latitude": 51.09049,
+      "longitude": 4.91544,
+      "evidence_fixture_ids": [
+        "1558661"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "DE|berlin": {
+      "country_code": "DE",
+      "normalized_city": "berlin",
+      "venue_city": "Berlin",
+      "latitude": 52.52437,
+      "longitude": 13.41053,
+      "evidence_fixture_ids": [
+        "1575188"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "DE|bremen": {
+      "country_code": "DE",
+      "normalized_city": "bremen",
+      "venue_city": "Bremen",
+      "latitude": 53.07582,
+      "longitude": 8.80717,
+      "evidence_fixture_ids": [
+        "1575191"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "DE|frankfurt": {
+      "country_code": "DE",
+      "normalized_city": "frankfurt",
+      "venue_city": "Frankfurt",
+      "latitude": 50.11552,
+      "longitude": 8.68417,
+      "evidence_fixture_ids": [
+        "1575187"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "DE|gelsenkirchen": {
+      "country_code": "DE",
+      "normalized_city": "gelsenkirchen",
+      "venue_city": "Gelsenkirchen",
+      "latitude": 51.50508,
+      "longitude": 7.09654,
+      "evidence_fixture_ids": [
+        "1575192"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "DE|hamburg": {
+      "country_code": "DE",
+      "normalized_city": "hamburg",
+      "venue_city": "Hamburg",
+      "latitude": 53.55073,
+      "longitude": 9.99302,
+      "evidence_fixture_ids": [
+        "1575190"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "DE|leverkusen": {
+      "country_code": "DE",
+      "normalized_city": "leverkusen",
+      "venue_city": "Leverkusen",
+      "latitude": 51.0303,
+      "longitude": 6.98432,
+      "evidence_fixture_ids": [
+        "1575186"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "DE|monchengladbach": {
+      "country_code": "DE",
+      "normalized_city": "monchengladbach",
+      "venue_city": "Mönchengladbach",
+      "latitude": 51.18539,
+      "longitude": 6.44172,
+      "evidence_fixture_ids": [
+        "1575189"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "DE|munich": {
+      "country_code": "DE",
+      "normalized_city": "munich",
+      "venue_city": "Munich",
+      "latitude": 48.13743,
+      "longitude": 11.57549,
+      "evidence_fixture_ids": [
+        "1575185"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "DE|spiesen-elversberg": {
+      "country_code": "DE",
+      "normalized_city": "spiesen-elversberg",
+      "venue_city": "Spiesen-Elversberg",
+      "latitude": 49.31667,
+      "longitude": 7.13333,
+      "evidence_fixture_ids": [
+        "1575193"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "DK|copenhagen": {
+      "country_code": "DK",
+      "normalized_city": "copenhagen",
+      "venue_city": "Copenhagen",
+      "latitude": 55.67594,
+      "longitude": 12.56553,
+      "evidence_fixture_ids": [
+        "1549034"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "DK|haderslev": {
+      "country_code": "DK",
+      "normalized_city": "haderslev",
+      "venue_city": "Haderslev",
+      "latitude": 55.24943,
+      "longitude": 9.48771,
+      "evidence_fixture_ids": [
+        "1549038"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "DK|horsens": {
+      "country_code": "DK",
+      "normalized_city": "horsens",
+      "venue_city": "Horsens",
+      "latitude": 55.86066,
+      "longitude": 9.85034,
+      "evidence_fixture_ids": [
+        "1549035"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "DK|kongens lyngby": {
+      "country_code": "DK",
+      "normalized_city": "kongens lyngby",
+      "venue_city": "Kongens Lyngby",
+      "latitude": 55.77044,
+      "longitude": 12.50378,
+      "evidence_fixture_ids": [
+        "1549036"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "DK|odense": {
+      "country_code": "DK",
+      "normalized_city": "odense",
+      "venue_city": "Odense",
+      "latitude": 55.39594,
+      "longitude": 10.38831,
+      "evidence_fixture_ids": [
+        "1549037"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "DK|viborg": {
+      "country_code": "DK",
+      "normalized_city": "viborg",
+      "venue_city": "Viborg",
+      "latitude": 56.45319,
+      "longitude": 9.40201,
+      "evidence_fixture_ids": [
+        "1549039"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "ES|cornella de llobregat": {
+      "country_code": "ES",
+      "normalized_city": "cornella de llobregat",
+      "venue_city": "Cornella de Llobregat",
+      "latitude": 41.35,
+      "longitude": 2.08333,
+      "evidence_fixture_ids": [
+        "1570416"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "ES|getafe": {
+      "country_code": "ES",
+      "normalized_city": "getafe",
+      "venue_city": "Getafe",
+      "latitude": 40.30571,
+      "longitude": -3.73295,
+      "evidence_fixture_ids": [
+        "1570417"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "ES|la coruna": {
+      "country_code": "ES",
+      "normalized_city": "la coruna",
+      "venue_city": "La Coruna",
+      "latitude": 43.37135,
+      "longitude": -8.396,
+      "evidence_fixture_ids": [
+        "1570415"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "ES|madrid": {
+      "country_code": "ES",
+      "normalized_city": "madrid",
+      "venue_city": "Madrid",
+      "latitude": 40.4165,
+      "longitude": -3.70256,
+      "evidence_fixture_ids": [
+        "1570420"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "ES|malaga": {
+      "country_code": "ES",
+      "normalized_city": "malaga",
+      "venue_city": "Malaga",
+      "latitude": 36.72016,
+      "longitude": -4.42034,
+      "evidence_fixture_ids": [
+        "1570418"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "ES|pamplona": {
+      "country_code": "ES",
+      "normalized_city": "pamplona",
+      "venue_city": "Pamplona",
+      "latitude": 42.81687,
+      "longitude": -1.64323,
+      "evidence_fixture_ids": [
+        "1570419"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "ES|sevilla": {
+      "country_code": "ES",
+      "normalized_city": "sevilla",
+      "venue_city": "Sevilla",
+      "latitude": 37.38283,
+      "longitude": -5.97317,
+      "evidence_fixture_ids": [
+        "1570413"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "ES|valencia": {
+      "country_code": "ES",
+      "normalized_city": "valencia",
+      "venue_city": "Valencia",
+      "latitude": 39.47391,
+      "longitude": -0.37966,
+      "evidence_fixture_ids": [
+        "1570421"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "ES|vigo": {
+      "country_code": "ES",
+      "normalized_city": "vigo",
+      "venue_city": "Vigo",
+      "latitude": 42.23282,
+      "longitude": -8.72264,
+      "evidence_fixture_ids": [
+        "1570414"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "ES|villarreal": {
+      "country_code": "ES",
+      "normalized_city": "villarreal",
+      "venue_city": "Villarreal",
+      "latitude": 38.72572,
+      "longitude": -7.21533,
+      "evidence_fixture_ids": [
+        "1570422"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "FR|angers": {
+      "country_code": "FR",
+      "normalized_city": "angers",
+      "venue_city": "Angers",
+      "latitude": 47.47156,
+      "longitude": -0.55202,
+      "evidence_fixture_ids": [
+        "1552783"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "FR|le havre": {
+      "country_code": "FR",
+      "normalized_city": "le havre",
+      "venue_city": "Le Havre",
+      "latitude": 49.49346,
+      "longitude": 0.10785,
+      "evidence_fixture_ids": [
+        "1552784"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "FR|le mans": {
+      "country_code": "FR",
+      "normalized_city": "le mans",
+      "venue_city": "Le Mans",
+      "latitude": 48.0021,
+      "longitude": 0.20251,
+      "evidence_fixture_ids": [
+        "1552785"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "FR|lille": {
+      "country_code": "FR",
+      "normalized_city": "lille",
+      "venue_city": "Lille",
+      "latitude": 50.63391,
+      "longitude": 3.05512,
+      "evidence_fixture_ids": [
+        "1552786"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "FR|lorient": {
+      "country_code": "FR",
+      "normalized_city": "lorient",
+      "venue_city": "Lorient",
+      "latitude": 47.74817,
+      "longitude": -3.37177,
+      "evidence_fixture_ids": [
+        "1552787"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "FR|lyon": {
+      "country_code": "FR",
+      "normalized_city": "lyon",
+      "venue_city": "Lyon",
+      "latitude": 45.74906,
+      "longitude": 4.84789,
+      "evidence_fixture_ids": [
+        "1552788"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "FR|strasbourg": {
+      "country_code": "FR",
+      "normalized_city": "strasbourg",
+      "venue_city": "Strasbourg",
+      "latitude": 48.58392,
+      "longitude": 7.74553,
+      "evidence_fixture_ids": [
+        "1552790"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "FR|troyes": {
+      "country_code": "FR",
+      "normalized_city": "troyes",
+      "venue_city": "Troyes",
+      "latitude": 48.30073,
+      "longitude": 4.08524,
+      "evidence_fixture_ids": [
+        "1552791"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "GB|aberdeen": {
+      "country_code": "GB",
+      "normalized_city": "aberdeen",
+      "venue_city": "Aberdeen",
+      "latitude": 57.14369,
+      "longitude": -2.09814,
+      "evidence_fixture_ids": [
+        "1556676"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "GB|bournemouth": {
+      "country_code": "GB",
+      "normalized_city": "bournemouth",
+      "venue_city": "Bournemouth",
+      "latitude": 50.72048,
+      "longitude": -1.8795,
+      "evidence_fixture_ids": [
+        "1557427"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "GB|brighton": {
+      "country_code": "GB",
+      "normalized_city": "brighton",
+      "venue_city": "Brighton",
+      "latitude": 50.82838,
+      "longitude": -0.13947,
+      "evidence_fixture_ids": [
+        "1557429"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "GB|dundee": {
+      "country_code": "GB",
+      "normalized_city": "dundee",
+      "venue_city": "Dundee",
+      "latitude": 56.46913,
+      "longitude": -2.97489,
+      "evidence_fixture_ids": [
+        "1556678"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "GB|edinburgh": {
+      "country_code": "GB",
+      "normalized_city": "edinburgh",
+      "venue_city": "Edinburgh",
+      "latitude": 55.95206,
+      "longitude": -3.19648,
+      "evidence_fixture_ids": [
+        "1556679"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "GB|glasgow": {
+      "country_code": "GB",
+      "normalized_city": "glasgow",
+      "venue_city": "Glasgow",
+      "latitude": 55.86515,
+      "longitude": -4.25763,
+      "evidence_fixture_ids": [
+        "1556677"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "GB|kilmarnock": {
+      "country_code": "GB",
+      "normalized_city": "kilmarnock",
+      "venue_city": "Kilmarnock",
+      "latitude": 55.61171,
+      "longitude": -4.49581,
+      "evidence_fixture_ids": [
+        "1556680"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "GB|leeds": {
+      "country_code": "GB",
+      "normalized_city": "leeds",
+      "venue_city": "Leeds",
+      "latitude": 53.79648,
+      "longitude": -1.54785,
+      "evidence_fixture_ids": [
+        "1557432"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "GB|liverpool": {
+      "country_code": "GB",
+      "normalized_city": "liverpool",
+      "venue_city": "Liverpool",
+      "latitude": 53.41058,
+      "longitude": -2.97794,
+      "evidence_fixture_ids": [
+        "1557430"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "GB|london": {
+      "country_code": "GB",
+      "normalized_city": "london",
+      "venue_city": "London",
+      "latitude": 51.50853,
+      "longitude": -0.12574,
+      "evidence_fixture_ids": [
+        "1557428",
+        "1557431",
+        "1557436"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "GB|manchester": {
+      "country_code": "GB",
+      "normalized_city": "manchester",
+      "venue_city": "Manchester",
+      "latitude": 53.48095,
+      "longitude": -2.23743,
+      "evidence_fixture_ids": [
+        "1557433"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "GB|newcastle": {
+      "country_code": "GB",
+      "normalized_city": "newcastle",
+      "venue_city": "Newcastle",
+      "latitude": 54.21804,
+      "longitude": -5.88979,
+      "evidence_fixture_ids": [
+        "1557434"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "GB|nottingham": {
+      "country_code": "GB",
+      "normalized_city": "nottingham",
+      "venue_city": "Nottingham",
+      "latitude": 52.9536,
+      "longitude": -1.15047,
+      "evidence_fixture_ids": [
+        "1557435"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "GB|perth": {
+      "country_code": "GB",
+      "normalized_city": "perth",
+      "venue_city": "Perth",
+      "latitude": 56.39522,
+      "longitude": -3.43139,
+      "evidence_fixture_ids": [
+        "1556681"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "IT|bologna": {
+      "country_code": "IT",
+      "normalized_city": "bologna",
+      "venue_city": "Bologna",
+      "latitude": 44.49381,
+      "longitude": 11.33875,
+      "evidence_fixture_ids": [
+        "1550149"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "IT|florence": {
+      "country_code": "IT",
+      "normalized_city": "florence",
+      "venue_city": "Florence",
+      "latitude": 43.77925,
+      "longitude": 11.24626,
+      "evidence_fixture_ids": [
+        "1550150"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "IT|frosinone": {
+      "country_code": "IT",
+      "normalized_city": "frosinone",
+      "venue_city": "Frosinone",
+      "latitude": 41.63976,
+      "longitude": 13.34109,
+      "evidence_fixture_ids": [
+        "1550151"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "IT|milan": {
+      "country_code": "IT",
+      "normalized_city": "milan",
+      "venue_city": "Milan",
+      "latitude": 45.46427,
+      "longitude": 9.18951,
+      "evidence_fixture_ids": [
+        "1550147"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "IT|monza": {
+      "country_code": "IT",
+      "normalized_city": "monza",
+      "venue_city": "Monza",
+      "latitude": 45.58005,
+      "longitude": 9.27246,
+      "evidence_fixture_ids": [
+        "1550153"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "IT|parma": {
+      "country_code": "IT",
+      "normalized_city": "parma",
+      "venue_city": "Parma",
+      "latitude": 44.79935,
+      "longitude": 10.32618,
+      "evidence_fixture_ids": [
+        "1550154"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "IT|rome": {
+      "country_code": "IT",
+      "normalized_city": "rome",
+      "venue_city": "Rome",
+      "latitude": 41.89193,
+      "longitude": 12.51133,
+      "evidence_fixture_ids": [
+        "1550148"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "IT|turin": {
+      "country_code": "IT",
+      "normalized_city": "turin",
+      "venue_city": "Turin",
+      "latitude": 45.07049,
+      "longitude": 7.68682,
+      "evidence_fixture_ids": [
+        "1550152"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "IT|udine": {
+      "country_code": "IT",
+      "normalized_city": "udine",
+      "venue_city": "Udine",
+      "latitude": 46.0693,
+      "longitude": 13.23715,
+      "evidence_fixture_ids": [
+        "1550155"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "IT|venice": {
+      "country_code": "IT",
+      "normalized_city": "venice",
+      "venue_city": "Venice",
+      "latitude": 45.43713,
+      "longitude": 12.33265,
+      "evidence_fixture_ids": [
+        "1550156"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "LT|marijampole": {
+      "country_code": "LT",
+      "normalized_city": "marijampole",
+      "venue_city": "Marijampole",
+      "latitude": 54.55787,
+      "longitude": 23.35004,
+      "evidence_fixture_ids": [
+        "1547641"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "LT|telsiai": {
+      "country_code": "LT",
+      "normalized_city": "telsiai",
+      "venue_city": "Telsiai",
+      "latitude": 55.98139,
+      "longitude": 22.24722,
+      "evidence_fixture_ids": [
+        "1547640"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "LT|vilnius": {
+      "country_code": "LT",
+      "normalized_city": "vilnius",
+      "venue_city": "Vilnius",
+      "latitude": 54.68916,
+      "longitude": 25.2798,
+      "evidence_fixture_ids": [
+        "1547643"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "LV|riga": {
+      "country_code": "LV",
+      "normalized_city": "riga",
+      "venue_city": "Riga",
+      "latitude": 56.946,
+      "longitude": 24.10589,
+      "evidence_fixture_ids": [
+        "1515897"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "NL|den haag": {
+      "country_code": "NL",
+      "normalized_city": "den haag",
+      "venue_city": "Den Haag",
+      "latitude": 52.07667,
+      "longitude": 4.29861,
+      "evidence_fixture_ids": [
+        "1552190"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "NL|enschede": {
+      "country_code": "NL",
+      "normalized_city": "enschede",
+      "venue_city": "Enschede",
+      "latitude": 52.21833,
+      "longitude": 6.89583,
+      "evidence_fixture_ids": [
+        "1552196"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "NL|groningen": {
+      "country_code": "NL",
+      "normalized_city": "groningen",
+      "venue_city": "Groningen",
+      "latitude": 53.21917,
+      "longitude": 6.56667,
+      "evidence_fixture_ids": [
+        "1552197"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "NL|heerenveen": {
+      "country_code": "NL",
+      "normalized_city": "heerenveen",
+      "venue_city": "Heerenveen",
+      "latitude": 52.95929,
+      "longitude": 5.91854,
+      "evidence_fixture_ids": [
+        "1552189"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "NL|leeuwarden": {
+      "country_code": "NL",
+      "normalized_city": "leeuwarden",
+      "venue_city": "Leeuwarden",
+      "latitude": 53.20271,
+      "longitude": 5.80973,
+      "evidence_fixture_ids": [
+        "1552195"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "NL|nijmegen": {
+      "country_code": "NL",
+      "normalized_city": "nijmegen",
+      "venue_city": "Nijmegen",
+      "latitude": 51.8425,
+      "longitude": 5.85278,
+      "evidence_fixture_ids": [
+        "1552191"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "NL|rotterdam": {
+      "country_code": "NL",
+      "normalized_city": "rotterdam",
+      "venue_city": "Rotterdam",
+      "latitude": 51.9225,
+      "longitude": 4.47917,
+      "evidence_fixture_ids": [
+        "1552193"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "NL|velsen-zuid": {
+      "country_code": "NL",
+      "normalized_city": "velsen-zuid",
+      "venue_city": "Velsen-Zuid",
+      "latitude": 52.46,
+      "longitude": 4.65,
+      "evidence_fixture_ids": [
+        "1552192"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "NL|zwolle": {
+      "country_code": "NL",
+      "normalized_city": "zwolle",
+      "venue_city": "Zwolle",
+      "latitude": 52.5125,
+      "longitude": 6.09444,
+      "evidence_fixture_ids": [
+        "1552194"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "NO|hamar": {
+      "country_code": "NO",
+      "normalized_city": "hamar",
+      "venue_city": "Hamar",
+      "latitude": 60.7945,
+      "longitude": 11.06798,
+      "evidence_fixture_ids": [
+        "1494780"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "NO|kristiansund": {
+      "country_code": "NO",
+      "normalized_city": "kristiansund",
+      "venue_city": "Kristiansund",
+      "latitude": 63.11045,
+      "longitude": 7.72795,
+      "evidence_fixture_ids": [
+        "1494781"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "NO|molde": {
+      "country_code": "NO",
+      "normalized_city": "molde",
+      "venue_city": "Molde",
+      "latitude": 62.73752,
+      "longitude": 7.15912,
+      "evidence_fixture_ids": [
+        "1494782"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "NO|oslo": {
+      "country_code": "NO",
+      "normalized_city": "oslo",
+      "venue_city": "Oslo",
+      "latitude": 59.91273,
+      "longitude": 10.74609,
+      "evidence_fixture_ids": [
+        "1494786"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "NO|sandefjord": {
+      "country_code": "NO",
+      "normalized_city": "sandefjord",
+      "venue_city": "Sandefjord",
+      "latitude": 59.13118,
+      "longitude": 10.21665,
+      "evidence_fixture_ids": [
+        "1494783"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "NO|sarpsborg": {
+      "country_code": "NO",
+      "normalized_city": "sarpsborg",
+      "venue_city": "Sarpsborg",
+      "latitude": 59.28391,
+      "longitude": 11.10962,
+      "evidence_fixture_ids": [
+        "1494784"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "NO|stavanger": {
+      "country_code": "NO",
+      "normalized_city": "stavanger",
+      "venue_city": "Stavanger",
+      "latitude": 58.97005,
+      "longitude": 5.73332,
+      "evidence_fixture_ids": [
+        "1494787"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "PL|katowice": {
+      "country_code": "PL",
+      "normalized_city": "katowice",
+      "venue_city": "Katowice",
+      "latitude": 50.2597,
+      "longitude": 19.02173,
+      "evidence_fixture_ids": [
+        "1553192"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "PL|lodz": {
+      "country_code": "PL",
+      "normalized_city": "lodz",
+      "venue_city": "Lodz",
+      "latitude": 51.77058,
+      "longitude": 19.47395,
+      "evidence_fixture_ids": [
+        "1553196"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "PL|lubin": {
+      "country_code": "PL",
+      "normalized_city": "lubin",
+      "venue_city": "Lubin",
+      "latitude": 51.40089,
+      "longitude": 16.20149,
+      "evidence_fixture_ids": [
+        "1553199"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "PL|lublin": {
+      "country_code": "PL",
+      "normalized_city": "lublin",
+      "venue_city": "Lublin",
+      "latitude": 51.25058,
+      "longitude": 22.57009,
+      "evidence_fixture_ids": [
+        "1553195"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "PL|zabrze": {
+      "country_code": "PL",
+      "normalized_city": "zabrze",
+      "venue_city": "Zabrze",
+      "latitude": 50.32492,
+      "longitude": 18.78576,
+      "evidence_fixture_ids": [
+        "1553193"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "PT|alverca do ribatejo": {
+      "country_code": "PT",
+      "normalized_city": "alverca do ribatejo",
+      "venue_city": "Alverca do Ribatejo",
+      "latitude": 38.89898,
+      "longitude": -9.03864,
+      "evidence_fixture_ids": [
+        "1575518"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "PT|amadora": {
+      "country_code": "PT",
+      "normalized_city": "amadora",
+      "venue_city": "Amadora",
+      "latitude": 38.75382,
+      "longitude": -9.23083,
+      "evidence_fixture_ids": [
+        "1575520"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "PT|barcelos": {
+      "country_code": "PT",
+      "normalized_city": "barcelos",
+      "venue_city": "Barcelos",
+      "latitude": 41.53174,
+      "longitude": -8.61843,
+      "evidence_fixture_ids": [
+        "1575521"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "PT|estoril": {
+      "country_code": "PT",
+      "normalized_city": "estoril",
+      "venue_city": "Estoril",
+      "latitude": 38.70571,
+      "longitude": -9.39773,
+      "evidence_fixture_ids": [
+        "1575519"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "PT|funchal": {
+      "country_code": "PT",
+      "normalized_city": "funchal",
+      "venue_city": "Funchal",
+      "latitude": 32.66568,
+      "longitude": -16.92547,
+      "evidence_fixture_ids": [
+        "1575522"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "PT|lisbon": {
+      "country_code": "PT",
+      "normalized_city": "lisbon",
+      "venue_city": "Lisbon",
+      "latitude": 38.72509,
+      "longitude": -9.1498,
+      "evidence_fixture_ids": [
+        "1575525"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "PT|ponta delgada": {
+      "country_code": "PT",
+      "normalized_city": "ponta delgada",
+      "venue_city": "Ponta Delgada",
+      "latitude": 37.73952,
+      "longitude": -25.66874,
+      "evidence_fixture_ids": [
+        "1575524"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "PT|vila do conde": {
+      "country_code": "PT",
+      "normalized_city": "vila do conde",
+      "venue_city": "Vila do Conde",
+      "latitude": 41.35326,
+      "longitude": -8.74516,
+      "evidence_fixture_ids": [
+        "1575523"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "TR|ankara": {
+      "country_code": "TR",
+      "normalized_city": "ankara",
+      "venue_city": "Ankara",
+      "latitude": 39.91987,
+      "longitude": 32.85427,
+      "evidence_fixture_ids": [
+        "1584435"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "TR|corum": {
+      "country_code": "TR",
+      "normalized_city": "corum",
+      "venue_city": "Corum",
+      "latitude": 40.54889,
+      "longitude": 34.95333,
+      "evidence_fixture_ids": [
+        "1584432"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "TR|erzurum": {
+      "country_code": "TR",
+      "normalized_city": "erzurum",
+      "venue_city": "Erzurum",
+      "latitude": 39.90861,
+      "longitude": 41.27694,
+      "evidence_fixture_ids": [
+        "1584433"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "TR|istanbul": {
+      "country_code": "TR",
+      "normalized_city": "istanbul",
+      "venue_city": "Istanbul",
+      "latitude": 41.01384,
+      "longitude": 28.94966,
+      "evidence_fixture_ids": [
+        "1584431",
+        "1584434",
+        "1584436"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "TR|izmit": {
+      "country_code": "TR",
+      "normalized_city": "izmit",
+      "venue_city": "Izmit",
+      "latitude": 40.76499,
+      "longitude": 29.92928,
+      "evidence_fixture_ids": [
+        "1584437"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    },
+    "TR|trabzon": {
+      "country_code": "TR",
+      "normalized_city": "trabzon",
+      "venue_city": "Trabzon",
+      "latitude": 41.005,
+      "longitude": 39.72694,
+      "evidence_fixture_ids": [
+        "1584438"
+      ],
+      "evidence_kind": "VERIFIED_CITY_PROXY",
+      "stadium_coordinates_verified": false,
+      "predictive_authority": "NOT_AUTHORIZED",
+      "betting_authority": false
+    }
+  }
+}
