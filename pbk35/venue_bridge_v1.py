@@ -1,4 +1,4 @@
-﻿import argparse
+import argparse
 import csv
 import os
 import tempfile
@@ -7,8 +7,8 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
-SHADOW = Path(os.environ["PBK691_SHADOW"])
-ROOT = Path(os.environ["PBK691_ROOT"])
+SHADOW = Path(os.environ.get("PBK35_SOURCE_ROOT") or os.environ["PBK691_SHADOW"])
+ROOT = Path(os.environ.get("PBK35_ROOT") or os.environ["PBK691_ROOT"])
 OPS = ROOT / "PBK35_DATA" / "ops"
 
 CALENDAR = OPS / "pbk16_capture_universe.csv"
